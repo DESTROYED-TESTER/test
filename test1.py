@@ -1288,9 +1288,8 @@ def Subscraption():
 	ML1="SBSBSBSB"
 	sk = "K742J"
 	lk = "7"
-	uuid = str(os.getid())
 	uuidd = str(os.geteuid()) + str(os.getlogin()) 
-	id = "".join(uuidd+uuid+sk+lk)
+	id = "".join(uuidd+sk+lk)
 	key1 = UMO+id+ML1
 	Key2 = ak+ATOM+key1
 	r1=requests.get("https://github.com/DESTROYED-ATOM/approve/blob/main/approve.txt").text
