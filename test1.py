@@ -1288,7 +1288,7 @@ def Subscraption():
 	ML1="SBSBSBSB"
 	sk = "K742J"
 	lk = "7"
-	uuid = str(os.geteuid())
+	uuid = str(os.getid())
 	uuidd = str(os.geteuid()) + str(os.getlogin()) 
 	id = "".join(uuidd+uuid+sk+lk)
 	key1 = UMO+id+ML1
