@@ -1236,7 +1236,7 @@ def m6(idf,pwv):
             'sec-fetch-dest': 'empty', 
             'sec-fetch-mode': 'cors', 
             'sec-fetch-site': 'same-origin', 
-            'user-agent': ua, 
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36', 
             'viewport-width': '484', 
             'x-asbd-id': '129477', 
             'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
