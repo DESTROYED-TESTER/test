@@ -1242,7 +1242,7 @@ def m6(idf,pwv):
             'sec-fetch-dest': 'empty', 
             'sec-fetch-mode': 'cors', 
             'sec-fetch-site': 'same-origin', 
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36', 
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36', 
             'viewport-width': '484', 
             'x-asbd-id': '129477', 
             'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
