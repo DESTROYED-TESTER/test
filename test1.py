@@ -1225,7 +1225,8 @@ def m6(idf,pwv):
             "unrecognized_tries":"0",
             "email":idf,
             "pass":ps,
-            "login":"Log In"}
+            "login":"Log In",
+            "bi_xrwh":"0",}
    header_freefb = {
             'authority': 'mbasic.facebook.com',
             'method': 'GET',
