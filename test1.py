@@ -900,8 +900,8 @@ def m1(idf,pwv):
             date = {'jazoest': re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"',str(link.text)).group(1),
             'email': idf,
-            'login_source': 'comet_headerless_login'
-            'next': 
+            'login_source': 'comet_headerless_login',
+            'next': 'https://m.facebook.com/login/device-based/regular/login',
             'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),pw),} 
             respons =({
             'Host': f'm.facebook.com',
