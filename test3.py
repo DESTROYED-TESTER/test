@@ -1180,8 +1180,7 @@ def m5(idf,pwv):
    'content-type': 'application/reports+json',
    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
    'accept-encoding': 'gzip, deflate, br, zstd',
-   'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'
-   'cookies': 'sb'='queen_bithika'}
+   'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'}
    lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=head).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
