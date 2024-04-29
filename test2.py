@@ -290,7 +290,7 @@ my_color = [
  P, M, H, K, B, U, O, N]
 warna = random.choice(my_color)
 ###----------[ CONVERT LINE ]----------###
-led = f'{B} -{H}-{M}-{K}-{A}-{B}-{N}-{H}-{P}-{N}-{B}-{H}-{M}-{U}-{K}-{B}-{O}-{H}-{P}-{M}-{B}-{H}-{M}-{K}-{A}-{B}-{N}-{H}-{P}-{N}-{B}-{K}-{H}-{M}-{U}-{K}-{B}-{O}-{H}-{P}{M}-{B}-{O}-{H}-{P}'
+led = f'{M} -{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}{M}-{M}-{M}-{H}-{M}'
 ###----------[ BANNER MENUH ]----------###
 gen=f' {K}[{GREEN}√{K}] {P}'
 dot=f' {K}[{GREEN}•{K}] {P}'
