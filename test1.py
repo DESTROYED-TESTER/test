@@ -1180,7 +1180,7 @@ def m5(idf,pwv):
    session = requests.Session()
    pro = random.choice(ugen)
    link = session.get(f'https://m.facebook.com').text
-   log_data = 'jazoest': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
+   log_data ={'jazoest': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
    'lsd': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
    'email': idf
    'cred_type': '100'
