@@ -1183,7 +1183,6 @@ def m5(idf,pwv):
    log_data ={'jazoest': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
    'lsd': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
    'email': idf
-   'cred_type': '100'
    'login_source': 'device_based_login_add_account'
    'persistent': 
    'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps),}
