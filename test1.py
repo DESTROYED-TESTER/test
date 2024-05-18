@@ -1165,7 +1165,7 @@ def m5(idf,pwv):
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
             'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
             'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-model':re.search('name="sec-ch-ua-model" value="(.*?)"', str(free_fb)).group(1),
+            'sec-ch-ua-model': '"facebook"',
             'sec-ch-ua-platform': '"Android"',
             'sec-ch-ua-platform-version': '"4.4.3"',
             'sec-fetch-dest': 'empty',
