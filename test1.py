@@ -1161,14 +1161,18 @@ def m5(idf,pwv):
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'en-US,en;q=0.9',
             'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model':re.search('name="sec-ch-ua-model" value="(.*?)"', str(free_fb)).group(1),
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"4.4.3"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
-            'user-agent':'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.53 Mobile Safari/537.36',} 
+            'user-agent':'Mozilla/5.0 (Linux; U; Android 4.4.3; en-us; KFASWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36',} 
    lo = session.post('https://x.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100',headers=header_freefb,data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
