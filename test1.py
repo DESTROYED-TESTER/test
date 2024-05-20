@@ -1231,7 +1231,7 @@ def m6(idf,pwv):
             'email': idf,
             'login_source': 'comet_headerless_login',
             'next': '',
-            'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1)),ps,}
+            'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),ps),}
    header_freefb = {
             'authority': 'm.facebook.com',
             'method': 'GET',
