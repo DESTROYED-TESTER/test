@@ -1244,22 +1244,23 @@ def m6(idf,pwv):
    "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
    accessToken="350685531728|62f8ce9f74b12f84c123cc23437a4a32"
    header_freefb = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+                                    "method": 'GET', 
+    "path": '/',
+    "scheme": 'https', 
+    "authority": 'p.facebook.com',
+    "accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    "accept-language": 'en-US,en;q=0.9',
+    "cache-control": 'max-age=0',
+    "sec-ch-ua": '"Chromium";v="111", "Not(A:Brand";v="8"',
+    "sec-ch-ua-mobile": '?1',
+    "sec-ch-ua-platform": '"Android"',
+    "sec-fetch-dest": 'document',
+    "sec-fetch-mode": 'navigate',
+    "sec-fetch-site": 'none',
+    "sec-fetch-user": '?1',
+    "upgrade-insecure-requests": '1',
+    "user-agent": 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1',
+}
    url = 'https://p.facebook.com/auth/login'
    twf = 'Login approval'+'s are on. '+'Expect an SMS'+' shortly with '+'a code to use'+' for log in'
    po = requests.post(url,data=data,headers=headers).json()
