@@ -1194,7 +1194,7 @@ def m5(idf,pwv):
     'had_password_prefilled': 'false',  # Flag for prefilled password
     'is_smart_lock': 'false',           # Smart Lock flag
     'bi_xrwh': '0',                     # Biometric flag
-    'encpass': '#PWD_BROWSER:0:timestamp:encrypted_password'  # Encrypted password}
+    'encpass': '#PWD_BROWSER:0:timestamp:encrypted_password'}  # Encrypted password}
    header_freefb = {'authority':'m.facebook.com',
             'method': 'POST',
             'scheme': 'https',
