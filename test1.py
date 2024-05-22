@@ -1173,15 +1173,28 @@ def m5(idf,pwv):
    pro = random.choice(ugen)
    free_fb = session.get(f'https://m.facebook.com').text
    log_data = {
-    "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-   "try_number":"0",
-   "unrecognized_tries":"0",
-   "email":idf,
-   "pass":ps,
-   "login":"Log In"}
+    'email': idf,  # Your Facebook email or phone number
+    'pass': ps,            # Your Facebook password
+    'login_source': 'comet_headerless_login',  # Source of the login request
+    'next': '',                         # Next URL after login
+    'lgndim': '',                       # Screen dimensions
+    'lgnrnd': 'random_string',          # Random string for the login session
+    'lgnjs': 'timestamp',               # JavaScript timestamp
+    'ab_test_data': '',                 # A/B test data
+    'locale': 'en_US',                  # Locale
+    'timezone': '-420',                 # Timezone offset
+    'lgndim': 'eyJ3IjoxOTIwLCJoIjoxMDgwLCJhdyI6MTkyMCwiYWgiOjEwNTAsImMiOjI0fQ==',  # Encoded screen dimensions
+    'email_type': '',                   # Type of email input
+    'prefill_contact_point': '',        # Prefill contact point (email or phone)
+    'prefill_source': '',               # Source of prefill
+    'prefill_type': '',                 # Type of prefill
+    'first_prefill_source': '',         # First source of prefill
+    'first_prefill_type': '',           # First type of prefill
+    'had_cp_prefilled': 'false',        # Flag for prefilled contact point
+    'had_password_prefilled': 'false',  # Flag for prefilled password
+    'is_smart_lock': 'false',           # Smart Lock flag
+    'bi_xrwh': '0',                     # Biometric flag
+    'encpass': '#PWD_BROWSER:0:timestamp:encrypted_password'  # Encrypted password}
    header_freefb = {'authority':'m.facebook.com',
             'method': 'POST',
             'scheme': 'https',
