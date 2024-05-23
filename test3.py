@@ -97,14 +97,6 @@ from os import path
 from urllib.request import urlopen
 import os,base64,zlib,pip,urllib,platform,math,shutil,random,uuid,string,hashlib,json,sys
 
-token = input('\x1b[1;32mT\x1b[1;32mO\x1b[1;32mK\x1b[1;32mE\x1b[1;32mN\x1b[1;32m :\x1b[1;34m ')
-ID = input('\x1b[1;31mI\x1b[1;31mD \x1b[1;36m   : ')
-
-#Stop Put Fucking Token On Tools!!
-# token = ('6728809647:AAEVsjFxbo31sNpLvfLEgeuTMa2inUebLHM')
-# ID = ('6390757416')
-
-print('\n\033[1;37m You have been successfully registered in the @codes_team tool 🔥😎')
 
 
 #exec(zlib.decompress().decode())
