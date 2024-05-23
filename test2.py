@@ -481,7 +481,7 @@ def _M3_(ids,pasx):
                              "upgrade-insecure-requests": '1',
                             "user-agent": 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1',}
 
-                        url1="https://p.facebook.com/method/auth.login"
+                        url1="https://api.facebook.com/method/auth.login"
                         BLACK=session.post(url1,data=data,headers=head,allow_redirects=False).text
                         q = json.loads(BLACK)
                         if 'session_key' in q:
