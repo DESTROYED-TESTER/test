@@ -1219,7 +1219,7 @@ def m6(idf,pwv):
    'content-length': '1662',
    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
    'sec-ch-ua-mobile': '?1',
-   'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+   'user-agent': 'Mozilla/5.0 (Linux; Android 13; SM-G960N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4361.104 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/399.0.0.24.93;',
    'x-response-format': 'JSONStream',
    'content-type': 'application/x-www-form-urlencoded',
    'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
