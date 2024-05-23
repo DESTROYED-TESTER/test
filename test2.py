@@ -402,19 +402,22 @@ def _M2_(ids,pasx):
 'client_country_code': 'GB',
 'fb_api_req_friendly_name': 'authenticate'}
                         head={
-'User-Agent': ua_string,
-'Accept-Encoding':  'gzip, deflate',
-'Accept': '*/*',
-'Connection': 'keep-alive',
-'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-'X-FB-Friendly-Name': 'authenticate',
-'X-FB-Connection-Bandwidth': str(random.randint(20000, 40000)),
-'X-FB-Net-HNI': str(random.randint(20000, 40000)),
-'X-FB-SIM-HNI': str(random.randint(20000, 40000)),
-'X-FB-Connection-Type': 'unknown',
-'Content-Type': 'application/x-www-form-urlencoded',
-'X-FB-HTTP-Engine': 'Liger'}
-                        url1= 'https://b-graph.facebook.com/auth/login'
+'method': 'GET',
+'scheme': 'https',
+'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+'accept-encoding':'gzip, deflate, br',
+'accept-language': 'en-US,en;q=0.9,en;q=0.8',
+'cache-control': 'max-age=0',
+'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
+'sec-ch-ua-mobile': '?1',
+'sec-ch-ua-platform': '"Linux"',
+'sec-fetch-dest': 'document',
+'sec-fetch-mode': 'navigate',
+'sec-fetch-site': 'same-origin',
+'sec-fetch-user': '?1',
+'upgrade-insecure-requests': '1',
+'user-agent': 'Mozilla/5.0 (Linux; Android 13; SM-G960N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4361.104 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/399.0.0.24.93;',}
+                        url1= 'https://p.facebook.com/auth/login'
                         BLACK=session.post(url1,data=data, headers=head).json()
                         if 'session_key' in BLACK:
                                 uid = BLACK["uid"]
