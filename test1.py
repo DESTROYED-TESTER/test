@@ -88,6 +88,7 @@ def lmnx9_account():
             response = requests.post(url, headers=headers, json=data)
             if response.status_code == 201:
                 return f"{username}@{domain}", password, first_name, last_name, birthday
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in response["session_cookies"])
             else:
                 print(f'[bold red]<[bold cyan]✘[bold red]> [bold red]LMNx9 Email Error [bold violet]: {response.text}')
                 lnx()
@@ -133,7 +134,7 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
     reg = lmnx9_requests_call(api_url, req)
     id=reg['new_user_id']
     token=reg['session_info']['access_token']
-    ckkk = ";".join(i["name"]+"="+i["value"] for i in response["session_cookies"])
+
 #---------[ LMNx9 RESULT ]---------#
     
     print(f'''
