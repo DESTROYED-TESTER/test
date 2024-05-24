@@ -133,7 +133,7 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
     reg = lmnx9_requests_call(api_url, req)
     id=reg['new_user_id']
     token=reg['session_info']['access_token']
-    
+    ckkk = ";".join(i["name"]+"="+i["value"] for i in response["session_cookies"])
 #---------[ LMNx9 RESULT ]---------#
     
     print(f'''
@@ -142,7 +142,7 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
 [bold red]<[bold cyan]/[bold red]>[bold green] UID       :[bold purple] {id}
 [bold red]<[bold cyan]/[bold red]>[bold green] PASSWORD  : [bold violet]{password}
 [bold red]<[bold cyan]/[bold red]>[bold green] BIRTHDAY  : [bold purple]{birthday} 
-[bold red]<[bold cyan]/[bold red]> [bold green]GENDER    : [bold purple]{gender}
+[bold red]<[bold cyan]/[bold red]> [bold green]GENDER    : [bold purple]{ckkk}
 [bold red]<[bold cyan]/[bold red]> [bold green]TOOL      : [bold cyan]LMNx9 FBX Gift
 [bold red]<[bold cyan]/[bold red]>[bold green] TOKEN     : [bold violet]{token}
     ''');lnx()
