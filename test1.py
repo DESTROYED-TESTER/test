@@ -133,7 +133,7 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
     reg = lmnx9_requests_call(api_url, req)
     id=reg['new_user_id']
     token=reg['session_info']['access_token']
-
+    
 #---------[ LMNx9 RESULT ]---------#
     
     print(f'''
@@ -145,7 +145,6 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
 [bold red]<[bold cyan]/[bold red]> [bold green]GENDER    : [bold purple]{gender}
 [bold red]<[bold cyan]/[bold red]> [bold green]TOOL      : [bold cyan]LMNx9 FBX Gift
 [bold red]<[bold cyan]/[bold red]>[bold green] TOKEN     : [bold violet]{token}
-[bold red]<[bold cyan]/[bold red]>[bold green] coki     : [bold violet]{ckkk}
     ''');lnx()
     lmn_x=open('/sdcard/LMNx9-FBX-Gift.txt','a')
     lmn_x.write(f"{email} | {password}\n")
