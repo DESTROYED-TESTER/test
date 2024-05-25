@@ -1166,7 +1166,7 @@ def m5(idf,pwv):
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
    lo = session.post('https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
-   for cookie in session.cookies:
+  for cookie in session.cookies:
    print(f"{cookie.name}: {cookie.value}")
    if 'c_user' in log_cookies:
     user = re.findall('c_user=(.*);xs', coki)[0]
