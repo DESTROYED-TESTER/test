@@ -1141,7 +1141,6 @@ def m5(idf,pwv):
    session = requests.Session()
    pro = random.choice(ugen)
    free_fb = session.get(f'https://m.facebook.com').text
-   free_fb = session.get(f'https://m.facebook.com').text
    log_data = {'m_ts':re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
 'li':re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
 'try_number': '0',
@@ -1165,22 +1164,30 @@ def m5(idf,pwv):
 'a': '',
 '__user': '0',
 '_fb_noscript': 'true'}
-   header_freefb = {'authority':'m.facebook.com',
-            'method': 'POST',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'accept-encoding':'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9,en;q=0.8',
-            'cache-control': 'max-age=0',
-            'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+   header_freefb = {
+    'authority': 'm.facebook.com',
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9',
+    'content-type': 'application/x-www-form-urlencoded',
+    'dpr': '2.75',
+    'origin': 'https://m.facebook.com',
+    'referer': 'https://m.facebook.com/login.php?...',
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
+    'sec-ch-ua-full-version-list': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-model': '"23128PC33I"',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-ch-ua-platform-version': '"13"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; 9.1.0; Win64; x64)M834M) AppleWebKit/537.36 (KHTML, like Gecko)130.0.4713.55 Chrome/134.0.4.3 Safari/537.36',
+    'viewport-width': '393',
+    'x-asbd-id':re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'x-requested-with': 'XMLHttpRequest',
+    'x-response-format': 'JSONStream'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
    lo = session.post("https://www.facebook.com/login/device-based/regular/login/",data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
