@@ -43,7 +43,7 @@ def login_to_facebook(email, password):
 
 if __name__ == "__main__":
     # Replace these with your actual Facebook credentials
-    email = "8250886169"
-    password = "sumon@@@"
+    email = 8250886169
+    password = sumon@@@
     login_success = login_to_facebook(email, password)
     print("Login success:", login_success)
