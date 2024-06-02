@@ -1224,13 +1224,10 @@ def m6(idf,pw):
   for ps in pw:
    session = requests.Session()
    pro = random.choice(ugen)
-   random_lsd = secrets.token_hex(8)
-   jazoest = generate_jazoest()
-   m_ts = str(int(time.time()))  
    log_data = {
-             "lsd":random_lsd,
-            "jazoest":jazoest,
-            "m_ts":m_ts,
+             "lsd":secrets.token_hex(8),
+            "jazoest":generate_jazoest(),
+            "m_ts":str(int(time.time()))  ,
             "li":generate_random_string(12),
             "try_number":"0",
             "unrecognized_tries":"0",
