@@ -879,6 +879,14 @@ def xp():
   input(f'{dot}Press Enter To Go Menu');os.system('python ATOM.py')
 
 
+def generate_ab_test_data(length=50):
+    # Create a random sequence of length `length` with characters A, V, /, and multiple "A"
+    return ''.join(random.choices('AV/AAAAAAAAAAA', k=length))
+
+
+random_ab_test_data = generate_ab_test_data()
+
+
 browser_version1 = (f'{random.randrange(85, 105)}.0.{random.randrange(4200, 4900)}.{random.randrange(40, 150)}')
 build1 = (''.join(random.choice('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890') for y in range(6)))
 android_version1 = random.choice(['11', '10'])
@@ -1161,7 +1169,7 @@ def m5(idf,pwv):
    'first_prefill_type': 'contact_point',
    'had_cp_prefilled': 'true',
    'had_password_prefilled': 'true',
-   'ab_test_data': re.search('name="ab_test_data" value="(.*?)"',str(link.text)).group(1),
+   'ab_test_data': random_ab_test_data,
    'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1),ps),}
    header_freefb = {
     'authority': 'www.facebook.com',
