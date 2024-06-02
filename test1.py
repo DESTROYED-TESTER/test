@@ -1268,8 +1268,8 @@ def m6(idf,pw):
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     coki1 = coki.split("1000")[1]
     uid = "1000"+coki1[0:11]
-     print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
-     print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
+    print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
+    print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
     open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
     cp.append(uid)
    else:
