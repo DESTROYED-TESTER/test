@@ -877,9 +877,9 @@ def xp():
 
 def get_sri_lanka_proxy():
         proxies = [
-        'http://123.456.789.101:8080',  # Replace with actual proxy
-        'http://123.456.789.102:8080',  # Replace with actual proxy
-        'http://123.456.789.103:8080' ]
+        'http://220.247.166.245:8080',
+        'http://123.231.148.177:8080',
+        'http://124.43.113.47:8080' ]
         return proxies
 proxy = get_sri_lanka_proxy()[0]  # Replace [0] with the index of the desired proxy
 
