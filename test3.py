@@ -1157,7 +1157,7 @@ def m5(idf,pw):
     "lgnrnd":re.search('name="lgnrnd" value="(.*?)"', str(free_fb)).group(1),
     "lgnjs":re.search('name="lgnjs" value="(.*?)"', str(free_fb)).group(1),
     "ab_test_data": "",  # Example of an additional field that might be used for A/B testing
-    "flow": "login_no_pin"  # An example flow parameter that might be required}
+    "flow": "login_no_pin"}  # An example flow parameter that might be required}
    header_freefb = {'authority':'web.facebook.com',
             'method': 'POST',
             'scheme': 'https',
