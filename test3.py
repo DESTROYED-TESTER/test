@@ -163,15 +163,94 @@ def rndmx(ids,pasx,tl):
                         fbav = ['FBAV/' + str(random.randint(11, 99)) + '.0.0.' + str(random.randint(1111, 9999))]
                         fbbv = ['FBBV/' + str(random.randint(1111111, 9999999))]
                         fbdm = [
-    'FBDM/{density=1.75,width=720,height=1515}',  # Example for HMD Global
-    'FBDM/{density=1.75,width=720,height=1478}',  # Example for TECNO
-    'FBDM/{density=1.75,width=720,height=1421}',  # Example for Nokia
-    'FBDM/{density=2.5,width=1080,height=2224}',  # Example for Nokia G400 5G
-    'FBDM/{density=2.7875001,width=1080,height=2165}',  # Example for Nokia X100
-    'FBDM/{density=1.5,width=480,height=854}',  # Example for TECNO
-    'FBDM/{density=1.5,width=480,height=854}',  # Example for TECNO
-    'FBDM/{density=1.5,width=480,height=854}',  # Example for TECNO
-    'FBDM/{density=1.5,width=480,height=854}',  ]                        
+    'FBDM/{density=1.0,width=320,height=480}',
+    'FBDM/{density=1.0,width=320,height=568}',
+    'FBDM/{density=1.0,width=360,height=640}',
+    'FBDM/{density=1.0,width=375,height=667}',
+    'FBDM/{density=1.0,width=360,height=720}',
+    'FBDM/{density=1.0,width=414,height=736}',
+    'FBDM/{density=1.0,width=375,height=812}',
+    'FBDM/{density=1.0,width=414,height=896}',
+    'FBDM/{density=1.0,width=360,height=780}',
+    'FBDM/{density=1.0,width=412,height=846}',
+    'FBDM/{density=1.0,width=411,height=731}',
+    'FBDM/{density=1.0,width=412,height=847}',
+    'FBDM/{density=1.0,width=393,height=786}',
+    'FBDM/{density=1.0,width=392,height=820}',
+    'FBDM/{density=1.0,width=412,height=869}',
+    'FBDM/{density=1.0,width=360,height=720}',
+    'FBDM/{density=1.0,width=412,height=846}',
+    'FBDM/{density=1.0,width=360,height=640}',
+    'FBDM/{density=1.0,width=393,height=851}',
+    'FBDM/{density=1.0,width=360,height=683}',
+    'FBDM/{density=1.0,width=412,height=847}',
+    'FBDM/{density=1.0,width=360,height=720}',
+    'FBDM/{density=1.0,width=411,height=731}',
+    'FBDM/{density=1.0,width=414,height=896}',
+    'FBDM/{density=1.0,width=375,height=812}',
+    'FBDM/{density=1.0,width=375,height=667}',
+    'FBDM/{density=1.0,width=360,height=780}',
+    'FBDM/{density=1.0,width=320,height=480}',
+    'FBDM/{density=1.0,width=320,height=568}',
+    'FBDM/{density=1.0,width=360,height=640}',
+    'FBDM/{density=1.0,width=375,height=667}',
+    'FBDM/{density=1.0,width=360,height=720}',
+    'FBDM/{density=1.0,width=414,height=736}',
+    'FBDM/{density=1.0,width=375,height=812}',
+    'FBDM/{density=1.0,width=414,height=896}',
+    'FBDM/{density=1.0,width=360,height=780}',
+    'FBDM/{density=1.0,width=412,height=846}',
+    'FBDM/{density=1.0,width=411,height=731}',
+    'FBDM/{density=1.0,width=412,height=847}',
+    'FBDM/{density=1.0,width=393,height=786}',
+    'FBDM/{density=1.0,width=392,height=820}',
+    'FBDM/{density=1.0,width=412,height=869}',
+    'FBDM/{density=1.0,width=360,height=720}',
+    'FBDM/{density=1.0,width=412,height=846}',
+    'FBDM/{density=1.0,width=360,height=640}',
+    'FBDM/{density=1.0,width=393,height=851}',
+    'FBDM/{density=1.0,width=360,height=683}',
+    'FBDM/{density=1.0,width=412,height=847}',
+    'FBDM/{density=1.0,width=360,height=720}',
+    'FBDM/{density=1.0,width=411,height=731}',
+    'FBDM/{density=1.0,width=414,height=896}',
+    'FBDM/{density=1.0,width=375,height=812}',
+    'FBDM/{density=1.0,width=375,height=667}',
+    'FBDM/{density=1.0,width=360,height=780}',
+    'FBDM/{density=1.0,width=320,height=480}',
+    'FBDM/{density=1.0,width=320,height=568}',
+    'FBDM/{density=1.0,width=360,height=640}',
+    'FBDM/{density=1.0,width=375,height=667}',
+    'FBDM/{density=1.0,width=360,height=720}',
+    'FBDM/{density=1.0,width=414,height=736}',
+    'FBDM/{density=1.0,width=375,height=812}',
+    'FBDM/{density=1.0,width=414,height=896}',
+    'FBDM/{density=1.0,width=360,height=780}',
+    'FBDM/{density=1.0,width=412,height=846}',
+    'FBDM/{density=1.0,width=411,height=731}',
+    'FBDM/{density=1.0,width=412,height=847}',
+    'FBDM/{density=1.0,width=393,height=786}',
+    'FBDM/{density=1.0,width=392,height=820}',
+    'FBDM/{density=1.0,width=412,height=869}',
+    'FBDM/{density=1.0,width=360,height=720}',
+    'FBDM/{density=1.0,width=412,height=846}',
+    'FBDM/{density=1.0,width=360,height=640}',
+    'FBDM/{density=1.0,width=393,height=851}',
+    'FBDM/{density=1.0,width=360,height=683}',
+    'FBDM/{density=1.0,width=412,height=847}',
+    'FBDM/{density=1.0,width=360,height=720}',
+    'FBDM/{density=1.0,width=411,height=731}',
+    'FBDM/{density=1.0,width=414,height=896}',
+    'FBDM/{density=1.0,width=375,height=812}',
+    'FBDM/{density=1.0,width=375,height=667}',
+    'FBDM/{density=1.0,width=360,height=780}',
+    'FBDM/{density=1.0,width=320,height=480}',
+    'FBDM/{density=1.0,width=320,height=568}',
+    'FBDM/{density=1.0,width=360,height=640}',
+    'FBDM/{density=1.0,width=375,height=667}',
+    'FBDM/{density=1.0,width=360,height=720}',
+    'FBDM/{density=1.0,width=414,height=736}',
+    'FBDM/{density=1.0,width=375,height=812}']                        
                         fblc = [
     'FBLC/en_US',
     'FBLC/en_GB',
@@ -686,12 +765,622 @@ def rndmx(ids,pasx,tl):
     'FBMF/Google Assistant (2074)',
     'FBMF/Google Assistant (2075)',
     'FBMF/Google Assistant (2076)',]
-                        fbbd = ['FBBD/Nokia', 'FBBD/N151DL', 'FBBD/N156DL', 'FBBD/Nokia G400 5G', 'FBBD/Nokia X100', 'FBBD/TECNO']
-                        fbpn = ['FBPN/com.facebook.katana']
-                        fbdv = ['FBDV/Nokia G10', 'FBDV/N151DL', 'FBDV/N156DL', 'FBDV/Nokia G400 5G', 'FBDV/Nokia X100', 'FBDV/TECNO-W3']
-                        fbsv = ['FBSV/13', 'FBSV/12', 'FBSV/11', 'FBSV/6.0']
-                        fbop = ['FBOP/1', 'FBOP/19']
-                        fbca = ['FBCA/arm64-v8a:', 'FBCA/armeabi-v7a:armeabi;']
+                        fbbd = [
+    'FBBD/Samsung',
+    'FBBD/Apple',
+    'FBBD/Google',
+    'FBBD/Xiaomi',
+    'FBBD/OnePlus',
+    'FBBD/Huawei',
+    'FBBD/OPPO',
+    'FBBD/Vivo',
+    'FBBD/Realme',
+    'FBBD/Nokia',
+    'FBBD/Sony',
+    'FBBD/LG',
+    'FBBD/Motorola',
+    'FBBD/HTC',
+    'FBBD/ASUS',
+    'FBBD/Lenovo',
+    'FBBD/ZTE',
+    'FBBD/Alcatel',
+    'FBBD/Amazon',
+    'FBBD/Razer',
+    'FBBD/Essential',
+    'FBBD/BlackBerry',
+    'FBBD/Microsoft',
+    'FBBD/Meizu',
+    'FBBD/Palm',
+    'FBBD/Nextbit',
+    'FBBD/LeEco',
+    'FBBD/Sharp',
+    'FBBD/TCL',
+    'FBBD/Google Pixel',
+    'FBBD/Google Nexus',
+    'FBBD/Google Pixelbook',
+    'FBBD/Google Pixel Slate',
+    'FBBD/Google Home',
+    'FBBD/Google Chromecast',
+    'FBBD/Google Nest',
+    'FBBD/Google Stadia',
+    'FBBD/Google Wifi',
+    'FBBD/Google Daydream',
+    'FBBD/Google Glass',
+    'FBBD/Google Cardboard',
+    'FBBD/Google Clips',
+    'FBBD/Google Jamboard',
+    'FBBD/Google OnHub',
+    'FBBD/Google Pixel Buds',
+    'FBBD/Google Pixel Stand',
+    'FBBD/Google Titan Security Key',
+    'FBBD/Google Titan Security Key Mini',
+    'FBBD/Google USB Type-C Earbuds',
+    'FBBD/Google USB-C to 3.5mm Headphone Adapter',
+    'FBBD/Google Nest Hub',
+    'FBBD/Google Nest Hub Max',
+    'FBBD/Google Nest Mini',
+    'FBBD/Google Nest Wifi',
+    'FBBD/Google Pixel 4',
+    'FBBD/Google Pixel 4 XL',
+    'FBBD/Google Pixel 3',
+    'FBBD/Google Pixel 3 XL',
+    'FBBD/Google Pixel 3a',
+    'FBBD/Google Pixel 3a XL',
+    'FBBD/Google Pixel 2',
+    'FBBD/Google Pixel 2 XL',
+    'FBBD/Google Pixel',
+    'FBBD/Google Pixel XL',
+    'FBBD/Google Pixel C',
+    'FBBD/Google Home Mini',
+    'FBBD/Google Home Max',
+    'FBBD/Google Nest Hub Max',
+    'FBBD/Google Nest Hub',
+    'FBBD/Google Chromecast',
+    'FBBD/Google Chromecast Ultra',
+    'FBBD/Google Chromecast Audio',
+    'FBBD/Google Wifi',
+    'FBBD/Google Nest Wifi',
+    'FBBD/Google Daydream View',
+    'FBBD/Google Daydream View (2017)',
+    'FBBD/Google Cardboard',
+    'FBBD/Google Cardboard (2015)',
+    'FBBD/Google Clips',
+    'FBBD/Google Jamboard',
+    'FBBD/Google Pixel Buds',
+    'FBBD/Google Pixel Buds (2017)',
+    'FBBD/Google Pixel Buds (2020)',
+    'FBBD/Google Pixel Stand',
+    'FBBD/Google Titan Security Key',
+    'FBBD/Google Titan Security Key Mini',
+    'FBBD/Google USB Type-C Earbuds',
+    'FBBD/Google USB-C to 3.5mm Headphone Adapter',
+    'FBBD/Google Assistant',
+    'FBBD/Google Assistant (2016)',
+    'FBBD/Google Assistant (2017)',
+    'FBBD/Google Assistant (2018)',
+    'FBBD/Google Assistant (2019)',
+    'FBBD/Google Assistant (2020)',
+    'FBBD/Google Assistant (2021)',
+    'FBBD/Google Assistant (2022)',
+    'FBBD/Google Assistant (2023)',
+    'FBBD/Google Assistant (2024)',
+    'FBBD/Google Assistant (2025)',
+    'FBBD/Google Assistant (2026)',
+    'FBBD/Google Assistant (2027)',
+    'FBBD/Google Assistant (2028)',
+    'FBBD/Google Assistant (2029)',
+    'FBBD/Google Assistant (2030)',
+    'FBBD/Google Assistant (2031)',
+    'FBBD/Google Assistant (2032)',
+    'FBBD/Google Assistant (2033)',
+    'FBBD/Google Assistant (2034)',
+    'FBBD/Google Assistant (2035)',
+    'FBBD/Google Assistant (2036)',
+    'FBBD/Google Assistant (2037)',
+    'FBBD/Google Assistant (2038)',
+    'FBBD/Google Assistant (2039)',
+    'FBBD/Google Assistant (2040)']
+                        fbpn = [
+    'com.facebook.katana',  # Facebook
+    'com.facebook.lite',    # Facebook Lite
+    'com.facebook.orca',    # Facebook Messenger
+    'com.facebook.mlite',   # Messenger Lite
+    'com.facebook.wakizashi',  # Facebook (old package name)
+    'com.facebook.alohawrapper',  # Facebook (Aloha wrapper)
+    'com.facebook.arstudio.player',  # Facebook (AR Studio Player)
+    'com.facebook.gaming',  # Facebook Gaming
+    'com.facebook.work',    # Workplace by Facebook
+    'com.facebook.threads',  # Threads from Instagram
+    'com.facebook.pages.app',  # Facebook Pages Manager
+    'com.facebook.shop',  # Facebook Shop
+    'com.facebook.bonfire',  # Facebook Bonfire (discontinued)
+    'com.facebook.gameroom',  # Facebook Gameroom
+    'com.facebook.creatorstudio',  # Facebook Creator Studio
+    'com.facebook.intern',  # Facebook Intern (internal testing)
+    'com.facebook.feed',  # Facebook Feed (internal testing)
+    'com.facebook.oz',  # Facebook Oz (internal testing)
+    'com.facebook.kaios',  # Facebook for KaiOS
+    'com.facebook.atlas',  # Facebook Atlas (internal)
+    'com.facebook.hyperloop',  # Facebook Hyperloop (internal)
+    'com.facebook.katana.dev',  # Facebook (development version)
+    'com.facebook.system',  # Facebook System (framework component)
+    'com.facebook.system.dev',  # Facebook System (development version)
+    'com.facebook.services',  # Facebook Services (framework component)
+    'com.facebook.services.dev',  # Facebook Services (development version)
+    'com.facebook.appmanager',  # Facebook App Manager (framework component)
+    'com.facebook.appmanager.dev',  # Facebook App Manager (development version)
+    'com.facebook.katana.orca',  # Facebook + Messenger (old combo)
+    'com.facebook.loom',  # Facebook Loom (discontinued)
+    'com.facebook.lite.dev',  # Facebook Lite (development version)
+    'com.facebook.orca.dev',  # Facebook Messenger (development version)
+    'com.facebook.mlite.dev',  # Messenger Lite (development version)
+    'com.facebook.wakizashi.dev',  # Facebook (Aloha wrapper, development version)
+    'com.facebook.alohawrapper.dev',  # Facebook (Aloha wrapper, development version)
+    'com.facebook.arstudio.player.dev',  # Facebook (AR Studio Player, development version)
+    'com.facebook.gaming.dev',  # Facebook Gaming (development version)
+    'com.facebook.work.dev',  # Workplace by Facebook (development version)
+    'com.facebook.threads.dev',  # Threads from Instagram (development version)
+    'com.facebook.pages.app.dev',  # Facebook Pages Manager (development version)
+    'com.facebook.shop.dev',  # Facebook Shop (development version)
+    'com.facebook.bonfire.dev',  # Facebook Bonfire (development version, discontinued)
+    'com.facebook.gameroom.dev',  # Facebook Gameroom (development version)
+    'com.facebook.creatorstudio.dev',  # Facebook Creator Studio (development version)
+    'com.facebook.intern.dev',  # Facebook Intern (internal testing, development version)
+    'com.facebook.feed.dev',  # Facebook Feed (internal testing, development version)
+    'com.facebook.oz.dev',  # Facebook Oz (internal testing, development version)
+    'com.facebook.kaios.dev',  # Facebook for KaiOS (development version)
+    'com.facebook.atlas.dev',  # Facebook Atlas (internal, development version)
+    'com.facebook.hyperloop.dev',  # Facebook Hyperloop (internal, development version)
+    'com.facebook.system.dev',  # Facebook System (framework component, development version)
+    'com.facebook.services.dev',  # Facebook Services (framework component, development version)
+    'com.facebook.appmanager.dev',  # Facebook App Manager (framework component, development version)
+    'com.facebook.katana.orca.dev',  # Facebook + Messenger (old combo, development version)
+    'com.facebook.loom.dev',  # Facebook Loom (discontinued, development version)
+]
+                        fbdv = [
+    'FBDV/iPhone12,1',
+    'FBDV/iPhone11,8',
+    'FBDV/iPhone10,6',
+    'FBDV/iPhone9,4',
+    'FBDV/iPhone8,1',
+    'FBDV/iPhone7,2',
+    'FBDV/iPhone6,2',
+    'FBDV/Samsung SM-G998U',
+    'FBDV/Samsung SM-G991U',
+    'FBDV/Samsung SM-G9980',
+    'FBDV/Samsung SM-G9910',
+    'FBDV/Samsung SM-N986B',
+    'FBDV/Samsung SM-N981B',
+    'FBDV/Google Pixel 5',
+    'FBDV/Google Pixel 4a',
+    'FBDV/Google Pixel 3 XL',
+    'FBDV/Google Pixel 2',
+    'FBDV/OnePlus IN2015',
+    'FBDV/OnePlus IN2025',
+    'FBDV/OnePlus KB2005',
+    'FBDV/OnePlus KB2001',
+    'FBDV/Xiaomi Redmi Note 10',
+    'FBDV/Xiaomi Redmi Note 9',
+    'FBDV/Xiaomi Mi 11',
+    'FBDV/Xiaomi Mi 10T',
+    'FBDV/Huawei ELS-NX9',
+    'FBDV/Huawei ELS-N04',
+    'FBDV/Huawei EVR-N29',
+    'FBDV/Huawei EVR-L29',
+    'FBDV/LG LM-V450',
+    'FBDV/LG LM-Q910',
+    'FBDV/LG LM-G820',
+    'FBDV/LG LM-Q730',
+    'FBDV/Sony Xperia 1 III',
+    'FBDV/Sony Xperia 5 III',
+    'FBDV/Sony Xperia 10 III',
+    'FBDV/Sony Xperia 1 II',
+    'FBDV/Motorola XT2125-4',
+    'FBDV/Motorola XT2113-3',
+    'FBDV/Motorola XT2125-3',
+    'FBDV/Motorola XT2115-1',
+    'FBDV/Nokia TA-1321',
+    'FBDV/Nokia TA-1335',
+    'FBDV/Nokia TA-1337',
+    'FBDV/Nokia TA-1322',
+    'FBDV/Asus_I003D',
+    'FBDV/Asus_I003DD',
+    'FBDV/Asus_I003DA',
+    'FBDV/Asus_I003DB',
+    'FBDV/Lenovo TB-X606F',
+    'FBDV/Lenovo TB-X606X',
+    'FBDV/Lenovo TB-X606V',
+    'FBDV/Lenovo TB-X606',
+    'FBDV/ZTE N928Dt',
+    'FBDV/ZTE A2021',
+    'FBDV/ZTE N928D',
+    'FBDV/ZTE A2020G',
+    'FBDV/Alcatel 5033D',
+    'FBDV/Alcatel 5033Y',
+    'FBDV/Alcatel 5033A',
+    'FBDV/Alcatel 5033X',
+    'FBDV/Amazon KDFOWI',
+    'FBDV/Amazon KFSUWI',
+    'FBDV/Amazon KFSAWI',
+    'FBDV/Amazon KFDOWI',
+    'FBDV/Razer Phone',
+    'FBDV/Razer Phone 2',
+    'FBDV/Razer Phone 3',
+    'FBDV/Essential Products PH-1',
+    'FBDV/Essential Products PH-2',
+    'FBDV/BlackBerry BBE100-2',
+    'FBDV/BlackBerry BBE100-5',
+    'FBDV/BlackBerry BBE100-4',
+    'FBDV/BlackBerry BBE100-1',
+    'FBDV/Microsoft RM-1091',
+    'FBDV/Microsoft RM-1109',
+    'FBDV/Microsoft RM-1077',
+    'FBDV/Microsoft RM-1089',
+    'FBDV/Meizu M882Q',
+    'FBDV/Meizu M882H',
+    'FBDV/Meizu M882A',
+    'FBDV/Meizu M882J',
+    'FBDV/Palm PVG100',
+    'FBDV/Palm PVG100E',
+    'FBDV/Palm PVG100EU',
+    'FBDV/Palm PVG100EAWW',
+    'FBDV/Nextbit Robin',
+    'FBDV/Nextbit Robin 2',
+    'FBDV/Nextbit Robin 3',
+    'FBDV/Nextbit Robin 4',
+    'FBDV/LeEco LEX622',
+    'FBDV/LeEco LEX720',
+    'FBDV/LeEco LEX727',
+    'FBDV/LeEco LEX725',
+    'FBDV/Sharp Z3',
+    'FBDV/Sharp Z2',
+    'FBDV/Sharp Z1',
+    'FBDV/Sharp Z4',
+    'FBDV/TCL 10 SE',
+    'FBDV/TCL 10 Plus',
+    'FBDV/TCL 10L',
+    'FBDV/TCL 10 Pro',
+    'FBDV/Google Pixel Slate',
+    'FBDV/Google Pixelbook',
+    'FBDV/Google Pixelbook Go',
+    'FBDV/Google Pixel C',
+    'FBDV/Google Nexus 10',
+    'FBDV/Google Nexus 9',
+    'FBDV/Google Nexus 7',
+    'FBDV/Google Nexus 6P',
+    'FBDV/Google Nexus 6',
+    'FBDV/Google Nexus 5X',
+    'FBDV/Google Nexus 5',
+    'FBDV/Google Nexus 4',
+    'FBDV/Google Glass',
+    'FBDV/Google Home',
+    'FBDV/Google Home Mini',
+    'FBDV/Google Home Max',
+    'FBDV/Google Nest Hub',
+    'FBDV/Google Nest Hub Max',
+    'FBDV/Google Nest Mini',
+    'FBDV/Google Nest Audio',
+    'FBDV/Google Chromecast',
+    'FBDV/Google Chromecast Ultra',
+    'FBDV/Google Chromecast Audio',
+    'FBDV/Google Pixel Buds']
+                        fbsv = [
+    'FBSV/13',
+    'FBSV/12',
+    'FBSV/11',
+    'FBSV/10',
+    'FBSV/9',
+    'FBSV/8',
+    'FBSV/7',
+    'FBSV/6',
+    'FBSV/5',
+    'FBSV/4',
+    'FBSV/3',
+    'FBSV/2',
+    'FBSV/1',
+    'FBSV/0',
+    'FBSV/20',  # Example of a non-sequential value
+    'FBSV/19',  # Example of a non-sequential value
+    'FBSV/18',  # Example of a non-sequential value
+    'FBSV/17',  # Example of a non-sequential value
+    'FBSV/16',  # Example of a non-sequential value
+    'FBSV/15',  # Example of a non-sequential value
+    'FBSV/14',  # Example of a non-sequential value
+    'FBSV/29',  # Example of a non-sequential value
+    'FBSV/28',  # Example of a non-sequential value
+    'FBSV/27',  # Example of a non-sequential value
+    'FBSV/26',  # Example of a non-sequential value
+    'FBSV/25',  # Example of a non-sequential value
+    'FBSV/24',  # Example of a non-sequential value
+    'FBSV/23',  # Example of a non-sequential value
+    'FBSV/22',  # Example of a non-sequential value
+    'FBSV/21',  # Example of a non-sequential value
+    'FBSV/39',  # Example of a non-sequential value
+    'FBSV/38',  # Example of a non-sequential value
+    'FBSV/37',  # Example of a non-sequential value
+    'FBSV/36',  # Example of a non-sequential value
+    'FBSV/35',  # Example of a non-sequential value
+    'FBSV/34',  # Example of a non-sequential value
+    'FBSV/33',  # Example of a non-sequential value
+    'FBSV/32',  # Example of a non-sequential value
+    'FBSV/31',  # Example of a non-sequential value
+    'FBSV/30',  # Example of a non-sequential value
+    'FBSV/49',  # Example of a non-sequential value
+    'FBSV/48',  # Example of a non-sequential value
+    'FBSV/47',  # Example of a non-sequential value
+    'FBSV/46',  # Example of a non-sequential value
+    'FBSV/45',  # Example of a non-sequential value
+    'FBSV/44',  # Example of a non-sequential value
+    'FBSV/43',  # Example of a non-sequential value
+    'FBSV/42',  # Example of a non-sequential value
+    'FBSV/41',  # Example of a non-sequential value
+    'FBSV/40',  # Example of a non-sequential value
+    'FBSV/59',  # Example of a non-sequential value
+    'FBSV/58',  # Example of a non-sequential value
+    'FBSV/57',  # Example of a non-sequential value
+    'FBSV/56',  # Example of a non-sequential value
+    'FBSV/55',  # Example of a non-sequential value
+    'FBSV/54',  # Example of a non-sequential value
+    'FBSV/53',  # Example of a non-sequential value
+    'FBSV/52',  # Example of a non-sequential value
+    'FBSV/51',  # Example of a non-sequential value
+    'FBSV/50',  # Example of a non-sequential value
+    'FBSV/69',  # Example of a non-sequential value
+    'FBSV/68',  # Example of a non-sequential value
+    'FBSV/67',  # Example of a non-sequential value
+    'FBSV/66',  # Example of a non-sequential value
+    'FBSV/65',  # Example of a non-sequential value
+    'FBSV/64',  # Example of a non-sequential value
+    'FBSV/63',  # Example of a non-sequential value
+    'FBSV/62',  # Example of a non-sequential value
+    'FBSV/61',  # Example of a non-sequential value
+    'FBSV/60',  # Example of a non-sequential value
+    'FBSV/79',  # Example of a non-sequential value
+    'FBSV/78',  # Example of a non-sequential value
+    'FBSV/77',  # Example of a non-sequential value
+    'FBSV/76',  # Example of a non-sequential value
+    'FBSV/75',  # Example of a non-sequential value
+    'FBSV/74',  # Example of a non-sequential value
+    'FBSV/73',  # Example of a non-sequential value
+    'FBSV/72',  # Example of a non-sequential value
+    'FBSV/71',  # Example of a non-sequential value
+    'FBSV/70',  # Example of a non-sequential value
+]
+                        fbop = [
+    'FBOP/1',
+    'FBOP/2',
+    'FBOP/3',
+    'FBOP/4',
+    'FBOP/5',
+    'FBOP/6',
+    'FBOP/7',
+    'FBOP/8',
+    'FBOP/9',
+    'FBOP/10',
+    'FBOP/11',
+    'FBOP/12',
+    'FBOP/13',
+    'FBOP/14',
+    'FBOP/15',
+    'FBOP/16',
+    'FBOP/17',
+    'FBOP/18',
+    'FBOP/19',
+    'FBOP/20',
+    'FBOP/21',
+    'FBOP/22',
+    'FBOP/23',
+    'FBOP/24',
+    'FBOP/25',
+    'FBOP/26',
+    'FBOP/27',
+    'FBOP/28',
+    'FBOP/29',
+    'FBOP/30',
+    'FBOP/31',
+    'FBOP/32',
+    'FBOP/33',
+    'FBOP/34',
+    'FBOP/35',
+    'FBOP/36',
+    'FBOP/37',
+    'FBOP/38',
+    'FBOP/39',
+    'FBOP/40',
+    'FBOP/41',
+    'FBOP/42',
+    'FBOP/43',
+    'FBOP/44',
+    'FBOP/45',
+    'FBOP/46',
+    'FBOP/47',
+    'FBOP/48',
+    'FBOP/49',
+    'FBOP/50',
+    'FBOP/51',
+    'FBOP/52',
+    'FBOP/53',
+    'FBOP/54',
+    'FBOP/55',
+    'FBOP/56',
+    'FBOP/57',
+    'FBOP/58',
+    'FBOP/59',
+    'FBOP/60',
+    'FBOP/61',
+    'FBOP/62',
+    'FBOP/63',
+    'FBOP/64',
+    'FBOP/65',
+    'FBOP/66',
+    'FBOP/67',
+    'FBOP/68',
+    'FBOP/69',
+    'FBOP/70',
+    'FBOP/71',
+    'FBOP/72',
+    'FBOP/73',
+    'FBOP/74',
+    'FBOP/75',
+    'FBOP/76',
+    'FBOP/77',
+    'FBOP/78',
+    'FBOP/79',
+    'FBOP/80',
+    'FBOP/81',
+    'FBOP/82',
+    'FBOP/83',
+    'FBOP/84',
+    'FBOP/85',
+    'FBOP/86',
+    'FBOP/87',
+    'FBOP/88',
+    'FBOP/89',
+    'FBOP/90',
+    'FBOP/91',
+    'FBOP/92',
+    'FBOP/93',
+    'FBOP/94',
+    'FBOP/95',
+    'FBOP/96',
+    'FBOP/97',
+    'FBOP/98',
+    'FBOP/99',
+    'FBOP/100',
+    'FBOP/101',
+    'FBOP/102',
+    'FBOP/103',
+    'FBOP/104',
+    'FBOP/105',
+    'FBOP/106',
+    'FBOP/107',
+    'FBOP/108',
+    'FBOP/109',
+    'FBOP/110',
+    'FBOP/111',
+    'FBOP/112',
+    'FBOP/113',
+    'FBOP/114',
+    'FBOP/115',
+    'FBOP/116',
+    'FBOP/117',
+    'FBOP/118',
+    'FBOP/119',
+    'FBOP/120',
+    'FBOP/121',
+    'FBOP/122',
+    'FBOP/123',
+    'FBOP/124',
+    'FBOP/125',
+    'FBOP/126',
+    'FBOP/127',
+    'FBOP/128',
+    'FBOP/129',
+    'FBOP/130',
+    'FBOP/131',
+    'FBOP/132',
+    'FBOP/133',
+    'FBOP/134',
+    'FBOP/135',
+    'FBOP/136',
+    'FBOP/137',
+    'FBOP/138',
+    'FBOP/139',
+    'FBOP/140',
+    'FBOP/141',
+    'FBOP/142',
+    'FBOP/143',
+    'FBOP/144',
+    'FBOP/145',
+    'FBOP/146',
+    'FBOP/147',
+    'FBOP/148',
+    'FBOP/149',
+    'FBOP/150',
+    'FBOP/151',
+    'FBOP/152',
+    'FBOP/153',
+    'FBOP/154',
+    'FBOP/155',
+    'FBOP/156',
+    'FBOP/157',
+    'FBOP/158',
+    'FBOP/159',
+    'FBOP/160',
+    'FBOP/161',
+    'FBOP/162',
+    'FBOP/163',
+    'FBOP/164',
+    'FBOP/165',
+    'FBOP/166',
+    'FBOP/167',
+    'FBOP/168',
+    'FBOP/169',
+    'FBOP/170',
+    'FBOP/171',
+    'FBOP/172',
+    'FBOP/173',
+    'FBOP/174',
+    'FBOP/175',
+    'FBOP/176',
+    'FBOP/177',
+    'FBOP/178',
+    'FBOP/179',
+    'FBOP/180',
+    'FBOP/181',
+    'FBOP/182',
+    'FBOP/183',
+    'FBOP/184',
+    'FBOP/185',
+    'FBOP/186',
+    'FBOP/187',
+    'FBOP/188',
+    'FBOP/189',
+    'FBOP/190',
+    'FBOP/191',
+    'FBOP/192',
+    'FBOP/193',
+    'FBOP/194',
+    'FBOP/195',
+    'FBOP/196',
+    'FBOP/197',
+    'FBOP/198',
+    'FBOP/199',
+    'FBOP/200',]
+                        fbca = [
+    'FBCA/arm64-v8a;FBMF/Samsung;FBBD/Galaxy S21 Ultra;FBSV/11;FBDM/{density=3.0,width=1440,height=3088};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/OnePlus;FBBD/OnePlus 9 Pro;FBSV/11;FBDM/{density=3.0,width=1440,height=3216};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Xiaomi;FBBD/Mi 11 Ultra;FBSV/11;FBDM/{density=3.0,width=1440,height=3200};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Apple;FBBD/iPhone 13 Pro Max;FBSV/15;FBDM/{density=3.0,width=1284,height=2778};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Google;FBBD/Pixel 6 Pro;FBSV/13;FBDM/{density=3.5,width=1440,height=3120};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/OPPO;FBBD/Find X5 Pro;FBSV/12;FBDM/{density=3.0,width=1440,height=3200};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Vivo;FBBD/iQOO 9 Pro;FBSV/12;FBDM/{density=3.0,width=1440,height=3216};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Realme;FBBD/Realme GT 2 Pro;FBSV/12;FBDM/{density=3.0,width=1440,height=3200};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Nokia;FBBD/Nokia G50;FBSV/12;FBDM/{density=2.0,width=720,height=1600};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Sony;FBBD/Xperia 1 III;FBSV/11;FBDM/{density=3.0,width=1644,height=3840};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Motorola;FBBD/Moto G Stylus 5G;FBSV/11;FBDM/{density=3.0,width=1080,height=2400};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Huawei;FBBD/Mate 40 Pro;FBSV/10;FBDM/{density=3.0,width=1344,height=2772};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/OPPO;FBBD/Reno6 Pro;FBSV/11;FBDM/{density=3.0,width=1080,height=2400};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Vivo;FBBD/X60 Pro+;FBSV/11;FBDM/{density=3.0,width=1080,height=2376};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Realme;FBBD/Realme 8 Pro;FBSV/11;FBDM/{density=3.0,width=1080,height=2400};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Nokia;FBBD/Nokia X20;FBSV/11;FBDM/{density=2.5,width=1080,height=2408};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Sony;FBBD/Xperia 10 III;FBSV/11;FBDM/{density=3.0,width=1080,height=2520};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Motorola;FBBD/Moto G Power (2021);FBSV/11;FBDM/{density=3.0,width=1080,height=2340};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Huawei;FBBD/P40 Pro;FBSV/10;FBDM/{density=3.0,width=1200,height=2640};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/OnePlus;FBBD/Nord N200 5G;FBSV/11;FBDM/{density=2.0,width=720,height=1600};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Samsung;FBBD/Galaxy A52 5G;FBSV/11;FBDM/{density=2.5,width=1080,height=2400};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBCA/arm64-v8a;FBMF/Xiaomi;FBBD/Redmi Note 10 Pro;FBSV/11;FBDM/{density=3.5,width=1080,height=2400};FBLC/en_US;FBRV/228792653;FBCR/T-Mobile',
+    'FBAN/FB4A;FBAV/441.1.0.39.109;FBBV/539182857;FBAN/FB4A;FBAV/442.0.0.44.114;FBBV/541369658;FBAN/FB4A;FBAV/440.0.0.31.105;FBBV/534746244;FBAN/FB4A;FBAV/415.0.0.34.107;FBBV/475722615;FBAN/FB4A;FBAV/77.0.0.20.66;FBBV/30034644;',
+    'FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';FBAN/FB4A;FBAV/441.1.0.39.109;FBBV/539182857;FBDM/{density=1.75,width=720,height=1515};FBLC/en_US;FBRV/541211947;',
+    'FBAN/FB4A;FBAV/441.1.0.39.109;FBBV/539182857;FBAN/FB4A;FBAV/442.0.0.44.114;FBBV/541369658;FBDM/{density=1.75,width=720,height=1478};FBLC/en_US;FBRV/0;FBAN/FB4A;FBAV/441.1.0.39.109;FBBV/539182857;FBDM/{density=1.75,width=720,height=1421};FBLC/en_US;FBRV/0;',
+    'FBAN/FB4A;FBAV/440.0.0.31.105;FBBV/534746244;FBDM/{density=2.5,width=1080,height=2224};FBLC/en_US;FBRV/537275962;FBAN/FB4A;FBAV/415.0.0.34.107;FBBV/475722615;FBDM/{density=2.7875001,width=1080,height=2165};FBLC/es_LA;FBRV/478477801;',
+    'FBAN/FB4A;FBAV/77.0.0.20.66;FBBV/30034644;FBDM/{density=1.5,width=480,height=854};FBLC/en_US;FBRV/537275962;FBAN/FB4A;FBAV/441.1.0.39.109;FBBV/539182857;FBDM/{density=1.75,width=720,height=1515};FBLC/en_US;FBRV/541211947;',
+    'FBAN/FB4A;FBAV/441.1.0.39.109;FBBV/539182857;FBAN/FB4A;FBAV/442.0.0.44.114;FBBV/541369658;FBAN/FB4A;FBAV/440.0.0.31.105;FBBV/534746244;FBAN/FB4A;FBAV/415.0.0.34.107;FBBV/475722615;FBAN/FB4A;FBAV/77.0.0.20.66;FBBV/30034644;'
+    'FBAN/FB4A;FBAV/441.1.0.39.109;FBBV/539182857;FBDM/{density=1.75,width=720,height=1515};FBLC/en_US;FBRV/541211947;',
+    'FBAN/FB4A;FBAV/442.0.0.44.114;FBBV/541369658;FBDM/{density=1.75,width=720,height=1478};FBLC/en_US;FBRV/0;',
+    'FBAN/FB4A;FBAV/440.0.0.31.105;FBBV/534746244;FBDM/{density=2.5,width=1080,height=2224};FBLC/en_US;FBRV/537275962;',
+    'FBAN/FB4A;FBAV/415.0.0.34.107;FBBV/475722615;FBDM/{density=2.7875001,width=1080,height=2165};FBLC/es_LA;FBRV/478477801;',
+    'FBAN/FB4A;FBAV/77.0.0.20.66;FBBV/30034644;FBDM/{density=1.5,width=480,height=854};FBLC/en_US;FBRV/537275962;']
                         # Assemble the User-Agent string
                         user_agent = ';'.join(random.choice(part) for part in [fban_fb4a, fbav, fbbv, fban_fb4a, fbav, fbbv, fbdm, fblc, fbrv, fbcr, fbmf, fbbd, fbpn, fbdv, fbsv, fbop, fbca])
                         data = {'adid':str(uuid.uuid4()),'format':'json','device_id':str(uuid.uuid4()),'email':ids,'password':pas,'generate_analytics_claims':'1','community_id':'','cpl':'true','try_num':'1','family_device_id':str(uuid.uuid4()),'credentials_type':'password','source':'login','error_detail_type':'button_with_disabled','enroll_misauth':'false','generate_session_cookies':'1','generate_machine_id':'1','currently_logged_in_userid':'0','locale': 'en_GB','client_country_code': 'GB','fb_api_req_friendly_name':'authenticate','api_key':'62f8ce9f74b12f84c123cc23437a4a32','access_token':accees_token}
