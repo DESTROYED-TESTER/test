@@ -2473,7 +2473,37 @@ def m6(idf,pw):
     'FBAN/FB4A;FBAV/440.0.0.31.105;FBBV/534746244;FBDM/{density=2.5,width=1080,height=2224};FBLC/en_US;FBRV/537275962;',
     'FBAN/FB4A;FBAV/415.0.0.34.107;FBBV/475722615;FBDM/{density=2.7875001,width=1080,height=2165};FBLC/es_LA;FBRV/478477801;',
     'FBAN/FB4A;FBAV/77.0.0.20.66;FBBV/30034644;FBDM/{density=1.5,width=480,height=854};FBLC/en_US;FBRV/537275962;']
-   chrome_version = ['Chrome/89.0.4361.104', 'Chrome/90.0.4430.93', 'Chrome/91.0.4472.114', 'Chrome/92.0.4515.115']
+   chrome_version =[
+    'Chrome/1.0.154.48', 'Chrome/2.0.172.33', 'Chrome/3.0.195.38', 'Chrome/4.0.249.78',
+    'Chrome/5.0.375.29', 'Chrome/6.0.472.53', 'Chrome/7.0.517.41', 'Chrome/8.0.552.237',
+    'Chrome/9.0.597.107', 'Chrome/10.0.648.127', 'Chrome/11.0.696.68', 'Chrome/12.0.742.124',
+    'Chrome/13.0.782.112', 'Chrome/14.0.835.163', 'Chrome/15.0.874.106', 'Chrome/16.0.912.63',
+    'Chrome/17.0.963.56', 'Chrome/18.0.1025.142', 'Chrome/19.0.1084.52', 'Chrome/20.0.1132.57',
+    'Chrome/21.0.1180.89', 'Chrome/22.0.1229.94', 'Chrome/23.0.1271.97', 'Chrome/24.0.1312.52',
+    'Chrome/25.0.1364.160', 'Chrome/26.0.1410.65', 'Chrome/27.0.1453.93', 'Chrome/28.0.1500.95',
+    'Chrome/29.0.1547.76', 'Chrome/30.0.1599.101', 'Chrome/31.0.1650.48', 'Chrome/32.0.1700.76',
+    'Chrome/33.0.1750.117', 'Chrome/34.0.1847.116', 'Chrome/35.0.1916.153', 'Chrome/36.0.1985.125',
+    'Chrome/37.0.2062.124', 'Chrome/38.0.2125.111', 'Chrome/39.0.2171.95', 'Chrome/40.0.2214.115',
+    'Chrome/41.0.2272.101', 'Chrome/42.0.2311.135', 'Chrome/43.0.2357.130', 'Chrome/44.0.2403.107',
+    'Chrome/45.0.2454.101', 'Chrome/46.0.2490.71', 'Chrome/47.0.2526.80', 'Chrome/48.0.2564.116',
+    'Chrome/49.0.2623.87', 'Chrome/50.0.2661.94', 'Chrome/51.0.2704.84', 'Chrome/52.0.2743.116',
+    'Chrome/53.0.2785.89', 'Chrome/54.0.2840.59', 'Chrome/55.0.2883.75', 'Chrome/56.0.2924.87',
+    'Chrome/57.0.2987.98', 'Chrome/58.0.3029.110', 'Chrome/59.0.3071.115', 'Chrome/60.0.3112.90',
+    'Chrome/61.0.3163.79', 'Chrome/62.0.3202.94', 'Chrome/63.0.3239.132', 'Chrome/64.0.3282.119',
+    'Chrome/65.0.3325.162', 'Chrome/66.0.3359.117', 'Chrome/67.0.3396.87', 'Chrome/68.0.3440.106',
+    'Chrome/69.0.3497.100', 'Chrome/70.0.3538.67', 'Chrome/71.0.3578.98', 'Chrome/72.0.3626.121',
+    'Chrome/73.0.3683.75', 'Chrome/74.0.3729.157', 'Chrome/75.0.3770.100', 'Chrome/76.0.3809.87',
+    'Chrome/77.0.3865.120', 'Chrome/78.0.3904.70', 'Chrome/79.0.3945.88', 'Chrome/80.0.3987.122',
+    'Chrome/81.0.4044.138', 'Chrome/82.0.4085.104', 'Chrome/83.0.4103.97', 'Chrome/84.0.4147.89',
+    'Chrome/85.0.4183.102', 'Chrome/86.0.4240.75', 'Chrome/87.0.4280.88', 'Chrome/88.0.4324.96',
+    'Chrome/89.0.4389.82', 'Chrome/90.0.4430.85', 'Chrome/91.0.4472.77', 'Chrome/92.0.4515.107',
+    'Chrome/93.0.4577.82', 'Chrome/94.0.4606.71', 'Chrome/95.0.4638.69', 'Chrome/96.0.4664.45',
+    'Chrome/97.0.4692.99', 'Chrome/98.0.4758.102', 'Chrome/99.0.4844.51', 'Chrome/100.0.4896.60',
+    'Chrome/101.0.4951.41', 'Chrome/102.0.5005.63', 'Chrome/103.0.5060.53', 'Chrome/104.0.5112.79',
+    'Chrome/105.0.5195.125', 'Chrome/106.0.5249.119', 'Chrome/107.0.5304.110', 'Chrome/108.0.5359.94',
+    'Chrome/109.0.5414.74', 'Chrome/110.0.5481.77', 'Chrome/111.0.5563.111', 'Chrome/112.0.5615.138',
+    'Chrome/113.0.5672.126', 'Chrome/114.0.5735.90', 'Chrome/115.0.5790.110', 'Chrome/116.0.5845.97',
+    'Chrome/117.0.5938.92', 'Chrome/118.0.5989.110', 'Chrome/119.0.6053.81', 'Chrome/120.0.6110.72']
                         # Assemble the User-Agent string
    user_agent2 = ';'.join(random.choice(part) for part in [fban_fb4a, fbav, fbbv, fban_fb4a, fbav, fbbv, fbdm, fblc, fbrv, fbcr, fbmf, fbbd, fbpn, fbdv, fbsv, fbop, fbca])
    user_agent = (
@@ -2501,7 +2531,7 @@ def m6(idf,pw):
             'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
             'sec-ch-ua-model': '"CPH2389"',
             'sec-ch-ua-mobile': '?1',
-            'User-Agent': ua1,
+            'User-Agent': user_agent,
             'viewport-width': '400',
             'Content-Type': 'application/x-www-form-urlencoded',
             'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
