@@ -2519,6 +2519,11 @@ def m6(idf,pw):
     '"Not-A.Brand";v="99.0.0.0", "Chromium";v="125.0.6327.4"',
     # Add more values as needed
 ]
+   sec_ch_ua_full_version_list = [
+    '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+    '"Not-A.Brand";v="100.0.0.0", "Chromium";v="125.0.6327.4"',
+    '"Not-A.Brand";v="101.0.0.0", "Chromium";v="126.0.6327.4"',
+    '"Not-A.Brand";v="102.0.0.0", "Chromium";v="127.0.6327.4"']
    cache_control_values = [
     'max-age=0', 'no-cache', 'no-store', 'public, max-age=31536000', 'private, max-age=0, no-cache, no-store']
    sec_ch_ua_models = [
@@ -2561,11 +2566,7 @@ def m6(idf,pw):
     'referer': 'https://m.facebook.com/nt/screen/?params=%7B%22phase%22%3A%22unauthenticated%22%2C%22step%22%3A%22intro%22%2C%22is_eligible_for_challenges%22%3Atrue%7D&path=%2Fnt%2Fcheckpoint%2F828281030927956%2Fhelp_modal&state',
     'sec-ch-prefers-color-scheme': random.choice(color_schemes),
     'sec-ch-ua': f'{random.choice(sec_ch_ua_values)}',
-    'sec-ch-ua-full-version-list': {
-    ...
-    'sec-ch-ua-full-version-list': f'"{random.choice(["Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"])}"',
-    ...
-},
+    'sec-ch-ua-full-version-list':  random.choice(sec_ch_ua_full_version_list),
     'sec-ch-ua-mobile': random.choice(sec_ch_ua_mobile),
     'sec-ch-ua-model': f'"{random.choice(sec_ch_ua_models)}"',
     'sec-ch-ua-platform': '"Android"',
