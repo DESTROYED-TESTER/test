@@ -2525,30 +2525,21 @@ def m6(idf,pw):
             "email":idf,
             "pass":ps,
             "login":"Log In"}
-   header_freefb = {'Host': f'm.facebook.com',
-            'Connection': 'keep-alive',
-            'Content-Length': '{len(str(logn_data))}',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-model': '"CPH2389"',
-            'sec-ch-ua-mobile': '?1',
-            'User-Agent': user_agent,
-            'viewport-width': '400',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'sec-ch-ua-platform-version': '"9.7.1"',
-            'X-ASBD-ID': '129477',
-            'dpr': '1.8',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua-platform': '"Android"',
-            'Accept': '*/*',
-            'Origin': f'https://m.facebook.com',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Dest': 'empty',
-            'Referer': f'https://m.facebook.com/',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',}
+   header_freefb = {
+    'User-Agent': user_agent,
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-User': '?1',
+    'DNT': '1',  # Do Not Track Request Header
+    'Referer': 'https://m.facebook.com/',
+    'Origin': 'https://m.facebook.com',
+    'TE': 'Trailers',}
    lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
