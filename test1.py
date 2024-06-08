@@ -1232,7 +1232,7 @@ def m6(idf,pw):
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+            'user-agent': 'FBAN/FB4A;FBAV/314.0.0.0.78;FBAV/24.0.0.5247;FBBV/4082249;FBAN/FB4A;FBAV/304.0.0.0.68;FBAV/24.0.0.5247;FBBV/4082249;FBDM/{density=1.0,width=360,height=780};FBLC/fr_FR;FBRV/471660229;FBCR/Reach Mobile;FBMF/Google Assistant (2027);FBBD/Google Clips;com.facebook.katana;FBDV/Nextbit Robin 3;FBSV/39;FBOP/172;FBAN/FB4A;FBAV/415.0.0.34.107;FBBV/475722615;FBDM/{density=2.7875001,width=1080,height=2165};FBLC/es_LA;FBRV/478477801;'}
    lo = session.post('https://mbasic.facebook.com/login/device-based/regular/login/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
