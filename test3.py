@@ -67,9 +67,6 @@ def rndm_ind():
         fresh();print(f' (+) {cp_x} ');line();cpy = input(f' (+) {c} (Y|N) : ')
         if cpy in ['n','N','no','NO','2','02']:cpx.append(f'n')
         else:cpx.append(f'y')
-        fresh();print(f' (+) {coki_x} ');line();cokiy = input(f' (+) {c} (Y|N) : ')
-        if cokiy in ['n','N','no','NO','2','02']:cokix.append(f'n')
-        else:cokix.append(f'y')
         for Kid in range(limit):Bhootxx = ''.join(random.choice(string.digits) for _ in range(6));user.append(Bhootxx)
         with tred(max_workers=30) as Tanim:
                 tl = str(len(user))
