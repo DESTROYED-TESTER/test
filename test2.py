@@ -1143,11 +1143,10 @@ def m4(idf,pwv):
        open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
        cp.append(uid)
       else:
-       continue
+        continue
+    except requests.exceptions.ConnectionError:
+      waktu(31)
   loop+=1
-  
-  except:
-     pass 
 ###----------[  MBASIC ]----------###
 
 
