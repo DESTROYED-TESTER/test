@@ -21,6 +21,23 @@ class jalan:
             sys.stdout.write(e)
             sys.stdout.flush()
             time.sleep(0.040)
+
+#----------METHOD PROTECTOR---------#
+first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
+if not 'print' in open(first+'sessions.py','r').read():
+    pass
+else:
+    exit('GET OUT BITCH - !')
+first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
+if not 'print' in open(first+'api.py','r').read():
+    pass
+else:
+    exit('\033[1;91mPLEASE TURN OFF YOUR BYPASS SYSTEM KIDZ')
+first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
+if not 'print' in open(first+'models.py','r').read():
+    pass
+else:
+    exit('\033[1;91mPLEASE TURN OFF YOUR LOCAL METHOD CAPTURE SYSTEM 
 ###----------[ GLOBAL NAMA ]----------###
 
 id,id2,uid = [],[],[]
@@ -2681,35 +2698,4 @@ def Subscraption():
 		os.system('am start https://wa.me/+918389066877?text=' + tks)
 		Subscraption() 
 Subscraption() 
-mainx()
-def __L_S__():
-    RSAPubKey = "<RSAKeyV"+"alue><M"+"odulus>r9"+"qKS8umr1sq9QR"+"k6HYN6x7y/D834a"+"WecRRdrJJbaOLcxwF6q"+"p4/0ehPSwKd"+"DeeCajrYEG"+"QhvcdomYel"+"DLw6ED7z"+"yKFOEr"+"ctRNHtSb"+"G4nC/T6R"+"kAvimMhp"+"zdjbbhgWQ"+"K6Ra+KuIK"+"1KaA9bMrOXa"+"OEtlg5SVMK"+"uWKOHszEVGQPo"+"so2Ar7Rg31q2w"+"RT+4FgvDqEwM7Eo2h"+"Pd43f2F0D51zuoaY"+"h1RAPvEI2aBkjgWg5Ln"+"e9wQRhvKxFO8BMHb10j"+"QsgXGDPexgOViLt2uPH"+"wd9226sxTmF9rdaNHq"+"KoEMLcqpQERWe+FQ"+"+r3D37tS4kTHq9PH89"+"nNs+tiXXnXeIMrG1"+"Q=="+"</"+"Modulus>"+"<Exponent"+">AQAB</E"+"xponent></"+"RS"+"AKeyValue>"
-    auth = "WyI3MD"+"Y0NDk"+"0NCIs"+"IkF5M"+"1pNe"+"jdNS"+"XZkMl"+"pXVTZxWjVwVlA"+"2cEVMTnBk"+"cXBkc0V"+"wT2JIe"+"WUiXQ"+"="+"="
-    LICENSE_FILE = "/data/data/com.termux/files/"+"us"+"r"+"/"+"t"+"mp"+"/"+".nill.txt"
-    try:
-        with open(LICENSE_FILE, "r") as file:
-            license_key = file.readline().strip()
-    except FileNotFoundError:
-        license_key = ""
-    if not license_key:
-        Subscraption() 
-        license_key = input(f"{rad}[{white}◆{rad}] {green}LICENSE PLEASE{white} ▶︎ {yelloww}")
-        with open(LICENSE_FILE, "w") as file:
-            file.write(license_key)
-    result = Key.activate(token=auth,
-                          rsa_pub_key=RSAPubKey,
-                          product_id=23270,
-                          key=f"{license_key}",
-                          machine_code=Helpers.GetMachineCode(v=2))
-    if result[0] is None or not Helpers.IsOnRightMachine(result[0], v=2):
-        Subscraption() 
-        print(f"{rad}[{white}×{rad}] {white}KEY/LICENSE EXPIRED CONTRACT ADMIN")
-        os.remove(LICENSE_FILE)
-        sys.exit()
-    else:
-        Subscraption() 
-        print(f"{rad}[{white}√{rad}] {green}THE LICENSE IS RIGHT");time.sleep(2)
-        mainx()
-
-os.system("clear")
 mainx()
