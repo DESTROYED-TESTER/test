@@ -2,7 +2,7 @@
 #-------------------[ MAIN-CODE ]-------------------#
 from os import path
 import requests,os
-os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
+os.system()
 import os,base64,zlib,pip,urllib
 try:
         import os,requests,json,time,re,random,sys,uuid,string,subprocess
