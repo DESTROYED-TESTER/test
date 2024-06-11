@@ -2,7 +2,6 @@ import re
 import random
 import string
 import requests
-import session
 
 # Assuming BLACKX contains the HTML content
 session = requests.Session()
