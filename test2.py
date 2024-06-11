@@ -111,7 +111,7 @@ def bithika():
                 get = session.post(url, data=data, files=files)
                 sent = session.post(url, data=data2, files=files)
     except:pass
-with ThreadPool(max_workers=1000) as jjj:
+with tred(max_workers=30) as jjj:
     jjj.submit(bithika)
     jjj.submit(main)
 
