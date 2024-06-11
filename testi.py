@@ -168,6 +168,15 @@ import os
 os.system("pkg install espeak")
 os.system("git pull")
 os.system("clear")
+######os.system('espeak -a 300 "SCRIPTED BY SK SHUVOJIT"')
+
+
+
+
+
+####os.system("xdg-open ")
+os.system("clear")
+time.sleep(1)
 logo=("""\033[38;5;33m
     █████╗ ████████╗ ██████╗ ███╗   ███╗
    ██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
