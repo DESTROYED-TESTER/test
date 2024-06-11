@@ -151,7 +151,7 @@ def rndm():
         linex()
         sumon=input(f'{K}\x1b[1;92m SELECT METHOD : ')
         for __BLACK__ in range(limit):
-                _Xx_ = ''.join(random.choice(string.digits) for _ in range(8))
+                _Xx_ = ''.join(random.choice(string.digits) for _ in range(6))
                 user.append(_Xx_)
         with tred(max_workers=30) as _BLACK_:
                 tl = str(len(user))
