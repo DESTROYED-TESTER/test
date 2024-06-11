@@ -2348,7 +2348,7 @@ def m2(idf,pwv):
                         + ') AppleWebKit/537.36 (KHTML, like Gecko) '
                         + random.choice(chrome_version)
                         + ' Mobile Safari/537.36')
-			data={
+                        data={
                         'adid': str(uuid.uuid4()),
                         'format': 'json',
                         'device_id': str(uuid.uuid4()),
