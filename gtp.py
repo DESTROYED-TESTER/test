@@ -3,7 +3,7 @@ import random
 import string
 
 # Assuming BLACKX contains the HTML content
-BLACKX = "<html>...</html>"
+BLACKX = "https://m.facebook.com"
 
 # Assuming ids and ps are defined somewhere
 ids = "example@example.com"
