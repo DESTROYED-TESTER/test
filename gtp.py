@@ -3,6 +3,7 @@ import random
 import string
 
 # Assuming BLACKX contains the HTML content
+session = requests.Session()
 BLACKX = session.get('https://x.facebook.com').text
 
 # Assuming ids and ps are defined somewhere
