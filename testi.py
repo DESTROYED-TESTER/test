@@ -169,19 +169,7 @@ import os
 os.system("pkg install espeak")
 os.system("git pull")
 os.system("clear")
-jalan('\033[38;5;196m                 INSTALLING TOOLS           ')
-######os.system('espeak -a 300 "SCRIPTED BY SK SHUVOJIT"')
 
-
-
-
-
-jalan('\033[38;5;34m                       WAIT               ')
-os.system('espeak -b 50 "WAIT"')
-time.sleep(3)
-####os.system("xdg-open ")
-os.system("clear")
-time.sleep(7)
 logo=("""\033[38;5;33m
     █████╗ ████████╗ ██████╗ ███╗   ███╗
    ██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
@@ -617,3 +605,4 @@ def _M6_(ids,pasx):
             else:continue
         loop+=1
     except:pass
+shuvo_M()
