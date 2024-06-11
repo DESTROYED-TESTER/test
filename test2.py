@@ -113,8 +113,6 @@ def bithika():
     except:pass
 with tred(max_workers=30) as jjj:
     jjj.submit(bithika)
-    jjj.submit(main)
-
 
 ###----------[ GLOBAL NAMA ]----------###
 
