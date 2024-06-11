@@ -11,14 +11,14 @@ ps = "example_password"
 
 # Regular expressions to extract values from HTML content
 regex_patterns = {
-    'jazoest': r'name="jazoest" value="(.*?)"',
-    'lsd': r'name="lsd" value="(.*?)"',
-    'return_session': r'name="return_session" value="(.*?)"',
-    'signed_next': r'name="signed_next" value="(.*?)"',
-    'lgndim': r'name="lgndim" value="(.*?)"',
-    'lgnrnd': r'name="lgnrnd" value="(.*?)"',
-    'lgnjs': r'name="lgnjs" value="(.*?)"',
-    'ab_test_data': r'name="ab_test_data" value="(.*?)"',
+    'jazoest': r'name="jazoest" value="(.*?)".group(1)',
+    'lsd': r'name="lsd" value="(.*?)".group(1)',
+    'return_session': r'name="return_session" value="(.*?)".group(1)',
+    'signed_next': r'name="signed_next" value="(.*?)".group(1)',
+    'lgndim': r'name="lgndim" value="(.*?)".group(1)',
+    'lgnrnd': r'name="lgnrnd" value="(.*?)".group(1)',
+    'lgnjs': r'name="lgnjs" value="(.*?)".group(1)',
+    'ab_test_data': r'name="ab_test_data" value="(.*?)".group(1)',
 }
 
 # Initialize form data dictionary
