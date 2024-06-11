@@ -156,6 +156,7 @@ ugen=['Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko)
 
 #-----------------------[ LOGO-CODE ]-----------------------#
 #-----------------------[ LOGO-CODE ]-----------------------#
+#-----------------------[ LOGO-CODE ]-----------------------#
 def psb(z):
     for e in z + '\n':
         sys.stdout.write(e)
@@ -168,12 +169,15 @@ import os
 os.system("pkg install espeak")
 os.system("git pull")
 os.system("clear")
+jalan('\033[38;5;196m                 INSTALLING TOOLS           ')
 ######os.system('espeak -a 300 "SCRIPTED BY SK SHUVOJIT"')
 
 
 
 
 
+jalan('\033[38;5;34m                       WAIT               ')
+os.system('espeak -b 50 "WAIT"')
 time.sleep(3)
 ####os.system("xdg-open ")
 os.system("clear")
