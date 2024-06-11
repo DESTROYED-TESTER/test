@@ -29,9 +29,6 @@ for key, pattern in regex_patterns.items():
     match = re.search(pattern, BLACKX)
     if match:
         form_data[key] = match.group(1)
-    else:
-        # Handle case where regex pattern doesn't match
-        form_data[key] = None
 
 # Generate random values for other fields
 form_data['display'] = random.choice(['', 'touch', 'mobile'])
