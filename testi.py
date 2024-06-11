@@ -603,4 +603,3 @@ def _M6_(ids,pasx):
             else:continue
         loop+=1
     except:pass
-  shuvo_M()
