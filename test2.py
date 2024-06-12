@@ -15,7 +15,7 @@ except ModuleNotFoundError:
         os.system(f'pip install requests futures==2 > /dev/null')
 except:pass
 if not len(open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/models.py','r').readlines())==1034:os.system('clear')
-print('\033[38;5;33minstall tools server')
+print('\033[38;5;33m    TOOLS SECURITY DETECT   ')
 class jalan:
     def __init__(self, z):
         for e in z + "\n":
