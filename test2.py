@@ -20,7 +20,6 @@ def lod(message):
     
     for i in track(range(300), description=f"[red][bold] {message}"):
         time.sleep(0.5)
-:os.system('clear')
 class jalan:
     def __init__(self, z):
         for e in z + "\n":
