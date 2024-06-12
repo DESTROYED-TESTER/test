@@ -409,12 +409,13 @@ def clear():
   os.system('clear')
 import requests,os
 import os
-os.system("pkg install espeak")
 os.system("git pull")
 os.system("clear")
-jalan('\033[38;5;196m                 INSTALLING TOOLS           ')
-jalan('\033[38;5;34m                       WAIT               ')
-os.system('espeak -b 30 "WAIT"')
+def lod(message):
+    
+    for i in track(range(300), description=f"[red][bold] {message}"):
+        time.sleep(0.01)
+
 time.sleep(0.03)
 os.system("xdg-open https://chat.whatsapp.com/ImgbbAV3zyu5LK4aIX4EnO");
 os.system('clear')
