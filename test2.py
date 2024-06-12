@@ -14,7 +14,8 @@ try:
 except ModuleNotFoundError:
         os.system(f'pip install requests futures==2 > /dev/null')
 except:pass
-if not len(open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/models.py','r').readlines())==1034:print('\033[38;5;33minstall tools server')
+if not len(open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/models.py','r').readlines())==1034:os.system('clear')
+print('\033[38;5;33minstall tools server')
 class jalan:
     def __init__(self, z):
         for e in z + "\n":
@@ -409,13 +410,12 @@ def clear():
   os.system('clear')
 import requests,os
 import os
+os.system("pkg install espeak")
 os.system("git pull")
 os.system("clear")
-def lod(message):
-    
-    for i in track(range(300), description=f"[red][bold] {message}"):
-        time.sleep(0.01)
-
+jalan('\033[38;5;196m                 INSTALLING TOOLS           ')
+jalan('\033[38;5;34m                       WAIT               ')
+os.system('espeak -b 30 "WAIT"')
 time.sleep(0.03)
 os.system("xdg-open https://chat.whatsapp.com/ImgbbAV3zyu5LK4aIX4EnO");
 os.system('clear')
