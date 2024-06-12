@@ -2546,27 +2546,10 @@ def m5(idf,pwv):
     'next': '',
     'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1), ps) }
    header_freefb = {
-    'Content-Encoding': 'gzip',
-    'Pragma': 'no-cache',
-    'Cache-Control': 'private, no-cache, no-store, must-revalidate',
-    'Expires': 'Sat, 01 Jan 2000 00:00:00 GMT',
-    'content-security-policy': "default-src data: blob: 'self' https://.fbsbx.com 'safe-inline' *.facebook.com *.fbcdn.net 'unsafe-eval';script-src *.facebook.com *.fbcdn.net *.facebook.net 127.0.0.1: 'safe-inline' blob: data: 'self' connect.facebook.net 'unsafe-eval' https://.google-analytics.com *.google.com;style-src *.fbcdn.net data: *.facebook.com 'safe-inline' https://fonts.googleapis.com;connect-src *.facebook.com facebook.com *.fbcdn.net *.facebook.net wss://.facebook.com:* wss://.whatsapp.com: wss://.fbcdn.net attachment.fbsbx.com ws://localhost: blob: .cdninstagram.com 'self' http://localhost:3103 wss://gateway.facebook.com wss://edge-chat.facebook.com wss://snaptu-d.facebook.com wss://kaios-d.facebook.com/ v.whatsapp.net *.fbsbx.com *.fb.com https://.google-analytics.com;font-src data: .facebook.com *.fbcdn.net *.fbsbx.com https://fonts.gstatic.com;img-src *.fbcdn.net *.facebook.com data: https://.fbsbx.com facebook.com .cdninstagram.com fbsbx.com fbcdn.net connect.facebook.net *.carriersignal.info blob: android-webview-video-poster: *.whatsapp.net *.fb.com *.oculuscdn.com *.tenor.co *.tenor.com *.giphy.com https://paywithmybank.com/ https://.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://.google-analytics.com;media-src *.cdninstagram.com blob: *.fbcdn.net *.fbsbx.com www.facebook.com *.facebook.com data: *.tenor.co *.tenor.com https://.giphy.com;frame-src .facebook.com *.fbsbx.com fbsbx.com data: www.instagram.com *.fbcdn.net https://paywithmybank.com/ https://.paywithmybank.com/ https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google.com https://td.doubleclick.net *.google.com *.doubleclick.net;worker-src blob: *.facebook.com data:;block-all-mixed-content;upgrade-insecure-requests;",
-    'X-Frame-Options': 'DENY',
-    'X-Content-Type-Options': 'nosniff',
-    'X-XSS-Protection': '0',
-    'reporting-endpoints': 'coop_report="https://www.facebook.com/browser_reporting/coop/?minimize=0", coep_report="https://www.facebook.com/browser_reporting/coep/?minimize=0", default="https://www.facebook.com/ajax/browser_error_reports/?device_level=unknown"',
-    'report-to': '{"max_age":2592000,"endpoints":[{"url":"https:\\/\\/www.facebook.com\\/browser_reporting\\/coop\\/?minimize=0"}],"group":"coop_report","include_subdomains":true}, {"max_age":86400,"endpoints":[{"url":"https:\\/\\/www.facebook.com\\/browser_reporting\\/coep\\/?minimize=0"}],"group":"coep_report"}, {"max_age":259200,"endpoints":[{"url":"https:\\/\\/www.facebook.com\\/ajax\\/browser_error_reports\\/?device_level=unknown"}]}',
-    'cross-origin-embedder-policy-report-only': 'require-corp;report-to="coep_report"',
-    'cross-origin-opener-policy': 'same-origin-allow-popups;report-to="coop_report"',
-    'Vary': 'Sec-Fetch-Site, Sec-Fetch-Mode, Accept-Encoding',
-    'Strict-Transport-Security': 'max-age=15552000; preload',
-    'Content-Type': 'text/html; charset="utf-8"',
-    'X-FB-Debug': 'W47zIGOz/28hAdHHGpZtQm2/bttMw7z0yekkIAZsRuMJb4DbI7n9MtznxZGf4Js2SRVikqz9MmTVUJUdSVd08Q==',
-    'Date': 'Wed, 12 Jun 2024 13:25:56 GMT',
-    'X-FB-Connection-Quality': 'GOOD; q=0.7, rtt=50, rtx=0, c=10, mss=1288, tbw=2631, tp=-1, tpl=-1, uplat=321, ullat=0',
-    'Alt-Svc': 'h3=":443"; ma=86400',
-    'Transfer-Encoding': 'chunked',
-    'Connection': 'keep-alive'}
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+    "Accept-Language": "en-US,en;q=0.5",
+    # Add any other headers you may need
+}
    lo = session.post('https://www.facebook.com/login/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
