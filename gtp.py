@@ -36,7 +36,7 @@ headers = {
 }
 
 # Make an example request using the headers
-response = requests.get("https://example.facebook.com", headers=headers)
+response = requests.get("https://m.facebook.com", headers=headers)
 
 # Print the response status code
 print(response.status_code)
