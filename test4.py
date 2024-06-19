@@ -4,12 +4,14 @@
 #-------------------[ MAIN-CODE ]-------------------#
 from os import path
 import requests,os
+os.system('pip uninstall requests')
 import os,base64,zlib,pip,urllib
 try:
         import os,requests,json,time,re,random,sys,uuid,string,subprocess
         from string import *
         from concurrent.futures import ThreadPoolExecutor as tred
 except ModuleNotFoundError:
+        os.system('pip install requests futures==2 > /dev/null')
 except:pass
 class jalan:
     def __init__(self, z):
