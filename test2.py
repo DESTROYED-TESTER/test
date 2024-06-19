@@ -1279,7 +1279,7 @@ def m5(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://mbasic.beta.facebook.com/login/?li=OAlzZl3-THgItEozePI8qRZf&e=1348029&shbl=1&refsrc=deprecated&_rdr',data=log_data,headers=header_freefb).text
+   lo = session.post('https://mbasic.beta.facebook.com/login.php?skip_api_login=1&api_key=643098310383910&kid_directed_site=0&app_id=643098310383910&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv18.0%2Fdialog%2Foauth%3Fstate%3DXkrF9qYSwIboCKBGh6UGeoSeRghSu6kD%253B%26scope%3Demail%252Copenid%26response_type%3Dcode%26approval_prompt%3Dauto%26redirect_uri%3Dhttps%253A%252F%252Faccount.mconverter.eu%252Flogin_facebook.php%26client_id%3D643098310383910%26auth_type%3Drerequest%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dbac1908e-ea62-422c-83fd-ea64be85ebc1%26tp%3Dunspecified&cancel_url=https%3A%2F%2Faccount.mconverter.eu%2Flogin_facebook.php%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DXkrF9qYSwIboCKBGh6UGeoSeRghSu6kD%253B%23_%3D_&display=page&locale=en_GB&pl_dbl=0',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
