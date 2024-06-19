@@ -1242,13 +1242,6 @@ device = random.choice(["VOG-L29 Build/HUAWEIVOG-L29","STK-LX3 Build/HUAWEISTK-L
 density = random.choice(["{density=2.0,width=720,height=1208}"])
 ua = f"Dalvik/2.1.0 (Linux; U; Android {versi_android}; {device}) [FBAN/MessengerLite;FBAV/{versi_chrome};FBPN/com.facebook.mlite;FBLC/en_US;FBBV/{versi_app};FBCR/3;FBMF/huawei;FBBD/huawei;FBDV/{device.split(' Build')[0]};FBSV/{str(random.randint(4,10))};FBCA/arm64-v8a:null;FBDM/"+str(density)+";]"
 
-def generate_lgnjs():
-    # Generate a dynamic value for lgnjs (example)
-    return str(int(time.time()))
-
-def generate_encpass():
-    # Generate a dynamic value for encpass (example)
-    return '#PWD_BROWSER:5:{}:{}:AZlQACzS6ZmMrcMXKFCxzkIsYsqEajVeqWzts29VIs3NkdQaXDNJkW0UQe2wEOr4RPVT+7d4cfKxgxMydpOty/g9CBPTu47dYzPJjt1ZvWOj5+tu1s5M25wCvIbqLpQwd0k+2A=='.format(int(time.time()), random.randint(1000000000, 9999999999))
 
 def extract_field_value(html, field_name):
     # Function to extract field value using regular expression
@@ -1285,7 +1278,7 @@ def m5(idf,pwv):
             'email': idf,
             'cuid': '',  # Replace with your actual cuid value or generate dynamically
             'guid': guid,
-            'lgnjs': lgnjs,
+            'lgnjs': str(int(time.time())),
             'lgnrnd': lgnrnd,
             'locale': 'en_GB',
             'login_source': 'comet_login_header',
@@ -1298,7 +1291,6 @@ def m5(idf,pwv):
             'jazoest': jazoest,
             'lgndim': lgndim,
             'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-            'encpass': encpass,
             'pass': ps,
             'login': 'Log In'}
    header_freefb = {
