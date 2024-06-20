@@ -1114,7 +1114,7 @@ def m2(idf,pwv):
            coki1 = coki.split("1000")[1]
            uid = "1000"+coki1[0:11]
            if 'y' in cp_xdx:
-           print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
+           print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{pw}{xxx}')
            open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+pw+'|'+'\n')
            cp.append(uid)
    else:
