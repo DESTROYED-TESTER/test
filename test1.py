@@ -451,8 +451,11 @@ def api1(ids,names,passlist):
 				phone_company = __iam_genius.split('|')[1]
 				dimensions = __iam_genius.split('|')[2]
 				ffb=random.choice(fbks)
+				android_version = device['android_version']
+				model = device['model']
+				build = device['build']
 				dvlk = random.choice(usr)
-				ua_string = f'{str(dvlk)} [FBAN/FB4A;FBAV/{str(application_version)};FBPN/com.facebook.katana;FBLC/en_PK;FBCR/null;FBBV/{str(application_version_code)};FBMF/{str(phone_company)};FBBD/{str(phone_company)};FBDV/{str(phone_company)};FBSV/8.1.0;;FBDM/'+'{density=2.75,height=1440,width=720};]'
+				ua_string = f'Davik/2.1.0 (Linux; U; Android '+android_version+'.0.1; '+model+' Build/'+build+') [FBAN/FB4A;FBAV/{str(application_version)};FBPN/com.facebook.katana;FBLC/en_PK;FBCR/null;FBBV/{str(application_version_code)};FBMF/{str(phone_company)};FBBD/{str(phone_company)};FBDV/{str(phone_company)};FBSV/8.1.0;;FBDM/'+'{density=2.75,height=1440,width=720};]'
 				li = ['28','29','210']
 				li2 = random.choice(li)
 				j1 = ''.join(random.choice(digits) for _ in range(2))
