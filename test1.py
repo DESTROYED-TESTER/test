@@ -443,19 +443,7 @@ def api1(ids,names,passlist):
 				ln = fn
 			for pw in passlist:
 				pas = pw.replace('first',fn.lower()).replace('First',fn).replace('last',ln.lower()).replace('Last',ln).replace('Name',names).replace('name',names.lower())
-				
-				application_version = str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(111,555))
-				application_version_code=str(random.randint(000000000,999999999))
-				__iam_genius = random.choice(android_models)
-				phone_model = __iam_genius.split('|')[0]
-				phone_company = __iam_genius.split('|')[1]
-				dimensions = __iam_genius.split('|')[2]
-				ffb=random.choice(fbks)
-				android_version = device['android_version']
-				model = device['model']
-				build = device['build']
-				dvlk = random.choice(usr)
-				ua_string = f'Davik/2.1.0 (Linux; U; Android '+android_version+'.0.1; '+model+' Build/'+build+') [FBAN/FB4A;FBAV/{str(application_version)};FBPN/com.facebook.katana;FBLC/en_PK;FBCR/null;FBBV/{str(application_version_code)};FBMF/{str(phone_company)};FBBD/{str(phone_company)};FBDV/{str(phone_company)};FBSV/8.1.0;;FBDM/'+'{density=2.75,height=1440,width=720};]'
+				ua_string = 
 				li = ['28','29','210']
 				li2 = random.choice(li)
 				j1 = ''.join(random.choice(digits) for _ in range(2))
