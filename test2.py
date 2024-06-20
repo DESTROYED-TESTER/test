@@ -1098,11 +1098,11 @@ def m2(idf,pwv):
     "accept-language": "en-GB,en-US;q=0.9,en;q=0.8"})
    p = ses.get('https://m.facebook.com/') 
    dataa ={
-    "lsd": re.search('name="lsd" value="(.*?)"', p).group(1)
-    "jazoest": re.search('name="jazoest" value="(.*?)"', p).group(1)
-    "uid": "your_facebook_user_id",
+    "lsd": re.search('name="lsd" value="(.*?)"',str(p.text)).group(1),
+    "jazoest": re.search('name="jazoest" value="(.*?)"',str(p.text)).group(1),
+    "uid": idf,
     "flow": "login_no_pin",
-    "pass": "your_facebook_password",
+    "pass": pw,
     "next": "https://developers.facebook.com/tools/debug/accesstoken/"}
    koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
    koki+=' m_pixel_ratio=2.625; wd=412x756'
