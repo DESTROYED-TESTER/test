@@ -428,8 +428,7 @@ proxies = [
     "104.37.102.130:8181",
     "104.128.103.32:51110"
 ]
-
-  proxy_list = [
+proxy_list = [
         'http://104.129.199.51:10160',
         'https://47.254.16.71:5008',
         # Add more proxies as needed
