@@ -430,8 +430,8 @@ proxies = [
 ]
 
   proxy_list = [
-        'http://47.252.29.28:11222',
-        'https://123.456.789.012:8080',
+        'http://104.129.199.51:10160',
+        'https://47.254.16.71:5008',
         # Add more proxies as needed
     ]
 
