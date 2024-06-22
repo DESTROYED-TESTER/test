@@ -520,7 +520,6 @@ def process_file():
         os.system('clear')
         menu()
     except Exception as e:
-        print(f'\n[!] Error: {e}')
         sys.exit()
 
     # Process based on Python version
