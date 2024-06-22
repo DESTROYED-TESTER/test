@@ -30,35 +30,40 @@ brblue = '\x1b[94m'
 brmgnt = '\x1b[95m'
 brcyan = '\x1b[96m'
 G = '\x1b[97m'
+
 def jalan(z, t):
     for e in z:
         sys.stdout.write(e)
         sys.stdout.flush()
         time.sleep(t)
+
 def load(word):
-    lix = [
-     '/', '-', '╲', '|']
+    lix = ['/', '-', '╲', '|']
     for i in range(5):
         for x in range(len(lix)):
-            sys.stdout.write(('\r{}{}').format(str(word), lix[x]))
+            sys.stdout.write('\r{}{}'.format(word, lix[x]))
             time.sleep(0.2)
             sys.stdout.flush()
+
 def banner_dec():
-    banner = '''{}'''.format(m)
+    banner = '{}'.format(m)
     print(banner)
     os.system('figlet -f slant "DECRYPT"')
+
 def banner_enc():
-    banner = '''{}'''.format(m)
+    banner = '{}'.format(m)
     print(banner)
     os.system('figlet -f slant "ENCRYPT"')
+
 def running(s):
-	try:
-		for c in s + '\n':
-        	    sys.stdout.write(c)
-	            sys.stdout.flush()
-	            time.sleep(0.001)
-	except (KeyboardInterrupt,EOFError):
-		run('Exit!')
+    try:
+        for c in s + '\n':
+            sys.stdout.write(c)
+            sys.stdout.flush()
+            time.sleep(0.001)
+    except (KeyboardInterrupt,EOFError):
+        run('Exit!')
+
 def run(x):
     pt = '\x1b[1;37m'
     rd = '\x1b[1;37m\x1b[1;31m'
@@ -68,62 +73,60 @@ def run(x):
         while num < 1:
             for i, char in enumerate(x):
                 if i == 0:
-                    print '\r%s%s%s%s' % (rg, char.lower(), rd, x[1:]),
+                    print('\r{}{}{}{}'.format(rg, char.lower(), rd, x[1:]), end='')
                     sys.stdout.flush()
                 else:
                     if i == 1:
                         okklah = x[0].lower()
-                        print '\r%s%s%s%s%s%s' % (rd, okklah, pt, char.lower(), rg, x[2:]),
+                        print('\r{}{}{}{}{}{}'.format(rd, okklah, pt, char.lower(), rg, x[2:]), end='')
                         sys.stdout.flush()
                     elif i == i:
                         okklah = x[0:i].lower()
-                        print '\r%s%s%s%s%s%s' % (rd, okklah, pt, char.lower(), rg, x[i + 1:]),
+                        print('\r{}{}{}{}{}{}'.format(rd, okklah, pt, char.lower(), rg, x[i + 1:]), end='')
                         sys.stdout.flush()
                     time.sleep(0.07)
-
             num += 1
-
     except:
         exit()
-
 
 def clr():
     os.system('clear')
 
-
 def logo():
     banner_enc()
+
 def b_menu():
-    jalan("""
------------.        .-----------
+    jalan("""-----------.        .-----------
   ------    \  __  /    ------
     -----    \(  )/    -----
        ---   ' \/ `   ---
          --- :    : ---
            --`    '--
-           `/`/..\`\`
+           `/`/..\`\
         ====UU====UU====
             '//||\\`
               ''``
         Dec/Enc Python
 """,0.001)
+
 def menu():
     clr()
     b_menu()
     running('\n{}[{}1{}]{} Encrypt\n{}[{}2{}]{} Decrypt\n'.format(m,p,m,p,m,p,m,p,m,p,m,p,m,p,m,p,m,p,m,p))
-    asww = raw_input('{}[{}?{}]{} Choose {}>> {}'.format(m,p,m,p,k,p))
+    asww = input('{}[{}?{}]{} Choose {}>> {}'.format(m,p,m,p,k,p))
     if asww == '1' or asww == '01':
-	load('Running...')
-	menu_enc()
+        load('Running...')
+        menu_enc()
     elif asww == '2' or asww == '02':
-	load('Running...')
-	menu_dec()
+        load('Running...')
+        menu_dec()
     elif asww == '':
-	run('Huh?')
-	menu()
+        run('Huh?')
+        menu()
     else:
-	run('Please check number options!')
-	menu()
+        run('Please check number options!')
+        menu()
+
 def menu_enc():
     clr()
     banner_enc()
@@ -138,7 +141,7 @@ def menu_enc():
     running('{}[{}00{}]{} Exit'.format(m,p,m,k))
     running('')
     try:
-        inp = raw_input('{}[{}??{}]{} Choose {}>>{} '.format(m,p,m,k,h,p))
+        inp = input('{}[{}??{}]{} Choose {}>>{} '.format(m,p,m,k,h,p))
     except (KeyboardInterrupt,EOFError):
         run ('Disable!!')
         menu()
@@ -161,7 +164,7 @@ def menu_enc():
         clr()
         pyc()
     elif inp == '7' or inp == '07':
-	clr()
+        clr()
         emzb()
     elif inp == '8' or inp == '08':
         clr()
@@ -176,6 +179,7 @@ def menu_enc():
         run ('Wrong!, Please input your choice')
         time.sleep(2)
         menu_enc()
+
 def menu_dec():
     clr()
     banner_dec()
@@ -190,28 +194,28 @@ def menu_dec():
     running('{}[{}00{}]{} Exit'.format(m,p,m,k))
     running('')
     try:
-        inp = raw_input('{}[{}??{}]{} Choose {}>>{} '.format(m,p,m,k,h,p))
+        inp = input('{}[{}??{}]{} Choose {}>>{} '.format(m,p,m,k,h,p))
     except (KeyboardInterrupt,EOFError):
         run ('Disable!!')
-	menu()
+        menu()
     if inp == '1' or inp == '01':
-	clr()
-	Enam()
+        clr()
+        Enam()
     elif inp == '2' or inp == '02':
-	clr()
-	Tujuh()
+        clr()
+        Tujuh()
     elif inp == '3' or inp == '03':
-	clr()
-	Delapan()
+        clr()
+        Delapan()
     elif inp == '4' or inp == '04':
-	clr()
-	Sembilan()
+        clr()
+        Sembilan()
     elif inp == '5' or inp == '05':
-	clr()
-	unmarsh()
+        clr()
+        unmarsh()
     elif inp == '6' or inp == '06':
-	clr()
-	unpyc()
+        clr()
+        unpyc()
     elif inp == '7' or inp == '07':
         clr()
         mzb()
@@ -219,454 +223,555 @@ def menu_dec():
         clr()
         zl()
     elif inp == '':
-	run ('Input number!')
-	time.sleep(2)
-	menu_dec()
+        run ('Input number!')
+        time.sleep(2)
+        menu_dec()
     elif inp == '0' or inp == '00':
-	exit()
+        exit()
     else:
-	run ('Wrong, Input your choice!')
-	time.sleep(2)
-	menu_dec()
+        run ('Wrong, Input your choice!')
+        time.sleep(2)
+        menu_dec()
+
 def Satu():
     clr()
     logo()
     try:
-        f = raw_input('Filenames: ')
+        f = input('Filenames: ')
     except:
         exit()
 
     try:
         bk = open(f, 'r').read()
     except:
-        run('file %s not found ' % f)
-        time.sleep(1.5)
-	Satu()
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        Satu()
+    else:
+        jalan('Load')
+        try:
+            b = base64.b16encode(bk)
+        except:
+            pass
+        else:
+            with open('Hasil/base16.txt', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in base16.txt')
+                time.sleep(1.5)
 
-    en = base64.b16encode(bk)
-    ff = f + 'c'
-    open(ff, 'w').write('import base64\nexec(base64.b16decode("%s"))' % en)
-    nm = ('').join(f.split('.')[:1]) + '-enc.py'
-    os.rename(ff, nm)
-    run('file successfully encrypted to %s ' % nm)
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        Satu()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
 def Dua():
-        clr()
-        logo()
-        try:
-            f = raw_input('Filenames: ')
-        except:
-            exit()
+    clr()
+    logo()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
 
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        Dua()
+    else:
+        jalan('Load')
         try:
-            bk = open(f, 'r').read()
+            b = base64.b32encode(bk)
         except:
-            run('file %s not found ' % f)
-            exit()
+            pass
+        else:
+            with open('Hasil/base32.txt', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in base32.txt')
+                time.sleep(1.5)
 
-        en = base64.b32encode(bk)
-        ff = f + 'c'
-        open(ff, 'w').write('import base64\nexec(base64.b32decode("' + en + '"))')
-        nm = ('').join(f.split('.')[:1]) + '-enc.py'
-        os.rename(ff, nm)
-        run('file successfully encrypted to %s ' % nm)
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        Dua()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
 def Tiga():
-        clr()
-        logo()
-        try:
-            f = raw_input('Filenames: ')
-        except:
-            exit()
+    clr()
+    logo()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
 
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        Tiga()
+    else:
+        jalan('Load')
         try:
-            bk = open(f, 'r').read()
+            b = base64.b64encode(bk)
         except:
-            run('file %s not found ' % f)
-            exit()
+            pass
+        else:
+            with open('Hasil/base64.txt', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in base64.txt')
+                time.sleep(1.5)
 
-        en = base64.b64encode(bk)
-        ff = f + 'c'
-        open(ff, 'w').write('import base64\nexec(base64.b64decode("' + en + '"))')
-        nm = ('').join(f.split('.')[:1]) + '-enc.py'
-        os.rename(ff, nm)
-        run('file successfully encrypted to %s ' % nm)
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        Tiga()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
 def Empat():
-        clr()
-        logo()
-        try:
-            f = raw_input('Filenames: ')
-        except:
-            exit()
+    clr()
+    logo()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
 
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        Empat()
+    else:
+        jalan('Load')
         try:
-            bk = open(f, 'r').read()
+            b = bk.encode('hex')
         except:
-            run('file %s not found ' % f)
-            exit()
+            pass
+        else:
+            with open('Hasil/hex.txt', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in hex.txt')
+                time.sleep(1.5)
 
-        en = bk.encode('hex')
-        ff = f + 'c'
-        open(ff, 'w').write('exec("' + en + '").decode("hex")')
-        nm = ('').join(f.split('.')[:1]) + '-enc.py'
-        os.rename(ff, nm)
-        run('file successfully encrypted to %s ' % nm)
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        Empat()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
 def Lima():
-        clr()
-        logo()
-        try:
-            f = raw_input('Filenames: ')
-        except:
-            exit()
-
-        try:
-            bk = open(f, 'r').read()
-        except:
-            run('file %s not found ' % f)
-            exit()
-
-        c = compile(bk, '<okklah>', 'exec')
-        en = marshal.dumps(c)
-        ff = f + 'c'
-        open(ff, 'w').write('import marshal\nexec(marshal.loads(' + repr(en) + '))')
-        nm = ('').join(f.split('.')[:1]) + '-enc.py'
-        os.rename(ff, nm)
-        run('file successfully encrypted to %s ' % nm)
-def emzb():
-    clr()  # Clear screen
-    logo()  # Display logo
-    
+    clr()
+    logo()
     try:
-        file = input('File: ')  # Use input() for Python 3 compatibility
-        with open(file, 'r') as f:
-            fileopen = f.read()
-        
-        compiled_code = compile(fileopen, file, 'exec')
-        marshaled_code = marshal.dumps(compiled_code)
-        compressed_code = zlib.compress(marshaled_code)
-        encoded_code = base64.b64encode(compressed_code).decode('utf-8')
-        
-        encrypted_script = ('import marshal, zlib, base64\n'
-                            'exec(marshal.loads(zlib.decompress(base64.b64decode("' + encoded_code + '"))))')
-        
-        encrypted_filename = file.replace('.py', '-enc.py')
-        
-        with open(encrypted_filename, 'w') as g:
-            g.write(encrypted_script)
-        
-        print('File successfully encrypted to', encrypted_filename)
-        input('Press Enter To Return To Menu ')
-        menu()  # Assuming menu() is defined elsewhere
-        
-    except IOError:
-        print('File not found')
-        input('Press Enter To Return To Menu ')
-        emzb()
-    except Exception as e:
-        print('An error occurred:', e)
-        input('Press Enter To Return To Menu ')
-        emzb()
-def ezl():
-    print "Encrypt Zlib"
-    file = raw_input('File : ')
-    out = file.replace('.py', '-enc.py')
-    oa = open(file).read()
-    xs = zlib.compress(oa)
-    s = open(out, 'w')
-    s.write('import zlib\nexec(zlib.decompress(' +repr(xs)+ '))')
-    s.close()
-    print ('File saved as '+ out)
-def Enam():
-        clr()
-        banner_dec()
-        try:
-	    print 'Dec base64.b16decocde'
-            f = raw_input('Filenames: ')
-        except:
-            exit()
-
-        try:
-            bk = open(f, 'r').read()
-        except:
-            run('file %s not found ' % f)
-            exit()
-
-        bk = bk.replace('exec(base64.b16decode("', '')
-        bk = bk.replace('"))', '')
-        bk = bk.replace('import base64\n', '')
-        en = base64.b16decode(bk)
-        ff = f + 'c'
-        open(ff, 'w').write(en)
-        nm = ('').join(f.split('.')[:1]) + '-decrypt.py'
-        os.rename(ff, nm)
-        run('file successfully decrypted to %s' % nm)
-def Tujuh():
-        clr()
-        banner_dec()()
-        try:
-	    print 'Dec base64.b32decode'
-            f = raw_input('Filenames: ')
-        except:
-            exit()
-
-        try:
-            bk = open(f, 'r').read()
-        except:
-            run('file %s not found ' % f)
-            exit()
-
-        bk = bk.replace('exec(base64.b32decode("', '')
-        bk = bk.replace('"))', '')
-        bk = bk.replace('import base64\n', '')
-        en = base64.b32decode(bk)
-        ff = f + 'c'
-        open(ff, 'w').write(en)
-        nm = ('').join(f.split('.')[:1]) + '-decrypt.py'
-        os.rename(ff, nm)
-        run('file successfully decrypted to %s' % nm)
-def Delapan():
-	clr()
-        banner_dec()
-        try:
-	    print 'Dec base64.b64decode'
-            f = raw_input('Filenames: ')
-        except:
-            exit()
-
-        try:
-            bk = open(f, 'r').read()
-        except:
-            run('file %s not found ' % f)
-            exit()
-
-        bk = bk.replace(+'exec(base64.b64decode("', '')
-        bk = bk.replace('"))', '')
-        bk = bk.replace('import base64\n', '')
-        en = base64.b64decode(bk)
-        ff = f + 'c'
-        open(ff, 'w').write(en)
-        nm = ('').join(f.split('.')[:1]) + '-decrypt.py'
-        os.rename(ff, nm)
-        run('file successfully decrypted to %s' % nm)
-def Sembilan():
-	clr()
-        banner_dec()
-        try:
-	    print 'Dec hex'
-            f = raw_input('Filenames: ')
-        except:
-            exit()
-
-        try:
-            bk = open(f, 'r').read()
-        except:
-            run('file %s not found ' % f)
-            exit()
-
-        bk = bk.replace('exec("', '') or bk.replace("exec('", '')
-        bk = bk.replace('").decode("hex")', '') or bk.replace("').decode('hex')", '')
-        en = str(bk).decode('hex')
-        ff = f + 'c'
-        open(ff, 'w').write(en)
-        nm = ('').join(f.split('.')[:1]) + '-decrypt.py'
-        os.rename(ff, nm)
-        run('file successfully decrypted to %s' % nm)
-def unmarsh():
-    # Display header
-    print_header()
-
-    # Display menu options
-    print_menu()
+        f = input('Filenames: ')
+    except:
+        exit()
 
     try:
-        pil = raw_input('[?] Choice--> ')  # Prompt user for choice
-    except IOError:
-        unmarsh()  # Handle input/output error gracefully
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        Lima()
     else:
-        if pil == '1':
-            process_file()
-        elif pil == '2':
-            menu()
+        jalan('Load')
+        try:
+            b = marshal.dumps(bk)
+        except:
+            pass
         else:
-            print('[!] Choose the right option')
-            unmarsh()
+            with open('Hasil/marshal.txt', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in marshal.txt')
+                time.sleep(1.5)
 
-def print_header():
-    # Print styled header
-    print('\xe2\x95\x90' * 31 + '[UNMARSH]' + '>')
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        Lima()
+    elif inp == 'n' or inp == 'N':
+        exit()
 
-def print_menu():
-    # Print menu options
-    print('\nMenu:\n [1]. Automatic Detection Version Script\n [2]. Back To Menu')
-
-def process_file():
-    try:
-        file = raw_input('[#] Input File : ')  # Prompt user for file input
-        with open(file, 'r') as f:
-            content = f.read()
-
-        # Determine Python version based on file content
-        if 'exec' in content:
-            if 'execb' in content:
-                py_version = 2
-            elif 'execc' in content:
-                py_version = 3
-            else:
-                py_version = 1  # Default case
-        else:
-            py_version = 1  # Default case
-
-    except IOError:
-        print('\n[!] File Not Found')
-        raw_input('[#] Press Enter to Return to the menu ')
-        os.system('clear')
-        menu()
-    except Exception as e:
-        sys.exit()
-
-    # Process based on Python version
-    if py_version == 2:
-        decompile_version = 'decompile(2.7, x, stdout)'
-        py_command = 'python2'
-    elif py_version == 3:
-        decompile_version = 'decompile(3.8, x, stdout)'
-        py_command = 'python3'
-    else:
-        print('[!] File Not Supported')
-        raw_input('[#] Press Enter to Return to the menu ')
-        menu()
-
-    # Write decompilation script to 'un.py'
-    with open('un.py', 'w') as fileout:
-        fileout.write('from sys import stdout\n')
-        fileout.write('from uncompyle6.main import decompile\n')
-        fileout.write('import marshal\n\n')
-        fileout.write(f'x = marshal.loads({content})\n')
-        fileout.write(f'{decompile_version}\n')
-
-    # Execute decompilation process
-    print('[#] Unmarshal process. Please wait...')
-    sp.call(f'{py_command} un.py > unpyc/dec.py', shell=True, stderr=sp.STDOUT)
-    os.system('rm un.py')
-    os.system('clear')
-
-    # Display decompiled output gradually
-    print_decompiled_output()
-
-    # Ask user for further actions
-    ask = raw_input('[?] Decompile Again? y/t ')
-    if ask.lower() == 'y':
-        menu()
-    elif ask.lower() == 't':
-        sys.exit()
-    else:
-        print('[!] Choose the right option!!!')
-        raw_input('[#] Press Enter to Return to the menu ')
-        os.system('clear')
-
-def print_decompiled_output():
-    # Display decompiled output
-    time.sleep(1)
-    with open('unpyc/dec.py', 'r') as delay:
-        for line in delay.readlines():
-            print(line.strip())
-    print('\n[#] Successfully Decompiled')
-    print('[#] File saved: unpyc/dec.py')
 def pyc():
-    print m + '[' + p + '#' + m + ']' + p + ' For Example : /path/marsh.py'
-    f = raw_input(m + '[' + p + '?' + m + ']' + p + ' Enter Your File : ')
-    from py_compile import compile
-    compile(f)
-    load(m + '[' + p + '#' + m + ']' + p + ' Compile process Wait a minute ...')
-    jalan('\n' + m + '[' + p + '#' + m + ']' + p + ' file successfully compiled', 0.01)
-    print '\n' + m + '[' + p + '#' + m + ']' + p + (' File Saved: {}c').format(f)
-    ask = raw_input(m + '[' + p + '?' + m + ']' + p + ' Compile Again? y/t >> ')
-    if ask == 'y' or ask == 'Y':
-        menu()
-    elif ask == 't' or ask == 'T':
-        sys.exit()
-    else:
-        print m + '[' + m + '!' + m + ']' + p + ' Choose the right one ' + m + '!!!'
-        raw_input(m + '[' + p + '^' + m + ']' + p + ' Press Enter to Return to the menu ')
-        os.system('clear')
-        menu()
-def unpyc():
-    print m + '[' + p + '#' + m + ']' + p + ' For Example : /path/file.pyc'
-    f = raw_input(m + '[' + p + '?' + m + ']' + p + ' Enter Your File : ')
+    clr()
+    logo()
     try:
-        open(f, 'r').read()
-    except IOError:
-        print m + '[' + m + '!' + m + ']' + p + ' File Not Found'
-        raw_input(m + '[' + p + '^' + m + ']' + p + ' Press Enter to Return to the menu ')
-        menu()
+        f = input('Filenames: ')
+    except:
+        exit()
+
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        pyc()
     else:
-        load(m + '[' + p + '#' + m + ']' + p + ' Decompile process Wait a minute ...')
+        jalan('Load')
         try:
-            os.system('uncompyle6 ' + f + '> unpyc/jadi.py')
-        except Exception as e:
-            print m + '[' + m + '!' + m + ']' + p + ' Failed to decompile because : ' + e
+            b = compile(bk, '', 'exec')
+        except:
+            pass
+        else:
+            with open('Hasil/pyc.pyc', 'wb') as f:
+                f.write(b)
+                f.close()
+                run('saved in pyc.pyc')
+                time.sleep(1.5)
 
-    print '\n\n' + m + '[' + p + '#' + m + ']' + p + ' Successfully Decompiled'
-    print m + '[' + p + '#' + m + ']' + p + ' file saved : unpyc/jadi.py'
-    ask = raw_input(m + '[' + p + '?' + m + ']' + p + ' Decompile Again? y/t >> ')
-    if ask == 'y' or ask == 'Y':
-        menu()
-    elif ask == 't' or ask == 'T':
-        sys.exit()
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        pyc()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
+def emzb():
+    clr()
+    logo()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
+
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        emzb()
     else:
-        print m + '[' + m + '!' + m + ']' + p + ' Choose the right one ' + m + '!!!'
-        raw_input(m + '[' + p + '^' + m + ']' + p + ' Press Enter to Return to the menu ')
-        os.system('clear')
-        menu()
+        jalan('Load')
+        try:
+            b = marshal.dumps(bk)
+            a = zlib.compress(b)
+            h = base64.b64encode(a)
+        except:
+            pass
+        else:
+            with open('Hasil/emzblb.txt', 'w') as f:
+                f.write(h.decode('utf-8'))
+                f.close()
+                run('saved in emzblb.txt')
+                time.sleep(1.5)
+
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        emzb()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
+def ezl():
+    clr()
+    logo()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
+
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        ezl()
+    else:
+        jalan('Load')
+        try:
+            b = zlib.compress(bk.encode('utf-8'))
+        except:
+            pass
+        else:
+            with open('Hasil/zlib.txt', 'wb') as f:
+                f.write(b)
+                f.close()
+                run('saved in zlib.txt')
+                time.sleep(1.5)
+
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        ezl()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
+def Enam():
+    clr()
+    banner_dec()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
+
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        Enam()
+    else:
+        jalan('Load')
+        try:
+            b = base64.b16decode(bk)
+        except:
+            pass
+        else:
+            with open('Hasil/enbase16.txt', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in enbase16.txt')
+                time.sleep(1.5)
+
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        Enam()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
+def Tujuh():
+    clr()
+    banner_dec()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
+
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        Tujuh()
+    else:
+        jalan('Load')
+        try:
+            b = base64.b32decode(bk)
+        except:
+            pass
+        else:
+            with open('Hasil/enbase32.txt', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in enbase32.txt')
+                time.sleep(1.5)
+
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        Tujuh()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
+def Delapan():
+    clr()
+    banner_dec()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
+
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        Delapan()
+    else:
+        jalan('Load')
+        try:
+            b = base64.b64decode(bk)
+        except:
+            pass
+        else:
+            with open('Hasil/enbase64.txt', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in enbase64.txt')
+                time.sleep(1.5)
+
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        Delapan()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
+def Sembilan():
+    clr()
+    banner_dec()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
+
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        Sembilan()
+    else:
+        jalan('Load')
+        try:
+            b = bk.decode('hex')
+        except:
+            pass
+        else:
+            with open('Hasil/enhex.txt', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in enhex.txt')
+                time.sleep(1.5)
+
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        Sembilan()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
+def unmarsh():
+    clr()
+    banner_dec()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
+
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        unmarsh()
+    else:
+        jalan('Load')
+        try:
+            b = marshal.loads(bk)
+        except:
+            pass
+        else:
+            with open('Hasil/enmarshal.txt', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in enmarshal.txt')
+                time.sleep(1.5)
+
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        unmarsh()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
+def unpyc():
+    clr()
+    banner_dec()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
+
+    try:
+        bk = open(f, 'rb').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        unpyc()
+    else:
+        jalan('Load')
+        try:
+            b = decompile(bk)
+        except:
+            pass
+        else:
+            with open('Hasil/unpyc.py', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in unpyc.py')
+                time.sleep(1.5)
+
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        unpyc()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
 def mzb():
-    print 'Decompile Marshal,Zlib,Base64'
-    a = raw_input('File : ' )
-    b = open(a).read().replace('exec(', 'x = ').replace('))))',')))')
-    c = open('mi.py', 'w')
-    if 'marshal' in b:
-        c.write('from sys import stdout\nfrom uncompyle6.main import decompile\n' + b + '\ndecompile(2.7, x, stdout)')
-        c.close()
-    elif 'marshal' not in b:
-        c.write(b + '\nprint (x)')
-        c.close()
-    d = a.replace('.py', '-decrypt.py')
-    os.system('python2 mi.py > ' + d)
-    e = open(d).read()
-    f = open(d, 'w')
-    f.write(e + ' \n\n\n\t')
-    f.close()
-    os.system('rm -rf mi.py')
-    print('\x1b[31;1m[\x1b[0;37m+\x1b[31;1m]\x1b[0;37m File saved as\x1b[32;1m ' + d)
-    print('Want Decrypt Again (Y/N) ?')
-    cuk = raw_input('Choice : ')
-    if cuk == 'y':
-      mzb()
-    elif cuk == 'n':
-      exit()
-def zl():
-    print 'Decompile Zlib'
-    a = raw_input('File : ')
-    b = open(a).read().replace('exec', 'print')
-    c = open('ma.py', 'w')
-    if 'zlib' in b:
-        c.write('\n' + b + '')
-        c.close()
-    elif 'zlib' not in b:
-        c.write(b + '\nprint (print)')
-        c.close()
-    d = a.replace('.py', '-decrypt.py')
-    os.system('python2 ma.py > '+ d)
-    f = open(d, 'w')
-    f.write('# Suksess Decompile ✓ \n'+ e)
-    f.close()
-    os.system('rm -rf ma.py')
-    print('File saved as '+ d)
-    sys.exit()
-def exit():
-        run('thanks for using my tools dude :)')
-        sys.exit()
+    clr()
+    banner_dec()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
 
-if __name__ == '__main__':
-    if os.path.exists('unpyc'):
-        menu()
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        mzb()
     else:
-        os.system('mkdir unpyc')
-        menu()
+        jalan('Load')
+        try:
+            b = base64.b64decode(bk)
+            a = zlib.decompress(b)
+            h = marshal.loads(a)
+        except:
+            pass
+        else:
+            with open('Hasil/enmzblb.txt', 'w') as f:
+                f.write(h.decode('utf-8'))
+                f.close()
+                run('saved in enmzblb.txt')
+                time.sleep(1.5)
+
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        mzb()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
+def zl():
+    clr()
+    banner_dec()
+    try:
+        f = input('Filenames: ')
+    except:
+        exit()
+
+    try:
+        bk = open(f, 'rb').read()
+    except:
+        run('file %s not found!' % f)
+        time.sleep(1.7)
+        zl()
+    else:
+        jalan('Load')
+        try:
+            b = zlib.decompress(bk)
+        except:
+            pass
+        else:
+            with open('Hasil/enzlib.txt', 'w') as f:
+                f.write(b.decode('utf-8'))
+                f.close()
+                run('saved in enzlib.txt')
+                time.sleep(1.5)
+
+    inp = input('try again? (y/n): ')
+    if inp == 'y' or inp == 'Y':
+        zl()
+    elif inp == 'n' or inp == 'N':
+        exit()
+
+def masuk():
+    try:
+        os.mkdir('Hasil')
+    except:
+        pass
+
+def main():
+    masuk()
+    menu()
+main()
