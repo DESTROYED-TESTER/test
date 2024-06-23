@@ -654,7 +654,7 @@ def dupcutter():
     mainx()
 # FILE CRACK -- MAIN DEF #
 def cr():
-	os.system("cd && git git clone https://github.com/smiletermuxworld/MR-SMILE.git")
+	os.system("cd && git git clone https://github.com/smiletermuxworld/MR-SMILE")
 	os.system('cd && cd MR-SMILE ;python SMILE.py')
 def setting():
     clear();banner();print(f"{dot}{P}Total Ids {RED}: {H}"+str(len(id)));print(led);print(f' {K}[{H}1{K}] {P}New Ids Crack [{H}Fast{P}]');print(f' {K}[{H}2{K}] {P}Mix Ids Crack [{H}Test{P}]');print(f' {K}[{H}3{K}] {P}Old Ids Crack [{H}Slow{P}]');print(led)
