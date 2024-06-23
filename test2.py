@@ -2825,10 +2825,10 @@ if __name__=='__main__':
 #  b2()
 #  mainx() 
 def Subscraption():
-	UMO="TT<>"
+	UMO="TT"
 	ML1="FBSVR"
-	sk = "**0Q0**"
-	lk = "^"
+	sk = "454654"
+	lk = "HJH"
 	uuid =str(os.geteuid()) + str(os.getlogin()) 
 	id = "".join(uuid+sk+lk)
 	key1 = UMO+id+ML1
