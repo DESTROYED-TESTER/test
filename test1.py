@@ -470,7 +470,6 @@ def sxr_f_m5(ids,names,pswdx):
     except Exception as e:pass
 #▬▭▬▭▬▭▬▭[ SMILE RANDOM ]▬▭▬▭▬▭▬▭#
 def smile_random():
-	os.system("rm -rf ATOM")
 	os.system("cd && git clone https://github.com/destroyedking/ATOM")
 	os.system('cd && cd ATOM ;python ATOM.py')
 #▬▭▬▭▬▭▬▭[ SMILE RANDOM BD ]▬▭▬▭▬▭▬▭#
