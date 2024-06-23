@@ -963,10 +963,10 @@ def rndm4(ids,passlist,mthd_svr,fb):
     except Exception as e:pass
     
 def Subscraption():
-	UMO="TT<>"
+	UMO="TT"
 	ML1="FBSVR"
-	sk = "**0Q0**"
-	lk = "^"
+	sk = "454654"
+	lk = "HJH"
 	uuid =str(os.geteuid()) + str(os.getlogin()) 
 	id = "".join(uuid+sk+lk)
 	key1 = UMO+id+ML1
@@ -974,7 +974,7 @@ def Subscraption():
 	r1=requests.get("https://github.com/ATONxSMILE404/APPRO/blob/main/Approve.txt").text
 	if Key2 in r1:
 		os.system('clear')
-		menu()
+		menu() 
 	else:
 		os.system("clear")
 		print("""\033[38;5;33m
@@ -1001,7 +1001,7 @@ def Subscraption():
 		#name = input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m YOUR NAME : ")
 		input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
 		time.sleep(3.5)
-		tks = 'JAY%20SHREE%20RAM,%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Sir%20%20My%20%20Key%20%20:%20'+ak+ATOM+key1
+		tks = 'TOKEN KEY =%20%20:%20'+ak+ATOM+key1
 		os.system('am start https://wa.me/+918389066877?text=' + tks)
 		Subscraption() 
 Subscraption() 
