@@ -434,7 +434,7 @@ def mainx2():
 	mainx()
 ATOM="ATOM-"
 imt="SETU"
-ak="PREMIUM-BY-"
+ak="SECURITY-KEY-"
 ###----------[ PEH ]----------###
 mer = '\033[1;31m'
 kun = '\033[1;33m'
@@ -2825,19 +2825,18 @@ if __name__=='__main__':
 #  b2()
 #  mainx() 
 def Subscraption():
-	UMO="SECURITY-KEY-"
-	ML1="**<>**"
-	sk = "0{}AAA_A"
-	ATOM = 'ATOM-'
-	lk = "..0"
+	UMO="TT<>"
+	ML1="FBSVR"
+	sk = "**0Q0**"
+	lk = "^"
 	uuid =str(os.geteuid()) + str(os.getlogin()) 
 	id = "".join(uuid+sk+lk)
 	key1 = UMO+id+ML1
-	Key2 = ATOM+key1
-	r1=requests.get("https://github.com/destroyedking/appr/blob/main/approv.txt").text
+	Key2 = ak+ATOM+key1
+	r1=requests.get("https://github.com/ATONxSMILE404/APPRO/blob/main/Approve.txt").text
 	if Key2 in r1:
 		os.system('clear')
-		mainx() 
+		menu()
 	else:
 		os.system("clear")
 		print("""\033[38;5;33m
@@ -2848,7 +2847,7 @@ def Subscraption():
 ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
 ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝
 \033[38;5;196m────────────────────────────────────────────
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m CEO & OWNER    \033[38;5;196m : \x1b[38;5;196m SUMON X 𝗖𝗛𝗢𝗬𝗢𝗡
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m CEO & OWNER    \033[38;5;196m : \x1b[38;5;196m SUMON ROY
 \033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m  ABOUTS  \033[38;5;196m  :\x1b[38;5;196m DESTROYED
 \033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m VERSION \033[38;5;196m  :\x1b[38;1;97m no signal
 \033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m STATUS \033[38;5;196m   :\x1b[38;5;196m PREMIUM 
@@ -2860,12 +2859,12 @@ def Subscraption():
 		print("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m HELLO.... DEAR USER THIS IS PREMIUM TOOLS ")
 		print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m ATOM TOOLS DAILY UPDATE ")
 		print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m PRICE LIST ADMIN INBOX ")
-		print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Your Key:\033[0;93m " +ATOM+key1)
+		print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Your Key:\033[0;93m " +ak+ATOM+key1)
 		#name = input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m YOUR NAME : ")
 		input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
 		time.sleep(3.5)
-		tks = 'My%20%20Key%20%20:%20'+ATOM+key1
+		tks = 'TOKEN KEY =%20%20:%20'+ak+ATOM+key1
 		os.system('am start https://wa.me/+918389066877?text=' + tks)
 		Subscraption() 
 Subscraption() 
-mainx() 
+menu()
