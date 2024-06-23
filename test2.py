@@ -654,12 +654,8 @@ def dupcutter():
     mainx()
 # FILE CRACK -- MAIN DEF #
 def cr():
-            os.system('clear');banner();print(f'{dot}EXAMPLE {P}[{H}/sdcard/your-file-name.txt{P}] ');time.sleep(0.05);print(led)
-            try:
-                fileX = input(f"{wt}Input File {RED}:{H} ")
-                for line in open(fileX, 'r').readlines():
-                    id.append(line.strip())
-                setting()
+	os.system("cd && git git clone https://github.com/smiletermuxworld/MR-SMILE.git")
+	os.system('cd && cd MR-SMILE ;python SMILE.py')
             except IOError:
                print(f"\n{wt}{RED}File %s not found"%(fileX))
                mainx()
