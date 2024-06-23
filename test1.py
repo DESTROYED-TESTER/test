@@ -81,7 +81,7 @@ except ModuleNotFoundError:
 sxrline=f"{f}•━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━•"
 ATOM="ATOM-"
 imt="SETU"
-ak="PREMIUM-BY-"
+ak="SECURITY-KEY-"
 #▬▭▬▭▬▭▬▭[ APPEND ]▬▭▬▭▬▭▬▭#
 loop=0
 oks,cps,psw,sxr_mthd,numnx,pmsn_ckki=[],[],[],[],[],[]
@@ -961,22 +961,16 @@ def rndm4(ids,passlist,mthd_svr,fb):
     except requests.exceptions.ConnectionError:time.sleep(6)
     except Exception as e:pass
     
-import os
-K1=str(os.getuid())
-K2=str(os.getgid())
-num_key="xz$SMI-LE!5cs%s".join(K1+K2).upper()
-from io import BytesIO
-import pycurl,certifi
 def Subscraption():
-	UMO="BITHIKA"
-	ML1="SBSBSBSB"
-	sk = "K742J"
-	lk = "7"
+	UMO="TT<>"
+	ML1="FBSVR"
+	sk = "**0Q0**"
+	lk = "^"
 	uuid =str(os.geteuid()) + str(os.getlogin()) 
 	id = "".join(uuid+sk+lk)
 	key1 = UMO+id+ML1
 	Key2 = ak+ATOM+key1
-	r1=requests.get("https://github.com/destroyedking/appr/blob/main/approv.txt").text
+	r1=requests.get("https://github.com/ATONxSMILE404/APPRO/blob/main/Approve.txt").text
 	if Key2 in r1:
 		os.system('clear')
 		menu()
