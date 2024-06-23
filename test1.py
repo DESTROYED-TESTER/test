@@ -162,7 +162,7 @@ def smile_file():
     with threadpol(max_workers=30) as sifatx:
         clr_logo()
         total_ids = str(len(dmp_ck))
-        print(f" {b}TOTAL CRACK {ekual} {total_ids}\n {j}USE AIRPLANE MOD FOR GOOD RESULT\n");print(led)
+        print(f" {b}TOTAL CRACK {ekual} {total_ids}\n {j}USE AIRPLANE MOD FOR GOOD RESULT");print(led)
         for ids_nam in dmp_ck:
             try:ids,names = ids_nam.split('|')
             except:pass
