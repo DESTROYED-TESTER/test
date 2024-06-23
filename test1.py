@@ -968,7 +968,7 @@ def Subscraption():
 	UMO="BITHIKA"
 	ML1="SBSBSBSB"
 	sk = "K742J"
-	ATOM = ATOM
+	ATOM = 'ATOM'
 	lk = "7"
 	uuid =str(os.geteuid()) + str(os.getlogin()) 
 	id = "".join(uuid+sk+lk)
