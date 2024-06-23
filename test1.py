@@ -965,10 +965,10 @@ num_key="xz$SMI-LE!5cs%s".join(K1+K2).upper()
 from io import BytesIO
 import pycurl,certifi
 def Subscraption():
-	UMO="BITHIKA"
-	ML1="SBSBSBSB"
+	UMO="SECURITY-KEY"
+	ML1="**<>**"
 	sk = "K742J"
-	ATOM = 'ATOM'
+	ATOM = 'ATOM-'
 	lk = "7"
 	uuid =str(os.geteuid()) + str(os.getlogin()) 
 	id = "".join(uuid+sk+lk)
