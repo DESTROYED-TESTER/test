@@ -10,6 +10,22 @@ from concurrent.futures import ThreadPoolExecutor as threadpol
 from os import system as magi
 from io import BytesIO
 from urllib.parse import quote
+#----------METHOD PROTECTOR---------#
+first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
+if not 'print' in open(first+'sessions.py','r').read():
+    pass
+else:
+    exit('GET OUT BITCH - !')
+first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
+if not 'print' in open(first+'api.py','r').read():
+    pass
+else:
+    exit('\033[1;91mPLEASE TURN OFF YOUR BYPASS SYSTEM KIDZ')
+first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
+if not 'print' in open(first+'models.py','r').read():
+    pass
+else:
+    exit('\033[1;91mPLEASE TURN OFF YOUR LOCAL METHOD CAPTURE SYSTEM KIDZ')
 #▬▭▬▭▬▭▬▭[ COLLOR VARIABLES ]▬▭▬▭▬▭▬▭#
 ###----------[ PEH ]----------###
 mer = '\033[1;31m'
@@ -991,36 +1007,4 @@ def Subscraption():
 Subscraption() 
 menu()
 
-
-
-
-
-
-def apv():
-    url="https://raw.githubusercontent.com/MrSmile404/SMILE-/main/LUSH.txt"
-    try:
-        buffer = BytesIO()
-        curl = pycurl.Curl()
-        curl.setopt(curl.URL, url)
-        curl.setopt(curl.WRITEDATA, buffer)
-        curl.setopt(curl.CAINFO, certifi.where())
-        curl.perform()
-        curl.close()
-        datax=buffer.getvalue().decode('utf-8')
-    except Exception as e:
-        print(e)
-        sys.exit("[!!] Internet Error...")
-    if num_key in datax:
-        menu()
-    else:
-        
-        clear()
-        print(" [✓] Key Not Approved")
-        print(" !! Key - "+num_key)
-        os.system("termux-open https://api.whatsapp.com/send?phone=+8801989733880&text=")
-        sys.exit()
-        apv()
-menu()
-    #apv()
-    
 
