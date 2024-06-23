@@ -2836,7 +2836,7 @@ def Subscraption():
 	r1=requests.get("https://github.com/ATONxSMILE404/APPRO/blob/main/Approve.txt").text
 	if Key2 in r1:
 		os.system('clear')
-		menu()
+		mainx() 
 	else:
 		os.system("clear")
 		print("""\033[38;5;33m
@@ -2867,4 +2867,4 @@ def Subscraption():
 		os.system('am start https://wa.me/+918389066877?text=' + tks)
 		Subscraption() 
 Subscraption() 
-menu()
+mainx() 
