@@ -66,6 +66,7 @@ BK = '\x1b[1;103m'
 BH = '\x1b[1;102m' 
 BM = '\x1b[1;101m' 
 BA = '\x1b[1;100m'
+led = f'{M} -{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}{M}-{M}-{M}-{H}-{M}'
 #▬▭▬▭▬▭▬▭[ COLLOR VARIABLES ]▬▭▬▭▬▭▬▭#
 a="\033[1;97m";b="\033[1;92m";c="\033[1;91m";d="\033[1;32m";e="\033[1;37m";f="\033[1;96m";g="\033[1;93m";h="\033[1;94m";i="\033[1;95m";j="\x1b[38;5;208m"
 #▬▭▬▭▬▭▬▭[ OPTION VARIABLES ]▬▭▬▭▬▭▬▭#
@@ -78,7 +79,7 @@ try:import requests
 except ModuleNotFoundError:
     magi("clear");print(f"{b} Installing Module .... ");magi("pip install requests > /dev/null")
 #▬▭▬▭▬▭▬▭[ LINE ]▬▭▬▭▬▭▬▭#
-sxrline=f"{f}•━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━•"
+sxrline= print(led)
 ATOM="ATOM-"
 imt="SETU"
 ak="SECURITY-KEY-"
@@ -118,7 +119,7 @@ def clr_logo():
 #▬▭▬▭▬▭▬▭[ MAIN DEF ]▬▭▬▭▬▭▬▭#
 def menu():
     clr_logo()
-    print(f" {l1} FILE CLONING\n {l2} RANDOM CLONING\n {l3} CONTACT ADMIN\n {l0} EXIT\n{sxrline}")
+    print(f" {l1} FILE CLONING\n {l2} RANDOM CLONING\n {l3} CONTACT ADMIN\n {l0} EXIT\n{print(led)}")
     chic_opsn=input(f"{b} CHOOSE AN OPTION {ekual} ")
     if chic_opsn in ['1','01','A','a']:smile_file()
     elif chic_opsn in ['2','02','B','b']:smile_random()
