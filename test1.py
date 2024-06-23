@@ -238,7 +238,8 @@ def scarpping_ua():
 def sxr_f_m1(ids,names,pswdx):
     try:
         global loop,oks,cps
-        sys.stdout.write(f"\r\r {a}[{b} SMILE-M1{a}] {loop}{f}|{b}OK-{str(len(oks))}   {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
+        animasi = random.choice(["\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM","\x1b[1;97mATOM","\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM"])
+        sys.stdout.write(f"\r\r {a}[{b} {animasi}-M1{a}] {loop}{f}|{b}OK-{str(len(oks))}   {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
         fn = names.split(' ')[0]
         try:ln = names.split(' ')[1]
         except:ln = fn
@@ -278,7 +279,8 @@ def sxr_f_m1(ids,names,pswdx):
 def sxr_f_m2(ids,names,pswdx):
     try:
         global loop,oks,cps
-        sys.stdout.write(f"\r\r {a}[{b}SMILE-M2{a}] {loop}{f}|{b}OK-{str(len(oks))}   {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
+        animasi = random.choice(["\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM","\x1b[1;97mATOM","\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM"])
+        sys.stdout.write(f"\r\r {a}[{b}{animasi}-M2{a}] {loop}{f}|{b}OK-{str(len(oks))}   {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
         fn = names.split(' ')[0]
         try:ln = names.split(' ')[1]
         except:ln = fn
@@ -321,7 +323,8 @@ def sxr_f_m2(ids,names,pswdx):
 def sxr_f_m3(ids,names,pswdx):
     try:
         global loop,oks,cps
-        sys.stdout.write(f"\r\r {a}[{b}SMILE-M3{a}] {loop}{f}|{b}OK-{str(len(oks))}   {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
+        animasi = random.choice(["\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM","\x1b[1;97mATOM","\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM"])
+        sys.stdout.write(f"\r\r {a}[{b}{animasi}-M3{a}] {loop}{f}|{b}OK-{str(len(oks))}   {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
         fn = names.split(' ')[0]
         try:ln = names.split(' ')[1]
         except:ln = fn
@@ -387,7 +390,8 @@ def sxr_f_m3(ids,names,pswdx):
 def sxr_f_m4(ids,names,pswdx):
     try:
         global loop,oks,cps
-        sys.stdout.write(f"\r\r {a}[{b} SMILE-M4{a}] {loop}{f}|{b}OK-{str(len(oks))}   {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
+        animasi = random.choice(["\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM","\x1b[1;97mATOM","\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM"])
+        sys.stdout.write(f"\r\r {a}[{b} {animasi}-M4{a}] {loop}{f}|{b}OK-{str(len(oks))}   {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
         fn = names.split(' ')[0]
         try:ln = names.split(' ')[1]
         except:ln = fn
@@ -430,7 +434,8 @@ def sxr_f_m4(ids,names,pswdx):
 def sxr_f_m5(ids,names,pswdx):
     try:
         global loop,oks,cps
-        sys.stdout.write(f"\r\r {a}[{b} SMILE-M5{a}] {loop}{f}|{b}OK-{str(len(oks))}   {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
+        animasi = random.choice(["\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM","\x1b[1;97mATOM","\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM"])
+        sys.stdout.write(f"\r\r {a}[{b} {animasi}-M5{a}] {loop}{f}|{b}OK-{str(len(oks))}   {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
         fn = names.split(' ')[0]
         try:ln = names.split(' ')[1]
         except:ln = fn
