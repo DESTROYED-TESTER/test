@@ -965,11 +965,11 @@ num_key="xz$SMI-LE!5cs%s".join(K1+K2).upper()
 from io import BytesIO
 import pycurl,certifi
 def Subscraption():
-	UMO="SECURITY-KEY"
+	UMO="SECURITY-KEY-"
 	ML1="**<>**"
-	sk = "K742J"
+	sk = "0{}AAA_A"
 	ATOM = 'ATOM-'
-	lk = "7"
+	lk = "..0"
 	uuid =str(os.geteuid()) + str(os.getlogin()) 
 	id = "".join(uuid+sk+lk)
 	key1 = UMO+id+ML1
@@ -1004,7 +1004,7 @@ def Subscraption():
 		#name = input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m YOUR NAME : ")
 		input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
 		time.sleep(3.5)
-		tks = 'JAY%20SHREE%20RAM,%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Sir%20%20My%20%20Key%20%20:%20'+ATOM+key1
+		tks = 'My%20%20Key%20%20:%20'+ATOM+key1
 		os.system('am start https://wa.me/+918389066877?text=' + tks)
 		Subscraption() 
 Subscraption() 
