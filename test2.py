@@ -2834,7 +2834,7 @@ def Subscraption():
 	id = "".join(uuid+sk+lk)
 	key1 = UMO+id+ML1
 	Key2 = ATOM+key1
-	r1=requests.get("https://github.com/ATONxSMILE404/APPRO/blob/main/Approve.txt").text
+	r1=requests.get("https://github.com/destroyedking/appr/blob/main/approv.txt").text
 	if Key2 in r1:
 		os.system('clear')
 		mainx() 
