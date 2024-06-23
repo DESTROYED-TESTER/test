@@ -79,7 +79,7 @@ try:import requests
 except ModuleNotFoundError:
     magi("clear");print(f"{b} Installing Module .... ");magi("pip install requests > /dev/null")
 #▬▭▬▭▬▭▬▭[ LINE ]▬▭▬▭▬▭▬▭#
-sxrline= print(led)
+sxrline=f"{f}•━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━•"
 ATOM="ATOM-"
 imt="SETU"
 ak="SECURITY-KEY-"
@@ -119,7 +119,7 @@ def clr_logo():
 #▬▭▬▭▬▭▬▭[ MAIN DEF ]▬▭▬▭▬▭▬▭#
 def menu():
     clr_logo()
-    print(f" {l1} FILE CLONING\n {l2} RANDOM CLONING\n {l3} CONTACT ADMIN\n {l0} EXIT\n{print(led)}")
+    print(f" {l1} FILE CLONING\n {l2} RANDOM CLONING\n {l3} CONTACT ADMIN\n {l0} EXIT\n{sxrline}");print(led)
     chic_opsn=input(f"{b} CHOOSE AN OPTION {ekual} ")
     if chic_opsn in ['1','01','A','a']:smile_file()
     elif chic_opsn in ['2','02','B','b']:smile_random()
