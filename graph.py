@@ -921,7 +921,7 @@ def m1(idf,pwv):
     sys.stdout.flush()
     try:
       for pw in pwv:
-        data = {
+            data = {
             "email":idf,
             "password":pw,
             "adid": str(uuid.uuid4()),
