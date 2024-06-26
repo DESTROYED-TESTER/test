@@ -983,7 +983,7 @@ def m1(idf,pwv):
                             cp.append(ids)
                             break
                     else:
-			continue
+                       continue
       loop+=1
     except requests.exceptions.ConnectionError:
         time.sleep(10)
