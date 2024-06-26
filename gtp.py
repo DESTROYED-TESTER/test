@@ -50,6 +50,9 @@ totaldmp = 0
 filter = []
 loop,ok,cp,user = 0,[],[],[]
 cok,plist = [],[]
+ATOM="ATOM-"
+imt="SETU"
+ak="SECURITY-KEY-"
 #__________________[ SYS ]__________________#
 sys.stdout.write('\x1b]2; SMILE\x07')
 head = {'Host': 'adsmanager.facebook.com', 'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"', 'viewport-width': '980'}
