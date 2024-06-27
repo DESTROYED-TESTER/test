@@ -1167,14 +1167,13 @@ def m4(idf,pwv):
       for pw in pwv:
             device_id = str(uuid.uuid4())
             adid = str(uuid.uuid4())
-            pas = rmpassconf(ids,pas)
             accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
             data = {
             'adid':adid,
             'format':'json',
             'device_id':adid,
-            'email':ids,
-            'password':pas,
+            'email':idf,
+            'password':pw,
             "logged_out_id": str(uuid.uuid4()),
             "hash_id": str(uuid.uuid4()),
             "reg_instance": str(uuid.uuid4()),
