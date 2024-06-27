@@ -1196,9 +1196,10 @@ def m4(idf,pwv):
     continue
   loop+=1
   
- except:
-  pass 
-
+ except requests.exceptions.ConnectionError:
+         time.sleep(10)
+ except Exception as e:
+         pass
 def m5(idf,pwv):
  global loop
  global ok
@@ -1270,9 +1271,10 @@ def m5(idf,pwv):
     continue
   loop+=1
   
- except:
-  pass 
-
+ except requests.exceptions.ConnectionError:
+         time.sleep(10)
+ except Exception as e:
+         pass
 def m6(idf,pwv):
  global loop
  global ok
@@ -1359,8 +1361,10 @@ def m6(idf,pwv):
     continue
   loop+=1
   
- except:
-  pass 
+ except requests.exceptions.ConnectionError:
+         time.sleep(10)
+ except Exception as e:
+         pass
   
 def m7(idf,pwv):
  global loop
@@ -1423,8 +1427,10 @@ def m7(idf,pwv):
     continue
   loop+=1
   
- except:
-  pass 
+ except requests.exceptions.ConnectionError:
+         time.sleep(10)
+ except Exception as e:
+         pass
 
 def m8(idf,pwv):
  global loop
@@ -1487,8 +1493,10 @@ def m8(idf,pwv):
     continue
   loop+=1
   
- except:
-  pass 
+ except requests.exceptions.ConnectionError:
+         time.sleep(10)
+ except Exception as e:
+         pass
 # INDIA X PAKISTAN -- MAIN DEF #
 
 if __name__=='__main__':
