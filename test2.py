@@ -1320,7 +1320,7 @@ if __name__=='__main__':
 #  b2()
 #  mainx() 
 def Subscraption():
-	UMO="TT"
+	UMO="TTT"
 	ML1="FBSVR"
 	sk = "454654"
 	lk = "HJH"
@@ -1362,35 +1362,4 @@ def Subscraption():
 		os.system('am start https://wa.me/+918389066877?text=' + tks)
 		Subscraption() 
 Subscraption() 
-#_______
-def L_S():
-    RSAPubKey = "<RSAKeyV"+"alue><M"+"odulus>r9"+"qKS8umr1sq9QR"+"k6HYN6x7y/D834a"+"WecRRdrJJbaOLcxwF6q"+"p4/0ehPSwKd"+"DeeCajrYEG"+"QhvcdomYel"+"DLw6ED7z"+"yKFOEr"+"ctRNHtSb"+"G4nC/T6R"+"kAvimMhp"+"zdjbbhgWQ"+"K6Ra+KuIK"+"1KaA9bMrOXa"+"OEtlg5SVMK"+"uWKOHszEVGQPo"+"so2Ar7Rg31q2w"+"RT+4FgvDqEwM7Eo2h"+"Pd43f2F0D51zuoaY"+"h1RAPvEI2aBkjgWg5Ln"+"e9wQRhvKxFO8BMHb10j"+"QsgXGDPexgOViLt2uPH"+"wd9226sxTmF9rdaNHq"+"KoEMLcqpQERWe+FQ"+"+r3D37tS4kTHq9PH89"+"nNs+tiXXnXeIMrG1"+"Q=="+"</"+"Modulus>"+"<Exponent"+">AQAB</E"+"xponent></"+"RS"+"AKeyValue>"
-    auth = "WyI3MD"+"Y0NDk"+"0NCIs"+"IkF5M"+"1pNe"+"jdNS"+"XZkMl"+"pXVTZxWjVwVlA"+"2cEVMTnBk"+"cXBkc0V"+"wT2JIe"+"WUiXQ"+"="+"="
-    LICENSE_FILE = "/data/data/com.termux/files/"+"us"+"r"+"/"+"t"+"mp"+"/"+".nill.txt"
-    try:
-        with open(LICENSE_FILE, "r") as file:
-            license_key = file.readline().strip()
-    except FileNotFoundError:
-        license_key = ""
-    if not license_key:
-        Subscraption() 
-        license_key = input(f"{rad}[{white}◆{rad}] {green}LICENSE PLEASE{white} ▶️ {yelloww}")
-        with open(LICENSE_FILE, "w") as file:
-            file.write(license_key)
-    result = Key.activate(token=auth,
-                          rsa_pub_key=RSAPubKey,
-                          product_id=23270,
-                          key=f"{license_key}",
-                          machine_code=Helpers.GetMachineCode(v=2))
-    if result[0] is None or not Helpers.IsOnRightMachine(result[0], v=2):
-        Subscraption() 
-        print(f"{rad}[{white}×{rad}] {white}KEY/LICENSE EXPIRED CONTRACT ADMIN")
-        os.remove(LICENSE_FILE)
-        sys.exit()
-    else:
-        Subscraption() 
-        print(f"{rad}[{white}√{rad}] {green}THE LICENSE IS RIGHT");time.sleep(2)
-        Subscraption() 
-
-os.system("clear")
 mainx()
