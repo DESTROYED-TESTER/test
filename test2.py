@@ -1320,7 +1320,7 @@ if __name__=='__main__':
 #  b2()
 #  mainx() 
 def Subscraption():
-	UMO="TTT"
+	UMO="TT"
 	ML1="FBSVR"
 	sk = "454654"
 	lk = "HJH"
@@ -1362,7 +1362,4 @@ def Subscraption():
 		os.system('am start https://wa.me/+918389066877?text=' + tks)
 		Subscraption() 
 Subscraption() 
-mainx() 
-mainx() 
-mainx() 
 mainx() 
