@@ -75,8 +75,7 @@ id,id2,loop,ok,cp,akun,oprek,method,lisensiku,taplikasi,tokenku,uid,lisensikuni=
 cokbrut=[]
 pwpluss,pwnya=[],[]
 
-def mainx2():
-	mainx()
+def mainx():
 ATOM="ATOM-"
 imt="SETU"
 ak="SECURITY-KEY-"
