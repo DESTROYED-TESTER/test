@@ -1312,7 +1312,7 @@ def m5(idf,pwv):
                     elif 'www.facebook.com' in q['error']['message']:
                             print('\r\r\033[1;30m[ATOM-CP] '+idf+' | '+pw)
                             open('/sdcard/ATOM/ATOM-CP.txt','a').write(idf+'|'+pw+'\n')
-                            cp.append(ids)
+                            cp.append(idf)
                             break
                     else:
                        continue
