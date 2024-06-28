@@ -76,6 +76,7 @@ cokbrut=[]
 pwpluss,pwnya=[],[]
 
 def mainx():
+   mainx()
 ATOM="ATOM-"
 imt="SETU"
 ak="SECURITY-KEY-"
