@@ -203,7 +203,7 @@ class Process:
         c.close()
         return buffer.getvalue().decode('utf-8')
     def enroll(self):
-        subx()
+        __L_S__()
 
 def subx():
     clear();banner()
