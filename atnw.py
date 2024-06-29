@@ -1335,14 +1335,14 @@ def __L_S__():
                           key=f"{license_key}",
                           machine_code=Helpers.GetMachineCode(v=2))
     if result[0] is None or not Helpers.IsOnRightMachine(result[0], v=2):
-        __L_S__()
+        subx()
         print(f"{rad}[{white}×{rad}] {white}KEY/LICENSE EXPIRED CONTRACT ADMIN")
         os.remove(LICENSE_FILE)
         sys.exit()
     else:
-        __L_S__()
+        subx()
         print(f"{rad}[{white}√{rad}] {green}THE LICENSE IS RIGHT");time.sleep(2)
-        __L_S__()
+        subx()
 
 os.system("clear")
 __L_S__()
