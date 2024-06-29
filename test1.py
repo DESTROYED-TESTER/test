@@ -498,8 +498,8 @@ def mainx2():
     print(f"{K} [{H}2{K}] {WHITE}RANDOM WITH {H}8 DIGIT {N}PASS")
     print(f"{K} [{H}3{K}] {WHITE}RANDOM WITH {H}MIX {N}PASS")
     print(f"{K} [{H}4{K}] {WHITE}RANDOM WITH {N}OTHERS")
-    print(f"{K} [{H}5{K}] {WHITE}GMAIL  CLONING {H}V1")
-    #print(f"{K} [{H}6{K}] {WHITE}GMAIL  CLONING{H}V2")
+    #print(f"{K} [{H}5{K}] {WHITE}Gmail  Cloning {H}V1")
+    #print(f"{K} [{H}6{K}] {WHITE}Gmail  Cloning {H}V2")
     print(f"{K} [{M}0{K}] {WHITE}Back To Menu");print(led)
     sumon = input(f'{wt}Select menu {M}:{H} ')
     if sumon in ["1","01"]:
@@ -794,7 +794,7 @@ def NUM():
  #if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
   #else:cokix.append('n')
   clear();banner();print(f"{dot}{P}SIM CODE  {RED}: {H}"+kode);print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
-  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(led)
+  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(f' {K}[{H}7{K}] {P}Method [{H}M7{P}]');print(f' {K}[{H}8{K}] {P}Method [{H}M8{P}]');print(led)
   hc = input(f'{wt}Select Method {M}:{H} ')
   if hc in ['1','01']:mtd.append('m1')
   elif hc in ['2','02']:mtd.append('m2')
@@ -804,7 +804,6 @@ def NUM():
   elif hc in ['6','06']:mtd.append('m6')
   elif hc in ['7','07']:mtd.append('m7')
   elif hc in ['8','08']:mtd.append('m8')
-  elif hc in ['9','09']:mtd.append('m9')
   else:
       mtd.append('m1')
   for nmbr in range(limit):
@@ -815,8 +814,9 @@ def NUM():
     tl = str(len(user))
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
-      idf = kode+guru
-      pwv = [idf[:6],idf[:8],idf,]
+      ids = kode+guru
+      idf = ids
+      pwv = [ids[:6],ids[:8],ids,]
       if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,idf,pwv)
@@ -825,7 +825,6 @@ def NUM():
       elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
       elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
       elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
-      elif 'm9' in mtd:king_xd.submit(m9,idf,pwv)
       else:
        king_xd.submit(m5,idf,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
@@ -845,7 +844,7 @@ def digittt():
   #if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
   #else:cokix.append('n')
   clear();banner();print(f"{dot}{P}SIM CODE  {RED}: {H}"+kode);print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
-  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(led)
+  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(f' {K}[{H}7{K}] {P}Method [{H}M7{P}]');print(f' {K}[{H}8{K}] {P}Method [{H}M8{P}]');print(led)
   hc = input(f'{wt}Select Method {M}:{H} ')
   if hc in ['1','01']:mtd.append('m1')
   elif hc in ['2','02']:mtd.append('m2')
@@ -853,8 +852,8 @@ def digittt():
   elif hc in ['4','04']:mtd.append('m4')
   elif hc in ['5','05']:mtd.append('m5')
   elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['7','07']:mtd.append('m7')
   elif hc in ['8','08']:mtd.append('m8')
-  elif hc in ['9','09']:mtd.append('m9')
   else:
       mtd.append('m1')
   for nmbr in range(limit):
@@ -875,8 +874,6 @@ def digittt():
       elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
       elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
       elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
-      elif 'm9' in mtd:king_xd.submit(m9,idf,pwv)
-
       else:
        king_xd.submit(m5,idf,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
@@ -896,7 +893,7 @@ def mix():
   #if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
  #else:cokix.append('n')
   clear();banner();print(f"{dot}{P}SIM CODE  {RED}: {H}"+kode);print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
-  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(led)
+  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(f' {K}[{H}7{K}] {P}Method [{H}M7{P}]');print(f' {K}[{H}8{K}] {P}Method [{H}M8{P}]');print(led)
   hc = input(f'{wt}Select Method {M}:{H} ')
   if hc in ['1','01']:mtd.append('m1')
   elif hc in ['2','02']:mtd.append('m2')
@@ -904,8 +901,8 @@ def mix():
   elif hc in ['4','04']:mtd.append('m4')
   elif hc in ['5','05']:mtd.append('m5')
   elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['7','07']:mtd.append('m7')
   elif hc in ['8','08']:mtd.append('m8')
-  elif hc in ['9','09']:mtd.append('m9')
   else:
       mtd.append('m1')
   for nmbr in range(limit):
@@ -926,7 +923,6 @@ def mix():
       elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
       elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
       elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
-      elif 'm9' in mtd:king_xd.submit(m9,idf,pwv)
       else:
        king_xd.submit(m5,idf,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
@@ -945,7 +941,7 @@ def xp():
   if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
   else:cokix.append('n')
   clear();banner();print(f"{dot}{P}Number  {RED}: {H}"+kode);print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
-  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}m5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}m6{P}]');print(led)
+  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}m5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}m6{P}]');print(f' {K}[{H}7{K}] {P}Method [{H}m7{P}]');print(f' {K}[{H}8{K}] {P}Method [{H}m8{P}]');print(led)
   hc = input(f'{wt}Select Method {M}:{H} ')
   if hc in ['1','01']:mtd.append('m1')
   elif hc in ['2','02']:mtd.append('m2')
@@ -953,6 +949,8 @@ def xp():
   elif hc in ['4','04']:mtd.append('m4')
   elif hc in ['5','05']:mtd.append('m5')
   elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['7','07']:mtd.append('m7')
+  elif hc in ['8','08']:mtd.append('m8')
   else:
       mtd.append('m1')
   for nmbr in range(limit):
@@ -971,11 +969,12 @@ def xp():
       elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
       elif 'a1' in mtd:king_xd.submit(M5,idf,pwv)
       elif 'M1' in mtd:king_xd.submit(M6,idf,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
       else:
        king_xd.submit(m5,idf,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
   input(f'{dot}Press Enter To Go Menu');os.system('python ATOM.py')
-
 
 browser_version1 = (f'{random.randrange(85, 105)}.0.{random.randrange(4200, 4900)}.{random.randrange(40, 150)}')
 build1 = (''.join(random.choice('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890') for y in range(6)))
