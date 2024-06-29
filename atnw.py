@@ -1335,42 +1335,33 @@ if __name__=='__main__':
   except:pass
 #Process()
 def __L_S__():
-    RSAPubKey = "<RSAKeyValue><Modulus>r9qKS8umr1sq9QRk6HYN6x7y/D834aWecRRdrJJbaOLcxwF6qp4/0ehPSwKdDeeCajrYEGQhvcdomYelDLw6ED7zyKFOErctRNHtSbG4nC/T6RkAvimMhpzdjbbhgWQK6Ra+KuIK1KaA9bMrOXaOEtlg5SVMKuWKOHszEVGQPoso2Ar7Rg31q2wRT+4FgvDqEwM7Eo2hPd43f2F0D51zuoaYh1RAPvEI2aBkjgWg5Lne9wQRhvKxFO8BMHb10jQsgXGDPexgOViLt2uPHwd9226sxTmF9rdaNHqKoEMLcqpQERWe+FQ+r3D37tS4kTHq9PH89nNs+tiXXnXeIMrG1Q==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>"
-    auth = "WyI3MDY0NDk0NCIsIkF5M1pNejdNSXZkMlpXVTZxWjVwVlA2cEVMTnBkcXBkc0VwT2JIeWUiXQ=="
-    
+    RSAPubKey = "<RSAKeyV"+"alue><M"+"odulus>r9"+"qKS8umr1sq9QR"+"k6HYN6x7y/D834a"+"WecRRdrJJbaOLcxwF6q"+"p4/0ehPSwKd"+"DeeCajrYEG"+"QhvcdomYel"+"DLw6ED7z"+"yKFOEr"+"ctRNHtSb"+"G4nC/T6R"+"kAvimMhp"+"zdjbbhgWQ"+"K6Ra+KuIK"+"1KaA9bMrOXa"+"OEtlg5SVMK"+"uWKOHszEVGQPo"+"so2Ar7Rg31q2w"+"RT+4FgvDqEwM7Eo2h"+"Pd43f2F0D51zuoaY"+"h1RAPvEI2aBkjgWg5Ln"+"e9wQRhvKxFO8BMHb10j"+"QsgXGDPexgOViLt2uPH"+"wd9226sxTmF9rdaNHq"+"KoEMLcqpQERWe+FQ"+"+r3D37tS4kTHq9PH89"+"nNs+tiXXnXeIMrG1"+"Q=="+"</"+"Modulus>"+"<Exponent"+">AQAB</E"+"xponent></"+"RS"+"AKeyValue>"
+    auth = "WyI3MD"+"Y0NDk"+"0NCIs"+"IkF5M"+"1pNe"+"jdNS"+"XZkMl"+"pXVTZxWjVwVlA"+"2cEVMTnBk"+"cXBkc0V"+"wT2JIe"+"WUiXQ"+"="+"="+
+    LICENSE_FILE = "/data/data/com.termux/files/"+"us"+"r"+"/"+"t"+"mp"+"/"+".nill.txt"
     try:
         with open(LICENSE_FILE, "r") as file:
             license_key = file.readline().strip()
     except FileNotFoundError:
         license_key = ""
-    
     if not license_key:
-        license_key = input("Enter license key: ")
+        Process()
+        license_key = input(f"{rad}[{white}◆{rad}] {green}LICENSE PLEASE{white} ▶︎ {yelloww}")
         with open(LICENSE_FILE, "w") as file:
             file.write(license_key)
-    
-    if is_license_barred(license_key):
-        print("License key has been barred. Please contact support.")
+    result = Key.activate(token=auth,
+                          rsa_pub_key=RSAPubKey,
+                          product_id=23270,
+                          key=f"{license_key}",
+                          machine_code=Helpers.GetMachineCode(v=2))
+    if result[0] is None or not Helpers.IsOnRightMachine(result[0], v=2):
+        Process()
+        print(f"{rad}[{white}×{rad}] {white}KEY/LICENSE EXPIRED CONTRACT ADMIN")
+        os.remove(LICENSE_FILE)
         sys.exit()
-    
-    try:
-        result = Key.activate(token=auth,
-                              rsa_pub_key=RSAPubKey,
-                              product_id=23270,
-                              key=license_key,
-                              machine_code=Helpers.GetMachineCode(v=2))
-        
-        if result[0] is None or not Helpers.IsOnRightMachine(result[0], v=2):
-            print("License activation failed or not on the right machine.")
-            os.remove(LICENSE_FILE)
-            sys.exit()
-        else:
-            print("License is valid. Proceeding with application.")
-            time.sleep(2)
-            subx()
+    else:
+        Process()
+        print(f"{rad}[{white}√{rad}] {green}THE LICENSE IS RIGHT");time.sleep(2)
+        Process()
 
-    except Exception as e:
-        print(f"Error: {str(e)}")
-        sys.exit(1)
 os.system("clear")
 Process()
