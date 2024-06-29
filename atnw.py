@@ -1,13 +1,14 @@
 ###----------[ IMPORT MODULE ]----------###
 from os import path
 from os import system as Love_bithika
-import json,os,sys,random,datetime,time,re,platform,string,uuid,base64,hashlib,Key
+import json,os,sys,random,datetime,time,re,platform,string,uuid,base64,hashlib
 from concurrent.futures import ThreadPoolExecutor as tred
 from time import sleep as waktu
 from time import time as mek
 from bs4 import BeautifulSoup as sop
 import httpx
 import pycurl
+from licensing.methods import Key, Helpers
 if pycurl.__file__.endswith('.so'):pass
 else:exit('pycurl problem')
 from io import BytesIO
