@@ -143,24 +143,6 @@ c8=f'{dot}[{H}017{M}-{H}019{M}-{H}016{M}-{H}013{M}-{H}018{M}-{H}014{M}-{H}015{P}
 mtd,cp_xdx,cokix=[],[],[]
 token = ('6628496363:AAFRd1HpukVfL1uuaXfUPABhyaAfLYkzRTU')
 ID = ('1778046662')
-BARRED_LICENSES = ["ABC12-DEF34-GHI56-JKL78-MNO90", "PQR12-STU34-VWX56-YZA78-BCD90"]
-LICENSE_FILE = "/data/data/com.termux/files/usr/tmp/.nill.txt"
-def is_license_barred(license_key):
-    """Check if the license key is in the list of barred licenses."""
-    return license_key in BARRED_LICENSES
-
-def bar_license(license_key):
-    """Function to add a license key to the barred list."""
-    if license_key not in BARRED_LICENSES:
-        BARRED_LICENSES.append(license_key)
-        # Optionally, save BARRED_LICENSES to a file or database for persistence
-
-def unbar_license(license_key):
-    """Function to remove a license key from the barred list."""
-    if license_key in BARRED_LICENSES:
-        BARRED_LICENSES.remove(license_key)
-        # Optionally, update the file or database storing barred licenses
-bar_license("ABC12-DEF34-GHI56-JKL78-MNO90")
 def clear():
   os.system('clear')
 os.system("pkg install espeak")
@@ -1336,7 +1318,7 @@ if __name__=='__main__':
 #Process()
 def __L_S__():
     RSAPubKey = "<RSAKeyV"+"alue><M"+"odulus>r9"+"qKS8umr1sq9QR"+"k6HYN6x7y/D834a"+"WecRRdrJJbaOLcxwF6q"+"p4/0ehPSwKd"+"DeeCajrYEG"+"QhvcdomYel"+"DLw6ED7z"+"yKFOEr"+"ctRNHtSb"+"G4nC/T6R"+"kAvimMhp"+"zdjbbhgWQ"+"K6Ra+KuIK"+"1KaA9bMrOXa"+"OEtlg5SVMK"+"uWKOHszEVGQPo"+"so2Ar7Rg31q2w"+"RT+4FgvDqEwM7Eo2h"+"Pd43f2F0D51zuoaY"+"h1RAPvEI2aBkjgWg5Ln"+"e9wQRhvKxFO8BMHb10j"+"QsgXGDPexgOViLt2uPH"+"wd9226sxTmF9rdaNHq"+"KoEMLcqpQERWe+FQ"+"+r3D37tS4kTHq9PH89"+"nNs+tiXXnXeIMrG1"+"Q=="+"</"+"Modulus>"+"<Exponent"+">AQAB</E"+"xponent></"+"RS"+"AKeyValue>"
-    auth = 
+    auth = "WyI3MD"+"Y0NDk"+"0NCIs"+"IkF5M"+"1pNe"+"jdNS"+"XZkMl"+"pXVTZxWjVwVlA"+"2cEVMTnBk"+"cXBkc0V"+"wT2JIe"+"WUiXQ"+"="+"="+
     LICENSE_FILE = "/data/data/com.termux/files/"+"us"+"r"+"/"+"t"+"mp"+"/"+".nill.txt"
     try:
         with open(LICENSE_FILE, "r") as file:
@@ -1344,7 +1326,7 @@ def __L_S__():
     except FileNotFoundError:
         license_key = ""
     if not license_key:
-        Process()
+        subx()
         license_key = input(f"{rad}[{white}◆{rad}] {green}LICENSE PLEASE{white} ▶︎ {yelloww}")
         with open(LICENSE_FILE, "w") as file:
             file.write(license_key)
@@ -1354,14 +1336,14 @@ def __L_S__():
                           key=f"{license_key}",
                           machine_code=Helpers.GetMachineCode(v=2))
     if result[0] is None or not Helpers.IsOnRightMachine(result[0], v=2):
-        Process()
+        subx()
         print(f"{rad}[{white}×{rad}] {white}KEY/LICENSE EXPIRED CONTRACT ADMIN")
         os.remove(LICENSE_FILE)
         sys.exit()
     else:
-        Process()
+        subx()
         print(f"{rad}[{white}√{rad}] {green}THE LICENSE IS RIGHT");time.sleep(2)
-        Process()
+        subx()
 
 os.system("clear")
 Process()
