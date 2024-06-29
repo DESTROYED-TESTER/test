@@ -1368,5 +1368,9 @@ def __L_S__():
             print("License is valid. Proceeding with application.")
             time.sleep(2)
             subx()
-            os.system("clear")
-              Process()
+
+    except Exception as e:
+        print(f"Error: {str(e)}")
+        sys.exit(1)
+os.system("clear")
+Process()
