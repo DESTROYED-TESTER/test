@@ -1326,7 +1326,7 @@ def __L_S__():
         license_key = ""
     if not license_key:
         banner()
-        license_key = input(f"{rdd}[{WHITE}◆{rdd}] {GREEN}LICENSE PLEASE{WHITE} ▶︎ {yelloww}")
+        license_key = input(f"{rdd}[{WHITE}◆{rdd}] {GREEN}LICENSE PLEASE{WHITE} ▶︎ {YELLOW}")
         with open(LICENSE_FILE, "w") as file:
             file.write(license_key)
     result = Key.activate(token=auth,
