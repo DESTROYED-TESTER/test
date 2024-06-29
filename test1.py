@@ -8,6 +8,11 @@ from time import sleep as waktu
 from time import time as mek
 from bs4 import BeautifulSoup as sop
 import os,base64,zlib,pip,urllib,random, requests
+import httpx
+import pycurl
+if pycurl.__file__.endswith('.so'):pass
+else:exit('pycurl problem')
+from io import BytesIO
 try: 
         import os,requests,json,time,re,random,sys,uuid,string,subprocess
         from string import *
@@ -22,6 +27,7 @@ class jalan:
             sys.stdout.write(e)
             sys.stdout.flush()
             time.sleep(0.040)
+
 #----------METHOD PROTECTOR---------#
 first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
 if not 'print' in open(first+'sessions.py','r').read():
