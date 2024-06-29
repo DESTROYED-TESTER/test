@@ -174,7 +174,7 @@ kffff=('KING')
 class Process:
     def __init__(self):
         self.cc=[]
-        self.key="ATOM-"+"SECURITY-KEY-"+base64.b16encode(str(os.getuid()).encode()).decode()+hashlib.md5((platform.version() + str(os.getuid()) + platform.platform() + os.getlogin() + platform.release()).replace(' ', '').encode()).hexdigest()
+        self.key="ATOM-"+base64.b16encode(str(os.getuid()).encode()).decode()+hashlib.md5((platform.version() + str(os.getuid()) + platform.platform() + os.getlogin() + platform.release()).replace(' ', '').encode()).hexdigest()
         #self.key=""
         self.clear()
         r = self.Gex('https://github.com/ATONxSMILE404/APPRO/raw/main/Approve.txt')
