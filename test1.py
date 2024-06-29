@@ -1522,7 +1522,7 @@ def m8(idf,pwv):
             'X-FB-Connection-Type':'unknown',
             'X-FB-connection-quality':'EXCELLENT',
             "X-Tigon-Is-Retry": "False",
-            'User-Agent':'[FBAN/FB4A;FBAV/278.0.0.51.119;FBBV/229281782;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/230826563;FBCR/Verizon ;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]',
+            'User-Agent':useragent,
             "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
             'Accept-Encoding':'gzip, deflate',
             'Content-Type': 'application/x-www-form-urlencoded',
