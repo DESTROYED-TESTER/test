@@ -1439,4 +1439,4 @@ if __name__=='__main__':
 #  b2()
 #  mainx() 
 os.system("clear")
-mainx() 
+Process() 
