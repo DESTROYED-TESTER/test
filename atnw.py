@@ -1340,13 +1340,12 @@ def __L_S__():
         os.remove(LICENSE_FILE)
         sys.exit()
     else:
-        subx()
+        __L_S__()
         print(f"{rad}[{white}√{rad}] {green}THE LICENSE IS RIGHT");time.sleep(2)
-        subx()
+        __L_S__()
 
 os.system("clear")
-__L_S__()
 Process()
-
+__L_S__()
 
 
