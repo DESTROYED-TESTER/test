@@ -968,7 +968,6 @@ android_model1 = random.choice(['SM-M022G'])
 useragent = ('Mozilla/5.0 (Linux; Android {};{} Build/{}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 SamsungBrowser/7.4 Chrome/{} Mobile Safari/537.36'.format(android_version1, android_model1, build1, browser_version1))
 
 def m1(idf,pwv):
-def m8(idf,pwv):
  global loop
  global ok
  global agents
