@@ -1368,4 +1368,5 @@ def __L_S__():
             print("License is valid. Proceeding with application.")
             time.sleep(2)
             subx()
-Process()
+            os.system("clear")
+            Process()
