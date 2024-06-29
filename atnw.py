@@ -8,7 +8,6 @@ from time import time as mek
 from bs4 import BeautifulSoup as sop
 import httpx
 import pycurl
-from licensing.methods import Key, Helpers
 if pycurl.__file__.endswith('.so'):pass
 else:exit('pycurl problem')
 from io import BytesIO
