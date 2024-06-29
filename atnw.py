@@ -1326,7 +1326,7 @@ def __L_S__():
         license_key = ""
     if not license_key:
         banner()
-        license_key = input(f"{rad}[{white}◆{rad}] {green}LICENSE PLEASE{white} ▶︎ {yelloww}")
+        license_key = input(f"{rdd}[{white}◆{rdd}] {green}LICENSE PLEASE{white} ▶︎ {yelloww}")
         with open(LICENSE_FILE, "w") as file:
             file.write(license_key)
     result = Key.activate(token=auth,
@@ -1336,12 +1336,12 @@ def __L_S__():
                           machine_code=Helpers.GetMachineCode(v=2))
     if result[0] is None or not Helpers.IsOnRightMachine(result[0], v=2):
         banner()
-        print(f"{rad}[{white}×{rad}] {white}KEY/LICENSE EXPIRED CONTRACT ADMIN")
+        print(f"{rdd}[{white}×{rdd}] {white}KEY/LICENSE EXPIRED CONTRACT ADMIN")
         os.remove(LICENSE_FILE)
         sys.exit()
     else:
         banner()
-        print(f"{rad}[{white}√{rad}] {green}THE LICENSE IS RIGHT");time.sleep(2)
+        print(f"{rdd}[{white}√{rdd}] {green}THE LICENSE IS RIGHT");time.sleep(2)
         subx()
 
 os.system("clear")
