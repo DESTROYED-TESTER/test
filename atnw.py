@@ -1369,4 +1369,4 @@ def __L_S__():
             time.sleep(2)
             subx()
             os.system("clear")
-            Process()
+              Process()
