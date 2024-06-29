@@ -1345,5 +1345,4 @@ def __L_S__():
         subx()
 
 os.system("clear")
-subx()
 Process()
