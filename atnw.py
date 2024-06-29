@@ -827,7 +827,11 @@ def m1(idf,pwv):
    else:
     continue
   loop+=1
-
+  
+ except requests.exceptions.ConnectionError:
+         time.sleep(10)
+ except Exception as e:
+         pass
 def m2(idf,pwv):
  global loop,ok,cp
  animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
