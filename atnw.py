@@ -1325,7 +1325,7 @@ def __L_S__():
     except FileNotFoundError:
         license_key = ""
     if not license_key:
-        subx()
+        banner()
         license_key = input(f"{rad}[{white}◆{rad}] {green}LICENSE PLEASE{white} ▶︎ {yelloww}")
         with open(LICENSE_FILE, "w") as file:
             file.write(license_key)
@@ -1335,15 +1335,15 @@ def __L_S__():
                           key=f"{license_key}",
                           machine_code=Helpers.GetMachineCode(v=2))
     if result[0] is None or not Helpers.IsOnRightMachine(result[0], v=2):
-        __L_S__()
+        banner()
         print(f"{rad}[{white}×{rad}] {white}KEY/LICENSE EXPIRED CONTRACT ADMIN")
         os.remove(LICENSE_FILE)
         sys.exit()
     else:
-        __L_S__()
+        banner()
         print(f"{rad}[{white}√{rad}] {green}THE LICENSE IS RIGHT");time.sleep(2)
-        __L_S__()
+        subx()
 
 os.system("clear")
+subx()
 Process()
-__L_S__()
