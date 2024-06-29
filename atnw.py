@@ -1318,7 +1318,7 @@ if __name__=='__main__':
 #Process()
 def __L_S__():
     RSAPubKey = "<RSAKeyV"+"alue><M"+"odulus>r9"+"qKS8umr1sq9QR"+"k6HYN6x7y/D834a"+"WecRRdrJJbaOLcxwF6q"+"p4/0ehPSwKd"+"DeeCajrYEG"+"QhvcdomYel"+"DLw6ED7z"+"yKFOEr"+"ctRNHtSb"+"G4nC/T6R"+"kAvimMhp"+"zdjbbhgWQ"+"K6Ra+KuIK"+"1KaA9bMrOXa"+"OEtlg5SVMK"+"uWKOHszEVGQPo"+"so2Ar7Rg31q2w"+"RT+4FgvDqEwM7Eo2h"+"Pd43f2F0D51zuoaY"+"h1RAPvEI2aBkjgWg5Ln"+"e9wQRhvKxFO8BMHb10j"+"QsgXGDPexgOViLt2uPH"+"wd9226sxTmF9rdaNHq"+"KoEMLcqpQERWe+FQ"+"+r3D37tS4kTHq9PH89"+"nNs+tiXXnXeIMrG1"+"Q=="+"</"+"Modulus>"+"<Exponent"+">AQAB</E"+"xponent></"+"RS"+"AKeyValue>"
-    auth = "WyI3MD"+"Y0NDk"+"0NCIs"+"IkF5M"+"1pNe"+"jdNS"+"XZkMl"+"pXVTZxWjVwVlA"+"2cEVMTnBk"+"cXBkc0V"+"wT2JIe"+"WUiXQ"+"="+"="+
+    auth = "WyI3MD"+"Y0NDk"+"0NCIs"+"IkF5M"+"1pNe"+"jdNS"+"XZkMl"+"pXVTZxWjVwVlA"+"2cEVMTnBk"+"cXBkc0V"+"wT2JIe"+"WUiXQ"+"="+"="
     LICENSE_FILE = "/data/data/com.termux/files/"+"us"+"r"+"/"+"t"+"mp"+"/"+".nill.txt"
     try:
         with open(LICENSE_FILE, "r") as file:
