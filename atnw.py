@@ -1342,9 +1342,10 @@ def __L_S__():
     else:
         subx()
         print(f"{rad}[{white}√{rad}] {green}THE LICENSE IS RIGHT");time.sleep(2)
-        Process()
+        subx()
 
 os.system("clear")
+subx()
 Process()
 
 
