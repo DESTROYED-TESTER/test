@@ -1339,7 +1339,6 @@ def __L_S__():
         os.remove(LICENSE_FILE)
         sys.exit()
     else:
-        banner()
         print(f"{rdd}[{WHITE}√{rdd}] {GREEN}THE LICENSE IS RIGHT");time.sleep(2)
         subx()
 
