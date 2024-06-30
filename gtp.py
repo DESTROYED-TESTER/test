@@ -254,7 +254,7 @@ samsung = random.choice(['SM-G920F','NRD90M', 'SM-T535','LRX22G', 'SM-T231','KOT
 def ____banner____():
     if "win" in sys.platform:os.system("cls")
     else:os.system("clear")
-    print{f"""  \033[1;36m
+    print(f"""  \033[1;36m
   ______          ___         _____  
  |___  /         / _ \       |  __ \ 
     / / ___ _ __| | | | __  _| |  | |
@@ -263,11 +263,11 @@ def ____banner____():
  /_____\___|_|   \___/  /_/\_\_____/ 
                                         
                                      {rad}♻️ 
-{faltu} {black}Your self-worth is determined by you... {pvt}
+{faltu} {black}Your self-worth is determined by you... 
 {rad}[{white}🔖{rad}] {yelloww}ONWER AND CEO {white}▶︎ }{BLUE}𝐜𝐡𝐨𝐲𝐨𝐧 {rad}𝐗 {BLUE}𝐬𝐮𝐦𝐨𝐧
 {rad}[{white}🔖{rad}] {green}only premium accept
-{rad}[{white}🔖{rad}] {green}TOOL FILE & RANDOM TYPES{rad}
-{puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"""}
+{rad}[{white}🔖{rad}] {green}TOOL FILE & RANDOM TYPES
+{puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 def fuckxd():
     os.system('clear')
