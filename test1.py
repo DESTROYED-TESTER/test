@@ -861,7 +861,7 @@ async def NUM():
             elif 'm3' in mtd:
                 await king_xd.submit(m3, idf, pwv)
             elif 'm4' in mtd:
-                await king_xd.submit(m4, idf, pwv)
+                asyncio.ensure_future(m4(idf, pwv))
             elif 'm5' in mtd:
                 await king_xd.submit(m5, idf, pwv)
             elif 'm6' in mtd:
