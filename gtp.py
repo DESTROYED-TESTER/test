@@ -217,7 +217,7 @@ def ____banner____():
   / /_|  __/ |  | |_| |  >  <| |__| |
  /_____\___|_|   \___/  /_/\_\_____/ 
                                      
-                                     {white}V{green}/{white}FCK
+                                     ♻️🌏
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {rad}[{white}◆{rad}] {green}DEVELOPER  {white}▶︎ {green}MAHADI HASAN AFRIDI
 {rad}[{white}◆{rad}] {green}FACEBOOK   {white}▶︎ {green}MAHADI HASAN AFRIDI
