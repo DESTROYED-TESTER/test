@@ -264,7 +264,7 @@ def ____banner____():
                                         
                                      {rad}♻️ 
 {faltu} {black}Your self-worth is determined by you... {pvt}
-{rad}[{white}🔖{rad}] {yelloww}ONWER AND CEO {white}▶︎ {yelloww}CHOYON X SUMON
+{rad}[{white}🔖{rad}] {faltu}{yelloww}ONWER AND CEO {white}▶︎ {yelloww}CHOYON X SUMON{pvt}
 {rad}[{white}🔖{rad}] {green}only premium accept
 {rad}[{white}🔖{rad}] {green}TOOL FILE & RANDOM TYPES{rad})
 {puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
