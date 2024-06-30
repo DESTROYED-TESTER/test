@@ -267,7 +267,7 @@ def ____banner____():
 {rad}[{white}🔖{rad}] {yelloww}ONWER AND CEO {white}▶︎ }{BLUE}𝐜𝐡𝐨𝐲𝐨𝐧 {rad}𝐗 {BLUE}𝐬𝐮𝐦𝐨𝐧
 {rad}[{white}🔖{rad}] {green}only premium accept
 {rad}[{white}🔖{rad}] {green}TOOL FILE & RANDOM TYPES{rad}
-{puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
+{puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"""}
 
 def fuckxd():
     os.system('clear')
