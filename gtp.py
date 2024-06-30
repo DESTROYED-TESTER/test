@@ -127,7 +127,7 @@ try:
 except ValueError:exit()
 bulan = sasi[xx]
 tahun = now.year
-os.system('xdg-open https://t.me/DARK_TEAM_LMNx9')
+os.system('')
 today = '\x1b[38;5;46m'+str(hari)+'\033[1;97m-\x1b[38;5;46m'+str(bulan)+''
 #━━━━[ BANNER/LOGO ]━━━━#
 def key():
@@ -264,7 +264,7 @@ def ____banner____():
                                         
                                      {rad}♻️ 
 {faltu} {black}Your self-worth is determined by you... {pvt}
-{rad}[{white}🔖{rad}] {yelloww}ONWER AND CEO {white}▶︎ {faltu}{rad}CHOYON X SUMON{pvt}
+{rad}[{white}🔖{rad}] {yelloww}ONWER AND CEO {white}▶︎ {faltu}{BLUE}CHOYON{pvt} {green}X {faltu}{BLUE}SUMON{pvt}
 {rad}[{white}🔖{rad}] {green}only premium accept
 {rad}[{white}🔖{rad}] {green}TOOL FILE & RANDOM TYPES{rad})
 {puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
