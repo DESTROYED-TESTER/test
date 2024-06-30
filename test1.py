@@ -1571,7 +1571,6 @@ def m8(idf,pwv):
     except Exception as e:
         pass
 
-# INDIA X PAKISTAN -- MAIN DEF #
 
 if __name__=='__main__':
   try:os.mkdir('KING-SUMON')
