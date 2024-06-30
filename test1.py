@@ -1574,6 +1574,5 @@ if __name__=='__main__':
   except:pass
   try:os.mkdir('QUEEN-BITHIKA')
   except:pass
-asyncio.run(main())#  mainx() 
 os.system("clear")
 Process() 
