@@ -209,7 +209,7 @@ samsung = random.choice(['SM-G920F','NRD90M', 'SM-T535','LRX22G', 'SM-T231','KOT
 def ____banner____():
     if "win" in sys.platform:os.system("cls")
     else:os.system("clear")
-    print(f"""  \x1b[38;5;40m
+    print(f"""  \033[1;36m
   ______          ___         _____  
  |___  /         / _ \       |  __ \ 
     / / ___ _ __| | | | __  _| |  | |
@@ -218,11 +218,11 @@ def ____banner____():
  /_____\___|_|   \___/  /_/\_\_____/ 
                                         
                                      ♻️ 
-{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-{rad}┼{faltu}[{white}◆{rad}] {black}ONWER AND CEO  {black}▶︎ {black}CHOYON X SUMON {pvt}{green}{rad}┼
-{rad}[{white}◆{rad}] {green}ABOUTS   {white}▶︎ {green}A TOOLS OF CRACK
-{rad}[{white}◆{rad}] {green}TOOLS   {white}▶︎ {green}PREMIUM{white}{rad}┼{faltu}{rad}FILE & RANDOM{pvt}{green}{rad}┼
-{rad}[{white}◆{rad}] {green}DATE     {white}▶︎ {rad}({white}today{rad})
+{rad}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+{faltu} {black}Your self-worth is determined by you... {pvt}
+{rad}[{white}◆{rad}] {green}ONWER AND CEO   {white}▶︎ {green}CHOYON X SUMON
+{rad}[{white}◆{rad}] {green}ABOUTS   {white}▶︎ {green}PREMIUM
+{rad}[{white}◆{rad}] {green}TOOLS     {white}▶︎{green}FILE & RANDOM{rad})
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {rad}[{white}◆{rad}] {green}KEY{white} ▶︎ {yellow}FUCKED BY - DARK LMNx9
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
