@@ -209,10 +209,12 @@ samsung = random.choice(['SM-G920F','NRD90M', 'SM-T535','LRX22G', 'SM-T231','KOT
 def ____banner____():
     if "win" in sys.platform:os.system("cls")
     else:os.system("clear")
-    print(f"""  \x1b[38;5;40m▙▗▌▞▀▖▌ ▌▞▀▖▛▀▖▜▘ ▌ ▌▞▀▖▞▀▖▞▀▖▙ ▌
-  \x1b[38;5;41m▌▘▌▙▄▌▙▄▌▙▄▌▌ ▌▐  ▙▄▌▙▄▌▚▄ ▙▄▌▌▌▌
-  \x1b[38;5;42m▌ ▌▌ ▌▌ ▌▌ ▌▌ ▌▐  ▌ ▌▌ ▌▖ ▌▌ ▌▌▝▌
-  \x1b[38;5;43m▘ ▘▘ ▘▘ ▘▘ ▘▀▀ ▀▘ ▘ ▘▘ ▘▝▀ ▘ ▘▘ ▘{white}V{green}/{white}FCK
+    print(f"""  \x1b[38;5;40md8888888P                    a8888a              888888ba  
+     .d8'                   d8' ..8b             88    8b 
+   .d8'   .d8888b. 88d888b. 88 .P 88    dP.  .dP 88     88 
+ .d8'     88ooood8 88'  88 88 d' 88     8bd8'  88     88 
+d8'       88.  ... 88       Y8'' .8P     .d88b.  88    .8P 
+Y8888888P 88888P' dP        Y8888P     dP'  `dP 8888888P{white}V{green}/{white}FCK
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {rad}[{white}◆{rad}] {green}DEVELOPER  {white}▶︎ {green}MAHADI HASAN AFRIDI
 {rad}[{white}◆{rad}] {green}FACEBOOK   {white}▶︎ {green}MAHADI HASAN AFRIDI
