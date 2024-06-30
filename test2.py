@@ -928,7 +928,7 @@ def m4(idf,pwv):
     'lgnrnd': '215438_Rga7',
     'lgnjs': 'n',
     'email': idf,
-    'pass': "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),ps),,
+    'pass': "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),ps),
     'default_persistent': '',}
    header_freefb =  {
     'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
