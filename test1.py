@@ -508,7 +508,7 @@ def mainx2():
     print(f"{K} [{M}0{K}] {WHITE}Back To Menu");print(led)
     sumon = input(f'{wt}Select menu {M}:{H} ')
     if sumon in ["1","01"]:
-        NUM()
+        asyncio.run(NUM()) 
     elif sumon in ["2","02"]:
         digittt()
     elif sumon in ["3","03"]:
