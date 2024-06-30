@@ -265,7 +265,7 @@ def ____banner____():
                                      {rad}♻️ 
 {faltu} {black}Your self-worth is determined by you... {pvt}
 {rad}[{white}🔖{rad}] {yelloww}ONWER AND CEO {white}▶︎ {yelloww}𝐜𝐡𝐨𝐲𝐨𝐧 {rad}𝐗 {yelloww}𝐬𝐮𝐦𝐨𝐧
-{rad}[{white}🔖{rad}] {green}only premium accept
+{rad}[{white}🔖{rad}] {green}VERSION \033[38;5;196m  :\x1b[38;1;97m 109.0.5.0.3
 {rad}[{white}🔖{rad}] {green}TOOL FILE & RANDOM TYPES
 {puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
@@ -304,13 +304,17 @@ else:
 #━━━━[ MAIN ]━━━━#
 def mahadi():
     ____banner____()
-    print(f'{rad}[{white}A{rad}] {green}Crack Start File Clone')
-    print(f'{rad}[{white}B{rad}] {green}File Make For File Clone')
-    print(f'{rad}[{white}C{rad}] {green}Crack Start Random Clone');linex()
+    print(f'{rad}[{white}A{rad}] {green}KEEP ON FILE CLONE')
+    print(f'{rad}[{white}B{rad}] {green}MAKE IT FILES')
+    print(f'{rad}[{white}C{rad}] {green}KEEP ON RANDOM CLONE')
+    print(f'{rad}[{white}C{rad}] {green}JOIN GROUP')
+    print(f'{rad}[{white}C{rad}] {green}CONTRACK ADMIN');linex()
     __Mahadi__ = input(f'{rad}[{white}◆{rad}] {green}Selection  {white}▶︎ {yelloww}')
     if __Mahadi__ in ['A','a','01','1']:__FILEX__()
     elif __Mahadi__ in ['B','b','02','2']:os.system('python3 FILE-DUMP.py')
     elif __Mahadi__ in ['C','c','03','3']:SETINGX()
+    elif __Mahadi__ in ['D','d','04','4']:os.system("xdg-open https://wa.me/+918389066877")
+    elif __Mahadi__ in ['E','e','05','5']:os.system("xdg-open https://wa.me/+918389066877")
     else:print(f'\n[×]{rad} Choose Value Option... ');mahadi()
 
 #━━━━[ SELECT MENU ]━━━━#
