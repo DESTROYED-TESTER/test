@@ -874,7 +874,7 @@ def digittt():
       if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,idf,pwv)
-      elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
+      elif 'm4' in mtd:await king_xd.submit(m4,idf,pwv)
       elif 'm5' in mtd:king_xd.submit(m5,idf,pwv)
       elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
       elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
@@ -971,8 +971,7 @@ def xp():
       if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,idf,pwv)
-      elif 'm4' in mtd:
-         await king_xd.submit(m4, idf, pwv)
+      elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
       elif 'a1' in mtd:king_xd.submit(M5,idf,pwv)
       elif 'M1' in mtd:king_xd.submit(M6,idf,pwv)
       elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
