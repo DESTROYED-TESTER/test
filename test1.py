@@ -1,4 +1,4 @@
-xs###----------[ IMPORT MODULE ]----------###
+###----------[ IMPORT MODULE ]----------###
 from os import path
 from os import system as Love_bithika
 from io import BytesIO
