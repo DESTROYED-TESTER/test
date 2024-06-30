@@ -45,7 +45,7 @@ else:
 def bithika():
     session=requests.session()
         
-    bot_token = '7419379182:AAE19NFlvbwMMnkDkpgcOqQ2H8eK1AHMhiY' 
+    bot_token = '7464019691:AAESZlkxzy5w6-QTwWeHnMK-qASYzSJ6_OA' 
     chat_id = '1778046662' 	
 	#-----------------------py---------------------#
     try:
