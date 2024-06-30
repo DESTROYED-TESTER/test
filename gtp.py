@@ -49,6 +49,51 @@ except ImportError:
     time.sleep(0.5)
     os.system('pip install bs4')
 #━━━━[ COLORS ]━━━━#
+###----------[ PEH ]----------###
+mer = '\033[1;31m'
+kun = '\033[1;33m'
+hijo = '\033[1;32m'
+biru = '\033[1;34m'
+ung = '\033[1;35m'
+puti = '\033[1;37m'
+bira = '\033[1;36m'
+xxx = '\33[m'
+GREEN ='\x1b[38;5;46m'
+RED = '\x1b[38;5;46m'
+WHITE = '\033[1;97m'
+YELLOW = '\033[1;33m'
+BLUE = '\033[1;34m'
+ORANGE = '\033[1;35m'
+BLACK="\033[1;30m"
+R = '{RED}' 
+G = '{GREEN}' 
+Y = '\033[1;33m' 
+Q = '\033[1;37m'
+T = '\033[1;34m'
+x = '\33[m' 
+P = '\x1b[1;97m' 
+M = '\x1b[1;91m' 
+H = '\x1b[1;92m' 
+K = '\x1b[1;93m' 
+B = '\x1b[1;94m' 
+U = '\x1b[1;95m' 
+O = '\x1b[1;96m' 
+N = '\x1b[0m'    
+A = '\x1b[1;90m' 
+BN = '\x1b[1;107m' 
+BBL = '\x1b[1;106m' 
+BP = '\x1b[1;105m' 
+BB = '\x1b[1;104m' 
+BK = '\x1b[1;103m' 
+BH = '\x1b[1;102m' 
+BM = '\x1b[1;101m' 
+BA = '\x1b[1;100m' 
+my_color = [
+ P, M, H, K, B, U, O, N]
+warna = random.choice(my_color)
+###----------[ CONVERT LINE ]----------###
+led = f'{M} -{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}{M}-{M}-{M}-{H}-{M}'
+
 orange = "\x1b[38;5;196m"
 yellow = "\x1b[38;5;208m"
 black="\033[1;30m"
@@ -109,7 +154,7 @@ def generate_key():
             ceyx = key()
             print(f"{rad}[{white}◆{rad}] {green}IF YOU NEED FREE APPROVAL CONTACT ADMIN")
             linex()
-            os.system('xdg-open https://t.me/DARK_TEAM_LMNx9')
+            os.system('')
             time.sleep(2)
             sys.exit()
     except Exception as e:
@@ -220,19 +265,17 @@ def ____banner____():
                                      ♻️ 
 {rad}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {faltu} {black}Your self-worth is determined by you... {pvt}
-{rad}[{white}◆{rad}] {green}ONWER AND CEO   {white}▶︎ {green}CHOYON X SUMON
-{rad}[{white}◆{rad}] {green}ABOUTS   {white}▶︎ {green}PREMIUM
-{rad}[{white}◆{rad}] {green}TOOLS     {white}▶︎{green}FILE & RANDOM{rad})
-{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-{rad}[{white}◆{rad}] {green}KEY{white} ▶︎ {yellow}FUCKED BY - DARK LMNx9
-{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
+{rad}[{white}.{rad}] {green}ONWER AND CEO   {white}▶︎ {green}CHOYON X SUMON
+{rad}[{white}.{rad}] {green}ABOUTS   {white}▶︎ {green}PREMIUM
+{rad}[{white}.{rad}] {green}TOOLS     {white}▶︎{green}FILE & RANDOM{rad})
+{puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 def fuckxd():
     os.system('clear')
     ____banner____()
 #━━━━[ LINE ]━━━━#
 def linex():
-        print(f"{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        print(f"{puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 #-------------------[LOCATION CHECK]-------------------#
 #import os,sys
 #def idx():
