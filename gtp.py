@@ -263,11 +263,10 @@ def ____banner____():
  /_____\___|_|   \___/  /_/\_\_____/ 
                                         
                                      ♻️ 
-{rad}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {faltu} {black}Your self-worth is determined by you... {pvt}
-{rad}[{white}.{rad}] {green}ONWER AND CEO   {white}▶︎ {green}CHOYON X SUMON
-{rad}[{white}.{rad}] {green}ABOUTS   {white}▶︎ {green}PREMIUM
-{rad}[{white}.{rad}] {green}TOOLS     {white}▶︎{green}FILE & RANDOM{rad})
+{rad}[{white}🔖{rad}] {green}ONWER AND CEO   {white}▶︎ {green}CHOYON X SUMON
+{rad}[{white}🔖{rad}] {green}ABOUTS   {white}▶︎ {green}PREMIUM
+{rad}[{white}🔖{rad}] {green}TOOLS     {white}▶︎{green}FILE & RANDOM{rad})
 {puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 def fuckxd():
