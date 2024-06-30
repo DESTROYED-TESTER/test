@@ -879,7 +879,7 @@ async def NUM():
     os.system('python ATOM.py')
 
 ###_______________________random______2______________________________________________________________________________________________________________________________________________
-async def digittt():
+def digittt():
   user=[]
   os.system('clear');banner();print(c7);print(led)
   kode = input(f'{dot}SELECT CODE {M}: {H}');print(led);print(limitt);print(led)
@@ -1225,10 +1225,11 @@ def m3(idf,pwv):
       waktu(31)
   loop+=1
 
-async def m4(idf, pwv):
+async def main():
  global loop
  global ok
  global agents
+ await m4(idf, pwv)
  animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
  sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M4{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
  async with aiohttp.ClientSession() as session:
@@ -1291,6 +1292,8 @@ async def m4(idf, pwv):
      await asyncio.sleep(10)
   except Exception as e:
      pass 
+
+
 def m5(idf,pwv):
  global loop
  global ok
@@ -1619,7 +1622,6 @@ if __name__=='__main__':
   except:pass
   try:os.mkdir('QUEEN-BITHIKA')
   except:pass
-#  b2()
-#  mainx() 
+asyncio.run(main())#  mainx() 
 os.system("clear")
 Process() 
