@@ -971,7 +971,8 @@ def xp():
       if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,idf,pwv)
-      elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
+      elif 'm4' in mtd:
+         await king_xd.submit(m4, idf, pwv)
       elif 'a1' in mtd:king_xd.submit(M5,idf,pwv)
       elif 'M1' in mtd:king_xd.submit(M6,idf,pwv)
       elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
@@ -1182,8 +1183,7 @@ def m3(idf,pwv):
       waktu(31)
   loop+=1
 
-async def (m4):
- await (m4,idf,pwv)
+async def m4(idf, pwv):
  global loop
  global ok
  global agents
