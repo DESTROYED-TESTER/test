@@ -1183,7 +1183,7 @@ def m3(idf,pwv):
   loop+=1
 
 async def main():
- await king_xd.submit(m4, idf, pwv)
+ await (m4,idf,pwv)
  global loop
  global ok
  global agents
