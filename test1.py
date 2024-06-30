@@ -1212,7 +1212,7 @@ def m4(idf,pwv):
     'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
    lo = session.post('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=101',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
-   if 'c_user' in log_cookies or if 'm_page_voice' in log_cookies or if 'xs' in log_cookies:
+   if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
     url = f"https://graph.facebook.com/{user}/picture?type=normal"
