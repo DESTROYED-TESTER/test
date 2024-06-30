@@ -216,13 +216,13 @@ def ____banner____():
    / / / _ \ '__| | | | \ \/ / |  | |
   / /_|  __/ |  | |_| |  >  <| |__| |
  /_____\___|_|   \___/  /_/\_\_____/ 
-                                     
-                                     ♻️ 🌏
+                                        
+                                     ♻️ 
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-{rad}[{white}◆{rad}] {green}DEVELOPER  {white}▶︎ {green}MAHADI HASAN AFRIDI
-{rad}[{white}◆{rad}] {green}FACEBOOK   {white}▶︎ {green}MAHADI HASAN AFRIDI
-{rad}[{white}◆{rad}] {green}TOOLTYPE   {white}▶︎ {green}FREE{white}{rad}┼{faltu}{rad}FILE & RANDOM{pvt}{green}{rad}┼
-{rad}[{white}◆{rad}] {green}GITHUB     {white}▶︎ {rad}({white}MAHADI-143{rad})
+{rad}[{white}◆{rad}] {green}ONWER AND CEO  {white}▶︎ {green}CHOYON X SUMON 
+{rad}[{white}◆{rad}] {green}ABOUTS   {white}▶︎ {green}A TOOLS OF CRACK
+{rad}[{white}◆{rad}] {green}TOOLS   {white}▶︎ {green}PREMIUM{white}{rad}┼{faltu}{rad}FILE & RANDOM{pvt}{green}{rad}┼
+{rad}[{white}◆{rad}] {green}DATE     {white}▶︎ {rad}({white}today{rad})
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {rad}[{white}◆{rad}] {green}KEY{white} ▶︎ {yellow}FUCKED BY - DARK LMNx9
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
