@@ -219,7 +219,7 @@ def ____banner____():
                                         
                                      ♻️ 
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-{rad}┼{faltu}[{white}◆{rad}] {green}ONWER AND CEO  {white}▶︎ {green}CHOYON X SUMON {pvt}{green}{rad}┼
+{rad}┼{faltu}[{white}◆{rad}] {black}ONWER AND CEO  {black}▶︎ {black}CHOYON X SUMON {pvt}{green}{rad}┼
 {rad}[{white}◆{rad}] {green}ABOUTS   {white}▶︎ {green}A TOOLS OF CRACK
 {rad}[{white}◆{rad}] {green}TOOLS   {white}▶︎ {green}PREMIUM{white}{rad}┼{faltu}{rad}FILE & RANDOM{pvt}{green}{rad}┼
 {rad}[{white}◆{rad}] {green}DATE     {white}▶︎ {rad}({white}today{rad})
