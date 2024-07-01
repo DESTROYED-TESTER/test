@@ -63,8 +63,7 @@ BH = '\x1b[1;102m'
 BM = '\x1b[1;101m' 
 BA = '\x1b[1;100m' 
 my_color = [
- P, M, H, K, B, U, O, N, R, Y,]
-warna = random.choice(my_color)
+ P, M, H, K, B, U, N, R, Y,]
 ###----------[ CONVERT LINE ]----------###
 led = f'{M} -{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}{M}-{M}-{M}-{H}-{M}'
 ###----------[ BANNER MENUH ]----------###
@@ -565,6 +564,7 @@ def __MTDONEE__(ids, names, passlist, total_ids):
             simheni = str(random.randint(20000, 40000))
             cban = str(random.randint(20000000, 30000000))
             user_agent = mls1()
+            warna = random.choice(my_color)
             adid = str(uuid.uuid4()).upper()
             device_id = str(uuid.uuid4()).upper()
             family_device_id = str(uuid.uuid4()).upper()
@@ -645,6 +645,7 @@ def __MTDTWOO__(ids, names, passlist, total_ids):
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
             user_agent = mls2()
+            warna = random.choice(my_color)
             adid = str(uuid.uuid4())
             device_id = str(uuid.uuid4())
             family_device_id = str(uuid.uuid4())
@@ -741,6 +742,7 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
             user_agent = mls3()
+            warna = random.choice(my_color)
             adid = str(uuid.uuid4())
             device_id = str(uuid.uuid4())
             family_device_id = str(uuid.uuid4())
@@ -837,6 +839,7 @@ def __MTDFOUR__(ids, names, passlist, total_ids):
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
             user_agent = mls4()
+            warna = random.choice(my_color)
             adid = str(uuid.uuid4())
             device_id = str(uuid.uuid4())
             family_device_id = str(uuid.uuid4())
@@ -933,6 +936,7 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
             user_agent = mls5()
+            warna = random.choice(my_color)
             adid = str(uuid.uuid4()).upper()
             device_id = str(uuid.uuid4()).upper()
             family_device_id = str(uuid.uuid4()).upper()
@@ -1037,6 +1041,7 @@ def __MTDSIX__(ids, names, passlist, total_ids):
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
             user_agent = mls6()
+            warna = random.choice(my_color)
             adid = str(uuid.uuid4()).upper()
             device_id = str(uuid.uuid4()).upper()
             family_device_id = str(uuid.uuid4()).upper()
