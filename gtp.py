@@ -530,7 +530,7 @@ def m1(ids,pwv):
                 if 'y' in cp_xdx:
                  print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{pas}')
                  open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'|'+'\n')
-                 cp.append(uid)
+                 cp+=1
             else:
                 continue
         loop+=1
