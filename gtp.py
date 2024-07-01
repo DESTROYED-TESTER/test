@@ -129,7 +129,7 @@ except ValueError:exit()
 bulan = sasi[xx]
 tahun = now.year
 os.system('')
-today = '\x1b[38;5;160m'+str(hari)+'\033[1;97m-\x1b[38;5;160m'+str(bulan)+'\033[1;97m-\x1b[38;5;160m'+str(tahun)
+today = '\033[1;36m'+str(hari)+'\033[1;97m-\033[1;36m'+str(bulan)+'\033[1;97m-\033[1;36m'+str(tahun)
 #--------------------------------[METHOD 1]--------------------------------#
 #_method_1_buffer = BytesIO()
 #_method_1_curl = pycurl.Curl()
@@ -233,7 +233,7 @@ def ____banner____():
   / /_|  __/ |  | |_| |  >  <| |__| |
  /_____\___|_|   \___/  /_/\_\_____/ 
                                      
-{faltu} {black}Your self-worth is determined by you... {pvt}{rad}{today} 
+{faltu} {black}Your self-worth is determined by you... {pvt}\033[38;5;196m :{today} 
 {rad}[{white}🔖{rad}] {yelloww}ONWER AND CEO {white}▶︎ {yelloww}𝐜𝐡𝐨𝐲𝐨𝐧 {rad}𝐗 {yelloww}𝐬𝐮𝐦𝐨𝐧
 {rad}[{white}🔖{rad}] {green}VERSION \033[38;5;196m  :\x1b[38;1;97m 109.0.5.0.3
 {rad}[{white}🔖{rad}] {green}TOOL FILE & RANDOM TYPES
