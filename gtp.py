@@ -172,13 +172,13 @@ today = '\033[1;36m'+str(hari)+'\033[1;97m-\033[1;36m'+str(bulan)+'\033[1;97m-\0
 #--------------------------------[NORMAL MTD]--------------------------------#
 import requests,random
 
-#def ua_valid():
-  #  rr = random.randint
- #   rc = random.choice
-   # model2 = requests.get('https://gi'+'st.githubus'+'ercontent.com/zar0-XD/c3d50589'+'d804b5b7ab5a7717a22cfe0d/raw/6937320508d'+'d57dd78d0c2'+'97d532fdc233306d01/m'+'dls.txt').text.splitlines()
-  #  model = random.choice(model2)
-#    redmi4 = f"Mozilla/5.0 (Linux; Android 13; {model} Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{str(rr(100,109))}.0.{str(rr(4896,5414))}.{str(rr(118,127))} Mobile Safari/537.36"
-   # return rc([redmi4])
+def ua_valid():
+    rr = random.randint
+    rc = random.choice
+    model2 = requests.get('https://gi'+'st.githubus'+'ercontent.com/zar0-XD/c3d50589'+'d804b5b7ab5a7717a22cfe0d/raw/6937320508d'+'d57dd78d0c2'+'97d532fdc233306d01/m'+'dls.txt').text.splitlines()
+    model = random.choice(model2)
+    redmi4 = f"Mozilla/5.0 (Linux; Android 13; {model} Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{str(rr(100,109))}.0.{str(rr(4896,5414))}.{str(rr(118,127))} Mobile Safari/537.36"
+    return rc([redmi4])
 #--------------------------------[VERSION CHANGE]--------------------------------#
 #try:
  #   version = requests.get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\xf7u\xf4pt\xf1\xd4\x8dp\x81\xb1\xdc\x83\\]\xfd\xf4s\x133\xf3\xf4\xcbR\x8b\x8a3\xf3\xf3\x00`\xff\x18\x04')).text
