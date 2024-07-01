@@ -236,7 +236,7 @@ def ____banner____():
 {faltu} {black}Your self-worth is determined by you... {pvt}\033[38;5;196m :{today} 
 {rad}[{white}🔖{rad}] {yelloww}ONWER AND CEO {white}▶︎ {yelloww}𝐜𝐡𝐨𝐲𝐨𝐧 {rad}𝐗 {yelloww}𝐬𝐮𝐦𝐨𝐧
 {rad}[{white}🔖{rad}] {green}VERSION \033[38;5;196m  :\x1b[38;1;97m 109.0.5.0.3
-{rad}[{white}🔖{rad}] {green}TOOL FILE & RANDOM TYPES
+{rad}[{white}🔖{rad}] {green}THIS TOOL FILE & RANDOM TYPES
 {puti}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 def fuckxd():
