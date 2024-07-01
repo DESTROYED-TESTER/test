@@ -523,7 +523,7 @@ def __FILEX__():
     with ThreadPool(max_workers=30) as zar0:
         ____banner____();total_ids = str(len(dx))
         print(f'{rad}[{white}🔖{rad}] {green}TOTAL IDS  {white}▶︎ \x1b[38;5;38m{total_ids}{rad}┼{green}METHOD {white}▶︎ \x1b[38;5;38m{__METHOD__}')
-        print(f'{rad}[{white}🔖{rad}] {green}IF NO RESULT [{white}On/Off{green}] AIRPLANE MODE')
+        print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' )
         linex()
         for user in dx:
             ids,names = user.split('|')
