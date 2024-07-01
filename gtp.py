@@ -287,7 +287,9 @@ def zar0():
 #━━━━[ SELECT MENU ]━━━━#
 def SETINGX():
     ____banner____()
-    print(f"{cyan}▁▂▄▅▆{green}[{white}A{green}] {white}> {yellow}BD {green}[{white}B{green}] >{cyan} INDIA {green}[{white}C{green}] > {purple}PAK{cyan}▆▅▄▂▁");linex()
+    print(f"{K} [{H}1{K}] {WHITE}RANDOM WITH BANGLADESH")
+    print(f"{K} [{H}2{K}] {WHITE}RANDOM WITH INDIA")
+    print(f"{K} [{H}3{K}] {WHITE}RANDOM WITH ALL COUNTRY");linex()
     __zar0i__ = input(f'{rad}[{white}◆{rad}]{green} SELECTION  {white}▶︎ {yelloww}')
     if __zar0i__ in ['A','a','01','1']:RANDOM()
     elif __zar0i__ in ['B','b','02','2']:INDIA()
