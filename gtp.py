@@ -528,9 +528,9 @@ def m1(ids,pwv):
                 coki1 = coki.split("1000")[1]
                 uid = "1000"+coki1[0:11]
                 if 'y' in cp_xdx:
-                print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{pas}')
-                open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'|'+'\n')
-                cp.append(uid)
+                 print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{pas}')
+                 open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'|'+'\n')
+                 cp.append(uid)
             else:
                 continue
         loop+=1
