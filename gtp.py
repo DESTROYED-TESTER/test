@@ -129,7 +129,7 @@ except ValueError:exit()
 bulan = sasi[xx]
 tahun = now.year
 os.system('')
-today = '\x1b[38;5;46m'+str(hari)+'\033[1;97m-\x1b[38;5;46m'+str(bulan)+'\x1b[38;5;46m'+str(tahun)
+today = '\x1b[38;5;160m'+str(hari)+'\033[1;97m-\x1b[38;5;160m'+str(bulan)+'\033[1;97m-\x1b[38;5;160m'+str(tahun)
 #--------------------------------[METHOD 1]--------------------------------#
 #_method_1_buffer = BytesIO()
 #_method_1_curl = pycurl.Curl()
