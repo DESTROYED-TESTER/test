@@ -134,7 +134,7 @@ _method_1_data = _method_1_buffer.getvalue().decode('utf-8').splitlines()
 def mls1():
     END = ''.join(_method_1_data)
     ffx = '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';' + END
-    #return ffx
+    return ffx
 #--------------------------------[METHOD 2]--------------------------------#
 _method_2_buffer = BytesIO()
 _method_2_curl = pycurl.Curl()
