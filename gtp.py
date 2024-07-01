@@ -216,6 +216,8 @@ samsung = random.choice(['SM-G920F','NRD90M', 'SM-T535','LRX22G', 'SM-T231','KOT
 # \x1b[38;5;41m
 # \x1b[38;5;42m
 # \x1b[38;5;43m
+def clear():
+  os.system('clear')
 def ____banner____():
     if "win" in sys.platform:os.system("cls")
     else:os.system("clear")
