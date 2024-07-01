@@ -528,17 +528,17 @@ def __FILEX__():
         for user in dx:
             ids,names = user.split('|')
             passlist = dplist
-            if __METHOD__ in ["A","a"]:
+            if __METHOD__ in ["A","a","1","01"]:
                 zar0.submit(__MTDONEE__,ids,names,passlist,total_ids)
-            elif __METHOD__ in ["B","b"]:
+            elif __METHOD__ in ["B","b","2","02"]:
                 zar0.submit(__MTDTWOO__,ids,names,passlist,total_ids)
-            elif __METHOD__ in ["C","c"]:
+            elif __METHOD__ in ["C","c","3","03"]:
                 zar0.submit(__MTDTHREE__,ids,names,passlist,total_ids)
-            elif __METHOD__ in ["D","d"]:
+            elif __METHOD__ in ["D","d","4","04"]:
                 zar0.submit(__MTDFOUR__,ids,names,passlist,total_ids)
-            elif __METHOD__ in ["E","e"]:
+            elif __METHOD__ in ["E","e","5","05"]:
                 zar0.submit(__MTDFIVE__,ids,names,passlist,total_ids)
-            elif __METHOD__ in ["F","f"]:
+            elif __METHOD__ in ["F","f","6","06"]:
                 zar0.submit(__MTDSIX__,ids,names,passlist,total_ids)
             else:
                 zar0.submit(__MTDONEE__,ids,names,passlist,total_ids)
