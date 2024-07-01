@@ -377,7 +377,8 @@ def PAKISTAN():
 #━━━━[ METHOD API ]━━━━#
 def __API__(ids,passlist,tl,ck):
     global loop,oks,cps
-    sys.stdout.write(f"\r{rad}[{green}{today}{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]"),
+    animasi = random.choice(["\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0","\x1b[1;97mzar0","\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0"])
+    sys.stdout.write(f"\r{rad}[{animasi}-{H}M2{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]"),
     sys.stdout.flush()
     session=requests.Session()
     ua = ua_valid()
