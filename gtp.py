@@ -126,7 +126,7 @@ today = '\033[1;36m'+str(hari)+'\033[1;97m-\033[1;36m'+str(bulan)+'\033[1;97m-\0
 #--------------------------------[METHOD 1]--------------------------------#
 _method_1_buffer = BytesIO()
 _method_1_curl = pycurl.Curl()
-_method_1_curl.setopt(pycurl.URL, 'https://raw.githubus'+'ercontent.com/J'+'XD'+'88'+'8/UA'+'X.txt/ma'+'in/M'+'1.txt')
+_method_1_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot1.txt')
 _method_1_curl.setopt(pycurl.WRITEDATA, _method_1_buffer)
 _method_1_curl.perform()
 _method_1_data = _method_1_buffer.getvalue().decode('utf-8').splitlines()
@@ -137,7 +137,7 @@ def mls1():
 #--------------------------------[METHOD 2]--------------------------------#
 _method_2_buffer = BytesIO()
 _method_2_curl = pycurl.Curl()
-_method_2_curl.setopt(pycurl.URL, 'https://raw.githubus'+'ercontent.com/J'+'XD'+'88'+'8/UA'+'X.txt/ma'+'in/M'+'2.txt')
+_method_2_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot2.txt')
 _method_2_curl.setopt(pycurl.WRITEDATA, _method_2_buffer)
 _method_2_curl.perform()
 _method_2_data = _method_2_buffer.getvalue().decode('utf-8').splitlines()
@@ -148,7 +148,7 @@ def mls2():
 #--------------------------------[METHOD 3]--------------------------------#
 _method_3_buffer = BytesIO()
 _method_3_curl = pycurl.Curl()
-_method_3_curl.setopt(pycurl.URL, 'https://raw.githubus'+'ercontent.com/J'+'XD'+'88'+'8/UA'+'X.txt/ma'+'in/M'+'3.txt')
+_method_3_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot3.txt')
 _method_3_curl.setopt(pycurl.WRITEDATA, _method_3_buffer)
 _method_3_curl.perform()
 _method_3_data = _method_3_buffer.getvalue().decode('utf-8').splitlines()
@@ -159,7 +159,7 @@ def mls3():
 #--------------------------------[METHOD 4]--------------------------------#
 _method_4_buffer = BytesIO()
 _method_4_curl = pycurl.Curl()
-_method_4_curl.setopt(pycurl.URL, 'https://raw.githubus'+'ercontent.com/J'+'XD'+'88'+'8/UA'+'X.txt/ma'+'in/M'+'4.txt')
+_method_4_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot4.txt')
 _method_4_curl.setopt(pycurl.WRITEDATA, _method_4_buffer)
 _method_4_curl.perform()
 _method_4_data = _method_4_buffer.getvalue().decode('utf-8').splitlines()
@@ -170,7 +170,7 @@ def mls4():
 #--------------------------------[METHOD 5]--------------------------------#
 _method_5_buffer = BytesIO()
 _method_5_curl = pycurl.Curl()
-_method_5_curl.setopt(pycurl.URL, 'https://raw.githubus'+'ercontent.com/J'+'XD'+'88'+'8/UA'+'X.txt/ma'+'in/M'+'5.txt')
+_method_5_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot5.txt')
 _method_5_curl.setopt(pycurl.WRITEDATA, _method_5_buffer)
 _method_5_curl.perform()
 _method_5_data = _method_5_buffer.getvalue().decode('utf-8').splitlines()
@@ -181,7 +181,7 @@ def mls5():
 #--------------------------------[METHOD 6]--------------------------------#
 _method_6_buffer = BytesIO()
 _method_6_curl = pycurl.Curl()
-_method_6_curl.setopt(pycurl.URL, 'https://raw.githubus'+'ercontent.com/J'+'XD'+'88'+'8/UA'+'X.txt/ma'+'in/M'+'6.txt')
+_method_6_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot6.txt')
 _method_6_curl.setopt(pycurl.WRITEDATA, _method_6_buffer)
 _method_6_curl.perform()
 _method_6_data = _method_6_buffer.getvalue().decode('utf-8').splitlines()
