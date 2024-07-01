@@ -2,6 +2,7 @@ import os
 import uuid,base64,hashlib,zlib,subprocess,time,platform
 import bs4,json,sys,time,random,re,subprocess,platform,struct,string,uuid,base64,zlib
 from bs4 import BeautifulSoup
+from io import BytesIO
 from bs4 import BeautifulSoup as sop
 import _socket, ssl, certifi
 from concurrent.futures import ThreadPoolExecutor as tred
