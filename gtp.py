@@ -129,7 +129,7 @@ except ValueError:exit()
 bulan = sasi[xx]
 tahun = now.year
 os.system('')
-today = '\x1b[38;5;46m'+str(hari)+'\033[1;97m-\x1b[38;5;46m'+str(bulan)+''
+today = '\x1b[38;5;46m'+str(hari)+'\033[1;97m-\x1b[38;5;46m'+str(bulan)+'\x1b[38;5;46m'+str(tahun)
 #--------------------------------[METHOD 1]--------------------------------#
 #_method_1_buffer = BytesIO()
 #_method_1_curl = pycurl.Curl()
@@ -232,7 +232,7 @@ def ____banner____():
    / / / _ \ '__| | | | \ \/ / |  | |
   / /_|  __/ |  | |_| |  >  <| |__| |
  /_____\___|_|   \___/  /_/\_\_____/ 
-                                     {rad}♻️ 
+                                     {rad}{today} 
 {faltu} {black}Your self-worth is determined by you... {pvt}
 {rad}[{white}🔖{rad}] {yelloww}ONWER AND CEO {white}▶︎ {yelloww}𝐜𝐡𝐨𝐲𝐨𝐧 {rad}𝐗 {yelloww}𝐬𝐮𝐦𝐨𝐧
 {rad}[{white}🔖{rad}] {green}VERSION \033[38;5;196m  :\x1b[38;1;97m 109.0.5.0.3
