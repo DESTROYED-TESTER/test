@@ -325,7 +325,7 @@ def RANDOM():
 #━━━━[ INDIAN RANDOM ]━━━━#
 def INDIA():
   user=[]
-  os.system('clear');banner();print(c7);print(led)
+  os.system('clear');____banner____();print(c7);print(led)
   kode = input(f'{dot}SELECT CODE {M}: {H}');print(led);print(limitt);print(led)
   limit = int(input(f'{dot}ENTER LIMIT {M}: {H}'));print(led)
   xd_cp=input(f'{wt}SHOW CP ACCOUNT  {M}?{P} [{H}Y{P}/{K}N{P}] {M}:{H} ')
