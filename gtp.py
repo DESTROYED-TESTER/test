@@ -140,7 +140,7 @@ def mls3():
 _method_4_buffer = BytesIO()
 _method_4_curl = pycurl.Curl()
 _method_4_curl.setopt(pycurl.URL, 'https://raw.githubus'+'ercontent.com/J'+'XD'+'88'+'8/UA'+'X.txt/ma'+'in/M'+'4.txt')
-_method_4_curl.setopt(pycurl.WRITEDATA, #_method_4_buffer)
+_method_4_curl.setopt(pycurl.WRITEDATA, _method_4_buffer)
 _method_4_curl.perform()
 _method_4_data = _method_4_buffer.getvalue().decode('utf-8').splitlines()
 def mls4():
