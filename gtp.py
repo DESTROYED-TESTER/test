@@ -295,11 +295,11 @@ class Process:
 #━━━━[ MAIN ]━━━━#
 def zar0():
     ____banner____()
-    print(f'{rad}[{white}A{rad}] {green}KEEP ON FILE CLONE')
-    print(f'{rad}[{white}B{rad}] {green}MAKE IT FILES')
-    print(f'{rad}[{white}C{rad}] {green}KEEP ON RANDOM CLONE')
-    print(f'{rad}[{white}C{rad}] {green}JOIN GROUP')
-    print(f'{rad}[{white}C{rad}] {green}CONTRACK ADMIN');linex()
+    print(f'{rad}[{white}A{rad}] {rad}[{white}1{rad}] {green}KEEP ON FILE CLONE')
+    print(f'{rad}[{white}B{rad}] {rad}[{white}2{rad}] {green}MAKE IT FILES')
+    print(f'{rad}[{white}C{rad}] {rad}[{white}3{rad}] {green}KEEP ON RANDOM CLONE')
+    print(f'{rad}[{white}D{rad}] {rad}[{white}4{rad}] {green}JOIN GROUP')
+    print(f'{rad}[{white}E{rad}] {rad}[{white}5{rad}] {green}CONTRACK ADMIN');linex()
     __zar0__ = input(f'{rad}[{white}🔖{rad}] {green}Selection  {white}▶︎ {yelloww}')
     if __zar0__ in ['A','a','01','1']:__FILEX__()
     elif __zar0__ in ['B','b','02','2']:os.system('python3 FILE-DUMP.py')
