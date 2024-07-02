@@ -1340,7 +1340,7 @@ def Subscraption():
 	r1=requests.get("https://github.com/ATONxSMILE404/APPRO/blob/main/Approve.txt").text
 	if Key2 in r1:
 		os.system('clear')
-		mainx() 
+		#mainx() 
 	else:
 		os.system("clear")
 		print("""\033[38;5;33m
