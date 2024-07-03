@@ -317,6 +317,33 @@ def sexua():
     user_agent = f"[FBAN/EMA;FBBV/{xx};FBAV/{x};FBDV/{mobile_model};FBSV/12;FBCX/notifications_push_client_sync_graphql;FBDM/{{density=2.0}}]"
     return user_agent
 
+
+def useragent():
+    fbks=(f'com.facebook.adsmanager','com.facebook.lite','com.facebook.orca','com.facebook.katana','com.facebook.mlite')
+    enCRACK1 = ['en_GB','en_US']
+    CRACKfban1 = [ 'MessengerLite', 'MobileAdsManagerAndroid', 'Orca-Android', 'FB4A', 'FB4A']
+    CRACKsim1 = [ 'MTN', 'AWCC', 'Roshan', 'Zong','Jazz','Etisalat','null','','']
+    modelxxx =  ["2201116SI", "M2012K11AI", "22011119TI", "21091116UI", "M2102K1AC", "M2012K11I", "22041219I", "22041216I", "2203121C", "2106118C", "2201123G", "2203129G", "2201122G", "2201122C", "2206122SC", "22081212C", "2112123AG", "2112123AC", "2109119BC", "M2002J9G", "M2007J1SC", "M2007J17I", "M2102J2SC", "M2007J3SY", "M2007J17G", "M2007J3SG", "M2011K2G", "M2101K9AG ", "M2101K9R", "2109119DG", "M2101K9G", "2109119DI", "M2012K11G", "M2102K1G", "21081111RG", "2107113SG", "21051182G", "M2105K81AC", "M2105K81C", "21061119DG", "21121119SG", "22011119UY", "21061119AG", "21061119AL", "22041219NY", "22041219G", "21061119BI", "220233L2G", "220233L2I", "220333QNY", "220333QAG", "M2004J7AC", "M2004J7BC", "M2004J19C", "M2006C3MII", "M2010J19SI", "M2006C3LG", "M2006C3LVG", "M2006C3MG", "M2006C3MT", "M2006C3MNG", "M2006C3LII", "M2010J19SL", "M2010J19SG", "M2010J19SY", "M2012K11AC", "M2012K10C", "M2012K11C", "22021211RC"]
+    gtt =random.choice(modelxxx)
+    android_version=str(random.randrange(6,13))
+    fbav = str(random.randint(111,111))+'.'+str(random.randint(111,999))+'.'+str(random.randint(111,999))+'.'+str(random.randint(111,999))
+    
+    fbbv = str(random.randint(111111111,999999999))
+    
+    lc = random.choice(enCRACK1)
+    cr = random.choice(CRACKsim1)
+    CRACK_ua = f'[FBAN/FB4A;FBAV/{fbav};FBBV/{fbbv};FBDM/{{density=3.0,width=1280,height=1440}};FBLC/{lc};FBRV/0;FBCR/{cr};FBMF/Xiaomi;FBBD/Xiaomi;FBPN/com.facebook.katana;FBDV/{gtt};FBSV/{android_version};FBOP/19;FBCA/armeabi-v7a:armeabi;]'
+    return CRACK_ua
+
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+def agen():
+    x = str(random.randint(11,999))+".0.0."+str(random.randint(11,99))+"."+str(random.randint(11,99))
+    xx = ''.join(str(random.randint(0, 9)) for _ in range(8))
+    agent = '[FBAN/FB4A;FBAV/106.0.0.26.68;FBBV/45904160;FBDM/{density=3.0,width=1080,height=1920};FBLC/en_US;FBRV/45904160;FBCR/ethan bhai;FBMF/SamsungTablet;FBBD/SamsungTablet;FBPN/com.facebook.katana;FBDV/GT-P3105;FBSV/5.0;FBOP/1;FBCA/x86:armeabi-v7a;]'
+    user_agentt = f'Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {random.choice(model2)} Build/TP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ' + agent
+    return user_agentt
+import string
+
 def mainx2():
 	mainx()
 ATOM="ATOM-"
