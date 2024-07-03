@@ -1556,7 +1556,7 @@ def m8(idf,pwv):
             device_id = str(uuid.uuid4())
             adid = str(uuid.uuid4())
             accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
-            useragent = str(agefn())
+            useragent = str(sexua())
             data = {
             'adid':adid,
             'format':'json',
