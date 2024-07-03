@@ -335,14 +335,13 @@ def useragent():
     CRACK_ua = f'[FBAN/FB4A;FBAV/{fbav};FBBV/{fbbv};FBDM/{{density=3.0,width=1280,height=1440}};FBLC/{lc};FBRV/0;FBCR/{cr};FBMF/Xiaomi;FBBD/Xiaomi;FBPN/com.facebook.katana;FBDV/{gtt};FBSV/{android_version};FBOP/19;FBCA/armeabi-v7a:armeabi;]'
     return CRACK_ua
 
-#-----------------------------------------------------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------ua tester and permanent---------------------------------------------------------------------------------------------
 def agen():
     x = str(random.randint(11,999))+".0.0."+str(random.randint(11,99))+"."+str(random.randint(11,99))
     xx = ''.join(str(random.randint(0, 9)) for _ in range(8))
-    agent = '[FBAN/FB4A;FBAV/106.0.0.26.68;FBBV/45904160;FBDM/{density=3.0,width=1080,height=1920};FBLC/en_US;FBRV/45904160;FBCR/ethan bhai;FBMF/SamsungTablet;FBBD/SamsungTablet;FBPN/com.facebook.katana;FBDV/GT-P3105;FBSV/5.0;FBOP/1;FBCA/x86:armeabi-v7a;]'
+    agent = '[FBAN/FB4A;FBAV/81.0.0.22.70;FBBV/31880433;FBDM/{density=1.5,width=480,height=800};FBLC/es_LA;FBCR/Movistar;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G316M;FBSV/4.4.4;FBOP/1;FBCA/armeabi-v7a:armeabi;]'
     user_agentt = f'Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {random.choice(model2)} Build/TP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ' + agent
     return user_agentt
-import string
 
 def mainx2():
 	mainx()
@@ -1557,7 +1556,7 @@ def m8(idf,pwv):
             device_id = str(uuid.uuid4())
             adid = str(uuid.uuid4())
             accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
-            useragent = str(ua_api())
+            useragent = str(agen())
             data = {
             'adid':adid,
             'format':'json',
