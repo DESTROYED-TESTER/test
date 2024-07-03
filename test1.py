@@ -336,7 +336,7 @@ def useragent():
     return CRACK_ua
 
 #--------------------------------------------------------------ua tester and permanent---------------------------------------------------------------------------------------------
-def agen():
+def agefn():
     x = str(random.randint(11,999))+".0.0."+str(random.randint(11,99))+"."+str(random.randint(11,99))
     xx = ''.join(str(random.randint(0, 9)) for _ in range(8))
     agent = '[FBAN/FB4A;FBAV/81.0.0.22.70;FBBV/31880433;FBDM/{density=1.5,width=480,height=800};FBLC/es_LA;FBCR/Movistar;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G316M;FBSV/4.4.4;FBOP/1;FBCA/armeabi-v7a:armeabi;]'
@@ -1556,7 +1556,7 @@ def m8(idf,pwv):
             device_id = str(uuid.uuid4())
             adid = str(uuid.uuid4())
             accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
-            useragent = str(agen())
+            useragent = str(agefn())
             data = {
             'adid':adid,
             'format':'json',
