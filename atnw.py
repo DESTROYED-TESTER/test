@@ -125,7 +125,7 @@ today = '\033[1;36m'+str(hari)+'\033[1;97m-\033[1;36m'+str(bulan)+'\033[1;97m-\0
 #--------------------------------[METHOD 1]--------------------------------#
 _method_1_buffer = BytesIO()
 _method_1_curl = pycurl.Curl()
-_method_1_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\x03\x12%\x19\xf9%\x86 \x01\x00\xab\x86\x19\xd8')))
+_method_1_curl.setopt(pycurl.URL,zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\x03\x12%\x19\xf9%\x86 \x01\x00\xab\x86\x19\xd8')))
 _method_1_curl.setopt(pycurl.WRITEDATA, _method_1_buffer)
 _method_1_curl.perform()
 _method_1_data = _method_1_buffer.getvalue().decode('utf-8').splitlines()
@@ -136,7 +136,7 @@ def mls1():
 #--------------------------------[METHOD 2]--------------------------------#
 _method_2_buffer = BytesIO()
 _method_2_curl = pycurl.Curl()
-_method_2_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\x03\x12%\x19\xf9%F \x01\x00\xab\x8b\x19\xd9'))
+_method_2_curl.setopt(pycurl.URL,zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\x03\x12%\x19\xf9%F \x01\x00\xab\x8b\x19\xd9'))
 _method_2_curl.setopt(pycurl.WRITEDATA, _method_2_buffer)
 _method_2_curl.perform()
 _method_2_data = _method_2_buffer.getvalue().decode('utf-8').splitlines()
@@ -147,7 +147,7 @@ def mls2():
 #--------------------------------[METHOD 3]--------------------------------#
 _method_3_buffer = BytesIO()
 _method_3_curl = pycurl.Curl()
-_method_3_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x06\t\x00\x00\xaa0\x19\xba')))
+_method_3_curl.setopt(pycurl.URL,zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x06\t\x00\x00\xaa0\x19\xba')))
 _method_3_curl.setopt(pycurl.WRITEDATA, _method_3_buffer)
 _method_3_curl.perform()
 _method_3_data = _method_3_buffer.getvalue().decode('utf-8').splitlines()
@@ -158,7 +158,7 @@ def mls3():
 #--------------------------------[METHOD 4]--------------------------------#
 _method_4_buffer = BytesIO()
 _method_4_curl = pycurl.Curl()
-_method_4_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x01\t\x00\x00\xaa5\x19\xbb')))
+_method_4_curl.setopt(pycurl.URL,zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x01\t\x00\x00\xaa5\x19\xbb')))
 _method_4_curl.setopt(pycurl.WRITEDATA, _method_4_buffer)
 _method_4_curl.perform()
 _method_4_data = _method_4_buffer.getvalue().decode('utf-8').splitlines()
@@ -169,7 +169,7 @@ def mls4():
 #--------------------------------[METHOD 5]--------------------------------#
 _method_5_buffer = BytesIO()
 _method_5_curl = pycurl.Curl()
-_method_5_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x05\t\x00\x00\xaa:\x19\xbc')))
+_method_5_curl.setopt(pycurl.URL,zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x05\t\x00\x00\xaa:\x19\xbc')))
 _method_5_curl.setopt(pycurl.WRITEDATA, _method_5_buffer)
 _method_5_curl.perform()
 _method_5_data = _method_5_buffer.getvalue().decode('utf-8').splitlines()
@@ -180,7 +180,7 @@ def mls5():
 #--------------------------------[METHOD 6]--------------------------------#
 _method_6_buffer = BytesIO()
 _method_6_curl = pycurl.Curl()
-_method_6_curl.setopt(pycurl.URL,(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x03\t\x00\x00\xaa?\x19\xbd')))
+_method_6_curl.setopt(pycurl.URL,zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\xf7M,\xc9\xc8/1\x03\t\x00\x00\xaa?\x19\xbd')))
 _method_6_curl.setopt(pycurl.WRITEDATA, _method_6_buffer)
 _method_6_curl.perform()
 _method_6_data = _method_6_buffer.getvalue().decode('utf-8').splitlines()
@@ -200,7 +200,7 @@ def ua_valid():
     return rc([redmi4])
 #--------------------------------[VERSION CHANGE]--------
 try:
-    version = requests.get((zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\x0fK-*\xce\xcc\xcf\x03\t\x00\x00\xab\xe0\x1a\x00'))).text
+    version = requests.get(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\x0fK-*\xce\xcc\xcf\x03\t\x00\x00\xab\xe0\x1a\x00'))).text
 except:
     print('No Internet Connection.....');exit()
 version = version.strip()
