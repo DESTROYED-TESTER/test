@@ -910,22 +910,27 @@ def m7(ids,pwv):
             "method": "auth.login",
             "fb_api_req_friendly_name": "authenticate",
             "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler"}
-            update={ "method": 'GET',                                        
-            "path": '/',
-            "scheme": 'https', 
-            "authority": 'p.facebook.com',
-            "accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            "accept-language": 'en-US,en;q=0.9',
-            "cache-control": 'max-age=0',
-            "sec-ch-ua": '"Chromium";v="111", "Not(A:Brand";v="8"',
-            "sec-ch-ua-mobile": '?1',
-            "sec-ch-ua-platform": '"Android"',
-            "sec-fetch-dest": 'document',
-            "sec-fetch-mode": 'navigate',
-            "sec-fetch-site": 'none',
-            "sec-fetch-user": '?1',
-            "upgrade-insecure-requests": '1',
-            "user-agent": 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1',}
+            update={
+            'Authorization':f'OAuth {accessToken}',
+            "X-FB-Connection-Type": "mobile.CTRadioAccessTechnologyLTE",
+            "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
+            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
+            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
+            'X-FB-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+            'X-FB-device-group': str(random.randint(2000, 4000)),
+            "X-FB-Friendly-Name": "ViewerReactionsMutation",
+            "X-FB-Request-Analytics-Tags": "graphservice",
+            'X-FB-Friendly-Name':'authenticate',
+            'X-FB-Connection-Type':'unknown',
+            'X-FB-connection-quality':'EXCELLENT',
+            "X-Tigon-Is-Retry": "False",
+            'User-Agent':useragent,
+            "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
+            'Accept-Encoding':'gzip, deflate',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            "X-FB-Client-IP": "True",
+            "X-FB-Server-Cluster": "True",
+            'X-FB-HTTP-Engine': 'Liger'}
             url = 'https://p.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q or 'session_key' in q:
@@ -987,21 +992,18 @@ def m8(ids,pwv):
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
             update={
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-User': '?1',
-            'Sec-Fetch-Dest': 'document',
-            'Cache-Control': 'max-age=0',
-            'Referer': 'https://mbasic.beta.facebook.com/',
-            'DNT': '1',
-            'Pragma': 'no-cache',
-            'TE': 'Trailers', }
+            "User-Agent": uax,
+            "Authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32", # --> Use App ID|Token/Sig
+            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
+            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
+            "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
+            "X-FB-Connection-Quality": "EXCELLENT",
+            "X-FB-Connection-Type": "MOBILE.LTE",
+            "X-FB-HTTP-Engine": "Liger",
+            'X-FB-Client-IP': 'True',
+            "X-FB-Friendly-Name": "authenticate",
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Length": str(len(content_lenght))}
             url = 'https://m.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
