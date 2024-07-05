@@ -1005,24 +1005,23 @@ def m8(ids,pwv):
             'fb_api_req_friendly_name':'authenticate',
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            update={'User-Agent':ua,
-            'Accept-Encoding':'gzip, deflate',
-            'Connection':'close',
-            'Content-Type':'application/x-www-form-urlencoded',
-            'Host':'graph.facebook.com',
-            'X-FB-Net-HNI':str(random.randint(2e4, 4e4)),
-            'X-FB-SIM-HNI':str(random.randint(2e4, 4e4)),
-            'Authorization':'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-Connection-Type':'WIFI',
-            'X-Tigon-Is-Retry':'False',
-            'x-fb-session-id':'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-            'x-fb-device-group':'5120',
-            'X-FB-Friendly-Name':'ViewerReactionsMutation',
-            'X-FB-Request-Analytics-Tags':'graphservice',
-            'X-FB-HTTP-Engine':'Liger',
-            'X-FB-Client-IP':'True',
-            'X-FB-Server-Cluster':'True',
-            'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
+            update={
+            "method": 'GET', 
+            "path": '/',
+            "scheme": 'https', 
+            "authority": 'p.facebook.com',
+            "accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            "accept-language": 'en-US,en;q=0.9',
+            "cache-control": 'max-age=0',
+            "sec-ch-ua": '"Chromium";v="111", "Not(A:Brand";v="8"',
+            "sec-ch-ua-mobile": '?1',
+            "sec-ch-ua-platform": '"Android"',
+            "sec-fetch-dest": 'document',
+            "sec-fetch-mode": 'navigate',
+            "sec-fetch-site": 'none',
+            "sec-fetch-user": '?1',
+            "upgrade-insecure-requests": '1',
+            "user-agent": 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1',}
             url = 'https://p.facebook.com/method/auth.login'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
