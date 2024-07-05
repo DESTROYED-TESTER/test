@@ -991,7 +991,7 @@ def m8(ids,pwv):
             'fb_api_req_friendly_name':'authenticate',
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            update={'User-Agent':uax,
+            update={'User-Agent':'Mozilla/5.0 (Linux; Android 12; CPH2135 Build/RKQ1.211119.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/123.0.6312.40 Mobile Safari/537.36 [FBAN/FB4A;FBAV/457.0.0.54.84;FBBV/581722142;FBDM/{density=2.0,width=720,height=1440};FBLC/fr_FR;FBRV/0;FB_FW/2;FBCR/Digicel-F;FBMF/OPPO;FBBD/OPPO;FBPN/com.facebook.katana;FBDV/CPH2135;FBSV/12;FBOP/1;FBCA/arm64-v8a:;]',
             'Accept-Encoding':'gzip, deflate',
             'Connection':'close',
             'Content-Type':'application/x-www-form-urlencoded',
