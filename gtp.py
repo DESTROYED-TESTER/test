@@ -230,49 +230,22 @@ def ua():
     rx=random.randrange(1, 999)
     xx=f"Mozilla/5.0 (Wi    ndows NT 10.0; {str(rr(9,11))}; Win64; x64){str(aZ)}{str(rx)}{str(aZ)}) AppleWebKit/537.36 (KHTML, like Gecko){str(rr(99,149))}.0.{str(rr(4500,4999))}.{str(rr(35,99))} Chrome/{str(rr(99,175))}.0.{str(rr(0,5))}.{str(rr(0,5))} Safari/537.36"
     return xx
-def facebook_agent():
-    android_versions = ['10', '11', '12']
+def useragent():
+    fbks=(f'com.facebook.adsmanager','com.facebook.lite','com.facebook.orca','com.facebook.katana','com.facebook.mlite')
+    enCRACK1 = ['en_GB','en_US']
+    CRACKfban1 = [ 'MessengerLite', 'MobileAdsManagerAndroid', 'Orca-Android', 'FB4A', 'FB4A']
+    CRACKsim1 = [ 'MTN', 'AWCC', 'Roshan', 'Zong','Jazz','Etisalat','null','','']
+    modelxxx =  ["2201116SI", "M2012K11AI", "22011119TI", "21091116UI", "M2102K1AC", "M2012K11I", "22041219I", "22041216I", "2203121C", "2106118C", "2201123G", "2203129G", "2201122G", "2201122C", "2206122SC", "22081212C", "2112123AG", "2112123AC", "2109119BC", "M2002J9G", "M2007J1SC", "M2007J17I", "M2102J2SC", "M2007J3SY", "M2007J17G", "M2007J3SG", "M2011K2G", "M2101K9AG ", "M2101K9R", "2109119DG", "M2101K9G", "2109119DI", "M2012K11G", "M2102K1G", "21081111RG", "2107113SG", "21051182G", "M2105K81AC", "M2105K81C", "21061119DG", "21121119SG", "22011119UY", "21061119AG", "21061119AL", "22041219NY", "22041219G", "21061119BI", "220233L2G", "220233L2I", "220333QNY", "220333QAG", "M2004J7AC", "M2004J7BC", "M2004J19C", "M2006C3MII", "M2010J19SI", "M2006C3LG", "M2006C3LVG", "M2006C3MG", "M2006C3MT", "M2006C3MNG", "M2006C3LII", "M2010J19SL", "M2010J19SG", "M2010J19SY", "M2012K11AC", "M2012K10C", "M2012K11C", "22021211RC"]
+    gtt =random.choice(modelxxx)
+    android_version=str(random.randrange(6,13))
+    fbav = str(random.randint(111,111))+'.'+str(random.randint(111,999))+'.'+str(random.randint(111,999))+'.'+str(random.randint(111,999))
     
-    # List of popular Android device models
-    mobile_models = [
-        'Samsung Galaxy S21', 'Google Pixel 5', 'OnePlus 9', 'Xiaomi Mi 11',
-        'LG V60 ThinQ', 'Sony Xperia 1 II', 'Huawei P40 Pro', 'Motorola Edge+', 'Nokia 8.3'
-        # Add more models here
-    ]
+    fbbv = str(random.randint(111111111,999999999))
     
-    android_version = random.choice(android_versions)
-    mobile_model = random.choice(mobile_models)
-    
-    # Build number format TP1A.<random number>.<random number>
-    build_number = f"TP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}"
-    
-    # Random screen density, width, and height
-    density = random.choice(['1.5', '2.0', '2.5', '3.0', '4.0'])
-    width = random.choice(['480', '720', '1080', '1440'])
-    height = random.choice(['800', '1280', '1920', '2560'])
-    
-    # Random components in agent string
-    agent_components = {
-        'FBAV': f"{random.randint(81, 89)}.0.0.{random.randint(11, 99)}",
-        'FBBV': f"{random.randint(31800000, 31999999)}",
-        'FBDM': f"{{density={density},width={width},height={height}}}",
-        'FBLC': 'en_US',
-        'FBCR': random.choice(["Verizon", "AT&T", "T-Mobile"]),
-        'FBMF': mobile_model.split(' ')[0],
-        'FBBD': mobile_model.split(' ')[0],
-        'FBDV': mobile_model,
-        'FBSV': android_version,
-        'FBOP': '1',
-        'FBCA': 'arm64-v8a:armeabi-v7a'
-    }
-    
-    # Constructing user agent string
-    user_agent = f"Mozilla/5.0 (Linux; Android {android_version}; {mobile_model} Build/{build_number}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{random.randint(110, 120)}.0.0.0 Mobile Safari/537.36 ["
-    
-    user_agent += ';'.join([f"{key}/{value}" for key, value in agent_components.items()])
-    user_agent += "]"
-    
-    return user_agent
+    lc = random.choice(enCRACK1)
+    cr = random.choice(CRACKsim1)
+    CRACK_ua = f'[FBAN/FB4A;FBAV/{fbav};FBBV/{fbbv};FBDM/{{density=3.0,width=1280,height=1440}};FBLC/{lc};FBRV/0;FBCR/{cr};FBMF/Xiaomi;FBBD/Xiaomi;FBPN/com.facebook.katana;FBDV/{gtt};FBSV/{android_version};FBOP/19;FBCA/armeabi-v7a:armeabi;]'
+    return CRACK_ua
 
 def useragent_control():
     one = str(random.randint(101,303))
@@ -922,22 +895,6 @@ def m6(ids,pwv):
     except Exception as e:
         pass
 
-def useragent():
-    fbks=(f'com.facebook.adsmanager','com.facebook.lite','com.facebook.orca','com.facebook.katana','com.facebook.mlite')
-    enCRACK1 = ['en_GB','en_US']
-    CRACKfban1 = [ 'MessengerLite', 'MobileAdsManagerAndroid', 'Orca-Android', 'FB4A', 'FB4A']
-    CRACKsim1 = [ 'MTN', 'AWCC', 'Roshan', 'Zong','Jazz','Etisalat','null','','']
-    modelxxx =  ["2201116SI", "M2012K11AI", "22011119TI", "21091116UI", "M2102K1AC", "M2012K11I", "22041219I", "22041216I", "2203121C", "2106118C", "2201123G", "2203129G", "2201122G", "2201122C", "2206122SC", "22081212C", "2112123AG", "2112123AC", "2109119BC", "M2002J9G", "M2007J1SC", "M2007J17I", "M2102J2SC", "M2007J3SY", "M2007J17G", "M2007J3SG", "M2011K2G", "M2101K9AG ", "M2101K9R", "2109119DG", "M2101K9G", "2109119DI", "M2012K11G", "M2102K1G", "21081111RG", "2107113SG", "21051182G", "M2105K81AC", "M2105K81C", "21061119DG", "21121119SG", "22011119UY", "21061119AG", "21061119AL", "22041219NY", "22041219G", "21061119BI", "220233L2G", "220233L2I", "220333QNY", "220333QAG", "M2004J7AC", "M2004J7BC", "M2004J19C", "M2006C3MII", "M2010J19SI", "M2006C3LG", "M2006C3LVG", "M2006C3MG", "M2006C3MT", "M2006C3MNG", "M2006C3LII", "M2010J19SL", "M2010J19SG", "M2010J19SY", "M2012K11AC", "M2012K10C", "M2012K11C", "22021211RC"]
-    gtt =random.choice(modelxxx)
-    android_version=str(random.randrange(6,13))
-    fbav = str(random.randint(111,111))+'.'+str(random.randint(111,999))+'.'+str(random.randint(111,999))+'.'+str(random.randint(111,999))
-    
-    fbbv = str(random.randint(111111111,999999999))
-    
-    lc = random.choice(enCRACK1)
-    cr = random.choice(CRACKsim1)
-    CRACK_ua = f'[FBAN/FB4A;FBAV/{fbav};FBBV/{fbbv};FBDM/{{density=3.0,width=1280,height=1440}};FBLC/{lc};FBRV/0;FBCR/{cr};FBMF/Xiaomi;FBBD/Xiaomi;FBPN/com.facebook.katana;FBDV/{gtt};FBSV/{android_version};FBOP/19;FBCA/armeabi-v7a:armeabi;]'
-    return CRACK_ua
 
 def m7(ids,pwv):
     global loop,oks,cps
