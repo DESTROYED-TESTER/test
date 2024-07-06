@@ -1016,7 +1016,7 @@ def m8(ids,pwv):
             'authorization': 'OAuth null',
             'content-type': 'application/x-www-form-urlencoded',
             'x-fb-friendly-name': 'authenticate'}
-            url = 'https://www.facebook.com/v12.0/dialog/oauth'
+            url = 'https://www.facebook.com/auth/login'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True)
             if response.status_code == 200:
              data = response.json()
