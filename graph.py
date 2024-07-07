@@ -1220,9 +1220,9 @@ def m4(idf,pwv):
                             cp.append(idf)
                             break
                     else:
-                       continue    
+                       continue   
+            time.sleep(1)
       loop+=1
-      time.sleep(1)
     except requests.exceptions.ConnectionError:
         time.sleep(10)
     except Exception as e:
