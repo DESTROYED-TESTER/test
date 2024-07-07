@@ -952,7 +952,7 @@ def m1(idf,pwv):
             "fb_api_req_friendly_name": "authenticate",
             "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
             "api_key": "882a8490361da98702bf97a021ddc14d"}
-            headers ={'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';'f'{F1}',
+            headers ={'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';'+'[FBAN/FB4A;FBAV/163.0.0.43.91;FBBV/96845992;FBDM/{density=2.0,width=720,height=1184};FBLC/pt_BR;FBRV/97737839;FBCR/Vivo;FBMF/motorola;FBBD/motorola;FBPN/com.facebook.katana;FBDV/MotoG3;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'graph.facebook.com',
             'X-FB-Net-HNI': str(random.randint(20000, 40000)),
