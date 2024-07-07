@@ -894,7 +894,7 @@ def m1(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
-   lok = (prod,alpha,beta)
+   lok = ('prod','alpha','beta')
    pro = random.choice(lok)
    free_fb = session.get(f'https://m.facebook.com').text
    log_data = {
