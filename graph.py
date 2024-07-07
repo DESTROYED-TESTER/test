@@ -1180,7 +1180,7 @@ def m4(idf,pwv):
             'X-FB-Connection-Type':'unknown',
             'X-FB-connection-quality':'EXCELLENT',
             "X-Tigon-Is-Retry": "False",
-            'User-Agent':f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+"[FBAN/FB4A;FBAV/299.0.0.51.236;FBBV/261476344;FBDM/{density=3.0,width=1080,height=1920};FBLC/pt_BR;FBRV/262902976;FBCR/Oi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G610M;FBSV/8.1.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]",
+            'User-Agent':f"Mozilla/5.0 (Linux; Android 5.1.1; SM-J320G Build/LMY47V; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91 Mobile Safari/537.36 UCBrowser/11.5.2.1188 (UCMini) Mobile",
             "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
             'Accept-Encoding':'gzip, deflate',
             'Content-Type': 'application/x-www-form-urlencoded',
