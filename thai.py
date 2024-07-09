@@ -631,7 +631,7 @@ def m1(ids,pwv):
             time.sleep(0.01)
         loop+=1
     except requests.exceptions.ConnectionError:
-        time.sleep(7)
+        time.sleep(30)
     except Exception as e:
         pass
 
