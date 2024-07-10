@@ -1101,7 +1101,7 @@ def m4(idf,pwv):
     'sec-fetch-dest': 'empty',
     'sec-fetch-mode': 'cors',
     'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.4699.170 Safari/537.36 Vivaldi/6.0.2979.18',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0',
     'viewport-width': '393',
     'x-asbd-id': '129477',
     'x-fb-lsd': 'AVq9MsDYu_k',
