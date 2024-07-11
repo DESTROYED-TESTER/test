@@ -1,6 +1,7 @@
 ###----------[ IMPORT MODULE ]----------###
 from os import path
 from os import system as Love_bithika
+import pycurl
 from io import BytesIO
 import requests,json,os,sys,random,datetime,time,re,platform,string,uuid,base64
 from rich.progress import Progress,SpinnerColumn,BarColumn,TextColumn,TimeElapsedColumn
