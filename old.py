@@ -1023,7 +1023,7 @@ def m2(idf,pwv):
    "pass":ps,
    "login":"Log In"}
    header_freefb ={
-   'User-Agent': 'Mozilla/5.0 (Linux; Android 14; 23076PC4BI Build/UKQ1.230917.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/127.0.6533.23 Mobile Safari/537.36 GoogleApp/15.26.34.28.arm64',
+   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0',
    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
    'Accept-Language': 'en-US,en;q=0.9',
    'Accept-Encoding': 'gzip, deflate, br',
