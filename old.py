@@ -371,7 +371,6 @@ c3=('2n8sj2p4')
 cu=('Ki')
 cuu=('ngcy')
 cuuu=('ber')
-
 class Process:
     def __init__(self):
         self.cc=[]
@@ -1388,5 +1387,5 @@ if __name__=='__main__':
   except:pass
 #  b2()
 #  mainx() 
-mainx()
+Process() 
 
