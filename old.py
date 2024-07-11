@@ -445,7 +445,7 @@ def mainx2():
     print(f"{K} [{H}2{K}] {WHITE}RANDOM WITH {H}8 DIGIT {N}PASS")
     print(f"{K} [{H}3{K}] {WHITE}RANDOM WITH {H}MIX {N}PASS")
     print(f"{K} [{H}4{K}] {WHITE}RANDOM WITH {N}OTHERS")
-    #print(f"{K} [{H}5{K}] {WHITE}Gmail  Cloning {H}V1")
+    print(f"{K} [{H}5{K}] {WHITE}Gmail  Cloning {H}V1")
     #print(f"{K} [{H}6{K}] {WHITE}Gmail  Cloning {H}V2")
     print(f"{K} [{M}0{K}] {WHITE}Back To Menu");print(led)
     sumon = input(f'{wt}Select menu {M}:{H} ')
@@ -675,7 +675,7 @@ def gM1():
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(4))
         idf.append(nmp)
-    with tred(max_workers=40) as king_xd:
+    with tred(max_workers=30) as king_xd:
         os.system('clear')
         idx = str(len(idf))
         tk = first+last
