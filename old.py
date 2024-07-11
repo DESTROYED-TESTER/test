@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor as tred
 from time import sleep as waktu
 from time import time as mek
 from bs4 import BeautifulSoup as sop
-import os,base64,zlib,pip,urllib,random, requests
+import os,base64,hashlib,zlib,pip,urllib,random,requests
 try: 
         import os,requests,json,time,re,random,sys,uuid,string,subprocess
         from string import *
