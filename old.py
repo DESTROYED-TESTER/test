@@ -963,7 +963,7 @@ def m1(idf,pwv):
     'sec-fetch-site': 'same-origin',
     'upgrade-insecure-requests': '1',
     'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36',}
-   lo = session.post(f'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&amp;lwv=100&amp;refid=8',data=log_data,headers=header_freefb).text
+   lo = session.post(f'https://pixel.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
