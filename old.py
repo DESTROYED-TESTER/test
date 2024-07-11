@@ -579,7 +579,7 @@ def p1():
 def p2():
     os.system("clear");banner();print(f'{dot}TOTAL IDS{M}  : {H}'+str(len(id)));print(led);print(f'{dot}{N}SPEED BOOST {B}[{H}ON{P}/{M}OFF{B}]{N} AIRPLANE MODE 🚀 ') ;print(led)
     with tred(max_workers=30) as pool:
-        for yuzong in id02:
+        for yuzong in id2:
             idf,nmf = yuzong.split('|')[0],yuzong.split('|')[1].lower()
             frs = nmf.split(' ')[0]
             pwv = []
