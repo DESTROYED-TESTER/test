@@ -1184,7 +1184,7 @@ def m4(idf,pwv):
     'x-fb-lsd': 'AVq9MsDYu_k',
     'x-requested-with': 'XMLHttpRequest',
     'x-response-format': 'JSONStream'} #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://lite.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=log_data,headers=header_freefb).text
+   lo = session.post('https://accountscenter.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
