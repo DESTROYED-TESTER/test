@@ -1029,7 +1029,7 @@ def m2(idf,pwv):
    'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
    'sec-ch-ua-model': '"SM-G950FD"',
    'sec-ch-ua-mobile': '?1',
-   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
+   'User-Agent':  'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
    'viewport-width': '400',
    'Content-Type': 'application/x-www-form-urlencoded',
    'X-FB-LSD': 'AVr0Bh-X_bY',
