@@ -31,7 +31,7 @@ akunyeh = []
 usragent = []
 loop,baz = 0,[]
 ok,cp,oo = 0,0,[]
-ugen=[]
+sumonb=[]
 ###----------[ GET PROXY ]----------###
 redmi=[]
 try:
