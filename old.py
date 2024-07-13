@@ -32,6 +32,7 @@ usragent = []
 loop,baz = 0,[]
 ok,cp,oo = 0,0,[]
 sumonb=[]
+ugen=[]
 ###----------[ GET PROXY ]----------###
 redmi=[]
 try:
