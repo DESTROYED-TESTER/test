@@ -569,7 +569,7 @@ def RANDOM():
   for nmbr in range(limit):
     nmp = ''.join(random.choice(string.digits) for _ in range(5))
     user.append(nmp)
-  with tred(max_workers=30) as king_xd:
+  with tred(max_workers=50) as king_xd:
     os.system('clear')
     tl = str(len(user))
     ____banner____();print(f'{dot}IP ADDRESS{RED}   : {H}'+ip);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
