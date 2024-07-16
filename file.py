@@ -97,11 +97,11 @@ with tred(max_workers=30) as jjj:
 
 #________________PROXY______________#
 try:
-    prox= requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=https&timeout=1000&country=all&ssl=all&anonymity=all').text
-    open('.prox.txt','w').write(prox)
+  proxylist= requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks4&timeout=100000&country=all&ssl=all&anonymity=all').text
+  open('socksku.txt','w').write(proxylist)
 except Exception as e:
-    pass
-prox=open('.prox.txt','r').read().splitlines()
+  print(' server error')
+proxsi=open('socksku.txt','r').read().splitlines()
 
 ###----------[ PEH ]----------###
 mer = '\033[1;31m'
@@ -197,6 +197,7 @@ cokbrut=[]
 pwpluss,pwnya=[],[]
 cooki = []
 cpxx = []
+plist=[]
 import time
 from datetime import datetime
 sasi = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
