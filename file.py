@@ -676,7 +676,7 @@ def m1(ids,pwv):
     sys.stdout.write(f"\r{rad}[{green}{animasi}-M1{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
     sys.stdout.flush()
     session = httpx.Client()
-    nip=random.choice(prox)
+    nip=random.choice(proxsi)
     proxs= {'http': 'socks4://'+nip}
     ua = ua_valid()
     warna = random.choice(my_color)
