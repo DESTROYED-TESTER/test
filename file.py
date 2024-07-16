@@ -423,10 +423,10 @@ def ____banner____():
    ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
    ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \x1b[38;1;97m ᴾᴿᴼ
 \033[38;5;196m────────────────────────────────────────────
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m CEO & OWNER    \033[38;5;196m : \x1b[38;5;196m SUMON ROY
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m  ABOUTS  \033[38;5;196m  :\x1b[38;5;196m DESTROYED
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m VERSION \033[38;5;196m  :\x1b[38;1;97m 109.0.5.0.3
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m STATUS \033[38;5;196m   :\x1b[38;5;196m PREMIUM 
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m CEO & OWNER \033[38;5;196m : \x1b[38;5;196m SUMON ROY
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m ABOUTS \033[38;5;196m      :\x1b[38;5;196m DESTROYED
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m VERSION \033[38;5;196m     :\x1b[38;1;97m 109.0.5.0.3
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m STATUS \033[38;5;196m      :\x1b[38;5;196m PREMIUM 
 \033[38;5;196m────────────────────────────────────────────""")
 
 def fuckxd():
@@ -455,10 +455,10 @@ else:
 class Process:
     def __init__(self):
         self.cc=[]
-        self.key="ATOMXD-"+base64.b16encode(str(os.getuid()).encode()).decode()+hashlib.md5((platform.version() + str(os.getuid()) + platform.platform() + os.getlogin() + platform.release()).replace(' ', '').encode()).hexdigest()
+        self.key="ATOM-"+base64.b16encode(str(os.getuid()).encode()).decode()+hashlib.md5((platform.version() + str(os.getuid()) + platform.platform() + os.getlogin() + platform.release()).replace(' ', '').encode()).hexdigest()
         #self.key=""
         self.clear()
-        r = self.Gex('https://raw.githubusercontent.com/AJAYAN404/App/main/approve.txt')
+        r = self.Gex('https://github.com/DESTROYED-ATOM/ATOM/blob/main/Approve.txt')
         if self.key in r:
             self.enroll()
         else:
@@ -471,7 +471,7 @@ class Process:
             input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
             time.sleep(3.5)
             tks = 'TOKEN KEY =%20%20:%20'+self.key
-            os.system('am start https://wa.me/+91 8389066877?text=' + tks)
+            os.system('am start https://wa.me/+918389066877?text=' + tks)
             exit()
     def clear(self):os.system('clear');____banner____()
     def Gex(self,x):
@@ -489,17 +489,17 @@ class Process:
 #━━━━[ MAIN ]━━━━#
 def BITHIKA():
     ____banner____()
-    print(f'{rad}[{white}A{rad}]{rad}[{white}1{rad}] {green}KEEP ON FILE CLONE')
-    print(f'{rad}[{white}B{rad}]{rad}[{white}2{rad}] {green}MAKE IT FILES')
-    print(f'{rad}[{white}C{rad}]{rad}[{white}3{rad}] {green}KEEP ON RANDOM CLONE')
-    print(f'{rad}[{white}D{rad}]{rad}[{white}4{rad}] {green}JOIN GROUP')
-    print(f'{rad}[{white}E{rad}]{rad}[{white}5{rad}] {green}CONTRACK ADMIN');linex()
+    print(f'{rad}[{white}A{rad}]{rad}[{white}1{rad}]\x1b[38;5;34mKEEP ON FILE CLONE')
+    print(f'{rad}[{white}B{rad}]{rad}[{white}2{rad}]\x1b[38;5;34mMAKE IT FILES')
+    print(f'{rad}[{white}C{rad}]{rad}[{white}3{rad}]\x1b[38;5;34mKEEP ON RANDOM CLONE')
+    print(f'{rad}[{white}D{rad}]{rad}[{white}4{rad}]\x1b[38;5;34mJOIN GROUP')
+    print(f'{rad}[{white}E{rad}]{rad}[{white}5{rad}]\x1b[38;5;34mCONTRACK ADMIN');linex()
     __BITHIKA__ = input(f'{rad}[{white}🔖{rad}] {green}Selection  {white}▶︎ {yelloww}')
     if __BITHIKA__ in ['A','a','01','1']:__FILEX__()
     elif __BITHIKA__ in ['B','b','02','2']:os.system('python3 FILE-DUMP.py')
     elif __BITHIKA__ in ['C','c','03','3']:SETINGX()
-    elif __BITHIKA__ in ['D','d','04','4']:os.system("xdg-open https://chat.whatsapp.com/IFiBzDX9PFJEF8ELHtHGdt")
-    elif __BITHIKA__ in ['E','e','05','5']:os.system("xdg-open https://wa.me/+8801979833880")
+    elif __BITHIKA__ in ['D','d','04','4']:os.system("xdg-open https://chat.whatsapp.com/ImgbbAV3zyu5LK4aIX4EnO")
+    elif __BITHIKA__ in ['E','e','05','5']:os.system("xdg-open https://wa.me/+918389066877")
     else:print(f'\n[×]{rad} Choose Value Option... ');BITHIKA()
 
 #━━━━[ SELECT MENU ]━━━━#
