@@ -59,11 +59,6 @@ if not 'print' in open(first+'models.py','r').read():
     pass
 else:
     exit('\033[1;91mPLEASE TURN OFF YOUR LOCAL METHOD CAPTURE SYSTEM KIDZ')
-first='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
-if not 'print' in open(first+'nano.py','r').read():
-    pass
-else:
-    exit('\033[1;91mPLEASE TURN OFF YOUR LOCAL METHOD CAPTURE SYSTEM KIDZ')
 
 #-----------------------sdcard---------------------#
 def bithika():
