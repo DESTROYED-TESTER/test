@@ -1,3 +1,4 @@
+from os import path
 import os
 import uuid,base64,hashlib,zlib,subprocess,time,platform,pycurl
 import bs4,json,sys,time,random,re,subprocess,platform,struct,string,uuid,base64,zlib
@@ -23,6 +24,7 @@ CON=sol()
 os.system("pip install licensing > /dev/null")
 from licensing.models import *
 from licensing.methods import Key, Helpers
+os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
 try:
     import concurrent.futures
 except ImportError:
