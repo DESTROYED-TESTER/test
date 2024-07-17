@@ -708,7 +708,7 @@ def m1(ids,pwv):
     warna = random.choice(my_color)
     try:
         for pas in pwv:
-            free_fb = session.get(f'{fb}.facebook.com').text
+            free_fb = session.get(f'https://{fb}.facebook.com').text
             info={
             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
