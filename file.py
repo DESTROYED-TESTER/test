@@ -524,11 +524,11 @@ class Process:
 #━━━━[ MAIN ]━━━━#
 def BITHIKA():
     ____banner____()
-    print(f'{rad}[{white}A{rad}]{rad}[{white}1{rad}]\x1b[38;5;34mTURN ON FILE CLONE')
-    print(f'{rad}[{white}B{rad}]{rad}[{white}2{rad}]\x1b[38;5;34mTURN ON MAIL CLONE')
-    print(f'{rad}[{white}C{rad}]{rad}[{white}3{rad}]\x1b[38;5;34mTURN ON RANDOM CLONE')
-    print(f'{rad}[{white}D{rad}]{rad}[{white}4{rad}]\x1b[38;5;34mJOIN COMMUNITY GROUP')
-    print(f'{rad}[{white}E{rad}]{rad}[{white}5{rad}]\x1b[38;5;34mREPORT BUGS');linex()
+    print(f'{rad}[{white}A{rad}]{rad}[{white}1{rad}]\033[1;37mTURN ON FILE CLONE')
+    print(f'{rad}[{white}B{rad}]{rad}[{white}2{rad}]\033[1;37mTURN ON MAIL CLONE')
+    print(f'{rad}[{white}C{rad}]{rad}[{white}3{rad}]\033[1;37mTURN ON RANDOM CLONE')
+    print(f'{rad}[{white}D{rad}]{rad}[{white}4{rad}]\033[1;37mJOIN COMMUNITY GROUP')
+    print(f'{rad}[{white}E{rad}]{rad}[{white}5{rad}]\033[1;37mREPORT BUGS');linex()
     __BITHIKA__ = input(f'{rad}[{white}🔖{rad}] {green}Selection  {white}▶︎ {yelloww}')
     if __BITHIKA__ in ['A','a','01','1']:__FILEX__()
     elif __BITHIKA__ in ['B','b','02','2']:print(f'\n[×]{rad}coming soon... ');BITHIKA()
@@ -629,7 +629,7 @@ def INDIA():
   with tred(max_workers=30) as king_xd:
     os.system('clear')
     tl = str(len(user))
-    ____banner____();print(f'{dot}YOUR CITY{RED}  : {H}'+current_city);print(f'{dot}METHOD{RED}    : {faltu}{black}RANDOM{pvt}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
+    ____banner____();print(f'{dot}YOUR CITY{RED}   : {YELLOW}'+current_city);print(f'{dot}METHOD{RED}      : {faltu}{black}RANDOM{pvt}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
       pwv = [ids[:6],ids[:8],ids,'57273200']
@@ -677,7 +677,7 @@ def PAKISTAN():
   with tred(max_workers=30) as king_xd:
     os.system('clear')
     tl = str(len(user))
-    ____banner____();print(f'{dot}YOUR CITY{RED}  : {H}'+current_city);print(f'{dot}METHOD{RED}    : {faltu}{black}RANDOM{pvt}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
+    ____banner____();print(f'{dot}YOUR CITY{RED}   : {YELLOW}'+current_city);print(f'{dot}METHOD{RED}      : {faltu}{black}RANDOM{pvt}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
       pwv = [ids[:6],ids[:8],ids,'57273200']
