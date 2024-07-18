@@ -698,7 +698,7 @@ def m1(ids,pwv):
     session = requests.Session()
     nip=random.choice(proxsi)
     proxs= {'http': 'socks4://'+nip}
-    ua = ua_valid()
+    ua = DEF3()
     DOMAIN = ("m","business","mbasic")
     fb= random.choice(DOMAIN)
     uger = random.choice(ugrn)
@@ -723,7 +723,7 @@ def m1(ids,pwv):
             'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
             'sec-ch-ua-model': '"SM-G950FD"',
             'sec-ch-ua-mobile': '?1',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+            'User-Agent': ua,
             'viewport-width': '400',
             'Content-Type': 'application/x-www-form-urlencoded',
             'X-FB-LSD': 'AVr0Bh-X_bY',
