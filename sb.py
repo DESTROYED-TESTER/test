@@ -133,7 +133,7 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
     reg = lmnx9_requests_call(api_url, req)
     id=reg['new_user_id']
     token=reg['session_info']['access_token']
-    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+    coki=reg['session_info']['cookies']
     
 #---------[ LMNx9 RESULT ]---------#
     
