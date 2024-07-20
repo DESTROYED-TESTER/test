@@ -1,5 +1,4 @@
-#--> Tool -> LMNx9 FBX Gift
-#--> Codded By -> DARK_LMNx9
+
 
 #---------[ LMNx9 MODULE ]---------#
 
@@ -21,10 +20,19 @@ og='\x1b[38;5;208m';rd='\033[1;31m';gr='\033[1;32m';sk='\033[1;36m'
 
 #---------[ LMNx9 BANNER ]---------#
 
-log="""
-\t[bold red]<[bold cyan]/[bold red]> [bold green] TOOL -[bold purple] LMNx9 FBX Gift
-\t[bold red]<[bold cyan]/[bold red]> [bold green] CODED BY -[bold purple] Limon_Hossain
-"""
+log=f"""\033[38;5;33m
+    █████╗ ████████╗ ██████╗ ███╗   ███╗
+   ██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
+   ███████║   ██║   ██║   ██║██╔████╔██║
+   ██╔══██║   ██║   ██║   ██║██║╚██╔╝██║
+   ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
+   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \x1b[38;1;97m ᴾᴿᴼ
+\033[38;5;196m────────────────────────────────────────────
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m CEO & OWNER \033[38;5;196m : \x1b[38;5;196m SUMON ROY
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m ABOUTS \033[38;5;196m      :\x1b[38;5;196m DESTROYED
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m VERSION \033[38;5;196m     :\x1b[38;1;97m 109.0.5.0.3
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m STATUS \033[38;5;196m      :\x1b[38;5;196m PREMIUM 
+\033[38;5;196m────────────────────────────────────────────"""
 def logo():
     lmnxsys("clear")
     print(log)
@@ -77,10 +85,10 @@ def lmnx9_account():
     if mail_domains:
         domain = random.choice(mail_domains)['domain']
         username = lmnx9_string(10)
-        password = fake.password()
+        password = ('india@12$MM')
         birthday = fake.date_of_birth(minimum_age=18, maximum_age=45)
-        first_name = fake.first_name()
-        last_name = fake.last_name()
+        first_name = random.choice(['sumon','riya','piya','sakhi','mimi','rupali'])
+        last_name = random.choice(['roy','sarkar','das','mondal','dotto','ghosh'])
         url = "https://api.mail.tm/accounts"
         headers = {"Content-Type": "application/json"}
         data = {"address": f"{username}@{domain}", "password":password}       
@@ -133,21 +141,15 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
     reg = lmnx9_requests_call(api_url, req)
     id=reg['new_user_id']
     token=reg['session_info']['access_token']
-    coki=reg['session_info']['cookies']
     
 #---------[ LMNx9 RESULT ]---------#
     
     print(f'''
-[bold red]<[bold cyan]/[bold red]>[bold green] NAME      : [bold purple]{first_name} {last_name}
-[bold red]<[bold cyan]/[bold red]>[bold green] EMAIL     : [bold violet]{email}
-[bold red]<[bold cyan]/[bold red]>[bold green] UID       :[bold purple] {id}
-[bold red]<[bold cyan]/[bold red]>[bold green] PASSWORD  : [bold violet]{password}
-[bold red]<[bold cyan]/[bold red]>[bold green] BIRTHDAY  : [bold purple]{birthday} 
-[bold red]<[bold cyan]/[bold red]> [bold green]GENDER    : [bold purple]{gender}
-[bold red]<[bold cyan]/[bold red]> [bold green]coki      : [bold cyan]{coki}
-[bold red]<[bold cyan]/[bold red]>[bold green] TOKEN     : [bold violet]{token}
+[bold red]<[bold cyan]/[bold red]>[bold green] UID       :[bold purple] {id} | {password}
     ''');lnx()
-    lmn_x=open('/sdcard/LMNx9-FBX-Gift.txt','a')
+    lmn_x=open('/sdcard/id.txt','a')
+    lmn_x.write(f"{id} | {password}\n")
+    lmn_x=open('/sdcard/email.txt','a')
     lmn_x.write(f"{email} | {password}\n")
     lmn_x.close()
 
