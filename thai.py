@@ -1,7 +1,7 @@
 ###----------[ IMPORT MODULE ]----------###
 from os import path
 from os import system as Love_bithika
-import requests,json,os,sys,random,datetime,time,re,platform,string,uuid,base64,uuid,base64,hashlib,zlib,subprocess,time,platform,pycurl,requests
+import requests,json,os,sys,random,datetime,time,re,platform,string,uuid,base64,hashlib
 from rich.progress import Progress,SpinnerColumn,BarColumn,TextColumn,TimeElapsedColumn
 from concurrent.futures import ThreadPoolExecutor as tred
 from time import sleep as waktu
@@ -399,7 +399,7 @@ class Process:
             tks = 'TOKEN KEY =%20%20:%20'+self.key
             os.system('am start https://wa.me/+918389066877?text=' + tks)
             exit()
-    def clear(self):os.system('clear');banner()
+    def clear(self):os.system('clear');____banner____()
     def Gex(self,x):
         buffer = BytesIO()
         c = pycurl.Curl()
