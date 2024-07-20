@@ -1446,7 +1446,7 @@ def __MTDONEE__(ids, names, passlist, total_ids):
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
             cban = str(random.randint(20000000, 30000000))
-            user_agent = DEF3()
+            user_agent = DEF1()
             warna = random.choice(my_color)
             adid = str(uuid.uuid4()).upper()
             device_id = str(uuid.uuid4()).upper()
