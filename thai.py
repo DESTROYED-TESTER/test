@@ -1,7 +1,7 @@
 ###----------[ IMPORT MODULE ]----------###
 from os import path
 from os import system as Love_bithika
-import requests,json,os,sys,random,datetime,time,re,platform,string,uuid,base64,hashlib
+import requests,json,os,sys,random,datetime,time,re,platform,string,uuid,base64,uuid,base64,hashlib,zlib,subprocess,time,platform,pycurl,requests
 from rich.progress import Progress,SpinnerColumn,BarColumn,TextColumn,TimeElapsedColumn
 from concurrent.futures import ThreadPoolExecutor as tred
 from time import sleep as waktu
@@ -378,6 +378,39 @@ c3=('2n8sj2p4')
 cu=('Ki')
 cuu=('ngcy')
 cuuu=('ber')
+class Process:
+    def __init__(self):
+        self.cc=[]
+        self.key="ATOM-"+base64.b16encode(str(os.getuid()).encode()).decode()+hashlib.md5((platform.version() + str(os.getuid()) + platform.platform() + os.getlogin() + platform.release()).replace(' ', '').encode()).hexdigest()
+        #self.key=""
+        self.clear()
+        r = self.Gex('https://github.com/DESTROYED-ATOM/ATOM/blob/main/Approve.txt')
+        if self.key in r:
+            self.enroll()
+        else:
+            self.clear()
+            print("\x1b[38;1;97m               NOTES   ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m HELLO.... DEAR USER THIS IS PREMIUM TOOLS ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m AFTER PAYMENT ACCESS TOOLS ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m PRICE LIST ADMIN INBOX ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Your Key:\033[0;93m " +self.key)
+            input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
+            time.sleep(3.5)
+            tks = 'TOKEN KEY =%20%20:%20'+self.key
+            os.system('am start https://wa.me/+918389066877?text=' + tks)
+            exit()
+    def clear(self):os.system('clear');____banner____()
+    def Gex(self,x):
+        buffer = BytesIO()
+        c = pycurl.Curl()
+        c.setopt(c.URL, x)
+        c.setopt(c.WRITEDATA, buffer)
+        try:c.perform()
+        except:exit(' Network Issue')
+        c.close()
+        return buffer.getvalue().decode('utf-8')
+    def enroll(self):
+        mainx()
 
 def mainx():
     clear();banner()
@@ -1297,5 +1330,5 @@ if __name__=='__main__':
 #  b2()
 #  mainx() 
 
-mainx()
+Process()
 
