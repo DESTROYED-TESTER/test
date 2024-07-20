@@ -399,7 +399,7 @@ class Process:
             tks = 'TOKEN KEY =%20%20:%20'+self.key
             os.system('am start https://wa.me/+918389066877?text=' + tks)
             exit()
-    def clear(self):os.system('clear');____banner____()
+    def clear(self):os.system('clear');banner()
     def Gex(self,x):
         buffer = BytesIO()
         c = pycurl.Curl()
