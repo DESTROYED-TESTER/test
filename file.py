@@ -4,6 +4,7 @@ import bs4,json,sys,time,random,re,subprocess,platform,struct,string,uuid,base64
 import _socket, ssl, certifi
 from bs4 import BeautifulSoup
 from io import BytesIO
+from os import path
 from bs4 import BeautifulSoup as sop
 from concurrent.futures import ThreadPoolExecutor as tred
 from concurrent.futures import ThreadPoolExecutor as ThreadPool 
