@@ -559,7 +559,7 @@ def setting():
     elif px in ['3','03']:p3()
     else:p4()
 def p1():
-    os.system("clear");banner();;print(f'{dot}File Ids{M}  : {H}'+str(len(id)));print(led);print(f'{dot}{N}SPEED BOOST {B}[{H}ON{P}/{M}OFF{B}]{N} AIRPLANE MODE 🚀 ') ;print(led);print(f'{dot}YOUR CITY{RED}    : {H}{current_city}');print(led)
+    os.system("clear");banner();;print(f'{dot}File Ids{M}  : {H}'+str(len(id)));print(led);print(f'{dot}{N}SPEED BOOST {B}[{H}ON{P}/{M}OFF{B}]{N} AIRPLANE MODE 🚀 ') ;print(led);print(f'{dot}YOUR CITY{M}  : {H}'+{current_city});print(led)
     with tred(max_workers=30) as pool:
         for yuzong in id2:
             idf,nmf = yuzong.split('|')[0],yuzong.split('|')[1].lower()
