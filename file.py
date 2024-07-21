@@ -842,7 +842,7 @@ def m1(ids,pwv):
                 if cid in oks:pass
                 else:
                     if 'checkpoint' in str(lo):
-			    print(f'\r\r{P}[ATOM-2F]: {cid} | {pas}')
+                         print(f'\r\r{P}[ATOM-2F]: {cid} | {pas}')
                     else:
                          print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                          print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
