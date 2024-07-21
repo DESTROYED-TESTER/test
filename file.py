@@ -1,4 +1,6 @@
 import os
+import zipfile
+import marshal
 import uuid,base64,hashlib,zlib,subprocess,time,platform,pycurl,httpx,requests
 import bs4,json,sys,time,random,re,subprocess,platform,struct,string,uuid,base64,zlib
 import _socket, ssl, certifi
