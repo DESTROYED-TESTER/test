@@ -1159,7 +1159,7 @@ def m4(idf,pwv):
    else:
     continue
   loop+=1
- except: requests.exceptions.ConnectionError:
+ except requests.exceptions.ConnectionError:
   time.sleep(10)
  except Exception as e:
   pass 
@@ -1229,7 +1229,7 @@ def m5(idf,pwv):
    else:
     continue
   loop+=1
- except: requests.exceptions.ConnectionError:
+ except requests.exceptions.ConnectionError:
   time.sleep(10)
  except Exception as e:
   pass 
@@ -1299,7 +1299,7 @@ def m6(idf,pwv):
    else:
     continue
   loop+=1
- except: requests.exceptions.ConnectionError:
+ except requests.exceptions.ConnectionError:
   time.sleep(10)
  except Exception as e:
   pass 
