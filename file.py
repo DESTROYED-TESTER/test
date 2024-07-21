@@ -814,8 +814,8 @@ def m1(ids,pwv):
             "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
             "try_number":"0",
             "unrecognized_tries":"0",
-            "email":idf,
-            "pass":ps,
+            "email":ids,
+            "pass":pas,
             "login":"Log In"}
             update={
             'authority': 'm.facebook.com',
