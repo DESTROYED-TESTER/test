@@ -543,7 +543,7 @@ def setting():
     cokixx=input(f'{wt}Cloning Show Cookie  {M}?{P} [{H}Y{P}/{K}N{P}] {M}:{H} ')
     if cokixx in ['y','Y','yes','Yes','1']:cokix.append('y')
     else:cokix.append('n')
-    clear();banner();print(f"{dot}{P}Total Ids {RED}: {H}"+str(len(id)));print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]');print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}A1{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M1{P}]');print(led)
+    clear();banner();print(f"{dot}{P}Total Ids {RED}: {H}"+str(len(id)));print(led);print(f' {K}[{H}1{K}] {P}Method [{H}M1{P}]');print(f' {K}[{H}2{K}] {P}Method [{H}M2{P}]');print(f' {K}[{H}3{K}] {P}Method [{H}M3{P}]');print(f' {K}[{H}4{K}] {P}Method [{H}M4{P}]');print(f' {K}[{H}5{K}] {P}Method [{H}M5{P}]');print(f' {K}[{H}6{K}] {P}Method [{H}M6{P}]');print(led)
     hc = input(f'{wt}Select Method {M}:{H} ')
     if hc in ['1','01']:method.append('m1')
     elif hc in ['2','02']:method.append('m2')
@@ -584,7 +584,7 @@ def p1():
             else:pool.submit(m5,idf,pwv)
     print('');print(f'{gen}Hi Dear User Crack process has been completed');exit()
 def p2():
-    os.system("clear");banner();print(f'{dot}File Ids{M}  : {H}'+str(len(id)));print(led);print(f'{dot}{N}SPEED BOOST {B}[{H}ON{P}/{M}OFF{B}]{N} AIRPLANE MODE 🚀 ') ;print(led)
+    os.system("clear");banner();print(f'{dot}File Ids{M}  : {H}'+str(len(id)));print(led);print(f'{dot}{N}SPEED BOOST {B}[{H}ON{P}/{M}OFF{B}]{N} AIRPLANE MODE 🚀 ') ;print(led);print(f'{dot}YOUR CITY{RED}    : {H}{current_city}');print(led)
     with tred(max_workers=30) as pool:
         for yuzong in id02:
             idf,nmf = yuzong.split('|')[0],yuzong.split('|')[1].lower()
@@ -1103,7 +1103,7 @@ def m4(idf,pwv):
  global ok
  global agents
  animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
- sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M5{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
+ sys.stdout.write(f'\r{P} [{animasi}{N}-{H}M4{P}] ({B}%s{P}){U}+{H}OK{P}({GREEN}%s{P})'%(loop,ok)),
  try:
   for ps in pwv:
    session = requests.Session()
@@ -1165,8 +1165,9 @@ def m4(idf,pwv):
    else:
     continue
   loop+=1
-  
- except:
+ except: requests.exceptions.ConnectionError:
+  time.sleep(10)
+ except Exception as e:
   pass 
 
 ###----------[  MBASIC ]----------###
@@ -1241,9 +1242,10 @@ def m5(idf,pwv):
     continue
   loop+=1
   
- except:
+ except: requests.exceptions.ConnectionError:
+  time.sleep(10)
+ except Exception as e:
   pass 
-
 
 def m6(idf,pwv):
  global loop
@@ -1317,7 +1319,9 @@ def m6(idf,pwv):
     continue
   loop+=1
   
- except:
+ except: requests.exceptions.ConnectionError:
+  time.sleep(10)
+ except Exception as e:
   pass 
 
 # INDIA X PAKISTAN -- MAIN DEF #
