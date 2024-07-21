@@ -549,8 +549,8 @@ def setting():
     elif hc in ['2','02']:method.append('m2')
     elif hc in ['3','03']:method.append('m3')
     elif hc in ['4','04']:method.append('m4')
-    elif hc in ['5','05']:method.append('a1')
-    elif hc in ['6','06']:method.append('M1')
+    elif hc in ['5','05']:method.append('m5')
+    elif hc in ['6','06']:method.append('m6')
     else:method.append('m1')
     clear();banner();print(f"{dot}{P}Total Ids {RED}: {H}"+str(len(id)));print(led);print(f' {K}[{H}1{K}] {P}Password [{H}first+last{P}]');print(f' {K}[{H}2{K}] {P}Password [{H}first+last+3{P}]');print(f' {K}[{H}3{K}] {P}Password [{H}first+last+5+{P}]');print(f' {K}[{H}4{K}] {P}Password [{H}first+last+7+{P}]');print(led)
     px=input(f'{wt}Select Password {M}:{H} ')
@@ -568,19 +568,19 @@ def p1():
             if len(nmf)<6:
                 if len(frs)<3:
                     pass
-                else:pwv.append(nmf);pwv.append(frs+'123');pwv.append(frs+'1234');pwv.append(frs+'12')
+                else:pwv.append(nmf);pwv.append(frs+'123');pwv.append(frs+'1234');pwv.append(frs+'12');pwv.append(frs+'@123');pwv.append(frs+'@12');pwv.append(frs+'@00');pwv.append(frs+'000')
             else:
-                if len(frs)<3:pwv.append(nmf)
-                else:pwv.append(nmf);pwv.append(frs+'123');pwv.append(frs+'1234');pwv.append(frs+'12')
+                if len(frs)<3:pwv.append(nmf);pwv.append(frs+'123');pwv.append(frs+'1234');pwv.append(frs+'12');pwv.append(frs+'@123');pwv.append(frs+'@12')
+                else:pwv.append(nmf);pwv.append(frs+'123');pwv.append(frs+'1234');pwv.append(frs+'12');pwv.append(frs+'@123');pwv.append(frs+'@12');pwv.append(frs+'@00');pwv.append(frs+'000')
             if 'ya' in pwpluss:
                 for xpwd in pwnya:pwv.append(xpwd)
             else:pass
-            if 'm1' in method:pool.submit(m5,idf,pwv)
+            if 'm1' in method:pool.submit(m1,idf,pwv)
             elif 'm2' in method:pool.submit(m2,idf,pwv)
             elif 'm3' in method:pool.submit(m3,idf,pwv)
             elif 'm4' in method:pool.submit(m4,idf,pwv)
-            elif 'a1' in method:pool.submit(M1,idf,pwv)
-            elif 'M1' in method:pool.submit(M1,idf,pwv)
+            elif 'm5' in method:pool.submit(m5,idf,pwv)
+            elif 'm6' in method:pool.submit(m6,idf,pwv)
             else:pool.submit(m5,idf,pwv)
     print('');print(f'{gen}Hi Dear User Crack process has been completed');exit()
 def p2():
