@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 from io import BytesIO
 from os import path
 from bs4 import BeautifulSoup as sop
+from rich.progress import Progress,SpinnerColumn,BarColumn,TextColumn,TimeElapsedColumn
 from concurrent.futures import ThreadPoolExecutor as tred
 from concurrent.futures import ThreadPoolExecutor as ThreadPool 
 from rich.table import Table as me
