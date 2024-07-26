@@ -122,7 +122,7 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
         'locale': 'en_US',
         'method': 'user.register',
         'password': password,
-        'reg_instance': ''.join(random.choices('abcdefghijklmnopqrstuvwxyz0123456789', k=32)),
+        'reg_instance': lmnx9_string(32),
         'return_multiple_errors': True
     }
     sorted_req = sorted(req.items(), key=lambda x: x[0])
@@ -130,19 +130,9 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
     ensig = hashlib.md5((sig + secret).encode()).hexdigest()
     req['sig'] = ensig
     api_url = 'https://b-api.facebook.com/method/user.register'
-    
-    # Perform the API call
-    response = requests.post(api_url, data=req)
-    
-    # Parse the response
-    if response.ok:
-        reg = response.json()
-        user_id = reg.get('new_user_id')
-        token = reg.get('session_info', {}).get('access_token')
-        cookies = response.cookies.get_dict()  # Extract cookies as a dictionary
-        return user_id, token, cookies
-    else:
-        response.raise_for_status()  # Raise an exception for HTTP errors
+    reg = lmnx9_requests_call(api_url, req)
+    id=reg['new_user_id']
+    token=reg['session_info']['access_token']
     
 #---------[ LMNx9 RESULT ]---------#
     
@@ -153,7 +143,7 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
 [bold red]<[bold cyan]/[bold red]>[bold green] PASSWORD  : [bold violet]{password}
 [bold red]<[bold cyan]/[bold red]>[bold green] BIRTHDAY  : [bold purple]{birthday} 
 [bold red]<[bold cyan]/[bold red]> [bold green]GENDER    : [bold purple]{gender}
-[bold red]<[bold cyan]/[bold red]> [bold green]cookies     : [bold cyan]{cookies}
+[bold red]<[bold cyan]/[bold red]> [bold green]TOOL      : [bold cyan]LMNx9 FBX Gift
 [bold red]<[bold cyan]/[bold red]>[bold green] TOKEN     : [bold violet]{token}
     ''');lnx()
     lmn_x=open('/sdcard/LMNx9-FBX-Gift.txt','a')
@@ -189,6 +179,8 @@ if __name__ in "__main__":
     print(f"\n[bold red]<[bold cyan]✔[bold red]> [bold violet]ID's Saved - [bold green]/sdcard/LMNx9-FBX-Gift.txt")
     input(f"{sk}<{gr}➤{sk}> {og}PRESS ENTER TO BACK MAIN")
     LMNx9()
-    
-#--------[-> Coded By - Limon_Hossain <-]--------
-#----[-> Join - t.me/DARK_TEAM_LMNx9 <-]----
+
+
+
+
+
