@@ -122,7 +122,7 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
         'locale': 'en_US',
         'method': 'user.register',
         'password': password,
-        'reg_instance': lmnx9_string(32),
+        'reg_instance': ''.join(random.choices('abcdefghijklmnopqrstuvwxyz0123456789', k=32)),
         'return_multiple_errors': True
     }
     sorted_req = sorted(req.items(), key=lambda x: x[0])
@@ -130,10 +130,19 @@ def lmnx9_register(email, password, first_name, last_name, birthday):
     ensig = hashlib.md5((sig + secret).encode()).hexdigest()
     req['sig'] = ensig
     api_url = 'https://b-api.facebook.com/method/user.register'
-    reg = lmnx9_requests_call(api_url, req)
-    id=reg['new_user_id']
-    token=reg['session_info']['access_token']
-    cookies = response.cookies.get_dict()
+    
+    # Perform the API call
+    response = requests.post(api_url, data=req)
+    
+    # Parse the response
+    if response.ok:
+        reg = response.json()
+        user_id = reg.get('new_user_id')
+        token = reg.get('session_info', {}).get('access_token')
+        cookies = response.cookies.get_dict()  # Extract cookies as a dictionary
+        return user_id, token, cookies
+    else:
+        response.raise_for_status()  # Raise an exception for HTTP errors
     
 #---------[ LMNx9 RESULT ]---------#
     
