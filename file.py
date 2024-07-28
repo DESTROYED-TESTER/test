@@ -440,32 +440,22 @@ for ua in range(5000):
 #----------------------------[USER/AGENT]--------------------------------------------------------------------------------------------------------------------------------#
 #----------------------------[USER/AGENT]--------------------------------------------------------------------------------------------------------------------------------#
 #----------------------------[USER/AGENT]--------------------------------------------------------------------------------------------------------------------------------#
-#----------------------------[DEF1]--------------------------------------------------------------------------------------------------------------------------------#
-# Define different components for User-Agent strings
-browsers = [
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
-    'Mozilla/5.0 (Linux; Android 11; Pixel 4 XL Build/RQ2A.210305.006) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Mobile Safari/537.36'
-]
+#ghjgjjhgjghkjhgkjljhlkjl;k;lk';l'l;'\;\;uhgjgjkkghkghkjgkjghkjghkgkkkghjkgkgkghhghmhjmkmkknknnjjjhjjjhjhjjhjjhjhjjhjhjjjjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhhjhjhjhjhjjhhj
 
-devices = [
-    'Android 14; 23076PC4BI Build/UKQ1.230917.001',
-    'iPhone; CPU iPhone OS 14_4 like Mac OS X',
-    'Windows NT 10.0; Win64; x64'
-]
-
-versions = [
-    'Version/4.0',
-    'Version/5.0',
-    'Version/6.0'
-]
+browsers = ["Chrome/126.0.6478.134", "Firefox/115.0", "Safari/537.36"]
+os_systems = ["Linux; Android 14", "Windows NT 10.0", "Macintosh; Intel Mac OS X 10_15_7"]
+device_models = ["23076PC4BI", "SM-G991U", "iPhone12,1"]
+builds = ["Build/UKQ1.230917.001", "Build/XYZ123.456", "Build/ABC789.012"]
 
 def generate_random_user_agent():
     browser = random.choice(browsers)
-    device = random.choice(devices)
-    version = random.choice(versions)
+    os_system = random.choice(os_systems)
+    device_model = random.choice(device_models)
+    build = random.choice(builds)
     
-    user_agent = f"{browser} {device} AppleWebKit/537.36 (KHTML, like Gecko) {version} Mobile Safari/537.36"
+    user_agent = (f"Mozilla/5.0 ({os_system}; {device_model} Build/{build}; wv) "
+                  f"AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 {browser} "
+                  f"Mobile Safari/537.36")
     return user_agent
 
 
