@@ -244,8 +244,8 @@ YELLOW = '\033[1;33m'
 BLUE = '\033[1;34m'
 ORANGE = '\033[1;35m'
 BLACK="\033[1;30m"
-R = '{RED}' 
-G = '{GREEN}' 
+R = '\033[38;5;196m' 
+G = '\x1b[38;5;46m' 
 Y = '\033[1;33m' 
 Q = '\033[1;37m'
 T = '\033[1;34m'
@@ -442,11 +442,62 @@ for ua in range(5000):
 #----------------------------[USER/AGENT]--------------------------------------------------------------------------------------------------------------------------------#
 #ghjgjjhgjghkjhgkjljhlkjl;k;lk';l'l;'\;\;uhgjgjkkghkghkjgkjghkjghkgkkkghjkgkgkghhghmhjmkmkknknnjjjhjjjhjhjjhjjhjhjjhjhjjjjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhjhhjhjhjhjhjjhhj
 
-browsers = ["Chrome/126.0.6478.134", "Firefox/115.0", "Safari/537.36"]
-os_systems = ["Linux; Android 14", "Windows NT 10.0", "Macintosh; Intel Mac OS X 10_15_7"]
-device_models = ["23076PC4BI", "SM-G991U", "iPhone12,1"]
-builds = ["Build/UKQ1.230917.001", "Build/XYZ123.456", "Build/ABC789.012"]
+browsers = [
+    "Chrome/126.0.6478.134",
+    "Chrome/125.0.6897.90",
+    "Chrome/124.0.6543.21",
+    "Firefox/115.0",
+    "Firefox/114.0",
+    "Firefox/113.0",
+    "Safari/537.36",
+    "Safari/604.5.6",
+    "Safari/605.1.15",
+    "Edge/115.0.1901.183",
+    "Edge/114.0.1823.62",
+    "Edge/113.0.1774.50",
+    "Opera/91.0.4516.115",
+    "Opera/90.0.4480.30",
+    "Opera/89.0.4389.82",
+    "Brave/1.49.120",
+    "Brave/1.48.110",
+    "Brave/1.47.100",
+    "Vivaldi/6.1.3035.140",
+    "Vivaldi/6.0.2979.15",
+    "Vivaldi/5.4.2753.38",
+    "Safari/537.36 (KHTML, like Gecko) Version/12.0",
+    "Safari/537.36 (KHTML, like Gecko) Version/13.1.2",
+    "Safari/537.36 (KHTML, like Gecko) Version/14.0.3",
+    "Chrome/105.0.5195.125",
+    "Chrome/104.0.5112.79",
+    "Chrome/103.0.5060.134",]
+os_systems = [
+    "Linux; Android 14",
+    "Windows NT 10.0",
+    "Macintosh; Intel Mac OS X 10_15_7",
+    "Linux; Ubuntu 20.04",
+    "Windows NT 6.1; Win64; x64",
+    "Macintosh; Intel Mac OS X 11_6_2",
+    "Linux; Fedora 34",
+    "Windows NT 10.0; Win64; x64",]
+device_models = [
+    "23076PC4BI",
+    "SM-G991U",
+    "iPhone12,1",
+    "Pixel 6 Pro",
+    "iPad7,5",
+    "SM-N976U",
+    "iPhone13,4",
+    "SM-A515U",]
 
+builds = [
+    "Build/UKQ1.230917.001",
+    "Build/XYZ123.456",
+    "Build/ABC789.012",
+    "Build/DEF456.789",
+    "Build/GHI012.345",
+    "Build/JKL678.901",
+    "Build/MNO234.567",
+    "Build/PQR890.123",]
 def generate_random_user_agent():
     browser = random.choice(browsers)
     os_system = random.choice(os_systems)
@@ -844,7 +895,7 @@ def m1(ids,pwv):
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
     sys.stdout.write(f"\r{rad}[{green}{animasi}-M1{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
     sys.stdout.flush()
-    ua = nxp()
+    ua = generate_random_user_agent()
     pro = random.choice(usragent)
     warna = random.choice(my_color)
     try:
@@ -874,7 +925,7 @@ def m1(ids,pwv):
     'Content-Length': '1730',
     'Sec-CH-UA': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
     'Sec-CH-UA-Mobile': '?1',
-    'User-Agent': "Mozilla/5.0 (Linux; Android 4.4.2; 1201 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36 [FB_IAB/MESSENGER;FBAV/128.0.0.21.88;]",
+    'User-Agent': ua,
     'X-Response-Format': 'JSONStream',
     'Content-Type': 'application/x-www-form-urlencoded',
     'X-FB-LSD': 'AVo_Z7twFKE',
