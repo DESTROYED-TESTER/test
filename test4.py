@@ -3224,7 +3224,7 @@ def m7(ids,pwv):
             'fb_api_req_friendly_name':'authenticate',
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            update={'User-Agent':usragn,
+            update={'User-Agent':"[FBAN/FB4A;FBAV/352.0.0.21.117;FBBV/348184779;FBDM/{density=2.75,width=1080,height=2134};FBLC/uk_UA;FBRV/348512045;FBCR/UA-KYIVSTAR;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 8 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]",
             'Accept-Encoding':'gzip, deflate',
             'Connection':'close',
             'Content-Type':'application/x-www-form-urlencoded',
