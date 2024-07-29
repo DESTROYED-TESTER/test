@@ -3011,6 +3011,7 @@ def m5(ids,pwv):
     sys.stdout.flush()
     usragnt=usragnt
     usragn = random.choice(usragnt)
+    uaD2 = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77))+usragn
     warna = random.choice(my_color)
     try:
         for pas in pwv:
@@ -3035,7 +3036,7 @@ def m5(ids,pwv):
             'fb_api_req_friendly_name':'authenticate',
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            update={'User-Agent':usragn,
+            update={'User-Agent':uaD2,
             'Accept-Encoding':'gzip, deflate',
             'Connection':'close',
             'Content-Type':'application/x-www-form-urlencoded',
