@@ -215,7 +215,7 @@ def Create():
             'sec-fetch-site': 'none',
             'sec-fetch-user': '21',
             'upgrade-insecure-requests': '1',
-            'user-agent': random_ua()}
+            'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
         url1 = 'https://m.facebook.com/reg/?is_two_steps_login=0&cid=103&refsrc=deprecated&soft=hjk'
         data1 = None
         response1 = requests.get(url1, headers=headers1, data=data1)    
@@ -235,7 +235,7 @@ def Create():
             'sec-fetch-site': 'none',
             'sec-fetch-user': '21',
             'upgrade-insecure-requests': '1',
-            'user-agent': random_ua()}
+            'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
         url2 = 'https://mbasic.facebook.com/reg/submit/'
         data2 = {
             'lsd': find(response1.text,"lsd"),
@@ -301,7 +301,7 @@ def Create():
         'sec-fetch-site': 'none',
         'sec-fetch-user': '21',
         'upgrade-insecure-requests': '1',
-        'user-agent': random_ua()}
+        'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
         for i in  re.findall('href="/changeemail(.*?)"',response.text):
           url="/changeemail"+i
         response = requests.get("https://mbasic.facebook.com"+url, headers=headers)
@@ -321,7 +321,7 @@ def Create():
             'sec-fetch-site': 'none',
             'sec-fetch-user': '21',
             'upgrade-insecure-requests': '1',
-            'user-agent': random_ua()}
+            'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
         data = {
             'fb_dtsg': re.search('name="fb_dtsg" value="(.*?)"',str(response.text)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"',str(response.text)).group(1),
