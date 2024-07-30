@@ -198,7 +198,7 @@ def Create():
         def rnd(a,b):
             return str(random.randint(a,b))
         em=mmail['mail']
-        num="03"+rnd(10,49)+rnd(1111111,9999999)
+        num="91"+rnd(70,99)+rnd(11111111,99999999)
         headers1 = {
             'accept': 'text/html,application/xhtm 1+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-encoding': 'gzip, deflate',
@@ -371,14 +371,14 @@ def Create():
            global ok,loop,cp,ok1
            import sys
            loop+=1
-           sys.stdout.write('\r\r\033[1;37m [AKING-CREATE] \033[1;32mOK:%s \033[1;37m'%(ok));sys.stdout.flush()
+           sys.stdout.write('\r\r\033[1;37m [AKING-CREATE] \033[1;32mOK:%s \033[1;37m'%(ok)cp(cp));sys.stdout.flush()
            requests=r.Session()
            from fake_email import Email
            mmail=Email().Mail()
            em=mmail['mail']
            hd = {'authority': 'mbasic.facebook.com', 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'accept-language': 'en-US,en;q=0.9', 'cache-control': 'max-age=0', 'origin': 'https://mbasic.facebook.com', 'referer': 'https://mbasic.facebook.com/reg', 'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"', 'sec-ch-ua-mobile': '?0', 'sec-ch-ua-platform': '"Android"', 'sec-fetch-dest': 'document', 'sec-fetch-mode': 'navigate', 'sec-fetch-site': 'same-origin', 'sec-fetch-user': '?1', 'upgrade-insecure-requests': '1', 'user-agent':random_ua()}
            if "9":
-              pas=random.choice(m).replace('|','').lower()+rnd(1111,9999)
+              pas='sumon@12M'
               requests=process(pas,mmail)
               if requests=="chk":
                 cp+=1
