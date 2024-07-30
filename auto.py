@@ -371,7 +371,7 @@ def Create():
            global ok,loop,cp,ok1
            import sys
            loop+=1
-           sys.stdout.write('\r\r\033[1;37m [AKING-CREATE] \033[1;32mOK:%s \033[1;37m'%(loop,ok,cp));sys.stdout.flush()
+           sys.stdout.write('\r\r\033[1;37m [AKING-CREATE] \033[1;32mOK:%s \033[1;37m'%(ok,cp));sys.stdout.flush()
            requests=r.Session()
            from fake_email import Email
            mmail=Email().Mail()
