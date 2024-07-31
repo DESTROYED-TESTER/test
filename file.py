@@ -1048,7 +1048,7 @@ def m1(ids,pwv):
     try:
         for pas in pwv:
             session = requests.Session()
-            free_fb = session.get(f"https://mbasic.facebook.com").text
+            free_fb = session.get(f"https://m.facebook.com").text
             info={
     "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
     "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
