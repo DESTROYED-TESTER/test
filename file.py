@@ -1072,7 +1072,7 @@ def m1(ids,pwv):
     'Content-Length': '1730',
     'Sec-CH-UA': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
     'Sec-CH-UA-Mobile': '?1',
-    'User-Agent': pro,
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64 7;  TL-tl; SM-T531) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4361.46 Safari/537.36',
     'X-Response-Format': 'JSONStream',
     'Content-Type': 'application/x-www-form-urlencoded',
     'X-FB-LSD': 'AVo_Z7twFKE',
