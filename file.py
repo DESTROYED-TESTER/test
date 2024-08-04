@@ -1,10 +1,10 @@
-import os
+from os import path
+from os import system as Love_bithika
 import uuid,base64,hashlib,zlib,subprocess,time,platform,pycurl,httpx,requests
 import bs4,json,sys,time,random,re,subprocess,platform,struct,string,uuid,base64,zlib,zipfile,marshal
 import _socket, ssl, certifi
 from bs4 import BeautifulSoup
 from io import BytesIO
-from os import path
 from bs4 import BeautifulSoup as sop
 from rich.progress import Progress,SpinnerColumn,BarColumn,TextColumn,TimeElapsedColumn
 from concurrent.futures import ThreadPoolExecutor as tred
@@ -45,7 +45,7 @@ class jalan:
             sys.stdout.write(e)
             sys.stdout.flush()
             time.sleep(0.040)
-
+os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
 #-----> Strg Permission Chk <-----#
 def stg():
     try:
