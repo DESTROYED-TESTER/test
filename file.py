@@ -1221,7 +1221,7 @@ def m3(ids,pwv):
             'first_prefill_type': 'contact_point',
             'had_cp_prefilled': 'true',
             'had_password_prefilled': 'false',
-            'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),pas),}
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),pas),}
             update={
             'authority': 'm.facebook.com',
             'method': 'GET',
