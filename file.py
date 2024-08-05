@@ -1075,7 +1075,7 @@ def m1(ids,pwv):
             'a': '',
             '__user': '0',
             '_fb_noscript': 'true'}
-            update={{
+            update={
             'Host': 'mbasic.facebook.com',
             'Connection': 'keep-alive',
             'Content-Length': str(len(json.dumps(info))),
