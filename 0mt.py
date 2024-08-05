@@ -106,6 +106,8 @@ c8=f'{dot}[{H}017{M}-{H}019{M}-{H}016{M}-{H}013{M}-{H}018{M}-{H}014{M}-{H}015{P}
 mtd,cp_xdx,cokix=[],[],[]
 token = ('6628496363:AAFRd1HpukVfL1uuaXfUPABhyaAfLYkzRTU')
 ID = ('1778046662')
+def clear():
+  os.system('clear')
 def banner():
     #os.system('clear')
     print("""\033[38;5;33m
