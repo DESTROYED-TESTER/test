@@ -1,5 +1,3 @@
-from os import path
-from os import system as Love_bithika
 from requests_futures.sessions import FuturesSession
 from requests_html import HTMLSession
 from lxml.html.clean import Cleaner
@@ -1133,7 +1131,7 @@ def m1(ids,pwv):
                 continue
             time.sleep(0.01)
         loop+=1
-    except requests.exceptions.ConnectionError:
+    except HTMLSession().exceptions.ConnectionError:
         time.sleep(9999999999999999)
     except Exception as e:
         pass
