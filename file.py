@@ -1,46 +1,21 @@
+###----------[ IMPORT MODULE ]----------###
 from os import path
 from os import system as Love_bithika
-from requests_futures.sessions import FuturesSession
-from requests_html import HTMLSession
-from lxml.html.clean import Cleaner
-import os,uuid,base64,hashlib,zlib,subprocess,time,platform,pycurl,httpx,requests
-import bs4,json,sys,time,random,re,subprocess,platform,struct,string,uuid,base64,zlib,zipfile,marshal
-import _socket, ssl, certifi
-from bs4 import BeautifulSoup
-from io import BytesIO
-from bs4 import BeautifulSoup as sop
+import requests,json,os,sys,random,datetime,time,re,platform,string,uuid,base64,pycurl
 from rich.progress import Progress,SpinnerColumn,BarColumn,TextColumn,TimeElapsedColumn
 from concurrent.futures import ThreadPoolExecutor as tred
-from concurrent.futures import ThreadPoolExecutor as ThreadPool 
-from rich.table import Table as me
-from rich.console import Console as sol
+from time import sleep as waktu
+from time import time as mek
+from io import BytesIO
 from bs4 import BeautifulSoup as sop
-from rich.console import Group as gp
-from rich.panel import Panel as nel
-from rich.markdown import Markdown as mark
-from rich.columns import Columns as col
-from rich import pretty
-from rich.text import Text as tekz
-from time import localtime as lt
-pretty.install()
-CON=sol()
-os.system("pip install licensing > /dev/null")
-from licensing.models import *
-from licensing.methods import Key, Helpers
-os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
-try:
-    import requests_html
-except ImportError:
-    print('\n \033[1;91m[\033[1;93mXD-000\033[1;91m]\033[1;97m installing requests_html !...\n')
-    time.sleep(0.5)
-    os.system('pip install requests_html')
+import os,base64,hashlib,zlib,pip,urllib,random,requests
 try: 
-    import lxml.html.clean
-except ImportError:
-    print('\n \033[1;91m[\033[1;93mXD-000\033[1;91m]\033[1;97m installing lxml.html.clean !...\n')
-    time.sleep(0.5)
-    os.system('pip install lxml.html.clean')
-os.system('clear')
+        import os,requests,json,time,re,random,sys,uuid,string,subprocess
+        from string import *
+except ModuleNotFoundError:
+        os.system(f'pip install requests futures==2 > /dev/null')
+except:pass
+if not len(open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/models.py','r').readlines())==1034:os.system('clear')
 print('\x1b[38;5;34m        𝗧𝗢𝗢𝗟𝗦 𝗦𝗘𝗖𝗨𝗥𝗜𝗧𝗬 𝗗𝗘𝗧𝗘𝗖𝗧...   ')
 class jalan:
     def __init__(self, z):
@@ -48,7 +23,6 @@ class jalan:
             sys.stdout.write(e)
             sys.stdout.flush()
             time.sleep(0.040)
-os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
 #-----> Strg Permission Chk <-----#
 def stg():
     try:
