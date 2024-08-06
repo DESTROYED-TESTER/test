@@ -8,7 +8,7 @@ from time import sleep as waktu
 from time import time as mek
 from io import BytesIO
 from bs4 import BeautifulSoup as sop
-import os,base64,hashlib,zlib,pip,urllib,random,requests
+import os,base64,hashlib,zlib,pip,urllib,marshal,zipfile,random,requests
 try: 
         import os,requests,json,time,re,random,sys,uuid,string,subprocess
         from string import *
