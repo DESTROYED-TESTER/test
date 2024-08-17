@@ -187,8 +187,8 @@ def crack(uid, pww, total_idz):
                     print(f"\r\033[1;91m [FAIL] {uid} | {pw}")
                     break
             else:
-                print("Request failed with status code:", response.status_code)
-                continue
+                        print("Request failed with status code:", response.status_code)
+                        continue
         loop+=1
     except ConnectionError:
         time.sleep(10)
