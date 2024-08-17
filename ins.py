@@ -138,6 +138,7 @@ def crack(uid, pww, total_idz):
     try:
         for pw in pww:
             session = requests.Session()
+            time_now = int(time.time())
             params = {'hl': 'en',}
             cookies = {
                 'csrftoken': '4M2PbXXQYNEmDdxrQg01NL',
