@@ -182,8 +182,12 @@ def crack(uid, pww, total_idz):
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
                         oks.append(uid)
                         break
+                else:
+                    print("Login failed:", json_response.get('message'))
+                    break
             else:
                 print("Request failed with status code:", response.status_code)
+                continue
         loop+=1
     except ConnectionError:
         time.sleep(10)
