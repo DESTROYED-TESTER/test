@@ -183,7 +183,7 @@ def crack(uid, pww, total_idz):
                         oks.append(uid)
                         break
             else:
-                continue
+                print("Request failed with status code:", response.status_code)
         loop+=1
     except ConnectionError:
         time.sleep(10)
