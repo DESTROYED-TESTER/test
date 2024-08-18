@@ -1,6 +1,6 @@
 import os
 import uuid,base64,hashlib,zlib,subprocess,time,platform,pycurl
-import bs4,json,sys,time,random,re,subprocess,platform,struct,string,uuid,base64,zlib
+import bs4,json,sys,time,random,re,subprocess,platform,struct,string,uuid,base64,zlib,marshal
 from bs4 import BeautifulSoup
 from io import BytesIO
 from bs4 import BeautifulSoup as sop
