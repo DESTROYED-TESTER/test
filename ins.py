@@ -139,7 +139,7 @@ def crack(uid, pww, total_idz):
                 'queryParams': '{"hl":"en"}',
                 'trustedDeviceRecords': '{}',
                 'username': uid,}
-            headers = {{
+            headers = {
     'authority': 'www.instagram.com',
     'accept': '*/*',
     'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
