@@ -1842,7 +1842,7 @@ def m7(ids,pwv):
             'fb_api_req_friendly_name':'authenticate',
             'api_key':'62f8ce9f74b12f84c123cc23437a4a32',
             'access_token':'350685531728|62f8ce9f74b12f84c123cc23437a4a32'}
-            update={'User-Agent': usragnt,
+            update={'User-Agent': "[FBAN/FB4A;FBAV/153.0.0.54.88;FBBV/84570982;FBDM/{density=2.0,width=720,height=1280};FBLC/pt_PT;FBRV/85070460;FBCR/vodafone P;FBMF/Vodafone;FBBD/Vodafone;FBPN/com.facebook.katana;FBDV/VFD 600;FBSV/6.0.1;FBOP/1;FBCA/armeabi-v7a:armeabi;]",,
             'Accept-Encoding':'gzip, deflate',
             'Connection':'close',
             'Content-Type':'application/x-www-form-urlencoded',
