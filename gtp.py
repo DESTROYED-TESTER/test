@@ -8,6 +8,7 @@ import json
 import string
 import random
 import requests
+import re
 from requests.exceptions import ConnectionError
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime 
