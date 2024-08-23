@@ -1,175 +1,160 @@
-
-
-#---------[ LMNx9 MODULE ]---------#
-
-import os,sys,string,json,hashlib,random
-from os import system as lmnxsys;import time
+#make by SiFaT 
+#Full Credit By SiFaT 
+import random,string,time,re,sys,os
+from concurrent.futures import ThreadPoolExecutor as tdp
 try:
-    import requests
-    import rich
-    import faker
-except ImportError:
-    lmnxsys("pip install rich")
-    lmnxsys("pip install requests")
-    lmnxsys("pip install faker")
-import rich,requests,faker
-from faker import Faker
-from rich import print
-
-og='\x1b[38;5;208m';rd='\033[1;31m';gr='\033[1;32m';sk='\033[1;36m'
-
-#---------[ LMNx9 BANNER ]---------#
-
-log=f"""\033[38;5;33m
-    █████╗ ████████╗ ██████╗ ███╗   ███╗
-   ██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
-   ███████║   ██║   ██║   ██║██╔████╔██║
-   ██╔══██║   ██║   ██║   ██║██║╚██╔╝██║
-   ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
-   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝"""
+    import requests as r
+    from bs4 import BeautifulSoup as bs
+except:
+    os.system("pip install bs4 requests")
+    os.system('pkg install espeak')
+    os.system("clear")
+def clear():
+    os.system('clear')
+    print(sifat)
 def logo():
-    lmnxsys("clear")
-    print(log)
-    
-def lnx():
-    print(23*f"[bold red]-[bold tan]-")
+    print(sifat)
+def v():
+    print(' \033[1;37m[\033[1;32m+\033[1;37m] VERSION   :  \033[1;33m0.1  \x1b[38;5;46mAUTO-DUMP \033[1;37m')
+def linex():
+    print('\033[1;37m••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••')
 
+os.system('clear')
+os.system('pkg install espeak')
+os.system('xdg-open https://www.facebook.com/D3V1L.N4Y1M')
 
-#---------[ LMNx9 STRING ]---------#
+sifat=(f"""
+      \033[1;34mMR\033[1;37m##    ##    ###    ##    ## #### ##     ## 
+        \033[1;37m###   ##   ## ##    ##  ##   ##  ###   ### 
+        \033[1;37m####  ##  ##   ##    ####    ##  #### #### 
+        \033[1;37m## ## ## ##     ##    ##     ##  ## ### ## 
+        \033[1;37m##  #### #########    ##     ##  ##     ## 
+       \033[1;37m ##   ### ##     ##    ##     ##  ##     ## 
+        \033[1;37m##    ## ##     ##    ##    #### ##     ##\033[1;34m404
+\033[1;37m------------------------------------------------------------
+ \033[1;37m[\033[1;32m+\033[1;37m] AUTHOR    :  SIFAT-KING
+ \033[1;37m[\033[1;32m+\033[1;37m] YOUTUBE  :  TG SIFAT 
+ \033[1;37m[\033[1;32m+\033[1;37m] GITHUB    :  \033[1;34mMR\033[1;31m-\033[1;37mSIFAT\033[1;31m-\033[1;34m
+ \033[1;37m[\033[1;32m+\033[1;37m] STUTAS    :  FREE 
+ \033[1;37m[\033[1;32m+\033[1;37m] VERSION   :  \033[1;33m0.1.3  
+\033[1;37m------------------------------------------------------------""")
+uids=[]
+n=0
+c=0
+  
+clear()
+#file=input("ENTER ")
+try:
+    open(file,"r").read()
+except:
+    file="/sdcard/SIFAT.txt"
 
-def lmnx9_string(length):
-    letters_and_digits = string.ascii_letters + string.digits
-    return ''.join(random.choice(letters_and_digits) for i in range(length))
+def s(code):
+    ln=15-len(code)
+    lim=int("9"*(ln))+1
+    for i in range(lim):
+        uids.append(code+str(i).zfill(ln))
 
-#---------[ LMNx9 DOMAIN ]---------#
-
-def lmnx9_domain():
-    url = "https://api.mail.tm/domains"
-    try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            return response.json()['hydra:member']
-        else:
-            print(f'[bold red]<[bold cyan]✘[bold red]> [bold red]LMNx9 E-mail Error [bold violet]: {response.text}')
-            lnx()
-            input(f"{sk}<{gr}➤{sk}> {og}PRESS ENTER TO BACK MAIN")
-            LMNx9()
-            return None
-    except Exception as e:
-        print(f'[bold red]<[bold cyan]✘[bold red]>[bold red] LMNx9 Error[bold violet] : {e}')
-        lnx()
-        input(f"{sk}<{gr}➤{sk}> {og}PRESS ENTER TO BACK MAIN")
-        LMNx9()
-        return None
-
-#---------[ LMNx9 ACCOUNT ]---------#
-
-def lmnx9_account():
-    fake = Faker()
-    mail_domains = lmnx9_domain()
-    if mail_domains:
-        domain = random.choice(mail_domains)['domain']
-        username = lmnx9_string(10)
-        password = ('india@12$MM')
-        birthday = fake.date_of_birth(minimum_age=18, maximum_age=45)
-        first_name = random.choice(['sumon','riya','piya','sakhi','mimi','rupali'])
-        last_name = random.choice(['roy','sarkar','das','mondal','dotto','ghosh'])
-        url = "https://api.mail.tm/accounts"
-        headers = {"Content-Type": "application/json"}
-        data = {"address": f"{username}@{domain}", "password":password}       
-        try:
-            response = requests.post(url, headers=headers, json=data)
-            if response.status_code == 201:
-                return f"{username}@{domain}", password, first_name, last_name, birthday
-            else:
-                print(f'[bold red]<[bold cyan]✘[bold red]> [bold red]LMNx9 Email Error [bold violet]: {response.text}')
-                lnx()
-                input(f"{sk}<{gr}➤{sk}> {og}PRESS ENTER TO BACK MAIN")
-                LMNx9()
-                return None, None, None, None, None
-        except Exception as e:
-            print(f'[bold red]<[bold cyan]✘[bold red]> [bold red]LMNx9 Error [bold violet]: {e}')
-            lnx()
-            input(f"{sk}<{gr}➤{sk}> {og}PRESS ENTER TO BACK MAIN")
-            LMNx9()
-            return None, None, None, None, None
-
-#---------[ LMNx9 REGISTER ]---------#
-
-def lmnx9_register(email, password, first_name, last_name, birthday):
-    api_key = '882a8490361da98702bf97a021ddc14d'
-    secret = '62f8ce9f74b12f84c123cc23437a4a32'
-    gender = random.choice(['M', 'F'])
-    req = {
-        'api_key': api_key,
-        'attempt_login': True,
-        'birthday': birthday.strftime('%Y-%m-%d'),
-        'client_country_code': 'EN',
-        'fb_api_caller_class': 'com.facebook.registration.protocol.RegisterAccountMethod',
-        'fb_api_req_friendly_name': 'registerAccount',
-        'firstname': first_name,
-        'format': 'json',
-        'gender': gender,
-        'lastname': last_name,
-        'email': email,
-        'locale': 'en_US',
-        'method': 'user.register',
-        'password': password,
-        'reg_instance': lmnx9_string(32),
-        'return_multiple_errors': True
-    }
-    sorted_req = sorted(req.items(), key=lambda x: x[0])
-    sig = ''.join(f'{k}={v}' for k, v in sorted_req)
-    ensig = hashlib.md5((sig + secret).encode()).hexdigest()
-    req['sig'] = ensig
-    api_url = 'https://b-api.facebook.com/method/user.register'
-    reg = lmnx9_requests_call(api_url, req)
-    id=reg['new_user_id']
-    token=reg['session_info']['access_token']
-    
-#---------[ LMNx9 RESULT ]---------#
-    
-    print(f'''
-[bold red]<[bold cyan]/[bold red]>[bold green] UID       :[bold purple] {id} | {password}
-    ''');lnx()
-    lmn_x=open('/sdcard/id.txt','a')
-    lmn_x.write(f"{id} | {password}\n")
-    lmn_x=open('/sdcard/email.txt','a')
-    lmn_x.write(f"{email} | {password}\n")
-    lmn_x.close()
-
-
-
-
-#---------[ LMNx9 REQUEST CALL ]---------#
-
-def lmnx9_requests_call(url, params, post=True):
-    headers = {
-        'User-Agent': '[FBAN/FB4A;FBAV/35.0.0.48.273;FBDM/{density=1.33125,width=800,height=1205};FBLC/en_US;FBCR/;FBPN/com.facebook.katana;FBDV/Nexus 7;FBSV/4.1.1;FBBK/0;]'
-    }
-    if post:
-        response = requests.post(url, data=params, headers=headers)
+def gen(code,tt):
+    clear()
+    print('[1] START FOR AUTO DUMP ..')
+    linex()
+    op=int(input("""select : \x1b[38;5;46m """))
+    clear()
+    print(' \033[1;37m[\033[1;32m+\033[1;37m] process his been started ...')
+    v()
+    print(' \033[1;37m[\033[1;32m+\033[1;37m] Use CTRL+z for stop This Programme ')
+    linex()
+    if op==2:
+        s(code)
     else:
-        response = requests.get(url, params=params, headers=headers)
-    return response.json()
+        for i in range(tt):
+            uids.append(code+''.join(random.choice(string.digits) for _ in range(
+        15-len(code)
+        )))
+        
+def geno(code,l,tt):
+    for i in range(tt):
+        uids.append(code+''.join(random.choice(string.digits) for _ in range(
+        l-len(code)
+        )))
 
-#---------[ LMNx9 MAIN ]---------#
 
-def LMNx9():
-    logo();lnx()
-    for i in range(int(input(f'{og}<{gr}+{og}> {gr}HOW MANY ACCOUNT NEED {sk}:{og} '))):
-        lnx()
-        email, password, first_name, last_name, birthday = lmnx9_account()
-        if email and password and first_name and last_name and birthday:
-            lmnx9_register(email, password, first_name, last_name, birthday)
+uao=['Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/45.0.2454101','Mozilla/5.0 (Linux; Android 8.1.0; vivo 1812 Build/O11019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36 VivoBrowser/7.9.0.1','Dalvik/2.1.0 (Linux; U; Android 5.1; Lenovo P1ma40 Build/LMY47D)',
+'Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G7102 Build/KOT49H)',
+'Dalvik/2.1.0 (Linux; U; Android 7.0; SM-G920K Build/NRD90M)']
 
-#---------[ LMNx9 CONTROL ]---------#
-
-if __name__ in "__main__":
-    LMNx9();lnx()
-    print(f"\n[bold red]<[bold cyan]✔[bold red]> [bold violet]ID's Saved - [bold green]/sdcard/LMNx9-FBX-Gift.txt")
-    input(f"{sk}<{gr}➤{sk}> {og}PRESS ENTER TO BACK MAIN")
-    LMNx9()
+def inputs():
+    os.system("clear")
+    os.system('espeak -a 300 "ENTER YOUR DUMP LIMIT"')
+    print(sifat)
+    print('\n')
+    print("\x1b[1;95m[+]  10001 • 100089 • 100090** etc")
+    linex()
+    code=input("ENTER YOUR DUMP LIMIT : \x1b[38;5;46m ")
+    clear()
+    os.system('espeak -a 300 "ENTER YOUR COUNT LIMIT"')
+    print('\n')
+    linex()
+    print("\x1b[1;95m[+] 10000 • 100000 • 300000 • 3000484")
+    linex()
+    tt=int(input("ENTER YOUR COUNT LIMIT : \x1b[38;5;46m"))
+    l=0
+    if len(code)<4:
+        l=int(input("Uid length: "))
+    return code,tt,l
     
-#--------[-> Coded By - Limon_Hossain <-]--------
-#----[-> Join - t.me/DARK_TEAM_LMNx9 <-]----
+    
+
+def getname(uid):
+    global n,c
+    ua=random.choice(uao)
+    hd={'authority':'m.facebook.com',
+
+           'method': 'GET',
+            'user-agent':ua
+            
+        
+            
+            }
+    url="https://m.facebook.com/profile.php?id="+uid
+    pi=r.get(url,headers=hd)
+    bp=bs(pi.content,"html.parser")
+    name=bp.find("title").text.split("|")[0].strip()
+    if "Content not found" not in name and "Log in to Facebook" not in name:
+        n+=1
+        
+        
+        print(f"\033[1;34m[AUTO-DUMP-SUCCESFULL]\033[1;32m{uid} • {name}")
+        open(file,"a").write(uid+" | "+name+"\n")
+    #else:
+      #  print(f"\033[1;34m[AUTO-DUMP-SUCCESFULL]\033[1;32m{uid} • {name}")
+    
+    c+=1
+    print(f'\033[1;37m[\033[1;32m SEARCHING \033[1;37m] <> \033[1;37m[\033[1;32m%s\033[1;37m]'%(n),end="\r")
+
+
+def run():
+    with tdp(max_workers=30) as t:
+        for uid in uids:
+            t.submit(getname,uid)
+
+while True:
+    code,tt,l=inputs()
+    if len(code)>=4:
+        gen(code,tt)
+    else:
+        geno(code,l,tt)
+    
+    run()
+    print("DUMP IDS ARE SAVE: "+file)
+    rr=input("DUMP AGAIN? [Y or N]")
+    if rr in ["Y","y"]:
+        code,tt,l=inputs()
+        n=0
+        c=0
+        uids=[]
+        gen(code,tt)
+        run()
+    else:
+        break
