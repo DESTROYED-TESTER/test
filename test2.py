@@ -1,10 +1,3 @@
-'''
-@Code written by Mr.SxR
-@Github : Mr-SxR
-
-Use any normol login data and headers in the same method def
-example : full Host ,, full authority ,, full app login Host ,, full app login authority ,, All kinds of host and authority mix.
-'''
 #▬▭▬▭▬▭▬▭[ IMPORT MODULES ]▬▭▬▭▬▭▬▭#
 import os,time,sys,re,string,uuid,json,random
 from concurrent.futures import ThreadPoolExecutor as threadpol
@@ -38,8 +31,6 @@ def clr_logo():
        `8888Y'  YP    YP  88   YD    𝚂✗ᖇ
 {sxrline}
  {a}[{b}●{a}] {a}TOOL OWNER    {f}:{b} SIFAT
- {a}[{b}●{a}] {a}FACEBOOK      {f}:{b} MASUDUR RAHMAN SIFAT
- {a}[{b}●{a}] {a}TOOL          {f}:{a} RANDOM
  {a}[{b}●{a}] {a}TOOL STATUS   {f}:{a} PRIVATE
  {a}[{b}●{a}] {a}TOOL VERSION  {f}:{j} (V-07)
 {sxrline}""")
