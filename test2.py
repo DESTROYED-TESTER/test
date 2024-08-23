@@ -22,17 +22,17 @@ sys.stdout.write('\x1b]2; Mr. SxR\x07')
 #▬▭▬▭▬▭▬▭[ LOGO ]▬▭▬▭▬▭▬▭#
 def clr_logo():
     magi("clear")
-    print(f"""{a}
-       .d8888.  db    db  d8888b. 
-       88'  YP  `8b  d8'  88  `8D 
-       `8bo.     `8bd8'   88oobY' 
-         `Y8b.   .dPYb.   88`8b   
-       db   8D  .8P  Y8.  88 `88. 
-       `8888Y'  YP    YP  88   YD    𝚂✗ᖇ
+    print(f"""\033[38;5;33m
+    █████╗ ████████╗ ██████╗ ███╗   ███╗
+   ██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
+   ███████║   ██║   ██║   ██║██╔████╔██║
+   ██╔══██║   ██║   ██║   ██║██║╚██╔╝██║
+   ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
+   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \x1b[38;1;97m ᴾᴿᴼ
 {sxrline}
- {a}[{b}●{a}] {a}TOOL OWNER    {f}:{b} SIFAT
+ {a}[{b}●{a}] {a}TOOL OWNER    {f}:{b} SUMON ROY
  {a}[{b}●{a}] {a}TOOL STATUS   {f}:{a} PRIVATE
- {a}[{b}●{a}] {a}TOOL VERSION  {f}:{j} (V-07)
+ {a}[{b}●{a}] {a}TOOL VERSION  {f}:{j} V-109.0.5.0.3
 {sxrline}""")
 #▬▭▬▭▬▭▬▭[ MAIN DEF ]▬▭▬▭▬▭▬▭#
 def sxr_main():
@@ -62,14 +62,14 @@ def sxr_bd():
     for number in range(LiMit):
         numx = ''.join(random.choice(string.digits) for i in range(8))
         numnx.append(numx)
-    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} m.alpha.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
+    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} www.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
     mthd_svr = str(input(f" {b}CHOOSE SERVER {ekual} "))
     if mthd_svr in ['a','A','1','01']:fb="m"
     elif mthd_svr in ['b','B','2','02']:fb="mbasic"
     elif mthd_svr in ['c','C','3','03']:fb="free"
     elif mthd_svr in ['d','D','4','04']:fb="p"
     elif mthd_svr in ['e','E','5','05']:fb="x"
-    elif mthd_svr in ['f','F','6','06']:fb="m.alpha"
+    elif mthd_svr in ['f','F','6','06']:fb="www"
     elif mthd_svr in ['g','G','7','07']:fb="d"
     else:fb="mbasic"
 #
@@ -101,14 +101,14 @@ def sxr_ind():
     for number in range(LiMit):
         numx = ''.join(random.choice(string.digits) for i in range(6))
         numnx.append(numx)
-    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} m.alpha.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
+    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} www.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
     mthd_svr = str(input(f" {b}CHOOSE SERVER {ekual} "))
     if mthd_svr in ['a','A','1','01']:fb="m"
     elif mthd_svr in ['b','B','2','02']:fb="mbasic"
     elif mthd_svr in ['c','C','3','03']:fb="free"
     elif mthd_svr in ['d','D','4','04']:fb="p"
     elif mthd_svr in ['e','E','5','05']:fb="x"
-    elif mthd_svr in ['f','F','6','06']:fb="m.alpha"
+    elif mthd_svr in ['f','F','6','06']:fb="www"
     elif mthd_svr in ['g','G','7','07']:fb="d"
     else:fb="mbasic"
 #
@@ -140,14 +140,14 @@ def sxr_npl():
     for number in range(LiMit):
         numx = ''.join(random.choice(string.digits) for i in range(6))
         numnx.append(numx)
-    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} m.alpha.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
+    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} www.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
     mthd_svr = str(input(f" {b}CHOOSE SERVER {ekual} "))
     if mthd_svr in ['a','A','1','01']:fb="m"
     elif mthd_svr in ['b','B','2','02']:fb="mbasic"
     elif mthd_svr in ['c','C','3','03']:fb="free"
     elif mthd_svr in ['d','D','4','04']:fb="p"
     elif mthd_svr in ['e','E','5','05']:fb="x"
-    elif mthd_svr in ['f','F','6','06']:fb="m.alpha"
+    elif mthd_svr in ['f','F','6','06']:fb="www"
     elif mthd_svr in ['g','G','7','07']:fb="d"
     else:fb="mbasic"
 #
@@ -179,14 +179,14 @@ def sxr_pak():
     for number in range(LiMit):
         numx = ''.join(random.choice(string.digits) for i in range(7))
         numnx.append(numx)
-    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} m.alpha.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
+    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} www.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
     mthd_svr = str(input(f" {b}CHOOSE SERVER {ekual} "))
     if mthd_svr in ['a','A','1','01']:fb="m"
     elif mthd_svr in ['b','B','2','02']:fb="mbasic"
     elif mthd_svr in ['c','C','3','03']:fb="free"
     elif mthd_svr in ['d','D','4','04']:fb="p"
     elif mthd_svr in ['e','E','5','05']:fb="x"
-    elif mthd_svr in ['f','F','6','06']:fb="m.alpha"
+    elif mthd_svr in ['f','F','6','06']:fb="www"
     elif mthd_svr in ['g','G','7','07']:fb="d"
     else:fb="mbasic"
 #
