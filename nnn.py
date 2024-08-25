@@ -30,6 +30,7 @@ usragent = []
 loop,baz = 0,[]
 ok,cp,oo = 0,0,[]
 ugen=[]
+ugenn=[]
 ###----------[ GET PROXY ]----------###
 redmi=[]
 try:
@@ -67,7 +68,7 @@ for xd in range(10000):
     j=random.randrange(1, 4)
     k='7.3.0 Mobile Safari/533.4 3gpp-gba'
     uaku=(f'{a}{b}.{c} {d}{e}{f}{g}.{h}.{i}.{j} {k}')
-    ugen.append(uaku) 
+    ugenn.append(uaku) 
  ###----------[ User Agent Linux ]---------- ###
 for i in range(10000):
     aa='Mozilla/5.0 (Linux; Android'
@@ -83,7 +84,7 @@ for i in range(10000):
     k=random.randrange(40,150)
     l='Mobile Safari/537.36'
     uaku2=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-    ugen.append(uaku2)
+    ugenn.append(uaku2)
 #User Agnes buatan Asep Yusup 
     rr = random.randint
     rc = random.choice
