@@ -1226,7 +1226,7 @@ def m6(idf,pwv):
     'dpr': '1',
     'origin': 'https://mbasic.facebook.com',
     'priority': 'u=0, i',
-    'referer': 'https://mbasic.facebook.com/recover/initiate/?c=https%3A%2F%2Fmbasic.facebook.com%2Flogin%2F%3Femail%3D8389066877%26li%3Dx-XKZs2ocnd6TEeq6PC-lIUz%26e%3D1348092%26shbl%3D1%26refsrc%3Ddeprecated&fl=default_recover&ctx=msite_initiate_view&recover_method=send_email&ars=m_try_another_way_clicked_from_code_entry',
+    'referer': f'https://mbasic.facebook.com/recover/initiate/?c=https%3A%2F%2Fmbasic.facebook.com%2Flogin%2F%3Femail%3D{idf}%26li%3Dx-XKZs2ocnd6TEeq6PC-lIUz%26e%3D1348092%26shbl%3D1%26refsrc%3Ddeprecated&fl=default_recover&ctx=msite_initiate_view&recover_method=send_email&ars=m_try_another_way_clicked_from_code_entry',
     'sec-ch-prefers-color-scheme': 'dark',
     'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
     'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
