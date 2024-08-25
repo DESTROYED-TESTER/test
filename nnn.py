@@ -1276,47 +1276,4 @@ if __name__=='__main__':
   except:pass
 #  b2()
 #  mainx() 
-def Subscraption():
-	UMO="BITHIKA"
-	ML1="SBSBSBSB"
-	sk = "K742J"
-	lk = "7"
-	uuid = str(os.geteuid())
-	id = "".join(uuid+sk+lk)
-	key1 = UMO+id+ML1
-	Key2 = ak+ATOM+key1
-	r1=requests.get("https://github.com/DESTROYED-ATOM/approve/blob/main/approve.txt").text
-	if Key2 in r1:
-		os.system('clear')
-		mainx()
-	else:
-		os.system("clear")
-		print("""\033[38;5;33m
- █████╗ ████████╗ ██████╗ ███╗   ███╗
-██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
-███████║   ██║   ██║   ██║██╔████╔██║
-██╔══██║   ██║   ██║   ██║██║╚██╔╝██║
-██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
-╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝
-\033[38;5;196m────────────────────────────────────────────
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m CEO & OWNER    \033[38;5;196m : \x1b[38;5;196m SUMON ROY
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m  ABOUTS  \033[38;5;196m  :\x1b[38;5;196m DESTROYED
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m VERSION \033[38;5;196m  :\x1b[38;1;97m no signal
-\033[38;5;196m[\x1b[38;5;196m+\033[38;5;196m]\x1b[38;5;34m STATUS \033[38;5;196m   :\x1b[38;5;196m PREMIUM 
-\033[38;5;196m────────────────────────────────────────────""")
-		print("\x1b[38;1;97m               NOTES   ")
-		
-		
-		time.sleep(0.0010)
-		print("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m HELLO.... DEAR USER THIS IS PREMIUM TOOLS ")
-		print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m ATOM TOOLS DAILY UPDATE ")
-		print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m PRICE LIST ADMIN INBOX ")
-		print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Your Key:\033[0;93m " +ak+ATOM+key1)
-		#name = input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m YOUR NAME : ")
-		input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
-		time.sleep(3.5)
-		tks = 'JAY%20SHREE%20RAM,%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Sir%20%20My%20%20Key%20%20:%20'+ak+ATOM+key1
-		os.system('am start https://wa.me/+918389066877?text=' + tks)
-		Subscraption() 
-Subscraption() 
 mainx()
