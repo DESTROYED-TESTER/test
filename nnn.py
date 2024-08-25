@@ -1223,7 +1223,6 @@ def m6(idf,pwv):
     'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
     'cache-control': 'max-age=0',
     'content-type': 'application/x-www-form-urlencoded',
-    # 'cookie': 'sb=VKa9ZkevIqGKH5mmTljYdUro; datr=VKa9Zn2S1Z_ptvbMV96KkeAx; ps_l=1; ps_n=1; fr=1TtcqI6vgDuofxZxz.AWXECp-O_MF0EdP0poSiUnPaO1s.BmvaYd..AAA.0.0.BmyuW5.AWWpiPLXb3s; wd=1440x773; sfiu=AYjNjXCBXK3MeS9mR3BHwi5bArQOQshk1n3reW-KURQ6HEmafaQ563wt8-Pox_dGti2UY1auDBL1KEzhPiCM5_dlc_tv8w2KL_uh1dFJKiqWrCIR2mGVPbRL7ekgE8cl6OV_DkEOOhHLxed5xDv7gwv8Q-GC6-P6e8hW9hj2OFrrtczWbL2kA1HUZf8wDI_wduXdkK6hHF2U4d8aA-MwqfoynkX726Umzl89q6rKtUPCD8Ch2uvlKllhq20vKeEkQViYB5jbdFWe_hIWoln7NBXMKbnjxUbtTsHbb4BEo5XRnA',
     'dpr': '1',
     'origin': 'https://mbasic.facebook.com',
     'priority': 'u=0, i',
