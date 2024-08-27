@@ -574,7 +574,7 @@ def __indiax__():
     linex()
     methdx = input(f'''{xdx} SELECT {xdxx} ''')
     for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(7))
+        nmp = ''.join(random.choice(string.digits) for _ in range(6))
         user.append(nmp)
     with tred(max_workers = 30) as __XXX__:
         clear()
