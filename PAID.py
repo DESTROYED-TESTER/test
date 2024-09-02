@@ -874,8 +874,8 @@ def rndm1(uid,passlist):
                         li2 = random.choice(li)
                         j1 = ''.join(random.choice(string.digits) for _ in range(2))
                         jazoest = li2+j1
-                        data = {'email': '61564960182188', 
-'password': 'sumon@12M', 
+                        data = {'email': uid, 
+'password': pas, 
 'adid': str(uuid.uuid4()),
 'device_id': str(uuid.uuid4()),
 'family_device_id': str(uuid.uuid4()),
