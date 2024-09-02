@@ -124,21 +124,20 @@ except:
 MY_KEY = open('/data/data/com.termux/files/usr/lib/.myawm.txt','r').read()"""
 #__________________| COLOUR |__________________#
 A = '\x1b[1;97m';R = '\x1b[38;5;196m';Y = '\033[1;33m';G = '\x1b[38;5;46m';B = '\x1b[38;5;8m';G1 = '\x1b[38;5;48m';G2 = '\x1b[38;5;47m';G3 = '\x1b[38;5;48m';G4 = '\x1b[38;5;49m';G5 = '\x1b[38;5;50m';X = '\33[1;34m';X1 = '\x1b[38;5;14m';X2 = '\x1b[38;5;123m';X3 = '\x1b[38;5;122m';X4 = '\x1b[38;5;86m';X5 = '\x1b[38;5;121m';S = '\x1b[1;96m';M = '\x1b[38;5;205m';faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
-
+os.system("xdg-open https://chat.whatsapp.com/ImgbbAV3zyu5LK4aIX4EnO");
 #__________________| LINE |__________________#
 def clear():os.system('clear');print(logo)
 def linex():print(f'{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 #__________________| LOGO |__________________#
 logo=(f"""
-{faltu} {black}"If you get tired, learn to rest, not to quit."... {pvt}
+{faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
 \x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON
-\033[1;32m[\033[1;31m✓\033[1;32m] Facebook  : SUMON ROY
-\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;33mFile ×\033[1;35mRandom 
-\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;35m0.0.1
-\033[1;32m[\033[1;31m✓\033[1;32m] STATUS     :\033[1;35m FREE
+\033[1;32m[\033[1;31m✓\033[1;32m] Facebook   : SUMON ROY
+\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;33mFile × \033[1;33mRandom 
+\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m0.0.1
+\033[1;32m[\033[1;31m✓\033[1;32m] STATUS     : \033[1;32m FREE
 \x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 #__________________| MAIN |__________________#
 def clear():
@@ -230,7 +229,7 @@ def menu():
                         elif xd in ['2','02']:
                                 randm()
                         elif xd in ['3','03']:
-                                os.system('xdg-open https://www.facebook.com/profile.php?id=100057497148585');menu()
+                                os.system('xdg-open https://wa.me/+918389066877');menu()
                         elif xd in ['0','05']:
                                 exit(f'\033[1;32m[\033[1;31m✓\033[1;32m] BYE BYE ')
                         else:
