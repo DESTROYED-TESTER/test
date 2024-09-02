@@ -1218,26 +1218,21 @@ def rndm3(uid,passlist):
 
 
 while True:
-    # Command to enable flight mode (placeholder command)
-    command_on = 'powershell -Command "Add-Type -TypeDefinition \'using System; using System.Runtime.InteropServices; public class Win32 { [DllImport(\\"User32.dll\\", CharSet = CharSet.Auto)] public static extern bool SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam); }\' -PassThru; [Win32]::SendMessage([System.IntPtr]::Zero, 0x0010, [System.IntPtr]::Zero, [System.IntPtr]::Zero)"'
-    
-    # Command to disable flight mode (placeholder command)
-    command_off = 'powershell -Command "Add-Type -TypeDefinition \'using System; using System.Runtime.InteropServices; public class Win32 { [DllImport(\\"User32.dll\\", CharSet = CharSet.Auto)] public static extern bool SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam); }\' -PassThru; [Win32]::SendMessage([System.IntPtr]::Zero, 0x0010, [System.IntPtr]::Zero, [System.IntPtr]::Zero)"'
-
     # Enable flight mode
-    subprocess.run(command_on, shell=True, check=True)
+    os.system("settings put global airplane_mode_on 1")
+    os.system("am broadcast -a android.intent.action.AIRPLANE_MODE --ez state true")
     print("Flight mode enabled")
     
     # Wait for 30 seconds
     time.sleep(3)
     
     # Disable flight mode
-    subprocess.run(command_off, shell=True, check=True)
+    os.system("settings put global airplane_mode_on 0")
+    os.system("am broadcast -a android.intent.action.AIRPLANE_MODE --ez state false")
     print("Flight mode disabled")
     
     # Wait for another 30 seconds
     time.sleep(30)
-
 #----------------[ ID-CHECKER ]--------------------------#
 
 def cek_apk(coki):
