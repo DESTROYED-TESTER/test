@@ -123,7 +123,7 @@ except:
     getx.close()
 MY_KEY = open('/data/data/com.termux/files/usr/lib/.myawm.txt','r').read()"""
 #__________________| COLOUR |__________________#
-A = '\x1b[1;97m';R = '\x1b[38;5;196m';Y = '\033[1;33m';G = '\x1b[38;5;46m';B = '\x1b[38;5;8m';G1 = '\x1b[38;5;48m';G2 = '\x1b[38;5;47m';G3 = '\x1b[38;5;48m';G4 = '\x1b[38;5;49m';G5 = '\x1b[38;5;50m';X = '\33[1;34m';X1 = '\x1b[38;5;14m';X2 = '\x1b[38;5;123m';X3 = '\x1b[38;5;122m';X4 = '\x1b[38;5;86m';X5 = '\x1b[38;5;121m';S = '\x1b[1;96m';M = '\x1b[38;5;205m';faltu = "\033[1;47m";pvt = "\033[1;0m";BLACK="\033[1;30m"
+A = '\x1b[1;97m';R = '\x1b[38;5;196m';Y = '\033[1;33m';G = '\x1b[38;5;46m';B = '\x1b[38;5;8m';G1 = '\x1b[38;5;48m';G2 = '\x1b[38;5;47m';G3 = '\x1b[38;5;48m';G4 = '\x1b[38;5;49m';G5 = '\x1b[38;5;50m';X = '\33[1;34m';X1 = '\x1b[38;5;14m';X2 = '\x1b[38;5;123m';X3 = '\x1b[38;5;122m';X4 = '\x1b[38;5;86m';X5 = '\x1b[38;5;121m';S = '\x1b[1;96m';M = '\x1b[38;5;205m';faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 
 #__________________| LINE |__________________#
 def clear():os.system('clear');print(logo)
@@ -145,27 +145,6 @@ def clear():
 	os.system('clear')
 	print(logo)
 
-
-"""
-class apvroval:
-    def check():
-        url = "https://github.com/Jeevanbeb/Apporval/blob/main/JEEVAN.txt"
-        import mechanize
-        my_awm = mechanize.Browser()
-        try:
-            host = my_awm.open(url)
-            check_key = str(host.read())
-            if MY_KEY in check_key:
-                menu()
-            else:
-                clear()
-                print(f'\033[1;32m[\033[1;31m✓\033[1;32m] THIS TOOL IS PAID.SO,YOU NEED PERMISSION TO USE THIS TOOL')
-                print('\033[1;32m[\033[1;31m✓\033[1;32m] SEND YOUR KEY TO GET APPROVAL');linex()
-                os.system( 'xdg-open https://wa.me/+9779742524177')
-        except Exception as e:
-            print(e)
-            exit()
-"""
 #__________________| MAIN |__________________#
 def menu():
         try:
