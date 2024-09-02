@@ -72,7 +72,7 @@ except ValueError:exit()
 bulan = sasi[xx]
 tahun = now.year
 os.system('')
-today = '\033[1;36m'+str(hari)+'\033[1;97m-\033[1;36m'+str(bulan)+'\033[1;97m-\033[1;36m'+str(tahun)
+today = '\033[1;32m'+str(hari)+'\033[1;97m-\033[1;32m'+str(bulan)+'\033[1;97m-\033[1;32m'+str(tahun)
 #----------get_current_city-------#
 def get_current_city():
     try:
@@ -195,11 +195,11 @@ logo=(f"""
 \x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON
 \033[1;32m[\033[1;31m✓\033[1;32m] Facebook   : SUMON ROY
-\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;33mFile × \033[1;33mRandom 
+\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mFile × \033[1;36mRandom 
 \033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m0.0.1
 \033[1;32m[\033[1;31m✓\033[1;32m] STATUS     : \033[1;32mFREE
-\033[1;32m[\033[1;31m✓\033[1;32m] CITY     : \033[1;32m{today}
-\033[1;32m[\033[1;31m✓\033[1;32m] CITY     : \033[1;32m{current_city}
+\033[1;32m[\033[1;31m✓\033[1;32m] DATE       : \033[1;32m{today}
+\033[1;32m[\033[1;31m✓\033[1;32m] YOUR CITY  : \033[1;32m{current_city}
 \x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 #__________________| MAIN |__________________#
 def clear():
