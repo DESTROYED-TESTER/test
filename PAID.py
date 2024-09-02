@@ -1214,25 +1214,6 @@ def rndm3(uid,passlist):
 
 
 
-
-
-
-while True:
-    # Enable flight mode
-    os.system("settings put global airplane_mode_on 1")
-    os.system("am broadcast -a android.intent.action.AIRPLANE_MODE --ez state true")
-    print("Flight mode enabled")
-    
-    # Wait for 30 seconds
-    time.sleep(3)
-    
-    # Disable flight mode
-    os.system("settings put global airplane_mode_on 0")
-    os.system("am broadcast -a android.intent.action.AIRPLANE_MODE --ez state false")
-    print("Flight mode disabled")
-    
-    # Wait for another 30 seconds
-    time.sleep(30)
 #----------------[ ID-CHECKER ]--------------------------#
 
 def cek_apk(coki):
