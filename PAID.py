@@ -139,7 +139,7 @@ logo=(f"""
 \033[1;32m[\033[1;31m✓\033[1;32m] Facebook   : SUMON ROY
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;33mFile × \033[1;33mRandom 
 \033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m0.0.1
-\033[1;32m[\033[1;31m✓\033[1;32m] STATUS     : \033[1;32m FREE
+\033[1;32m[\033[1;31m✓\033[1;32m] STATUS     : \033[1;32mFREE
 \x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 #__________________| MAIN |__________________#
 def clear():
@@ -874,8 +874,8 @@ def rndm1(uid,passlist):
                         li2 = random.choice(li)
                         j1 = ''.join(random.choice(string.digits) for _ in range(2))
                         jazoest = li2+j1
-                        data = {'email': uid, 
-'password': pas, 
+                        data = {'email': '61564960182188', 
+'password': 'sumon@12M', 
 'adid': str(uuid.uuid4()),
 'device_id': str(uuid.uuid4()),
 'family_device_id': str(uuid.uuid4()),
