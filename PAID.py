@@ -24,6 +24,8 @@ except ModuleNotFoundError:
 #───────────────[FAKE CPTHON]───────────────────────── #
 
 
+def clear():
+  os.system('clear')
 
 import os, platform, time, sys
 
