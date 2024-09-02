@@ -37,7 +37,7 @@ print('\033[1;91m[\033[1;97m✓\033[1;91m] \033[1;92mLOADING TOOLS BE PATIENT. .
 #os.system('espeak -a 300 " Waiting for Update,"')
 
 time.sleep(2)
-
+os.system('clear')
 os.system('git pull --quiet 2>/dev/null')
 bit = platform.architecture()[0]
 if bit == '64bit':
