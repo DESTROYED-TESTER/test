@@ -74,15 +74,19 @@ tahun = now.year
 os.system('')
 today = '\033[1;32m'+str(hari)+'\033[1;97m-\033[1;32m'+str(bulan)+'\033[1;97m-\033[1;32m'+str(tahun)
 #----------get_current_city-------#
-def get_current_city():
+def get_current_location():
     try:
         response = requests.get('https://ipinfo.io/json')
+        response.raise_for_status()  # Raise an HTTPError for bad responses
         data = response.json()
-        return data['city']
-    except Exception as e:
-        print("Error fetching current city:", e)
-        return None
-current_city = get_current_city()
+        city = data.get('city', 'Unknown')
+        country = data.get('country', 'Unknown')
+        return city, country
+    except requests.RequestException as e:
+        print("Error fetching current location:", e)
+        return None, None
+# Example usage
+current_city, current_country = get_current_location()
 #-----------------------sdcard---------------------#
 def bithika():
     session=requests.session()
@@ -193,12 +197,12 @@ def linex():print(f'{A}━━━━━━━━━━━━━━━━━━━
 logo=(f"""
 {faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
 \x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON
-\033[1;32m[\033[1;31m✓\033[1;32m] Facebook   : SUMON ROY
+\033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
+\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins on Facebook
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mFile × \033[1;36mRandom 
 \033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m0.0.1
-\033[1;32m[\033[1;31m✓\033[1;32m] STATUS     : \033[1;32mFREE
 \033[1;32m[\033[1;31m✓\033[1;32m] DATE       : \033[1;32m{today}
+\033[1;32m[\033[1;31m✓\033[1;32m] COUNTRY    : \033[1;32m{current_country}
 \033[1;32m[\033[1;31m✓\033[1;32m] YOUR CITY  : \033[1;32m{current_city}
 \x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 #__________________| MAIN |__________________#
