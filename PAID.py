@@ -1259,7 +1259,7 @@ def rndm3(uid,passlist):
 def rndm4(uid,passlist):
         global loop
         global oks
-        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M2{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M4{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
         session=requests.Session()
         try:
                 for pas in passlist:
