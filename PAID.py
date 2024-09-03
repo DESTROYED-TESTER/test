@@ -382,7 +382,7 @@ def india():
 		for nmbr in range(limit):
 			nmp = "". join(random.choice(string.digits) for _ in range(3))
 			user.append(nmp)
-		with tred(max_workers=20) as habib:	
+		with tred(max_workers=15) as habib:	
 			clear()
 			tl = str(len(user))
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] SIM CODE :{faltu} {black}wish luck {pvt} ')
