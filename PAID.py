@@ -3,6 +3,8 @@ from os import path
 import requests,bs4,random,uuid,string,hashlib,json
 from os import path
 from urllib.request import urlopen
+from bs4 import BeautifulSoup as sop
+from bs4 import BeautifulSoup
 import os,base64,zlib,pip,urllib,urllib3
 import platform,math,smtplib
 import platform
@@ -44,7 +46,7 @@ if bit == '64bit':
  print('\033[1;91m[\033[1;92m✓\033[1;91m] \033[1;92mYOU ARE 64BIT USER')
 elif bit == '32bit':
  print('\033[1;91m[\033[1;92m✓\033[1;91m] \033[1;92mYOU ARE 32BIT USER')
-
+ os.system('pip install requests beautifulsoup4')
  
 
  #───────────────[BIT End]───────────────────────── #
