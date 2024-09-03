@@ -1448,7 +1448,7 @@ def cek_apk(session, coki):
     else:
         print(f'\r{A} [•]%s Active Apks & Web 👇 ' % (H))
         for i in range(len(game)):
-            print(f"\r%s [%s] %s %s " % (D, i + 1, game[i].replace("Ditambahkan pada", " Ditambahkan pada"), D))
+            print(f"\r%s [%s] %s %s " % (D, i + 1, game[i].replace("Added on", " Added on"), D))
     
     w = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive", cookies={"cookie": coki}).text
     sop = BeautifulSoup(w, "html.parser")
@@ -1459,7 +1459,7 @@ def cek_apk(session, coki):
     else:
         print(f'\r{A} [•]%s Expired Apks & Web 👇 ' % (M))
         for i in range(len(game)):
-            print(f"\r%s [%s] %s %s " % (C, i + 1, game[i].replace("Kedaluwarsa", " Kedaluwarsa"), A))
+            print(f"\r%s [%s] %s %s " % (C, i + 1, game[i].replace("Expired", " Expired"), A))
 #-------------------------close-----------------------------
 if __name__ == '__main__':
     menu()
