@@ -341,7 +341,7 @@ def bd():
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
 		clear()
-		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G} ');linex()
+		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G}\n{G}[{A}4{G}]{G} METHOD {G}[{A}M4{G}]{G} ');linex()
 		mthd = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		for nmbr in range(limit):
 			nmp=''.join(random.choice(string.digits) for _ in range(6))
@@ -361,6 +361,8 @@ def bd():
 					habib.submit(rndm2,uid,passlist)
 				if mthd in ['3','03']:
 					habib.submit(rndm3,uid,passlist)
+				if mthd in ['4','04']:
+					habib.submit(rndm4,uid,passlist)
 		print('\033[1;37m')
 		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] THE PROCESS HAS COMPLETED')
@@ -377,7 +379,7 @@ def india():
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
 		clear()
-		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G} ');linex()
+		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G}\n{G}[{A}4{G}]{G} METHOD {G}[{A}M4{G}]{G} ');linex()
 		mthd = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		for nmbr in range(limit):
 			nmp = "". join(random.choice(string.digits) for _ in range(3))
@@ -399,6 +401,8 @@ def india():
 					habib.submit(rndm2,uid,passlist)
 				if mthd in ['3','03']:
 					habib.submit(rndm3,uid,passlist)
+				if mthd in ['4','04']:
+					habib.submit(rndm4,uid,passlist)
 		print('\033[1;37m')
 		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] THE PROCESS HAS COMPLETED')
@@ -416,7 +420,7 @@ def nepal():
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
 		clear()
-		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G} ');linex()
+		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G}\n{G}[{A}4{G}]{G} METHOD {G}[{A}M4{G}]{G} ');linex()
 		mthd = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		for nmbr in range(limit):
 			nmp = "". join(random.choice(string.digits) for _ in range(6))
@@ -436,6 +440,8 @@ def nepal():
 					habib.submit(rndm2,uid,passlist)
 				if mthd in ['3','03']:
 					habib.submit(rndm3,uid,passlist)
+				if mthd in ['4','04']:
+					habib.submit(rndm4,uid,passlist)
 		print('\033[1;37m')
 		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] THE PROCESS HAS COMPLETED')
@@ -454,7 +460,7 @@ def pakistan():
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
 		clear()
-		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G} ');linex()
+		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G}\n{G}[{A}4{G}]{G} METHOD {G}[{A}M4{G}]{G} ');linex()
 		mthd = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		for nmbr in range(limit):
 			nmp = "". join(random.choice(string.digits) for _ in range(7))
@@ -474,6 +480,8 @@ def pakistan():
 					habib.submit(rndm2,uid,passlist)
 				if mthd in ['3','03']:
 					habib.submit(rndm3,uid,passlist)
+				if mthd in ['4','04']:
+					habib.submit(rndm4,uid,passlist)
 		print('\033[1;37m')
 		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] THE PROCESS HAS COMPLETED')
@@ -530,7 +538,7 @@ def malaysia():
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
 		clear()
-		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G} ');linex()
+		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G}\n{G}[{A}4{G}]{G} METHOD {G}[{A}M4{G}]{G} ');linex()
 		mthd = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		for nmbr in range(limit):
 			nmp = "". join(random.choice(string.digits) for _ in range(8))
@@ -550,6 +558,8 @@ def malaysia():
 					habib.submit(rndm2,uid,passlist)
 				if mthd in ['3','03']:
 					habib.submit(rndm3,uid,passlist)
+				if mthd in ['4','04']:
+					habib.submit(rndm4,uid,passlist)
 		print('\033[1;37m')
 		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] THE PROCESS HAS COMPLETED')
