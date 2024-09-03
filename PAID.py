@@ -375,7 +375,7 @@ def india():
 		clear()
 		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 9815 | 9814 | 9861 | 9840  ');linex()
 		cod = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
-		code = str(random.randint('6','9'))
+		code = str(random.randint(6,9))
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
 		clear()
