@@ -212,11 +212,9 @@ def clear():
 #===================[LOGO]===========================
 os.system('xdg-open ')
 logo=(f"""
-{green}M   M RRRR      EEEE RRRR  RRRR   OOO  RRRR  
-{green}MM MM R   R     E    R   R R   R O   O R   R 
-{green}M M M RRRR      EEE  RRRR  RRRR  O   O RRRR  
-{green}M   M R R       E    R R   R R   O   O R R   
-{green}M   M R  RR     EEEE R  RR R  RR  OOO  R  RR
+{green}╔═╗╦ ╦╔═╗╔╦╗╦ ╦╔╦╗
+{green}╚═╗╚╦╝╚═╗ ║ ║ ║║║║
+{green}╚═╝ ╩ ╚═╝ ╩ ╚═╝╩ ╩
 {white}================================================
 {red}[{white}√{red}]{green} DEVELOPER {white}▶ {green}︎MR ERROR
 {red}[{white}√{red}]{green} TOOLTYPE {white} ▶︎{green} FREE {red}({green}FILE {white}& {green}RANDOM{red})
