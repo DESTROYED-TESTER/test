@@ -234,6 +234,7 @@ def line():
 def linex():
     print(f'{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 def clear():
+    os.system('clear')
     print(logo)
 #===================[LOGO]===========================
 os.system('xdg-open ')
