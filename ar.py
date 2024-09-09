@@ -248,8 +248,7 @@ logo=(f"""
 {red}[{white}✓{red}]{green} ABOUTS       {white}▶︎{green} a script designed to attempt logins
 {red}[{white}✓{red}]{green} VERSION      {white}▶ {green}︎{version}
 {red}[{white}✓{red}]{green} THIS TOOL FREE ACCESS ALL FEATURE SO USE FEEL HAPPY
-{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-""")
+{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 #====================[HOME-PAGE]==========================
 def ___ERROR___():
     clear()
