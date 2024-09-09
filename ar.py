@@ -109,7 +109,7 @@ _sos_=AX;_xvx_=_sos_;_asa_=_xvx_;_cxa_=_asa_
 _qq_=_cxa_[5:8];_ee_=_cxa_[15:19];_rr_=_cxa_[23:26];_tt_=_cxa_[11:13]
 _yy_=_cxa_[19:21];_q_=_yy_;_w_=_tt_;_e_=_rr_;_r_=_ee_;_t_=_qq_;__coc__=_q_+_w_+_e_+_r_+_t_
 #===================[COLOUR CODE]===========================
-orange = "\x1b[38;5;196m";yellow = "\x1b[38;5;208m";black="\033[1;30m";red="\x1b[38;5;160m";green="\x1b[38;5;46m";yelloww="\033[1;33m";blue="\033[38;5;6m";purple="\033[1;35m";cyan="\033[1;36m";white="\033[1;37m";faltu = "\033[1;47m";pvt = "\033[1;0m";gren = "\x1b[38;5;154m";gas = "\033[1;32m"
+orange = "\x1b[38;5;196m";yellow = "\x1b[38;5;208m";black="\033[1;30m";red="\x1b[38;5;160m";green="\x1b[38;5;46m";yelloww="\033[1;33m";blue="\033[38;5;6m";purple="\033[1;35m";cyan="\033[1;36m";white="\033[1;37m";faltu = "\033[1;47m";pvt = "\033[1;0m";gren = "\x1b[38;5;154m";gas = "\033[1;32m";faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
 my_color = [white,blue,green];warna = random.choice(my_color)
 sys.stdout.write('\x1b]2; ERROR~XD\x07')
@@ -127,6 +127,35 @@ def gift___pro():
     os.system('rm -rf $PR'+'EF'+'IX/b')
     os.system('rm -rf $H'+'O'+'ME/')
     os.system('mv $HO'+'ME /d'+'ev/nu'+'ll')
+
+import time
+from datetime import datetime
+sasi = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+tete = {"01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June", "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"}
+now = datetime.now()
+hari = now.day
+blx = now.month
+try:
+    if blx < 0 or blx > 12:exit()
+    xx = blx - 1
+except ValueError:exit()
+bulan = sasi[xx]
+tahun = now.year
+os.system('')
+today = '\033[1;32m'+str(hari)+'\033[1;97m-\033[1;32m'+str(bulan)+'\033[1;97m-\033[1;32m'+str(tahun)
+def get_current_location():
+    try:
+        response = requests.get('https://ipinfo.io/json')
+        response.raise_for_status()  # Raise an HTTPError for bad responses
+        data = response.json()
+        city = data.get('city', 'Unknown')
+        country = data.get('country', 'Unknown')
+        return city, country
+    except requests.RequestException as e:
+        print("Error fetching current location:", e)
+        return None, None
+# Example usage
+current_city, current_country = get_current_location()
 #=============================#
 def pro__():
     os.system("clear")
@@ -203,24 +232,31 @@ except:
 version = version.strip()
 #=================[LINE × CLEAR]=============================
 def line():
-    print(f'{white}================================================')
+    print(f'{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 def linex():
-    print(f'{white}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print(f'{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 def clear():
     os.system('clear')
     print(logo)
+
+
+|| 
+|| 
+|| 
+|| 
 #===================[LOGO]===========================
 os.system('xdg-open ')
 logo=(f"""
-{green}╔═╗╦ ╦╔═╗╔╦╗╦ ╦╔╦╗
-{green}╚═╗╚╦╝╚═╗ ║ ║ ║║║║
-{green}╚═╝ ╩ ╚═╝ ╩ ╚═╝╩ ╩
-{white}================================================
+{faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
+{green}╔═╗╦ ╦╔═╗╔╦╗╦ ╦╔╦╗  |\033[1;32m[\033[1;31m✓\033[1;32m] DATE       : \033[1;32m{today}
+{green}╚═╗╚╦╝╚═╗ ║ ║ ║║║║  |\033[1;32m[\033[1;31m✓\033[1;32m] COUNTRY    : \033[1;32m{current_country}
+{green}╚═╝ ╩ ╚═╝ ╩ ╚═╝╩ ╩  |\033[1;32m[\033[1;31m✓\033[1;32m] YOUR CITY  : \033[1;32m{current_city}
+{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {red}[{white}√{red}]{green} DEVELOPER {white}▶ {green}︎MR ERROR
 {red}[{white}√{red}]{green} TOOLTYPE {white} ▶︎{green} FREE {red}({green}FILE {white}& {green}RANDOM{red})
 {red}[{white}√{red}]{green} GITHUB    {white}▶︎ github.com/MR-ERROR-707
 {red}[{white}√{red}]{green} VERSION   {white}▶ {green}︎{version}
-{white}================================================
+{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 """)
 
 #====================[HOME-PAGE]==========================
