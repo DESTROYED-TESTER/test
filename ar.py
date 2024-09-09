@@ -241,21 +241,20 @@ def clear():
 #===================[LOGO]===========================
 os.system('xdg-open ')
 logo=(f"""
-{faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
+{faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt} ‼️\x1b[38;1;97m ᴾᴿᴼ
 {green}╔═╗╦ ╦╔═╗╔╦╗╦ ╦╔╦╗ |\033[1;32m[\033[1;31m✓\033[1;32m] DATE       : \033[1;32m{today}
 {green}╚═╗╚╦╝╚═╗ ║ ║ ║║║║ |\033[1;32m[\033[1;31m✓\033[1;32m] COUNTRY    : \033[1;32m{current_country}
-{green}╚═╝ ╩ ╚═╝ ╩ ╚═╝╩ ╩ |\033[1;32m[\033[1;31m✓\033[1;32m] YOUR CITY  : \033[1;32m{current_city}    ‼️\x1b[38;1;97m ᴾᴿᴼ
+{green}╚═╝ ╩ ╚═╝ ╩ ╚═╝╩ ╩ |\033[1;32m[\033[1;31m✓\033[1;32m] YOUR CITY  : \033[1;32m{current_city}    
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-{red}[{white}✓{red}]{green} ONWER AND CEO{white}▶︎ {green}𝐜𝐡𝐨𝐲𝐨𝐧 {green}𝐗 {green}𝐬𝐮𝐦𝐨𝐧
+{red}[{white}✓{red}]{green} ONWER & CEO  {white}▶︎ {green}𝐜𝐡𝐨𝐲𝐨𝐧 {green}𝐗 {green}𝐬𝐮𝐦𝐨𝐧
 {red}[{white}✓{red}]{green} ABOUTS       {white}▶︎{green} a script designed to attempt logins
 {red}[{white}✓{red}]{green} VERSION      {white}▶ {green}︎{version}
-{red}[{white}✓{red}]{green} THIS TOOL {faltu} {black}FILE{pvt} {green}& {faltu} {black}RANDOM{pvt} {green}TYPES
+{red}[{white}✓{red}]{green} THIS TOOL FREE ACCESS ALL FEATURE SO USE FEEL HAPPY
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 """)
 
 #====================[HOME-PAGE]==========================
 def ___ERROR___():
-    clear()
     print(f'{red}[{white}A{red}]{green} FILE CLONING')
     print(f'{red}[{white}B{red}]{green} RANDOM CLONING')
     print(f'{red}[{white}C{red}]{green} JOIN FACEBOOK GROUP')
