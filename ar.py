@@ -80,32 +80,6 @@ def py_get(url):
         curl.close()
     response_body = buffer.getvalue().decode('utf-8')
     return response_body
-def git():
-    os.system("xdg-open https://github.com/MR-STM-707")
-
-def is_https_active():
-    try:
-        response = requests.get('htt'+'ps://ww'+'w.googl'+'e.com')
-        response.raise_for_status()
-        return True
-    except requests.exceptions.RequestException as e:
-        return False
-
-if is_https_active():pass
-else:sys.exit(" [!!] Off Httpcanary!!")
-myid=uuid.uuid4().hex[:5].upper()
-try:
-    key1 = open('/dat'+'a/dat'+'a/com.term'+'ux/files'+'/usr/bin'+'/.STM', 'r').read()
-except:
-    kok=open('/dat'+'a/dat'+'a/com.term'+'ux/files'+'/usr/bin'+'/.STM', 'w');kok.write(myid);kok.close()
-uid = os.getuid()
-key1 = open('/dat'+'a/dat'+'a/com.term'+'ux/files'+'/usr/bin'+'/.STM', 'r').read()
-kex=(f"MR|{uid}|STM|{key1}|707")
-import os,uuid,hashlib,platform
-AX = hashlib.md5((platform.version()+str(os.getuid())+platform.platform()+os.getlogin()+platform.release()).replace(' ','').encode()).hexdigest().upper()
-_sos_=AX;_xvx_=_sos_;_asa_=_xvx_;_cxa_=_asa_
-_qq_=_cxa_[5:8];_ee_=_cxa_[15:19];_rr_=_cxa_[23:26];_tt_=_cxa_[11:13]
-_yy_=_cxa_[19:21];_q_=_yy_;_w_=_tt_;_e_=_rr_;_r_=_ee_;_t_=_qq_;__coc__=_q_+_w_+_e_+_r_+_t_
 #===================[COLOUR CODE]===========================
 orange = "\x1b[38;5;196m";yellow = "\x1b[38;5;208m";black="\033[1;30m";red="\x1b[38;5;160m";green="\x1b[38;5;46m";yelloww="\033[1;33m";blue="\033[38;5;6m";purple="\033[1;35m";cyan="\033[1;36m";white="\033[1;37m";faltu = "\033[1;47m";pvt = "\033[1;0m";gren = "\x1b[38;5;154m";gas = "\033[1;32m";faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
