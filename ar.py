@@ -64,7 +64,7 @@ except:os.system("pip install pycurl")
 from io import BytesIO
 import pycurl,certifi
 
-
+version = '101.09.9.07.0'
 #===================[COLOUR CODE]===========================
 orange = "\x1b[38;5;196m";yellow = "\x1b[38;5;208m";black="\033[1;30m";red="\x1b[38;5;160m";green="\x1b[38;5;46m";yelloww="\033[1;33m";blue="\033[38;5;6m";purple="\033[1;35m";cyan="\033[1;36m";white="\033[1;37m";faltu = "\033[1;47m";pvt = "\033[1;0m";gren = "\x1b[38;5;154m";gas = "\033[1;32m";faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
