@@ -1,6 +1,4 @@
-#-*-coding:utf-8-*-
-#!/usr/bin/python3
-#!/coding by MR ERROR
+#!/coding by SUMON
 import os,zlib,time,sys
 from os import system as osRUB
 from os import system as cmd
