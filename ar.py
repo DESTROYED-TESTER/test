@@ -236,7 +236,6 @@ def line():
 def linex():
     print(f'{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 def clear():
-    os.system('clear')
     print(logo)
 #===================[LOGO]===========================
 os.system('xdg-open ')
@@ -255,6 +254,7 @@ logo=(f"""
 
 #====================[HOME-PAGE]==========================
 def ___ERROR___():
+    clear()
     print(f'{red}[{white}A{red}]{green} FILE CLONING')
     print(f'{red}[{white}B{red}]{green} RANDOM CLONING')
     print(f'{red}[{white}C{red}]{green} JOIN FACEBOOK GROUP')
