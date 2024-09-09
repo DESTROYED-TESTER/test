@@ -238,19 +238,13 @@ def linex():
 def clear():
     os.system('clear')
     print(logo)
-
-
-|| 
-|| 
-|| 
-|| 
 #===================[LOGO]===========================
 os.system('xdg-open ')
 logo=(f"""
 {faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
-{green}╔═╗╦ ╦╔═╗╔╦╗╦ ╦╔╦╗  |\033[1;32m[\033[1;31m✓\033[1;32m] DATE       : \033[1;32m{today}
-{green}╚═╗╚╦╝╚═╗ ║ ║ ║║║║  |\033[1;32m[\033[1;31m✓\033[1;32m] COUNTRY    : \033[1;32m{current_country}
-{green}╚═╝ ╩ ╚═╝ ╩ ╚═╝╩ ╩  |\033[1;32m[\033[1;31m✓\033[1;32m] YOUR CITY  : \033[1;32m{current_city}
+{green}╔═╗╦ ╦╔═╗╔╦╗╦ ╦╔╦╗ |\033[1;32m[\033[1;31m✓\033[1;32m] DATE       : \033[1;32m{today}
+{green}╚═╗╚╦╝╚═╗ ║ ║ ║║║║ |\033[1;32m[\033[1;31m✓\033[1;32m] COUNTRY    : \033[1;32m{current_country}
+{green}╚═╝ ╩ ╚═╝ ╩ ╚═╝╩ ╩ |\033[1;32m[\033[1;31m✓\033[1;32m] YOUR CITY  : \033[1;32m{current_city}
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 {red}[{white}√{red}]{green} DEVELOPER {white}▶ {green}︎MR ERROR
 {red}[{white}√{red}]{green} TOOLTYPE {white} ▶︎{green} FREE {red}({green}FILE {white}& {green}RANDOM{red})
