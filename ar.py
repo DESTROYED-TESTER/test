@@ -248,7 +248,7 @@ logo=(f"""
 {red}[{white}✓{red}]{green} ABOUTS       {white}▶︎{green} a script designed to attempt logins
 {red}[{white}✓{red}]{green} VERSION      {white}▶ {green}︎{version}
 {red}[{white}✓{red}]{green} STATUS       {white}▶︎ {red}ACTIVE
-{red}[{white}✓{red}]{green} MODE       {white}▶︎ \033[1;36mFile × \033[1;36mRandom 
+{red}[{white}✓{red}]{green} MODE         {white}▶︎ \033[1;36mFile × \033[1;36mRandom 
 {red}[{white}✓{red}]{green} THIS TOOL FREE ACCESS ALL FEATURE SO USE FEEL HAPPY
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 #====================[HOME-PAGE]==========================
