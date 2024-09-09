@@ -5,8 +5,8 @@ from os import system as cmd
 from concurrent.futures import ThreadPoolExecutor as tred
 from concurrent.futures import ThreadPoolExecutor as ThreadPool
 os.system('clear')
-print(f'\x1b[38;5;160m[\033[1;37m✓\x1b[38;5;160m]\x1b[38;5;46m installing site package please wait ...\n')
-time.sleep(5)
+print(f'\x1b[38;5;160m[\033[1;37m✓\x1b[38;5;160m]\x1b[38;5;46m INSTALLING MODULES...\n')
+time.sleep(0.09)
 os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
 try:
     import requests 
@@ -247,6 +247,8 @@ logo=(f"""
 {red}[{white}✓{red}]{green} ONWER & CEO  {white}▶︎ {green}𝐜𝐡𝐨𝐲𝐨𝐧 {green}𝐗 {green}𝐬𝐮𝐦𝐨𝐧
 {red}[{white}✓{red}]{green} ABOUTS       {white}▶︎{green} a script designed to attempt logins
 {red}[{white}✓{red}]{green} VERSION      {white}▶ {green}︎{version}
+{red}[{white}✓{red}]{green} STATUS       {white}▶︎ {red}ACTIVE
+{red}[{white}✓{red}]{green} MODE       {white}▶︎ \033[1;36mFile × \033[1;36mRandom 
 {red}[{white}✓{red}]{green} THIS TOOL FREE ACCESS ALL FEATURE SO USE FEEL HAPPY
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 #====================[HOME-PAGE]==========================
