@@ -97,6 +97,10 @@ def get_current_location():
     except requests.RequestException as e:
         print("STM fetching current location:", e)
         return None, None
+def get_mobile_model():
+    result = subprocess.run(['getprop', 'ro.product.model'], capture_output=True, text=True)
+    model_name = result.stdout.strip()
+    return model_name
 # Example usage
 current_city, current_country = get_current_location()
 #=============================#
@@ -127,6 +131,7 @@ logo=(f"""
 {red}[{white}✓{red}]{green} ABOUTS       {white}▶︎{green} a script designed to attempt logins
 {red}[{white}✓{red}]{green} VERSION      {white}▶ {green}︎{version}
 {red}[{white}✓{red}]{green} STATUS       {white}▶︎ {red}ACTIVE
+{red}[{white}✓{red}]{green} DEVICE       {white}▶︎ {red}{get_mobile_model()}
 {red}[{white}✓{red}]{green} MODE         {white}▶︎ \033[1;36mFile × \033[1;36mRandom 
 {red}[{white}✓{red}]{green} THIS TOOL FREE ACCESS ALL FEATURE SO USE FEEL HAPPY
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
