@@ -97,12 +97,22 @@ def get_current_location():
     except requests.RequestException as e:
         print("STM fetching current location:", e)
         return None, None
-def get_mobile_model():
-    result = subprocess.run(['getprop', 'ro.product.model'], capture_output=True, text=True)
-    model_name = result.stdout.strip()
-    return model_name
 # Example usage
 current_city, current_country = get_current_location()
+def get_device_info():
+    try:
+        # Get the device manufacturer
+        manufacturer_result = subprocess.run(['getprop', 'ro.product.manufacturer'], capture_output=True, text=True)
+        manufacturer_name = manufacturer_result.stdout.strip()
+        
+        # Get the device model
+        model_result = subprocess.run(['getprop', 'ro.product.model'], capture_output=True, text=True)
+        model_name = model_result.stdout.strip()
+
+        return manufacturer_name, model_name
+    except Exception as e:
+        print("Error retrieving device information:", e)
+        return None, None
 #=============================#
 def pro__():
     os.system("clear")
@@ -131,7 +141,7 @@ logo=(f"""
 {red}[{white}✓{red}]{green} ABOUTS       {white}▶︎{green} a script designed to attempt logins
 {red}[{white}✓{red}]{green} VERSION      {white}▶ {green}︎{version}
 {red}[{white}✓{red}]{green} STATUS       {white}▶︎ {red}ACTIVE
-{red}[{white}✓{red}]{green} DEVICE       {white}▶︎ {red}{get_mobile_model()}
+{red}[{white}✓{red}]{green} DEVICE       {white}▶︎ {red}{get_device_info()}
 {red}[{white}✓{red}]{green} MODE         {white}▶︎ \033[1;36mFile × \033[1;36mRandom 
 {red}[{white}✓{red}]{green} THIS TOOL FREE ACCESS ALL FEATURE SO USE FEEL HAPPY
 {white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
