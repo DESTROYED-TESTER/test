@@ -3,14 +3,14 @@
 import os,json
 import os,time,zlib
 print('\33[1;37\33[1m Join our WhatsApp group ')
-os.system('xdg-open https://chat.whatsapp.com/D5PCnonJDCsDvFKFfDiToT')
+os.system('xdg-open ')
 try:
 	import re,base64,uuid,string,requests,random,sys,subprocess,platform
 	from string import *
 	from concurrent.futures import ThreadPoolExecutor as tred
 except ModuleNotFoundError:
 	print(' \n\n Module Not installed Correctly! ')
-	os.system('xdg-open https://chat.whatsapp.com/D5PCnonJDCsDvFKFfDiToT')
+	os.system('xdg-open ')
 	exit()
 oks,cps,loop,apk=[],[],0,[]
 myid=uuid.uuid4().hex[:5].upper()
@@ -911,9 +911,7 @@ def Hamza1(ids,passlist):
 os.system("clear")
 print(" Checking Security...")
 if not os.path.exists("/data/data/com.termux/files/usr/bin/rm"):
-    print('Error in termux module! ')
-if not str(len(open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/models.py','r').readlines()))=='1034':
-	time.sleep(0);print('Final Warning If You Try Again Your System Will be Fucked Bye Mr Hamxa');exit()
+    print('Error in termux module! ');exit()
 def make_get_request(url):
     try:
         requests.get('https://github.com/HAMZA-GHANIZADA')
