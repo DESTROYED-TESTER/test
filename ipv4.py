@@ -16,14 +16,12 @@ def check_ip(ip):
     except socket.error:
         return False
 
-def generate_working_ips(count):
-    working_ips = set()
-    while len(working_ips) < count:
+def working_ips():
         ip = generate_random_ip()
         if check_ip(ip):
             working_ips.add(ip)
     return list(working_ips)
 
 # Generate 10 valid random Indian IPs
-random_ips = generate_working_ips(10)
+random_ips = working_ips()
 print(random_ips)
