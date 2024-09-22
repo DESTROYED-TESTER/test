@@ -1,29 +1,35 @@
 import random
 import socket
+import subprocess
 
-def generate_random_ipv6():
-    # Generate a random IPv6 address
-    segments = []
-    for _ in range(8):
-        segment = random.randint(0, 0xFFFF)  # Each segment can be from 0 to 65535
-        segments.append(f"{segment:04x}")  # Format as four hexadecimal digits
-    return ":".join(segments)
+def generate_random_mobile_ip():
+    # Common mobile IP ranges in India (example ranges)
+    first_octet = random.choice([10, 172, 192])  # Private IP ranges, adjust as needed
+    second_octet = random.randint(0, 255)
+    third_octet = random.randint(0, 255)
+    fourth_octet = random.randint(1, 254)  # Avoid 0 and 255 for valid hosts
+    return f"{first_octet}.{second_octet}.{third_octet}.{fourth_octet}"
 
-def check_ipv6(ip):
+def is_live_ip(ip):
     try:
-        socket.inet_pton(socket.AF_INET6, ip)
-        return True
-    except socket.error:
+        # Use 'ping' command based on the operating system
+        output = subprocess.run(
+            ["ping", "-c", "1", ip],  # Use "-n" instead of "-c" for Windows
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
+        return output.returncode == 0
+    except Exception:
         return False
 
-def generate_working_ipv6(count):
-    working_ips = set()
-    while len(working_ips) < count:
-        ip = generate_random_ipv6()
-        if check_ipv6(ip):
-            working_ips.add(ip)
-    return list(working_ips)
+def generate_live_mobile_ips():
+    ips = set()
+    while True:
+        ip = generate_random_mobile_ip()
+        if ip not in ips:  # Avoid duplicates
+            ips.add(ip)
+            if is_live_ip(ip):
+                print(f"Live Mobile IP: {ip}")
 
-# Generate 10 valid random IPv6 addresses
-random_ipv6 = generate_working_ipv6(10)
-print(random_ipv6)
+# Call the function to generate and print live mobile IPs
+generate_live_mobile_ips()
