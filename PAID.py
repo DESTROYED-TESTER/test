@@ -1464,7 +1464,7 @@ def rndm5(uid,passlist):
 			else:continue
 		except (requests.exceptions.ConnectionError):
 			time.sleep(5)
-			Hamza1(ids,passlist)
+			rndm5(uid,passlist)
 		except Exception as e:pass
 	loop+=1
 #----------------[ ID-CHECKER ]--------------------------#
