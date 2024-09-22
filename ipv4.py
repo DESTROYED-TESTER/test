@@ -28,5 +28,27 @@ def generate_unlimited_ips():
 
 # Call the function to generate unlimited IPs
 ipz=generate_unlimited_ips()
+def generate_random_port():
+    return random.randint(1, 65535)  # Generate a random port number
+
+def check_port(ip, port):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.settimeout(1)  # Set a timeout for the connection attempt
+        return s.connect_ex((ip, port)) == 0  # Returns 0 if the port is open
+
+def generate_unlimited_ips_and_ports():
+    ips = set()
+    while True:  # Infinite loop to generate unlimited IPs and ports
+        ip = generate_random_ip()
+        if check_ip(ip):
+            if ip not in ips:  # Avoid duplicates
+                ips.add(ip)
+                port = generate_random_port()  # Generate a random port
+                yield ip, port  # Yield the IP and port
+
+# Example usage:
+ip_port_generator = generate_unlimited_ips_and_ports()
 # Call the function to generate unlimited IPs
 print(ipz)
+print(ip_port_generator)
+
