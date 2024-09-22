@@ -4,7 +4,7 @@ import socket
 def generate_random_ip():
     # Indian public IP address ranges (some common ranges)
     first_octet = random.choice([152])
-    second_octet = random.randint(50, 59)
+    second_octet = random.randint(56, 59)
     third_octet = random.randint(130, 199)
     fourth_octet = random.randint(130, 199)  # Avoid 0 and 255 for valid hosts
     return f"{first_octet}.{second_octet}.{third_octet}.{fourth_octet}"
