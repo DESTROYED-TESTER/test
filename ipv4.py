@@ -23,7 +23,10 @@ def generate_unlimited_ips():
         if check_ip(ip):
             if ip not in ips:  # Avoid duplicates
                 ips.add(ip)
-                print(ip)  # Print or yield the IP
+                return f"{ip}"
+                #print(ip)  # Print or yield the IP
 
 # Call the function to generate unlimited IPs
-generate_unlimited_ips()
+ipz=generate_unlimited_ips()
+# Call the function to generate unlimited IPs
+print(ipz)
