@@ -16,12 +16,11 @@ def check_ip(ip):
     except socket.error:
         return False
 
-def working_ips():
+def generate_unlimited_ips():
+    ips = set()
+    while True:  # Infinite loop to generate unlimited IPs
         ip = generate_random_ip()
         if check_ip(ip):
-            working_ips.add(ip)
-            return list(working_ips)
-
-# Generate 10 valid random Indian IPs
-random_ips = working_ips()
-print(random_ips)
+            if ip not in ips:  # Avoid duplicates
+                ips.add(ip)
+                print(ip)  # Print or yield the IP
