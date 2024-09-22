@@ -6,7 +6,7 @@ def generate_random_ip():
     first_octet = random.choice([152])
     second_octet = random.randint(56, 59)
     third_octet = random.randint(130, 199)
-    fourth_octet = random.randint(130, 199)  # Avoid 0 and 255 for valid hosts
+    fourth_octet = random.randint(1, 254)  # Avoid 0 and 255 for valid hosts
     return f"{first_octet}.{second_octet}.{third_octet}.{fourth_octet}"
 
 def check_ip(ip):
@@ -24,3 +24,6 @@ def generate_unlimited_ips():
             if ip not in ips:  # Avoid duplicates
                 ips.add(ip)
                 print(ip)  # Print or yield the IP
+
+# Call the function to generate unlimited IPs
+generate_unlimited_ips()
