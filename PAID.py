@@ -81,7 +81,7 @@ def generate_working_ips(count):
     return list(working_ips)
 
 # Generate 10 valid random Indian IPs
-random_ips = generate_working_ips()
+random_ips = generate_working_ips(1)
 
 import time
 from datetime import datetime
