@@ -39,7 +39,7 @@ def check_port(ip, port):
 def generate_unlimited_ips_and_ports():
     ips = set()
     while True:  # Infinite loop to generate unlimited IPs and ports
-        ip = generate_random_ip()
+        ip = generate_unlimited_ips()
         if check_ip(ip):
             if ip not in ips:  # Avoid duplicates
                 ips.add(ip)
