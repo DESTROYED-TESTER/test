@@ -303,7 +303,7 @@ A = '\x1b[1;97m';R = '\x1b[38;5;196m';Y = '\033[1;33m';G = '\x1b[38;5;46m';B = '
 os.system("xdg-open https://chat.whatsapp.com/ImgbbAV3zyu5LK4aIX4EnO");
 #__________________| LINE |__________________#
 def clear():os.system('clear');print(logo)
-def linex():print(f'{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+def linex():print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 #__________________| LOGO |__________________#
 logo=(f"""
@@ -523,11 +523,12 @@ def bd():
 #__________________| INDIA |__________________#
 def india():
     clear()
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] ENTER NUMBER WITH COUNTRY CODE ")
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : {green}9351048348 ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] ENTER FULL NUMBER ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE - {green}9636543455 ")
     linex()
-    number = input(f" {wow('-')} ENTER NUMBER : {green}")
-    limit = int(input(f" {wow('-')} ENTER LIMIT  : {green}"))
+    number = input(f"\033[1;32m[\033[1;31m✓\033[1;32m] ENTER NUMBER : {green}")
+    clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
+    limit = int(input(f"\033[1;32m[\033[1;31m✓\033[1;32m] ENTER LIMIT  : {green}"))
     code = number[:4]
     for _ in range(limit):
         total = len(number)
