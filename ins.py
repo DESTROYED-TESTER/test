@@ -11,6 +11,7 @@ import requests
 from requests.exceptions import ConnectionError
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime 
+from bs4 import BeautifulSoup
 ###-------[BASIC COLORS]-----------####
 reset = "\033[0m"
 red = "\033[1;31m"
