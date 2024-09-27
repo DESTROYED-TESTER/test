@@ -3401,15 +3401,11 @@ B = '\033[1;34m'
 E = '\033[1;34m'
 XX = '\x1b[1;31m'
 logo=(f"""
-\x1b[38;5;46m  Yb  dP    db    88 88b 88     Yb  dP 8888b.  
-\x1b[38;5;46m   YbdP    dPYb   88 88Yb88      YbdP   8I  Yb 
-\x1b[38;5;46m   dPYb   dP__Yb  88 88 Y88      dPYb   8I  dY 
-\x1b[38;5;46m  dP  Yb dP"'"'Yb 88 88  Y8     dP  Yb 8888Y"                                
 \x1b[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46m DEVELOPER \x1b[1;97m🍁\x1b[38;5;46m XAIN-XD
-\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46m FACEBOOK  \x1b[1;97m🍁\x1b[38;5;46m Khorsed12
-\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46m TOOLTYPE  \x1b[1;97m🍁\x1b[38;5;46m \x1b[38;5;46m RANDOM CLONING
-\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46m VERSION   \x1b[1;97m🍁\x1b[38;5;46m V\x1b[38;5;47m/\x1b[38;5;46m5.5 \x1b[1;97m~\x1b[38;5;46m TRAIL
+\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\TOOLS MAKE BY           \x1b[1;97m🍁\x1b[38;5;46m SUMON
+\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46mTOOLS ABOUT \x1b[1;97m🍁\x1b[38;5;46m PERSONAL USER ONLY
+\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46mTOOLTYPE    \x1b[1;97m🍁\x1b[38;5;46m \x1b[38;5;46m FACEBOOK RANDOM NUMBERE CLONING
+\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46mVERSION     \x1b[1;97m🍁\x1b[38;5;46m V\x1b[38;5;47m/\x1b[38;5;46m0.0 \x1b[1;97m~\x1b[38;5;46m -
 \x1b[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 def cek_apk(session,coki):
 	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
