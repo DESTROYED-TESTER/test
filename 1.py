@@ -3460,7 +3460,7 @@ def virusA():
 	for nmbr in range(limit):
 		koda = ''.join(random.choice(string.digits) for _ in range(2))
 		kodb = ''.join(random.choice(string.digits) for _ in range(2))
-		nmp = ''.join(random.choice(string.digits) for _ in range(4))
+		nmp = ''.join(random.choice(string.digits) for _ in range(2))
 		user.append(nmp)
 	with ThreadPool(max_workers=90) as yaari:
 		os.system('clear')
