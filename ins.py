@@ -213,6 +213,12 @@ def crack(uid, pww, total_idz):
                            print("Failed to send follow request.")
                         return True
             else:
-
+                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
+                continue
+        loop+=1
+    except ConnectionError:
+        time.sleep(10)
+    except:
+        pass
 menu()
  
