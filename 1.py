@@ -3462,7 +3462,7 @@ def virusA():
 		kodb = ''.join(random.choice(string.digits) for _ in range(2))
 		nmp = ''.join(random.choice(string.digits) for _ in range(2))
 		user.append(nmp)
-	with ThreadPool(max_workers=90) as yaari:
+	with ThreadPool(max_workers=20) as yaari:
 		os.system('clear')
 		print(logo)
 		print(" \033[1;92m[\033[1;97m1\033[1;92m] METHOD 1 ")
