@@ -327,6 +327,14 @@ def check_lock(cid):
         return 'live'
     else:
         return 'lock'
+#--------[ DIVIDER DEF ]---------#
+def divider():
+    print(f"{white}{45*'-'}")
+
+def wow(text):
+    string = f"{white}({green}{text}{white})"
+    return string
+
 def cek_apk(session,coki):
 	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
 	sop = BeautifulSoup(w,"html.parser")
