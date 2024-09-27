@@ -517,7 +517,7 @@ def india():
     for p in range(pw_limit):
         p_ask = input(f"\033[1;32m[\033[1;31m{p+1}\033[1;32m] ENTER PASSWORD : {green}")
         pwx.append(p_ask)
-    with tpe(max_workers=55) as Xnxx:.
+    with tpe(max_workers=55) as Xnxx:
         clear()
         tl = str(len(xnxx))
         print(f"\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL IDS  : {green}{tl} ")
