@@ -1485,31 +1485,6 @@ def rndm5(uid,passlist):
                 loop+=1
         except Exception as e:
                 pass
-
-#----------------[ ID-CHECKER ]--------------------------#
-
-def cek_apk(session, coki):
-    w = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active", cookies={"cookie": coki}).text
-    sop = BeautifulSoup(w, "html.parser")
-    x = sop.find("form", method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game) == 0:
-        print(f'\r%s [%s•%s] %sActive Apks & Web Not Found %s		' % (N, H, N, H, N))
-    else:
-        print(f'\r{A} [•]%s Active Apks & Web 👇 ' % (H))
-        for i in range(len(game)):
-            print(f"\r%s [%s] %s %s " % (D, i + 1, game[i].replace("Added on", " Added on"), D))
-    
-    w = session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive", cookies={"cookie": coki}).text
-    sop = BeautifulSoup(w, "html.parser")
-    x = sop.find("form", method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game) == 0:
-        print(f'\r%s [%s•%s] %sExpired Apks & Web Not Found %s		' % (N, M, N, M, N))
-    else:
-        print(f'\r{A} [•]%s Expired Apks & Web 👇 ' % (M))
-        for i in range(len(game)):
-            print(f"\r%s [%s] %s %s " % (C, i + 1, game[i].replace("Expired", " Expired"), A))
 #-------------------------close-----------------------------
 if __name__ == '__main__':
     menu()
