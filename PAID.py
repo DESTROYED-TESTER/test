@@ -106,7 +106,7 @@ try:
 except ImportError:
     os.system("pip install urllib3")
 import urllib3     
-
+os.system('clear')
 try:
  import requests
 except:os.system("pip uninstall requests -y;pip install requests")
@@ -522,12 +522,13 @@ def bd():
 		menu()
 #__________________| INDIA |__________________#
 def india():
+    xnxx = []
     clear()
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] ENTER FULL NUMBER ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE - {green}9636543455 ")
     linex()
     number = input(f"\033[1;32m[\033[1;31m✓\033[1;32m] ENTER NUMBER : {green}")
-    clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
+    clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 50000 | 99999 ');linex()
     limit = int(input(f"\033[1;32m[\033[1;31m✓\033[1;32m] ENTER LIMIT  : {green}"))
     code = number[:4]
     for _ in range(limit):
@@ -538,10 +539,10 @@ def india():
     clear()
     pw_limit = int(input(f" {wow('-')} ENTER PASSWORD LIMIT : {green}"))
     clear()
-    print(f" {wow('â¢')} EXAMPLE : {green}first6, last6 ")
-    print(f" {wow('â¢')} EXAMPLE : {green}first7, last7 ")
-    print(f" {wow('â¢')} EXAMPLE : {green}khankhan, 57273200 ")
-    print(f" {wow('â¢')} EXAMPLE : {green}fullnumber ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : {green}first6, last6 ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : {green}first7, last7 ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : {green}khankhan, 57273200 ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : {green}fullnumber ")
     linex()
     for p in range(pw_limit):
         p_ask = input(f" {wow(p+1)} ENTER PASSWORD : {green}")
