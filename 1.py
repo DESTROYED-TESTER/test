@@ -3402,10 +3402,10 @@ E = '\033[1;34m'
 XX = '\x1b[1;31m'
 logo=(f"""
 \x1b[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\TOOLS MAKE BY           \x1b[1;97m🍁\x1b[38;5;46m SUMON
+\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46mTOOLS MAKE  \x1b[1;97m🍁\x1b[38;5;46m SUMON
 \x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46mTOOLS ABOUT \x1b[1;97m🍁\x1b[38;5;46m PERSONAL USER ONLY
-\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46mTOOLTYPE    \x1b[1;97m🍁\x1b[38;5;46m \x1b[38;5;46m FACEBOOK RANDOM NUMBERE CLONING
-\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46mVERSION     \x1b[1;97m🍁\x1b[38;5;46m V\x1b[38;5;47m/\x1b[38;5;46m0.0 \x1b[1;97m~\x1b[38;5;46m -
+\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46mTOOLTYPE    \x1b[1;97m🍁\x1b[38;5;46m \x1b[38;5;46mFACEBOOK RANDOM NUMBER CLONING
+\x1b[38;5;46m[\x1b[1;97m=\x1b[38;5;46m]\x1b[38;5;46mVERSION     \x1b[1;97m🍁\x1b[38;5;46m V\x1b[38;5;47m/\x1b[38;5;46m0.0 \x1b[1;97m~\x1b[38;5;46m FREE
 \x1b[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 def cek_apk(session,coki):
 	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
