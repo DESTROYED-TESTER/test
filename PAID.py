@@ -266,7 +266,28 @@ logo=(f"""
 def clear():
 	os.system('clear')
 	print(logo)
-
+def cek_apk(session,coki):
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
+	sop = BeautifulSoup(w,"html.parser")
+	x = sop.find("form",method="post")
+	game = [i.text for i in x.find_all("h3")]
+	if len(game)==0:
+		print(f"\r{N}[{M}!{N}] SORRY THERE IS NO ACTIVE APK")
+	else:
+		print("")
+		print(f'\r🎮 %sYOUR ACTIVE APPLICATION DETAILS :'%(H))
+		for i in range(len(game)):
+			print("%s%s. %s%s"%(H,i+1,game[i].replace("ACTIVE"," ACTIVE"),N))
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
+	sop = BeautifulSoup(w,"html.parser")
+	x = sop.find("form",method="post")
+	game = [i.text for i in x.find_all("h3")]
+	if len(game)==0:
+		print(f"\r{N}[{M}!{N}] SORRY THERE IS NO EXPIRED APK")
+	else:
+		print(f'\r 🎮 %sYOUR EXPIRED APPLICATION DETAILS :'%(M))
+		for i in range(len(game)):
+			print("%s%s. %s%s"%(K,i+1,game[i].replace("Expired"," Expired"),N))
 #__________________| MAIN |__________________#
 def menu():
         try:
