@@ -1,28 +1,111 @@
 #__________________| IMPORT |__________________#
-from os import path
-import requests,bs4,random,uuid,string,hashlib,json,socket
-from os import path
-from urllib.request import urlopen
-from bs4 import BeautifulSoup as sop
-from bs4 import BeautifulSoup
-import os,base64,zlib,pip,urllib,urllib3
-import platform,math,smtplib
-import platform
-import smtplib
-import math
-import bs4
-import os,base64,zlib,pip,urllib
-def clear():
-        os.system('clear')
+import os,sys,re,time,uuid,json,string,random,base64,platform
+from concurrent.futures import ThreadPoolExecutor
+os.system("pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests")
 try:
-        import os,requests,json,time,re,random,sys,uuid,string,subprocess
-        from string import *
-        from concurrent.futures import ThreadPoolExecutor as tred
+    import requests
+except ImportError:
+    os.system("pip install requests")
+try:
+    import urllib3
+except ImportError:
+    os.system("pip install urllib3")
+try:
+    import bs4
+except ImportError:
+    os.system("pip install bs4")
+try:
+    import mechanize
+except ImportError:
+    os.system("pip install mechanize")
+try:
+    import rich
+except ImportError:
+    os.system("pip install rich")
+import urllib3
+import requests,certifi
+from requests.exceptions import ConnectionError
+from requests import api
+from requests import models
+from requests import sessions  
+from bs4 import BeautifulSoup as sop
+from concurrent.futures import ThreadPoolExecutor as tred
+import os,sys,time,json,random,re,string,platform,base64,platform,uuid
+import requests,random,sys,json,os,re
+from datetime import datetime as dt
+from time import sleep
+from os import system
+import os,sys,time,datetime,random,hashlib,re,threading,json,urllib,uuid,ipaddress,calendar,requests,mechanize,bs4,sys,os,subprocess,uuid,requests,sys,random,time,re,base64,json,platform
+import marshal
+import zlib
+import base64
+from datetime import date
+from datetime import datetime
+from time import sleep
+from time import sleep as waktu
+from random import random as acak
+from random import choice as pilih
+from random import randint
+from bs4 import BeautifulSoup
+import requests as ress
+from sys import exit as exit
+#print("WAIT INSTALLING MODULES")
+#os.system("pip install bs4")
+#os.system("pip install requests")
+#os.system("pip install rich")
+###----------[ IMPORT LIBRARY ]---------- ###
+import requests
+import bs4
+import sys
+import os
+import random
+import time
+import re
+import json
+import uuid
+import subprocess
+import marshal
+import rich
+import shutil
+import webbrowser
+from random import randint
+from concurrent.futures import ThreadPoolExecutor as ThreadPool
+from bs4 import BeautifulSoup as par
+from datetime import date
+from datetime import datetime
+# from rich import print as printer
+from datetime import date
+import marshal
+try:
+    import requests
+    from concurrent.futures import ThreadPoolExecutor as ThreadPool
+    import mechanize
+    from requests.exceptions import ConnectionError
 except ModuleNotFoundError:
-        print('\n Installing missing modules ...')
-        os.system('pip install requests futures==2 > /dev/null')
-        os.system('python BITHIKA.py')
-        
+    os.system('pip install mechanize requests futures==2 > /dev/null')
+    os.system('python dev.py')
+from bs4 import BeautifulSoup
+from datetime import date
+from datetime import datetime
+from time import sleep
+from time import sleep as waktu
+from requests.exceptions import ConnectionError as net_error
+import os
+import sys
+import re
+import time
+import json
+import uuid
+import string
+import random
+import requests
+from concurrent.futures import ThreadPoolExecutor as tpe
+from requests.exceptions import ConnectionError as ce
+try:
+    import urllib3
+except ImportError:
+    os.system("pip install urllib3")
+import urllib3     
 
 #───────────────[FAKE CPTHON]───────────────────────── #
 
