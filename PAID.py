@@ -514,7 +514,7 @@ def bd():
 		menu()
 #__________________| INDIA |__________________#
 def india():
-    fresh()
+    clear()
     print(f" {wow('â¢')} ENTER NUMBER WITH COUNTRY CODE ")
     print(f" {wow('â¢')} EXAMPLE : {green}9351048348 ")
     divider()
@@ -526,9 +526,9 @@ def india():
         digits = str(total-4)
         xnxxx = "".join(random.choice(string.digits) for _ in range(int(digits)))
         xnxx.append(xnxxx)
-    fresh()
+    clear()
     pw_limit = int(input(f" {wow('-')} ENTER PASSWORD LIMIT : {green}"))
-    fresh()
+    clear()
     print(f" {wow('â¢')} EXAMPLE : {green}first6, last6 ")
     print(f" {wow('â¢')} EXAMPLE : {green}first7, last7 ")
     print(f" {wow('â¢')} EXAMPLE : {green}khankhan, 57273200 ")
@@ -538,7 +538,7 @@ def india():
         p_ask = input(f" {wow(p+1)} ENTER PASSWORD : {green}")
         pwx.append(p_ask)
     with tpe(max_workers=55) as Xnxx:
-        fresh()
+        clear()
         tl = str(len(xnxx))
         print(f" {wow('-')} TOTAL ACCOUNTS  : {green}{tl} ")
         print(f" {wow('-')} SELECTED NUMBER : {green}{number} ")
