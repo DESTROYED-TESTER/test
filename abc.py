@@ -813,7 +813,7 @@ def get_device_info(prop_name):
         return None
 
 manufacturer_name = get_device_info('ro.product.manufacturer')
-model_name = get_device_info('ro.product.model')
+device_name = get_device_info('ro.product.name')
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
 os.system("xdg-open ")
 os.system("clear")
@@ -902,7 +902,7 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def dev_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device : {manufacturer_name}-{model_name}-{android_version}")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device : {manufacturer_name}-{device_name}-v-{android_version}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {datex} ")
     linex()
