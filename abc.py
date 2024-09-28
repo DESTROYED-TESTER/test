@@ -806,7 +806,7 @@ def get_current_location():
 current_city, current_country = get_current_location()
 os.system("xdg-open https://t.me/Ariff_attackermen_Frome_lautan")
 os.system("clear")
-    
+faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"    
 logo =(f"""
 {faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
 \x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
