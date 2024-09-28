@@ -803,11 +803,17 @@ def get_current_location():
         print("Error fetching current location:", e)
         return None, None
 # Example usage
-current_city, current_country = get_current_location()
+try:
+        # Get the device manufacturer
+        manufacturer_result = subprocess.run(['getprop', 'ro.product.manufacturer'], capture_output=True, text=True)
+        manufacturer_name = manufacturer_result.stdout.strip()
+        # Get the device model
+        model_result = subprocess.run(['getprop', 'ro.product.model'], capture_output=True, text=True)
+        model_name = model_result.stdout.strip()
+except Exception as e:
+        print("Error retrieving device information:", e)
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
-model = subprocess.check_output('getprop ro.product.model',shell=True).decode('utf-8').replace('\n','')
-build = subprocess.check_output('getprop ro.build.id',shell=True).decode('utf-8').replace('\n','')
-os.system("xdg-open https://t.me/Ariff_attackermen_Frome_lautan")
+os.system("xdg-open ")
 os.system("clear")
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"    
 logo =(f"""
@@ -894,11 +900,9 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def dev_time():
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device : {manufacturer_result}-{manufacturer_name}-{android_version}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {datex} ")
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {android_version} ")
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {model} ")
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {build} ")
     linex()
 
 def menu():
