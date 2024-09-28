@@ -822,7 +822,8 @@ logo =(f"""
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
 \033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mFile × \033[1;36mRandom 
-\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m0.0.1""")
+\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m0.0.1
+\x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 def check_lock(cid):
     req = str(requests.get(f'https://graph.facebook.com/{cid}/picture?type=normal').text)
@@ -908,12 +909,12 @@ def menu():
     clear()
     dev_time()
     
-    print(" [1] FILE CLONING ")
-    print(" [2] RANDOM CLONING ")
-    print(" [3] NUMBER CLONING ")
-    print(" [4] GMAIL CLONING ")
-    print(" [5] CONTACT (TELEGRAM) ")
-    print(" [6] EXIT TOOL ")
+    print("[1] FILE CLONING ")
+    print("[2] RANDOM CLONING ")
+    print("[3] NUMBER CLONING ")
+    print("[4] GMAIL CLONING ")
+    print("[5] CONTACT (TELEGRAM) ")
+    print("[6] EXIT TOOL ")
     linex()
     bithi = input("âCHOOSE> ")
     if bithi =='1':f_clone()
