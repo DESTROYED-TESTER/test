@@ -17,15 +17,5 @@ def check_proxy(ip, port=80):
     except Exception as e:
         return False
 
-def find_working_proxies(count=5):
-    working_proxies = []
-    while len(working_proxies) < count:
-        ip = generate_random_ip()
-        if check_proxy(ip):
-            working_proxies.append(ip)
-    return working_proxies
-
-# Find working proxies
-working_proxies = find_working_proxies(5)
-for ip in working_proxies:
-    print(f"Working proxy: {ip}")
+working_proxies = check_proxy(5)
+print(f"Working proxy: {working_proxies}")
