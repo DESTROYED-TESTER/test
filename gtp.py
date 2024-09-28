@@ -1,8 +1,10 @@
 import random
 import socket
+import subprocess
+import platform
 
 def generate_random_ip():
-    # Indian public IP address ranges (some common ranges)
+    # Indian public IP address ranges
     first_octet = random.choice([152])
     second_octet = random.randint(56, 59)
     third_octet = random.randint(130, 199)
@@ -16,28 +18,30 @@ def check_ip(ip):
     except socket.error:
         return False
 
-def generate_random_port():
-    return random.randint(1, 65535)  # Generate a random port number
+def ping_ip(ip):
+    # Determine the command based on the OS
+    param = '-n' if platform.system().lower() == 'windows' else '-c'
+    command = ['ping', param, '1', ip]
+    return subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE).returncode == 0
 
 def check_port(ip, port):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.settimeout(1)  # Set a timeout for the connection attempt
         return s.connect_ex((ip, port)) == 0  # Returns 0 if the port is open
 
-def generate_unlimited_ips_and_ports():
+def generate_working_ips(max_ips=None, port=80):
     ips = set()
-    while True:  # Infinite loop to generate unlimited IPs and ports
+    while max_ips is None or len(ips) < max_ips:
         ip = generate_random_ip()
-        if check_ip(ip):
-            if ip not in ips:  # Avoid duplicates
-                ips.add(ip)
-                port = generate_random_port()  # Generate a random port
-                yield ip, port  # Yield the IP and port
+        if check_ip(ip) and ping_ip(ip) and check_port(ip, port):
+            ips.add(ip)
+            yield ip
 
-# Example usage:
-ip_port_generator = generate_unlimited_ips_and_ports()
-
-# Get a specified number of IPs and ports
-for _ in range(10):  # Change 10 to however many IPs you want to generate
-    ip, port = next(ip_port_generator)
-    print(f"Generated IP: {ip}, Port: {port}")
+# Example usage
+if __name__ == "__main__":
+    max_ips = 10  # Change this value as needed
+    port_to_check = 80  # Specify the port you want to check
+    ip_generator = generate_working_ips(max_ips, port_to_check)
+    
+    for ip in ip_generator:
+        print(f"Working IP with port {port_to_check}: {ip}")
