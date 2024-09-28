@@ -1059,9 +1059,9 @@ def SUMON2():
     os.system('clear')
     print(logo)
     print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  (6377)')
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     kode = input('[+] INPUT CODE : ')
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     limit = int(input('[+] LIMIT CLONE : '))
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(6))
@@ -1116,9 +1116,9 @@ def SUMON3():
     os.system('clear')
     print(logo)
     print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  9760,9827,9800,9840,9849') 
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     kode = input('[?] INPUT CODE : ')
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     limit = int(input('[?] LIMIT CLONE : '))
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(7))
@@ -1172,9 +1172,9 @@ def SUMON4():
     os.system('clear')
     print(logo)
     print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  (017)')
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     kode = input('[?] INPUT CODE : ')
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     limit = int(input('[?] LIMIT CLONE : '))
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(7))
@@ -1230,7 +1230,7 @@ def SUMON5():
     os.system('clear')
     print(logo)
     print('[+] ENTER YOUR FOUR SIM CODE (9725)')
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     code = input('[+] PUT CODE : ')
     print("")
     limit = int(input('[+] PUT CLONING LIMIT: '))
@@ -1295,9 +1295,9 @@ def SUMON6():
     os.system('clear')
     print(logo)
     print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  (9817)')
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     kode = input('[?] Input Code : ')
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     limit = int(input('[?] LIMIT CLONE : '))
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(6))
@@ -1394,12 +1394,12 @@ def g_clone():
     print(logo)
     print(" Ex First : ayesha, kazim, SUMON ")
     print(" Ex Last  : rajput, channa, aaraya ")
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     first = input(' [â¢] First Name : ')
     last = input(' [â¢] Last Name  : ')
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     print(' Ex Domain : @gmail.com, @yahoo.com, @hotmail.com ')
-    print(47*'-')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     domain = input(' [â¢] Domain : ')
     try:
         limit = int(input(' [â¢] Crack Limit : '))
@@ -1434,7 +1434,7 @@ def g_clone():
         print(' [â¢] CRACKING STARTED ')
         print(' [â¢] TOTAL ACCOUNT : \033[1;32m'+tl)
         print(' [!] USE FLIGHT MODE FOR MORE IDZ ')
-        print(47*'-')
+        print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         for love in user:
             uid = first+'.'+last+'.'+love+domain
             pwx = [first+last,first+' '+last,first+last+'12',last,first+love,first+'123',first+'1234',first+last+'12']
