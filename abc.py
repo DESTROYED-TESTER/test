@@ -891,7 +891,7 @@ def linex():
     print("--------------------------------------------------------------------------------------")
 
 def dev_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location : {current_city - current_country} ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {datex} ")
     linex()
 
