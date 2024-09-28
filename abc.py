@@ -900,7 +900,7 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def SUMON_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] SUMONice     : {manufacturer_name}-android-v-{android_version}")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] SUMONice    : {manufacturer_name}-android-v-{android_version}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location   : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date       : {datex} ")
     linex()
