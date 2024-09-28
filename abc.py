@@ -803,6 +803,7 @@ def get_current_location():
         print("Error fetching current location:", e)
         return None, None
 # Example usage
+current_city, current_country = get_current_location()
 try:
         # Get the device manufacturer
         manufacturer_result = subprocess.run(['getprop', 'ro.product.manufacturer'], capture_output=True, text=True)
