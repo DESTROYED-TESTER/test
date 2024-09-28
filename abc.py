@@ -811,9 +811,40 @@ def get_device_info(prop_name):
     except subprocess.CalledProcessError as e:
         print(f"Error retrieving {prop_name}: {e}")
         return None
+def get_memory_info():
+    try:
+        # Get total RAM
+        with open('/proc/meminfo', 'r') as f:
+            for line in f:
+                if 'MemTotal' in line:
+                    ram = line.split(':')[1].strip()
+                    return ram
+    except Exception as e:
+        print(f"Error retrieving RAM: {e}")
+        return None
 
+def get_storage_info():
+    try:
+        # Get total storage
+        storage_result = subprocess.run(['df', '/data'], capture_output=True, text=True, check=True)
+        lines = storage_result.stdout.strip().splitlines()
+        # Assuming the first line is the header, we get the second line for usage info
+        if len(lines) > 1:
+            return lines[1].split()[1]  # Size in 1K blocks
+    except Exception as e:
+        print(f"Error retrieving storage: {e}")
+        return None
+def check_network_type():
+    try:
+        network_type = subprocess.run(['getprop', 'ro.vendor.radio.network_type'], capture_output=True, text=True, check=True)
+        return network_type.stdout.strip()
+    except Exception as e:
+        print(f"Error retrieving network type: {e}")
+        return None
+network_type = check_network_type()
+ram_size = get_memory_info()
+rom_size = get_storage_info()
 manufacturer_name = get_device_info('ro.product.manufacturer')
-device_name = get_device_info('ro.product.name')
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
 os.system("xdg-open ")
 os.system("clear")
@@ -902,7 +933,9 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def dev_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device : {manufacturer_name}-{device_name}-v-{android_version}")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device : {manufacturer_name}-android-v-{android_version}")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location : {ram_size}-{rom_size} ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location : {network_type}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {datex} ")
     linex()
