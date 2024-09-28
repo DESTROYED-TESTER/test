@@ -804,15 +804,16 @@ def get_current_location():
         return None, None
 # Example usage
 current_city, current_country = get_current_location()
-try:
-        # Get the device manufacturer
-        manufacturer_result = subprocess.run(['getprop', 'ro.product.manufacturer'], capture_output=True, text=True)
-        manufacturer_name = manufacturer_result.stdout.strip()
-        # Get the device model
-        model_result = subprocess.run(['getprop', 'ro.product.model'], capture_output=True, text=True)
-        model_name = model_result.stdout.strip()
-except Exception as e:
-        print("Error retrieving device information:", e)
+def get_device_info(prop_name):
+    try:
+        result = subprocess.run(['getprop', prop_name], capture_output=True, text=True, check=True)
+        return result.stdout.strip()
+    except subprocess.CalledProcessError as e:
+        print(f"Error retrieving {prop_name}: {e}")
+        return None
+
+manufacturer_name = get_device_info('ro.product.manufacturer')
+model_name = get_device_info('ro.product.model')
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
 os.system("xdg-open ")
 os.system("clear")
@@ -901,7 +902,7 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def dev_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device : {manufacturer_result}-{manufacturer_name}-{android_version}")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device : {manufacturer_name}-{model_name}-{android_version}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {datex} ")
     linex()
