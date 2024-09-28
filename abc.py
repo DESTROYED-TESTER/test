@@ -804,6 +804,9 @@ def get_current_location():
         return None, None
 # Example usage
 current_city, current_country = get_current_location()
+android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
+model = subprocess.check_output('getprop ro.product.model',shell=True).decode('utf-8').replace('\n','')
+build = subprocess.check_output('getprop ro.build.id',shell=True).decode('utf-8').replace('\n','')
 os.system("xdg-open https://t.me/Ariff_attackermen_Frome_lautan")
 os.system("clear")
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"    
@@ -881,18 +884,21 @@ def fresh():
     print(logo)
 #--------[ DIVIDER DEF ]---------#
 def divider():
-    print(f"{white}{45*'-'}")
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def wow(text):
     string = f"{white}({green}{text}{white})"
     return string
 
 def linex():
-    print("--------------------------------------------------------------------------------------")
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def dev_time():
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {datex} ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {android_version} ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {model} ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {build} ")
     linex()
 
 def menu():
