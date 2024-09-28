@@ -49,6 +49,6 @@ def generate_unlimited_ips_and_ports():
 # Example usage:
 ip_port_generator = generate_unlimited_ips_and_ports()
 # Call the function to generate unlimited IPs
-print(ipz)
+#print(ipz)
 print(ip_port_generator)
 
