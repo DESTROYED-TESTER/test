@@ -900,7 +900,7 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def SUMON_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] SUMONice    : {manufacturer_name}-android-v-{android_version}")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device    : {manufacturer_name}-android-v-{android_version}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location   : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date       : {datex} ")
     linex()
@@ -909,12 +909,12 @@ def menu():
     clear()
     SUMON_time()
     
-    print("[1] FILE CLONING ")
-    print("[2] RANDOM CLONING ")
-    print("[3] PUBLIK CLONING ")
-    print("[4] GMAIL CLONING ")
-    print("[5] CONTACT (TELEGRAM) ")
-    print("[6] EXIT TOOL ")
+    print("[1] FILE   CLONING =>")
+    print("[2] RANDOM CLONING =>")
+    print("[3] PUBLIK CLONING =>")
+    print("[4] GMAIL  CLONING =>")
+    print("[5] CONTACT (WHATSAPP) =>")
+    print("[6] EXIT TOOL =>")
     linex()
     bithi = input("âCHOOSE> ")
     if bithi =='1':f_clone()
