@@ -30,7 +30,7 @@ def generate_unlimited_ips():
 ipz=generate_unlimited_ips()
 ips = ipz
 port = '80'
-nip = {ips}:{port}
+nip = f"{ips}:{port}"
 proxs = {'http': 'socks4://'+nip}
 print(proxs)
 
