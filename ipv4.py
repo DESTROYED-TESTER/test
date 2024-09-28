@@ -28,6 +28,10 @@ def generate_unlimited_ips():
 
 # Call the function to generate unlimited IPs
 ipz=generate_unlimited_ips()
-print(ipz)
+ips = ipz
+port = '80'
+nip = {ips}:{port}
+proxs = {'http': 'socks4://'+nip}
+print(proxs)
 
 
