@@ -1850,7 +1850,7 @@ def p(uid,pwx,tl):
                 'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             }
             headers = {
-                'User-Agent': ua(),
+                'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 10; Redmi Note 7 Pro MIUI/V12.5.1.0.QFHINXM) [FBAN/EMA;FBBV/645271943;FBAV/426.0.0.5.108;FBDV/Redmi Note 7 Pro;FBSV/10;FBCX/OkHttp3;FBDM/{density=2.75}]',
                 'Accept-Encoding': 'gzip, deflate',
                 'Connection': 'close',
                 'Content-Type': 'application/x-www-form-urlencoded',
