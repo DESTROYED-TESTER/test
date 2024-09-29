@@ -1809,6 +1809,7 @@ def mbasic(uid,pwx,tl):
                         oks.append(uid)
                         break
             else:
+                print(f"\r\033[1;91m [ERROR] - Status code {result.status_code}")
                 continue
         loop+=1
     except net_error:
