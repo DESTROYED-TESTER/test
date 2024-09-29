@@ -1944,8 +1944,8 @@ def x(uid,pwx,tl):
             data = {
                 "lsd": lsd,
                 "jazoest": jazoest,
-                "m_ts": m_ts,
-                "li": li,
+                "m_ts": "",
+                "li": "",
                 "try_number": "0",
                 "unrecognized_tries": "0",
                 "email": uid,
