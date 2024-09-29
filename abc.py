@@ -1918,7 +1918,6 @@ def x(uid,pwx,tl):
     global loop
     global oks
     global cps
-    global devua
     sys.stdout.write('\r\33[1;37m[M3-SUMON] %s|OK:%s \r'%(loop,len(oks))),
     sys.stdout.flush()
     try:
