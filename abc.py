@@ -847,12 +847,12 @@ os.system("clear")
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"    
 logo =(f"""
 {faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
-\x1b[38;5;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
 \033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mFile × \033[1;36mRandom 
 \033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m0.0.1
-\x1b[38;5;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
+\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 def check_lock(cid):
     req = str(requests.get(f'https://graph.facebook.com/{cid}/picture?type=normal').text)
@@ -874,7 +874,7 @@ cps = []
 twf = []
 baby =[]
 red = "\033[1;31m"
-green = "\x1b[38;5;34m"
+green = "\033[1;32m"
 yellow = "\033[1;33m"
 blue = "\033[1;34m"
 pink = "\033[1;35m"
