@@ -1124,7 +1124,7 @@ def SUMON2():
         linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
         for guru in user:
             #uid = kode+guru
-            mk = uid[:6]
+            #mk = uid[:6]
             #pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
             uid ='61557902314449'
             pwx ='963686'
