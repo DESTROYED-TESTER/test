@@ -1996,8 +1996,8 @@ def x(uid,pwx,tl):
         time.sleep(10)
     except Exception as e:
         pass
-    except:
-        pass
+    except:print(e)
+        #pass
 def mobile(uid,pwx,tl):
     global loop
     global oks
