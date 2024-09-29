@@ -1,21 +1,34 @@
 import random
-import socket
-import requests
 
-def generate_random_ip():
-    first_octet = random.choice([152])
-    second_octet = random.randint(56, 59)
-    third_octet = random.randint(130, 199)
-    fourth_octet = random.randint(1, 254)  # Avoid 0 and 255 for valid hosts
-    return f"{first_octet}.{second_octet}.{third_octet}.{fourth_octet}"
+# Define base components
+supports_fresco = "SupportsFresco=1"
+modular = "modular=2"
+dalvik_version = "Dalvik/2.1.0"
+os_version = "Android 10"
+device = "Redmi Note 7 Pro"
+miui_versions = ["V12.5.1.0.QFHINXM", "V12.5.2.0.QFHINXM", "V12.5.3.0.QFHINXM"]
+fban = "FBAN/EMA"
+fbbv = "FBBV/645271943"
+fbav = "FBAV/426.0.0.5.108"
+fbdv = "FBDV/Redmi Note 7 Pro"
+fbs_version = "FBSV/10"
+fbcx = "FBCX/OkHttp3"
+density = ["density=2.75", "density=2.50", "density=3.00"]
 
-def check_proxy(ip, port=80):
-    proxy_url = f"http://{ip}:{port}"
-    try:
-        response = requests.get("http://httpbin.org/ip", proxies={"http": proxy_url, "https": proxy_url}, timeout=3)
-        return response.status_code == 200
-    except Exception as e:
-        return False
+# Function to generate user agents
+def generate_user_agent():
+    return (
+        f"{supports_fresco} "
+        f"{modular} "
+        f"{dalvik_version} "
+        f"(Linux; U; {os_version}; {device} MIUI/{random.choice(miui_versions)}) "
+        f"[{fbaan};{fbbv};{fbav};{fbdv};{fbs_version};{fbcx};"
+        f"FBDM{{{random.choice(density)}}}]"
+    )
 
-working_proxies = check_proxy(5)
-print(f"Working proxy: {working_proxies}")
+# Generate 100 user agents
+user_agents = [generate_user_agent() for _ in range(100)]
+
+# Print the generated user agents
+for ua in user_agents:
+    print(ua)
