@@ -1993,10 +1993,12 @@ def x(uid,pwx,tl):
                 continue
         loop+=1
     except net_error:
+        print(net_error)
         time.sleep(10)
     except Exception as e:
         pass
-    except:print(e)
+    except:
+        print(e)
         #pass
 def mobile(uid,pwx,tl):
     global loop
