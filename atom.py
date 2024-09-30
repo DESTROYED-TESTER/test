@@ -1122,14 +1122,14 @@ def SUMON2():
     linex()
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
-    print(" [+] COOKIES SHOW : (Y/N) ")
+    print(" [+] COOKIES SHOW - Y\N ")
     linex()
     c = input(" [?] INPUT : ")
     if c in ["Y", "y"]:
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as SUMON_xd:
+    with ThreadPool(max_workers=50) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
