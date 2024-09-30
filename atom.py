@@ -26,7 +26,7 @@ import requests,certifi
 from requests.exceptions import ConnectionError
 from requests import api
 from requests import models
-from requests import Sessions  
+from requests import Session 
 from bs4 import BeautifulSoup as sop
 from concurrent.futures import ThreadPoolExecutor as tred
 import os,sys,time,json,random,re,string,platform,base64,platform,uuid
