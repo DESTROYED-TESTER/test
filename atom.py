@@ -2231,8 +2231,8 @@ def d(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com').text
             data = {
-            "m_ts": "",
-            "li": "",
+            "m_ts":(match := re.search(r'name="m_ts" value="(.*?)"', str(free_fb))) and match.group(1),
+            "li": (match := re.search(r'name="li" value="(.*?)"', str(free_fb))) and match.group(1),
             "try_number": 0,
             "unrecognized_tries": 0,
             "email": uid,
