@@ -1838,8 +1838,8 @@ def p(uid,pwx,tl):
             ses = requests.Session()
             free_fb = ses.get('https://m.facebook.com').text
             data = {
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            'm_ts': '',
+            'li': '',
             'try_number': '0',
             'unrecognized_tries': '0',
             'email': uid,
