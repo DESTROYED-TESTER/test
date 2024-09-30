@@ -8,7 +8,7 @@ except ModuleNotFoundError:
     system('pip3 install cython')
 def logo():
     print(45*"-")
-    print("</> Coded By - DARK LMNx9");print(45*"-")
+    print("</> ENCCODE BY -SUMON");print(45*"-")
 def convert_to_elf(input_file):
     setup_code = f"""
 from distutils.core import setup
