@@ -2095,10 +2095,10 @@ def freeq(uid,pwx,tl):
             data ={
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'email': '100094132482182',
+            'email': '61557902314449',
             'next': 'https://m.facebook.com/login/save-device/',
             'flow': 'login_no_pin',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], '96366355'),
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], '963686'),
             'login': 'Masuk'}
             headers = {
             'Host': 'm.facebook.com',
