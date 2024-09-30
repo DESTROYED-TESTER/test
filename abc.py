@@ -1838,8 +1838,8 @@ def p(uid,pwx,tl):
             ses = requests.Session()
             free_fb = ses.get('https://m.facebook.com').text
             data = {
-            'm_ts': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
             'try_number': '0',
             'unrecognized_tries': '0',
             'email': uid,
@@ -1853,7 +1853,7 @@ def p(uid,pwx,tl):
             'is_smart_lock': 'true',
             'bi_xrwh': '0',
             'pass': pw,
-            'jazoest': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'dyn': '',
             'csr': '',
