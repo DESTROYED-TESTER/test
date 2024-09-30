@@ -1758,7 +1758,7 @@ def mbasic(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             ses = requests.Session()
-            free_fb = session.get('https://m.facebook.com').text
+            free_fb = ses.get('https://m.facebook.com').text
             data = {
             "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
