@@ -1122,7 +1122,7 @@ def SUMON2():
     linex()
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
-    print(" [+] COOKIES SHOW - Y\N ")
+    print(" [✓] COOKIES SHOW - (Y\N) ")
     linex()
     c = input(" [?] INPUT : ")
     if c in ["Y", "y"]:
