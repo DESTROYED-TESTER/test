@@ -1268,7 +1268,6 @@ def mbasic(uid,pwx,tl):
     try:
         for pw in pwx:
             ua = random.choice(uas)
-            pro = random.choice(SUMONua)
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
             data = {
@@ -1352,7 +1351,6 @@ def p(uid,pwx,tl):
     try:
         for pw in pwx:
             ua = random.choice(uas)
-            pro = random.choice(SUMONua)
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com').text
             data = {
@@ -1451,7 +1449,6 @@ def x(uid,pwx,tl):
     try:
         for pw in pwx:
             ua = random.choice(uas)
-            pro = random.choice(SUMONua)
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             data = {
@@ -1537,7 +1534,6 @@ def mobile(uid,pwx,tl):
     try:
         for pw in pwx:
             ua = random.choice(uas)
-            pro = random.choice(SUMONua)
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_BROWSER:0:{time_now}:{pw}"
             Session = requests.Session()
@@ -1632,7 +1628,6 @@ def freeq(uid,pwx,tl):
     try:
         for pw in pwx:
             ua = random.choice(uas)
-            pro = random.choice(SUMONua)
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             data = {
@@ -1727,7 +1722,6 @@ def d(uid,pwx,tl):
     try:
         for pw in pwx:
             ua = random.choice(uas)
-            pro = random.choice(SUMONua)
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
