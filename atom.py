@@ -1742,7 +1742,6 @@ def d(uid,pwx,tl):
             "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
             "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
-            print(f"{data}")
             headers = {
             'Host': 'touch.facebook.com',
             'x-fb-rlafr': '0',
