@@ -1365,11 +1365,11 @@ def p(uid,pwx,tl):
             "fb_dtsg": "NAcOkcab4gdKWmzDFeYzlO3kPRs9bxxy8WnPjxfyvhbzwLpNKdNfp7A:0:0",
             "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "__dyn": re.search('name="__dyn" value="(.*?)"', str(free_fb)).group(1),
+            "__dyn": "",
             "__csr": "",
             "__req": 3,
             "__fmt": 1,
-            "__a": re.search('name="__a" value="(.*?)"', str(free_fb)).group(1),
+            "__a": "",
             "__user": 0}
             headers = {
             'authority': 'p.facebook.com',
