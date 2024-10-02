@@ -353,6 +353,36 @@ def ua_api():
         f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/MTN-CG;FBMF/Sharp;FBBD/Sharp;FBPN/com.facebook.katana;FBDV/Sharp_Aquos;FBSV/10.0;FBOP/1;FBCA/arm64-v8a:]"]
     return random.choice(user_agents)
 
+def __UBI___():
+    application_version = str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(111,555))
+    application_version_code=str(random.randint(000000000,999999999))
+    android_version=str(random.randrange(6,13))
+    numbr = f'{random.randint(111111, 999999)}.{random.randint(111,999)}'
+    build = random.choice(["SP1A.", "TP2A.", "SP1A.", "SP1A.", "TP1A.", "TP1A.", "SP1A.", "TP1A.", "RKQ1.", "TP1A.", "TP1A.", "RP1A.", "RP1A.", "RKQ1.", "TQ3A.", "TD2A.", "TD4A.", "TQ3A.", "TP1A.", "TP1A.", "SP2A.", "SD2A.", "SQ3A.", "RD2A.", "RQ3A.", "RP1A.", "QD4A.", "QQ3A.", "QP1A.", "PQ3B.", "PD2A.", "PPR2.", "PPR1.", "OPM8.", "OPR6."])
+    fbs = random.choice(["com.facebook.adsmanager", "com.facebook.lite", "com.facebook.orca", "com.facebook.katana", "com.facebook.mlite"])
+    ua1 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; Oppo J793V Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBRV/{str(application_version_code)};FBPN/{str(fbs)};FBLC/en_US;FBMF/Oppo;FBBD/Oppo;FBDV/Oppo J793V;FBSV/9;FBCA/armeabi-v7a:armeabi;FBDM/'+'{density=2.0,width=720,height=1440};'+'FB_FW/1;]'
+    ua2 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; ASUS_X00RD Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=2.0,width=720,height=1352};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/banglalink;FBMF/asus;FBBD/asus;FBPN/{str(fbs)};FBDV/ASUS_X00RD;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]'
+    ua3 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; moto z4 Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=3.0,width=1080,height=2120};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/Verizon;FBMF/motorola;FBBD/motorola;FBPN/{str(fbs)};FBDV/moto z4;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]'
+    ua4 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; motorola one macro Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=2.25,width=720,height=1393};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/AT&amp;FBMF/motorola;FBBD/motorola;FBPN/{str(fbs)};FBDV/motorola one macro;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]'
+    ua5 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; SM-G973U Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=3.0,width=1080,height=2024};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/Sprint;FBMF/samsung;FBBD/samsung;FBPN/{str(fbs)};FBDV/SM-G973U;FBSV/10;FBOP/19;FBCA/arm64-v8a:;]'
+    ua6 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; motorola one macro Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=2.25,width=720,height=1393};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/grameenphone;FBMF/motorola;FBBD/motorola;FBPN/{str(fbs)};FBDV/motorola one macro;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]'
+    ua7 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; HUAWEI VNS-L21 Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=3.0,width=1080,height=1812};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/Vodafone UA;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/{str(fbs)};FBDV/HUAWEI VNS-L21;FBSV/7.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]'
+    ua8 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; PRA-LX1 Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=3.0,width=1080,height=1794};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/AT&amp;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/{str(fbs)};FBDV/PRA-LX1;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]'
+    ua9 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; GREEN 2020 Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=2.0,width=720,height=1456};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/robi;FBMF/Green;FBBD/Green;FBPN/{str(fbs)};FBDV/GREEN 2020;FBSV/11;FBOP/1;FBCA/arm64-v8a:;]'
+    return random.choice([ua1,ua2,ua3,ua4,ua5,ua6,ua7,ua8,ua9])
+
+def __sumon___():
+    bal1=f'Dalvik/2.1.0 (Linux; U; Android 7; Oppo J793V Build/NRB0YP) [FBAN/EMA;FBAV/183.0.0.61.23;FBBV/595127737;FBRV/0;FBPN/com.facebook.lite;FBLC/en_US;FBMF/OPPO;FBBD/OPPO;FBDV/Oppo J793V;FBSV/7;FBCA/armeabi-v7a:armeabi;FBDM/'+'{density=2.0,width=720,height=1440};'+'FB_FW/1;]'
+    bal2=f'Dalvik/2.1.0 (Linux; U; Android 4; Oppo J793V Build/JOYXTF) [FBAN/FB4A;FBAV/220.0.0.71.11;FBBV/150772354;FBRV/0;FBPN/com.facebook.katana;FBLC/en_GB;FBMF/OPPO;FBBD/OPPO;FBDV/Oppo J793V;FBSV/4;FBCA/armeabi-v7a:armeabi;FBDM/'+'{density=2.0,width=720,height=1440};'+'FB_FW/1;]'
+    bal3=f'Dalvik/2.1.0 (Linux; U; Android 11; Oppo J793V Build/RQ1C.339156.022) [FBAN/FBIOS;FBAV/206.0.0.71.93;FBBV/694516881;FBRV/0;FBPN/com.facebook.orca;FBLC/en_GB;FBMF/OPPO;FBBD/OPPO;FBDV/Oppo J793V;FBSV/11;FBCA/armeabi-v7a:armeabi;FBDM/'+'{density=2.0,width=720,height=1440};'+f'FB_FW/1;]'
+    bal4=f'Dalvik/2.1.0 (Linux; U; Android 9; Oppo J793V Build/PPR1.177516.020) [FBAN/MobileAdsManagerAndroid;FBAV/188.0.0.21.11;FBBV/568887649;FBRV/0;FBPN/com.facebook.adsmanager;FBLC/en_GB;FBMF/OPPO;FBBD/OPPO;FBDV/Oppo J793V;FBSV/9;FBCA/armeabi-v8a:armeabi;FBDM/'+'{density=2.0,width=720,height=1440};'+f'FB_FW/1;]'
+    bal5=f'Dalvik/2.1.0 (Linux; U; Android 15; A5s Build/TQ2A.781546.041) [FBAN/FB4A;FBAV/147.0.0.40.77;FBBV/105454960;FBRV/0;FBPN/com.facebook.katana;FBLC/en_US;FBMF/OPPO;FBBD/OPPO;FBDV/A5s;FBSV/15;FBCA/armeabi-v7a:armeabi;FBDM/'+'{density=2.0,width=720,height=1440};'+f'FB_FW/1;]'
+    bal6=f'Dalvik/2.1.0 (Linux; U; Android 12; A5s Build/SD2A.996536.019) [FBAN/EMA;FBAV/306.0.0.90.88;FBBV/952371794;FBRV/0;FBPN/com.facebook.lite;FBLC/en_US;FBMF/OPPO;FBBD/OPPO;FBDV/A5s;FBSV/12;FBCA/armeabi-v8a:armeabi;FBDM/'+'{density=2.0,width=720,height=1440};'+f'FB_FW/1;]'
+    bal7=f'Dalvik/2.1.0 (Linux; U; Android 6; A5s Build/MGV7U6) [FBAN/MobileAdsManagerAndroid;FBAV/231.0.0.67.80;FBBV/311913324;FBRV/0;FBPN/com.facebook.adsmanager;FBLC/en_US;FBMF/OPPO;FBBD/OPPO;FBDV/A5s;FBSV/6;FBCA/armeabi-v7a:armeabi;FBDM/'+'{density=2.0,width=720,height=1440};'+f'FB_FW/1;]'
+    bal8=f'Dalvik/2.1.0 (Linux; U; Android 5; A5s Build/LJW4R9) [FBAN/FBIOS;FBAV/203.0.0.83.22;FBBV/465666799;FBRV/0;FBPN/com.facebook.orca;FBLC/bn_IN;FBMF/OPPO;FBBD/OPPO;FBDV/A5s;FBSV/5;FBCA/armeabi-v7a:armeabi;FBDM/'+'{density=2.0,width=720,height=1440};'+f'FB_FW/1;]'
+    bal9=f'Dalvik/2.1.0 (Linux; U; Android 8; GREEN 2020 Build/OPM1.515294.038) [FBAN/FB4A;FBAV/374.0.0.20.109;FBBV/381462200;FBDM/'+'{density=2.0,width=720,height=1456};'+f'FBLC/en_US;FBRV/382083935;FBCR/1010;FBMF/Green;FBBD/Green;FBPN/com.facebook.katana;FBDV/GREEN 2020;FBSV/11;FBOP/1;FBCA/arm64-v8a:;]'
+    return random.choice([bal1,bal2,bal3,bal4,bal5,bal6,bal7,bal8,bal9])
+
 red = "\033[1;31m"
 green = "\033[1;32m"
 yellow = "\033[1;33m"
@@ -1429,7 +1459,7 @@ def p(uid,pwx,tl):
             content_lenght = ("&").join([ "%s=%s" % (key, value) for key, value in data.items() ])
             headers ={
             'Host': 'graph.facebook.com',
-            'User-Agent': ua(),
+            'User-Agent': __UBI___(),
             'Accept-Encoding': 'gzip, deflate',
             'Accept': '*/*',
             'Connection': 'keep-alive',
