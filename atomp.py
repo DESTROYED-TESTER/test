@@ -1426,9 +1426,10 @@ def p(uid,pwx,tl):
             'access_token': '350685531728%7C62f8ce9f74b12f84c123cc23437a4a32',
             'api_key': '882a8490361da98702bf97a021ddc14d',
             'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
+            content_lenght = ("&").join([ "%s=%s" % (key, value) for key, value in data.items() ])
             headers ={
             'Host': 'graph.facebook.com',
-            'User-Agent': '[FBAN/FB4A;FBAV/171.1.0.18.43;FBBV/492543489;FBDM/{density=3.0,width=1080,height=2040};FBLC/en_US;FBRV/0;FBCR/MTS RUS;FBMF/HUAWEI;FBBD/HONOR;FBPN/com.facebook.katana;FBDV/BKL-L09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;',
+            'User-Agent': ua(),
             'Accept-Encoding': 'gzip, deflate',
             'Accept': '*/*',
             'Connection': 'keep-alive',
@@ -1442,7 +1443,7 @@ def p(uid,pwx,tl):
             'X-FB-Client-IP': 'True',
             'X-FB-Friendly-Name': 'authenticate',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Content-Length': '1026'}
+            'Content-Length': str(len(content_lenght))}
             url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
