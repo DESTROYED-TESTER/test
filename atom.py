@@ -1547,7 +1547,7 @@ def mobile(uid,pwx,tl):
             'ab_test_data': re.search('name="ab_test_data" value="(.*?)"', str(free_fb)).group(1),
             'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             headers = {
-            'authority': 'www.facebook.com',
+            'authority': 'business.facebook.com',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
             'cache-control': 'max-age=0',
