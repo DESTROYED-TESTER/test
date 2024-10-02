@@ -1371,11 +1371,11 @@ def p(uid,pwx,tl):
 '_fb_noscript': 'true'}
             headers ={
 'Host': 'm.facebook.com',
-'content-length': str(random.choice(400,989)),
+'content-length': '510',
 'sec-ch-ua': '"Not.A/Brand";v="20", "Chromium";v="112", "Google Chrome";v="110"',
 'sec-ch-ua-mobile': '?1',
 'user-agent': 'Mozilla/5.0 (Linux; Android 7.1.2; Redmi 5A Build/W92W4A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.3899.81 Mobile Safari/537.36,gzip(gfe)',
-'viewport-width': str(random.choice(400,989)),
+'viewport-width': '510',
 'content-type': 'application/x-www-form-urlencoded',
 'x-fb-lsd': 'AVpVfmlFIc8',
 'sec-ch-ua-platform-version': '"9.0.0"',
