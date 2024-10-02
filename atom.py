@@ -644,8 +644,8 @@ def SUMON2():
         clear()
         SUMON_time()
         tl = str(len(user))
-        print(f"[+] YOUR LIMIT IDZ  : "+tl+" ")
-        print(f"[+] YOUR CODE CHOOSED : "+kode)
+        print(f"[✓] YOUR LIMIT IDZ  : "+tl+" ")
+        print(f"[✓] YOUR CODE CHOOSED : "+kode)
         linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
