@@ -1388,7 +1388,7 @@ def mbasic(uid,pwx,tl):
         pass
 
 
-def mbasic(uid,pwx,tl):
+def p(uid,pwx,tl):
     global loop
     global oks
     global cps
