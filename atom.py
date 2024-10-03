@@ -466,14 +466,14 @@ def fresh():
     print(logo)
 #--------[ DIVIDER DEF ]---------#
 def divider():
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def wow(text):
     string = f"{white}({green}{text}{white})"
     return string
 
 def linex():
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def SUMON_time():
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device     : {manufacturer_name}-android-v-{android_version}")
@@ -635,17 +635,17 @@ def SUMON2():
     user=[]
     os.system('clear')
     print(logo)
-    print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  (6377)')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print('[+] ENTER YOUR FOUR DIGIT CODE EX-6377')
+    print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     kode = input('[+] INPUT CODE : ')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     limit = int(input('[+] LIMIT CLONE : '))
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(6))
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (1) ")
     print(" [2] METHOD (2) ")
     print(" [3] METHOD (3) ")
@@ -666,9 +666,8 @@ def SUMON2():
         clear()
         SUMON_time()
         tl = str(len(user))
-        print(f"[✓] YOUR LIMIT IDZ  : "+tl+" ")
-        print(f"[✓] YOUR CODE CHOOSED : "+kode)
-        linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ');linex()
+        print(f"[✓] YOUR LIMIT UID  : "+tl+" ")
+        linex();print(' MODE ON/OFF (\033[1;32mAIRPLANE\033[1;32m)  ');linex()
         for guru in user:
             uid = kode+guru
             mk = uid[:6]
