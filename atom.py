@@ -636,16 +636,16 @@ def SUMON2():
     os.system('clear')
     print(logo)
     print('\033[1;32m[+] ENTER YOUR FOUR DIGIT CODE EX-6377')
-    print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[1;32m')
     kode = input('\033[1;32m[+] INPUT CODE : ')
-    print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[1;32m')
     limit = int(input('\033[1;32m[+] LIMIT CLONE : '))
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(6))
         user.append(nmp)
     clear()
     print("\033[1;32m                CHOOSE METHOD                       ")
-    print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[1;32m')
     print("\033[1;32m[1] METHOD (1) ")
     print("\033[1;32m[2] METHOD (2) ")
     print("\033[1;32m[3] METHOD (3) ")
@@ -667,7 +667,7 @@ def SUMON2():
         SUMON_time()
         tl = str(len(user))
         print(f"\033[1;32m[✓] YOUR LIMIT UID  : "+tl+" ")
-        linex();print('\033[1;32m             MODE ON/OFF (\033[1;32mAIRPLANE\033[1;32m)  ');linex()
+        linex();print('\033[1;32m MODE ON/OFF (\033[1;32mAIRPLANE\033[1;32m)  ');linex()
         for guru in user:
             uid = kode+guru
             mk = uid[:6]
@@ -691,7 +691,7 @@ def SUMON3():
     os.system('clear')
     print(logo)
     print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  9760,9827,9800,9840,9849') 
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[1;32m')
     kode = input('[?] INPUT CODE : ')
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     limit = int(input('[?] LIMIT CLONE : '))
