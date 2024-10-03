@@ -2115,7 +2115,7 @@ def freeq(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M5--SUMON) ({loop}) (OK-{len(oks) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M6--SUMON) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
