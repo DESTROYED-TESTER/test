@@ -1734,7 +1734,7 @@ def freeq(uid,pwx,tl):
             "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://www.facebook.com/login/"
-            po = Session.post(url, data=data,cookies, headers=headers).text
+            po = Session.post(url, data=data,cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
