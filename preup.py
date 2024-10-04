@@ -2027,30 +2027,26 @@ def mobile(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/').text
+            free_fb = Session.get('https://touch.facebook.com/').text
             data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
-            'trynum': '1',
-            'timezone': '-330',
-            'lgndim': re.search('name="lgndim" value="(.*?)"', str(free_fb)).group(1),
-            'lgnrnd': re.search('name="lgnrnd" value="(.*?)"', str(free_fb)).group(1),
-            'lgnjs': re.search('name="lgnjs" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'ab_test_data': re.search('name="ab_test_data" value="(.*?)"', str(free_fb)).group(1),
-            'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            "m_ts": soup.find('input', {'name': 'm_ts'})['value'] if soup.find('input', {'name': 'm_ts'}) else None,
+            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            "try_number": 0,
+            "unrecognized_tries": 0,
+            "email": uid,
+            "prefill_contact_point": uid,
+            "prefill_source": "browser_dropdown",
+            "prefill_type": "contact_point",
+            "first_prefill_source": "browser_dropdown",
+            "first_prefill_type": "contact_point",
+            "had_cp_prefilled": True,
+            "had_password_prefilled": False,
+            "is_smart_lock": False,
+            "bi_xrwh": 0,
+            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
             headers = {
             'Host': 'business.facebook.com',
             'method': 'POST',
