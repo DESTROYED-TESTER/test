@@ -2167,7 +2167,7 @@ def freeq(uid,pwx,tl):
                        #print(f" {green}Cookie : {green}{coki}")
                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                        oks.append(cid)
-                    break
+                       break
                 else:
                     break
             elif 'checkpoint' in response:
