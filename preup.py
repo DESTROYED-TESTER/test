@@ -1778,11 +1778,12 @@ def mbasic(uid,pwx,tl):
             pro = random.choice(SUMONua)
             user_agent = f"Mozilla/5.0 (Linux; Android {random.choice(['10', '11', '12', '13'])}; {random.choice(['K', 'A', 'B', 'C', 'D', 'E'])}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{random.randint(100, 124)}.0.0.0 Mobile Safari/537.36"
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
+            response = session.get('https://touch.facebook.com')
+            csrftoken = response.cookies.get('csrftoken')
             data =  {
             'email': uid,
             'pass': pw,
-            'fb_dtsg': re.search('name="csrf_token" value="(.*?)"', str(free_fb)).group(1),
+            'fb_dtsg': csrftoken,
             'login': 'Log In'}
             cookies = {
             'sb': 'rp_6ZrdRV1vg1JSQt-kGL7oZ',
