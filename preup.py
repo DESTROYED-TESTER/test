@@ -2029,7 +2029,7 @@ def mobile(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
-            "m_ts": soup.find('input', {'name': 'm_ts'})['value'] if soup.find('input', {'name': 'm_ts'}) else None,
+            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
             "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
             "try_number": 0,
             "unrecognized_tries": 0,
