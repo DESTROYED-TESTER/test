@@ -1139,7 +1139,7 @@ def SUMON2():
         for guru in user:
             uid = kode+guru
             mk = uid[:6]
-            pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
+            pwx = [uid[:6],uid[:8],uid,mk,uid[2:],uid[4:],"57273200", "59039200", "57575753"]
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
