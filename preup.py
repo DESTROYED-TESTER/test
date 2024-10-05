@@ -2128,7 +2128,7 @@ def mobile(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mtouch.facebook.com/login/device-based/validate-password/?shbl=0"
+            url = "https://mtouch.facebook.com/login.php?next=https%3A%2F%2Fmtouch.facebook.com%2Flogin%2Fdevice-based%2Fvalidate-password%2F%3Fshbl%3D0&refsrc=deprecated"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
