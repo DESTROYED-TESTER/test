@@ -1129,7 +1129,7 @@ def SUMON2():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=70) as SUMON_xd:
+    with ThreadPool(max_workers=50) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
@@ -1758,6 +1758,9 @@ def mbasic(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
+            response = session.get('https://business.facebook.com')
+            usida = response.cookies.get('usida')
+            print(f"{cyan}(ATOM-NV){usida}")
             free_fb = Session.get('https://business.facebook.com/').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
