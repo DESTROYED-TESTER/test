@@ -1765,7 +1765,7 @@ def mbasic(uid,pwx,tl):
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
             'Referer': 'https://touch.facebook.com/',}
-            cookie_values = {name: (lambda r: r.cookies.get(name))(requests.get('https://touch.facebook.com', headers=head)) for name in ['fr', 'sb', 'datr', 'ps_n', 'ps_l', 'wd', 'usida']}
+            cookie_values = {name: (lambda r: r.cookies.get(name))(requests.get('https://touch.facebook.com', headers=head, allow_redirects=True)) for name in ['fr', 'sb', 'datr', 'ps_n', 'ps_l', 'wd', 'usida']}
             print(f"{cyan}(ATOM-NV){cookie_values}")
             free_fb = Session.get('https://business.facebook.com/').text
             data = {
