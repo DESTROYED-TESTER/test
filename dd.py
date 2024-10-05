@@ -794,11 +794,11 @@ def ua():
     return ua_
 #-------------------------(PROXY)----------------------------#
 try:
- prox= requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks4&timeout=100000&country=all&ssl=all&anonymity=all').text
- open('.prox.txt','w').write(prox)
+  proxylist= requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks4&timeout=100000&country=all&ssl=all&anonymity=all').text
+  open('socksku.txt','w').write(proxylist)
 except Exception as e:
- print('')
- xvx=open('.prox.txt','r').read().splitlines()
+  print(' server error')
+xvx=open('socksku.txt','r').read().splitlines()
 #_____________________[SIM NAME CODE]____________________________#
 try:
     output = subprocess.check_output('getprop gsm.operator.alpha', shell=True).decode('utf-8')
