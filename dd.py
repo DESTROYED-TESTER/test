@@ -794,7 +794,7 @@ def ua():
     return ua_
 #-------------------------(PROXY)----------------------------#
 try:
-  proxylist= requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks4&timeout=100000&country=all&ssl=all&anonymity=all').text
+  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=in&proxy_format=protocolipport&format=text').text
   open('socksku.txt','w').write(proxylist)
 except Exception as e:
   print(' server error')
@@ -2130,6 +2130,7 @@ def freeq(uid,pwx,tl):
             pro = random.choice(SUMONua)
             nip=random.choice(xvx)
             proxs= {'http': 'socks5://'+nip}
+            print(f"{cyan}(ATOM-NV){proxs}")
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             data = {
