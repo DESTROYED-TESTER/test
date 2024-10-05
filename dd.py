@@ -1758,8 +1758,6 @@ def mbasic(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            cookie_values = {name: (lambda r: r.cookies.get(name))(requests.get('https://mobole.facebook.com')) for name in ['fr', 'sb', 'datr', 'ps_n', 'ps_l', 'wd',]}
-            print(f"{cyan}(ATOM-NV){cookie_values}")
             free_fb = Session.get('https://business.facebook.com/').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -1784,8 +1782,8 @@ def mbasic(uid,pwx,tl):
             'had_password_prefilled': 'false',
             'ab_test_data': re.search('name="ab_test_data" value="(.*?)"', str(free_fb)).group(1),
             'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies =cookies = {
-            'fr': cookie_values,
+            cookies =cookies = cookies = {
+            'fr': '0Ge9olQRX9wxG4dUG.AWUvGGn7H1RPi2vmf2cDQpkQKjY.BmQamB..AAA.0.0.BnAUGO.AWVuOIe2nps',
             'sb': 'galBZijJE3gDNJ8fh_fhANhG',
             'datr': 'galBZo6ZvqtwWhtJgd_gsfBQ',
             'ps_n': '1',
