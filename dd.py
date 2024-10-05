@@ -1781,15 +1781,16 @@ def mbasic(uid,pwx,tl):
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'false',
             'ab_test_data': re.search('name="ab_test_data" value="(.*?)"', str(free_fb)).group(1),
-            'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+}
             cookies ={
-            'fr': '0Ge9olQRX9wxG4dUG.AWUvGGn7H1RPi2vmf2cDQpkQKjY.BmQamB..AAA.0.0.BnAUGO.AWVuOIe2nps',
-            'sb': 'galBZijJE3gDNJ8fh_fhANhG',
-            'datr': 'galBZo6ZvqtwWhtJgd_gsfBQ',
-            'ps_n': '1',
+            'sb': 'rp_6ZrdRV1vg1JSQt-kGL7oZ',
+            'datr': 'rp_6ZvkONbQIhMeMcdrNQlTW',
             'ps_l': '1',
-            'wd': '1440x402',
-            'usida': 'eyJ2ZXIiOjEsImlkIjoiQXNrdnhrdTFndmgxMGwiLCJ0aW1lIjoxNzI4MTM1MTAyfQ^%^3D^%^3D',}
+            'ps_n': '1',
+            'wd': '1051x773',
+            'fr': '1TtcqI6vgDuofxZxz.AWWrQ1v99ydagK77g0yuPBo2sxg.BmvaYd..AAA.0.0.BnAVpe.AWVDO4h1fLY',
+}
             headers ={
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8',
@@ -1807,9 +1808,10 @@ def mbasic(uid,pwx,tl):
             'Sec-Fetch-User': '?1',
             'Priority': 'u=0, i',
             'Pragma': 'no-cache',
-            'Cache-Control': 'no-cache',}
+            'Cache-Control': 'no-cache',
+}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https^%^3A^%^2F^%^2Fbusiness.facebook.com^%^2F^%^3Fnav_ref^%^3Dbiz_unified_f3_login_page_to_mbs^%^26biz_login_source^%^3Dbiz_unified_f3_fb_login_button^%^26join_id^%^3Dcff0905e-97a8-47c3-8847-ebabae1d9e27^%^26request_id^%^3D25f04381-053c-4af1-8492-a5d4f239c1b0&lwv=100"
+            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348131"
             po = Session.post(url, cookies=cookies, headers=headers, data=data).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
