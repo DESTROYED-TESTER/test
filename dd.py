@@ -2033,23 +2033,24 @@ def mobile(uid,pwx,tl):
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'login': 'Masuk'}
             headers ={
-            "Host": "business.facebook.com",
-            "Connection": "keep-alive",
-            "Content-Length": '{len(str(data))}',  # Normally set automatically
-            "sec-ch-ua-platform": '"Android"',
-            "User-Agent": ua,
-            "sec-ch-ua": '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
-            "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundaryJrkz3hvNLABCLelT",
-            "sec-ch-ua-mobile": "?1",
-            "Accept": "*/*",
-            "Origin": "https://business.facebook.com",
-            "X-Requested-With": "net.slions.fulguris.full.playstore",
-            "Sec-Fetch-Site": "same-origin",
-            "Sec-Fetch-Mode": "cors",
-            "Sec-Fetch-Dest": "empty",
-            "Referer": "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100",
-            "Accept-Encoding": "gzip, deflate, br, zstd",
-            "Accept-Language": "en-US,en;q=0.9"}
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'accept-language': 'en-US,en;q=0.5',
+            'cache-control': 'max-age=0',
+            'content-type': 'application/x-www-form-urlencoded',
+            # 'cookie': 'sb=cjUBZzafioM5LBver-WV7l9d; wd=885x779; datr=__GMZCgwVF5BbyvAtfJojQwg; usida=eyJ2ZXIiOjEsImlkIjoiQXNrdnZrYTE2a2F5djUiLCJ0aW1lIjoxNzI4MTMyNDkwfQ%3D%3D; fr=0uZ9jheMXqW2F10vY..BnATVy..AAA.0.0.BnATWR.AWUIWC_Yqe0',
+            'origin': 'https://business.facebook.com',
+            'priority': 'u=0, i',
+            'referer': 'https://business.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2F%3Fnav_ref%3Dbiz_unified_f3_login_page_to_mbs%26biz_login_source%3Dbiz_unified_f3_fb_login_button%26join_id%3D610559b7-f900-4ce5-ae79-6ccd7b7d125c%26request_id%3D0a4b8022-1c7b-4396-8b19-7926fd119d66&request_id=0a4b8022-1c7b-4396-8b19-7926fd119d66',
+            'sec-ch-ua': '"Brave";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'sec-gpc': '1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
