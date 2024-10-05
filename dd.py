@@ -1759,7 +1759,7 @@ def mbasic(uid,pwx,tl):
             pro = random.choice(SUMONua)
             Session = requests.Session()
             free_fb = Session.get('https://business.facebook.com/').text
-            data = {
+            data ={
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'display': '',
@@ -1782,7 +1782,7 @@ def mbasic(uid,pwx,tl):
             'had_password_prefilled': 'false',
             'ab_test_data': re.search('name="ab_test_data" value="(.*?)"', str(free_fb)).group(1),
             'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies =cookies = cookies = {
+            cookies ={
             'fr': '0Ge9olQRX9wxG4dUG.AWUvGGn7H1RPi2vmf2cDQpkQKjY.BmQamB..AAA.0.0.BnAUGO.AWVuOIe2nps',
             'sb': 'galBZijJE3gDNJ8fh_fhANhG',
             'datr': 'galBZo6ZvqtwWhtJgd_gsfBQ',
@@ -1790,7 +1790,7 @@ def mbasic(uid,pwx,tl):
             'ps_l': '1',
             'wd': '1440x402',
             'usida': 'eyJ2ZXIiOjEsImlkIjoiQXNrdnhrdTFndmgxMGwiLCJ0aW1lIjoxNzI4MTM1MTAyfQ^%^3D^%^3D',}
-            headers = {
+            headers ={
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
