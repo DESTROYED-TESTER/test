@@ -1758,7 +1758,7 @@ def mbasic(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            response = session.get('https://business.facebook.com')
+            response = session.get('https://touch.facebook.com')
             usida = response.cookies.get('usida')
             print(f"{cyan}(ATOM-NV){usida}")
             free_fb = Session.get('https://business.facebook.com/').text
