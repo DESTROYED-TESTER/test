@@ -1844,6 +1844,7 @@ def mbasic(uid,pwx,tl):
                 cps.append(uid)
                 break
             else:
+                print(f"\r\033[1;91m [ERROR] - Status code {po.status_code}")
                 continue
         loop+=1
     except ce:
