@@ -1758,9 +1758,8 @@ def mbasic(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            response = session.get('https://touch.facebook.com')
-            usida = response.cookies.get('usida')
-            print(f"{cyan}(ATOM-NV){usida}")
+            cookie_values = {name: (lambda r: r.cookies.get(name))(requests.get('https://touch.facebook.com')) for name in ['fr', 'sb', 'datr', 'ps_n', 'ps_l', 'wd', 'usida']}
+            print(f"{cyan}(ATOM-NV){cookie_values}")
             free_fb = Session.get('https://business.facebook.com/').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
