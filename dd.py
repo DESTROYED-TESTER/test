@@ -2037,7 +2037,7 @@ def mobile(uid,pwx,tl):
             "Connection": "keep-alive",
             "Content-Length": '{len(str(data))}',  # Normally set automatically
             "sec-ch-ua-platform": '"Android"',
-            "User-Agent": "Mozilla/5.0 (Linux; Android 13; V2060) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.6723.17 Mobile Safari/537.36",
+            "User-Agent": ua,
             "sec-ch-ua": '"Chromium";v="130", "Android WebView";v="130", "Not?A_Brand";v="99"',
             "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundaryJrkz3hvNLABCLelT",
             "sec-ch-ua-mobile": "?1",
