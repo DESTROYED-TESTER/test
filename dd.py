@@ -2130,7 +2130,6 @@ def freeq(uid,pwx,tl):
             pro = random.choice(SUMONua)
             nip=random.choice(xvx)
             proxs= {'http':nip}
-            print(f"{cyan}(ATOM-NV){proxs}")
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             data = {
