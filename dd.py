@@ -794,7 +794,7 @@ def ua():
     return ua_
 #-------------------------(PROXY)----------------------------#
 try:
-  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=th&proxy_format=protocolipport&format=text&timeout=7213').text
+  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=th&protocol=socks4&proxy_format=protocolipport&format=text&timeout=20000').text
   open('socksku.txt','w').write(proxylist)
 except Exception as e:
   print(' server error')
