@@ -2132,7 +2132,7 @@ def freeq(uid,pwx,tl):
             nip=random.choice(xvx)
             proxs= {'http':nip}
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/').text
+            free_fb = Session.get('https://m.facebook.com/',proxies=proxs).text
             data = {
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
