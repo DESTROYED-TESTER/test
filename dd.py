@@ -2037,7 +2037,7 @@ def mobile(uid,pwx,tl):
             nip=random.choice(xvx)
             proxs= {'http':nip}
             Session = requests.Session()
-            free_fb = Session.get('https://free.facebook.com/',proxies=proxs).text
+            free_fb = Session.get('https://touch.facebook.com/',proxies=proxs).text
             data ={
             "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
             "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
