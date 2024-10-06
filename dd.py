@@ -2089,7 +2089,7 @@ def mobile(uid,pwx,tl):
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://free.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            po = Session.post(url,headers=headers,data=data,proxies=proxs).text
+            po = Session.post(url,headers=headers,data=data,allow_redirects=False,proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
