@@ -487,7 +487,6 @@ def oo(text):
 
 
     
-xxxx = str(len(SUMONua))
 #---------------------[LOOP MENU]---------------------#
 loop = 0
 oks = []
