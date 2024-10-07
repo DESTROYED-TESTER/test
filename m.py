@@ -2250,6 +2250,7 @@ def d(uid,pwx,tl):
             'had_password_prefilled': 'false',
             'ab_test_data': re.search('name="ab_test_data" value="(.*?)"', str(free_fb)).group(1),
             'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            print(f" {green}(ATOM-OK) {data} ")
             headers = {
             'Host': 'business.facebook.com',
             'method': 'POST',
