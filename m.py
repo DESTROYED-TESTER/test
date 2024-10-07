@@ -2237,9 +2237,9 @@ def d(uid,pwx,tl):
             'signed_next': '',
             'trynum': '1',
             'timezone': '-330',
-            'lgndim': re.search('name="lgndim" value="(.*?)"', str(free_fb)).group(1),
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0',
             'lgnrnd': re.search('name="lgnrnd" value="(.*?)"', str(free_fb)).group(1),
-            'lgnjs': re.search('name="lgnjs" value="(.*?)"', str(free_fb)).group(1),
+            'lgnjs': '1728322991',
             'email': uid,
             'prefill_contact_point': '',
             'prefill_source': '',
@@ -2248,7 +2248,7 @@ def d(uid,pwx,tl):
             'first_prefill_type': '',
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'false',
-            'ab_test_data': re.search('name="ab_test_data" value="(.*?)"', str(free_fb)).group(1),
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
             'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             print(f" {green}(ATOM-OK) {data} ")
             headers = {
