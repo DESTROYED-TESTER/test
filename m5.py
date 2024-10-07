@@ -1364,7 +1364,7 @@ def mbasic(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/?locale2=en_GB').text
+            free_fb = Session.get('https://touch.facebook.com').text
             data = {
             'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
             'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
@@ -1389,32 +1389,28 @@ def mbasic(uid,pwx,tl):
             'a': '',
             '__user': '0',
             '_fb_noscript': 'true'}
-            headers = {
+            headers =  {
             'authority': 'm.facebook.com',
             'accept': '*/*',
-            'accept-language': 'es-MX,es;q=0.9',
+            'accept-language': 'en-US,en;q=0.9',
             'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '2.75',
             'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/?locale2=en_GB',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Chromium";v="116", "Google Chrome";v="118", "Not=A?Brand";v="71"',
-            'sec-ch-ua-full-version-list': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=114946765277597&kid_directed_site=0&app_id=114946765277597&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fapp_id%3D114946765277597%26auth_type%3Dreauthorize%26cbt%3D1723457889584%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfcd17ca0a76dc63a8%2526domain%253Dwww.vecteezy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.vecteezy.com%25252Ff07b3d8c5688e23bb%2526relation%253Dopener%26client_id%3D114946765277597%26display%3Dpopup%26domain%3Dwww.vecteezy.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fwww.vecteezy.com%252Ffree-videos%252Fcall-to-action-button%253Fpage%253D2%2526srsltid%253DAfmBOoobRdAd8ZTHYUx2XPTH6ck4ZRdyQkFXqUHnpiEXYQH1js0u4jnB%26locale%3Den_US%26logger_id%3Df5dd8ebc54f54b7e1%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df23016ed68f160ca4%2526domain%253Dwww.vecteezy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.vecteezy.com%25252Ff07b3d8c5688e23bb%2526relation%253Dopener%2526frame%253Df601eb188acd9eb67%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Dpublic_profile%252Cemail%26sdk%3Djoey%26version%3Dv3.2%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df23016ed68f160ca4%26domain%3Dwww.vecteezy.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.vecteezy.com%252Ff07b3d8c5688e23bb%26relation%3Dopener%26frame%3Df601eb188acd9eb67%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied&display=popup&locale=en_GB&pl_dbl=0',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
             'sec-ch-ua-mobile': '?1',
             'sec-ch-ua-model': '"23128PC33I"',
-            'sec-ch-ua-platform': 'Android',
-            'sec-ch-ua-platform-version': '"8.0.0"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"13"',
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'viabrowser;Safary-Mozilla/5.0 (Windows NT 10.0 .1; WOW64)LDK2WU)Applewebkit/537.36 (KHTML, like Gecko) Chrome/140.0.4699.170 Safari/537.36 Vivaldi/6.0.2979.18',
-            'viewport-width': '393',
+            'user-agent': 'Mozilla/5.0 (Linux; Android zh-cn 8; Redmi X Build/2423.0.015) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/80.0.4618.94 RealmeBrowser/35.5.0.812.18.3-gn',
             'x-asbd-id': '129477',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'x-requested-with': 'XMLHttpRequest',
-            'x-response-format': 'JSONStream'}
+            'x-fb-lsd': 'AVpIztggBCA'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&locale2=en_GB&refid=8"
+            url = "https://m.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
