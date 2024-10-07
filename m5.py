@@ -1946,10 +1946,10 @@ def x(uid,pwx,tl):
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
-            'next': 'https://m.facebook.com/login/save-device/',
+            'next': 'https://m.facebook.com/v3.2/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback&scope=email&state=https%3A%2F%2Fpixlr.com%2F&client_id=144117062837799&ret=login&fbapp_pres=0&logger_id=27279048-2ffa-4266-a587-1693d6522204&tp=unspecified',
             'flow': 'login_no_pin',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'login': 'Masuk'}
+            'pass': pw,
+            'login': 'Log in'}
             headers ={
             'authority': 'm.facebook.com',
             'accept': '*/*',
