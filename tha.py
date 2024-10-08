@@ -2139,7 +2139,7 @@ def freeq(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             nip=random.choice(xvx)
-            proxs= {'http':nip}
+            proxs= {'http':'http://45.201.10.63:3128'}
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             data = {
