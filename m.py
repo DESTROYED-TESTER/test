@@ -48,6 +48,7 @@ from random import randint
 from bs4 import BeautifulSoup
 import requests as ress
 from sys import exit as exit
+from io import BytesIO
 #print("WAIT INSTALLING MODULES")
 #os.system("pip install bs4")
 #os.system("pip install requests")
