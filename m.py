@@ -956,7 +956,7 @@ class Process:
     def __init__(self):
         self.cc=[]
         self.key="ATOM-" + base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.sha256((platform.version() + str(os.getuid()) + platform.platform() + os.getlogin() + platform.release()).replace(' ', '').encode()).hexdigest()
-        self.key=""
+        #self.key=""
         self.clear()
         r = self.Gex('https://raw.githubusercontent.com/ATOMDX/Approv/refs/heads/main/Appro.txt')
         if self.key in r:
