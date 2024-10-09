@@ -2647,4 +2647,5 @@ def cracker(uid, pwx, tl):
         #print({error})
         pass
 
+os.system("clear")
 Process()
