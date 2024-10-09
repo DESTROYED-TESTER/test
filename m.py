@@ -971,7 +971,7 @@ class Process:
             input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
             time.sleep(3.5)
             tks = 'KEY =%20%20:%20'+self.key
-            os.system('am start https://wa.me/8389066877?text=' + tks)
+            os.system('am start https://wa.me/+918389066877?text=' + tks)
             exit()
     def clear(self):os.system('clear');clear()
     def Gex(self,x):
