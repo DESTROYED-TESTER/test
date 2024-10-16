@@ -1,4 +1,4 @@
-import os,sys,re,time,uuid,json,string,random,base64,platform
+import os,sys,re,time,uuid,json,string,random,base64,platform,pycurl
 from concurrent.futures import ThreadPoolExecutor
 os.system("pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests")
 try:
@@ -972,7 +972,7 @@ class Process:
             tks = 'TOKEN KEY =%20%20:%20'+self.key
             os.system('am start https://wa.me/01989733880?text=' + tks)
             exit()
-    def clear(self):os.system('clear');____banner____()
+    def clear(self):os.system('clear');clear()
     def Gex(self,x):
         buffer = BytesIO()
         c = pycurl.Curl()
