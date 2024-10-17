@@ -865,7 +865,7 @@ logo =(f"""
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
 \033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mFile × \033[1;36mRandom 
-\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m0.0.2
+\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m{version}
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 def check_lock(cid):
@@ -879,7 +879,7 @@ def oo(text):
     return f"{white}({green}{text}{white})"
 
 
-    
+ 
 xxxx = str(len(SUMONua))
 
 
@@ -919,6 +919,7 @@ else:
     tag = "AM"
 timex = f"{hour}:{minute}{tag}"
 datex = f"{day}/{month}/{year}"
+version = f"0.{month}.{day}"
 
 #---------------------[APPLICATION CHECKER]---------------------#
     
@@ -966,11 +967,11 @@ class Process:
             print("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m HELLO.... DEAR USER THIS IS PREMIUM TOOLS ")
             print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m AFTER PAYMENT ACCESS TOOLS ")
             print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m PRICE LIST ADMIN INBOX ")
-            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Your Key:\033[0;93m " +self.key)
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Your Key:\033[0;93m " +self.key )
             input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
             time.sleep(3.5)
-            tks = 'TOKEN KEY =%20%20:%20'+self.key
-            os.system('am start https://wa.me/01989733880?text=' + tks)
+            tks=+self.key
+            os.system('am start https://wa.me/+91 8389066799?text='+tks)
             exit()
     def clear(self):os.system('clear');clear()
     def Gex(self,x):
