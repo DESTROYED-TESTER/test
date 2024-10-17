@@ -957,7 +957,7 @@ class Process:
         #self.key=""
         self.clear()
         r = self.Gex('https://raw.githubusercontent.com/ATOMDX/Approv/refs/heads/main/Appro.txt')
-        r = self.Gex('https://raw.githubusercontent.com/ATOMDX/Approv/refs/heads/main/appr.txt')
+        #r = self.Gex('https://raw.githubusercontent.com/ATOMDX/Approv/refs/heads/main/appr.txt')
         if self.key in r:
             self.enroll()
         else:
