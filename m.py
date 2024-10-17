@@ -865,7 +865,7 @@ logo =(f"""
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
 \033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mFile × \033[1;36mRandom 
-\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m{version}
+\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : \033[1;32m0.0.0
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 def check_lock(cid):
@@ -919,8 +919,6 @@ else:
     tag = "AM"
 timex = f"{hour}:{minute}{tag}"
 datex = f"{day}/{month}/{year}"
-version = f"0.{month}.{day}"
-
 #---------------------[APPLICATION CHECKER]---------------------#
     
 
@@ -958,7 +956,7 @@ class Process:
         self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
         #self.key=""
         self.clear()
-        r = self.Gex('https://raw.githubusercontent.com/ATOMDX/Approv/refs/heads/main/Appro.txt')
+        r = self.Gex('https://raw.githubusercontent.com/ATOMDX/Approv/refs/heads/main/Appro.txt','https://raw.githubusercontent.com/ATOMDX/Approv/refs/heads/main/appr.txt')
         if self.key in r:
             self.enroll()
         else:
