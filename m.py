@@ -887,6 +887,8 @@ xxxx = str(len(SUMONua))
 loop = 0
 oks = []
 cps = []
+die = []
+nv = []
 twf = []
 baby =[]
 red = "\033[1;31m"
@@ -2282,6 +2284,8 @@ def freeq(uid,pwx,tl):
 def d(uid,pwx,tl):
     global oks
     global cps
+    global nv
+    global die
     global twf
     global loop
     global bkas
