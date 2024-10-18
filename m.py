@@ -2212,7 +2212,7 @@ def freeq(uid,pwx,tl):
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
-            'content-Length': '{len(str(logn_data))}',
+            'content-Length': f'{len(str(data))}',
             'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
             'dpr': '1.75',
             'viewport-width': '980',
