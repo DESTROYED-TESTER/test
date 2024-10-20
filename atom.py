@@ -1821,12 +1821,12 @@ def mbasic(uid,pwx,tl):
             'a': 'AYkBCKTyaI-c_gl9jVJypyDSApvws4LGRE1lFS92AO9xgLBWo1pYhHGTpsowMEEvHlmC2r72SQ3Iy1NregNCELsxIGVS9npiQTJRu6iIg-xVWw',
             'user': '0'}
             headers ={
-            'authority': 'm.facebook.com',
+            'authority': 'm.prod.facebook.com',
             'accept': '*/*',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login.php',
+            'origin': 'https://m.prod.facebook.com',
+            'referer': 'https://m.prod.facebook.com/login.php',
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
             'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
@@ -1843,7 +1843,7 @@ def mbasic(uid,pwx,tl):
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?api_key=366497233413324&auth_token=cccf35acde75d5e0634afd87ad7b46a4&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv11.0%2Fdialog%2Foauth%3Fclient_id%3D366497233413324%26redirect_uri%3Dhttps%253A%252F%252Fwww.99.co%252Fid%252Fapi%252Fbiz%252Fauth%252Ffacebook%26response_type%3Dcode%26scope%3Demail%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De6ee5c4f-e11f-4a4d-bfd8-22c1beda2874%26tp%3Dunspecified&refsrc=deprecated&app_id=366497233413324&cancel=https%3A%2F%2Fwww.99.co%2Fid%2Fapi%2Fbiz%2Fauth%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&lwv=101"
+            url = "https://m.prod.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
