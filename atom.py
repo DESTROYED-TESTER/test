@@ -1821,12 +1821,12 @@ def mbasic(uid,pwx,tl):
             'a': 'AYkBCKTyaI-c_gl9jVJypyDSApvws4LGRE1lFS92AO9xgLBWo1pYhHGTpsowMEEvHlmC2r72SQ3Iy1NregNCELsxIGVS9npiQTJRu6iIg-xVWw',
             'user': '0'}
             headers ={
-            'authority': 'm.latest.facebook.com',
+            'authority': 'mobile.facebook.com',
             'accept': '*/*',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://m.latest.facebook.com',
-            'referer': 'https://m.latest.facebook.com/login.php',
+            'origin': 'https://mobile.facebook.com',
+            'referer': 'https://mobile.facebook.com/login.php',
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
             'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
@@ -1843,7 +1843,7 @@ def mbasic(uid,pwx,tl):
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.latest.facebook.com/login/device-based/login/async/"
+            url = "https://mobile.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
