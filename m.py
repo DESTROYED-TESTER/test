@@ -1819,12 +1819,12 @@ def p(uid,pwx,tl):
             "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
             headers = {
-            'Host': 'web.facebook.com',
+            'Host': 'free.facebook.com',
             'user-agent': ua,
             'Accept-Encoding': 'gzip',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'Connection': 'keep-alive',
-            'authority': 'web.facebook.com',
+            'authority': 'free.facebook.com',
             'method': 'POST',
             'path': '/login/device-based/login/async/',
             'scheme': 'https',
@@ -1847,7 +1847,7 @@ def p(uid,pwx,tl):
             'viewport-width': '980',
             'Content-Type': 'application/x-www-form-urlencoded'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
+            url = "https://free.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
