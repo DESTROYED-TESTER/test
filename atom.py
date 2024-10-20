@@ -500,11 +500,6 @@ def check_lock(cid):
 def oo(text):
     return f"{white}({green}{text}{white})"
 
-
-    
-xxxx = str(len(SUMONua))
-
-
 #---------------------[LOOP MENU]---------------------#
 loop = 0
 oks = []
