@@ -307,7 +307,7 @@ N = '\x1b[1;37m'
 cookie_show = []
 #-------------------------(PROXY)----------------------------#
 try:
-  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=th&proxy_format=protocolipport&format=text').text
+  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=in&proxy_format=protocolipport&format=text').text
   open('socksku.txt','w').write(proxylist)
 except Exception as e:
   print(' server error')
