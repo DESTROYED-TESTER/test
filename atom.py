@@ -952,7 +952,7 @@ def g_clone():
         nmp = ''.join(random.choice(string.digits) for _ in range(4))
         user.append(nmp)
     clear()
-    print({"\033[1;32m                CHOOSE METHOD                       ")
+    print({"                CHOOSE METHOD                       ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD ")
     print(" [2] METHOD ")
