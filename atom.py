@@ -935,24 +935,24 @@ def g_clone():
     user=[]
     os.system('clear')
     print(logo)
-    print({green}" First : ayesha, ram, SUMON ")
-    print({green}" Last  : das, roy,  more ")
+    print("\033[1;32m First : ayesha, ram, SUMON ")
+    print("\033[1;32m Last  : das, roy,  more ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = input({green}' [<>] First Name : ')
-    last = input({green}' [<>] Last Name  : ')
+    first = input('\033[1;32m [<>] First Name : ')
+    last = input('\033[1;32m [<>] Last Name  : ')
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(' Domain : @gmail.com or @yahoo.com')
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    domain = input({green}' [<>] Domain : ')
+    domain = input('\033[1;32m [<>] Domain : ')
     try:
-        limit = int(input({green}' [â¢] Crack Limit : '))
+        limit = int(input('\033[1;32m [=] Crack Limit : '))
     except ValueError:
         limit = 5000
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(4))
         user.append(nmp)
     clear()
-    print({green}"                CHOOSE METHOD                       ")
+    print({"\033[1;32m                CHOOSE METHOD                       ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD ")
     print(" [2] METHOD ")
@@ -974,8 +974,8 @@ def g_clone():
         tl = str(len(user))
         os.system("clear")
         print(logo)
-        print({green}' [=] TOTAL GMAIL : \033[1;32m'+tl)
-        print({green}' [=] FLIGHT MODE use kar liya kar ')
+        print('\033[1;32m [=] TOTAL GMAIL : \033[1;32m'+tl)
+        print({'\033[1;32m [=] FLIGHT MODE use kar liya kar ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
         for love in user:
             uid = first+'.'+last+'.'+love+domain
