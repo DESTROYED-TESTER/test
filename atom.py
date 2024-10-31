@@ -975,7 +975,7 @@ def g_clone():
         os.system("clear")
         print(logo)
         print('\033[1;32m [=] TOTAL GMAIL : \033[1;32m'+tl)
-        print({'\033[1;32m [=] FLIGHT MODE use kar liya kar ')
+        print('\033[1;32m [=] FLIGHT MODE use kar liya kar ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
         for love in user:
             uid = first+'.'+last+'.'+love+domain
