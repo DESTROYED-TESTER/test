@@ -961,7 +961,7 @@ def g_clone():
     print(" [5] METHOD ")
     print(" [6] METHOD ")
     linex()
-    SUMONfire = input({green}"[+] [CHOOSE] :- ")
+    SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
     print(" [<>] Show Cookies : (Y/N) ")
     linex()
