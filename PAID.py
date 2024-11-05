@@ -1697,11 +1697,11 @@ def mobile(uid,pwx,tl):
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
                         print(f" {green}[OK] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
+                        print(f" {ua()}")
                         open("/sdcard/novery.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
                         print(f" {green}[OK] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
+                        print(f" {ua()}")
                         open("/sdcard/random_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                         oks.append(uid)
                         break
