@@ -1547,23 +1547,24 @@ def x(uid,pwx,tl):
             'a': 'AYkBCKTyaI-c_gl9jVJypyDSApvws4LGRE1lFS92AO9xgLBWo1pYhHGTpsowMEEvHlmC2r72SQ3Iy1NregNCELsxIGVS9npiQTJRu6iIg-xVWw',
             'user': '0'}
             headers = {
-            'User-Agent': ua3,
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-User': '?1',
-            'Sec-Fetch-Dest': 'document',
-            'Cache-Control': 'max-age=0',
-            'Referer': 'https://lm.facebook.com/',
-            'DNT': '1',
-            'Pragma': 'no-cache',
-            'TE': 'Trailers', }
+            'authority': 'm.facebook.com',
+            'method': 'GET',
+            'path': '/login/device-based/login/async/',
+            'scheme': 'https',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'en-US,en;q=0.9',
+            'referer': 'https://m.facebook.com',
+            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
+            url = 'https://m.facebook.com/login/device-based/login/async/'
             po = Session.post(url, data=data, headers=headers, allow_redirects=False, proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
