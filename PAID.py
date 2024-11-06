@@ -1653,7 +1653,7 @@ def mobile(uid,pwx,tl):
             "x-fb-sim-hni": str(random.randint(20000, 40000)),
             "x-fb-net-hni": str(random.randint(20000, 40000)),
             "x-fb-connection-quality": "EXCELLENT",
-            "user-agent": ua_api(),
+            "user-agent": "Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;]",
             "content-type": "application/x-www-form-urlencoded",
             "x-fb-http-engine": "Liger"}
             url = "https://graph.facebook.com/auth/login"
