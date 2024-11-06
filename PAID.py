@@ -1538,31 +1538,30 @@ def x(uid,pwx,tl):
             '__user': '0',
             '_fb_noscript': 'true'}
             headers = {
-            'authority': 'm.facebook.com',
-            'accept': '*/*',
-            'accept-language': 'en-US,en;q=0.9',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '2.75',
-            'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.2"',
+            'Host': 'mbasic.facebook.com',
+            'content-length': '2169',
+            'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
             'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-model': '"23053RN02A"',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '"14.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-            'viewport-width': '393',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'sec-ch-ua-platform-version': '"11.0.0"',
             'x-asbd-id': '129477',
-            'x-fb-lsd': 'AVo_gCIHdrw',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-response-format': 'JSONStream'}
+            'sec-ch-ua-full-version-list': '"Chromium";v="124.0.6367.113", "Google Chrome";v="124.0.6367.113", "Not-A.Brand";v="99.0.0.0"',
+            'sec-ch-ua-model': '"Redmi Note 8"',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua-platform': '"Android"',
+            'accept': '*/*',
+            'origin': 'https://mbasic.facebook.com',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://mbasic.facebook.com/login/?next=https%3A%2F%2Fdevelopers.secure.facebook.com%2Fdocs%2Fdevelopment%2Fbuild-and-test&ref=dbl&fl&login_from_aymh=1',
+            'accept-encoding': 'gzip, deflate, br, zstd',
+            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+            'priority':'u=1, i'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://mbasic.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
