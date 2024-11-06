@@ -1750,7 +1750,7 @@ def freeq(uid,pwx,tl):
             'sec-ch-ua-full-version-list': '',
             'sec-ch-prefers-color-scheme': 'light',
             'upgrade-insecure-requests': '1',
-            'user-agent': ua3,
+            'user-agent': ua,
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'dnt': '1',
             'origin': 'https://business.facebook.com',
