@@ -1358,7 +1358,7 @@ def mbasic(uid,pwx,tl):
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://mbasic.beta.facebook.com/login/device-based/login/async/"
-            po = Session.post(url, data=data, headers=headers, proxies=proxs, allow_redirects=False).text
+            po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
