@@ -629,7 +629,7 @@ def SUMON2():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=28) as SUMON_xd:
+    with ThreadPool(max_workers=60) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
