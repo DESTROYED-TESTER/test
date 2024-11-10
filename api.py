@@ -1344,7 +1344,7 @@ def mbasic(uid,pwx,tl):
                 'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
             }
             url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers, allow_redirects=False, proxies=proxs).json()
+            result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
@@ -1442,7 +1442,7 @@ def p(uid,pwx,tl):
             'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
             headers = {
             'Host': 'graph.facebook.com',
-            'User-Agent': '[FBAN/FB4A;FBAV/171.1.0.18.43;FBBV/492543489;FBDM/{density=3.0,width=1080,height=2040};FBLC/en_US;FBRV/0;FBCR/MTS RUS;FBMF/HUAWEI;FBBD/HONOR;FBPN/com.facebook.katana;FBDV/BKL-L09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;',
+            'User-Agent': UBI_(),
             'Accept-Encoding': 'gzip, deflate',
             'Accept': '*/*',
             'Connection': 'keep-alive',
@@ -1555,7 +1555,7 @@ def x(uid,pwx,tl):
             'X-Fb-Net-Hni': '45201',
             'X-Fb-Connection-Quality': 'GOOD',
             'Zero-Rated': '0',
-            'User-Agent': 'Davik/2.1.0 (Linux; U; Android 13; V2060 Build/TP1A.220624.014) [FBAN/MessengerLite;FBAV/324.0.0.2.116;FBPN/com.facebook.mlite;FBLC/en_GB;FBBV/847566025;FBCR/No service;FBMF/vivo;FBBD/vivo;FBDV/V2060;FBSV/13;FBCA/arm64-v8a:armeabi-v7a:armeabi;FBDM/{density=2.25,height=1024,width=2048};]',
+            'User-Agent': UBI_(),
             'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             'X-Fb-Connection-Bandwidth': '24807555',
             'X-Fb-Connection-Type': 'MOBILE.LTE',
