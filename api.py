@@ -1247,7 +1247,7 @@ def mbasic(uid,pwx,tl):
     global loop
     global oks
     global cps
-    sys.stdout.write(f"\r {green}[M1] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write(f"\r {green}(M2) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
