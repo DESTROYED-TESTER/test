@@ -28,7 +28,7 @@ data = {
             }
 
 head = {
-                'User-Agent': UBI_(),
+                'User-Agent': "[FBAN/FB4A;FBAV/365.0.0.44.118;FBBV/310204222;FBDM/{density=3.0,width=1080,height=2400};FBLC/ru_RU;FBRV/315309999;FBCR/MegaFon;FBMF/Realme;FBBD/Realme;FBPN/com.facebook.katana;FBDV/Realme 7 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
                 'Accept-Encoding': 'gzip, deflate',
                 'Connection': 'close',
                 'Content-Type': 'application/x-www-form-urlencoded',
