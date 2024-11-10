@@ -1,56 +1,20 @@
-import uuid
-import requests
-import random
+import subprocess,random
 
-data = {
-                'adid': str(uuid.uuid4()),
-                'format': 'json',
-                'device_id': str(uuid.uuid4()),
-                'email': '9641367634',
-                'password': '964136',
-                'generate_analytics_claims': '1',
-                'community_id': '',
-                'cpl': 'true',
-                'try_num': '1',
-                'family_device_id': str(uuid.uuid4()),
-                'credentials_type': 'password',
-                'source': 'login',
-                'error_detail_type': 'button_with_disabled',
-                'enroll_misauth': 'false',
-                'generate_session_cookies': '1',
-                'generate_machine_id': '1',
-                'currently_logged_in_userid': '0',
-                'locale': 'en_GB',
-                'client_country_code': 'GB',
-                'fb_api_req_friendly_name': 'authenticate',
-                'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-                'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
-                'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            }
+android_version = subprocess.check_output("getprop ro.build.version.release",shell=True).decode("utf-8").replace("\n","")
+model_device = subprocess.check_output("getprop ro.product.model",shell=True).decode("utf-8").replace("\n","")
+build_device = subprocess.check_output("getprop ro.build.id",shell=True).decode("utf-8").replace("\n","")
+versi_chrome = str(random.randint(300,325))+".0.0."+str(random.randint(1,8))+"."+str(random.randint(40,150))
+large_device = "{density=2.25,height="+subprocess.check_output("getprop ro.hwui.text_large_cache_height",shell=True).decode("utf-8").replace("\n","")+",width="+subprocess.check_output("getprop ro.hwui.text_large_cache_width",shell=True).decode("utf-8").replace("\n","")+"}"
+merk_device = subprocess.check_output("getprop ro.product.manufacturer",shell=True).decode("utf-8").replace("\n","")
+brand_device = subprocess.check_output("getprop ro.product.brand",shell=True).decode("utf-8").replace("\n","")
+cpu_device = subprocess.check_output("getprop ro.product.cpu.abilist",shell=True).decode("utf-8").replace(",",":").replace("\n","")
+versi_app = str(random.randint(111111111,999999999))
+language = "en_GB"
+try:
+	simcard = subprocess.check_output("getprop gsm.operator.alpha",shell=True).decode("utf-8").split(",")[1].replace("\n","")
+except:
+	simcard = subprocess.check_output("getprop gsm.operator.alpha",shell=True).decode("utf-8").split(",")[0].replace("\n","")
+	
+ugent = f"Davik/2.1.0 (Linux; U; Android {android_version}; {model_device} Build/{build_device}) [FBAN/MessengerLite;FBAV/{versi_chrome};FBPN/com.facebook.mlite;FBLC/{language};FBBV/{versi_app};FBCR/{simcard};FBMF/{merk_device};FBBD/{brand_device};FBDV/{model_device};FBSV/{android_version};FBCA/{cpu_device};FBDM/"+str(large_device)+";]"
 
-head = {
-                'User-Agent': "[FBAN/FB4A;FBAV/365.0.0.44.118;FBBV/310204222;FBDM/{density=3.0,width=1080,height=2400};FBLC/ru_RU;FBRV/315309999;FBCR/MegaFon;FBMF/Realme;FBBD/Realme;FBPN/com.facebook.katana;FBDV/Realme 7 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-                'Accept-Encoding': 'gzip, deflate',
-                'Connection': 'close',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-FB-Net-HNI': str(random.randint(20000,40000)),
-                'X-FB-SIM-HNI': str(random.randint(20000,40000)),
-                'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-                'X-FB-Connection-Type': 'WIFI',
-                'X-FB-device-group': str(random.randint(2000, 4000)),
-                'X-Tigon-Is-Retry': 'False',
-                'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-device-group': '5120',
-                'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-                'X-FB-Request-Analytics-Tags': 'graphservice',
-                'X-FB-HTTP-Engine': 'Liger',
-                'X-FB-Client-IP': 'True',
-                'X-FB-Server-Cluster': 'True',
-                'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
-            }
-
-# Sending the POST request
-po = requests.post('https://b-graph.facebook.com/auth/login', data=data, headers=head).json()
-
-# Printing the response
-print(po)
+print(ugent)
