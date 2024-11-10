@@ -1377,7 +1377,6 @@ def mbasic(uid,pwx,tl):
             }
             url = "https://b-api.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
-            #print(f"Response Code: {result.status_code}")
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
