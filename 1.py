@@ -11,7 +11,7 @@ def UBI_():
     ])
     
     user_agents = [
-        f'Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/{application_version};FBPN/com.facebook.orca;FBLC/th_TH;FBBV/{application_version_code};FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{{density=3.0,width=1080,height=1920};FB_FW/1;]',
+        f'Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/{application_version};FBPN/com.facebook.orca;FBLC/th_TH;FBBV/{application_version_code};FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]',
     ]
     
     return random.choice(user_agents)
