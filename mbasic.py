@@ -1305,7 +1305,7 @@ def mbasic(uid,pwx,tl):
             url = "https://mbasic.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
-            print(f"HTTP Response Code: {po.status_code}")
+            print(f"Response Code: {po.status_code}")
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
