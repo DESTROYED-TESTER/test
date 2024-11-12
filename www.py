@@ -1348,10 +1348,10 @@ def p(uid,pwx,tl):
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',
+            'Referer': 'https://free.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.facebook.com',
-            'Alt-Used': 'www.facebook.com',
+            'Origin': 'https://free.facebook.com',
+            'Alt-Used': 'free.facebook.com',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
@@ -1360,7 +1360,7 @@ def p(uid,pwx,tl):
             'Sec-Fetch-User': '?1',
             'Priority': 'u=0, i',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
+            url = "https://free.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
