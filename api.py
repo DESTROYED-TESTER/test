@@ -1581,7 +1581,7 @@ def x(uid,pwx,tl):
             'X-Fb-Client-Ip': 'True',
             'X-Fb-Server-Cluster': 'True',
             'Content-Length': '847'}
-            url = "https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
