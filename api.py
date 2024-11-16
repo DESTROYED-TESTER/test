@@ -1492,7 +1492,7 @@ def p(uid,pwx,tl):
             'X-FB-Friendly-Name': 'authenticate',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': '1026'}
-            url = "https://graph.facebook.com/auth/login"
+            url = "https://www.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers)
             print(f"Response Code: {result.status_code}")
             if "session_key" in result:
