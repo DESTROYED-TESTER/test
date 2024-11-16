@@ -1569,7 +1569,7 @@ def x(uid,pwx,tl):
             'X-Fb-Net-Hni': '45201',
             'X-Fb-Connection-Quality': 'GOOD',
             'Zero-Rated': '0',
-            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/419.0.0.31459;FBBV/549648855;FBRV/549648855;FBPN/com.facebook.adsmanager;FBLC/en_US;FBMF/Oppo;FBBD/Oppo;FBDV/Oppo J793V;FBSV/9;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=720,height=1440};FB_FW/1;]",
+            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/346.0.0.29.119;FBBV/335950338;FBDM/{density=2.625,width=1080,height=2184};FBLC/ru_RU;FBRV/337320845;FBCR/MegaFon;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-A415F;FBSV/11;FBOP/19;FBCA/arm64-v8a:;]",
             'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             'X-Fb-Connection-Bandwidth': '24807555',
             'X-Fb-Connection-Type': 'MOBILE.LTE',
