@@ -2295,6 +2295,7 @@ def bapi(uid, name, pwx, tl):
             }
             url = "https://b-api.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers)
+            print(f"Response: {result}")
             print(f"Response Code: {result.status_code}")
             if "session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
