@@ -1433,9 +1433,9 @@ def mbasic(uid,pwx,tl):
                 continue
         loop+=1
     except net_error:
+        print(net_error)
         time.sleep(10)
     except Exception as e:
-        print(e)
         pass
 
 def p(uid,pwx,tl):
