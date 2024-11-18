@@ -1582,7 +1582,7 @@ def x(uid,pwx,tl):
             'X-Fb-Client-Ip': 'True',
             'X-Fb-Server-Cluster': 'True',
             'Content-Length': '847'}
-            url = "https://b-graph.facebook.com/auth/login"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             print(result)
             if "session_key" in result:
