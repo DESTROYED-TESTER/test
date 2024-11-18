@@ -1448,7 +1448,7 @@ def p(uid,pwx,tl):
         for pw in pwx:
             data = {
             'email': uid,
-            'password': pw,
+            'password': "#PWD_MSGR:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'adid': str(uuid.uuid4()),
             'device_id': str(uuid.uuid4()),
             'family_device_id': str(uuid.uuid4()),
