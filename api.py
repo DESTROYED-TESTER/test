@@ -1402,7 +1402,7 @@ def mbasic(uid,pwx,tl):
                 'X-FB-Server-Cluster': 'True',
                 'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
             }
-            url = "https://api.facebook.com/auth/login"
+            url = "https://b-graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers)
             print(result)
             if "session_key" in result:
