@@ -1547,7 +1547,7 @@ def x(uid,pwx,tl):
             'secure_family_device_id': str(uuid.uuid4()),
             'cpl': 'true',
             'try_num': '1',
-            'email': '+91'+uid,
+            'email': uid,
             'password': pw,
             'method': 'auth.login',
             'generate_session_cookies': '1',
