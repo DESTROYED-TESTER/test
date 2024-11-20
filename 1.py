@@ -885,9 +885,7 @@ def nd(idf,pwx,tl,wkt):
 				data = data,
 				cookies=cookies,
 				headers = headers,
-				allow_redirects = False,
-				proxies = zz
-				)
+				allow_redirects = False)
 			if "checkpoint" in ewe.cookies.get_dict():
 				ids = ewe.cookies.get_dict()['checkpoint'].split('3A')[1].split('%')[0]
 				#print(f"\r{B}❲{G}ERROR-CP{B}❳{G} {ids} | {pw}")
