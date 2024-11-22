@@ -1388,7 +1388,7 @@ def mbasic(uid,pwx,tl):
             "sig": "e95f435d29d71f03a47918372a565cd5",
             "access_token": "256002347743983%7C374e60f8b9bb6b8cbb30f78030438895"}
             headers = {
-            'User-Agent': '[FBAN/FB4A;FBAV/59.0.0.2284;FBBV/23210292;[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]',
+            'User-Agent': UBI_(),
             'Accept-Encoding': 'gzip, deflate',
             'Accept': '*/*',
             'Connection': 'keep-alive',
