@@ -1393,10 +1393,11 @@ def p(uid,pwx,tl):
             'ab_test_data': '/AAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAA4/AHVAAAAABHAG',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'datr': re.search('name="datr" value="(.*?)"', str(free_fb)).group(1),
             'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnQgNH.AWU_xDAVlvM',
             'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
             'wd': '1440x402',}
+            print(cookies)
             headers ={
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
