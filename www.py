@@ -929,14 +929,15 @@ def n_clone():
     print(f" {wow('â¢')} {green}TOTAL OK : {str(len(oks))} ")
     divider()
     exit()
-
+dddd = random.choice(['sumon','abinash','rakesh','riya','ramesh','somnath'])
+ffff = random.choice(['roy','das','sarkar','mondal'])
 def g_clone():
     user=[]
     os.system('clear')
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = ['sumon','abinash','rakesh','riya','ramesh','somnath']
-    last = ['roy','das','sarkar','mondal']
+    first = dddd
+    last = ffff
     domain = '@gmail.com'
     try:
         limit = int(input(' [:] Crack Limit : '))
