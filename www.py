@@ -935,15 +935,15 @@ def g_clone():
     os.system('clear')
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = random.choice(['sumon','abinash','rakesh','riya','ramesh','somnath'])
-    last = random.choice(['roy','das','sarkar','mondal'])
+    first = ['sumon','abinash','rakesh','riya','ramesh','somnath']
+    last = ['roy','das','sarkar','mondal']
     domain = '@gmail.com'
     try:
         limit = int(input(' [:] Crack Limit : '))
     except ValueError:
         limit = 5000
     for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(4))
+        nmp = ''.join(random.choice(string.digits) for _ in range(3))
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
