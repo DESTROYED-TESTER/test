@@ -938,10 +938,10 @@ def g_clone():
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
-    fgfgfg = ['sumon', 'abinash', 'rakesh', 'riya', 'ramesh', 'somnath']
-    first.append(fgfgfg)
-    hghghg = ['roy', 'das', 'sarkar', 'mondal']
-    last.append(hghghg)
+    first = ['sumon', 'abinash', 'rakesh', 'riya', 'ramesh', 'somnath']
+    first.append(first)
+    last = ['roy', 'das', 'sarkar', 'mondal']
+    last.append(last)
     domain = '@gmail.com'
     
     try:
