@@ -929,15 +929,12 @@ def n_clone():
     print(f" {wow('â¢')} {green}TOTAL OK : {str(len(oks))} ")
     divider()
     exit()
-dddd = random.choice(['sumon','abinash','rakesh','riya','ramesh','somnath'])
-ffff = random.choice(['roy','das','sarkar','mondal'])
+
 def g_clone():
     user=[]
     os.system('clear')
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = dddd
-    last = ffff
     domain = '@gmail.com'
     try:
         limit = int(input(' [:] Crack Limit : '))
@@ -945,6 +942,8 @@ def g_clone():
         limit = 5000
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(3))
+        first = random.choice(['sumon','abinash','rakesh','riya','ramesh','somnath'])
+        last = random.choice(['roy','das','sarkar','mondal'])
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
