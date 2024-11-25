@@ -932,12 +932,16 @@ def n_clone():
 
 def g_clone():
     user = []  # List to store random user IDs
+    first = []
+    last = []
     os.system('clear')  # Clear the terminal screen
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
-    first = ['sumon', 'abinash', 'rakesh', 'riya', 'ramesh', 'somnath']
-    last = ['roy', 'das', 'sarkar', 'mondal']
+    fgfgfg = ['sumon', 'abinash', 'rakesh', 'riya', 'ramesh', 'somnath']
+    first.append(fgfgfg)
+    hghghg = ['roy', 'das', 'sarkar', 'mondal']
+    last.append(hghghg)
     domain = '@gmail.com'
     
     try:
