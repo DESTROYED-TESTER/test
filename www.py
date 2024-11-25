@@ -985,7 +985,7 @@ def g_clone():
         
         # Use zip_longest to iterate over user, first, and last
         from itertools import zip_longest
-        for love, firs, las in zip_longest(user, first, last, fillvalue=''):
+        for love, firs, las in zip_longest(user, first, last):
             uid = firs + las + love + domain
             pwx = [firs + las, firs + '12', firs + '123', firs + '1234', firs + '12345']
             
