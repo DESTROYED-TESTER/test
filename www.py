@@ -1273,7 +1273,6 @@ def mbasic(uid,pwx,tl):
             'had_password_prefilled': 'true',
             'ab_test_data': '/AAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAA4/AHVAAAAABHAG',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            print(data)
             cookies = {
             'ps_n': '1',
             'ps_l': '1',
