@@ -942,7 +942,7 @@ def g_clone():
         limit = 5000
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(3))
-        first = random.choice(['sumon','abinash','rakesh','riya','ramesh','somnath'])
+        first = random.choice(name) for _ in name = ['sumon','abinash','rakesh','riya','ramesh','somnath']
         last = random.choice(['roy','das','sarkar','mondal'])
         user.append(nmp)
     clear()
