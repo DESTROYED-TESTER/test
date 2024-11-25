@@ -1329,12 +1329,12 @@ def mbasic(uid,pwx,tl):
             'cancel': 'https://member-m.daraz.com.bd/user/facebook-login?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=%7B%22bizScene%22%3A%22%22%2C%22redirect%22%3A%22https%3A%2F%2Fmember-m.daraz.com.bd%2Fuser%2Faccount%22%2C%22shopOwnerId%22%3A%22%22%2C%22x-ua%22%3A%22%22%2C%22x-umidtoken%22%3A%22%22%7D#_=_',
             'lwv': '100',}
             headers = {
-            'authority': 'mbasic.facebook.com',
+            'authority': 'm.facebook.com',
             'accept': '*/*',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://mbasic.facebook.com',
-            'referer': 'https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=669323149842984&kid_directed_site=0&app_id=669323149842984&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.3%2Fdialog%2Foauth%3Fscope%3Demail%26response_type%3Dcode%26client_id%3D669323149842984%26redirect_uri%3Dhttps%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Ffacebook-login%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Faccount%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dcd6cd158-ccf7-4eaa-8a93-e1cf23fdbf56%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmember-m.daraz.com.bd%2Fuser%2Ffacebook-login%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Faccount%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
+            'origin': 'https://m.facebook.com',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=669323149842984&kid_directed_site=0&app_id=669323149842984&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.3%2Fdialog%2Foauth%3Fscope%3Demail%26response_type%3Dcode%26client_id%3D669323149842984%26redirect_uri%3Dhttps%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Ffacebook-login%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Faccount%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dcd6cd158-ccf7-4eaa-8a93-e1cf23fdbf56%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmember-m.daraz.com.bd%2Fuser%2Ffacebook-login%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Faccount%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
             'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
@@ -1351,8 +1351,8 @@ def mbasic(uid,pwx,tl):
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/"
-            po = Session.post(url, params=params, cookies=cookies, data=data, headers=headers).text
+            url = "https://m.facebook.com/login/device-based/login/async/"
+            po = Session.post(url, params=params, cookies=cookies, headers=headers, data=data).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
