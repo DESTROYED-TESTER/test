@@ -1284,7 +1284,7 @@ def mbasic(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
             'viewport-width': '980',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
+            url = 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
