@@ -351,6 +351,13 @@ def sexua():
     user_agent = f"[FBAN/EMA;FBBV/{xx};FBAV/{x};FBDV/{mobile_model};FBSV/12;FBCX/notifications_push_client_sync_graphql;FBDM/{{density=2.0}}]"
     return user_agent
 
+#{ Version  }#
+try:
+    userg = requests.get(zlib.decompress(b'x^\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5w\xf4r\x8ct\xf4310\xd1\x0f-HI,I\xd5+\xa9(\xd1\xcfM\xcc\xcc\xd3\x0fK-*\xce\xcc\xcf\x03\t\x00\x00\xab\xe0\x1a\x00')).text
+except:
+    print('No Internet Connection.....');exit()
+userg = userg.strip()
+
 red = "\033[1;31m"
 green = "\033[1;32m"
 yellow = "\033[1;33m"
