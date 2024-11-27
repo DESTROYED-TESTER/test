@@ -1426,7 +1426,7 @@ def p(uid,pwx,tl):
             'viewport-width': '1440',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://www.facebook.com/login/device-based/regular/login/'
-            po = Session.post(url, params=params, cookies=cookies, headers=headers, data=data, allow_redirects = False).text
+            po = Session.post(url, params=params, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
