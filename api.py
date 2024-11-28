@@ -1514,7 +1514,7 @@ def p(uid,pwx,tl):
             'X-FB-Friendly-Name': 'authenticate',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': '1026'}
-            url = "https://api.facebook.com/auth/login"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
@@ -1673,7 +1673,7 @@ def mobile(uid,pwx,tl):
             headers = {
             "Content-Type": "application/x-www-form-urlencoded",
             "Host": "graph.facebook.com",
-            "User-Agent": useragent(),
+            "User-Agent": UA(),
             "X-FB-Net-HNI": "45204",
             "X-FB-SIM-HNI": "45201",
             "X-FB-Connection-Type": "unknown",
@@ -1771,7 +1771,7 @@ def freeq(uid,pwx,tl):
 "x-fb-connection-type": "WIFI",
 "x-fb-background-state": "1",
 "x-graphql-request-purpose": "fetch",
-"user-agent": useragent(),
+"user-agent": UA(),
 "authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32",
 "x-fb-friendly-name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
 "x-graphql-client-library": "graphservice",
@@ -1844,7 +1844,7 @@ def d(uid,pwx,tl):
             'Authorization':"OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32",
             'X-FB-Friendly-Name':'authenticate',
             'X-FB-Connection-Type':'unknown',
-            'User-Agent': useragent(),
+            'User-Agent': UA(),
             'Accept-Encoding':'gzip, deflate',
             'Content-Type': 'application/x-www-form-urlencoded',
             'X-FB-HTTP-Engine': 'Liger'}
