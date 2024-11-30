@@ -1494,25 +1494,27 @@ def p(uid,pwx,tl):
             'api_key': '882a8490361da98702bf97a021ddc14d',
             'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
             headers = {
-"x-fb-request-analytics-tags": '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}', 
-"x-fb-ta-logging-ids": f"graphql:{str(uuid.uuid4())}",
-"content-type": "application/x-www-form-urlencoded",
-"x-fb-connection-type": "WIFI",
-"x-fb-background-state": "1",
-"x-graphql-request-purpose": "fetch",
-"user-agent": UA(),
-"authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32",
-"x-fb-friendly-name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
-"x-graphql-client-library": "graphservice",
-"x-fb-privacy-context": "3643298472347298",
-"x-fb-device-group": "3273",
-"x-tigon-is-retry": "False",
-"priority": "u=3,i",
-"accept-encoding": "gzip, deflate",
-"x-fb-http-engine": "Liger",
-"x-fb-client-ip": "True",
-"x-fb-server-cluster": "True"}
-            url = "https://graph.facebook.com/auth/login"
+            'user-agent': '[FBAN/FB4A;FBAV/54.0.0.4363;FBBV/12590258;Dalvik/2.1.0(Linux; U; Android 8.0;P40 Pro Build/9Q0WGK1S)[FBAN/FB4A;FBAV/108.0.0.84.89FBBV/8018955FBDM/{density=3.0,width=715,height=930}FBLC/fr_FRFBRV/1539581FBCR/SprintFBMF/HuaweiFBBD/HuaweiFBPN/com.facebook.katanaFBDV/P40 ProFBSV/8.0FBOP/1FBCA/x86:armeabi-v7a]Dalvik/2.1.0(Linux; U; Android 5.0;CPH2171 Build/QGEO88G4)[FBAN/FB4A;FBAV/92.0.0.52.44FBBV/1035009FBDM/{density=3.0,width=454,height=1644}FBLC/pt_BRFBRV/5535503FBCR/OrangeFBMF/OPPOFBBD/OPPOFBPN/com.facebook.katanaFBDV/CPH2171FBSV/5.0FBOP/1FBCA/x86:armeabi-v7a]',
+            'accept-encoding': 'gzip, deflate',
+            'Accept': '*/*',
+            'Connection': 'keep-alive',
+            'content-type': 'application/x-www-form-urlencoded',
+            'Host': 'graph.facebook.com',
+            'x-fb-sim-hni': '44501',
+            'X-FB-Connection-Type': 'MOBILE.LTE',
+            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'x-fb-net-hni': '44085',
+            'x-fb-device-group': '5120',
+            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+            'x-fb-connection-bandwidth': '413859',
+            'x-fb-connection-quality': 'EXCELLENT',
+            'X-FB-Client-IP': 'True',
+            'X-FB-Server-Cluster': 'True',
+            'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',
+            'x-fb-friendly-name': 'ViewerReactionsMutation',
+            'X-FB-Request-Analytics-Tags': 'graphservice',
+            'x-fb-http-engine': 'Liger'}
+            url = "https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
