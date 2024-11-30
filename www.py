@@ -995,16 +995,12 @@ def freefb(uid, name, pwx, tl):
             Session = requests.Session()
             free_fb = Session.get("https://touch.facebook.com").text
             data = {
-                "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-                "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-                "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-                "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-                "try_number": "0",
-                "unrecognized_tries": "0",
-                "email": uid,
-                "pass": ps,
-                "login": "Log In",
-            }
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'email': uid,
+            'login_source': 'comet_headerless_login',
+            'next': '',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-US,en;q=0.9',
