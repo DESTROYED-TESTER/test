@@ -1285,7 +1285,7 @@ def mbasic(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
             'viewport-width': '995',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.12%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26client_id%3D449838951736891%26redirect_uri%3Dhttps%253A%252F%252Fauth.opera.com%252Faccount%252Fsocial%252Fv4%252Fcallback%26scope%3Demail%26state%3DWNahsU1RWERN7c2kB19ybSBubJJbYt%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D1fd7fa3b-14b0-4263-95e2-bc18735b0567%26tp%3Dunspecified%26cbt%3D1732989615693&lwv=100'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
             po = Session.post(url, cookies=cookies, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
