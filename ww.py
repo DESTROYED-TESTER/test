@@ -1436,8 +1436,12 @@ def x(uid,pwx,tl):
             'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
             'locale': 'en_US',
             'wd': '1440x828',
-            'fr': '1Jl1urbqmWto2UifP.AWXWht2I-nr0Q3LLyvV2xtSoudI.BnS9hS..AAA.0.0.BnS9hd.AWVjwsifIv8',}
-            headers =  {
+            'fr': '1Jl1urbqmWto2UifP.AWUbZySAynnC1YXNR0rgPgTjz-Q.BnS9hS..AAA.0.0.BnTJ-O.AWWJAJ56l0M',}
+            headers = {
+            'authority': 'www.facebook.com',
+            'method': 'POST',
+            'path': '/login/device-based/login/async/',
+            'scheme': 'https',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-US,en;q=0.9',
             'cache-control': 'max-age=0',
@@ -1445,7 +1449,7 @@ def x(uid,pwx,tl):
             'dpr': '1',
             'origin': 'https://www.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/?stype=lo&flo=1&deoia=1&jlou=AfeEGqlkFsIaBLo8unDADA4jRNjrcX1QWluc2U6KCvG_cAE7k3ywL9QMGHv_8sOlxiw8jhdSWgxPDV9LInOxqefTmpYLsHAb-7agI_2Hpw2OnA&smuh=536&lh=Ac_YAgMclvlJTkM17wk',
+            'referer': 'https://www.facebook.com/?ref=homescreenpwa',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
             'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.70", "Chromium";v="131.0.6778.86", "Not_A Brand";v="24.0.0.0"',
