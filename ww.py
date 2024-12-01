@@ -496,7 +496,7 @@ def f_clone():
     linex()
     p = input("\033[1;32m[\033[1;31m✓\033[1;32m] SELECT : ")
     if p == "1":
-        plist.append("first last")
+        plist.append("firstlast")
         plist.append("first1234")
         plist.append("firstlast123")
         plist.append("first123")
