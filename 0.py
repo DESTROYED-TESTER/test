@@ -10,7 +10,6 @@ session = requests.Session()
 free_fb = session.get('https://touch.facebook.com/').text
 
 # Extract hidden form values (fb_dtsg, lsd, and jazoest) using regex
-fb_dtsg = re.search('name="fb_dtsg" value="(.*?)"', free_fb).group(1)
 lsd = re.search('name="lsd" value="(.*?)"', free_fb).group(1)
 jazoest = re.search('name="jazoest" value="(.*?)"', free_fb).group(1)
 
@@ -98,7 +97,7 @@ data2 = {
     '__hsi': '7443521229922239744',
     '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13w9y1DxW0Oohw5ux60Vo1a852q1ew2io0D24o1MUaE1Do1u81x82ewnE3Mw4WwSyE25w8W0Lo6-1CwOw5jw4JwzK0zo3jw',
     '__csr': '',
-    'fb_dtsg': fb_dtsg,
+    'fb_dtsg': 'NAcOlfpCOM2BFnghClV_Fbk2SejAMCvE1gYRFgP4Eh4s03fmjrbDwEA:0:0',
     'jazoest': jazoest,
     'lsd': lsd,
     'params': json.dumps(data)
