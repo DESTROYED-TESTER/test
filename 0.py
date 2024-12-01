@@ -98,8 +98,8 @@ data2 = {
     '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13w9y1DxW0Oohw5ux60Vo1a852q1ew2io0D24o1MUaE1Do1u81x82ewnE3Mw4WwSyE25w8W0Lo6-1CwOw5jw4JwzK0zo3jw',
     '__csr': '',
     'fb_dtsg': 'NAcOlfpCOM2BFnghClV_Fbk2SejAMCvE1gYRFgP4Eh4s03fmjrbDwEA:0:0',
-    'jazoest': jazoest,
-    'lsd': lsd,
+    'jazoest': '24865',
+    'lsd': 'AVqsfW-tGqM',
     'params': json.dumps(data)
 }
 
