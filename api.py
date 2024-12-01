@@ -1668,26 +1668,23 @@ def mobile(uid,pwx,tl):
             "fb_api_req_friendly_name": "authenticate",
             "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler"}
             headers = {
-            'user-agent': UA(),
-            'accept-encoding': 'gzip, deflate',
-            'Accept': '*/*',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Referer': 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzMzMDM0MDYyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ^%^3D^%^3D&next',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': 'https://www.facebook.com',
+            'DNT': '1',
+            'Alt-Used': 'www.facebook.com',
             'Connection': 'keep-alive',
-            'content-type': 'application/x-www-form-urlencoded',
-            'Host': 'graph.facebook.com',
-            'x-fb-sim-hni': '44501',
-            'X-FB-Connection-Type': 'MOBILE.LTE',
-            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'x-fb-net-hni': '44085',
-            'x-fb-device-group': '5120',
-            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
-            'x-fb-connection-bandwidth': '413859',
-            'x-fb-connection-quality': 'EXCELLENT',
-            'X-FB-Client-IP': 'True',
-            'X-FB-Server-Cluster': 'True',
-            'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',
-            'x-fb-friendly-name': 'ViewerReactionsMutation',
-            'X-FB-Request-Analytics-Tags': 'graphservice',
-            'x-fb-http-engine': 'Liger'}
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Priority': 'u=0, i',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache',}
             url = "https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
