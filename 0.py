@@ -9,9 +9,7 @@ session = requests.Session()
 # Step 2: Get the login page to extract required hidden fields (e.g., fb_dtsg, lsd, jazoest)
 free_fb = session.get('https://touch.facebook.com/').text
 
-# Extract hidden form values (fb_dtsg, lsd, and jazoest) using regex
-lsd = re.search('name="lsd" value="(.*?)"', free_fb).group(1)
-jazoest = re.search('name="jazoest" value="(.*?)"', free_fb).group(1)
+
 
 # Step 3: Prepare the login data with the required parameters
 uid = '61561041201068'  # Replace with your actual username (email or phone number)
