@@ -1720,7 +1720,7 @@ def freeq(uid,pwx,tl):
             'user-agent':'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
             'viewport-width': '421',
             'x-asbd-id': '129477',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(xs)).group(1),
+            'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',
             }
