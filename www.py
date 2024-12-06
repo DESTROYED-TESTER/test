@@ -457,7 +457,7 @@ def menu():
     print("[1] FILE   CLONING =>")
     print("[2] RANDOM CLONING =>")
     print("[3] PUBLIK CLONING =>")
-    print("[4] GMAIL  CLONING =>")
+    print("[4] INSTAGRAM CLONING =>")
     print("[5] CONTACT (WHATSAPP) ")
     print("[6] EXIT TOOL ")
     linex()
