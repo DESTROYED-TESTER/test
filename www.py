@@ -1343,8 +1343,8 @@ def p(uid,pwx,tl):
             'trynum': '2',
             'timezone': '-330',
             'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D',
-            'lgnrnd': '104423_iIof',
-            'lgnjs': '1733165065',
+            'lgnrnd': '093012_JrOT',
+            'lgnjs': '1733592613',
             'email': uid,
             'prefill_contact_point': uid,
             'prefill_source': '',
@@ -1353,16 +1353,15 @@ def p(uid,pwx,tl):
             'first_prefill_type': 'contact_point',
             'had_cp_prefilled': 'true',
             'had_password_prefilled': 'false',
-            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqV^%^2F^%^2FAVAAAAFAE',
+            'ab_test_data': 'A^%^2FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA^%^2FqVAVVqVAABFAG',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies =  {
-            'sb': '-a1MZ_u5-jjFRs4mHv1VXJat',
+            cookies = {
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnVIYk.AWVwvk-QhvA',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
             'ps_l': '1',
-            'ps_n': '1',
-            'datr': 'xyJPZxo1IY_U32w1mU7nTtWz',
-            'locale': 'en_GB',
-            'fr': '01Qmiu4dEZ5S0b2Pm.AWWNu-iSj_sMTV3cxKSyCWSNWvM.BlyWeF..AAA.0.0.BnUI15.AWWE0ziF3lk',
-            'wd': '876x773',}
+            'ps_n': '1',}
             headers = {
             "Host": "www.facebook.com",
             "content-length": str(len((data))),
@@ -1387,7 +1386,7 @@ def p(uid,pwx,tl):
             "accept-encoding": "gzip, deflate, br",
             "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
