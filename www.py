@@ -1356,12 +1356,16 @@ def p(uid,pwx,tl):
             'ab_test_data': 'A/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAf/AAABAAG',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnVIYk.AWVwvk-QhvA',
-            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
-            'wd': '1440x402',
+            'datr': 'OstGZ9sw-xX6t8x0uWISu5oh',
+            'sb': 'OstGZ0x6Arcou92IF2BALgFQ',
             'ps_l': '1',
-            'ps_n': '1',}
+            'ps_n': '1',
+            'vpd': 'v1%3B968x491x2.200000047683716',
+            'wl_cbv': 'v2%3Bclient_version%3A2682%3Btimestamp%3A1732715348',
+            'dpr': '2.200000047683716',
+            'm_pixel_ratio': '2.200000047683716',
+            'wd': '491x968',
+            'fr': '0bPmdaDqTCILtVoFs.AWXCnOiBKSQ1hAAO9N8YrKUXw7E.BnRss6..AAA.0.0.BnVJKt.AWXGGbO-5Wc',}
             headers = {
             "Host": "www.facebook.com",
             "content-length": str(len((data))),
