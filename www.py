@@ -1569,16 +1569,16 @@ def mobile(uid,pwx,tl):
             'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
             'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
             'wd': '1440x828',
-            'fr': '13YOXbxepaC7m0H48.AWWYowN5qDAu8_bcawMRHQgt0g0.BnUJm2..AAA.0.0.BnVIl3.AWXAZTu-B3s',}
+            'fr': '13YOXbxepaC7m0H48.AWWU-X3aO7QGBY7eEdaqjpEStdE.BnUJm2..AAA.0.0.BnVyjU.AWViH-byJ2o',}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-US,en;q=0.9',
             'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://web.facebook.com',
+            'origin': 'https://www.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://web.facebook.com/?ref=homescreenpwa',
+            'referer': 'https://www.facebook.com/?ref=homescreenpwa',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
             'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.70", "Chromium";v="131.0.6778.86", "Not_A Brand";v="24.0.0.0"',
@@ -1594,7 +1594,7 @@ def mobile(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
             'viewport-width': '1440',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348131'
+            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzMzNzY1MzMyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
