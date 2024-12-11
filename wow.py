@@ -1747,11 +1747,11 @@ def d(uid,pwx,tl):
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://mbasic.facebook.com/',
+            'Referer': 'https://m.facebook.com/',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://mbasic.facebook.com',
+            'Origin': 'https://m.facebook.com',
             'DNT': '1',
-            'Alt-Used': 'mbasic.facebook.com',
+            'Alt-Used': 'm.facebook.com',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
@@ -1762,7 +1762,7 @@ def d(uid,pwx,tl):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://mbasic.facebook.com/login/device-based/login/async/'
+            url = 'https://m.facebook.com/login/device-based/login/async/'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
