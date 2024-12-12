@@ -4,8 +4,8 @@ import re
 import time
 
 req=requests.Session()
-uid='61555629843961'  # Replace with your actual username (email or phone number)
-pw='787996'  # Replace with your actual password
+uid='100052078639638'  # Replace with your actual username (email or phone number)
+pw='881778'  # Replace with your actual password
 free_fb=req.get('https://touch.facebook.com').text
 data = {
 'email': uid,
