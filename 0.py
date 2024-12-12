@@ -52,9 +52,4 @@ headers = {
 'Cache-Control': 'no-cache',}
 url='https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
 response=req.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
-# Step 7: Handle the response
-response=req.cookies.get_dict().keys()
-if "c_user" in response:
-    print(f"(ATOM-OK){uid}|{pw}")
-else:
-    print(f"Login failed for {uid}. Please check credentials.")
+print(response)
