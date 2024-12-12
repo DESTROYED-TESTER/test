@@ -1385,9 +1385,9 @@ def mbasic(uid,pwx,tl):
             'is_soft_cliff': False,
             'medium': 'email',
             'code': cd,
-            'fb_dtsg': find(r.text,"fb_dtsg"),
-            'jazoest': find(r.text,"jazoest"),
-            '__user': dict(requests.cookies)['c_user']}
+            'fb_dtsg': 'NAcPNtpBvo1jGoRJiDTJrassHd5acQC2Pp2nOTI4mdFDpVals4PlkyA:0:0',
+            'jazoest': '25057',
+            '__user': dict(Session.cookies)['c_user']}
             url = 'https://m.facebook.com/confirmation_cliff/'
             response = Session.post(url, headers=headers, data=data)
             response = Session.cookies.get_dict().keys()
