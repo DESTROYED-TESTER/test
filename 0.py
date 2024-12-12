@@ -3,10 +3,10 @@ import json
 import re
 import time
 
-session = requests.Session()
-uid = '100059121323654'  # Replace with your actual username (email or phone number)
-pw = '881706'  # Replace with your actual password
-free_fb = Session.get('https://touch.facebook.com').text
+Session=requests.Session()
+uid='100059121323654'  # Replace with your actual username (email or phone number)
+pw='881706'  # Replace with your actual password
+free_fb=Session.get('https://touch.facebook.com').text
 data = {
 'email': uid,
 'cuid': '',
