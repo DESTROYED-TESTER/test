@@ -3,10 +3,10 @@ import json
 import re
 import time
 
-Session=requests.Session()
-uid='100072970670579'  # Replace with your actual username (email or phone number)
-pw='881716'  # Replace with your actual password
-free_fb=Session.get('https://touch.facebook.com').text
+req=requests.Session()
+uid='61555629843961'  # Replace with your actual username (email or phone number)
+pw='787996'  # Replace with your actual password
+free_fb=req.get('https://touch.facebook.com').text
 data = {
 'email': uid,
 'cuid': '',
@@ -51,9 +51,9 @@ headers = {
 'Pragma': 'no-cache',
 'Cache-Control': 'no-cache',}
 url='https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
-response=Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+response=req.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
 # Step 7: Handle the response
-response=Session.cookies.get_dict().keys()
+response=req.cookies.get_dict().keys()
 if "c_user" in response:
     print(f"(ATOM-OK){uid}|{pw}")
 else:
