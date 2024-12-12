@@ -4,8 +4,8 @@ import re
 import time
 
 Session=requests.Session()
-uid='100059121323654'  # Replace with your actual username (email or phone number)
-pw='881706'  # Replace with your actual password
+uid='100072970670579'  # Replace with your actual username (email or phone number)
+pw='881716'  # Replace with your actual password
 free_fb=Session.get('https://touch.facebook.com').text
 data = {
 'email': uid,
@@ -53,7 +53,7 @@ headers = {
 url='https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
 response=Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
 # Step 7: Handle the response
-response = Session.cookies.get_dict().keys()
+response=Session.cookies.get_dict().keys()
 if "c_user" in response:
     print(f"(ATOM-OK){uid}|{pw}")
 else:
