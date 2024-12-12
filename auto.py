@@ -216,7 +216,7 @@ def Create():
             'sec-fetch-user': '21',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
-        url1 = 'https://m.facebook.com/reg/?is_two_steps_login=0&cid=103&refsrc=deprecated&soft=hjk'
+        url1 = 'https://www.facebook.com/reg/?is_two_steps_login=0&cid=103&refsrc=deprecated&soft=hjk'
         data1 = None
         response1 = requests.get(url1, headers=headers1, data=data1)    
         headers2 = {
@@ -236,7 +236,7 @@ def Create():
             'sec-fetch-user': '21',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
-        url2 = 'https://mbasic.facebook.com/reg/submit/'
+        url2 = 'https://www.facebook.com/reg/submit/'
         data2 = {
             'lsd': find(response1.text,"lsd"),
             'jazoest': find(response1.text,"jazoest"),
@@ -282,7 +282,7 @@ def Create():
             'checkbox_tos': '',
             'checkbox_location_policy': ''}
         response = requests.post(url2, headers=headers2, data=data2)
-        response=requests.get("https://mbasic.facebook.com")
+        response=requests.get("https://touch.facebook.com")
         if "checkpoint" in response.text:
             return "chk"
         headers = {
@@ -304,7 +304,7 @@ def Create():
         'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
         for i in  re.findall('href="/changeemail(.*?)"',response.text):
           url="/changeemail"+i
-        response = requests.get("https://mbasic.facebook.com"+url, headers=headers)
+        response = requests.get("https://www.facebook.com"+url, headers=headers)
         headers = {
             'accept': 'text/html,application/xhtm 1+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-encoding': 'gzip, deflate',
@@ -330,9 +330,9 @@ def Create():
             'new': em,
             'next': '',
             'submit': 'Add'}
-        url = "https://m.facebook.com"+re.findall('action="(.*?)"',response.text)[0]
+        url = "https://www.facebook.com"+re.findall('action="(.*?)"',response.text)[0]
         submit = requests.post(url, headers=headers, data=data)
-        r=requests.get("https://mbasic.facebook.com")
+        r=requests.get("https://touch.facebook.com")
         while True:
             h=Email(mmail["session"]).inbox()
             if h:
@@ -363,7 +363,7 @@ def Create():
             'fb_dtsg': find(r.text,"fb_dtsg"),
             'jazoest': find(r.text,"jazoest"),
             '__user': dict(requests.cookies)['c_user']}
-        url = 'https://m.facebook.com/confirmation_cliff/'
+        url = 'https://www.facebook.com/confirmation_cliff/'
         response = requests.post(url, headers=headers, data=data)
         return requests
     def strt():
@@ -376,7 +376,7 @@ def Create():
            from fake_email import Email
            mmail=Email().Mail()
            em=mmail['mail']
-           hd = {'authority': 'mbasic.facebook.com', 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'accept-language': 'en-US,en;q=0.9', 'cache-control': 'max-age=0', 'origin': 'https://mbasic.facebook.com', 'referer': 'https://mbasic.facebook.com/reg', 'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"', 'sec-ch-ua-mobile': '?0', 'sec-ch-ua-platform': '"Android"', 'sec-fetch-dest': 'document', 'sec-fetch-mode': 'navigate', 'sec-fetch-site': 'same-origin', 'sec-fetch-user': '?1', 'upgrade-insecure-requests': '1', 'user-agent':random_ua()}
+           hd = {'authority': 'www.facebook.com', 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'accept-language': 'en-US,en;q=0.9', 'cache-control': 'max-age=0', 'origin': 'https://www.facebook.com', 'referer': 'https://www.facebook.com/reg', 'sec-ch-ua': '"Google Chrome";v="107", "Chromium";v="107", "Not=A?Brand";v="24"', 'sec-ch-ua-mobile': '?0', 'sec-ch-ua-platform': '"Android"', 'sec-fetch-dest': 'document', 'sec-fetch-mode': 'navigate', 'sec-fetch-site': 'same-origin', 'sec-fetch-user': '?1', 'upgrade-insecure-requests': '1', 'user-agent':random_ua()}
            if "9":
               pas='sumon@12M'
               requests=process(pas,mmail)
