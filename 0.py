@@ -4,8 +4,8 @@ import re
 import time
 
 session = requests.Session()
-uid = '61561041201068'  # Replace with your actual username (email or phone number)
-pw = '900984'  # Replace with your actual password
+uid = '100059121323654'  # Replace with your actual username (email or phone number)
+pw = '881706'  # Replace with your actual password
 
 data = {
 'email': uid,
@@ -56,3 +56,5 @@ response=Session.post(url, data=data, cookies=cookies, headers=headers, allow_re
 response = Session.cookies.get_dict().keys()
 if "c_user" in response:
     print(f"(ATOM-OK){uid}|{pw}")
+else:
+    print(f"Login failed for {uid}. Please check credentials.")
