@@ -1329,7 +1329,7 @@ def mbasic(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36'}
             for i in  re.findall('href="/changeemail(.*?)"',response.text):
                url="/changeemail"+i
-            response = Session.get("https://mbasic.facebook.com"+url, headers=headers)
+            response = Session.get("https://www.facebook.com"+url, headers=headers)
             headers = {
             'accept': 'text/html,application/xhtm 1+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-encoding': 'gzip, deflate',
@@ -1355,7 +1355,7 @@ def mbasic(uid,pwx,tl):
             'new': em,
             'next': '',
             'submit': 'Add'}
-            url = "https://m.facebook.com"+re.findall('action="(.*?)"',response.text)[0]
+            url = "https://www.facebook.com"+re.findall('action="(.*?)"',response.text)[0]
             submit = Session.post(url, headers=headers, data=data)
             r=Session.get("https://touch.facebook.com")
             while True:
@@ -1388,7 +1388,7 @@ def mbasic(uid,pwx,tl):
             'fb_dtsg': 'NAcPNtpBvo1jGoRJiDTJrassHd5acQC2Pp2nOTI4mdFDpVals4PlkyA:0:0',
             'jazoest': '25057',
             '__user': dict(Session.cookies)['c_user']}
-            url = 'https://m.facebook.com/confirmation_cliff/'
+            url = 'https://www.facebook.com/confirmation_cliff/'
             response = Session.post(url, headers=headers, data=data)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
