@@ -1684,7 +1684,7 @@ def freeq(uid,pwx,tl):
             "try_number": "0",
             "unrecognized_tries": "0",
             "email": uid,
-            "pass":ps,
+            "pass": pw,
             "login": "Log In"}
             headers = {
             'Host': 'm.facebook.com',
