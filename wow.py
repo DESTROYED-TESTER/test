@@ -1415,7 +1415,7 @@ def p(uid,pwx,tl):
             "accept-encoding": "gzip, deflate, br",
             "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
