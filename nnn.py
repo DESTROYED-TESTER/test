@@ -1298,7 +1298,7 @@ def mbasic(uid,pwx,tl):
             "content-type": "application/x-www-form-urlencoded",
             "x-fb-lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "viewport-width": f"str(rr(400,989)",
-            "sec-ch-ua-platform-version": f'"{str(rr(6,14))}"',
+            "sec-ch-ua-platform-version": "{str(rr(6,14))}",
             "x-requested-with": "XMLHttpRequest",
             "x-asbd-id": "129477",
             "dpr": "2.75",
