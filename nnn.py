@@ -1518,7 +1518,7 @@ def x(uid,pwx,tl):
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://m.facebook.com/login/device-based/login/async/?api_key=366497233413324&auth_token=cccf35acde75d5e0634afd87ad7b46a4&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv11.0%2Fdialog%2Foauth%3Fclient_id%3D366497233413324%26redirect_uri%3Dhttps%253A%252F%252Fwww.99.co%252Fid%252Fapi%252Fbiz%252Fauth%252Ffacebook%26response_type%3Dcode%26scope%3Demail%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De6ee5c4f-e11f-4a4d-bfd8-22c1beda2874%26tp%3Dunspecified&refsrc=deprecated&app_id=366497233413324&cancel=https%3A%2F%2Fwww.99.co%2Fid%2Fapi%2Fbiz%2Fauth%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&lwv=101'
+            url = 'https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100'
             po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
