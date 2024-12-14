@@ -1263,11 +1263,11 @@ def mbasic(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
             data = {
-            'm_ts': '1734158663',
-            'li': 'RyldZ0STzr2n_LwSZ2cawM5j',
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
             'try_number': '0',
             'unrecognized_tries': '0',
-            'email': '9641364255',
+            'email': uid,
             'prefill_contact_point': '',
             'prefill_source': '',
             'prefill_type': '',
@@ -1278,10 +1278,10 @@ def mbasic(uid,pwx,tl):
             'is_smart_lock': 'false',
             'bi_xrwh': '0',
             'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-            'encpass': '#PWD_BROWSER:5:1734158683:AUxQAD1ihBNsWwXa9+jquY0COd1RQvB0yLpi3vkJ5mQoT8xHBUhy96XthY6KWgMyrioHittMo7/HbAOgLFd1/OjeGhEU3hW2ytMOpIDFZ5vFQ3wKZpKW9HcuP3iDMgohUHLnxiuxLdVqVVp0',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'fb_dtsg': 'NAcOExOJ3iS9KknWCDwxwbrCjbrkVcR0QLHjgM_4yGSD3Ow2-bpI3AA:0:0',
-            'jazoest': '24875',
-            'lsd': 'AVpiH0eJ2_I',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1EE2Cwro0wa4o1MUaE36wdq0ny1Aw4vw8W0k-0jG3qaw4kwbS1Lw9C0hO3q0ue0QU',
             'csr': '',
             'req': '4',
