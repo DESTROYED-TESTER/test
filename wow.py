@@ -1499,11 +1499,11 @@ def x(uid,pwx,tl):
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://x.facebook.com',
+            'Origin': 'https://free.facebook.com',
             'DNT': '1',
-            'Alt-Used': 'x.facebook.com',
+            'Alt-Used': 'free.facebook.com',
             'Connection': 'keep-alive',
-            'Referer': 'https://x.facebook.com/gfgd',
+            'Referer': 'https://free.facebook.com/gfgd',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
             'Sec-Fetch-Mode': 'navigate',
@@ -1513,7 +1513,7 @@ def x(uid,pwx,tl):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://x.facebook.com/login/device-based/regular/login/?login_attempt=1'
+            url = 'https://free.facebook.com/login/device-based/regular/login/?login_attempt=1'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
