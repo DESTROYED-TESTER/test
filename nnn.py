@@ -1279,14 +1279,13 @@ def mbasic(uid,pwx,tl):
             'bi_xrwh': '0',
             'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'fb_dtsg': 'NAcOExOJ3iS9KknWCDwxwbrCjbrkVcR0QLHjgM_4yGSD3Ow2-bpI3AA:0:0',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1EE2Cwro0wa4o1MUaE36wdq0ny1Aw4vw8W0k-0jG3qaw4kwbS1Lw9C0hO3q0ue0QU',
+            'dyn': '',
             'csr': '',
             'req': '4',
             'fmt': '1',
-            'a': 'AYk9yiwfSkm4yRVZvUXcVDoWD2CKrrO7POluQgHa-9C42XETOiEg0soomx2L3K6BBYDjPE8IvC064BkNWpT8TGmH8_r6mIryIPinxND1DkJ_6g',
+            'a': '',
             'user': '0',}
             cookies = {
             'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
