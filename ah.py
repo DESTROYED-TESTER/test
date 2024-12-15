@@ -1638,21 +1638,20 @@ def mobile(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'User-Agent': ua(),
+            'Host': 'm.facebook.com',
+            'Connection': 'keep-alive',
+            'Origin': 'https://m.facebook.com',
+            'Viewport-Width': '360',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36 HeyTapBrowser/45.7.5.9',
+            'X-Response-Format': 'JSONStream',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Host': 'graph.facebook.com',
-            'X-FB-Net-HNI': '24632',
-            'X-FB-SIM-HNI': '31641',
-            'X-FB-Connection-Type': 'MOBILE.LTE',
-            'X-Tigon-Is-Retry': 'False',
-            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main; tid=132;nc=1; fc=0; bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
-            'x-fb-device-group': '5120',
-            'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-            'X-FB-Request-Analytics-Tags': 'graphservice',
-            'X-FB-HTTP-Engine': 'Liger',
-            'X-FB-Client-IP': 'True',
-            'X-FB-Server-Cluster': 'True',
-            'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62'}
+            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-ASBD-ID': '129477',
+            'DPR': '2',
+            'Accept': '*/*',
+            'Referer': 'https://m.facebook.com/',
+            'Accept-Language': 'en-US',}
             url = "https://b-graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
