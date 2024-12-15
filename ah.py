@@ -296,59 +296,35 @@ def useragent():
     CRACK_ua = f'[FBAN/FB4A;FBAV/{fbav};FBBV/{fbbv};FBDM/{{density=3.0,width=1280,height=1440}};FBLC/{lc};FBRV/0;FBCR/{cr};FBMF/Xiaomi;FBBD/Xiaomi;FBPN/com.facebook.katana;FBDV/{gtt};FBSV/{android_version};FBOP/19;FBCA/armeabi-v7a:armeabi;]'
     return CRACK_ua
 
-def sexua():
-    android_versions = ['10', '11', '12']
-    mobile_models = [
-        'Infinix X689B', 'Samsung Galaxy S21', 'Google Pixel 5', 'OnePlus 9', 'Xiaomi Mi 11',
-        'LG V60 ThinQ', 'Sony Xperia 1 II', 'Huawei P40 Pro', 'Motorola Edge+', 'Nokia 8.3',
-        'OnePlus Nord', 'Xiaomi Redmi Note 10 Pro', 'Google Pixel 4a', 'Samsung Galaxy A52',
-        'Sony Xperia 5 II', 'LG Velvet', 'Motorola Moto G Power', 'Nokia 7.2', 'Huawei Mate 40 Pro',
-        'Samsung Galaxy S20 FE', 'OnePlus 8T', 'Xiaomi Poco X3', 'Google Pixel 4 XL', 'Sony Xperia 10 II',
-        'Motorola Razr', 'LG Wing', 'Nokia 9 PureView', 'Huawei P30 Pro', 'Samsung Galaxy Note 20 Ultra',
-        'OnePlus 8 Pro', 'Xiaomi Mi 10 Pro', 'Google Pixel 3a XL', 'Sony Xperia 1 III', 'LG G8 ThinQ',
-        'Motorola Moto G Stylus', 'Nokia 6.2', 'Huawei Mate Xs', 'Samsung Galaxy Z Fold 2',
-        'OnePlus 7T Pro', 'Xiaomi Mi 9T Pro', 'Google Pixel 3 XL', 'Sony Xperia 5 III', 'LG G7 ThinQ',
-        'Motorola Moto G Fast', 'Nokia 5.3', 'Huawei Nova 7i', 'Samsung Galaxy Z Flip', 'OnePlus 7 Pro',
-        'Xiaomi Mi Note 10', 'Google Pixel 3a', 'Sony Xperia XZ3', 'LG K92 5G', 'Motorola Moto G Play',
-        'Nokia 3.4', 'Huawei Y9s', 'Samsung Galaxy S10 Lite', 'OnePlus Nord N10', 'Xiaomi Redmi Note 9 Pro',
-        'Google Pixel 3', 'Sony Xperia XZ2', 'LG K61', 'Motorola Moto G9 Power', 'Nokia 2.4',
-        'Huawei P20 Pro', 'Samsung Galaxy A71', 'OnePlus Nord N100', 'Xiaomi Redmi Note 8 Pro',
-        'Google Pixel 2 XL', 'Sony Xperia L4', 'LG Q70', 'Motorola Moto E7 Plus', 'Nokia 1.3',
-        'Huawei P Smart 2021', 'Samsung Galaxy A50', 'OnePlus 6T', 'Xiaomi Redmi Note 7 Pro',
-        'Google Pixel 2', 'Sony Xperia 10 Plus', 'LG K51', 'Motorola Moto E6', 'Nokia 1 Plus',
-        'Huawei P10', 'Samsung Galaxy A20', 'OnePlus 6', 'Xiaomi Mi A3', 'Google Pixel XL',
-        'Sony Xperia XA2', 'LG Stylo 6', 'Motorola Moto E5 Plus', 'Nokia 2.3'
-        # Add more mobile models here
-    ]
-    den = random.choice(['{density=3.0,width=1080,height=2401}'
-,'{density=3.0,width=1080,height=2161}',
-'{density=1.5,width=1280,height=720}',
-'{density=2.0,width=720,height=1344}',
-'{density=1.75,width=720,height=1488}',
-'{density=1.0,width=1066,height=552}',
-'{density=2.0,width=480,height=854}',
-'{density=1.5,width=1200,height=1848}',
-'{density=1.3312501,width=1280,height=736}',
-'{density=3.0,width=1080,height=2208}',
-'{density=4.0,width=1440,height=2392}',
-'{density=1.0,width=320,height=480}',
-'{density=3.0,width=1080,height=1920}',
-'{density=1.46875,width=720,height=1510}',
-'{density=2.625,width=1080,height=2034}',
-'{density=1.5,width=1200,height=1920}',
-'{density=2.0,width=720,height=1280}',
-'{density=2.0,width=720,height=1448}',
-'{density=1.275,width=540,height=1071}'
-])
-    android_version = random.choice(android_versions)
-    mobile_model = random.choice(mobile_models)
-    dev = mobile_model.split(' ')[0]
-    x = str(random.randint(11,999))+".1.0."+str(random.randint(11,99))+"."+str(random.randint(11,99))
-    xx = ''.join(str(random.randint(0, 9)) for _ in range(9))
-    xxx = ''.join(str(random.randint(0, 9)) for _ in range(9))
-    cl = random.choice(['hr_HR','ar_EG','en_Qaau_PK','en_Qaau_GB','en_Qaau_US','as_IN','fa_IR','fi_FI','en_US','en_GB','en_PK','ru_RU','de_DE','en_BD','en_IN','en_AF','ar_Qaau_AR','ar_AR','at_AT','en_AL','en_DZ','en_AS','en_AD','en_AO','en_AI','en_AQ','en_AG','en_AM','en_AW','en_AU','en_AT','en_AZ','en_BS','en_BH','en_BB','en_BY','en_BE','en_BZ','en_BJ','en_BM','en_BT','en_BO','en_BQ','en_BA','en_BW','en_BV','en_BR','en_IO','en_BN','en_BG','en_BF','en_AX','en_ZW','en_ZM','en_YE','en_EH','en_WF','en_VI','en_VG','en_VN','en_VE'])
-    cr = random.choice(['Three','1O1Ocsl','O2','WOM','Telcel','3SE','OneCall','1010','Vodafone IN','Vodafone id','Jazz','Telenor','Zong','Vodefone','Plus','SGP-M1','airtel','Greenphone','StarHub','giga','simyo','BITE','BITE LV','Sprint','inwi','EE','MTS Armenia','UMS','NL KPN','Ufone','China Telecom','SimSim','BAKCELL','Geocell','Jio 4G','Jio','Team','TEAM','UzMobile','Beeline','Vodefone US','A-Mobile','MAGTICOM','XL','axis','Spectrum','ZZ','LMT','Tele2','Fido','CC Network','Shelid','null','TeleTok','SUN Mobile','Club','Lycamobile','VIVIFI','Singtel','Circles','Metro by T-Mobile','YOTA','Turkcell','Uztelecom','Mobiuz','GOLAN T','HUMANS','MegaFon','VIVO','UA-KYIVSTAR','KYIVSTAR','Grameenphone','VIRGIN','Orange'])
-    user_agent = f"[FBAN/EMA;FBBV/{xx};FBAV/{x};FBDV/{mobile_model};FBSV/12;FBCX/notifications_push_client_sync_graphql;FBDM/{{density=2.0}}]"
+# Define lists of possible values for different components of the user-agent string
+devices = ["OnePlus", "Samsung", "Google", "Xiaomi", "Huawei", "Oppo", "Motorola", "Sony"]
+models = ["LE2113", "SM-G991B", "Pixel 6", "M2007J17G", "Nexus 5X", "CPH2185", "XT2000-3", "SO-03H"]
+screen_density = [1.0, 2.0, 3.0, 4.0]
+screen_width = [360, 480, 720, 1080]
+screen_height = [640, 800, 1080, 2165]
+app_versions = ["435.0.0.42.112", "432.0.0.41.109", "437.0.0.43.114", "430.0.0.40.105"]
+facebook_versions = ["523162189", "523162188", "523162190", "523162191"]
+languages = ["it_IT", "en_US", "es_ES", "de_DE", "fr_FR"]
+networks = ["TIM", "Vodafone", "WindTre", "H3G", "Iliad"]
+arch = ["arm64-v8a", "armeabi-v7a", "x86", "x86_64"]
+def generate_random_user_agent():
+    device = random.choice(devices)
+    model = random.choice(models)
+    density = random.choice(screen_density)
+    width = random.choice(screen_width)
+    height = random.choice(screen_height)
+    app_version = random.choice(app_versions)
+    fb_version = random.choice(facebook_versions)
+    language = random.choice(languages)
+    network = random.choice(networks)
+    architecture = random.choice(arch)
+    user_agent = (
+        f"FBAN/FB4A;FBAV/{app_version};FBBV/{fb_version};"
+        f"FBDM/{{density={density},width={width},height={height}}};"
+        f"FBLC/{language};FBRV/526139383;FBCR/{network};"
+        f"FBMF/{device};FBBD/{device};FBPN/com.facebook.katana;"
+        f"FBDV/{model};FBSV/13;FBOP/1;FBCA/{architecture}:;"
+    )
     return user_agent
 
 #{ Version  }#
