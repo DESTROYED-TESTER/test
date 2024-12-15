@@ -1395,7 +1395,7 @@ def mbasic(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'User-Agent': ua(),
+            'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';'+'[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]',,
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'graph.facebook.com',
             'X-FB-Net-HNI': '24632',
@@ -1476,7 +1476,7 @@ def p(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'User-Agent': ua(),
+            'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';'+'[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]',,
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'graph.facebook.com',
             'X-FB-Net-HNI': '24632',
@@ -1557,7 +1557,7 @@ def x(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'User-Agent': ua(),
+            'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';'+'[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'graph.facebook.com',
             'X-FB-Net-HNI': '24632',
@@ -1638,19 +1638,21 @@ def mobile(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'Host': 'graph.facebook.com',
-            'Connection': 'keep-alive',
-            'Origin': 'https://graph.facebook.com',
-            'Viewport-Width': '360',
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36 HeyTapBrowser/45.7.5.9',
-            'X-Response-Format': 'JSONStream',
+            'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';'+'[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-ASBD-ID': '129477',
-            'DPR': '2',
-            'Accept': '*/*',
-            'Referer': 'https://m.facebook.com/',
-            'Accept-Language': 'en-US',}
+            'Host': 'graph.facebook.com',
+            'X-FB-Net-HNI': '24632',
+            'X-FB-SIM-HNI': '31641',
+            'X-FB-Connection-Type': 'MOBILE.LTE',
+            'X-Tigon-Is-Retry': 'False',
+            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main; tid=132;nc=1; fc=0; bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
+            'x-fb-device-group': '5120',
+            'X-FB-Friendly-Name': 'ViewerReactionsMutation',
+            'X-FB-Request-Analytics-Tags': 'graphservice',
+            'X-FB-HTTP-Engine': 'Liger',
+            'X-FB-Client-IP': 'True',
+            'X-FB-Server-Cluster': 'True',
+            'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62'}
             url = "https://b-graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
