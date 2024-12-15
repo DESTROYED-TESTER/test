@@ -297,8 +297,8 @@ def useragent():
     return CRACK_ua
 
 # Define lists of possible values for different components of the user-agent string
-devices = ["OnePlus", "Samsung", "Google", "Xiaomi", "Huawei", "Oppo", "Motorola", "Sony"]
-models = ["LE2113", "SM-G991B", "Pixel 6", "M2007J17G", "Nexus 5X", "CPH2185", "XT2000-3", "SO-03H"]
+devices = ["Samsung", "Vivo"]
+models = ["SM-S911B", "Vivo Y100"]
 screen_density = [2.0, 3.0]
 screen_width = [360, 1080]
 screen_height = [640, 2165]
