@@ -1557,7 +1557,7 @@ def x(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';'+'[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]',
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 14; SM-X115 Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.83 Safari/537.36 [FB_IAB/FB4A;FBAV/488.0.0.78.79;IABMV/1;]',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'graph.facebook.com',
             'X-FB-Net-HNI': '24632',
