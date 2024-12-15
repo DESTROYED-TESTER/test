@@ -1346,7 +1346,7 @@ def mbasic(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        print({error})
+        #print({error})
         pass
 
 def p(uid,pwx,tl):
