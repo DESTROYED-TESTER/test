@@ -299,14 +299,14 @@ def useragent():
 # Define lists of possible values for different components of the user-agent string
 devices = ["OnePlus", "Samsung", "Google", "Xiaomi", "Huawei", "Oppo", "Motorola", "Sony"]
 models = ["LE2113", "SM-G991B", "Pixel 6", "M2007J17G", "Nexus 5X", "CPH2185", "XT2000-3", "SO-03H"]
-screen_density = [1.0, 2.0, 3.0, 4.0]
-screen_width = [360, 480, 720, 1080]
-screen_height = [640, 800, 1080, 2165]
+screen_density = [2.0, 3.0]
+screen_width = [360, 1080]
+screen_height = [640, 2165]
 app_versions = ["493.0.0.72.158", "492.0.0.127.80"]
-facebook_versions = ["523162189", "523162188", "523162190", "523162191"]
-languages = ["it_IT", "en_US", "es_ES", "de_DE", "fr_FR"]
-networks = ["jio", "Vodafone", "airtel"]
-arch = ["arm64-v8a", "armeabi-v7a", "x86", "x86_64"]
+facebook_versions = ["523162194", "523162193", "523162192", "523162191"]
+languages = ["hi_IN", "en_IN", "ta_IN", "te_IN", "bn_IN", "mr_IN", "gu_IN", "ml_IN"]
+networks = ["Airtel", "Jio", "Vi", "BSNL", "MTNL"]
+arch = ["arm64-v8a", "armeabi-v7a", "x86_64", "armv9"]
 def generate_random_user_agent():
     device = random.choice(devices)
     model = random.choice(models)
