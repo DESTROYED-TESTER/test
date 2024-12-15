@@ -1638,14 +1638,13 @@ def mobile(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'Host': 'm.facebook.com',
+            'Host': 'graph.facebook.com',
             'Connection': 'keep-alive',
-            'Origin': 'https://m.facebook.com',
+            'Origin': 'https://graph.facebook.com',
             'Viewport-Width': '360',
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Safari/537.36 HeyTapBrowser/45.7.5.9',
             'X-Response-Format': 'JSONStream',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'X-Requested-With': 'XMLHttpRequest',
             'X-ASBD-ID': '129477',
             'DPR': '2',
