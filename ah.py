@@ -1395,7 +1395,7 @@ def mbasic(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'User-Agent': 'FBAN/FB4A; FBAV/13.0.0.7947; FBBV/2722729; [FBAN/ FB4A; FBAV/346.0.0.29.119; FBBV/335950287; FBDM/{density=2.625, width=1080, height=1920}; FBLC/en_GB; FBRV/337277111; FBCR/Null; FBMF/Coolpad; FBBD/Coolpad; FBPN/com.facebook.katana; FBDV/C1-U02; FBSV/6.0.1; FBOP/1; FBCA/armeabi-v7a: armeabi;]',
+            'User-Agent': ua(),
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'graph.facebook.com',
             'X-FB-Net-HNI': '24632',
@@ -1476,7 +1476,7 @@ def p(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'User-Agent': 'FBAN/FB4A; FBAV/13.0.0.7947; FBBV/2722729; [FBAN/ FB4A; FBAV/346.0.0.29.119; FBBV/335950287; FBDM/{density=2.625, width=1080, height=1920}; FBLC/en_GB; FBRV/337277111; FBCR/Null; FBMF/Coolpad; FBBD/Coolpad; FBPN/com.facebook.katana; FBDV/C1-U02; FBSV/6.0.1; FBOP/1; FBCA/armeabi-v7a: armeabi;]',
+            'User-Agent': ua(),
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'graph.facebook.com',
             'X-FB-Net-HNI': '24632',
@@ -1557,7 +1557,7 @@ def x(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'User-Agent': 'FBAN/FB4A; FBAV/13.0.0.7947; FBBV/2722729; [FBAN/ FB4A; FBAV/346.0.0.29.119; FBBV/335950287; FBDM/{density=2.625, width=1080, height=1920}; FBLC/en_GB; FBRV/337277111; FBCR/Null; FBMF/Coolpad; FBBD/Coolpad; FBPN/com.facebook.katana; FBDV/C1-U02; FBSV/6.0.1; FBOP/1; FBCA/armeabi-v7a: armeabi;]',
+            'User-Agent': ua(),
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'graph.facebook.com',
             'X-FB-Net-HNI': '24632',
@@ -1638,7 +1638,7 @@ def mobile(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'User-Agent': 'FBAN/FB4A; FBAV/13.0.0.7947; FBBV/2722729; [FBAN/ FB4A; FBAV/346.0.0.29.119; FBBV/335950287; FBDM/{density=2.625, width=1080, height=1920}; FBLC/en_GB; FBRV/337277111; FBCR/Null; FBMF/Coolpad; FBBD/Coolpad; FBPN/com.facebook.katana; FBDV/C1-U02; FBSV/6.0.1; FBOP/1; FBCA/armeabi-v7a: armeabi;]',
+            'User-Agent': ua(),
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'graph.facebook.com',
             'X-FB-Net-HNI': '24632',
