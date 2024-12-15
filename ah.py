@@ -302,10 +302,10 @@ models = ["LE2113", "SM-G991B", "Pixel 6", "M2007J17G", "Nexus 5X", "CPH2185", "
 screen_density = [1.0, 2.0, 3.0, 4.0]
 screen_width = [360, 480, 720, 1080]
 screen_height = [640, 800, 1080, 2165]
-app_versions = ["435.0.0.42.112", "432.0.0.41.109", "437.0.0.43.114", "430.0.0.40.105"]
+app_versions = ["493.0.0.72.158", "492.0.0.127.80"]
 facebook_versions = ["523162189", "523162188", "523162190", "523162191"]
 languages = ["it_IT", "en_US", "es_ES", "de_DE", "fr_FR"]
-networks = ["TIM", "Vodafone", "WindTre", "H3G", "Iliad"]
+networks = ["jio", "Vodafone", "airtel"]
 arch = ["arm64-v8a", "armeabi-v7a", "x86", "x86_64"]
 def generate_random_user_agent():
     device = random.choice(devices)
@@ -1533,7 +1533,7 @@ def x(uid,pwx,tl):
             'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4AuthHandler',
             'api_key': '882a8490361da98702bf97a021ddc14d'}
             headers = {
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 14; SM-X115 Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/130.0.6723.83 Safari/537.36 [FB_IAB/FB4A;FBAV/488.0.0.78.79;IABMV/1;]',
+            'User-Agent': generate_random_user_agent(),
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'graph.facebook.com',
             'X-FB-Net-HNI': '24632',
