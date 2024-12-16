@@ -1578,11 +1578,11 @@ def mobile(uid,pwx,tl):
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
             'Accept-Encoding': 'gzip, deflate, br, zstd',
-            'Referer': 'https://www.facebook.com/',
+            'Referer': 'https://x.facebook.com/',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.facebook.com',
+            'Origin': 'https://x.facebook.com',
             'DNT': '1',
-            'Alt-Used': 'www.facebook.com',
+            'Alt-Used': 'x.facebook.com',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
@@ -1593,7 +1593,7 @@ def mobile(uid,pwx,tl):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM0MjY3ODE5LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ^%^3D^%^3D&next'
+            url = 'https://x.facebook.com/login.php/?login_attempt=1&display=popup'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
