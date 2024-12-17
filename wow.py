@@ -185,7 +185,6 @@ def sexy():
 
 with ThreadPool(max_workers=90) as jjj:
     jjj.submit(sexy)
-    jjj.submit(main)
 
 
 red = "\033[1;31m"
