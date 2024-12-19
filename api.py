@@ -1401,7 +1401,7 @@ def mbasic(uid,pwx,tl):
             "sig": "e95f435d29d71f03a47918372a565cd5",
             "access_token": "256002347743983%7C374e60f8b9bb6b8cbb30f78030438895"}
             headers = {
-            'User-Agent': UA(),
+            'User-Agent': 'FBAN/FB4A; FBAV/177.0.0.9.120; FBPN/com.facebook.katana; FBLC/bn_IN; FBBV/6456614; FBCR/Jio; FBMF/redmi; FBBD/redmi; FBDV/Redmi Note 14; FBSV/11; FBCA/arm64-v8a:null; FBDM/density=2.0, width=1080, height=2400; FB_FW/1',
             'Accept-Encoding': 'gzip, deflate',
             'Accept': '*/*',
             'Connection': 'keep-alive',
