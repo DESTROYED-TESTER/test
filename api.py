@@ -1388,7 +1388,7 @@ def mbasic(uid,pwx,tl):
             "had_password_prefilled": False,
             "is_smart_lock": False,
             "bi_xrwh": 0,
-            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),,
+            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             "bi_wvdp": "",
             "fb_dtsg": "",
             "jazoest": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
