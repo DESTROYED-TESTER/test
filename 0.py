@@ -165,7 +165,6 @@ def _M1_(ids,pasx):
                         'accept': '*/*',
                         'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
                         'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-                        # 'cookie': 'dpr=2.418783187866211; ps_l=1; ps_n=1; sb=K7peZw-stm96bp9jczd4iRSX; datr=K7peZ8R7XJfFPDteD4gLNXP4; m_pixel_ratio=2.200000047683716; wd=491x968; fr=1GXBeS4MZ2kWto2Oz.AWUDKf1CUfJ01SOxkzkKhFd-ZKs.BnXrot..AAA.0.0.BnaVxe.AWUqH7Rmiv4',
                         'origin': 'https://m.alpha.facebook.com',
                         'referer': 'https://m.alpha.facebook.com/',
                         'sec-ch-prefers-color-scheme': 'dark',
