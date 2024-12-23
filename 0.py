@@ -1,14 +1,14 @@
 #-------------------[ MAIN-CODE ]-------------------#
 from os import path
 import requests,os
-os.system('pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests')
+os.system('')
 import os,base64,zlib,pip,urllib
 try:
         import os,requests,json,time,re,random,sys,uuid,string,subprocess
         from string import *
         from concurrent.futures import ThreadPoolExecutor as tred
 except ModuleNotFoundError:
-        os.system('pip install requests futures==2 > /dev/null')
+        os.system('')
 except:pass
 class jalan:
     def __init__(self, z):
@@ -53,27 +53,8 @@ user=[]
 ugen=[]
 plist=[]
 pcp=[]
-ATOM=[]
-#-----------------------[ LOGO-CODE ]-----------------------#
-def psb(z):
-    for e in z + '\n':
-        sys.stdout.write(e)
-        sys.stdout.flush()
-        time.sleep(0.03)
-        
+ATOM=[]   
 os.system("clear")
-import requests,os
-import os
-os.system("pkg install espeak")
-os.system("git pull")
-jalan('\033[38;5;46m             SCRIPTED BY SK SHUVOJIT')
-os.system('espeak -a 300 "SCRIPTED BY SK SHUVOJIT"')
-
-jalan('\033[38;5;196mSENIOR ADMIN OF BANGLADESH ANONYMOUS CYBER FORCE')
-os.system('espeak -a 300 "SENIOR ADMIN OF BANGLADESH ANONYMOUS CYBER FORCE"')
-time.sleep(3)
-os.system("xdg-open https://www.facebook.com/groups/167652229652980/?ref=share_group_link")
-time.sleep(7)
 logo=("""\033[38;5;46m
     █████╗ ████████╗ ██████╗ ███╗   ███╗
    ██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
