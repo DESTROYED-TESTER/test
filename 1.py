@@ -1442,8 +1442,25 @@ def mbasic(uid,pwx,tl):
     except Exception as e:
         pass
 
+class create_fb:
+       #--> Generate Email & Code From 10minutemail
+  def get_email_10minutemail(self):
+    req = bs(self.abc.get('https://10minutemail.net/m/?lang=id',headers=self.head_email,allow_redirects=True).content,'html.parser')
+    self.ses_email = re.search('sessionid="(.*?)"',str(req)).group(1)
+    self.tim_email = str(time.time()).replace('.','')[:13]
+    dat = {'new':'1','sessionid':self.ses_email,'_':self.tim_email}
+    pos = self.abc.post('https://10minutemail.net/address.api.php',data=dat,headers=self.head_email,allow_redirects=True).json()
+    email = pos['mail_get_mail']
+    self.cookie_email = '; '.join([str(x)+"="+str(y) for x,y in self.abc.cookies.get_dict().items()])
+    return(email)
 
-def p(uid,pwx,tl):
+  def get_code_10minutemail(self):
+    dat = {'new':'0','sessionid':self.ses_email,'_':self.tim_email}
+    pos = self.abc.post('https://10minutemail.net/address.api.php',data=dat,headers=self.head_email,cookies={'cookie':self.cookie_email},allow_redirects=True).json()
+    kode = re.search(r'FB-([^ ]+)',str(pos)).group(1)
+    return(kode)
+
+  def p(uid,pwx,tl):
     global loop
     global oks
     global cps
