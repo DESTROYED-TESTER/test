@@ -1518,7 +1518,7 @@ def p(uid,pwx,tl):
             result = requests.post(url, data=data, headers=headers)
             for i in  re.findall('href="/changeemail(.*?)"',result.text):
                url="/changeemail"+i
-            response = requests.get("https://m.facebook.com"+url, headers=headers)
+            response = requests.get("https://m.facebook.com"+url, headers=headers).text
             print(response)
         loop+=1
     except net_error:
