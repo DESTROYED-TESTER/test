@@ -1499,7 +1499,7 @@ def p(uid,pwx,tl):
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': '1026'}
             url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers)
+            result = requests.post(url, data=data, headers=headers).text
             print(result)
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
