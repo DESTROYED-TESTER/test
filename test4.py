@@ -64,8 +64,8 @@ data2 = {
             },
             "client_input_params": {
                 "machine_id": "",
-                "contact_point": '100062610835656',
-                "password": "#PWD_BROWSER:0:{}:{}".format(str(int(time.time())), '620626'),
+                "contact_point": '61556968163616',
+                "password": "#PWD_BROWSER:0:{}:{}".format(str(int(time.time())), '939948'),
                 "accounts_list": [],
                 "fb_ig_device_id": [],
                 "secure_family_device_id": "",
