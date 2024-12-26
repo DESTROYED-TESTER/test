@@ -1862,8 +1862,8 @@ def d(uid,pwx,tl):
             '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13w9y1DxW0Oohw5ux60Vo1a852q1ew2io0D24o1MUaE1Do1u81x82ewnE3Mw4WwSyE25w8W0Lo6-1CwOw5jw4JwzK0zo3jw',
             '__csr': '',
             'fb_dtsg': 'NAcOlfpCOM2BFnghClV_Fbk2SejAMCvE1gYRFgP4Eh4s03fmjrbDwEA:0:0',
-            'jazoest': '24865',
-            'lsd': 'AVqsfW-tGqM',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'params': json.dumps(data),}
             params = {
             'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
@@ -1888,7 +1888,7 @@ def d(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/async/wbloks/fetch/"
+            url = "https://m.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data2, headers=headers).text
             print(po)
             response = Session.cookies.get_dict().keys()
