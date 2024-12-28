@@ -13,7 +13,7 @@ import uuid
 import requests
 import os,sys,time,datetime,random,hashlib,re,threading,json,urllib,uuid,ipaddress,calendar,requests,mechanize,bs4,sys,os,subprocess,uuid,requests,sys,random,time,re,base64,json,platform
 from concurrent.futures import ThreadPoolExecutor
-try:os.mkdir('/sdcard/j4rvis')
+try:os.mkdir('/sdcard/JAY')
 except:pass
 R = '\x1b[1;91m' 
 OR = '\033[1;35m'
@@ -232,7 +232,11 @@ def cek_apk(session,coki):
     x = sop.find("form",method="post")
     game = [i.text for i in x.find_all("h3")]
     if len(game)==0:
-            pass      
+            pass  
+def clear():
+    os.system("clear")
+    print(logo)
+ 
 loop = 0
 oks = []
 gen = []
