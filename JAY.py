@@ -242,7 +242,7 @@ loop = 0
 oks = []
 gen = []
 logo = (f"""
-{faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
+{faltu} {black}"Confidence is my best accessory".... {pvt}
 \033[1;32m
    d88b  .d8b.  db    db 
    `8P' d8' `8b `8b  d8' 
@@ -252,7 +252,7 @@ db. 88  88   88    88
 Y8888P  YP   YP    YP \033[1;34m ᴾᴿᴼ
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : MR JAY
-\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : 
+\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : keep having fun
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types :\033[1;36m RANDOM 
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 myid=uuid.uuid4().hex[:5].upper()
@@ -267,13 +267,11 @@ class Process:
             self.enroll()
         else:
             self.clear()
-            print("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m  NEED ACCESS TOOLS ")
-            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m AFTER PAYMENT  TOOLS ")
-            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Your Key:\033[0;93m " +self.key)
-            input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m NEED ACCESS TOOLS ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m Your Key:\033[0;93m " +self.key)
+            input("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m Press Enter To Send Key")
             time.sleep(3.5)
-            tks = 'TOKEN KEY =%20%20:%20'+self.key
-            os.system('am start https://wa.me/=916295850813?text=' + tks)
+            os.system('am start https://wa.me/=916295850813?text='+self.key)
             exit()
     def clear(self):os.system('clear');clear()
     def Gex(self,x):
@@ -290,8 +288,8 @@ class Process:
         
 def m():
     os.system('clear');print(logo)
-    print(f'{Y}[{W}1{Y}] {W}HOST 1 [Web]')
-    print(f'{Y}[{W}2{Y}] {W}HOST 2 [IOS]')
+    print(f'{Y}[{W}1{Y}] {W}METHOD [1]')
+    print(f'{Y}[{W}2{Y}] {W}METHOD [3]')
     print(47*"—")
     m = input(f'{Y}[{W}?{Y}] {W}Choose Method : ')
     if m == '1':
@@ -302,11 +300,11 @@ def m():
 def main():
     os.system('clear')
     print(logo)
-    code = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
+    code = input(f"{Y}[{W}~{Y}] {G}ENTER CODE {W}: ")
     #code2 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
    # code3 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
     #code = random.choice([code1,code2,code3])
-    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
+    limit = input(f'{Y}[{W}~{Y}] {G}SET LIMID {W}: ')
     for a in range(int(limit)):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
