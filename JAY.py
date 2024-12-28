@@ -13,6 +13,7 @@ import uuid
 import requests
 import os,sys,time,datetime,random,hashlib,re,threading,json,urllib,uuid,ipaddress,calendar,requests,mechanize,bs4,sys,os,subprocess,uuid,requests,sys,random,time,re,base64,json,platform
 from concurrent.futures import ThreadPoolExecutor
+from io import BytesIO
 try:os.mkdir('/sdcard/JAY')
 except:pass
 R = '\x1b[1;91m' 
@@ -258,7 +259,7 @@ myid=uuid.uuid4().hex[:5].upper()
 class Process:
     def __init__(self):
         self.cc=[]
-        self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
+        self.key="KEY-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
         #self.key=""
         self.clear()
         r = self.Gex('https://pastebin.com/raw/uhce1AGG')
@@ -274,7 +275,7 @@ class Process:
             input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
             time.sleep(3.5)
             tks = 'TOKEN KEY =%20%20:%20'+self.key
-            os.system('am start https://wa.me/01989733880?text=' + tks)
+            os.system('am start https://wa.me/=916295850813?text=' + tks)
             exit()
     def clear(self):os.system('clear');clear()
     def Gex(self,x):
