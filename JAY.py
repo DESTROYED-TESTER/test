@@ -419,8 +419,8 @@ def cracker(ids,passlist):
 def mainn():
     os.system('clear')
     print(logo)
-    code = input(f'{Y}[{W}~{Y}] {G}Choice code {W}: ') 
-    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
+    code = input(f'{Y}[{W}~{Y}] {G}ENTER CODE {W}: ') 
+    limit = input(f'{Y}[{W}~{Y}] {G}SET LIMID {W}: ')
     for a in range(int(limit)):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
