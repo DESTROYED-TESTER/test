@@ -22,6 +22,7 @@ O = '\x1b[1;98m'
 B = '\033[1;34m'
 W = '\033[1;97m'
 cyan="\033[1;36m"
+faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 ugnn = []
 redmi=[]
 for x in range(1000):
@@ -235,66 +236,53 @@ loop = 0
 oks = []
 gen = []
 logo = (f"""
-
+{faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
+\033[1;32m
    d88b  .d8b.  db    db 
    `8P' d8' `8b `8b  d8' 
     88  88ooo88  `8bd8'  
     88  88~~~88    88    
 db. 88  88   88    88    
-Y8888P  YP   YP    YP    
-                         
-\033[1;97m———————————————————————————————————————————————""")
-
+Y8888P  YP   YP    YP \033[1;34m ᴾᴿᴼ
+\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\033[1;32m[\033[1;31m✓\033[1;32m] Author     : MR JAY
+\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : 
+\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types :\033[1;36m RANDOM 
+\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 myid=uuid.uuid4().hex[:5].upper()
-def __iam_a_porche():
-    os.system('clear')
-    print(logo)
-    print('\033[1;92mCHECK ACCESS\033[0;97m')
-    try:
-        httpCaht = requests.get('https://github.com/Jarvis-070/approval-/blob/main/approval.txt').text
-        t1 = base64.b64encode(str(os.getuid()).encode('utf-8'))
-        t2 = base64.b64encode((str(platform.uname()[2])).encode('utf-8'))
-        uid = os.getuid()
-        kex=(f"BCC-{uid}TS{t1}")
-        gen_token=(f"{kex}")
-        fkeyx = gen_token.replace("b'","").replace("'","")
-        if fkeyx in httpCaht:
-            lumd()
+class Process:
+    def __init__(self):
+        self.cc=[]
+        self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
+        #self.key=""
+        self.clear()
+        r = self.Gex('https://pastebin.com/raw/uhce1AGG')
+        if self.key in r:
+            self.enroll()
         else:
-            os.system('clear')
-            print(logo)
-            print('Your Key: '+fkeyx)
-            print(47*"—") 
-            print('This was a private tool')
-            print(47*"—") 
-    except Exception as e:
-        #print(e)
-        print('\n\033[1;31m error..\033[0;97m')
-
-def lumd():
-    os.system('clear')
-    print(logo)
-    print('\033[1;92mChecking Approval ....\033[0;97m')
-    try:
-        httpCaht = requests.get('https://github.com/Jarvis-070/approval-/blob/main/approval.txt').text
-        t1 = base64.b64encode(str(os.getuid()).encode('utf-8'))
-        t2 = base64.b64encode((str(platform.uname()[2])).encode('utf-8'))
-        uid = os.getuid()
-        kex=(f"BCC-{uid}TS{t1}")
-        gen_token=(f"{kex}")
-        fkeyx = gen_token.replace("b'","").replace("'","")
-        if fkeyx in httpCaht:
-            m()
-        else:
-            os.system('clear')
-            print(logo)
-            print('Your Key: '+fkeyx)
-            print(47*"—") 
-            print('This was a private tool')
-            print(47*"—") 
-    except Exception as e:
-        #print(e)
-        print('\n\033[1;31m error..\033[0;97m')
+            self.clear()
+            print("\x1b[38;1;97m               NOTES   ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\x1b[38;5;208m HELLO.... DEAR USER THIS IS PREMIUM TOOLS ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m AFTER PAYMENT ACCESS TOOLS ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m PRICE LIST ADMIN INBOX ")
+            print("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Your Key:\033[0;93m " +self.key)
+            input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
+            time.sleep(3.5)
+            tks = 'TOKEN KEY =%20%20:%20'+self.key
+            os.system('am start https://wa.me/01989733880?text=' + tks)
+            exit()
+    def clear(self):os.system('clear');clear()
+    def Gex(self,x):
+        buffer = BytesIO()
+        c = pycurl.Curl()
+        c.setopt(c.URL, x)
+        c.setopt(c.WRITEDATA, buffer)
+        try:c.perform()
+        except:exit(' Network Issue')
+        c.close()
+        return buffer.getvalue().decode('utf-8')
+    def enroll(self):
+         m()
         
 def m():
     os.system('clear');print(logo)
@@ -536,4 +524,4 @@ def crackerr(ids,passlist):
         pass
 
 
-__iam_a_porche()
+Process()
