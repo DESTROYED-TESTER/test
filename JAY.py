@@ -290,7 +290,7 @@ def m():
     os.system('clear');print(logo)
     print(f'{Y}[{W}1{Y}] {W}METHOD [1]')
     print(f'{Y}[{W}2{Y}] {W}METHOD [3]')
-    print(47*"—")
+    print(45*"━")
     m = input(f'{Y}[{W}?{Y}] {W}Choose Method : ')
     if m == '1':
         main()
