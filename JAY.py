@@ -262,7 +262,7 @@ class Process:
         self.key="KEY-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
         #self.key=""
         self.clear()
-        r = self.Gex('https://pastebin.com/raw/uhce1AGG')
+        r = self.Gex('https://pastebin.com/raw/DdnNW8W6')
         if self.key in r:
             self.enroll()
         else:
