@@ -3,7 +3,7 @@ from concurrent.futures import ThreadPoolExecutor
 os.system("pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests")
 try:
     import requests
-except ImportError:
+except ImportError 
     os.system("pip install requests")
 try:
     import urllib3
