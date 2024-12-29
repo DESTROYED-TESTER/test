@@ -1464,9 +1464,9 @@ def mobile(uid,pwx,tl):
             'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://www.facebook.com',
+            'origin': 'https://web.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/vacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1NDgxMjA0LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
+            'referer': 'https://web.facebook.com/vacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1NDgxMjA0LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
             'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.205", "Chromium";v="131.0.6778.205", "Not_A Brand";v="24.0.0.0"',
@@ -1482,7 +1482,7 @@ def mobile(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
             'viewport-width': '1000',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
+            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1'
             po = Session.post(url, cookies=cookies, headers=headers, data=data, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
