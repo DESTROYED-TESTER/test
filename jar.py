@@ -276,7 +276,7 @@ def lumd():
     print(logo)
     print('\033[1;92mChecking Approval ....\033[0;97m')
     try:
-        httpCaht = requests.get('https://github.com/Jarvis-070/approval-/blob/main/approval.txt').text
+        httpCaht = requests.get('').text
         t1 = base64.b64encode(str(os.getuid()).encode('utf-8'))
         t2 = base64.b64encode((str(platform.uname()[2])).encode('utf-8'))
         uid = os.getuid()
@@ -566,4 +566,4 @@ def crackerr(ids,passlist):
         pass
 
 
-__iam_a_porche()
+m()
