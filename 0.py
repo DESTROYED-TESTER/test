@@ -50,7 +50,6 @@ def m():
     
 def main():
     os.system('clear')
-    print(logo)
     code = input(f" {W}ENTER CODE ")
     #code2 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
    # code3 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
