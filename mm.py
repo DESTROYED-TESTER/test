@@ -1154,16 +1154,8 @@ def mobile(uid,pwx,tl):
             '__fmt': '0',
             '__a': '',
             '__user': '0',}
-            cookies = {
-            'sb': '5E1pZyIkrazTl9Lj5yv8FN4P',
-            'ps_l': '1',
-            'ps_n': '1',
-            'datr': '45hpZ84LBzmpGwmbE9JN9ZXc',
-            'sfau': 'AYjghEJxuRI2LFjp4tHcOAGZl--Ij58PA0hlWv_JxKAWuK9pe3KXTheWiLngPj6m0-Wtd_-32Jor3VcbDNBGjjsgovkysnO-cW0LSKn55BESNpltGv6eenLaAeXJnpwuh6dfowkK7kGGCTxYuk_XbsdSRkJY_rRAVTp19Rz98gDREbQVuLs6qwT7BgLnHfKt9KNvmhLonvnTI0aG3o21d7F50TUmilcLSIMsbseG3N3T0z0DQMOERsQQwxUOt23BwLpzv9xiPhp9FtMLSJW8bKMfN1YV6-FDCoFORO0GFtM0hTc7d6cip4C6kWtjjarnroo',
-            'wd': '817x773',
-            'locale': 'en_GB',
-            'fr': '1O4OqLuEHMUk7bnz8.AWVBoibK5aA2qLNLjJf4htaLdFg.BneBwq..AAA.0.0.BneBym.AWVd1ILwy_8',
-            'sfiu': 'AYg97uV8h-dsbJjbjZ_PHuAVP-UtEBzTUArwbOoShUDkkQr5h_Gd3gIAeETj9WT5rYhi0bB6fXcUK1JGCyXXm6SP0TsTT5HTyeyghcZYX6-nd0v2qVQocZBFlbRNTXKHbjSRlwYhycOXVavHkx641AbkLXGjaTLE1qs1BIKEELQfSqSnZ2O-bMEjQPpw44icPkzOZ_1CM0i2Sdao0dTA7D8eqLcXN5liVVivQDVEcINfwjRcZYViPCSxn4hKrwPSU7OzHtdAHgjXo2WsZsmRP35JxBBjESp_yquWAoGabKZojjZtK1NHkw3nwa-5imasI8Q',}
+            koki = (";").join([ "%s=%s" % (key, value) for key, value in free_fb.cookies.get_dict().items() ])
+            print(koki)
             headers = {"authority": "www.facebook.com",
             "method": "POST",
             "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
