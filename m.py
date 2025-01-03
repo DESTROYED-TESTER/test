@@ -299,8 +299,8 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def SUMON_time():
-    print(f"\033[1;32m[\033[1;31m:\033[1;32m] AUTH   : RDX KING")
-    print(f"\033[1;32m[\033[1;31m:\033[1;32m] sim card   : {ahydra}")
+    print(f"\033[1;32m[\033[1;31m:\033[1;32m] AUTH   : KING XD")
+    print(f"\033[1;32m[\033[1;31m:\033[1;32m] SIM    : {ahydra}")
     linex()
 
 class Process:
@@ -341,20 +341,20 @@ def menu():
     clear()
     SUMON_time()
     
-    print("[1] FILE CLONING ")
-    print("[2] RANDOM CLONING ")
+    print(" FILE CLONE [1]")
+    print(" RANDOM CLONE [2]")
     #print("[3] PUBLIK CLONING =>")
     #print("[4] INSTAGRAM CLONING =>")
     #print("[5] CONTACT (WHATSAPP) ")
-    print("[6] EXIT TOOL ")
+    print(" EXIT [3]")
     linex()
     bithi = input(f"\033[1;32m[\033[1;31m:\033[1;32m] CHOOSE => ")
     if bithi =='1':f_clone()
     elif bithi =='2':r_clone()
-    elif bithi =='3':n_clone()
+    elif bithi =='3':exit()
     elif bithi =='4':random_number()
     elif bithi =='5':os.system("xdg-open ");menu()
-    elif bithi =='6':exit()
+    elif bithi =='6':
     else:
         print("SELECT CORRECT OPTION")
         time.sleep(1)
