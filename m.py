@@ -239,7 +239,7 @@ logo =(f"""
  |  _  |/ ___ \| |  | |___) || | | |___|  _ < 
  |_| |_/_/   \_\_|  |_|____/ |_| |_____|_| \_\
                                               
-\033[1;32m------------------------------------------""")
+\033[1;32m----------------------------------------------""")
 
 def check_lock(cid):
     req = str(requests.get(f'https://graph.facebook.com/{cid}/picture?type=normal').text)
@@ -289,14 +289,14 @@ def fresh():
     print(logo)
 #--------[ DIVIDER DEF ]---------#
 def divider():
-    print(f'{green}------------------------------------------')
+    print(f'{green}---------------------------------------------')
 
 def wow(text):
     string = f"{white}({green}{text}{white})"
     return string
 
 def linex():
-    print(f'{green}------------------------------------------')
+    print(f'{green}----------------------------------------------')
 
 def SUMON_time():
     print(f"\033[1;32m[\033[1;31m:\033[1;32m] AUTH   : KING XD")
@@ -348,7 +348,7 @@ def menu():
     #print("[5] CONTACT (WHATSAPP) ")
     print("[3] EXIT ")
     linex()
-    bithi = input(f"\033[1;32m[\033[1;31m:\033[1;32m] CHOOSE => ")
+    bithi = input(f"\033[1;32m[\033[1;31m:\033[1;32m]CHOOSE --")
     if bithi =='1':f_clone()
     elif bithi =='2':r_clone()
     elif bithi =='3':exit()
@@ -427,14 +427,14 @@ def f_clone():
 def r_clone():
     clear()
     SUMON_time()
-    print(" [1] RONDAM FULL NUMBER")
-    print(" [2] RONDAM 4 DIGIT")
+    print("[1] RONDAM FULL NUMBER")
+    print("[2] RONDAM 4 DIGIT")
     #print(" [3] NEPAL RAODOM")
     #print(" [4] BAGLADESH RONDAM")
     #print(" [5] RANDOM CHOICE PASS")
     #print(" [6] GAMING CLONE")
     linex()
-    bithi = input("\033[1;32m[\033[1;31m✓\033[1;32m] CHOOSE => ")
+    bithi = input("\033[1;32m[\033[1;31m:\033[1;32m] CHOOSE => ")
     if bithi =='1':SUMON1()
     elif bithi =='2':SUMON2()
     elif bithi =='3':SUMON3()
@@ -488,33 +488,23 @@ def SUMON2():
     user=[]
     os.system('clear')
     print(logo)
-    print('[+] USE YOUR FOUR DIGIT OF SIM NUMBER  (6377)')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    kode = input('[+] INPUT CODE : ')
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    limit = int(input('[+] LIMIT CLONE : '))
+    print('[:] EXAMPLE - 9980 6797 6566')
+    print(f'{green}---------------------------------------------')
+    kode = input('[:] INPUT CODE : ')
+    print(f'{green}---------------------------------------------')
+    limit = int(input('[:] LIMIT : '))
     for nmbr in range(limit):
         nmp = ''.join(random.choice(string.digits) for _ in range(6))
         user.append(nmp)
     clear()
-    print("                CHOOSE METHOD                       ")
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    print(" [1] METHOD (1) ")
-    print(" [2] METHOD (2) ")
-    print(" [3] METHOD (3) ")
-    print(" [4] METHOD (4) ")
-    print(" [5] METHOD (5) ")
-    print(" [6] METHOD (6) ")
+    print(" [1] METHOD ")
+    print(" [2] METHOD ")
+    print(" [3] METHOD ")
+    print(" [4] METHOD ")
+    print(" [5] METHOD ")
+    #print(" [6] METHOD ")
     linex()
-    SUMONfire = input("[+] [CHOOSE] :- ")
-    linex()
-    print(" [?] Show Cookies : (Y/N) ")
-    linex()
-    c = input(" [?] INPUT : ")
-    if c in ["Y", "y"]:
-        cookie_show.append("yes")
-    else:
-        cookie_show.append("no")
+    SUMONfire = input("[:] [CHOOSE] :- ")
     with ThreadPool(max_workers=50) as SUMON_xd:
         clear()
         SUMON_time()
