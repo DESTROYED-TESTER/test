@@ -216,7 +216,7 @@ os.system("xdg-open ")
 os.system("clear")
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"    
 logo =(f"""
-{faltu} {black}                                            {pvt}
+{faltu} {black} {datex}                                           {pvt}
 \033[1;32m
   _   _    _    __  __ ____ _____ _____ ____  
  | | | |  / \  |  \/  / ___|_   _| ____|  _ \ 
@@ -298,8 +298,8 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def SUMON_time():
+    print(f"\033[1;32m[\033[1;31m:\033[1;32m] AUTH   : RDX KING")
     print(f"\033[1;32m[\033[1;31m:\033[1;32m] sim card   : {ahydra}")
-    print(f"\033[1;32m[\033[1;31m:\033[1;32m] Date       : {datex} ")
     linex()
 
 class Process:
