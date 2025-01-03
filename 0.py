@@ -46,7 +46,7 @@ def m():
     if m == '1':
         main()
     elif m == '2':
-        mainn()
+        main()
     
 def main():
     os.system('clear')
