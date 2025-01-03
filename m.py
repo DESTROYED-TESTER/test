@@ -158,7 +158,7 @@ xvx=open('socksku.txt','r').read().splitlines()
 #_____________________[SIM NAME CODE]____________________________#
 try:
     output = subprocess.check_output('getprop gsm.operator.alpha', shell=True).decode('utf-8')
-    ahydra = output.replace(',', '|').replace('\n', '')
+    ahydra = output.replace(',', '').replace('\n', '')
 except Exception as e:
     pass
     ahydra = None
@@ -216,7 +216,7 @@ os.system("xdg-open ")
 os.system("clear")
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"    
 logo =(f"""
-{faltu} {black}"                                           ".... {pvt}
+{faltu} {black}                                            {pvt}
 \033[1;32m
   _   _    _    __  __ ____ _____ _____ ____  
  | | | |  / \  |  \/  / ___|_   _| ____|  _ \ 
