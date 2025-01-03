@@ -348,7 +348,7 @@ def menu():
     #print("[5] CONTACT (WHATSAPP) ")
     print("[3] EXIT ")
     linex()
-    bithi = input(f"\033[1;32m[\033[1;31m:\033[1;32m]CHOOSE --")
+    bithi = input(f"\033[1;32m[\033[1;31m:\033[1;32m]CHOOSE - ")
     if bithi =='1':f_clone()
     elif bithi =='2':r_clone()
     elif bithi =='3':exit()
@@ -509,9 +509,8 @@ def SUMON2():
         clear()
         SUMON_time()
         tl = str(len(user))
-        print(f"[:]  LIMIT IDZ  : "+tl+" ")
-        print(f"[:]  CODE CHOOSED : "+kode)
-        linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ');linex()
+        print(f"[:]  LIMIT  : "+tl+" ")
+        linex();print(' FLIGHT MODE ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
             pwx = [uid[:6],uid[:7],uid[:8],uid[:9],uid]
