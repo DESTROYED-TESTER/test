@@ -42,7 +42,7 @@ def m():
     print(f' {W}METHOD 1')
     print(f' {W}METHOD 2')
     print(f'-')
-    m = input(f' {W}CHOICE     ')
+    m = input(f' {W}CHOICE  ')
     if m == '1':
         main()
     elif m == '2':
@@ -51,16 +51,15 @@ def m():
 def main():
     os.system('clear')
     print(logo)
-    code = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
+    code = input(f" {W}ENTER CODE ")
     #code2 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
    # code3 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
     #code = random.choice([code1,code2,code3])
-    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
+    limit = input(f' {W}ENTER LIMID ')
     for a in range(int(limit)):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
     with ThreadPoolExecutor(max_workers=80) as Submits:
-        print(47*"\x1b[1;97m—") 
         for next in gen:
             ids = code + next
             mk = ids[:6]
