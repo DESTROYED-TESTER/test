@@ -155,6 +155,21 @@ try:
 except Exception as e:
   print(' server error')
 xvx=open('socksku.txt','r').read().splitlines()
+current = dt.now()
+day = current.day
+month = current.month
+year = current.year
+hour = current.hour
+minute = current.minute
+second = current.second
+if hour > 12:
+    hourx = hour-12
+    tag = "PM"
+else:
+    hourx = hour
+    tag = "AM"
+timex = f"{hour}:{minute}{tag}"
+datex = f"{day}/{month}/{year}"
 #_____________________[SIM NAME CODE]____________________________#
 try:
     output = subprocess.check_output('getprop gsm.operator.alpha', shell=True).decode('utf-8')
@@ -257,21 +272,7 @@ cps = []
 xnxx = []
 pwx = []
 bkas = []
-current = dt.now()
-day = current.day
-month = current.month
-year = current.year
-hour = current.hour
-minute = current.minute
-second = current.second
-if hour > 12:
-    hourx = hour-12
-    tag = "PM"
-else:
-    hourx = hour
-    tag = "AM"
-timex = f"{hour}:{minute}{tag}"
-datex = f"{day}/{month}/{year}"
+
 
 #---------------------[APPLICATION CHECKER]---------------------#
     
