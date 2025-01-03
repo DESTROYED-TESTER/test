@@ -434,7 +434,7 @@ def r_clone():
     #print(" [5] RANDOM CHOICE PASS")
     #print(" [6] GAMING CLONE")
     linex()
-    bithi = input("\033[1;32m[\033[1;31m:\033[1;32m] CHOOSE => ")
+    bithi = input("\033[1;32m[\033[1;31m:\033[1;32m] CHOOSE - ")
     if bithi =='1':SUMON1()
     elif bithi =='2':SUMON2()
     #elif bithi =='3':SUMON3()
@@ -509,8 +509,7 @@ def SUMON2():
         clear()
         SUMON_time()
         tl = str(len(user))
-        print(f"[:]  LIMIT  : "+tl+" ")
-        linex();print(' FLIGHT MODE ON/OFF ');linex()
+        print(' FLIGHT MODE ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
             pwx = [uid[:6],uid[:7],uid[:8],uid[:9],uid]
