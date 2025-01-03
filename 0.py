@@ -59,6 +59,7 @@ def main():
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
     with ThreadPoolExecutor(max_workers=80) as Submits:
+        os.system('clear')
         for next in gen:
             ids = code + next
             mk = ids[:6]
