@@ -41,7 +41,7 @@ def m():
     os.system('clear');print(logo)
     print(f' {W}METHOD 1')
     print(f' {W}METHOD 2')
-
+    print(f'-')
     m = input(f' {W}CHOICE     ')
     if m == '1':
         main()
