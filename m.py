@@ -354,7 +354,7 @@ def menu():
     elif bithi =='3':exit()
     elif bithi =='4':random_number()
     elif bithi =='5':os.system("xdg-open ");menu()
-    elif bithi =='6':
+    elif bithi =='6':exit()
     else:
         print("SELECT CORRECT OPTION")
         time.sleep(1)
