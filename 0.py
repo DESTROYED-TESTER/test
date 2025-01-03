@@ -34,16 +34,14 @@ logo = (f"""
 | .--' |  .--' ' ,-.  | | .--' |     /  
 \ `--. |  |    \ '-'  | \ `--. |  \  \  
  `---' `--'     `--`--'  `---' `--'`--' 
-                                                              
-\033[1;97m———————————————————————————————————————————————""")
+                                                              """)
 
 myid=uuid.uuid4().hex[:5].upper() 
 def m():
     os.system('clear');print(logo)
-    print(f'{Y}[{W}1{Y}] {W}HOST 1 [Web]')
-    print(f'{Y}[{W}2{Y}] {W}HOST 2 [IOS]')
-    print(47*"—")
-    m = input(f'{Y}[{W}?{Y}] {W}Choose Method : ')
+    print(f'{W}[{W}1{W}] {W}METHOD 1')
+    print(f'{W}[{W}2{W}] {W}METHOD 2')
+    m = input(f'{W}[{W}?{W}] {W}CHOICE ')
     if m == '1':
         main()
     elif m == '2':
