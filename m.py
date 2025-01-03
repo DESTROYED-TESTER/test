@@ -239,7 +239,7 @@ logo =(f"""
  |  _  |/ ___ \| |  | |___) || | | |___|  _ < 
  |_| |_/_/   \_\_|  |_|____/ |_| |_____|_| \_\
                                               
-\033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
+\033[1;32m------------------------------------------""")
 
 def check_lock(cid):
     req = str(requests.get(f'https://graph.facebook.com/{cid}/picture?type=normal').text)
@@ -289,14 +289,14 @@ def fresh():
     print(logo)
 #--------[ DIVIDER DEF ]---------#
 def divider():
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(f'{green}------------------------------------------')
 
 def wow(text):
     string = f"{white}({green}{text}{white})"
     return string
 
 def linex():
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+    print(f'{green}------------------------------------------')
 
 def SUMON_time():
     print(f"\033[1;32m[\033[1;31m:\033[1;32m] AUTH   : KING XD")
