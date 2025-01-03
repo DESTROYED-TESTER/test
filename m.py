@@ -218,16 +218,12 @@ faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 logo =(f"""
 {faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
 \033[1;32m
-    █████╗ ████████╗ ██████╗ ███╗   ███╗
-   ██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
-   ███████║   ██║   ██║   ██║██╔████╔██║
-   ██╔══██║   ██║   ██║   ██║██║╚██╔╝██║
-   ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
-   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \033[1;34m ᴾᴿᴼ
-\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
-\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins
-\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mFile × \033[1;36mRandom 
+  _   _    _    __  __ ____ _____ _____ ____  
+ | | | |  / \  |  \/  / ___|_   _| ____|  _ \ 
+ | |_| | / _ \ | |\/| \___ \ | | |  _| | |_) |
+ |  _  |/ ___ \| |  | |___) || | | |___|  _ < 
+ |_| |_/_/   \_\_|  |_|____/ |_| |_____|_| \_\
+                                              
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 def check_lock(cid):
@@ -302,17 +298,15 @@ def linex():
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 
 def SUMON_time():
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Device     : {manufacturer_name}-android-v-{android_version}")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] sim card   : {ahydra}")
-    print(f"\033[1;32m[\033[1;31m✓\033[1;32m] location   : {current_city}-{current_country} ")
     print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Date       : {datex} ")
     linex()
 
 class Process:
     def __init__(self):
         self.cc=[]
-        self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
-        #self.key=""
+        #self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
+        self.key=""
         self.clear()
         r = self.Gex('https://pastebin.com/raw/uhce1AGG')
         if self.key in r:
