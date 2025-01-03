@@ -39,9 +39,10 @@ logo = (f"""
 myid=uuid.uuid4().hex[:5].upper() 
 def m():
     os.system('clear');print(logo)
-    print(f'{W}[{W}1{W}] {W}METHOD 1')
-    print(f'{W}[{W}2{W}] {W}METHOD 2')
-    m = input(f'{W}[{W}?{W}] {W}CHOICE ')
+    print(f' {W}METHOD 1')
+    print(f' {W}METHOD 2')
+
+    m = input(f' {W}CHOICE     ')
     if m == '1':
         main()
     elif m == '2':
