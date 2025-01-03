@@ -437,10 +437,10 @@ def r_clone():
     bithi = input("\033[1;32m[\033[1;31m:\033[1;32m] CHOOSE => ")
     if bithi =='1':SUMON1()
     elif bithi =='2':SUMON2()
-    elif bithi =='3':SUMON3()
-    elif bithi =='4':SUMON4()
-    elif bithi =='5':SUMON5()
-    elif bithi =='6':SUMON6()
+    #elif bithi =='3':SUMON3()
+    #elif bithi =='4':SUMON4()
+    #elif bithi =='5':SUMON5()
+    #elif bithi =='6':SUMON6()
     else:
         print("SELECT CORRECT OPTION")
         time.sleep(1)
@@ -449,7 +449,7 @@ def r_clone():
 def SUMON1():
     fresh()
     print(f" {wow('â¢')} ENTER FULL NUMBER  ")
-    print(f" {wow('â¢')} EXAMPLE : {green}8389066877 ")
+    print(f" {wow('â¢')} EXAMPLE : {green}8898765678 ")
     divider()
     number = input(f" {wow('-')} ENTER NUMBER : {green}")
     limit = int(input(f" {wow('-')} ENTER LIMIT  : {green}"))
@@ -509,8 +509,8 @@ def SUMON2():
         clear()
         SUMON_time()
         tl = str(len(user))
-        print(f"[+] YOUR LIMIT IDZ  : "+tl+" ")
-        print(f"[+] YOUR CODE CHOOSED : "+kode)
+        print(f"[:]  LIMIT IDZ  : "+tl+" ")
+        print(f"[:]  CODE CHOOSED : "+kode)
         linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
