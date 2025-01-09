@@ -247,7 +247,7 @@ for ua in range(10000):
     uaku2=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
     uas.append(uaku2)
 
-def ua():
+def uaa():
     android_version = str(random.randint(4,13))
     application_version = str(random.randint(100,420))+".0.0."+str(random.randint(11,99))+"."+str(random.randint(100,200))
     application_version_code = str(random.randint(111111111,999999999))
@@ -1578,7 +1578,7 @@ def x(uid,pwx,tl):
             'X-Fb-Net-Hni': str(random.randint(20000,40000)),
             'X-Fb-Connection-Quality': 'GOOD',
             'Zero-Rated': '0',
-            'User-Agent': '[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]',
+            'User-Agent': uaa(),
             'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             'X-Fb-Connection-Bandwidth': '24807555',
             'X-Fb-Connection-Type': 'MOBILE.LTE',
