@@ -430,7 +430,7 @@ def cracker(ids,passlist):
     except requests.exceptions.ConnectionError:
         time.sleep(20)
     except Exception as e:
-        #print(f"\nError: {e}")
+        print(f"\nError: {e}")
         pass
 
 def mainn():
