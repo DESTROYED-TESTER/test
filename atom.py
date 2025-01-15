@@ -187,8 +187,7 @@ logo=(f"""
 {red}[{white}√{red}]{green} TOOLTYPE {white} ▶︎{green} FREE {red}({green}FILE {white}& {green}RANDOM{red})
 {red}[{white}√{red}]{green} GITHUB    {white}▶︎ github.com/MR-ERROR-707
 {red}[{white}√{red}]{green} VERSION   {white}▶ {green}︎{version}
-{white}================================================
-""")
+{white}================================================""")
 
 #====================[HOME-PAGE]==========================
 def ___ERROR___():
