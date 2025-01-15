@@ -1202,7 +1202,7 @@ def mbasic(uid,pwx,tl):
             'upgrade-insecure-requests': '1',
             'origin': 'https://touch.facebook.com',
             'content-type': 'application/x-www-form-urlencoded',
-            'user-agent': f"Mozilla/5.0 (Linux; Android 6; ; Windows 10 Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Kiwi Chrome/103.0.4750.47 Mobile Safari/537.36",
+            'user-agent': "Mozilla/5.0 (Linux; Android 14; 22041216I Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/132.0.6834.79 Mobile Safari/537.36",
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
             'x-requested-with': 'XMLHttpRequest',
             'sec-fetch-site': 'same-origin',
