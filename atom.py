@@ -239,7 +239,7 @@ def ___RANDOM___():
 #====================[INDIA RANDOM]==========================
 def ___INDIA___():
     clear()
-    print(f'{red}[{white}◆{red}] {green}SIM CODES{white} ▶︎ {red}[{white}+91701 +91902 +91934 +91639{red}]');line()
+    print(f'{red}[{white}◆{red}] {green}SIM CODES{white} ▶︎ {red}[{white}7789 9011 6577 8801{red}]');line()
     code = input(f'{red}[{white}◆{red}]{green} Choice    {white}▶︎ \x1b[38;5;208m')
     clear()
     print(f'{red}[{white}◆{red}] {green}EXAMPLE {white}  ▶︎ {red}[{white}10000 20000 30000{red}]');line()
@@ -248,6 +248,7 @@ def ___INDIA___():
     print("\x1b[38;5;160m[\033[1;37mA\x1b[38;5;160m]\x1b[38;5;46m METHOD 1\n\x1b[38;5;160m[\033[1;37mB\x1b[38;5;160m]\x1b[38;5;46m METHOD 2\n\x1b[38;5;160m[\033[1;37mC\x1b[38;5;160m]\x1b[38;5;46m METHOD 3\n\x1b[38;5;160m[\033[1;37mD\x1b[38;5;160m]\x1b[38;5;46m METHOD 4");line()
     ___error___=input("\x1b[38;5;160m[\033[1;37m◆\x1b[38;5;160m] \x1b[38;5;46mCHOOSE \033[1;37m▶︎ \x1b[38;5;208m")
     line()
+    clear()
     print("\x1b[38;5;160m[\033[1;37mA\x1b[38;5;160m]\x1b[38;5;46m AUTO PASSWORD")
     print("\x1b[38;5;160m[\033[1;37mB\x1b[38;5;160m]\x1b[38;5;46m CHOICE PASSWORD")
     plist = []
@@ -264,7 +265,7 @@ def ___INDIA___():
         for i in range(psl):
             plist.append(input(f'{red}[{white}√{red}] {green}PASSWORD NO.{i+1} {white}▶︎ \x1b[38;5;208m'));line()
     for x in range(limit):
-        nmp = "". join(random.choice(string.digits) for _ in range(7))
+        nmp = "". join(random.choice(string.digits) for _ in range(6))
         user.append(nmp)
     clear()
     with ThreadPoolExecutor(max_workers=30) as error:
