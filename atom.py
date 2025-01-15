@@ -193,8 +193,8 @@ logo=(f"""
 #====================[HOME-PAGE]==========================
 def ___ERROR___():
     clear()
-    print(f'{red}[{white}B{red}]{green} RANDOM CLONING')
-    print(f'{red}[{white}C{red}]{green} JOIN GROUP')
+    print(f'{red}[{white}A{red}]{green} RANDOM CLONING')
+    print(f'{red}[{white}B{red}]{green} JOIN GROUP')
     line()
     __ERROR__ = input(f'{red}[{white}◆{red}]{green} Selection {white}:{yellow} ')
     if __ERROR__ in['A','a','01','1']:___RANDOM___()
