@@ -251,12 +251,15 @@ def ___INDIA___():
     clear()
     print("\x1b[38;5;160m[\033[1;37mA\x1b[38;5;160m]\x1b[38;5;46m AUTO PASSWORD")
     print("\x1b[38;5;160m[\033[1;37mB\x1b[38;5;160m]\x1b[38;5;46m CHOICE PASSWORD")
+    line()
     plist = []
     __CH__ = input("\x1b[38;5;160m[\033[1;37m◆\x1b[38;5;160m] \x1b[38;5;46mCHOOSE \033[1;37m▶︎ \x1b[38;5;208m")
-    if __CH__ in ["A","a","1"]:       
+    if __CH__ in ["A","a","1"]:  
+        plist.append('first6')
+        plist.append('first8')
+        plist.append('last6')
         plist.append('57273200')
         plist.append('59039200')
-        plist.append('07860786')
         
     elif __CH__ in ["B","b","2"]:
         psl = int(input(f'{red}[{white}√{red}] {green}INPUT PASS LIMITS {white}▶︎ \x1b[38;5;208m'));line()
