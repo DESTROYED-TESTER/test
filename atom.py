@@ -176,18 +176,21 @@ def clear():
     print(logo)
 #===================[LOGO]===========================
 os.system('xdg-open ')
+faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"  
 logo=(f"""
-{green}M   M RRRR      EEEE RRRR  RRRR   OOO  RRRR  
-{green}MM MM R   R     E    R   R R   R O   O R   R 
-{green}M M M RRRR      EEE  RRRR  RRRR  O   O RRRR  
-{green}M   M R R       E    R R   R R   O   O R R   
-{green}M   M R  RR     EEEE R  RR R  RR  OOO  R  RR
-{white}================================================
-{red}[{white}√{red}]{green} DEVELOPER {white}▶ {green}︎MR ERROR
-{red}[{white}√{red}]{green} TOOLTYPE {white} ▶︎{green} FREE {red}({green}FILE {white}& {green}RANDOM{red})
-{red}[{white}√{red}]{green} GITHUB    {white}▶︎ github.com/MR-ERROR-707
-{red}[{white}√{red}]{green} VERSION   {white}▶ {green}︎{version}
-{white}================================================""")
+{faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
+\033[1;32m
+    █████╗ ████████╗ ██████╗ ███╗   ███╗
+   ██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
+   ███████║   ██║   ██║   ██║██╔████╔██║
+   ██╔══██║   ██║   ██║   ██║██║╚██╔╝██║
+   ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
+   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \033[1;34m ᴾᴿᴼ
+\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
+\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins
+\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mRandom 
+\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 #====================[HOME-PAGE]==========================
 def ___ERROR___():
