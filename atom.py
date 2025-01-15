@@ -1,6 +1,6 @@
 #-*-coding:utf-8-*-
 #!/usr/bin/python3
-#!/coding by MR ERROR
+#!/coding by sumon
 import os,zlib,time,sys
 from os import system as osRUB
 from os import system as cmd
@@ -168,9 +168,9 @@ except:
 version = version.strip()
 #=================[LINE × CLEAR]=============================
 def line():
-    print(f'{white}================================================')
+    print(f'{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 def linex():
-    print(f'{white}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    print(f'{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
 def clear():
     os.system('clear')
     print(logo)
@@ -280,11 +280,11 @@ def ___INDIA___():
             elif ___error___ in ['B','b','02','2']:error.submit(randm1, ids, psd,tl)
             elif ___error___ in ['C','c','03','3']:error.submit(randm2, ids, psd,tl)
             elif ___error___ in ['D','d','04','4']:error.submit(randm3, ids, psd,tl) 
-    print(f'\r{white}================================================')
+    print(f'\r{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(f'{red}[{white}√{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
     print(f'{red}[{white}√{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
     print(f'{red}[{white}√{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
-    print(f'\r{white}================================================')
+    print(f'\r{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     input(f"{red}[{white}√{red}]{green} PRESS ENTER TO BACK MENU ")
     ___ERROR___()
 #====================[BD RANDOM]==========================
@@ -352,11 +352,11 @@ def ___BD___():
             elif mtd in ['B','b','02','2']:error.submit(randm1, ids, psd,tl)
             elif mtd in ['C','c','03','3']:error.submit(randm2, ids, psd,tl)
             elif mtd in ['D','d','04','4']:error.submit(randm3, ids, psd,tl)
-    print(f'\r{white}================================================')
+    print(f'\r{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(f'{red}[{white}√{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
     print(f'{red}[{white}√{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
     print(f'{red}[{white}√{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
-    print(f'\r{white}================================================')
+    print(f'\r{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     input(f"{red}[{white}√{red}]{green} PRESS ENTER TO BACK MENU ")
     ___ERROR___()
 #====================[NEPAL RANDOM]==========================
@@ -427,11 +427,11 @@ def ___NP___():
             elif mtd in ['C','c','03','3']:error.submit(randm2, ids, psd,tl)
             elif mtd in ['D','d','04','4']:error.submit(randm3, ids, psd,tl)
     print('')
-    print(f'\r{white}================================================')
+    print(f'\r{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     print(f'{red}[{white}√{red}]{green} THE PROCESS HAS BEEN COMPLETE...')
     print(f'{red}[{white}√{red}]{green} TOTAL OK {white}:{green} %s' % str(len(oks)))
     print(f'{red}[{white}√{red}]{green} TOTAL CP {white}:{red} %s' % str(len(cps)))
-    print(f'\r{white}================================================')
+    print(f'\r{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     input(f"{red}[{white}√{red}]{green} PRESS ENTER TO BACK MENU ")
     ___ERROR___()
 #====================[RANDOM M1]==========================
