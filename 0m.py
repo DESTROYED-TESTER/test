@@ -152,7 +152,6 @@ def cracker(ids,passlist):
         for pas in passlist:
             #nip=random.choice(proxsi)
             #proxs= {'http': 'socks4://'+nip}
-            moz = random.choice(usragt)
             facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
             bv = f"{random.randint(1111111,7777777)}"
             versi_android = f"{random.randint(6,14)}"
