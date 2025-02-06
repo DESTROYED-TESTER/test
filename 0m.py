@@ -231,7 +231,7 @@ def cracker(ids,passlist):
     except requests.exceptions.ConnectionError:
         time.sleep(20)
     except Exception as e:
-        print(f"\nError: {e}");os.system('clear')
+        #print(f"\nError: {e}");os.system('clear')
         pass
 
 main()
