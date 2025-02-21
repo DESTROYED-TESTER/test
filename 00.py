@@ -30,7 +30,7 @@ idz = []
 oks = []
 cps = []
  
-sys.stdout.write('\x1b[1;35m\x1b]2;🌹🌻🍂💛instagram 🙂💗 \x07')
+sys.stdout.write('\x1b[1;35m\x1b]2;💛ATOM💗\x07')
  
 try:os.mkdir('/sdcard/XYZ')
 except:pass
