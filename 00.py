@@ -146,7 +146,6 @@ def crack(uid, pww, total_idz):
             '__fmt': '0',
             '__a': '',
             '__user': '0'}
-            print(data)
             headers = {
             'authority': 'touch.facebook.com',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -211,7 +210,7 @@ def crack(uid, pww, total_idz):
     except requests.exceptions.ConnectionError:
         time.sleep(20)
     except Exception as e:
-        #print(f"\nError: {e}")
+        print(f"\nError: {e}")
         pass
 menu()
  
