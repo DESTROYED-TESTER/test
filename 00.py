@@ -73,13 +73,6 @@ def menu():
         print(f"\n\033[1;91m Select valid option ....")
         time.sleep(3)
         menu()
-
-def check_lock(cid):
-    req = str(requests.get(f'https://graph.facebook.com/{cid}/picture?type=normal').text)
-    if 'Photoshop' in req:
-        return 'live'
-    else:
-        return 'lock'
 ###-------[DEF CLONING]-----------####
 def random_number():
     clear()
@@ -121,7 +114,7 @@ def crack(uid, pww, total_idz):
     global cps
     global bkas
     x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-    sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)}")
+    sys.stdout.write(f"\r{x}[SUMON] {loop} \033[1;92m{len(oks)} \033[1;91m{len(cps)}"  )
     sys.stdout.flush()
     try:
         for pw in pww:
@@ -222,7 +215,7 @@ def crack(uid, pww, total_idz):
     except requests.exceptions.ConnectionError:
         time.sleep(20)
     except Exception as e:
-        print(f"\nError: {e}");os.system("clear")
+        #print(f"\nError: {e}")
         pass
 menu()
  
