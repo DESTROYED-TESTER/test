@@ -13,7 +13,6 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime 
 from bs4 import BeautifulSoup
 ###-------[BASIC COLORS]-----------####
-url=https://free.facebook.com/login/device-based/regular/login/?refsrc=deprecated&amp;lwv=100&amp;refid=8
 reset = "\033[0m"
 red = "\033[1;31m"
 green = "\033[1;32m"
