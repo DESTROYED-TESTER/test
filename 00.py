@@ -92,7 +92,7 @@ def random_number():
         total_idz = str(len(idz))
         print(f' \033[1;32m(√) \033[1;32mTotal IDs  :\033[1;32m ',total_idz)
         print(' \033[1;32m(\033[1;32m√\033[1;32m) \033[1;32mCHOICE SIM CODE : \033[1;32m'+code)
-        print(" \033[1;32m(√) \033[1;32mUse Flight Mode For Speed UP")
+        print(" \033[1;32m(√) \033[1;32mUse Flight Mode")
         linex()
         for xyz in idz:
             uid = code+xyz
@@ -113,7 +113,7 @@ def crack(uid, pww, total_idz):
     global cps
     global bkas
     x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\033[1;32m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-    sys.stdout.write(f"\r{x}[SUMON]- {loop} \033[1;92m{len(oks)} \033[1;91m{len(cps)}  ")
+    sys.stdout.write(f"\r{x}[SUMON] - \033[1;33m{loop} \033[1;92m{len(oks)} \033[1;91m{len(cps)}  ")
     sys.stdout.flush()
     try:
         for pw in pww:
