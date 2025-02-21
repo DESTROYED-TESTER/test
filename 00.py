@@ -91,8 +91,6 @@ def random_number():
     with ThreadPoolExecutor(max_workers=30) as XYZ:
         clear()
         total_idz = str(len(idz))
-        print(f"\033[1;96m KING IS ALWAYS KING")
-        print(f"\033[1;96m SOME RESPECT")
         linex()
         print(f' \033[1;32m(√) \033[1;37mTotal IDs  :\033[1;32m ',total_idz)
         print(' \033[1;37m{\033[1;32m+\033[1;37m} \033[1;35mCHOICE SIM CODE : \033[1;32m'+code)
