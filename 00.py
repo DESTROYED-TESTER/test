@@ -29,32 +29,20 @@ loop = 0
 idz = []
 oks = []
 cps = []
- 
 sys.stdout.write('\x1b[1;35m\x1b]2;💛ATOM💗\x07')
- 
 try:os.mkdir('/sdcard/XYZ')
 except:pass
- 
- 
 ###-------[LOGO]-----------####
 logo= f'''\033[1;97m---------------------------------------------------
  \033[1;97m[\033[1;92m•\033[1;97m] Author   : sumon roy
 \033[1;97m---------------------------------------------------'''
- 
- 
 ###-------[CLEAR TERMINAL]-----------####
 def clear():
     os.system("clear")
     print(logo)
- 
- 
- 
 ###-------[LINE]-----------####
 def linex():
     print(f"\033[1;97m--------------------------------------------------")
- 
- 
- 
 ###-------[MSIN MENU]-----------####
 def menu():
     clear()
@@ -72,8 +60,6 @@ def menu():
         print(f"\n\033[1;91m Select valid option ....")
         time.sleep(3)
         menu()
- 
- 
 ###-------[DEF CLONING]-----------####
 def random_number():
     clear()
