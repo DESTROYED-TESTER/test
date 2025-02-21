@@ -175,7 +175,7 @@ def ATOM(uid, pww, total_idz):
             'sec-fetch-dest': 'document',
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
-            response = session.post('https://web.facebook.com/login/device-based/regular/login/?refsrc=deprecated&amp;lwv=100&amp;refid=8',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
+            response = session.post('https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
             #print(response)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
