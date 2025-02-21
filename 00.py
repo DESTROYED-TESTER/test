@@ -213,7 +213,7 @@ def crack(uid, pww, total_idz):
     except ce:
         time.sleep(20)
     except Exception as error:
-        #print({error})
+        print({error})
         pass
 menu()
  
