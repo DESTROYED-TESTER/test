@@ -173,7 +173,7 @@ def ATOM(uid, pww, total_idz):
             "sec-ch-prefers-color-scheme":"dark",
             "Accept-Encoding":"gzip, deflate, br, zstd",
             "Accept-Language":"en-GB,en-US;q=0.9,en;q=0.8"}
-            response = session.post('https://m.facebook.com/login/device-based/login/async/',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
+            response = session.post('https://mbasic.facebook.com/login/device-based/login/async/',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
             #print(data)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
