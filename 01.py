@@ -141,7 +141,7 @@ def ATOM(uid, pww, total_idz):
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'true',
             'ab_test_data': '//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVA//VV/VVABFAR',
-            'encpass': '"#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'datr': 'ES-iZxg35DqKN--TlZlh4Mwu',
             'sb': 'ES-iZ0S0Q3TXxuSylCRJGHa3',
