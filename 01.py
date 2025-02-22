@@ -125,7 +125,7 @@ def ATOM(uid, pww, total_idz):
             'email': uid,
             'login_source': 'comet_headerless_login',
             'next': '',
-            'encpass': '#PWD_BROWSER:5:1740232453:AZJQAB81pR0FfaOCusg/R7/q3/cPZeQwkpemTGjWn+76bL8zQRP9u3jnOHAVWYN1uNr9OlzcjIO2P25AoR2ZUe9cmOcVoiKpMaYOJPhjbYN5S1zSTs3xOylGzJmMvOWqnpGgaIpxUgfDGUY=',}
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             headers = {
             'authority': 'p.facebook.com',
             'method': 'POST',
