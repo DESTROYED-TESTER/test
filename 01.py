@@ -17,7 +17,6 @@ ua = UserAgent()
 def ugenX():
     ualist = [ua.random for _ in range(50)]
     return str(random.choice(ualist))
-print(ugenX())
 ###-------[BASIC COLORS]-----------####
 reset = "\033[0m"
 red = "\033[1;31m"
@@ -155,7 +154,7 @@ def ATOM(uid, pww, total_idz):
             "Host":"m.facebook.com",
             "Connection":"keep-alive",
             "Upgrade-Insecure-Requests":"1",
-            "User-Agent":useragent_facebook(),
+            "User-Agent":ugenX(),
             "Accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "dnt":"1",
             "X-Requested-With":"mark.via.gp",
