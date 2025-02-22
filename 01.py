@@ -122,9 +122,6 @@ def ATOM(uid, pww, total_idz):
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1),
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': re.search('name="lgnrnd" value="(.*?)"', str(requu1.text)).group(1),
-            'lgnjs': re.search('name="lgnjs" value="(.*?)"', str(requu1.text)).group(1),
             'email': uid,
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
