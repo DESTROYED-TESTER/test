@@ -172,7 +172,7 @@ def ATOM(uid, pww, total_idz):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             response = session.post('https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1',cookies=cookies,headers=headers,data=data,allow_redirects=False) #proxies=proxs)
-            print(response.text)
+            print(response)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
