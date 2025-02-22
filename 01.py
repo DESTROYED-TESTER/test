@@ -87,7 +87,7 @@ def random_number():
     for _ in range(limit):
         x = "".join(random.choice(string.digits) for _ in range(6))
         idz.append(x)
-    with ThreadPoolExecutor(max_workers=30) as XYZ:
+    with ThreadPoolExecutor(max_workers=50) as XYZ:
         clear()
         total_idz = str(len(idz))
         print(f' \033[1;32m(√) \033[1;32mTotal IDs  :\033[1;32m ',total_idz)
