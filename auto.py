@@ -294,6 +294,25 @@ print(f"Generated email: {email}")
 code = get_code_temp_plus(email)
 print(f"Verification code: {code}")
 
+import requests
+import re
+
+def GetEmail():
+    response = requests.post('https://api.internal.temp-mail.io/api/v3/email/new', timeout=10).json()
+    return response.get('email')
+
+def GetCode(email):
+    response = requests.get(f'https://api.internal.temp-mail.io/api/v3/email/{email}/messages', timeout=10).text
+    match = re.search(r'FB-(\d+)', response)
+    return match.group(1) if match else None
+
+# Example usage
+email = GetEmail()
+print(f"Email: {email}")
+if email:
+    coddde = GetCode(email)
+    print(f"Code: {coddde}" if coddde else "Code not found")
+
 def get_facebook_profile_info(username):
         response = requests.get(f'https://www.facebook.com/{username}')
         if response.status_code == 200:
@@ -399,7 +418,7 @@ def main() -> None:
         mts = ses.get("https://touch.facebook.com").text
         m_ts = re.search(r'name="m_ts" value="(.*?)"',str(mts)).group(1)
         formula = extractor(response.text)
-        email2 = get_temp_plus()
+        email2 = GetEmail()
         phone2 = GetPhone()
         email3 = GetEmails()
         firstname,lastname = fake_name()
@@ -531,7 +550,7 @@ def main() -> None:
                 'soft': 'hjk',
             }
             con_sub = ses.get('https://x.facebook.com/confirmemail.php', params=params, headers=header2).text
-            valid = get_code_temp_plus(email2)
+            valid = GetCode(email2)
             if valid:
                 print(Panel(f"[bold white] OTP SENT TO MAIL",style="bold magenta2"))
                 print(Panel(f"[bold white] VERIFICATION CODE : {valid}",style="bold magenta2"))
