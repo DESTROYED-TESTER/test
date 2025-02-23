@@ -33,7 +33,6 @@ class TempEmailGenerator:
             
             # Step 3: Store cookies for further requests
             self.cookie_email = '; '.join([f'{key}={value}' for key, value in self.session.cookies.get_dict().items()])
-            print(email)
             return email
         
         except requests.RequestException as e:
@@ -74,3 +73,8 @@ class TempEmailGenerator:
         except Exception as e:
             print(f"Unexpected error: {e}")
             return None
+
+
+print(email)
+print(code)
+
