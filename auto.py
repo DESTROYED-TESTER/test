@@ -90,6 +90,86 @@ def fake_password():
     namepassword = f'{name}.{jam}.{str(random.randrange(1000,10000))}'
     return namepassword
 
+import requests
+import time
+import re
+from bs4 import BeautifulSoup
+
+class TempEmailGenerator:
+    def __init__(self):
+        self.base_url = 'https://10minutemail.net'
+        self.session = requests.Session()
+        self.session.headers.update({'User-Agent': 'Mozilla/5.0'})
+        self.session_id = None
+        self.cookie_email = None
+    
+    def get_email(self):
+        try:
+            # Step 1: Get the session ID and timestamp
+            response = self.session.get(f'{self.base_url}/m/?lang=id')
+            response.raise_for_status()  # Ensure the request was successful
+            
+            soup = BeautifulSoup(response.content, 'html.parser')
+            self.session_id = re.search('sessionid="(.*?)"', str(soup)).group(1)
+            timestamp = str(int(time.time() * 1000))  # Use milliseconds for timestamp
+            
+            # Step 2: Request the temporary email address
+            payload = {'new': '1', 'sessionid': self.session_id, '_': timestamp}
+            email_response = self.session.post(f'{self.base_url}/address.api.php', data=payload)
+            email_response.raise_for_status()  # Ensure the request was successful
+            
+            email_data = email_response.json()
+            email = email_data.get('mail_get_mail')
+            if not email:
+                raise ValueError("Failed to retrieve email address.")
+            
+            # Step 3: Store cookies for further requests
+            self.cookie_email = '; '.join([f'{key}={value}' for key, value in self.session.cookies.get_dict().items()])
+            
+            return email
+        
+        except requests.RequestException as e:
+            print(f"Request error: {e}")
+            return None
+        except ValueError as e:
+            print(f"Value error: {e}")
+            return None
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            return None
+
+    def get_code(self):
+        if not self.session_id:
+            print("Session ID not found. Please generate an email first.")
+            return None
+        
+        try:
+            # Step 1: Get the verification code
+            timestamp = str(int(time.time() * 1000))  # Use milliseconds for timestamp
+            payload = {'new': '0', 'sessionid': self.session_id, '_': timestamp}
+            headers = {'Cookie': self.cookie_email}
+            code_response = self.session.post(f'{self.base_url}/address.api.php', data=payload, headers=headers)
+            code_response.raise_for_status()  # Ensure the request was successful
+            
+            code_data = code_response.json()
+            code = re.search(r'FB-([^ ]+)', str(code_data))
+            if code:
+                return code.group(1)
+            else:
+                print("Code not found in the response.")
+                return None
+        
+        except requests.RequestException as e:
+            print(f"Request error: {e}")
+            return None
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            return None
+temp_email_generator = TempEmailGenerator()
+email = temp_email_generator.get_email()
+
+if email:
+    codedd = temp_email_generator.get_code()
 def useragent_facebook():
         htc = ["HTC One M8", "HTC One M9", "HTC 10", "HTC U11", "HTC U12+", "HTC Desire 626", "HTC Sensation", "HTC EVO 4G", "HTC One X", "HTC Desire Eye", "HTC One A9", "HTC U Ultra", "HTC Butterfly", "HTC Desire 820", "HTC Wildfire", "HTC HD2", "HTC Evo Shift 4G", "HTC Desire 610", "HTC One Mini", "HTC ThunderBolt", "HTC Droid DNA", "HTC Desire 816", "HTC Legend", "HTC Sensation XL", "HTC Incredible S", "HTC One S", "HTC Rhyme", "HTC Desire HD", "HTC Evo 3D", "HTC Touch Pro 2"]
         nexus = ['Galaxy Nexus', 'Nexus 10', 'Nexus 2', 'Nexus 4', 'Nexus 4', 'Nexus 4', 'Nexus 4', 'Nexus 4', 'Nexus 4', 'Nexus 5', 'phone/Nexus 5', 'Nexus 5X', 'Nexus 6', 'Nexus 7', 'Nexus 9', 'Nexus One', 'Nexus One', 'Nexus One', 'Nexus One', 'Nexus One', 'Nexus One', 'Nexus Player', 'Nexus Player', 'Nexus S', 'Nexus S', 'Nexus S 4G', 'nexus S', 'Nexus S', 'Nexus s', 'Nexus S', 'Nexus S', 'Nexus S', 'Nexus S', 'Nexus S']
@@ -373,7 +453,7 @@ def main() -> None:
         mts = ses.get("https://touch.facebook.com").text
         m_ts = re.search(r'name="m_ts" value="(.*?)"',str(mts)).group(1)
         formula = extractor(response.text)
-        email2 = get_temp_plus()
+        email2 = TempEmailGenerator()
         phone2 = GetPhone()
         email3 = GetEmails()
         firstname,lastname = fake_name()
@@ -505,7 +585,7 @@ def main() -> None:
                 'soft': 'hjk',
             }
             con_sub = ses.get('https://x.facebook.com/confirmemail.php', params=params, headers=header2).text
-            valid = get_code_temp_plus(email2)
+            valid = codedd
             if valid:
                 print(Panel(f"[bold white] OTP SENT TO MAIL",style="bold magenta2"))
                 print(Panel(f"[bold white] VERIFICATION CODE : {valid}",style="bold magenta2"))
