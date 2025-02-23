@@ -11,7 +11,7 @@ class TempEmailGenerator:
         self.session_id = None
         self.cookie_email = None
     
-    def get_email():
+    def get_email(self):
         try:
             # Step 1: Get the session ID and timestamp
             response = self.session.get(f'{self.base_url}/m/?lang=id')
@@ -33,6 +33,7 @@ class TempEmailGenerator:
             
             # Step 3: Store cookies for further requests
             self.cookie_email = '; '.join([f'{key}={value}' for key, value in self.session.cookies.get_dict().items()])
+            
             return email
         
         except requests.RequestException as e:
@@ -45,7 +46,7 @@ class TempEmailGenerator:
             print(f"Unexpected error: {e}")
             return None
 
-    def get_code():
+    def get_code(self):
         if not self.session_id:
             print("Session ID not found. Please generate an email first.")
             return None
@@ -62,7 +63,6 @@ class TempEmailGenerator:
             code = re.search(r'FB-([^ ]+)', str(code_data))
             if code:
                 return code.group(1)
-                print(code)
             else:
                 print("Code not found in the response.")
                 return None
@@ -73,8 +73,10 @@ class TempEmailGenerator:
         except Exception as e:
             print(f"Unexpected error: {e}")
             return None
+temp_email_generator = TempEmailGenerator()
+email = temp_email_generator.get_email()
+print("Temporary Email:", email)
 
-
-print(get_email())
-print(get_code())
-
+if email:
+    code = temp_email_generator.get_code()
+    print("Verification Code:", code)
