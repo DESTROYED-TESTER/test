@@ -33,7 +33,7 @@ class TempEmailGenerator:
             
             # Step 3: Store cookies for further requests
             self.cookie_email = '; '.join([f'{key}={value}' for key, value in self.session.cookies.get_dict().items()])
-            
+            print(email)
             return email
         
         except requests.RequestException as e:
@@ -63,6 +63,7 @@ class TempEmailGenerator:
             code = re.search(r'FB-([^ ]+)', str(code_data))
             if code:
                 return code.group(1)
+                print(code)
             else:
                 print("Code not found in the response.")
                 return None
