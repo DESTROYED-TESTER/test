@@ -11,7 +11,7 @@ class TempEmailGenerator:
         self.session_id = None
         self.cookie_email = None
     
-    def get_email(self):
+    def get_email():
         try:
             # Step 1: Get the session ID and timestamp
             response = self.session.get(f'{self.base_url}/m/?lang=id')
@@ -45,7 +45,7 @@ class TempEmailGenerator:
             print(f"Unexpected error: {e}")
             return None
 
-    def get_code(self):
+    def get_code():
         if not self.session_id:
             print("Session ID not found. Please generate an email first.")
             return None
@@ -75,6 +75,6 @@ class TempEmailGenerator:
             return None
 
 
-print(email)
-print(code)
+print(get_email())
+print(get_code())
 
