@@ -1255,8 +1255,6 @@ def mbasic(uid,pwx,tl):
             'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
             'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
             'wd': '1034x797',
-            'sfau': 'AYhk-d2PyPeHIVo67njrDkchv37cNRxiOGNnwWR3WYX0dwCSUepAZBPz8TZVMuDEmJWAQ05oVec0d_ZWESu585cjJQR0R3BaI1QRGLqqouDAg71WYuz_AG16Z1t590s-jtCFVLRDMIbj8Lqg_hSd2I9yYLGzVtyEYevY6IjCVOVX3Ji3RMHmcSsOvrNeCAmExbrYYorelNvdjDlZC-mnjU44B60gjYuMIbGCSrLFtPNeHjFTcC6OdP2rjnHulQMdSXU',
-            'sfiu': 'AYi40DcWm_5QdGBTZ_OBolzsDmUANVC_Ybhnflf29LFQZTEhgldhEhDkvS7YTghHPJwBW2ZbBfXgXKS14U4Asezr6uY-gYbUzbW-65nZcsaH1z0j4D681nFz62vSXqXl3sa5BlB4BKMCX8JmsPl9iHhABcZ4KFuY6yyie3g1roLhmqKRh8xb3fZigQ7tLTZk_rGwTAz6mdLATa47u6_zLmAFzFuIMDN3PBlcscLOSCKGoYAPLjgpTU31FiNWqzYf5Hg',
             'fr': '1rNHx4L9yZvgxejws.AWUCkkkekZOLf_Oltp7e4RYPNjiPYaBt9V1xtw.BnXFu6..AAA.0.0.BnvJEQ.AWW1nnknVmY',}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -1264,10 +1262,10 @@ def mbasic(uid,pwx,tl):
             'cache-control': 'no-cache',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://www.facebook.com',
+            'origin': 'https://web.facebook.com',
             'pragma': 'no-cache',
             'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/?ref=homescreenpwa',
+            'referer': 'https://web.facebook.com/?ref=homescreenpwa',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Not(A:Brand";v="99", "Microsoft Edge";v="133", "Chromium";v="133"',
             'sec-ch-ua-full-version-list': '"Not(A:Brand";v="99.0.0.0", "Microsoft Edge";v="133.0.3065.82", "Chromium";v="133.0.6943.127"',
@@ -1283,7 +1281,7 @@ def mbasic(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0',
             'viewport-width': '1034',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/'
+            url = 'https://web.facebook.com/login/device-based/regular/login/'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
