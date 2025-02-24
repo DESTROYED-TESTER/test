@@ -1,4 +1,4 @@
- import os,sys,re,time,uuid,json,string,random,base64,platform,pycurl
+import os,sys,re,time,uuid,json,string,random,base64,platform,pycurl
 from concurrent.futures import ThreadPoolExecutor
 os.system("pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests")
 try:
