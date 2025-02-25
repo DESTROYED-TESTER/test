@@ -934,7 +934,7 @@ def g_clone():
     os.system('clear')
     print(logo)
     print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = random.randint['sumon','rakesh','rahul','raj','joy','pritam','sayan','ramesh','sagar','debraj','avi','abinash','ujjal','rakesh','subho','rakesh','akash','abhijit','abir','aditya','amit','arjun','bapi','basu','bikash','bikram','deep','dev','dipankar','gautam','jaydeb','kamal','lakesh','polash','rajib','sourav','sujay','sujit','anik',]
+    first = random.randint('sumon','rakesh','rahul','raj','joy','pritam','sayan','ramesh','sagar','debraj','avi','abinash','ujjal','rakesh','subho','rakesh','akash','abhijit','abir','aditya','amit','arjun','bapi','basu','bikash','bikram','deep','dev','dipankar','gautam','jaydeb','kamal','lakesh','polash','rajib','sourav','sujay','sujit','anik',)
     last = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','pal','ray',])
     domain = '@gmail.com'
     try:
