@@ -245,7 +245,6 @@ logo = (f"""
                                        
 \033[1;97m———————————————————————————————————————————————""")
 def clear():
-    os.system("clear")
     print(logo)
 
 class Process:
