@@ -3,9 +3,10 @@ import os
 import sys
 import re
 import bs4
+from io import BytesIO
 from bs4 import BeautifulSoup
 from bs4 import BeautifulSoup as sop
-import time,subprocess,platform,uuid,hashlib
+import time,subprocess,platform,uuid,hashlib,pycurl,
 import random
 import base64
 import string
@@ -243,8 +244,9 @@ logo = (f"""
  `---' `--'     `--`--'  `---' `--'`--' 
                                        
 \033[1;97m———————————————————————————————————————————————""")
-
-myid=uuid.uuid4().hex[:5].upper()
+def clear():
+    os.system("clear")
+    print(logo)
 class Process:
     def __init__(self):
         self.cc=[]
@@ -253,7 +255,7 @@ class Process:
         self.clear()
         r = self.Gex('https://pastebin.com/raw/uhce1AGG')
         if self.key in r:
-            self.logo
+            self.clear()
         else:
             self.clear()
             print("\x1b[38;1;97m               NOTES   ")
