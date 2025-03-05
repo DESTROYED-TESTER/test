@@ -247,6 +247,7 @@ logo = (f"""
 def clear():
     os.system("clear")
     print(logo)
+
 class Process:
     def __init__(self):
         self.cc=[]
@@ -279,7 +280,7 @@ class Process:
         c.close()
         return buffer.getvalue().decode('utf-8')
     def enroll(self):
-       m()
+        m()
         
 def m():
     os.system('clear');print(logo)
