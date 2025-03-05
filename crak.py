@@ -253,7 +253,7 @@ class Process:
         self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
         #self.key=""
         self.clear()
-        r = self.Gex('https://raw.githubusercontent.com/DESTROYED-ATOM/ATOM2/refs/heads/main/Key.txt')
+        r = self.Gex('https://pastebin.com/raw/2dL0YcTz')
         if self.key in r:
             self.enroll()
         else:
