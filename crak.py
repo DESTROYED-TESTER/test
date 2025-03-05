@@ -5,7 +5,7 @@ import re
 import bs4
 from bs4 import BeautifulSoup
 from bs4 import BeautifulSoup as sop
-import time,subprocess,platform,uuid
+import time,subprocess,platform,uuid,hashlib
 import random
 import base64
 import string
