@@ -279,7 +279,7 @@ class Process:
         c.close()
         return buffer.getvalue().decode('utf-8')
     def enroll(self):
-        main()
+        m()
         
 def m():
     os.system('clear');print(logo)
