@@ -424,7 +424,8 @@ def mainn():
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
     with ThreadPoolExecutor(max_workers=60) as Submits:
-        print(47*"\x1b[1;97m—") 
+        os.system('clear')
+        print(47*"\x1b[1;97m+")
         for next in gen:
             ids = code + next
             mk = ids[:6]
