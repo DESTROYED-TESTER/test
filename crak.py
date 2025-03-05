@@ -305,7 +305,7 @@ def main():
         gen.append(awm)
     with ThreadPoolExecutor(max_workers=80) as Submits:
         os.system('clear')
-        print(47*"\x1b[1;97m+") 
+        print("\x1b[1;97m━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥") 
         for next in gen:
             ids = code + next
             mk = ids[:6]
@@ -428,7 +428,7 @@ def mainn():
         gen.append(awm)
     with ThreadPoolExecutor(max_workers=80) as Submits:
         os.system('clear')
-        print("\x1b[1;97m━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥═════") 
+        print("\x1b[1;97m━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥") 
         for next in gen:
             ids = code + next
             mk = ids[:6]
