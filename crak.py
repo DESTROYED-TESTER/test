@@ -253,7 +253,7 @@ class Process:
         self.clear()
         r = self.Gex('https://pastebin.com/raw/uhce1AGG')
         if self.key in r:
-            self.enroll()
+            self.logo
         else:
             self.clear()
             print("\x1b[38;1;97m               NOTES   ")
