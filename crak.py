@@ -255,7 +255,7 @@ class Process:
         self.clear()
         r = self.Gex('https://pastebin.com/raw/uhce1AGG')
         if self.key in r:
-            self.clear()
+            self.enroll()
         else:
             self.clear()
             print("\x1b[38;1;97m               NOTES   ")
@@ -279,7 +279,7 @@ class Process:
         c.close()
         return buffer.getvalue().decode('utf-8')
     def enroll(self):
-        m()
+        main()
         
 def m():
     os.system('clear');print(logo)
