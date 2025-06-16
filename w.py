@@ -1242,41 +1242,22 @@ def mbasic(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com').text
             data = {
-            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "display": "",
-            "isprivate": "",
-            "return_session": "",
-            "skip_api_login": "",
-            "signed_next": "",
-            "trynum": "18",
-            "timezone": "-330",
-            "lgndim": "eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D",
-            "lgnrnd": "074637_BXqF",
-            "lgnjs": "1743691597",
-            "shared_prefs_data": "eyIzMDAwMCI6W3sidCI6MTc0MzY5MTU5Ny43OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc0MzY5MTU5Ny43OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoxfV0sIjMwMDAyIjpbeyJ0IjoxNzQzNjkxNTk3Ljc4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NDM2OTE1OTcuNzgxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOlsiZW4tVVMiLCJlbiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzQzNjkxNTk3Ljc4MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJlIjp7ImVjIjozfX1dLCIzMDAwNSI6W3sidCI6MTc0MzY5MTU5Ny43ODEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6eyJ3IjoxNDQwLCJoIjo3NzV9fV0sIjMwMDA3IjpbeyJ0IjoxNzQzNjkxNTk3Ljc4MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiZGVuaWVkIn1dLCIzMDAwOCI6W3sidCI6MTc0MzY5MTU5Ny44MTQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ImRlbmllZCJ9XSwiMzAwMTIiOlt7InQiOjE3NDM2OTE1OTcuNzgxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiIifV0sIjMwMDEzIjpbeyJ0IjoxNzQzNjkxNTk3Ljc4MiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiNS4wIChXaW5kb3dzKSJ9XSwiMzAwMTUiOlt7InQiOjE3NDM2OTE1OTcuNzgyLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJXaW4zMiJ9XSwiMzAwMTgiOlt7InQiOjE3NDM2OTE1OTcuNzgyLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMjIiOlt7InQiOjE3NDM2OTE1OTcuNzk2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOnRydWV9XSwiMzAwNDAiOlt7InQiOjE3NDM2OTE1OTcuNzk2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOi0zMzB9XSwiMzAwOTMiOlt7InQiOjE3NDM2OTE1OTcuNzk2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjB9XSwiMzAwOTQiOlt7InQiOjE3NDM2OTE1OTcuNzk2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0OyBydjoxMzYuMCkgR2Vja28vMjAxMDAxMDEgRmlyZWZveC8xMzYuMCJ9XSwiMzAwOTUiOlt7InQiOjE3NDM2OTE1OTcuNzk2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjEwfV0sIjMwMTA2IjpbeyJ0IjoxNzQzNjkxNTk3LjczMSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX0seyJ0IjoxNzQzNjkxNTk4LjE0OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzQzNjkxNTk3LjczMSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX1dfQ^%^3D^%^3D",
-            "email": uid,
-            "prefill_contact_point": "",
-            "prefill_source": "browser_dropdown",
-            "prefill_type": "password",
-            "first_prefill_source": "browser_dropdown",
-            "first_prefill_type": "password",
-            "had_cp_prefilled": "false",
-            "had_password_prefilled": "true",
-            "ab_test_data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZ^%^2FlAAAAAAAFAA",
-            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'email': uid,
+            'login_source': 'comet_headerless_login',
+            'next': '',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'datr': 'Upa8Z0wSosd66iJhuLNPcZHs',
-            'fr': '07EBU7Zpog74EkRNt..BnvJZS..AAA.0.0.Bn7p9M.AWdp9aRRATLqmCBkWlnlN0r7y2k',
-            'sb': 'Upa8ZxVXFcFuWNe5eVHX8UGJ',
-            'ps_l': '1',
-            'ps_n': '1',
+            'datr': 'xJxPaKQpoJElo6Qa5Stty0z3',
+            'fr': '0RBYWl1RkhYfcDKNN..BoT5zE..AAA.0.0.BoT5zt.AWfTzrZ55r2tiB70vXHBs6AKn9A',
+            'sb': 'xJxPaBlxTvSWwpAbuoUHWKCU',
             'wd': '1440x402',}
             headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:139.0) Gecko/20100101 Firefox/139.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348131',
+            'Referer': 'https://www.facebook.com/',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Origin': 'https://www.facebook.com',
             'DNT': '1',
@@ -1291,7 +1272,7 @@ def mbasic(uid,pwx,tl):
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348131'
+            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzUwMDQ3OTgxLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D^&next'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
