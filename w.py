@@ -1004,32 +1004,29 @@ def freefb(uid, name, pwx, tl):
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnTABO.AWWmR8Ms-IA',
-            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
-            'wd': '1440x402',
-            'ps_l': '1',
-            'ps_n': '1',}
+            'datr': 'kqFRaB1m-_9lS30TJrCcYC28',
+            'fr': '0ugbVyuFAdiFSXbdX..BoUaGS..AAA.0.0.BoUaGS.AWcNAq03UycAQQqgWwl4sSgbryQ',
+            'sb': 'kqFRaADAhKyR-m_DobFeaU6C',
+            'wd': '479x670',}
             headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://www.facebook.com/',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.facebook.com',
-            'DNT': '1',
-            'Alt-Used': 'www.facebook.com',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-User': '?1',
-            'Priority': 'u=0, i',
-            'Pragma': 'no-cache',
-            'Cache-Control': 'no-cache',}
+            'authority': 'www.facebook.com',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-US,en;q=0.9',
+            'cache-control': 'max-age=0',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/',
+            'sec-ch-ua': '"Not=A?Brand";v="99", "Chromium";v="118"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092'
+            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzUwMTgwMjQyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             log_cookies = Session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
