@@ -1407,7 +1407,7 @@ def p(uid,pwx,tl):
                            break
                 else:
                     break
-            elif "checkpoint" in po.lower():
+            elif "checkpoint" in response:
                  #print(f"[GENERAL CHECKPOINT] {uid}|{pw}")
                  open("/sdcard/ATOM-ALL-FILE/ATOM-CP.txt", "a").write(f"{uid}|{pw}\n")
                  cps.append(uid)
