@@ -1894,7 +1894,7 @@ def d(uid,pwx,tl):
     }),
 }
             headers = {
-            'Host': 'mtouch.facebook.com',
+            'Host': 'm.facebook.com',
             # 'content-length': str(len(str(data))), # Content-length is usually set by requests
             'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
             'sec-ch-ua-mobile': '?1',
@@ -1909,15 +1909,15 @@ def d(uid,pwx,tl):
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua-platform': '"Android"',
             'accept': '*/*',
-            'origin': 'https://mtouch.facebook.com',
+            'origin': 'https://m.facebook.com',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
             'sec-fetch-dest': 'empty',
-            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'referer': 'https://www.facebook.com/profile.php',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://mtouch.facebook.com/async/wbloks/fetch/"
+            url = "https://m.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
