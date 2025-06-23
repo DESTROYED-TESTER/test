@@ -1537,8 +1537,7 @@ def p(uid,pwx,tl):
     'x-fb-server-cluster': 'True'
 }
             url = "https://graph.facebook.com/graphql?"
-            result = requests.post(url, json=data, headers=headers).text
-            print(result)
+            result = requests.post(url, json=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
