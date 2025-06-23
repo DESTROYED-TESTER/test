@@ -2443,7 +2443,7 @@ def mbasic(uid,pwx,tl):
                     "event_step": "home_page",
                     "headers_infra_flow_id": "",
                     "openid_tokens": {},
-                    "contact_point": uid,  # Replace with your UID
+                    "contact_point": uid  # Replace with your UID
                 }),
                 "server_params": json.dumps({
                     "should_trigger_override_login_2fa_action": 0,
@@ -2547,6 +2547,7 @@ def mbasic(uid,pwx,tl):
     except net_error:
         time.sleep(10)
     except Exception as e:
+        print(e)
         pass
 
 def p(uid,pwx,tl):
