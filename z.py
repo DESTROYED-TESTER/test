@@ -62,7 +62,7 @@ def basic_ua():
     strvgt = f"Mozilla/5.0 (Linux; Android {str(rr(4,12))}; {str(rc(gt))}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{str(rr(100,104))}.0.{str(rr(3900,4900))}.{str(rr(40,150))} Mobile Safari/537.36 {str(rc(aZ))}{str(rr(1,1000))}"
     uateddy = random.choice([strvoppo, strvredmi,strvoppo1, strvinfinix, strvsamsung, strvredmi1, strvnokiax, strvgt])
     return uateddy
-   
+faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"  
 class System:
     def __init__(self):
         self.loop = 0
@@ -73,7 +73,7 @@ class System:
     def banner(self):
         os.system("clear")
         print("═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━")
-        print((f"""
+        print(f"""
 {faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
 \033[1;32m
     █████╗ ████████╗ ██████╗ ███╗   ███╗
