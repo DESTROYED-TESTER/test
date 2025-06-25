@@ -95,7 +95,7 @@ class System:
    ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \033[1;34m ᴾᴿᴼ
 \033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
         print("Author    : SUMON ROY ")
-        print("ABOUTS    :  a script designed to attempt logins")
+        print("ABOUTS    : a script designed to attempt logins")
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     
     def Main(self):
@@ -206,9 +206,7 @@ class System:
                 else:continue
             self.loop += 1
         except cerror:time.sleep(10)
-        except Exception as e:
-               print(e)
-               pass
+        except Exception as e:pass
     
     def method2(self,ids,passlist):
         global loop,oks,cps
