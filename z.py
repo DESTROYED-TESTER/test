@@ -206,7 +206,8 @@ class System:
                 else:continue
             self.loop += 1
         except cerror:time.sleep(10)
-        except Exception as e:print(e)pass
+        except Exception as e:print(e)
+            pass
     
     def method2(self,ids,passlist):
         global loop,oks,cps
