@@ -144,7 +144,7 @@ class System:
         try:
             for pas in passlist:
                 url = "https://touch.facebook.com/"
-                free_fb = ses.get(url)
+                free_fb = ses.get(url).text
                 data = {
                 'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
                 'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
