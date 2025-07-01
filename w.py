@@ -1617,7 +1617,7 @@ def freeq(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M6) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M5) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1808,7 +1808,7 @@ def freeq(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        #print({error})
+        print({error})
         pass
 
 def d(uid,pwx,tl):
