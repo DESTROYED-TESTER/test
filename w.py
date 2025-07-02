@@ -1765,14 +1765,14 @@ def freeq(uid,pwx,tl):
             'fr': '0ugbVyuFAdiFSXbdX..BoUaGS..AAA.0.0.BoY9wG.AWcLS89ZvTPUI126sFbmRUmbVYc',
             'wd': '885x751',}
             headers = {
-            'authority': 'web.facebook.com',
+            'authority': 'www.facebook.com',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-US,en;q=0.9',
             'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://web.facebook.com',
-            'referer': 'https://web.facebook.com/settings/applications/app_details/?app_id=293471457383333',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Not=A?Brand";v="99", "Chromium";v="118"',
             'sec-ch-ua-full-version-list': '"Not=A?Brand";v="99.0.0.0", "Chromium";v="118.0.5993.159"',
@@ -1788,7 +1788,7 @@ def freeq(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
             'viewport-width': '885',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
