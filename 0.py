@@ -1519,11 +1519,6 @@ def x(uid,pwx,tl):
                     uid = uid
                 c = check_lock(uid)
                 if "live" in c:
-                    if result["is_account_confirmed"] == False:
-                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
-                       #print(f" {green}[COOKIES] {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                    else:
                         bkas.append(uid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{uid}|{pw}|{coki}")
