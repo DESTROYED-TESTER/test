@@ -59,7 +59,7 @@ for NazriXDGantengNgab in range(1000):
                   "KTU84P",
                   "KOT49H",
                   "JDQ39"])
-   ATOM-INSiceku = rc([
+   ATOM = rc([
                   "Lenovo TB-X104X",
                   "SM-G930VC",
                   "Nexus 6P",
@@ -74,7 +74,7 @@ for NazriXDGantengNgab in range(1000):
                   "B3-A20",
                   "XT720"])
    ugent1 = f"Mozilla/5.0 (Linux; Android {android1}; SM-R825F Build/QP1A.{chrome4}.020; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{chrome1}.0.{chrome2}.{chrome3} Mobile Safari/537.36"
-   ugent2 = f"Mozilla/5.0 (Linux; U; Android {android2}; {adtyaxcc}; {ATOM-INSiceku} Build/{buildhan}) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1"
+   ugent2 = f"Mozilla/5.0 (Linux; U; Android {android2}; {adtyaxcc}; {ATOM} Build/{buildhan}) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1"
    ugent3 = f"Mozilla/5.0 (Linux; Android 10; RMX2185 Build/QP1A.{chrome4}.020) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome1}.0.{chrome2}.{chrome3} Mobile Safari/537.36 OPR/48.2.{chrome2}.133{chrome3}"
    adtyaUAmain = rc([ugent1,ugent2,ugent3])
    ugen.append(adtyaUAmain)
