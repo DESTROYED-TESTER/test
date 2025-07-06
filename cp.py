@@ -86,6 +86,8 @@ for user in dx:
         url = 'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100'
         response = Session.post(url, data=data, headers=headers, cookies=cookies, allow_redirects=False)
 
+        print(f"🔍 Response Code: {response.status_code}")  # <-- Added response code print
+
         cookie_data = Session.cookies.get_dict()
 
         if "c_user" in cookie_data:
@@ -112,7 +114,7 @@ for user in dx:
     except Exception as e:
         print(f"\n⚠️ ERROR: {e}")
         time.sleep(2)
-
+    loop += 1
     linex()
     print("🔚 PROCESS COMPLETE.")
     linex()
