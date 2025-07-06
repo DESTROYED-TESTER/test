@@ -131,7 +131,6 @@ def __Hasan__():
 
         __Fire__(ids, names, dplist)
 
-        linex()
         print(f"{green}[{rad}+{green}] PROCESS COMPLETE.")
         linex()
         input("PRESS ENTER TO LOGIN NEXT ID...")  # Wait for user
