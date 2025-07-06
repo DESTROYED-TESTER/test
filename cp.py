@@ -49,7 +49,7 @@ for user in dx:
         data = {
         'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
         'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-        'email': uid,
+        'email': ids,
         'timezone': '-330',
         'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
         'lgnrnd': '060331_lb2E',
