@@ -118,13 +118,10 @@ for user in dx:
             break
 
         else:
+            print(f"\nfail")
             continue
 
         loop += 1
-
-    except Exception as error:
-        time.sleep(5)
-        pass
 
     linex()
     print("🔚 PROCESS COMPLETE.")
