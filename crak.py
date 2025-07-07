@@ -12,6 +12,7 @@ import base64
 import string
 import uuid
 import requests
+import json
 from concurrent.futures import ThreadPoolExecutor
 try:os.mkdir('/sdcard/CRACK')
 except:pass
