@@ -1921,8 +1921,10 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
                 continue
         loop += 1
     except pycurl.error as e:
+        print(e)
         time.sleep(10)
     except Exception as e:
+        print(e)
         pass
 
 
