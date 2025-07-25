@@ -1841,7 +1841,7 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             pas = fikr.replace('First', first).replace('Last', last).replace('first', ps).replace('last', ps2)
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
-            user_agent =  f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]"
+            user_agent = DEF4()
             warna = random.choice(my_color)
             adid = str(uuid.uuid4())
             device_id = str(uuid.uuid4())
