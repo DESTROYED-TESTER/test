@@ -1871,7 +1871,7 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             'fb_api_req_friendly_name': 'authenticate',
             'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation'}
             headers = [
-            'Host': f'graph.facebook.com',
+            'Host': 'graph.facebook.com',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Accept-Encoding': 'gzip, deflate',
             'Connection': 'keep-alive',
