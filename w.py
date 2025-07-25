@@ -1746,21 +1746,12 @@ def freeq(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             cookies = {
-            'datr': 'eL_uZ2Ty3h0loiAu7Is5kJfa',
-            'sb': 'eL_uZ9ijCdro7wndMVgTyIBo',
+            'fr': '0ODGLbVRuEomtBpGJ.AWcJOmSt3W2rnRxHjtxKo1Yma319i3y1R-IztAeSl7j2HS_wbr8.BoStZY..AAA.0.0.Bog2Yt.AWdENOnDWraylKWupKWZEBf1sQY',
+            'sb': 'WNZKaCfxN1H4fNVFPY3yVNM1',
+            'datr': 'WNZKaAorKsm5JROYCT_7VKaI',
             'ps_l': '1',
             'ps_n': '1',
-            'vpd': 'v1%3B754x393x2.75',
-            'locale': 'en_US',
-            'wl_cbv': 'v2%3Bclient_version%3A2839%3Btimestamp%3A1749279032',
-            'dpr': '3.0234789848327637',
-            'm_pixel_ratio': '2.75',
-            'wd': '393x895',
-            'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
-            params = {
-            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
-            'type': 'action',
-            '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
+            'wd': '1072x739',}
             data = {
     'av': '0',
     '__user': '0',
@@ -1778,8 +1769,8 @@ def freeq(uid,pwx,tl):
     '__hblp': '01SK05Bo0Du02XC0cswcC0bzw3XU0Uq0xo2nw1d61Jwg85C0lq3C0M811E0LG0uW0qG06OU0PG362u0l2mU5C1qw4gw77wkU0De',
     '__sjsp': 'gyxWxW43AIR1gMiiIwx7yryxgybAF4iQUpxJ3U88boLwPwm8b8Saw2MEeAaw4_yEdoEzeQC49E4x1u11w9u0jO0W8jwcq029y0C80tKg0JO5h82mo7i05tE',
     '__comet_req': '1',
-    'lsd': 'AVoTljilr8Y',
-    'jazoest': '21032',
+    'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
     '__spin_r': '1025144028',
     '__spin_b': 'trunk',
     '__spin_t': '1753441837',
@@ -1793,16 +1784,15 @@ def freeq(uid,pwx,tl):
             "auth_domain_data_key": None,
             "caa_login_request_extra_info": {
                 "ab_test_data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////ffAFAA",
-                "shared_prefs_data": "eyIzMDAwMCI6W3sidCI6MTc1MzQ0MTg1Ni42NDcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9XS...",
                 "cuid": "",
                 "guid": "ffed65de4275edc5a",
-                "jazoest": "21110",
+                "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
                 "lgndim": "eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=",
                 "lgnjs": "1753441856",
                 "lgnrnd": "041037_s_DL",
                 "locale": "en_GB",
                 "login_source": "comet_headerless_login",
-                "lsd": "AVoTljildzs",
+                "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
                 "next": "",
                 "prefill_contact_point": "",
                 "prefill_source": "",
@@ -1812,17 +1802,17 @@ def freeq(uid,pwx,tl):
             },
             "credential_type": "password",
             "enc_password": {
-                "sensitive_string_value": "#PWD_BROWSER:5:1753441883:AStQAHI2bGOEs4UZ5ZGtnnFDthRlH6gT14bbSE2GuReIdR0u/MGlUtocWxnAMdj/cr8FgAFIi+VSm32S7Pg42SI1B+fK7Ib0LX7dh5+A/56dh2fsuWSWrLqlq0J85M/B5c7/b2iJq/PE4nttRpA="
+                "sensitive_string_value": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw)
             },
             "event_request_id": "fccafc56-7793-475a-82b0-79126c38dc00",
-            "identifier": "sumonssb9@outlook.com",
+            "identifier": uid,
             "ig_web_device_id": None,
             "initial_request_id": "1",
             "lids": None,
             "login_source": "COMET_HEADERLESS_LOGIN",
             "next": None,
             "password": {
-                "sensitive_string_value": "#PWD_BROWSER:5:1753441883:AStQAHI2bGOEs4UZ5ZGtnnFDthRlH6gT14bbSE2GuReIdR0u/MGlUtocWxnAMdj/cr8FgAFIi+VSm32S7Pg42SI1B+fK7Ib0LX7dh5+A/56dh2fsuWSWrLqlq0J85M/B5c7/b2iJq/PE4nttRpA="
+                "sensitive_string_value": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw)
             },
             "persistent": True,
             "trusted_device_records": "{}",
@@ -1857,8 +1847,8 @@ def freeq(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/async/wbloks/fetch/"
-            po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
+            url = "https://www.facebook.com/api/graphql/"
+            po = Session.post(url, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
