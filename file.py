@@ -1873,7 +1873,6 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             headers = [
             'Host: graph.facebook.com',
             'Content-Type: application/x-www-form-urlencoded',
-            'Accept-Encoding: gzip, deflate',
             'Connection: keep-alive',
             'Priority: u=3, i',
             'X-Fb-Sim-Hni: 45204',
