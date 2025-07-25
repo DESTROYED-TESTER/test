@@ -1687,7 +1687,8 @@ def mobile(uid,pwx,tl):
             "INTERNAL_INFRA_THEME": "harm_f,default,harm_f",
             "is_from_assistive_id": 0,
             "access_flow_version": "F2_FLOW",
-            "is_from_logged_in_switcher": 0}
+            "is_from_logged_in_switcher": 0
+}
             data = {
     'method': 'post',
     'pretty': 'false',
