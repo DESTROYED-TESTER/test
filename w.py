@@ -1469,43 +1469,40 @@ def x(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             cookies = {
-            'datr': 'eL_uZ2Ty3h0loiAu7Is5kJfa',
-            'sb': 'eL_uZ9ijCdro7wndMVgTyIBo',
+            'datr': 'SVRVaCkSemjPQelgXB0y0CcL',
+            'sb': 'SVRVaPjD8b4EFyHYH5_mO7WT',
             'ps_l': '1',
             'ps_n': '1',
-            'vpd': 'v1%3B754x393x2.75',
-            'locale': 'en_US',
-            'wl_cbv': 'v2%3Bclient_version%3A2839%3Btimestamp%3A1749279032',
-            'dpr': '3.0234789848327637',
-            'm_pixel_ratio': '2.75',
-            'wd': '393x895',
-            'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
+            'dpr': '3.5',
+            'm_pixel_ratio': '2',
+            'wd': '400x686',
+            'fr': '0gLfD3AAbAoY0O6GN..BoVVRJ..AAA.0.0.BohTVs.AWcP0RAAfKpOFR2ynJHzhb7O4rM',}
             params = {
             'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
             'type': 'action',
-            '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
+            '__bkv': '7dc3df7a1c2b41c2ef275eac1130af6da64453b8e5de853b8cf45b43c64d127b',}
             data = {
     '__aaid': '0',
     '__user': '0',
     '__a': '1',
-    '__req': 'a',
-    '__hs': '20246.BP:wbloks_caa_pkg.2.0...0',
+    '__req': '7',
+    '__hs': '20295.BP:wbloks_caa_pkg.2.0...0',
     'dpr': '3',
-    '__ccg': 'EXCELLENT',
-    '__rev': '1023608600',
-    '__s': ':f95eey:i9v0n0',
-    '__hsi': '7513185148771233093',
-    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
-    'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    '__ccg': 'GOOD',
+    '__rev': '1025188331',
+    '__s': ':oc3pxr:qmixkl',
+    '__hsi': '7531484493576691349',
+    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde0UE',
+    'fb_dtsg': re.search('name="fb_dtsg" value="(.*?)"', str(free_fb)).group(1),
     'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
     'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    'params': json.dumps({
+    'params': {
         "params": json.dumps({
             "server_params": {
                 "credential_type": "password",
-                "username_text_input_id": "7w9omu:68",
-                "password_text_input_id": "7w9omu:69",
-                "login_source": "login",
+                "username_text_input_id": "okr4cr:67",
+                "password_text_input_id": "okr4cr:68",
+                "login_source": "Login",
                 "login_credential_type": "none",
                 "server_login_source": "login",
                 "ar_event_source": "login_home_page",
@@ -1521,11 +1518,12 @@ def x(uid,pwx,tl):
                 "is_from_assistive_id": 0,
                 "is_from_msplit_fallback": 0,
                 "two_step_login_type": "one_step_login",
+                "is_vanilla_password_page_empty_password": 0,
                 "INTERNAL__latency_qpl_marker_id": 36707139,
-                "INTERNAL__latency_qpl_instance_id": "47746277400427",
+                "INTERNAL__latency_qpl_instance_id": "148604589900415",
                 "device_id": None,
                 "family_device_id": None,
-                "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
+                "waterfall_id": "8fd04dc0-a611-473e-9035-4d8c14924484",
                 "offline_experiment_group": None,
                 "layered_homepage_experiment_group": None,
                 "is_platform_login": 0,
@@ -1536,8 +1534,9 @@ def x(uid,pwx,tl):
             "client_input_params": {
                 "machine_id": "",
                 "cloud_trust_token": None,
-                "contact_point": uid,
-                "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+                "block_store_machine_id": "",
+                "contact_point": "sumon12321roy@gmail.com",
+                "password": "#PWD_BROWSER:5:1753560433:AS1QAONJ8/Yf8BXgnYqQquKeLhljWDbDvVwWaLKUHjXHwP18jEczf3BSB4t2r31xT/T6twU6VJAMUeH7q+ar+eyyW+B49Lvn4YPxWLVGKKKleS+qpzFOXtandwrNFVRgqBVYSbdXXOsiL67YSeqeGCfu",
                 "accounts_list": [],
                 "fb_ig_device_id": [],
                 "secure_family_device_id": "",
@@ -1548,7 +1547,6 @@ def x(uid,pwx,tl):
                 "event_flow": "login_manual",
                 "event_step": "home_page",
                 "openid_tokens": {},
-                "block_store_machine_id": "",
                 "auth_secure_device_id": "",
                 "client_known_key_hash": "",
                 "has_whatsapp_installed": 0,
@@ -1558,44 +1556,50 @@ def x(uid,pwx,tl):
                 "has_granted_read_contacts_permissions": 0,
                 "has_granted_read_phone_permissions": 0,
                 "app_manager_id": "",
-                "aymh_accounts": [],
+                "aymh_accounts": [{
+                    "id": "",
+                    "profiles": {
+                        "id": {
+                            "user_id": "",
+                            "name": "",
+                            "profile_picture_url": "",
+                            "small_profile_picture_url": None,
+                            "notification_count": 0,
+                            "credential_type": "none",
+                            "token": "",
+                            "last_access_time": 0,
+                            "is_derived": 0,
+                            "username": "",
+                            "password": "",
+                            "has_smartlock": 0,
+                            "account_center_id": "",
+                            "account_source": "",
+                            "credentials": [],
+                            "nta_eligibility_reason": None,
+                            "from_accurate_privacy_result": 0,
+                            "dbln_validated": 0
+                        }
+                    }
+                }],
                 "lois_settings": {
                     "lois_token": ""
                 }
             }
         })
-    }),
+    }
 }
             headers = {
-            'Host': 'm.facebook.com',
-            'method': 'POST',
-            'path': '/login/Device-based/login/async/',
-            'scheme': 'https',
-            'content-length': '294',
-            'Accept-Encoding': 'gzip',
-            'content-Length': '{len(str(logn_data))}',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'dpr': '1.75',
-            'viewport-width': '980',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '""',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-full-version-list': '',
-            'sec-ch-prefers-color-scheme': 'light',
-            'upgrade-insecure-requests': '1',
-            'user-agent': ua,
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'dnt': '1',
+            'accept': '*/*',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
             'origin': 'https://m.facebook.com',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=124024574287414&kid_directed_site=0&app_id=124024574287414&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D124024574287414%26locale%3Den_GB%26redirect_uri%3Dhttps%253A%252F%252Fwww.instagram.com%252Faccounts%252Fsignup%252F%26response_type%3Dcode%252Cgranted_scopes%26scope%3Demail%26state%3D%257B%2522fbloginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbloginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5a9dac33-3c79-4a29-b781-1c0b06e0fcb0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.instagram.com%2Faccounts%2Fsignup%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D%257B%2522fbloginKey%2522%253A%2522l5wtp952zh681e1p29txn379v1sh15831l4266qdzc3hv1ecocih%2522%252C%2522fbloginReturnURL%2522%253A%2522%252Ffxcal%252Fdisclosure%252F%253Fnext%253D%25252Fusers%25252Fself%2522%257D%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
-            'x-requested-with': 'mark.via.gp',
-            'sec-fetch-site': 'none',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-user': '?1',
-            'sec-fetch-dest': 'document',
-            'accept-encoding': 'gzip, deflate, br, zstd',
-            'accept-language': 'en-US,en;q=0.9',}
+            'priority': 'u=1, i',
+            'referer': 'https://m.facebook.com/ig/login_via/app/?refsrc=deprecated&lid=0x3mgGpzokXhUxNtZ&bn=Y29tLmFuZHJvaWQuY2hyb21l',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1',}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://m.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
@@ -1924,7 +1928,7 @@ def d(uid,pwx,tl):
     '__s': ':f95eey:i9v0n0',
     '__hsi': '7513185148771233093',
     '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
-    'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'fb_dtsg': re.search('name="fb_dtsg" value="(.*?)"', str(free_fb)).group(1),
     'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
     'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
     'params': json.dumps({
