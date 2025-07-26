@@ -1745,6 +1745,9 @@ def freeq(uid,pwx,tl):
             ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
+            lsd_value = re.search(r'name="lsd" value="(.*?)"', str(free_fb)).group(1)
+            jazoest_value = re.search(r'name="jazoest" value="(.*?)"', str(free_fb)).group(1)
+            timestamp = str(int(time.time()))
             cookies = {
             'fr': '0ODGLbVRuEomtBpGJ.AWcJOmSt3W2rnRxHjtxKo1Yma319i3y1R-IztAeSl7j2HS_wbr8.BoStZY..AAA.0.0.Bog2Yt.AWdENOnDWraylKWupKWZEBf1sQY',
             'sb': 'WNZKaCfxN1H4fNVFPY3yVNM1',
