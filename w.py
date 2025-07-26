@@ -1849,6 +1849,7 @@ def freeq(uid,pwx,tl):
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://www.facebook.com/api/graphql/"
             po = Session.post(url, data=data, cookies=cookies, headers=headers).text
+            print(po)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
