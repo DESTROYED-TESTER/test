@@ -1897,7 +1897,7 @@ def d(uid,pwx,tl):
     '__s': ':f95eey:i9v0n0',
     '__hsi': '7513185148771233093',
     '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
-    'fb_dtsg': re.search('name="fb_dtsg" value="(.*?)"', str(free_fb)).group(1),
+    'fb_dtsg':'NAfsrn_KrTjo3uB0lA2y5q5-K_Jop9-j32ain7y9cQxW3x-GF_hYxpA:0:0',
     'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
     'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
     'params': json.dumps({
