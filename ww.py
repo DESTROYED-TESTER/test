@@ -1515,8 +1515,8 @@ def mobile(uid,pwx,tl):
             'trynum': 3,
             'timezone': -420,
             'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0%3D',
-            'lgnrnd': ''.join(random.choices(string.ascii_letters + string.digits, k=12))
-            'lgnjs': str(int(time.time()))
+            'lgnrnd': ''.join(random.choices(string.ascii_letters + string.digits, k=12)),
+            'lgnjs': str(int(time.time())),
             'email': uid,
             'prefill_contact_point': '7898667876',
             'prefill_source': 'browser_dropdown',
