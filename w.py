@@ -1854,6 +1854,7 @@ def freeq(uid,pwx,tl):
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://www.facebook.com/api/graphql/"
             result = requests.post(url, data=data, headers=headers).json()
+            print(result)
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
