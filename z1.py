@@ -166,7 +166,7 @@ for user in dx:
         time.sleep(2)
     loop += 1
     linex()
-    print(f"🔍 Response Code: {response.status_code}")  # <-- Added response code print
+    #print(f"🔍 Response Code: {response.status_code}")  # <-- Added response code print
     print("🔚 PROCESS COMPLETE.")
     linex()
     input("➡️ PRESS ENTER TO LOGIN NEXT ID...")
