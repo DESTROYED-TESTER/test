@@ -147,7 +147,7 @@ for user in dx:
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
         'viewport-width': '885',}
         url = 'https://www.facebook.com/api/graphql/'
-       result = session.post(url, data=payload, headers=headers).text
+        result = session.post(url, data=payload, headers=headers).text
         print(result)
         if "session_key" in result:
             sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
