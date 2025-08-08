@@ -42,7 +42,7 @@ for user in dx:
     sys.stdout.write(f"\r ⏳ (M5) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r")
     sys.stdout.flush()
     try:
-        # Step 1 – Load Facebook login page
+        Session = requests.Session()
         r = session.get("https://www.facebook.com/login.php")
         html = r.text
 
