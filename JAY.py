@@ -279,8 +279,8 @@ myid=uuid.uuid4().hex[:5].upper()
 class Process:
     def __init__(self):
         self.cc=[]
-        self.key="KEY-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
-        #self.key=""
+        #self.key="KEY-"+ base64.b16encode(str(os.getuid()).encode()).decode() + hashlib.md5((''.join([platform.version(), str(os.getuid()), platform.platform(), os.getlogin(), platform.release()]).replace(' ', '').encode())).hexdigest()
+        self.key=""
         self.clear()
         r = self.Gex('https://pastebin.com/raw/DdnNW8W6')
         if self.key in r:
