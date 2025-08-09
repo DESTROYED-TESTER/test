@@ -1581,7 +1581,7 @@ def x(uid,pwx,tl):
             'X-Fb-Net-Hni': '45201',
             'X-Fb-Connection-Quality': 'GOOD',
             'Zero-Rated': '0',
-            'User-Agent': ua(),
+            'User-Agent': samsung_user_agent(),
             'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             'X-Fb-Connection-Bandwidth': '24807555',
             'X-Fb-Connection-Type': 'MOBILE.LTE',
