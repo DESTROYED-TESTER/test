@@ -1695,7 +1695,6 @@ def mobile(uid,pwx,tl):
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://touch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             po = Session.post(url, data=data, headers=headers).text
-            print(po)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
