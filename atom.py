@@ -499,6 +499,7 @@ def randm(ids,psd,tl):
                 continue
         loop+=1
     except Exception as e:
+        print(e)
         pass
 #====================[RANDOM M2]==========================
 def randm1(ids,psd,tl):
