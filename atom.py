@@ -28,7 +28,7 @@ try:
 except ModuleNotFoundcrack:
     os.system('pip install mechanize')
 
-from urllib.requests import requests, urlopen
+import os, re, bs4, sys, json, rich, time, random, datetime, requests; from time import sleep, strftime; from rich.console import Console; from rich.panel import Panel; from random import choice as rc; from random import randint as rr; from random import randrange as rg; from concurrent.futures import ThreadPoolExecutor
 import os, requests, re,platform, sys, random, subprocess, threading, itertools,base64,uuid,zlib,re,json,uuid,subprocess,shutil,webbrowser,time,json,sys,random,datetime,time,re,subprocess,platform,string,json,time,re,random,sys,string,uuid
 from concurrent.futures import ThreadPoolExecutor as crack
 from datetime import datetime
