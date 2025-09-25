@@ -1298,7 +1298,7 @@ def mbasic(uid,pwx,tl):
             }
             headers = {
             "host": "touch.facebook.com",
-            "content-length": (";").join([ "%s=%s" % (key, value) for key, value in body.items() ]),
+            "content-length": (";").join([ "%s=%s" % (key, value) for key, value in data.items() ]),
             "sec-ch-ua-full-version-list": "\"Not;A=Brand\";v=\"99.0.0.0\", \"Nokia Webview\";v=\""+f"{str(random.randint(127,139))}.0.{str(random.randint(5111,8999))}.{str(random.randint(111,299))}"+"\", \"Chromium\";v=\""+f"{str(random.randint(127,139))}.0.{str(random.randint(5111,8999))}.{str(random.randint(111,299))}"+"\"",
             "sec-ch-ua-platform": "\"Android\"",
             "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Nokia Webview\";v=\""+str(random.randint(127,139))+"\", \"Chromium\";v=\""+str(random.randint(127,139))+"\"",
