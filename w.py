@@ -1468,7 +1468,7 @@ def x(uid,pwx,tl):
             ua = random.choice(uas)
             Session = requests.Session()
             head = {"accept": "*/*", "user-agent": "Mozilla/5.0 (Linux; Android 7.1.1; KirinX Build/N6F26Q; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Mobile Safari/537.36", "content-type": "application/x-www-form-urlencoded;charset=UTF-8", "accept-encoding": "gzip, deflate", "accept-language": "id-ID,id;q=0.9, en-US,en;q=0.8", "x-requested-with": "XMLHttpCanary", "priority": "u=1, i"}
-            resp = Session.get('https://m.facebook.com/', headers=head).text
+            resp = Session.get('https://touch.facebook.com/login.php', headers=head).text
             data = {
     '__aaid': '0',
     '__user': '0',
@@ -1479,7 +1479,7 @@ def x(uid,pwx,tl):
     '__ccg': 'EXCELLENT',
     '__rev': '1023608600',
     '__s': ':f95eey:i9v0n0',
-    '__hsi': re.search('"hsi":"(\d+)"',str(resp)).group(1),
+    '__hsi': str(random.randint(1000000000, 1999999999)),
     '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
     'fb_dtsg': re.search('"dtsg":{"token":"(.*?)"',str(resp)).group(1),
     'jazoest': re.search('name="jazoest" value="(.*?)"', str(resp)).group(1),
