@@ -1505,7 +1505,7 @@ def mobile(uid,pwx,tl):
             '__user':'0'}
             headers = {
             'Host': 'x.prod.facebook.com',
-            'content-length': f'{len(str(data))}',
+            'content-length': "f'{len(str(data))}'",
             'sec-ch-ua': '"Android WebView";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
             'sec-ch-ua-mobile': '?0',
             'user-agent': ua,
