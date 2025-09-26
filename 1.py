@@ -6,7 +6,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 
 # ========== CONFIG ==========
-LOGIN_PAGE = "https://touch.facebook.com/login.php"
+LOGIN_PAGE = "https://limited.facebook.com/login/device-based/login/async/?api_key=1393952984244777&auth_token=3ea524ab821dcb9e2140fbe35e5e09fd&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fapp_id%3D1393952984244777%26cbt%3D1758859978311%26logger_id%3D2fb35fb5-cdb2-46af-8dc4-996548b0ec0b&refsrc=deprecated&app_id=1393952984244777&cancel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46&lwv=100"
 PWD_FETCH_URL = "https://b-graph.facebook.com/pwd_key_fetch"
 PWD_FETCH_PARAMS = {
     'version': '2',
