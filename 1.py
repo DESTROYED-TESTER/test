@@ -59,4 +59,4 @@ class Encrypt_PWD:
             return f"Error: {str(e)}"
 
 enc = Encrypt_PWD()
-print(enc.PWD_FB4A(""))
+print(enc.PWD_FB4A("55454545"))
