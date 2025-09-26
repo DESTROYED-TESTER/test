@@ -50,6 +50,7 @@ url_params = {
     "try_number": 0,
     "unrecognized_tries": 0,
     "email": "100056503155212",
+    "pass": "748918",
     "prefill_contact_point": "100056503155212",
     "prefill_source": "browser_dropdown",
     "prefill_type": "password",
@@ -59,7 +60,6 @@ url_params = {
     "had_password_prefilled": True,
     "is_smart_lock": False,
     "bi_xrwh": 92004344361786634,
-    "pass": "748918",
     "fb_dtsg": "NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0",
     "jazoest": 24862,
     "lsd": "AdEVi-OFg_s",
@@ -101,7 +101,6 @@ else:
     print("Login does NOT appear successful.")
     print("HTTP status:", resp.status_code)
     # show a short resp preview to help debugging
-    preview = resp.text[:99999].replace("\n", " ")
+    preview = resp.text[:500].replace("\n", " ")
     print("Response preview:", preview)
-    print("Cookies received:", cookies_after)
 
