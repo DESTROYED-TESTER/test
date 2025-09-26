@@ -1256,7 +1256,6 @@ def p(uid,pwx,tl):
             'm_pixel_ratio': '2.4749999046325684',
             'ps_l': '1',
             'ps_n': '1',
-            'pas': '100056503155212%3AfxOzQdbFmo',
             'dpr': '2.4749999046325684',
             'wd': '437x973',
             'fr': '02n8peqk75hF9D13g.AWcYnHXf1GZF8b7MXvQBW4q05cEXwaTcJhJCnUnlt93z2xfY_YY.BozDns..AAA.0.0.Bo1hLI.AWcm2HkPoopHsJCgNGiCAIgqHgw',}
@@ -1326,7 +1325,6 @@ def p(uid,pwx,tl):
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                print(f" {green}chek : {green}{coki}")
                 check = check_lock(cid)
                 if "live" in check:
                     bkas.append(cid)
