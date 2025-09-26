@@ -139,8 +139,7 @@ def attempt_login_with_plain_then_enc():
 
     # 4) Retry login using encpass (fresh tokens from page might be needed)
     # Re-fetch page tokens just before retry to be safe
-    html2 = fetch_login_page(session)
-    tokens2 = extract_tokens(html2)
+   
     post_enc = {
         "email": EMAIL,
         "encpass": encpass,
