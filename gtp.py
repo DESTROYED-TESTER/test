@@ -1,18 +1,6 @@
 import requests,time, io, struct, base64, re
 import urllib.parse
-import time, io, struct, base64, requests
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import AES, PKCS1_v1_5
-from Crypto.Random import get_random_bytes
-from random import randint
-from concurrent.futures import ThreadPoolExecutor as ThreadPool
-from bs4 import BeautifulSoup as par
-from datetime import date
-from datetime import datetime
-resp = requests.get("https://password-enc-api-instagram-facebook.p.rapidapi.com/api/pass_enc/",
-                    headers={"x-rapidapi-key":"5b5179b509msh1ba72c98ba4d120p1e1335jsn6eb28abafc48","x-rapidapi-host":"password-enc-api-instagram-facebook.p.rapidapi.com"},
-                    params={"p":"748918","v":"5","m":"fbweb"}).json()
-encpass = f'"{resp.get("pass") or resp.get("encpass") or resp.get("result") or next(iter(resp.values()))}"'
+
 # --- (use your existing headers/cookies/params/data) ---
 cookies = {
     'datr': '7DnMaEaBSi1euh0ZrTxnFPXZ',
@@ -71,7 +59,7 @@ url_params = {
     "had_password_prefilled": True,
     "is_smart_lock": False,
     "bi_xrwh": 92004344361786634,
-    "encpass": encpass,
+    "encpass": "#PWD_BROWSER:5:1758859991:AWpQAJ78nsELQ6oAmTKN60TUqyU3S+4pPGhmFdKL40ndAsgorMtdauIzLDtczxHxR4kOLhmbNJkWpCygokCpNw8PfXHkkW2FIuFOnkmliVxJMjoA4sCgle6XrNEM5RuiTcxtyzWenyCyqw==",
     "fb_dtsg": "NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0",
     "jazoest": 24862,
     "lsd": "AdEVi-OFg_s",
