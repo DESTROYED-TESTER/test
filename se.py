@@ -2,7 +2,7 @@ import os, re, bs4, sys, json, rich, time, random, datetime, requests; from time
 
 def Main_Menu():
     os.system('clear')
-	 print(f"""{M}
+    print(f"""{M}
 ██████╗░███████╗░██████╗░░██████╗░░█████╗░███████╗
 {M}██╔══██╗██╔════╝██╔════╝░██╔════╝░██╔══██╗██╔════╝
 {K}██████╔╝█████╗░░██║░░██╗░██║░░██╗░███████║█████╗░░
