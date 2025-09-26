@@ -101,7 +101,7 @@ else:
     print("Login does NOT appear successful.")
     print("HTTP status:", resp.status_code)
     # show a short resp preview to help debugging
-    preview = resp.text[:1500].replace("\n", " ")
+    preview = resp.text[:99999].replace("\n", " ")
     print("Response preview:", preview)
     print("Cookies received:", cookies_after)
 
