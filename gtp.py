@@ -71,7 +71,7 @@ url_params = {
 }
 
 urlencoded_string = urllib.parse.urlencode(url_params)
-url = "https://limited.facebook.com/login/device-based/login/async/"
+url = "https://touch.facebook.com/login/device-based/login/async/"
 
 # --- Do the POST using a Session so cookies persist ---
 session = requests.Session()
