@@ -1563,7 +1563,7 @@ def mobile(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        #print({error})
+        print({error})
         pass
 
 def freeq(uid,pwx,tl):
