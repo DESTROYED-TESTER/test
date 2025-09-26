@@ -6,7 +6,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 
 # ========== CONFIG ==========
-LOGIN_PAGE = "https://limited.facebook.com/login.php"
+LOGIN_PAGE = "https://touch.facebook.com/login.php"
 PWD_FETCH_URL = "https://b-graph.facebook.com/pwd_key_fetch"
 PWD_FETCH_PARAMS = {
     'version': '2',
