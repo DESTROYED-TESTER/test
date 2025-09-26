@@ -1274,6 +1274,7 @@ def mbasic(uid,pwx,tl):
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                print(f" {green}Cookie : {green}{coki}")
                 check = check_lock(cid)
                 if "live" in check:
                     if "https://www.facebook.com/confirmemail.php?" in po or "confirmemail" in po:
