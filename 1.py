@@ -2,7 +2,7 @@ import requests
 
 url = "https://password-enc-api-instagram-facebook.p.rapidapi.com/api/pass_enc/"
 
-querystring = {"p":"Testpassword","v":"2","m":"fbads"}
+querystring = {"p":"Password123 ","v":"7","m":"fbapp"}
 
 headers = {
 	"x-rapidapi-key": "5b5179b509msh1ba72c98ba4d120p1e1335jsn6eb28abafc48",
