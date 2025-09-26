@@ -71,7 +71,7 @@ class Encrypt_PWD_Web:
 
         except Exception as e:
             return str(e).title()
-password = '3465767567'
+password = '748918'
 web_encryptor = Encrypt_PWD_Web()
 web_token = web_encryptor.PWD_BROWSER(password)
 # --- (use your existing headers/cookies/params/data) ---
@@ -132,7 +132,7 @@ url_params = {
     "had_password_prefilled": True,
     "is_smart_lock": False,
     "bi_xrwh": 92004344361786634,
-    "encpass": "#PWD_BROWSER:5:1758859991:AWpQAJ78nsELQ6oAmTKN60TUqyU3S+4pPGhmFdKL40ndAsgorMtdauIzLDtczxHxR4kOLhmbNJkWpCygokCpNw8PfXHkkW2FIuFOnkmliVxJMjoA4sCgle6XrNEM5RuiTcxtyzWenyCyqw==",
+    "encpass": web_token,
     "fb_dtsg": "NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0",
     "jazoest": 24862,
     "lsd": "AdEVi-OFg_s",
