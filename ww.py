@@ -1328,7 +1328,7 @@ def mbasic(uid,pwx,tl):
             "accept-language": "en-US,en;q=0.9",
             "priority": "u=1, i"}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://limited.facebook.com/login/device-based/login/async/?api_key=1393952984244777&auth_token=3ea524ab821dcb9e2140fbe35e5e09fd&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fapp_id%3D1393952984244777%26cbt%3D1758859978311%26logger_id%3D2fb35fb5-cdb2-46af-8dc4-996548b0ec0b&refsrc=deprecated&app_id=1393952984244777&cancel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46&lwv=100''
+            url = 'https://limited.facebook.com/login/device-based/login/async/?api_key=1393952984244777&auth_token=3ea524ab821dcb9e2140fbe35e5e09fd&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv16.0%2Fdialog%2Foauth%3Fapp_id%3D1393952984244777%26cbt%3D1758859978311%26logger_id%3D2fb35fb5-cdb2-46af-8dc4-996548b0ec0b&refsrc=deprecated&app_id=1393952984244777&cancel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             print(data)
             response = Session.cookies.get_dict().keys()
