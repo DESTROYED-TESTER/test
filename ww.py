@@ -1475,7 +1475,7 @@ def mobile(uid,pwx,tl):
             Session = requests.Session()
             ua = Idinnew()
             requ = Session.get('https://touch.facebook.com').text
-            cookies = (f'{";".join([ "%s=%s"%(keys, value) for keys, value in ses.cookies.get_dict().items() ])}')
+            cookies = (f'{";".join([ "%s=%s"%(keys, value) for keys, value in Session.cookies.get_dict().items() ])}')
             data = {
             'm_ts':re.search('name="m_ts" value="(.*?)"',str(requ)).group(1),
             'li':re.search('name="li" value="(.*?)"',str(requ)).group(1),
