@@ -62,8 +62,8 @@ class Encrypt_PWD_Web:
         except Exception as e:
             return str(e).title()
 
-uid = '100077421650959'
-password = '976317'
+uid = '100078110812030'
+password = '767980'
 web_encryptor = Encrypt_PWD_Web()
 web_token = web_encryptor.PWD_BROWSER(password)
 # --- (use your existing headers/cookies/params/data) ---
