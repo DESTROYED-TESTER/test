@@ -99,11 +99,7 @@ def attempt_login_with_plain_then_enc():
         "User-Agent":"Mozilla/5.0 (Linux; Android 13; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140 Mobile Safari/537.36"
     })
 
-    # 1) fetch login page tokens
-    print("[*] Fetching login page...")
-    html = fetch_login_page(session)
-    tokens = extract_tokens(html)
-    print("[*] Extracted tokens:", {k: bool(v) for k,v in tokens.items()})
+
 
     # 2) Try plaintext login
     post_plain = {
@@ -115,10 +111,6 @@ def attempt_login_with_plain_then_enc():
         "had_cp_prefilled": "true",
         "had_password_prefilled": "true",
         "is_smart_lock": "false",
-        "lsd": tokens.get("lsd",""),
-        "jazoest": tokens.get("jazoest",""),
-        "li": tokens.get("li",""),
-        "m_ts": tokens.get("m_ts",""),
         "_user": 0
     }
     print("[*] Attempting plaintext login...")
@@ -158,10 +150,6 @@ def attempt_login_with_plain_then_enc():
         "had_cp_prefilled": "true",
         "had_password_prefilled": "true",
         "is_smart_lock": "false",
-        "lsd": tokens2.get("lsd",""),
-        "jazoest": tokens2.get("jazoest",""),
-        "li": tokens2.get("li",""),
-        "m_ts": tokens2.get("m_ts",""),
         "_user": 0
     }
     print("[*] Attempting encpass login...")
