@@ -1,57 +1,13 @@
-import requests, time, io, struct, base64, re
-from Crypto.Cipher import AES, PKCS1_v1_5
-from Crypto.PublicKey import RSA
-from Crypto.Random import get_random_bytes
+import urllib.parse
 
-password = '3465767567'
+data = 'm_ts=1758859976&li=yBLWaNo3yCbGoJgrOxFDDjjk&try_number=0&unrecognized_tries=0&email=100056503155212&prefill_contact_point=100056503155212&prefill_source=browser_dropdown&prefill_type=password&first_prefill_source=browser_dropdown&first_prefill_type=contact_point&had_cp_prefilled=true&had_password_prefilled=true&is_smart_lock=false&bi_xrwh=92004344361786634&encpass=%23PWD_BROWSER%3A5%3A1758859991%3AAWpQAJ78nsELQ6oAmTKN60TUqyU3S%2B4pPGhmFdKL40ndAsgorMtdauIzLDtczxHxR4kOLhmbNJkWpCygokCpNw8PfXHkkW2FIuFOnkmliVxJMjoA4sCgle6XrNEM5RuiTcxtyzWenyCyqw%3D%3D&fb_dtsg=NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw%3A0%3A0&jazoest=24862&lsd=AdEVi-OFg_s&_dyn=1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE&csr&hsdp&hblp&sjsp&req=1&fmt=1&a=AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg&_user=0'
 
-def PWD_BROWSER(password, public_key=None, key_id="5"):
-    """
-    Generate a #PWD_BROWSER token for Facebook web login.
-    Returns: '#PWD_BROWSER:5:<timestamp>:<base64_blob>'
-    """
-    try:
-        # Fetch public key from Facebook web page if not provided
-        if not public_key:
-            resp = requests.get("https://www.facebook.com/login", timeout=10).text
-            # Look for public key in JS (may change if Facebook updates page)
-            match = re.search(r'"pub_key":"(-----BEGIN PUBLIC KEY-----.*?-----END PUBLIC KEY-----)"', resp, re.DOTALL)
-            if not match:
-                return "Failed to fetch public_key from www.facebook.com"
-            public_key = match.group(1)
-            key_id = "5"
+# Parse URL-encoded string into dictionary
+decoded = dict(urllib.parse.parse_qsl(data))
 
-        # AES key + IV
-        rand_key = get_random_bytes(32)
-        iv = get_random_bytes(12)
+# Optional: decode each value
+decoded = {k: urllib.parse.unquote(v) for k, v in decoded.items()}
 
-        # RSA encrypt AES key
-        pubkey = RSA.import_key(public_key)
-        cipher_rsa = PKCS1_v1_5.new(pubkey)
-        encrypted_rand_key = cipher_rsa.encrypt(rand_key)
-
-        # AES-GCM encrypt password using timestamp as AAD
-        cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
-        current_time = int(time.time())
-        cipher_aes.update(str(current_time).encode())
-        encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode())
-
-        # Assemble payload: [1, key_id] + IV + RSA key len + RSA key + auth tag + ciphertext
-        buf = io.BytesIO()
-        buf.write(bytes([1, int(key_id)]))
-        buf.write(iv)
-        buf.write(struct.pack("<H", len(encrypted_rand_key)))
-        buf.write(encrypted_rand_key)
-        buf.write(auth_tag)
-        buf.write(encrypted_passwd)
-
-        encoded = base64.b64encode(buf.getvalue()).decode()
-        return f"#PWD_BROWSER:5:{current_time}:{encoded}"
-
-    except Exception as e:
-        return str(e).title()
-
-# Generate the token
-token = PWD_BROWSER(password)
-print("Generated #PWD_BROWSER token:")
-print(token)
+# Print result
+for k, v in decoded.items():
+    print(f"{k}: {v}")
