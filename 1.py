@@ -1,68 +1,59 @@
-# save as gen_encpass.py and run: python gen_encpass.py
-import re, time, io, struct, base64, requests
+#!/usr/bin/env python3
+import time
+import io
+import struct
+import base64
+import requests
 from Crypto.Cipher import AES, PKCS1_v1_5
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 
-PASSWORD = "989898989"
+PWD_FETCH_URL = "https://b-graph.facebook.com/pwd_key_fetch"
+PWD_FETCH_PARAMS = {
+    'version': '2',
+    'flow': 'CONTROLLER_INITIALIZATION',
+    'method': 'GET',
+    'fb_api_req_friendly_name': 'pwdKeyFetch',
+    'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
+    # public app token used by many client implementations
+    'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
+}
 
-# --- utilities to fetch/parse public key from facebook pages/js ---
-def fetch_url_text(url, timeout=10):
-    r = requests.get(url, timeout=timeout)
-    r.raise_for_status()
-    return r.text
 
-def find_public_key_in_text(text):
+def fetch_public_key_and_kid(timeout=10):
     """
-    Try several common patterns:
-    - PEM block embedded
-    - "pub_key":"<PEM or base64>"
-    - modulus/exponent JSON-like fields
-    Returns either a PEM string or dict {'mod':..., 'exp':...} or None.
+    Fetch the public key PEM and key_id from Facebook's pwd_key_fetch endpoint.
+    Returns (public_key_pem, key_id) or (None, None) on failure.
     """
-    # 1) PEM block
-    m = re.search(r"(-----BEGIN PUBLIC KEY-----.+?-----END PUBLIC KEY-----)", text, re.DOTALL)
-    if m:
-        return m.group(1)
+    try:
+        resp = requests.post(PWD_FETCH_URL, params=PWD_FETCH_PARAMS, timeout=timeout)
+        resp.raise_for_status()
+        j = resp.json()
+        pub = j.get("public_key")
+        kid = j.get("key_id", 5)
+        if not pub:
+            return None, None
+        return pub, int(kid)
+    except Exception as e:
+        # caller can decide how to handle failure
+        return None, None
 
-    # 2) JSON-ish pub_key (escaped)
-    m = re.search(r'"pub_key"\s*:\s*"(.*?)"', text)
-    if m:
-        # unescape common JS escapes
-        candidate = m.group(1).encode('utf-8').decode('unicode_escape')
-        # if it already looks like PEM, return; else return raw
-        if "-----BEGIN" in candidate:
-            return candidate
-        return candidate
 
-    # 3) modulus / exponent (hex or decimal)
-    mod = re.search(r'"mod"\s*:\s*"(0x[0-9a-fA-F]+|[0-9a-fA-F]+)"', text)
-    exp = re.search(r'"exp"\s*:\s*"(0x[0-9a-fA-F]+|[0-9a-fA-F]+)"', text)
-    if mod and exp:
-        return {'mod': mod.group(1), 'exp': exp.group(1)}
-
-    return None
-
-def modexp_to_pem(mod_str, exp_str):
-    if isinstance(mod_str, str) and mod_str.startswith("0x"):
-        mod_str = mod_str[2:]
-    if isinstance(exp_str, str) and exp_str.startswith("0x"):
-        exp_str = exp_str[2:]
-    n = int(mod_str, 16)
-    e = int(exp_str, 16)
-    rsa_key = RSA.construct((n, e))
-    return rsa_key.export_key().decode()
-
-# --- encpass generation ---
-def generate_encpass(password, public_key_pem, key_id=5):
+def generate_encpass(password: str, public_key_pem: str, key_id: int = 5) -> str:
     """
-    Return '#PWD_BROWSER:5:<timestamp>:<base64_payload>'
+    Build a #PWD_BROWSER:5:<timestamp>:<base64_payload> token.
+    Steps:
+      - generate random 32-byte AES key and 12-byte IV (nonce)
+      - RSA-encrypt AES key with the provided public key (PKCS1 v1.5)
+      - AES-GCM encrypt the password using timestamp (as AAD)
+      - assemble payload: [version_byte=1, key_id_byte] + IV + rsa_len(2-le) + rsa_encrypted_key + auth_tag + ciphertext
+      - base64 payload and return with timestamp
     """
-    # AES key and IV
+    # AES key + IV
     aes_key = get_random_bytes(32)
     iv = get_random_bytes(12)
 
-    # RSA encrypt AES key with PKCS1_v1_5
+    # RSA encrypt AES key (PKCS1 v1.5)
     pub = RSA.import_key(public_key_pem)
     rsa_cipher = PKCS1_v1_5.new(pub)
     encrypted_aes = rsa_cipher.encrypt(aes_key)
@@ -70,70 +61,74 @@ def generate_encpass(password, public_key_pem, key_id=5):
     # AES-GCM encrypt password with timestamp as AAD
     ts = int(time.time())
     aes = AES.new(aes_key, AES.MODE_GCM, nonce=iv)
-    aes.update(str(ts).encode())
+    aes.update(str(ts).encode())  # AAD is ASCII timestamp
     ciphertext, tag = aes.encrypt_and_digest(password.encode())
 
-    # assemble payload: [version_byte=1, key_id_byte] + iv + rsa_len(2 le) + rsa + tag + ciphertext
+    # assemble payload
     buf = io.BytesIO()
-    buf.write(bytes([1, int(key_id)]))
-    buf.write(iv)
-    buf.write(struct.pack("<H", len(encrypted_aes)))
-    buf.write(encrypted_aes)
-    buf.write(tag)
-    buf.write(ciphertext)
+    buf.write(bytes([1, int(key_id)]))                 # version byte (1) + key_id byte
+    buf.write(iv)                                      # 12 bytes
+    buf.write(struct.pack("<H", len(encrypted_aes)))  # 2-byte little-endian length
+    buf.write(encrypted_aes)                           # RSA-encrypted AES key
+    buf.write(tag)                                     # 16-byte AES-GCM auth tag
+    buf.write(ciphertext)                              # remaining: ciphertext
 
     b64 = base64.b64encode(buf.getvalue()).decode()
     return f"#PWD_BROWSER:5:{ts}:{b64}"
 
-# --- main driver: try to auto-fetch public key, else ask user to paste PEM ---
-def main():
-    # Try common FB sources (you may need to update or add other URLs)
-    fb_urls = [
-        "https://www.facebook.com/login",
-        "https://www.facebook.com/",
-        # CDN JS resources (some may 404 or be blocked)
-        "https://static.xx.fbcdn.net/rsrc.php/v4/y3/r/9-Ccc804IY2.js",
-    ]
 
-    pem = None
-    for url in fb_urls:
-        try:
-            print("Fetching", url)
-            txt = fetch_url_text(url)
-            found = find_public_key_in_text(txt)
-            if found:
-                if isinstance(found, str) and "-----BEGIN" in found:
-                    pem = found
-                    print("Found PEM in", url)
-                    break
-                elif isinstance(found, str):
-                    # maybe base64 encoded PEM or raw; try to see if it starts with 'MI' (base64 pkcs1)
-                    if found.strip().startswith("MI"):
-                        # try assemble PEM
-                        pem = "-----BEGIN PUBLIC KEY-----\n" + "\n".join([found[i:i+64] for i in range(0,len(found),64)]) + "\n-----END PUBLIC KEY-----\n"
-                        print("Found base64 key in", url)
-                        break
-                    else:
-                        # raw not recognizable
-                        print("Found candidate pub_key string but not PEM; continuing")
-                elif isinstance(found, dict):
-                    pem = modexp_to_pem(found['mod'], found['exp'])
-                    print("Constructed PEM from mod/exp in", url)
-                    break
-        except Exception as e:
-            print("Fetch/parse failed for", url, ":", str(e))
+def parse_encpass(token: str):
+    """
+    Parse an existing #PWD_BROWSER token into its components.
+    Returns dict with keys: token_version, timestamp, version_byte, key_id, iv, rsa_len,
+    encrypted_aes, auth_tag, ciphertext
+    """
+    if not token.startswith("#PWD_BROWSER:"):
+        raise ValueError("Not a PWD_BROWSER token")
+    parts = token.split(":", 3)
+    _, ver, ts, payload_b64 = parts
+    payload = base64.b64decode(payload_b64)
 
-    if pem is None:
-        print("\nCould not auto-extract public key from the pages/scripts. Two options:")
-        print("1) Paste the PEM public key now (beginning with '-----BEGIN PUBLIC KEY-----').")
-        print("2) Paste modulus & exponent in hex if the JS returns them.")
-        print("\nIf you want me to generate the token, paste the PEM here. Otherwise, run this script after retrieving the PEM locally.")
-        return
+    buf = io.BytesIO(payload)
+    version_byte = buf.read(1)[0]
+    key_id = buf.read(1)[0]
+    iv = buf.read(12)
+    rsa_len = struct.unpack("<H", buf.read(2))[0]
+    encrypted_aes = buf.read(rsa_len)
+    auth_tag = buf.read(16)
+    ciphertext = buf.read()
 
-    # If we have PEM, generate encpass
-    token = generate_encpass(PASSWORD, pem, key_id=5)
-    print("\nGenerated encpass for password:", PASSWORD)
-    print(token)
+    return {
+        "token_version": ver,
+        "timestamp": int(ts),
+        "version_byte": version_byte,
+        "key_id": key_id,
+        "iv": iv,
+        "rsa_len": rsa_len,
+        "encrypted_aes": encrypted_aes,
+        "auth_tag": auth_tag,
+        "ciphertext": ciphertext,
+    }
+
 
 if __name__ == "__main__":
-    main()
+    # Example usage
+    password = "989898989"   # change to any password you want
+    pub, kid = fetch_public_key_and_kid()
+    if not pub:
+        print("Failed to fetch public key from pwd_key_fetch. Paste a PEM public key or check network/endpoint.")
+    else:
+        token = generate_encpass(password, pub, key_id=kid)
+        print("Generated encpass:")
+        print(token)
+
+        # optional: parse and show hex-inspected components
+        parsed = parse_encpass(token)
+        print("\nParsed payload components (hex):")
+        print("version_byte:", parsed["version_byte"])
+        print("key_id:", parsed["key_id"])
+        print("iv:", parsed["iv"].hex())
+        print("rsa_len:", parsed["rsa_len"])
+        print("encrypted_aes:", parsed["encrypted_aes"].hex()[:200] + "..." )
+        print("auth_tag:", parsed["auth_tag"].hex())
+        print("ciphertext:", parsed["ciphertext"].hex()[:200] + "...")
