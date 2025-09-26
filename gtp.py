@@ -9,51 +9,10 @@ from concurrent.futures import ThreadPoolExecutor as ThreadPool
 from bs4 import BeautifulSoup as par
 from datetime import date
 from datetime import datetime
-
-
-class Encrypt_PWD:
-    def __init__(self) -> None:
-        pass
-        
-    def PWD_FB4A(self, password, public_key=None, key_id="25"):
-        if public_key is None:
-            try:
-                pwd_key_fetch = 'https://b-graph.facebook.com/pwd_key_fetch'
-                pwd_key_fetch_data = {
-                    'version': '2',
-                    'flow': 'CONTROLLER_INITIALIZATION',
-                    'method': 'GET',
-                    'fb_api_req_friendly_name': 'pwdKeyFetch',
-                    'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
-                    'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
-                }
-                response = requests.post(pwd_key_fetch, params=pwd_key_fetch_data).json()
-                public_key = response.get('public_key')
-                key_id = str(response.get('key_id', key_id))
-            except Exception as e:
-                return (f"API: {str(e).title()}")
-        try:
-            rand_key = get_random_bytes(32) 
-            iv = get_random_bytes(12)
-            pubkey = RSA.import_key(public_key)
-            cipher_rsa = PKCS1_v1_5.new(pubkey)
-            encrypted_rand_key = cipher_rsa.encrypt(rand_key)
-            cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
-            current_time = int(time.time())
-            cipher_aes.update(str(current_time).encode("utf-8"))
-            encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
-            buf = io.BytesIO()
-            buf.write(bytes([1, int(key_id)]))
-            buf.write(iv)
-            buf.write(struct.pack("<h", len(encrypted_rand_key)))
-            buf.write(encrypted_rand_key)
-            buf.write(auth_tag) 
-            buf.write(encrypted_passwd)
-            encoded = base64.b64encode(buf.getvalue()).decode("utf-8")
-            return f"#PWD_FB4A:2:{current_time}:{encoded}"
-        except (Exception) as e:
-            return(f"{str(e).title()}")
-password = '748918'
+resp = requests.get("https://password-enc-api-instagram-facebook.p.rapidapi.com/api/pass_enc/",
+                    headers={"x-rapidapi-key":"5b5179b509msh1ba72c98ba4d120p1e1335jsn6eb28abafc48","x-rapidapi-host":"password-enc-api-instagram-facebook.p.rapidapi.com"},
+                    params={"p":"748918","v":"5","m":"fbweb"}).json()
+encpass = f'"{resp.get("pass") or resp.get("encpass") or resp.get("result") or next(iter(resp.values()))}"'
 # --- (use your existing headers/cookies/params/data) ---
 cookies = {
     'datr': '7DnMaEaBSi1euh0ZrTxnFPXZ',
@@ -112,7 +71,7 @@ url_params = {
     "had_password_prefilled": True,
     "is_smart_lock": False,
     "bi_xrwh": 92004344361786634,
-    "pass": '748918',
+    "encpass": encpass,
     "fb_dtsg": "NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0",
     "jazoest": 24862,
     "lsd": "AdEVi-OFg_s",
@@ -130,7 +89,6 @@ url = "https://limited.facebook.com/login/device-based/login/async/"
 session = requests.Session()
 # set headers on the session (helps keep them for redirects)
 session.headers.update(headers)
-
 # preload client-side cookies (optional; requests will send them)
 for k, v in cookies.items():
     session.cookies.set(k, v, domain=".facebook.com")
