@@ -1,62 +1,88 @@
+# run locally: pip install requests pycryptodome
 import time, io, struct, base64, requests
 from Crypto.Cipher import AES, PKCS1_v1_5
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 
+PWD_FETCH_URL = "https://b-graph.facebook.com/pwd_key_fetch"
+PWD_FETCH_PARAMS = {
+    'version': '2',
+    'flow': 'CONTROLLER_INITIALIZATION',
+    'method': 'GET',
+    'fb_api_req_friendly_name': 'pwdKeyFetch',
+    'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
+    'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
+}
 
-class Encrypt_PWD:
-    def __init__(self):
-        pass
+def fetch_public_key(timeout=10):
+    """Return (pem, key_id) or (None, None) on failure."""
+    try:
+        r = requests.post(PWD_FETCH_URL, params=PWD_FETCH_PARAMS, timeout=timeout)
+        r.raise_for_status()
+        j = r.json()
+        return j.get("public_key"), int(j.get("key_id", 5))
+    except Exception:
+        return None, None
 
-    def PWD_FB4A(self, password, public_key=None, key_id="25"):
-        # fetch live public key if not provided
-        if public_key is None:
-            try:
-                pwd_key_fetch = 'https://b-graph.facebook.com/pwd_key_fetch'
-                pwd_key_fetch_data = {
-                    'version': '2',
-                    'flow': 'CONTROLLER_INITIALIZATION',
-                    'method': 'GET',
-                    'fb_api_req_friendly_name': 'pwdKeyFetch',
-                    'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
-                    'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
-                }
-                response = requests.post(pwd_key_fetch, params=pwd_key_fetch_data).json()
-                public_key = response.get('public_key')
-                key_id = str(response.get('key_id', key_id))
-            except Exception as e:
-                return f"API: {str(e)}"
+def generate_encpass(password: str, public_key_pem: str, key_id: int = 5,
+                     header_version: int = 5, aad_ts: int = None) -> str:
+    """
+    Generate #PWD_BROWSER:<header_version>:<timestamp>:<base64_payload>
+    - If aad_ts is None we use current time as AAD and timestamp in header.
+    - If aad_ts is provided, it's used as AAD; the same value is placed in the header timestamp
+      so payload AAD and header timestamp match.
+    - To create a "#PWD_BROWSER:0" style token set header_version=0 and aad_ts=0
+      (payload will be encrypted with AAD==b'0').
+    """
+    if public_key_pem is None:
+        raise ValueError("public_key_pem is required")
 
-        try:
-            # AES key + IV
-            rand_key = get_random_bytes(32)
-            iv = get_random_bytes(12)
+    # AES key + IV
+    aes_key = get_random_bytes(32)
+    iv = get_random_bytes(12)
 
-            # RSA encrypt AES key
-            pubkey = RSA.import_key(public_key)
-            cipher_rsa = PKCS1_v1_5.new(pubkey)
-            encrypted_rand_key = cipher_rsa.encrypt(rand_key)
+    # RSA encrypt AES key (PKCS1 v1.5)
+    pub = RSA.import_key(public_key_pem)
+    rsa_cipher = PKCS1_v1_5.new(pub)
+    encrypted_aes = rsa_cipher.encrypt(aes_key)
 
-            # AES-GCM encrypt password using timestamp as AAD
-            cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
-            current_time = int(time.time())
-            cipher_aes.update(str(current_time).encode("utf-8"))
-            encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
+    # AAD / timestamp
+    if aad_ts is None:
+        ts = int(time.time())
+    else:
+        ts = int(aad_ts)
 
-            # Assemble payload
-            buf = io.BytesIO()
-            buf.write(bytes([1, int(key_id) & 0xFF]))          # version, key_id
-            buf.write(iv)                                      # nonce
-            buf.write(struct.pack("<H", len(encrypted_rand_key)))  # unsigned short length
-            buf.write(encrypted_rand_key)                      # RSA encrypted AES key
-            buf.write(auth_tag)                                # AES-GCM auth tag
-            buf.write(encrypted_passwd)                        # AES-GCM ciphertext
+    # AES-GCM encrypt password with ts as AAD (ASCII bytes)
+    aes = AES.new(aes_key, AES.MODE_GCM, nonce=iv)
+    aes.update(str(ts).encode())        # **this must match the header timestamp**
+    ciphertext, tag = aes.encrypt_and_digest(password.encode())
 
-            encoded = base64.b64encode(buf.getvalue()).decode("utf-8")
-            return f"#PWD_FB4A:2:{current_time}:{encoded}"
+    # assemble payload: [1, key_id] + iv + rsa_len(2 le) + rsa + tag + ciphertext
+    buf = io.BytesIO()
+    buf.write(bytes([1, int(key_id) & 0xFF]))
+    buf.write(iv)
+    buf.write(struct.pack("<H", len(encrypted_aes)))
+    buf.write(encrypted_aes)
+    buf.write(tag)
+    buf.write(ciphertext)
+    payload_b64 = base64.b64encode(buf.getvalue()).decode()
 
-        except Exception as e:
-            return f"Error: {str(e)}"
+    # header timestamp must equal the AAD used above
+    return f"#PWD_BROWSER:{int(header_version)}:{ts}:{payload_b64}"
 
-enc = Encrypt_PWD()
-print(enc.PWD_FB4A(""))
+# Example usage:
+if __name__ == "__main__":
+    password = "989898989"
+
+    # Option A: Auto-fetch Facebook public key (may fail if endpoint blocked)
+    pem, kid = fetch_public_key()
+    if pem is None:
+        print("Couldn't fetch public key; paste PEM into 'pem' variable to continue.")
+    else:
+        # 1) Standard valid-style token:
+        token = generate_encpass(password, pem, key_id=kid)
+        print("Standard token (version 5):", token)
+
+        # 2) Make a self-consistent token with header_version 0 and AAD timestamp 0
+        token_zero = generate_encpass(password, pem, key_id=kid, header_version=0, aad_ts=0)
+        print("Self-consistent token with header 0 (for testing only):", token_zero)
