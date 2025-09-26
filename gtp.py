@@ -1,4 +1,5 @@
 import requests,time
+import urllib.parse
 
 
 class Encrypt_PWD_Web:
@@ -110,7 +111,7 @@ params = {
     'lwv': '100',
 }
     # same as your snippet
-data = {
+url_params = {
     'm_ts': '1758859976',
     'li': 'yBLWaNo3yCbGoJgrOxFDDjjk',
     'try_number': '0',
@@ -125,7 +126,9 @@ data = {
     'had_password_prefilled': 'true',
     'is_smart_lock': 'false',
     'bi_xrwh': '92004344361786634',
-    'encpass': '%23PWD_BROWSER%3A5%3A1758859991%3AAWpQAJ78nsELQ6oAmTKN60TUqyU3S%2B4pPGhmFdKL40ndAsgorMtdauIzLDtczxHxR4kOLhmbNJkWpCygokCpNw8PfXHkkW2FIuFOnkmliVxJMjoA4sCgle6XrNEM5RuiTcxtyzWenyCyqw%3D%3D',
+    # these two values in your dict are already percent-encoded;
+    # we'll decode them first so urlencode only encodes once:
+    'encpass': '%23PWD_BROWSER%3A5%3A1758859991%3AAWpQAJ78...%3D%3D',
     'fb_dtsg': 'NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw%3A0%3A0',
     'jazoest': '24862',
     'lsd': 'AdEVi-OFg_s',
@@ -139,6 +142,9 @@ data = {
     'a': 'AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg',
     '_user': '0'
 }
+
+decoded = {k: urllib.parse.unquote(v) for k, v in url_params.items()}
+urlencoded_string = urllib.parse.urlencode(decoded)
 url = "https://limited.facebook.com/login/device-based/login/async/"
 
 # --- Do the POST using a Session so cookies persist ---
@@ -151,7 +157,7 @@ for k, v in cookies.items():
     session.cookies.set(k, v, domain=".facebook.com")
 
 # perform the request
-resp = session.post(url, params=params, data=data, allow_redirects=True, timeout=30)
+resp = session.post(url, params=params, data=urlencoded_string, allow_redirects=True, timeout=30)
 
 # extract cookies from the session
 cookies_after = session.cookies.get_dict()
