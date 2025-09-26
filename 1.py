@@ -16,7 +16,7 @@ PWD_FETCH_PARAMS = {
     'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
     'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
 }
-LOGIN_POST_URL = "https://limited.facebook.com/login/device-based/login/async/"
+LOGIN_POST_URL = "https://m.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100'"
 
 EMAIL = "100056503155212"      # <-- set email
 PASSWORD = "748918"            # <-- set password
