@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup as par
 from datetime import date
 from datetime import datetime
 
-password = '3465767567'
+
 class Encrypt_PWD_Web:
     def __init__(self):
         pass
@@ -71,7 +71,7 @@ class Encrypt_PWD_Web:
 
         except Exception as e:
             return str(e).title()
-password = pw
+password = '3465767567'
 web_encryptor = Encrypt_PWD_Web()
 web_token = web_encryptor.PWD_BROWSER(password)
 # --- (use your existing headers/cookies/params/data) ---
