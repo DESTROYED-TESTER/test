@@ -11,54 +11,69 @@ from datetime import date
 from datetime import datetime
 
 password = '3465767567'
-def PWD_BROWSER(password, public_key=None, key_id="5"):
-    """
-    Generate a #PWD_BROWSER token for Facebook web login.
-    Returns: '#PWD_BROWSER:5:<timestamp>:<base64_blob>'
-    """
-    try:
-        # Fetch public key from Facebook web page if not provided
-        if not public_key:
-            resp = requests.get("https://www.facebook.com/login", timeout=10).text
-            # Look for public key in JS (may change if Facebook updates page)
-            match = re.search(r'"pub_key":"(-----BEGIN PUBLIC KEY-----.*?-----END PUBLIC KEY-----)"', resp, re.DOTALL)
-            if not match:
-                return "Failed to fetch public_key from www.facebook.com"
-            public_key = match.group(1)
-            key_id = "5"
+class Encrypt_PWD_Web:
+    def __init__(self):
+        pass
 
-        # AES key + IV
-        rand_key = get_random_bytes(32)
-        iv = get_random_bytes(12)
+    def PWD_BROWSER(self, password, public_key=None, key_id="5"):
+        """
+        Generate a #PWD_BROWSER token for Facebook web login.
+        Returns: '#PWD_BROWSER:5:<timestamp>:<base64_blob>'
+        """
+        if public_key is None:
+            try:
+                pwd_key_fetch = 'https://b-graph.facebook.com/pwd_key_fetch'
+                params = {
+                    'version': '2',
+                    'flow': 'CONTROLLER_INITIALIZATION',
+                    'method': 'GET',
+                    'fb_api_req_friendly_name': 'pwdKeyFetch',
+                    'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
+                    'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
+                }
+                response = requests.post(pwd_key_fetch, params=params, timeout=10).json()
+                public_key = response.get('public_key')
+                key_id = str(response.get('key_id', key_id))
+                if not public_key:
+                    return "Failed to fetch public_key"
+            except Exception as e:
+                return f"API: {str(e)}"
 
-        # RSA encrypt AES key
-        pubkey = RSA.import_key(public_key)
-        cipher_rsa = PKCS1_v1_5.new(pubkey)
-        encrypted_rand_key = cipher_rsa.encrypt(rand_key)
+        try:
+            # AES key + IV
+            rand_key = get_random_bytes(32)
+            iv = get_random_bytes(12)
 
-        # AES-GCM encrypt password using timestamp as AAD
-        cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
-        current_time = int(time.time())
-        cipher_aes.update(str(current_time).encode())
-        encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode())
+            # RSA encrypt AES key
+            pubkey = RSA.import_key(public_key)
+            cipher_rsa = PKCS1_v1_5.new(pubkey)
+            encrypted_rand_key = cipher_rsa.encrypt(rand_key)
 
-        # Assemble payload: [1, key_id] + IV + RSA key len + RSA key + auth tag + ciphertext
-        buf = io.BytesIO()
-        buf.write(bytes([1, int(key_id)]))
-        buf.write(iv)
-        buf.write(struct.pack("<H", len(encrypted_rand_key)))
-        buf.write(encrypted_rand_key)
-        buf.write(auth_tag)
-        buf.write(encrypted_passwd)
+            # AES-GCM encrypt password using timestamp as AAD
+            cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
+            current_time = int(time.time())
+            cipher_aes.update(str(current_time).encode("utf-8"))
+            encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
 
-        encoded = base64.b64encode(buf.getvalue()).decode()
-        return f"#PWD_BROWSER:5:{current_time}:{encoded}"
+            # Assemble payload: [1, key_id] + IV + RSA key len + RSA key + auth tag + ciphertext
+            buf = io.BytesIO()
+            buf.write(bytes([1, int(key_id)]))
+            buf.write(iv)
+            buf.write(struct.pack("<H", len(encrypted_rand_key)))  # unsigned short
+            buf.write(encrypted_rand_key)
+            buf.write(auth_tag)
+            buf.write(encrypted_passwd)
 
-    except Exception as e:
-        return str(e).title()
-token = PWD_BROWSER(password)
-print("Generated #PWD_BROWSER token:")
-print(token)
+            encoded = base64.b64encode(buf.getvalue()).decode("utf-8")
+
+            # Web token version 5
+            return f"#PWD_BROWSER:5:{current_time}:{encoded}"
+
+        except Exception as e:
+            return str(e).title()
+password = pw
+web_encryptor = Encrypt_PWD_Web()
+web_token = web_encryptor.PWD_BROWSER(password)
 # --- (use your existing headers/cookies/params/data) ---
 cookies = {
     'datr': '7DnMaEaBSi1euh0ZrTxnFPXZ',
@@ -103,39 +118,32 @@ params = {
 }
     # same as your snippet
 url_params = {
-    'm_ts': '1758859976',
-    'li': 'yBLWaNo3yCbGoJgrOxFDDjjk',
-    'try_number': '0',
-    'unrecognized_tries': '0',
-    'email': '100056503155212',
-    'prefill_contact_point': '100056503155212',
-    'prefill_source': 'browser_dropdown',
-    'prefill_type': 'password',
-    'first_prefill_source': 'browser_dropdown',
-    'first_prefill_type': 'contact_point',
-    'had_cp_prefilled': 'true',
-    'had_password_prefilled': 'true',
-    'is_smart_lock': 'false',
-    'bi_xrwh': '92004344361786634',
-    # these two values in your dict are already percent-encoded;
-    # we'll decode them first so urlencode only encodes once:
-    'encpass': '%23PWD_BROWSER%3A5%3A1758859991%3AAWpQAJ78nsELQ6oAmTKN60TUqyU3S%2B4pPGhmFdKL40ndAsgorMtdauIzLDtczxHxR4kOLhmbNJkWpCygokCpNw8PfXHkkW2FIuFOnkmliVxJMjoA4sCgle6XrNEM5RuiTcxtyzWenyCyqw%3D%3D',
-    'fb_dtsg': 'NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw%3A0%3A0',
-    'jazoest': '24862',
-    'lsd': 'AdEVi-OFg_s',
-    '_dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE',
-    'csr': '',
-    'hsdp': '',
-    'hblp': '',
-    'sjsp': '',
-    'req': '1',
-    'fmt': '1',
-    'a': 'AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg',
-    '_user': '0'
+    "m_ts": 1758859976,
+    "li": "yBLWaNo3yCbGoJgrOxFDDjjk",
+    "try_number": 0,
+    "unrecognized_tries": 0,
+    "email": "100056503155212",
+    "prefill_contact_point": "100056503155212",
+    "prefill_source": "browser_dropdown",
+    "prefill_type": "password",
+    "first_prefill_source": "browser_dropdown",
+    "first_prefill_type": "contact_point",
+    "had_cp_prefilled": True,
+    "had_password_prefilled": True,
+    "is_smart_lock": False,
+    "bi_xrwh": 92004344361786634,
+    "encpass": "#PWD_BROWSER:5:1758859991:AWpQAJ78nsELQ6oAmTKN60TUqyU3S+4pPGhmFdKL40ndAsgorMtdauIzLDtczxHxR4kOLhmbNJkWpCygokCpNw8PfXHkkW2FIuFOnkmliVxJMjoA4sCgle6XrNEM5RuiTcxtyzWenyCyqw==",
+    "fb_dtsg": "NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0",
+    "jazoest": 24862,
+    "lsd": "AdEVi-OFg_s",
+    "_dyn": "1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE",
+    "req": 1,
+    "fmt": 1,
+    "a": "AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg",
+    "_user": 0
 }
 
-decoded = {k: urllib.parse.unquote(v) for k, v in url_params.items()}
-urlencoded_string = urllib.parse.urlencode(decoded)
+urlencoded_string = urllib.parse.urlencode(url_params)
 url = "https://limited.facebook.com/login/device-based/login/async/"
 
 # --- Do the POST using a Session so cookies persist ---
