@@ -1850,7 +1850,7 @@ def d(uid,pwx,tl):
             'user-agent': ____PO_CO____(), # Using the dynamic UA generator
             'x-response-format': 'JSONStream',
             'content-type': 'application/x-www-form-urlencoded',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(resp)).group(1),
             'viewport-width': '360',
             'x-requested-with': 'XMLHttpRequest',
             'x-asbd-id': '129477',
