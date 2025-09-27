@@ -3,15 +3,11 @@ import urllib.parse
 
 # --- (use your existing headers/cookies/params/data) ---
 cookies = {
-    'datr': '7DnMaEaBSi1euh0ZrTxnFPXZ',
-    'sb': '7DnMaMKotlR75LUbGLYU-TYB',
-    'm_pixel_ratio': '2.4749999046325684',
-    'ps_l': '1',
-    'ps_n': '1',
-    'dpr': '2.4749999046325684',
-    'wd': '437x973',
-    'fr': '02n8peqk75hF9D13g.AWcYnHXf1GZF8b7MXvQBW4q05cEXwaTcJhJCnUnlt93z2xfY_YY.BozDns..AAA.0.0.Bo1hLI.AWcm2HkPoopHsJCgNGiCAIgqHgw',
-}  # keep your dict as in your snippet
+            'datr': 'uAXXaK1gpNPg1O65HG_ozwZ7',
+            'sb': 'uAXXaOSXHTmtpCn0gqXqAtKu',
+            'm_pixel_ratio': '2.4749999046325684',
+            'wd': '437x973',
+            'fr': '0hQzCLwErgpENEQsZ..Bo1wW4..AAA.0.0.Bo153r.AWeRXRzZmHeYbFttkxxk2EeXpew',}  # keep your dict as in your snippet
 headers = {
     'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.155 Mobile Safari/537.36',
     # 'Accept-Encoding': 'gzip, deflate, br, zstd',
@@ -45,30 +41,13 @@ params = {
 }
     # same as your snippet
 url_params = {
-    "m_ts": 1758859976,
-    "li": "yBLWaNo3yCbGoJgrOxFDDjjk",
-    "try_number": 0,
-    "unrecognized_tries": 0,
-    "email": "100056503155212",
-    "pass": "748918",
-    "prefill_contact_point": "100056503155212",
-    "prefill_source": "browser_dropdown",
-    "prefill_type": "password",
-    "first_prefill_source": "browser_dropdown",
-    "first_prefill_type": "contact_point",
-    "had_cp_prefilled": True,
-    "had_password_prefilled": True,
-    "is_smart_lock": False,
-    "bi_xrwh": 92004344361786634,
-    "fb_dtsg": "NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0",
-    "jazoest": 24862,
-    "lsd": "AdEVi-OFg_s",
-    "_dyn": "1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE",
-    "req": 1,
-    "fmt": 1,
-    "a": "AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg",
-    "_user": 0
-}
+            'lsd': 'AdHH9DPlrHo',
+            'jazoest': '24823',
+            'email': '100078110812030',
+            'next': 'https://m.facebook.com/v3.2/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback&scope=email&state=https%3A%2F%2Fpixlr.com%2F&client_id=144117062837799&ret=login&fbapp_pres=0&logger_id=27279048-2ffa-4266-a587-1693d6522204&tp=unspecified',
+            'flow': 'login_no_pin',
+            'pass': '767980',
+            'login': 'Log in'}
 
 urlencoded_string = urllib.parse.urlencode(url_params)
 url = "https://lm.facebook.com/login/device-based/login/async/"
@@ -82,7 +61,7 @@ for k, v in cookies.items():
     session.cookies.set(k, v, domain=".facebook.com")
 
 # perform the request
-resp = session.post(url, params=params, data=urlencoded_string, allow_redirects=True, timeout=30)
+resp = session.post(url, data=urlencoded_string, allow_redirects=True, timeout=30)
 
 # extract cookies from the session
 cookies_after = session.cookies.get_dict()
