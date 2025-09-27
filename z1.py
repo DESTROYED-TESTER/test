@@ -1442,7 +1442,7 @@ def x(uid,pwx,tl):
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://limited.facebook.com/login/device-based/login/async/?api_key=144117062837799&auth_token=e1ae613468f81a1ddb383ce1126a88ad&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26cbt%3D1758961130901%26logger_id%3Da2421e03-bf3c-4a1c-b571-941d1bab12f6&refsrc=deprecated&app_id=144117062837799&cancel=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied&lwv=100''
+            url = 'https://limited.facebook.com/login/device-based/login/async/?api_key=144117062837799&auth_token=e1ae613468f81a1ddb383ce1126a88ad&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26cbt%3D1758961130901%26logger_id%3Da2421e03-bf3c-4a1c-b571-941d1bab12f6&refsrc=deprecated&app_id=144117062837799&cancel=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied&lwv=100'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
