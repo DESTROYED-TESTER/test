@@ -1288,7 +1288,7 @@ def mbasic(uid,pwx,tl):
             'wd': '437x973',
             'fr': '0zyKJJK6dI3lBLjbu..Bo1n1p..AAA.0.0.Bo1n3U.AWfvqPp5N7wsM6LQ4jVHWpwo6QE',}
             headers = {
-            'Host': 'limited.facebook.com',
+            'Host': 'p.facebook.com',
             # 'content-length': str(len(str(data))), # Content-length is usually set by requests
             'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
             'sec-ch-ua-mobile': '?1',
@@ -1303,11 +1303,11 @@ def mbasic(uid,pwx,tl):
             'sec-ch-prefers-color-scheme': 'light',
             'sec-ch-ua-platform': '"Android"',
             'accept': '*/*',
-            'origin': 'https://limited.facebook.com',
+            'origin': 'https://p.facebook.com',
             'sec-fetch-site': 'same-origin',
             'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
             'sec-fetch-dest': 'empty',
-            'referer': 'https://limited.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'referer': 'https://p.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
             'accept-encoding': 'gzip, deflate, br',
             'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             params = {
@@ -1315,7 +1315,7 @@ def mbasic(uid,pwx,tl):
             'auth_token': '376df36ddda6d8ca677cca104504e039',
             'skip_api_login': '1',
             'signed_next': '1',
-            'next': 'https://limited.facebook.com/v3.3/dialog/oauth?client_id=822446634883149',
+            'next': 'https://p.facebook.com/v3.3/dialog/oauth?client_id=822446634883149',
             'refsrc': 'deprecated',
             'app_id': '822446634883149',
             'cancel': 'https://ncs.io/facebook/login-callback?error=access_denied',
@@ -1348,7 +1348,7 @@ def mbasic(uid,pwx,tl):
             'fmt': '1',
             'a': 'AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg',
             '_user': '0',}
-            url = "https://limited.facebook.com/login/device-based/login/async/"
+            url = "https://p.facebook.com/login/device-based/login/async/"
             Session.headers.update(headers)
             for k, v in cookies.items():
                 Session.cookies.set(k, v, domain=".facebook.com")
