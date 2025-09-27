@@ -1951,7 +1951,7 @@ def d(uid,pwx,tl):
             # 'content-length': str(len(str(data))), # Content-length is usually set by requests
             'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
             'sec-ch-ua-mobile': '?1',
-            'user-agent': __PO_CO__(), # Using the dynamic UA generator
+            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
             'x-response-format': 'JSONStream',
             'content-type': 'application/x-www-form-urlencoded',
             'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
