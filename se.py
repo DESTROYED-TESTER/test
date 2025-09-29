@@ -23,7 +23,7 @@ O = '\x1b[1;98m'
 B = '\033[1;34m'
 W = '\033[1;97m'
 cyan="\033[1;36m"
-ugnn = []
+ugen = []
 redmi=[]
 bkas = []
 for x in range(1000):
