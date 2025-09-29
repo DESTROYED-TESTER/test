@@ -138,7 +138,14 @@ id,id2,loop,ok,cp,akun,oprek,method,lisensiku,taplikasi,tokenku,uid,lisensikuni=
 cokbrut=[]
 pwpluss,pwnya=[],[]
 sys.stdout.write('\x1b]2;TOOLS : PRIBADI\x07')
-#========= WARNA ========#			
+#========= WARNA ========#		
+R = '\x1b[1;91m' 
+OR = '\033[1;35m'
+G = '\x1b[1;92m' 
+Y = '\x1b[1;93m'
+O = '\x1b[1;98m'
+B = '\033[1;34m'
+W = '\033[1;97m'
 P = '\x1b[1;97m'
 M = '\x1b[1;91m'
 H = '\x1b[1;92m'
