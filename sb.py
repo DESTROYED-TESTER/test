@@ -137,6 +137,9 @@ for xd in range(10000):
 id,id2,loop,ok,cp,akun,oprek,method,lisensiku,taplikasi,tokenku,uid,lisensikuni= [],[],0,0,0,[],[],[],[],[],[],[],[]
 cokbrut=[]
 pwpluss,pwnya=[],[]
+loop = 0
+oks = []
+gen = []
 sys.stdout.write('\x1b]2;TOOLS : PRIBADI\x07')
 #========= WARNA ========#		
 R = '\x1b[1;91m' 
