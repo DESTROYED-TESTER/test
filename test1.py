@@ -38,7 +38,6 @@ ugen2=[]
 ugen=[]
     
 def Main_Menu():
-    os.system('clear')
     print(logo)
     code = input(f"{Y}[{W}~{Y}] {G}ENTER 4 DIGUT CODE {W}: ")
     #code2 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
