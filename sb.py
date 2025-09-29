@@ -16,6 +16,20 @@ from rich import print as rprint
 from rich import pretty
 from datetime import datetime
 from rich.text import Text as tekz
+import os
+import sys
+import re
+import bs4
+from io import BytesIO
+from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as sop
+import time,subprocess,platform,uuid,hashlib,pycurl
+import random
+import base64
+import string
+import uuid
+import requests
+from concurrent.futures import ThreadPoolExecutor
 pretty.install()
 CON=sol()
 cokbrut=[]
