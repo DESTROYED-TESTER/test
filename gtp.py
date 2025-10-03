@@ -41,16 +41,37 @@ params = {
 }
     # same as your snippet
 url_params = {
-            'lsd': 'AdHH9DPlrHo',
-            'jazoest': '24823',
-            'email': '100078110812030',
-            'next': 'https://m.facebook.com/v3.2/dialog/oauth?response_type=code&redirect_uri=https%3A%2F%2Fpixlr.com%2Fauth%2Ffacebook%2Fcallback&scope=email&state=https%3A%2F%2Fpixlr.com%2F&client_id=144117062837799&ret=login&fbapp_pres=0&logger_id=27279048-2ffa-4266-a587-1693d6522204&tp=unspecified',
-            'flow': 'login_no_pin',
-            'pass': '767980',
-            'login': 'Log in'}
+    "m_ts": "1758301441",
+    "li": "AI3NaBYVg0oQAlJQrpoWL2jN",
+    "try_number": "0",
+    "unrecognized_tries": "0",
+    "email": "100056503155212",
+    "prefill_contact_point": "",
+    "prefill_source": "",
+    "prefill_type": "",
+    "first_prefill_source": "",
+    "first_prefill_type": "",
+    "had_cp_prefilled": "false",
+    "had_password_prefilled": "false",
+    "is_smart_lock": "false",
+    "bi_xrwh": "92004344361786634",
+    "encpass": "#PWD_BROWSER:5:1758301661:AWNQAOJCLzQLKLo0UGxKNL2jfG/Pl47TpYe0zrZg+m7nzK8SDl6DXA8esxFb8RGN6ddBmHiiFqB84qJ2MwnOxQcnPEyr5wtPDbB/9Rxc+qvzzKud52EmyEFGezy/ZTkGbQ6YelUIj/irKw==",
+    "fb_dtsg": "NAfvEdvHKfq3724xqDNoimlnQyGa74HH6jE8tvRiLUZppVoWnKtWOpw:0:0",
+    "jazoest": "25138",
+    "lsd": "AdFRK3edMic",
+    "dyn": "1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE",
+    "csr": "",
+    "hsdp": "",
+    "hblp": "",
+    "sjsp": "",
+    "req": "2",
+    "__fmt": "1",
+    "a": "AYqDVtZW_l5B4GxwG9rs-fkSqMAfkXgfci3yTqKxKcrWI5gyCxaZ4o-gphNQfvq4GJzx7g2voxIgZjjoKoZwUhsKyK3s2Y7KiVnueVyg_HlCkw",
+    "user": "0"
+}
 
 urlencoded_string = urllib.parse.urlencode(url_params)
-url = "https://lm.facebook.com/login/device-based/login/async/"
+url = "https://m.facebook.com/login/device-based/login/async/"
 
 # --- Do the POST using a Session so cookies persist ---
 session = requests.Session()
