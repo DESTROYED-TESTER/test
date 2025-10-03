@@ -49,8 +49,8 @@ data = {
     'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
     'encpass': '#PWD_BROWSER:5:1759476526:AXFQANw5oazwXINXvoJ6vdCiq16lV983bef7cnjxr8mi+zMgxfOPdS3sMyAe1TY+UBce/QWQUy+27GJYJCvHReh8hu9s2yUIF1fLL2V9C4o1FimlmifOHuvt+2cYSfrxLtcAotKZerKuvg=='
 }
-
-response = requests.post(url, headers=headers, data=data)
+session = requests.Session()
+response = session.post(url, headers=headers, data=data)
 if 'c_user' in session.cookies.get_dict():
     print("✅ Login successful!")
     print("User ID:", session.cookies.get_dict()['c_user'])
