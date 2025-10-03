@@ -57,7 +57,7 @@ response = session.post(
 )
 
 if "home.php" in response.url:
-    print("✅ Login successful)
+    print("✅ Login successful")
 elif "checkpoint" in response.url or "confirmemail.php" in response.url:
     print("⚠️ Login requires verification:", response.url)
 else:
