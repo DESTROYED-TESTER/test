@@ -82,7 +82,7 @@ for k, v in cookies.items():
     session.cookies.set(k, v, domain=".facebook.com")
 
 # perform the request
-resp = session.post(url, data=urlencoded_string, allow_redirects=True, timeout=30)
+resp = session.post(url, params=params, data=url_params, allow_redirects=True, timeout=30)
 
 # extract cookies from the session
 cookies_after = session.cookies.get_dict()
