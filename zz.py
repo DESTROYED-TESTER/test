@@ -1344,7 +1344,7 @@ def mbasic(uid,pwx,tl):
                 cid = cok["c_user"]
                 coki = ";".join([f"{k}={v}" for k, v in cok.items()])
                 bkas.append(cid)
-				check = check_lock(cid)
+                check = check_lock(cid)
                 if "live" in check:
                     if "confirmemail.php" in response.url:
                         if len(bkas) % 2 == 0:
