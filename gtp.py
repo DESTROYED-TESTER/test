@@ -56,11 +56,8 @@ response = session.post(
     allow_redirects=True
 )
 
-# Check cookies for login success
-cookie_dict = session.cookies.get_dict()
-
-if "c_user" in cookie_dict:
-    print("✅ Login successful as user:", cookie_dict["c_user"])
+if "home.php" in response.url:
+    print("✅ Login successful)
 elif "checkpoint" in response.url or "confirmemail.php" in response.url:
     print("⚠️ Login requires verification:", response.url)
 else:
