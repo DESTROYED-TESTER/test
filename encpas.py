@@ -25,6 +25,6 @@ def generate_encpass(password):
     return encpass
 
 # Example usage
-password = "MyFacebookPassword123"
+password = "Password123"
 encpass = generate_encpass(password)
 print(encpass)
