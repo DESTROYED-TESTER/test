@@ -9,7 +9,7 @@ cookies = {
     'wd': '437x973',
     'fr': '0t3Dqio7YRHpb2kNK..Bo32ET..AAA.0.0.Bo32G3.AWcxwMvmgZxYDvgeMA13kMqTeMU',
 }  # keep your dict as in your snippet
-headers = 
+headers = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.43 Mobile Safari/537.36",
     "Accept-Encoding": "gzip, deflate, br, zstd",
     "Content-Type": "application/x-www-form-urlencoded",
@@ -27,6 +27,7 @@ headers =
     "referer": "https://limited.facebook.com/",
     "accept-language": "en-US,en;q=0.9",
     "priority": "u=1, i",
+    "Cookie": "datr=E2HfaC1esUHFUPm1LLzXx4Gg; sb=E2HfaAojnK6mDputqTLHjbdf; m_pixel_ratio=2.4749999046325684; wd=437x973; fr=0t3Dqio7YRHpb2kNK..Bo32ET..AAA.0.0.Bo32G3.AWcxwMvmgZxYDvgeMA13kMqTeMU"
 }
 params = {
     'api_key': '1393952984244777',
@@ -40,7 +41,7 @@ params = {
     'lwv': '100',
 }
     # same as your snippet
-url_params =  {
+url_params = {
     "m_ts": "1759469883",
     "li": "O2HfaLAo7bVGvZPQG82c0rCz",
     "try_number": "0",
@@ -71,7 +72,7 @@ url_params =  {
 }
 
 urlencoded_string = urllib.parse.urlencode(url_params)
-url = "https://m.facebook.com/login/device-based/login/async/"
+url = "https://limited.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
 
 # --- Do the POST using a Session so cookies persist ---
 session = requests.Session()
