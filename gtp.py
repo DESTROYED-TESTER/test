@@ -51,12 +51,18 @@ data = {
 }
 session = requests.Session()
 response = session.post(url, headers=headers, data=data)
-if 'c_user' in session.cookies.get_dict():
+if 'c_user' in cookies:
     print("✅ Login successful!")
-    print("User ID:", session.cookies.get_dict()['c_user'])
+    print("User ID:", cookies['c_user'])
+elif 'checkpoint' in cookies:
+    print("⚠️ Account is checkpointed (verification required).")
+elif 'login_attempt' in response.url or 'login' in response.url:
+    print("❌ Login failed: Invalid credentials or encpass expired.")
 else:
-    print("❌ Login failed.")
-    if 'checkpoint' in session.cookies.get_dict():
-        print("⚠️ Account is checkpointed or requires verification.")
+    # Fallback: try to detect error from HTML
+    if "incorrect" in response.text.lower() or "password" in response.text.lower():
+        print("❌ Login failed: Wrong email or password.")
+    elif "disabled" in response.text.lower():
+        print("❌ Login failed: Account disabled.")
     else:
-        print("Cookies returned:", session.cookies.get_dict())
+        print("❌ Login failed: Unknown reason.")
