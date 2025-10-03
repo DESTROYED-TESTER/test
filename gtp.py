@@ -51,5 +51,12 @@ data = {
 }
 
 response = requests.post(url, headers=headers, data=data)
-print(response.status_code)
-print(response.text)
+if 'c_user' in session.cookies.get_dict():
+    print("✅ Login successful!")
+    print("User ID:", session.cookies.get_dict()['c_user'])
+else:
+    print("❌ Login failed.")
+    if 'checkpoint' in session.cookies.get_dict():
+        print("⚠️ Account is checkpointed or requires verification.")
+    else:
+        print("Cookies returned:", session.cookies.get_dict())
