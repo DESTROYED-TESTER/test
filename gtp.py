@@ -51,6 +51,7 @@ data = {
 }
 session = requests.Session()
 response = session.post(url, headers=headers, data=data)
+cookies = session.cookies.get_dict()
 if 'c_user' in cookies:
     print("✅ Login successful!")
     print("User ID:", cookies['c_user'])
