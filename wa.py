@@ -10,7 +10,7 @@
 ######   your ultimate tool to crash and sustain any whatsapp users, groups, and channels,
 ######   by just sending them malicious message.
   
-import os, sys, time, urllib
+import os, sys, time, urllib, requests
 from socket import *
 import json
 
