@@ -1,14 +1,7 @@
-import requests,time, io, struct, base64, re
-import urllib.parse
+import requests
 
-# --- (use your existing headers/cookies/params/data) ---
-cookies = {
-    'datr': 'E2HfaC1esUHFUPm1LLzXx4Gg',
-    'sb': 'E2HfaAojnK6mDputqTLHjbdf',
-    'm_pixel_ratio': '2.4749999046325684',
-    'wd': '437x973',
-    'fr': '0t3Dqio7YRHpb2kNK..Bo32ET..AAA.0.0.Bo32G3.AWcxwMvmgZxYDvgeMA13kMqTeMU',
-}  # keep your dict as in your snippet
+url = "https://limited.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+
 headers = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.43 Mobile Safari/537.36",
     "Accept-Encoding": "gzip, deflate, br, zstd",
@@ -29,19 +22,8 @@ headers = {
     "priority": "u=1, i",
     "Cookie": "datr=E2HfaC1esUHFUPm1LLzXx4Gg; sb=E2HfaAojnK6mDputqTLHjbdf; m_pixel_ratio=2.4749999046325684; wd=437x973; fr=0t3Dqio7YRHpb2kNK..Bo32ET..AAA.0.0.Bo32G3.AWcxwMvmgZxYDvgeMA13kMqTeMU"
 }
-params = {
-    'api_key': '1393952984244777',
-    'auth_token': '3ea524ab821dcb9e2140fbe35e5e09fd',
-    'skip_api_login': '1',
-    'signed_next': '1',
-    'next': 'https://m.facebook.com/v16.0/dialog/oauth?app_id=1393952984244777&cbt=1758859978311&logger_id=2fb35fb5-cdb2-46af-8dc4-996548b0ec0b',
-    'refsrc': 'deprecated',
-    'app_id': '1393952984244777',
-    'cancel': 'https://staticxx.facebook.com/x/connect/xd_arbiter/?version=46',
-    'lwv': '100',
-}
-    # same as your snippet
-url_params = {
+
+data = {
     "m_ts": "1759469883",
     "li": "O2HfaLAo7bVGvZPQG82c0rCz",
     "try_number": "0",
@@ -71,37 +53,5 @@ url_params = {
     "__user": "0"
 }
 
-urlencoded_string = urllib.parse.urlencode(url_params)
-url = "https://limited.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-
-# --- Do the POST using a Session so cookies persist ---
-session = requests.Session()
-# set headers on the session (helps keep them for redirects)
-session.headers.update(headers)
-# preload client-side cookies (optional; requests will send them)
-for k, v in cookies.items():
-    session.cookies.set(k, v, domain=".facebook.com")
-
-# perform the request
-resp = session.post(url, data=url_params, allow_redirects=True, timeout=30)
-
-# extract cookies from the session
-cookies_after = session.cookies.get_dict()
-
-# check for typical FB login cookies (most reliable: 'c_user' and 'xs')
-if "c_user" in cookies_after:
-    print("Login appears SUCCESSFUL.")
-    # Build a cookie header string you can re-use in subsequent requests:
-    cookie_header = "; ".join([f"{k}={v}" for k, v in cookies_after.items()])
-    print("Cookie header to reuse:")
-    print(cookie_header)
-    # If you want individual pieces:
-    print("c_user:", cookies_after.get("c_user"))
-    print("xs:", cookies_after.get("xs"))
-else:
-    print("Login does NOT appear successful.")
-    print("HTTP status:", resp.status_code)
-    # show a short resp preview to help debugging
-    preview = resp.text[:500].replace("\n", " ")
-    print("Response preview:", preview)
-
+response = requests.post(url, headers=headers, data=data)
+print(response.text)
