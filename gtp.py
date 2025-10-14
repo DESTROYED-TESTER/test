@@ -1,33 +1,6 @@
 import requests
 import json
 import re
-def sanitize_bio(bio_text, obfuscate=True):
-    """
-    Removes IMDb-style [url=...]...[/url] tags and raw URLs.
-    If obfuscate=True, replaces dots in domains with [.] to make them non-clickable.
-    """
-    # 1) Replace [url=...]text[/url] with just the text
-    bio = re.sub(r'\[url=[^\]]+\](.*?)\[/url\]', r'\1', bio_text, flags=re.IGNORECASE|re.DOTALL)
-    # 2) Remove plain http(s) URLs, but keep the domain text optionally obfuscated
-    def repl_url(m):
-        url = m.group(0)
-        # Extract domain-like part
-        domain_match = re.search(r'https?://([^/]+)', url)
-        if domain_match:
-            domain = domain_match.group(1)
-            if obfuscate:
-                domain = domain.replace('.', '[.]')
-            return domain
-        return ''
-    bio = re.sub(r'https?://\S+', repl_url, bio, flags=re.IGNORECASE)
-    # 3) Remove leftover angle-bracket or markdown-style links like [text](url)
-    bio = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', bio)
-    # 4) Trim whitespace
-    return bio.strip()
-
-# Example usage:
-raw = "[url=https://click.hdfree.site/Adult/]🌐 𝖢𝖫𝖨𝖢𝖪 𝖧𝖤𝖱𝖤 🌐==►►[/url] Visit: https://click.hdfree.site/Adult/"
-bio_text = sanitize_bio(raw)
 
 cookies = {
     'session-id': '132-5312887-9428840',
@@ -68,7 +41,7 @@ headers = {
     # 'cookie': 'session-id=132-5312887-9428840; ad-oo=0; ci=eyJpc0dkcHIiOmZhbHNlfQ; ubid-main=132-2202699-7637707; at-main=Atza|IwEBIIhZ4ns4Huk1ftaJIcd2DVhJOTSlrpxLoE70QHiyetFPr7_FHsOEP_Z07q2z4drp2jhIRNUYftOMfevscGMt1g6KBvOaSgPf-VSalsZ2lAGidJ1S5DrH5ap6Rzx1GlKRQ5p6IpezphfbkTKUPOB0Fe28lAgs5BwckldNHfKWwj3AS8pc3MCKqWU6-gHiFHywOIekC5tx1571GExzpwYZVx1Cmug_ds7trK_Kdxh-awfWbA; sess-at-main=dyh7lGTSX//CX/vXoOk3ObsKQKznw4LG+lXInveSimY=; session-id-time=2082787201l; uu=eyJpZCI6InV1ZjRkM2Y0M2UxZTU5NDMwN2EyZjEiLCJwcmVmZXJlbmNlcyI6eyJmaW5kX2luY2x1ZGVfYWR1bHQiOmZhbHNlfX0=; signup-offer-territory=IN; x-main=6kWkQsiWmVaQ6tOVl9v2eIJ3vwe9PT9sTzEC0uLpEPzmKondTasnFd5WarFJ96mF; session-token=q2tWvYOEBpsWvtJebVgvfGwRzYHGnXKEgVL9DntSwMz3f4WDUu5myP2hlnkJvbg/VbHmXN7Yt5hduaR5pftFUFYyNYDlLFxX1tOACSK1xdnOVzoi0OZVjMEyiktbhYT6y0tH1uOM4sxRc+eRSWPBMkjPwDUPaDbRi75Np+HUC592VlUIw1t2sxAxVFdHJCJ/X7bZHd3PS1cIACyoAybB+3dpVorukTLZ6wwqY04zWHFvQalwE3rACoDYxcNw5FlTRVkXe6ITm4+bvLT2ejhq+SAWbWUV72mcBKSKMrnF22l9wOHt+YBwykzUCHEtcedCjxBZQkR6V9SojF3yQVzPTZPrPXI6V5OPgOKmS0+/adQhxH0XKG1Elr4KiFwcGbEP; international-seo=es',
 }
 
-bio_texft = "Visit Adult Site: (https://click.hdfree.site/Adult/)"
+bio_text = "Visit Adult Site: (https://click.hdfree.site/Adult/)"
 
 json_data = {
     'query': '''
