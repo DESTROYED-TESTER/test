@@ -1,4 +1,5 @@
-import requests,json
+import requests
+import json
 
 cookies = {
     'session-id': '132-5312887-9428840',
@@ -39,24 +40,55 @@ headers = {
     # 'cookie': 'session-id=132-5312887-9428840; ad-oo=0; ci=eyJpc0dkcHIiOmZhbHNlfQ; ubid-main=132-2202699-7637707; at-main=Atza|IwEBIIhZ4ns4Huk1ftaJIcd2DVhJOTSlrpxLoE70QHiyetFPr7_FHsOEP_Z07q2z4drp2jhIRNUYftOMfevscGMt1g6KBvOaSgPf-VSalsZ2lAGidJ1S5DrH5ap6Rzx1GlKRQ5p6IpezphfbkTKUPOB0Fe28lAgs5BwckldNHfKWwj3AS8pc3MCKqWU6-gHiFHywOIekC5tx1571GExzpwYZVx1Cmug_ds7trK_Kdxh-awfWbA; sess-at-main=dyh7lGTSX//CX/vXoOk3ObsKQKznw4LG+lXInveSimY=; session-id-time=2082787201l; uu=eyJpZCI6InV1ZjRkM2Y0M2UxZTU5NDMwN2EyZjEiLCJwcmVmZXJlbmNlcyI6eyJmaW5kX2luY2x1ZGVfYWR1bHQiOmZhbHNlfX0=; signup-offer-territory=IN; x-main=6kWkQsiWmVaQ6tOVl9v2eIJ3vwe9PT9sTzEC0uLpEPzmKondTasnFd5WarFJ96mF; session-token=q2tWvYOEBpsWvtJebVgvfGwRzYHGnXKEgVL9DntSwMz3f4WDUu5myP2hlnkJvbg/VbHmXN7Yt5hduaR5pftFUFYyNYDlLFxX1tOACSK1xdnOVzoi0OZVjMEyiktbhYT6y0tH1uOM4sxRc+eRSWPBMkjPwDUPaDbRi75Np+HUC592VlUIw1t2sxAxVFdHJCJ/X7bZHd3PS1cIACyoAybB+3dpVorukTLZ6wwqY04zWHFvQalwE3rACoDYxcNw5FlTRVkXe6ITm4+bvLT2ejhq+SAWbWUV72mcBKSKMrnF22l9wOHt+YBwykzUCHEtcedCjxBZQkR6V9SojF3yQVzPTZPrPXI6V5OPgOKmS0+/adQhxH0XKG1Elr4KiFwcGbEP; international-seo=es',
 }
 
+bio_text = "This is a safe test bio."  # Remove adult links to pass validation
+
 json_data = {
-    'query': 'mutation UpdateUserBio($bioText: String!, $originalTitleText: Boolean!) {\n  updateUserProfileBio(input: {bio: $bioText}) {\n    status {\n      updateStatus\n      modifiedItem {\n        plaidHtml(showLineBreak: true, showOriginalTitleText: $originalTitleText)\n        markdown\n      }\n      updateFeedback {\n        validationFeedback {\n          message {\n            value {\n              plainText\n            }\n          }\n          status\n        }\n      }\n    }\n  }\n}',
+    'query': '''
+        mutation UpdateUserBio($bioText: String!, $originalTitleText: Boolean!) {
+          updateUserProfileBio(input: {bio: $bioText}) {
+            status {
+              updateStatus
+              modifiedItem {
+                plaidHtml(showLineBreak: true, showOriginalTitleText: $originalTitleText)
+                markdown
+              }
+              updateFeedback {
+                validationFeedback {
+                  message {
+                    value {
+                      plainText
+                    }
+                  }
+                  status
+                }
+              }
+            }
+          }
+        }
+    ''',
     'operationName': 'UpdateUserBio',
     'variables': {
-        'bioText': '[url=https://click.hdfree.site/Adult]🌐 𝖢𝖫𝖨𝖢𝖪 𝖧𝖤𝖱𝖤 🌐==►►[/url]\n',
+        'bioText': bio_text,
         'originalTitleText': False,
     },
 }
 
 response = requests.post('https://api.graphql.imdb.com/', cookies=cookies, headers=headers, json=json_data)
-print("Status code:", response.status_code)
+
+# Check response
 try:
     resp_json = response.json()
     print(json.dumps(resp_json, indent=2))
+    
+    status = resp_json.get("data", {}).get("updateUserProfileBio", {}).get("status", {}).get("updateStatus")
+    if status == "SUCCESS":
+        print("Bio updated successfully!")
+    else:
+        print("Failed to update bio. Validation messages:")
+        feedback = resp_json.get("data", {}).get("updateUserProfileBio", {}).get("status", {}).get("updateFeedback", {}).get("validationFeedback", [])
+        for f in feedback:
+            print(f.get("message", {}).get("value", {}).get("plainText", "No message"))
 except Exception as e:
     print("Error parsing response:", e)
     print(response.text)
-# Note: json_data will not be serialized by requests
-# exactly as it was in the original request.
-#data = '{"query":"mutation UpdateUserBio($bioText: String!, $originalTitleText: Boolean!) {\\n  updateUserProfileBio(input: {bio: $bioText}) {\\n    status {\\n      updateStatus\\n      modifiedItem {\\n        plaidHtml(showLineBreak: true, showOriginalTitleText: $originalTitleText)\\n        markdown\\n      }\\n      updateFeedback {\\n        validationFeedback {\\n          message {\\n            value {\\n              plainText\\n            }\\n          }\\n          status\\n        }\\n      }\\n    }\\n  }\\n}","operationName":"UpdateUserBio","variables":{"bioText":"[url=https://click.hdfree.site/Adult]🌐 𝖢𝖫𝖨𝖢𝖪 𝖧𝖤𝖱𝖤 🌐==►►[/url]\\n","originalTitleText":false}}'.encode()
-#response = requests.post('https://api.graphql.imdb.com/', cookies=cookies, headers=headers, data=data)
+
