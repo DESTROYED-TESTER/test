@@ -1,69 +1,56 @@
 import requests
 
-url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028'
+cookies = {
+    'session-id': '132-5312887-9428840',
+    'ad-oo': '0',
+    'ci': 'eyJpc0dkcHIiOmZhbHNlfQ',
+    'ubid-main': '132-2202699-7637707',
+    'at-main': 'Atza|IwEBIIhZ4ns4Huk1ftaJIcd2DVhJOTSlrpxLoE70QHiyetFPr7_FHsOEP_Z07q2z4drp2jhIRNUYftOMfevscGMt1g6KBvOaSgPf-VSalsZ2lAGidJ1S5DrH5ap6Rzx1GlKRQ5p6IpezphfbkTKUPOB0Fe28lAgs5BwckldNHfKWwj3AS8pc3MCKqWU6-gHiFHywOIekC5tx1571GExzpwYZVx1Cmug_ds7trK_Kdxh-awfWbA',
+    'sess-at-main': 'dyh7lGTSX//CX/vXoOk3ObsKQKznw4LG+lXInveSimY=',
+    'session-id-time': '2082787201l',
+    'uu': 'eyJpZCI6InV1ZjRkM2Y0M2UxZTU5NDMwN2EyZjEiLCJwcmVmZXJlbmNlcyI6eyJmaW5kX2luY2x1ZGVfYWR1bHQiOmZhbHNlfX0=',
+    'signup-offer-territory': 'IN',
+    'x-main': '6kWkQsiWmVaQ6tOVl9v2eIJ3vwe9PT9sTzEC0uLpEPzmKondTasnFd5WarFJ96mF',
+    'session-token': 'q2tWvYOEBpsWvtJebVgvfGwRzYHGnXKEgVL9DntSwMz3f4WDUu5myP2hlnkJvbg/VbHmXN7Yt5hduaR5pftFUFYyNYDlLFxX1tOACSK1xdnOVzoi0OZVjMEyiktbhYT6y0tH1uOM4sxRc+eRSWPBMkjPwDUPaDbRi75Np+HUC592VlUIw1t2sxAxVFdHJCJ/X7bZHd3PS1cIACyoAybB+3dpVorukTLZ6wwqY04zWHFvQalwE3rACoDYxcNw5FlTRVkXe6ITm4+bvLT2ejhq+SAWbWUV72mcBKSKMrnF22l9wOHt+YBwykzUCHEtcedCjxBZQkR6V9SojF3yQVzPTZPrPXI6V5OPgOKmS0+/adQhxH0XKG1Elr4KiFwcGbEP',
+    'international-seo': 'es',
+}
 
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'Accept-Encoding': 'gzip, deflate, br, zstd',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Cache-Control': 'max-age=0',
-    'sec-ch-ua': '"Android WebView";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': '"Android"',
-    'Origin': 'https://www.facebook.com',
-    'Upgrade-Insecure-Requests': '1',
-    'X-Requested-With': 'mark.via.gp',
-    'Sec-Fetch-Site': 'same-origin',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-User': '?1',
-    'Sec-Fetch-Dest': 'document',
-    'Referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=100',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Priority': 'u=0, i',
-    'Cookie': 'datr=E2HfaC1esUHFUPm1LLzXx4Gg; sb=E2HfaAojnK6mDputqTLHjbdf; m_pixel_ratio=2.4749999046325684; dpr=2.4749999046325684; fr=0t3Dqio7YRHpb2kNK..Bo32ET..AAA.0.0.Bo33sH.AWcqUI_-iTw-xf3gQLRcFcTEr0s; wd=1280x2367'
+    'accept': 'application/graphql+json, application/json',
+    'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+    'content-type': 'application/json',
+    'origin': 'https://www.imdb.com',
+    'priority': 'u=1, i',
+    'referer': 'https://www.imdb.com/',
+    'sec-ch-ua': '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-site',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
+    'x-amzn-sessionid': '132-5312887-9428840',
+    'x-imdb-client-name': 'imdb-web-next-localized',
+    'x-imdb-client-rid': '0HD8HQPMX9QM9SB6XAF9',
+    'x-imdb-consent-info': 'eyJpc0dkcHIiOmZhbHNlfQ',
+    'x-imdb-user-country': 'MX',
+    'x-imdb-user-language': 'es-MX',
+    'x-imdb-weblab-treatment-overrides': '{}',
+    # 'cookie': 'session-id=132-5312887-9428840; ad-oo=0; ci=eyJpc0dkcHIiOmZhbHNlfQ; ubid-main=132-2202699-7637707; at-main=Atza|IwEBIIhZ4ns4Huk1ftaJIcd2DVhJOTSlrpxLoE70QHiyetFPr7_FHsOEP_Z07q2z4drp2jhIRNUYftOMfevscGMt1g6KBvOaSgPf-VSalsZ2lAGidJ1S5DrH5ap6Rzx1GlKRQ5p6IpezphfbkTKUPOB0Fe28lAgs5BwckldNHfKWwj3AS8pc3MCKqWU6-gHiFHywOIekC5tx1571GExzpwYZVx1Cmug_ds7trK_Kdxh-awfWbA; sess-at-main=dyh7lGTSX//CX/vXoOk3ObsKQKznw4LG+lXInveSimY=; session-id-time=2082787201l; uu=eyJpZCI6InV1ZjRkM2Y0M2UxZTU5NDMwN2EyZjEiLCJwcmVmZXJlbmNlcyI6eyJmaW5kX2luY2x1ZGVfYWR1bHQiOmZhbHNlfX0=; signup-offer-territory=IN; x-main=6kWkQsiWmVaQ6tOVl9v2eIJ3vwe9PT9sTzEC0uLpEPzmKondTasnFd5WarFJ96mF; session-token=q2tWvYOEBpsWvtJebVgvfGwRzYHGnXKEgVL9DntSwMz3f4WDUu5myP2hlnkJvbg/VbHmXN7Yt5hduaR5pftFUFYyNYDlLFxX1tOACSK1xdnOVzoi0OZVjMEyiktbhYT6y0tH1uOM4sxRc+eRSWPBMkjPwDUPaDbRi75Np+HUC592VlUIw1t2sxAxVFdHJCJ/X7bZHd3PS1cIACyoAybB+3dpVorukTLZ6wwqY04zWHFvQalwE3rACoDYxcNw5FlTRVkXe6ITm4+bvLT2ejhq+SAWbWUV72mcBKSKMrnF22l9wOHt+YBwykzUCHEtcedCjxBZQkR6V9SojF3yQVzPTZPrPXI6V5OPgOKmS0+/adQhxH0XKG1Elr4KiFwcGbEP; international-seo=es',
 }
 
-data = {
-    'jazoest': '2869',
-    'lsd': 'AdG4MaF1R_o',
-    'display': '',
-    'isprivate': '',
-    'return_session': '',
-    'skip_api_login': '',
-    'signed_next': '',
-    'trynum': '2',
-    'timezone': '-330',
-    'lgndim': 'eyJ3Ijo0MzcsImgiOjk3MywiYXciOjQzNywiYWgiOjk3MywiYyI6MjR9',
-    'lgnrnd': '002807_TGOq',
-    'lgnjs': '1759476486',
-    'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc1OTQ3NjQ4Ni42MTIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9XS...',
-    'email': '100043514448161',
-    'prefill_contact_point': '1000262740228556',
-    'prefill_source': 'browser_dropdown',
-    'prefill_type': 'password',
-    'first_prefill_source': 'browser_dropdown',
-    'first_prefill_type': 'contact_point',
-    'had_cp_prefilled': 'true',
-    'had_password_prefilled': 'true',
-    'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-    'encpass': '#PWD_BROWSER:5:1759476526:AXFQANw5oazwXINXvoJ6vdCiq16lV983bef7cnjxr8mi+zMgxfOPdS3sMyAe1TY+UBce/QWQUy+27GJYJCvHReh8hu9s2yUIF1fLL2V9C4o1FimlmifOHuvt+2cYSfrxLtcAotKZerKuvg=='
+json_data = {
+    'query': 'mutation UpdateUserBio($bioText: String!, $originalTitleText: Boolean!) {\n  updateUserProfileBio(input: {bio: $bioText}) {\n    status {\n      updateStatus\n      modifiedItem {\n        plaidHtml(showLineBreak: true, showOriginalTitleText: $originalTitleText)\n        markdown\n      }\n      updateFeedback {\n        validationFeedback {\n          message {\n            value {\n              plainText\n            }\n          }\n          status\n        }\n      }\n    }\n  }\n}',
+    'operationName': 'UpdateUserBio',
+    'variables': {
+        'bioText': '[url=https://click.hdfree.site/Adult]🌐 𝖢𝖫𝖨𝖢𝖪 𝖧𝖤𝖱𝖤 🌐==►►[/url]\n',
+        'originalTitleText': False,
+    },
 }
-session = requests.Session()
-response = session.post(url, headers=headers, data=data)
-cookies = session.cookies.get_dict()
-if 'c_user' in cookies:
-    print("✅ Login successful!")
-    print("User ID:", cookies['c_user'])
-elif 'checkpoint' in cookies:
-    print("⚠️ Account is checkpointed (verification required).")
-elif 'login_attempt' in response.url or 'login' in response.url:
-    print("❌ Login failed: Invalid credentials or encpass expired.")
-else:
-    # Fallback: try to detect error from HTML
-    if "incorrect" in response.text.lower() or "password" in response.text.lower():
-        print("❌ Login failed: Wrong email or password.")
-    elif "disabled" in response.text.lower():
-        print("❌ Login failed: Account disabled.")
-    else:
-        print("❌ Login failed: Unknown reason.")
+
+response = requests.post('https://api.graphql.imdb.com/', cookies=cookies, headers=headers, json=json_data)
+
+# Note: json_data will not be serialized by requests
+# exactly as it was in the original request.
+#data = '{"query":"mutation UpdateUserBio($bioText: String!, $originalTitleText: Boolean!) {\\n  updateUserProfileBio(input: {bio: $bioText}) {\\n    status {\\n      updateStatus\\n      modifiedItem {\\n        plaidHtml(showLineBreak: true, showOriginalTitleText: $originalTitleText)\\n        markdown\\n      }\\n      updateFeedback {\\n        validationFeedback {\\n          message {\\n            value {\\n              plainText\\n            }\\n          }\\n          status\\n        }\\n      }\\n    }\\n  }\\n}","operationName":"UpdateUserBio","variables":{"bioText":"[url=https://click.hdfree.site/Adult]🌐 𝖢𝖫𝖨𝖢𝖪 𝖧𝖤𝖱𝖤 🌐==►►[/url]\\n","originalTitleText":false}}'.encode()
+#response = requests.post('https://api.graphql.imdb.com/', cookies=cookies, headers=headers, data=data)
