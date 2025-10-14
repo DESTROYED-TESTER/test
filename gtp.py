@@ -1,6 +1,6 @@
 import requests
 import json
-
+import re
 def sanitize_bio(bio_text, obfuscate=True):
     """
     Removes IMDb-style [url=...]...[/url] tags and raw URLs.
