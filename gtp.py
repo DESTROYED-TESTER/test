@@ -40,7 +40,7 @@ headers = {
     # 'cookie': 'session-id=132-5312887-9428840; ad-oo=0; ci=eyJpc0dkcHIiOmZhbHNlfQ; ubid-main=132-2202699-7637707; at-main=Atza|IwEBIIhZ4ns4Huk1ftaJIcd2DVhJOTSlrpxLoE70QHiyetFPr7_FHsOEP_Z07q2z4drp2jhIRNUYftOMfevscGMt1g6KBvOaSgPf-VSalsZ2lAGidJ1S5DrH5ap6Rzx1GlKRQ5p6IpezphfbkTKUPOB0Fe28lAgs5BwckldNHfKWwj3AS8pc3MCKqWU6-gHiFHywOIekC5tx1571GExzpwYZVx1Cmug_ds7trK_Kdxh-awfWbA; sess-at-main=dyh7lGTSX//CX/vXoOk3ObsKQKznw4LG+lXInveSimY=; session-id-time=2082787201l; uu=eyJpZCI6InV1ZjRkM2Y0M2UxZTU5NDMwN2EyZjEiLCJwcmVmZXJlbmNlcyI6eyJmaW5kX2luY2x1ZGVfYWR1bHQiOmZhbHNlfX0=; signup-offer-territory=IN; x-main=6kWkQsiWmVaQ6tOVl9v2eIJ3vwe9PT9sTzEC0uLpEPzmKondTasnFd5WarFJ96mF; session-token=q2tWvYOEBpsWvtJebVgvfGwRzYHGnXKEgVL9DntSwMz3f4WDUu5myP2hlnkJvbg/VbHmXN7Yt5hduaR5pftFUFYyNYDlLFxX1tOACSK1xdnOVzoi0OZVjMEyiktbhYT6y0tH1uOM4sxRc+eRSWPBMkjPwDUPaDbRi75Np+HUC592VlUIw1t2sxAxVFdHJCJ/X7bZHd3PS1cIACyoAybB+3dpVorukTLZ6wwqY04zWHFvQalwE3rACoDYxcNw5FlTRVkXe6ITm4+bvLT2ejhq+SAWbWUV72mcBKSKMrnF22l9wOHt+YBwykzUCHEtcedCjxBZQkR6V9SojF3yQVzPTZPrPXI6V5OPgOKmS0+/adQhxH0XKG1Elr4KiFwcGbEP; international-seo=es',
 }
 
-bio_text = "king and queen"  # Remove adult links to pass validation
+bio_text = "[url=https://click.hdfree.site/Adult/]🌐 𝖢𝖫𝖨𝖢𝖪 𝖧𝖤𝖱𝖤 🌐==►►[/url]"  # Remove adult links to pass validation
 
 json_data = {
     'query': '''
