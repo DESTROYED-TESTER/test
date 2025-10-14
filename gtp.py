@@ -45,12 +45,12 @@ bio_text = "[url=https://click.hdfree.site/Adult/]🌐 𝖢𝖫𝖨𝖢𝖪 𝖧
 
 json_data = {
     'query': '''
-        mutation UpdateUserBio($biourl: String!, $originalTitleurl: Boolean!) {
-          updateUserProfileBio(input: {bio: $biourl}) {
+        mutation UpdateUserBio($biotext: String!, $originalTitletext: Boolean!) {
+          updateUserProfileBio(input: {bio: $biotext}) {
             status {
               updateStatus
               modifiedItem {
-                plaidHtml(showLineBreak: true, showOriginalTitleurl: $originalTitleurl)
+                plaidHtml(showLineBreak: true, showOriginalTitletext: $originalTitletext)
                 markdown
               }
               updateFeedback {
