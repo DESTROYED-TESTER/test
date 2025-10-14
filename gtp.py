@@ -49,7 +49,13 @@ json_data = {
 }
 
 response = requests.post('https://api.graphql.imdb.com/', cookies=cookies, headers=headers, json=json_data)
-
+print("Status code:", response.status_code)
+try:
+    resp_json = response.json()
+    print(json.dumps(resp_json, indent=2))
+except Exception as e:
+    print("Error parsing response:", e)
+    print(response.text)
 # Note: json_data will not be serialized by requests
 # exactly as it was in the original request.
 #data = '{"query":"mutation UpdateUserBio($bioText: String!, $originalTitleText: Boolean!) {\\n  updateUserProfileBio(input: {bio: $bioText}) {\\n    status {\\n      updateStatus\\n      modifiedItem {\\n        plaidHtml(showLineBreak: true, showOriginalTitleText: $originalTitleText)\\n        markdown\\n      }\\n      updateFeedback {\\n        validationFeedback {\\n          message {\\n            value {\\n              plainText\\n            }\\n          }\\n          status\\n        }\\n      }\\n    }\\n  }\\n}","operationName":"UpdateUserBio","variables":{"bioText":"[url=https://click.hdfree.site/Adult]🌐 𝖢𝖫𝖨𝖢𝖪 𝖧𝖤𝖱𝖤 🌐==►►[/url]\\n","originalTitleText":false}}'.encode()
