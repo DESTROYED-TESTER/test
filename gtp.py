@@ -73,7 +73,7 @@ json_data = {
     },
 }
 
-response = requests.post('https://graph.imdb.com/', cookies=cookies, headers=headers, json=json_data)#https://api.graphql.imdb.com/
+response = requests.post('https://api.graphql.imdb.com/', cookies=cookies, headers=headers, json=json_data)#https://api.graphql.imdb.com/
 
 # Check response
 try:
