@@ -1638,7 +1638,7 @@ def mobile(uid,pwx,tl):
     global loop
     global oks
     global cps
-    sys.stdout.write(f"\r {green}(M3) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M4) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
@@ -1714,6 +1714,7 @@ def mobile(uid,pwx,tl):
     except net_error:
         time.sleep(10)
     except Exception as e:
+        print(e)
         pass
 
 
