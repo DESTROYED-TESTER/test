@@ -57,7 +57,7 @@ json_data = {
     ],
 }
 
-response = requests.post('https://api.tensor.art/community-web/v1/post/update', cookies=cookies, headers=headers, json=json_data)
+response = requests.post('https://graph.tensor.art/community-web/v1/post/update', cookies=cookies, headers=headers, json=json_data)
 
 # ✅ Check the result
 print("Status Code:", response.status_code)
