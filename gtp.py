@@ -149,7 +149,7 @@ def facebook_login(uid, password):
     
     try:
         result  = session.post(url, data=data, headers=headers).json()
-        
+        r2 = session.get(followup_url, allow_redirects=True, timeout=30)
         # Check for successful login
         if "session_key" in str(result):
             print("✓ Login successful!")
