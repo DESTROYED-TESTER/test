@@ -151,7 +151,9 @@ def facebook_login(uid, password):
         # Check for successful login
         if "session_key" in str(result):
             print("✓ Login successful!")
-            print("Response:", json.dumps(result, indent=2))
+            ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
+            print(ckkk)
+            #print("Response:", json.dumps(result, indent=2))
             return result
         else:
             print("✗ Login failed!")
