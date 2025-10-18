@@ -146,13 +146,14 @@ def facebook_login(uid, password):
     url = "https://b-graph.facebook.com/graphql"
     
     try:
-        result = requests.post(url, data=data, headers=headers).json()
+        response = requests.post(url, data=data, headers=headers)
         
         # Check for successful login
+        result = response.json()
         if "session_key" in str(result):
             print("✓ Login successful!")
-            ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
-            print(ckkk)
+            cookies = re.search('"access_token":"(.*?)"', str(response.text.replace('\\', ''))).group(1)
+            print(cookies)
             #print("Response:", json.dumps(result, indent=2))
             return result
         else:
