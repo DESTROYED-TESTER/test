@@ -1680,6 +1680,7 @@ def x(uid,pwx,tl):
             url = "https://b-graph.facebook.com/graphql"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
+                print("✓ Login successful!")
                 uid = result["uid"]
                 c = check_lock(uid)
                 if "live" in c:
