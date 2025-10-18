@@ -147,7 +147,7 @@ def facebook_login(uid, password):
     url = "https://b-graph.facebook.com/graphql"
     
     try:
-        response = requests.post(url, data=data, headers=headers).json()
+        result = requests.post(url, data=data, headers=headers).json()
         
         # Check for successful login
         if "session_key" in str(result):
