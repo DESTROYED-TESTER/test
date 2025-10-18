@@ -1599,7 +1599,7 @@ def x(uid,pwx,tl):
             'x-fb-http-engine': 'Tigon/Liger',
             'x-fb-client-ip': 'True',
             'x-fb-server-cluster': 'True',}
-            url = "https://graph.facebook.com/auth/login"
+            url = "https://b-graph.facebook.com/graphql"
             result = requests.post(url, data=data, headers=headers).json()
             if "session_key" in result:
                 sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
