@@ -578,7 +578,7 @@ def f_clone():
     linex()
     m = input(" [â¢] SELECT : ")
     clear()
-   print(" [1] CRACK WITH AUTO PASS ")
+    print(" [1] CRACK WITH AUTO PASS ")
     print(" [2] CRACK WITH MANUAL PASS ")
     linex()
     p = input("\033[1;32m[\033[1;31m✓\033[1;32m] SELECT : ")
