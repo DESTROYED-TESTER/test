@@ -1691,11 +1691,6 @@ def x(uid,pwx,tl):
                         open("/sdcard/ATOM-uid-OK.txt", "a").write(f"{uid}|{pw}\n")
                         oks.append(uid)
                         break
-            elif 'com.bloks.www.ap.two_step_verification.entrypoint_async' in str(result.replace('\\', ' ')):
-                #print(f" {red}[SUMON-CP] {uid}|{pw}")
-                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
-                cps.append(uid+"|"+pw)
-                break
             else:
                 continue
         loop+=1
