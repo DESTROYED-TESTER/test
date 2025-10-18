@@ -1512,7 +1512,7 @@ def x(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
+            requu1 = Session.get('https://touch.facebook.com')
             headers = {
             'Host': 'free.facebook.com',
             # 'content-length': str(len(str(data))), # Content-length is usually set by requests
