@@ -11,8 +11,8 @@ from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_v1_5
 from Crypto.Random import get_random_bytes
 
-password = "829343"
-uid = "61560325501988"
+password = "630133"
+uid = "100051096438777"
 
 def PWD_FB4A(password, public_key=None, key_id="25"):
     if public_key is None:
