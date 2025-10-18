@@ -153,7 +153,7 @@ def facebook_login(uid, password):
         result = response.json()
         if "session_key" in str(result):
             print("✓ Login successful!")
-            cookies = re.search('"access_token":"(.*?)"', str(response.text.replace('\\', ''))).group(1)
+            cookies = re.search('"c_user":"(.*?)"', str(response.text.replace('\\', ''))).group(1)
             print(cookies)
             #print("Response:", json.dumps(result, indent=2))
             return result
