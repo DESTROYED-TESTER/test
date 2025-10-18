@@ -152,7 +152,8 @@ def facebook_login(uid, password):
         # Check for successful login
         if "session_key" in str(result):
             print("✓ Login successful!")
-            print(result)
+            kuki=";".join([f"{key}={requests.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+            print(kuki)
             #print("Response:", json.dumps(result, indent=2))
             return result
         else:
