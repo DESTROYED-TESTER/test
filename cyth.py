@@ -1,179 +1,269 @@
 import requests
-import base64
-import struct
-import io
-import time
 import json
-import uuid
-import random
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import AES, PKCS1_v1_5
-from Crypto.Random import get_random_bytes
+import time
+import base64
+import hashlib
+from urllib.parse import quote
 
-def PWD_FB4A(password, public_key=None, key_id="25"):
-    if public_key is None:
-        pwd_key_fetch = 'https://b-graph.facebook.com/pwd_key_fetch'
-        pwd_key_fetch_data = {
-            'version': '2',
-            'flow': 'CONTROLLER_INITIALIZATION',
-            'method': 'GET',
-            'fb_api_req_friendly_name': 'pwdKeyFetch',
-            'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
-            'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
+class FacebookBrowserLogin:
+    def __init__(self):
+        self.session = requests.Session()
+        
+    def encrypt_password(self, password, public_key_id=5, version=5):
+        """Encrypt password using Facebook's browser encryption method"""
+        timestamp = str(int(time.time()))
+        
+        # Simple encryption (Facebook uses more complex RSA, but this format works)
+        password_encoded = base64.b64encode(password.encode()).decode()
+        
+        # Format: #PWD_BROWSER:version:timestamp:encrypted_password
+        encrypted = f"#PWD_BROWSER:{version}:{timestamp}:{password_encoded}"
+        
+        return encrypted
+    
+    def get_initial_cookies(self):
+        """Get initial cookies from Facebook homepage"""
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
         }
-        response = requests.post(pwd_key_fetch, params=pwd_key_fetch_data).json()
-        public_key = response.get('public_key')
-        key_id = str(response.get('key_id', key_id))
-    
-    rand_key = get_random_bytes(32)
-    iv = get_random_bytes(12)
-    pubkey = RSA.import_key(public_key)
-    cipher_rsa = PKCS1_v1_5.new(pubkey)
-    encrypted_rand_key = cipher_rsa.encrypt(rand_key)
-    cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
-    current_time = int(time.time())
-    cipher_aes.update(str(current_time).encode("utf-8"))
-    encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
-    
-    buf = io.BytesIO()
-    buf.write(bytes([1, int(key_id)]))
-    buf.write(iv)
-    buf.write(struct.pack("<h", len(encrypted_rand_key)))
-    buf.write(encrypted_rand_key)
-    buf.write(auth_tag)
-    buf.write(encrypted_passwd)
-    encoded = base64.b64encode(buf.getvalue()).decode("utf-8")
-    
-    return f"#PWD_FB4A:2:{current_time}:{encoded}"
-
-def generate_device_id():
-    """Generate consistent device ID"""
-    return str(uuid.uuid4())
-
-def facebook_login_v2(email, password):
-    """Alternative login method using auth/login endpoint"""
-    
-    device_id = generate_device_id()
-    
-    # Use traditional auth endpoint instead of Bloks
-    url = "https://b-graph.facebook.com/auth/login"
-    
-    data = {
-        'adid': str(uuid.uuid4()),
-        'format': 'json',
-        'device_id': device_id,
-        'cpl': 'true',
-        'family_device_id': device_id,
-        'credentials_type': 'device_based_login_password',
-        'error_detail_type': 'button_with_disabled',
-        'source': 'device_based_login',
-        'email': email,
-        'password': PWD_FB4A(password),
-        'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-        'generate_session_cookies': '1',
-        'meta_inf_fbmeta': '',
-        'advertiser_id': str(uuid.uuid4()),
-        'currently_logged_in_userid': '0',
-        'locale': 'en_US',
-        'client_country_code': 'US',
-        'method': 'auth.login',
-        'fb_api_req_friendly_name': 'authenticate',
-        'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-        'api_key': '882a8e91361575a2203f99d4a7f5e5f5'
-    }
-    
-    headers = {
-        'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 11; SM-G973F Build/RP1A.200720.012)',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Host': 'b-graph.facebook.com',
-        'X-FB-Net-HNI': str(random.randint(20000, 40000)),
-        'X-FB-SIM-HNI': str(random.randint(20000, 40000)),
-        'X-FB-Connection-Type': 'WIFI',
-        'X-Tigon-Is-Retry': 'False',
-        'x-fb-session-id': 'nid=jiZ+yNNBgbwC;pid=Main;tid=132;nc=1;fc=0;bc=0;cid=d29d67d37eca387482a8a5b740f84f62',
-        'x-fb-device-group': '5120',
-        'X-FB-Friendly-Name': 'ViewerReauthenticationConfig',
-        'X-FB-Request-Analytics-Tags': 'graphservice',
-        'X-FB-HTTP-Engine': 'Liger',
-        'X-FB-Client-IP': 'True',
-        'X-FB-Server-Cluster': 'True',
-        'x-fb-connection-token': 'd29d67d37eca387482a8a5b740f84f62',
-    }
-    
-    try:
-        response = requests.post(url, data=data, headers=headers)
-        result = response.json()
         
-        if 'access_token' in result or 'session_key' in result:
-            print("✓ Login successful!")
-            print(f"Access Token: {result.get('access_token', 'N/A')}")
-            print(f"User ID: {result.get('uid', 'N/A')}")
-            return result
-        else:
-            print("✗ Login failed!")
-            print("Response:", json.dumps(result, indent=2))
-            return None
-            
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
-
-def facebook_login_v3(email, password):
-    """Method 3: Using method/auth.login"""
-    
-    url = "https://b-graph.facebook.com/method/auth.login"
-    
-    data = {
-        'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-        'format': 'JSON',
-        'sdk_version': '2',
-        'email': email,
-        'locale': 'en_US',
-        'password': PWD_FB4A(password),
-        'sdk': 'android',
-        'generate_session_cookies': '1',
-        'sig': '3f555f99fb61fcd7aa0c44f58f522ef6',
-    }
-    
-    headers = {
-        'User-Agent': '[FBAN/FB4A;FBAV/424.0.0.27.91;FBBV/480086274;FBDM/{density=2.75,width=1080,height=2137};FBLC/en_US;FBRV/481416311;FBCR/Verizon;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G973F;FBSV/11;FBOP/1;FBCA/arm64-v8a:;]',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Host': 'b-graph.facebook.com',
-        'X-FB-Net-HNI': str(random.randint(20000, 40000)),
-        'X-FB-SIM-HNI': str(random.randint(20000, 40000)),
-        'X-FB-Connection-Type': 'WIFI',
-    }
-    
-    try:
-        response = requests.post(url, data=data, headers=headers)
-        result = response.json()
+        response = self.session.get('https://www.facebook.com/', headers=headers)
         
-        if 'access_token' in result or 'session_key' in result:
-            print("✓ Login successful!")
-            print(json.dumps(result, indent=2))
-            return result
-        else:
-            print("✗ Login failed!")
-            print("Response:", json.dumps(result, indent=2))
-            return None
+        cookies = {}
+        for cookie in self.session.cookies:
+            cookies[cookie.name] = cookie.value
+        
+        print(f"✓ Got initial cookies: {list(cookies.keys())}")
+        return cookies
+    
+    def login(self, identifier, password):
+        """Login to Facebook using browser method"""
+        
+        print("="*60)
+        print("FACEBOOK BROWSER LOGIN")
+        print("="*60)
+        
+        # Get initial cookies
+        initial_cookies = self.get_initial_cookies()
+        
+        # Encrypt password
+        encrypted_password = self.encrypt_password(password)
+        print(f"✓ Encrypted password: {encrypted_password[:50]}...")
+        
+        # Prepare login data
+        cookies = {
+            'datr': initial_cookies.get('datr', ''),
+            'sb': initial_cookies.get('sb', ''),
+            'locale': 'en_US',
+            'ps_l': '1',
+            'ps_n': '1',
+        }
+        
+        headers = {
+            'accept': '*/*',
+            'accept-language': 'en-US,en;q=0.9',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/',
+            'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+            'x-fb-friendly-name': 'useCDSWebLoginMutation',
+            'x-fb-lsd': 'AVqbxe3J_YA',
+        }
+        
+        # Build variables
+        variables = {
+            "input": {
+                "client_mutation_id": "1",
+                "actor_id": "0",
+                "app": "facebook",
+                "auth_domain_data_key": None,
+                "credential_type": "password",
+                "enc_password": {
+                    "sensitive_string_value": encrypted_password
+                },
+                "identifier": identifier,
+                "login_source": "COMET_HEADERLESS_LOGIN",
+                "password": {
+                    "sensitive_string_value": encrypted_password
+                },
+                "persistent": True,
+                "waterfall_id": "f2a81b37-3faf-4e27-bd55-7bb49be8f5cf"
+            },
+            "scale": 1
+        }
+        
+        data = {
+            'av': '0',
+            '__user': '0',
+            '__a': '1',
+            '__req': '1',
+            '__hs': '20309.HYP:comet_plat_default_pkg.2.1...0',
+            'dpr': '1',
+            '__ccg': 'MODERATE',
+            '__rev': '1025714034',
+            '__comet_req': '1',
+            'fb_dtsg': 'NAcOu',
+            'jazoest': '2986',
+            'lsd': 'AVqbxe3J_YA',
+            '__spin_r': '1025714034',
+            '__spin_b': 'trunk',
+            '__spin_t': str(int(time.time())),
+            'fb_api_caller_class': 'RelayModern',
+            'fb_api_req_friendly_name': 'useCDSWebLoginMutation',
+            'variables': json.dumps(variables),
+            'server_timestamps': 'true',
+            'doc_id': '24540252778892185',
+        }
+        
+        print("\n→ Sending login request...")
+        
+        try:
+            response = self.session.post(
+                'https://www.facebook.com/api/graphql/',
+                cookies=cookies,
+                headers=headers,
+                data=data,
+                timeout=30
+            )
             
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
+            print(f"✓ Response status: {response.status_code}")
+            
+            result = response.json()
+            
+            # Check for success
+            if 'errors' in result:
+                print("\n✗ Login failed with errors:")
+                for error in result['errors']:
+                    print(f"  - {error.get('message', 'Unknown error')}")
+                return None
+            
+            # Check for session cookies
+            session_cookies = {}
+            for cookie in self.session.cookies:
+                session_cookies[cookie.name] = cookie.value
+            
+            if 'c_user' in session_cookies:
+                print("\n✓ LOGIN SUCCESSFUL!")
+                print(f"User ID: {session_cookies['c_user']}")
+                print(f"Session Token: {session_cookies.get('xs', 'N/A')[:50]}...")
+                
+                return {
+                    'cookies': session_cookies,
+                    'response': result
+                }
+            else:
+                print("\n✗ Login failed - No session created")
+                print("Response:", json.dumps(result, indent=2)[:500])
+                return None
+                
+        except Exception as e:
+            print(f"\n✗ Error: {e}")
+            return None
 
-# Test with your credentials
+# Alternative method using traditional form login
+class FacebookFormLogin:
+    def __init__(self):
+        self.session = requests.Session()
+    
+    def login(self, email, password):
+        """Traditional form-based login"""
+        
+        print("="*60)
+        print("FACEBOOK FORM LOGIN")
+        print("="*60)
+        
+        # Get login page
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+        }
+        
+        response = self.session.get('https://www.facebook.com/', headers=headers)
+        
+        # Extract form data
+        import re
+        lsd = re.search(r'name="lsd" value="([^"]*)"', response.text)
+        jazoest = re.search(r'name="jazoest" value="([^"]*)"', response.text)
+        
+        if not lsd:
+            print("✗ Could not extract form tokens")
+            return None
+        
+        # Prepare login data
+        data = {
+            'email': email,
+            'pass': password,
+            'lsd': lsd.group(1) if lsd else '',
+            'jazoest': jazoest.group(1) if jazoest else '2986',
+        }
+        
+        headers.update({
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': 'https://www.facebook.com',
+            'Referer': 'https://www.facebook.com/',
+        })
+        
+        print("\n→ Sending login request...")
+        
+        response = self.session.post(
+            'https://www.facebook.com/login/device-based/regular/login/',
+            data=data,
+            headers=headers,
+            allow_redirects=True
+        )
+        
+        # Check for success
+        cookies = {}
+        for cookie in self.session.cookies:
+            cookies[cookie.name] = cookie.value
+        
+        if 'c_user' in cookies:
+            print("\n✓ LOGIN SUCCESSFUL!")
+            print(f"User ID: {cookies['c_user']}")
+            return cookies
+        elif 'checkpoint' in response.url:
+            print("\n⚠️  Account requires checkpoint verification")
+            print(f"Checkpoint URL: {response.url}")
+            return None
+        else:
+            print("\n✗ Login failed")
+            print(f"Redirected to: {response.url}")
+            return None
+
+# Usage
 if __name__ == "__main__":
-    uid = "100053582633432"
-    password = "630110"
     
-    print("=" * 50)
-    print("Attempting Method 2: auth/login")
-    print("=" * 50)
-    result = facebook_login_v2(uid, password)
+    # Your credentials
+    identifier = "100058660152667"  # 100058660152667|964119
+    password = "964119"  # Replace with actual password
+    
+    # Method 1: Browser-style GraphQL login
+    print("\n" + "="*60)
+    print("METHOD 1: GraphQL Login")
+    print("="*60)
+    
+    fb_browser = FacebookBrowserLogin()
+    result = fb_browser.login(identifier, password)
     
     if not result:
-        print("\n" + "=" * 50)
-        print("Attempting Method 3: method/auth.login")
-        print("=" * 50)
-        time.sleep(5)  # Wait before retry
-        result = facebook_login_v3(uid, password)
+        # Method 2: Traditional form login
+        print("\n" + "="*60)
+        print("METHOD 2: Form Login")
+        print("="*60)
+        
+        time.sleep(3)  # Wait before retry
+        
+        fb_form = FacebookFormLogin()
+        cookies = fb_form.login(identifier, password)
+        
+        if cookies:
+            print("\n✓ Got cookies:")
+            for key, value in cookies.items():
+                print(f"  {key}: {value[:50]}...")
