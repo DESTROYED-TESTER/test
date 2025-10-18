@@ -61,6 +61,7 @@ def ua():
 
 # Main login function
 def facebook_login(uid, password):
+    session = requests.Session()
     data = {
         'method': 'post',
         'pretty': False,
@@ -147,12 +148,12 @@ def facebook_login(uid, password):
     url = "https://b-graph.facebook.com/graphql"
     
     try:
-        result  = requests.post(url, data=data, headers=headers).json()
+        result  = session.post(url, data=data, headers=headers).json()
         
         # Check for successful login
         if "session_key" in str(result):
             print("✓ Login successful!")
-            kuki=";".join([f"{key}={requests.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+            kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
             print(kuki)
             #print("Response:", json.dumps(result, indent=2))
             return result
