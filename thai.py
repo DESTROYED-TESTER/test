@@ -50,14 +50,54 @@ def PWD_FB4A(password, public_key=None, key_id="25"):
     
     return f"#PWD_FB4A:2:{current_time}:{encoded}"
 
-def ua():
-    """Generate a random user agent"""
-    versions = [
-        "Mozilla/5.0 (Linux; Android 11; SM-G973F) AppleWebKit/537.36",
-        "Mozilla/5.0 (Linux; Android 10; SM-G960F) AppleWebKit/537.36",
-        "Mozilla/5.0 (Linux; Android 12; SM-G991B) AppleWebKit/537.36"
-    ]
-    return random.choice(versions)
+def extract_cookies(response):
+    """Extract cookies from response headers and JSON"""
+    cookies = {}
+    
+    # Extract from response headers
+    if 'Set-Cookie' in response.headers:
+        cookie_header = response.headers['Set-Cookie']
+        for cookie in cookie_header.split(','):
+            if '=' in cookie:
+                key_value = cookie.split(';')[0].strip()
+                if '=' in key_value:
+                    key, value = key_value.split('=', 1)
+                    cookies[key.strip()] = value.strip()
+    
+    # Extract from response.cookies
+    for cookie in response.cookies:
+        cookies[cookie.name] = cookie.value
+    
+    return cookies
+
+def extract_session_data(result):
+    """Extract session data from JSON response"""
+    session_data = {}
+    
+    try:
+        # Navigate through the nested JSON structure
+        if isinstance(result, dict):
+            # Look for session_key, access_token, uid, etc.
+            def search_dict(d, parent_key=''):
+                for key, value in d.items():
+                    if key in ['session_key', 'access_token', 'uid', 'session_cookies', 'secret']:
+                        session_data[key] = value
+                    elif isinstance(value, dict):
+                        search_dict(value, key)
+                    elif isinstance(value, list):
+                        for item in value:
+                            if isinstance(item, dict):
+                                search_dict(item, key)
+            
+            search_dict(result)
+    except Exception as e:
+        print(f"Error extracting session data: {e}")
+    
+    return session_data
+
+def format_cookie_string(cookies):
+    """Format cookies as a cookie string"""
+    return '; '.join([f"{key}={value}" for key, value in cookies.items()])
 
 # Main login function
 def facebook_login(uid, password):
@@ -149,53 +189,50 @@ def facebook_login(uid, password):
     try:
         response = requests.post(url, data=data, headers=headers)
         
-        # Check for successful login
+        # Extract cookies from response
+        cookies = extract_cookies(response)
+        
+        # Parse JSON response
         result = response.json()
-        if "session_key" in str(result):
-            print("✓ Login successful!")
-            print(cookies)
-            #print("Response:", json.dumps(result, indent=2))
-            return result
-        else:
-            print("✗ Login failed!")
-            print("Response:", json.dumps(result, indent=2))
-            return None
+        
+        # Extract session data from JSON
+        session_data = extract_session_data(result)
+        
+        # Check for successful login
+        if "session_key" in str(result) or session_data:
+            print("=" * 60)
+            print("✓ LOGIN SUCCESSFUL!")
+            print("=" * 60)
             
-    except Exception as e:
-        print(f"Error: {e}")
-        return None
-
-# Execute login
-if __name__ == "__main__":
-    result = facebook_login(uid, password)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-how to extract cookie and print
+            # Print cookies from headers
+            if cookies:
+                print("\n📌 COOKIES FROM HEADERS:")
+                print("-" * 60)
+                for key, value in cookies.items():
+                    print(f"{key}: {value}")
+                
+                print("\n📋 COOKIE STRING:")
+                print("-" * 60)
+                print(format_cookie_string(cookies))
+            
+            # Print session data from JSON
+            if session_data:
+                print("\n🔑 SESSION DATA:")
+                print("-" * 60)
+                for key, value in session_data.items():
+                    print(f"{key}: {value}")
+            
+            # Print full response for debugging
+            print("\n📄 FULL RESPONSE:")
+            print("-" * 60)
+            print(json.dumps(result, indent=2))
+            print("=" * 60)
+            
+            return {
+                'cookies': cookies,
+                'session_data': session_data,
+                'response': result
+            }
+        else:
+            print("=" * 60)
+            
