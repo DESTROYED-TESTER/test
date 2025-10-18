@@ -11,7 +11,8 @@ import struct
 import io
 import time
 
-
+username = "100058660152667"      # Your email
+password = "964119"        # Your password
 
 class Encrypt_PWD:
     def PWD_FB4A(self, password, public_key=None, key_id="25"):
