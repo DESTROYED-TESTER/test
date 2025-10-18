@@ -1692,7 +1692,8 @@ def x(uid,pwx,tl):
         loop+=1
     except net_error:
         time.sleep(10)
-    except Exception as e:
+    except Exception as error:
+        print({error})
         pass
 
 
