@@ -1,71 +1,167 @@
-import requests,json
+import requests
+import base64
+import struct
+import io
+import time
+import json
+import uuid
+import random
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import AES, PKCS1_v1_5
+from Crypto.Random import get_random_bytes
 
-cookies = {
-    '__cf_bm': 'qwoCilS0Bhpia4AmNczFtqx89ty4PUkGGfh6D7T_gSU-1760725346-1.0.1.1-80JNKM_Hpb7Xn57MGaNdTRfE7IwyJNaXFamdIfWdxuimoowJCQ9sRCU_2dMgDRqOGHMqiS_UpCsCoNi0i0CpCkuJDumXl_aSxcQhjAN82i8',
-    '_uetsid': '5098c220ab4711f0a1793b9f2c156966',
-    '_uetvid': '5098fac0ab4711f09628490ff22b64b2',
-    '_scid_r': 'KHTNLLppzbhWWyDqgrdvhfsJia24Y2BjTa983Q',
-    '_ga_3MT5TWB94N': 'GS2.1.s1760698322$o1$g1$t1760696490$j59$l0$h0',
-    '_fbp': 'fb.1.1760696621368.60970082052103756',
-    'sajssdk_2015_cross_new_user': '1',
-    '_ga': 'GA1.1.245810326.1760698323',
-    '_scid': 'BfTNLLppzbhWWyDqgrdvhfsJia24Y2Bj',
-    '_ScCbts': '%5B%5D',
-    '_sctr': '1%7C1760639400000',
-    'ta_token_prod': 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjkyMTA0ODM4MzkxMTY4MDE0NiwiZGV2aWNlSWQiOiIiLCJyZWZyZXNoVG9rZW4iOiIiLCJleHBpcmVUaW1lIjoyNTkyMDAwLCJleHAiOjE3NjMzMTIyODh9.k0ARAAOdcjPIGhkmGvyKGXAyEjc0Ch7JRt0IkeuiXlNfbt9FE_cJLPkxUNLWOdUCKBU0FYfLx6QrcEIk_QCVLjloZrRPd47UxCBv5EuCgo9HkwYd53dp6X15setCDK-RSe9dsrEHMOhRQ_VtJ47Rofvd5grZr5V5YQ3LwBL0QB_SauyRaZNGuUGs7TeCGLuWxsVAiqxid70jHJr0Rs84O7RbOwUJKJxWgjneIGUcdIxqyjNRgww6U5JJuZX15OA-kuoyqg5wj0SnF1allCCIAs7w34Lw2mGX-jMcJR0yDnE7pVh3ToUpCIY4oNuVbckbVpnh2bUuPOuvkGNWL1XR_g',
-    'sensorsdata2015jssdkcross': '%7B%22distinct_id%22%3A%22921048383911680146%22%2C%22first_id%22%3A%22199f1cc4ddb2c3-0ff07a7c97fc118-26061851-1296000-199f1cc4ddc55d%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTk5ZjFjYzRkZGIyYzMtMGZmMDdhN2M5N2ZjMTE4LTI2MDYxODUxLTEyOTYwMDAtMTk5ZjFjYzRkZGM1NWQiLCIkaWRlbnRpdHlfbG9naW5faWQiOiI5MjEwNDgzODM5MTE2ODAxNDYifQ%3D%3D%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%22921048383911680146%22%7D%7D',
-}
+password = "630110"
+uid = "100053582633432"
 
-headers = {
-    'accept': '*/*',
-    'accept-language': 'en-US,en;q=0.9,bn;q=0.8',
-    'authorization': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjkyMTA0ODM4MzkxMTY4MDE0NiwiZGV2aWNlSWQiOiIiLCJyZWZyZXNoVG9rZW4iOiIiLCJleHBpcmVUaW1lIjoyNTkyMDAwLCJleHAiOjE3NjMzMTIyODh9.k0ARAAOdcjPIGhkmGvyKGXAyEjc0Ch7JRt0IkeuiXlNfbt9FE_cJLPkxUNLWOdUCKBU0FYfLx6QrcEIk_QCVLjloZrRPd47UxCBv5EuCgo9HkwYd53dp6X15setCDK-RSe9dsrEHMOhRQ_VtJ47Rofvd5grZr5V5YQ3LwBL0QB_SauyRaZNGuUGs7TeCGLuWxsVAiqxid70jHJr0Rs84O7RbOwUJKJxWgjneIGUcdIxqyjNRgww6U5JJuZX15OA-kuoyqg5wj0SnF1allCCIAs7w34Lw2mGX-jMcJR0yDnE7pVh3ToUpCIY4oNuVbckbVpnh2bUuPOuvkGNWL1XR_g',
-    'content-type': 'application/json',
-    'origin': 'https://tensor.art',
-    'priority': 'u=1, i',
-    'referer': 'https://tensor.art/edit/article/921051555745016367',
-    'sec-ch-ua': '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-site',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
-    'x-echoing-env': '',
-    'x-request-package-id': '3000',
-    'x-request-package-sign-version': '0.0.1',
-    'x-request-sign': 'MzMyMGFjYzdmMGRjNjljOGJlMmJlZWRjMjg0NmVlNDhhZGUzMmMwZjhhZWZiNTVkZDIyZmJhMjVmOTZlODI3NQ==',
-    'x-request-sign-type': 'HMAC_SHA256',
-    'x-request-sign-version': 'v1',
-    'x-request-timestamp': '1760725671615',
-    # 'cookie': '__cf_bm=qwoCilS0Bhpia4AmNczFtqx89ty4PUkGGfh6D7T_gSU-1760725346-1.0.1.1-80JNKM_Hpb7Xn57MGaNdTRfE7IwyJNaXFamdIfWdxuimoowJCQ9sRCU_2dMgDRqOGHMqiS_UpCsCoNi0i0CpCkuJDumXl_aSxcQhjAN82i8; _uetsid=5098c220ab4711f0a1793b9f2c156966; _uetvid=5098fac0ab4711f09628490ff22b64b2; _scid_r=KHTNLLppzbhWWyDqgrdvhfsJia24Y2BjTa983Q; _ga_3MT5TWB94N=GS2.1.s1760698322$o1$g1$t1760696490$j59$l0$h0; _fbp=fb.1.1760696621368.60970082052103756; sajssdk_2015_cross_new_user=1; _ga=GA1.1.245810326.1760698323; _scid=BfTNLLppzbhWWyDqgrdvhfsJia24Y2Bj; _ScCbts=%5B%5D; _sctr=1%7C1760639400000; ta_token_prod=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjkyMTA0ODM4MzkxMTY4MDE0NiwiZGV2aWNlSWQiOiIiLCJyZWZyZXNoVG9rZW4iOiIiLCJleHBpcmVUaW1lIjoyNTkyMDAwLCJleHAiOjE3NjMzMTIyODh9.k0ARAAOdcjPIGhkmGvyKGXAyEjc0Ch7JRt0IkeuiXlNfbt9FE_cJLPkxUNLWOdUCKBU0FYfLx6QrcEIk_QCVLjloZrRPd47UxCBv5EuCgo9HkwYd53dp6X15setCDK-RSe9dsrEHMOhRQ_VtJ47Rofvd5grZr5V5YQ3LwBL0QB_SauyRaZNGuUGs7TeCGLuWxsVAiqxid70jHJr0Rs84O7RbOwUJKJxWgjneIGUcdIxqyjNRgww6U5JJuZX15OA-kuoyqg5wj0SnF1allCCIAs7w34Lw2mGX-jMcJR0yDnE7pVh3ToUpCIY4oNuVbckbVpnh2bUuPOuvkGNWL1XR_g; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22921048383911680146%22%2C%22first_id%22%3A%22199f1cc4ddb2c3-0ff07a7c97fc118-26061851-1296000-199f1cc4ddc55d%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMTk5ZjFjYzRkZGIyYzMtMGZmMDdhN2M5N2ZjMTE4LTI2MDYxODUxLTEyOTYwMDAtMTk5ZjFjYzRkZGM1NWQiLCIkaWRlbnRpdHlfbG9naW5faWQiOiI5MjEwNDgzODM5MTE2ODAxNDYifQ%3D%3D%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%22921048383911680146%22%7D%7D',
-}
+def PWD_FB4A(password, public_key=None, key_id="25"):
+    if public_key is None:
+        pwd_key_fetch = 'https://b-graph.facebook.com/pwd_key_fetch'
+        pwd_key_fetch_data = {
+            'version': '2',
+            'flow': 'CONTROLLER_INITIALIZATION',
+            'method': 'GET',
+            'fb_api_req_friendly_name': 'pwdKeyFetch',
+            'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
+            'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
+        }
+        response = requests.post(pwd_key_fetch, params=pwd_key_fetch_data).json()
+        public_key = response.get('public_key')
+        key_id = str(response.get('key_id', key_id))
+    
+    rand_key = get_random_bytes(32)
+    iv = get_random_bytes(12)
+    pubkey = RSA.import_key(public_key)
+    cipher_rsa = PKCS1_v1_5.new(pubkey)
+    encrypted_rand_key = cipher_rsa.encrypt(rand_key)
+    cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
+    current_time = int(time.time())
+    cipher_aes.update(str(current_time).encode("utf-8"))
+    encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
+    
+    buf = io.BytesIO()
+    buf.write(bytes([1, int(key_id)]))
+    buf.write(iv)
+    buf.write(struct.pack("<h", len(encrypted_rand_key)))
+    buf.write(encrypted_rand_key)
+    buf.write(auth_tag)
+    buf.write(encrypted_passwd)
+    encoded = base64.b64encode(buf.getvalue()).decode("utf-8")
+    
+    return f"#PWD_FB4A:2:{current_time}:{encoded}"
 
-json_data = {
-    'postId': '921051555745016367',
-    'title': 'viral de Yailin Viral y Sr Jimenez XXX VIDEOS',
-    'content': '<h1 id="heading-1-DjDbBqBSMZ"><strong><em>El video </em></strong><a target="_blank" rel="noopener noreferrer nofollow" href="https://tinyurl.com/mtmk2db8"><strong><em>viral </em></strong></a><strong><em>de Yailin Viral y Sr</em></strong></h1><p>El reciente video filtrado de Yailin y el Sr. Jiménez ha generado una gran ola de reacciones</p><p></p>',
-    'tags': [
-        'WORKFLOWS',
-    ],
-    'cover': {
-        'postImageId': '921051509574085469',
-    },
-    'postImageIds': [
-        '921051509574085469',
-        '921051509574085469',
-    ],
-}
+def ua():
+    """Generate a random user agent"""
+    versions = [
+        "Mozilla/5.0 (Linux; Android 11; SM-G973F) AppleWebKit/537.36",
+        "Mozilla/5.0 (Linux; Android 10; SM-G960F) AppleWebKit/537.36",
+        "Mozilla/5.0 (Linux; Android 12; SM-G991B) AppleWebKit/537.36"
+    ]
+    return random.choice(versions)
 
-response = requests.post('https://api.tensor.art/community-web/v1/post/update', cookies=cookies, headers=headers, json=json_data)
+# Main login function
+def facebook_login(uid, password):
+    data = {
+        'method': 'post',
+        'pretty': False,
+        'format': 'json',
+        'server_timestamps': True,
+        'locale': 'id_ID, en-US',
+        'purpose': 'fetch',
+        'fb_api_req_friendly_name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+        'fb_api_caller_class': 'graphservice',
+        'client_doc_id': '119940804214876861379510865434',
+        'variables': json.dumps({
+            "params": {
+                "params": json.dumps({
+                    "params": json.dumps({
+                        "client_input_params": {
+                            "device_id": str(uuid.uuid4()),
+                            "lois_settings": {
+                                "lois_token": "",
+                                "lara_override": ""
+                            },
+                            "name": None,
+                            "machine_id": "FXQ7Z_eNU42Pnt5I_CpRlzIh",
+                            "profile_pic_url": None,
+                            "contact_point": uid,
+                            "encrypted_password": PWD_FB4A(password)
+                        },
+                        "server_params": {
+                            "is_from_logged_out": 1,
+                            "layered_homepage_experiment_group": None,
+                            "device_id": str(uuid.uuid4()),
+                            "waterfall_id": str(uuid.uuid4()),
+                            "INTERNAL__latency_qpl_instance_id": 2.9809277900605E13,
+                            "login_source": "Login",
+                            "is_platform_login": 0,
+                            "INTERNAL__latency_qpl_marker_id": 36707139,
+                            "family_device_id": str(uuid.uuid4()),
+                            "offline_experiment_group": "caa_iteration_v6_perf_fb_2",
+                            "INTERNAL_INFRA_THEME": "default,default",
+                            "access_flow_version": "F2_FLOW",
+                            "is_from_logged_in_switcher": 0
+                        }
+                    })
+                }),
+                "bloks_versioning_id": "3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5",
+                "app_id": "com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request"
+            },
+            "scale": "2",
+            "nt_context": {
+                "using_white_navbar": True,
+                "styles_id": "cfe75e13b386d5c54b1de2dcca1bee5a",
+                "pixel_ratio": 2,
+                "is_push_on": False,
+                "debug_tooling_metadata_token": None,
+                "is_flipper_enabled": False,
+                "theme_params": [],
+                "bloks_version": "3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5"
+            }
+        }),
+        'fb_api_analytics_tags': '["GraphServices"]',
+        'client_trace_id': str(uuid.uuid4())
+    }
 
-# ✅ Check the result
-print("Status Code:", response.status_code)
+    headers = {
+        'host': 'graph.facebook.com',
+        'x-fb-connection-type': 'MOBILE.LTE',
+        'user-agent': ua(),
+        'x-tigon-is-retry': 'False',
+        'x-fb-device-group': str(random.randint(1000, 5999)),
+        'x-graphql-request-purpose': 'fetch',
+        'x-fb-privacy-context': '3643298472347298',
+        'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+        'x-graphql-client-library': 'graphservice',
+        'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'x-fb-net-hni': str(random.randint(5000, 5999)),
+        'x-fb-sim-hni': str(random.randint(5000, 5999)),
+        'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+        'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
+        'x-requested-with': 'XMLHttpCanary',
+        'x-fb-http-engine': 'Tigon/Liger',
+        'x-fb-client-ip': 'True',
+        'x-fb-server-cluster': 'True',
+    }
 
-try:
-    result = response.json()
-    print(json.dumps(result, indent=4, ensure_ascii=False))
+    url = "https://b-graph.facebook.com/graphql"
+    
+    try:
+        result = requests.post(url, data=data, headers=headers).json()
+        
+        # Check for successful login
+        if "session_key" in str(result):
+            print("✓ Login successful!")
+            print("Response:", json.dumps(result, indent=2))
+            return result
+        else:
+            print("✗ Login failed!")
+            print("Response:", json.dumps(result, indent=2))
+            return None
+            
+    except Exception as e:
+        print(f"Error: {e}")
+        return None
 
-except ValueError:
-    print("❌ Invalid response (not JSON):")
-    print(response.text)
+# Execute login
+if __name__ == "__main__":
+    result = facebook_login(uid, password)
