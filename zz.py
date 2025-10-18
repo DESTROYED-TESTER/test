@@ -1282,15 +1282,6 @@ def mbasic(uid,pwx,tl):
             Session = requests.Session()
             head = {"accept": "*/*", "user-agent": "Mozilla/5.0 (Linux; Android 7.1.1; KirinX Build/N6F26Q; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Mobile Safari/537.36", "content-type": "application/x-www-form-urlencoded;charset=UTF-8", "accept-encoding": "gzip, deflate", "accept-language": "id-ID,id;q=0.9, en-US,en;q=0.8", "x-requested-with": "XMLHttpCanary", "priority": "u=1, i"} 
             free_fb = Session.get('https://touch.facebook.com').text
-            cookies = {
-            'datr': 'xJxPaKQpoJElo6Qa5Stty0z3',
-            'fr': '16pARwvhhtuvDIhf7.AWfZobH6HLWH_ntHEzjvEfyeL6w4C5vb2vhntvYoEd6ZaZPtaGM.Bo71ja..AAA.0.0.Bo71oi.AWd24SJuY2b7Uy-X3VsNbbV50nI',
-            'sb': 'xJxPaBlxTvSWwpAbuoUHWKCU',
-            'ps_l': '1',
-            'ps_n': '1',
-            'wd': '1440x546',
-            'sfau': 'AYi9w4u7dDj-VPANir9x6sSLe5pEeLG00PTLFbCIyW5vVoEg8NvwaS7TLKL_h3X6gDQ6NS8HLTHbdU5fljvJU60A6cDrMMVb3xJ0nXsEdTF5Kbev1Fm4GtO7NHHR2qbej2ew4J0BqzWF7Abge9x0yYM_7pTqq5gZliN3DXIUr2qvCp_Iqx6jvaL08nvt3Wi69piBCNR3RrtKQ08Tw9Z02bFht5dIfPjaitu3kMPRk8qpECf_wPQODvrEfcppswZOq-zoblTTfA-BXiMjA3CMkLfJ',
-            'sfiu': 'AYg6YDbed47a7jIZFIBatLZ5LPuG-TFcoF-_gEGU22CkJE0-wCbNOVP48OR-WH7xJbpoDoyLb2rNFbls0HRkUJEYKSExNONYcWI3qraOQT28TwMvtlXZdC7Dzoc7uKsYCuOV3K8lP4lUZarnxs-ykMb-EQmyL7aIinM7gRWdAPqPcHLTWMGksyUA_Msd1hbwdomLPKXVFxL8-j04R2YhlmROCmHh9LcqbCiepzAT6u271MzsPyuP1NPRNBqDcRQq3U1GH3E4XXlyRReMSgSaBBwz',}
             headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:143.0) Gecko/20100101 Firefox/143.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
