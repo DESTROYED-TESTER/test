@@ -1400,7 +1400,7 @@ def mbasic(uid,pwx,tl):
     sys.stdout.write(f"\r {green}(M1) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
-        for pw in pwx:
+        for password in pwx:
             data = {
             "adid": str(uuid.uuid4()),
             "format": "json",
