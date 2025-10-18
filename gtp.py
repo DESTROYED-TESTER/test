@@ -148,14 +148,14 @@ def facebook_login(uid, password):
     url = "https://b-graph.facebook.com/graphql"
     
     try:
-        result  = session.post(url, data=data, headers=headers).json()
-        r2 = session.get("https://www.facebook.com/", allow_redirects=True, timeout=30)
+        resul  = session.post(url, data=data, headers=headers)
         # Check for successful login
+        result = resul.json()
         if "session_key" in str(result):
             print("✓ Login successful!")
-            kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
-            print(kuki)
-            #print("Response:", json.dumps(result, indent=2))
+            #kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+            print(resul.text)
+            #print("Response.:", json.dumps(result, indent=2))
             return result
         else:
             print("✗ Login failed!")
