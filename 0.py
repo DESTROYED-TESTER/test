@@ -1,75 +1,59 @@
-import requests,time
+import requests
 
-cookies = {
-    'fr': '0yNyOdBia7SurAz5e..Bo9J-7..AAA.0.0.Bo9J-7.AWcpcPtzmuPsw5P6FNpwX8Zx-Tw',
-    'sb': 'u5_0aFF51EbifVBDoEnsi9Ut',
-    'datr': 'u5_0aCroimhveeODthgePFtZ',
-    'dpr': '2.4749999046325684',
-    'wd': '980x1146',
-}
+url = "https://limited.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
 
 headers = {
-    'authority': 'www.facebook.com',
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'accept-language': 'en-US,en;q=0.9',
-    'cache-control': 'max-age=0',
-    'content-type': 'application/x-www-form-urlencoded',
-    # 'cookie': 'fr=0yNyOdBia7SurAz5e..Bo9J-7..AAA.0.0.Bo9J-7.AWcpcPtzmuPsw5P6FNpwX8Zx-Tw; sb=u5_0aFF51EbifVBDoEnsi9Ut; datr=u5_0aCroimhveeODthgePFtZ; dpr=2.4749999046325684; wd=980x1146',
-    'dpr': '2.4749999046325684',
-    'origin': 'https://www.facebook.com',
-    'referer': 'https://www.facebook.com/Facebookids',
-    'sec-ch-prefers-color-scheme': 'light',
-    'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
-    'sec-ch-ua-full-version-list': '"Chromium";v="107.0.5304.74", "Not=A?Brand";v="24.0.0.0"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-model': '""',
-    'sec-ch-ua-platform': '"Linux"',
-    'sec-ch-ua-platform-version': '""',
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'same-origin',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
-    'viewport-width': '980',
-}
-
-params = {
-    'login_attempt': '1',
+    "User-Agent": "Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.7444.21 Mobile Safari/537.36",
+    "Accept-Encoding": "gzip, deflate, br, zstd",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "sec-ch-ua-platform": '"Android"',
+    "sec-ch-ua": '"Chromium";v="142", "Android WebView";v="142", "Not_A Brand";v="99"',
+    "x-response-format": "JSONStream",
+    "sec-ch-ua-mobile": "?1",
+    "x-asbd-id": "359341",
+    "x-fb-lsd": "AdGm0XNgPZI",
+    "x-requested-with": "XMLHttpRequest",
+    "origin": "https://limited.facebook.com",
+    "sec-fetch-site": "same-origin",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "https://limited.facebook.com/",
+    "accept-language": "en-US,en;q=0.9",
+    "priority": "u=1, i",
+    "Cookie": "datr=j2D0aGNfrkhe6gsD30X9rocd; sb=j2D0aAXaXOHjOD9-oe2tBQq3; m_pixel_ratio=2.4749999046325684; wd=437x973; fr=0Cgs75RqCn7Ic4eLB..Bo9GCP..AAA.0.0.Bo9NIG.AWevxQpVa2RjMHVgm1WI0GmCmdY"
 }
 
 data = {
-    'email': '100075835494521',
-    'cuid': '',
-    'guid': 'f0a5a0c737fcfe167',
-    'lgnjs': '1760862174',
-    'lgnrnd': '012253_q6Bs',
-    'locale': 'en_GB',
-    'login_source': 'comet_login_header',
-    'next': 'https://www.facebook.com/Facebookids',
-    'skstamp': '',
-    'timezone': '-330',
-    'prefill_contact_point': '',
-    'prefill_source': '',
-    'lsd': 'AdFiLirodjc',
-    'jazoest': '21051',
-    'lgndim': 'eyJ3Ijo0MzcsImgiOjk3MywiYXciOjQzNywiYWgiOjk3MywiYyI6MjR9',
-    'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAI',
-    'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], '630153'),
+    "m_ts": "1760874943",
+    "li": "v9H0aI7R_BQkzL03WnfHN8aI",
+    "try_number": "0",
+    "unrecognized_tries": "0",
+    "email": "100058660152667",
+    "prefill_contact_point": "100058660152667|964119|",
+    "prefill_source": "browser_dropdown",
+    "prefill_type": "password",
+    "first_prefill_source": "browser_dropdown",
+    "first_prefill_type": "contact_point",
+    "had_cp_prefilled": "true",
+    "had_password_prefilled": "true",
+    "is_smart_lock": "false",
+    "bi_xrwh": "92004344361786634",
+    "encpass": "#PWD_BROWSER:5:1760875018:AYFQAEU6J/oHurmTPKUMYpcEutIj32eX4NsMcUtALmTB6t5NdBjqShcJx38tk531kbV8ZapQMO+RKvV5BcFJ7iTbaDo0+oUJfLMR87wvmXDZ539KQg1b7bchMxanDdfIL5U21rXEt2Awqg==",
+    "fb_dtsg": "NAfsTy_nVmMY-aPq2jodNfEfMAoYxODjAWsWDzfAH8A75HyboS_sRKg:0:0",
+    "jazoest": "25078",
+    "lsd": "AdGm0XNgPZI",
+    "_dyn": "1KQdAG1mws8-t0BBBzEnwSwgE98nwgU2owpUuwcC4o1nEhw23E52q1ewb60Y82Cwro0wa4o1MUaE36wdq0ny0oi0zE1jU1soG0hi0Lo6-0Co178dE1UU3jwea",
+    "csr": "",
+    "hsdp": "",
+    "hblp": "",
+    "sjsp": "",
+    "req": "7",
+    "fmt": "1",
+    "a": "AYyQqdylf2eoq8yXWSG7K_Msk0NY97pal6sBjs63bUJC904PTS5BYy4tJzgHZU9E7RpVfhWJ4bHrnLAwXzSmITIqS3nGPb_LZ0Y",
+    "_user": "0"
 }
 
-response = requests.post(
-    'https://d.facebook.com/login/device-based/regular/login/',
-    params=params,
-    cookies=cookies,
-    headers=headers,
-    data=data,
-    allow_redirects=False
-)
+response = requests.post(url, headers=headers, data=data)
 
-# Simple check
-if 'c_user' in response.cookies and 'xs' in response.cookies:
-    print("✅ Login Successful!")
-    print(f"User ID: {response.cookies['c_user']}")
-else:
-    print("❌ Login Failed")
+print(response.status_code)
+print(response.text)
