@@ -59,7 +59,7 @@ data = {
 }
 
 response = requests.post(
-    'https://www.facebook.com/login/device-based/regular/login/',
+    'https://en-gb.facebook.com/login/device-based/regular/login/',
     params=params,
     cookies=cookies,
     headers=headers,
