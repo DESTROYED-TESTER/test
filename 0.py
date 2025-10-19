@@ -64,6 +64,7 @@ response = requests.post(
     cookies=cookies,
     headers=headers,
     data=data,
+    allow_redirects=False
 )
 
 # Simple check
