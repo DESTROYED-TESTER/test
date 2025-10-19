@@ -1,244 +1,269 @@
 import requests
 import json
-import uuid
 import re
-from urllib.parse import urlencode
+import time
+import random
+from urllib.parse import quote
 
 class FacebookLogin:
     def __init__(self):
         self.session = requests.Session()
-        self.base_url = "https://m.facebook.com"
-        
-    def get_login_tokens(self):
-        """Get initial tokens from Facebook login page"""
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.7444.21 Mobile Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        self.session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2060) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.9',
-        }
+            'Accept-Encoding': 'gzip, deflate',
+            'Connection': 'keep-alive',
+        })
         
-        response = self.session.get(f'{self.base_url}/login/', headers=headers)
-        
-        # Extract tokens from response
-        tokens = {
-            'fb_dtsg': re.search(r'"dtsg":{"token":"([^"]+)"', response.text),
-            'lsd': re.search(r'"lsd":"([^"]+)"', response.text),
-            'jazoest': re.search(r'"jazoest":"([^"]+)"', response.text),
-            'hs': re.search(r'"haste_session":"([^"]+)"', response.text),
-            'hsi': re.search(r'"hsi":"([^"]+)"', response.text),
-        }
-        
-        return {k: v.group(1) if v else '' for k, v in tokens.items()}
-    
-    def encrypt_password(self, password):
-        """
-        Encrypt password in Facebook format
-        Format: #PWD_BROWSER:5:timestamp:encrypted_password
-        Note: This is a simplified version. Real encryption requires Facebook's public key
-        """
-        import time
-        import base64
-        
-        timestamp = int(time.time())
-        # This is a placeholder - real implementation needs Facebook's RSA public key
-        # For now, returning the format structure
-        encrypted = base64.b64encode(password.encode()).decode()
-        return f"#PWD_BROWSER:5:{timestamp}:{encrypted}"
-    
     def login(self, username, password):
         """
-        Perform Facebook login
-        
-        Args:
-            username: Facebook username/email/phone
-            password: Facebook password
+        Simple Facebook login using traditional method
         """
-        
-        # Get initial tokens
-        print("[*] Getting login tokens...")
-        tokens = self.get_login_tokens()
-        
-        # Generate waterfall_id
-        waterfall_id = str(uuid.uuid4())
-        
-        # Prepare login parameters
-        params_data = {
-            "server_params": {
-                "credential_type": "password",
-                "username_text_input_id": "684kjf:62",
-                "password_text_input_id": "684kjf:63",
-                "login_source": "Login",
-                "login_credential_type": "none",
-                "server_login_source": "login",
-                "ar_event_source": "login_home_page",
-                "should_trigger_override_login_success_action": 0,
-                "should_trigger_override_login_2fa_action": 0,
-                "is_caa_perf_enabled": 0,
-                "reg_flow_source": "login_home_native_integration_point",
-                "caller": "gslr",
-                "is_from_landing_page": 0,
-                "is_from_empty_password": 0,
-                "is_from_aymh": 0,
-                "is_from_password_entry_page": 0,
-                "is_from_assistive_id": 0,
-                "is_from_msplit_fallback": 0,
-                "two_step_login_type": "one_step_login",
-                "is_vanilla_password_page_empty_password": 0,
-                "INTERNAL__latency_qpl_marker_id": 36707139,
-                "INTERNAL__latency_qpl_instance_id": "37644722700435",
-                "device_id": None,
-                "family_device_id": None,
-                "waterfall_id": waterfall_id,
-                "offline_experiment_group": None,
-                "layered_homepage_experiment_group": None,
-                "is_platform_login": 0,
-                "is_from_logged_in_switcher": 0,
-                "is_from_logged_out": 0,
-                "access_flow_version": "pre_mt_behavior"
-            },
-            "client_input_params": {
-                "machine_id": "",
-                "cloud_trust_token": None,
-                "block_store_machine_id": "",
-                "zero_balance_state": "",
-                "contact_point": username,
-                "password": self.encrypt_password(password),
-                "accounts_list": [],
-                "fb_ig_device_id": [],
-                "secure_family_device_id": "",
-                "encrypted_msisdn": "",
-                "headers_infra_flow_id": "",
-                "try_num": 1,
-                "login_attempt_count": 1,
-                "event_flow": "login_manual",
-                "event_step": "home_page",
-                "openid_tokens": {},
-                "auth_secure_device_id": "",
-                "client_known_key_hash": "",
-                "has_whatsapp_installed": 0,
-                "sso_token_map_json_string": "",
-                "should_show_nested_nta_from_aymh": 0,
-                "password_contains_non_ascii": "false",
-                "has_granted_read_contacts_permissions": 0,
-                "has_granted_read_phone_permissions": 0,
-                "app_manager_id": "",
-                "aymh_accounts": [{
-                    "id": "",
-                    "profiles": {
-                        "id": {
-                            "user_id": "",
-                            "name": "",
-                            "profile_picture_url": "",
-                            "small_profile_picture_url": None,
-                            "notification_count": 0,
-                            "credential_type": "none",
-                            "token": "",
-                            "last_access_time": 0,
-                            "is_derived": 0,
-                            "username": "",
-                            "password": "",
-                            "has_smartlock": 0,
-                            "account_center_id": "",
-                            "account_source": "",
-                            "credentials": [],
-                            "nta_eligibility_reason": None,
-                            "from_accurate_privacy_result": 0,
-                            "dbln_validated": 0
-                        }
-                    }
-                }],
-                "lois_settings": {
-                    "lois_token": ""
-                }
+        try:
+            # Step 1: Get login page
+            print("[*] Accessing login page...")
+            login_url = "https://m.facebook.com/login.php"
+            response = self.session.get(login_url)
+            
+            if response.status_code != 200:
+                return False, f"Failed to access login page: {response.status_code}"
+            
+            # Step 2: Extract form data
+            print("[*] Extracting form tokens...")
+            html = response.text
+            
+            # Extract lsd token
+            lsd = re.search(r'name="lsd" value="([^"]*)"', html)
+            lsd = lsd.group(1) if lsd else ""
+            
+            # Extract jazoest
+            jazoest = re.search(r'name="jazoest" value="([^"]*)"', html)
+            jazoest = jazoest.group(1) if jazoest else ""
+            
+            # Extract m_ts
+            m_ts = re.search(r'name="m_ts" value="([^"]*)"', html)
+            m_ts = m_ts.group(1) if m_ts else ""
+            
+            # Extract li
+            li = re.search(r'name="li" value="([^"]*)"', html)
+            li = li.group(1) if li else ""
+            
+            # Extract try_number
+            try_number = re.search(r'name="try_number" value="([^"]*)"', html)
+            try_number = try_number.group(1) if try_number else "0"
+            
+            # Extract unrecognized_tries
+            unrecognized_tries = re.search(r'name="unrecognized_tries" value="([^"]*)"', html)
+            unrecognized_tries = unrecognized_tries.group(1) if unrecognized_tries else "0"
+            
+            print(f"[*] Tokens extracted - lsd: {lsd[:20]}...")
+            
+            # Step 3: Prepare login data
+            login_data = {
+                'lsd': lsd,
+                'jazoest': jazoest,
+                'm_ts': m_ts,
+                'li': li,
+                'try_number': try_number,
+                'unrecognized_tries': unrecognized_tries,
+                'email': username,
+                'pass': password,
+                'login': 'Log In',
+                'bi_xrwh': '0'
             }
-        }
-        
-        # Prepare POST data
-        data = {
-            'aaid': '0',
-            'user': '0',
-            'a': '1',
-            'req': '9',
-            'hs': tokens.get('hs', '20380.BP:wbloks_caa_pkg.2.0...0'),
-            'dpr': '3',
-            'ccg': 'GOOD',
-            'rev': '1028624898',
-            's': ':5q5mt2:ii9ztu',
-            'hsi': tokens.get('hsi', '7562775843550382890'),
-            'dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o0wW1gCwjE0AC09Mx60se2G0pS0ny0oi0zE5W0Y81soG0xo2ewbS1LwpEcE1kU1bo8Xw8S0QU3yw',
-            'fb_dtsg': tokens.get('fb_dtsg', ''),
-            'jazoest': tokens.get('jazoest', '25223'),
-            'lsd': tokens.get('lsd', ''),
-            'params': json.dumps({"params": json.dumps(params_data)})
-        }
-        
-        # Prepare headers
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.7444.21 Mobile Safari/537.36',
-            'Accept-Encoding': 'gzip, deflate, br, zstd',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'sec-ch-ua-full-version-list': '',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua': '"Chromium";v="142", "Android WebView";v="142", "Not_A Brand";v="99"',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua-platform-version': '""',
-            'origin': 'https://m.facebook.com',
-            'x-requested-with': 'mark.via.gp',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-dest': 'empty',
-            'referer': 'https://m.facebook.com/ig/login_via/app/',
-            'accept-language': 'en-US,en;q=0.9',
-            'priority': 'u=1, i',
-        }
-        
-        # Make login request
-        url = 'https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&bkv=95c2f471fdc717a6b79ae75e26e90a643f5613e03d463667d5b99baf34570f30'
-        
-        print(f"[*] Attempting login for: {username}")
-        response = self.session.post(url, data=data, headers=headers)
-        
-        # Check response
-        if response.status_code == 200:
+            
+            # Step 4: Submit login
+            print(f"[*] Attempting login for: {username}")
+            
+            login_headers = {
+                'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2060) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Accept-Encoding': 'gzip, deflate',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Origin': 'https://m.facebook.com',
+                'Referer': 'https://m.facebook.com/login.php',
+                'Connection': 'keep-alive',
+            }
+            
+            response = self.session.post(
+                'https://m.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100',
+                data=login_data,
+                headers=login_headers,
+                allow_redirects=True
+            )
+            
+            # Step 5: Check response
             response_text = response.text
+            cookies = self.session.cookies.get_dict()
             
             # Check for success indicators
-            if 'com.bloks.www.caa.login.save-credentials' in response_text:
+            if 'c_user' in cookies and 'xs' in cookies:
                 print("[+] Login successful!")
+                print(f"[+] User ID: {cookies['c_user']}")
                 return True, "Login successful"
-            elif 'checkpoint' in response_text.lower():
+            
+            # Check for checkpoint
+            elif 'checkpoint' in response.url or 'checkpoint' in response_text:
                 print("[-] Checkpoint required")
-                return False, "Checkpoint required"
-            elif 'two_factor' in response_text.lower() or '2fa' in response_text.lower():
+                return False, "Checkpoint required - Account needs verification"
+            
+            # Check for 2FA
+            elif 'two_factor' in response_text or 'approvals_code' in response_text:
                 print("[-] Two-factor authentication required")
                 return False, "2FA required"
+            
+            # Check for incorrect password
+            elif 'login_error' in response_text or 'error_box' in response_text:
+                error_msg = re.search(r'<div[^>]*class="[^"]*error[^"]*"[^>]*>(.*?)</div>', response_text, re.DOTALL)
+                if error_msg:
+                    error_text = re.sub('<[^<]+?>', '', error_msg.group(1)).strip()
+                    print(f"[-] Login error: {error_text}")
+                    return False, error_text
+                else:
+                    print("[-] Invalid credentials")
+                    return False, "Invalid username or password"
+            
             else:
-                print("[-] Login failed")
-                return False, "Invalid credentials or unknown error"
-        else:
-            print(f"[-] Request failed with status code: {response.status_code}")
-            return False, f"HTTP {response.status_code}"
+                print("[-] Login failed - Unknown error")
+                # Save response for debugging
+                with open('debug_response.html', 'w', encoding='utf-8') as f:
+                    f.write(response_text)
+                print("[*] Response saved to debug_response.html")
+                return False, "Unknown error - check debug_response.html"
+                
+        except Exception as e:
+            print(f"[-] Exception occurred: {str(e)}")
+            return False, f"Exception: {str(e)}"
     
     def get_cookies(self):
         """Get session cookies"""
+        return self.session.cookies.get_dict()
+    
+    def get_user_info(self):
+        """Get basic user information"""
+        cookies = self.get_cookies()
+        if 'c_user' not in cookies:
+            return None
+        
+        try:
+            response = self.session.get('https://m.facebook.com/me')
+            
+            # Extract name
+            name_match = re.search(r'<title>(.*?)</title>', response.text)
+            name = name_match.group(1) if name_match else "Unknown"
+            
+            return {
+                'user_id': cookies['c_user'],
+                'name': name,
+                'cookies': cookies
+            }
+        except:
+            return {
+                'user_id': cookies['c_user'],
+                'cookies': cookies
+            }
+
+
+# Alternative method using Graph API style
+class FacebookLoginV2:
+    def __init__(self):
+        self.session = requests.Session()
+        
+    def login(self, username, password):
+        """
+        Login using mobile API endpoint
+        """
+        try:
+            print("[*] Attempting login via mobile API...")
+            
+            # Get initial cookies
+            self.session.get('https://m.facebook.com/')
+            
+            # Prepare login data
+            data = {
+                'email': username,
+                'pass': password,
+                'login': 'Log In'
+            }
+            
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2060) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Referer': 'https://m.facebook.com/',
+            }
+            
+            # Submit login
+            response = self.session.post(
+                'https://m.facebook.com/login.php',
+                data=data,
+                headers=headers,
+                allow_redirects=True
+            )
+            
+            cookies = self.session.cookies.get_dict()
+            
+            if 'c_user' in cookies:
+                print("[+] Login successful!")
+                return True, "Success"
+            elif 'checkpoint' in response.url:
+                return False, "Checkpoint required"
+            else:
+                return False, "Invalid credentials"
+                
+        except Exception as e:
+            return False, str(e)
+    
+    def get_cookies(self):
         return self.session.cookies.get_dict()
 
 
 # Example usage
 if __name__ == "__main__":
+    print("=" * 50)
+    print("Facebook Login Script")
+    print("=" * 50)
+    
+    # Get credentials
+    username = input("\n[?] Enter email/phone/username: ").strip()
+    password = input("[?] Enter password: ").strip()
+    
+    print("\n" + "=" * 50)
+    print("Method 1: Traditional Login")
+    print("=" * 50)
+    
     fb = FacebookLogin()
-    
-    # Replace with actual credentials
-    username = "100076124771608"
-    password = "977549"
-    
     success, message = fb.login(username, password)
     
     if success:
+        print("\n[+] Login Successful!")
         print("\n[+] Cookies:")
-        for key, value in fb.get_cookies().items():
+        cookies = fb.get_cookies()
+        for key, value in cookies.items():
             print(f"  {key}: {value}")
+        
+        # Get user info
+        user_info = fb.get_user_info()
+        if user_info:
+            print(f"\n[+] User Info:")
+            print(f"  Name: {user_info.get('name', 'N/A')}")
+            print(f"  User ID: {user_info.get('user_id', 'N/A')}")
     else:
-        print(f"\n[-] Login failed: {message}")
+        print(f"\n[-] Login Failed: {message}")
+        
+        # Try alternative method
+        print("\n" + "=" * 50)
+        print("Trying Method 2: Mobile API")
+        print("=" * 50)
+        
+        fb2 = FacebookLoginV2()
+        success2, message2 = fb2.login(username, password)
+        
+        if success2:
+            print("\n[+] Login Successful!")
+            print("\n[+] Cookies:")
+            for key, value in fb2.get_cookies().items():
+                print(f"  {key}: {value}")
+        else:
+            print(f"\n[-] Login Failed: {message2}")
