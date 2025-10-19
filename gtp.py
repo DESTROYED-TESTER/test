@@ -88,8 +88,7 @@ def facebook_login(uid, password):
     'fb_api_caller_class': 'Fb4aAuthHandler',
     'api_key': '882a8490361da98702bf97a021ddc14d',
     'sig': '80272038ac17dd62a2e00dc4a78b45c7',
-    'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-}
+    'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',}
 
     headers = {
     'Priority': 'u=3, i',
@@ -110,9 +109,7 @@ def facebook_login(uid, password):
     'X-FB-HTTP-Engine': 'Liger',
     'X-FB-Client-IP': 'True',
     'X-FB-Server-Cluster': 'True',
-    'Connection': 'keep-alive',
-    # 'Content-Length': '1314',
-}
+    'Connection': 'keep-alive',}
 
     url = "https://b-graph.facebook.com/auth/login"
     
