@@ -1,6 +1,12 @@
 import requests
 
-url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1"
+cookies = {
+    'fr': '0yNyOdBia7SurAz5e..Bo9J-7..AAA.0.0.Bo9J-7.AWcpcPtzmuPsw5P6FNpwX8Zx-Tw',
+    'sb': 'u5_0aFF51EbifVBDoEnsi9Ut',
+    'datr': 'u5_0aCroimhveeODthgePFtZ',
+    'dpr': '2.4749999046325684',
+    'wd': '980x1146',
+}
 
 headers = {
     'authority': 'www.facebook.com',
@@ -28,24 +34,43 @@ headers = {
     'viewport-width': '980',
 }
 
-data = {
-    "email": "100075835494521",
-    "cuid": "",
-    "guid": "f0a5a0c737fcfe167",
-    "lgnjs": "1760862174",
-    "lgnrnd": "012253_q6Bs",
-    "locale": "en_GB",
-    "login_source": "comet_login_header",
-    "next": "https://www.facebook.com/Facebookids",
-    "skstamp": "",
-    "timezone": "-330",
-    "prefill_contact_point": "",
-    "prefill_source": "",
-    "lsd": "AdFiLirodjc",
-    "jazoest": "21051",
-    "lgndim": '{"w":437,"h":973,"aw":437,"ah":973,"c":24}',
-    "encpass": "#PWD_BROWSER:5:1760862597:AYFQAPJk/Ku98wxYP+NENCgrufR2Q6BgEykOumuNAhlLuYpyU8RPwONshbq6ts3NRm2/wZaj+Sd2/1rDr9A+/pogd+QQHuVyCyXisIR8DCbfMmtXVETkBZgt4rQjkpvxBasT1XhxN938Pw==",
+params = {
+    'login_attempt': '1',
 }
 
-response = requests.post(url, headers=headers, data=data)
-print(response.text)
+data = {
+    'email': '100075835494521',
+    'cuid': '',
+    'guid': 'f0a5a0c737fcfe167',
+    'lgnjs': '1760862174',
+    'lgnrnd': '012253_q6Bs',
+    'locale': 'en_GB',
+    'login_source': 'comet_login_header',
+    'next': 'https://www.facebook.com/Facebookids',
+    'skstamp': '',
+    'timezone': '-330',
+    'prefill_contact_point': '',
+    'prefill_source': '',
+    'lsd': 'AdFiLirodjc',
+    'jazoest': '21051',
+    'lgndim': 'eyJ3Ijo0MzcsImgiOjk3MywiYXciOjQzNywiYWgiOjk3MywiYyI6MjR9',
+    'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAI',
+    'encpass': '#PWD_BROWSER:5:1760862597:AYFQAPJk/Ku98wxYP+NENCgrufR2Q6BgEykOumuNAhlLuYpyU8RPwONshbq6ts3NRm2/wZaj+Sd2/1rDr9A+/pogd+QQHuVyCyXisIR8DCbfMmtXVETkBZgt4rQjkpvxBasT1XhxN938Pw==',
+}
+
+response = requests.post(
+    'https://www.facebook.com/login/device-based/regular/login/',
+    params=params,
+    cookies=cookies,
+    headers=headers,
+    data=data,
+)
+
+# Simple check
+if 'c_user' in response.cookies and 'xs' in response.cookies:
+    print("✅ Login Successful!")
+    print(f"User ID: {response.cookies['c_user']}")
+else:
+    print("❌ Login Failed")
+    if 'Location' in response.headers:
+        print(f"Redirect: {response.headers['Location']}")
