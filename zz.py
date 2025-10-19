@@ -1331,6 +1331,7 @@ def mbasic(uid,pwx,tl):
             if "c_user" in cok:
                 cid = cok["c_user"]
                 coki = ";".join([f"{k}={v}" for k, v in cok.items()])
+                print(f"{green}(succesful)")
                 bkas.append(cid)
                 check = check_lock(cid)
                 if "live" in check:
