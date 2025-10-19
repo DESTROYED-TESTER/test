@@ -1298,8 +1298,8 @@ def mbasic(uid,pwx,tl):
             'sec-ch-ua-platform-version': '"10.0.0"',
             'viewport-width': '862',}
             data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'email': uid,
             'login_source': 'comet_headerless_login',
             'next': '',
