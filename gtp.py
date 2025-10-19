@@ -1,36 +1,29 @@
-# Facebook Login Script
-
 import requests
 import base64
 import struct
 import io
 import time
 import json
-import uuid
-import random
-import re
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_v1_5
 from Crypto.Random import get_random_bytes
 
-password = "630110"
-uid = "6301109484"
-
 def PWD_FB4A(password, public_key=None, key_id="25"):
     if public_key is None:
-        pwd_key_fetch = 'https://b-graph.facebook.com/pwd_key_fetch'
-        pwd_key_fetch_data = {
-            'version': '2',
-            'flow': 'CONTROLLER_INITIALIZATION',
-            'method': 'GET',
-            'fb_api_req_friendly_name': 'pwdKeyFetch',
-            'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
-            'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
-        }
-        response = requests.post(pwd_key_fetch, params=pwd_key_fetch_data).json()
-        public_key = response.get('public_key')
-        key_id = str(response.get('key_id', key_id))
-    
+        resp = requests.post(
+            "https://b-graph.facebook.com/pwd_key_fetch",
+            params={
+                "version": "2",
+                "flow": "CONTROLLER_INITIALIZATION",
+                "method": "GET",
+                "fb_api_req_friendly_name": "pwdKeyFetch",
+                "fb_api_caller_class": "com.facebook.auth.login.AuthOperations",
+                "access_token": "438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28",
+            },
+        ).json()
+        public_key = resp.get("public_key")
+        key_id = str(resp.get("key_id", key_id))
+
     rand_key = get_random_bytes(32)
     iv = get_random_bytes(12)
     pubkey = RSA.import_key(public_key)
@@ -40,7 +33,7 @@ def PWD_FB4A(password, public_key=None, key_id="25"):
     current_time = int(time.time())
     cipher_aes.update(str(current_time).encode("utf-8"))
     encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
-    
+
     buf = io.BytesIO()
     buf.write(bytes([1, int(key_id)]))
     buf.write(iv)
@@ -49,86 +42,59 @@ def PWD_FB4A(password, public_key=None, key_id="25"):
     buf.write(auth_tag)
     buf.write(encrypted_passwd)
     encoded = base64.b64encode(buf.getvalue()).decode("utf-8")
-    
+
     return f"#PWD_FB4A:2:{current_time}:{encoded}"
 
 def facebook_login(uid, password):
     session = requests.Session()
-    data = {
-        'adid': str(uuid.uuid4()),
-        'format': 'json',
-        'device_id': str(uuid.uuid4()),
-        'email': uid,
-        'password': PWD_FB4A(password),
-        'generate_analytics_claim': '1',
-        'community_id': '',
-        'cpl': 'true',
-        'try_num': '1',
-        'cds_experiment_group': '-1',
-        'family_device_id': str(uuid.uuid4()),
-        'secure_family_device_id': str(uuid.uuid4()),
-        'sim_serials': '["3a:fa:04:81:8a:f9"]',
-        'credentials_type': 'password',
-        'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
-        'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
-        'enroll_misauth': 'false',
-        'generate_session_cookies': '1',
-        'error_detail_type': 'button_with_disabled',
-        'source': 'login',
-        'generate_machine_id': '1',
-        'jazoest': '22271',
-        'meta_inf_fbmeta': 'NO_FILE',
-        'advertiser_id': str(uuid.uuid4()),
-        'encrypted_msisdn': 'Ae8zzUIz7jzFEdYZ_MfSxNpfJWWf7sEjY1NcPkmF77iy5htR_9up5PTD5F_uiQSsTCZcpD6rkVKsXX2cruVjuomJSgv_6CL0D4W8NgP4t0l2RP7KEaCvZMfTSfs480JL0VxLr2pOTnPU0pWtqQG1BE3UX5lYgtmL60shj5eL4tK1OzKSUzVjy_FPAw6SR7bw1Lw9-j9ZJDnDyTYN30pSSbLnMMZbU9wDeEWpqRmFWt2FieCt1NCk22eRtTagf0_SZr77UhSVsCyCZpOWv3ZokAaubmoZzdePyaj36KeapwcqWnt9hpkv9CuFc_PoCnKyx7cIPAnx-sGkYvCP8XYMjUIp',
-        'currently_logged_in_userid': '0',
-        'locale': 'en_US',
-        'client_country_code': 'BD',
-        'fb_api_req_friendly_name': 'authenticate',
-        'fb_api_caller_class': 'Fb4aAuthHandler',
-        'api_key': '882a8490361da98702bf97a021ddc14d',
-        'sig': '80272038ac17dd62a2e00dc4a78b45c7',
-        'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-    }
 
     headers = {
-        'host': 'graph.facebook.com',
-        'x-fb-connection-type': 'MOBILE.LTE',
-        'user-agent':f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
-        'x-tigon-is-retry': 'False',
-        'x-fb-device-group': str(random.randint(1000, 5999)),
-        'x-graphql-request-purpose': 'fetch',
-        'x-fb-privacy-context': '3643298472347298',
-        'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
-        'x-graphql-client-library': 'graphservice',
-        'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        'x-fb-net-hni': str(random.randint(5000, 5999)),
-        'x-fb-sim-hni': str(random.randint(5000, 5999)),
-        'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-        'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
-        'x-requested-with': 'XMLHttpCanary',
-        'x-fb-http-engine': 'Tigon/Liger',
-        'x-fb-client-ip': 'True',
-        'x-fb-server-cluster': 'True',
-    }
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Origin': 'https://www.facebook.com',
+    'Referer': 'https://www.facebook.com/?stype=lo&flo=1&deoia=1&jlou=Afi33CVi9aSFnvUb391F5-qlmBdkDydfWor_r096lWwevRPeU25CXbhD3Lu2vAKsAmolO1g11BrRAPV91IVkN8RM2lH1tSLE5rEyJ4LRALngow&smuh=25331&lh=Ac_MV4aD9PHN0himQIs',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
+    'dpr': '1',
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
+    'sec-ch-ua-full-version-list': '"Google Chrome";v="141.0.7390.108", "Not?A_Brand";v="8.0.0.0", "Chromium";v="141.0.7390.108"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-model': '""',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-ch-ua-platform-version': '"10.0.0"',
+    'viewport-width': '862',
+}
 
-    url = "https://b-graph.facebook.com/auth/login"
-    
-    try:
-        resul  = session.post(url, data=data, headers=headers)
-        result = resul.json()
-        if "session_key" in str(result):
-            print("✓ Login successful!")
-            print(resul.text)
-            return result
-        else:
-            print("✗ Login failed!")
-            print("Response:", json.dumps(result, indent=2))
-            return None
-            
-    except Exception as e:
-        print(f"Error: {e}")
+    # Fetch login page to get hidden tokens
+    login_page = session.get("https://www.facebook.com/login.php", headers=headers)
+    lsd = re.search(r'name="lsd" value="(.*?)"', login_page.text)
+    jazoest = re.search(r'name="jazoest" value="(.*?)"', login_page.text)
+    if not (lsd and jazoest):
+        print("✗ Could not extract login tokens.")
         return None
 
-# Execute login
+    encpass = PWD_FB4A(password)
+
+    data = {
+        'lsd': lsd.group(1),
+        'jazoest': jazoest.group(1),
+        'email': uid,
+        'encpass': encpass,
+        'login_source': 'login_bluebar',
+    }
+
+    resp = session.post("https://www.facebook.com/login/device-based/regular/login/",
+                        headers=headers, data=data, allow_redirects=True)
+
+    if "c_user" in session.cookies:
+        print("✓ Login successful!")
+        return session.cookies.get_dict()
+    else:
+        print("✗ Login failed!")
+        print("Page title:", re.search(r"<title>(.*?)</title>", resp.text))
+        return None
+
 if __name__ == "__main__":
-    result = facebook_login(uid, password)
+    uid = "6301109484"
+    password = "630110"
+    facebook_login(uid, password)
