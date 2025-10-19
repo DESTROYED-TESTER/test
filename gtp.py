@@ -67,7 +67,7 @@ def facebook_login(uid, password):
 }
 
     # Fetch login page to get hidden tokens
-    login_page = session.get("https://www.facebook.com/login.php", headers=headers)
+    login_page = session.get("https://touch.facebook.com/login.php", headers=headers)
     lsd = re.search(r'name="lsd" value="(.*?)"', login_page.text)
     jazoest = re.search(r'name="jazoest" value="(.*?)"', login_page.text)
     if not (lsd and jazoest):
