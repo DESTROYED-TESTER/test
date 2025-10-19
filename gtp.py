@@ -52,93 +52,69 @@ def PWD_FB4A(password, public_key=None, key_id="25"):
 
 
 
-# Main login function
+# str(uuid.uuid4()),
 def facebook_login(uid, password):
     session = requests.Session()
     data = {
-        'method': 'post',
-        'pretty': False,
-        'format': 'json',
-        'server_timestamps': True,
-        'locale': 'id_ID, en-US',
-        'purpose': 'fetch',
-        'fb_api_req_friendly_name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
-        'fb_api_caller_class': 'graphservice',
-        'client_doc_id': '119940804214876861379510865434',
-        'variables': json.dumps({
-            "params": {
-                "params": json.dumps({
-                    "params": json.dumps({
-                        "client_input_params": {
-                            "device_id": str(uuid.uuid4()),
-                            "lois_settings": {
-                                "lois_token": "",
-                                "lara_override": ""
-                            },
-                            "name": None,
-                            "machine_id": "FXQ7Z_eNU42Pnt5I_CpRlzIh",
-                            "profile_pic_url": None,
-                            "contact_point": uid,
-                            "encrypted_password": PWD_FB4A(password)
-                        },
-                        "server_params": {
-                            "is_from_logged_out": 1,
-                            "layered_homepage_experiment_group": None,
-                            "device_id": str(uuid.uuid4()),
-                            "waterfall_id": str(uuid.uuid4()),
-                            "INTERNAL__latency_qpl_instance_id": 2.9809277900605E13,
-                            "login_source": "Login",
-                            "is_platform_login": 0,
-                            "INTERNAL__latency_qpl_marker_id": 36707139,
-                            "family_device_id": str(uuid.uuid4()),
-                            "offline_experiment_group": "caa_iteration_v6_perf_fb_2",
-                            "INTERNAL_INFRA_THEME": "default,default",
-                            "access_flow_version": "F2_FLOW",
-                            "is_from_logged_in_switcher": 0
-                        }
-                    })
-                }),
-                "bloks_versioning_id": "3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5",
-                "app_id": "com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request"
-            },
-            "scale": "2",
-            "nt_context": {
-                "using_white_navbar": True,
-                "styles_id": "cfe75e13b386d5c54b1de2dcca1bee5a",
-                "pixel_ratio": 2,
-                "is_push_on": False,
-                "debug_tooling_metadata_token": None,
-                "is_flipper_enabled": False,
-                "theme_params": [],
-                "bloks_version": "3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5"
-            }
-        }),
-        'fb_api_analytics_tags': '["GraphServices"]',
-        'client_trace_id': str(uuid.uuid4())
-    }
+    'adid': str(uuid.uuid4()),
+    'format': 'json',
+    'device_id': str(uuid.uuid4()),
+    'email': uid,
+    'password': PWD_FB4A(password),
+    'generate_analytics_claim': '1',
+    'community_id': '',
+    'cpl': 'true',
+    'try_num': '1',
+    'cds_experiment_group': '-1',
+    'family_device_id': str(uuid.uuid4()),
+    'secure_family_device_id': str(uuid.uuid4()),
+    'sim_serials': '["3a:fa:04:81:8a:f9"]',
+    'credentials_type': 'password',
+    'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
+    'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
+    'enroll_misauth': 'false',
+    'generate_session_cookies': '1',
+    'error_detail_type': 'button_with_disabled',
+    'source': 'login',
+    'generate_machine_id': '1',
+    'jazoest': '22271',
+    'meta_inf_fbmeta': 'NO_FILE',
+    'advertiser_id': str(uuid.uuid4()),
+    'encrypted_msisdn': 'Ae8zzUIz7jzFEdYZ_MfSxNpfJWWf7sEjY1NcPkmF77iy5htR_9up5PTD5F_uiQSsTCZcpD6rkVKsXX2cruVjuomJSgv_6CL0D4W8NgP4t0l2RP7KEaCvZMfTSfs480JL0VxLr2pOTnPU0pWtqQG1BE3UX5lYgtmL60shj5eL4tK1OzKSUzVjy_FPAw6SR7bw1Lw9-j9ZJDnDyTYN30pSSbLnMMZbU9wDeEWpqRmFWt2FieCt1NCk22eRtTagf0_SZr77UhSVsCyCZpOWv3ZokAaubmoZzdePyaj36KeapwcqWnt9hpkv9CuFc_PoCnKyx7cIPAnx-sGkYvCP8XYMjUIp',
+    'currently_logged_in_userid': '0',
+    'locale': 'en_US',
+    'client_country_code': 'BD',
+    'fb_api_req_friendly_name': 'authenticate',
+    'fb_api_caller_class': 'Fb4aAuthHandler',
+    'api_key': '882a8490361da98702bf97a021ddc14d',
+    'sig': '80272038ac17dd62a2e00dc4a78b45c7',
+    'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+}
 
     headers = {
-        'host': 'graph.facebook.com',
-        'x-fb-connection-type': 'MOBILE.LTE',
-        'user-agent':f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
-        'x-tigon-is-retry': 'False',
-        'x-fb-device-group': str(random.randint(1000, 5999)),
-        'x-graphql-request-purpose': 'fetch',
-        'x-fb-privacy-context': '3643298472347298',
-        'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
-        'x-graphql-client-library': 'graphservice',
-        'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        'x-fb-net-hni': str(random.randint(5000, 5999)),
-        'x-fb-sim-hni': str(random.randint(5000, 5999)),
-        'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-        'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
-        'x-requested-with': 'XMLHttpCanary',
-        'x-fb-http-engine': 'Tigon/Liger',
-        'x-fb-client-ip': 'True',
-        'x-fb-server-cluster': 'True',
-    }
+    'Priority': 'u=3, i',
+    'Authorization': 'OAuth null',
+    'X-FB-Connection-Quality': 'GOOD',
+    'X-FB-SIM-HNI': '47007',
+    'X-FB-Net-HNI': '47002',
+    'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 14; TECNO CK7n Build/UP1A.231005.007) [FBAN/FB4A;FBAV/370.0.0.23.112;FBPN/com.facebook.katana;FBLC/en_US;FBBV/374931177;FBCR/Airtel;FBMF/TECNO;FBBD/TECNO;FBDV/TECNO CK7n;FBSV/14;FBCA/arm64-v8a:null;FBDM/{density=2.7375,width=1080,height=2292};FB_FW/1;FBRV/0;]',
+    'Content-Encoding': 'gzip',
+    'Host': 'b-graph.facebook.com',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'X-FB-Connection-Type': 'MOBILE.LTE',
+    'x-fb-device-group': '701',
+    'X-Tigon-Is-Retry': 'False',
+    'X-FB-Friendly-Name': 'authenticate',
+    'X-FB-Request-Analytics-Tags': 'unknown',
+    # 'Accept-Encoding': 'gzip, deflate',
+    'X-FB-HTTP-Engine': 'Liger',
+    'X-FB-Client-IP': 'True',
+    'X-FB-Server-Cluster': 'True',
+    'Connection': 'keep-alive',
+    # 'Content-Length': '1314',
+}
 
-    url = "https://b-graph.facebook.com/graphql"
+    url = "https://b-graph.facebook.com/auth/login"
     
     try:
         resul  = session.post(url, data=data, headers=headers)
