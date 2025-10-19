@@ -73,4 +73,4 @@ if 'c_user' in response.cookies and 'xs' in response.cookies:
     print(f"User ID: {response.cookies['c_user']}")
 else:
     print("❌ Login Failed")
-    print(response)
+    print(response.text)
