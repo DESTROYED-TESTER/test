@@ -39,7 +39,7 @@ params = {
 }
 
 data = {
-    'email': '06301466463',
+    'email': '6301466463',
     'cuid': '',
     'guid': 'f0a5a0c737fcfe167',
     'lgnjs': '1760862174',
