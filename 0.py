@@ -1,4 +1,4 @@
-import requests
+import requests,time
 
 cookies = {
     'fr': '0yNyOdBia7SurAz5e..Bo9J-7..AAA.0.0.Bo9J-7.AWcpcPtzmuPsw5P6FNpwX8Zx-Tw',
@@ -55,7 +55,7 @@ data = {
     'jazoest': '21051',
     'lgndim': 'eyJ3Ijo0MzcsImgiOjk3MywiYXciOjQzNywiYWgiOjk3MywiYyI6MjR9',
     'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAI',
-    'encpass': '#PWD_BROWSER:5:1760862597:AYFQAPJk/Ku98wxYP+NENCgrufR2Q6BgEykOumuNAhlLuYpyU8RPwONshbq6ts3NRm2/wZaj+Sd2/1rDr9A+/pogd+QQHuVyCyXisIR8DCbfMmtXVETkBZgt4rQjkpvxBasT1XhxN938Pw==',
+    'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], '630153'),
 }
 
 response = requests.post(
