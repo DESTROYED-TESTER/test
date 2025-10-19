@@ -1,238 +1,244 @@
 import requests
-import base64
-import struct
-import io
-import time
 import json
 import uuid
-import random
 import re
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import AES, PKCS1_v1_5
-from Crypto.Random import get_random_bytes
+from urllib.parse import urlencode
 
-password = "630110"
-uid = "100053582633432"
-
-def PWD_FB4A(password, public_key=None, key_id="25"):
-    if public_key is None:
-        pwd_key_fetch = 'https://b-graph.facebook.com/pwd_key_fetch'
-        pwd_key_fetch_data = {
-            'version': '2',
-            'flow': 'CONTROLLER_INITIALIZATION',
-            'method': 'GET',
-            'fb_api_req_friendly_name': 'pwdKeyFetch',
-            'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
-            'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
+class FacebookLogin:
+    def __init__(self):
+        self.session = requests.Session()
+        self.base_url = "https://m.facebook.com"
+        
+    def get_login_tokens(self):
+        """Get initial tokens from Facebook login page"""
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.7444.21 Mobile Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
         }
-        response = requests.post(pwd_key_fetch, params=pwd_key_fetch_data).json()
-        public_key = response.get('public_key')
-        key_id = str(response.get('key_id', key_id))
+        
+        response = self.session.get(f'{self.base_url}/login/', headers=headers)
+        
+        # Extract tokens from response
+        tokens = {
+            'fb_dtsg': re.search(r'"dtsg":{"token":"([^"]+)"', response.text),
+            'lsd': re.search(r'"lsd":"([^"]+)"', response.text),
+            'jazoest': re.search(r'"jazoest":"([^"]+)"', response.text),
+            'hs': re.search(r'"haste_session":"([^"]+)"', response.text),
+            'hsi': re.search(r'"hsi":"([^"]+)"', response.text),
+        }
+        
+        return {k: v.group(1) if v else '' for k, v in tokens.items()}
     
-    rand_key = get_random_bytes(32)
-    iv = get_random_bytes(12)
-    pubkey = RSA.import_key(public_key)
-    cipher_rsa = PKCS1_v1_5.new(pubkey)
-    encrypted_rand_key = cipher_rsa.encrypt(rand_key)
-    cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
-    current_time = int(time.time())
-    cipher_aes.update(str(current_time).encode("utf-8"))
-    encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
+    def encrypt_password(self, password):
+        """
+        Encrypt password in Facebook format
+        Format: #PWD_BROWSER:5:timestamp:encrypted_password
+        Note: This is a simplified version. Real encryption requires Facebook's public key
+        """
+        import time
+        import base64
+        
+        timestamp = int(time.time())
+        # This is a placeholder - real implementation needs Facebook's RSA public key
+        # For now, returning the format structure
+        encrypted = base64.b64encode(password.encode()).decode()
+        return f"#PWD_BROWSER:5:{timestamp}:{encrypted}"
     
-    buf = io.BytesIO()
-    buf.write(bytes([1, int(key_id)]))
-    buf.write(iv)
-    buf.write(struct.pack("<h", len(encrypted_rand_key)))
-    buf.write(encrypted_rand_key)
-    buf.write(auth_tag)
-    buf.write(encrypted_passwd)
-    encoded = base64.b64encode(buf.getvalue()).decode("utf-8")
-    
-    return f"#PWD_FB4A:2:{current_time}:{encoded}"
-
-def extract_cookies(response):
-    """Extract cookies from response headers and JSON"""
-    cookies = {}
-    
-    # Extract from response headers
-    if 'Set-Cookie' in response.headers:
-        cookie_header = response.headers['Set-Cookie']
-        for cookie in cookie_header.split(','):
-            if '=' in cookie:
-                key_value = cookie.split(';')[0].strip()
-                if '=' in key_value:
-                    key, value = key_value.split('=', 1)
-                    cookies[key.strip()] = value.strip()
-    
-    # Extract from response.cookies
-    for cookie in response.cookies:
-        cookies[cookie.name] = cookie.value
-    
-    return cookies
-
-def extract_session_data(result):
-    """Extract session data from JSON response"""
-    session_data = {}
-    
-    try:
-        # Navigate through the nested JSON structure
-        if isinstance(result, dict):
-            # Look for session_key, access_token, uid, etc.
-            def search_dict(d, parent_key=''):
-                for key, value in d.items():
-                    if key in ['session_key', 'access_token', 'uid', 'session_cookies', 'secret']:
-                        session_data[key] = value
-                    elif isinstance(value, dict):
-                        search_dict(value, key)
-                    elif isinstance(value, list):
-                        for item in value:
-                            if isinstance(item, dict):
-                                search_dict(item, key)
-            
-            search_dict(result)
-    except Exception as e:
-        print(f"Error extracting session data: {e}")
-    
-    return session_data
-
-def format_cookie_string(cookies):
-    """Format cookies as a cookie string"""
-    return '; '.join([f"{key}={value}" for key, value in cookies.items()])
-
-# Main login function
-def facebook_login(uid, password):
-    data = {
-        'method': 'post',
-        'pretty': False,
-        'format': 'json',
-        'server_timestamps': True,
-        'locale': 'id_ID, en-US',
-        'purpose': 'fetch',
-        'fb_api_req_friendly_name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
-        'fb_api_caller_class': 'graphservice',
-        'client_doc_id': '119940804214876861379510865434',
-        'variables': json.dumps({
-            "params": {
-                "params": json.dumps({
-                    "params": json.dumps({
-                        "client_input_params": {
-                            "device_id": str(uuid.uuid4()),
-                            "lois_settings": {
-                                "lois_token": "",
-                                "lara_override": ""
-                            },
-                            "name": None,
-                            "machine_id": "FXQ7Z_eNU42Pnt5I_CpRlzIh",
-                            "profile_pic_url": None,
-                            "contact_point": uid,
-                            "encrypted_password": PWD_FB4A(password)
-                        },
-                        "server_params": {
-                            "is_from_logged_out": 1,
-                            "layered_homepage_experiment_group": None,
-                            "device_id": str(uuid.uuid4()),
-                            "waterfall_id": str(uuid.uuid4()),
-                            "INTERNAL__latency_qpl_instance_id": 2.9809277900605E13,
-                            "login_source": "Login",
-                            "is_platform_login": 0,
-                            "INTERNAL__latency_qpl_marker_id": 36707139,
-                            "family_device_id": str(uuid.uuid4()),
-                            "offline_experiment_group": "caa_iteration_v6_perf_fb_2",
-                            "INTERNAL_INFRA_THEME": "default,default",
-                            "access_flow_version": "F2_FLOW",
-                            "is_from_logged_in_switcher": 0
-                        }
-                    })
-                }),
-                "bloks_versioning_id": "3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5",
-                "app_id": "com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request"
+    def login(self, username, password):
+        """
+        Perform Facebook login
+        
+        Args:
+            username: Facebook username/email/phone
+            password: Facebook password
+        """
+        
+        # Get initial tokens
+        print("[*] Getting login tokens...")
+        tokens = self.get_login_tokens()
+        
+        # Generate waterfall_id
+        waterfall_id = str(uuid.uuid4())
+        
+        # Prepare login parameters
+        params_data = {
+            "server_params": {
+                "credential_type": "password",
+                "username_text_input_id": "684kjf:62",
+                "password_text_input_id": "684kjf:63",
+                "login_source": "Login",
+                "login_credential_type": "none",
+                "server_login_source": "login",
+                "ar_event_source": "login_home_page",
+                "should_trigger_override_login_success_action": 0,
+                "should_trigger_override_login_2fa_action": 0,
+                "is_caa_perf_enabled": 0,
+                "reg_flow_source": "login_home_native_integration_point",
+                "caller": "gslr",
+                "is_from_landing_page": 0,
+                "is_from_empty_password": 0,
+                "is_from_aymh": 0,
+                "is_from_password_entry_page": 0,
+                "is_from_assistive_id": 0,
+                "is_from_msplit_fallback": 0,
+                "two_step_login_type": "one_step_login",
+                "is_vanilla_password_page_empty_password": 0,
+                "INTERNAL__latency_qpl_marker_id": 36707139,
+                "INTERNAL__latency_qpl_instance_id": "37644722700435",
+                "device_id": None,
+                "family_device_id": None,
+                "waterfall_id": waterfall_id,
+                "offline_experiment_group": None,
+                "layered_homepage_experiment_group": None,
+                "is_platform_login": 0,
+                "is_from_logged_in_switcher": 0,
+                "is_from_logged_out": 0,
+                "access_flow_version": "pre_mt_behavior"
             },
-            "scale": "2",
-            "nt_context": {
-                "using_white_navbar": True,
-                "styles_id": "cfe75e13b386d5c54b1de2dcca1bee5a",
-                "pixel_ratio": 2,
-                "is_push_on": False,
-                "debug_tooling_metadata_token": None,
-                "is_flipper_enabled": False,
-                "theme_params": [],
-                "bloks_version": "3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5"
+            "client_input_params": {
+                "machine_id": "",
+                "cloud_trust_token": None,
+                "block_store_machine_id": "",
+                "zero_balance_state": "",
+                "contact_point": username,
+                "password": self.encrypt_password(password),
+                "accounts_list": [],
+                "fb_ig_device_id": [],
+                "secure_family_device_id": "",
+                "encrypted_msisdn": "",
+                "headers_infra_flow_id": "",
+                "try_num": 1,
+                "login_attempt_count": 1,
+                "event_flow": "login_manual",
+                "event_step": "home_page",
+                "openid_tokens": {},
+                "auth_secure_device_id": "",
+                "client_known_key_hash": "",
+                "has_whatsapp_installed": 0,
+                "sso_token_map_json_string": "",
+                "should_show_nested_nta_from_aymh": 0,
+                "password_contains_non_ascii": "false",
+                "has_granted_read_contacts_permissions": 0,
+                "has_granted_read_phone_permissions": 0,
+                "app_manager_id": "",
+                "aymh_accounts": [{
+                    "id": "",
+                    "profiles": {
+                        "id": {
+                            "user_id": "",
+                            "name": "",
+                            "profile_picture_url": "",
+                            "small_profile_picture_url": None,
+                            "notification_count": 0,
+                            "credential_type": "none",
+                            "token": "",
+                            "last_access_time": 0,
+                            "is_derived": 0,
+                            "username": "",
+                            "password": "",
+                            "has_smartlock": 0,
+                            "account_center_id": "",
+                            "account_source": "",
+                            "credentials": [],
+                            "nta_eligibility_reason": None,
+                            "from_accurate_privacy_result": 0,
+                            "dbln_validated": 0
+                        }
+                    }
+                }],
+                "lois_settings": {
+                    "lois_token": ""
+                }
             }
-        }),
-        'fb_api_analytics_tags': '["GraphServices"]',
-        'client_trace_id': str(uuid.uuid4())
-    }
-
-    headers = {
-        'host': 'graph.facebook.com',
-        'x-fb-connection-type': 'MOBILE.LTE',
-        'user-agent':f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
-        'x-tigon-is-retry': 'False',
-        'x-fb-device-group': str(random.randint(1000, 5999)),
-        'x-graphql-request-purpose': 'fetch',
-        'x-fb-privacy-context': '3643298472347298',
-        'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
-        'x-graphql-client-library': 'graphservice',
-        'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        'x-fb-net-hni': str(random.randint(5000, 5999)),
-        'x-fb-sim-hni': str(random.randint(5000, 5999)),
-        'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-        'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
-        'x-requested-with': 'XMLHttpCanary',
-        'x-fb-http-engine': 'Tigon/Liger',
-        'x-fb-client-ip': 'True',
-        'x-fb-server-cluster': 'True',
-    }
-
-    url = "https://b-graph.facebook.com/graphql"
-    
-    try:
-        response = requests.post(url, data=data, headers=headers)
+        }
         
-        # Extract cookies from response
-        cookies = extract_cookies(response)
+        # Prepare POST data
+        data = {
+            'aaid': '0',
+            'user': '0',
+            'a': '1',
+            'req': '9',
+            'hs': tokens.get('hs', '20380.BP:wbloks_caa_pkg.2.0...0'),
+            'dpr': '3',
+            'ccg': 'GOOD',
+            'rev': '1028624898',
+            's': ':5q5mt2:ii9ztu',
+            'hsi': tokens.get('hsi', '7562775843550382890'),
+            'dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o0wW1gCwjE0AC09Mx60se2G0pS0ny0oi0zE5W0Y81soG0xo2ewbS1LwpEcE1kU1bo8Xw8S0QU3yw',
+            'fb_dtsg': tokens.get('fb_dtsg', ''),
+            'jazoest': tokens.get('jazoest', '25223'),
+            'lsd': tokens.get('lsd', ''),
+            'params': json.dumps({"params": json.dumps(params_data)})
+        }
         
-        # Parse JSON response
-        result = response.json()
+        # Prepare headers
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.7444.21 Mobile Safari/537.36',
+            'Accept-Encoding': 'gzip, deflate, br, zstd',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'sec-ch-ua-full-version-list': '',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua': '"Chromium";v="142", "Android WebView";v="142", "Not_A Brand";v="99"',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua-platform-version': '""',
+            'origin': 'https://m.facebook.com',
+            'x-requested-with': 'mark.via.gp',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://m.facebook.com/ig/login_via/app/',
+            'accept-language': 'en-US,en;q=0.9',
+            'priority': 'u=1, i',
+        }
         
-        # Extract session data from JSON
-        session_data = extract_session_data(result)
+        # Make login request
+        url = 'https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&bkv=95c2f471fdc717a6b79ae75e26e90a643f5613e03d463667d5b99baf34570f30'
         
-        # Check for successful login
-        if "session_key" in str(result) or session_data:
-            print("=" * 60)
-            print("✓ LOGIN SUCCESSFUL!")
-            print("=" * 60)
+        print(f"[*] Attempting login for: {username}")
+        response = self.session.post(url, data=data, headers=headers)
+        
+        # Check response
+        if response.status_code == 200:
+            response_text = response.text
             
-            # Print cookies from headers
-            if cookies:
-                print("\n📌 COOKIES FROM HEADERS:")
-                print("-" * 60)
-                for key, value in cookies.items():
-                    print(f"{key}: {value}")
-                
-                print("\n📋 COOKIE STRING:")
-                print("-" * 60)
-                print(format_cookie_string(cookies))
-            
-            # Print session data from JSON
-            if session_data:
-                print("\n🔑 SESSION DATA:")
-                print("-" * 60)
-                for key, value in session_data.items():
-                    print(f"{key}: {value}")
-            
-            # Print full response for debugging
-            print("\n📄 FULL RESPONSE:")
-            print("-" * 60)
-            print(json.dumps(result, indent=2))
-            print("=" * 60)
-            
-            return {
-                'cookies': cookies,
-                'session_data': session_data,
-                'response': result
-            }
+            # Check for success indicators
+            if 'com.bloks.www.caa.login.save-credentials' in response_text:
+                print("[+] Login successful!")
+                return True, "Login successful"
+            elif 'checkpoint' in response_text.lower():
+                print("[-] Checkpoint required")
+                return False, "Checkpoint required"
+            elif 'two_factor' in response_text.lower() or '2fa' in response_text.lower():
+                print("[-] Two-factor authentication required")
+                return False, "2FA required"
+            else:
+                print("[-] Login failed")
+                return False, "Invalid credentials or unknown error"
         else:
-            print("=" * 60)
-            
+            print(f"[-] Request failed with status code: {response.status_code}")
+            return False, f"HTTP {response.status_code}"
+    
+    def get_cookies(self):
+        """Get session cookies"""
+        return self.session.cookies.get_dict()
+
+
+# Example usage
+if __name__ == "__main__":
+    fb = FacebookLogin()
+    
+    # Replace with actual credentials
+    username = "100076124771608"
+    password = "977549"
+    
+    success, message = fb.login(username, password)
+    
+    if success:
+        print("\n[+] Cookies:")
+        for key, value in fb.get_cookies().items():
+            print(f"  {key}: {value}")
+    else:
+        print(f"\n[-] Login failed: {message}")
