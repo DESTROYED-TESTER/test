@@ -73,5 +73,4 @@ if 'c_user' in response.cookies and 'xs' in response.cookies:
     print(f"User ID: {response.cookies['c_user']}")
 else:
     print("❌ Login Failed")
-    if 'Location' in response.headers:
-        print(f"Redirect: {response.headers['Location']}")
+    print(response)
