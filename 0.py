@@ -59,7 +59,7 @@ data = {
 }
 
 response = requests.post(
-    'https://en-gb.facebook.com/login/device-based/regular/login/',
+    'https://web.facebook.com/login/device-based/regular/login/',
     params=params,
     cookies=cookies,
     headers=headers,
@@ -73,4 +73,3 @@ if 'c_user' in response.cookies and 'xs' in response.cookies:
     print(f"User ID: {response.cookies['c_user']}")
 else:
     print("❌ Login Failed")
-    print(response.text)
