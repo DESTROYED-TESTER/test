@@ -1326,7 +1326,7 @@ def mbasic(uid,pwx,tl):
             'Cache-Control': 'no-cache',}
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1'
-            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            response = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False)
             cok = Session.cookies.get_dict()
             if "c_user" in cok:
                 cid = cok["c_user"]
