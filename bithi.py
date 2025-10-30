@@ -215,9 +215,9 @@ myid=uuid.uuid4().hex[:5].upper()
         
 def mmm():
     os.system('clear');print(logo)
-    print(f'{Y}[{W}1{Y}] {W}MTD 1 -')
-    print(f'{Y}[{W}2{Y}] {W}MTD 2 -')
-    print(47*"—")
+    print(f'{Y}[{W}1{Y}] {W}MTD - 1 -')
+    print(f'{Y}[{W}2{Y}] {W}MTD - 2 -')
+    print("\033[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     m = input(f'{Y}[{W}?{Y}] {W}Choose Method : ')
     if m == '1':
         main()
@@ -236,7 +236,7 @@ def main():
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
     with ThreadPoolExecutor(max_workers=80) as Submits:
-        print(47*"\x1b[1;97m—") 
+        print("\033[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━") 
         for next in gen:
             ids = code + next
             mk = ids[:6]
