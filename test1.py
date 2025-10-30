@@ -16,7 +16,7 @@ try:os.mkdir('/sdcard/j4rvis')
 except:pass
 R = '\x1b[1;91m' 
 OR = '\033[1;35m'
-G = '\x1b[1;92m' 
+G = '\033[1;97m' 
 Y = '\x1b[1;93m'
 O = '\x1b[1;98m'
 B = '\033[1;34m'
@@ -337,7 +337,7 @@ def convert(cookie):
 def cracker(ids,passlist):
     global loop,oks,cps
     session = requests.Session()
-    sys.stdout.write('\r \033[1;97m[\x1b[1;92mRNDM•1\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
+    sys.stdout.write('\r \033[1;97m[\033[1;97mRNDM•1\x1b[1;97m] \033[1;97m%s\x1b[1;97m | \033[1;97m%s\x1b[1;97m \r'%(loop,len(oks))),
     sys.stdout.flush()
     try:
         for pas in passlist:
@@ -454,7 +454,7 @@ def convert(cookie):
 def crackerr(ids,passlist):
     global loop,oks,cps,bkas
     session = requests.Session()
-    sys.stdout.write('\r \033[1;97m[\x1b[1;92mRNDM•2\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
+    sys.stdout.write('\r \033[1;97m[\033[1;97mRNDM•2\x1b[1;97m] \033[1;97m%s\x1b[1;97m | \033[1;97m%s\x1b[1;97m \r'%(loop,len(oks))),
     sys.stdout.flush()
     try:
         for pas in passlist:
