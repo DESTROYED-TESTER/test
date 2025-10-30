@@ -16,7 +16,7 @@ try:os.mkdir('/sdcard/j4rvis')
 except:pass
 R = '\x1b[1;91m' 
 OR = '\033[1;35m'
-G = '\x1b[1;92m' 
+G = '\033[1;97m' 
 Y = '\x1b[1;93m'
 O = '\x1b[1;98m'
 B = '\033[1;34m'
@@ -231,7 +231,7 @@ def main():
     #code2 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
    # code3 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
     #code = random.choice([code1,code2,code3])
-    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
+    limit = input(f'{Y}[{W}~{Y}] {G}Total limit {W}: ')
     for a in range(int(limit)):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
