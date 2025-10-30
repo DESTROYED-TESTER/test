@@ -196,41 +196,7 @@ def generate_user_agent():
     return (f"Mozilla/5.0 (Windows NT {rr(9,11)}; Win64; x64){aZ}{rx}{aZ}) "
             f"AppleWebKit/537.36 (KHTML, like Gecko){rr(99,149)}.0.{rr(4500,4999)}.{rr(35,99)} "
             f"Chrome/{rr(99,175)}.0.{rr(0,5)}.{rr(0,5)} Safari/537.36")
-def cek_apkk(session,coki):
-    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
-    sop = BeautifulSoup(w,"html.parser")
-    x = sop.find("form",method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game)==0:
-        print(f"\r {Y}[{G}!{G}{Y}] {G}Sorry No Active Apps Found")
-    else:
-        print(f"\r {Y}[{G}•{G}{Y}] {W}Active Apps Or Websites")
-        for i in range(len(game)):
-            print(f" \r%s {Y}[{G}%s{G}{Y}] %s %s"%( G, i+1, game[i].replace("Ditambahkan pada"," Ditambahkan pada"),G))
-    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
-    sop = BeautifulSoup(w,"html.parser")
-    x = sop.find("form",method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game)==0:
-        print(f"\r {Y}[{R}!{R}{Y}] {R}Sorry No Expired Apps Found")
-    else:
-        print(f"\r {Y}[{R}•{R}{Y}] {W}Expired Apps or Website")
-        for i in range(len(game)):
-            print(f" \r%s {Y}[{R}%s{R}{Y}] %s %s"%( B, i+1, game[i].replace("Kedaluwarsa"," Kedaluwarsa"),B))      
-
-def cek_apk(session,coki):
-    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
-    sop = BeautifulSoup(w,"html.parser")
-    x = sop.find("form",method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game)==0:
-            pass
-    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
-    sop = BeautifulSoup(w,"html.parser")
-    x = sop.find("form",method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game)==0:
-            pass      
+   
 loop = 0
 oks = []
 gen = []
@@ -238,12 +204,12 @@ bkas = []
 cyan="\033[1;36m"
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 logo = (f"""
-{faltu} {black} Government Of India {pvt}         
-\033[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ᴾᴿᴼ
+{faltu} {black}  Government Of India  {pvt}         
+\033[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \033[1;97m[\033[1;31m✓\033[1;97m] Author     : Sumon roy
-\033[1;97m[\033[1;31m✓\033[1;97m] VERSION    : Log in to Facebook
+\033[1;97m[\033[1;31m✓\033[1;97m] VERSION    : Log in to Facebookᴾᴿᴼ
 \033[1;97m[\033[1;31m✓\033[1;97m] Tool Types :\033[1;36m number or password 
-\033[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
+\033[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
 myid=uuid.uuid4().hex[:5].upper()
         
