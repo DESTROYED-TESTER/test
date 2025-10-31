@@ -10,6 +10,7 @@ import random
 import base64
 import string
 import uuid
+import json
 import requests
 from concurrent.futures import ThreadPoolExecutor
 try:os.mkdir('/sdcard/BITHI')
@@ -536,7 +537,7 @@ def crackerr(ids,passlist):
     except requests.exceptions.ConnectionError:
         time.sleep(20)
     except Exception as e:
-        #print(f"\nError: {e}")
+        print(f"\nError: {e}")
         pass
 
 
