@@ -241,7 +241,7 @@ def main():
             xx = ids[:7]
             v = ids[:8]
             b = next[:6]  
-            passlist = [mk,xx,'57273200',v]
+            passlist = random.choice([mk,xx,'57273200',v])
             Submits.submit(cracker,ids,passlist)
 
 def convert(cookie):
