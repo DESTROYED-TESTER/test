@@ -59,7 +59,7 @@ def linex():
 def menu():
     clear()
     print(f" \033[1;97m[\033[1;92m01\033[1;97m] RANDOM NUMBER CLONING")
-    print(f" \033[1;97m[\033[1;92m02\033[1;97m] \033[1;32mCONTACT DEVELOPER")
+    print(f" \033[1;97m[\033[1;92m02\033[1;97m] \033[1;32mCONTACT' DEVELOPER")
     linex()
     younisxyz = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option : ")
     if younisxyz in ['1','01']:
