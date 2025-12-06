@@ -234,6 +234,8 @@ def cek_apk(session,coki):
 loop = 0
 oks = []
 gen = []
+cyan="\033[1;36m"
+faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
 logo = (f"""
 {faltu} {black}"NV NV NV NV NV".... {pvt}         
 \033[1;32m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
