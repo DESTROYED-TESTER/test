@@ -122,6 +122,8 @@ def Generate_Session_Headers():
     """Generate complete session headers for Instagram API"""
     device_id = str(uuid.uuid4())
     family_device_id = str(uuid.uuid4())
+    response = session.get('https://www.instagram.com/accounts/login/')
+    csrftoken = response.cookies.get('csrftoken')
     
     return {
         'host': 'b.i.instagram.com',
@@ -143,6 +145,7 @@ def Generate_Session_Headers():
         'x-fb-connection-type': 'MOBILE.LTE',
         'x-ig-connection-type': 'MOBILE(LTE)',
         'x-ig-capabilities': '3brTv10=',
+        'x-csrftoken': csrftoken,
         'x-ig-app-id': '3419628305025917',
         'priority': 'u=3',
         'user-agent': AppUac(Blok_ID()),
