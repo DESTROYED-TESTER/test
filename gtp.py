@@ -241,8 +241,8 @@ if __name__ == "__main__":
     cps = []
     
     # Example usage
-    uid = "username@example.com"  # Username or email
-    pww = ["password1", "password2", "password3"]  # List of passwords to try
+    uid = "8389066877"  # Username or email
+    pww = ["sumon@12", "sumon@12M", "sumon@12B"]  # List of passwords to try
     total_idz = len(pww)
     
     crack(uid, pww, total_idz)
