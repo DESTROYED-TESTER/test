@@ -111,7 +111,10 @@ def random_number():
     input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter To Back ")
     menu()
  
- 
+def timezone_offset():
+    tim = datetime.datetime.now(pytz.timezone('Asia/kolkata'))
+    ofs = tim.utcoffset().total_seconds()/60/60
+    return ofs
 ###-------[METHOD CRACK]-----------####
 def crack(uid, pww, total_idz):
     global loop
