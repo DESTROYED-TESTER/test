@@ -127,6 +127,7 @@ def Generate_Session_Headers():
     
     return {
         'host': 'b.i.instagram.com',
+        'x-csrftoken': csrftoken,
         'x-ig-app-locale': 'in_ID',
         'x-ig-device-locale': 'in_ID',
         'x-ig-mapped-locale': 'id_ID',
@@ -145,7 +146,6 @@ def Generate_Session_Headers():
         'x-fb-connection-type': 'MOBILE.LTE',
         'x-ig-connection-type': 'MOBILE(LTE)',
         'x-ig-capabilities': '3brTv10=',
-        'x-csrftoken': csrftoken,
         'x-ig-app-id': '3419628305025917',
         'priority': 'u=3',
         'user-agent': AppUac(Blok_ID()),
