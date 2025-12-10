@@ -60,11 +60,17 @@ except:
 # ----------------------------
 
 if result.get("authenticated") is True:
-    print("✅ LOGIN SUCCESS")
+    print("✅ LOGIN SUCCESS\n")
 
-    # extract cookies
+    # extract cookies returned by Instagram
     new_cookies = response.cookies.get_dict()
-    print("SESSION COOKIES:", new_cookies)
+
+    # extract ds_user_id & sessionid
+    ds_user_id = new_cookies.get("ds_user_id")
+    sessionid = new_cookies.get("sessionid")
+
+    print("ds_user_id:", ds_user_id)
+    print("sessionid :", sessionid)
 
 elif result.get("two_factor_required"):
     print("⚠️ 2FA REQUIRED → Code sent to phone/email")
