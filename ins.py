@@ -2,18 +2,13 @@
  
 #os.system("pip install requests")
 #os.system("pip install rich")
-#--------[ DI BUAT OLEH ZORAA DEV ]--------#
-try:
-    import uuid, urllib, hashlib, base64
-    import os, re, sys, json, time, random, requests
-    from rich.panel import Panel
-    from rich.console import Console
-    from rich.tree import Tree
-    from rich import print as printz
-    from database.useragent_instagram import Useragent
-    from database.banner_terminal import Terminal
-    from concurrent.futures import ThreadPoolExecutor
-except(Exception, KeyboardInterrupt) as e:
+import re, os, uuid, sys, requests, datetime, hashlib, urllib, pytz, zlib, time, json, random, base64, string
+from concurrent.futures import ThreadPoolExecutor
+from bs4 import BeautifulSoup as bsp
+from rich import print as Print
+from rich.panel import Panel as Nel
+from rich.console import Console
+from rich.tree import Tree
 ###-------[BASIC COLORS]-----------####
 reset = "\033[0m"
 red = "\033[1;31m"
