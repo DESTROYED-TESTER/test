@@ -65,12 +65,6 @@ if result.get("authenticated") is True:
     # extract cookies returned by Instagram
     new_cookies = ';'.join(['%s=%s' % (name, value) for name, value in response.cookies.get_dict().items()])
 
-    # extract ds_user_id & sessionid
-    ds_user_id = new_cookies.get("ds_user_id")
-    sessionid = new_cookies.get("sessionid")
-
-    print("ds_user_id:", ds_user_id)
-    print("sessionid :", sessionid)
     print("cok :", new_cookies)
 
 elif result.get("two_factor_required"):
