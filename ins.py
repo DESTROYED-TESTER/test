@@ -3,6 +3,13 @@
 #os.system("pip install requests")
 #os.system("pip install rich")
 import re, os, uuid, sys, requests, datetime, hashlib, urllib, pytz, zlib, time, json, random, base64, string
+import random
+import sys
+import time
+import hashlib
+import uuid
+import urllib.request
+import requests
 from concurrent.futures import ThreadPoolExecutor
 from bs4 import BeautifulSoup as bsp
 from rich import print as Print
