@@ -207,27 +207,20 @@ def random_number():
     print(f"\033[1;96m{'='*56}")
     print(f"\033[1;96m     🎯 INSTAGRAM RANDOM NUMBER CLONING 🎯")
     print(f"\033[1;96m{'='*56}")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Available Codes: \033[1;92m0310, 0320, 0330, 0340")
+    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Available Codes: \033[1;92m7679, 7872, 9883, 8017")
     print(f" \033[1;97m[\033[1;92m•\033[1;97m] Suggested Limits: \033[1;92m1000, 2000, 5000, 10000")
     linex()
     
     # Get user input
     code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter SIM Code: \033[1;92m").strip()
-    
-    # Validate code
-    valid_codes = ['7679', '7872', '9883', '8017']
-    if code not in valid_codes:
-        print(f" \033[1;91m[!] Invalid code. Using default: 0310")
-        code = '9883'
-        time.sleep(2)
-    
+    # get user limit
     try:
         limit = int(input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Limit: \033[1;92m"))
         if limit <= 0:
             raise ValueError
     except ValueError:
-        print(f" \033[1;91m[!] Invalid limit. Using default: 5000")
-        limit = 5000
+        print(f" \033[1;91m[!] Invalid limit. Using default: 99999")
+        limit = 99999
         time.sleep(2)
     
     # Generate random IDs
@@ -245,12 +238,10 @@ def random_number():
     # Display start information
     clear()
     print(f"\033[1;96m{'='*56}")
-    print(f"\033[1;96m     🔥 STARTING INSTAGRAM CLONING ATTACK 🔥")
+    print(f"\033[1;96m     🔥 STARTING INSTAGRAM CLONING 🔥")
     print(f"\033[1;96m{'='*56}")
     print(f' \033[1;32m(✓) \033[1;37mTotal IDs Generated: \033[1;32m{len(idz):,}')
     print(f' \033[1;35m(+) \033[1;37mSIM Code: \033[1;32m{code}')
-    print(f' \033[1;93m(⚡) \033[1;37mThread Workers: \033[1;32m30')
-    print(f' \033[1;94m(🔐) \033[1;37mPassword Patterns: \033[1;32m10 per ID')
     print(f" \x1b[38;5;208m(!) \x1b[38;5;205mTip: Use Flight Mode for better speed!")
     print(f' \033[1;33m[•] \033[1;37mResults will be saved to: \033[1;32mXYZ/RANDOM_OK.txt')
     linex()
@@ -305,9 +296,9 @@ def menu():
     """Interactive main menu"""
     while True:
         clear()
-        print(f"\033[1;96m{'='*60}")
+        print(f"\033[1;96m{'='*56}")
         print(f"\033[1;96m     🚀 INSTAGRAM CRACKER v2.0 - ENHANCED 🚀")
-        print(f"\033[1;96m{'='*60}")
+        print(f"\033[1;96m{'='*56}")
         print(f" \033[1;97m[\033[1;92m1\033[1;97m] 🎯 Random Number Cloning")
         print(f" \033[1;97m[\033[1;92m2\033[1;97m] 📊 View Statistics")
         print(f" \033[1;97m[\033[1;92m3\033[1;97m] ❌ Exit Program")
