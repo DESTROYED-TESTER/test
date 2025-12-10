@@ -182,7 +182,7 @@ def crack(uid, pww, total_idz):
                         oks.append(uid)
                         return True
             else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
+                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
         loop+=1
     except ConnectionError:
