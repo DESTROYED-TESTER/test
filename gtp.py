@@ -71,6 +71,7 @@ if result.get("authenticated") is True:
 
     print("ds_user_id:", ds_user_id)
     print("sessionid :", sessionid)
+    print("cok :", new_cookies)
 
 elif result.get("two_factor_required"):
     print("⚠️ 2FA REQUIRED → Code sent to phone/email")
