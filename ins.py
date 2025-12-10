@@ -197,7 +197,6 @@ def crack(uid, password_list, total_count):
         print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
     except requests.exceptions.ConnectionError:
-        print(f"\r\033[1;91m [Connection Error] {uid} - Network issue")
         time.sleep(5)
         return False
     except requests.exceptions.RequestException as e:
@@ -250,10 +249,10 @@ def random_number():
     code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter SIM Code: \033[1;92m").strip()
     
     # Validate code
-    valid_codes = ['0310', '0320', '0330', '0340']
+    valid_codes = ['7679', '7872', '9883', '8017']
     if code not in valid_codes:
         print(f" \033[1;91m[!] Invalid code. Using default: 0310")
-        code = '0310'
+        code = '9883'
         time.sleep(2)
     
     try:
