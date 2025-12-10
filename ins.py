@@ -134,7 +134,7 @@ def random_number():
     for _ in range(limit):
         x = "".join(random.choice(string.digits) for _ in range(6))
         idz.append(x)
-    with ThreadPoolExecutor(max_workers=30) as XYZ:
+    with ThreadPool(max_workers=30) as XYZ:
         clear()
         total_idz = str(len(idz))
         print(f"\033[1;96m KING IS ALWAYS KING")
