@@ -1,8 +1,6 @@
 import requests
 
-# ------------------------------
-# 1. COOKIES
-# ------------------------------
+# --- your cookies ---
 cookies = {
     'csrftoken': 'SUW-lWl5CeniuolLF14E-O',
     'datr': 'hvMmaRTfFUseHoQfN3VkRNSH',
@@ -14,9 +12,7 @@ cookies = {
     'wd': '1440x587',
 }
 
-# ------------------------------
-# 2. HEADERS
-# ------------------------------
+# --- headers ---
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0',
     'Accept': '*/*',
@@ -33,14 +29,9 @@ headers = {
     'DNT': '1',
     'Connection': 'keep-alive',
     'Referer': 'https://www.instagram.com/fxcal/auth/login/',
-    'Sec-Fetch-Dest': 'empty',
-    'Sec-Fetch-Mode': 'cors',
-    'Sec-Fetch-Site': 'same-origin',
 }
 
-# ------------------------------
-# 3. FORM DATA
-# ------------------------------
+# --- post data ---
 data = {
     'enc_password': '#PWD_INSTAGRAM_BROWSER:10:1765357106:AaRQAIKyTK72w1Ty6ce72W/tZtnTPdxdraGMTXgo7Xn9/60NKMMkp/pIIpW8BLc9Kebsg0tBtbeKgMsTQqUUL7wS1KTp7fuhaoNa71O+pHmzlSwNCXK+5J4qxcJ/P1xySOsKJ9mURlRjkdbczA==',
     'etoken': 'AbkpnoYTtMvuRC6gfTQL3T-_TJL4ve8wNyo6ur5mcSYBfjW_AT6hRU6COL7eZ7ttaxiv8uLZu0jtMS0dJXbYPrFErqiztaXpe6J2NJK5bIYo6bZ1GtM',
@@ -48,9 +39,7 @@ data = {
     'jazoest': '21815',
 }
 
-# ------------------------------
-# 4. SEND LOGIN REQUEST
-# ------------------------------
+# --- send request ---
 response = requests.post(
     'https://www.instagram.com/api/v1/web/fxcal/auth/login/ajax/',
     cookies=cookies,
@@ -58,18 +47,34 @@ response = requests.post(
     data=data,
 )
 
-# ------------------------------
-# 5. EXTRACT COOKIES
-# ------------------------------
-new_cookies = response.cookies.get_dict()
+# --- parse JSON ---
+try:
+    result = response.json()
+except:
+    print("Invalid response, probably blocked.")
+    print(response.text)
+    exit()
 
-print("\n===== RAW COOKIE DICT =====")
-print(new_cookies)
+# ----------------------------
+# CHECK LOGIN STATUS
+# ----------------------------
 
-print("\n===== MERGED COOKIES =====")
-merged = {**cookies, **new_cookies}
-print(merged)
+if result.get("authenticated") is True:
+    print("✅ LOGIN SUCCESS")
 
-print("\n===== BROWSER COOKIE STRING =====")
-cookie_string = "; ".join([f"{k}={v}" for k, v in merged.items()])
-print(cookie_string)
+    # extract cookies
+    new_cookies = response.cookies.get_dict()
+    print("SESSION COOKIES:", new_cookies)
+
+elif result.get("two_factor_required"):
+    print("⚠️ 2FA REQUIRED → Code sent to phone/email")
+
+elif result.get("message") == "checkpoint_required":
+    print("⚠️ CHECKPOINT / VERIFICATION NEEDED")
+
+elif result.get("status") == "fail":
+    print("❌ LOGIN FAILED → Instagram blocked the request")
+
+else:
+    print("❌ WRONG PASSWORD OR LOGIN FAILED")
+    print(result)
