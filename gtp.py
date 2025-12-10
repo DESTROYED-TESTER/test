@@ -30,42 +30,56 @@ def instagram_login(username, password):
     bloks = s.headers["X-Bloks-Version-Id"]
 
     # REAL JSON PARAMS (NOT PYTHON DICT FORMAT)
-    params_json = {
-        "client_input_params": {
-            "contact_point": username,
-            "password": f"#PWD_INSTAGRAM:0:{int(time.time())}:{password}",
-            "event_flow": "login",
-            "family_device_id": family,
-            "device_id": android,
-            "login_attempt_count": 1
-        },
-        "server_params": {
-            "credential_type": "password",
-            "family_device_id": family,
-            "waterfall_id": str(uuid.uuid4())
-        }
+    DataRec = {
+        'params': json.dumps({
+            "client_input_params": {
+                "contact_point": '7029868180',
+                "password": f"#PWD_INSTAGRAM:0:{int(time.time())}:{'sumon@12M'}",
+                "login_step": "PASSWORD",
+                "flow": "LOGIN",
+                "family_device_id": session.headers['x-ig-family-device-id'],
+                "device_id": session.headers['x-ig-android-id'],
+                "machine_id": session.headers.get('x-mid', ''),
+                "login_attempt_count": 1,
+                "should_upgrade_password": False,
+                "secure_device_id": "",
+                "device_emails": [],
+                "encrypted_msisdn": ""
+            },
+
+            "server_params": {
+                "credential_type": "password",
+                "server_login_source": "device_based_login",
+                "is_platform_login": False,
+                "is_from_logged_out": False,
+                "login_source": "LoginRequest",
+                "family_device_id": session.headers['x-ig-family-device-id'],
+                "waterfall_id": str(uuid.uuid4()),
+                "should_trigger_2fa": False,
+                "should_trigger_success_action": True
+            }
+        }),
+
+        'bk_client_context': json.dumps({
+            "bloks_version": session.headers['x-bloks-version-id'],
+            "styles_id": "instagram"
+        }),
+
+        'bloks_versioning_id': session.headers['x-bloks-version-id']
     }
 
-    # convert to real JSON (important!)
-    params_encoded = urllib.parse.quote(json.dumps(params_json, separators=(",", ":")))
-
-    bk_context = urllib.parse.quote(
-        json.dumps({
-            "bloks_version": bloks,
-            "styles_id": "instagram"
-        })
+    Query = (
+        "params=%s&bk_client_context=%s&bloks_versioning_id=%s"
+        % (
+            urllib.parse.quote(DataRec['params']),
+            urllib.parse.quote(DataRec['bk_client_context']),
+            DataRec['bloks_versioning_id']
+        )
     )
-
-    final_body = (
-        f"params={params_encoded}"
-        f"&bk_client_context={bk_context}"
-        f"&bloks_versioning_id={bloks}"
-    )
-
     # SEND REQUEST
     res = s.post(
         "https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/",
-        data=final_body
+        data=Query
     )
 
     txt = res.text.replace("\\", "")
