@@ -38,7 +38,7 @@ def clear():
 
 def linex():
     """Print decorative line separator"""
-    print(f"\033[1;97m{'='*60}")
+    print(f"\033[1;97m{'='*56}")
 
 def generate_device_hash(uid, pw):
     """Generate device hash for Instagram API"""
