@@ -11,7 +11,7 @@ def instagram_login(username, password):
     Session = requests.Session()
 
     # INITIAL HEADERS (valid mobile Instagram Android request)
-    s.headers.update({
+    Session.headers.update({
         "User-Agent": "Instagram 289.0.0.22.45 Android",
         "Accept-Language": "en-US",
         "X-IG-App-ID": "567067343352427",
