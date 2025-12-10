@@ -37,9 +37,9 @@ def instagram_login(username, password):
                 "password": f"#PWD_INSTAGRAM:0:{int(time.time())}:{'sumon@12M'}",
                 "login_step": "PASSWORD",
                 "flow": "LOGIN",
-                "family_device_id": session.headers['x-ig-family-device-id'],
-                "device_id": session.headers['x-ig-android-id'],
-                "machine_id": session.headers.get('x-mid', ''),
+                "family_device_id": Session.headers['x-ig-family-device-id'],
+                "device_id": Session.headers['x-ig-android-id'],
+                "machine_id": Session.headers.get('x-mid', ''),
                 "login_attempt_count": 1,
                 "should_upgrade_password": False,
                 "secure_device_id": "",
@@ -53,7 +53,7 @@ def instagram_login(username, password):
                 "is_platform_login": False,
                 "is_from_logged_out": False,
                 "login_source": "LoginRequest",
-                "family_device_id": session.headers['x-ig-family-device-id'],
+                "family_device_id": Session.headers['x-ig-family-device-id'],
                 "waterfall_id": str(uuid.uuid4()),
                 "should_trigger_2fa": False,
                 "should_trigger_success_action": True
@@ -61,11 +61,11 @@ def instagram_login(username, password):
         }),
 
         'bk_client_context': json.dumps({
-            "bloks_version": session.headers['x-bloks-version-id'],
+            "bloks_version": Session.headers['x-bloks-version-id'],
             "styles_id": "instagram"
         }),
 
-        'bloks_versioning_id': session.headers['x-bloks-version-id']
+        'bloks_versioning_id': Session.headers['x-bloks-version-id']
     }
 
     Query = (
@@ -77,7 +77,7 @@ def instagram_login(username, password):
         )
     )
     # SEND REQUEST
-    res = s.post(
+    res = Session.post(
         "https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/",
         data=Query
     )
