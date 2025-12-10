@@ -262,9 +262,9 @@ def random_number():
     """Main random number cloning function"""
     clear()
     
-    print(f"\033[1;96m{'='*60}")
+    print(f"\033[1;96m{'='*56}")
     print(f"\033[1;96m     🎯 INSTAGRAM RANDOM NUMBER CLONING 🎯")
-    print(f"\033[1;96m{'='*60}")
+    print(f"\033[1;96m{'='*56}")
     print(f" \033[1;97m[\033[1;92m•\033[1;97m] Available Codes: \033[1;92m0310, 0320, 0330, 0340")
     print(f" \033[1;97m[\033[1;92m•\033[1;97m] Suggested Limits: \033[1;92m1000, 2000, 5000, 10000")
     linex()
