@@ -17,9 +17,6 @@ import rich
 import shutil
 import webbrowser
 import time, io, struct, base64, requests
-from Crypto.PublicKey import RSA
-from Crypto.Cipher import AES, PKCS1_v1_5
-from Crypto.Random import get_random_bytes
 from random import randint
 from concurrent.futures import ThreadPoolExecutor as ThreadPool
 from bs4 import BeautifulSoup as par
