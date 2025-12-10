@@ -8,7 +8,7 @@ import urllib.parse
 
 def instagram_login(username, password):
 
-    s = requests.Session()
+    Session = requests.Session()
 
     # INITIAL HEADERS (valid mobile Instagram Android request)
     s.headers.update({
