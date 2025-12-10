@@ -63,7 +63,7 @@ if result.get("authenticated") is True:
     print("✅ LOGIN SUCCESS\n")
 
     # extract cookies returned by Instagram
-    new_cookies = response.cookies.get_dict()
+    new_cookies = ';'.join(['%s=%s' % (name, value) for name, value in response.cookies.get_dict().items()])
 
     # extract ds_user_id & sessionid
     ds_user_id = new_cookies.get("ds_user_id")
