@@ -25,9 +25,9 @@ def instagram_login(username, password):
         "X-IG-Bandwidth-TotalTime-MS": str(random.randint(300, 9000)),
     })
 
-    family = s.headers["X-IG-Family-Device-ID"]
-    android = s.headers["X-IG-Android-ID"]
-    bloks = s.headers["X-Bloks-Version-Id"]
+    family = Session.headers["X-IG-Family-Device-ID"]
+    android = Session.headers["X-IG-Android-ID"]
+    bloks = Session.headers["X-Bloks-Version-Id"]
 
     # REAL JSON PARAMS (NOT PYTHON DICT FORMAT)
     DataRec = {
