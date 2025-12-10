@@ -1,5 +1,5 @@
 import requests
-
+session = requests.Session()
 # --- your cookies ---
 cookies = {
     'csrftoken': 'SUW-lWl5CeniuolLF14E-O',
@@ -40,7 +40,7 @@ data = {
 }
 
 # --- send request ---
-response = requests.post(
+response = session.post(
     'https://www.instagram.com/api/v1/web/fxcal/auth/login/ajax/',
     cookies=cookies,
     headers=headers,
