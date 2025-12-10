@@ -226,12 +226,6 @@ def get_password_patterns(uid):
         uid[:6],     # First 6 digits
         uid[:8],     # First 8 digits
         uid,         # Full number
-        uid[2:],     # From 3rd digit
-        uid[4:],     # From 5th digit
-        uid[-6:],    # Last 6 digits
-        uid[-4:],    # Last 4 digits
-        '123456',    # Common simple password
-        'password'   # Default password
     ]
 
 def random_number():
