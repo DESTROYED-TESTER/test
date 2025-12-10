@@ -121,14 +121,14 @@ def random_number():
     menu()
  
 #-> Custom Android ID
-def Android_ID(, uid, pww):
+def Android_ID(uid, pww):
        xyz = hashlib.md5()
        xyz.update(uid.encode('utf-8') + pww.encode('utf-8'))
        hex = xyz.hexdigest()
        xyz.update(hex.encode('utf-8') + '12345'.encode('utf-8'))
        return xyz
 
-def AppUac(, GoblokLu=None):
+def AppUac(GoblokLu=None):
 	    brand = random.choice(list(devices.keys()))  # Pilih merek acak
 	    model = random.choice(devices[brand])  # Pilih model acak
 	    android_version = random.randint(24, 34)  # Android versi 7.0 - 14
