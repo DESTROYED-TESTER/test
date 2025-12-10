@@ -2,101 +2,86 @@ import requests
 import time
 import random
 import uuid
+import json
 import urllib.parse
 
 
 def instagram_login(username, password):
 
-    session = requests.Session()
+    s = requests.Session()
 
-    # -----------------------
-    # HEADERS
-    # -----------------------
-    session.headers.update({
-        'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
-        'x-ig-bandwidth-speed-kbps': str(random.randint(100, 300)),
-        'x-ig-bandwidth-totalbytes-b': str(random.randint(500000, 900000)),
-        'x-ig-bandwidth-totaltime-ms': str(random.randint(1000, 9000)),
-        'user-agent': 'Instagram 290.0.0.0.56 Android',
-        'x-ig-android-id': 'android-' + uuid.uuid4().hex[:16],
-        'x-ig-family-device-id': str(uuid.uuid4()),
-        'x-ig-device-id': str(uuid.uuid4()),
-        'x-bloks-version-id': "f4a87d1dfb3f1231e56aa9a1922fc121",  # static / acceptable
+    # INITIAL HEADERS (valid mobile Instagram Android request)
+    s.headers.update({
+        "User-Agent": "Instagram 289.0.0.22.45 Android",
+        "Accept-Language": "en-US",
+        "X-IG-App-ID": "567067343352427",
+        "X-IG-Device-ID": str(uuid.uuid4()),
+        "X-IG-Family-Device-ID": str(uuid.uuid4()),
+        "X-IG-Android-ID": "android-" + uuid.uuid4().hex[:16],
+        "X-Bloks-Version-Id": "7b4ecdd5f3ef5373b73011c4af55d31f",
+        "X-Pigeon-Rawclienttime": str(time.time()),
+        "X-IG-Bandwidth-Speed-KBPS": str(random.randint(100, 300)),
+        "X-IG-Bandwidth-TotalBytes-B": str(random.randint(600000, 900000)),
+        "X-IG-Bandwidth-TotalTime-MS": str(random.randint(300, 9000)),
     })
 
-    android_id = session.headers['x-ig-android-id']
-    family_device = session.headers['x-ig-family-device-id']
-    bloks_vid = session.headers['x-bloks-version-id']
+    family = s.headers["X-IG-Family-Device-ID"]
+    android = s.headers["X-IG-Android-ID"]
+    bloks = s.headers["X-Bloks-Version-Id"]
 
-    # -----------------------
-    # REQUEST BODY
-    # -----------------------
-    params = {
+    # REAL JSON PARAMS (NOT PYTHON DICT FORMAT)
+    params_json = {
         "client_input_params": {
             "contact_point": username,
             "password": f"#PWD_INSTAGRAM:0:{int(time.time())}:{password}",
-            "event_flow": "account_recovery",
-            "family_device_id": family_device,
-            "machine_id": "",
-            "accounts_list": [],
-            "has_whatsapp_installed": 0,
-            "login_attempt_count": 1,
-            "device_id": android_id
+            "event_flow": "login",
+            "family_device_id": family,
+            "device_id": android,
+            "login_attempt_count": 1
         },
         "server_params": {
             "credential_type": "password",
-            "family_device_id": family_device,
+            "family_device_id": family,
             "waterfall_id": str(uuid.uuid4())
         }
     }
 
-    data = {
-        "params": urllib.parse.quote(str(params).replace("'", '"')),
-        "bk_client_context": urllib.parse.quote(
-            '{"bloks_version":"'+bloks_vid+'","styles_id":"instagram"}'
-        ),
-        "bloks_versioning_id": bloks_vid
-    }
+    # convert to real JSON (important!)
+    params_encoded = urllib.parse.quote(json.dumps(params_json, separators=(",", ":")))
 
-    final_payload = (
-        f"params={data['params']}"
-        f"&bk_client_context={data['bk_client_context']}"
-        f"&bloks_versioning_id={data['bloks_versioning_id']}"
+    bk_context = urllib.parse.quote(
+        json.dumps({
+            "bloks_version": bloks,
+            "styles_id": "instagram"
+        })
     )
 
-    # -----------------------
-    # SEND LOGIN REQUEST
-    # -----------------------
-    response = session.post(
+    final_body = (
+        f"params={params_encoded}"
+        f"&bk_client_context={bk_context}"
+        f"&bloks_versioning_id={bloks}"
+    )
+
+    # SEND REQUEST
+    res = s.post(
         "https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/",
-        data=final_payload,
-        allow_redirects=True
+        data=final_body
     )
 
-    text = response.text.replace("\\", "")
+    txt = res.text.replace("\\", "")
 
-    # -----------------------
-    # CHECK LOGIN SUCCESS
-    # -----------------------
-    if "logged_in_user" in text:
-        print("\n✅ LOGIN SUCCESS\n")
+    # LOGIN CHECK
+    if "logged_in_user" in txt:
+        print("✅ LOGIN SUCCESS\n")
 
-        cookies = session.cookies.get_dict()
-
-        print("ALL COOKIES:")
-        for k, v in cookies.items():
-            print(f"{k} = {v}")
-
-        print("\nIMPORTANT:")
-        print("ds_user_id =", cookies.get("ds_user_id"))
-        print("sessionid  =", cookies.get("sessionid"))
+        ck = s.cookies.get_dict()
+        print("ds_user_id:", ck.get("ds_user_id"))
+        print("sessionid :", ck.get("sessionid"))
 
     else:
-        print("\n❌ LOGIN FAILED")
-        print(text)
+        print("❌ LOGIN FAILED")
+        print(res.text)
 
 
-# -------------------------------
-# RUN LOGIN
-# -------------------------------
+# RUN
 instagram_login("7029868180", "sumon@12M")
