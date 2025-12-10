@@ -1,24 +1,64 @@
 ###-------[IMPORT MODULES]-----------####
  
+#os.system("pip install requests")
+#os.system("pip install rich")
+import requests
+import bs4
+import sys
+import os
+import random
+import time
+import re
+import json
+import uuid
+import subprocess
+import marshal
+import rich
+import shutil
+import webbrowser
+import time, io, struct, base64, requests
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import AES, PKCS1_v1_5
+from Crypto.Random import get_random_bytes
+from random import randint
+from concurrent.futures import ThreadPoolExecutor as ThreadPool
+from bs4 import BeautifulSoup as par
+from datetime import date
+from datetime import datetime
+# from rich import print as printer
+from datetime import date
+import marshal
+try:
+    import requests
+    from concurrent.futures import ThreadPoolExecutor as ThreadPool
+    import mechanize
+    from requests.exceptions import ConnectionError
+except ModuleNotFoundError:
+    os.system('pip install mechanize requests futures==2 > /SUMON/null')
+    os.system('python SUMON.py')
+from bs4 import BeautifulSoup
+from datetime import date
+from datetime import datetime
+from time import sleep
+from time import sleep as waktu
+from requests.exceptions import ConnectionError as net_error
 import os
 import sys
+import re
 import time
-import uuid
 import json
+import uuid
 import string
 import random
 import requests
-from requests.exceptions import ConnectionError
-from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime 
-from bs4 import BeautifulSoup
-import re, os, uuid, sys, requests, datetime, hashlib, urllib, pytz, zlib, time, json, random, base64, string
-from concurrent.futures import ThreadPoolExecutor
-from bs4 import BeautifulSoup as bsp
-from rich import print as Print
-from rich.panel import Panel as Nel
-from rich.console import Console
-from rich.tree import Tree
+from concurrent.futures import ThreadPoolExecutor as tpe
+from requests.exceptions import ConnectionError as ce
+try:
+    import urllib3
+except ImportError:
+    os.system("pip install urllib3")
+import urllib3
+import socket
 ###-------[BASIC COLORS]-----------####
 reset = "\033[0m"
 red = "\033[1;31m"
@@ -177,7 +217,8 @@ def crack(uid, pww, total_idz):
         loop+=1
     except ConnectionError:
         time.sleep(10)
-    except:
+    except Exception as error:
+        print({error})
         pass
 menu()
  
