@@ -1,81 +1,102 @@
 import requests
-session = requests.Session()
-# --- your cookies ---
-cookies = {
-    'csrftoken': 'SUW-lWl5CeniuolLF14E-O',
-    'datr': 'hvMmaRTfFUseHoQfN3VkRNSH',
-    'ig_did': 'FA4BC7A3-44CC-4A3D-95E4-76BBBF760ED9',
-    'mid': 'aSbziAALAAE62ug2B-ACpkrK-MfG',
-    'ig_nrcb': '1',
-    'ps_l': '1',
-    'ps_n': '1',
-    'wd': '1440x587',
-}
+import time
+import random
+import uuid
+import urllib.parse
 
-# --- headers ---
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:145.0) Gecko/20100101 Firefox/145.0',
-    'Accept': '*/*',
-    'Accept-Language': 'en-US,en;q=0.5',
-    'X-CSRFToken': 'SUW-lWl5CeniuolLF14E-O',
-    'X-Instagram-AJAX': '1030879028',
-    'X-IG-App-ID': '936619743392459',
-    'X-ASBD-ID': '359341',
-    'X-IG-WWW-Claim': '0',
-    'X-Web-Session-ID': '00e0wl:jus0ke:fv6ahj',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'X-Requested-With': 'XMLHttpRequest',
-    'Origin': 'https://www.instagram.com',
-    'DNT': '1',
-    'Connection': 'keep-alive',
-    'Referer': 'https://www.instagram.com/fxcal/auth/login/',
-}
 
-# --- post data ---
-data = {
-    'enc_password': '#PWD_INSTAGRAM_BROWSER:10:1765357106:AaRQAIKyTK72w1Ty6ce72W/tZtnTPdxdraGMTXgo7Xn9/60NKMMkp/pIIpW8BLc9Kebsg0tBtbeKgMsTQqUUL7wS1KTp7fuhaoNa71O+pHmzlSwNCXK+5J4qxcJ/P1xySOsKJ9mURlRjkdbczA==',
-    'etoken': 'AbkpnoYTtMvuRC6gfTQL3T-_TJL4ve8wNyo6ur5mcSYBfjW_AT6hRU6COL7eZ7ttaxiv8uLZu0jtMS0dJXbYPrFErqiztaXpe6J2NJK5bIYo6bZ1GtM',
-    'username': '7029868180',
-    'jazoest': '21815',
-}
+def instagram_login(username, password):
 
-# --- send request ---
-response = session.post(
-    'https://www.instagram.com/api/v1/web/fxcal/auth/login/ajax/',
-    cookies=cookies,
-    headers=headers,
-    data=data,
-)
+    session = requests.Session()
 
-# --- parse JSON ---
-try:
-    result = response.json()
-except:
-    print("Invalid response, probably blocked.")
-    print(response.text)
-    exit()
+    # -----------------------
+    # HEADERS
+    # -----------------------
+    session.headers.update({
+        'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
+        'x-ig-bandwidth-speed-kbps': str(random.randint(100, 300)),
+        'x-ig-bandwidth-totalbytes-b': str(random.randint(500000, 900000)),
+        'x-ig-bandwidth-totaltime-ms': str(random.randint(1000, 9000)),
+        'user-agent': 'Instagram 290.0.0.0.56 Android',
+        'x-ig-android-id': 'android-' + uuid.uuid4().hex[:16],
+        'x-ig-family-device-id': str(uuid.uuid4()),
+        'x-ig-device-id': str(uuid.uuid4()),
+        'x-bloks-version-id': "f4a87d1dfb3f1231e56aa9a1922fc121",  # static / acceptable
+    })
 
-# ----------------------------
-# CHECK LOGIN STATUS
-# ----------------------------
+    android_id = session.headers['x-ig-android-id']
+    family_device = session.headers['x-ig-family-device-id']
+    bloks_vid = session.headers['x-bloks-version-id']
 
-if result.get("authenticated") is True:
-    print("✅ LOGIN SUCCESS\n")
+    # -----------------------
+    # REQUEST BODY
+    # -----------------------
+    params = {
+        "client_input_params": {
+            "contact_point": username,
+            "password": f"#PWD_INSTAGRAM:0:{int(time.time())}:{password}",
+            "event_flow": "account_recovery",
+            "family_device_id": family_device,
+            "machine_id": "",
+            "accounts_list": [],
+            "has_whatsapp_installed": 0,
+            "login_attempt_count": 1,
+            "device_id": android_id
+        },
+        "server_params": {
+            "credential_type": "password",
+            "family_device_id": family_device,
+            "waterfall_id": str(uuid.uuid4())
+        }
+    }
 
-    # extract cookies returned by Instagram
-    new_cookies = ';'.join(['%s=%s' % (name, value) for name, value in response.cookies.get_dict().items()])
+    data = {
+        "params": urllib.parse.quote(str(params).replace("'", '"')),
+        "bk_client_context": urllib.parse.quote(
+            '{"bloks_version":"'+bloks_vid+'","styles_id":"instagram"}'
+        ),
+        "bloks_versioning_id": bloks_vid
+    }
 
-    print("cok :", new_cookies)
+    final_payload = (
+        f"params={data['params']}"
+        f"&bk_client_context={data['bk_client_context']}"
+        f"&bloks_versioning_id={data['bloks_versioning_id']}"
+    )
 
-elif result.get("two_factor_required"):
-    print("⚠️ 2FA REQUIRED → Code sent to phone/email")
+    # -----------------------
+    # SEND LOGIN REQUEST
+    # -----------------------
+    response = session.post(
+        "https://b.i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/",
+        data=final_payload,
+        allow_redirects=True
+    )
 
-elif result.get("message") == "checkpoint_required":
-    print("⚠️ CHECKPOINT / VERIFICATION NEEDED")
+    text = response.text.replace("\\", "")
 
-elif result.get("status") == "fail":
-    print("❌ LOGIN FAILED → Instagram blocked the request")
+    # -----------------------
+    # CHECK LOGIN SUCCESS
+    # -----------------------
+    if "logged_in_user" in text:
+        print("\n✅ LOGIN SUCCESS\n")
 
-else:
-    print("❌ WRONG PASSWORD OR LOGIN FAILED")
-    print(result)
+        cookies = session.cookies.get_dict()
+
+        print("ALL COOKIES:")
+        for k, v in cookies.items():
+            print(f"{k} = {v}")
+
+        print("\nIMPORTANT:")
+        print("ds_user_id =", cookies.get("ds_user_id"))
+        print("sessionid  =", cookies.get("sessionid"))
+
+    else:
+        print("\n❌ LOGIN FAILED")
+        print(text)
+
+
+# -------------------------------
+# RUN LOGIN
+# -------------------------------
+instagram_login("7029868180", "sumon@12M")
