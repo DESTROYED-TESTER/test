@@ -8,6 +8,7 @@ Version: 2.0
 """
 
 import random
+import re
 import sys
 import time
 import hashlib
