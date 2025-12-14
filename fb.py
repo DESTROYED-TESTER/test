@@ -51,7 +51,7 @@ def clear():
 
 def linex():
     """Print decorative line separator"""
-    print(f"\033[1;97m{'='*56}")
+    print(f"\033[1;97m{'='*46}")
 
 def generate_device_hash(uid, pw):
     """Generate device hash for Instagram API"""
@@ -286,9 +286,9 @@ def random_number():
     """Main random number cloning function"""
     clear()
     
-    print(f"\033[1;96m{'='*56}")
-    print(f"\033[1;96m     🎯 INSTAGRAM RANDOM NUMBER CLONING 🎯")
-    print(f"\033[1;96m{'='*56}")
+    print(f"\033[1;96m{'='*46}")
+    print(f"\033[1;96m     🎯 FACEBOOK RANDOM NUMBER CLONING 🎯")
+    print(f"\033[1;96m{'='*46}")
     print(f" \033[1;97m[\033[1;92m•\033[1;97m] Available Codes: \033[1;92m7679, 7872, 9883, 8017")
     print(f" \033[1;97m[\033[1;92m•\033[1;97m] Suggested Limits: \033[1;92m1000, 2000, 5000, 10000")
     linex()
@@ -319,9 +319,9 @@ def random_number():
     
     # Display start information
     clear()
-    print(f"\033[1;96m{'='*56}")
-    print(f"\033[1;96m     🔥 STARTING INSTAGRAM CLONING 🔥")
-    print(f"\033[1;96m{'='*56}")
+    print(f"\033[1;96m{'='*46}")
+    print(f"\033[1;96m     🔥 STARTING FACEBOOK CLONING 🔥")
+    print(f"\033[1;96m{'='*46}")
     print(f' \033[1;32m(✓) \033[1;37mTotal IDs Generated: \033[1;32m{len(idz):,}')
     print(f' \033[1;35m(+) \033[1;37mSIM Code: \033[1;32m{code}')
     print(f" \x1b[38;5;208m(!) \x1b[38;5;205mTip: Use Flight Mode for better speed!")
@@ -357,9 +357,9 @@ def random_number():
     
     # Display results
     linex()
-    print(f"\033[1;92m{'='*56}")
+    print(f"\033[1;92m{'='*46}")
     print(f" \033[1;92m[✓] PROCESS COMPLETED SUCCESSFULLY!")
-    print(f"\033[1;92m{'='*56}")
+    print(f"\033[1;92m{'='*46}")
     print(f" \033[1;97m[📊] Total Accounts Tested: \033[1;92m{len(idz):,}")
     print(f" \033[1;97m[✅] Successful Logins: \033[1;92m{len(oks)}")
     print(f" \033[1;97m[❌] Failed Attempts: \033[1;91m{len(cps)}")
@@ -378,13 +378,13 @@ def menu():
     """Interactive main menu"""
     while True:
         clear()
-        print(f"\033[1;96m{'='*56}")
-        print(f"\033[1;96m     🚀 INSTAGRAM CRACKER v2.0 - ENHANCED 🚀")
-        print(f"\033[1;96m{'='*56}")
+        print(f"\033[1;96m{'='*46}")
+        print(f"\033[1;96m     🚀 FACEBOOK CRACKER v2.0 - ENHANCED 🚀")
+        print(f"\033[1;96m{'='*46}")
         print(f" \033[1;97m[\033[1;92m1\033[1;97m] 🎯 Random Number Cloning")
         print(f" \033[1;97m[\033[1;92m2\033[1;97m] 📊 View Statistics")
         print(f" \033[1;97m[\033[1;92m3\033[1;97m] ❌ Exit Program")
-        print(f"\033[1;96m{'='*60}")
+        print(f"\033[1;96m{'='*46}")
         
         choice = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option: \033[1;92m").strip()
         
@@ -392,7 +392,7 @@ def menu():
             random_number()
         elif choice == '2':
             clear()
-            print(f"\033[1;96m{'='*56}")
+            print(f"\033[1;96m{'='*46}")
             print(f"\033[1;96m     📊 PROGRAM STATISTICS 📊")
             print(f"\033[1;96m{'='*56}")
             print(f" \033[1;97m[✅] Total Successful: \033[1;92m{len(oks)}")
@@ -403,9 +403,9 @@ def menu():
             input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to continue...")
         elif choice == '3':
             clear()
-            print(f"\033[1;92m{'='*56}")
+            print(f"\033[1;92m{'='*46}")
             print(f" \033[1;92m     👋 GOODBYE! THANKS FOR USING OUR TOOL! 👋")
-            print(f"\033[1;92m{'='*56}")
+            print(f"\033[1;92m{'='*46}")
             print(f" \033[1;93m[!] Results saved in: XYZ/RANDOM_OK.txt")
             print(f" \033[1;93m[!] Total successful accounts: {len(oks)}")
             time.sleep(3)
