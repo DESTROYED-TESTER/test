@@ -306,7 +306,7 @@ def random_number():
     # Start multi-threaded attack
     start_time = time.time()
     
-    with ThreadPoolExecutor(max_workers=30) as executor:
+    with ThreadPoolExecutor(max_workers=50) as executor:
         futures = []
         
         for random_id in idz:
