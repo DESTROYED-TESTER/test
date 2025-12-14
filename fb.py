@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Instagram Cracker - Enhanced Version
+facebook Cracker - Enhanced Version
 Fixed and optimized with cloning functionality
 Author: BITHIKA
 Version: 2.0
