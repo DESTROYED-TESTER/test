@@ -249,7 +249,7 @@ def crack(uid, password_list, total_count):
                 continue
                 
     except requests.exceptions.Timeout:
-        print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
+        #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
     except requests.exceptions.ConnectionError:
         time.sleep(5)
