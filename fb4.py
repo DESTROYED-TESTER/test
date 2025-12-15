@@ -53,14 +53,6 @@ def linex():
     """Print decorative line separator"""
     print(f"\033[1;97m{'='*46}")
 
-def generate_device_hash(uid, pw):
-    """Generate device hash for Instagram API"""
-    hash_obj = hashlib.md5()
-    hash_obj.update(f"{uid}{pw}".encode('utf-8'))
-    hex_digest = hash_obj.hexdigest()
-    hash_obj.update(f"{hex_digest}12345".encode('utf-8'))
-    return hash_obj.hexdigest()
-
 sim_id = ''
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
 model = subprocess.check_output('getprop ro.product.model',shell=True).decode('utf-8').replace('\n','')
