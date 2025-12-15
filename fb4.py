@@ -215,13 +215,13 @@ def crack(uid, password_list, total_count):
         time.sleep(5)
         return False
     except requests.exceptions.RequestException as e:
-        print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
+        #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
         return False
     except KeyboardInterrupt:
         print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
-        print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
+        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
         return False
     
     return False
