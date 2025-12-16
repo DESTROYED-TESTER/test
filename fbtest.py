@@ -171,8 +171,9 @@ data = {
 response = requests.post('https://p.facebook.com/async/wbloks/fetch/', params=params, cookies=cookies, headers=headers, data=data)
 print("Status code:", response.status_code)
 print("Response URL:", response.url)
-print("Response headers:", response.headers)
-print("Response text (first 500 chars):", response.text[:500])
+print("Status Code:", r.status_code)
+print("Reason:", r.reason)
+print("Response Text:", r.text)
 print("\n--- RESPONSE COOKIES ---")
 if response.cookies:
     for k, v in response.cookies.get_dict().items():
