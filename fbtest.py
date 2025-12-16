@@ -72,7 +72,129 @@ data = {
     'fb_dtsg': 'NAfswT-5iGUy0OIXErmeAkhJWRQzHOGo86gkifn919S8eu18jRyx1jg:0:0',
     'jazoest': '24940',
     'lsd': 'AdEt_BZHc1I',
-    'params': '{"params":"{\\"server_params\\":{\\"next_uri\\":\\"https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=5870af81e45750eb22160e3fe74a22f1ec7a22fa20d66f6fa34875f44676e658&wtsid=rdr_0EQ7sA15easbCjdcs\\",\\"credential_type\\":\\"password\\",\\"username_text_input_id\\":\\"18ran1:68\\",\\"password_text_input_id\\":\\"18ran1:69\\",\\"login_source\\":\\"Login\\",\\"login_credential_type\\":\\"none\\",\\"server_login_source\\":\\"login\\",\\"ar_event_source\\":\\"login_home_page\\",\\"should_trigger_override_login_success_action\\":0,\\"should_trigger_override_login_2fa_action\\":0,\\"is_caa_perf_enabled\\":1,\\"reg_flow_source\\":\\"aymh_single_profile_native_integration_point\\",\\"caller\\":\\"gslr\\",\\"is_from_landing_page\\":0,\\"is_from_empty_password\\":0,\\"is_from_aymh\\":0,\\"is_from_password_entry_page\\":0,\\"is_from_assistive_id\\":0,\\"is_from_msplit_fallback\\":0,\\"two_step_login_type\\":\\"one_step_login\\",\\"is_vanilla_password_page_empty_password\\":0,\\"left_nav_button_action\\":\\"BACK\\",\\"INTERNAL__latency_qpl_marker_id\\":36707139,\\"INTERNAL__latency_qpl_instance_id\\":\\"7517660500366\\",\\"device_id\\":null,\\"family_device_id\\":null,\\"waterfall_id\\":\\"95dbfe51-b1fd-402e-9a58-1be48dc6eb61\\",\\"offline_experiment_group\\":null,\\"layered_homepage_experiment_group\\":null,\\"is_platform_login\\":0,\\"is_from_logged_in_switcher\\":0,\\"is_from_logged_out\\":0,\\"access_flow_version\\":\\"pre_mt_behavior\\"},\\"client_input_params\\":{\\"machine_id\\":\\"\\",\\"cloud_trust_token\\":null,\\"block_store_machine_id\\":\\"\\",\\"zero_balance_state\\":\\"\\",\\"contact_point\\":\\"100094455925591\\",\\"password\\":\\"#PWD_BROWSER:5:1765916791:AbtQALCVa1diVxPwnHJK76jD6N5WTUPakhEdlN1nLHxQ+DdK1RCRNkJ5HOxHz+NrFbMTA7jZcbs77giomRFV8MDrvlClCIuMu/kmzWXdo/52u4KMaWS8meh1A+2cuf6Pj4EIr4NIl/dC/w==\\",\\"accounts_list\\":[{\\"uid\\":\\"100061465976024\\",\\"credential_type\\":\\"nonce\\",\\"token\\":\\"\\",\\"cloud_identifier\\":\\"\\",\\"obfuscated_token\\":null,\\"username\\":\\"\\",\\"encrypted_password\\":\\"\\",\\"name\\":\\"\\",\\"profile_pic_url\\":\\"\\",\\"small_profile_pic_url\\":null,\\"metadata\\":{\\"last_access_time\\":0,\\"FXAccessLibraryAccountSavedSource\\":\\"\\",\\"previously_authenticated_nonce\\":\\"\\",\\"source_device_id\\":\\"\\"},\\"email\\":\\"\\",\\"account_source\\":\\"\\",\\"sim_phone_number\\":null,\\"encrypted_user_id\\":\\"\\",\\"lva_flow_type\\":null,\\"blob\\":\\"\\"}],\\"fb_ig_device_id\\":[],\\"secure_family_device_id\\":\\"\\",\\"encrypted_msisdn\\":\\"\\",\\"headers_infra_flow_id\\":\\"\\",\\"try_num\\":1,\\"login_attempt_count\\":1,\\"event_flow\\":\\"login_manual\\",\\"event_step\\":\\"home_page\\",\\"openid_tokens\\":{},\\"auth_secure_device_id\\":\\"\\",\\"client_known_key_hash\\":\\"\\",\\"has_whatsapp_installed\\":0,\\"sso_token_map_json_string\\":\\"\\",\\"should_show_nested_nta_from_aymh\\":1,\\"password_contains_non_ascii\\":\\"false\\",\\"has_granted_read_contacts_permissions\\":0,\\"has_granted_read_phone_permissions\\":0,\\"app_manager_id\\":\\"\\",\\"aymh_accounts\\":[{\\"id\\":\\"100061465976024\\",\\"profiles\\":{\\"100061465976024\\":{\\"credential_type\\":\\"nonce\\",\\"name\\":\\"Jaan Amar\\",\\"is_derived\\":0,\\"last_access_time\\":0,\\"notification_count\\":0,\\"password\\":\\"\\",\\"profile_picture_url\\":\\"https://scontent-ccu2-1.xx.fbcdn.net/v/t1.30497-1/453178253_471506465671661_2781666950760530985_n.png?stp=dst-png_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=dfcde4&_nc_ohc=3VTDhbZZG98Q7kNvwH8iUz3&_nc_oc=AdnBmoel6-vyMY7ywJik1ESqt4VfHFvpe9uZnBCdOaDX_Hx4lR5XwoF2oRzJAgyTJ-k&_nc_zt=24&_nc_ht=scontent-ccu2-1.xx&oh=00_AflqA0FRGJe8hukDvXiQ2v-Q8gU1yqf9P-xGFNJ_kQe7LQ&oe=69691BBA\\",\\"small_profile_picture_url\\":null,\\"token\\":\\"\\",\\"user_id\\":\\"100061465976024\\",\\"username\\":\\"\\",\\"has_smartlock\\":0,\\"account_center_id\\":\\"100061465976024\\",\\"account_source\\":\\"\\",\\"credentials\\":[{\\"credential_type\\":\\"nonce\\",\\"token\\":\\"\\"}],\\"nta_eligibility_reason\\":null,\\"from_accurate_privacy_result\\":0,\\"encrypted_user_id\\":null,\\"dbln_validated\\":0}}}],\\"network_bssid\\":null,\\"lois_settings\\":{\\"lois_token\\":\\"\\"},\\"aac\\":\\"\\"}}"}',
+    'params': json.dumps({
+        "params": {
+            "server_params": {
+                "next_uri": "https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=5870af81e45750eb22160e3fe74a22f1ec7a22fa20d66f6fa34875f44676e658&wtsid=rdr_0EQ7sA15easbCjdcs",
+                "credential_type": "password",
+                "username_text_input_id": "18ran1:68",
+                "password_text_input_id": "18ran1:69",
+                "login_source": "Login",
+                "login_credential_type": "none",
+                "server_login_source": "login",
+                "ar_event_source": "login_home_page",
+                "should_trigger_override_login_success_action": 0,
+                "should_trigger_override_login_2fa_action": 0,
+                "is_caa_perf_enabled": 1,
+                "reg_flow_source": "aymh_single_profile_native_integration_point",
+                "caller": "gslr",
+                "is_from_landing_page": 0,
+                "is_from_empty_password": 0,
+                "is_from_aymh": 0,
+                "is_from_password_entry_page": 0,
+                "is_from_assistive_id": 0,
+                "is_from_msplit_fallback": 0,
+                "two_step_login_type": "one_step_login",
+                "is_vanilla_password_page_empty_password": 0,
+                "left_nav_button_action": "BACK",
+                "INTERNAL__latency_qpl_marker_id": 36707139,
+                "INTERNAL__latency_qpl_instance_id": "7517660500366",
+                "device_id": None,
+                "family_device_id": None,
+                "waterfall_id": "95dbfe51-b1fd-402e-9a58-1be48dc6eb61",
+                "offline_experiment_group": None,
+                "layered_homepage_experiment_group": None,
+                "is_platform_login": 0,
+                "is_from_logged_in_switcher": 0,
+                "is_from_logged_out": 0,
+                "access_flow_version": "pre_mt_behavior"
+            },
+            "client_input_params": {
+                "machine_id": "",
+                "cloud_trust_token": None,
+                "block_store_machine_id": "",
+                "zero_balance_state": "",
+                "contact_point": "100094455925591",
+                "password": "#PWD_BROWSER:5:1765916791:AbtQALCVa1diVxPwnHJK76jD6N5WTUPakhEdlN1nLHxQ+DdK1RCRNkJ5HOxHz+NrFbMTA7jZcbs77giomRFV8MDrvlClCIuMu/kmzWXdo/52u4KMaWS8meh1A+2cuf6Pj4EIr4NIl/dC/w==",
+                "accounts_list": [{
+                    "uid": "100061465976024",
+                    "credential_type": "nonce",
+                    "token": "",
+                    "cloud_identifier": "",
+                    "obfuscated_token": None,
+                    "username": "",
+                    "encrypted_password": "",
+                    "name": "",
+                    "profile_pic_url": "",
+                    "small_profile_pic_url": None,
+                    "metadata": {
+                        "last_access_time": 0,
+                        "FXAccessLibraryAccountSavedSource": "",
+                        "previously_authenticated_nonce": "",
+                        "source_device_id": ""
+                    },
+                    "email": "",
+                    "account_source": "",
+                    "sim_phone_number": None,
+                    "encrypted_user_id": "",
+                    "lva_flow_type": None,
+                    "blob": ""
+                }],
+                "fb_ig_device_id": [],
+                "secure_family_device_id": "",
+                "encrypted_msisdn": "",
+                "headers_infra_flow_id": "",
+                "try_num": 1,
+                "login_attempt_count": 1,
+                "event_flow": "login_manual",
+                "event_step": "home_page",
+                "openid_tokens": {},
+                "auth_secure_device_id": "",
+                "client_known_key_hash": "",
+                "has_whatsapp_installed": 0,
+                "sso_token_map_json_string": "",
+                "should_show_nested_nta_from_aymh": 1,
+                "password_contains_non_ascii": "false",
+                "has_granted_read_contacts_permissions": 0,
+                "has_granted_read_phone_permissions": 0,
+                "app_manager_id": "",
+                "aymh_accounts": [{
+                    "id": "100061465976024",
+                    "profiles": {
+                        "100061465976024": {
+                            "credential_type": "nonce",
+                            "name": "Jaan Amar",
+                            "is_derived": 0,
+                            "last_access_time": 0,
+                            "notification_count": 0,
+                            "password": "",
+                            "profile_picture_url": "https://scontent-ccu2-1.xx.fbcdn.net/v/t1.30497-1/453178253_471506465671661_2781666950760530985_n.png?stp=dst-png_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=dfcde4&_nc_ohc=3VTDhbZZG98Q7kNvwH8iUz3&_nc_oc=AdnBmoel6-vyMY7ywJik1ESqt4VfHFvpe9uZnBCdOaDX_Hx4lR5XwoF2oRzJAgyTJ-k&_nc_zt=24&_nc_ht=scontent-ccu2-1.xx&oh=00_AflqA0FRGJe8hukDvXiQ2v-Q8gU1yqf9P-xGFNJ_kQe7LQ&oe=69691BBA",
+                            "small_profile_picture_url": None,
+                            "token": "",
+                            "user_id": "100061465976024",
+                            "username": "",
+                            "has_smartlock": 0,
+                            "account_center_id": "100061465976024",
+                            "account_source": "",
+                            "credentials": [{
+                                "credential_type": "nonce",
+                                "token": ""
+                            }],
+                            "nta_eligibility_reason": None,
+                            "from_accurate_privacy_result": 0,
+                            "encrypted_user_id": None,
+                            "dbln_validated": 0
+                        }
+                    }
+                }],
+                "network_bssid": None,
+                "lois_settings": {
+                    "lois_token": ""
+                },
+                "aac": ""
+            }
+        }
+    })
 }
 
 response = requests.post('https://m.facebook.com/async/wbloks/fetch/', params=params, cookies=cookies, headers=headers, data=data)
