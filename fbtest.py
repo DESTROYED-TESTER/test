@@ -40,7 +40,6 @@ cookies = {
     'ps_l': '1',
     'ps_n': '1',
     'm_pixel_ratio': '2',
-    'pas': '100061465976024%3A2Br3qvc3Zi',
     'dpr': '1',
     'wd': '400x686',
     'fr': '14GtYkQTpeiC1REGX.AWd_vhrUYobjO8DuKiC98oM3pinpfd5k47Y8B0U3tm9fzubqdxc.BpQbzh..AAA.0.0.BpQcBv.AWe68x2KLB5_lcvMawf-W-Z4I_A',
