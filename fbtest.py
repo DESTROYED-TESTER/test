@@ -30,7 +30,7 @@ head = {"authority": "m.prod.facebook.com",
 "sec-fetch-site": "none",
 "sec-fetch-user": "?1",
 "upgrade-insecure-requests": "1",
-"user-agent": us,
+"user-agent": 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36',
 "viewport-width": "980"}
 requu1 = Session.get(url1,headers=head)
 
