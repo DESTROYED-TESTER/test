@@ -114,8 +114,8 @@ data = {
                 "cloud_trust_token": None,
                 "block_store_machine_id": "",
                 "zero_balance_state": "",
-                "contact_point": "100094455925591",
-                "password": "#PWD_BROWSER:5:1765916791:AbtQALCVa1diVxPwnHJK76jD6N5WTUPakhEdlN1nLHxQ+DdK1RCRNkJ5HOxHz+NrFbMTA7jZcbs77giomRFV8MDrvlClCIuMu/kmzWXdo/52u4KMaWS8meh1A+2cuf6Pj4EIr4NIl/dC/w==",
+                "contact_point": uid,
+                "password": enpass,
                 "accounts_list": [{
                     "uid": "100061465976024",
                     "credential_type": "nonce",
