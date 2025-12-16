@@ -18,6 +18,22 @@ uid = input("Enter UID / Email: ").strip()
 pw = input("Enter Password: ").strip()
 enpass = "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw)
 
+url1 = "https://mbasic.facebook.com/"
+head = {"authority": "m.prod.facebook.com",
+"accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+"accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+"cache-control": "max-age=0",
+"dpr": "3",
+"sec-ch-prefers-color-scheme": "light",
+"sec-fetch-dest": "document",
+"sec-fetch-mode": "navigate",
+"sec-fetch-site": "none",
+"sec-fetch-user": "?1",
+"upgrade-insecure-requests": "1",
+"user-agent": us,
+"viewport-width": "980"}
+requu1 = Session.get(url1,headers=head)
+
 cookies = {
     'datr': 'OpqVaPyImvfQapu_w36Tb6w9',
     'sb': 'OpqVaFnrZ4qPlR6kiDeA96JW',
@@ -62,7 +78,7 @@ data = {
     '__user': '0',
     '__a': '1',
     '__req': '8',
-    '__hs': '20438.BP:wbloks_caa_pkg.2.0...0',
+    '__hs': re.search('"haste_session":"(.*?)"',str(requu1.text)).group(1),
     'dpr': '3',
     '__ccg': 'GOOD',
     '__rev': '1031154218',
