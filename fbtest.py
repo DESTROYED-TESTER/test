@@ -168,7 +168,7 @@ data = {
     })
 }
 
-response = requests.post('https://m.facebook.com/async/wbloks/fetch/', params=params, cookies=cookies, headers=headers, data=data)
+response = requests.post('https://p.facebook.com/async/wbloks/fetch/', params=params, cookies=cookies, headers=headers, data=data)
 print("Status code:", response.status_code)
 print("Response URL:", response.url)
 print("Response headers:", response.headers)
