@@ -32,7 +32,7 @@ head = {"authority": "m.prod.facebook.com",
 "upgrade-insecure-requests": "1",
 "user-agent": 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36',
 "viewport-width": "980"}
-requu1 = Session.get(url1,headers=head)
+requu1 = requests.get(url1,headers=head)
 
 cookies = {
     'datr': 'OpqVaPyImvfQapu_w36Tb6w9',
