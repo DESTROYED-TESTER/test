@@ -16,7 +16,7 @@ import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 uid = input("Enter UID / Email: ").strip()
 pw = input("Enter Password: ").strip()
-enpass =  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+enpass = "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw)
 
 cookies = {
     'datr': '461BaaB95sc8Opemj4Ei4iHy',
@@ -72,7 +72,7 @@ data = {
     'jazoest': '25050',
     'lsd': 'AdF3FM2CtGc',
     'params': json.dumps({
-        "params": {
+        "params": json.dumps({
             "server_params": {
                 "credential_type": "password",
                 "username_text_input_id": "ywkgyx:66",
@@ -164,7 +164,7 @@ data = {
                 },
                 "aac": ""
             }
-        }
+        })
     })
 }
 
