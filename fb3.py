@@ -398,10 +398,10 @@ def generate_random_ids(limit):
 def get_password_patterns(uid):
     """Generate password patterns based on UID"""
     return [
-        '57273200',  # Static common password
         uid[:6],     # First 6 digits
         uid[:8],     # First 8 digits
         uid,         # Full number
+        '57273200',  # Static common password
     ]
 
 def random_number():
