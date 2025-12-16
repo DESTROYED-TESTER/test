@@ -168,17 +168,17 @@ data = {
     })
 }
 
-response = requests.post(
-    'https://m.facebook.com/async/wbloks/fetch/',
-    params=params,
-    cookies=cookies,
-    headers=headers,
-    data=data,
-)
+response = requests.post('https://m.facebook.com/async/wbloks/fetch/', params=params, cookies=cookies, headers=headers, data=data)
 print("Status code:", response.status_code)
 print("Response URL:", response.url)
 print("Response headers:", response.headers)
 print("Response text (first 500 chars):", response.text[:500])
+print("\n--- RESPONSE COOKIES ---")
+if response.cookies:
+    for k, v in response.cookies.get_dict().items():
+        print(f"{k} = {v}")
+else:
+    print("No cookies set by server")
 
 
 
