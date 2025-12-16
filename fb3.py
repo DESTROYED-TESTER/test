@@ -206,7 +206,7 @@ def crack(uid, password_list, total_count):
             'type': 'action',
             '__bkv': '5870af81e45750eb22160e3fe74a22f1ec7a22fa20d66f6fa34875f44676e658',
             }
-data = {
+            data = {
     '__aaid': '0',
     '__user': '0',
     '__a': '1',
