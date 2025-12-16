@@ -86,7 +86,7 @@ data = {
     '__hsi': re.search('"hsi":"(\d+)"',str(requu1.text)).group(1),
     '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o0wW1gCwjE0AC09Mx60se2G0pS0ny0oi0zE5W0Y81soG0xo2ewbS1LwpEcE1kU1bo8Xw8S0QU3yw',
     'fb_dtsg': 'NAfswT-5iGUy0OIXErmeAkhJWRQzHOGo86gkifn919S8eu18jRyx1jg:0:0',
-    'jazoest': re.search('"jazoest":"(.*?)"',str(requu1.text)).group(1),
+    'jazoest': '24940',
     'lsd': re.search('"lsd":"(.*?)"',str(requu1.text)).group(1),
     'params': json.dumps({
         "params": {
