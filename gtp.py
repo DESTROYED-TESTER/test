@@ -1,5 +1,4 @@
 import requests
-import json
 
 cookies = {
     'datr': 'cBNEaQDmgPScqxAEzMAVJz2c',
@@ -40,68 +39,22 @@ data = {
 }
 
 try:
-    # Create a session to maintain cookies
-    session = requests.Session()
-    session.cookies.update(cookies)
-    
-    response = session.post('https://www.messenger.com/login/password/', headers=headers, data=data)
-    
-    print("=" * 60)
-    print("FACEBOOK LOGIN RESPONSE ANALYSIS")
-    print("=" * 60)
+    response = requests.post('https://www.messenger.com/login/password/', cookies=cookies, headers=headers, data=data)
     
     print(f"Status Code: {response.status_code}")
-    print(f"URL: {response.url}")
+    print(f"Response Headers: {dict(response.headers)}")
     
-    # Check if login was successful by looking for redirects or content
-    if response.history:
-        print(f"\nRedirects occurred:")
-        for resp in response.history:
-            print(f"  {resp.status_code} -> {resp.url}")
-        print(f"Final destination: {response.url}")
+    # Extract cookies from response
+    response_cookies = response.cookies
+    print("\nResponse Cookies:")
+    for cookie in response_cookies:
+        print(f"{cookie.name}: {cookie.value}")
     
-    # Extract all cookies from the session
-    print(f"\nSession Cookies:")
-    session_cookies = session.cookies
-    if session_cookies:
-        for cookie in session_cookies:
-            print(f"  {cookie.name}: {cookie.value[:50]}{'...' if len(cookie.value) > 50 else ''}")
-    else:
-        print("  No cookies found in session")
-    
-    # Convert to different formats
-    cookies_dict = requests.utils.dict_from_cookiejar(session_cookies)
-    cookies_string = requests.utils.dict_from_cookiejar(session_cookies)
-    
-    print(f"\nCookies as Dictionary:")
-    print(json.dumps(cookies_dict, indent=2))
-    
-    # Save cookies to file for future use
-    with open('facebook_cookies.json', 'w') as f:
-        json.dump(cookies_dict, f, indent=2)
-    print(f"\nCookies saved to 'facebook_cookies.json'")
-    
-    # Save cookies as curl format for easy copying
-    curl_cookies = "; ".join([f"{k}={v}" for k, v in cookies_dict.items()])
-    with open('facebook_cookies_curl.txt', 'w') as f:
-        f.write(curl_cookies)
-    print(f"Cookies saved in curl format to 'facebook_cookies_curl.txt'")
-    print(f"Curl format: {curl_cookies[:100]}{'...' if len(curl_cookies) > 100 else ''}")
-    
-    # Check response content for login indicators
-    if 'home' in response.url.lower() or 'messages' in response.url.lower():
-        print(f"\n✅ Login appears SUCCESSFUL!")
-    else:
-        print(f"\n❌ Login may have failed or requires additional verification")
-        print(f"Final URL: {response.url}")
-    
-    # Show part of the response content for debugging
-    print(f"\nResponse Content Preview (first 500 chars):")
-    print(response.text[:500])
+    # Convert cookies to dictionary
+    cookies_dict = requests.utils.dict_from_cookiejar(response_cookies)
+    print(f"\nCookies Dictionary: {cookies_dict}")
     
 except requests.exceptions.RequestException as e:
-    print(f"❌ Network Error: {e}")
+    print(f"Error making request: {e}")
 except Exception as e:
-    print(f"❌ Unexpected Error: {e}")
-    import traceback
-    traceback.print_exc()
+    print(f"Unexpected error: {e}")
