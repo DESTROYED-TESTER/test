@@ -17,7 +17,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 uid = input("Enter UID / Email: ").strip()
 pw = input("Enter Password: ").strip()
 enpass = "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw)
-
+session = requests.Session()
 url1 = "https://mbasic.facebook.com/"
 head = {"authority": "m.prod.facebook.com",
 "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
@@ -32,7 +32,7 @@ head = {"authority": "m.prod.facebook.com",
 "upgrade-insecure-requests": "1",
 "user-agent": 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36',
 "viewport-width": "980"}
-requu1 = requests.get(url1,headers=head)
+requu1 = session.get(url1,headers=head)
 
 cookies = {
     'datr': 'cBNEaQDmgPScqxAEzMAVJz2c',
@@ -73,11 +73,12 @@ data = {
     'default_persistent': '',
 }
 
-response = requests.post('https://www.messenger.com/login/password/', cookies=cookies, headers=headers, data=data)
-
+response = session.post('https://www.messenger.com/login/password/', cookies=cookies, headers=headers, data=data)
+session_cookies = session.cookies
 if response.status_code == 200:
    if 'login' not in response.url.lower():
        print("✅ VERIFIED: Can access messenger without redirect")
+       print(session_cookies)
    else:
        print("❌ FAILED: Redirected to login page")
 else:
