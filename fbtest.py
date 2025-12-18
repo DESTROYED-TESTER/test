@@ -81,6 +81,7 @@ if response.status_code == 200:
        cookies_dict = requests.utils.dict_from_cookiejar(session_cookies)
        curl_cookies = "; ".join([f"{k}={v}" for k, v in cookies_dict.items()])
        print(curl_cookies)
+       print(cookies_dict)
    else:
        print("❌ FAILED: Redirected to login page")
 else:
