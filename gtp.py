@@ -1,5 +1,17 @@
 import requests
+import json
 
+print("🔄 FACEBOOK RE-LOGIN ATTEMPT")
+print("=" * 40)
+
+# Load previous cookies
+with open('facebook_cookies.json', 'r') as f:
+    old_cookies = json.load(f)
+
+print("🍪 Previous cookies loaded")
+print(f"   User ID: {old_cookies.get('c_user', 'Not found')}")
+
+# Login request with same credentials
 cookies = {
     'datr': 'cBNEaQDmgPScqxAEzMAVJz2c',
     'locale': 'en_US',
@@ -12,16 +24,7 @@ headers = {
     'cache-control': 'max-age=0',
     'content-type': 'application/x-www-form-urlencoded',
     'origin': 'https://www.messenger.com',
-    'priority': 'u=0, i',
     'referer': 'https://www.messenger.com/?locale=en_US',
-    'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'same-origin',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
 }
 
@@ -39,22 +42,44 @@ data = {
 }
 
 try:
-    response = requests.post('https://www.messenger.com/login/password/', cookies=cookies, headers=headers, data=data)
+    session = requests.Session()
+    session.cookies.update(cookies)
     
-    print(f"Status Code: {response.status_code}")
-    print(f"Response Headers: {dict(response.headers)}")
+    response = session.post('https://www.messenger.com/login/password/', headers=headers, data=data)
     
-    # Extract cookies from response
-    response_cookies = response.cookies
-    print("\nResponse Cookies:")
-    for cookie in response_cookies:
-        print(f"{cookie.name}: {cookie.value}")
+    print(f"📊 Status: {response.status_code}")
+    print(f"🔗 Final URL: {response.url}")
     
-    # Convert cookies to dictionary
-    cookies_dict = requests.utils.dict_from_cookiejar(response_cookies)
-    print(f"\nCookies Dictionary: {cookies_dict}")
+    # Extract new cookies
+    new_cookies = requests.utils.dict_from_cookiejar(session.cookies)
     
-except requests.exceptions.RequestException as e:
-    print(f"Error making request: {e}")
+    print("\n🍪 NEW FACEBOOK LOGIN COOKIES:")
+    print("=" * 40)
+    
+    for name, value in new_cookies.items():
+        if name in ['c_user', 'xs', 'sb', 'datr']:
+            print(f"✅ {name}: {value}")
+        else:
+            print(f"   {name}: {value}")
+    
+    # Save new cookies
+    with open('facebook_cookies_new.json', 'w') as f:
+        json.dump(new_cookies, f, indent=2)
+    
+    # Create curl format
+    curl_format = "; ".join([f"{k}={v}" for k, v in new_cookies.items()])
+    with open('facebook_cookies_new_curl.txt', 'w') as f:
+        f.write(curl_format)
+    
+    print(f"\n💾 Saved to: facebook_cookies_new.json")
+    print(f"📋 Curl format: facebook_cookies_new_curl.txt")
+    
+    # Check if login successful
+    if 'c_user' in new_cookies:
+        print(f"\n🎉 LOGIN SUCCESSFUL!")
+        print(f"👤 User ID: {new_cookies['c_user']}")
+    else:
+        print(f"\n❌ LOGIN FAILED!")
+    
 except Exception as e:
-    print(f"Unexpected error: {e}")
+    print(f"❌ ERROR: {e}")
