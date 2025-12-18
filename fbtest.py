@@ -79,7 +79,7 @@ print("Status code:", response.status_code)
 print("Response URL:", response.url)
 print("Status Code:", response.status_code)
 print("Reason:", response.reason)
-print("Response Text:", response.text)
+#print("Response Text:", response.text)
 print("\n--- RESPONSE COOKIES ---")
 if response.cookies:
     for k, v in response.cookies.get_dict().items():
