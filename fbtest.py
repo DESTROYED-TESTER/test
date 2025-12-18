@@ -63,10 +63,10 @@ vv = {
         "credential_type": "password",
         "dyi_job_id": "",
         "enc_password": {
-            "sensitive_string_value": "#PWD_BROWSER:5:1764243049:AahQAJSagtjx7zqD95KwNpEfweyKPmA/rA9OBmO1aYzWTXsO/LOmLCWXVUAD/+oM8tGhg+PlhcDAF8bfHn3M06yCQ8knfLnTlVk0ezZD0sdkAZ6OBjIU8TJI017jVfBazn8UpT/L557lz7xEQps18G4CkQI9M9UOnw=="
+            "sensitive_string_value": enpass
         },
         "event_request_id": "74d4a096-a851-4a2b-ab2f-097d0c550b37",
-        "identifier": "61562871116780",
+        "identifier": uid,
         "ig_web_device_id": None,
         "initial_request_id": "1",
         "lids": None,
