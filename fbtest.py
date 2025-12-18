@@ -34,6 +34,17 @@ head = {"authority": "m.prod.facebook.com",
 "viewport-width": "980"}
 requu1 = requests.get(url1,headers=head)
 
+cookies = {
+    'ps_l': '1',
+    'ps_n': '1',
+    'sb': 'err0aNeUDQ1wJz7g339S3YR3',
+    'datr': 'err0aLFyeHZl73bBArjRa1WN',
+    'locale': 'en_US',
+    'dpr': '1',
+    'fr': '1NdqEGAzzGsGA9kzI.AWepSzVY-iM7ABIcAT1YJPwJohXvGAqUJledrlxZPth5ETXvChw.BpA6Jl..AAA.0.0.BpRAx9.AWeLXPTjx5pVF0HADt6FmtMswK8',
+    'wd': '884x773',
+}
+
 headers = {
     'sec-ch-ua-full-version-list': '"Not;A=Brand";v="99.0.0.0", "Google Chrome";v="139.0.7258.139", "Chromium";v="139.0.7258.139"',
     'sec-ch-ua-platform': '"Windows"',
@@ -114,7 +125,7 @@ data = {
         "fb_api_analytics_tags": '["qpl_active_flow_ids=175125627"]'
     }
 
-response = requests.post('https://www.facebook.com/api/graphql/', headers=headers, data=data)
+response = requests.post('https://www.facebook.com/api/graphql/', cookies=cookies, headers=headers, data=data)
 
 print("Status code:", response.status_code)
 print("Response URL:", response.url)
