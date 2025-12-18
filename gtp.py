@@ -4,12 +4,6 @@ import json
 print("🔄 FACEBOOK RE-LOGIN ATTEMPT")
 print("=" * 40)
 
-# Load previous cookies
-with open('facebook_cookies.json', 'r') as f:
-    old_cookies = json.load(f)
-
-print("🍪 Previous cookies loaded")
-print(f"   User ID: {old_cookies.get('c_user', 'Not found')}")
 
 # Login request with same credentials
 cookies = {
