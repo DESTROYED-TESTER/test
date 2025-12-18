@@ -75,17 +75,13 @@ data = {
 
 response = requests.post('https://www.messenger.com/login/password/', cookies=cookies, headers=headers, data=data)
 
-print("Status code:", response.status_code)
-print("Response URL:", response.url)
-print("Status Code:", response.status_code)
-print("Reason:", response.reason)
-#print("Response Text:", response.text)
-print("\n--- RESPONSE COOKIES ---")
-if response.cookies:
-    for k, v in response.cookies.get_dict().items():
-        print(f"{k} = {v}")
+if response.status_code == 200:
+   if 'login' not in response.url.lower():
+       print("✅ VERIFIED: Can access messenger without redirect")
+   else:
+       print("❌ FAILED: Redirected to login page")
 else:
-    print("No cookies set by server")
+    print(f"❌ ERROR: HTTP {response.status_code}")
 
 
 
