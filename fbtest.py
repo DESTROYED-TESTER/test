@@ -78,7 +78,9 @@ session_cookies = session.cookies
 if response.status_code == 200:
    if 'login' not in response.url.lower():
        print("✅ VERIFIED: Can access messenger without redirect")
-       print(session_cookies)
+       cookies_dict = requests.utils.dict_from_cookiejar(session_cookies)
+       curl_cookies = "; ".join([f"{k}={v}" for k, v in cookies_dict.items()])
+       print(curl_cookies)
    else:
        print("❌ FAILED: Redirected to login page")
 else:
