@@ -107,7 +107,7 @@ def crack(uid, password_list, total_count):
             cookies = {
             'csrftoken': csrftoken,
             'datr': 'SehHaXwOCk9GiWPH3fNZWglz',
-            'ig_did': '0C5FEB9A-86A1-45AB-BEDE-9F67FB1CDA9C',
+            'ig_did': str(uuid.uuid4()).upper(),
             'mid': 'aUfoSwALAAG_fJ1ItrV9b-sb7DCg',
             'ig_nrcb': '1',
             'wd': '1136x773',}
