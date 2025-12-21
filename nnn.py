@@ -56,7 +56,7 @@ data = {
 
 response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
 
-wanted = ["sessionid", "csrftoken", "ds_user_id"]
+wanted = ["ds_user_id", "sessionid"]
 all_cookies = session.cookies.get_dict()
 
 extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
