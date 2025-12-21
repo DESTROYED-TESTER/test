@@ -54,7 +54,7 @@ data = {
     'jazoest': '22898',
 }
 
-response = session.post('https://business.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
+response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
 
 
 # ---- Extract cookies ----
