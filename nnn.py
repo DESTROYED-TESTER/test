@@ -1,7 +1,6 @@
 import requests
 
 session = requests.Session()
-session.cookies.update(cookies)
 
 cookies = {
     'datr': 'wDF1aOt9UdNuCskTeplHs7Yx',
