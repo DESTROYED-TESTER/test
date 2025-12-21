@@ -58,10 +58,9 @@ response = session.post('https://www.instagram.com/api/v1/web/accounts/login/aja
 
 wanted = ["ds_user_id", "sessionid"]
 all_cookies = session.cookies.get_dict()
-
+j = response.json()
+print("Username:", j["user"].get("username"))
 extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
-print(extracted)
-
 # Instagram-style cookie string
 cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items())
 print(cookie_str)
