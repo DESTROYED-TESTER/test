@@ -56,16 +56,6 @@ data = {
 
 response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
 
-# ---- Username (SAFE) ----
-try:
-    j = response.json()
-    username = j.get("user", {}).get("username")
-    if username:
-        print("Username:", username)
-    else:
-        print("Username not returned (normal for IG)")
-except Exception as e:
-    print("JSON error:", e)
 
 # ---- Extract cookies ----
 wanted = ["ds_user_id", "sessionid"]
