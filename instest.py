@@ -71,18 +71,20 @@ data = {
 response = requests.post('https://www.instagram.com/api/graphql', cookies=cookies, headers=headers, data=data)
 
 
-# ---- Extract cookies ----
-wanted = ["ds_user_id", "sessionid"]
-all_cookies = session.cookies.get_dict()
+try:
+    res_json = response.json()
+except ValueError:
+    print("Invalid JSON response")
+    exit()
 
-extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
+# Basic success checks
+login_data = res_json.get("data", {}).get("login", {}) \
+    or res_json.get("data", {}).get("useCDSWebLoginMutation", {})
 
-# ---- Cookie string ----
-cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items())
-print("Cookies:", cookie_str)
-
-# ---- Quick login check ----
-if "sessionid" in extracted:
-    print("LOGIN SUCCESS ✅")
+if login_data.get("authenticated") is True:
+    print("[+] Login successful")
+elif "errors" in res_json:
+    print("[-] Login failed:", res_json["errors"])
 else:
-    print("LOGIN FAILED / CHECKPOINT ❌")
+    print("[-] Login failed or checkpoint required")
+
