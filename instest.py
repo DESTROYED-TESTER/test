@@ -10,10 +10,10 @@ def instagram_login(username, passwd, byps, useragent):
         self.hash.update(username.encode('utf-8') + passwd.encode('utf-8'))
         self.hex = self.hash.hexdigest()
     ## Further update the hash with the hex value and a static string
-    self.hash.update(self.hex.encode('utf-8') + '12345'.encode('utf-8'))
+        self.hash.update(self.hex.encode('utf-8') + '12345'.encode('utf-8'))
 
     ## Construct HTTP headers for the Instagram request
-    headers = {
+        headers = {
         'host': 'i.instagram.com',
         'x-ig-app-locale': 'in_ID',
         'x-ig-device-locale': 'in_ID',
@@ -47,30 +47,30 @@ def instagram_login(username, passwd, byps, useragent):
     }
 
     ## Create the payload for the login request
-    payload = {
+        payload = {
         'params': '{"client_input_params":{"device_id":"'+ str(headers['x-ig-android-id']) +'","lois_settings":{"lois_token":"","lara_override":""},"name":"'+str(username)+'","machine_id":"'+str(headers['x-mid'])+'","profile_pic_url":null,"contact_point":"'+str(username)+'","encrypted_password":"#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(passwd)+'"},"server_params":{"is_from_logged_out":0,"login_source":"Login"}}',
         'bk_client_context': '{"bloks_version":"'+ str(headers['x-bloks-version-id']) +'","styles_id":"instagram"}',
         'bloks_versioning_id': str(headers['x-bloks-version-id'])
     }
 
     ## URL encode the parameters for the request
-    encode = ('params=%s&bk_client_context=%s&bloks_versioning_id=%s' % 
+        encode = ('params=%s&bk_client_context=%s&bloks_versioning_id=%s' % 
               (urllib.parse.quote(payload['params']), 
                urllib.parse.quote(payload['bk_client_context']),
                payload['bloks_versioning_id']))
 
     ## Update headers with content length and cookies
-    headers.update({'content-length': str(len(encode)), 
+        headers.update({'content-length': str(len(encode)), 
                     'cookie': (";").join([ "%s=%s" % (key, value) for key, value in byps.cookies.get_dict().items() ])})
 
     ## Send the POST request to Instagram API
-    response = byps.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request/', 
+        response = byps.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request/', 
                           data=encode, headers=headers, allow_redirects=True).text
 
     ## Check if login was successful
-    self.result_ok, self.result_two, self.result_cp = self.Simpan_Result()
-    print(response)
-    if 'logged_in_user' in str(response):
+        self.result_ok, self.result_two, self.result_cp = self.Simpan_Result()
+        print(response)
+        if 'logged_in_user' in str(response):
         # Handle successful login
         pass
 
