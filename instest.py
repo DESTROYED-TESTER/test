@@ -89,6 +89,7 @@ class InstagramLogin:
             self.result_ok, self.result_two, self.result_cp = self.Simpan_Result()
 
             if 'logged_in_user' in response:
+                print(response)
                 return True, response
             else:
                 return False, response
