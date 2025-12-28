@@ -8,6 +8,7 @@ username = '8918354921'
 passwd = '891835'
 useragent = 'Mozilla/5.0 (Linux; Android 12; SKY PAD10 Build/S00812; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/141.0.7390.122 Safari/537.36 Instagram 406.0.0.58.159 Android (31/12; 200dpi; 1280x740; Sky Devices/SKY; SKY PAD10; SKY_PAD10; ums312_2h10; en_US; 822917963; IABMV/1)'
 ## Create an MD5 hash for the username and password
+session = requests.Session()
 hash = hashlib.md5()
 hash.update(username.encode('utf-8') + passwd.encode('utf-8'))
 hex = hash.hexdigest()
@@ -63,10 +64,10 @@ encode = ('params=%s&bk_client_context=%s&bloks_versioning_id=%s' %
 
     ## Update headers with content length and cookies
 headers.update({'content-length': str(len(encode)), 
-    'cookie': (";").join([ "%s=%s" % (key, value) for key, value in byps.cookies.get_dict().items() ])})
+    'cookie': (";").join([ "%s=%s" % (key, value) for key, value in session.cookies.get_dict().items() ])})
 
     ## Send the POST request to Instagram API
-response = requests.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request/', 
+response = session.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request/', 
   data=encode, headers=headers, allow_redirects=True).text
 
     ## Check if login was successful
