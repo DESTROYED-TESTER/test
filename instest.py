@@ -4,6 +4,8 @@ import time
 import requests
 import random
 import urllib.parse
+username = '8918354921'
+passwd = '891835'
 ## Create an MD5 hash for the username and password
 hash = hashlib.md5()
 hash.update(username.encode('utf-8') + passwd.encode('utf-8'))
