@@ -1,4 +1,4 @@
-import hashlib
+import json
 import uuid
 import time
 import requests
@@ -71,7 +71,54 @@ data = {
     'fb_api_caller_class': 'RelayModern',
     'fb_api_req_friendly_name': 'useCDSWebLoginMutation',
     'server_timestamps': 'true',
-    'variables': '{"input":{"client_mutation_id":"1","actor_id":"0","app":"instagram","auth_domain_data_key":null,"caa_login_request_extra_info":{"ab_test_data":"","shared_prefs_data":"","cuid":"","guid":"f403aeb52f840108c","jazoest":"","lgndim":"","lgnjs":"1766686097","lgnrnd":"","locale":"","login_source":"caa_login","lsd":"","next":"","prefill_contact_point":"","prefill_source":"","prefill_type":"","skstamp":"","timezone":""},"credential_type":"password","dyi_job_id":"","enc_password":{"sensitive_string_value":"#PWD_BROWSER:10:1766686138:AbdQAOZzsjQulmliglJJH5aJ0j55DLUiJCwCc+yrpwHQoFVbckErBhgdltmRKbLI5JZOKjeaaGSg+8wcLTJKAPiSQIperZ+7GqehmlLu8sjFwJr9XEpCf0OIeMSg0U5h4YE905LCRV2L7Q=="},"event_request_id":"e6610824-4d9f-4a26-bc47-5614f2547640","identifier":"8918224528","ig_web_device_id":"4F436F83-C15F-456A-9365-77F0D22727E6","initial_request_id":"1","lids":null,"login_source":"COMET_HEADERLESS_LOGIN","next":null,"passkey_payload":null,"password":{"sensitive_string_value":"#PWD_BROWSER:10:1766686138:AbdQAOZzsjQulmliglJJH5aJ0j55DLUiJCwCc+yrpwHQoFVbckErBhgdltmRKbLI5JZOKjeaaGSg+8wcLTJKAPiSQIperZ+7GqehmlLu8sjFwJr9XEpCf0OIeMSg0U5h4YE905LCRV2L7Q=="},"persistent":true,"query_params":"{}","trusted_device_records":"{}","use_uid_to_login":false,"waterfall_id":"b6fad2ac-edb8-4edb-a187-8421bcdea7cb"},"scale":1}',
+    'variables': json.dumps({
+        "input": {
+            "client_mutation_id": "1",
+            "actor_id": "0",
+            "app": "instagram",
+            "auth_domain_data_key": None,
+            "caa_login_request_extra_info": {
+                "ab_test_data": "",
+                "shared_prefs_data": "",
+                "cuid": "",
+                "guid": "f403aeb52f840108c",
+                "jazoest": "",
+                "lgndim": "",
+                "lgnjs": "1766686097",
+                "lgnrnd": "",
+                "locale": "",
+                "login_source": "caa_login",
+                "lsd": "",
+                "next": "",
+                "prefill_contact_point": "",
+                "prefill_source": "",
+                "prefill_type": "",
+                "skstamp": "",
+                "timezone": ""
+            },
+            "credential_type": "password",
+            "dyi_job_id": "",
+            "enc_password": {
+                "sensitive_string_value": "#PWD_BROWSER:10:1766686138:AbdQAOZzsjQulmliglJJH5aJ0j55DLUiJCwCc+yrpwHQoFVbckErBhgdltmRKbLI5JZOKjeaaGSg+8wcLTJKAPiSQIperZ+7GqehmlLu8sjFwJr9XEpCf0OIeMSg0U5h4YE905LCRV2L7Q=="
+            },
+            "event_request_id": "e6610824-4d9f-4a26-bc47-5614f2547640",
+            "identifier": "8918224528",
+            "ig_web_device_id": "4F436F83-C15F-456A-9365-77F0D22727E6",
+            "initial_request_id": "1",
+            "lids": None,
+            "login_source": "COMET_HEADERLESS_LOGIN",
+            "next": None,
+            "passkey_payload": None,
+            "password": {
+                "sensitive_string_value": "#PWD_BROWSER:10:1766686138:AbdQAOZzsjQulmliglJJH5aJ0j55DLUiJCwCc+yrpwHQoFVbckErBhgdltmRKbLI5JZOKjeaaGSg+8wcLTJKAPiSQIperZ+7GqehmlLu8sjFwJr9XEpCf0OIeMSg0U5h4YE905LCRV2L7Q=="
+            },
+            "persistent": True,
+            "query_params": "{}",
+            "trusted_device_records": "{}",
+            "use_uid_to_login": False,
+            "waterfall_id": "b6fad2ac-edb8-4edb-a187-8421bcdea7cb"
+        }
+    }),
     'doc_id': '25351082227851825',
 }
 
