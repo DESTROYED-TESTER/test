@@ -71,6 +71,8 @@ response = session.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www
   data=encode, headers=headers, allow_redirects=True).text
 
     ## Check if login was successful
-print(response)
-if 'logged_in_user' in str(response):
-    print('okkkkkkkkkkkkkkkkkkkkkkkkkkkk')
+wanted = ["ds_user_id", "sessionid"]
+all_cookies = session.cookies.get_dict()
+extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
+cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items())
+print("Cookies:", cookie_str)
