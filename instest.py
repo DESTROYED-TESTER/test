@@ -72,9 +72,8 @@ def login():
             ).text
 
             result_ok, result_two, result_cp = Simpan_Result()
-
+            print(response)
             if 'logged_in_user' in response:
-                print(response)
                 return True, response
             else:
                 return False, response
