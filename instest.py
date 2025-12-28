@@ -71,12 +71,9 @@ def instagram_login(username, passwd, byps, useragent):
         self.result_ok, self.result_two, self.result_cp = self.Simpan_Result()
         print(response)
         if 'logged_in_user' in str(response):
-        # Handle successful login
+        print('okkkkkkkkkkkkkkkkkkkkkkkkkkkk')
         
 
-except Exception as e:
-    ## Handle any exceptions that occur
-    print(f"An error occurred: {str(e)}")
 
 Example usage:
 Assuming byps is an initialized session handler and useragent is a string containing the user agent.
