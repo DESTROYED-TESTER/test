@@ -6,6 +6,7 @@ import random
 import urllib.parse
 username = '8918354921'
 passwd = '891835'
+useragent = 'Mozilla/5.0 (Linux; Android 12; SKY PAD10 Build/S00812; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/141.0.7390.122 Safari/537.36 Instagram 406.0.0.58.159 Android (31/12; 200dpi; 1280x740; Sky Devices/SKY; SKY PAD10; SKY_PAD10; ums312_2h10; en_US; 822917963; IABMV/1)'
 ## Create an MD5 hash for the username and password
 hash = hashlib.md5()
 hash.update(username.encode('utf-8') + passwd.encode('utf-8'))
