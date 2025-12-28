@@ -3,80 +3,81 @@ import uuid
 import time
 import random
 import urllib.parse
-import requests
+def instagram_login(username, passwd, byps, useragent):
+    try:
+        ## Create an MD5 hash for the username and password
+        self.hash = hashlib.md5()
+        self.hash.update(username.encode('utf-8') + passwd.encode('utf-8'))
+        self.hex = self.hash.hexdigest()
+    ## Further update the hash with the hex value and a static string
+    self.hash.update(self.hex.encode('utf-8') + '12345'.encode('utf-8'))
 
+    ## Construct HTTP headers for the Instagram request
+    headers = {
+        'host': 'i.instagram.com',
+        'x-ig-app-locale': 'in_ID',
+        'x-ig-device-locale': 'in_ID',
+        'x-ig-mapped-locale': 'id_ID',
+        'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-3',
+        'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
+        'x-bloks-version-id': 'c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49',
+        'x-ig-www-claim': '0',
+        'x-bloks-is-prism-enabled': 'false',
+        'x-bloks-is-layout-rtl': 'false',
+        'x-ig-device-id': str(uuid.uuid4()),
+        'x-ig-family-device-id': str(uuid.uuid4()),
+        'x-ig-android-id': f'android-{self.hash.hexdigest()[:16]}',
+        'x-fb-connection-type': 'MOBILE.LTE',
+        'x-ig-connection-type': 'MOBILE(LTE)',
+        'x-ig-capabilities': '3brTv10=',
+        'priority': 'u=3',
+        'user-agent': useragent,
+        'accept-language': 'id-ID, en-US',
+        'x-mid': '',
+        'ig-intended-user-id': '0',
+        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'x-fb-http-engine': 'Liger',
+        'x-fb-client-ip': 'True',
+        'x-fb-server-cluster': 'True',
+        'x-ig-bandwidth-speed-kbps': str(random.randint(100, 300)),
+        'x-ig-bandwidth-totalbytes-b': str(random.randint(500000, 900000)),
+        'x-ig-bandwidth-totaltime-ms': str(random.randint(1000, 9000)),
+        'x-ig-app-id': '3419628305025917',
+        'connection': 'keep-alive'
+    }
 
-def login():
-        try:
-            hash = hashlib.md5()
-            hash.update(username.encode('utf-8') + passwd.encode('utf-8'))
-            hex = hash.hexdigest()
-            hash.update(hex.encode('utf-8') + '12345'.encode('utf-8'))
-            session = requests.Session()
-            headers = {
-                'host': 'i.instagram.com',
-                'x-ig-app-locale': 'in_ID',
-                'x-ig-device-locale': 'in_ID',
-                'x-ig-mapped-locale': 'id_ID',
-                'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-3',
-                'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
-                'x-bloks-version-id': 'c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49',
-                'x-ig-www-claim': '0',
-                'x-bloks-is-prism-enabled': 'false',
-                'x-bloks-is-layout-rtl': 'false',
-                'x-ig-device-id': str(uuid.uuid4()),
-                'x-ig-family-device-id': str(uuid.uuid4()),
-                'x-ig-android-id': f'android-{hash.hexdigest()[:16]}',
-                'x-fb-connection-type': 'MOBILE.LTE',
-                'x-ig-connection-type': 'MOBILE(LTE)',
-                'x-ig-capabilities': '3brTv10=',
-                'priority': 'u=3',
-                'user-agent': 'Instagram 63.0.0.17.94 Android (31/10; 360dpi; 1080x2326; Vivo; V2020CA; V1950A; qcom; id_ID; 253447817)',
-                'accept-language': 'id-ID, en-US',
-                'x-mid': '',
-                'ig-intended-user-id': '0',
-                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                'x-fb-http-engine': 'Liger',
-                'x-fb-client-ip': 'True',
-                'x-fb-server-cluster': 'True',
-                'x-ig-bandwidth-speed-kbps': str(random.randint(100, 300)),
-                'x-ig-bandwidth-totalbytes-b': str(random.randint(500000, 900000)),
-                'x-ig-bandwidth-totaltime-ms': str(random.randint(1000, 9000)),
-                'x-ig-app-id': '3419628305025917',
-                'x-pigeon-rawclienttime': str(round(time.time(), 3)),
-                'connection': 'keep-alive'
-            }
+    ## Create the payload for the login request
+    payload = {
+        'params': '{"client_input_params":{"device_id":"'+ str(headers['x-ig-android-id']) +'","lois_settings":{"lois_token":"","lara_override":""},"name":"'+str(username)+'","machine_id":"'+str(headers['x-mid'])+'","profile_pic_url":null,"contact_point":"'+str(username)+'","encrypted_password":"#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(passwd)+'"},"server_params":{"is_from_logged_out":0,"login_source":"Login"}}',
+        'bk_client_context': '{"bloks_version":"'+ str(headers['x-bloks-version-id']) +'","styles_id":"instagram"}',
+        'bloks_versioning_id': str(headers['x-bloks-version-id'])
+    }
 
-            payload = {
-                'params': '{"client_input_params":{"device_id":"'+ str(headers['x-ig-android-id']) +'","lois_settings":{"lois_token":"","lara_override":""},"name":"'+str(username)+'","machine_id":"'+str(headers['x-mid'])+'","profile_pic_url":null,"contact_point":"'+str('8918354921')+'","encrypted_password":"#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str('891835')+'"},"server_params":{"is_from_logged_out":0,"layered_homepage_experiment_group":null,"INTERNAL__latency_qpl_marker_id":36707139,"family_device_id":"'+str(headers['x-ig-family-device-id'])+'","device_id":"'+str(headers['x-ig-device-id'])+'","offline_experiment_group":null,"INTERNAL_INFRA_THEME":"harm_f","waterfall_id":"'+str(uuid.uuid4())+'","login_source":"Login","INTERNAL__latency_qpl_instance_id":73767726200338,"is_from_logged_in_switcher":0,"is_platform_login":0}}',
-                'bk_client_context': '{"bloks_version":"'+ str(headers['x-bloks-version-id']) +'","styles_id":"instagram"}',
-                'bloks_versioning_id': str(headers['x-bloks-version-id'])
-            }
+    ## URL encode the parameters for the request
+    encode = ('params=%s&bk_client_context=%s&bloks_versioning_id=%s' % 
+              (urllib.parse.quote(payload['params']), 
+               urllib.parse.quote(payload['bk_client_context']),
+               payload['bloks_versioning_id']))
 
-            encode = ('params=%s&bk_client_context=%s&bloks_versioning_id=%s' % (
-                urllib.parse.quote(payload['params']),
-                urllib.parse.quote(payload['bk_client_context']),
-                payload['bloks_versioning_id']
-            ))
+    ## Update headers with content length and cookies
+    headers.update({'content-length': str(len(encode)), 
+                    'cookie': (";").join([ "%s=%s" % (key, value) for key, value in byps.cookies.get_dict().items() ])})
 
-            headers.update({
-                'content-length': str(len(encode)),
-                'cookie': ";".join([f"{key}={value}" for key, value in session.cookies.get_dict().items()])
-            })
+    ## Send the POST request to Instagram API
+    response = byps.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request/', 
+                          data=encode, headers=headers, allow_redirects=True).text
 
-            response = session.post(
-                'https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request/',
-                data=encode,
-                headers=headers,
-                allow_redirects=True
-            ).text
+    ## Check if login was successful
+    self.result_ok, self.result_two, self.result_cp = self.Simpan_Result()
+    print(response)
+    if 'logged_in_user' in str(response):
+        # Handle successful login
+        pass
 
-            result_ok, result_two, result_cp = Simpan_Result()
-            print(response)
-            if 'logged_in_user' in response:
-                return True, response
-            else:
-                return False, response
+except Exception as e:
+    ## Handle any exceptions that occur
+    print(f"An error occurred: {str(e)}")
 
-        except Exception as e:
-            return False, str(e)
+Example usage:
+Assuming byps is an initialized session handler and useragent is a string containing the user agent.
+instagram_login('username', 'password', byps, useragent)
