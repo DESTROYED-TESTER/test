@@ -72,5 +72,3 @@ def instagram_login(username, passwd, byps, useragent):
         print(response)
         if 'logged_in_user' in str(response):
             print('okkkkkkkkkkkkkkkkkkkkkkkkkkkk')
-        
-
