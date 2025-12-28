@@ -1,6 +1,7 @@
 import hashlib
 import uuid
 import time
+import requests
 import random
 import urllib.parse
 def instagram_login(username, passwd, byps, useragent):
@@ -64,17 +65,12 @@ def instagram_login(username, passwd, byps, useragent):
                     'cookie': (";").join([ "%s=%s" % (key, value) for key, value in byps.cookies.get_dict().items() ])})
 
     ## Send the POST request to Instagram API
-        response = byps.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request/', 
+        response = requests.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request/', 
                           data=encode, headers=headers, allow_redirects=True).text
 
     ## Check if login was successful
-        self.result_ok, self.result_two, self.result_cp = self.Simpan_Result()
         print(response)
         if 'logged_in_user' in str(response):
             print('okkkkkkkkkkkkkkkkkkkkkkkkkkkk')
         
 
-
-Example usage:
-Assuming byps is an initialized session handler and useragent is a string containing the user agent.
-instagram_login('username', 'password', byps, useragent)
