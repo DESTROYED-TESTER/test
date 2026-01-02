@@ -61,8 +61,12 @@ class FakeMailService:
                 print(f"📧 Generated fake email: {self.email}")
                 
                 # Get authentication token
-                self._authenticate()
-                return self.email
+                auth_success = self._authenticate()
+                if auth_success:
+                    return self.email
+                else:
+                    print("❌ Failed to authenticate with email service")
+                    return None
             else:
                 print(f"❌ Failed to create email account: {response.text}")
                 return None
@@ -92,22 +96,41 @@ class FakeMailService:
                     'Authorization': f'Bearer {self.token}'
                 })
                 print("✅ Email service authenticated")
+                return True
             else:
                 print(f"❌ Authentication failed: {response.text}")
+                return False
                 
         except Exception as e:
             print(f"❌ Error authenticating: {e}")
+            return False
     
     def get_messages(self):
         """Check inbox for messages"""
         if not self.token:
+            print("⚠️  No authentication token available")
             return []
         
         try:
-            response = self.session.get(f"{self.api_base}/messages", timeout=10)
-            if response.status_code == 200:
-                data = response.json()
-                return data.get('hydra:member', [])
+            # Add retry logic for better reliability
+            max_retries = 3
+            for attempt in range(max_retries):
+                response = self.session.get(f"{self.api_base}/messages", timeout=10)
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    messages = data.get('hydra:member', [])
+                    return messages
+                elif response.status_code == 401:
+                    print("⚠️  Token expired, re-authenticating...")
+                    self._authenticate()
+                    continue
+                else:
+                    print(f"⚠️  API returned status {response.status_code} (attempt {attempt + 1}/{max_retries})")
+                    if attempt < max_retries - 1:
+                        time.sleep(2)
+                        continue
+                    
         except Exception as e:
             print(f"❌ Error checking messages: {e}")
         
@@ -215,29 +238,77 @@ class InstagramAccountCreator:
             print("⚠️  Account creation initiated")
             print("⚠️  Note: Instagram requires email verification and may present CAPTCHA")
             
-            # Step 3: Check for verification email
+            # Step 3: Check for verification email with improved logic
             print("\n📬 Checking for verification email...")
-            max_attempts = 10
+            max_attempts = 30  # Increased attempts
+            check_interval = 5  # Check every 5 seconds
+            total_wait_time = max_attempts * check_interval
+            
+            print(f"ℹ️  Will check for emails for up to {total_wait_time} seconds ({total_wait_time//60} minutes)")
+            print(f"ℹ️  Checking every {check_interval} seconds...")
             
             for attempt in range(max_attempts):
-                messages = self.fake_mail.get_messages()
-                
-                if messages:
-                    for msg in messages:
-                        if 'instagram' in msg.get('subject', '').lower():
-                            print(f"✅ Found verification email: {msg['subject']}")
-                            message_content = self.fake_mail.get_message_content(msg['id'])
+                try:
+                    messages = self.fake_mail.get_messages()
+                    
+                    if messages:
+                        print(f"📧 Found {len(messages)} message(s) in inbox")
+                        
+                        for msg in messages:
+                            subject = msg.get('subject', '').lower()
+                            from_addr = msg.get('from', {}).get('address', '').lower()
                             
-                            if message_content:
-                                # Extract verification link if present
-                                self.extract_verification_link(message_content)
+                            # Check if it's from Instagram (flexible matching)
+                            is_instagram = (
+                                'instagram' in subject or 
+                                'instagram' in from_addr or
+                                'verify' in subject or
+                                'confirm' in subject or
+                                'welcome' in subject
+                            )
                             
-                            return True
-                
-                print(f"⏳ Waiting for email... (attempt {attempt + 1}/{max_attempts})")
-                time.sleep(10)
+                            if is_instagram:
+                                print(f"✅ Found verification email!")
+                                print(f"   From: {msg.get('from', {}).get('address', 'Unknown')}")
+                                print(f"   Subject: {msg.get('subject', 'No subject')}")
+                                print(f"   Date: {msg.get('createdAt', 'Unknown')}")
+                                
+                                # Get full message content
+                                message_content = self.fake_mail.get_message_content(msg['id'])
+                                
+                                if message_content:
+                                    print(f"   Size: {len(message_content.get('text', {}).get('plain', ''))} characters")
+                                    # Extract verification link if present
+                                    self.extract_verification_link(message_content)
+                                else:
+                                    print("   ⚠️  Could not retrieve full message content")
+                                
+                                return True
+                            else:
+                                print(f"   📭 Non-Instagram email: {msg.get('subject', 'No subject')}")
+                    
+                    # Progress indicator
+                    elapsed = (attempt + 1) * check_interval
+                    if (attempt + 1) % 6 == 0:  # Every 30 seconds
+                        print(f"⏳ Still waiting... ({elapsed}/{total_wait_time} seconds elapsed)")
+                    
+                    time.sleep(check_interval)
+                    
+                except Exception as e:
+                    print(f"❌ Error checking messages (attempt {attempt + 1}): {e}")
+                    time.sleep(check_interval)
             
-            print("❌ No verification email received within timeout period")
+            # Timeout reached - provide helpful information
+            print(f"\n❌ No verification email received after {total_wait_time} seconds")
+            print("\n🔍 Troubleshooting tips:")
+            print("1. Check if the email is valid: https://mail.tm")
+            print("2. Login with these credentials:")
+            print(f"   Email: {self.fake_mail.email}")
+            print(f"   Password: {self.fake_mail.password}")
+            print("3. Manually check the inbox for Instagram emails")
+            print("4. Try creating a new fake email address")
+            print("5. Instagram may have blocked the email domain")
+            
             return False
             
         except Exception as e:
