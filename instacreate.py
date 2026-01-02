@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Instagram Account Creator with Temporary Email
-Creates Instagram accounts using temporary email services for verification
+Instagram Account Creator with FakeMail
+Creates Instagram accounts using Mail.tm API for fake/temporary email addresses
 """
 
 import requests
@@ -10,34 +10,104 @@ import random
 import string
 from datetime import datetime
 
-class TempMailService:
-    """Handles temporary email generation and inbox checking"""
+class FakeMailService:
+    """Handles fake/temporary email generation and inbox checking using Mail.tm API"""
     
     def __init__(self):
         self.email = None
-        self.api_base = "https://www.1secmail.com/api/v1"
+        self.password = None
+        self.token = None
+        self.api_base = "https://api.mail.tm"
+        self.session = requests.Session()
+    
+    def get_domains(self):
+        """Get available domains for email creation"""
+        try:
+            response = self.session.get(f"{self.api_base}/domains", timeout=10)
+            if response.status_code == 200:
+                domains = response.json().get('hydra:member', [])
+                return [domain['domain'] for domain in domains]
+        except Exception as e:
+            print(f"❌ Error getting domains: {e}")
+        return []
     
     def generate_email(self):
         """Generate a temporary email address"""
-        domains = ["1secmail.com", "1secmail.org", "1secmail.net"]
-        random_string = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
-        domain = random.choice(domains)
-        self.email = f"{random_string}@{domain}"
-        print(f"📧 Generated temporary email: {self.email}")
-        return self.email
+        try:
+            # Get available domains
+            domains = self.get_domains()
+            if not domains:
+                print("❌ No available domains")
+                return None
+            
+            domain = random.choice(domains)
+            random_string = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+            self.email = f"{random_string}@{domain}"
+            self.password = ''.join(random.choices(string.ascii_letters + string.digits + "!@#$%", k=12))
+            
+            # Create account
+            account_data = {
+                "address": self.email,
+                "password": self.password
+            }
+            
+            response = self.session.post(
+                f"{self.api_base}/accounts",
+                json=account_data,
+                timeout=10
+            )
+            
+            if response.status_code == 201:
+                print(f"📧 Generated fake email: {self.email}")
+                
+                # Get authentication token
+                self._authenticate()
+                return self.email
+            else:
+                print(f"❌ Failed to create email account: {response.text}")
+                return None
+                
+        except Exception as e:
+            print(f"❌ Error generating email: {e}")
+            return None
+    
+    def _authenticate(self):
+        """Authenticate with the email service"""
+        try:
+            auth_data = {
+                "address": self.email,
+                "password": self.password
+            }
+            
+            response = self.session.post(
+                f"{self.api_base}/token",
+                json=auth_data,
+                timeout=10
+            )
+            
+            if response.status_code == 200:
+                token_data = response.json()
+                self.token = token_data.get('token')
+                self.session.headers.update({
+                    'Authorization': f'Bearer {self.token}'
+                })
+                print("✅ Email service authenticated")
+            else:
+                print(f"❌ Authentication failed: {response.text}")
+                
+        except Exception as e:
+            print(f"❌ Error authenticating: {e}")
     
     def get_messages(self):
         """Check inbox for messages"""
-        if not self.email:
+        if not self.token:
             return []
         
-        username, domain = self.email.split('@')
-        url = f"{self.api_base}/?action=getMessages&login={username}&domain={domain}"
-        
         try:
-            response = requests.get(url, timeout=10)
+            response = self.session.get(f"{self.api_base}/messages", timeout=10)
             if response.status_code == 200:
-                return response.json()
+                data = response.json()
+                return data.get('hydra:member', [])
         except Exception as e:
             print(f"❌ Error checking messages: {e}")
         
@@ -45,14 +115,11 @@ class TempMailService:
     
     def get_message_content(self, message_id):
         """Get content of a specific message"""
-        if not self.email:
+        if not self.token:
             return None
         
-        username, domain = self.email.split('@')
-        url = f"{self.api_base}/?action=readMessage&login={username}&domain={domain}&id={message_id}"
-        
         try:
-            response = requests.get(url, timeout=10)
+            response = self.session.get(f"{self.api_base}/messages/{message_id}", timeout=10)
             if response.status_code == 200:
                 return response.json()
         except Exception as e:
@@ -64,8 +131,8 @@ class TempMailService:
 class InstagramAccountCreator:
     """Handles Instagram account creation process"""
     
-    def __init__(self, temp_mail_service):
-        self.temp_mail = temp_mail_service
+    def __init__(self, fake_mail_service):
+        self.fake_mail = fake_mail_service
         self.session = requests.Session()
         self.base_url = "https://www.instagram.com"
         self.api_url = "https://i.instagram.com/api/v1"
@@ -95,7 +162,7 @@ class InstagramAccountCreator:
         return {
             'username': username,
             'password': password,
-            'email': self.temp_mail.email,
+            'email': self.fake_mail.email,
             'full_name': full_name,
             'phone_number': ''
         }
@@ -110,9 +177,9 @@ class InstagramAccountCreator:
         """Create Instagram account"""
         print("\n🚀 Starting Instagram account creation process...")
         
-        # Generate temporary email if not provided
-        if not self.temp_mail.email:
-            self.temp_mail.generate_email()
+        # Generate fake email if not provided
+        if not self.fake_mail.email:
+            self.fake_mail.generate_email()
         
         # Generate user data if not provided
         if not user_data:
@@ -153,13 +220,13 @@ class InstagramAccountCreator:
             max_attempts = 10
             
             for attempt in range(max_attempts):
-                messages = self.temp_mail.get_messages()
+                messages = self.fake_mail.get_messages()
                 
                 if messages:
                     for msg in messages:
                         if 'instagram' in msg.get('subject', '').lower():
                             print(f"✅ Found verification email: {msg['subject']}")
-                            message_content = self.temp_mail.get_message_content(msg['id'])
+                            message_content = self.fake_mail.get_message_content(msg['id'])
                             
                             if message_content:
                                 # Extract verification link if present
@@ -198,14 +265,14 @@ class InstagramAccountCreator:
 def main():
     """Main execution function"""
     print("=" * 60)
-    print("📸 Instagram Account Creator with Temporary Email")
+    print("📸 Instagram Account Creator with FakeMail")
     print("=" * 60)
     print(f"⏰ Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
     
     # Initialize services
-    temp_mail = TempMailService()
-    creator = InstagramAccountCreator(temp_mail)
+    fake_mail = FakeMailService()
+    creator = InstagramAccountCreator(fake_mail)
     
     # Create account
     success = creator.create_account()
