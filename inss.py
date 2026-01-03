@@ -123,7 +123,7 @@ def crack(uid, password_list, total_count):
             'x-ig-www-claim': 'hmac.AR3mzTXmWJQaei0IjdtQkJIZZIkfif5qOU0tUpKo_5EceiMR',
             'sec-ch-ua-mobile': '?1',
             'x-instagram-ajax': '1010361788',
-            'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23C54 Instagram 409.0.0.26.161 (iPhone12,1; iOS 26_2; pt_BR; pt; scale=2.00; 750x1624; IABMV/1; 838724010) NW/3 Safari/604.1',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36',
             'viewport-width': '421',
             'content-type': 'application/x-www-form-urlencoded',
             'accept': '*/*',
