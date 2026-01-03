@@ -83,4 +83,4 @@ all_cookies = session.cookies.get_dict()
 extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
 cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items())
 print("Cookies:", cookie_str)
-print(response.text)
+#print(response.text)
