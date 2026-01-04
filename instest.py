@@ -4,7 +4,7 @@ import time
 import urllib.parse
 import random
 import requests
-import re
+
 class InstagramLogin:
     def __init__(self):
         self.session = requests.Session()
@@ -140,10 +140,7 @@ class InstagramLogin:
             # Check if login was successful
             if 'logged_in_user' in response.text:
                 print("✓ Login successful!")
-                ig_set_autorization = re.search('"IG-Set-Authorization": "(.*?)"', str(response.replace('\\', ''))).group(1)
-                decode_ig_set_authorization = json.loads(base64.urlsafe_b64decode(ig_set_autorization.split('Bearer IGT:2:')[1]))
-                cookies = (';'.join(['%s=%s'%(name, value) for name, value in decode_ig_set_authorization.items()]))
-                print(cookies)
+                print(response.text)
                 # Extract user ID from response (simplified)
                 import json
                 try:
