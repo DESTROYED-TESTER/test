@@ -187,8 +187,8 @@ if __name__ == "__main__":
     instagram = InstagramLogin()
     
     # Your credentials (replace with actual credentials)
-    username = "sumonh44"
-    password = "sumon@12M"
+    username = "8918168736"
+    password = "891816"
     
     # Try to login
     print(f"Attempting to login as: {username}")
