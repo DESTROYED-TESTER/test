@@ -142,7 +142,7 @@ class InstagramLogin:
                 print("✓ Login successful!")
                 ig_set_autorization = re.search('"IG-Set-Authorization": "(.*?)"', str(response.replace('\\', ''))).group(1)
                 decode_ig_set_authorization = json.loads(base64.urlsafe_b64decode(ig_set_autorization.split('Bearer IGT:2:')[1]))
-                 = (';'.join(['%s=%s'%(name, value) for name, value in decode_ig_set_authorization.items()]))
+                cookies = (';'.join(['%s=%s'%(name, value) for name, value in decode_ig_set_authorization.items()]))
                 print(cookies)
                 # Extract user ID from response (simplified)
                 import json
