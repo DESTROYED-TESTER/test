@@ -4,7 +4,7 @@ import time
 import urllib.parse
 import random
 import requests
-
+import re
 class InstagramLogin:
     def __init__(self):
         self.session = requests.Session()
