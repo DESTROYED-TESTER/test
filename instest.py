@@ -154,7 +154,7 @@ class InstagramLogin:
                 
                 # Save cookies for future requests
                 cookies = self.session.cookies.get_dict()
-                print(f"✓ Session cookies saved":cookies)
+                print(f"✓ Session cookies saved" cookies)
                 return True, response
             else:
                 print("✗ Login failed")
