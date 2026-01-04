@@ -139,8 +139,9 @@ class InstagramLogin:
             
             # Check if login was successful
             if 'logged_in_user' in response.text:
+                cookies = self.session.cookies.get_dict()
                 print("✓ Login successful!")
-                print(response.text)
+                print(cookies)
                 # Extract user ID from response (simplified)
                 import json
                 try:
