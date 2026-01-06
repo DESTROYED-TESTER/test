@@ -122,7 +122,7 @@ def crack(uid, password_list, total_count):
             android_id_hash = second_hash.hexdigest()[:16]
         
             # Generate user agent
-            useragent = "Mozilla/5.0 (Linux; Android 15; SM-S906U1 Build/AP3A.240905.015.A2; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/141.0.7390.124 Mobile Safari/537.36 Instagram 408.0.0.0.45 Android (35/15; 450dpi; 1080x2340; samsung; SM-S906U1; g0q; qcom; es_LA; 827194262; IABMV/1)"            
+            useragent = "Instagram 309.0.0.28.114 Android (29/10; 380dpi; 1080x2080; OnePlus; GM1903; OnePlus7; qcom; en_US; 439209455)"
             headers = {
             'host': 'i.instagram.com',
             'x-ig-app-locale': 'in_ID',
