@@ -221,7 +221,7 @@ def crack(uid, password_list, total_count):
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
-            loop += 1
+        loop += 1
     except requests.exceptions.Timeout:
         #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
