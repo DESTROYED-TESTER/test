@@ -13,6 +13,7 @@ import base64
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime 
+time_now = int(datetime.now().timestamp())
 enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{'sumon@12M'}"
 user = 'sumonh44'
 session = requests.Session()
