@@ -17,6 +17,15 @@ time_now = int(datetime.now().timestamp())
 enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{'sumon@12M'}"
 user = 'sumonh44'
 session = requests.Session()
+response = session.get('https://www.instagram.com/accounts/login/')
+csrftoken = response.cookies.get('csrftoken')
+cookies = {
+'csrftoken': csrftoken,
+'datr': 'SehHaXwOCk9GiWPH3fNZWglz',
+'ig_did': str(uuid.uuid4()).upper(),
+'mid': 'aUfoSwALAAG_fJ1ItrV9b-sb7DCg',
+'ig_nrcb': '1',
+'wd': '1136x773',}
 cookies = {
     'datr': 'wDF1aOt9UdNuCskTeplHs7Yx',
     'ig_did': '534026BE-B655-4318-AB86-5CFD617D4D50',
