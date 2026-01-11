@@ -14,8 +14,8 @@ import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime 
 time_now = int(datetime.now().timestamp())
-enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{'sumon@12M'}"
-user = 'sumonh44'
+enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{'891816'}"
+user = '8918168736'
 session = requests.Session()
 response = session.get('https://www.instagram.com/accounts/login/')
 csrftoken = response.cookies.get('csrftoken')
@@ -74,4 +74,3 @@ extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
 if 'sessionid' in extracted:
    cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items())
    print("Cookies:", cookie_str)
-   print(response)
