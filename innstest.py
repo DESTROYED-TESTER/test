@@ -66,7 +66,7 @@ data = {
     'jazoest': '22791',
 }
 
-response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', headers=headers, data=data)# cookies=cookies,
+response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', data=data, headers=headers)# cookies=cookies,
 wanted = ["ds_user_id", "sessionid"]
 all_cookies = session.cookies.get_dict()
 extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
