@@ -13,6 +13,8 @@ import base64
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime 
+enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{'sumon@12M'}"
+user = 'sumonh44'
 session = requests.Session()
 cookies = {
     'datr': 'wDF1aOt9UdNuCskTeplHs7Yx',
@@ -55,18 +57,18 @@ headers = {
 }
 
 data = {
-    'enc_password': '#PWD_INSTAGRAM_BROWSER:10:1768125115:AcRQANeojOI8rhD06dQ/qYXZbjzGtc7vsiCWCYWtz3caJ4EER7t93B7WxfLaxIfAzPKFA9pu08wSOo6G+5RjADPYQaid/mJ45YntpDewb6uEhivx0im4msgduZvYNqpBUUaTfXlWYmRjpnyXqg==',
+    'enc_password': enc_password,
     'caaF2DebugGroup': '0',
     'isPrivacyPortalReq': 'false',
     'loginAttemptSubmissionCount': '0',
     'optIntoOneTap': 'false',
     'queryParams': '{}',
     'trustedDeviceRecords': '{}',
-    'username': 'sumonh44',
+    'username': user,
     'jazoest': '22791',
 }
 
-response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', data=data, headers=headers)# cookies=cookies,
+response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)# cookies=cookies,
 wanted = ["ds_user_id", "sessionid"]
 all_cookies = session.cookies.get_dict()
 extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
