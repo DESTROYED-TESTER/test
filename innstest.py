@@ -26,18 +26,6 @@ cookies = {
 'mid': 'aUfoSwALAAG_fJ1ItrV9b-sb7DCg',
 'ig_nrcb': '1',
 'wd': '1136x773',}
-cookies = {
-    'datr': 'wDF1aOt9UdNuCskTeplHs7Yx',
-    'ig_did': '534026BE-B655-4318-AB86-5CFD617D4D50',
-    'mid': 'aHUxwQALAAEhOjO5lKEpzt85Xu9g',
-    'ig_nrcb': '1',
-    'ps_l': '1',
-    'ps_n': '1',
-    'csrftoken': '0flYJ11PP9lomxiSgLG0yUvWZzX0gT8w',
-    'ig_lang': 'en',
-    'wd': '1189x773',
-}
-
 headers = {
     'accept': '*/*',
     'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
