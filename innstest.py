@@ -75,3 +75,4 @@ if 'sessionid' in extracted:
    cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items())
    print("Cookies:", cookie_str)
    print(response)
+   return True
