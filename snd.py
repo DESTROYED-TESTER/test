@@ -1,5 +1,7 @@
 import requests
 
+import requests
+
 cookies = {
     'datr': 'Eitnac9Jr55lMaaETcsXwk3D',
     'sb': 'EitnaZzbPfbccAsuj6eJIYfE',
@@ -7,15 +9,15 @@ cookies = {
     'ps_n': '1',
     'wd': '885x773',
     'fr': '0DBxBjQV9WtPFwBoS..BpZysS..AAA.0.0.BpZztO.AWfGeKdmKj0jFW8rYpsnEF6YsKo',
-    'sfiu': 'AYjtlEpxV13KHybxxIHV2xymDUz8VjcHTzerZyy8o9EpkdB4tZTfU4sZCJIIBu24eXWWK-C_dnKl9Vs4XX6wX2MdrXmNTgtSmHI0j2ucqFh7IOoON56UbmuZNhaEt_yAFKVZ3AeWkW7lvM5mjcyn7paO6JtEu9ZTiw5ovC_pq4MXslQ7aHapv_LFks4CDsYzngpDKx85qI8TNv3J9ouLayDC29nO6qvCP-XnzuJna3ydctqf_8RN-oCFcqDtECOlFl0',
 }
 
 headers = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept': '*/*',
     'accept-language': 'en-US,en;q=0.9',
-    'dpr': '1',
-    'priority': 'u=0, i',
-    'referer': 'https://www.facebook.com/sms/captcha/?next=%2Fajax%2Frecover%2Finitiate%2F%3Fcuid%3DAYgrIEX4eUXmcUyjJUxDVDTyon10YiK2AV4epSovB4KfRN35yeKBzRddy2kvpq-oU3B5vuVOmxI0T1giwlwRXFIslUpnSnFdAEgW9QArU6eDUe7_kgKVwVmokoCdlQVL7Y9nmA7puT5QajQU3R_5Kf7sra4SnAXiDEdopKoGkaZ5Ep8-NHKQhp6motq0lwhL8vasP18QPEW1GuX84Ad6mJy4x7ztN3BN0fDLXUpE1c7fLjDK99n3G67yTXFaEGOc0A0%26recover_method%3Dsend_sms%253AAYjxAoHgCqYWFa9QD2LhBLKKUyFmQkCBjs_fhfaELWx9d2_PEBfPDHJ96KmAFmUnEparlORdV47ApkrA3NwKRrsTJ2XaQhAwrMV_V3JjniLTf2SQz2rohTp9vkeNF6OrwCQ%26lara%3D1&next_mac=AdAH2jlH7GMdvWn8Vvtg3AP5BQR1_hEw2aiQNJKpfze65Osv',
+    'content-type': 'application/x-www-form-urlencoded',
+    'origin': 'https://www.facebook.com',
+    'priority': 'u=1, i',
+    'referer': 'https://www.facebook.com/login/identify/?ctx=recover&from_login_screen=0',
     'sec-ch-prefers-color-scheme': 'dark',
     'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
     'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
@@ -23,23 +25,50 @@ headers = {
     'sec-ch-ua-model': '""',
     'sec-ch-ua-platform': '"Windows"',
     'sec-ch-ua-platform-version': '"10.0.0"',
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
     'sec-fetch-site': 'same-origin',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
-    'viewport-width': '885',
-    # 'cookie': 'datr=Eitnac9Jr55lMaaETcsXwk3D; sb=EitnaZzbPfbccAsuj6eJIYfE; ps_l=1; ps_n=1; wd=885x773; fr=0DBxBjQV9WtPFwBoS..BpZysS..AAA.0.0.BpZztO.AWfGeKdmKj0jFW8rYpsnEF6YsKo; sfiu=AYjtlEpxV13KHybxxIHV2xymDUz8VjcHTzerZyy8o9EpkdB4tZTfU4sZCJIIBu24eXWWK-C_dnKl9Vs4XX6wX2MdrXmNTgtSmHI0j2ucqFh7IOoON56UbmuZNhaEt_yAFKVZ3AeWkW7lvM5mjcyn7paO6JtEu9ZTiw5ovC_pq4MXslQ7aHapv_LFks4CDsYzngpDKx85qI8TNv3J9ouLayDC29nO6qvCP-XnzuJna3ydctqf_8RN-oCFcqDtECOlFl0',
+    'x-asbd-id': '359341',
+    'x-fb-lsd': 'AdEWFxxwPB8',
+    # 'cookie': 'datr=Eitnac9Jr55lMaaETcsXwk3D; sb=EitnaZzbPfbccAsuj6eJIYfE; ps_l=1; ps_n=1; wd=885x773; fr=0DBxBjQV9WtPFwBoS..BpZysS..AAA.0.0.BpZztO.AWfGeKdmKj0jFW8rYpsnEF6YsKo',
 }
+
+params = {
+    'ctx': 'recover',
+}
+
+data = {
+    'jazoest': '2952',
+    'lsd': 'AdEWFxxwPB8',
+    'email': '8101729293',
+    'did_submit': '1',
+    '__user': '0',
+    '__a': '1',
+    '__req': '5',
+    '__hs': '20467.BP:DEFAULT.2.0...0',
+    'dpr': '1',
+    '__ccg': 'GOOD',
+    '__rev': '1031974328',
+    '__s': 'kfnkhv:t1mczh:hk6em3',
+    '__hsi': '7595108429310200628',
+    '__dyn': '7xeUmwkHg7ebwKBAg5S1Dxu13wqovzEdEc8uxa0CEbo1nEhw2nVE4W0qa0FE2awt81s8hwGwQw4iwBgao6C0Mo2swaO4U2zxe3C0D85a1qw8Xxm16wa-0raazo7u0zE2ZwrU6C0hq1Iw5lwnqwIwtU5K0UE62',
+    '__hsdp': 'gIMggq8yqAy8F8O948QDQoKUyUYx4cyEcm7Uqg29wIym0TE2pwrQl0bfwfu',
+    '__hblp': '0Uwau1kw6Pw4Uw6_wde0anwsE0uPw6Fw1N-04OAHCw0oxo2Mw1jO8VUeU0KF01s-046o1xE',
+    '__spin_r': '1031974328',
+    '__spin_b': 'trunk',
+    '__spin_t': '1768373984',
+}
+
 
 try:
     response = requests.get(
-        'https://www.facebook.com/recover/code/?ph[0]=%2B918101729293&rm=send_sms&cuid=AYjy3FgUfZg_brTpBv2rkM4Gw-07sopq8hJ7ZJfs1ZqcAQRH89AM5iVhfGlU-5M9bq31uPfUSU8AbbtyGKWwoWoMu1oQVN1olBaxQg6XuVbmWgmnhjmSC375nTZGiGQz5WgDX7HBPHm5VXDPRYV5JedjIdOyx0r5TISTLhQccNUf5SAT1CLxlOgQQXYkzvdVTyiSLJUVj9swp2xnqrVwiVAygckE2DtelZsePCdyk7eXEMHaUeCgYSVU3MUkxxwNupU&lara=1&hash=AUZIuV5qGvneQaExBMg',
-        cookies=cookies,
-        headers=headers,
-        timeout=10
-    )
+    'https://www.facebook.com/ajax/login/help/identify.php',
+    params=params,
+    cookies=cookies,
+    headers=headers,
+    data=data,
+)
     
     print(f"Status: {response.status_code}")
     
