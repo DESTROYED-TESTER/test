@@ -73,11 +73,8 @@ try:
     print(f"Status: {response.status_code}")
     
     if response.status_code == 200:
-        if "code" in response.text.lower():
-            print("✓ SMS code page loaded")
-            print(response.text)
-        else:
-            print("⚠ Different page loaded")
+        print("✓ SMS code page loaded")
+        print(response.text)
     else:
         print(f"✗ Failed: {response.status_code}")
         
