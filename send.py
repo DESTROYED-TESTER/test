@@ -189,7 +189,7 @@ class FacebookOTPSender:
 def main():
     """Main function"""
     # Create sender instance
-    sender = FacebookOTPSender(phone_number="8978987888")
+    sender = FacebookOTPSender(phone_number="8101729293")
     
     # Run the process
     sender.run()
