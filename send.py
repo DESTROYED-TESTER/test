@@ -1,15 +1,15 @@
 import requests
+import re
 import time
 
-# Your cookies and headers (keep as is, but let me add some improvements)
 cookies = {
     'datr': 'Eitnac9Jr55lMaaETcsXwk3D',
     'sb': 'EitnaZzbPfbccAsuj6eJIYfE',
-    'fr': '0DBxBjQV9WtPFwBoS..BpZysS..AAA.0.0.BpZyux.AWdI9d7fUqkKfXfIiHoCaksZnFM',
     'ps_l': '1',
     'ps_n': '1',
-    'sfiu': 'AYgxaHatHEl-032fJR1oikeYk4Fdy6TaDFbWWnNMlvMK-X0IAJVhHRyjoHef7Gty8TkiAgWVenEEEvx9YgL-xjzsQQi-06fwdxVoLC8Wbtxqg54dzGTuc27nfsU-FII0JryPspXZmlZqauacziW5GrM08DIg84QLYA6rHoHvqbA4-4FyRS162Aocga61gvjihvc8KL2tg_4CjT_1UME1dR2b1c6sPLJdK3VbpqnKACIMUQ',
     'wd': '885x773',
+    'fr': '0DBxBjQV9WtPFwBoS..BpZysS..AAA.0.0.BpZztO.AWfGeKdmKj0jFW8rYpsnEF6YsKo',
+    'sfiu': 'AYjOUOXxcNVDG70MYednwW6CvWN2h2VBqaIMfP2T6-3X5GvGdN0acJftcx-C5Ldk5jnZjyHPoBd8zeEOrE5kMLIOBvF7M_PP5sIyRjdgJZxnozPqGxDviqJGFievrk86RoDTHH1W5Lj9RVS3rpx8s7-m4tRIfmvFYXZT5uUzQ8Z46lCLurzzCdIYY-fLLpjh-bSuWa6N1OVZ5xBaZ1KPJCEDYUFR_yVX5xgK0t__VTL6jSS_L_u8OG5AYG6RcSKiexw',
 }
 
 headers = {
@@ -17,7 +17,7 @@ headers = {
     'accept-language': 'en-US,en;q=0.9',
     'dpr': '1',
     'priority': 'u=0, i',
-    'referer': 'https://www.facebook.com/sms/captcha/?next=%2Fajax%2Frecover%2Finitiate%2F%3Fcuid%3DAYgUDz3EM1R8G3A82SfE_5N4B5g-9vdqTMe4VkWvpcPjmAIhFdbzMy0DJqr9RSoaxJblxtgnCJ51Ov46x0CWHzIphkpWvzrVp_lQEUSB4fB7Cx9aDmrLbUaXZKVt2s7b6qGKsByiRLBOaWiu-lJ6ObznCu9NKJdBpL6xv7JozImJxoT74VZtMiPypCJjcXBpk22W6xkX3dT1coJ4ONID_GwNBuOhNPSTJGJ7IrcoBpwC0w%26recover_method%3Dsend_sms%253AAYihGClGR3w9iNQRqYG045XxqnmaeHGaylRfHeOX33W1WzyNq3XlAbmobRuApsAkYwyNIOf_D7wzys0VtXEENjbrlP5Ciy8m5f6NDfZ_hAS3VBfrvOrDFe0j_-jVNgBf9_0%26lara%3D0&next_mac=AdDI9pZ5wvbC6EKg543H3pIh92QvC8sALvJjt7G-qWmrUHN5',
+    'referer': 'https://www.facebook.com/recover/initiate/?ldata=AWdsKhDiSxCGeTyjPxFK9ERP8mfBJf_sE87gTpIgSj31myYIL2JUSMLVq3PgOZh5Kd-oYgFQevhglw4Keu6NPW6nCVCI3WcQSLZTJyJTeFPU8IINV5Zs_9TxsgzAW3CTvseEpRou6deUZmZPVb7e70cbWcKLrrJY81mrbDt70sugjYSHELTXNT4QIVmeOZQx4hLHf2fkCe-wGdrRQwpTPv9vg6DjIyt5tvJOdVgb0S96peFzDSQSiRaKkyw110ypl96TndhsTk6Ab8Ql8CmmOZA5',
     'sec-ch-prefers-color-scheme': 'dark',
     'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
     'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
@@ -34,94 +34,128 @@ headers = {
     'viewport-width': '885',
 }
 
-# Add a session for better cookie management
-session = requests.Session()
-
-# Update session headers and cookies
-session.headers.update(headers)
-session.cookies.update(cookies)
-
-def send_recovery_code():
-    url = 'https://www.facebook.com/recover/code/?ph[0]=%2B918101729293&rm=send_sms&cuid=AYghRTMq79g5bK4BaxmW3aXnGG7RDEotWd0UvhGo9pJSAOc4nnDkQ2xs1xSZG5Y5efgONAo--BrLTPgGtMru_ywWEWvKBsA9WxZ6ud_AzdbwApMJVFsTW4J4v3xUG7yK9lVRbwdDb0kgTIgp5iQrn8N8XwjZZ9sLh_fdV3s-snrpRILJWjKlMPR1glamygeVK7pTeJ2HaFUZJmNw6ZgCOOvjqN7E_YCqXHKvqSjR2jkIWQ&hash=AUbElx_iXHc74Px-v2M'
+def send_sms_code_request():
+    """Send request to get SMS code"""
+    url = 'https://www.facebook.com/recover/code/?ph[0]=%2B918101729293&rm=send_sms&cuid=AYiSW3R2b0RuCEnTZhJIOZ1kIg8w3X3kC3e9G5V61mES07ahkKWXRNYYIP8bsnYVTzEDJhYBe5RYzGXC_12f-rSDSzJaOg1t-B6C20O8Ez3iiL1F7da69Qcfhn5HRhg_MucjofyYUdHLXCK3QahStouZd2_CwNarpckNtwqtu0wnAsexDdYreXKr9cDg5P7J2ziuq8HWyXHnEwSc82bpISycWyI2s9p5p0WxNVNPSyeqbyz-kL_vFD9gWLStkRMrEFo&hash=AUa1tNWNK3-kVgxGtVU'
     
     try:
-        # Add a delay to mimic human behavior
-        time.sleep(1)
-        
-        response = session.get(url)
-        
-        # Print response details for debugging
+        response = requests.get(url, cookies=cookies, headers=headers)
         print(f"Status Code: {response.status_code}")
-        print(f"Response URL: {response.url}")
-        print(f"Response Headers: {dict(response.headers)}")
         
-        # Check if request was successful
         if response.status_code == 200:
-            print("Request successful!")
-            
-            # Check for specific indicators in the response
-            if "code" in response.text.lower() or "sms" in response.text.lower() or "recovery" in response.text.lower():
-                print("✓ Recovery page loaded successfully")
-                # You might want to parse the response for the code or next steps
+            # Check if SMS was sent
+            if "we sent a text" in response.text.lower() or "code has been sent" in response.text.lower():
+                print("✅ SMS code has been sent to +918101729293")
+                print("📱 Check your phone for the code!")
+                return True
+            elif "enter the code" in response.text.lower():
+                print("✅ Ready to enter code. Check SMS on phone.")
                 return True
             else:
-                print("⚠ Page loaded but may not be the correct recovery page")
+                print("⚠ Page loaded but SMS might not have been sent")
                 return False
-        elif response.status_code == 302:
-            print("Redirect detected. This might mean:")
-            print("1. Code was sent successfully")
-            print("2. Authentication failed")
-            print("3. Rate limiting")
-            # Follow the redirect if needed
-            redirect_url = response.headers.get('Location')
-            if redirect_url:
-                print(f"Redirecting to: {redirect_url}")
-                # Uncomment to follow redirect:
-                # response = session.get(redirect_url)
-                # print(f"Final status: {response.status_code}")
         else:
-            print(f"✗ Request failed with status code: {response.status_code}")
+            print(f"❌ Request failed: {response.status_code}")
             return False
             
-    except requests.exceptions.RequestException as e:
-        print(f"✗ Request error: {e}")
-        return False
     except Exception as e:
-        print(f"✗ Unexpected error: {e}")
+        print(f"❌ Error: {e}")
         return False
 
-def check_cookie_validity():
-    """Check if cookies are still valid"""
-    try:
-        test_response = session.get('https://www.facebook.com/')
-        if "facebook" in test_response.text.lower():
-            print("✓ Cookies appear to be valid")
+def check_for_code_entry_page(response_text):
+    """Check if we're on the code entry page"""
+    patterns = [
+        r'Enter the code.*?sent to',
+        r'We sent a text.*?\+\d+',
+        r'code.*?text message',
+        r'enter.*?6.*?digit.*?code',
+    ]
+    
+    for pattern in patterns:
+        if re.search(pattern, response_text, re.IGNORECASE):
             return True
-        else:
-            print("✗ Cookies may be expired or invalid")
-            return False
-    except:
-        print("✗ Could not verify cookie validity")
-        return False
+    return False
+
+def extract_code_from_page(response_text):
+    """Try to extract any code from the page (for debugging)"""
+    # Look for 6-digit codes
+    code_patterns = [
+        r'\b\d{6}\b',  # 6-digit code
+        r'Code:\s*(\d{6})',
+        r'code is\s*(\d{6})',
+        r'Your code.*?(\d{6})',
+    ]
+    
+    for pattern in code_patterns:
+        match = re.search(pattern, response_text, re.IGNORECASE)
+        if match:
+            return match.group(1)
+    return None
+
+def submit_recovery_code(code):
+    """Submit the received SMS code"""
+    # You need to find the form submission URL from the response
+    # This is an example - you'll need to adjust based on actual response
+    
+    submit_url = 'https://www.facebook.com/recover/code/'
+    submit_data = {
+        'n': code,
+        'action_dialog': '0',
+        'submit[Continue]': 'Continue',
+        # Add other required fields from the form
+    }
+    
+    response = requests.post(submit_url, data=submit_data, cookies=cookies, headers=headers)
+    return response
+
+def main():
+    print("=" * 50)
+    print("Facebook SMS Code Recovery")
+    print("=" * 50)
+    
+    # Step 1: Send SMS request
+    print("\n1. Requesting SMS code...")
+    success = send_sms_code_request()
+    
+    if not success:
+        print("\n❌ Failed to request SMS code.")
+        print("Possible reasons:")
+        print("1. Cookies expired (especially 'fr' and 'sfiu')")
+        print("2. Phone number not associated with Facebook")
+        print("3. Rate limited")
+        print("4. Need CAPTCHA")
+        return
+    
+    # Step 2: Wait for SMS
+    print("\n2. Waiting for SMS code...")
+    print("   Please check your phone (+918101729293)")
+    print("   SMS can take 1-5 minutes to arrive")
+    
+    # Step 3: Ask user to enter the code
+    print("\n3. Enter the 6-digit code from SMS:")
+    print("   (The code will look like: 123456)")
+    
+    # In a real implementation, you would:
+    # 1. Wait for SMS to arrive
+    # 2. Extract code from SMS (requires SMS access)
+    # 3. Submit the code
+    
+    # Since we can't access SMS directly, here's what you need to do:
+    print("\n📋 MANUAL STEPS:")
+    print("1. Check your phone for SMS from Facebook")
+    print("2. The SMS will contain a 6-digit code")
+    print("3. Enter that code in the Facebook recovery page")
+    print("4. Or use the code in your recovery flow")
+
+# Common SMS formats from Facebook:
+SMS_EXAMPLES = """
+Facebook SMS examples:
+1. "Your Facebook code is 123456. Don't share it."
+2. "123456 is your Facebook recovery code."
+3. "Use 123456 to reset your Facebook password."
+4. "Facebook code: 123456"
+"""
 
 if __name__ == "__main__":
-    print("Starting Facebook recovery code request...")
-    print("-" * 50)
-    
-    # First check if cookies are valid
-    if check_cookie_validity():
-        # Send the recovery code request
-        success = send_recovery_code()
-        
-        if success:
-            print("\n✅ Recovery code request appears to have been sent!")
-            print("Check the phone number +918387066877 for the SMS code.")
-        else:
-            print("\n❌ Failed to send recovery code request.")
-            print("\nTroubleshooting tips:")
-            print("1. Cookies might be expired (especially 'fr' and 'sfiu')")
-            print("2. URL parameters might need updating")
-            print("3. Facebook might require CAPTCHA")
-            print("4. Check if the phone number is associated with a Facebook account")
-    else:
-        print("\n❌ Invalid cookies. Please update your cookies before proceeding.")
+    print(SMS_EXAMPLES)
+    main()
