@@ -71,7 +71,7 @@ try:
 )
     
     print(f"Status: {response.status_code}")
-    print(response)
+    print(response.text)
     if response.status_code == 200:
         print("✓ SMS code page loaded")
         print(response.text)
