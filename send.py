@@ -42,7 +42,7 @@ session.headers.update(headers)
 session.cookies.update(cookies)
 
 def send_recovery_code():
-    url = 'https://www.facebook.com/recover/code/?ph[0]=%2B918387066877&rm=send_sms&cuid=AYghRTMq79g5bK4BaxmW3aXnGG7RDEotWd0UvhGo9pJSAOc4nnDkQ2xs1xSZG5Y5efgONAo--BrLTPgGtMru_ywWEWvKBsA9WxZ6ud_AzdbwApMJVFsTW4J4v3xUG7yK9lVRbwdDb0kgTIgp5iQrn8N8XwjZZ9sLh_fdV3s-snrpRILJWjKlMPR1glamygeVK7pTeJ2HaFUZJmNw6ZgCOOvjqN7E_YCqXHKvqSjR2jkIWQ&hash=AUbElx_iXHc74Px-v2M'
+    url = 'https://www.facebook.com/recover/code/?ph[0]=%2B918389066877&rm=send_sms&cuid=AYghRTMq79g5bK4BaxmW3aXnGG7RDEotWd0UvhGo9pJSAOc4nnDkQ2xs1xSZG5Y5efgONAo--BrLTPgGtMru_ywWEWvKBsA9WxZ6ud_AzdbwApMJVFsTW4J4v3xUG7yK9lVRbwdDb0kgTIgp5iQrn8N8XwjZZ9sLh_fdV3s-snrpRILJWjKlMPR1glamygeVK7pTeJ2HaFUZJmNw6ZgCOOvjqN7E_YCqXHKvqSjR2jkIWQ&hash=AUbElx_iXHc74Px-v2M'
     
     try:
         # Add a delay to mimic human behavior
