@@ -46,7 +46,7 @@ try:
     if response.status_code == 200:
         if "code" in response.text.lower():
             print("✓ SMS code page loaded")
-            print("Check your phone for the code!")
+            print(response.text)
         else:
             print("⚠ Different page loaded")
     else:
