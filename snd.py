@@ -42,7 +42,8 @@ if response.status_code == 200:
    print("Request successful!")
    if "code" in response.text.lower() or "sms" in response.text.lower() or "recovery" in response.text.lower():
       print("✓ Recovery page loaded successfully")
-      # You might want to parse the response for the code or next steps
       return True
-
+   else:
+      print("⚠ Page loaded but may not be the correct recovery page")
+      return False
 
