@@ -1,293 +1,380 @@
-import hashlib
-import uuid
-import time
-import urllib.parse
-import random
 import requests
+import time
+import random
 import re
-import json
-import base64
+import os
+import sys
+from concurrent.futures import ThreadPoolExecutor
+from colorama import Fore, Style, init
 
-class InstagramLogin:
-    def __init__(self):
-        self.session = requests.Session()
-        self.ig_set_autorization = None
-        self.decode_ig_set_authorization = None
-        
-    def login(self, username, password):
-        """Login to Instagram account"""
-        
-        # Generate device ID and other required IDs
-        device_id = f"android-{uuid.uuid4().hex[:16]}"
-        family_device_id = str(uuid.uuid4())
-        
-        # First hash for username+password
-        first_hash = hashlib.md5()
-        first_hash.update(username.encode('utf-8') + password.encode('utf-8'))
-        first_hex = first_hash.hexdigest()
-        
-        # Second hash with salt for device ID
-        second_hash = hashlib.md5()
-        second_hash.update(first_hex.encode('utf-8') + '12345'.encode('utf-8'))
-        android_id_hash = second_hash.hexdigest()[:16]
-        
-        # Generate user agent
-        useragent = "Instagram 309.0.0.28.114 Android (29/10; 380dpi; 1080x2080; OnePlus; GM1903; OnePlus7; qcom; en_US; 439209455)"
-        
-        # Headers
-        headers = {
-            'host': 'i.instagram.com',
-            'x-ig-app-locale': 'in_ID',
-            'x-ig-device-locale': 'in_ID',
-            'x-ig-mapped-locale': 'id_ID',
-            'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-3',
-            'x-pigeon-rawclienttime': f'{time.time():.3f}',
-            'x-bloks-version-id': 'c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49',
-            'x-ig-www-claim': '0',
-            'x-bloks-is-prism-enabled': 'false',
-            'x-bloks-is-layout-rtl': 'false',
-            'x-ig-device-id': device_id,
-            'x-ig-family-device-id': family_device_id,
-            'x-ig-android-id': f'android-{android_id_hash}',
-            'x-fb-connection-type': 'MOBILE.LTE',
-            'x-ig-connection-type': 'MOBILE(LTE)',
-            'x-ig-capabilities': '3brTv10=',
-            'priority': 'u=3',
-            'user-agent': useragent,
-            'accept-language': 'id-ID, en-US',
-            'x-mid': '',
-            'ig-intended-user-id': '0',
-            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'x-fb-http-engine': 'Liger',
-            'x-fb-client-ip': 'True',
-            'x-fb-server-cluster': 'True',
-            'x-ig-bandwidth-speed-kbps': str(random.randint(100, 300)),
-            'x-ig-bandwidth-totalbytes-b': str(random.randint(500000, 900000)),
-            'x-ig-bandwidth-totaltime-ms': str(random.randint(1000, 9000)),
-            'x-ig-app-id': '3419628305025917',
-            'connection': 'keep-alive'
+init(autoreset=True)
+
+# রিপোর্ট গণনার জন্য ভেরিয়েবল
+stats = {
+    "total": 0,
+    "success": 0,
+    "no_id": 0,
+    "no_sms": 0,
+    "error": 0
+}
+
+def banner():
+    os.system('clear' if os.name == 'posix' else 'cls')
+    # রঙিন স্টাইলিশ ASCII ব্যানার
+    print(f"{Fore.RED}{Style.BRIGHT}" + r"""
+  ______ ____    ______ ____  _____   ______   ________ 
+ |  ____|  _ \  |  ____/ __ \|  __ \ / ____ \ |__    __|
+ | |__  | |_) | | |__ | |  | | |__) | |    | |   |  |   
+ |  __| |  _ <  |  __|| |  | |  _  /| |    | |   |  |   
+ | |    | |_) | | |   | |__| | | \ \| |____| |   |  |   
+ |_|    |____/  |_|    \____/|_|  \_\\______/    |_|   
+                                                        """)
+    print(f"{Fore.MAGENTA}{Style.BRIGHT}         >>>> FB FORGOT TOOLS v2.0 <<<<")
+    print(f"{Fore.CYAN}{'='*60}")
+    print(f"{Fore.YELLOW}{Style.BRIGHT}   Developer : Mir Rifat | WhatsApp : 01826420296")
+    print(f"{Fore.GREEN}{Style.BRIGHT}   Version: 2.0 | Android/Termux Optimized")
+    print(f"{Fore.CYAN}{'='*60}")
+    
+    # লাইভ রিপোর্ট বক্স
+    print(f"{Fore.WHITE}{Style.BRIGHT} [ LIVE REPORT ]")
+    print(f" {Fore.BLUE}Total: {stats['total']} | {Fore.GREEN}Sent: {stats['success']} | {Fore.RED}No ID: {stats['no_id']}")
+    print(f" {Fore.YELLOW}No SMS: {stats['no_sms']} | {Fore.MAGENTA}Error: {stats['error']}")
+    print(f"{Fore.CYAN}{'='*60}\n")
+
+def get_file_paths():
+    """Get file paths from user or use default"""
+    print(f"{Fore.YELLOW}📁 FILE LOCATION OPTIONS:")
+    print(f"{Fore.CYAN}1. Current Directory")
+    print(f"{Fore.CYAN}2. /sdcard/ Directory")
+    print(f"{Fore.CYAN}3. Custom Path")
+    choice = input(f"{Fore.WHITE}Select option (1/2/3): ").strip()
+    
+    if choice == '1':
+        return {
+            'numbers': 'numbers.txt',
+            'proxies': 'proxies.txt',
+            'success': 'success_sent.txt'
         }
-        
-        # Generate timestamp for password
-        timestamp = int(time.time())
-        
-        # URL encode username and password
-        encoded_username = urllib.parse.quote(username)
-        encoded_password = urllib.parse.quote(password)
-        
-        # Generate encrypted password format
-        encrypted_password = f'#PWD_INSTAGRAM:0:{timestamp}:{encoded_password}'
-        
-        # Prepare the encoded data
-        params_dict = {
-            "client_input_params": {
-                "device_id": f"android-{android_id_hash}",
-                "login_attempt_count": 1,
-                "secure_family_device_id": "",
-                "machine_id": "",
-                "accounts_list": [],
-                "auth_secure_device_id": "",
-                "password": encrypted_password,
-                "family_device_id": family_device_id,
-                "fb_ig_device_id": [],
-                "device_emails": [],
-                "try_num": 3,
-                "event_flow": "login_manual",
-                "event_step": "home_page",
-                "openid_tokens": {},
-                "client_known_key_hash": "",
-                "contact_point": encoded_username,
-                "encrypted_msisdn": ""
-            },
-            "server_params": {
-                "username_text_input_id": "p5hbnc:46",
-                "device_id": f"android-{android_id_hash}",
-                "should_trigger_override_login_success_action": 0,
-                "server_login_source": "login",
-                "waterfall_id": str(uuid.uuid4()),
-                "login_source": "Login",
-                "INTERNAL__latency_qpl_instance_id": 152086072800150,
-                "reg_flow_source": "login_home_native_integration_point",
-                "is_platform_login": 0,
-                "is_caa_perf_enabled": 0,
-                "credential_type": "password",
-                "family_device_id": family_device_id,
-                "INTERNAL__latency_qpl_marker_id": 36707139,
-                "offline_experiment_group": "caa_iteration_v3_perf_ig_4",
-                "INTERNAL_INFRA_THEME": "harm_f",
-                "password_text_input_id": "p5hbnc:47",
-                "ar_event_source": "login_home_page"
-            }
+    elif choice == '2':
+        return {
+            'numbers': '/sdcard/numbers.txt',
+            'proxies': '/sdcard/proxies.txt',
+            'success': '/sdcard/success_sent.txt'
         }
-        
-        # Convert params to JSON string and URL encode
-        import json
-        params_json = json.dumps(params_dict)
-        encoded_params = urllib.parse.quote(params_json)
-        
-        # Prepare the complete encoded string
-        encode = f'params={encoded_params}&bk_client_context=%7B%22bloks_version%22%3A%225f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73%22%2C%22styles_id%22%3A%22instagram%22%7D&bloks_versioning_id=c55a52bd095e76d9a88e2142eaaaf567c093da6c0c7802e7a2f101603d8a7d49'
-        
-        # Update content-length in headers
-        headers['content-length'] = str(len(encode))
-        
-        # Send login request
-        url = 'https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/'
-        
+    elif choice == '3':
+        base_path = input(f"{Fore.WHITE}Enter custom directory path: ").strip()
+        if not base_path.endswith('/'):
+            base_path += '/'
+        return {
+            'numbers': base_path + 'numbers.txt',
+            'proxies': base_path + 'proxies.txt',
+            'success': base_path + 'success_sent.txt'
+        }
+    else:
+        print(f"{Fore.RED}Invalid choice. Using /sdcard/")
+        return {
+            'numbers': '/sdcard/numbers.txt',
+            'proxies': '/sdcard/proxies.txt',
+            'success': '/sdcard/success_sent.txt'
+        }
+
+def load_data(filename, file_type="file"):
+    """Load data from file with multiple fallback locations"""
+    
+    # Define possible file locations
+    possible_locations = []
+    
+    if file_type == "numbers":
+        possible_locations = [
+            filename,  # User specified path
+            '/sdcard/numbers.txt',
+            '/sdcard/phone_numbers.txt',
+            '/sdcard/number.txt',
+            '/storage/emulated/0/numbers.txt',
+            'numbers.txt',
+            'phone_numbers.txt',
+            'number.txt'
+        ]
+    elif file_type == "proxies":
+        possible_locations = [
+            filename,  # User specified path
+            '/sdcard/proxies.txt',
+            '/sdcard/proxy.txt',
+            '/storage/emulated/0/proxies.txt',
+            'proxies.txt',
+            'proxy.txt'
+        ]
+    else:
+        possible_locations = [filename]
+    
+    # Try each location
+    for file_path in possible_locations:
         try:
-            response = self.session.post(
-                url, 
-                data=encode, 
-                headers=headers, 
+            if os.path.exists(file_path):
+                with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                    data = [line.strip() for line in f if line.strip()]
+                    if data:
+                        print(f"{Fore.GREEN}✓ Loaded {len(data)} items from: {file_path}")
+                        return data, file_path
+        except Exception as e:
+            continue
+    
+    # If no file found, return empty list
+    print(f"{Fore.YELLOW}⚠ No {file_type} file found in any location")
+    return [], ""
+
+def get_proxy(proxy_file):
+    """Get random proxy from file"""
+    proxies_data, _ = load_data(proxy_file, "proxies")
+    if proxies_data:
+        p = random.choice(proxies_data)
+        return {"http": f"http://{p}", "https": f"http://{p}"}
+    return None
+
+def process_number(any_number, selected_ua, proxy_file, success_file):
+    session = requests.Session()
+    proxy = get_proxy(proxy_file)
+    headers = {
+        'User-Agent': selected_ua,
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Origin': 'https://www.facebook.com',
+        'DNT': '1',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'same-origin',
+        'Sec-Fetch-User': '?1',
+        'Cache-Control': 'max-age=0'
+    }
+    
+    try:
+        # Step 1: Search for account
+        payload = {'email': any_number, 'did_submit': 'Search'}
+        
+        # First try with proxy, then without
+        try:
+            response = session.post(
+                "https://www.facebook.com/recover/initiate/",
+                data=payload,
+                headers=headers,
+                proxies=proxy,
+                timeout=15,
                 allow_redirects=True
             )
+        except:
+            # If proxy fails, try without proxy
+            response = session.post(
+                "https://www.facebook.com/recover/initiate/",
+                data=payload,
+                headers=headers,
+                timeout=15,
+                allow_redirects=True
+            )
+        
+        # Update banner with live stats
+        stats['total'] = max(stats['total'], 1)
+        os.system('clear' if os.name == 'posix' else 'cls')
+        banner()
+        
+        # Check response
+        response_text = response.text.lower()
+        
+        if "identify_search_error_title" in response_text or "no search results" in response_text:
+            stats['no_id'] += 1
+            print(f"{Fore.RED}[-] {any_number} : No Account Found")
+        else:
+            # Look for SMS options
+            methods = []
             
-            # Check if login was successful
-            if 'logged_in_user' in response.text:
-                print("✓ Login successful!")
+            # Pattern 1: Standard SMS method
+            methods.extend(re.findall(r'value="([^"]*sms[^"]*)"', response.text, re.IGNORECASE))
+            
+            # Pattern 2: send_sms method
+            if not methods:
+                methods.extend(re.findall(r'value="(send_sms[^"]*)"', response.text, re.IGNORECASE))
+            
+            # Pattern 3: Check for recovery options in form
+            if not methods:
+                for line in response.text.split('\n'):
+                    if 'sms' in line.lower() and 'value=' in line:
+                        match = re.search(r'value="([^"]+)"', line)
+                        if match:
+                            methods.append(match.group(1))
+            
+            if methods:
+                # Use first SMS method found
+                confirm_payload = {
+                    'recover_method': methods[0],
+                    'contact_index': '0',
+                    'did_submit': 'Continue'
+                }
                 
-                # Try to extract IG-Set-Authorization header
                 try:
-                    # Clean up the response text by removing escaped backslashes
-                    clean_response = str(response.text).replace('\\', '')
-                    
-                    # Extract IG-Set-Authorization header
-                    ig_set_auth_match = re.search(r'"IG-Set-Authorization": "(.*?)"', clean_response)
-                    if ig_set_auth_match:
-                        self.ig_set_autorization = ig_set_auth_match.group(1)
-                        
-                        # Decode the base64 part after "Bearer IGT:2:"
-                        if "Bearer IGT:2:" in self.ig_set_autorization:
-                            base64_part = self.ig_set_autorization.split('Bearer IGT:2:')[1]
-                            
-                            # Add padding if necessary for base64 decoding
-                            padding = 4 - len(base64_part) % 4
-                            if padding != 4:
-                                base64_part += "=" * padding
-                            
-                            # Decode base64
-                            decoded_bytes = base64.urlsafe_b64decode(base64_part)
-                            self.decode_ig_set_authorization = json.loads(decoded_bytes.decode('utf-8'))
-                            
-                            print("\n✓ Successfully decoded IG-Set-Authorization")
-                            
-                            # Create cookie string from decoded data
-                            cookies = ';'.join([f'{name}={value}' for name, value in self.decode_ig_set_authorization.items()])
-                            
-                            print("\n=== Decoded Cookies ===")
-                            for name, value in self.decode_ig_set_authorization.items():
-                                print(f"{name}: {value}")
-                            
-                            print(f"\n=== Cookie String ===")
-                            print(cookies)
-                            
-                            # Also get regular session cookies
-                            session_cookies = self.session.cookies.get_dict()
-                            print(f"\n=== Session Cookies ===")
-                            for name, value in session_cookies.items():
-                                print(f"{name}: {value}")
-                            
-                        else:
-                            print("✗ IG-Set-Authorization format not recognized")
-                    else:
-                        print("✗ IG-Set-Authorization header not found in response")
-                        
-                except Exception as e:
-                    print(f"✗ Error extracting IG-Set-Authorization: {str(e)}")
-                    import traceback
-                    traceback.print_exc()
-                
-                return True, response
-            else:
-                print("✗ Login failed")
-                print(f"Response: {response.text[:200]}...")  # Print first 200 chars
-                
-                # Still try to extract IG-Set-Authorization even if login failed
-                try:
-                    clean_response = str(response.text).replace('\\', '')
-                    ig_set_auth_match = re.search(r'"IG-Set-Authorization": "(.*?)"', clean_response)
-                    if ig_set_auth_match:
-                        print(f"\nFound IG-Set-Authorization even though login failed")
-                        print(f"Header: {ig_set_auth_match.group(1)[:50]}...")
+                    send_res = session.post(
+                        "https://www.facebook.com/recover/code/send/",
+                        data=confirm_payload,
+                        headers=headers,
+                        proxies=proxy,
+                        timeout=15
+                    )
                 except:
-                    pass
-                    
-                return False, response
+                    send_res = session.post(
+                        "https://www.facebook.com/recover/code/send/",
+                        data=confirm_payload,
+                        headers=headers,
+                        timeout=15
+                    )
                 
-        except Exception as e:
-            print(f"✗ Error during login: {str(e)}")
-            import traceback
-            traceback.print_exc()
-            return False, None
-    
-    def get_cookies(self):
-        """Get combined cookies from both sources"""
-        cookies = {}
-        
-        # Add session cookies
-        cookies.update(self.session.cookies.get_dict())
-        
-        # Add decoded IG-Set-Authorization cookies
-        if self.decode_ig_set_authorization:
-            cookies.update(self.decode_ig_set_authorization)
-        
-        return cookies
-    
-    def save_result(self, response):
-        """Save login result and handle different scenarios"""
-        result_ok = False
-        result_two = False  # 2FA result
-        result_cp = False   # Checkpoint result
-        
-        if response and 'logged_in_user' in response.text:
-            result_ok = True
-        elif response and 'two_factor_required' in response.text:
-            result_two = True
-        elif response and 'checkpoint_required' in response.text:
-            result_cp = True
-            
-        return result_ok, result_two, result_cp
+                send_text = send_res.text.lower()
+                
+                if "code/send" in send_res.url or "confirm" in send_text or "code sent" in send_text:
+                    stats['success'] += 1
+                    print(f"{Fore.GREEN}[+] {any_number} : OTP Sent Successfully!")
+                    
+                    # Save to success file
+                    try:
+                        with open(success_file, 'a', encoding='utf-8') as f:
+                            f.write(f"{any_number}\n")
+                    except:
+                        # Try alternative location
+                        alt_file = '/sdcard/success_sent.txt' if success_file != '/sdcard/success_sent.txt' else 'success_sent.txt'
+                        with open(alt_file, 'a', encoding='utf-8') as f:
+                            f.write(f"{any_number}\n")
+                            
+                elif "try again later" in send_text or "temporarily blocked" in send_text:
+                    stats['error'] += 1
+                    print(f"{Fore.YELLOW}[!] {any_number} : Try Again Later (Blocked)")
+                else:
+                    stats['error'] += 1
+                    print(f"{Fore.YELLOW}[!] {any_number} : Security Check Required")
+            else:
+                stats['no_sms'] += 1
+                print(f"{Fore.YELLOW}[!] {any_number} : No SMS Option Found")
 
-# Usage example
-if __name__ == "__main__":
-    # Create login instance
-    instagram = InstagramLogin()
+    except requests.exceptions.Timeout:
+        stats['error'] += 1
+        print(f"{Fore.MAGENTA}[?] {any_number} : Timeout Error")
+    except requests.exceptions.ConnectionError:
+        stats['error'] += 1
+        print(f"{Fore.MAGENTA}[?] {any_number} : Connection Error")
+    except Exception as e:
+        stats['error'] += 1
+        print(f"{Fore.MAGENTA}[?] {any_number} : Error - {str(e)[:50]}")
+
+def main():
+    banner()
     
-    # Your credentials (replace with actual credentials)
-    username = "8918168736"
-    password = "891816"
+    # Get file paths
+    file_paths = get_file_paths()
     
-    # Try to login
-    print(f"Attempting to login as: {username}")
-    print("=" * 50)
-    success, response = instagram.login(username, password)
+    # Load numbers
+    print(f"\n{Fore.CYAN}Loading files...")
+    numbers, numbers_file = load_data(file_paths['numbers'], "numbers")
     
-    if success:
-        # Get all cookies
-        all_cookies = instagram.get_cookies()
-        
-        print("\n" + "=" * 50)
-        print("✓ READY TO MAKE AUTHENTICATED REQUESTS!")
-        print("=" * 50)
-        
-        # Example: Prepare headers for next request
-        if instagram.decode_ig_set_authorization:
-            cookie_string = ';'.join([f'{k}={v}' for k, v in instagram.decode_ig_set_authorization.items()])
-            
-            # Example headers for next API call
-            headers = {
-                'Authorization': f'Bearer IGT:2:{instagram.ig_set_autorization.split("Bearer IGT:2:")[1]}',
-                'cookie': cookie_string,
-                'user-agent': "Instagram 309.0.0.28.114 Android",
-                'x-ig-app-id': '3419628305025917'
-            }
-            
-            print("\nExample headers for next request:")
-            for key, value in headers.items():
-                if key != 'cookie':
-                    print(f"{key}: {value[:50]}..." if len(str(value)) > 50 else f"{key}: {value}")
-            
-            print(f"\nCookie header length: {len(headers['cookie'])} characters")
-            
+    if not numbers:
+        print(f"{Fore.RED}No numbers found! Please create {file_paths['numbers']}")
+        print(f"{Fore.YELLOW}File format: One phone number per line")
+        print(f"{Fore.YELLOW}Example:")
+        print(f"{Fore.WHITE}01826420296")
+        print(f"{Fore.WHITE}+8801826420296")
+        print(f"{Fore.WHITE}8801826420296")
+        return
+    
+    stats['total'] = len(numbers)
+    
+    # Load proxies
+    proxies, proxy_file = load_data(file_paths['proxies'], "proxies")
+    if proxies:
+        print(f"{Fore.GREEN}✓ Loaded {len(proxies)} proxies")
     else:
-        print("\n✗ Login failed. Please check your credentials.")
+        print(f"{Fore.YELLOW}⚠ No proxies found. Running without proxies...")
+    
+    # Get thread count
+    try:
+        t_count = int(input(f"\n{Fore.WHITE}Enter Threads (1-50, recommended 5-15): "))
+        t_count = max(1, min(50, t_count))
+    except ValueError:
+        t_count = 5
+        print(f"{Fore.YELLOW}Using default: 5 threads")
+    
+    # User agent selection
+    print(f"\n{Fore.CYAN}Select User Agent:")
+    print(f"{Fore.WHITE}1. Android Mobile (Default)")
+    print(f"{Fore.WHITE}2. iPhone")
+    print(f"{Fore.WHITE}3. Desktop Chrome")
+    ua_choice = input(f"{Fore.WHITE}Select (1/2/3): ").strip()
+    
+    if ua_choice == '2':
+        ua = "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1"
+    elif ua_choice == '3':
+        ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    else:
+        ua = "Mozilla/5.0 (Linux; Android 13; SM-S918B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Mobile Safari/537.36"
+    
+    print(f"\n{Fore.GREEN}Starting Automation...")
+    print(f"{Fore.CYAN}{'='*60}")
+    print(f"{Fore.WHITE}Numbers: {len(numbers)}")
+    print(f"{Fore.WHITE}Proxies: {len(proxies) if proxies else 'None'}")
+    print(f"{Fore.WHITE}Threads: {t_count}")
+    print(f"{Fore.WHITE}Success file: {file_paths['success']}")
+    print(f"{Fore.CYAN}{'='*60}")
+    
+    time.sleep(2)
+    
+    # Process numbers
+    with ThreadPoolExecutor(max_workers=t_count) as executor:
+        for num in numbers:
+            executor.submit(process_number, num, ua, proxy_file if proxy_file else file_paths['proxies'], file_paths['success'])
+            time.sleep(0.5)  # Small delay to avoid rate limiting
+    
+    # Final report
+    banner()
+    print(f"{Fore.GREEN}{Style.BRIGHT}   WORK COMPLETED SUCCESSFULLY!")
+    print(f"{Fore.CYAN}{'='*60}")
+    print(f"{Fore.WHITE}Final Report:")
+    print(f"{Fore.GREEN}Success: {stats['success']}")
+    print(f"{Fore.RED}No Account: {stats['no_id']}")
+    print(f"{Fore.YELLOW}No SMS Option: {stats['no_sms']}")
+    print(f"{Fore.MAGENTA}Errors: {stats['error']}")
+    print(f"{Fore.CYAN}Total Processed: {stats['total']}")
+    print(f"{Fore.CYAN}{'='*60}")
+    
+    if stats['success'] > 0:
+        print(f"{Fore.GREEN}✓ Success numbers saved to: {file_paths['success']}")
+    
+    # Ask if user wants to continue
+    cont = input(f"\n{Fore.YELLOW}Process more numbers? (y/n): ").strip().lower()
+    if cont == 'y':
+        stats['total'] = stats['success'] = stats['no_id'] = stats['no_sms'] = stats['error'] = 0
+        main()
+
+def check_requirements():
+    """Check if required modules are installed"""
+    try:
+        import requests
+        import colorama
+        print(f"{Fore.GREEN}✓ All requirements are installed")
+        return True
+    except ImportError as e:
+        print(f"{Fore.RED}✗ Missing module: {e.name}")
+        print(f"{Fore.YELLOW}Install with: pip install {e.name}")
+        return False
+
+if __name__ == "__main__":
+    try:
+        if check_requirements():
+            main()
+        else:
+            print(f"{Fore.RED}Please install missing modules and try again.")
+            input(f"{Fore.YELLOW}Press Enter to exit...")
+    except KeyboardInterrupt:
+        print(f"\n{Fore.YELLOW}Program interrupted by user.")
+        print(f"{Fore.CYAN}Final stats:")
+        print(f"{Fore.WHITE}Success: {stats['success']} | Failed: {stats['no_id'] + stats['no_sms'] + stats['error']}")
+    except Exception as e:
+        print(f"{Fore.RED}Unexpected error: {e}")
+        input(f"{Fore.YELLOW}Press Enter to exit...")
