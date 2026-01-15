@@ -173,7 +173,6 @@ def process_number(any_number, selected_ua, success_file):
         
         # Check response
         response_text = response.text.lower()
-        print(response.text)
         if "identify_search_error_title" in response_text or "no search results" in response_text:
             stats['no_id'] += 1
             print(f"{Fore.RED}[-] {any_number} : No Account Found")
