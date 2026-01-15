@@ -164,7 +164,7 @@ def process_number(any_number, selected_ua, success_file):
     '__spin_t': '1768505739',
 }
         
-        response = session.post('https://www.facebook.com/ajax/login/help/identify.php', params=params, cookies=cookies, headers=headers, data=payload)
+        search_response = session.post('https://www.facebook.com/ajax/login/help/identify.php', params=params, cookies=cookies, headers=headers, data=payload)
         
         # Update banner with live stats
         stats['total'] = max(stats['total'], 1)
