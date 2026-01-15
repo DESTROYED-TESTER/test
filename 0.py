@@ -164,7 +164,7 @@ def process_number(any_number, selected_ua, success_file):
     '__spin_t': '1768505739',
 }
         
-        search_response = session.post('https://www.facebook.com/ajax/login/help/identify.php', params=params, cookies=cookies, headers=headers, data=payload)
+        response = session.post('https://www.facebook.com/ajax/login/help/identify.php', params=params, cookies=cookies, headers=headers, data=payload)
         
         # Update banner with live stats
         stats['total'] = max(stats['total'], 1)
@@ -188,7 +188,7 @@ def process_number(any_number, selected_ua, success_file):
         
         # Try to find recovery method in data-store
         data_store_pattern = r'data-store=["\'][^"\']*recover_method["\'][^"\']*["\']'
-        data_store_matches = re.findall(data_store_pattern, search_response.text, re.IGNORECASE)
+        data_store_matches = re.findall(data_store_pattern, response.text, re.IGNORECASE)
         
         for match in data_store_matches:
             # Extract recover_method value
@@ -204,14 +204,14 @@ def process_number(any_number, selected_ua, success_file):
         # Method 2: Look for input fields with name="recover_method"
         if not recovery_method:
             input_pattern = r'<input[^>]*name=["\']recover_method["\'][^>]*value=["\']([^"\']+)["\'][^>]*>'
-            input_matches = re.findall(input_pattern, search_response.text, re.IGNORECASE)
+            input_matches = re.findall(input_pattern, response.text, re.IGNORECASE)
             if input_matches:
                 recovery_method = input_matches[0]
         
         # Method 3: Look for send_sms in any input field
         if not recovery_method:
             sms_pattern = r'<input[^>]*value=["\'][^"\']*send_sms[^"\']*["\'][^>]*>'
-            sms_matches = re.findall(sms_pattern, search_response.text, re.IGNORECASE)
+            sms_matches = re.findall(sms_pattern, response.text, re.IGNORECASE)
             for sms_match in sms_matches:
                 value_match = re.search(r'value=["\']([^"\']+)["\']', sms_match)
                 if value_match and 'send_sms' in value_match.group(1).lower():
@@ -221,7 +221,7 @@ def process_number(any_number, selected_ua, success_file):
         # Method 4: Look for SMS in the response text (last resort)
         if not recovery_method:
             text_pattern = r'send_sms(?:_\w+)?'
-            text_matches = re.findall(text_pattern, search_response.text, re.IGNORECASE)
+            text_matches = re.findall(text_pattern, response.text, re.IGNORECASE)
             if text_matches:
                 recovery_method = text_matches[0]
         
@@ -232,7 +232,7 @@ def process_number(any_number, selected_ua, success_file):
             print(f"{Fore.CYAN}[~] {any_number} : Sending OTP...")
             
             # Get new lsd token for the send request
-            send_lsd_match = re.search(r'["\']lsd["\']\s*value=["\']([^"\']+)["\']', search_response.text)
+            send_lsd_match = re.search(r'["\']lsd["\']\s*value=["\']([^"\']+)["\']', response.text)
             if send_lsd_match:
                 send_lsd = send_lsd_match.group(1)
             else:
@@ -339,7 +339,7 @@ def process_number(any_number, selected_ua, success_file):
             debug_filename = f"/sdcard/debug_{any_number}.html"
             try:
                 with open(debug_filename, 'w', encoding='utf-8') as f:
-                    f.write(search_response.text)
+                    f.write(response.text)
                 print(f"{Fore.CYAN}[~] Debug info saved to: {debug_filename}")
             except:
                 pass
