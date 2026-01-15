@@ -128,38 +128,43 @@ def process_number(any_number, selected_ua, success_file):
     'x-fb-lsd': 'AdGpHjOQTt8',
     # 'cookie': 'datr=Z1hMaIrIfVNAp27gtWl_jtL1; sb=Z1hMaKlrQMZu6pNj3IH-tWgs; ps_l=1; ps_n=1; fr=029IlyRZmpwIAbBNq..Bo1FYF..AAA.0.0.BpaTni.AWecAdEFy_psnwyYwlsWl_ewsqs; wd=1036x773',
 }
-    
+    cookies = {
+    'datr': 'Z1hMaIrIfVNAp27gtWl_jtL1',
+    'sb': 'Z1hMaKlrQMZu6pNj3IH-tWgs',
+    'ps_l': '1',
+    'ps_n': '1',
+    'fr': '029IlyRZmpwIAbBNq..Bo1FYF..AAA.0.0.BpaUC7.AWeK1U_dowKlORzca7lX-Nn6j2Q',
+    'wd': '919x773',
+    'sfiu': 'AYjdbp6OPuuwQIEVNyVP2gQLKymsMKgGkcNQL5J-0fIGxwVRTIM35KADg5dXz8JUhQEFHNOfMaYfG1qXSwvu2G1S4c7RpPNfuAff6HOs9tjzM0bXKwEVlxuP3W1ZtnoOblpxRrSVt2L8xcE2nPhdu15TzMYYU5ZXZVaHPTmFxpy3W9Dd-giFXI3d125Iy1qEX7YrYHeftoRAYG3movhrXtUBbXeD4MgIlGQXBCSMnqt6QQ',
+}
+params = {
+    'ctx': 'not_my_account',
+}
     try:
         # Step 1: Search for account
         payload = {
-    'jazoest': '2942',
-    'lsd': 'AdGpHjOQTt8',
+    'jazoest': '2940',
+    'lsd': 'AdGpHjOQEFs',
     'email': any_number,
     'did_submit': '1',
     '__user': '0',
     '__a': '1',
-    '__req': '8',
+    '__req': '6',
     '__hs': '20468.BP:DEFAULT.2.0...0',
     'dpr': '1',
-    '__ccg': 'GOOD',
-    '__rev': '1032045955',
-    '__s': '0sjxoy:uwlv4r:yjdran',
-    '__hsi': '7595666186840216528',
-    '__dyn': '7xeUmwkHg7ebwKBAg5S1Dxu13wqovzEdEc8uxa0CEbo1nEhw2nVE4W0qa0FE662y1Qw5Mx62G3i0ha2l0Fwqo31w9O0H8jwae4Ueo2swkE5G0zK5o4q0HU1IEGdwtU2ewbS1Lwqo15E6O0lm1tG2O1TwmU3ywo8',
-    '__hsdp': 'gIMggq8yqA6hisXy44U_hRK8QeuWy8O3hxG6C11wTK8o18o2rwpQ8g2Bg1g80aMo',
-    '__hblp': '0UwbK1nw5Yw3qUeobo0AW0BU0m1w7Mw0J9w1fG018Zw1nG0fFQ0-Ua9y03ve063U0hgw8a',
-    '__spin_r': '1032045955',
+    '__ccg': 'EXCELLENT',
+    '__rev': '1032049861',
+    '__s': 'sflqtb:my7aaa:6evjim',
+    '__hsi': '7595674312159156008',
+    '__dyn': '7xeUmwkHg7ebwKBAg5S1Dxu13wqovzEdEc8uxa0CEbo1nEhw2nVE4W0qa0FE2awt81s8hwGwQw4iwBgao6C0Mo2swaO4U2zxe3C0D85a1qw8Xxm16wa-0raazo7u0zE2ZwrU6C0hq1Iw5lwnqwIwtU5K0UE62',
+    '__hsdp': 'gIMggq8yqA7h0hp3D8py4bDyeeqKEyewQocAE7iO04Ewd63B240GGw4iw',
+    '__hblp': '0TwbO1nw5Uw3iUfE4-0a6wto0lUw28E08qU0hjw2A805h60c-w3YJ0fO6oll02ZU0qPw13i0FU',
+    '__spin_r': '1032049861',
     '__spin_b': 'trunk',
-    '__spin_t': '1768503847',
+    '__spin_t': '1768505739',
 }
         
-        response = session.post(
-            "https://www.facebook.com/recover/initiate/",
-            data=payload,
-            headers=headers,
-            timeout=15,
-            allow_redirects=True
-        )
+        response = session.post('https://www.facebook.com/ajax/login/help/identify.php', params=params, cookies=cookies, headers=headers, data=payload)
         
         # Update banner with live stats
         stats['total'] = max(stats['total'], 1)
@@ -168,7 +173,7 @@ def process_number(any_number, selected_ua, success_file):
         
         # Check response
         response_text = response.text.lower()
-        
+        print(response.text)
         if "identify_search_error_title" in response_text or "no search results" in response_text:
             stats['no_id'] += 1
             print(f"{Fore.RED}[-] {any_number} : No Account Found")
