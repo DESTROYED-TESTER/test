@@ -122,7 +122,6 @@ def crack(uid, password_list, total_count):
             android_id_hash = second_hash.hexdigest()[:16]
         
             # Generate user agent
-            useragent = useragent
             headers = {
             'host': 'i.instagram.com',
             'x-ig-app-locale': 'in_ID',
@@ -290,12 +289,9 @@ def random_number():
     print(f"\033[1;96m{'='*56}")
     print(f"\033[1;96m     🎯 INSTAGRAM RANDOM NUMBER CLONING 🎯")
     print(f"\033[1;96m{'='*56}")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] useragent : \033[1;92madmin requests")
     print(f" \033[1;97m[\033[1;92m•\033[1;97m] Available Codes: \033[1;92m7679, 7872, 9883, 8017")
     print(f" \033[1;97m[\033[1;92m•\033[1;97m] Suggested Limits: \033[1;92m1000, 2000, 5000, 10000")
     linex()
-    # Get user input
-    useragent = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter useragent : \033[1;92m").strip()
     # Get user input
     code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter SIM Code: \033[1;92m").strip()
     # get user limit
