@@ -107,25 +107,51 @@ def load_numbers(filename):
 def process_number(any_number, selected_ua, success_file):
     session = requests.Session()
     headers = {
-        'User-Agent': selected_ua,
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.5',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Origin': 'https://www.facebook.com',
-        'DNT': '1',
-        'Connection': 'keep-alive',
-        'Upgrade-Insecure-Requests': '1',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'same-origin',
-        'Sec-Fetch-User': '?1',
-        'Cache-Control': 'max-age=0'
-    }
+    'accept': '*/*',
+    'accept-language': 'en-US,en;q=0.9,bn;q=0.8',
+    'content-type': 'application/x-www-form-urlencoded',
+    'origin': 'https://www.facebook.com',
+    'priority': 'u=1, i',
+    'referer': 'https://www.facebook.com/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0',
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+    'sec-ch-ua-full-version-list': '"Google Chrome";v="143.0.7499.170", "Chromium";v="143.0.7499.170", "Not A(Brand";v="24.0.0.0"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-model': '""',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-ch-ua-platform-version': '"10.0.0"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+    'x-asbd-id': '359341',
+    'x-fb-lsd': 'AdGpHjOQTt8',
+    # 'cookie': 'datr=Z1hMaIrIfVNAp27gtWl_jtL1; sb=Z1hMaKlrQMZu6pNj3IH-tWgs; ps_l=1; ps_n=1; fr=029IlyRZmpwIAbBNq..Bo1FYF..AAA.0.0.BpaTni.AWecAdEFy_psnwyYwlsWl_ewsqs; wd=1036x773',
+}
     
     try:
         # Step 1: Search for account
-        payload = {'email': any_number, 'did_submit': 'Search'}
+        payload = {
+    'jazoest': '2942',
+    'lsd': 'AdGpHjOQTt8',
+    'email': any_number,
+    'did_submit': '1',
+    '__user': '0',
+    '__a': '1',
+    '__req': '8',
+    '__hs': '20468.BP:DEFAULT.2.0...0',
+    'dpr': '1',
+    '__ccg': 'GOOD',
+    '__rev': '1032045955',
+    '__s': '0sjxoy:uwlv4r:yjdran',
+    '__hsi': '7595666186840216528',
+    '__dyn': '7xeUmwkHg7ebwKBAg5S1Dxu13wqovzEdEc8uxa0CEbo1nEhw2nVE4W0qa0FE662y1Qw5Mx62G3i0ha2l0Fwqo31w9O0H8jwae4Ueo2swkE5G0zK5o4q0HU1IEGdwtU2ewbS1Lwqo15E6O0lm1tG2O1TwmU3ywo8',
+    '__hsdp': 'gIMggq8yqA6hisXy44U_hRK8QeuWy8O3hxG6C11wTK8o18o2rwpQ8g2Bg1g80aMo',
+    '__hblp': '0UwbK1nw5Yw3qUeobo0AW0BU0m1w7Mw0J9w1fG018Zw1nG0fFQ0-Ua9y03ve063U0hgw8a',
+    '__spin_r': '1032045955',
+    '__spin_b': 'trunk',
+    '__spin_t': '1768503847',
+}
         
         response = session.post(
             "https://www.facebook.com/recover/initiate/",
