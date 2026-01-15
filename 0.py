@@ -1,6 +1,5 @@
 import requests
 import time
-import random
 import re
 import os
 import sys
@@ -52,13 +51,11 @@ def get_file_paths():
     if choice == '1':
         return {
             'numbers': 'numbers.txt',
-            'proxies': 'proxies.txt',
             'success': 'success_sent.txt'
         }
     elif choice == '2':
         return {
             'numbers': '/sdcard/numbers.txt',
-            'proxies': '/sdcard/proxies.txt',
             'success': '/sdcard/success_sent.txt'
         }
     elif choice == '3':
@@ -67,45 +64,29 @@ def get_file_paths():
             base_path += '/'
         return {
             'numbers': base_path + 'numbers.txt',
-            'proxies': base_path + 'proxies.txt',
             'success': base_path + 'success_sent.txt'
         }
     else:
         print(f"{Fore.RED}Invalid choice. Using /sdcard/")
         return {
             'numbers': '/sdcard/numbers.txt',
-            'proxies': '/sdcard/proxies.txt',
             'success': '/sdcard/success_sent.txt'
         }
 
-def load_data(filename, file_type="file"):
-    """Load data from file with multiple fallback locations"""
+def load_numbers(filename):
+    """Load numbers from file with multiple fallback locations"""
     
     # Define possible file locations
-    possible_locations = []
-    
-    if file_type == "numbers":
-        possible_locations = [
-            filename,  # User specified path
-            '/sdcard/numbers.txt',
-            '/sdcard/phone_numbers.txt',
-            '/sdcard/number.txt',
-            '/storage/emulated/0/numbers.txt',
-            'numbers.txt',
-            'phone_numbers.txt',
-            'number.txt'
-        ]
-    elif file_type == "proxies":
-        possible_locations = [
-            filename,  # User specified path
-            '/sdcard/proxies.txt',
-            '/sdcard/proxy.txt',
-            '/storage/emulated/0/proxies.txt',
-            'proxies.txt',
-            'proxy.txt'
-        ]
-    else:
-        possible_locations = [filename]
+    possible_locations = [
+        filename,  # User specified path
+        '/sdcard/numbers.txt',
+        '/sdcard/phone_numbers.txt',
+        '/sdcard/number.txt',
+        '/storage/emulated/0/numbers.txt',
+        'numbers.txt',
+        'phone_numbers.txt',
+        'number.txt'
+    ]
     
     # Try each location
     for file_path in possible_locations:
@@ -114,26 +95,17 @@ def load_data(filename, file_type="file"):
                 with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                     data = [line.strip() for line in f if line.strip()]
                     if data:
-                        print(f"{Fore.GREEN}✓ Loaded {len(data)} items from: {file_path}")
+                        print(f"{Fore.GREEN}✓ Loaded {len(data)} numbers from: {file_path}")
                         return data, file_path
         except Exception as e:
             continue
     
     # If no file found, return empty list
-    print(f"{Fore.YELLOW}⚠ No {file_type} file found in any location")
+    print(f"{Fore.YELLOW}⚠ No numbers file found in any location")
     return [], ""
 
-def get_proxy(proxy_file):
-    """Get random proxy from file"""
-    proxies_data, _ = load_data(proxy_file, "proxies")
-    if proxies_data:
-        p = random.choice(proxies_data)
-        return {"http": f"http://{p}", "https": f"http://{p}"}
-    return None
-
-def process_number(any_number, selected_ua, proxy_file, success_file):
+def process_number(any_number, selected_ua, success_file):
     session = requests.Session()
-    proxy = get_proxy(proxy_file)
     headers = {
         'User-Agent': selected_ua,
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -155,25 +127,13 @@ def process_number(any_number, selected_ua, proxy_file, success_file):
         # Step 1: Search for account
         payload = {'email': any_number, 'did_submit': 'Search'}
         
-        # First try with proxy, then without
-        try:
-            response = session.post(
-                "https://www.facebook.com/recover/initiate/",
-                data=payload,
-                headers=headers,
-                proxies=proxy,
-                timeout=15,
-                allow_redirects=True
-            )
-        except:
-            # If proxy fails, try without proxy
-            response = session.post(
-                "https://www.facebook.com/recover/initiate/",
-                data=payload,
-                headers=headers,
-                timeout=15,
-                allow_redirects=True
-            )
+        response = session.post(
+            "https://www.facebook.com/recover/initiate/",
+            data=payload,
+            headers=headers,
+            timeout=15,
+            allow_redirects=True
+        )
         
         # Update banner with live stats
         stats['total'] = max(stats['total'], 1)
@@ -213,21 +173,12 @@ def process_number(any_number, selected_ua, proxy_file, success_file):
                     'did_submit': 'Continue'
                 }
                 
-                try:
-                    send_res = session.post(
-                        "https://www.facebook.com/recover/code/send/",
-                        data=confirm_payload,
-                        headers=headers,
-                        proxies=proxy,
-                        timeout=15
-                    )
-                except:
-                    send_res = session.post(
-                        "https://www.facebook.com/recover/code/send/",
-                        data=confirm_payload,
-                        headers=headers,
-                        timeout=15
-                    )
+                send_res = session.post(
+                    "https://www.facebook.com/recover/code/send/",
+                    data=confirm_payload,
+                    headers=headers,
+                    timeout=15
+                )
                 
                 send_text = send_res.text.lower()
                 
@@ -273,7 +224,7 @@ def main():
     
     # Load numbers
     print(f"\n{Fore.CYAN}Loading files...")
-    numbers, numbers_file = load_data(file_paths['numbers'], "numbers")
+    numbers, numbers_file = load_numbers(file_paths['numbers'])
     
     if not numbers:
         print(f"{Fore.RED}No numbers found! Please create {file_paths['numbers']}")
@@ -285,13 +236,6 @@ def main():
         return
     
     stats['total'] = len(numbers)
-    
-    # Load proxies
-    proxies, proxy_file = load_data(file_paths['proxies'], "proxies")
-    if proxies:
-        print(f"{Fore.GREEN}✓ Loaded {len(proxies)} proxies")
-    else:
-        print(f"{Fore.YELLOW}⚠ No proxies found. Running without proxies...")
     
     # Get thread count
     try:
@@ -318,9 +262,9 @@ def main():
     print(f"\n{Fore.GREEN}Starting Automation...")
     print(f"{Fore.CYAN}{'='*60}")
     print(f"{Fore.WHITE}Numbers: {len(numbers)}")
-    print(f"{Fore.WHITE}Proxies: {len(proxies) if proxies else 'None'}")
     print(f"{Fore.WHITE}Threads: {t_count}")
     print(f"{Fore.WHITE}Success file: {file_paths['success']}")
+    print(f"{Fore.YELLOW}⚠ Note: Running without proxies. Be careful with rate limiting!")
     print(f"{Fore.CYAN}{'='*60}")
     
     time.sleep(2)
@@ -328,8 +272,8 @@ def main():
     # Process numbers
     with ThreadPoolExecutor(max_workers=t_count) as executor:
         for num in numbers:
-            executor.submit(process_number, num, ua, proxy_file if proxy_file else file_paths['proxies'], file_paths['success'])
-            time.sleep(0.5)  # Small delay to avoid rate limiting
+            executor.submit(process_number, num, ua, file_paths['success'])
+            time.sleep(1)  # Increased delay to avoid rate limiting
     
     # Final report
     banner()
