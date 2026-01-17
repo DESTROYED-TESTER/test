@@ -61,127 +61,14 @@ def print_logo():
       `8bo.     `8bd8'   88oobY' 
         `Y8b.   .dPYb.   88`8b   
       db   8D  .8P  Y8.  88 `88. 
-      `8888Y'  YP    YP  88   YD   {Y}V-3.6{X}
+      `8888Y'  YP    YP  88   YD   {Y}V-3.6 (Termux){X}
 {LINE}
  {G}[{R}●{G}] TOOL OWNER   {C}: {G}@yeasin_hossain018
  {G}[{R}●{G}] TOOL         {C}: {G}FORGET FB
- {G}[{R}●{G}] TOOL STATUS  {C}: {G}PAID
+ {G}[{R}●{G}] TOOL STATUS  {C}: {G}FREE VERSION
 {LINE}
 """
     print(logo)
-
-def get_android_id():
-    """Generate unique device ID for Android/Termux"""
-    try:
-        import subprocess
-        # Try multiple methods to get device info
-        identifiers = []
-        
-        # Get device model
-        try:
-            model = subprocess.check_output(['getprop', 'ro.product.model'], 
-                                          stderr=subprocess.DEVNULL).decode().strip()
-            if model and model.lower() != 'unknown':
-                identifiers.append(model)
-        except:
-            pass
-            
-        # Get device manufacturer
-        try:
-            manufacturer = subprocess.check_output(['getprop', 'ro.product.manufacturer'], 
-                                                 stderr=subprocess.DEVNULL).decode().strip()
-            if manufacturer:
-                identifiers.append(manufacturer)
-        except:
-            pass
-            
-        # Get Android ID
-        try:
-            android_id = subprocess.check_output(['settings', 'get', 'secure', 'android_id'],
-                                               stderr=subprocess.DEVNULL).decode().strip()
-            if android_id and len(android_id) > 5:
-                identifiers.append(android_id)
-        except:
-            pass
-            
-        # Get CPU info
-        try:
-            cpu_info = subprocess.check_output(['cat', '/proc/cpuinfo'], 
-                                             stderr=subprocess.DEVNULL).decode()
-            cpu_serial = re.search(r'Serial\s*:\s*(\w+)', cpu_info)
-            if cpu_serial:
-                identifiers.append(cpu_serial.group(1))
-        except:
-            pass
-            
-        # Get MAC address
-        try:
-            mac = subprocess.check_output(['ip', 'link', 'show'], 
-                                        stderr=subprocess.DEVNULL).decode()
-            mac_match = re.search(r'link/ether\s+([\w:]+)', mac)
-            if mac_match:
-                identifiers.append(mac_match.group(1).replace(':', ''))
-        except:
-            pass
-            
-        # If no identifiers found, use random + system info
-        if not identifiers:
-            import platform
-            identifiers.append(platform.node())
-            identifiers.append(str(os.geteuid()))
-            identifiers.append(str(time.time()))
-            
-        # Combine and hash
-        combined = ''.join(identifiers).replace(' ', '').upper()
-        device_id = hashlib.sha256(combined.encode()).hexdigest()[:32].upper()
-        
-        return device_id
-        
-    except Exception as e:
-        # Fallback to random ID
-        import uuid
-        return hashlib.sha256(str(uuid.getnode()).encode()).hexdigest()[:32].upper()
-
-def check_approval():
-    """Simplified approval check"""
-    try:
-        import requests
-        
-        device_id = get_android_id()
-        print(f"{G}[{R}●{G}] Device ID: {W}{device_id}")
-        print(f"{G}[{R}●{G}] Checking license...")
-        
-        # Try to check with server
-        try:
-            # For demo, we'll skip actual server check
-            # In real version, this would check with mrsxrtools.pythonanywhere.com
-            
-            # Simulate approved user
-            user_nm = "TERMUX_USER"
-            expr = "2024-12-31 23:59"
-            
-            print(f"{G}[{R}●{G}] User: {W}{user_nm}")
-            print(f"{G}[{R}●{G}] Expires: {W}{expr}")
-            print(f"{G}[{R}●{G}] Status: {G}APPROVED{X}")
-            
-            return True, user_nm, expr
-            
-        except:
-            # If server check fails, ask for activation
-            print(f"{R}[!] Server connection failed")
-            print(f"{Y}[?] Do you want to continue in trial mode? (y/n): ", end='')
-            choice = input().lower()
-            if choice == 'y':
-                return True, "TRIAL_USER", "2024-01-01 00:00"
-            else:
-                print(f"{R}Please contact @mrsxrtool for activation")
-                time.sleep(3)
-                sys.exit()
-                
-    except Exception as e:
-        print(f"{R}Error: {e}")
-        time.sleep(3)
-        sys.exit()
 
 def load_numbers():
     """Load phone numbers from file"""
@@ -190,6 +77,10 @@ def load_numbers():
     if not files:
         print(f"{R}No text files found!")
         print(f"{Y}Create a file named 'numbers.txt' with phone numbers (one per line)")
+        print(f"\n{Y}Example numbers.txt content:")
+        print(f"{W}8801234567890")
+        print(f"{W}8809876543210")
+        print(f"{W}8801122334455{X}")
         return []
     
     # Check for specific files first
@@ -201,13 +92,18 @@ def load_numbers():
                 with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
                     numbers = []
                     for line in f:
-                        # Extract numbers from line
-                        line_numbers = re.findall(r'\d{7,15}', line)
-                        numbers.extend(line_numbers)
+                        line = line.strip()
+                        if line:
+                            # Extract numbers from line
+                            line_numbers = re.findall(r'\d{7,15}', line)
+                            numbers.extend(line_numbers)
                     
                 if numbers:
                     print(f"{G}[{R}●{G}] Loaded {len(numbers)} numbers from {filename}")
                     return numbers
+                else:
+                    print(f"{R}No valid numbers found in {filename}")
+                    return []
             except Exception as e:
                 print(f"{R}Error reading {filename}: {e}")
     
@@ -223,8 +119,10 @@ def load_numbers():
             with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
                 numbers = []
                 for line in f:
-                    line_numbers = re.findall(r'\d{7,15}', line)
-                    numbers.extend(line_numbers)
+                    line = line.strip()
+                    if line:
+                        line_numbers = re.findall(r'\d{7,15}', line)
+                        numbers.extend(line_numbers)
                 
             if numbers:
                 print(f"{G}[{R}●{G}] Loaded {len(numbers)} numbers from {filename}")
@@ -565,38 +463,6 @@ def main_automation():
     
     input(f"\n{Y}Press Enter to continue...{X}")
 
-def main_menu(user_nm, expr):
-    """Main menu"""
-    while True:
-        print_logo()
-        print(f" {G}User: {W}{user_nm}")
-        print(f" {G}Expires: {W}{expr}")
-        print(f"{LINE}")
-        print(f" {G}[{R}01{G}] Start FB Forget")
-        print(f" {G}[{R}02{G}] Create Numbers File")
-        print(f" {G}[{R}03{G}] Check Single Number")
-        print(f" {G}[{R}04{G}] Join Telegram Channel")
-        print(f" {G}[{R}00{G}] Exit")
-        print(f"{LINE}")
-        
-        choice = input(f"\n{G}[{R}●{G}] Select option: {W}").strip()
-        
-        if choice in ['1', '01']:
-            main_automation()
-        elif choice in ['2', '02']:
-            create_numbers_file()
-        elif choice in ['3', '03']:
-            check_single_number()
-        elif choice in ['4', '04']:
-            join_telegram()
-        elif choice in ['0', '00']:
-            print(f"\n{G}Thank you for using Mr-SxR Tools!{X}")
-            time.sleep(2)
-            sys.exit()
-        else:
-            print(f"\n{R}Invalid option!{X}")
-            time.sleep(2)
-
 def create_numbers_file():
     """Create a numbers file"""
     clear_screen()
@@ -684,18 +550,83 @@ def join_telegram():
     
     input(f"\n{Y}Press Enter to continue...{X}")
 
+def show_about():
+    """Show about information"""
+    clear_screen()
+    print(f"{G}About Mr-SxR Forget FB Tool")
+    print(f"{LINE}")
+    print(f"\n{G}Version:{W} 3.6 (Termux)")
+    print(f"{G}Author:{W} Mr-SxR")
+    print(f"{G}Contact:{W} @yeasin_hossain018")
+    print(f"{G}Channel:{W} @mrsxrtools")
+    print(f"\n{Y}Description:{X}")
+    print(f"{W}This tool helps to send SMS recovery codes to")
+    print(f"{W}Facebook accounts using phone number recovery.")
+    print(f"\n{Y}Note:{R} For educational purposes only!{X}")
+    print(f"{LINE}")
+    
+    input(f"\n{Y}Press Enter to continue...{X}")
+
+def main_menu():
+    """Main menu"""
+    while True:
+        print_logo()
+        print(f"{LINE}")
+        print(f" {G}[{R}01{G}] Start FB Forget")
+        print(f" {G}[{R}02{G}] Create Numbers File")
+        print(f" {G}[{R}03{G}] Check Single Number")
+        print(f" {G}[{R}04{G}] Join Telegram Channel")
+        print(f" {G}[{R}05{G}] About")
+        print(f" {G}[{R}00{G}] Exit")
+        print(f"{LINE}")
+        
+        choice = input(f"\n{G}[{R}●{G}] Select option: {W}").strip()
+        
+        if choice in ['1', '01']:
+            main_automation()
+        elif choice in ['2', '02']:
+            create_numbers_file()
+        elif choice in ['3', '03']:
+            check_single_number()
+        elif choice in ['4', '04']:
+            join_telegram()
+        elif choice in ['5', '05']:
+            show_about()
+        elif choice in ['0', '00']:
+            print(f"\n{G}Thank you for using Mr-SxR Tools!{X}")
+            time.sleep(2)
+            sys.exit()
+        else:
+            print(f"\n{R}Invalid option!{X}")
+            time.sleep(2)
+
 def main():
     """Main function"""
     try:
-        # Check approval
-        approved, user_nm, expr = check_approval()
+        # Check if requests is installed
+        try:
+            import requests
+        except ImportError:
+            print(f"{R}Installing required packages...{X}")
+            try:
+                import subprocess
+                subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+                print(f"{G}Installation complete! Restarting...{X}")
+                time.sleep(2)
+                os.execv(sys.executable, [sys.executable] + sys.argv)
+            except:
+                print(f"{R}Failed to install packages!{X}")
+                print(f"{Y}Please run: pip install requests{X}")
+                sys.exit(1)
         
-        if approved:
-            # Show main menu
-            main_menu(user_nm, expr)
-        else:
-            print(f"{R}Access denied!{X}")
-            time.sleep(3)
+        # Show welcome message
+        print_logo()
+        print(f"{G}Welcome to Mr-SxR Forget FB Tool (Termux Version)")
+        print(f"{Y}Press Enter to continue...{X}")
+        input()
+        
+        # Show main menu
+        main_menu()
             
     except KeyboardInterrupt:
         print(f"\n\n{R}Program interrupted!{X}")
@@ -707,20 +638,4 @@ def main():
         input(f"\n{Y}Press Enter to exit...{X}")
 
 if __name__ == "__main__":
-    # Installation check
-    try:
-        import requests
-    except ImportError:
-        print(f"{R}Installing required packages...{X}")
-        try:
-            import subprocess
-            subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
-            print(f"{G}Installation complete!{X}")
-            time.sleep(2)
-        except:
-            print(f"{R}Failed to install packages!{X}")
-            print(f"{Y}Please run: pip install requests{X}")
-            sys.exit(1)
-    
-    # Run main program
-    main_menu(user_nm, expr)
+    main()
