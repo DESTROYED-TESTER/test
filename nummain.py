@@ -20,11 +20,6 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 import itertools
 
-# Remove Windows-specific imports
-# import openpyxl  # Not available in Termux by default
-# import wmi
-# import winreg
-
 if getattr(sys, 'frozen', False):
     os.chdir(os.path.dirname(sys.executable))
 
@@ -68,6 +63,12 @@ total_failed = 0
 total_error = 0
 PROXIES = None
 CURRENT_LOCALE = 'en_US'
+
+# SDCARD paths for Termux
+SDCARD_PATH = '/sdcard'
+NUMBER_LIST_PATH = '/sdcard/Number_List.txt'
+SETTINGS_PATH = '/sdcard/Setting.json'
+ERROR_LOGS_DIR = '/sdcard/Error_Logs'
 
 def make_request(url):
     if url.startswith('https://'):
@@ -376,8 +377,16 @@ def get_ip_info(proxies=None):
 
 def load_settings():
     try:
-        with open('Setting.json', 'r') as f:
-            return json.load(f)
+        # Try to load from sdcard first
+        if os.path.exists(SETTINGS_PATH):
+            with open(SETTINGS_PATH, 'r') as f:
+                return json.load(f)
+        # Fallback to current directory
+        elif os.path.exists('Setting.json'):
+            with open('Setting.json', 'r') as f:
+                return json.load(f)
+        else:
+            return {}
     except:
         return {}
 
@@ -437,19 +446,19 @@ def save_error_html(message, html_content):
         return
 
     try:
-        if not os.path.exists('Error_Logs'):
-            os.makedirs('Error_Logs')
+        if not os.path.exists(ERROR_LOGS_DIR):
+            os.makedirs(ERROR_LOGS_DIR)
             
         safe_msg = re.sub(r'[\\/*?:"<>|]', '', message)
         safe_msg = safe_msg.replace(' ', '_')
         safe_msg = safe_msg[:50]
         
-        base_filename = f"Error_Logs/{safe_msg}.html"
+        base_filename = f"{ERROR_LOGS_DIR}/{safe_msg}.html"
         filename = base_filename
         counter = 1
         
         while os.path.exists(filename):
-            filename = f"Error_Logs/{safe_msg}_{counter}.html"
+            filename = f"{ERROR_LOGS_DIR}/{safe_msg}_{counter}.html"
             counter += 1
             
         with open(filename, 'w', encoding='utf-8') as f:
@@ -465,6 +474,7 @@ def clear_logo():
 
 def sxr_main():
     clear_logo()
+    print(f" {GREEN}UserName {EKL} {user_nm}\n {RED}Expired {EKL} {expr} (Utc)\n{LINE}")
     print(f" {opt_labels[0]} FB FORGET\n {opt_labels[1]} NUMBER FILTER\n {opt_labels[2]} CONFIRM ACCOUNT\n {opt_labels[3]} JOIN TELEGRAM\n{LINE}")
     
     chic_opsn = input(f"{GREEN} [{RED}●{GREEN}] CHOOSE OPTION {EKL} ")
@@ -473,14 +483,12 @@ def sxr_main():
         file_inp()
         return
     elif chic_opsn in ('2', '02', 'B', 'b'):
-        # For Termux, we can't run .exe files
         print(f"{RED} Windows .exe files cannot run on Termux.")
         print(f"{WHITE} Please use the text file option instead.")
         time.sleep(2)
         sxr_main()
         return
     elif chic_opsn in ('3', '03', 'C', 'c'):
-        # For Termux, we can't run .exe files
         print(f"{RED} Windows .exe files cannot run on Termux.")
         print(f"{WHITE} Please use the text file option instead.")
         time.sleep(2)
@@ -497,30 +505,47 @@ def sxr_main():
 
 def file_inp():
     clear_logo()
-    settings = load_settings()
-    file_settings = settings.get('file_input_settings', {})
-    always_use_txt = file_settings.get('always_use_txt', False)
     
-    # For Termux, we'll only support text files
-    if os.path.exists('Number_List.txt'):
-        with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
-            numbers = [line.strip() for line in f if line.strip()]
-        
-        if numbers:
-            print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
-            print(f"{GREEN} [{RED}●{GREEN}] Total Numbers {EKL} {len(numbers)}")
-            input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
-            autom_main()
-            return
-        else:
-            print(f"{WHITE} 'Number_List.txt' file is empty.")
-            print(f"{WHITE} Please add phone numbers to 'Number_List.txt' (one per line)")
-            input(f"{WHITE} Press Enter to return to main menu...")
+    print(f"{CYAN} Looking for Number_List.txt in SD Card...")
+    
+    # Check if sdcard is accessible
+    if not os.path.exists(SDCARD_PATH):
+        print(f"{RED} SD Card not accessible!")
+        print(f"{YELLOW} Make sure Termux has storage permission:")
+        print(f"{WHITE} 1. Run: termux-setup-storage")
+        print(f"{WHITE} 2. Grant permission when prompted")
+        input(f"{WHITE} Press Enter to continue...")
+        sxr_main()
+        return
+    
+    # Check for Number_List.txt in sdcard
+    if os.path.exists(NUMBER_LIST_PATH):
+        try:
+            with open(NUMBER_LIST_PATH, 'r', encoding='utf-8', errors='ignore') as f:
+                numbers = [line.strip() for line in f if line.strip()]
+            
+            if numbers:
+                print(f"{GREEN} [{RED}●{GREEN}] Found File {EKL} {NUMBER_LIST_PATH}")
+                print(f"{GREEN} [{RED}●{GREEN}] Total Numbers {EKL} {len(numbers)}")
+                input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
+                autom_main()
+                return
+            else:
+                print(f"{WHITE} 'Number_List.txt' file is empty.")
+                print(f"{WHITE} Please add phone numbers to {NUMBER_LIST_PATH}")
+                input(f"{WHITE} Press Enter to return to main menu...")
+                sxr_main()
+                return
+        except Exception as e:
+            print(f"{RED} Error reading file: {e}")
+            input(f"{WHITE} Press Enter to return...")
             sxr_main()
             return
     else:
-        print(f"{WHITE} 'Number_List.txt' file was not found.")
-        print(f"{WHITE} Please create 'Number_List.txt' with phone numbers (one per line)")
+        print(f"{YELLOW} File not found: {NUMBER_LIST_PATH}")
+        print(f"{WHITE} Please create 'Number_List.txt' in your SD Card")
+        print(f"{WHITE} with phone numbers (one per line)")
+        print(f"{CYAN} Example location: /sdcard/Number_List.txt")
         input(f"{WHITE} Press Enter to return to main menu...")
         sxr_main()
         return
@@ -627,12 +652,16 @@ def autom_main():
     while True:
         clear_logo()
         try:
-            with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
+            # Read from sdcard
+            with open(NUMBER_LIST_PATH, 'r', encoding='utf-8', errors='ignore') as f:
                 numbers = [line.strip() for line in f if line.strip()]
             
             if not numbers:
-                input(f"{WHITE} Add the 'Number_List.txt' file and press Enter...")
-                continue
+                print(f"{RED} No numbers found in {NUMBER_LIST_PATH}")
+                print(f"{WHITE} Please add phone numbers to the file")
+                input(f"{WHITE} Press Enter to return...")
+                sxr_main()
+                return
             break
         except Exception as e:
             print(f"{RED} Error reading file {EKL} {e}")
@@ -744,9 +773,13 @@ def autom_main():
                 
                 if remaining_numbers:
                     remaining_numbers.pop(0)
-                    with open('Number_List.txt', 'w') as f:
-                        for n in remaining_numbers:
-                            f.write(n + '\n')
+                    # Update the file on sdcard
+                    try:
+                        with open(NUMBER_LIST_PATH, 'w') as f:
+                            for n in remaining_numbers:
+                                f.write(n + '\n')
+                    except Exception as e:
+                        safe_print(f"{RED} Failed to update file: {e}")
     except:
         maxworker = 30
 
@@ -1187,4 +1220,4 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
         update_counter('error', number, f"Unexpected Error: {e}", RED, html_content=err_content)
 
 if __name__ == '__main__':
-    sxr_main()
+    apvv()
