@@ -287,22 +287,22 @@ def check_number(number, proxy=None, browser_type='Chrome Mobile'):
         
         # Generate headers
         user_agent = generate_user_agent(browser_type)
-        headers = {
-            'User-Agent': user_agent,
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'none',
-            'Sec-Fetch-User': '?1',
-            'Cache-Control': 'max-age=0'
-        }
+        headers = {"authority": "m.prod.facebook.com",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+        "cache-control": "max-age=0",
+        "dpr": "3",
+        "sec-ch-prefers-color-scheme": "light",
+        "sec-fetch-dest": "document",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-site": "none",
+        "sec-fetch-user": "?1",
+        "upgrade-insecure-requests": "1",
+        "user-agent": user_agent,
+        "viewport-width": "980"}
         
         # Use mbasic.facebook.com for better compatibility
-        server = 'mbasic.facebook.com'
+        server = 'touch.facebook.com'
         
         # Step 1: Initial request
         url = f"https://{server}/login/identify/?ctx=recover&ars=facebook_login"
@@ -315,15 +315,15 @@ def check_number(number, proxy=None, browser_type='Chrome Mobile'):
         # Extract lsd and jazoest tokens
         text = response.text
         
-        lsd_match = re.search(r'name="lsd"\s*value="([^"]+)"', text)
-        jazoest_match = re.search(r'name="jazoest"\s*value="([^"]+)"', text)
+        lsd_match = re.search('name="lsd" value="(.*?)"',str(text)).group(1),
+        jazoest_match = re.search('name="jazoest" value="(.*?)"',str(text)).group(1),
         
         if not lsd_match or not jazoest_match:
             update_counter('error', number, "No tokens found")
             return
         
-        lsd = lsd_match.group(1)
-        jazoest = jazoest_match.group(1)
+        lsd = lsd_match
+        jazoest = jazoest_match
         
         # Step 2: Search for number
         search_url = f"https://{server}/login/identify/?ctx=recover&c=%2Flogin%2F&search_attempts=1&ars=facebook_login"
