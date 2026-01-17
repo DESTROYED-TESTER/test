@@ -671,7 +671,7 @@ def autom_main():
     settings = load_settings()
     server_set = settings.get('server_settings', {})
     server_id = server_set.get('tools_server_id', 1)
-    server_domain = SERVER_MAP.get(server_id, 'p.facebook.com')
+    server_domain = SERVER_MAP.get(server_id, 'm.facebook.com')
 
     print(f"{WHITE} Setting up Main Proxy System...")
     PROXY_LIST = get_proxy_list('proxy_settings', 'Main Proxy')
