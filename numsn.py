@@ -315,21 +315,14 @@ def check_number(number, proxy=None, browser_type='Chrome Mobile'):
         # Extract lsd and jazoest tokens
         text = response.text
         
-        lsd_match = re.search('name="lsd" value="(.*?)"',str(text)).group(1),
-        jazoest_match = re.search('name="jazoest" value="(.*?)"',str(text)).group(1),
-        
-        if not lsd_match or not jazoest_match:
-            update_counter('error', number, "No tokens found")
-            return
-        
-        lsd = lsd_match
-        jazoest = jazoest_match
+        lsd = re.search('name="lsd" value="(.*?)"',str(text)).group(1),
+        jazoest = re.search('name="jazoest" value="(.*?)"',str(text)).group(1),
         
         # Step 2: Search for number
         search_url = f"https://{server}/login/identify/?ctx=recover&c=%2Flogin%2F&search_attempts=1&ars=facebook_login"
         data = {
-            'lsd': 'AdHoMAZ2JaM',
-            'jazoest': '2878',
+            'lsd': lsd,
+            'jazoest': jazoest,
             'email': number,
             'did_submit': 'Search'
         }
