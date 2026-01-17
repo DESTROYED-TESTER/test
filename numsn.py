@@ -328,8 +328,8 @@ def check_number(number, proxy=None, browser_type='Chrome Mobile'):
         # Step 2: Search for number
         search_url = f"https://{server}/login/identify/?ctx=recover&c=%2Flogin%2F&search_attempts=1&ars=facebook_login"
         data = {
-            'lsd': lsd,
-            'jazoest': jazoest,
+            'lsd': 'AdHoMAZ2JaM',
+            'jazoest': '2878',
             'email': number,
             'did_submit': 'Search'
         }
@@ -377,8 +377,8 @@ def check_number(number, proxy=None, browser_type='Chrome Mobile'):
                         
                         # Send SMS request
                         sms_data = {
-                            'lsd': lsd,
-                            'jazoest': jazoest,
+                            'lsd': 'AdHoMAZ2JaM',
+                            'jazoest': '2878',
                             'recover_method': sms_matches[0],
                             'reset_action': 'Continue'
                         }
