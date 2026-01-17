@@ -367,8 +367,8 @@ def check_number(number, proxy=None, browser_type='Chrome Mobile'):
                 jazoest_match = re.search(r'name="jazoest"\s*value="([^"]+)"', text)
                 
                 if lsd_match and jazoest_match:
-                    lsd = lsd_match.group(1)
-                    jazoest = jazoest_match.group(1)
+                    lsd = re.search('name="lsd" value="(.*?)"',str(text)).group(1),
+                    jazoest = re.search('name="jazoest" value="(.*?)"',str(text)).group(1),
                     
                     # Find form action
                     action_match = re.search(r'action="([^"]+)"', text)
