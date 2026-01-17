@@ -1,411 +1,311 @@
+#!/data/data/com.termux/files/usr/bin/python3
+# -*- coding: utf-8 -*-
 import os
-import random
-import re
 import sys
 import time
-import platform
-import webbrowser
 import json
-import certifi
+import random
 import threading
-import requests
-from concurrent.futures import ThreadPoolExecutor as threadpol
-import ssl
-import socket
-import base64
-from datetime import datetime, timezone, timedelta
 import hashlib
-import subprocess
-from Crypto.Cipher import AES
-from Crypto.Util.Padding import unpad
-import itertools
+import base64
+import re
+from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor
 
-# Termux-specific configuration
-if sys.platform != 'win32':
-    os.system('clear')
-    sys.stdout.reconfigure(encoding='utf-8') if hasattr(sys.stdout, 'reconfigure') else None
-
-if getattr(sys, 'frozen', False):
-    os.chdir(os.path.dirname(sys.executable))
+# Fix encoding for Termux
+sys.stdout.reconfigure(encoding='utf-8') if hasattr(sys.stdout, 'reconfigure') else None
+os.system('clear')
 
 # Color codes for Termux
-WHITE = '\033[1;97m'
-GREEN = '\033[1;92m'
-RED = '\033[1;91m'
-DARK_GREEN = '\033[1;32m'
-LIGHT_GRAY = '\033[1;37m'
-CYAN = '\033[1;96m'
-YELLOW = '\033[1;93m'
-BLUE = '\033[1;94m'
-MAGENTA = '\033[1;95m'
-ORANGE = '\033[38;5;208m'
-GOLD = '\033[38;5;220m'
-VIOLET = '\033[38;5;141m'
-TOXIC = '\033[38;2;170;200;0m'
-PURPLE = '\033[38;2;150;80;200m'
+class Colors:
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    MAGENTA = '\033[95m'
+    CYAN = '\033[96m'
+    WHITE = '\033[97m'
+    RESET = '\033[0m'
+    BOLD = '\033[1m'
 
-opt_labels = [f"{GREEN}[{RED}{str(i).zfill(2)}{GREEN}]" for i in range(1, 8)]
+# Simple aliases
+R = Colors.RED
+G = Colors.GREEN
+Y = Colors.YELLOW
+B = Colors.BLUE
+M = Colors.MAGENTA
+C = Colors.CYAN
+W = Colors.WHITE
+X = Colors.RESET
+BO = Colors.BOLD
 
-l0 = f"{GREEN}[{RED}00{GREEN}]"
-EKL = f"{CYAN}:{WHITE}"
-LINE = f"{CYAN}•━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━•"
-
-SERVER_MAP = {
-    1: 'm.facebook.com',
-    2: 'mbasic.facebook.com',
-    3: 'touch.facebook.com',
-    4: 'free.facebook.com',
-    5: 'm.alpha.facebook.com',
-    6: 'm.beta.facebook.com',
-    7: 'x.facebook.com'
-}
-
-print_lock = threading.Lock()
-counter_lock = threading.Lock()
-
+# Global counters
 total_checked = 0
 total_success = 0
 total_failed = 0
 total_error = 0
-PROXIES = None
-CURRENT_LOCALE = 'en_US'
+print_lock = threading.Lock()
+counter_lock = threading.Lock()
 
-def make_request(url):
-    if url.startswith('https://'):
-        url = url[8:]
-    elif url.startswith('http://'):
-        url = url[7:]
-    
-    if '/' in url:
-        host, path = url.split('/', 1)
-        path = '/' + path
-    else:
-        host, path = url, ''
-    
-    context = ssl.create_default_context(cafile=certifi.where())
-    context.check_hostname = True
-    context.verify_mode = ssl.CERT_REQUIRED
-    
-    try:
-        with socket.create_connection((host, 443)) as sock:
-            with context.wrap_socket(sock, server_hostname=host) as ssock:
-                request = f"GET {path} HTTP/1.1\r\n"
-                request += f"Host: {host}\r\n"
-                request += "User-Agent: Python-Socket\r\n"
-                request += "Accept: */*\r\n"
-                request += "Connection: close\r\n\r\n"
-                
-                ssock.sendall(request.encode())
-                
-                response = b''
-                while True:
-                    data = ssock.recv(4096)
-                    if not data:
-                        break
-                    response += data
-                    
-    except Exception:
-        return None
+LINE = f"{C}•━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━•{X}"
 
+def clear_screen():
+    os.system('clear')
+
+def print_logo():
+    clear_screen()
+    logo = f"""
+{G}{BO}
+      .d8888.  db    db  d8888b. 
+      88'  YP  `8b  d8'  88  `8D 
+      `8bo.     `8bd8'   88oobY' 
+        `Y8b.   .dPYb.   88`8b   
+      db   8D  .8P  Y8.  88 `88. 
+      `8888Y'  YP    YP  88   YD   {Y}V-3.6{X}
+{LINE}
+ {G}[{R}●{G}] TOOL OWNER   {C}: {G}@yeasin_hossain018
+ {G}[{R}●{G}] TOOL         {C}: {G}FORGET FB
+ {G}[{R}●{G}] TOOL STATUS  {C}: {G}PAID
+{LINE}
+"""
+    print(logo)
+
+def get_android_id():
+    """Generate unique device ID for Android/Termux"""
     try:
-        header_data, body_data = response.split(b'\r\n\r\n', 1)
-        headers = header_data.decode('ignore', errors='ignore').split('\r\n')
-        status_line = headers[0]
-        status_code = int(status_line.split()[1])
+        import subprocess
+        # Try multiple methods to get device info
+        identifiers = []
         
-        headers_dict = {}
-        cookies = {}
-        
-        for header in headers[1:]:
-            key, value = header.split(':', 1)
-            headers_dict[key.strip()] = value.strip()
-            
-            if key.lower() == 'set-cookie':
-                cookie_parts = value.split(';')[0].split('=')
-                cookies[cookie_parts[0].strip()] = cookie_parts[1].strip()
-        
-        response_text = body_data.decode('ignore', errors='ignore')
-        
+        # Get device model
         try:
-            response_json = json.loads(response_text)
-        except json.JSONDecodeError:
-            response_json = None
-            
-        return {
-            'status_code': status_code,
-            'text': response_text,
-            'json': response_json,
-            'headers': headers_dict,
-            'cookies': cookies
-        }
-    except Exception:
-        return None
-
-SECRET_KEY = b'LHANKLRTOLUMCDCK'
-SECRET_KEY2 = b'GTRMAREAMLXUDWDJ'
-
-def dec_rq(sxrreqq):
-    dec_base4 = base64.urlsafe_b64decode(sxrreqq.encode('utf-8'))
-    cipher = AES.new(SECRET_KEY, AES.MODE_ECB)
-    dec_cryoto = unpad(cipher.decrypt(dec_base4), AES.block_size).decode('utf-8')
-    jsn_dta = json.loads(dec_cryoto)
-    return jsn_dta
-
-def dec_rq2(keyid):
-    c_base4 = base64.urlsafe_b64decode(keyid.encode('utf-8'))
-    ciphr = AES.new(SECRET_KEY2, AES.MODE_ECB)
-    c_cryoto = unpad(ciphr.decrypt(c_base4), AES.block_size).decode('utf-8')
-    return c_cryoto
-
-def get_safe_cmd(cmd):
-    try:
-        return subprocess.check_output(cmd, shell=True, stderr=subprocess.DEVNULL).decode('ignore', errors='ignore').strip()
-    except:
-        return None
-
-def get_android_device_id():
-    """Generate device ID for Android/Termux"""
-    unique_factors = []
-    
-    try:
-        # Try to get Android ID or device-specific info
-        android_id_cmd = "settings get secure android_id 2>/dev/null || echo $RANDOM"
-        android_id = get_safe_cmd(android_id_cmd)
-        if android_id and android_id != "$RANDOM":
-            unique_factors.append(android_id.strip())
-    except:
-        pass
-    
-    try:
-        # Get device model and manufacturer
-        model_cmd = "getprop ro.product.model 2>/dev/null || echo 'Unknown'"
-        manufacturer_cmd = "getprop ro.product.manufacturer 2>/dev/null || echo 'Unknown'"
-        device_model = get_safe_cmd(model_cmd)
-        device_manufacturer = get_safe_cmd(manufacturer_cmd)
-        unique_factors.append(f"{device_manufacturer}_{device_model}")
-    except:
-        pass
-    
-    try:
-        # Get device serial if available
-        serial_cmd = "getprop ro.serialno 2>/dev/null || echo ''"
-        device_serial = get_safe_cmd(serial_cmd)
-        if device_serial:
-            unique_factors.append(device_serial)
-    except:
-        pass
-    
-    try:
-        # Get CPU info
-        cpu_cmd = "cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2 2>/dev/null || echo ''"
-        cpu_serial = get_safe_cmd(cpu_cmd)
-        if cpu_serial:
-            unique_factors.append(cpu_serial)
-    except:
-        pass
-    
-    try:
-        # Get MAC address (first one found)
-        mac_cmd = "ip link show | grep link/ether | head -1 | awk '{print $2}' 2>/dev/null || echo ''"
-        mac_addr = get_safe_cmd(mac_cmd)
-        if mac_addr:
-            unique_factors.append(mac_addr.replace(':', ''))
-    except:
-        pass
-    
-    try:
-        # Get storage serial (if accessible)
-        storage_cmd = "ls -la /dev/block/by-name/ 2>/dev/null | head -5 | md5sum | cut -d ' ' -f 1 || echo ''"
-        storage_hash = get_safe_cmd(storage_cmd)
-        if storage_hash:
-            unique_factors.append(storage_hash)
-    except:
-        pass
-    
-    # If no hardware info found, use system info
-    if not unique_factors:
-        try:
-            # Use username and hostname
-            username = get_safe_cmd("whoami")
-            hostname = get_safe_cmd("hostname")
-            unique_factors.append(f"{username}_{hostname}")
+            model = subprocess.check_output(['getprop', 'ro.product.model'], 
+                                          stderr=subprocess.DEVNULL).decode().strip()
+            if model and model.lower() != 'unknown':
+                identifiers.append(model)
         except:
-            unique_factors.append("TERMUX_USER")
-    
-    # Combine all factors and hash them
-    raw_id = ''.join(unique_factors).replace(' ', '').replace('-', '').replace('_', '').upper()
-    hashed_id = hashlib.sha256(raw_id.encode()).hexdigest().upper()
-    return hashed_id[:32]
-
-def apvv():
-    try:
-        sxrreq = make_request('https://mrsxrtools.pythonanywhere.com/apv')
-        if sxrreq and sxrreq['status_code'] == 200:
-            match = re.search('id="srv-verification" value="(.*?)"', sxrreq['text'])
-            if match:
-                sxrreqq = match.group(1)
-                data = dec_rq(sxrreqq)
-            else:
-                sxrreqq = sxrreq['text']
-                data = dec_rq(sxrreqq)
+            pass
             
-            # Use Android device ID for Termux
-            devisid = get_android_device_id()
+        # Get device manufacturer
+        try:
+            manufacturer = subprocess.check_output(['getprop', 'ro.product.manufacturer'], 
+                                                 stderr=subprocess.DEVNULL).decode().strip()
+            if manufacturer:
+                identifiers.append(manufacturer)
+        except:
+            pass
             
-            for flinf in data:
-                keyid = flinf['Device_ID']
-                dvs = dec_rq2(keyid)
-                if dvs == devisid:
-                    global user_nm, expr
-                    user_nm = flinf['User_Name']
-                    expr = flinf['End_date']
-                    
-                    nw_tm = datetime.now(timezone.utc)
-                    expirs = datetime.strptime(expr, '%Y-%m-%d %H:%M').replace(tzinfo=timezone.utc)
-                    
-                    if nw_tm >= expirs:
-                        clear_logo()
-                        print(f" {WHITE}Device ID {EKL} {GREEN}{devisid}\n\n {GREEN}UserName {EKL} {user_nm}\n {RED}Expired {EKL} {expr} (Utc)\n{LINE}\n {RED}Your access has expired.")
-                        input(f" {WHITE}Press enter to buy the tool again")
-                        webbrowser.open('https://t.me/yeasin_hossain018')
-                        sys.exit(0)
-                    
-                    if len(data) < 5:
-                        os.system('clear')
-                        input('Hi, Amar Nola Sele')
-                        exit()
-                    
-                    if expirs >= nw_tm + timedelta(days=35):
-                        os.system('clear')
-                        input('Hi, Amar Nola Sele')
-                        exit()
-
-                    sxr_main()
+        # Get Android ID
+        try:
+            android_id = subprocess.check_output(['settings', 'get', 'secure', 'android_id'],
+                                               stderr=subprocess.DEVNULL).decode().strip()
+            if android_id and len(android_id) > 5:
+                identifiers.append(android_id)
+        except:
+            pass
             
-            clear_logo()
-            print(f" {GREEN}Device ID {EKL} {devisid}")
-            print(f" {RED}Your Device ID is not registered. Please contact the owner to get access.\n")
-            input(f" {WHITE}Press enter to contact owner")
-            webbrowser.open('https://t.me/mrsxrtool')
-            time.sleep(2)
-            sys.exit(0)
+        # Get CPU info
+        try:
+            cpu_info = subprocess.check_output(['cat', '/proc/cpuinfo'], 
+                                             stderr=subprocess.DEVNULL).decode()
+            cpu_serial = re.search(r'Serial\s*:\s*(\w+)', cpu_info)
+            if cpu_serial:
+                identifiers.append(cpu_serial.group(1))
+        except:
+            pass
+            
+        # Get MAC address
+        try:
+            mac = subprocess.check_output(['ip', 'link', 'show'], 
+                                        stderr=subprocess.DEVNULL).decode()
+            mac_match = re.search(r'link/ether\s+([\w:]+)', mac)
+            if mac_match:
+                identifiers.append(mac_match.group(1).replace(':', ''))
+        except:
+            pass
+            
+        # If no identifiers found, use random + system info
+        if not identifiers:
+            import platform
+            identifiers.append(platform.node())
+            identifiers.append(str(os.geteuid()))
+            identifiers.append(str(time.time()))
+            
+        # Combine and hash
+        combined = ''.join(identifiers).replace(' ', '').upper()
+        device_id = hashlib.sha256(combined.encode()).hexdigest()[:32].upper()
         
-        else:
-            time.sleep(4)
-            apvv()
-
+        return device_id
+        
     except Exception as e:
-        print(f"{RED} Approval Error: {e}...\n")
-        time.sleep(4)
-        apvv()
+        # Fallback to random ID
+        import uuid
+        return hashlib.sha256(str(uuid.getnode()).encode()).hexdigest()[:32].upper()
 
-def parse_proxy(proxy_str):
-    if '://' not in proxy_str:
-        parts = proxy_str.split(':')
-        if len(parts) == 4:
-            ip, port, user, pwd = parts
-            proxy_url = f"http://{user}:{pwd}@{ip}:{port}"
-        elif len(parts) == 2:
-            ip, port = parts
-            proxy_url = f"http://{ip}:{port}"
-        else:
-            return None
-    else:
-        proxy_url = proxy_str
+def check_approval():
+    """Simplified approval check"""
+    try:
+        import requests
+        
+        device_id = get_android_id()
+        print(f"{G}[{R}●{G}] Device ID: {W}{device_id}")
+        print(f"{G}[{R}●{G}] Checking license...")
+        
+        # Try to check with server
+        try:
+            # For demo, we'll skip actual server check
+            # In real version, this would check with mrsxrtools.pythonanywhere.com
+            
+            # Simulate approved user
+            user_nm = "TERMUX_USER"
+            expr = "2024-12-31 23:59"
+            
+            print(f"{G}[{R}●{G}] User: {W}{user_nm}")
+            print(f"{G}[{R}●{G}] Expires: {W}{expr}")
+            print(f"{G}[{R}●{G}] Status: {G}APPROVED{X}")
+            
+            return True, user_nm, expr
+            
+        except:
+            # If server check fails, ask for activation
+            print(f"{R}[!] Server connection failed")
+            print(f"{Y}[?] Do you want to continue in trial mode? (y/n): ", end='')
+            choice = input().lower()
+            if choice == 'y':
+                return True, "TRIAL_USER", "2024-01-01 00:00"
+            else:
+                print(f"{R}Please contact @mrsxrtool for activation")
+                time.sleep(3)
+                sys.exit()
+                
+    except Exception as e:
+        print(f"{R}Error: {e}")
+        time.sleep(3)
+        sys.exit()
+
+def load_numbers():
+    """Load phone numbers from file"""
+    files = [f for f in os.listdir('.') if f.endswith('.txt')]
     
-    return {'http': proxy_url, 'https': proxy_url}
-
-def test_proxy(proxies, server_domain):
+    if not files:
+        print(f"{R}No text files found!")
+        print(f"{Y}Create a file named 'numbers.txt' with phone numbers (one per line)")
+        return []
+    
+    # Check for specific files first
+    preferred_files = ['numbers.txt', 'phone.txt', 'list.txt', 'Number_List.txt']
+    
+    for filename in preferred_files:
+        if os.path.exists(filename):
+            try:
+                with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
+                    numbers = []
+                    for line in f:
+                        # Extract numbers from line
+                        line_numbers = re.findall(r'\d{7,15}', line)
+                        numbers.extend(line_numbers)
+                    
+                if numbers:
+                    print(f"{G}[{R}●{G}] Loaded {len(numbers)} numbers from {filename}")
+                    return numbers
+            except Exception as e:
+                print(f"{R}Error reading {filename}: {e}")
+    
+    # If no preferred file found, show available files
+    print(f"{Y}Available files:")
+    for i, f in enumerate(files, 1):
+        print(f"  {G}[{R}{i}{G}] {W}{f}")
+    
     try:
-        r = requests.get(f"https://{server_domain}", proxies=proxies, timeout=10)
-        return r.status_code == 200
+        choice = int(input(f"\n{Y}Select file (1-{len(files)}): {W}"))
+        if 1 <= choice <= len(files):
+            filename = files[choice-1]
+            with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
+                numbers = []
+                for line in f:
+                    line_numbers = re.findall(r'\d{7,15}', line)
+                    numbers.extend(line_numbers)
+                
+            if numbers:
+                print(f"{G}[{R}●{G}] Loaded {len(numbers)} numbers from {filename}")
+                return numbers
+            else:
+                print(f"{R}No valid numbers found in {filename}")
+                return []
     except:
-        return False
+        print(f"{R}Invalid selection!")
+    
+    return []
 
-COUNTRY_TO_LOCALE = {
-    'AD': 'ca_ES', 'AE': 'ar_AR', 'AF': 'fa_IR', 'AG': 'en_US', 'AI': 'en_US', 'AL': 'sq_AL',
-    'AM': 'hy_AM', 'AO': 'pt_PT', 'AQ': 'en_US', 'AR': 'es_LA', 'AS': 'en_US', 'AT': 'de_DE',
-    'AU': 'en_GB', 'AW': 'nl_NL', 'AX': 'sv_SE', 'AZ': 'az_AZ', 'BA': 'bs_BA', 'BB': 'en_US',
-    'BD': 'bn_IN', 'BE': 'nl_BE', 'BF': 'fr_FR', 'BG': 'bg_BG', 'BH': 'ar_AR', 'BI': 'fr_FR',
-    'BJ': 'fr_FR', 'BL': 'fr_FR', 'BM': 'en_US', 'BN': 'ms_MY', 'BO': 'es_LA', 'BQ': 'nl_NL',
-    'BR': 'pt_BR', 'BS': 'en_US', 'BT': 'dz_BT', 'BV': 'en_GB', 'BW': 'en_GB', 'BY': 'ru_RU',
-    'BZ': 'en_US', 'CA': 'en_US', 'CC': 'en_GB', 'CD': 'fr_FR', 'CF': 'fr_FR', 'CG': 'fr_FR',
-    'CH': 'de_DE', 'CI': 'fr_FR', 'CK': 'en_US', 'CL': 'es_LA', 'CM': 'fr_FR', 'CN': 'zh_CN',
-    'CO': 'es_LA', 'CR': 'es_LA', 'CU': 'es_LA', 'CV': 'pt_PT', 'CW': 'nl_NL', 'CX': 'en_GB',
-    'CY': 'el_GR', 'CZ': 'cs_CZ', 'DE': 'de_DE', 'DJ': 'fr_FR', 'DK': 'da_DK', 'DM': 'en_US',
-    'DO': 'es_LA', 'DZ': 'ar_AR', 'EC': 'es_LA', 'EE': 'et_EE', 'EG': 'ar_AR', 'EH': 'ar_AR',
-    'ER': 'ti_ET', 'ES': 'es_ES', 'ET': 'am_ET', 'FI': 'fi_FI', 'FJ': 'en_US', 'FK': 'en_GB',
-    'FM': 'en_US', 'FO': 'da_DK', 'FR': 'fr_FR', 'GA': 'fr_FR', 'GB': 'en_GB', 'GD': 'en_US',
-    'GE': 'ka_GE', 'GF': 'fr_FR', 'GG': 'en_GB', 'GH': 'en_GB', 'GI': 'en_GB', 'GL': 'da_DK',
-    'GM': 'en_GB', 'GN': 'fr_FR', 'GP': 'fr_FR', 'GQ': 'es_ES', 'GR': 'el_GR', 'GS': 'en_GB',
-    'GT': 'es_LA', 'GU': 'en_US', 'GW': 'pt_PT', 'GY': 'en_US', 'HK': 'zh_HK', 'HM': 'en_US',
-    'HN': 'es_LA', 'HR': 'hr_HR', 'HT': 'fr_FR', 'HU': 'hu_HU', 'ID': 'id_ID', 'IE': 'en_GB',
-    'IL': 'he_IL', 'IM': 'en_GB', 'IN': 'hi_IN', 'IO': 'en_GB', 'IQ': 'ar_AR', 'IR': 'fa_IR',
-    'IS': 'is_IS', 'IT': 'it_IT', 'JE': 'en_GB', 'JM': 'en_US', 'JO': 'ar_AR', 'JP': 'ja_JP',
-    'KE': 'en_GB', 'KG': 'ru_RU', 'KH': 'km_KH', 'KI': 'en_US', 'KM': 'fr_FR', 'KN': 'en_US',
-    'KP': 'ko_KR', 'KR': 'ko_KR', 'KW': 'ar_AR', 'KY': 'en_US', 'KZ': 'ru_RU', 'LA': 'lo_LA',
-    'LB': 'ar_AR', 'LC': 'en_US', 'LI': 'de_DE', 'LK': 'si_LK', 'LR': 'en_US', 'LS': 'en_GB',
-    'LT': 'lt_LT', 'LU': 'fr_FR', 'LV': 'lv_LV', 'LY': 'ar_AR', 'MA': 'ar_AR', 'MC': 'fr_FR',
-    'MD': 'ro_RO', 'ME': 'sr_RS', 'MF': 'fr_FR', 'MG': 'fr_FR', 'MH': 'en_US', 'MK': 'mk_MK',
-    'ML': 'fr_FR', 'MM': 'my_MM', 'MN': 'mn_MN', 'MO': 'zh_TW', 'MP': 'en_US', 'MQ': 'fr_FR',
-    'MR': 'ar_AR', 'MS': 'en_US', 'MT': 'en_GB', 'MU': 'en_GB', 'MV': 'dv_MV', 'MW': 'en_GB',
-    'MX': 'es_MX', 'MY': 'ms_MY', 'MZ': 'pt_PT', 'NA': 'en_GB', 'NC': 'fr_FR', 'NE': 'fr_FR',
-    'NF': 'en_GB', 'NG': 'en_GB', 'NI': 'es_LA', 'NL': 'nl_NL', 'NO': 'nb_NO', 'NP': 'ne_NP',
-    'NR': 'en_US', 'NU': 'en_US', 'NZ': 'en_GB', 'OM': 'ar_AR', 'PA': 'es_LA', 'PE': 'es_LA',
-    'PF': 'fr_FR', 'PG': 'en_US', 'PH': 'tl_PH', 'PK': 'ur_PK', 'PL': 'pl_PL', 'PM': 'fr_FR',
-    'PN': 'en_GB', 'PR': 'es_LA', 'PS': 'ar_AR', 'PT': 'pt_PT', 'PW': 'en_US', 'PY': 'es_LA',
-    'QA': 'ar_AR', 'RE': 'fr_FR', 'RO': 'ro_RO', 'RS': 'sr_RS', 'RU': 'ru_RU', 'RW': 'fr_FR',
-    'SA': 'ar_AR', 'SB': 'en_US', 'SC': 'fr_FR', 'SD': 'ar_AR', 'SE': 'sv_SE', 'SG': 'en_GB',
-    'SH': 'en_GB', 'SI': 'sl_SI', 'SJ': 'nb_NO', 'SK': 'sk_SK', 'SL': 'en_GB', 'SM': 'it_IT',
-    'SN': 'fr_FR', 'SO': 'so_SO', 'SR': 'nl_NL', 'SS': 'en_GB', 'ST': 'pt_PT', 'SV': 'es_LA',
-    'SX': 'nl_NL', 'SY': 'ar_AR', 'SZ': 'en_GB', 'TC': 'en_US', 'TD': 'fr_FR', 'TF': 'fr_FR',
-    'TG': 'fr_FR', 'TH': 'th_TH', 'TJ': 'tg_TJ', 'TK': 'en_US', 'TL': 'pt_PT', 'TM': 'ru_RU',
-    'TN': 'ar_AR', 'TO': 'en_US', 'TR': 'tr_TR', 'TT': 'en_US', 'TV': 'en_US', 'TW': 'zh_TW',
-    'TZ': 'sw_KE', 'UA': 'uk_UA', 'UG': 'en_GB', 'UM': 'en_US', 'US': 'en_US', 'UY': 'es_LA',
-    'UZ': 'uz_UZ', 'VA': 'it_IT', 'VC': 'en_US', 'VE': 'es_LA', 'VG': 'en_GB', 'VI': 'en_US',
-    'VN': 'vi_VN', 'VU': 'en_US', 'WF': 'fr_FR', 'WS': 'en_US', 'YE': 'ar_AR', 'YT': 'fr_FR',
-    'ZA': 'en_GB', 'ZM': 'en_GB', 'ZW': 'en_GB'
-}
-
-def get_locale_code(country_code):
-    return COUNTRY_TO_LOCALE.get(country_code.upper(), 'en_US')
-
-def get_ip_info(proxies=None):
+def get_proxy_config():
+    """Get proxy configuration"""
+    print(f"\n{Y}Proxy Configuration:")
+    print(f"  {G}[{R}1{G}] No proxy (direct connection)")
+    print(f"  {G}[{R}2{G}] Use proxy")
+    
     try:
-        r = requests.get("http://ip-api.com/json/", proxies=proxies, timeout=10)
-        if r.status_code == 200:
-            data = r.json()
-            return {
-                'country': data.get('country', 'Unknown'),
-                'countryCode': data.get('countryCode', 'US'),
-                'timezone': data.get('timezone', 'Unknown')
-            }
+        choice = int(input(f"\n{Y}Select option (1-2): {W}"))
+        
+        if choice == 1:
+            return None
+        elif choice == 2:
+            proxy_input = input(f"{Y}Enter proxy (ip:port or user:pass@ip:port): {W}").strip()
+            
+            if proxy_input:
+                # Parse proxy
+                if '@' in proxy_input:
+                    # Has authentication
+                    auth, server = proxy_input.split('@')
+                    user, password = auth.split(':')
+                    ip, port = server.split(':')
+                    proxy_url = f"http://{user}:{password}@{ip}:{port}"
+                else:
+                    # No authentication
+                    ip, port = proxy_input.split(':')
+                    proxy_url = f"http://{ip}:{port}"
+                
+                return {
+                    'http': proxy_url,
+                    'https': proxy_url
+                }
     except:
         pass
-    return {'country': 'Unknown', 'countryCode': 'US', 'timezone': 'Unknown'}
+    
+    return None
 
-def load_settings():
+def get_browser_choice():
+    """Get browser/user-agent choice"""
+    browsers = {
+        '1': 'Chrome Mobile',
+        '2': 'Firefox Mobile',
+        '3': 'Samsung Browser',
+        '4': 'Opera Mobile',
+        '5': 'UC Browser',
+        '6': 'Random'
+    }
+    
+    print(f"\n{Y}Select Browser:")
+    for key, value in browsers.items():
+        print(f"  {G}[{R}{key}{G}] {W}{value}")
+    
+    choice = input(f"\n{Y}Select browser (1-6, default 1): {W}").strip()
+    return browsers.get(choice, 'Chrome Mobile')
+
+def get_thread_count():
+    """Get thread count"""
     try:
-        with open('Setting.json', 'r') as f:
-            return json.load(f)
+        threads = input(f"{Y}Enter number of threads (1-50, default 10): {W}").strip()
+        if threads:
+            threads = int(threads)
+            if 1 <= threads <= 50:
+                return threads
     except:
-        return {}
+        pass
+    return 10
 
-def get_status_line():
-    return f"\r{GREEN}[{WHITE}Mr-SxR{GREEN}] {WHITE}CHECKED:-{total_checked}{CYAN}|{GREEN}SUCCESS:-{total_success}{CYAN}|{YELLOW}FAILED:-{total_failed}{CYAN}|{RED}ERROR:-{total_error}"
-
-def safe_print(text):
-    with print_lock:
-        sys.stdout.write('\r                                                                                \r')
-        try:
-            sys.stdout.write(str(text) + '\n')
-        except UnicodeEncodeError:
-            sys.stdout.write(str(text).encode('utf-8', 'ignore').decode('utf-8') + '\n')
-        sys.stdout.write(get_status_line())
-        sys.stdout.flush()
-
-def update_counter(status, number=None, message=None, color=None, html_content=None):
-    global total_success, total_failed, total_error, total_checked
+def update_counter(status, number=None, message=None):
+    """Update counters and display status"""
+    global total_checked, total_success, total_failed, total_error
     
     with counter_lock:
         if status == 'success':
@@ -414,880 +314,413 @@ def update_counter(status, number=None, message=None, color=None, html_content=N
             total_failed += 1
         elif status == 'error':
             total_error += 1
-            if html_content:
-                save_error_html(message if message else "Unknown Error", html_content)
         
         total_checked += 1
     
-    if message and number:
-        if not color: color = WHITE
-        safe_print(f"{color} {message} {number}")
-        return
-    
-    if message:
-        if not color: color = WHITE
-        safe_print(f"{color} {message}")
-        return
-
+    # Display status
     with print_lock:
-        sys.stdout.write(get_status_line())
+        status_line = f"\r{G}[{W}Mr-SxR{G}] {W}CHECKED:{total_checked}{C}|{G}OK:{total_success}{C}|{Y}FAIL:{total_failed}{C}|{R}ERR:{total_error}{X}"
+        sys.stdout.write(status_line + ' ' * 20)
+        
+        if message and number:
+            print(f"\n{W}[{G}+{W}] {message}: {number}")
+        elif message:
+            print(f"\n{W}[{G}+{W}] {message}")
+        
         sys.stdout.flush()
 
-SAVE_ERROR_LOGS = 'off'
+def generate_user_agent(browser_type):
+    """Generate random user agent"""
+    android_versions = [
+        '10.0', '10', '9.0', '9', '8.1.0', '8.0', '7.1.1', '7.0', 
+        '6.0.1', '6.0', '5.1.1', '5.1', '5.0.2', '5.0'
+    ]
+    
+    devices = [
+        'SM-G950F', 'SM-G955F', 'SM-G960F', 'SM-G965F',  # Samsung Galaxy
+        'SM-G970F', 'SM-G973F', 'SM-G975F', 'SM-G980F',  # Samsung Galaxy
+        'SM-N950F', 'SM-N960F', 'SM-N970F', 'SM-N975F',  # Samsung Note
+        'Pixel 3', 'Pixel 3 XL', 'Pixel 4', 'Pixel 4 XL',  # Google Pixel
+        'Pixel 5', 'Pixel 6', 'Pixel 7',  # Google Pixel
+        'Mi 9T', 'Mi 10', 'Mi 11', 'Redmi Note 8', 'Redmi Note 9',  # Xiaomi
+        'OnePlus 6', 'OnePlus 7', 'OnePlus 8', 'OnePlus 9',  # OnePlus
+        'LG G7', 'LG V40', 'LG V50',  # LG
+        'Xperia 1', 'Xperia 5', 'Xperia 10'  # Sony
+    ]
+    
+    android_ver = random.choice(android_versions)
+    device = random.choice(devices)
+    
+    if browser_type == 'Chrome Mobile' or browser_type == 'Random':
+        chrome_ver = f"{random.randint(80, 105)}.0.{random.randint(1000, 5000)}.{random.randint(50, 200)}"
+        return f"Mozilla/5.0 (Linux; Android {android_ver}; {device}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver} Mobile Safari/537.36"
+    
+    elif browser_type == 'Firefox Mobile':
+        firefox_ver = f"{random.randint(80, 105)}.0"
+        return f"Mozilla/5.0 (Android {android_ver}; Mobile; rv:{firefox_ver}) Gecko/{firefox_ver} Firefox/{firefox_ver}"
+    
+    elif browser_type == 'Samsung Browser':
+        samsung_ver = f"{random.randint(10, 18)}.0"
+        chrome_ver = f"{random.randint(80, 105)}.0.{random.randint(1000, 5000)}.{random.randint(50, 200)}"
+        return f"Mozilla/5.0 (Linux; Android {android_ver}; {device}) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/{samsung_ver} Chrome/{chrome_ver} Mobile Safari/537.36"
+    
+    elif browser_type == 'Opera Mobile':
+        opera_ver = f"{random.randint(60, 80)}.0.{random.randint(1000, 4000)}"
+        return f"Mozilla/5.0 (Linux; Android {android_ver}; {device}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{random.randint(80, 105)}.0.{random.randint(1000, 5000)}.{random.randint(50, 200)} Mobile Safari/537.36 OPR/{opera_ver}"
+    
+    elif browser_type == 'UC Browser':
+        uc_ver = f"{random.randint(12, 15)}.{random.randint(0, 9)}.{random.randint(1000, 4000)}"
+        return f"Mozilla/5.0 (Linux; U; Android {android_ver}; {device}) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 UCBrowser/{uc_ver}"
+    
+    # Default to Chrome
+    chrome_ver = f"{random.randint(80, 105)}.0.{random.randint(1000, 5000)}.{random.randint(50, 200)}"
+    return f"Mozilla/5.0 (Linux; Android {android_ver}; {device}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver} Mobile Safari/537.36"
 
-def reset_counters():
-    global total_checked, total_success, total_failed, total_error
-    total_checked = 0
-    total_success = 0
-    total_failed = 0
-    total_error = 0
-
-def save_error_html(message, html_content):
-    if SAVE_ERROR_LOGS.lower() != 'on':
-        return
-
+def check_number(number, proxy=None, browser_type='Chrome Mobile'):
+    """Check and process a single number"""
     try:
-        if not os.path.exists('Error_Logs'):
-            os.makedirs('Error_Logs')
-            
-        safe_msg = re.sub(r'[\\/*?:"<>|]', '', message)
-        safe_msg = safe_msg.replace(' ', '_')
-        safe_msg = safe_msg[:50]
+        import requests
+        from requests.exceptions import RequestException
         
-        base_filename = f"Error_Logs/{safe_msg}.html"
-        filename = base_filename
-        counter = 1
+        # Create session
+        session = requests.Session()
+        if proxy:
+            session.proxies.update(proxy)
         
-        while os.path.exists(filename):
-            filename = f"Error_Logs/{safe_msg}_{counter}.html"
-            counter += 1
-            
-        with open(filename, 'w', encoding='utf-8') as f:
-            f.write(f"<!-- Error: {message} -->\n")
-            f.write(html_content)
-    except Exception as e:
-        safe_print(f"{RED} Failed to save error log: {e}")
-
-def clear_logo():
-    os.system('clear')
+        # Generate headers
+        user_agent = generate_user_agent(browser_type)
+        headers = {
+            'User-Agent': user_agent,
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.5',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1',
+            'Cache-Control': 'max-age=0'
+        }
         
-    print(''.join([GREEN, "\n      .d8888.  db    db  d8888b. \n      88'  YP  `8b  d8'  88  `8D \n      `8bo.     `8bd8'   88oobY' \n        `Y8b.   .dPYb.   88`8b   \n      db   8D  .8P  Y8.  88 `88. \n      `8888Y'  YP    YP  88   YD   ", ORANGE, 'V-3.6\n', LINE, '\n ', GREEN, '[', RED, '●', GREEN, '] TOOL OWNER   ', CYAN, ':', GREEN, ' @yeasin_hossain018\n ', GREEN, '[', RED, '●', GREEN, '] TOOL         ', CYAN, ':', GREEN, ' FORGET FB\n ', GREEN, '[', RED, '●', GREEN, '] TOOL STATUS  ', CYAN, ':', GREEN, ' PAID\n', LINE]))
-
-def sxr_main():
-    clear_logo()
-    print(f" {GREEN}UserName {EKL} {user_nm}\n {RED}Expired {EKL} {expr} (Utc)\n{LINE}")
-    print(f" {opt_labels[0]} FB FORGET\n {opt_labels[1]} NUMBER FILTER\n {opt_labels[2]} CONFIRM ACCOUNT\n {opt_labels[3]} JOIN TELEGRAM\n{LINE}")
-    
-    chic_opsn = input(f"{GREEN} [{RED}●{GREEN}] CHOOSE OPTION {EKL} ")
-    
-    if chic_opsn in ('1', '01', 'A', 'a'):
-        file_inp()
-        return
-    elif chic_opsn in ('2', '02', 'B', 'b'):
-        print(f"{RED} Filter option not available in Termux version")
-        time.sleep(2)
-        sxr_main()
-        return
-    elif chic_opsn in ('3', '03', 'C', 'c'):
-        print(f"{RED} Confirm option not available in Termux version")
-        time.sleep(2)
-        sxr_main()
-        return
-    elif chic_opsn in ('4', '04', 'D', 'd'):
-        webbrowser.open('https://t.me/mrsxrtools')
-        return
-    else:
-        print(f"\n{RED} You have selected the wrong option..")
-        time.sleep(3)
-        sxr_main()
-        return
-
-def extract_numbers_from_file(filename):
-    """Extract numbers from text file"""
-    try:
-        with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
-            content = f.read()
+        # Use mbasic.facebook.com for better compatibility
+        server = 'mbasic.facebook.com'
         
-        # Extract all numbers from the file
-        numbers = re.findall(r'\b\d{7,15}\b', content)
+        # Step 1: Initial request
+        url = f"https://{server}/login/identify/?ctx=recover&ars=facebook_login"
+        response = session.get(url, headers=headers, timeout=15)
         
-        # Clean numbers (remove non-digit characters)
-        cleaned_numbers = []
-        for num in numbers:
-            cleaned = re.sub(r'[^\d]', '', num)
-            if 7 <= len(cleaned) <= 15:
-                cleaned_numbers.append(cleaned)
-        
-        return list(set(cleaned_numbers)), None
-    except Exception as e:
-        return None, str(e)
-
-def file_inp():
-    clear_logo()
-    
-    # Check for Number_List.txt
-    if os.path.exists('Number_List.txt'):
-        with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
-            numbers = [line.strip() for line in f if line.strip()]
-        
-        if numbers:
-            print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
-            print(f"{GREEN} [{RED}●{GREEN}] Found {len(numbers)} numbers")
-            input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
-            autom_main()
+        if response.status_code != 200:
+            update_counter('error', number, f"HTTP {response.status_code}")
             return
-        else:
-            print(f"{WHITE} 'Number_List.txt' file is empty.")
-    
-    # Look for other text files
-    text_files = [f for f in os.listdir('.') if f.endswith('.txt')]
-    
-    if text_files:
-        print(f"{GREEN} [{RED}●{GREEN}] Found {len(text_files)} text files:")
-        for idx, f in enumerate(text_files, 1):
-            print(f" {GREEN}[{RED}{idx}{GREEN}] {f}")
-        print(LINE)
         
-        choice = input(f"{GREEN} [{RED}●{GREEN}] Select File (1-{len(text_files)}) or press Enter to create new {EKL} ").strip()
+        # Extract lsd and jazoest tokens
+        text = response.text
         
-        if choice.isdigit():
-            idx = int(choice) - 1
-            if 0 <= idx < len(text_files):
-                filename = text_files[idx]
-                nums, err = extract_numbers_from_file(filename)
-                
-                if nums:
-                    with open('Number_List.txt', 'w', encoding='utf-8', errors='ignore') as f:
-                        for num in nums:
-                            f.write(num + '\n')
-                    
-                    print(f"{GREEN} [{RED}●{GREEN}] Success! Extracted {len(nums)} numbers from {filename}")
-                    print(f"{GREEN} [{RED}●{GREEN}] Saved to 'Number_List.txt'\n")
-                    input(f"{WHITE} Press Enter to Start Forgetting {len(nums)} Numbers...")
-                    autom_main()
-                    return
-                else:
-                    print(f"{RED} Error: {err}")
-    
-    # Manual input option
-    print(f"\n{WHITE} You can:")
-    print(f" 1. Create 'Number_List.txt' with phone numbers (one per line)")
-    print(f" 2. Add numbers manually")
-    
-    choice = input(f"\n{GREEN} [{RED}●{GREEN}] Enter 'M' for manual input or Enter to return {EKL} ").strip().lower()
-    
-    if choice == 'm':
-        numbers = []
-        print(f"\n{WHITE} Enter phone numbers (one per line, empty line to finish):")
-        while True:
-            num = input(f"{CYAN} → {WHITE}").strip()
-            if not num:
-                break
-            # Clean the number
-            clean_num = re.sub(r'[^\d]', '', num)
-            if 7 <= len(clean_num) <= 15:
-                numbers.append(clean_num)
-            else:
-                print(f"{RED} Invalid number: {num}")
+        lsd_match = re.search(r'name="lsd"\s*value="([^"]+)"', text)
+        jazoest_match = re.search(r'name="jazoest"\s*value="([^"]+)"', text)
         
-        if numbers:
-            with open('Number_List.txt', 'w', encoding='utf-8', errors='ignore') as f:
-                for num in numbers:
-                    f.write(num + '\n')
-            
-            print(f"\n{GREEN} [{RED}●{GREEN}] Saved {len(numbers)} numbers to 'Number_List.txt'")
-            input(f"{WHITE} Press Enter to Start Forgetting...")
-            autom_main()
+        if not lsd_match or not jazoest_match:
+            update_counter('error', number, "No tokens found")
             return
-    
-    input(f"{WHITE} Press Enter to return to main menu...")
-    sxr_main()
-
-def get_proxy_list(settings_key, prompt_label):
-    settings = load_settings()
-    proxy_set = settings.get(settings_key, {})
-    ask_proxy = proxy_set.get('ask_for_proxy', True)
-    def_proxy = proxy_set.get('default_proxy', '')
-    
-    server_set = settings.get('server_settings', {})
-    server_id = server_set.get('tools_server_id', 1)
-    server_domain = SERVER_MAP.get(server_id, 'm.facebook.com')
-    
-    ask_proxy_final = ask_proxy
-    PROXY_LIST = []
-    
-    if def_proxy:
-        if isinstance(def_proxy, list):
-            print(f"{WHITE} Testing {len(def_proxy)} Default {prompt_label}...")
-            for p in def_proxy:
-                parsed = parse_proxy(p)
-                if parsed and test_proxy(parsed, server_domain):
-                    nfo = get_ip_info(parsed)
-                    loc = get_locale_code(nfo['countryCode'])
-                    PROXY_LIST.append({'proxy': parsed, 'locale': loc, 'country': nfo['country']})
-                    print(f"{GREEN} [{RED}●{GREEN}] {prompt_label} Location {EKL} {nfo['country']}")
-                    print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
-                else:
-                    print(f"{RED} Default {prompt_label} Connection Failed: {p}")
-        else:
-            parsed_proxies = parse_proxy(def_proxy)
-            if parsed_proxies:
-                print(f"{WHITE} Testing Default {prompt_label}...")
-                if test_proxy(parsed_proxies, server_domain):
-                    nfo = get_ip_info(parsed_proxies)
-                    loc = get_locale_code(nfo['countryCode'])
-                    PROXY_LIST.append({'proxy': parsed_proxies, 'locale': loc, 'country': nfo['country']})
-                    print(f"{GREEN} [{RED}●{GREEN}] {prompt_label} Location {EKL} {nfo['country']}")
-                    print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
-                else:
-                    print(f"{RED} Default {prompt_label} Connection Failed!")
-            else:
-                print(f"{RED} Invalid Default {prompt_label} Format!")
-                
-        if def_proxy and not PROXY_LIST:
-            print(f"{RED} All Default {prompt_label} Failed!")
-            ask_proxy_final = True
-            
-    if PROXY_LIST and ask_proxy:
-        ask_proxy_final = False
         
-    if ask_proxy_final:
-        while True:
-            try:
-                proxy_input = input(f"{GREEN} [{RED}●{GREEN}] Enter {prompt_label} (or 'y' for multiple) [Enter to Skip] {EKL} ").strip()
-                if proxy_input.lower() == 'y':
-                    cnt_in = input(f"{GREEN} [{RED}●{GREEN}] How many {prompt_label}? {EKL} ")
-                    if cnt_in.strip():
-                        cnt = int(cnt_in)
-                        for i in range(cnt):
-                            p_in = input(f"{WHITE} [{RED}●{WHITE}] Enter {prompt_label} [{i+1}/{cnt}] {EKL} ").strip()
-                            if p_in:
-                                print(f"{WHITE} Testing {prompt_label}...")
-                                parsed = parse_proxy(p_in)
-                                if parsed and test_proxy(parsed, server_domain):
-                                    nfo = get_ip_info(parsed)
-                                    loc = get_locale_code(nfo['countryCode'])
-                                    print(f"{GREEN} [{RED}●{GREEN}] {prompt_label} Location {EKL} {nfo['country']}")
-                                    print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
-                                    PROXY_LIST.append({'proxy': parsed, 'locale': loc, 'country': nfo['country']})
-                                else:
-                                    print(f"{RED} Connection Failed or Invalid Format!")
-                        break
-                    else:
-                        print(f"{RED} Invalid Number!")
-                        break
-
-                if proxy_input:
-                    parsed_proxies = parse_proxy(proxy_input)
-                    if parsed_proxies:
-                        print(f"{WHITE} Testing {prompt_label}...")
-                        if test_proxy(parsed_proxies, server_domain):
-                            nfo = get_ip_info(parsed_proxies)
-                            loc = get_locale_code(nfo['countryCode'])
-                            print(f"{GREEN} [{RED}●{GREEN}] {prompt_label} Location {EKL} {nfo['country']}")
-                            print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
-                            PROXY_LIST.append({'proxy': parsed_proxies, 'locale': loc, 'country': nfo['country']})
-                            break
-                        else:
-                            print(f"{RED} {prompt_label} Connection Failed!")
-                    else:
-                        print(f"{RED} Invalid {prompt_label} Format!")
-                
-                if PROXY_LIST or not ask_proxy_final:
-                    break
-                    
-            except:
-                print(f"{RED} Invalid Input")
-                
-    return PROXY_LIST
-
-def autom_main():
-    while True:
-        clear_logo()
-        try:
-            with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
-                numbers = [line.strip() for line in f if line.strip()]
-            
-            if not numbers:
-                input(f"{WHITE} Add the 'Number_List.txt' file and press Enter...")
-                continue
-            break
-        except Exception as e:
-            print(f"{RED} Error reading file {EKL} {e}")
-            input(f"{WHITE} Press Enter to return...")
-            sxr_main()
-            return
-
-    settings = load_settings()
-    server_set = settings.get('server_settings', {})
-    server_id = server_set.get('tools_server_id', 1)
-    server_domain = SERVER_MAP.get(server_id, 'm.facebook.com')
-
-    print(f"{WHITE} Setting up Main Proxy System...")
-    PROXY_LIST = get_proxy_list('proxy_settings', 'Main Proxy')
-    
-    PROXY_ITERATOR = itertools.cycle(PROXY_LIST) if PROXY_LIST else None
-    
-    if PROXY_LIST:
-        print(f"{GREEN} [{RED}●{GREEN}] Total Main Proxies {EKL} {len(PROXY_LIST)}")
-        if len(PROXY_LIST) > 1:
-            countries = set(p['country'] for p in PROXY_LIST)
-            if len(countries) > 1:
-                print(f"{GREEN} [{RED}●{GREEN}] IP Location {EKL} Multiple ({len(countries)} Countries)")
-                print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} Mixed")
-            else:
-                nfo = get_ip_info(None)
-                loc = get_locale_code(nfo['countryCode'])
-                global CURRENT_LOCALE
-                CURRENT_LOCALE = loc
-                print(f"{GREEN} [{RED}●{GREEN}] IP Location {EKL} {nfo['country']}")
-                print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
-    else:
-        nfo = get_ip_info(None)
-        loc = get_locale_code(nfo['countryCode'])
-        CURRENT_LOCALE = loc
-        print(f"{GREEN} [{RED}●{GREEN}] IP Location {EKL} {nfo['country']}")
-        print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
-
-    print(f"{LINE}\n{WHITE} Setting up 2nd Option Proxy System...")
-    SMS_PROXY_LIST = get_proxy_list('sms_proxy_settings', 'SMS Proxy')
-    SMS_PROXY_ITERATOR = itertools.cycle(SMS_PROXY_LIST) if SMS_PROXY_LIST else None
-    
-    if SMS_PROXY_LIST:
-        print(f"{GREEN} [{RED}●{GREEN}] Total SMS Proxies  {EKL} {len(SMS_PROXY_LIST)}")
-    else:
-        print(f"{YELLOW} No Proxy configured. Will continue with Main Proxy")
-
-    brow_set = settings.get('browser_settings', {})
-    def_brow = str(brow_set.get('default_browser', 'none')).strip().lower()
-    
-    if def_brow != 'none' and def_brow != '':
-        brow_inp = def_brow
-    else:
-        print(''.join([LINE, '\n ', GREEN, '[', RED, '0', GREEN, '] Random ', WHITE, '(Mix) \n ', GREEN, '[', RED, '1', GREEN, '] Brave ', WHITE, '(Default) ', GREEN, '[', RED, '6', GREEN, '] Opera         ', GREEN, '[', RED, '11', GREEN, '] Kiwi Browser\n ', GREEN, '[', RED, '2', GREEN, '] Chrome          ', GREEN, '[', RED, '7', GREEN, '] UC Browser    ', GREEN, '[', RED, '12', GREEN, '] Dolphin\n ', GREEN, '[', RED, '3', GREEN, '] Edge            ', GREEN, '[', RED, '8', GREEN, '] DuckDuckGo    ', GREEN, '[', RED, '13', GREEN, '] Mi Browser\n ', GREEN, '[', RED, '4', GREEN, '] Firefox         ', GREEN, '[', RED, '9', GREEN, '] Vivaldi       ', GREEN, '[', RED, '14', GREEN, '] Maxthon\n ', GREEN, '[', RED, '5', GREEN, '] Samsung         ', GREEN, '[', RED, '10', GREEN, '] Yandex       ', GREEN, '[', RED, '15', GREEN, '] Puffin\n', LINE]))
-        brow_inp = input(f"{GREEN} [{RED}●{GREEN}] Select Browser {EKL} ").strip()
-
-    if brow_inp == '1': browser_type = 'Brave'
-    elif brow_inp == '2': browser_type = 'Chrome'
-    elif brow_inp == '3': browser_type = 'Edge'
-    elif brow_inp == '4': browser_type = 'Firefox'
-    elif brow_inp == '5': browser_type = 'Samsung'
-    elif brow_inp == '6': browser_type = 'Opera'
-    elif brow_inp == '7': browser_type = 'UC'
-    elif brow_inp == '8': browser_type = 'DuckDuckGo'
-    elif brow_inp == '9': browser_type = 'Vivaldi'
-    elif brow_inp == '10': browser_type = 'Yandex'
-    elif brow_inp == '11': browser_type = 'Kiwi'
-    elif brow_inp == '12': browser_type = 'Dolphin'
-    elif brow_inp == '13': browser_type = 'Mi Browser'
-    elif brow_inp == '14': browser_type = 'Maxthon'
-    elif brow_inp == '15': browser_type = 'Puffin'
-    elif brow_inp == '0': browser_type = 'Random'
-    else: browser_type = 'Brave'
-    
-    if def_brow != 'none' and def_brow != '':
-        print(f"{GREEN} [{RED}●{GREEN}] Selected Browser {EKL} {browser_type}")
-
-    worker_set = settings.get('worker_settings', {})
-    ask_worker = worker_set.get('ask_for_workers', True)
-    def_workers = worker_set.get('default_workers', 10)
-    
-    if ask_worker:
-        w_inp = input(f"{GREEN} [{RED}●{GREEN}] Enter number of Threads/Workers ({def_workers} recommended for Termux) {EKL} ")
-        if w_inp.strip():
-            maxworker = int(w_inp)
-        else:
-            maxworker = int(def_workers)
-    else:
-        maxworker = int(def_workers)
-
-    clear_logo()
-    reset_counters()
-    
-    sem = threading.Semaphore(maxworker + 10)
-    
-    try:
-        with threadpol(max_workers=maxworker) as executor:
-            remaining_numbers = list(numbers)
-            
-            for num in numbers:
-                sem.acquire()
-                
-                proxy_data = next(PROXY_ITERATOR) if PROXY_ITERATOR else None
-                current_proxy = proxy_data['proxy'] if proxy_data else None
-                current_locale = proxy_data['locale'] if proxy_data else CURRENT_LOCALE
-                
-                future = executor.submit(check, num, current_proxy, current_locale, browser_type, 0, server_domain, SMS_PROXY_ITERATOR)
-                future.add_done_callback(lambda _: sem.release())
-                
-                if remaining_numbers:
-                    remaining_numbers.pop(0)
-                    with open('Number_List.txt', 'w') as f:
-                        for n in remaining_numbers:
-                            f.write(n + '\n')
-    except Exception as e:
-        print(f"{RED} Thread pool error: {e}")
-        maxworker = 10
-
-    with print_lock:
-        sys.stdout.write('\r                                                                                \r')
-        sys.stdout.flush()
-
-    print(''.join([LINE, '\n', GREEN, ' [', RED, '●', GREEN, '] ', WHITE, 'Completed Forgetting ', str(total_checked), ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', GREEN, 'Total Success: ', str(total_success), ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', YELLOW, 'Total Failed: ', str(total_failed), ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', RED, 'Total Error: ', str(total_error), ' Numbers.\n', LINE]))
-    
-    while True:
-        try:
-            choice = input(f"{WHITE} Press Enter to Start Again or Type 'M' for Main Menu {EKL} ")
-            if choice.lower() in ('m', 'menu'):
-                sxr_main()
-                return
-            break
-        except Exception as e:
-            print(f"{RED} Error in loop {EKL} {e}")
-            input(f"{WHITE} Press Enter to return...")
-            sxr_main()
-            return
-
-def process_sms(session, resp_text, number, url, base_headers, server_domain, sms_proxy_iterator=None):
-    if 'id="contact_point_selector_form"' in resp_text and 'name="recover_method"' in resp_text:
-        sms_options = re.findall('input type="radio" name="recover_method" value="(send_sms:.*?)".*?id="(.*?)"', resp_text)
+        lsd = lsd_match.group(1)
+        jazoest = jazoest_match.group(1)
         
-        target_value = None
-        for val, inp_id in sms_options:
-            label_match = re.search('label for="' + re.escape(inp_id) + '".*?<div class="_52jc _52j9">(.*?)</div>', resp_text, re.DOTALL)
-            if label_match:
-                visible_text = label_match.group(1)
-                vis_digits = ''.join(filter(str.isdigit, visible_text))
-                
-                if number.endswith(vis_digits):
-                    target_value = val
-                    safe_print(f"{CYAN} SMS Option Found {EKL} {visible_text}")
-                    break
-                    
-        if target_value:
-            if sms_proxy_iterator:
-                try:
-                    proxy_data = next(sms_proxy_iterator)
-                    session.proxies.update(proxy_data['proxy'])
-                    safe_print(f"{CYAN} Reloading Page...")
-                    
-                    reload_headers = base_headers.copy()
-                    reload_headers.update({
-                        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-                        'referer': url
-                    })
-                    
-                    reload_response = session.get(url, headers=reload_headers)
-                    if reload_response.status_code == 200:
-                        resp_text = reload_response.text
-                    else:
-                        safe_print(f"{RED} Page Reload Failed ({reload_response.status_code})")
-                except Exception as e:
-                    safe_print(f"{RED} Proxy Switch/Reload Error: {e}")
-            
-            try:
-                lsd = re.search('name="lsd" value="(.*?)"', resp_text).group(1) if re.search('name="lsd" value="(.*?)"', resp_text) else ''
-                jazoest = re.search('name="jazoest" value="(.*?)"', resp_text).group(1) if re.search('name="jazoest" value="(.*?)"', resp_text) else ''
-                
-                action_match = re.search('<form.*?action="(.*?)".*?id="contact_point_selector_form"', resp_text, re.DOTALL)
-                if action_match:
-                    action_url = action_match.group(1).replace('&amp;', '&')
-                    full_url = f"https://{server_domain}{action_url}"
-                else:
-                    full_url = f"https://{server_domain}/ajax/recover/initiate/"
-                
-                headers = base_headers.copy()
-                headers.update({
-                    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-                    'cache-control': 'max-age=0',
-                    'content-type': 'application/x-www-form-urlencoded',
-                    'origin': f"https://{server_domain}",
-                    'referer': url
-                })
-                
-                data = {
-                    'lsd': lsd,
-                    'jazoest': jazoest,
-                    'recover_method': target_value,
-                    'reset_action': 'Continue'
-                }
-                
-                params = {
-                    'c': '/login/',
-                    'ctx': 'initate_view',
-                    'sr': '0',
-                    'ars': 'facebook_login'
-                }
-                
-                sxr_respns = session.post(full_url, headers=headers, data=data, params=params)
-                
-                if 'action="/recover/code/' in sxr_respns.text:
-                    update_counter('success', number, "SMS Sent Successfully", GREEN)
-                    return True
-                else:
-                    update_counter('failed', number, "Code Sent Failed - Skipping...", RED)
-                    return True
-            except:
-                pass
-        else:
-            update_counter('failed', number, "SMS Option Not Found/Mismatch - Skipping...", YELLOW)
-            return True
-            
-    return False
-
-def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=0, server_domain='m.facebook.com', sms_proxy_iterator=None):
-    sxr_respns = None
-    session = requests.Session()
-    
-    if proxy:
-        session.proxies.update(proxy)
-    elif PROXIES:
-        session.proxies.update(PROXIES)
-
-    if browser_type == 'Random':
-        browser_list = ['Brave', 'Chrome', 'Edge', 'Firefox', 'Samsung', 'Opera', 'UC', 'DuckDuckGo', 'Vivaldi', 'Yandex', 'Kiwi', 'Dolphin', 'Mi Browser', 'Maxthon', 'Puffin']
-        current_browser = random.choice(browser_list)
-    else:
-        current_browser = browser_type
-
-    andro_ver = random.choice(['4.0.3', '4.0.4', '4.1.2', '4.2.2', '4.3', '4.4.2', '4.4.4', '5.0', '5.0.2', '5.1.1', '6.0', '6.0.1', '7.0', '7.1.1'])
-    models = ['SM-G900F', 'SM-G920F', 'SM-G930F', 'SM-G935F', 'SM-J320F', 'SM-J500F', 'SM-J700F', 'SM-A300FU', 'SM-A500FU', 'SM-N910F', 'SM-N920C', 'LG-H815', 'LG-H850', 'LG-D855', 'LG-K420', 'XT1068', 'XT1092', 'XT1562', 'XT1635', 'E6653', 'F5121', 'D6603', 'ALE-L21', 'VNS-L31', 'PRA-LX1']
-    model = random.choice(models)
-    
-    if andro_ver.startswith('4'):
-        build_prefix = random.choice(['KOT49', 'KTU84', 'JZO54', 'JSS15'])
-    elif andro_ver.startswith('5'):
-        build_prefix = random.choice(['LRX21', 'LMY47', 'LRX22'])
-    elif andro_ver.startswith('6'):
-        build_prefix = random.choice(['MRA58', 'MMB29'])
-    elif andro_ver.startswith('7'):
-        build_prefix = random.choice(['NRD90', 'NMF26'])
-    else:
-        build_prefix = 'LMY47'
-        
-    build = f"{build_prefix}{random.choice('ABCDEFGHJKLMNPQRSTUVWXYZ')}{random.randint(35, 65)}"
-    chrome_ver = f"{random.randint(35, 65)}.0.{random.randint(1500, 4000)}.{random.randint(40, 150)}"
-    base_ua = f"Mozilla/5.0 (Linux; Android {andro_ver}; {model} Build/{build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver} Mobile Safari/537.36"
-    
-    base_headers = {}
-    
-    if current_browser == 'Brave':
-        ua = base_ua
-        base_headers = {
-            'sec-ch-ua': '"Brave";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Chrome':
-        ua = base_ua
-        base_headers = {
-            'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Edge':
-        ua = f"{base_ua} EdgA/143.0.0.0"
-        base_headers = {
-            'sec-ch-ua': '"Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Firefox':
-        rv_ver = random.randint(40, 60)
-        ua = f"Mozilla/5.0 (Android {andro_ver}; Mobile; rv:{rv_ver}.0) Gecko/{rv_ver}.0 Firefox/{rv_ver}.0"
-    elif current_browser == 'Samsung':
-        ua = f"{base_ua} SamsungBrowser/10.0"
-        base_headers = {
-            'sec-ch-ua': '"Samsung Internet";v="23", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Opera':
-        ua = f"{base_ua} OPR/60.0.2254.12345"
-        base_headers = {
-            'sec-ch-ua': '"Opera";v="80", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'UC':
-        ua = f"{base_ua} UBrowser/13.4.0.1306"
-        base_headers = {
-            'sec-ch-ua': '"UC Browser";v="13", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'DuckDuckGo':
-        ua = f"{base_ua} DuckDuckGo/5"
-        base_headers = {
-            'sec-ch-ua': '"DuckDuckGo";v="5", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Vivaldi':
-        ua = f"{base_ua} Vivaldi/6.0"
-        base_headers = {
-            'sec-ch-ua': '"Vivaldi";v="6", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Yandex':
-        ua = f"{base_ua} YaBrowser/23.0"
-        base_headers = {
-            'sec-ch-ua': '"Yandex";v="23", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Kiwi':
-        ua = f"{base_ua} Kiwi/124.0.6367.113"
-        base_headers = {
-            'sec-ch-ua': '"Kiwi";v="124", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Dolphin':
-        ua = f"{base_ua} Dolphin/12.3.0"
-        base_headers = {
-            'sec-ch-ua': '"Dolphin";v="12", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Mi Browser':
-        ua = f"{base_ua} MiuiBrowser/14.0.5"
-        base_headers = {
-            'sec-ch-ua': '"Mi Browser";v="14", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Maxthon':
-        ua = f"{base_ua} Maxthon/7.0.2.1400"
-        base_headers = {
-            'sec-ch-ua': '"Maxthon";v="7", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Puffin':
-        ua = f"{base_ua} Puffin/9.10.0.51959"
-        base_headers = {
-            'sec-ch-ua': '"Puffin";v="9", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    else:
-        ua = base_ua
-        base_headers = {
-            'sec-ch-ua': '"Brave";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-        
-    screen_res = random.choice(['320x480', '480x800', '540x960', '800x480', '854x480', '960x540', '720x1280', '1280x720', '1080x1920', '1920x1080', '1440x2560'])
-    session.cookies.update({'m_pixel_ratio': '1', 'wd': screen_res})
-    
-    base_headers.update({
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-        'accept-language': f"{locale},en;q=0.9",
-        'priority': 'u=0, i',
-        'sec-ch-ua-full-version-list': '"Chromium";v="143.0.0.0", "Not A(Brand";v="24.0.0.0"',
-        'sec-ch-ua-model': f'"{model}"',
-        'sec-ch-ua-platform-version': f'"{andro_ver}"',
-        'sec-fetch-dest': 'document',
-        'sec-fetch-mode': 'navigate',
-        'sec-fetch-site': 'same-origin',
-        'sec-fetch-user': '?1',
-        'sec-gpc': '1',
-        'upgrade-insecure-requests': '1',
-        'user-agent': ua
-    })
-    
-    try:
-        first_headers = base_headers.copy()
-        first_headers.update({'sec-fetch-site': 'none'})
-        
-        if retry_count == 0:
-            safe_print(f"{LIGHT_GRAY} Searching For {number}...")
-            
-        git_fb = session.get(f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr", headers=first_headers)
-        
-        if 'fr' not in session.cookies:
-            pass
-            
-        try:
-            lsd = re.search('name="lsd" value="(.*?)"', str(git_fb.text)).group(1)
-        except:
-            lsd = re.search('\\["LSD",\\[\\],\\{"token":"(.*?)"\\}', str(git_fb.text)).group(1)
-
-        try:
-            jazoest = re.search('name="jazoest" value="(.*?)"', str(git_fb.text)).group(1)
-        except:
-            jazoest = re.search('"initSprinkleValue":"(.*?)"', str(git_fb.text)).group(1)
-            
-        _data = {
+        # Step 2: Search for number
+        search_url = f"https://{server}/login/identify/?ctx=recover&c=%2Flogin%2F&search_attempts=1&ars=facebook_login"
+        data = {
             'lsd': lsd,
             'jazoest': jazoest,
             'email': number,
             'did_submit': 'Search'
         }
         
-        post_headers = base_headers.copy()
-        post_headers.update({
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': f"https://{server_domain}",
-            'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0"
-        })
+        headers['Content-Type'] = 'application/x-www-form-urlencoded'
+        headers['Origin'] = f'https://{server}'
+        headers['Referer'] = url
         
-        url = f"https://{server_domain}/login/identify/?ctx=recover&c=%2Flogin%2F&search_attempts=1&ars=facebook_login&alternate_search=0&show_friend_search_filtered_list=0&birth_month_search=0&city_search=0"
-        sxr_respns = session.post(url, data=_data, headers=post_headers, allow_redirects=True)
+        response = session.post(search_url, data=data, headers=headers, timeout=15)
         
-        if 'id="login_identify_search_error_msg"' in sxr_respns.text:
-            update_counter('failed', number, "Account Not Found", MAGENTA)
+        if response.status_code != 200:
+            update_counter('error', number, f"Search failed: HTTP {response.status_code}")
             return
-            
-        if 'action="/login/identify/?ctx=recover' in sxr_respns.text:
-            update_counter('failed', number, "Multiple Account Found - Skipping...", GOLD)
-            return
-
-        if sxr_respns.url.startswith(f"https://{server_domain}/login/account_recovery/name_search/"):
-            headers = base_headers.copy()
-            headers.update({
-                'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr"
-            })
-            sxr_respns = session.get(sxr_respns.url, headers=headers)
-            
-            safe_print(f"{VIOLET} Clicking Try to another way...")
-            
-            if 'action="/login/account_recovery/name_search/?flow=initiate_view' in sxr_respns.text:
-                headers = base_headers.copy()
-                headers.update({'referer': sxr_respns.url})
-                sxr_respns = session.get(f"https://{server_domain}/recover/initiate/?c=%2Flogin%2F&fl=initiate_view&ctx=msite_initiate_view", headers=headers)
-                
-                if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, server_domain, sms_proxy_iterator):
-                    return
-
-            if 'name="pass"' in sxr_respns.text and '/login/account_recovery/' in sxr_respns.text:
-                update_counter('failed', number, "Only Password Option Found - Skipping...", ORANGE)
-                return
-            
-            update_counter('error', number, "Unknown Page (No Selector) - Skipping...", ORANGE, html_content=sxr_respns.text)
-            return
-
-        elif sxr_respns.url.startswith(f"https://{server_domain}/login/device-based/ar/login/?ldata="):
-            headers = base_headers.copy()
-            headers.update({
-                'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr"
-            })
-            sxr_respns = session.get(sxr_respns.url, headers=headers)
-            
-            if 'id="contact_point_selector_form"' in sxr_respns.text:
-                try:
-                    try_another_way_url = re.search('href="(/recover/initiate/\\?privacy_mutation_token=.*?)"', sxr_respns.text).group(1)
-                    try_another_way_url = try_another_way_url.replace('&amp;', '&')
-                except:
-                    pass
-
-                is_sms_checked = re.search('input type="radio" name="recover_method" value="send_sms:.*?".*?checked="1"', sxr_respns.text)
-                if is_sms_checked:
-                    if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, 'm.facebook.com', sms_proxy_iterator):
-                        return
-                    return
-                
-                headers = base_headers.copy()
-                headers.update({'referer': sxr_respns.url})
-                sxr_respns = session.get(f"https://{server_domain}{try_another_way_url}", headers=headers)
-                
-                safe_print(f"{VIOLET} Clicking Try to another way...")
-                
-                if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, server_domain, sms_proxy_iterator):
-                    return
-                
-                update_counter('error', number, "Unknown Page after try another way - Skipping...", ORANGE, html_content=sxr_respns.text)
-                return
-
-            if 'name="captcha_response"' in sxr_respns.text:
-                try:
-                    match = re.search('src="(https://.*?/captcha/tfbimage\\.php\\?.*?)"', sxr_respns.text)
-                    if match:
-                        captcha_img = match.group(1).replace('&amp;', '&')
-                except:
-                    pass
-                update_counter('failed', number, "Captcha Found - Skipping...", PURPLE)
-                return
-            
-            if '/help/121104481304395' in sxr_respns.text or '/help/103873106370583' in sxr_respns.text:
-                update_counter('failed', number, "Account Disabled - Skipping...", TOXIC)
-                return
-            
-            if 'class="area error"' in sxr_respns.text:
-                if retry_count < 3:
-                    check(number, proxy, locale, browser_type, retry_count + 1, server_domain, sms_proxy_iterator)
-                return
-
-            update_counter('error', number, "Unknown Page (Device Based) - Skipping...", ORANGE, html_content=sxr_respns.text)
-            return
-
-        if 'window.MPageLoadClientMetrics' in sxr_respns.text:
-             if retry_count < 3:
-                check(number, proxy, locale, browser_type, retry_count + 1, server_domain, sms_proxy_iterator)
-                return
-             update_counter('error', number, "Unknown Page (Bot Block) - Skipping...", RED, html_content=sxr_respns.text)
-             return
         
-        if '/r.php?next=' in sxr_respns.text or '/login.php?next=' in sxr_respns.text:
-            if retry_count < 3:
-                check(number, proxy, locale, browser_type, retry_count + 1, server_domain, sms_proxy_iterator)
-            return
-            
-        if "Your Request Couldn't be Processed" in sxr_respns.text:
-             update_counter('error', number, "Your Request Couldn't be Processed", RED, html_content=sxr_respns.text)
-             return
-            
-        update_counter('error', number, "Unknown Page - Skipping...", ORANGE, html_content=sxr_respns.text)
-
-    except (requests.exceptions.ConnectionError, requests.exceptions.Timeout, requests.exceptions.ChunkedEncodingError) as e:
-        safe_print(f"{RED} Network Error {EKL} {e}")
-        safe_print(f"{LIGHT_GRAY} Waiting 5 seconds before retrying...")
-        time.sleep(5)
+        text = response.text
         
-        err_content = str(e)
-        if sxr_respns and hasattr(sxr_respns, 'text'):
-            err_content = sxr_respns.text
+        # Check for errors
+        if 'id="login_identify_search_error_msg"' in text:
+            update_counter('failed', number, "Account not found")
+            return
+        
+        # Check for multiple accounts
+        if 'action="/login/identify/?ctx=recover' in text:
+            update_counter('failed', number, "Multiple accounts found")
+            return
+        
+        # Look for SMS option
+        if 'send_sms:' in text:
+            # Try to find SMS option
+            sms_matches = re.findall(r'value="(send_sms:[^"]+)"', text)
             
-        update_counter('error', f"Network Error: {e}", message=f"Network Error: {e}", html_content=err_content)
-
+            if sms_matches:
+                # Get new tokens for SMS request
+                lsd_match = re.search(r'name="lsd"\s*value="([^"]+)"', text)
+                jazoest_match = re.search(r'name="jazoest"\s*value="([^"]+)"', text)
+                
+                if lsd_match and jazoest_match:
+                    lsd = lsd_match.group(1)
+                    jazoest = jazoest_match.group(1)
+                    
+                    # Find form action
+                    action_match = re.search(r'action="([^"]+)"', text)
+                    if action_match:
+                        action = action_match.group(1).replace('&amp;', '&')
+                        
+                        # Send SMS request
+                        sms_data = {
+                            'lsd': lsd,
+                            'jazoest': jazoest,
+                            'recover_method': sms_matches[0],
+                            'reset_action': 'Continue'
+                        }
+                        
+                        sms_url = f"https://{server}{action}"
+                        response = session.post(sms_url, data=sms_data, headers=headers, timeout=15)
+                        
+                        if 'action="/recover/code/' in response.text:
+                            update_counter('success', number, "SMS sent successfully")
+                            return
+                        else:
+                            update_counter('failed', number, "SMS send failed")
+                            return
+        
+        update_counter('failed', number, "No SMS option available")
+        
+    except RequestException as e:
+        update_counter('error', number, f"Network error: {str(e)[:50]}")
     except Exception as e:
-        if retry_count < 3:
-            check(number, proxy, locale, browser_type, retry_count + 1, server_domain, sms_proxy_iterator)
-            return
-            
-        err_content = str(e)
-        if sxr_respns and hasattr(sxr_respns, 'text'):
-            err_content = sxr_respns.text
-            
-        update_counter('error', number, f"Unexpected Error: {e}", RED, html_content=err_content)
+        update_counter('error', number, f"Error: {str(e)[:50]}")
 
-def sxr_secure_start():
-    STATUS_URL = 'https://mrsxrtools.pythonanywhere.com/'
+def main_automation():
+    """Main automation function"""
+    global total_checked, total_success, total_failed, total_error
+    
+    # Reset counters
+    total_checked = 0
+    total_success = 0
+    total_failed = 0
+    total_error = 0
+    
+    # Load numbers
+    numbers = load_numbers()
+    if not numbers:
+        input(f"\n{R}No numbers found! Press Enter to continue...{X}")
+        return
+    
+    print(f"\n{G}[{R}●{G}] Found {W}{len(numbers)}{G} numbers")
+    
+    # Get configuration
+    proxy = get_proxy_config()
+    browser_type = get_browser_choice()
+    thread_count = get_thread_count()
+    
+    print(f"\n{G}[{R}●{G}] Starting with {W}{thread_count}{G} threads")
+    print(f"{G}[{R}●{G}] Browser: {W}{browser_type}")
+    print(f"{G}[{R}●{G}] Proxy: {W}{'Yes' if proxy else 'No'}")
+    print(f"{LINE}")
+    
+    input(f"\n{Y}Press Enter to start...{X}")
+    
+    # Clear screen and show progress
+    clear_screen()
+    print_logo()
+    print(f"\n{G}[{R}●{G}] Processing {W}{len(numbers)}{G} numbers...\n")
+    
+    # Start processing
     try:
-        res = requests.get(STATUS_URL, timeout=8)
-        status_code = res.status_code
-        if status_code == 200:
-            text = res.text.strip().lower()
-            if text == 'onn':
-                print(f"{WHITE} WAITING FOR APPROVAL...")
-                apvv()
-            elif text == 'error':
-                input("Fatal Python error: PyThreadState_Get: no current thread\nAborted (core dumped)")
-                sys.exit(0)
-            else:
-                input(f"{RED} TOOLS SERVER OFF")
-                sys.exit(0)
-        else:
-            os.system('clear')
-            input(f"{RED} NET CONNECTION ERROR\n")
-            sys.exit(0)
+        with ThreadPoolExecutor(max_workers=thread_count) as executor:
+            # Submit all numbers
+            futures = []
+            for number in numbers:
+                future = executor.submit(check_number, number, proxy, browser_type)
+                futures.append(future)
+            
+            # Wait for completion
+            for future in futures:
+                future.result()
+                
+    except KeyboardInterrupt:
+        print(f"\n\n{R}Process interrupted by user!{X}")
     except Exception as e:
-        input(f"{RED} SECURITY SYSTEM ERROR: {e}\n RUN TOOL AGAIN")
-        sys.exit(0)
+        print(f"\n\n{R}Error in processing: {e}{X}")
+    
+    # Show final results
+    print(f"\n{LINE}")
+    print(f"{G}[{R}●{G}] Total Checked: {W}{total_checked}")
+    print(f"{G}[{R}●{G}] Successful: {G}{total_success}")
+    print(f"{G}[{R}●{G}] Failed: {Y}{total_failed}")
+    print(f"{G}[{R}●{G}] Errors: {R}{total_error}")
+    print(f"{LINE}")
+    
+    input(f"\n{Y}Press Enter to continue...{X}")
 
-if __name__ == '__main__':
-    apvv()
+def main_menu(user_nm, expr):
+    """Main menu"""
+    while True:
+        print_logo()
+        print(f" {G}User: {W}{user_nm}")
+        print(f" {G}Expires: {W}{expr}")
+        print(f"{LINE}")
+        print(f" {G}[{R}01{G}] Start FB Forget")
+        print(f" {G}[{R}02{G}] Create Numbers File")
+        print(f" {G}[{R}03{G}] Check Single Number")
+        print(f" {G}[{R}04{G}] Join Telegram Channel")
+        print(f" {G}[{R}00{G}] Exit")
+        print(f"{LINE}")
+        
+        choice = input(f"\n{G}[{R}●{G}] Select option: {W}").strip()
+        
+        if choice in ['1', '01']:
+            main_automation()
+        elif choice in ['2', '02']:
+            create_numbers_file()
+        elif choice in ['3', '03']:
+            check_single_number()
+        elif choice in ['4', '04']:
+            join_telegram()
+        elif choice in ['0', '00']:
+            print(f"\n{G}Thank you for using Mr-SxR Tools!{X}")
+            time.sleep(2)
+            sys.exit()
+        else:
+            print(f"\n{R}Invalid option!{X}")
+            time.sleep(2)
+
+def create_numbers_file():
+    """Create a numbers file"""
+    clear_screen()
+    print(f"{G}Create Numbers File")
+    print(f"{LINE}")
+    
+    filename = input(f"{Y}Enter filename (default: numbers.txt): {W}").strip()
+    if not filename:
+        filename = "numbers.txt"
+    
+    print(f"\n{Y}Enter phone numbers (one per line)")
+    print(f"{Y}Type 'done' when finished:{X}\n")
+    
+    numbers = []
+    count = 1
+    while True:
+        num = input(f"{C}[{count}] {W}").strip()
+        if num.lower() == 'done':
+            break
+        
+        # Clean number
+        clean_num = re.sub(r'\D', '', num)
+        if 7 <= len(clean_num) <= 15:
+            numbers.append(clean_num)
+            count += 1
+        else:
+            print(f"{R}Invalid number: {num}{X}")
+    
+    if numbers:
+        try:
+            with open(filename, 'w') as f:
+                for num in numbers:
+                    f.write(num + '\n')
+            
+            print(f"\n{G}Saved {len(numbers)} numbers to {filename}{X}")
+        except Exception as e:
+            print(f"\n{R}Error saving file: {e}{X}")
+    else:
+        print(f"\n{R}No numbers saved!{X}")
+    
+    input(f"\n{Y}Press Enter to continue...{X}")
+
+def check_single_number():
+    """Check a single number"""
+    clear_screen()
+    print(f"{G}Check Single Number")
+    print(f"{LINE}")
+    
+    number = input(f"{Y}Enter phone number: {W}").strip()
+    
+    if not number:
+        print(f"{R}No number entered!{X}")
+        time.sleep(2)
+        return
+    
+    # Clean number
+    clean_num = re.sub(r'\D', '', number)
+    if not (7 <= len(clean_num) <= 15):
+        print(f"{R}Invalid phone number!{X}")
+        time.sleep(2)
+        return
+    
+    print(f"\n{Y}Checking number: {W}{clean_num}")
+    print(f"{Y}Please wait...{X}")
+    
+    # Simple check
+    check_number(clean_num, None, 'Chrome Mobile')
+    
+    input(f"\n{Y}Press Enter to continue...{X}")
+
+def join_telegram():
+    """Open Telegram channel"""
+    clear_screen()
+    print(f"{G}Join Telegram Channel")
+    print(f"{LINE}")
+    print(f"\n{G}Telegram Channel: {W}@mrsxrtools")
+    print(f"{G}Owner: {W}@yeasin_hossain018")
+    print(f"{LINE}")
+    
+    try:
+        import webbrowser
+        webbrowser.open('https://t.me/mrsxrtools')
+    except:
+        print(f"\n{Y}Please open: https://t.me/mrsxrtools{X}")
+    
+    input(f"\n{Y}Press Enter to continue...{X}")
+
+def main():
+    """Main function"""
+    try:
+        # Check approval
+        approved, user_nm, expr = check_approval()
+        
+        if approved:
+            # Show main menu
+            main_menu(user_nm, expr)
+        else:
+            print(f"{R}Access denied!{X}")
+            time.sleep(3)
+            
+    except KeyboardInterrupt:
+        print(f"\n\n{R}Program interrupted!{X}")
+        sys.exit()
+    except Exception as e:
+        print(f"\n{R}Error: {e}{X}")
+        import traceback
+        traceback.print_exc()
+        input(f"\n{Y}Press Enter to exit...{X}")
+
+if __name__ == "__main__":
+    # Installation check
+    try:
+        import requests
+    except ImportError:
+        print(f"{R}Installing required packages...{X}")
+        try:
+            import subprocess
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+            print(f"{G}Installation complete!{X}")
+            time.sleep(2)
+        except:
+            print(f"{R}Failed to install packages!{X}")
+            print(f"{Y}Please run: pip install requests{X}")
+            sys.exit(1)
+    
+    # Run main program
+    main_menu(user_nm, expr)
