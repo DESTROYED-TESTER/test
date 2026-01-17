@@ -276,7 +276,7 @@ def apvv():
             print(f" {GREEN}Device ID {EKL} {devisid}")
             print(f" {RED}Your Device ID is not registered. Please contact the owner to get access.\n")
             input(f" {WHITE}Press enter to contact owner")
-            webbrowser.open('https://t.me/mrsxrtool')
+            webbrowser.open('https://t.me/@Sumonroy1111')
             time.sleep(2)
             sys.exit(0)
             os._exit(1)
@@ -470,11 +470,11 @@ def save_error_html(message, html_content):
 def clear_logo():
     os.system('clear')
         
-    print(''.join([GREEN, "\n   ", ORANGE, 'V-3.6\n', LINE, '\n ', GREEN, '[', RED, '●', GREEN, '] TOOL OWNER   ', CYAN, ':', GREEN, ' @yeasin_hossain018\n ', GREEN, '[', RED, '●', GREEN, '] TOOL         ', CYAN, ':', GREEN, ' FORGET FB\n ', GREEN, '[', RED, '●', GREEN, '] TOOL STATUS  ', CYAN, ':', GREEN, ' PAID\n', LINE]))
+    print(''.join([GREEN, "\n   ", ORANGE, 'V-00.00.00\n', LINE, '\n ', GREEN, '[', RED, '●', GREEN, '] TOOL OWNER   ', CYAN, ':', GREEN, ' @sumon roy\n ', GREEN, '[', RED, '●', GREEN, '] TOOL         ', CYAN, ':', GREEN, ' FORGET FB\n ', GREEN, '[', RED, '●', GREEN, '] TOOL STATUS  ', CYAN, ':', GREEN, ' PAID\n', LINE]))
 
 def sxr_main():
     clear_logo()
-    print(f" {opt_labels[0]} FB FORGET\n {opt_labels[1]} NUMBER FILTER\n {opt_labels[2]} CONFIRM ACCOUNT\n {opt_labels[3]} JOIN TELEGRAM\n{LINE}")
+    print(f" {opt_labels[0]} FB FORGET\n {opt_labels[1]} NUMBER FILTER\n {opt_labels[2]} CONFIRM ACCOUNT\n {opt_labels[3]} TELEGRAM\n{LINE}")
     
     chic_opsn = input(f"{GREEN} [{RED}●{GREEN}] CHOOSE OPTION {EKL} ")
     
@@ -494,7 +494,7 @@ def sxr_main():
         sxr_main()
         return
     elif chic_opsn in ('4', '04', 'D', 'd'):
-        webbrowser.open('https://t.me/mrsxrtools')
+        webbrowser.open('https://t.me/@Sumonroy1111')
         return
     else:
         print(f"\n{RED} You have selected the wrong option..")
@@ -872,9 +872,9 @@ def process_sms(session, resp_text, number, url, base_headers, server_domain, sm
                     'ars': 'facebook_login'
                 }
                 
-                sxr_respns = session.post(full_url, headers=headers, data=data, params=params)
+                bithi_respns = session.post(full_url, headers=headers, data=data, params=params)
                 
-                if 'action="/recover/code/' in sxr_respns.text:
+                if 'action="/recover/code/' in bithi_respns.text:
                     update_counter('success', number, "SMS Sent Successfully", GREEN)
                     return True
                 else:
@@ -889,7 +889,7 @@ def process_sms(session, resp_text, number, url, base_headers, server_domain, sm
     return False
 
 def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=0, server_domain='m.facebook.com', sms_proxy_iterator=None):
-    sxr_respns = None
+    bithi_respns = None
     session = requests.Session()
     
     if proxy:
@@ -1090,75 +1090,75 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
         })
         
         url = f"https://{server_domain}/login/identify/?ctx=recover&c=%2Flogin%2F&search_attempts=1&ars=facebook_login&alternate_search=0&show_friend_search_filtered_list=0&birth_month_search=0&city_search=0"
-        sxr_respns = session.post(url, data=_data, headers=post_headers, allow_redirects=True)
+        bithi_respns = session.post(url, data=_data, headers=post_headers, allow_redirects=True)
         
-        if 'id="login_identify_search_error_msg"' in sxr_respns.text:
+        if 'id="login_identify_search_error_msg"' in bithi_respns.text:
             update_counter('failed', number, "Account Not Found", MAGENTA)
             return
             
-        if 'action="/login/identify/?ctx=recover' in sxr_respns.text:
+        if 'action="/login/identify/?ctx=recover' in bithi_respns.text:
             update_counter('failed', number, "Multiple Account Found - Skipping...", GOLD)
             return
 
-        if sxr_respns.url.startswith(f"https://{server_domain}/login/account_recovery/name_search/"):
+        if bithi_respns.url.startswith(f"https://{server_domain}/login/account_recovery/name_search/"):
             headers = base_headers.copy()
             headers.update({
                 'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr"
             })
-            sxr_respns = session.get(sxr_respns.url, headers=headers)
+            bithi_respns = session.get(bithi_respns.url, headers=headers)
             
             safe_print(f"{VIOLET} Clicking Try to another way...")
             
-            if 'action="/login/account_recovery/name_search/?flow=initiate_view' in sxr_respns.text:
+            if 'action="/login/account_recovery/name_search/?flow=initiate_view' in bithi_respns.text:
                 headers = base_headers.copy()
-                headers.update({'referer': sxr_respns.url})
-                sxr_respns = session.get(f"https://{server_domain}/recover/initiate/?c=%2Flogin%2F&fl=initiate_view&ctx=msite_initiate_view", headers=headers)
+                headers.update({'referer': bithi_respns.url})
+                bithi_respns = session.get(f"https://{server_domain}/recover/initiate/?c=%2Flogin%2F&fl=initiate_view&ctx=msite_initiate_view", headers=headers)
                 
-                if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, server_domain, sms_proxy_iterator):
+                if process_sms(session, bithi_respns.text, number, bithi_respns.url, base_headers, server_domain, sms_proxy_iterator):
                     return
 
-            if 'name="pass"' in sxr_respns.text and '/login/account_recovery/' in sxr_respns.text:
+            if 'name="pass"' in bithi_respns.text and '/login/account_recovery/' in bithi_respns.text:
                 update_counter('failed', number, "Only Password Option Found - Skipping...", ORANGE)
                 return
             
-            update_counter('error', number, "Unknown Page (No Selector) - Skipping...", ORANGE, html_content=sxr_respns.text)
+            update_counter('error', number, "Unknown Page (No Selector) - Skipping...", ORANGE, html_content=bithi_respns.text)
             return
 
-        elif sxr_respns.url.startswith(f"https://{server_domain}/login/device-based/ar/login/?ldata="):
+        elif bithi_respns.url.startswith(f"https://{server_domain}/login/device-based/ar/login/?ldata="):
             headers = base_headers.copy()
             headers.update({
                 'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr"
             })
-            sxr_respns = session.get(sxr_respns.url, headers=headers)
+            bithi_respns = session.get(bithi_respns.url, headers=headers)
             
-            if 'id="contact_point_selector_form"' in sxr_respns.text:
+            if 'id="contact_point_selector_form"' in bithi_respns.text:
                 try:
-                    try_another_way_url = re.search('href="(/recover/initiate/\\?privacy_mutation_token=.*?)"', sxr_respns.text).group(1)
+                    try_another_way_url = re.search('href="(/recover/initiate/\\?privacy_mutation_token=.*?)"', bithi_respns.text).group(1)
                     try_another_way_url = try_another_way_url.replace('&amp;', '&')
                 except:
                     pass
 
-                is_sms_checked = re.search('input type="radio" name="recover_method" value="send_sms:.*?".*?checked="1"', sxr_respns.text)
+                is_sms_checked = re.search('input type="radio" name="recover_method" value="send_sms:.*?".*?checked="1"', bithi_respns.text)
                 if is_sms_checked:
-                    if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, 'm.facebook.com', sms_proxy_iterator):
+                    if process_sms(session, bithi_respns.text, number, bithi_respns.url, base_headers, 'm.facebook.com', sms_proxy_iterator):
                         return
                     return
                 
                 headers = base_headers.copy()
-                headers.update({'referer': sxr_respns.url})
-                sxr_respns = session.get(f"https://{server_domain}{try_another_way_url}", headers=headers)
+                headers.update({'referer': bithi_respns.url})
+                bithi_respns = session.get(f"https://{server_domain}{try_another_way_url}", headers=headers)
                 
                 safe_print(f"{VIOLET} Clicking Try to another way...")
                 
-                if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, server_domain, sms_proxy_iterator):
+                if process_sms(session, bithi_respns.text, number, bithi_respns.url, base_headers, server_domain, sms_proxy_iterator):
                     return
                 
-                update_counter('error', number, "Unknown Page after try another way - Skipping...", ORANGE, html_content=sxr_respns.text)
+                update_counter('error', number, "Unknown Page after try another way - Skipping...", ORANGE, html_content=bithi_respns.text)
                 return
 
-            if 'name="captcha_response"' in sxr_respns.text:
+            if 'name="captcha_response"' in bithi_respns.text:
                 try:
-                    match = re.search('src="(https://.*?/captcha/tfbimage\\.php\\?.*?)"', sxr_respns.text)
+                    match = re.search('src="(https://.*?/captcha/tfbimage\\.php\\?.*?)"', bithi_respns.text)
                     if match:
                         captcha_img = match.group(1).replace('&amp;', '&')
                 except:
@@ -1166,35 +1166,35 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
                 update_counter('failed', number, "Captcha Found - Skipping...", PURPLE)
                 return
             
-            if '/help/121104481304395' in sxr_respns.text or '/help/103873106370583' in sxr_respns.text:
+            if '/help/121104481304395' in bithi_respns.text or '/help/103873106370583' in bithi_respns.text:
                 update_counter('failed', number, "Account Disabled - Skipping...", TOXIC)
                 return
             
-            if 'class="area error"' in sxr_respns.text:
+            if 'class="area error"' in bithi_respns.text:
                 if retry_count < 3:
                     check(number, proxy, locale, browser_type, retry_count + 1, server_domain, sms_proxy_iterator)
                 return
 
-            update_counter('error', number, "Unknown Page (Device Based) - Skipping...", ORANGE, html_content=sxr_respns.text)
+            update_counter('error', number, "Unknown Page (Device Based) - Skipping...", ORANGE, html_content=bithi_respns.text)
             return
 
-        if 'window.MPageLoadClientMetrics' in sxr_respns.text:
+        if 'window.MPageLoadClientMetrics' in bithi_respns.text:
              if retry_count < 3:
                 check(number, proxy, locale, browser_type, retry_count + 1, server_domain, sms_proxy_iterator)
                 return
-             update_counter('error', number, "Unknown Page (Bot Block) - Skipping...", RED, html_content=sxr_respns.text)
+             update_counter('error', number, "Unknown Page (Bot Block) - Skipping...", RED, html_content=bithi_respns.text)
              return
         
-        if '/r.php?next=' in sxr_respns.text or '/login.php?next=' in sxr_respns.text:
+        if '/r.php?next=' in bithi_respns.text or '/login.php?next=' in bithi_respns.text:
             if retry_count < 3:
                 check(number, proxy, locale, browser_type, retry_count + 1, server_domain, sms_proxy_iterator)
             return
             
-        if "Your Request Couldn't be Processed" in sxr_respns.text:
-             update_counter('error', number, "Your Request Couldn't be Processed", RED, html_content=sxr_respns.text)
+        if "Your Request Couldn't be Processed" in bithi_respns.text:
+             update_counter('error', number, "Your Request Couldn't be Processed", RED, html_content=bithi_respns.text)
              return
             
-        update_counter('error', number, "Unknown Page - Skipping...", ORANGE, html_content=sxr_respns.text)
+        update_counter('error', number, "Unknown Page - Skipping...", ORANGE, html_content=bithi_respns.text)
 
     except (requests.exceptions.ConnectionError, requests.exceptions.Timeout, requests.exceptions.ChunkedEncodingError) as e:
         safe_print(f"{RED} Network Error {EKL} {e}")
@@ -1202,8 +1202,8 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
         time.sleep(5)
         
         err_content = str(e)
-        if sxr_respns and hasattr(sxr_respns, 'text'):
-            err_content = sxr_respns.text
+        if bithi_respns and hasattr(bithi_respns, 'text'):
+            err_content = bithi_respns.text
             
         update_counter('error', f"Network Error: {e}", message=f"Network Error: {e}", html_content=err_content)
 
@@ -1213,8 +1213,8 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
             return
             
         err_content = str(e)
-        if sxr_respns and hasattr(sxr_respns, 'text'):
-            err_content = sxr_respns.text
+        if bithi_respns and hasattr(bithi_respns, 'text'):
+            err_content = bithi_respns.text
             
         update_counter('error', number, f"Unexpected Error: {e}", RED, html_content=err_content)
 
