@@ -20,11 +20,6 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 import itertools
 
-# Remove Windows-specific imports
-# import openpyxl  # Not available in Termux by default
-# import wmi
-# import winreg
-
 if getattr(sys, 'frozen', False):
     os.chdir(os.path.dirname(sys.executable))
 
@@ -68,6 +63,12 @@ total_failed = 0
 total_error = 0
 PROXIES = None
 CURRENT_LOCALE = 'en_US'
+
+# SDCARD paths for Termux
+SDCARD_PATH = '/sdcard'
+NUMBER_LIST_PATH = '/sdcard/Number_List.txt'
+SETTINGS_PATH = '/sdcard/Setting.json'
+ERROR_LOGS_DIR = '/sdcard/Error_Logs'
 
 def make_request(url):
     if url.startswith('https://'):
@@ -376,8 +377,16 @@ def get_ip_info(proxies=None):
 
 def load_settings():
     try:
-        with open('Setting.json', 'r') as f:
-            return json.load(f)
+        # Try to load from sdcard first
+        if os.path.exists(SETTINGS_PATH):
+            with open(SETTINGS_PATH, 'r') as f:
+                return json.load(f)
+        # Fallback to current directory
+        elif os.path.exists('Setting.json'):
+            with open('Setting.json', 'r') as f:
+                return json.load(f)
+        else:
+            return {}
     except:
         return {}
 
@@ -437,19 +446,19 @@ def save_error_html(message, html_content):
         return
 
     try:
-        if not os.path.exists('Error_Logs'):
-            os.makedirs('Error_Logs')
+        if not os.path.exists(ERROR_LOGS_DIR):
+            os.makedirs(ERROR_LOGS_DIR)
             
         safe_msg = re.sub(r'[\\/*?:"<>|]', '', message)
         safe_msg = safe_msg.replace(' ', '_')
         safe_msg = safe_msg[:50]
         
-        base_filename = f"Error_Logs/{safe_msg}.html"
+        base_filename = f"{ERROR_LOGS_DIR}/{safe_msg}.html"
         filename = base_filename
         counter = 1
         
         while os.path.exists(filename):
-            filename = f"Error_Logs/{safe_msg}_{counter}.html"
+            filename = f"{ERROR_LOGS_DIR}/{safe_msg}_{counter}.html"
             counter += 1
             
         with open(filename, 'w', encoding='utf-8') as f:
@@ -465,6 +474,7 @@ def clear_logo():
 
 def sxr_main():
     clear_logo()
+    print(f" {GREEN}UserName {EKL} {user_nm}\n {RED}Expired {EKL} {expr} (Utc)\n{LINE}")
     print(f" {opt_labels[0]} FB FORGET\n {opt_labels[1]} NUMBER FILTER\n {opt_labels[2]} CONFIRM ACCOUNT\n {opt_labels[3]} JOIN TELEGRAM\n{LINE}")
     
     chic_opsn = input(f"{GREEN} [{RED}●{GREEN}] CHOOSE OPTION {EKL} ")
@@ -473,14 +483,12 @@ def sxr_main():
         file_inp()
         return
     elif chic_opsn in ('2', '02', 'B', 'b'):
-        # For Termux, we can't run .exe files
         print(f"{RED} Windows .exe files cannot run on Termux.")
         print(f"{WHITE} Please use the text file option instead.")
         time.sleep(2)
         sxr_main()
         return
     elif chic_opsn in ('3', '03', 'C', 'c'):
-        # For Termux, we can't run .exe files
         print(f"{RED} Windows .exe files cannot run on Termux.")
         print(f"{WHITE} Please use the text file option instead.")
         time.sleep(2)
@@ -497,30 +505,47 @@ def sxr_main():
 
 def file_inp():
     clear_logo()
-    settings = load_settings()
-    file_settings = settings.get('file_input_settings', {})
-    always_use_txt = file_settings.get('always_use_txt', False)
     
-    # For Termux, we'll only support text files
-    if os.path.exists('Number_List.txt'):
-        with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
-            numbers = [line.strip() for line in f if line.strip()]
-        
-        if numbers:
-            print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
-            print(f"{GREEN} [{RED}●{GREEN}] Total Numbers {EKL} {len(numbers)}")
-            input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
-            autom_main()
-            return
-        else:
-            print(f"{WHITE} 'Number_List.txt' file is empty.")
-            print(f"{WHITE} Please add phone numbers to 'Number_List.txt' (one per line)")
-            input(f"{WHITE} Press Enter to return to main menu...")
+    print(f"{CYAN} Looking for Number_List.txt in SD Card...")
+    
+    # Check if sdcard is accessible
+    if not os.path.exists(SDCARD_PATH):
+        print(f"{RED} SD Card not accessible!")
+        print(f"{YELLOW} Make sure Termux has storage permission:")
+        print(f"{WHITE} 1. Run: termux-setup-storage")
+        print(f"{WHITE} 2. Grant permission when prompted")
+        input(f"{WHITE} Press Enter to continue...")
+        sxr_main()
+        return
+    
+    # Check for Number_List.txt in sdcard
+    if os.path.exists(NUMBER_LIST_PATH):
+        try:
+            with open(NUMBER_LIST_PATH, 'r', encoding='utf-8', errors='ignore') as f:
+                numbers = [line.strip() for line in f if line.strip()]
+            
+            if numbers:
+                print(f"{GREEN} [{RED}●{GREEN}] Found File {EKL} {NUMBER_LIST_PATH}")
+                print(f"{GREEN} [{RED}●{GREEN}] Total Numbers {EKL} {len(numbers)}")
+                input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
+                autom_main()
+                return
+            else:
+                print(f"{WHITE} 'Number_List.txt' file is empty.")
+                print(f"{WHITE} Please add phone numbers to {NUMBER_LIST_PATH}")
+                input(f"{WHITE} Press Enter to return to main menu...")
+                sxr_main()
+                return
+        except Exception as e:
+            print(f"{RED} Error reading file: {e}")
+            input(f"{WHITE} Press Enter to return...")
             sxr_main()
             return
     else:
-        print(f"{WHITE} 'Number_List.txt' file was not found.")
-        print(f"{WHITE} Please create 'Number_List.txt' with phone numbers (one per line)")
+        print(f"{YELLOW} File not found: {NUMBER_LIST_PATH}")
+        print(f"{WHITE} Please create 'Number_List.txt' in your SD Card")
+        print(f"{WHITE} with phone numbers (one per line)")
+        print(f"{CYAN} Example location: /sdcard/Number_List.txt")
         input(f"{WHITE} Press Enter to return to main menu...")
         sxr_main()
         return
@@ -627,12 +652,16 @@ def autom_main():
     while True:
         clear_logo()
         try:
-            with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
+            # Read from sdcard
+            with open(NUMBER_LIST_PATH, 'r', encoding='utf-8', errors='ignore') as f:
                 numbers = [line.strip() for line in f if line.strip()]
             
             if not numbers:
-                input(f"{WHITE} Add the 'Number_List.txt' file and press Enter...")
-                continue
+                print(f"{RED} No numbers found in {NUMBER_LIST_PATH}")
+                print(f"{WHITE} Please add phone numbers to the file")
+                input(f"{WHITE} Press Enter to return...")
+                sxr_main()
+                return
             break
         except Exception as e:
             print(f"{RED} Error reading file {EKL} {e}")
@@ -650,541 +679,4 @@ def autom_main():
     
     PROXY_ITERATOR = itertools.cycle(PROXY_LIST) if PROXY_LIST else None
     
-    if PROXY_LIST:
-        print(f"{GREEN} [{RED}●{GREEN}] Total Main Proxies {EKL} {len(PROXY_LIST)}")
-        if len(PROXY_LIST) > 1:
-            countries = set(p['country'] for p in PROXY_LIST)
-            if len(countries) > 1:
-                print(f"{GREEN} [{RED}●{GREEN}] IP Location {EKL} Multiple ({len(countries)} Countries)")
-                print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} Mixed")
-            else:
-                nfo = get_ip_info(None)
-                loc = get_locale_code(nfo['countryCode'])
-                global CURRENT_LOCALE
-                CURRENT_LOCALE = loc
-                print(f"{GREEN} [{RED}●{GREEN}] IP Location {EKL} {nfo['country']}")
-                print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
-    else:
-        nfo = get_ip_info(None)
-        loc = get_locale_code(nfo['countryCode'])
-        CURRENT_LOCALE = loc
-        print(f"{GREEN} [{RED}●{GREEN}] IP Location {EKL} {nfo['country']}")
-        print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
-
-    print(f"{LINE}\n{WHITE} Setting up 2nd Option Proxy System...")
-    SMS_PROXY_LIST = get_proxy_list('sms_proxy_settings', 'SMS Proxy')
-    SMS_PROXY_ITERATOR = itertools.cycle(SMS_PROXY_LIST) if SMS_PROXY_LIST else None
-    
-    if SMS_PROXY_LIST:
-        print(f"{GREEN} [{RED}●{GREEN}] Total SMS Proxies  {EKL} {len(SMS_PROXY_LIST)}")
-    else:
-        print(f"{YELLOW} No Proxy configured. Will continue with Main Proxy")
-
-    brow_set = settings.get('browser_settings', {})
-    def_brow = str(brow_set.get('default_browser', 'none')).strip().lower()
-    
-    if def_brow != 'none' and def_brow != '':
-        brow_inp = def_brow
-    else:
-        print(''.join([LINE, '\n ', GREEN, '[', RED, '0', GREEN, '] Random ', WHITE, '(Mix) \n ', GREEN, '[', RED, '1', GREEN, '] Brave ', WHITE, '(Default) ', GREEN, '[', RED, '6', GREEN, '] Opera         ', GREEN, '[', RED, '11', GREEN, '] Kiwi Browser\n ', GREEN, '[', RED, '2', GREEN, '] Chrome          ', GREEN, '[', RED, '7', GREEN, '] UC Browser    ', GREEN, '[', RED, '12', GREEN, '] Dolphin\n ', GREEN, '[', RED, '3', GREEN, '] Edge            ', GREEN, '[', RED, '8', GREEN, '] DuckDuckGo    ', GREEN, '[', RED, '13', GREEN, '] Mi Browser\n ', GREEN, '[', RED, '4', GREEN, '] Firefox         ', GREEN, '[', RED, '9', GREEN, '] Vivaldi       ', GREEN, '[', RED, '14', GREEN, '] Maxthon\n ', GREEN, '[', RED, '5', GREEN, '] Samsung         ', GREEN, '[', RED, '10', GREEN, '] Yandex       ', GREEN, '[', RED, '15', GREEN, '] Puffin\n', LINE]))
-        brow_inp = input(f"{GREEN} [{RED}●{GREEN}] Select Browser {EKL} ").strip()
-
-    if brow_inp == '1': browser_type = 'Brave'
-    elif brow_inp == '2': browser_type = 'Chrome'
-    elif brow_inp == '3': browser_type = 'Edge'
-    elif brow_inp == '4': browser_type = 'Firefox'
-    elif brow_inp == '5': browser_type = 'Samsung'
-    elif brow_inp == '6': browser_type = 'Opera'
-    elif brow_inp == '7': browser_type = 'UC'
-    elif brow_inp == '8': browser_type = 'DuckDuckGo'
-    elif brow_inp == '9': browser_type = 'Vivaldi'
-    elif brow_inp == '10': browser_type = 'Yandex'
-    elif brow_inp == '11': browser_type = 'Kiwi'
-    elif brow_inp == '12': browser_type = 'Dolphin'
-    elif brow_inp == '13': browser_type = 'Mi Browser'
-    elif brow_inp == '14': browser_type = 'Maxthon'
-    elif brow_inp == '15': browser_type = 'Puffin'
-    elif brow_inp == '0': browser_type = 'Random'
-    else: browser_type = 'Brave'
-    
-    if def_brow != 'none' and def_brow != '':
-        print(f"{GREEN} [{RED}●{GREEN}] Selected Browser {EKL} {browser_type}")
-
-    worker_set = settings.get('worker_settings', {})
-    ask_worker = worker_set.get('ask_for_workers', True)
-    def_workers = worker_set.get('default_workers', 30)
-    
-    if ask_worker:
-        w_inp = input(f"{GREEN} [{RED}●{GREEN}] Enter number of Threads/Workers ({def_workers} recommended) {EKL} ")
-        if w_inp.strip():
-            maxworker = int(w_inp)
-        else:
-            maxworker = int(def_workers)
-    else:
-        maxworker = int(def_workers)
-
-    clear_logo()
-    reset_counters()
-    
-    sem = threading.Semaphore(maxworker + 10)
-    
-    try:
-        with threadpol(max_workers=maxworker) as executor:
-            remaining_numbers = list(numbers)
-            
-            for num in numbers:
-                sem.acquire()
-                
-                proxy_data = next(PROXY_ITERATOR) if PROXY_ITERATOR else None
-                current_proxy = proxy_data['proxy'] if proxy_data else None
-                current_locale = proxy_data['locale'] if proxy_data else CURRENT_LOCALE
-                
-                future = executor.submit(check, num, current_proxy, current_locale, browser_type, 0, server_domain, SMS_PROXY_ITERATOR)
-                future.add_done_callback(lambda _: sem.release())
-                
-                if remaining_numbers:
-                    remaining_numbers.pop(0)
-                    with open('Number_List.txt', 'w') as f:
-                        for n in remaining_numbers:
-                            f.write(n + '\n')
-    except:
-        maxworker = 30
-
-    with print_lock:
-        sys.stdout.write('\r                                                                                \r')
-        sys.stdout.flush()
-
-    print(''.join([LINE, '\n', GREEN, ' [', RED, '●', GREEN, '] ', WHITE, 'Completed Forgetting ', total_checked, ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', GREEN, 'Total Success: ', total_success, ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', YELLOW, 'Total Failed: ', total_failed, ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', RED, 'Total Error: ', total_error, ' Numbers.\n', LINE]))
-    
-    while True:
-        try:
-            choice = input(f"{WHITE} Press Enter to Start Again or Type 'M' for Main Menu {EKL} ")
-            if choice.lower() in ('m', 'menu'):
-                sxr_main()
-                return
-            break
-        except Exception as e:
-            print(f"{RED} Error in loop {EKL} {e}")
-            input(f"{WHITE} Press Enter to return...")
-            sxr_main()
-            return
-
-def process_sms(session, resp_text, number, url, base_headers, server_domain, sms_proxy_iterator=None):
-    if 'id="contact_point_selector_form"' in resp_text and 'name="recover_method"' in resp_text:
-        sms_options = re.findall('input type="radio" name="recover_method" value="(send_sms:.*?)".*?id="(.*?)"', resp_text)
-        
-        target_value = None
-        for val, inp_id in sms_options:
-            label_match = re.search('label for="' + re.escape(inp_id) + '".*?<div class="_52jc _52j9">(.*?)</div>', resp_text, re.DOTALL)
-            if label_match:
-                visible_text = label_match.group(1)
-                vis_digits = ''.join(filter(str.isdigit, visible_text))
-                
-                if number.endswith(vis_digits):
-                    target_value = val
-                    safe_print(f"{CYAN} SMS Option Found {EKL} {visible_text}")
-                    break
-                    
-        if target_value:
-            if sms_proxy_iterator:
-                try:
-                    proxy_data = next(sms_proxy_iterator)
-                    session.proxies.update(proxy_data['proxy'])
-                    safe_print(f"{CYAN} Reloading Page...")
-                    
-                    reload_headers = base_headers.copy()
-                    reload_headers.update({
-                        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-                        'referer': url
-                    })
-                    
-                    reload_response = session.get(url, headers=reload_headers)
-                    if reload_response.status_code == 200:
-                        resp_text = reload_response.text
-                    else:
-                        safe_print(f"{RED} Page Reload Failed ({reload_response.status_code})")
-                except Exception as e:
-                    safe_print(f"{RED} Proxy Switch/Reload Error: {e}")
-            
-            try:
-                lsd = re.search('name="lsd" value="(.*?)"', resp_text).group(1) if re.search('name="lsd" value="(.*?)"', resp_text) else ''
-                jazoest = re.search('name="jazoest" value="(.*?)"', resp_text).group(1) if re.search('name="jazoest" value="(.*?)"', resp_text) else ''
-                
-                action_match = re.search('<form.*?action="(.*?)".*?id="contact_point_selector_form"', resp_text, re.DOTALL)
-                if action_match:
-                    action_url = action_match.group(1).replace('&amp;', '&')
-                    full_url = f"https://{server_domain}{action_url}"
-                else:
-                    full_url = f"https://{server_domain}/ajax/recover/initiate/"
-                
-                headers = base_headers.copy()
-                headers.update({
-                    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-                    'cache-control': 'max-age=0',
-                    'content-type': 'application/x-www-form-urlencoded',
-                    'origin': f"https://{server_domain}",
-                    'referer': url
-                })
-                
-                data = {
-                    'lsd': lsd,
-                    'jazoest': jazoest,
-                    'recover_method': target_value,
-                    'reset_action': 'Continue'
-                }
-                
-                params = {
-                    'c': '/login/',
-                    'ctx': 'initate_view',
-                    'sr': '0',
-                    'ars': 'facebook_login'
-                }
-                
-                sxr_respns = session.post(full_url, headers=headers, data=data, params=params)
-                
-                if 'action="/recover/code/' in sxr_respns.text:
-                    update_counter('success', number, "SMS Sent Successfully", GREEN)
-                    return True
-                else:
-                    update_counter('failed', number, "Code Sent Failed - Skipping...", RED)
-                    return True
-            except:
-                pass
-        else:
-            update_counter('failed', number, "SMS Option Not Found/Mismatch - Skipping...", YELLOW)
-            return True
-            
-    return False
-
-def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=0, server_domain='m.facebook.com', sms_proxy_iterator=None):
-    sxr_respns = None
-    session = requests.Session()
-    
-    if proxy:
-        session.proxies.update(proxy)
-    elif PROXIES:
-        session.proxies.update(PROXIES)
-
-    if browser_type == 'Random':
-        browser_list = ['Brave', 'Chrome', 'Edge', 'Firefox', 'Samsung', 'Opera', 'UC', 'DuckDuckGo', 'Vivaldi', 'Yandex', 'Kiwi', 'Dolphin', 'Mi Browser', 'Maxthon', 'Puffin']
-        current_browser = random.choice(browser_list)
-    else:
-        current_browser = browser_type
-
-    andro_ver = random.choice(['4.0.3', '4.0.4', '4.1.2', '4.2.2', '4.3', '4.4.2', '4.4.4', '5.0', '5.0.2', '5.1.1', '6.0', '6.0.1', '7.0', '7.1.1'])
-    models = ['SM-G900F', 'SM-G920F', 'SM-G930F', 'SM-G935F', 'SM-J320F', 'SM-J500F', 'SM-J700F', 'SM-A300FU', 'SM-A500FU', 'SM-N910F', 'SM-N920C', 'LG-H815', 'LG-H850', 'LG-D855', 'LG-K420', 'XT1068', 'XT1092', 'XT1562', 'XT1635', 'E6653', 'F5121', 'D6603', 'ALE-L21', 'VNS-L31', 'PRA-LX1']
-    model = random.choice(models)
-    
-    if andro_ver.startswith('4'):
-        build_prefix = random.choice(['KOT49', 'KTU84', 'JZO54', 'JSS15'])
-    elif andro_ver.startswith('5'):
-        build_prefix = random.choice(['LRX21', 'LMY47', 'LRX22'])
-    elif andro_ver.startswith('6'):
-        build_prefix = random.choice(['MRA58', 'MMB29'])
-    elif andro_ver.startswith('7'):
-        build_prefix = random.choice(['NRD90', 'NMF26'])
-    else:
-        build_prefix = 'LMY47'
-        
-    build = f"{build_prefix}{random.choice('ABCDEFGHJKLMNPQRSTUVWXYZ')}{random.randint(35, 65)}"
-    chrome_ver = f"{random.randint(35, 65)}.0.{random.randint(1500, 4000)}.{random.randint(40, 150)}"
-    base_ua = f"Mozilla/5.0 (Linux; Android {andro_ver}; {model} Build/{build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver} Mobile Safari/537.36"
-    
-    base_headers = {}
-    
-    if current_browser == 'Brave':
-        ua = base_ua
-        base_headers = {
-            'sec-ch-ua': '"Brave";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Chrome':
-        ua = base_ua
-        base_headers = {
-            'sec-ch-ua': '"Google Chrome";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Edge':
-        ua = f"{base_ua} EdgA/143.0.0.0"
-        base_headers = {
-            'sec-ch-ua': '"Microsoft Edge";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Firefox':
-        rv_ver = random.randint(40, 60)
-        ua = f"Mozilla/5.0 (Android {andro_ver}; Mobile; rv:{rv_ver}.0) Gecko/{rv_ver}.0 Firefox/{rv_ver}.0"
-    elif current_browser == 'Samsung':
-        ua = f"{base_ua} SamsungBrowser/10.0"
-        base_headers = {
-            'sec-ch-ua': '"Samsung Internet";v="23", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Opera':
-        ua = f"{base_ua} OPR/60.0.2254.12345"
-        base_headers = {
-            'sec-ch-ua': '"Opera";v="80", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'UC':
-        ua = f"{base_ua} UBrowser/13.4.0.1306"
-        base_headers = {
-            'sec-ch-ua': '"UC Browser";v="13", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'DuckDuckGo':
-        ua = f"{base_ua} DuckDuckGo/5"
-        base_headers = {
-            'sec-ch-ua': '"DuckDuckGo";v="5", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Vivaldi':
-        ua = f"{base_ua} Vivaldi/6.0"
-        base_headers = {
-            'sec-ch-ua': '"Vivaldi";v="6", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Yandex':
-        ua = f"{base_ua} YaBrowser/23.0"
-        base_headers = {
-            'sec-ch-ua': '"Yandex";v="23", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Kiwi':
-        ua = f"{base_ua} Kiwi/124.0.6367.113"
-        base_headers = {
-            'sec-ch-ua': '"Kiwi";v="124", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Dolphin':
-        ua = f"{base_ua} Dolphin/12.3.0"
-        base_headers = {
-            'sec-ch-ua': '"Dolphin";v="12", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Mi Browser':
-        ua = f"{base_ua} MiuiBrowser/14.0.5"
-        base_headers = {
-            'sec-ch-ua': '"Mi Browser";v="14", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Maxthon':
-        ua = f"{base_ua} Maxthon/7.0.2.1400"
-        base_headers = {
-            'sec-ch-ua': '"Maxthon";v="7", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    elif current_browser == 'Puffin':
-        ua = f"{base_ua} Puffin/9.10.0.51959"
-        base_headers = {
-            'sec-ch-ua': '"Puffin";v="9", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-    else:
-        ua = base_ua
-        base_headers = {
-            'sec-ch-ua': '"Brave";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'sec-ch-ua-platform': '"Android"'
-        }
-        
-    screen_res = random.choice(['320x480', '480x800', '540x960', '800x480', '854x480', '960x540', '720x1280', '1280x720', '1080x1920', '1920x1080', '1440x2560'])
-    session.cookies.update({'m_pixel_ratio': '1', 'wd': screen_res})
-    
-    base_headers.update({
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-        'accept-language': f"{locale},en;q=0.9",
-        'priority': 'u=0, i',
-        'sec-ch-ua-full-version-list': '"Chromium";v="143.0.0.0", "Not A(Brand";v="24.0.0.0"',
-        'sec-ch-ua-model': f'"{model}"',
-        'sec-ch-ua-platform-version': f'"{andro_ver}"',
-        'sec-fetch-dest': 'document',
-        'sec-fetch-mode': 'navigate',
-        'sec-fetch-site': 'same-origin',
-        'sec-fetch-user': '?1',
-        'sec-gpc': '1',
-        'upgrade-insecure-requests': '1',
-        'user-agent': ua
-    })
-    
-    try:
-        first_headers = base_headers.copy()
-        first_headers.update({'sec-fetch-site': 'none'})
-        
-        if retry_count == 0:
-            safe_print(f"{LIGHT_GRAY} Searching For {number}...")
-            
-        git_fb = session.get(f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr", headers=first_headers)
-        
-        if 'fr' not in session.cookies:
-            pass
-            
-        try:
-            lsd = re.search('name="lsd" value="(.*?)"', str(git_fb.text)).group(1)
-        except:
-            lsd = re.search('\\["LSD",\\[\\],\\{"token":"(.*?)"\\}', str(git_fb.text)).group(1)
-
-        try:
-            jazoest = re.search('name="jazoest" value="(.*?)"', str(git_fb.text)).group(1)
-        except:
-            jazoest = re.search('"initSprinkleValue":"(.*?)"', str(git_fb.text)).group(1)
-            
-        _data = {
-            'lsd': lsd,
-            'jazoest': jazoest,
-            'email': number,
-            'did_submit': 'Search'
-        }
-        
-        post_headers = base_headers.copy()
-        post_headers.update({
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': f"https://{server_domain}",
-            'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0"
-        })
-        
-        url = f"https://{server_domain}/login/identify/?ctx=recover&c=%2Flogin%2F&search_attempts=1&ars=facebook_login&alternate_search=0&show_friend_search_filtered_list=0&birth_month_search=0&city_search=0"
-        sxr_respns = session.post(url, data=_data, headers=post_headers, allow_redirects=True)
-        
-        if 'id="login_identify_search_error_msg"' in sxr_respns.text:
-            update_counter('failed', number, "Account Not Found", MAGENTA)
-            return
-            
-        if 'action="/login/identify/?ctx=recover' in sxr_respns.text:
-            update_counter('failed', number, "Multiple Account Found - Skipping...", GOLD)
-            return
-
-        if sxr_respns.url.startswith(f"https://{server_domain}/login/account_recovery/name_search/"):
-            headers = base_headers.copy()
-            headers.update({
-                'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr"
-            })
-            sxr_respns = session.get(sxr_respns.url, headers=headers)
-            
-            safe_print(f"{VIOLET} Clicking Try to another way...")
-            
-            if 'action="/login/account_recovery/name_search/?flow=initiate_view' in sxr_respns.text:
-                headers = base_headers.copy()
-                headers.update({'referer': sxr_respns.url})
-                sxr_respns = session.get(f"https://{server_domain}/recover/initiate/?c=%2Flogin%2F&fl=initiate_view&ctx=msite_initiate_view", headers=headers)
-                
-                if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, server_domain, sms_proxy_iterator):
-                    return
-
-            if 'name="pass"' in sxr_respns.text and '/login/account_recovery/' in sxr_respns.text:
-                update_counter('failed', number, "Only Password Option Found - Skipping...", ORANGE)
-                return
-            
-            update_counter('error', number, "Unknown Page (No Selector) - Skipping...", ORANGE, html_content=sxr_respns.text)
-            return
-
-        elif sxr_respns.url.startswith(f"https://{server_domain}/login/device-based/ar/login/?ldata="):
-            headers = base_headers.copy()
-            headers.update({
-                'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr"
-            })
-            sxr_respns = session.get(sxr_respns.url, headers=headers)
-            
-            if 'id="contact_point_selector_form"' in sxr_respns.text:
-                try:
-                    try_another_way_url = re.search('href="(/recover/initiate/\\?privacy_mutation_token=.*?)"', sxr_respns.text).group(1)
-                    try_another_way_url = try_another_way_url.replace('&amp;', '&')
-                except:
-                    pass
-
-                is_sms_checked = re.search('input type="radio" name="recover_method" value="send_sms:.*?".*?checked="1"', sxr_respns.text)
-                if is_sms_checked:
-                    if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, 'm.facebook.com', sms_proxy_iterator):
-                        return
-                    return
-                
-                headers = base_headers.copy()
-                headers.update({'referer': sxr_respns.url})
-                sxr_respns = session.get(f"https://{server_domain}{try_another_way_url}", headers=headers)
-                
-                safe_print(f"{VIOLET} Clicking Try to another way...")
-                
-                if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, server_domain, sms_proxy_iterator):
-                    return
-                
-                update_counter('error', number, "Unknown Page after try another way - Skipping...", ORANGE, html_content=sxr_respns.text)
-                return
-
-            if 'name="captcha_response"' in sxr_respns.text:
-                try:
-                    match = re.search('src="(https://.*?/captcha/tfbimage\\.php\\?.*?)"', sxr_respns.text)
-                    if match:
-                        captcha_img = match.group(1).replace('&amp;', '&')
-                except:
-                    pass
-                update_counter('failed', number, "Captcha Found - Skipping...", PURPLE)
-                return
-            
-            if '/help/121104481304395' in sxr_respns.text or '/help/103873106370583' in sxr_respns.text:
-                update_counter('failed', number, "Account Disabled - Skipping...", TOXIC)
-                return
-            
-            if 'class="area error"' in sxr_respns.text:
-                if retry_count < 3:
-                    check(number, proxy, locale, browser_type, retry_count + 1, server_domain, sms_proxy_iterator)
-                return
-
-            update_counter('error', number, "Unknown Page (Device Based) - Skipping...", ORANGE, html_content=sxr_respns.text)
-            return
-
-        if 'window.MPageLoadClientMetrics' in sxr_respns.text:
-             if retry_count < 3:
-                check(number, proxy, locale, browser_type, retry_count + 1, server_domain, sms_proxy_iterator)
-                return
-             update_counter('error', number, "Unknown Page (Bot Block) - Skipping...", RED, html_content=sxr_respns.text)
-             return
-        
-        if '/r.php?next=' in sxr_respns.text or '/login.php?next=' in sxr_respns.text:
-            if retry_count < 3:
-                check(number, proxy, locale, browser_type, retry_count + 1, server_domain, sms_proxy_iterator)
-            return
-            
-        if "Your Request Couldn't be Processed" in sxr_respns.text:
-             update_counter('error', number, "Your Request Couldn't be Processed", RED, html_content=sxr_respns.text)
-             return
-            
-        update_counter('error', number, "Unknown Page - Skipping...", ORANGE, html_content=sxr_respns.text)
-
-    except (requests.exceptions.ConnectionError, requests.exceptions.Timeout, requests.exceptions.ChunkedEncodingError) as e:
-        safe_print(f"{RED} Network Error {EKL} {e}")
-        safe_print(f"{LIGHT_GRAY} Waiting 5 seconds before retrying...")
-        time.sleep(5)
-        
-        err_content = str(e)
-        if sxr_respns and hasattr(sxr_respns, 'text'):
-            err_content = sxr_respns.text
-            
-        update_counter('error', f"Network Error: {e}", message=f"Network Error: {e}", html_content=err_content)
-
-    except Exception as e:
-        if retry_count < 3:
-            check(number, proxy, locale, browser_type, retry_count + 1, server_domain, sms_proxy_iterator)
-            return
-            
-        err_content = str(e)
-        if sxr_respns and hasattr(sxr_respns, 'text'):
-            err_content = sxr_respns.text
-            
-        update_counter('error', number, f"Unexpected Error: {e}", RED, html_content=err_content)
-
-if __name__ == '__main__':
-    sxr_main()
+    if
