@@ -1220,4 +1220,4 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
         update_counter('error', number, f"Unexpected Error: {e}", RED, html_content=err_content)
 
 if __name__ == '__main__':
-    apvv()
+    sxr_main()
