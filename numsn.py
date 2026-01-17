@@ -150,7 +150,7 @@ def check_account(number, proxy=None):
         }
         
         # Get initial page
-        url = 'https://m.facebook.com/login/identify/?ctx=recover'
+        url = 'https://touch.facebook.com/login/identify/?ctx=recover'
         response = session.get(url, headers=headers)
         
         if response.status_code != 200:
