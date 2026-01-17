@@ -470,7 +470,7 @@ def save_error_html(message, html_content):
 def clear_logo():
     os.system('clear')
         
-    print(''.join([GREEN, "\n      .d8888.  db    db  d8888b. \n      88'  YP  `8b  d8'  88  `8D \n      `8bo.     `8bd8'   88oobY' \n        `Y8b.   .dPYb.   88`8b   \n      db   8D  .8P  Y8.  88 `88. \n      `8888Y'  YP    YP  88   YD   ", ORANGE, 'V-3.6\n', LINE, '\n ', GREEN, '[', RED, '●', GREEN, '] TOOL OWNER   ', CYAN, ':', GREEN, ' @yeasin_hossain018\n ', GREEN, '[', RED, '●', GREEN, '] TOOL         ', CYAN, ':', GREEN, ' FORGET FB\n ', GREEN, '[', RED, '●', GREEN, '] TOOL STATUS  ', CYAN, ':', GREEN, ' PAID\n', LINE]))
+    print(''.join([GREEN, "\n   ", ORANGE, 'V-3.6\n', LINE, '\n ', GREEN, '[', RED, '●', GREEN, '] TOOL OWNER   ', CYAN, ':', GREEN, ' @yeasin_hossain018\n ', GREEN, '[', RED, '●', GREEN, '] TOOL         ', CYAN, ':', GREEN, ' FORGET FB\n ', GREEN, '[', RED, '●', GREEN, '] TOOL STATUS  ', CYAN, ':', GREEN, ' PAID\n', LINE]))
 
 def sxr_main():
     clear_logo()
