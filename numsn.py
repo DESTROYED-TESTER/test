@@ -391,7 +391,7 @@ def load_settings():
         return {}
 
 def get_status_line():
-    return f"\r{GREEN}[{WHITE}Mr-SxR{GREEN}] {WHITE}CHECKED:-{total_checked}{CYAN}|{GREEN}SUCCESS:-{total_success}{CYAN}|{YELLOW}FAILED:-{total_failed}{CYAN}|{RED}ERROR:-{total_error}"
+    return f"\r{GREEN}[{WHITE}SUMON{GREEN}] {WHITE}CHECKED:-{total_checked}{CYAN}|{GREEN}SUCCESS:-{total_success}{CYAN}|{YELLOW}FAILED:-{total_failed}{CYAN}|{RED}ERROR:-{total_error}"
 
 def safe_print(text):
     with print_lock:
