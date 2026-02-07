@@ -127,7 +127,7 @@ def crack(uid, password_list, total_count):
     # Thread-safe counter increment
     with counter_lock:
         global loop,bkas
-        loop += 1
+        
     
     colors = ["\033[1;90m", "\033[1;91m", "\033[1;92m", "\x1b[38;5;208m", 
               "\033[1;93m", "\033[1;94m", "\033[1;95m", "\033[1;96m"]
@@ -232,7 +232,7 @@ def crack(uid, password_list, total_count):
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
-                
+    loop += 1
     except requests.exceptions.Timeout:
         #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
