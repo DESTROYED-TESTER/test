@@ -51,7 +51,7 @@ print("FACEBOOK LOGIN ATTEMPT DIAGNOSTICS")
 print("=" * 60)
 
 # Make the request
-response = Session.post('https://web.facebook.com/login/device-based/regular/login/', 
+response = Session.post('https://x.facebook.com/login/device-based/regular/login/', 
                        params=params, headers=headers, data=data)
 
 print(f"\n📊 RESPONSE STATUS: {response.status_code} - {response.reason}")
