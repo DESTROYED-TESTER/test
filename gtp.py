@@ -134,7 +134,7 @@ if url_params:
 # Final verdict
 print("\n" + "=" * 60)
 print("📌 FINAL VERDICT:")
-if "checkpoint" in cookies_dict or any(ind in response.text.lower() for ind in checkpoint_indicators):
+if "checkpoint" in cookies_dict: #or any(ind in response.text.lower() for ind in checkpoint_indicators)
     print("❌ LOGIN BLOCKED - Checkpoint/security challenge detected")
     print("   Facebook has detected this as a suspicious login attempt")
     print("   You would need to:")
