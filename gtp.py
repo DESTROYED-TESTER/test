@@ -70,6 +70,6 @@ response = Session.post(
 )
 log_cookies = Session.cookies.get_dict().keys()
 if "checkpoint" in log_cookies:
-  print("ok")
+  print("log_cookies")
 else:
    print("gud")
