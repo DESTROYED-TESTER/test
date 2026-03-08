@@ -1,4 +1,4 @@
-import requests
+import requests,time
 from pprint import pprint
 import json
 from urllib.parse import urlparse, parse_qs, urljoin
