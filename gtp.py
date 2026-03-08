@@ -1,5 +1,5 @@
 import requests
-
+Session = requests.Session()
 cookies = {
     'datr': 'QeKNaUGL6JReD3XKEE0QEpw3',
     'sb': 'etcGaeXQAhgH5N9EXJxlkrgM',
@@ -61,11 +61,15 @@ data = {
     'encpass': '#PWD_BROWSER:5:1772953509:AQ1QAJOUTXi/HnQNhCOo6rZKxs4MzXnz/zr9moenZB5PZ9BzsmucXD+neOobZ5Iyw2AtGkFkYzvheADN0aL9qgqUgrpyKwDpoX9/mjm0jWIBYwHJtHtBfWoZye6z3OKmJ2j5x678nH0CvZf12IQ=',
 }
 
-response = requests.post(
+response = Session.post(
     'https://www.facebook.com/login/device-based/regular/login/',
     params=params,
     cookies=cookies,
     headers=headers,
     data=data,
 )
-print(response.text)
+log_cookies = Session.cookies.get_dict().keys()
+if "checkpoint" in log_cookies:
+  print("ok")
+else:
+   print("gud")
