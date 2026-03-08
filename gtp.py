@@ -1,79 +1,45 @@
 import requests
-import json
-
-print("🔄 FACEBOOK RE-LOGIN ATTEMPT")
-print("=" * 40)
-
-
-# Login request with same credentials
-cookies = {
-    'datr': 'cBNEaQDmgPScqxAEzMAVJz2c',
-    'locale': 'en_US',
-    'wd': '1160x773',
-}
 
 headers = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,bn;q=0.6',
-    'cache-control': 'max-age=0',
-    'content-type': 'application/x-www-form-urlencoded',
-    'origin': 'https://www.messenger.com',
-    'referer': 'https://www.messenger.com/?locale=en_US',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Origin': 'https://www.facebook.com',
+    'Referer': 'https://www.facebook.com/facebook/',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+    'dpr': '1',
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Not;A=Brand";v="99", "Google Chrome";v="139", "Chromium";v="139"',
+    'sec-ch-ua-full-version-list': '"Not;A=Brand";v="99.0.0.0", "Google Chrome";v="139.0.7258.139", "Chromium";v="139.0.7258.139"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-model': '""',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-ch-ua-platform-version': '"10.0.0"',
+    'viewport-width': '1136',
+}
+
+params = {
+    'login_attempt': '1',
 }
 
 data = {
-    'jazoest': '2860',
-    'lsd': 'AdHIJjGJEKQ',
-    'initial_request_id': 'AjNT6s4V9aYDxWY1xquwbZF',
+    'email': '100069889795658',
+    'cuid': '',
+    'guid': 'fe7c9ad27486757c4',
+    'lgnjs': '1772949169',
+    'lgnrnd': '215248_5sPy',
+    'locale': 'en_GB',
+    'login_source': 'comet_login_header',
+    'next': 'https://www.facebook.com/facebook/',
+    'skstamp': '',
     'timezone': '-330',
+    'prefill_contact_point': '',
+    'prefill_source': '',
+    'lsd': 'AdR3xKrdycBYAeO3Mdb7UwKg9AY',
+    'jazoest': '22301',
     'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-    'lgnrnd': '064512_QZiY',
-    'lgnjs': 'n',
-    'email': '8101729293',
-    'pass': '#PWD_BROWSER:5:1766069581:Ab1QAHJ8IWa7REAjnsTK6FtwMIvRPk3eykctwMku5firfVEhbm4YwYJNfcx7x3Dp5mb5GPA3VLrXKyVvLTzXGnAT8on/nlAun+JgYEa88qyaXq4Gz5Iu46EbLpxT03UFYtK89F4KB/vYFEzW',
-    'default_persistent': '',
+    'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+    'encpass': '#PWD_BROWSER:5:1772949202:AQ1QAC3SoMlbwtWK6vcSjXsRD6T8bZZ4wNYVbgxP+KQVKapai2iiDNhBwQyt/vhx9zh6T2ENqY31N0unRP4SRSfReTpeGW0X7EgQzwRRfAHT+g6wB2a3JgPKakdR28YSUkcOvUzUlPJgXaMg',
 }
 
-try:
-    session = requests.Session()
-    session.cookies.update(cookies)
-    
-    response = session.post('https://www.messenger.com/login/password/', headers=headers, data=data)
-    
-    print(f"📊 Status: {response.status_code}")
-    print(f"🔗 Final URL: {response.url}")
-    
-    # Extract new cookies
-    new_cookies = requests.utils.dict_from_cookiejar(session.cookies)
-    
-    print("\n🍪 NEW FACEBOOK LOGIN COOKIES:")
-    print("=" * 40)
-    
-    for name, value in new_cookies.items():
-        if name in ['c_user', 'xs', 'sb', 'datr']:
-            print(f"✅ {name}: {value}")
-        else:
-            print(f"   {name}: {value}")
-    
-    # Save new cookies
-    with open('facebook_cookies_new.json', 'w') as f:
-        json.dump(new_cookies, f, indent=2)
-    
-    # Create curl format
-    curl_format = "; ".join([f"{k}={v}" for k, v in new_cookies.items()])
-    with open('facebook_cookies_new_curl.txt', 'w') as f:
-        f.write(curl_format)
-    
-    print(f"\n💾 Saved to: facebook_cookies_new.json")
-    print(f"📋 Curl format: facebook_cookies_new_curl.txt")
-    
-    # Check if login successful
-    if 'c_user' in new_cookies:
-        print(f"\n🎉 LOGIN SUCCESSFUL!")
-        print(f"👤 User ID: {new_cookies['c_user']}")
-    else:
-        print(f"\n❌ LOGIN FAILED!")
-    
-except Exception as e:
-    print(f"❌ ERROR: {e}")
+response = requests.post('https://www.facebook.com/login/device-based/regular/login/', params=params, headers=headers, data=data)
+print(response)
