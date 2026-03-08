@@ -41,7 +41,7 @@ params = {
 }
 
 data = {
-    'email': '100068373534275',
+    'email': '100066308203405',
     'cuid': '',
     'guid': 'f26a6b52fe26838f9',
     'lgnjs': '1772952835',
@@ -58,7 +58,7 @@ data = {
     'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
     'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
     'seo_visit_from_session': '1',
-    'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0],'soumyadip123'),
+    'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0],'diya123'),
 }
 
 response = Session.post(
