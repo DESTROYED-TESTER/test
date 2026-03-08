@@ -42,4 +42,4 @@ data = {
 }
 
 response = requests.post('https://www.facebook.com/login/device-based/regular/login/', params=params, headers=headers, data=data)
-print(response)
+print(response.text)
