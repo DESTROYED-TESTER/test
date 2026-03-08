@@ -1,4 +1,4 @@
-import requests
+import requests,time
 from pprint import pprint
 import json
 
@@ -27,7 +27,7 @@ params = {
 }
 
 data = {
-    'email': '100069889795658',
+    'email': '100069814779091',
     'cuid': '',
     'guid': 'fe7c9ad27486757c4',
     'lgnjs': '1772949169',
@@ -43,7 +43,7 @@ data = {
     'jazoest': '22301',
     'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
     'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-    'encpass': '#PWD_BROWSER:5:1772949202:AQ1QAC3SoMlbwtWK6vcSjXsRD6T8bZZ4wNYVbgxP+KQVKapai2iiDNhBwQyt/vhx9zh6T2ENqY31N0unRP4SRSfReTpeGW0X7EgQzwRRfAHT+g6wB2a3JgPKakdR28YSUkcOvUzUlPJgXaMg',
+    'encpass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0],'57273200'),
 }
 
 print("=" * 60)
