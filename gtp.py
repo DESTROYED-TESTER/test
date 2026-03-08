@@ -1,5 +1,10 @@
 import requests
+from pprint import pprint
+import json
+
 Session = requests.Session()
+
+# Your existing headers and data...
 headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
     'Origin': 'https://www.facebook.com',
@@ -41,9 +46,106 @@ data = {
     'encpass': '#PWD_BROWSER:5:1772949202:AQ1QAC3SoMlbwtWK6vcSjXsRD6T8bZZ4wNYVbgxP+KQVKapai2iiDNhBwQyt/vhx9zh6T2ENqY31N0unRP4SRSfReTpeGW0X7EgQzwRRfAHT+g6wB2a3JgPKakdR28YSUkcOvUzUlPJgXaMg',
 }
 
-response = Session.post('https://www.facebook.com/login/device-based/regular/login/', params=params, headers=headers, data=data)
-log_cookies = Session.cookies.get_dict().keys()
-if "checkpoint" in log_cookies:
-  print("ok")
+print("=" * 60)
+print("FACEBOOK LOGIN ATTEMPT DIAGNOSTICS")
+print("=" * 60)
+
+# Make the request
+response = Session.post('https://www.facebook.com/login/device-based/regular/login/', 
+                       params=params, headers=headers, data=data)
+
+print(f"\n📊 RESPONSE STATUS: {response.status_code} - {response.reason}")
+
+# Check all cookies
+cookies_dict = Session.cookies.get_dict()
+print(f"\n🍪 COOKIES RECEIVED ({len(cookies_dict)} total):")
+for cookie_name, cookie_value in cookies_dict.items():
+    preview = cookie_value[:30] + "..." if len(cookie_value) > 30 else cookie_value
+    print(f"  • {cookie_name}: {preview}")
+
+# Check for checkpoint specifically
+print("\n🔍 CHECKPOINT ANALYSIS:")
+if "checkpoint" in cookies_dict:
+    print("  ✅ 'checkpoint' cookie FOUND!")
+    print(f"  📝 Checkpoint value: {cookies_dict['checkpoint']}")
+    
+    # Try to determine checkpoint type
+    if "https" in cookies_dict.get('checkpoint', ''):
+        print("  ⚠️  This appears to be a security checkpoint URL")
 else:
-   print("gud")
+    print("  ❌ No 'checkpoint' cookie found")
+
+# Check for other security-related cookies
+security_cookies = ['c_user', 'xs', 'fr', 'sb', 'datr', 'spin', 'wd']
+print("\n🛡️  SECURITY COOKIES CHECK:")
+for sec_cookie in security_cookies:
+    status = "✅ Present" if sec_cookie in cookies_dict else "❌ Missing"
+    print(f"  • {sec_cookie}: {status}")
+
+# Response Headers Analysis
+print("\n📋 IMPORTANT RESPONSE HEADERS:")
+important_headers = ['Location', 'Content-Type', 'X-FB-Debug', 'X-FB-Rev']
+for header in important_headers:
+    if header in response.headers:
+        print(f"  • {header}: {response.headers[header][:100]}...")
+
+# Check if redirected
+if response.history:
+    print(f"\n🔄 REDIRECT CHAIN ({len(response.history)} redirects):")
+    for i, redirect in enumerate(response.history, 1):
+        print(f"  {i}. {redirect.url} -> Status: {redirect.status_code}")
+    print(f"  Final URL: {response.url}")
+else:
+    print(f"\n📍 Final URL: {response.url}")
+
+# Response content analysis
+print("\n📄 RESPONSE CONTENT PREVIEW:")
+content_preview = response.text[:500].replace('\n', ' ').replace('\r', '')
+print(content_preview + "...")
+
+# Look for specific checkpoint indicators in HTML
+checkpoint_indicators = [
+    'checkpoint', 'approvals_code', 'captcha', 'twofactor', '2FA',
+    'security check', 'confirm identity', 'verify', 'suspicious'
+]
+
+print("\n🔎 CHECKPOINT INDICATORS IN HTML:")
+found_indicators = []
+for indicator in checkpoint_indicators:
+    if indicator.lower() in response.text.lower():
+        found_indicators.append(indicator)
+        print(f"  ✅ Found: '{indicator}'")
+
+if not found_indicators:
+    print("  ❌ No checkpoint indicators found in HTML")
+
+# Parse URL for checkpoint parameters
+from urllib.parse import urlparse, parse_qs
+parsed_url = urlparse(response.url)
+url_params = parse_qs(parsed_url.query)
+if url_params:
+    print("\n🔧 URL PARAMETERS:")
+    for param, values in url_params.items():
+        if any(ind in param.lower() for ind in checkpoint_indicators):
+            print(f"  ⚠️  {param}: {values}")
+        else:
+            print(f"  • {param}: {values}")
+
+# Final verdict
+print("\n" + "=" * 60)
+print("📌 FINAL VERDICT:")
+if "checkpoint" in cookies_dict or any(ind in response.text.lower() for ind in checkpoint_indicators):
+    print("❌ LOGIN BLOCKED - Checkpoint/security challenge detected")
+    print("   Facebook has detected this as a suspicious login attempt")
+    print("   You would need to:")
+    print("   • Solve a CAPTCHA")
+    print("   • Verify via email/SMS")
+    print("   • Confirm identity through security questions")
+elif 'c_user' in cookies_dict and 'xs' in cookies_dict:
+    print("✅ POSSIBLE SUCCESS - Login cookies detected!")
+    print("   However, this might still require additional verification")
+else:
+    print("⚠️ INCONCLUSIVE - No clear success or failure indicators")
+    print("   The login attempt likely failed silently")
+
+print("=" * 60)
