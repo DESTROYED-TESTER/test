@@ -44,7 +44,7 @@ data = {
 response = Session.post('https://www.facebook.com/login/device-based/regular/login/', params=params, headers=headers, data=data)
 log_cookies = Session.cookies.get_dict().keys()
 if "checkpoint" in log_cookies:
-print("ok")
+  print("ok")
 else:
    print("gud")
    continue
