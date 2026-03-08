@@ -47,4 +47,3 @@ if "checkpoint" in log_cookies:
   print("ok")
 else:
    print("gud")
-   continue
