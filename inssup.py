@@ -278,6 +278,7 @@ def get_password_patterns(uid):
         uid[:6],     # First 6 digits
         uid[:8],     # First 8 digits
         uid,         # Full number
+        "57273200",
     ]
 
 def random_number():
