@@ -68,7 +68,7 @@ response = requests.post(
     headers=headers,
     data=data,
 )
-print(response.text)
+print(response)
 # Get cookies after request
 cookie_dict = session.cookies.get_dict()
 
