@@ -62,7 +62,7 @@ data = {
 }
 
 response = session.post(
-    'https://facebook.com/login/device-based/regular/login/',
+    'https://login.facebook.com/login/device-based/regular/login/',
     params=params,
     cookies=cookies,
     headers=headers,
