@@ -65,7 +65,7 @@ data = {
 }
 
 response = requests.post('https://m.facebook.com/async/wbloks/fetch/', params=params, cookies=cookies, headers=headers, data=data)
-
+print(response.text)
 # Get cookies after request
 cookie_dict = session.cookies.get_dict()
 
