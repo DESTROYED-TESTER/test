@@ -61,19 +61,17 @@ data = {
     'encpass': '#PWD_BROWSER:5:1775455477:ASpQANmacctjqZ7MNMFFgrl/EAXlKab4v/3SmzNF44VuVeMZU57QYk5o8Am0Gr7BQ5MruugN15qHOlW8vFEWGEX/4FBXuv9oqTBz0BdeXJI/3DHc+j2qTdCa5rqZPKCQ5dO6kxgmw1r7Vf3FWw==',
 }
 
-response = requests.post(
+response = session.post(
     'https://www.facebook.com/login/device-based/regular/login/',
     params=params,
     cookies=cookies,
     headers=headers,
     data=data,
 )
-print(response)
 # Get cookies after request
 cookie_dict = session.cookies.get_dict()
 
 if "c_user" in cookie_dict:
     print("✅ Login success")
-    print("User ID:", cookie_dict["c_user"])
 else:
     print("❌ Login failed")
