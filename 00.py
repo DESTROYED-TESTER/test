@@ -58,7 +58,7 @@ data = {
     'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjozMn0=',
     'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
     'seo_visit_from_session': '1',
-    'encpass': '#PWD_BROWSER:5:1775455477:ASpQANmacctjqZ7MNMFFgrl/EAXlKab4v/3SmzNF44VuVeMZU57QYk5o8Am0Gr7BQ5MruugN15qHOlW8vFEWGEX/4FBXuv9oqTBz0BdeXJI/3DHc+j2qTdCa5rqZPKCQ5dO6kxgmw1r7Vf3FWw==',
+    'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], "sumon@12M"),
 }
 
 response = session.post(
