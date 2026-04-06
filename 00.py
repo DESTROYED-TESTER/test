@@ -4,7 +4,7 @@ import requests,json,time
 session = requests.Session()
 
 cookies = {
-    'datr': 'nkzTafyVQH5LzCTO5vvJ9H0O',
+    #'datr': 'nkzTafyVQH5LzCTO5vvJ9H0O',
     'fr': '05JM1NKdAURcsnsVf.AWeLEYd-Wy_MpBRM-wpyz9HBtCXCe_HHs15Ns7uJz7y1ce3-cLU.BpAiwa..AAA.0.0.Bp00ye.AWetEDKaoeOCN8LSfX37esQ7af0',
     'sb': 'nkzTaYf6K76ZGssAj6WcFzrA',
     'wd': '1189x773',
@@ -64,7 +64,7 @@ data = {
 response = session.post(
     'https://mobile.facebook.com/login/device-based/regular/login/',
     params=params,
-    #cookies=cookies
+    cookies=cookies
     headers=headers,
     data=data,
 )
