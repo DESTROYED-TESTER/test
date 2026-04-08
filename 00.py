@@ -3,8 +3,6 @@ import requests,json,time
 
 session = requests.Session()
 
-import requests
-
 headers = {
     'sec-ch-ua-full-version-list': '"Not:A-Brand";v="99.0.0.0", "Google Chrome";v="145.0.7632.5", "Chromium";v="145.0.7632.5"',
     'sec-ch-ua-platform': '"Android"',
