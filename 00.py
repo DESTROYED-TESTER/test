@@ -43,7 +43,7 @@ data = {
 response = requests.post('https://m.facebook.com/async/wbloks/fetch/', params=params, headers=headers, data=data)
 # Get cookies after request
 cookie_dict = session.cookies.get_dict()
-
+print(response.text)
 if "c_user" in cookie_dict:
     print("✅ Login success")
 else:
