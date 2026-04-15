@@ -95,7 +95,7 @@ class SUMON:
 
     def generate_fb_ads_user_agent(self):
     # List of common Android versions and build IDs
-    android_versions = [
+        android_versions = [
         ("13", "TQ3A.230901.001"),
         ("14", "UP1A.231105.001"),
         ("15", "AP1A.241205.007"),
@@ -103,28 +103,28 @@ class SUMON:
     ]
     
     # List of common devices [Manufacturer, Brand, Model]
-    devices = [
+        devices = [
         ("samsung", "samsung", "SM-S928B"), # S24 Ultra
         ("google", "google", "Pixel 9 Pro"),
         ("samsung", "samsung", "SM-G991U"),  # S21
         ("OnePlus", "OnePlus", "CPH2551")    # OnePlus Open
     ]
 
-    ver, build = random.choice(android_versions)
-    mf, br, dv = random.choice(devices)
+        ver, build = random.choice(android_versions)
+        mf, br, dv = random.choice(devices)
     
     # Randomize minor version numbers for realism
-    chrome_ver = f"1{random.randint(30, 45)}.0.{random.randint(5000, 7000)}.{random.randint(10, 150)}"
-    fb_ver = f"{random.randint(500, 550)}.0.0.{random.randint(30, 60)}.{random.randint(10, 120)}"
-    fbbv = random.randint(800000000, 900000000)
+        chrome_ver = f"1{random.randint(30, 45)}.0.{random.randint(5000, 7000)}.{random.randint(10, 150)}"
+        fb_ver = f"{random.randint(500, 550)}.0.0.{random.randint(30, 60)}.{random.randint(10, 120)}"
+        fbbv = random.randint(800000000, 900000000)
 
-    ua = (
+        ua = (
         f"Mozilla/5.0 (Linux; Android {ver}; {dv} Build/{build}; wv) "
         f"AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{chrome_ver} Mobile Safari/537.36 "
         f"[FBAN/EMA;FBLC/en_US;FBAV/{fb_ver};FBBV/{fbbv};FBCR/Verizon;"
         f"FBMF/{mf};FBBD/{br};FBDV/{dv};FBSV/{ver};FBPN/com.facebook.adsmanager;]"
     )
-    return ua
+        return ua
         
     def M1(self, ids, names, passwords):
         sys.stdout.write(f'\r\r{self.g}[SUMON-404]-[{self.loop}]-[OK:{len(self.ok)}]-[CP:{len(self.cp)}] ')
