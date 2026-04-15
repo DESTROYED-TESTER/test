@@ -161,8 +161,8 @@ class SUMON:
                     "method": "auth.login",
                     "fb_api_req_friendly_name": "authenticate",
                     "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler"}
-                headers = [
-                    'content-type':f'application/x-www-form-urlencoded',
+                headers = {
+                    'content-type':'application/x-www-form-urlencoded',
                     'x-fb-sim-hni':random.choice(hni_codes),
                     'x-fb-connection-type':'unknown',
                     'Authorization':'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
@@ -172,7 +172,7 @@ class SUMON:
                     'x-fb-connection-quality':'EXCELLENT',
                     'x-fb-friendly-name':'authenticate',
                     'accept-encoding':'gzip, deflate',
-                    'x-fb-http-engine':     'Liger']
+                    'x-fb-http-engine':     'Liger'}
                 
                 url = 'https://b-graph.facebook.com/auth/login'
                 buffer = BytesIO()
