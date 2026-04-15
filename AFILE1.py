@@ -242,3 +242,4 @@ class SUMON:
 if __name__ == '__main__':
     tool = SUMON()
     #tool.__approval__()
+    tool.__SUMON__()
