@@ -166,7 +166,7 @@ class SUMON:
                     'x-fb-sim-hni':random.choice(hni_codes),
                     'x-fb-connection-type':'unknown',
                     'Authorization':'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-                    'user-agent':{self.generate_fb_ads_user_agent()}',
+                    'user-agent': {self.generate_fb_ads_user_agent()},
                     'x-fb-net-hni':random.choice(hni_codes),
                     'x-fb-connection-bandwidth':str(random.randint(200000,400000)),
                     'x-fb-connection-quality':'EXCELLENT',
