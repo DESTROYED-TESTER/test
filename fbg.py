@@ -158,7 +158,7 @@ def crack(uid, password_list, total_count):
             'sec-fetch-dest': 'empty',
             'referer': 'https://www.facebook.com/?_rdr',
             'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',}
-            print("Cookies:", cookie_str)
+            print(headers)
             data = {
     'av': '0',
     'user': '0',
