@@ -8,6 +8,8 @@ Version: 2.0
 """
 
 import random
+import re
+import json
 import sys
 import time
 import hashlib
