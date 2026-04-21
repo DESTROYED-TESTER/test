@@ -216,7 +216,7 @@ def crack(uid, password_list, total_count):
             "sensitive_string_value": enc_password
         },
         "persistent": True,
-        "query_params": "{\\"_rdr\\":null}",
+        "query_params": "{}",
         "trusted_device_records": "{}",
         "use_uid_to_login": False,
         "waterfall_id": "c12c16ec-1d52-490f-a106-3c67895a3098"
