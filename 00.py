@@ -43,7 +43,7 @@ params = {
 data = {
     'lsd': 'AdRI_jsCbwbquOXwCTLBVuY4Q7w',
     'jazoest': '22426',
-    'uid': 'AYhaW2jE160GrPZZadtVI3XEJb24ljXxgwZhyDx4U1qaHtgyvDQjI9k8Iv6RY624CdmLGuY6rHl3ig158v9NO3ExcBneJ9WXdbwzYNRbBkYhwQ9lbTr6wBVv5dAOA9-6dpOrUq6wpiZxw_49J8KyiOmvfO7JDvkVvst4XMcrYdouX9aMpkSxx-bi_MYr87WRed6rUXp0DZC-dZ0GRhkiKrZQ',
+    'cuid': 'AYhaW2jE160GrPZZadtVI3XEJb24ljXxgwZhyDx4U1qaHtgyvDQjI9k8Iv6RY624CdmLGuY6rHl3ig158v9NO3ExcBneJ9WXdbwzYNRbBkYhwQ9lbTr6wBVv5dAOA9-6dpOrUq6wpiZxw_49J8KyiOmvfO7JDvkVvst4XMcrYdouX9aMpkSxx-bi_MYr87WRed6rUXp0DZC-dZ0GRhkiKrZQ',
     'flow': 'initiate_view',
     'pass': 'sumon@12B',
 }
