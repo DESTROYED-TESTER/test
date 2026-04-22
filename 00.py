@@ -68,7 +68,7 @@ data = {
     "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], 'sumon@12M'),
     "fb_dtsg": "NAfsfb_rRUK1j8xFoiAUrWhu_BKjct4Ic-TBEHU19VbowNsaWe4Hcag:0:0",
     "jazoest": "25035",
-    "lsd": re.search('name="m_ts" value="(.*?)"',str(response2.text)).group(1),
+    "lsd": "AdSJgVEeaG-HDOhvnYZ0anTTqW4",
     "dyn": "1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ewb60Y82Cwro0wa4o1MUaE36wdq0ny0oi0zE1jU1soG0hi0Lo6-0Co178dE1UU3jwGwbu",
     "csr": "",
     "hsdp": "",
