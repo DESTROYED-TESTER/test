@@ -17,7 +17,7 @@ head = {"authority": "m.prod.facebook.com",
             "user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0',
             "viewport-width": "980"}
 response = Session.get('https://www.facebook.com/login',headers=head)
-response2 = Session.get('https://limited.facebook.com',headers=head)
+response2 = Session.get('https://limited.facebook.com')
 datr = response.cookies.get('datr')
 sb = response.cookies.get('sb')
 fr = response.cookies.get('fr')
