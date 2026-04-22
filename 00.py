@@ -1,4 +1,5 @@
 import requests
+import time
 Session = requests.Session()
 
 cookies = {
@@ -44,7 +45,7 @@ data = {
     'uid': 'bithikasumon81@gmail.com',
     'next': 'https://m.facebook.com/fxreauth/?app_id=1217981644879628&etoken=AbljjNFddxZHsR3x2CX3AdJWgDFOSv6byXjyGHvtqcRxYyy9OaXwgJ4vSrw2U6kPDT59QnBqV-hd2Q&account_id=61551769793551&force_logout=0&extra_data=%2Fprofiles%2F61551769793551%2Fname%2F&native_app_login_flow=fbreauthcomet',
     'flow': 'fx_reauth',
-    'pass': 'sumon@12M',
+    'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], 'sumon@12M'), 
 }
 
 response = Session.post(
