@@ -226,7 +226,7 @@ def crack(uid, password_list, total_count):
         "trusted_device_records": "{}",
         "use_uid_to_login": False,
         "waterfall_id": "ad8438a3-c020-4019-97f2-ec5687242d8e"
-    }),
+    },
     'doc_id': '9807605492696448',
     'fb_api_analytics_tags': '["qpl_active_flow_ids=516759801"]',
 }
