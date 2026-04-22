@@ -2,8 +2,23 @@ import requests
 import time
 Session = requests.Session()
 
-import requests
-
+head = {"authority": "m.prod.facebook.com",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cache-control": "max-age=0",
+            "dpr": "3",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-site": "none",
+            "sec-fetch-user": "?1",
+            "upgrade-insecure-requests": "1",
+            "user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0',
+            "viewport-width": "980"}
+response = session.get('https://www.facebook.com/login',headers=head)
+datr = response.cookies.get('datr')
+sb = response.cookies.get('sb')
+fr = response.cookies.get('fr')
 url = "https://limited.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
 
 headers = {
@@ -25,11 +40,11 @@ headers = {
 }
 
 cookies = {
-    "datr": "gInoaXuWGJqxvHs2O0xvwWA-",
-    "sb": "iInoaUeweC7RC3qUJVB1odJ0",
+    "datr": datr,
+    "sb": sb,
     "m_pixel_ratio": "2.75",
     "wd": "393x851",
-    "fr": "0QYJOzT2T4bYtWUTw..Bp6ImA..AAA.0.0.Bp6Imo.AWfPEW7kbLdLKeVFD9e9xUKO104",
+    "fr": fr,
 }
 
 data = {
