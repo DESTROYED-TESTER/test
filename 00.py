@@ -51,7 +51,6 @@ data = {
 response = Session.post(
     'https://m.facebook.com/login/device-based/validate-password/',
     params=params,
-    cookies=cookies,
     headers=headers,
     data=data,
 )
