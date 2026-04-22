@@ -1,7 +1,5 @@
 import requests
-import requests
-import re
-from urllib.parse import urlparse, parse_qs
+Session = requests.Session()
 cookies = {
     'dpr': '2.75',
     'datr': 'oWfoaeauiueomlq-ugFOiKXV',
@@ -50,7 +48,7 @@ data = {
     'pass': 'sumon@12B',
 }
 
-response = requests.post(
+response = Session.post(
     'https://m.facebook.com/login/account_recovery/name_search/',
     params=params,
     cookies=cookies,
@@ -59,55 +57,6 @@ response = requests.post(
 )
 
 # Check login success
-def check_facebook_login_success(response):
-    """Check if Facebook login was successful"""
-    
-    print(f"Response Status Code: {response.status_code}")
-    print(f"Response URL: {response.url}")
-    
-    # Check for success indicators
-    success_indicators = [
-        'home.php',
-        'facebook.com/home',
-        'facebook.com/?sk=welcome',
-        'save-device',
-        'login_success',
-        'checkpoint',
-        'two_factor'
-    ]
-    
-    # Check for failure indicators
-    failure_indicators = [
-        'login/account_recovery',
-        'login.php',
-        'error',
-        'invalid',
-        'wrong_password'
-    ]
-    
-    # Check URL for success
-    url = response.url
-    is_success = any(indicator in url for indicator in success_indicators)
-    is_failure = any(indicator in url for indicator in failure_indicators)
-    
-    # Check response content
-    response_text = response.text.lower()
-    
-    if 'checkpoint' in url or 'checkpoint' in response_text:
-        print("⚠️ Login requires checkpoint verification (2FA or security check)")
-        return 'checkpoint_required'
-    elif 'home.php' in url or 'facebook.com/home' in url:
-        print("✅ Login successful! Redirected to home page")
-        return 'success'
-    elif 'save-device' in url:
-        print("✅ Login successful! Save device prompt")
-        return 'success'
-    elif 'login/account_recovery' in url and response.status_code == 200:
-        print("❌ Login failed - Still on recovery page")
-        return 'failed'
-    elif 'wrong_password' in response_text or 'invalid' in response_text:
-        print("❌ Login failed - Invalid credentials")
-        return 'failed'
-    else:
-        print("⚠️ Unknown status - Check response manually")
-        return 'unknown'
+log_cookies = Session.cookies.get_dict().keys()
+if "c_user" in log_cookies:
+    print('\033[1;92m OK')
