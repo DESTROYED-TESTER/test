@@ -51,7 +51,6 @@ data = {
 response = Session.post(
     'https://m.facebook.com/login/account_recovery/name_search/',
     params=params,
-    cookies=cookies,
     headers=headers,
     data=data,
 )
