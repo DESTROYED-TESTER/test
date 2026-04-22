@@ -1,13 +1,12 @@
 import requests
 Session = requests.Session()
+
 cookies = {
-    'dpr': '2.75',
-    'datr': 'oWfoaeauiueomlq-ugFOiKXV',
-    'sb': 'oWfoaVmWeJL2ZK-FJh10HwPF',
+    'datr': 'S0TnaWmFEDgALo6du8Tdjr1c',
+    'sb': 'S0Tnac5OlkzFt40liPjo4nnE',
     'm_pixel_ratio': '2.75',
-    'sfiu': 'AYgOrnBeVhhsX_Wn6vjeVPJ-FvPbUjk1RJwYW0pYQnZP6wUw_UllrJlcBBz692fwYd17qxZ4e0YUa_QflxfgWGzlkkLn9cB-hwyyWiDsDhz4V0SAXxm_vXqqQSB21tbHbPF9Y-PELqlXv3_Z3hAcgUpmAQhSi3MMIQW9bsofO1VNOqZPiHtVnOixj2U8f8tTqwoQKU87k0x_Rmqcp9SbCrKp',
-    'fr': '0l6GkRcNaQETy01XX..Bp6Geh..AAA.0.0.Bp6Ggd.AWdWENmmwLNzUMztM12F8KpOYac',
-    'wd': '980x1159',
+    'wd': '393x851',
+    'fr': '0e0TKXKqNm1Oe5PDf.AWeJXCextk1yw2fMDDriPwzd1EvsCy_XjfjMaEhSA-JOP4Jn59A.Bp50RL..AAA.0.0.Bp50pA.AWdehuygLj5s5yC6U468Z9y81jU',
 }
 
 headers = {
@@ -30,27 +29,28 @@ headers = {
     'sec-fetch-mode': 'navigate',
     'sec-fetch-user': '?1',
     'sec-fetch-dest': 'document',
-    'referer': 'https://m.facebook.com/login/account_recovery/name_search/?cuid=AYhaW2jE160GrPZZadtVI3XEJb24ljXxgwZhyDx4U1qaHtgyvDQjI9k8Iv6RY624CdmLGuY6rHl3ig158v9NO3ExcBneJ9WXdbwzYNRbBkYhwQ9lbTr6wBVv5dAOA9-6dpOrUq6wpiZxw_49J8KyiOmvfO7JDvkVvst4XMcrYdouX9aMpkSxx-bi_MYr87WRed6rUXp0DZC-dZ0GRhkiKrZQ&flow=initiate_view&ls=initiate_view&wtsid=rdr_0ifoacwtYE059HQ11&refsrc=deprecated&_rdr',
+    'referer': 'https://m.facebook.com/login/device-based/password/?uid=61551769793551&next=https%3A%2F%2Fm.facebook.com%2Ffxreauth%2F%3Fapp_id%3D1217981644879628%26etoken%3DAbljjNFddxZHsR3x2CX3AdJWgDFOSv6byXjyGHvtqcRxYyy9OaXwgJ4vSrw2U6kPDT59QnBqV-hd2Q%26account_id%3D61551769793551%26force_logout%3D0%26extra_data%3D%252Fprofiles%252F61551769793551%252Fname%252F%26native_app_login_flow%3Dfbreauthcomet&flow=fx_reauth&wtsid=rdr_083GyyJq4X5XOGmJo&http_ref=eyJ0cyI6IjE3NzY3NjU0NTY4ODgiLCJyIjoiaHR0cHM6XC9cL2FjY291bnRzY2VudGVyLmluc3RhZ3JhbS5jb21cLyJ9&refsrc=deprecated&_rdr',
     'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
-    # 'Cookie': 'dpr=2.75; datr=oWfoaeauiueomlq-ugFOiKXV; sb=oWfoaVmWeJL2ZK-FJh10HwPF; m_pixel_ratio=2.75; sfiu=AYgOrnBeVhhsX_Wn6vjeVPJ-FvPbUjk1RJwYW0pYQnZP6wUw_UllrJlcBBz692fwYd17qxZ4e0YUa_QflxfgWGzlkkLn9cB-hwyyWiDsDhz4V0SAXxm_vXqqQSB21tbHbPF9Y-PELqlXv3_Z3hAcgUpmAQhSi3MMIQW9bsofO1VNOqZPiHtVnOixj2U8f8tTqwoQKU87k0x_Rmqcp9SbCrKp; fr=0l6GkRcNaQETy01XX..Bp6Geh..AAA.0.0.Bp6Ggd.AWdWENmmwLNzUMztM12F8KpOYac; wd=980x1159',
+    # 'Cookie': 'datr=S0TnaWmFEDgALo6du8Tdjr1c; sb=S0Tnac5OlkzFt40liPjo4nnE; m_pixel_ratio=2.75; wd=393x851; fr=0e0TKXKqNm1Oe5PDf.AWeJXCextk1yw2fMDDriPwzd1EvsCy_XjfjMaEhSA-JOP4Jn59A.Bp50RL..AAA.0.0.Bp50pA.AWdehuygLj5s5yC6U468Z9y81jU',
 }
 
 params = {
-    'flow': 'initiate_view',
-    'ls': 'initiate_view',
+    'shbl': '0',
 }
 
 data = {
-    'lsd': 'AdRI_jsCbwbquOXwCTLBVuY4Q7w',
-    'jazoest': '22426',
-    'cuid': 'AYhaW2jE160GrPZZadtVI3XEJb24ljXxgwZhyDx4U1qaHtgyvDQjI9k8Iv6RY624CdmLGuY6rHl3ig158v9NO3ExcBneJ9WXdbwzYNRbBkYhwQ9lbTr6wBVv5dAOA9-6dpOrUq6wpiZxw_49J8KyiOmvfO7JDvkVvst4XMcrYdouX9aMpkSxx-bi_MYr87WRed6rUXp0DZC-dZ0GRhkiKrZQ',
-    'flow': 'initiate_view',
-    'pass': 'sumon@12B',
+    'lsd': 'AdTCIsyB3AIWOfa4e1Hlxa5GpOM',
+    'jazoest': '22236',
+    'uid': '61551769793551',
+    'next': 'https://m.facebook.com/fxreauth/?app_id=1217981644879628&etoken=AbljjNFddxZHsR3x2CX3AdJWgDFOSv6byXjyGHvtqcRxYyy9OaXwgJ4vSrw2U6kPDT59QnBqV-hd2Q&account_id=61551769793551&force_logout=0&extra_data=%2Fprofiles%2F61551769793551%2Fname%2F&native_app_login_flow=fbreauthcomet',
+    'flow': 'fx_reauth',
+    'encpass': '#PWD_BROWSER:5:1776765511:ATlQAAaDLiOr5r69bk4CUlg+4QMdLvkEKykUdvYepofIouxKcMVutRDGt/DvwpEiJdCyvB8j2DyLSA+4McL/1QffdRhVCXLMXoOjtaoIpPn/vyy4O8PsGaxjF1RDlxusgd3CosAsM1c9zg==',
 }
 
 response = Session.post(
-    'https://m.facebook.com/login/account_recovery/name_search/',
+    'https://m.facebook.com/login/device-based/validate-password/',
     params=params,
+    cookies=cookies,
     headers=headers,
     data=data,
 )
