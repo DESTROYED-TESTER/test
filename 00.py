@@ -41,10 +41,10 @@ params = {
 data = {
     'lsd': 'AdTCIsyB3AIWOfa4e1Hlxa5GpOM',
     'jazoest': '22236',
-    'uid': '61551769793551',
+    'uid': 'bithikasumon81@gmail.com',
     'next': 'https://m.facebook.com/fxreauth/?app_id=1217981644879628&etoken=AbljjNFddxZHsR3x2CX3AdJWgDFOSv6byXjyGHvtqcRxYyy9OaXwgJ4vSrw2U6kPDT59QnBqV-hd2Q&account_id=61551769793551&force_logout=0&extra_data=%2Fprofiles%2F61551769793551%2Fname%2F&native_app_login_flow=fbreauthcomet',
     'flow': 'fx_reauth',
-    'encpass': '#PWD_BROWSER:5:1776765511:ATlQAAaDLiOr5r69bk4CUlg+4QMdLvkEKykUdvYepofIouxKcMVutRDGt/DvwpEiJdCyvB8j2DyLSA+4McL/1QffdRhVCXLMXoOjtaoIpPn/vyy4O8PsGaxjF1RDlxusgd3CosAsM1c9zg==',
+    'pass': 'sumon@12M',
 }
 
 response = Session.post(
