@@ -50,7 +50,7 @@ cookies = {
 }
 
 data = {
-    "m_ts": re.search('name="m_ts" value="(.*?)"',str(response2.text)).group(1),
+    "m_ts": "1776847240",
     "li": re.search('name="li" value="(.*?)"',str(response2.text)).group(1),
     "try_number": "0",
     "unrecognized_tries": "0",
