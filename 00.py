@@ -17,7 +17,7 @@ head = {"authority": "m.prod.facebook.com",
             "user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0',
             "viewport-width": "980"}
 response = Session.get('https://www.facebook.com/login',headers=head)
-response2 = Session.get('https://touch.facebook.com')
+response2 = Session.get('https://limited.facebook.com',headers=head)
 datr = response.cookies.get('datr')
 sb = response.cookies.get('sb')
 fr = response.cookies.get('fr')
@@ -51,7 +51,7 @@ cookies = {
 
 data = {
     "m_ts": re.search('name="m_ts" value="(.*?)"',str(response2.text)).group(1),
-    "li": re.search('name="m_ts" value="(.*?)"',str(response2.text)).group(1),
+    "li": re.search('name="li" value="(.*?)"',str(response2.text)).group(1),
     "try_number": "0",
     "unrecognized_tries": "0",
     "email": "bithikasumon81@gmail.com",
@@ -68,7 +68,7 @@ data = {
     "encpass": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], 'sumon@12M'),
     "fb_dtsg": "NAfsfb_rRUK1j8xFoiAUrWhu_BKjct4Ic-TBEHU19VbowNsaWe4Hcag:0:0",
     "jazoest": "25035",
-    "lsd": "AdSJgVEeaG-HDOhvnYZ0anTTqW4",
+    "lsd": re.search('name="lsd" value="(.*?)"',str(response2.text)).group(1),
     "dyn": "1KQdAG1mws8-t0BBBzEnwuo98nwgU2owpUuwcC4o1nEhw23E52q1ewb60Y82Cwro0wa4o1MUaE36wdq0ny0oi0zE1jU1soG0hi0Lo6-0Co178dE1UU3jwGwbu",
     "csr": "",
     "hsdp": "",
