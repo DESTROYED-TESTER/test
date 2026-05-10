@@ -325,12 +325,8 @@ def generate_name_based_passwords(name, base_passwords):
                 generated_passwords.append(pw_cap)
                 
                 # Try with just the name
-                generated_passwords.append(first)
-                generated_passwords.append(last)
                 generated_passwords.append(first + last)
-                generated_passwords.append(first + "@" + last)
                 generated_passwords.append(first + "123")
-                generated_passwords.append(first + "@123")
     except Exception as e:
         pass
     
