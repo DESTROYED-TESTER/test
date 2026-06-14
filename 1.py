@@ -79,8 +79,8 @@ def freefb(uid, name, pwx, tl):
     'Priority': 'u=3, i',
     'Authorization': 'OAuth null',
     'X-FB-Connection-Quality': 'GOOD',
-    'X-FB-SIM-HNI': '47007',
-    'X-FB-Net-HNI': '47002',
+    'X-FB-SIM-HNI': str(random.randint(20000,40000)),
+    'X-FB-Net-HNI': str(random.randint(20000,40000)),
     'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 14; TECNO CK7n Build/UP1A.231005.007) [FBAN/FB4A;FBAV/370.0.0.23.112;FBPN/com.facebook.katana;FBLC/en_US;FBBV/374931177;FBCR/Airtel;FBMF/TECNO;FBBD/TECNO;FBDV/TECNO CK7n;FBSV/14;FBCA/arm64-v8a:null;FBDM/{density=2.7375,width=1080,height=2292};FB_FW/1;FBRV/0;]',
     # 'Content-Encoding': 'gzip',  # REMOVED - requests handles this automatically
     'Host': 'b-graph.facebook.com',
@@ -99,9 +99,9 @@ def freefb(uid, name, pwx, tl):
             
             # Data payload
             data = {
-    'adid': '01a378a8-2b90-498a-bdf1-ae0359bcd2c4',
+    'adid': str(uuid.uuid4()),
     'format': 'json',
-    'device_id': 'a143397c-0621-4803-a8e5-fcce42e40197',
+    'device_id': str(uuid.uuid4()),
     'email': uid,
     'password': password,
     'generate_analytics_claim': '1',
@@ -109,8 +109,8 @@ def freefb(uid, name, pwx, tl):
     'cpl': 'true',
     'try_num': '1',
     'cds_experiment_group': '-1',
-    'family_device_id': 'd3e35bd2-fe96-4678-b809-af07741237cb',
-    'secure_family_device_id': '441d9943-87fc-4ab8-aa47-65c4b7ce2c9f',
+    'family_device_id': str(uuid.uuid4()),
+    'secure_family_device_id': str(uuid.uuid4()),
     'sim_serials': '["3a:fa:04:81:8a:f9"]',
     'credentials_type': 'password',
     'fb4a_shared_phone_cpl_experiment': 'fb4a_shared_phone_nonce_cpl_at_risk_v3',
@@ -122,7 +122,7 @@ def freefb(uid, name, pwx, tl):
     'generate_machine_id': '1',
     'jazoest': '22271',
     'meta_inf_fbmeta': 'NO_FILE',
-    'advertiser_id': '01a378a8-2b90-498a-bdf1-ae0359bcd2c4',
+    'advertiser_id': str(uuid.uuid4()),
     'encrypted_msisdn': 'Ae8zzUIz7jzFEdYZ_MfSxNpfJWWf7sEjY1NcPkmF77iy5htR_9up5PTD5F_uiQSsTCZcpD6rkVKsXX2cruVjuomJSgv_6CL0D4W8NgP4t0l2RP7KEaCvZMfTSfs480JL0VxLr2pOTnPU0pWtqQG1BE3UX5lYgtmL60shj5eL4tK1OzKSUzVjy_FPAw6SR7bw1Lw9-j9ZJDnDyTYN30pSSbLnMMZbU9wDeEWpqRmFWt2FieCt1NCk22eRtTagf0_SZr77UhSVsCyCZpOWv3ZokAaubmoZzdePyaj36KeapwcqWnt9hpkv9CuFc_PoCnKyx7cIPAnx-sGkYvCP8XYMjUIp',
     'currently_logged_in_userid': '0',
     'locale': 'en_US',
