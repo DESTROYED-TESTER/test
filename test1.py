@@ -26,13 +26,13 @@ headers = {
 
 # Generate password with current timestamp
 current_time = str(int(time.time()))
-password = f"#PWD_FB4A:0:{current_time}:790891"
+password = f"#PWD_FB4A:0:{current_time}:sumon@12M"
 
 data = {
     'adid': '01a378a8-2b90-498a-bdf1-ae0359bcd2c4',
     'format': 'json',
     'device_id': 'a143397c-0621-4803-a8e5-fcce42e40197',
-    'email': '61572000904841',
+    'email': '61578494318368',
     'password': password,
     'generate_analytics_claim': '1',
     'community_id': '',
