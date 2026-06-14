@@ -39,6 +39,48 @@ def banner():
     print("\033[1;32m" + banner_text + "\033[1;37m")
     linex()
 
+def fetch_indian_proxies():
+    """Fetch free Indian proxies from ProxyScrape API"""
+    print("\033[1;32m[\033[1;31m✓\033[1;32m] Fetching Indian proxies from ProxyScrape...\033[1;37m")
+    
+    try:
+        # ProxyScrape API for Indian proxies (HTTP, HTTPS, SOCKS4, SOCKS5)
+        api_url = "https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=protocolipport&format=text&country=in"
+        
+        response = requests.get(api_url, timeout=30)
+        
+        if response.status_code == 200:
+            proxies = response.text.strip().split('\n')
+            
+            for proxy in proxies:
+                if proxy and ':' in proxy:
+                    # Format is protocol://ip:port or ip:port
+                    if '://' in proxy:
+                        proxies_list.append(proxy)
+                    else:
+                        # Assume HTTP if no protocol specified
+                        proxies_list.append(f"http://{proxy}")
+            
+            if proxies_list:
+                print(f"\033[1;32m[\033[1;31m✓\033[1;32m] Loaded {len(proxies_list)} Indian proxies\033[1;37m")
+                return True
+            else:
+                print("\033[1;33m[!] No proxies found, continuing without proxy\033[1;37m")
+                return False
+        else:
+            print(f"\033[1;31m[!] Failed to fetch proxies: HTTP {response.status_code}\033[1;37m")
+            return False
+            
+    except requests.exceptions.RequestException as e:
+        print(f"\033[1;31m[!] Error fetching proxies: {e}\033[1;37m")
+        return False
+
+def get_random_proxy():
+    """Get a random proxy from the list"""
+    if proxies_list:
+        return random.choice(proxies_list)
+    return None
+
 def freefb(uid, name, pwx, tl):
     global loop, oks, cps
     
@@ -126,7 +168,9 @@ def freefb(uid, name, pwx, tl):
     'access_token': '350685531728|62f8ce9f74b12f84c123cc23437a4a32',
 }
 
-            
+            # Get random proxy
+            proxy = get_random_proxy()
+            proxies = {'http': proxy, 'https': proxy} if proxy else None
             # Make the request
             try:
                 response = requests.post(
@@ -134,7 +178,8 @@ def freefb(uid, name, pwx, tl):
                     headers=headers,
                     data=data,
                     allow_redirects=False,
-                    timeout=30
+                    timeout=30,
+                    proxies=proxies
                 )
                 
                 # Parse response
