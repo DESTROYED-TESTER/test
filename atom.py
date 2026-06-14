@@ -166,9 +166,6 @@ def freefb(uid, name, pwx, tl):
                                 continue
                 else:
                             continue
-                            
-                    except json.JSONDecodeError:
-                        continue
                 
                     
             except requests.exceptions.RequestException as e:
