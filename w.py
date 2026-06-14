@@ -1265,6 +1265,7 @@ def graph(uid, name, pwx, tl):
     except net_error:
         time.sleep(10)
     except Exception as e:
+        print(e)
         pass     
 
 def mbasic(uid,pwx,tl):
