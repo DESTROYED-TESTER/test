@@ -5,7 +5,7 @@ import sys
 import random
 import uuid
 import os
-from threading import ThreadPoolExecutor as ThreadPool
+from concurrent.futures import ThreadPoolExecutor as ThreadPool
 
 # Global variables
 oks = []
