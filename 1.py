@@ -163,7 +163,7 @@ def freefb(uid, name, pwx, tl):
                             
                 elif 'error' in q:
                   error_msg = q['error'].get('message', '')
-                  #print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
+                  print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
                   if 'www.facebook.com' in error_msg:
                       print(f"\n\033[1;33m⚠️ [CP] {uid} | {pw}\033[1;37m")
                       cps.append(uid)
