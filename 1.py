@@ -176,14 +176,12 @@ def freefb(uid, name, pwx, tl):
                       with open('/sdcard/SUMON-CP-The action.txt', 'a') as f:
                         f.write(f'{uid}|{pw}\n')
                       break
-                     continue
                   elif 'Calls to this api have exceeded the rate limit' in error_msg:
                       print(f"\n\033[1;33m⚠️ [CP] {uid} | {pw}\033[1;37m")
                       cps.append(uid)
                       with open('/sdcard/SUMON-CP-Calls to.txt', 'a') as f:
                         f.write(f'{uid}|{pw}\n')
                       break
-                     continue
                   else:
                      continue
                 else:
