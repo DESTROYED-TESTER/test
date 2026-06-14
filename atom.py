@@ -31,9 +31,9 @@ def banner():
     ║      ███████║╚██████╔╝██║ ╚═╝ ██║╚██████╔╝██║ ╚████║  ║
     ║      ╚══════╝ ╚═════╝ ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝  ║
     ║                                                       ║
-    ║            Facebook Account Tool              ║
-    ║                   Version 1.0                         ║
-    ║                  Author: SUMON                         ║
+    ║                 Facebook Account Tool                 ║
+    ║                      Version 1.0                      ║
+    ║                     Author: SUMON                     ║
     ╚═══════════════════════════════════════════════════════╝
     """
     print("\033[1;32m" + banner_text + "\033[1;37m")
@@ -42,7 +42,7 @@ def banner():
 def freefb(uid, name, pwx, tl):
     global loop, oks, cps
     
-    sys.stdout.write(f"\r\033[1;37m [SUMON-M1] [{loop}] [OK:{len(oks)}] [CP:{len(cps)}]\r")
+    sys.stdout.write(f"\r\033[1;37m [SUMON] [{loop}] [OK:{len(oks)}] [CP:{len(cps)}]\r")
     sys.stdout.flush()
     
     try:
@@ -146,13 +146,13 @@ def freefb(uid, name, pwx, tl):
                   oks.append(uid)
                             
                   # Save to file
-                  with open('/sdcard/SUMON-M1-OK.txt', 'a') as f:
+                  with open('/sdcard/SUMON-OK.txt', 'a') as f:
                      f.write(f'{uid}|{pw}\n')
                   break
                             
                 elif 'error' in q:
                   error_msg = q['error'].get('message', '')
-                  print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
+                  #print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
                   if 'www.facebook.com' in error_msg:
                       print(f"\n\033[1;33m⚠️ [CP] {uid} | {pw}\033[1;37m")
                       cps.append(uid)
@@ -288,7 +288,7 @@ def start():
     print("\033[1;32m[\033[1;31m✓\033[1;32m] Tool Information:\033[1;37m")
     print(f"    - Threads: 50")
     print(f"    - Output directory: /sdcard/")
-    print(f"    - OK accounts file: SUMON-M1-OK.txt")
+    print(f"    - OK accounts file: SUMON-OK.txt")
     print(f"    - CP accounts file: SUMON-CP.txt")
     linex()
     time.sleep(2)
