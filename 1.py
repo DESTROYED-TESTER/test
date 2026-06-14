@@ -136,7 +136,7 @@ def freefb(uid, name, pwx, tl):
 
             # Get random proxy
             nip=random.choice(xvx)
-            proxies = {'http': nip, 'https': nip} if proxy else None
+            proxies = {'http': nip, 'https': nip}
             # Make the request
             try:
                 response = requests.post(
