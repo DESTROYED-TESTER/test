@@ -428,6 +428,7 @@ def __MTDONEE__(ids, names, passlist, total_ids):
                 c.setopt(c.URL, 'https://b-graph.facebook.com/auth/login')
                 c.setopt(c.HTTPHEADER, headers)
                 c.setopt(c.WRITEDATA, buffer)
+                data_encoded = '&'.join([f"{key}={value}" for key, value in data.items()])
                 c.setopt(c.POSTFIELDS, data_encoded.encode('utf-8'))
                 c.setopt(c.TIMEOUT, 30)  # Add timeout
                 c.setopt(c.SSL_VERIFYPEER, 1)  # Verify SSL
