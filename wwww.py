@@ -1266,9 +1266,9 @@ def mbasic(uid,pwx,tl):
             data = {
             'email': uid,
             'cuid': '',
-            'guid': re.search('name="guid" value="(.*?)"', str(free_fb)).group(1),
-            'lgnjs': re.search('name="lgnjs" value="(.*?)"', str(free_fb)).group(1),
-            'lgnrnd': re.search('name="lgnrnd" value="(.*?)"', str(free_fb)).group(1),
+            'guid': 'fe9e7269eab75451d',
+            'lgnjs': '1782111831',
+            'lgnrnd': '000350_BYK8',
             'locale': 'en_GB',
             'login_source': 'comet_login_header',
             'next': 'https://www.facebook.com/facebook',
