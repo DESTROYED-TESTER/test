@@ -1,121 +1,52 @@
 import requests
-import sys
 
-def fetch_indian_proxies(proxy_type="all", timeout=5000, ssl="all", anonymity="all"):
-    """
-    Fetch Indian proxies from ProxyScrape API.
-    
-    Parameters:
-    - proxy_type: "http", "socks4", "socks5", or "all"
-    - timeout: timeout in milliseconds
-    - ssl: "yes", "no", or "all"
-    - anonymity: "elite", "anonymous", "transparent", or "all"
-    """
-    # ProxyScrape API endpoint for free proxies [citation:1][citation:4]
-    url = "https://api.proxyscrape.com/v4/free-proxy-list/get"
-    
-    params = {
-        "request": "display_proxies",
-        "proxy_format": "protocolipport",
-        "format": "text",
-        "country": "in",  # India only [citation:1]
-    }
-    
-    # Add optional filters
-    if proxy_type != "all":
-        params["protocol"] = proxy_type
-    if ssl != "all":
-        params["ssl"] = ssl
-    if anonymity != "all":
-        params["anonymity"] = anonymity
-    if timeout:
-        params["timeout"] = str(timeout)
-    
-    try:
-        print(f"Fetching Indian proxies from ProxyScrape...")
-        response = requests.get(url, params=params, timeout=30)
-        response.raise_for_status()
-        
-        proxies = response.text.strip().split('\n')
-        # Filter out empty lines
-        proxies = [p.strip() for p in proxies if p.strip()]
-        
-        print(f"✅ Retrieved {len(proxies)} Indian proxies")
-        return proxies
-        
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Error fetching proxies: {e}")
-        return []
+url = 'https://limited.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100'
 
-def test_proxy(proxy, test_url="http://httpbin.org/ip", timeout=10):
-    """
-    Test if a proxy works.
-    """
-    proxy_dict = {
-        "http": f"http://{proxy}",
-        "https": f"http://{proxy}"
-    }
-    
-    try:
-        response = requests.get(
-            test_url,
-            proxies=proxy_dict,
-            timeout=timeout
-        )
-        if response.status_code == 200:
-            return True, response.json()
-        return False, None
-    except:
-        return False, None
+headers = {
+    'sec-ch-ua-platform': '"Android"',
+    'Referer': 'https://limited.facebook.com/',
+    'sec-ch-ua': '"Not;A=Brand";v="99", "Google Chrome";v="139", "Chromium";v="139"',
+    'X-Response-Format': 'JSONStream',
+    'sec-ch-ua-mobile': '?1',
+    'X-ASBD-ID': '359341',
+    'X-FB-LSD': 'iK-keICulHM0IodUqvXHV_',
+    'X-Requested-With': 'XMLHttpRequest',
+    'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
+    'Content-Type': 'application/x-www-form-urlencoded',
+}
 
-def save_proxies_to_file(proxies, filename="indian_proxies.txt"):
-    """
-    Save proxies to a text file.
-    """
-    with open(filename, 'w') as f:
-        for proxy in proxies:
-            f.write(f"{proxy}\n")
-    print(f"💾 Saved {len(proxies)} proxies to {filename}")
+data = {
+    'm_ts': '1784135433',
+    'li': 'Cb9XavaIo6kZl89eYYR7aE4g',
+    'try_number': '1',
+    'unrecognized_tries': '0',
+    'email': '9907228129',
+    'prefill_contact_point': '9907228129',
+    'prefill_source': 'browser_dropdown',
+    'prefill_type': 'password',
+    'first_prefill_source': 'browser_dropdown',
+    'first_prefill_type': 'contact_point',
+    'had_cp_prefilled': 'true',
+    'had_password_prefilled': 'true',
+    'is_smart_lock': 'false',
+    'bi_xrwh': '0',
+    'encpass': '%23PWD_BROWSER%3A5%3A1784135522%3AAY1QACngqdeszC5n4ZUSC5hqOMVAhq0yr3Ysh9udx6Ju9c9lrHI5Y99eRox5TeOPLlWLLbI3xqJZOVV9FeO5TGicYGdm9Lhczvm70%2FciCV9OEr3MesmC4nAT9RmA5vV0aJCux5eEJeps3iQNLnI%3D',
+    'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
+    'fb_dtsg': 'bfeHqxOqpJw=',
+    'jazoest': '21164',
+    'lsd': 'iK-keICulHM0IodUqvXHV_',
+    '__dyn': '1KQdAG1mws8-t0BBBzEnwSwgE98nwgU2owpUuwcC4o1nEhw23E52q1ewb60Y82Cwro0wa4o1MUaE36wdq0ny0oi0zE1jU1soG0hi0Lo6-0Co178dE1UU3jwea',
+    '__csr': '',
+    '__hsdp': '',
+    '__hblp': '',
+    '__sjsp': '',
+    '__req': 'c',
+    '__fmt': '1',
+    '__a': 'AYw8lvLYydGQ_F-H3DyGh3DR3e3LhFzrnMUOgpQxwg2LdChSgtI_TfgIzIlcmKpokOXoFsqvFVW7AYg3KT5JY7JMXnt2woebTWA',
+    '__user': '0'
+}
 
-def main():
-    print("=" * 50)
-    print("ProxyScrape - Indian Proxy Fetcher")
-    print("=" * 50)
-    
-    # Fetch Indian proxies
-    proxies = fetch_indian_proxies(
-        proxy_type="all",  # Change to "http", "socks4", "socks5" as needed
-        timeout=5000,      # 5 seconds timeout
-        ssl="all",
-        anonymity="all"
-    )
-    
-    if not proxies:
-        print("No proxies retrieved. Exiting.")
-        sys.exit(1)
-    
-    # Display first 10 proxies
-    print("\n📋 Sample proxies (first 10):")
-    for i, proxy in enumerate(proxies[:10], 1):
-        print(f"  {i}. {proxy}")
-    
-    # Save to file
-    print("\n")
-    save_proxies_to_file(proxies)
-    
-    # Optional: Test a few proxies
-    print("\n🔍 Testing first 5 proxies...")
-    working_proxies = []
-    for proxy in proxies[:5]:
-        success, result = test_proxy(proxy)
-        if success:
-            working_proxies.append(proxy)
-            print(f"  ✅ {proxy} - Working (IP: {result.get('origin', 'Unknown')})")
-        else:
-            print(f"  ❌ {proxy} - Failed")
-    
-    if working_proxies:
-        save_proxies_to_file(working_proxies, "working_indian_proxies.txt")
+response = requests.post(url, headers=headers, data=data)
 
-if __name__ == "__main__":
-    main()
+print(response.status_code)
+print(response.text)
