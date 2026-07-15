@@ -64,4 +64,4 @@ response = requests.post('https://m.facebook.com/async/wbloks/fetch/', params=pa
 
 # Print response metadata
 print(f"Status Code: {response.status_code}")
-print(response.text[:500]) # Prints the first 500 characters of the payload
+print(response.text) # Prints the first 500 characters of the payload
