@@ -1,5 +1,27 @@
 import requests
-import json,time
+import json
+import time
+import base64
+
+def generate_encrypted_password(password, timestamp=None):
+    """
+    Generate Facebook's password encryption format
+    #PWD_BROWSER:version:timestamp:encrypted_password
+    """
+    if timestamp is None:
+        timestamp = int(time.time())
+    
+    # Facebook uses base64 encoding for the password
+    encoded = base64.b64encode(password.encode()).decode()
+    return f"#PWD_BROWSER:5:{timestamp}:{encoded}"
+
+# ============== SET YOUR CREDENTIALS HERE ==============
+PHONE_NUMBER = "9907071441"  # Your phone number
+ACTUAL_PASSWORD = "your_actual_password_here"  # <-- CHANGE THIS TO YOUR REAL PASSWORD!
+# ======================================================
+
+# Generate encrypted password
+encrypted_password = generate_encrypted_password(ACTUAL_PASSWORD)
 
 cookies = {
     'datr': '9vhZalHGJl4wqFsO-ktnTCPO',
@@ -57,10 +79,10 @@ variables_dict = {
         "credential_type": "password",
         "dyi_job_id": "",
         "enc_password": {
-            "sensitive_string_value": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0],'99070714')
+            "sensitive_string_value": encrypted_password  # Using the generated encrypted password
         },
         "event_request_id": "e42c01d8-3326-4e5b-affe-6a6ee78d21ff",
-        "identifier": "9907071441",
+        "identifier": PHONE_NUMBER,  # Using the phone number variable
         "ig_web_device_id": None,
         "initial_request_id": "1",
         "lids": None,
@@ -68,7 +90,7 @@ variables_dict = {
         "next": "https://www.facebook.com/dialog/oauth?client_id=2036793259884297&redirect_uri=https%3A%2F%2Fauth.garena.com%2Funiversal%2Foauth%2Ffacebook&response_type=token&scope=public_profile%2Cemail%2Cuser_friends%2Cuser_link&state=94e81a8bc7c546639f1bd76c25fe3bd6-platform%3D3%26response_type%3Dcode%26client_id%3D100067%26redirect_uri%3Dhttps%253A%252F%252Fzdauth.garena.com%252Flogin%253Freturn_to%253Dhttps%253A%252F%252Fffsupport.garena.com%252Fhc%252Fen-us&ret=login&fbapp_pres=0&logger_id=86af918c-a25d-49f6-94f0-f090c83ee33e&tp=unspecified",
         "passkey_payload": None,
         "password": {
-            "sensitive_string_value": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0],'99070714')
+            "sensitive_string_value": encrypted_password  # Using the generated encrypted password
         },
         "persistent": True,
         "query_params": "{\"skip_api_login\":\"1\",\"api_key\":\"2036793259884297\",\"kid_directed_site\":\"0\",\"app_id\":\"2036793259884297\",\"signed_next\":\"1\",\"next\":\"https://www.facebook.com/dialog/oauth?client_id=2036793259884297&redirect_uri=https%3A%2F%2Fauth.garena.com%2Funiversal%2Foauth%2Ffacebook&response_type=token&scope=public_profile%2Cemail%2Cuser_friends%2Cuser_link&state=94e81a8bc7c546639f1bd76c25fe3bd6-platform%3D3%26response_type%3Dcode%26client_id%3D100067%26redirect_uri%3Dhttps%253A%252F%252Fzdauth.garena.com%252Flogin%253Freturn_to%253Dhttps%253A%252F%252Fffsupport.garena.com%252Fhc%252Fen-us&ret=login&fbapp_pres=0&logger_id=86af918c-a25d-49f6-94f0-f090c83ee33e&tp=unspecified\",\"cancel_url\":\"https://auth.garena.com/universal/oauth/facebook?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=94e81a8bc7c546639f1bd76c25fe3bd6-platform%3D3%26response_type%3Dcode%26client_id%3D100067%26redirect_uri%3Dhttps%253A%252F%252Fzdauth.garena.com%252Flogin%253Freturn_to%253Dhttps%253A%252F%252Fffsupport.garena.com%252Fhc%252Fen-us#_=_\",\"display\":\"page\",\"locale\":\"en_GB\",\"pl_dbl\":\"0\",\"is_business_login\":\"0\"}",
@@ -111,12 +133,28 @@ data = {
     'fb_api_caller_class': 'RelayModern',
     'fb_api_req_friendly_name': 'useCDSWebLoginMutation',
     'server_timestamps': 'true',
-    'variables': variables_json,  # Use the JSON-encoded string
+    'variables': variables_json,
     'doc_id': '9807605492696448',
     'fb_api_analytics_tags': '["qpl_active_flow_ids=516759801"]',
 }
 
 response = requests.post('https://www.facebook.com/api/graphql/', cookies=cookies, headers=headers, data=data)
 
-print(response.status_code)
-print(response.text)
+print("Status Code:", response.status_code)
+print("\nResponse:")
+try:
+    result = response.json()
+    print(json.dumps(result, indent=2))
+    
+    # Check for errors
+    if 'data' in result and 'caa_login_web' in result['data']:
+        login_data = result['data']['caa_login_web']
+        if 'error_code' in login_data:
+            error_msg = login_data.get('error_message', {}).get('text', 'Unknown error')
+            print(f"\n❌ Login Failed: {error_msg}")
+        elif 'redirect_uri' in login_data:
+            print(f"\n✅ Login Successful! Redirect URI: {login_data.get('redirect_uri')}")
+        else:
+            print("\n✅ Login Successful!")
+except json.JSONDecodeError:
+    print(response.text)
