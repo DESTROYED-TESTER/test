@@ -1837,7 +1837,7 @@ def d(uid,pwx,tl):
     "__s": "681how:9to5tg:3j0b2o",
     "__hsi": "7663447342458262173",
     "__dyn": "0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x67o1g8hw23E52q1ew2io0D24o1MUaE1Do1u81x82ewnE3fwww5NyE25w8W0Lo6-1CwOw5jw4JwzK0zo3jwea",
-    "fb_dtsg": re.search('name="fb_dtsg" value="(.*?)"', str(free_fb)).group(1),
+    "fb_dtsg": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
     "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
     "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
     "__jssesw": "10",
