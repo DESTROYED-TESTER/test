@@ -2,6 +2,7 @@ import requests
 import json
 import time
 import base64
+import urllib.parse
 
 def generate_encrypted_password(password, timestamp=None):
     """
@@ -11,167 +12,211 @@ def generate_encrypted_password(password, timestamp=None):
     if timestamp is None:
         timestamp = int(time.time())
     
-    # Proper base64 encoding
+    # Base64 encoding
     encoded = base64.b64encode(password.encode()).decode()
     return f"#PWD_BROWSER:5:{timestamp}:{encoded}"
 
-# ============== SET YOUR CORRECT CREDENTIALS HERE ==============
-# Option 1: Try with a different phone number/email
-PHONE_NUMBER = "100031550319861"  # Try with email instead if phone doesn't work
+# ============== SET YOUR CREDENTIALS HERE ==============
+PHONE_NUMBER = "9382502976"  # Your phone number
+ACTUAL_PASSWORD = "93825029"  # <-- CHANGE THIS!
+# ======================================================
 
-# ⚠️ IMPORTANT: Change this to the ACTUAL password for this account
-# The password "99070714" is clearly not a real password
-ACTUAL_PASSWORD = "76790845"  # <-- YOU MUST CHANGE THIS!
-
-# Option 2: Try using email instead of phone
-# PHONE_NUMBER = "your_email@example.com"  # Uncomment and use email
-# ================================================================
-
-# Generate encrypted password with proper base64 encoding
+# Generate encrypted password
 encrypted_password = generate_encrypted_password(ACTUAL_PASSWORD)
 
-print(f"🔐 Generated encrypted password: {encrypted_password[:50]}...")
-print(f"📱 Using identifier: {PHONE_NUMBER}")
-
-cookies = {
-    'datr': '9vhZalHGJl4wqFsO-ktnTCPO',
-    'fr': '0AHYCzZvY1zDGFbT7..BqWfj2..AAA.0.0.BqWfoF.AWcWgNs6zxC7us5LKeylW8T1R_w',
-    'sb': '9vhZaqT8BEFlcFGMioJbP2ay',
-    'wd': '1440x459',
-    'locale': 'en_GB',
-}
-
+# Headers from the cURL request
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:152.0) Gecko/20100101 Firefox/152.0',
-    'Accept': '*/*',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'X-FB-Friendly-Name': 'useCDSWebLoginMutation',
-    'X-FB-LSD': 'wkEB6DkikroblzgG--A07m',
-    'X-ASBD-ID': '359341',
-    'Origin': 'https://www.facebook.com',
-    'Alt-Used': 'www.facebook.com',
-    'Connection': 'keep-alive',
-    'Referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=2036793259884297&kid_directed_site=0&app_id=2036793259884297&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fclient_id%3D2036793259884297%26redirect_uri%3Dhttps%253A%252F%252Fauth.garena.com%252Funiversal%252Foauth%252Ffacebook%26response_type%3Dtoken%26scope%3Dpublic_profile%252Cemail%252Cuser_friends%252Cuser_link%26state%3D94e81a8bc7c546639f1bd76c25fe3bd6-platform%253D3%2526response_type%253Dcode%2526client_id%253D100067%2526redirect_uri%253Dhttps%25253A%25252F%25252Fzdauth.garena.com%25252Flogin%25253Freturn_to%25253Dhttps%25253A%25252F%25252Fffsupport.garena.com%25252Fhc%25252Fen-us%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D86af918c-a25d-49f6-94f0-f090c83ee33e%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fauth.garena.com%2Funiversal%2Foauth%2Ffacebook%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D94e81a8bc7c546639f1bd76c25fe3bd6-platform%253D3%2526response_type%253Dcode%2526client_id%253D100067%2526redirect_uri%253Dhttps%25253A%25252F%25252Fzdauth.garena.com%25252Flogin%25253Freturn_to%25253Dhttps%25253A%25252F%25252Fffsupport.garena.com%25252Fhc%25252Fen-us%23_%3D_&display=page&locale=en_GB&pl_dbl=0&is_business_login=0',
-    'Sec-Fetch-Dest': 'empty',
-    'Sec-Fetch-Mode': 'cors',
-    'Sec-Fetch-Site': 'same-origin',
+    'authority': 'm.facebook.com',
+    'accept': '*/*',
+    'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+    'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    'cookie': 'datr=wAhaaoWSVzIXuO-SRKTMYDT_; sb=wAhaatzRPpx34vixN9pPmnax; m_pixel_ratio=2.4740447998046875; wd=393x895; fr=0Gi8Oovt8kzQprsuq..BqWgjA..AAA.0.0.BqWgji.AWeWs4-38367KIwuz_Mcl3xyT8Y',
+    'origin': 'https://m.facebook.com',
+    'referer': 'https://m.facebook.com/',
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+    'sec-ch-ua-full-version-list': '"Chromium";v="139.0.7339.0", "Not;A=Brand";v="99.0.0.0"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-model': '"23076PC4BI"',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-ch-ua-platform-version': '"15.0.0"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
 }
 
-# Define the variables as a dictionary
-variables_dict = {
-    "input": {
-        "actor_id": "0",
-        "client_mutation_id": "7",
-        "access_flow_version": "pre_mt_behavior",
-        "app": "facebook",
-        "auth_domain_data_key": None,
-        "caa_login_request_extra_info": {
-            "ab_test_data": "/AAAAAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAVVVA/ABAAG",
-            "shared_prefs_data": "eyIzMDAwMCI6W3sidCI6MTc4NDI4MTYwNy4zNiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc4NDI4MTYwNy4zNiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2Ijo1fV0sIjMwMDAyIjpbeyJ0IjoxNzg0MjgxNjA3LjM2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4ucGhwIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3ODQyODE2MDcuMzYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6WyJlbi1VUyIsImVuIl19XSwiMzAwMDQiOlt7InQiOjE3ODQyODE2MDcuMzYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwiZSI6eyJlYyI6M319XSwiMzAwMDUiOlt7InQiOjE3ODQyODE2MDcuMzYxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4ucGhwIn0sInYiOnsidyI6MTQ0MCwiaCI6Nzc1fX1dLCIzMDAwNyI6W3sidCI6MTc4NDI4MTYwNy4zNjEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzg0MjgxNjA3LjQ3MywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luLnBocCJ9LCJ2IjoicHJvbXB0In1dLCIzMDAxMiI6W3sidCI6MTc4NDI4MTYwNy4zNjEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6IiJ9XSwiMzAwMTMiOlt7InQiOjE3ODQyODE2MDcuMzYxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4ucGhwIn0sInYiOiI1LjAgKFdpbmRvd3MpIn1dLCIzMDAxNSI6W3sidCI6MTc4NDI4MTYwNy4zNjEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6IldpbjMyIn1dLCIzMDAxOCI6W3sidCI6MTc4NDI4MTYwNy4zNjEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6Mn1dLCIzMDAyMiI6W3sidCI6MTc4NDI4MTYwNy4zNjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6dHJ1ZX1dLCIzMDA0MCI6W3sidCI6MTc4NDI4MTYwNy4zNjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6LTMzMH1dLCIzMDA5MyI6W3sidCI6MTc4NDI4MTYwNy4zNjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6MH1dLCIzMDA5NCI6W3sidCI6MTc4NDI4MTYwNy4zNjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQ7IHJ2OjE1Mi4wKSBHZWNrby8yMDEwMDEwMSBGaXJlZm94LzE1Mi4wIn1dLCIzMDA5NSI6W3sidCI6MTc4NDI4MTYwNy4zNjYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6NX1dLCIzMDEwNiI6W3sidCI6MTc4NDI4MTYwNy4yMzEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6ZmFsc2V9LHsidCI6MTc4NDI4MTYwNy43MzUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6dHJ1ZX1dLCIzMDEwNyI6W3sidCI6MTc4NDI4MTYwNy4yMzIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi5waHAifSwidiI6ZmFsc2V9XSwiMzAxMDkiOlt7InQiOjE3ODQyODE2MDcuNjU0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4ucGhwIn0sInYiOiI1YmM0OGQ5Y2I2YjgzMWI0NmZhZDQ1Yzg5NTg0MGY5YjA0MDcwMzNlOTI5ZTAyMzk3NTUxMWQ1YWRmZGIzZTYyIn1dfQ==",
-            "cuid": "",
-            "guid": "f63fae21b3e54614c",
-            "jazoest": "21021",
-            "lgndim": "eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODUyLCJjIjoyNH0=",
-            "lgnjs": "1784281607",
-            "lgnrnd": "024645_zDUr",
-            "locale": "en_GB",
-            "login_source": "comet_headerless_login",
-            "lsd": "Mpso5QCLmk4=",
-            "next": "https://www.facebook.com/dialog/oauth?client_id=2036793259884297&redirect_uri=https%253A%252F%252Fauth.garena.com%252Funiversal%252Foauth%252Ffacebook&response_type=token&scope=public_profile%252Cemail%252Cuser_friends%252Cuser_link&state=94e81a8bc7c546639f1bd76c25fe3bd6-platform%253D3%2526response_type%253Dcode%2526client_id%253D100067%2526redirect_uri%253Dhttps%25253A%25252F%25252Fzdauth.garena.com%25252Flogin%25253Freturn_to%25253Dhttps%25253A%25252F%25252Fffsupport.garena.com%25252Fhc%25252Fen-us&ret=login&fbapp_pres=0&logger_id=86af918c-a25d-49f6-94f0-f090c83ee33e&tp=unspecified",
-            "prefill_contact_point": "",
-            "prefill_source": "",
-            "prefill_type": "",
-            "skstamp": "",
-            "timezone": "-330"
+# Build the data payload
+# The params structure from the cURL request
+params_data = {
+    "params": {
+        "server_params": {
+            "credential_type": "password",
+            "username_text_input_id": "tg0z6g:58",
+            "password_text_input_id": "tg0z6g:59",
+            "login_source": "Login",
+            "login_credential_type": "none",
+            "server_login_source": "login",
+            "ar_event_source": "login_home_page",
+            "should_trigger_override_login_success_action": 0,
+            "should_trigger_override_login_2fa_action": 0,
+            "is_caa_perf_enabled": 0,
+            "reg_flow_source": "login_home_native_integration_point",
+            "caller": "gslr",
+            "is_from_landing_page": 0,
+            "is_from_empty_password": 0,
+            "is_from_aymh": 0,
+            "is_from_password_entry_page": 0,
+            "is_from_assistive_id": 0,
+            "is_from_msplit_fallback": 0,
+            "two_step_login_type": "one_step_login",
+            "left_nav_button_action": "NONE",
+            "INTERNALlatency_qpl_marker_id": 36707139,
+            "INTERNAL__latency_qpl_instance_id": "178043855200348",
+            "device_id": None,
+            "family_device_id": None,
+            "waterfall_id": "1fff9e97-0cdb-4e73-8bbc-ee8abc8fa986",
+            "offline_experiment_group": None,
+            "layered_homepage_experiment_group": None,
+            "is_platform_login": 0,
+            "is_from_logged_in_switcher": 0,
+            "is_from_logged_out": 0,
+            "access_flow_version": "pre_mt_behavior",
+            "login_surface": "login_home",
+            "login_entry_point": "logged_out"
         },
-        "credential_type": "password",
-        "dyi_job_id": "",
-        "enc_password": {
-            "sensitive_string_value": encrypted_password
-        },
-        "event_request_id": "e42c01d8-3326-4e5b-affe-6a6ee78d21ff",
-        "identifier": PHONE_NUMBER,
-        "ig_web_device_id": None,
-        "initial_request_id": "1",
-        "lids": None,
-        "login_source": "LOGIN",
-        "next": "https://www.facebook.com/dialog/oauth?client_id=2036793259884297&redirect_uri=https%3A%2F%2Fauth.garena.com%2Funiversal%2Foauth%2Ffacebook&response_type=token&scope=public_profile%2Cemail%2Cuser_friends%2Cuser_link&state=94e81a8bc7c546639f1bd76c25fe3bd6-platform%3D3%26response_type%3Dcode%26client_id%3D100067%26redirect_uri%3Dhttps%253A%252F%252Fzdauth.garena.com%252Flogin%253Freturn_to%253Dhttps%253A%252F%252Fffsupport.garena.com%252Fhc%252Fen-us&ret=login&fbapp_pres=0&logger_id=86af918c-a25d-49f6-94f0-f090c83ee33e&tp=unspecified",
-        "passkey_payload": None,
-        "password": {
-            "sensitive_string_value": encrypted_password
-        },
-        "persistent": True,
-        "query_params": "{\"skip_api_login\":\"1\",\"api_key\":\"2036793259884297\",\"kid_directed_site\":\"0\",\"app_id\":\"2036793259884297\",\"signed_next\":\"1\",\"next\":\"https://www.facebook.com/dialog/oauth?client_id=2036793259884297&redirect_uri=https%3A%2F%2Fauth.garena.com%2Funiversal%2Foauth%2Ffacebook&response_type=token&scope=public_profile%2Cemail%2Cuser_friends%2Cuser_link&state=94e81a8bc7c546639f1bd76c25fe3bd6-platform%3D3%26response_type%3Dcode%26client_id%3D100067%26redirect_uri%3Dhttps%253A%252F%252Fzdauth.garena.com%252Flogin%253Freturn_to%253Dhttps%253A%252F%252Fffsupport.garena.com%252Fhc%252Fen-us&ret=login&fbapp_pres=0&logger_id=86af918c-a25d-49f6-94f0-f090c83ee33e&tp=unspecified\",\"cancel_url\":\"https://auth.garena.com/universal/oauth/facebook?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=94e81a8bc7c546639f1bd76c25fe3bd6-platform%3D3%26response_type%3Dcode%26client_id%3D100067%26redirect_uri%3Dhttps%253A%252F%252Fzdauth.garena.com%252Flogin%253Freturn_to%253Dhttps%253A%252F%252Fffsupport.garena.com%252Fhc%252Fen-us#_=_\",\"display\":\"page\",\"locale\":\"en_GB\",\"pl_dbl\":\"0\",\"is_business_login\":\"0\"}",
-        "trusted_device_records": "{}",
-        "use_uid_to_login": False,
-        "waterfall_id": "092132d4-2843-4c3e-ac53-41472756ef2c"
-    },
-    "scale": 1
+        "client_input_params": {
+            "machine_id": "",
+            "cloud_trust_token": None,
+            "block_store_machine_id": "",
+            "zero_balance_state": "",
+            "contact_point": PHONE_NUMBER,
+            "password": encrypted_password,
+            "accounts_list": [],
+            "fb_ig_device_id": [],
+            "secure_family_device_id": "",
+            "encryptd_msisdn": "",
+            "headers_infra_flow_id": "",
+            "try_num": 1,
+            "login_attempt_count": 1,
+            "event_flow": "login_manual",
+            "event_step": "home_page",
+            "openid_tokens": {},
+            "auth_secure_device_id": "",
+            "client_known_key_hash": "",
+            "has_whatsapp_installed": 0,
+            "sso_token_map_json_string": "",
+            "should_show_nested_nta_from_aymh": 0,
+            "gms_incoming_call_retriever_eligibility": "client_not_supported",
+            "password_contains_non_ascii": "false",
+            "has_granted_read_contacts_permissions": 0,
+            "has_granted_read_phone_permissions": 0,
+            "app_manager_id": "",
+            "aymh_accounts": [
+                {
+                    "id": "",
+                    "profiles": {
+                        "id": {
+                            "user_id": "",
+                            "name": "",
+                            "profile_picture_url": "",
+                            "small_profile_picture_url": None,
+                            "notification_count": 0,
+                            "credential_type": "none",
+                            "token": "",
+                            "last_access_time": 0,
+                            "is_derived": 0,
+                            "username": "",
+                            "password": "",
+                            "has_smartlock": 0,
+                            "account_center_id": "",
+                            "account_source": "",
+                            "credentials": [],
+                            "nta_eligibility_reason": None,
+                            "from_accurate_privacy_result": 0,
+                            "dbln_validated": 0
+                        }
+                    }
+                }
+            ],
+            "sso_accounts_auth_data": [],
+            "blocked_uids": [],
+            "network_bssid": None,
+            "lois_settings": {
+                "lois_token": ""
+            },
+            "aac": ""
+        }
+    }
 }
 
-# Convert variables to JSON string
-variables_json = json.dumps(variables_dict)
+# Convert params to JSON string and then URL encode it
+params_json = json.dumps(params_data)
+encoded_params = urllib.parse.quote(params_json)
 
+# Build the form data
 data = {
-    'av': '0',
-    '__aaid': '0',
-    '__user': '0',
-    '__a': '1',
-    '__req': 'd',
-    '__hs': '20651.HYP:comet_loggedout_pkg.2.1...0',
-    'dpr': '1',
-    '__ccg': 'EXCELLENT',
-    '__rev': '1043351526',
-    '__s': 'to81iy:a2bbzy:c9lktc',
-    '__hsi': '7663431141814762144',
-    '__dyn': '7xeUmwlE7ibwKBAg5S1Dxu13w8CewSwMwNw9G2S0lW4o0B-q1ew6ywaq0yE7i0n24oaEd86a3a1YwBgao6C0Mo2swaO4U2zxe2GewbS361qw8Xxm16wa-0raazo7u0zE2ZwrU6qE15E6O1FwlA1HGp1yU5Oi2K1Tw8q0JUhw5yw66w9O3mdw',
-    '__csr': 'shs2wzYBNl4EhGXhmDQimrykKcUyq6d6-Hh9E-WLiCKp3Kmy95ypJup4CiSayWoZvhWVGpHRWz9UG13xe15wHDxNabCxK7ER1aewNDwJxS3xeEqgy4UK3K3x0xG221ZDU5u5A5Q8w7Jw5nwbG0z8S024W2S780d9k13hQt00YxhQ2ahw1y20eBw3XUJkywgpU3dwe60qq01ZFw0u9o0xesw0mPw0GhxB1O06Do0xZ017204HUBO018K0fZo1Ui0dN00A9g0zF2o19200hBFE0s9wEp80nkAwaN00LMBAm0SXBAw',
-    '__hsdp': 'gc-g5IbN5Aw11y1gw2ZU6q2a01axw3qE0Ae',
-    '__hblp': '0bm0ffwlU520bTwpE8E3Qw8Kdw3ro1K80Ma02dGdw3qE0Ae5EdU5q7839w25E3zwca08lwgE26xe0XE1Ho76',
-    '__sjsp': 'gc-gaNcr2Yhp80hFw',
-    '__comet_req': '15',
-    'locale': 'en_GB',
-    'fb_dtsg': 'Mpso5QCLmk4=',
-    'jazoest': '21021',
-    'lsd': 'wkEB6DkikroblzgG--A07m',
-    '__spin_r': '1043351526',
-    '__spin_b': 'trunk',
-    '__spin_t': '1784281605',
-    'qpl_active_flow_ids': '516759801',
-    'fb_api_caller_class': 'RelayModern',
-    'fb_api_req_friendly_name': 'useCDSWebLoginMutation',
-    'server_timestamps': 'true',
-    'variables': variables_json,
-    'doc_id': '9807605492696448',
-    'fb_api_analytics_tags': '["qpl_active_flow_ids=516759801"]',
+    'aaid': '0',
+    'user': '0',
+    'a': '1',
+    'req': '7',
+    'hs': '20651.BP:wbloks_caa_pkg.2.0...0',
+    'dpr': '3',
+    'ccg': 'GOOD',
+    'rev': '1043355061',
+    's': '681how:9to5tg:3j0b2o',
+    'hsi': '7663447342458262173',
+    'dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x67o1g8hw23E52q1ew2io0D24o1MUaE1Do1u81x82ewnE3fwww5NyE25w8W0Lo6-1CwOw5jw4JwzK0zo3jwea',
+    'fb_dtsg': 'NAfwOUcx-SmYxhP_PXB3YiyL9qCba2rNYeAxkHR6rz5KyDnDQCycdzQ:0:0',
+    'jazoest': '25126',
+    'lsd': 'AdT278_mLXkqhH1J_qKBLtRPYlU',
+    'jssesw': '10',
+    'params': encoded_params
 }
+
+# Make the request
+url = 'https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=78a73311662c30ce39030ac75c7e304d4dd7b7baadc860957cb2e07cc0a31c2b'
+
+print("🔐 Attempting to login...")
+print(f"📱 Phone: {PHONE_NUMBER}")
+print(f"🔑 Password: {ACTUAL_PASSWORD[:3]}***")
+print("-" * 50)
 
 try:
-    response = requests.post('https://www.facebook.com/api/graphql/', cookies=cookies, headers=headers, data=data)
+    response = requests.post(url, headers=headers, data=data)
     
-    print(f"\n📡 Status Code: {response.status_code}")
+    print(f"📡 Status Code: {response.status_code}")
+    print(f"📝 Response Length: {len(response.text)} characters")
     
-    result = response.json()
-    
-    if 'data' in result and 'caa_login_web' in result['data']:
-        login_data = result['data']['caa_login_web']
-        if 'error_code' in login_data and login_data['error_code']:
-            error_msg = login_data.get('error_message', {}).get('text', 'Unknown error')
-            print(f"\n❌ Login Failed: {error_msg}")
-            print("\n💡 Possible reasons:")
-            print("  1. The password is incorrect - make sure you're using the right password")
-            print("  2. The phone number is wrong - try using email instead")
-            print("  3. The cookies are expired - get fresh cookies from browser")
-            print("  4. The account needs 2FA verification")
-        else:
-            print("\n✅ Login Successful!")
-            print(json.dumps(result, indent=2))
-    else:
-        print("\n⚠️ Unexpected response:")
+    # Try to parse the response
+    try:
+        result = response.json()
+        print("\n📊 Response:")
         print(json.dumps(result, indent=2))
         
-except json.JSONDecodeError:
-    print(f"\n❌ Failed to parse JSON response: {response.text}")
-except Exception as e:
-    print(f"\n❌ Error: {e}")
+        # Check for errors
+        if isinstance(result, dict):
+            if 'error' in result:
+                print(f"\n❌ Error: {result.get('error')}")
+            elif 'data' in result:
+                print("\n✅ Request successful!")
+            else:
+                print("\n⚠️ Unexpected response format")
+                
+    except json.JSONDecodeError:
+        # If not JSON, print raw response
+        print(f"\n📄 Raw Response (first 500 chars):")
+        print(response.text[:500])
+        
+        # Check for common error indicators
+        if "incorrect" in response.text.lower():
+            print("\n❌ Login failed: Incorrect username or password")
+        elif "checkpoint" in response.text.lower():
+            print("\n⚠️ Login requires additional verification (checkpoint)")
+        elif "2fa" in response.text.lower() or "two factor" in response.text.lower():
+            print("\n⚠️ Two-factor authentication required")
+        else:
+            print("\n❌ Login failed. Please check your credentials.")
+            
+except requests.exceptions.RequestException as e:
+    print(f"❌ Request failed: {e}")
