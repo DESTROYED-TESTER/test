@@ -17,11 +17,11 @@ def generate_encrypted_password(password, timestamp=None):
 
 # ============== SET YOUR CORRECT CREDENTIALS HERE ==============
 # Option 1: Try with a different phone number/email
-PHONE_NUMBER = "9382213091"  # Try with email instead if phone doesn't work
+PHONE_NUMBER = "100031550319861"  # Try with email instead if phone doesn't work
 
 # ⚠️ IMPORTANT: Change this to the ACTUAL password for this account
 # The password "99070714" is clearly not a real password
-ACTUAL_PASSWORD = "93822130"  # <-- YOU MUST CHANGE THIS!
+ACTUAL_PASSWORD = "76790845"  # <-- YOU MUST CHANGE THIS!
 
 # Option 2: Try using email instead of phone
 # PHONE_NUMBER = "your_email@example.com"  # Uncomment and use email
