@@ -156,8 +156,152 @@ data = {
     'jazoest': '25126',
     'lsd': 'AdT278_mLXkqhH1J_qKBLtRPYlU',
     '__jssesw': '10',
-    'params': params_data['params']  # This is the JSON string
+    'params': params_data['params']
 }
+
+def check_login_status(response):
+    """Check if login was successful by analyzing response"""
+    
+    print(f"Status Code: {response.status_code}")
+    
+    if response.status_code != 200:
+        print("❌ Request failed - HTTP error")
+        return False
+    
+    try:
+        response_text = response.text
+        
+        # Check for common success indicators
+        success_indicators = [
+            '"success":true',
+            '"status":"ok"',
+            '"error":false',
+            '"is_logged_in":true',
+            '"login_success":true',
+            'session_key',
+            '"user_id"',
+            '"access_token"',
+            'c_user'  # Facebook cookie name for user ID
+        ]
+        
+        # Check for failure indicators
+        failure_indicators = [
+            '"error":true',
+            '"error_code"',
+            '"error_msg"',
+            '"error_message"',
+            'incorrect password',
+            'invalid credentials',
+            'wrong password',
+            'account locked',
+            'challenge_required',
+            'two_factor_required',
+            'checkpoint_required'
+        ]
+        
+        # Check if there's a cookie indicating login
+        login_cookies = ['c_user', 'xs', 'datr', 'sb']
+        has_login_cookies = any(cookie in response.cookies for cookie in login_cookies)
+        
+        print("\n🔍 Analyzing Response:")
+        print("=" * 50)
+        print(f"Response preview: {response_text[:500]}...\n")
+        
+        # Check for login success
+        is_success = False
+        
+        # Check for success indicators in response
+        for indicator in success_indicators:
+            if indicator in response_text.lower():
+                is_success = True
+                print(f"✅ Found success indicator: {indicator}")
+        
+        # Check for failure indicators
+        is_failure = False
+        for indicator in failure_indicators:
+            if indicator in response_text.lower():
+                is_failure = True
+                print(f"❌ Found failure indicator: {indicator}")
+        
+        # Try to parse JSON if possible
+        try:
+            json_response = response.json()
+            print(f"\n📊 Parsed JSON Response:")
+            print(json.dumps(json_response, indent=2))
+            
+            # Check specific JSON fields
+            if 'error' in json_response:
+                if json_response['error'] == True or json_response['error'] == 'true':
+                    is_failure = True
+                    print(f"❌ Error in response: {json_response.get('error_msg', json_response.get('error_message', 'Unknown error'))}")
+            
+            if 'success' in json_response:
+                if json_response['success'] == True or json_response['success'] == 'true':
+                    is_success = True
+            
+            if 'status' in json_response:
+                if json_response['status'] in ['ok', 'success']:
+                    is_success = True
+                    
+        except json.JSONDecodeError:
+            print("⚠️ Response is not valid JSON")
+        
+        # Final verdict
+        print("\n" + "=" * 50)
+        print("📋 Login Verdict:")
+        
+        if is_success and not is_failure:
+            print("✅ LOGIN SUCCESSFUL!")
+            print(f"   Cookies: {dict(response.cookies)}")
+            
+            # Extract user ID if available
+            if 'c_user' in response.cookies:
+                print(f"   User ID: {response.cookies['c_user']}")
+            
+            # Try to extract session info from response
+            if 'access_token' in response_text:
+                import re
+                token_match = re.search(r'"access_token":"([^"]+)"', response_text)
+                if token_match:
+                    print(f"   Access Token: {token_match.group(1)[:20]}...")
+            
+            return True
+            
+        elif is_failure:
+            print("❌ LOGIN FAILED")
+            
+            # Try to extract error message
+            error_messages = []
+            for key in ['error_msg', 'error_message', 'error', 'message']:
+                if key in response_text:
+                    try:
+                        import re
+                        msg_match = re.search(rf'"{key}":"([^"]+)"', response_text)
+                        if msg_match:
+                            error_messages.append(msg_match.group(1))
+                    except:
+                        pass
+            
+            if error_messages:
+                print(f"   Error: {error_messages[0]}")
+            else:
+                print("   Reason: Invalid credentials or account issue")
+            
+            return False
+            
+        elif has_login_cookies:
+            print("✅ LOGIN SUCCESSFUL (detected by cookies)!")
+            print(f"   Cookies set: {dict(response.cookies)}")
+            return True
+            
+        else:
+            print("⚠️ UNKNOWN STATUS - Need manual review")
+            print("   Response may contain checkpoint or 2FA requirement")
+            return False
+            
+    except Exception as e:
+        print(f"❌ Error analyzing response: {e}")
+        return False
 
 # Make the request
 try:
@@ -166,13 +310,40 @@ try:
         params=params,
         cookies=cookies,
         headers=headers,
-        data=data
+        data=data,
+        allow_redirects=False  # Don't follow redirects to see actual response
     )
     
-    # Print response details
-    print(f"Status Code: {response.status_code}")
-    print(f"Response Headers: {dict(response.headers)}")
-    print(f"Response Body: {response.text}")
+    # Check login status
+    login_success = check_login_status(response)
+    
+    # Additional check - try to verify with a subsequent request
+    if login_success:
+        print("\n🔐 Attempting to verify login with a test request...")
+        
+        # Try to access home page
+        verify_headers = headers.copy()
+        verify_headers['cookie'] = '; '.join([f"{k}={v}" for k, v in response.cookies.items()])
+        
+        verify_response = requests.get(
+            'https://m.facebook.com/',
+            headers=verify_headers,
+            cookies=response.cookies,
+            allow_redirects=False
+        )
+        
+        print(f"Verification Status: {verify_response.status_code}")
+        
+        if verify_response.status_code == 200:
+            print("✅ Login verified - Can access home page")
+        elif verify_response.status_code == 302:
+            location = verify_response.headers.get('Location', '')
+            if 'login' not in location and 'checkpoint' not in location:
+                print("✅ Login verified - Redirected to home/dashboard")
+            else:
+                print("⚠️ Login may require additional verification (2FA/checkpoint)")
+        else:
+            print("⚠️ Login verification inconclusive")
     
 except requests.exceptions.RequestException as e:
-    print(f"Error making request: {e}")
+    print(f"❌ Error making request: {e}")
