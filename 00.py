@@ -16,8 +16,8 @@ def generate_encrypted_password(password, timestamp=None):
     return f"#PWD_BROWSER:5:{timestamp}:{encoded}"
 
 # ============== SET YOUR CREDENTIALS HERE ==============
-PHONE_NUMBER = "9907071441"  # Your phone number
-ACTUAL_PASSWORD = "your_actual_password_here"  # <-- CHANGE THIS TO YOUR REAL PASSWORD!
+PHONE_NUMBER = "9382026415"  # Your phone number
+ACTUAL_PASSWORD = "93820264"  # <-- CHANGE THIS TO YOUR REAL PASSWORD!
 # ======================================================
 
 # Generate encrypted password
