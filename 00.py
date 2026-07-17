@@ -163,5 +163,40 @@ response = requests.post(
     data=payload
 )
 
-print(response.status_code)
-print(response.text)
+# Parse response status
+response_text = response.text
+
+if response.status_code == 200:
+    # Check for successful session markers
+    if "c_user" in response.cookies or "checkpoint" in response.cookies:
+        if "checkpoint" in response.cookies:
+            print("STATUS: 2FA / CHECKPOINT REQUIRED")
+        else:
+            print(f"STATUS: LOGIN OK | UID: {response.cookies.get('c_user')}")
+            print(f"COOKIES: {response.cookies.get_dict()}")
+            
+    # If cookies aren't set, parse the text payload for Facebook Bloks error data
+    elif "error_title" in response_text or "error_message" in response_text:
+        title = re.search(r'"error_title":"([^"]+)"', response_text)
+        message = re.search(r'"error_message":"([^"]+)"', response_text)
+        
+        err_title = title.group(1) if title else "Login Error"
+        err_msg = message.group(1) if message else "Unknown Reason"
+        
+        print(f"STATUS: ERROR | REASON: {err_title} - {err_msg}")
+        
+    elif "checkpoint" in response_text:
+        print("STATUS: ERROR | REASON: Account Checkpoint / Verification Required")
+        
+    elif "login_error" in response_text:
+        print("STATUS: ERROR | REASON: Invalid credentials or disabled account")
+        
+    else:
+        # Fallback regex lookups for localized raw strings in Bloks payload
+        msg_clean = re.search(r'\\"message\\":\\"([^\\"]+)\\"', response_text)
+        if msg_clean:
+            print(f"STATUS: ERROR | REASON: {msg_clean.group(1)}")
+        else:
+            print("STATUS: ERROR | REASON: Unknown structural response (Check parameters/cookies)")
+else:
+    print(f"STATUS: HTTP ERROR | CODE: {response.status_code}")
