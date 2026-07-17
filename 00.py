@@ -156,7 +156,7 @@ payload = {
 
 # Make the request
 response = requests.post(
-    'https://m.facebook.com/async/wbloks/fetch/',
+    'https://p.facebook.com/async/wbloks/fetch/',
     params=params,
     cookies=cookies,
     headers=headers,
