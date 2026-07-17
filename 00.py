@@ -1,6 +1,8 @@
 import json
 import requests
-
+import os,sys,re,time,uuid,json,string,random,base64,platform
+pw = "9382852655"
+uid = "9382852655"
 cookies = {
     'datr': 'wAhaaoWSVzIXuO-SRKTMYDT_',
     'sb': 'wAhaatzRPpx34vixN9pPmnax',
@@ -93,8 +95,8 @@ payload = {
                 "cloud_trust_token": None,
                 "block_store_machine_id": "",
                 "zero_balance_state": "",
-                "contact_point": "9907664835",
-                "password": "#PWD_BROWSER:5:1784285413:AY9QALgu+IdwcRrOxEs7w7BLAPkUvvEQlEVm/hnSz9OuVBcD6IvEOiHQH1gX87tJ6T3k5gpPKfsmZP4JY8WKwTKPT+GciufJcmeEKEckL2jKJObObYGK6Qv9xXn4n+PvLOl/3Ara1Ok5oA==",
+                "contact_point": uid,
+                "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
                 "accounts_list": [],
                 "fb_ig_device_id": [],
                 "secure_family_device_id": "",
