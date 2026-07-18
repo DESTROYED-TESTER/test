@@ -1082,6 +1082,7 @@ def freefb(uid, name, pwx, tl):
     except net_error:
         time.sleep(10)
     except Exception as e:
+        print(e)
         pass
 
 def bapi(uid, name, pwx, tl):
@@ -1390,7 +1391,7 @@ def mbasic(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        #print({error})
+        print({error})
         pass
 
 def p(uid,pwx,tl):
