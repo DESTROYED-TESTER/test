@@ -25,7 +25,7 @@ requu1 = Session.get('https://touch.facebook.com/')
 #fr = requu12.cookies.get('fr')
 log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
 #cookies ={"datr": datr, "sb": sb, "m_pixel_ratio": "2.75", "wd": "393x851", "fr": fr}
-url = "https://business.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+url = "https://.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
 #url = 'https://touch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100'
 headers = {
     'authority': 'limited.facebook.com',
