@@ -28,26 +28,30 @@ log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).grou
 url = "https://web.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110"
 #url = 'https://touch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100'
 headers = {
-    'authority': 'limited.facebook.com',
-    'accept': '/',
-    'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-US,en;q=0.9',
+    'cache-control': 'max-age=0',
     'content-type': 'application/x-www-form-urlencoded',
-    # 'cookie': 'datr=AvxaauBxe8J2e6uqNRe7Ks5u; sb=AvxaanntJgRoS-6c3x6h_Z-w; m_pixel_ratio=2.75; wd=393x851; ps_l=1; ps_n=1; fr=0mN3NySo4ygtsuEdo..BqWvwC..AAA.0.0.BqWvwc.AWf9_qxR9LNotvAZnbuzCekImP0',
-    'origin': 'https://limited.facebook.com',
-    'referer': 'https://limited.facebook.com/login/',
-    'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
+    'dpr': '1',
+    'origin': 'https://www.facebook.com',
+    'priority': 'u=0, i',
+    'referer': 'https://www.facebook.com/n/?login_attempt=vip',
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"',
+    'sec-ch-ua-full-version-list': '"Not:A-Brand";v="99.0.0.0", "Google Chrome";v="145.0.7632.5", "Chromium";v="145.0.7632.5"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-model': '""',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-ch-ua-platform-version': '"10.0.0"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
     'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
-    'x-asbd-id': '359341',
-    'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
-    'x-requested-with': 'XMLHttpRequest',
-    'x-response-format': 'JSONStream',
+    'viewport-width': '885',
+    # 'cookie': 'datr=5ABSalgUNC7lBt9SzL31tKRb; sb=5ABSanZZCqLf5w2V8ssjh_u4; ps_l=1; ps_n=1; fr=0ledz3fU5nenBbfCq..BqUgDk..AAA.0.0.BqWxtb.AWcvQBsMTQY1mdEi3D8Gy6O2VZs; wd=885x773',
 }
-
 
 response = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
 print(response.text)
