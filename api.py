@@ -1785,7 +1785,7 @@ def freeq(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        #print({error})
+        print({error})
         pass
 
 def ____PO_CO____():
