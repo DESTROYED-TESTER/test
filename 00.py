@@ -21,7 +21,7 @@ response2 = Session.get('https://touch.facebook.com')
 datr = response.cookies.get('datr')
 sb = response.cookies.get('sb')
 fr = response.cookies.get('fr')
-url = "https://p.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 12; M2010J19SI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Mobile Safari/537.36",
