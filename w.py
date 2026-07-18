@@ -1293,7 +1293,7 @@ def mbasic(uid,pwx,tl):
             free_fb = Session.get('https://touch.facebook.com').text 
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'fb_dtsg': re.search('name="fb_dtsg" value="(.*?)"', str(free_fb)).group(1),
+            'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
             'display': '',
             'isprivate': '',
             'return_session': '',
