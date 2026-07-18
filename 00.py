@@ -55,6 +55,7 @@ headers = {
 
 response = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
 print(response.text)
+print(response)
 #print(response.status_code)
 #print(response.text)
 # Check login success
