@@ -1,202 +1,233 @@
-import json
 import requests
-import os,sys,re,time,uuid,json,string,random,base64,platform
-pw = "9382852655"
-uid = "9382852655"
-cookies = {
-    'datr': 'wAhaaoWSVzIXuO-SRKTMYDT_',
-    'sb': 'wAhaatzRPpx34vixN9pPmnax',
-    'm_pixel_ratio': '2.4740447998046875',
-    'wd': '393x895',
-    'fr': '0Gi8Oovt8kzQprsuq..BqWgjA..AAA.0.0.BqWgji.AWeWs4-38367KIwuz_Mcl3xyT8Y',
-}
+import random
+import re
+import time
+from typing import Optional, Dict
 
-headers = {
-    'authority': 'm.facebook.com',
-    'accept': '*/*',
-    'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
-    'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-    'origin': 'https://m.facebook.com',
-    'referer': 'https://m.facebook.com/',
-    'sec-ch-prefers-color-scheme': 'dark',
-    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
-    'sec-ch-ua-full-version-list': '"Chromium";v="139.0.7339.0", "Not;A=Brand";v="99.0.0.0"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-model': '"23076PC4BI"',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-ch-ua-platform-version': '"15.0.0"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
-}
-
-params = {
-    'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
-    'type': 'action',
-    '__bkv': '78a73311662c30ce39030ac75c7e304d4dd7b7baadc860957cb2e07cc0a31c2b',
-}
-
-payload = {
-    "__aaid": "0",
-    "__user": "0", 
-    "__a": "1",
-    "__req": "7",
-    "__hs": "20651.BP:wbloks_caa_pkg.2.0...0",
-    "dpr": "3",
-    "__ccg": "GOOD",
-    "__rev": "1043355061",
-    "__s": "681how:9to5tg:3j0b2o",
-    "__hsi": "7663447342458262173",
-    "__dyn": "0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x67o1g8hw23E52q1ew2io0D24o1MUaE1Do1u81x82ewnE3fwww5NyE25w8W0Lo6-1CwOw5jw4JwzK0zo3jwea",
-    "fb_dtsg": "NAfwOUcx-SmYxhP_PXB3YiyL9qCba2rNYeAxkHR6rz5KyDnDQCycdzQ:0:0",
-    "jazoest": "25126",
-    "lsd": "AdT278_mLXkqhH1J_qKBLtRPYlU",
-    "__jssesw": "10",
-    "params": json.dumps({
-        "params": json.dumps({
-            "server_params": {
-                "credential_type": "password",
-                "username_text_input_id": "tg0z6g:58",
-                "password_text_input_id": "tg0z6g:59",
-                "login_source": "Login",
-                "login_credential_type": "none",
-                "server_login_source": "login",
-                "ar_event_source": "login_home_page",
-                "should_trigger_override_login_success_action": 0,
-                "should_trigger_override_login_2fa_action": 0,
-                "is_caa_perf_enabled": 0,
-                "reg_flow_source": "login_home_native_integration_point",
-                "caller": "gslr",
-                "is_from_landing_page": 0,
-                "is_from_empty_password": 0,
-                "is_from_aymh": 0,
-                "is_from_password_entry_page": 0,
-                "is_from_assistive_id": 0,
-                "is_from_msplit_fallback": 0,
-                "two_step_login_type": "one_step_login",
-                "left_nav_button_action": "NONE",
-                "INTERNALlatency_qpl_marker_id": 36707139,
-                "INTERNALlatency_qpl_instance_id": "178043855200348",
-                "device_id": None,
-                "family_device_id": None,
-                "waterfall_id": "1fff9e97-0cdb-4e73-8bbc-ee8abc8fa986",
-                "offline_experiment_group": None,
-                "layered_homepage_experiment_group": None,
-                "is_platform_login": 0,
-                "is_from_logged_in_switcher": 0,
-                "is_from_logged_out": 0,
-                "access_flow_version": "pre_mt_behavior",
-                "login_surface": "login_home",
-                "login_entry_point": "logged_out"
-            },
-            "client_input_params": {
-                "machine_id": "",
-                "cloud_trust_token": None,
-                "block_store_machine_id": "",
-                "zero_balance_state": "",
-                "contact_point": uid,
-                "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-                "accounts_list": [],
-                "fb_ig_device_id": [],
-                "secure_family_device_id": "",
-                "encrypted_msisdn": "",
-                "headers_infra_flow_id": "",
-                "try_num": 1,
-                "login_attempt_count": 1,
-                "event_flow": "login_manual",
-                "event_step": "home_page",
-                "openid_tokens": {},
-                "auth_secure_device_i": "",
-                "client_known_key_hash": "",
-                "has_whatsapp_installed": 0,
-                "sso_token_map_json_string": "",
-                "should_show_nested_nta_from_aymh": 0,
-                "gms_incoming_call_retriever_eligibility": "client_not_supported",
-                "password_contains_non_ascii": "false",
-                "has_granted_read_contacts_permissions": 0,
-                "has_granted_read_phone_permissions": 0,
-                "app_manager_id": "",
-                "aymh_accounts": [{
-                    "id": "",
-                    "profiles": {
-                        "id": {
-                            "user_id": "",
-                            "name": "",
-                            "profile_picture_url": "",
-                            "small_profile_picture_url": None,
-                            "notification_count": 0,
-                            "credential_type": "none",
-                            "token": "",
-                            "last_access_time": 0,
-                            "is_derived": 0,
-                            "username": "",
-                            "password": "",
-                            "has_smartlock": 0,
-                            "account_center_id": "",
-                            "account_source": "",
-                            "credentials": [],
-                            "nta_eligibility_reason": None,
-                            "from_accurate_privacy_result": 0,
-                            "dbln_validated": 0
-                        }
-                    }
-                }],
-                "sso_accounts_auth_data": [],
-                "blocked_uids": [],
-                "network_bssid": None,
-                "lois_settings": {
-                    "lois_token": ""
-                },
-                "aac": ""
-            }
+class FacebookLogin:
+    def __init__(self):
+        self.session = requests.Session()
+        self.session.headers.update({
+            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'document',
+            'sec-fetch-mode': 'navigate',
+            'sec-fetch-site': 'none',
+            'sec-fetch-user': '?1',
+            'upgrade-insecure-requests': '1'
         })
-    })
-}
 
-# Make the request
-response = requests.post(
-    'https://p.facebook.com/async/wbloks/fetch/',
-    params=params,
-    cookies=cookies,
-    headers=headers,
-    data=payload
-)
+    def _generate_random_headers(self) -> Dict[str, str]:
+        """Generate random device and version information"""
+        facebook_version = f"{random.randint(100, 450)}.0.0.{random.randint(1, 40)}.{random.randint(10, 150)}"
+        bv = f"{random.randint(1111111, 7777777)}"
+        versi_android = f"{random.randint(6, 14)}"
+        
+        # Random device selection
+        devices = ["Nokia 2.4", "TA-1277", "TA-1357", "Nokia C30", "Nokia C12 Pro", 
+                   "TA-1339", "Nokia C12", "Nokia 3.4", "Nokia G20", "Nokia 6", 
+                   "Nokia C22", "Nokia G22", "Nokia G10", "Nokia C31", "TA-1499", 
+                   "TA-1418", "Nokia C32"]
+        
+        deevice = random.choice(["2312DRAABG", "2201117TG", "M2101K6G", "Redmi Note 14", 
+                                "2404ARN45A", "22111317I", "23053RN02A", "M2101K7AI", 
+                                "22101316C", "23129RAA4G", "Redmi Note 9 Pro", "Redmi Note 10 Pro"])
+        
+        device = random.choice(["M910x", "D10i", "2PXH3", "D830x", "U-2u", "M910x", 
+                               "2PXH3", "HTC_Desire_S_S510e", "HTC_0P3P5", 
+                               "HTC_DesireHD_X315e", "HTC_C715c", "HTC_D616w"])
+        
+        # Random mobile carriers
+        carriers = ["Jio", "Airtel", "Vi", "BSNL", "MTNL"]
+        fbmf = random.choice(["redmi", "samsung", "oneplus", "xiaomi", "realme"])
+        fbbd = random.choice(["redmi", "samsung", "oneplus", "xiaomi", "realme"])
+        model = random.choice(["Redmi Note 9 Pro", "Samsung Galaxy M31", "OnePlus 9R", 
+                              "Realme 8 Pro", "POCO X3", "Nokia 6.1"])
+        fbdm = f"{{density={random.choice(['2.0', '2.75', '3.0'])},width={random.choice(['1080', '1440'])},height={random.choice(['2400', '3200'])}}}"
+        fbcr = random.choice(carriers)
+        
+        # Build user agent
+        us = f"[FBAN/FB4A;FBAV/{facebook_version};FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/{bv};FBCR/{fbcr};FBMF/{fbmf};FBBD/{fbbd};FBDV/{model};FBSV/{versi_android};FBCA/arm64-v8a:null;FBDM/{fbdm};FB_FW/1]"
+        
+        return {
+            'user-agent': us,
+            'fban': 'FB4A',
+            'fbav': facebook_version,
+            'fbbv': bv,
+            'fbcr': fbcr,
+            'fbmf': fbmf,
+            'fbbd': fbbd,
+            'fbdv': model,
+            'fbsv': versi_android,
+            'device': device,
+            'deevice': deevice
+        }
 
-# Parse response status
-response_text = response.text
+    def get_login_page(self) -> Optional[requests.Response]:
+        """Get initial login page to extract required tokens"""
+        headers = self._generate_random_headers()
+        url = "https://m.prod.facebook.com/"
+        
+        try:
+            response = self.session.get(url, headers=headers, timeout=30)
+            if response.status_code == 200:
+                return response
+            else:
+                print(f"Failed to get login page: {response.status_code}")
+                return None
+        except requests.RequestException as e:
+            print(f"Error fetching login page: {e}")
+            return None
 
-if response.status_code == 200:
-    # Check for successful session markers
-    if "c_user" in response.cookies or "checkpoint" in response.cookies:
-        if "checkpoint" in response.cookies:
-            print("STATUS: 2FA / CHECKPOINT REQUIRED")
-        else:
-            print(f"STATUS: LOGIN OK | UID: {response.cookies.get('c_user')}")
-            print(f"COOKIES: {response.cookies.get_dict()}")
+    def extract_tokens(self, response_text: str) -> Optional[Dict[str, str]]:
+        """Extract required tokens from the HTML response"""
+        try:
+            tokens = {
+                'm_ts': re.search(r'name="m_ts" value="(.*?)"', response_text).group(1),
+                'li': re.search(r'name="li" value="(.*?)"', response_text).group(1),
+                'jazoest': re.search(r'name="jazoest" value="(.*?)"', response_text).group(1),
+                'lsd': re.search(r'name="lsd" value="(.*?)"', response_text).group(1)
+            }
+            return tokens
+        except AttributeError as e:
+            print(f"Failed to extract tokens: {e}")
+            return None
+
+    def login(self, email: str, password: str) -> bool:
+        """
+        Attempt to login to Facebook with given credentials
+        
+        Args:
+            email: Facebook email or phone number
+            password: Facebook password
             
-    # If cookies aren't set, parse the text payload for Facebook Bloks error data
-    elif "error_title" in response_text or "error_message" in response_text:
-        title = re.search(r'"error_title":"([^"]+)"', response_text)
-        message = re.search(r'"error_message":"([^"]+)"', response_text)
+        Returns:
+            Boolean indicating login success
+        """
+        # Step 1: Get login page
+        login_page = self.get_login_page()
+        if not login_page:
+            return False
         
-        err_title = title.group(1) if title else "Login Error"
-        err_msg = message.group(1) if message else "Unknown Reason"
+        # Step 2: Extract tokens
+        tokens = self.extract_tokens(login_page.text)
+        if not tokens:
+            return False
         
-        print(f"STATUS: ERROR | REASON: {err_title} - {err_msg}")
+        # Step 3: Prepare login data
+        timestamp = str(int(time.time()))
+        encrypted_password = f"#PWD_BROWSER:0:{timestamp}:{password}"
         
-    elif "checkpoint" in response_text:
-        print("STATUS: ERROR | REASON: Account Checkpoint / Verification Required")
+        log_data = {
+            'm_ts': tokens['m_ts'],
+            'li': tokens['li'],
+            'try_number': '0',
+            'unrecognized_tries': '0',
+            'email': email,
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'prefill_type': '',
+            'first_prefill_source': '',
+            'first_prefill_type': '',
+            'had_cp_prefilled': 'false',
+            'had_password_prefilled': 'false',
+            'is_smart_lock': 'false',
+            'bi_xrwh': '0',
+            'encpass': encrypted_password,
+            'bi_wvdp': '',
+            'fb_dtsg': '',
+            'jazoest': tokens['jazoest'],
+            'lsd': tokens['lsd'],
+            '__dyn': '',
+            '__csr': '',
+            '__req': random.choice(['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']),
+            '__fmt': '0',
+            '__a': '',
+            '__user': '0'
+        }
         
-    elif "login_error" in response_text:
-        print("STATUS: ERROR | REASON: Invalid credentials or disabled account")
+        # Step 4: Prepare login headers
+        login_headers = {
+            'authority': 'p.facebook.com',
+            'accept': '/',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://p.facebook.com',
+            'referer': 'https://p.facebook.com/login/',
+            'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': self.session.headers.get('user-agent', ''),
+            'x-asbd-id': '359341',
+            'x-fb-lsd': tokens['lsd'],
+            'x-requested-with': 'XMLHttpRequest',
+            'x-response-format': 'JSONStream',
+        }
         
-    else:
-        # Fallback regex lookups for localized raw strings in Bloks payload
-        msg_clean = re.search(r'\\"message\\":\\"([^\\"]+)\\"', response_text)
-        if msg_clean:
-            print(f"STATUS: ERROR | REASON: {msg_clean.group(1)}")
-        else:
-            print("STATUS: ERROR | REASON: Unknown structural response (Check parameters/cookies)")
-else:
-    print(f"STATUS: HTTP ERROR | CODE: {response.status_code}")
+        # Step 5: Perform login
+        login_url = "https://p.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
+        
+        try:
+            response = self.session.post(login_url, data=log_data, headers=login_headers, 
+                                        allow_redirects=False, timeout=30)
+            
+            # Check for successful login
+            cookies = self.session.cookies.get_dict()
+            
+            if 'c_user' in cookies:
+                print("✓ Login successful!")
+                print(f"User ID: {cookies.get('c_user')}")
+                print(f"Session cookies: {list(cookies.keys())}")
+                return True
+            else:
+                print("✗ Login failed - c_user cookie not found")
+                print(f"Response: {response.text[:500]}...")  # Show first 500 chars
+                return False
+                
+        except requests.RequestException as e:
+            print(f"Error during login: {e}")
+            return False
+
+    def logout(self) -> bool:
+        """Logout from Facebook"""
+        try:
+            logout_url = "https://www.facebook.com/logout.php"
+            response = self.session.get(logout_url, timeout=30)
+            return response.status_code == 200
+        except requests.RequestException as e:
+            print(f"Error during logout: {e}")
+            return False
+
+    def get_cookies(self) -> Dict[str, str]:
+        """Get current session cookies"""
+        return self.session.cookies.get_dict()
+
+
+def main():
+    """Example usage of the Facebook login script"""
+    fb = FacebookLogin()
+    
+    # Replace with your credentials
+    email = "9907159211"
+    password = "99071592"
+    
+    # Attempt login
+    success = fb.login(email, password)
+    
+    if success:
+        print("\nSession Cookies:")
+        for key, value in fb.get_cookies().items():
+            print(f"  {key}: {value[:20]}...")  # Show partial cookie values for security
+    
+    # Optionally logout
+    # fb.logout()
+
+
+if __name__ == "__main__":
+    main()
