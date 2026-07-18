@@ -144,24 +144,24 @@ log_data = {
 #url = "https://edge-mqtt.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
 url = 'https://m.facebook.com/async/wbloks/fetch/?appid=com.bloks.www.bloks.caa.login.async.send_login_request&type=action&__bkv=78a73311662c30ce39030ac75c7e304d4dd7b7baadc860957cb2e07cc0a31c2b'
 headers = {
-    'authority': 'limited.facebook.com',
-    'accept': '/',
+    'authority': 'm.facebook.com',
+    'accept': '*/*',
     'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
-    'content-type': 'application/x-www-form-urlencoded',
-    # 'cookie': 'datr=AvxaauBxe8J2e6uqNRe7Ks5u; sb=AvxaanntJgRoS-6c3x6h_Z-w; m_pixel_ratio=2.75; wd=393x851; ps_l=1; ps_n=1; fr=0mN3NySo4ygtsuEdo..BqWvwC..AAA.0.0.BqWvwc.AWf9_qxR9LNotvAZnbuzCekImP0',
-    'origin': 'https://limited.facebook.com',
-    'referer': 'https://limited.facebook.com/login/',
-    'sec-ch-ua': '"Chromium";v="137", "Not/A)Brand";v="24"',
+    'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    # 'cookie': 'datr=3DZbatSVg2Xs1lfsRgjwWae6; sb=3DZbarkl-tmSY0caZLT678T8; m_pixel_ratio=2.4740447998046875; wd=393x895; fr=01SdMVwSLiZkQjknQ..BqWzbc..AAA.0.0.BqWzb8.AWeISVdSb_EJDA6dpTdlONxRaT0',
+    'origin': 'https://m.facebook.com',
+    'referer': 'https://m.facebook.com/',
+    'sec-ch-prefers-color-scheme': 'dark',
+    'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+    'sec-ch-ua-full-version-list': '"Chromium";v="139.0.7339.0", "Not;A=Brand";v="99.0.0.0"',
     'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-model': '"23076PC4BI"',
     'sec-ch-ua-platform': '"Android"',
+    'sec-ch-ua-platform-version': '"15.0.0"',
     'sec-fetch-dest': 'empty',
     'sec-fetch-mode': 'cors',
     'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36',
-    'x-asbd-id': '359341',
-    'x-fb-lsd': 'AdSNT0fGVLz2A_OHQKjrDgDTwkI',
-    'x-requested-with': 'XMLHttpRequest',
-    'x-response-format': 'JSONStream',
+    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36',
 }
 
 response = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
