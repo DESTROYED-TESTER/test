@@ -1849,43 +1849,37 @@ def d(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com/').text
             cookies = {
-            'datr': 'eL_uZ2Ty3h0loiAu7Is5kJfa',
-            'sb': 'eL_uZ9ijCdro7wndMVgTyIBo',
-            'ps_l': '1',
-            'ps_n': '1',
-            'vpd': 'v1%3B754x393x2.75',
-            'locale': 'en_US',
-            'wl_cbv': 'v2%3Bclient_version%3A2839%3Btimestamp%3A1749279032',
-            'dpr': '3.0234789848327637',
-            'm_pixel_ratio': '2.75',
+            'datr': '3DZbatSVg2Xs1lfsRgjwWae6',
+            'sb': '3DZbarkl-tmSY0caZLT678T8',
+            'm_pixel_ratio': '2.4740447998046875',
             'wd': '393x895',
-            'fr': '1luwxyfC0S3PqSGOB.AWdHWSlIFgbTsyGIpb0ybBWJfd90ljXfeYezIDp1sNzBIA5oVJU.BoRC9Z..AAA.0.0.BoRDJU.AWcx--m4gr-h5rmVlUlEexIex9Y',}
+            'fr': '01SdMVwSLiZkQjknQ..BqWzbc..AAA.0.0.BqWzb8.AWeISVdSb_EJDA6dpTdlONxRaT0',}
             params = {
             'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
             'type': 'action',
-            '__bkv': 'e787cb1606ebe4cc6aaf5a1ce304f07c3da0663045060614c1cd6806596c46e6',}
+            '__bkv': '78a73311662c30ce39030ac75c7e304d4dd7b7baadc860957cb2e07cc0a31c2b',}
             data = {
-    '__aaid': '0',
-    '__user': '0',
-    '__a': '1',
-    '__req': 'a',
-    '__hs': '20246.BP:wbloks_caa_pkg.2.0...0',
-    'dpr': '3',
-    '__ccg': 'EXCELLENT',
-    '__rev': '1023608600',
-    '__s': ':f95eey:i9v0n0',
-    '__hsi': '7513185148771233093',
-    '__dyn': '0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x60lW4o3Bw4Ewk9E4W099w2s8hw73wGw6tw5Uw64w8W1uwf20n6aw8m0zE2ZwrU6q3a0le0iS2eU2dwde',
-    'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-    'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-    'params': json.dumps({
+    "aaid": 0,
+    "user": 0,
+    "a": 1,
+    "req": 7,
+    "hs": "20652.BP:wbloks_caa_pkg.2.0...0",
+    "dpr": 3,
+    "ccg": "GOOD",
+    "rev": 1043419488,
+    "s": "yiar42:dl594l:id4lh8",
+    "hsi": 7663779509929542939,
+    "dyn": "0wzpawlE72fDg9ppo5S12wAxu13wqobE6u7E39x67o1g8hw23E52q1ew2io0D24o1MUaE1Do1u81x82ewnE3fwww5NyE25w8W0Lo6-1CwOw5jw4JwzK0zo3jwea",
+    "fb_dtsg": "NAfy0gmdDEgMdILhHKzbzGdZhtu1YFuk8v7i_Ze-eyyWQFkJN612uVQ:0:0",
+    "jazoest": re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+    "lsd": re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+    "params": json.dumps({
         "params": json.dumps({
             "server_params": {
                 "credential_type": "password",
-                "username_text_input_id": "7w9omu:68",
-                "password_text_input_id": "7w9omu:69",
-                "login_source": "login",
+                "username_text_input_id": "3hogww:58",
+                "password_text_input_id": "3hogww:59",
+                "login_source": "Login",
                 "login_credential_type": "none",
                 "server_login_source": "login",
                 "ar_event_source": "login_home_page",
@@ -1901,21 +1895,26 @@ def d(uid,pwx,tl):
                 "is_from_assistive_id": 0,
                 "is_from_msplit_fallback": 0,
                 "two_step_login_type": "one_step_login",
-                "INTERNAL__latency_qpl_marker_id": 36707139,
-                "INTERNAL__latency_qpl_instance_id": "47746277400427",
+                "left_nav_button_action": "NONE",
+                "INTERNALlatency_qpl_marker_id": 36707139,
+                "INTERNALlatency_qpl_instance_id": "21109366400348",
                 "device_id": None,
                 "family_device_id": None,
-                "waterfall_id": "123dc61e-79b8-44ee-8c3d-6da87a95cea7",
+                "waterfall_id": "9e2fecbe-5cb2-420e-ab38-f0a16f9342d8",
                 "offline_experiment_group": None,
                 "layered_homepage_experiment_group": None,
                 "is_platform_login": 0,
                 "is_from_logged_in_switcher": 0,
                 "is_from_logged_out": 0,
-                "access_flow_version": "pre_mt_behavior"
+                "access_flow_version": "pre_mt_behavior",
+                "login_surface": "login_home",
+                "login_entry_point": "logged_out"
             },
             "client_input_params": {
                 "machine_id": "",
                 "cloud_trust_token": None,
+                "block_store_machine_id": "",
+                "zero_balance_state": "",
                 "contact_point": uid,
                 "password": "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
                 "accounts_list": [],
@@ -1928,23 +1927,51 @@ def d(uid,pwx,tl):
                 "event_flow": "login_manual",
                 "event_step": "home_page",
                 "openid_tokens": {},
-                "block_store_machine_id": "",
                 "auth_secure_device_id": "",
                 "client_known_key_hash": "",
                 "has_whatsapp_installed": 0,
                 "sso_token_map_json_string": "",
                 "should_show_nested_nta_from_aymh": 0,
+                "gms_incoming_call_retriever_eligibility": "client_not_supported",
                 "password_contains_non_ascii": "false",
                 "has_granted_read_contacts_permissions": 0,
                 "has_granted_read_phone_permissions": 0,
                 "app_manager_id": "",
-                "aymh_accounts": [],
+                "aymh_accounts": [{
+                    "id": "",
+                    "profiles": {
+                        "id": {
+                            "user_id": "",
+                            "name": "",
+                            "profile_picture_url": "",
+                            "small_profile_picture_url": None,
+                            "notification_count": 0,
+                            "credential_type": "none",
+                            "token": "",
+                            "last_access_time": 0,
+                            "is_derived": 0,
+                            "username": "",
+                            "password": "",
+                            "has_smartlock": 0,
+                            "account_center_id": "",
+                            "account_source": "",
+                            "credentials": [],
+                            "nta_eligibility_reason": None,
+                            "from_accurate_privacy_result": 0,
+                            "dbln_validated": 0
+                        }
+                    }
+                }],
+                "sso_accounts_auth_data": [],
+                "blocked_uids": [],
+                "network_bssid": None,
                 "lois_settings": {
                     "lois_token": ""
-                }
+                },
+                "aac": ""
             }
         })
-    }),
+    })
 }
             headers = {
             'Host': 'mtouch.facebook.com',
