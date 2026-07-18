@@ -42,14 +42,14 @@ headers = {
     'sec-fetch-site': 'same-origin',
     'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Mobile Safari/537.36',
     'x-asbd-id': '359341',
-    'x-fb-lsd': 'AdSNT0fGVLz2A_OHQKjrDgDTwkI',
+    'x-fb-lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1),
     'x-requested-with': 'XMLHttpRequest',
     'x-response-format': 'JSONStream',
 }
 
 
 response = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
-#print(data)
+print(response.text)
 #print(response.status_code)
 #print(response.text)
 # Check login success
