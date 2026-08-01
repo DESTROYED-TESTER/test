@@ -62,14 +62,14 @@ data = {
     'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjozMn0=',
     'lgnrnd': '214622_uurZ',
     'lgnjs': 'n',
-    'email': '9641097628',
-    'pass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], '96410976'),
+    'email': '61592289197166',
+    'pass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], 'sumon@12M'),
     'default_persistent': '',
 }
 
 response = Session.post('https://www.messenger.com/login/password/', cookies=cookies, headers=headers, data=data)
 
-#print(response.text)
+print(response.text)
 print(response)
 #print(response.status_code)
 #print(response.text)
