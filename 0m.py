@@ -47,4 +47,5 @@ data = {
 }
 
 response = requests.post('https://www.messenger.com/login/password/', cookies=cookies, headers=headers, data=data)
-print(response.text)
+#print(response.text)
+print(response)
