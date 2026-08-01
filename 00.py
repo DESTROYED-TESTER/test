@@ -63,7 +63,7 @@ data = {
     'lgnrnd': '214622_uurZ',
     'lgnjs': 'n',
     'email': '61592289197166',
-    'pass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], 'sumon@12M'),
+    'pass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], 'sumon@2M'),
     'default_persistent': '',
 }
 
