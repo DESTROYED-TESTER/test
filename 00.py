@@ -69,11 +69,11 @@ data = {
 
 response = Session.post('https://www.messenger.com/login/password/', cookies=cookies, headers=headers, data=data)
 
-print(response.text)
-print(response)
-#print(response.status_code)
 #print(response.text)
-# Check login success
+#print(response)
+#print(response.status_code)
+print(f"Status Code: {response.status_code}")
+print(f"Response URL: {response.url}")# Check login success
 log_cookies = Session.cookies.get_dict().keys()
 if "c_user" in log_cookies:
     print('\033[1;92m OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK ')
