@@ -58,7 +58,7 @@ response = Session.post('https://graph.facebook.com/graphql', data=encode)
 #print(response.status_code)
 #print(f"Status Code: {response.status_code}")
 #print(f"Response URL: {response.url}")# Check login success
-if "session_key" in response.text and "uid" in response.text and "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
+if "session_key" in response.text and "uid" in response.text and "access_token" in response.text:
     cokie = {
                     "datr": re.search('"name":"datr","value":"(.*?)"', response.text.replace('\\', '')).group(1),
 					"sb": base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-"),
