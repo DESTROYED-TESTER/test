@@ -21,32 +21,13 @@ Session = requests.Session()
 #requu12 = Session.get('https://www.facebook.com/',headers=head)
 #free_fb = Session.get('https://touch.facebook.com/')
 free_fb = Session.get('https://touch.facebook.com/').text
-#datr = requu12.cookies.get('datr')
-#sb = requu12.cookies.get('sb')
-#fr = requu12.cookies.get('fr')
 cookies = {
     'datr': 'WXltatd2ENUjZUyfA3yVvrhw',
     'sb': 'gXltaqNiraYlzznawgFOc3Qf',
     'locale': 'bn_IN',
     'wd': '1143x773',
 }
-#log_data = {'m_ts': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1), 'li': re.search('name="li" value="(.*?)"',str(requu1.text)).group(1), 'try_number': '0', 'unrecognized_tries': '0', 'email': uid, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
-log_data = {
-    'jazoest': '22474',
-    'lsd': 'AdRRDLpqanHVfvAWy_sUXtH_OJc',
-    'initial_request_id': 'A10tPfatOkwvT0WG7gWVNnY',
-    'timezone': '-330',
-    'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjozMn0=',
-    'lgnrnd': '214622_uurZ',
-    'lgnjs': 'n',
-    'email': '9749797453',
-    'pass': '#PWD_BROWSER:5:1785559664:AZ5QAOWfT8EO2FqaVqWoHd8xdImXBZXJ4mbWDqdkbNxndqh1Zhdc2gNQ35LlRHRtpLRQ66HmREl8z9XkhNXm5vumHq7GgpetBsvVZhPwzD4N1sFDJtsq62iZ9xbKwl/MYQMt/EMOOSaRq/bA',
-    'default_persistent': '',
-}
 
-#cookies ={"datr": datr, "sb": sb, "m_pixel_ratio": "2.75", "wd": "393x851", "fr": fr}
-#url = "https://edge-mqtt.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-url = 'https://www.messenger.com/login/password/'
 headers = {
     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
     'accept-language': 'en-US,en;q=0.9,bn;q=0.8',
@@ -73,8 +54,22 @@ headers = {
     # 'cookie': 'datr=WXltatd2ENUjZUyfA3yVvrhw; sb=gXltaqNiraYlzznawgFOc3Qf; locale=bn_IN; wd=1143x773',
 }
 
-response = Session.post(url,cookies=cookies,headers=headers,data=log_data,allow_redirects=False)
-print(response.text)
+data = {
+    'jazoest': '22474',
+    'lsd': 'AdRRDLpqanHVfvAWy_sUXtH_OJc',
+    'initial_request_id': 'A10tPfatOkwvT0WG7gWVNnY',
+    'timezone': '-330',
+    'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjozMn0=',
+    'lgnrnd': '214622_uurZ',
+    'lgnjs': 'n',
+    'email': '9749797453',
+    'pass': '#PWD_BROWSER:5:1785559664:AZ5QAOWfT8EO2FqaVqWoHd8xdImXBZXJ4mbWDqdkbNxndqh1Zhdc2gNQ35LlRHRtpLRQ66HmREl8z9XkhNXm5vumHq7GgpetBsvVZhPwzD4N1sFDJtsq62iZ9xbKwl/MYQMt/EMOOSaRq/bA',
+    'default_persistent': '',
+}
+
+response = Session.post('https://www.messenger.com/login/password/', cookies=cookies, headers=headers, data=data)
+
+#print(response.text)
 print(response)
 #print(response.status_code)
 #print(response.text)
