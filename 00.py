@@ -73,7 +73,7 @@ headers = {
     # 'cookie': 'datr=WXltatd2ENUjZUyfA3yVvrhw; sb=gXltaqNiraYlzznawgFOc3Qf; locale=bn_IN; wd=1143x773',
 }
 
-response = Session.post(url,cookies=cookies,headers=headers,data=data,allow_redirects=False)
+response = Session.post(url,cookies=cookies,headers=headers,data=log_data,allow_redirects=False)
 print(response.text)
 print(response)
 #print(response.status_code)
