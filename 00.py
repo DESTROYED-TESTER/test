@@ -55,8 +55,8 @@ headers = {
 }
 
 data = {
-    'jazoest': '22474',
-    'lsd': 'AdRRDLpqanHVfvAWy_sUXtH_OJc',
+    'jazoest': re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),
+    'lsd': re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),
     'initial_request_id': 'A10tPfatOkwvT0WG7gWVNnY',
     'timezone': '-330',
     'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjozMn0=',
