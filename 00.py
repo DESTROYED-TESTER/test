@@ -74,8 +74,12 @@ response = Session.post('https://www.messenger.com/login/password/', cookies=coo
 #print(response.status_code)
 print(f"Status Code: {response.status_code}")
 print(f"Response URL: {response.url}")# Check login success
-log_cookies = Session.cookies.get_dict().keys()
-if "c_user" in log_cookies:
-    print('\033[1;92m OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK OK ')
-elif 'checkpoint' in log_cookies:
-    print('\033[1;92m CP CP  CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP CP')
+if 'checkpoint' in response.text:
+    print("❌ Security checkpoint triggered - account needs verification")
+elif 'wrong_password' in response.text:
+    print("❌ Incorrect password or invalid token")
+elif 'login_attempt' in response.text and 'blocked' in response.text:
+    print("❌ Login attempt blocked - too many failed attempts")
+elif 'home.php' in response.url or 'messenger.com' in response.url:
+    print("✅ Login appears successful")
+    print(f"Session cookies: {session.cookies.get_dict()}")
