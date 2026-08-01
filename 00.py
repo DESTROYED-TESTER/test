@@ -14,72 +14,57 @@ import base64
 import string
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
-uid = "9907854044"
-pw = "990785"
+uid = "61592289197166"
+pw = "sumon@12M"
+END = "[FBAN/FB4A;F"+"BAV/"+"106"+".0.0.26.68;FBBV/"+"106;F"+"BDM/{"+"density="+"3.0,wid"+"th=750"+",height=1334};FBLC/it_"+"IT;FBRV/106."+"0.0.26.6"+"8;FBCR/Etisalat"+"Afg"+"hanistan;FBMF/Infi"+"nix_"+"Note_8i;FBBD/Infi"+"nix_Note_8i;FBPN/c"+"om.facebook.katana"+";FBDV/I"+"nfinix_Note_8i_10_0;FBSV/10.0;FBOP/1;FBCA/"+"x86:armeabi-v7a;]"
 Session = requests.Session()
-#head = {"authority":"m.prod.facebook.com","accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7","accept-language":"en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7","cache-control":"max-age=0","dpr":"3","sec-ch-prefers-color-scheme":"light","sec-fetch-dest":"document","sec-fetch-mode":"navigate","sec-fetch-site":"none","sec-fetch-user":"?1","upgrade-insecure-requests":"1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0","viewport-width":"980"}
-#requu12 = Session.get('https://www.facebook.com/',headers=head)
-#free_fb = Session.get('https://touch.facebook.com/')
-free_fb = Session.get('https://touch.facebook.com/').text
-cookies = {
-    'datr': 'WXltatd2ENUjZUyfA3yVvrhw',
-    'sb': 'gXltaqNiraYlzznawgFOc3Qf',
-    'locale': 'bn_IN',
-    'wd': '1143x773',
-}
-
-headers = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'accept-language': 'en-US,en;q=0.9,bn;q=0.8',
-    'cache-control': 'max-age=0',
-    'content-type': 'application/x-www-form-urlencoded',
-    'dpr': '1',
-    'origin': 'https://www.messenger.com',
-    'priority': 'u=0, i',
-    'referer': 'https://www.messenger.com/login/',
-    'sec-ch-prefers-color-scheme': 'dark',
-    'sec-ch-ua': '"Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"',
-    'sec-ch-ua-full-version-list': '"Not:A-Brand";v="99.0.0.0", "Google Chrome";v="145.0.7632.5", "Chromium";v="145.0.7632.5"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-model': '""',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-ch-ua-platform-version': '"10.0.0"',
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'same-origin',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
-    'viewport-width': '1143',
-    # 'cookie': 'datr=WXltatd2ENUjZUyfA3yVvrhw; sb=gXltaqNiraYlzznawgFOc3Qf; locale=bn_IN; wd=1143x773',
-}
-
+Session.headers.update({
+                'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+                'x-fb-sim-hni': '51009',
+                'x-fb-net-hni': '51009',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'x-graphql-client-library': 'graphservice',
+                'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+                'x-tigon-is-retry': 'False',
+                'x-fb-privacy-context': '3643298472347298',
+                'x-graphql-request-purpose': 'fetch',
+                'x-fb-device-group': '5530',
+                'User-Agent': END,
+                'x-fb-connection-type': 'WIFI',
+                'x-fb-rmd': 'fail=Server:NoUrlMap,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=56;recvTime=13823808',
+                'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
+                'x-fb-http-engine': 'Tigon/Liger',
+                'x-fb-client-ip': 'True',
+                'x-fb-server-cluster': 'True',
+                })
+apcb = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
 data = {
-    'jazoest': re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),
-    'lsd': re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),
-    'initial_request_id': 'A10tPfatOkwvT0WG7gWVNnY',
-    'timezone': '-330',
-    'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjozMn0=',
-    'lgnrnd': '214622_uurZ',
-    'lgnjs': 'n',
-    'email': '61592289197166',
-    'pass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], 'sumon@2M'),
-    'default_persistent': '',
-}
-
-response = Session.post('https://www.messenger.com/login/password/', cookies=cookies, headers=headers, data=data)
-
-#print(response.text)
+                'method': 'post',
+                'pretty': False,
+                'format': 'json',
+                'server_timestamps': True,
+                'locale': 'ja_JP',
+                'purpose': 'fetch',
+                'fb_api_req_friendly_name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+                'fb_api_caller_class': 'graphservice',
+                'client_doc_id': '11994080425603935587861051615',
+                'variables': json.dumps({"params":{"params":"{\"params\":\"{\\\"client_input_params\\\":{\\\"device_id\\\":\\\"db00d712-bd44-4358-bcf2-2fe14e2885d2\\\",\\\"lois_settings\\\":{\\\"lois_token\\\":\\\"\\\",\\\"lara_override\\\":\\\"\\\"},\\\"name\\\":null,\\\"machine_id\\\":\\\"FXQ7Z_eNU42Pnt5I_CpRlzIh\\\",\\\"profile_pic_url\\\":null,\\\"contact_point\\\":\\\""+uid+"\\\",\\\"encrypted_password\\\":\\\""+apcb+"\\\"},\\\"server_params\\\":{\\\"is_from_logged_out\\\":1,\\\"layered_homepage_experiment_group\\\":null,\\\"device_id\\\":\\\"db00d712-bd44-4358-bcf2-2fe14e2885d2\\\",\\\"waterfall_id\\\":\\\"278dd0ac-58b3-46e4-aa8e-ea55021589a6\\\",\\\"INTERNAL__latency_qpl_instance_id\\\":2.9809277900605E13,\\\"login_source\\\":\\\"Login\\\",\\\"is_platform_login\\\":0,\\\"INTERNAL__latency_qpl_marker_id\\\":36707139,\\\"family_device_id\\\":\\\"db00d712-bd44-4358-bcf2-2fe14e2885d2\\\",\\\"offline_experiment_group\\\":\\\"caa_iteration_v6_perf_fb_2\\\",\\\"INTERNAL_INFRA_THEME\\\":\\\"default,default\\\",\\\"access_flow_version\\\":\\\"F2_FLOW\\\",\\\"is_from_logged_in_switcher\\\":0}}\"}","bloks_versioning_id":"3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5","app_id":"com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request"},"scale":"2","nt_context":{"using_white_navbar":True,"styles_id":"cfe75e13b386d5c54b1de2dcca1bee5a","pixel_ratio":2,"is_push_on":False,"debug_tooling_metadata_token":None,"is_flipper_enabled":False,"theme_params":[],"bloks_version":"3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5"}}),
+                'fb_api_analytics_tags': '["GraphServices"]',
+                'client_trace_id': 'c4663a0f-a919-4454-bf17-3d542589eafe'}
+encode = urllib.parse.urlencode(data, doseq=True)
+twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+response = Session.post('https://graph.facebook.com/graphql', data=encode)
 #print(response)
 #print(response.status_code)
-print(f"Status Code: {response.status_code}")
-print(f"Response URL: {response.url}")# Check login success
-if 'checkpoint' in response.text:
-    print("❌ Security checkpoint triggered - account needs verification")
-elif 'wrong_password' in response.text:
-    print("❌ Incorrect password or invalid token")
-elif 'login_attempt' in response.text and 'blocked' in response.text:
-    print("❌ Login attempt blocked - too many failed attempts")
-elif 'home.php' in response.url or 'messenger.com' in response.url:
-    print("✅ Login appears successful")
-    print(f"Session cookies: {session.cookies.get_dict()}")
+#print(f"Status Code: {response.status_code}")
+#print(f"Response URL: {response.url}")# Check login success
+if "session_key" in response.text and "uid" in response.text and "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
+    cokie = {
+                    "datr": re.search('"name":"datr","value":"(.*?)"', response.text.replace('\\', '')).group(1),
+					"sb": base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-"),
+					"fr": re.search('"name":"fr","value":"(.*?)"', response.text.replace('\\', '')).group(1),
+					"c_user": re.search('"name":"c_user","value":"(\d+)"', response.text.replace('\\', '')).group(1),
+					"xs": re.search('"name":"xs","value":"(.*?)"', response.text.replace('\\', '')).group(1),
+                }
+    cookie = ';'.join(f'{key}={value}' for key, value in cokie.items())
+    print(f" {green}(ATOM-OK) {uid}|{pw}|{cookie} ")
