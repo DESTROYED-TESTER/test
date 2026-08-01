@@ -14,8 +14,8 @@ import base64
 import string
 import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
-uid = "61592289197166"
-pw = "sumon@12M"
+uid = "61592834126178"
+pw = "@123456As"
 END = "[FBAN/FB4A;F"+"BAV/"+"106"+".0.0.26.68;FBBV/"+"106;F"+"BDM/{"+"density="+"3.0,wid"+"th=750"+",height=1334};FBLC/it_"+"IT;FBRV/106."+"0.0.26.6"+"8;FBCR/Etisalat"+"Afg"+"hanistan;FBMF/Infi"+"nix_"+"Note_8i;FBBD/Infi"+"nix_Note_8i;FBPN/c"+"om.facebook.katana"+";FBDV/I"+"nfinix_Note_8i_10_0;FBSV/10.0;FBOP/1;FBCA/"+"x86:armeabi-v7a;]"
 Session = requests.Session()
 Session.headers.update({
