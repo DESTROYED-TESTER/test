@@ -62,8 +62,8 @@ data = {
     'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjozMn0=',
     'lgnrnd': '214622_uurZ',
     'lgnjs': 'n',
-    'email': '9749797453',
-    'pass': '#PWD_BROWSER:5:1785559664:AZ5QAOWfT8EO2FqaVqWoHd8xdImXBZXJ4mbWDqdkbNxndqh1Zhdc2gNQ35LlRHRtpLRQ66HmREl8z9XkhNXm5vumHq7GgpetBsvVZhPwzD4N1sFDJtsq62iZ9xbKwl/MYQMt/EMOOSaRq/bA',
+    'email': '9641097628',
+    'pass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], '96410976'),
     'default_persistent': '',
 }
 
