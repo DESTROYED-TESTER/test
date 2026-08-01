@@ -257,13 +257,6 @@ cyan = "\033[1;36m"
 white = "\033[1;37m"
 N = '\x1b[1;37m'
 cookie_show = []
-#-------------------------(PROXY)----------------------------#
-try:
-  proxylist= requests.get('https://api.proxyscrape.com/v4/free-proxy-list/get?request=display_proxies&proxy_format=protocolipport&format=text&timeout=420').text
-  open('socksku.txt','w').write(proxylist)
-except Exception as e:
-  print(' server error')
-xvx=open('socksku.txt','r').read().splitlines()
 #_____________________[SIM NAME CODE]____________________________#
 try:
     output = subprocess.check_output('getprop gsm.operator.alpha', shell=True).decode('utf-8')
