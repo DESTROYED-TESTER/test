@@ -1463,7 +1463,7 @@ def x(uid,pwx,tl):
                 'X-Fb-Request-Analytics-Tags': '{"network_tags":{"product":"350685531728","request_category":"graphql","purpose":"fetch","retry_attempt":"0"},"application_tags":"graphservice"}',
                 'Priority': 'u=0',
                 'X-Zero-Eh': '664c0faaac849cb891d0a261fbb72a12',
-                'User-Agent': x1(),
+                'User-Agent': '[FBAN/FB4A;FBAV/555.0.0.49.59;FBBV/926293029;FBDM/{density=2.0,width=900,height=1600};FBLC/id_ID;FBRV/0;FBCR/PSN;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G960N;FBSV/9;FBOP/1;FBCA/x86_64:arm64-v8a;]',
                 'X-Fb-Friendly-Name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request',
                 'X-Zero-F-Device-Id': zero_f_device_id_val,
                 'X-Graphql-Request-Purpose': 'fetch',
