@@ -1278,7 +1278,7 @@ class FacebookAuth:
         # 1. Ambil Public Key dari Facebook jika tidak disediakan
         if not public_key:
             try:
-                url = 'https://facebook.com'
+                url = 'https://b-graph.facebook.com/pwd_key_fetch'
                 params = {
                     'version': '2',
                     'flow': 'CONTROLLER_INITIALIZATION',
