@@ -1341,6 +1341,22 @@ def generate_usdid():
     sig = base64.b64encode(os.urandom(48)).decode().replace('=','').replace('+','_').replace('/','_')
     return f'{uid_part}.{ts_part}.{sig}'
 
+def anjay():
+    rr = random.randint
+    rc = random.choice
+    facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
+    fbrv = str(random.randint(0, 999999999))
+    density = random.choice(['2.0', '2.5', '3.0'])
+    width = random.choice(["720", "1080", "1280", "1440"])
+    height = random.choice(["720", "1080", "1280", "1440", "1920"])
+    fbbv = str(random.randint(332275123, 932275123))
+    kartu = random.choice(["Axieta","Telkomsel","HotRod","MTN-CG"])
+    vivo = random.choice(["V2022","V2023","V2028","V2024","V2025","V2026","V2029","V2030","V2031"])
+    xiaomi = random.choice(["23116PN5BC","22111317I","24053PY09I","2406ERN9CI","24048RN6CG","M2101K7BI","24115RA8EC","23028RNCAG","2312CRNCCL","23054RA19C","XIAOMI Redmi Note 9 Pro","Xiaomi Redmi Note 13","2207122MC"])
+    ua1 = f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/{kartu};FBMF/Xiaomi;FBBD/Xiaomi;FBPN/com.facebook.katana;FBDV/{xiaomi};FBSV/11.0;FBOP/1;FBCA/arm64-v8a:]"
+    ua2 = f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/{kartu};FBMF/Vivo;FBBD/Vivo;FBPN/com.facebook.katana;FBDV/{vivo};FBSV/11.0;FBOP/1;FBCA/arm64-v8a:]"
+    return random.choice([ua1,ua2])
+
 def x1():
     END = "[FBAN/FB4A;F"+"BAV/"+"106"+".0.0.26.68;FBBV/"+"106;F"+"BDM/{"+"density="+"3.0,wid"+"th=750"+",height=1334};FBLC/it_"+"IT;FBRV/106."+"0.0.26.6"+"8;FBCR/Etisalat"+"Afg"+"hanistan;FBMF/Infi"+"nix_"+"Note_8i;FBBD/Infi"+"nix_Note_8i;FBPN/c"+"om.facebook.katana"+";FBDV/I"+"nfinix_Note_8i_10_0;FBSV/10.0;FBOP/1;FBCA/"+"x86:armeabi-v7a;]"
     ua = "[FBAN/FB4A;FBAV/"+str(random.randint(111,555))+'.0.0.'+str(random.randrange(9,49))+str(random.randint(11,77))+";FBBV/"+str(random.randint(1111111,7777777))+";"+END
@@ -1532,7 +1548,7 @@ def x(uid,pwx,tl):
                 'X-Fb-Request-Analytics-Tags': '{"network_tags":{"product":"350685531728","request_category":"graphql","purpose":"fetch","retry_attempt":"0"},"application_tags":"graphservice"}',
                 'Priority': 'u=0',
                 'X-Zero-Eh': '664c0faaac849cb891d0a261fbb72a12',
-                'User-Agent': '[FBAN/FB4A;FBAV/555.0.0.49.59;FBBV/926293029;FBDM/{density=2.0,width=900,height=1600};FBLC/id_ID;FBRV/0;FBCR/PSN;FBMF/samsung;FBBD/samsung;FBPN/com.facebook.katana;FBDV/SM-G960N;FBSV/9;FBOP/1;FBCA/x86_64:arm64-v8a;]',
+                'User-Agent': anjay(),
                 'X-Fb-Friendly-Name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request',
                 'X-Zero-F-Device-Id': zero_f_device_id_val,
                 'X-Graphql-Request-Purpose': 'fetch',
