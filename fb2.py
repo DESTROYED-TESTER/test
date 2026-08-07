@@ -1398,7 +1398,7 @@ def mbasic(uid,pwx,tl):
                 'x-fb-server-cluster': 'True',
                 })
             apcb1 = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
-			apcb = self.enc.PWD_FB4A(pw)
+            apcb = self.enc.PWD_FB4A(pw)
             data = {
                 'method': 'post',
                 'pretty': False,
