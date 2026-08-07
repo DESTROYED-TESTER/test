@@ -1302,11 +1302,7 @@ def graph(uid, name, pwx, tl):
         pass     
 
 # ==================== ENKRIPSI PASSWORD (TETAP ADA, TAPI TIDAK DIPANGGIL DI SMARTLOCK) ====================
-class Encrypt_PWD:
-    def __init__(self):
-        pass
-
-    def PWD_FB4A(self, password, public_key=None, key_id="25"):
+def PWD_FB4A(self, password, public_key=None, key_id="25"):
         if public_key is None:
             try:
                 pwd_key_fetch = 'https://b-graph.facebook.com/pwd_key_fetch'
@@ -1344,10 +1340,6 @@ class Encrypt_PWD:
             return f"#PWD_FB4A:2:{current_time}:{encoded}"
         except Exception:
             return f"#PWD_FB4A:0:0:"
-# ==================== CLASS Facebook ====================
-class Facebook:
-    def __init__(self):
-        self.enc = Encrypt_PWD()  #
 
 def generate_machine_id():
     chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-'
@@ -1398,7 +1390,7 @@ def mbasic(uid,pwx,tl):
                 'x-fb-server-cluster': 'True',
                 })
             apcb1 = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
-            apcb = self.enc.PWD_FB4A(pw)
+            apcb = PWD_FB4A(pw)
             data = {
                 'method': 'post',
                 'pretty': False,
@@ -1413,8 +1405,8 @@ def mbasic(uid,pwx,tl):
                 'fb_api_analytics_tags': '["GraphServices"]',
                 'client_trace_id': 'c4663a0f-a919-4454-bf17-3d542589eafe'}
             encode = urllib.parse.urlencode(data, doseq=True)
-            print(encode)
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
+            print(encode)
             response = Session.post('https://graph.facebook.com/graphql', data=encode)
             if "session_key" in response.text and "uid" in response.text and "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
