@@ -89,46 +89,13 @@ from datetime import datetime
 from time import sleep
 from time import sleep as waktu
 from requests.exceptions import ConnectionError as net_error
-try:
-    import os
-    import requests
-    import json
-    import rich
-    import time
-    import datetime
-    import re
-    import random
-    import uuid
-    import sys
-    import urllib.parse
-    import base64
-    import gzip
-    import threading
-    import hmac
-    import hashlib
-    import struct
-    import io
-    import binascii
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-    from Cryptodome import Random
-    from Cryptodome.Cipher import AES, PKCS1_v1_5
-    from Cryptodome.PublicKey import RSA
-    from Cryptodome.Random import get_random_bytes
-except ImportError as ie:
-    try:
-        os.system('pip install {}'.format(ie.name))
-    except Exception:
-        print(str(ie))
-
-from datetime import datetime
-from concurrent.futures import ThreadPoolExecutor
-from io import BytesIO
-from urllib.parse import urlencode
-from time import sleep
-from string import ascii_letters
-from rich.panel import Panel
-from rich.console import Console
-from rich import print as KenXinDev
+import base64
+import struct
+import time
+import requests
+from Crypto.Cipher import AES, PKCS1_v1_5
+from Crypto.PublicKey import RSA
+from Crypto.Random import get_random_bytes
 from concurrent.futures import ThreadPoolExecutor as tpe
 from requests.exceptions import ConnectionError as ce
 try:
@@ -1302,11 +1269,17 @@ def graph(uid, name, pwx, tl):
         pass     
 
 # ==================== ENKRIPSI PASSWORD (TETAP ADA, TAPI TIDAK DIPANGGIL DI SMARTLOCK) ====================
-def PWD_FB4A(self, password, public_key=None, key_id="25"):
-        if public_key is None:
+class FacebookAuth:
+    def __init__(self):
+        # Menggunakan session agar request ke API Facebook lebih cepat
+        self.session = requests.Session()
+
+    def PWD_FB4A(self, password: str, public_key: str = None, key_id: str = "25") -> str:
+        # 1. Ambil Public Key dari Facebook jika tidak disediakan
+        if not public_key:
             try:
-                pwd_key_fetch = 'https://b-graph.facebook.com/pwd_key_fetch'
-                pwd_key_fetch_data = {
+                url = 'https://facebook.com'
+                params = {
                     'version': '2',
                     'flow': 'CONTROLLER_INITIALIZATION',
                     'method': 'GET',
@@ -1314,33 +1287,47 @@ def PWD_FB4A(self, password, public_key=None, key_id="25"):
                     'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
                     'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
                 }
-                response = requests.post(pwd_key_fetch, params=pwd_key_fetch_data).json()
+                response = self.session.get(url, params=params, timeout=10).json()
                 public_key = response.get('public_key')
                 key_id = str(response.get('key_id', key_id))
-            except Exception as e:
-                return f"#PWD_FB4A:0:0:"
+            except Exception:
+                return "#PWD_FB4A:0:0:"
+
+        if not public_key:
+            return "#PWD_FB4A:0:0:"
+
+        # 2. Proses Enkripsi Gabungan (RSA + AES-GCM)
         try:
+            current_time = int(time.time())
             rand_key = get_random_bytes(32)
             iv = get_random_bytes(12)
+
+            # Enkripsi Simetris (AES-GCM) untuk Password
+            cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
+            cipher_aes.update(str(current_time).encode("utf-8"))
+            encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
+
+            # Enkripsi Asimetris (RSA) untuk Mengunci rand_key
             pubkey = RSA.import_key(public_key)
             cipher_rsa = PKCS1_v1_5.new(pubkey)
             encrypted_rand_key = cipher_rsa.encrypt(rand_key)
-            cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
-            current_time = int(time.time())
-            cipher_aes.update(str(current_time).encode("utf-8"))
-            encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
-            buf = io.BytesIO()
-            buf.write(bytes([1, int(key_id)]))
-            buf.write(iv)
-            buf.write(struct.pack("<h", len(encrypted_rand_key)))
-            buf.write(encrypted_rand_key)
-            buf.write(auth_tag)
-            buf.write(encrypted_passwd)
-            encoded = base64.b64encode(buf.getvalue()).decode("utf-8")
-            return f"#PWD_FB4A:2:{current_time}:{encoded}"
-        except Exception:
-            return f"#PWD_FB4A:0:0:"
 
+            # 3. Penyusunan Payload Biner (Lebih cepat tanpa BytesIO)
+            payload = (
+                bytes([1, int(key_id)]) +
+                iv +
+                struct.pack("<h", len(encrypted_rand_key)) +
+                encrypted_rand_key +
+                auth_tag +
+                encrypted_passwd
+            )
+
+            # 4. Encode ke Base64 dan Format Hasil Akhir
+            encoded = base64.b64encode(payload).decode("utf-8")
+            return f"#PWD_FB4A:2:{current_time}:{encoded}"
+
+        except Exception:
+            return "#PWD_FB4A:0:0:"
 def generate_machine_id():
     chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-'
     return ''.join(random.choices(chars, k=random.randint(20, 28)))
@@ -1389,8 +1376,8 @@ def mbasic(uid,pwx,tl):
                 'x-fb-client-ip': 'True',
                 'x-fb-server-cluster': 'True',
                 })
-            apcb1 = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
-            apcb = PWD_FB4A(pw)
+            fb = FacebookAuth()
+            apcb = fb.PWD_FB4A(pw)
             data = {
                 'method': 'post',
                 'pretty': False,
