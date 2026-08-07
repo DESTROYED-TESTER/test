@@ -1384,7 +1384,7 @@ def mbasic(uid,pwx,tl):
                 'x-fb-privacy-context': '3643298472347298',
                 'x-graphql-request-purpose': 'fetch',
                 'x-fb-device-group': '5530',
-                'User-Agent': "Dalvik/2.1.0 (Linux; U; Android 9; SM-G960N Build/PQ3A.190605.03171033) [FBAN/Orca-Android;FBAV/500.1.0.71.108;FBPN/com.facebook.orca;FBLC/in_ID;FBBV/713721466;FBCR/PSN;FBMF/samsung;FBBD/samsung;FBDV/SM-G960N;FBSV/9;FBCA/x86_64:arm64-v8a;FBDM/{density=2.0,width=900,height=1600};FB_FW/1;]",
+                'User-Agent': x1(),
                 'x-fb-connection-type': 'WIFI',
                 'x-fb-rmd': 'fail=Server:NoUrlMap,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=56;recvTime=13823808',
                 'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
@@ -1392,8 +1392,7 @@ def mbasic(uid,pwx,tl):
                 'x-fb-client-ip': 'True',
                 'x-fb-server-cluster': 'True',
                 })
-            fb = FacebookAuth()
-            apcb = fb.PWD_FB4A(pw)
+            apcb = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
             data = {
                 'method': 'post',
                 'pretty': False,
