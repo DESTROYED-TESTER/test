@@ -1672,7 +1672,7 @@ def x(uid,pwx,tl):
             'x-fb-device-group': '7637',
             'x-fb-integrity-machine-id': 'ujvAaf4BjiKVSe-fT2dB2Q1v',
             'x-zero-eh': '664c0faaac849cb891d0a261fbb72a12',
-            'user-agent': generate_random_fb4a_agent(),
+            'user-agent': '[FBAN/FB4A;FBAV/565.0.0.49.74;FBBV/992346742;FBDM/{density=2.4,width=1080,height=2149};FBLC/id_ID;FBRV/0;FBCR/XL;FBMF/Xiaomi;FBBD/POCO;FBPN/com.facebook.katana;FBDV/M2010J19CG;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]',
             'x-graphql-request-purpose': 'fetch',
             'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
             'x-zero-f-device-id': '6fb84474-8dec-4d1c-a5fe-70fe4c2decea',
