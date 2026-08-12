@@ -17,6 +17,10 @@ import base64
 from datetime import datetime, timezone, timedelta
 import hashlib
 import itertools
+import urllib3
+
+# Disable SSL warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # For Termux - request storage permission
 if platform.system() == 'Linux' and 'android' in platform.platform().lower():
@@ -277,88 +281,127 @@ def get_mobile_device_id():
     return hashed_id[:32]
 
 def parse_proxy(proxy_str):
-    if '://' not in proxy_str:
-        parts = proxy_str.split(':')
-        if len(parts) == 4:
-            ip, port, user, pwd = parts
-            proxy_url = f"http://{user}:{pwd}@{ip}:{port}"
-        elif len(parts) == 2:
-            ip, port = parts
-            proxy_url = f"http://{ip}:{port}"
-        else:
-            return None
-    else:
-        proxy_url = proxy_str
+    """
+    Enhanced proxy parser that handles various formats including:
+    - ip:port:user:pass
+    - http://user:pass@ip:port
+    - ip:port
+    - domain:port:user:pass (with special chars)
+    """
+    proxy_str = proxy_str.strip()
     
-    return {'http': proxy_url, 'https': proxy_url}
+    # If already has protocol, just return it
+    if '://' in proxy_str:
+        return {'http': proxy_str, 'https': proxy_str}
+    
+    # Try to split by colon
+    parts = proxy_str.split(':')
+    
+    # Format: ip:port:user:pass (4 parts) or domain:port:user:pass
+    if len(parts) >= 4:
+        # First part is host (IP or domain)
+        host = parts[0]
+        # Second part is port
+        port = parts[1]
+        # Everything after is username:password (they might contain colons)
+        user_pass = ':'.join(parts[2:])
+        
+        # Try to split username and password at the last colon
+        if ':' in user_pass:
+            # Split at first colon to get username and password
+            user, pwd = user_pass.split(':', 1)
+            # URL encode special characters
+            user_encoded = requests.utils.quote(user, safe='')
+            pwd_encoded = requests.utils.quote(pwd, safe='')
+            proxy_url = f"http://{user_encoded}:{pwd_encoded}@{host}:{port}"
+            return {'http': proxy_url, 'https': proxy_url}
+    
+    # Format: ip:port (2 parts)
+    elif len(parts) == 2:
+        host, port = parts
+        proxy_url = f"http://{host}:{port}"
+        return {'http': proxy_url, 'https': proxy_url}
+    
+    return None
 
 def test_proxy(proxies, server_domain):
-    try:
-        r = requests.get(f"https://{server_domain}", proxies=proxies, timeout=10)
-        return r.status_code == 200
-    except:
+    """
+    Enhanced proxy testing with better error handling and DNS resolution
+    """
+    if not proxies:
         return False
-
-COUNTRY_TO_LOCALE = {
-    'AD': 'ca_ES', 'AE': 'ar_AR', 'AF': 'fa_IR', 'AG': 'en_US', 'AI': 'en_US', 'AL': 'sq_AL',
-    'AM': 'hy_AM', 'AO': 'pt_PT', 'AQ': 'en_US', 'AR': 'es_LA', 'AS': 'en_US', 'AT': 'de_DE',
-    'AU': 'en_GB', 'AW': 'nl_NL', 'AX': 'sv_SE', 'AZ': 'az_AZ', 'BA': 'bs_BA', 'BB': 'en_US',
-    'BD': 'bn_IN', 'BE': 'nl_BE', 'BF': 'fr_FR', 'BG': 'bg_BG', 'BH': 'ar_AR', 'BI': 'fr_FR',
-    'BJ': 'fr_FR', 'BL': 'fr_FR', 'BM': 'en_US', 'BN': 'ms_MY', 'BO': 'es_LA', 'BQ': 'nl_NL',
-    'BR': 'pt_BR', 'BS': 'en_US', 'BT': 'dz_BT', 'BV': 'en_GB', 'BW': 'en_GB', 'BY': 'ru_RU',
-    'BZ': 'en_US', 'CA': 'en_US', 'CC': 'en_GB', 'CD': 'fr_FR', 'CF': 'fr_FR', 'CG': 'fr_FR',
-    'CH': 'de_DE', 'CI': 'fr_FR', 'CK': 'en_US', 'CL': 'es_LA', 'CM': 'fr_FR', 'CN': 'zh_CN',
-    'CO': 'es_LA', 'CR': 'es_LA', 'CU': 'es_LA', 'CV': 'pt_PT', 'CW': 'nl_NL', 'CX': 'en_GB',
-    'CY': 'el_GR', 'CZ': 'cs_CZ', 'DE': 'de_DE', 'DJ': 'fr_FR', 'DK': 'da_DK', 'DM': 'en_US',
-    'DO': 'es_LA', 'DZ': 'ar_AR', 'EC': 'es_LA', 'EE': 'et_EE', 'EG': 'ar_AR', 'EH': 'ar_AR',
-    'ER': 'ti_ET', 'ES': 'es_ES', 'ET': 'am_ET', 'FI': 'fi_FI', 'FJ': 'en_US', 'FK': 'en_GB',
-    'FM': 'en_US', 'FO': 'da_DK', 'FR': 'fr_FR', 'GA': 'fr_FR', 'GB': 'en_GB', 'GD': 'en_US',
-    'GE': 'ka_GE', 'GF': 'fr_FR', 'GG': 'en_GB', 'GH': 'en_GB', 'GI': 'en_GB', 'GL': 'da_DK',
-    'GM': 'en_GB', 'GN': 'fr_FR', 'GP': 'fr_FR', 'GQ': 'es_ES', 'GR': 'el_GR', 'GS': 'en_GB',
-    'GT': 'es_LA', 'GU': 'en_US', 'GW': 'pt_PT', 'GY': 'en_US', 'HK': 'zh_HK', 'HM': 'en_US',
-    'HN': 'es_LA', 'HR': 'hr_HR', 'HT': 'fr_FR', 'HU': 'hu_HU', 'ID': 'id_ID', 'IE': 'en_GB',
-    'IL': 'he_IL', 'IM': 'en_GB', 'IN': 'hi_IN', 'IO': 'en_GB', 'IQ': 'ar_AR', 'IR': 'fa_IR',
-    'IS': 'is_IS', 'IT': 'it_IT', 'JE': 'en_GB', 'JM': 'en_US', 'JO': 'ar_AR', 'JP': 'ja_JP',
-    'KE': 'en_GB', 'KG': 'ru_RU', 'KH': 'km_KH', 'KI': 'en_US', 'KM': 'fr_FR', 'KN': 'en_US',
-    'KP': 'ko_KR', 'KR': 'ko_KR', 'KW': 'ar_AR', 'KY': 'en_US', 'KZ': 'ru_RU', 'LA': 'lo_LA',
-    'LB': 'ar_AR', 'LC': 'en_US', 'LI': 'de_DE', 'LK': 'si_LK', 'LR': 'en_US', 'LS': 'en_GB',
-    'LT': 'lt_LT', 'LU': 'fr_FR', 'LV': 'lv_LV', 'LY': 'ar_AR', 'MA': 'ar_AR', 'MC': 'fr_FR',
-    'MD': 'ro_RO', 'ME': 'sr_RS', 'MF': 'fr_FR', 'MG': 'fr_FR', 'MH': 'en_US', 'MK': 'mk_MK',
-    'ML': 'fr_FR', 'MM': 'my_MM', 'MN': 'mn_MN', 'MO': 'zh_TW', 'MP': 'en_US', 'MQ': 'fr_FR',
-    'MR': 'ar_AR', 'MS': 'en_US', 'MT': 'en_GB', 'MU': 'en_GB', 'MV': 'dv_MV', 'MW': 'en_GB',
-    'MX': 'es_MX', 'MY': 'ms_MY', 'MZ': 'pt_PT', 'NA': 'en_GB', 'NC': 'fr_FR', 'NE': 'fr_FR',
-    'NF': 'en_GB', 'NG': 'en_GB', 'NI': 'es_LA', 'NL': 'nl_NL', 'NO': 'nb_NO', 'NP': 'ne_NP',
-    'NR': 'en_US', 'NU': 'en_US', 'NZ': 'en_GB', 'OM': 'ar_AR', 'PA': 'es_LA', 'PE': 'es_LA',
-    'PF': 'fr_FR', 'PG': 'en_US', 'PH': 'tl_PH', 'PK': 'ur_PK', 'PL': 'pl_PL', 'PM': 'fr_FR',
-    'PN': 'en_GB', 'PR': 'es_LA', 'PS': 'ar_AR', 'PT': 'pt_PT', 'PW': 'en_US', 'PY': 'es_LA',
-    'QA': 'ar_AR', 'RE': 'fr_FR', 'RO': 'ro_RO', 'RS': 'sr_RS', 'RU': 'ru_RU', 'RW': 'fr_FR',
-    'SA': 'ar_AR', 'SB': 'en_US', 'SC': 'fr_FR', 'SD': 'ar_AR', 'SE': 'sv_SE', 'SG': 'en_GB',
-    'SH': 'en_GB', 'SI': 'sl_SI', 'SJ': 'nb_NO', 'SK': 'sk_SK', 'SL': 'en_GB', 'SM': 'it_IT',
-    'SN': 'fr_FR', 'SO': 'so_SO', 'SR': 'nl_NL', 'SS': 'en_GB', 'ST': 'pt_PT', 'SV': 'es_LA',
-    'SX': 'nl_NL', 'SY': 'ar_AR', 'SZ': 'en_GB', 'TC': 'en_US', 'TD': 'fr_FR', 'TF': 'fr_FR',
-    'TG': 'fr_FR', 'TH': 'th_TH', 'TJ': 'tg_TJ', 'TK': 'en_US', 'TL': 'pt_PT', 'TM': 'ru_RU',
-    'TN': 'ar_AR', 'TO': 'en_US', 'TR': 'tr_TR', 'TT': 'en_US', 'TV': 'en_US', 'TW': 'zh_TW',
-    'TZ': 'sw_KE', 'UA': 'uk_UA', 'UG': 'en_GB', 'UM': 'en_US', 'US': 'en_US', 'UY': 'es_LA',
-    'UZ': 'uz_UZ', 'VA': 'it_IT', 'VC': 'en_US', 'VE': 'es_LA', 'VG': 'en_GB', 'VI': 'en_US',
-    'VN': 'vi_VN', 'VU': 'en_US', 'WF': 'fr_FR', 'WS': 'en_US', 'YE': 'ar_AR', 'YT': 'fr_FR',
-    'ZA': 'en_GB', 'ZM': 'en_GB', 'ZW': 'en_GB'
-}
-
-def get_locale_code(country_code):
-    return COUNTRY_TO_LOCALE.get(country_code.upper(), 'en_US')
+    
+    # Try multiple test endpoints
+    test_urls = [
+        f"https://{server_domain}",
+        "https://www.google.com",
+        "https://httpbin.org/ip"
+    ]
+    
+    for test_url in test_urls:
+        try:
+            r = requests.get(
+                test_url,
+                proxies=proxies,
+                timeout=15,
+                headers={
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                },
+                verify=False,
+                allow_redirects=True
+            )
+            # Accept various status codes
+            if r.status_code in [200, 301, 302, 307, 308]:
+                return True
+        except requests.exceptions.ProxyError:
+            continue
+        except requests.exceptions.ConnectionError:
+            continue
+        except requests.exceptions.Timeout:
+            continue
+        except requests.exceptions.SSLError:
+            continue
+        except Exception:
+            continue
+    
+    return False
 
 def get_ip_info(proxies=None):
-    try:
-        r = requests.get("http://ip-api.com/json/", proxies=proxies, timeout=10)
-        if r.status_code == 200:
-            data = r.json()
-            return {
-                'country': data.get('country', 'Unknown'),
-                'countryCode': data.get('countryCode', 'US'),
-                'timezone': data.get('timezone', 'Unknown')
-            }
-    except:
-        pass
+    """Get IP info with better error handling and multiple APIs"""
+    apis = [
+        "http://ip-api.com/json/",
+        "https://ipapi.co/json/",
+        "https://ipinfo.io/json"
+    ]
+    
+    for api in apis:
+        try:
+            r = requests.get(api, proxies=proxies, timeout=10, verify=False)
+            if r.status_code == 200:
+                data = r.json()
+                
+                # Handle different API formats
+                if 'country' in data:
+                    return {
+                        'country': data.get('country', 'Unknown'),
+                        'countryCode': data.get('countryCode', 'US'),
+                        'timezone': data.get('timezone', 'Unknown')
+                    }
+                elif 'country_name' in data:
+                    return {
+                        'country': data.get('country_name', 'Unknown'),
+                        'countryCode': data.get('country', 'US'),
+                        'timezone': 'Unknown'
+                    }
+                elif 'country' in data and 'region' in data:
+                    return {
+                        'country': data.get('country', 'Unknown'),
+                        'countryCode': data.get('country', 'US'),
+                        'timezone': 'Unknown'
+                    }
+        except:
+            continue
+    
     return {'country': 'Unknown', 'countryCode': 'US', 'timezone': 'Unknown'}
 
 def load_settings():
@@ -451,7 +494,7 @@ def clear_logo():
     else:
         os.system('clear')
         
-    print(''.join([GREEN, "\n      .d8888.  db    db  d8888b. \n      88'  YP  `8b  d8'  88  `8D \n      `8bo.     `8bd8'   88oobY' \n        `Y8b.   .dPYb.   88`8b   \n      db   8D  .8P  Y8.  88 `88. \n      `8888Y'  YP    YP  88   YD   ", ORANGE, 'V-3.6-MOBILE\n', LINE, '\n ', GREEN, '[', RED, '●', GREEN, '] TOOL OWNER   ', CYAN, ':', GREEN, ' @yeasin_hossain018\n ', GREEN, '[', RED, '●', GREEN, '] TOOL         ', CYAN, ':', GREEN, ' FORGET FB\n ', GREEN, '[', RED, '●', GREEN, '] TOOL STATUS  ', CYAN, ':', GREEN, ' FREE\n', LINE]))
+    print(''.join([GREEN, "\n      .d8888.  db    db  d8888b. \n      88'  YP  `8b  d8'  88  `8D \n      `8bo.     `8bd8'   88oobY' \n        `Y8b.   .dPYb.   88`8b   \n      db   8D  .8P  Y8.  88 `88. \n      `8888Y'  YP    YP  88   YD   ", ORANGE, 'V-3.6-MOBILE-FIXED\n', LINE, '\n ', GREEN, '[', RED, '●', GREEN, '] TOOL OWNER   ', CYAN, ':', GREEN, ' @yeasin_hossain018\n ', GREEN, '[', RED, '●', GREEN, '] TOOL         ', CYAN, ':', GREEN, ' FORGET FB\n ', GREEN, '[', RED, '●', GREEN, '] TOOL STATUS  ', CYAN, ':', GREEN, ' FREE\n', LINE]))
 
 def sxr_main():
     clear_logo()
@@ -663,7 +706,13 @@ def get_proxy_list(settings_key, prompt_label):
     if ask_proxy_final:
         while True:
             try:
+                print(f"{YELLOW} Supported formats:")
+                print(f"  - domain:port:username:password")
+                print(f"  - http://username:password@domain:port")
+                print(f"  - ip:port")
+                
                 proxy_input = input(f"{GREEN} [{RED}●{GREEN}] Enter {prompt_label} (or 'y' for multiple) [Enter to Skip] {EKL} ").strip()
+                
                 if proxy_input.lower() == 'y':
                     cnt_in = input(f"{GREEN} [{RED}●{GREEN}] How many {prompt_label}? {EKL} ")
                     if cnt_in.strip():
@@ -705,10 +754,59 @@ def get_proxy_list(settings_key, prompt_label):
                 if PROXY_LIST or not ask_proxy_final:
                     break
                     
-            except:
-                print(f"{RED} Invalid Input")
+            except Exception as e:
+                print(f"{RED} Invalid Input: {e}")
                 
     return PROXY_LIST
+
+# Fix missing locale function
+COUNTRY_TO_LOCALE = {
+    'AD': 'ca_ES', 'AE': 'ar_AR', 'AF': 'fa_IR', 'AG': 'en_US', 'AI': 'en_US', 'AL': 'sq_AL',
+    'AM': 'hy_AM', 'AO': 'pt_PT', 'AQ': 'en_US', 'AR': 'es_LA', 'AS': 'en_US', 'AT': 'de_DE',
+    'AU': 'en_GB', 'AW': 'nl_NL', 'AX': 'sv_SE', 'AZ': 'az_AZ', 'BA': 'bs_BA', 'BB': 'en_US',
+    'BD': 'bn_IN', 'BE': 'nl_BE', 'BF': 'fr_FR', 'BG': 'bg_BG', 'BH': 'ar_AR', 'BI': 'fr_FR',
+    'BJ': 'fr_FR', 'BL': 'fr_FR', 'BM': 'en_US', 'BN': 'ms_MY', 'BO': 'es_LA', 'BQ': 'nl_NL',
+    'BR': 'pt_BR', 'BS': 'en_US', 'BT': 'dz_BT', 'BV': 'en_GB', 'BW': 'en_GB', 'BY': 'ru_RU',
+    'BZ': 'en_US', 'CA': 'en_US', 'CC': 'en_GB', 'CD': 'fr_FR', 'CF': 'fr_FR', 'CG': 'fr_FR',
+    'CH': 'de_DE', 'CI': 'fr_FR', 'CK': 'en_US', 'CL': 'es_LA', 'CM': 'fr_FR', 'CN': 'zh_CN',
+    'CO': 'es_LA', 'CR': 'es_LA', 'CU': 'es_LA', 'CV': 'pt_PT', 'CW': 'nl_NL', 'CX': 'en_GB',
+    'CY': 'el_GR', 'CZ': 'cs_CZ', 'DE': 'de_DE', 'DJ': 'fr_FR', 'DK': 'da_DK', 'DM': 'en_US',
+    'DO': 'es_LA', 'DZ': 'ar_AR', 'EC': 'es_LA', 'EE': 'et_EE', 'EG': 'ar_AR', 'EH': 'ar_AR',
+    'ER': 'ti_ET', 'ES': 'es_ES', 'ET': 'am_ET', 'FI': 'fi_FI', 'FJ': 'en_US', 'FK': 'en_GB',
+    'FM': 'en_US', 'FO': 'da_DK', 'FR': 'fr_FR', 'GA': 'fr_FR', 'GB': 'en_GB', 'GD': 'en_US',
+    'GE': 'ka_GE', 'GF': 'fr_FR', 'GG': 'en_GB', 'GH': 'en_GB', 'GI': 'en_GB', 'GL': 'da_DK',
+    'GM': 'en_GB', 'GN': 'fr_FR', 'GP': 'fr_FR', 'GQ': 'es_ES', 'GR': 'el_GR', 'GS': 'en_GB',
+    'GT': 'es_LA', 'GU': 'en_US', 'GW': 'pt_PT', 'GY': 'en_US', 'HK': 'zh_HK', 'HM': 'en_US',
+    'HN': 'es_LA', 'HR': 'hr_HR', 'HT': 'fr_FR', 'HU': 'hu_HU', 'ID': 'id_ID', 'IE': 'en_GB',
+    'IL': 'he_IL', 'IM': 'en_GB', 'IN': 'hi_IN', 'IO': 'en_GB', 'IQ': 'ar_AR', 'IR': 'fa_IR',
+    'IS': 'is_IS', 'IT': 'it_IT', 'JE': 'en_GB', 'JM': 'en_US', 'JO': 'ar_AR', 'JP': 'ja_JP',
+    'KE': 'en_GB', 'KG': 'ru_RU', 'KH': 'km_KH', 'KI': 'en_US', 'KM': 'fr_FR', 'KN': 'en_US',
+    'KP': 'ko_KR', 'KR': 'ko_KR', 'KW': 'ar_AR', 'KY': 'en_US', 'KZ': 'ru_RU', 'LA': 'lo_LA',
+    'LB': 'ar_AR', 'LC': 'en_US', 'LI': 'de_DE', 'LK': 'si_LK', 'LR': 'en_US', 'LS': 'en_GB',
+    'LT': 'lt_LT', 'LU': 'fr_FR', 'LV': 'lv_LV', 'LY': 'ar_AR', 'MA': 'ar_AR', 'MC': 'fr_FR',
+    'MD': 'ro_RO', 'ME': 'sr_RS', 'MF': 'fr_FR', 'MG': 'fr_FR', 'MH': 'en_US', 'MK': 'mk_MK',
+    'ML': 'fr_FR', 'MM': 'my_MM', 'MN': 'mn_MN', 'MO': 'zh_TW', 'MP': 'en_US', 'MQ': 'fr_FR',
+    'MR': 'ar_AR', 'MS': 'en_US', 'MT': 'en_GB', 'MU': 'en_GB', 'MV': 'dv_MV', 'MW': 'en_GB',
+    'MX': 'es_MX', 'MY': 'ms_MY', 'MZ': 'pt_PT', 'NA': 'en_GB', 'NC': 'fr_FR', 'NE': 'fr_FR',
+    'NF': 'en_GB', 'NG': 'en_GB', 'NI': 'es_LA', 'NL': 'nl_NL', 'NO': 'nb_NO', 'NP': 'ne_NP',
+    'NR': 'en_US', 'NU': 'en_US', 'NZ': 'en_GB', 'OM': 'ar_AR', 'PA': 'es_LA', 'PE': 'es_LA',
+    'PF': 'fr_FR', 'PG': 'en_US', 'PH': 'tl_PH', 'PK': 'ur_PK', 'PL': 'pl_PL', 'PM': 'fr_FR',
+    'PN': 'en_GB', 'PR': 'es_LA', 'PS': 'ar_AR', 'PT': 'pt_PT', 'PW': 'en_US', 'PY': 'es_LA',
+    'QA': 'ar_AR', 'RE': 'fr_FR', 'RO': 'ro_RO', 'RS': 'sr_RS', 'RU': 'ru_RU', 'RW': 'fr_FR',
+    'SA': 'ar_AR', 'SB': 'en_US', 'SC': 'fr_FR', 'SD': 'ar_AR', 'SE': 'sv_SE', 'SG': 'en_GB',
+    'SH': 'en_GB', 'SI': 'sl_SI', 'SJ': 'nb_NO', 'SK': 'sk_SK', 'SL': 'en_GB', 'SM': 'it_IT',
+    'SN': 'fr_FR', 'SO': 'so_SO', 'SR': 'nl_NL', 'SS': 'en_GB', 'ST': 'pt_PT', 'SV': 'es_LA',
+    'SX': 'nl_NL', 'SY': 'ar_AR', 'SZ': 'en_GB', 'TC': 'en_US', 'TD': 'fr_FR', 'TF': 'fr_FR',
+    'TG': 'fr_FR', 'TH': 'th_TH', 'TJ': 'tg_TJ', 'TK': 'en_US', 'TL': 'pt_PT', 'TM': 'ru_RU',
+    'TN': 'ar_AR', 'TO': 'en_US', 'TR': 'tr_TR', 'TT': 'en_US', 'TV': 'en_US', 'TW': 'zh_TW',
+    'TZ': 'sw_KE', 'UA': 'uk_UA', 'UG': 'en_GB', 'UM': 'en_US', 'US': 'en_US', 'UY': 'es_LA',
+    'UZ': 'uz_UZ', 'VA': 'it_IT', 'VC': 'en_US', 'VE': 'es_LA', 'VG': 'en_GB', 'VI': 'en_US',
+    'VN': 'vi_VN', 'VU': 'en_US', 'WF': 'fr_FR', 'WS': 'en_US', 'YE': 'ar_AR', 'YT': 'fr_FR',
+    'ZA': 'en_GB', 'ZM': 'en_GB', 'ZW': 'en_GB'
+}
+
+def get_locale_code(country_code):
+    return COUNTRY_TO_LOCALE.get(country_code.upper(), 'en_US')
 
 def autom_main():
     while True:
@@ -850,7 +948,8 @@ def autom_main():
                             for n in remaining_numbers:
                                 if n and not n.startswith('#'):
                                     f.write(n + '\n')
-    except:
+    except Exception as e:
+        print(f"{RED} Thread error: {e}")
         maxworker = 10
 
     with print_lock:
@@ -901,7 +1000,7 @@ def process_sms(session, resp_text, number, url, base_headers, server_domain, sm
                         'referer': url
                     })
                     
-                    reload_response = session.get(url, headers=reload_headers)
+                    reload_response = session.get(url, headers=reload_headers, verify=False)
                     if reload_response.status_code == 200:
                         resp_text = reload_response.text
                     else:
@@ -943,7 +1042,7 @@ def process_sms(session, resp_text, number, url, base_headers, server_domain, sm
                     'ars': 'facebook_login'
                 }
                 
-                sxr_respns = session.post(full_url, headers=headers, data=data, params=params)
+                sxr_respns = session.post(full_url, headers=headers, data=data, params=params, verify=False)
                 
                 if 'action="/recover/code/' in sxr_respns.text:
                     update_counter('success', number, "SMS Sent Successfully", GREEN)
@@ -967,6 +1066,9 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
         session.proxies.update(proxy)
     elif PROXIES:
         session.proxies.update(PROXIES)
+    
+    # Disable SSL verification for proxy connections
+    session.verify = False
 
     if browser_type == 'Random':
         browser_list = ['Brave', 'Chrome', 'Edge', 'Firefox', 'Samsung', 'Opera', 'UC', 'DuckDuckGo', 'Vivaldi', 'Yandex', 'Kiwi', 'Dolphin', 'Mi Browser', 'Maxthon', 'Puffin']
@@ -1130,7 +1232,7 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
         if retry_count == 0:
             safe_print(f"{LIGHT_GRAY} Searching For {number}...")
             
-        git_fb = session.get(f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr", headers=first_headers)
+        git_fb = session.get(f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr", headers=first_headers, verify=False)
         
         if 'fr' not in session.cookies:
             pass
@@ -1161,7 +1263,7 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
         })
         
         url = f"https://{server_domain}/login/identify/?ctx=recover&c=%2Flogin%2F&search_attempts=1&ars=facebook_login&alternate_search=0&show_friend_search_filtered_list=0&birth_month_search=0&city_search=0"
-        sxr_respns = session.post(url, data=_data, headers=post_headers, allow_redirects=True)
+        sxr_respns = session.post(url, data=_data, headers=post_headers, allow_redirects=True, verify=False)
         
         if 'id="login_identify_search_error_msg"' in sxr_respns.text:
             update_counter('failed', number, "Account Not Found", MAGENTA)
@@ -1176,14 +1278,14 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
             headers.update({
                 'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr"
             })
-            sxr_respns = session.get(sxr_respns.url, headers=headers)
+            sxr_respns = session.get(sxr_respns.url, headers=headers, verify=False)
             
             safe_print(f"{VIOLET} Clicking Try to another way...")
             
             if 'action="/login/account_recovery/name_search/?flow=initiate_view' in sxr_respns.text:
                 headers = base_headers.copy()
                 headers.update({'referer': sxr_respns.url})
-                sxr_respns = session.get(f"https://{server_domain}/recover/initiate/?c=%2Flogin%2F&fl=initiate_view&ctx=msite_initiate_view", headers=headers)
+                sxr_respns = session.get(f"https://{server_domain}/recover/initiate/?c=%2Flogin%2F&fl=initiate_view&ctx=msite_initiate_view", headers=headers, verify=False)
                 
                 if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, server_domain, sms_proxy_iterator):
                     return
@@ -1200,7 +1302,7 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
             headers.update({
                 'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr"
             })
-            sxr_respns = session.get(sxr_respns.url, headers=headers)
+            sxr_respns = session.get(sxr_respns.url, headers=headers, verify=False)
             
             if 'id="contact_point_selector_form"' in sxr_respns.text:
                 try:
@@ -1217,7 +1319,7 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
                 
                 headers = base_headers.copy()
                 headers.update({'referer': sxr_respns.url})
-                sxr_respns = session.get(f"https://{server_domain}{try_another_way_url}", headers=headers)
+                sxr_respns = session.get(f"https://{server_domain}{try_another_way_url}", headers=headers, verify=False)
                 
                 safe_print(f"{VIOLET} Clicking Try to another way...")
                 
