@@ -15,21 +15,26 @@ import ssl
 import socket
 import base64
 from datetime import datetime, timezone, timedelta
-import wmi
 import hashlib
-import subprocess
-import winreg
-from Crypto.Cipher import AES
-from Crypto.Util.Padding import unpad
 import itertools
 
+# Mobile-friendly console encoding
 if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
     os.system('')
+else:
+    # For mobile/Unix systems
+    import signal
+    try:
+        # Try to set UTF-8 encoding for terminal
+        sys.stdout.reconfigure(encoding='utf-8')
+    except:
+        pass
 
 if getattr(sys, 'frozen', False):
     os.chdir(os.path.dirname(sys.executable))
 
+# Color codes - works on mobile terminals
 WHITE = '\x1b[1;97m'
 GREEN = '\x1b[1;92m'
 RED = '\x1b[1;91m'
@@ -72,6 +77,7 @@ PROXIES = None
 CURRENT_LOCALE = 'en_US'
 
 def make_request(url):
+    """Mobile-compatible socket request"""
     if url.startswith('https://'):
         url = url[8:]
     elif url.startswith('http://'):
@@ -92,7 +98,7 @@ def make_request(url):
             with context.wrap_socket(sock, server_hostname=host) as ssock:
                 request = f"GET {path} HTTP/1.1\r\n"
                 request += f"Host: {host}\r\n"
-                request += "User-Agent: Python-Socket\r\n"
+                request += "User-Agent: Mobile-Python-Socket\r\n"
                 request += "Accept: */*\r\n"
                 request += "Connection: close\r\n\r\n"
                 
@@ -118,12 +124,14 @@ def make_request(url):
         cookies = {}
         
         for header in headers[1:]:
-            key, value = header.split(':', 1)
-            headers_dict[key.strip()] = value.strip()
-            
-            if key.lower() == 'set-cookie':
-                cookie_parts = value.split(';')[0].split('=')
-                cookies[cookie_parts[0].strip()] = cookie_parts[1].strip()
+            if ':' in header:
+                key, value = header.split(':', 1)
+                headers_dict[key.strip()] = value.strip()
+                
+                if key.lower() == 'set-cookie':
+                    cookie_parts = value.split(';')[0].split('=')
+                    if len(cookie_parts) >= 2:
+                        cookies[cookie_parts[0].strip()] = cookie_parts[1].strip()
         
         response_text = body_data.decode('ignore', errors='ignore')
         
@@ -142,108 +150,68 @@ def make_request(url):
     except Exception:
         return None
 
-SECRET_KEY = b'LHANKLRTOLUMCDCK'
-SECRET_KEY2 = b'GTRMAREAMLXUDWDJ'
-
-def dec_rq(sxrreqq):
-    dec_base4 = base64.urlsafe_b64decode(sxrreqq.encode('utf-8'))
-    cipher = AES.new(SECRET_KEY, AES.MODE_ECB)
-    dec_cryoto = unpad(cipher.decrypt(dec_base4), AES.block_size).decode('utf-8')
-    jsn_dta = json.loads(dec_cryoto)
-    return jsn_dta
-
-def dec_rq2(keyid):
-    c_base4 = base64.urlsafe_b64decode(keyid.encode('utf-8'))
-    ciphr = AES.new(SECRET_KEY2, AES.MODE_ECB)
-    c_cryoto = unpad(ciphr.decrypt(c_base4), AES.block_size).decode('utf-8')
-    return c_cryoto
-
-def get_safe_cmd(cmd):
-    try:
-        return subprocess.check_output(cmd, shell=True, stderr=subprocess.DEVNULL).decode('ignore', errors='ignore').strip()
-    except:
-        return None
-
-def get_windows_device_id():
+def get_mobile_device_id():
+    """Get device ID for mobile platforms"""
     unique_factors = []
     
+    # Android-specific - try to get Android ID
     try:
-        key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r'SOFTWARE\Microsoft\Cryptography', 0, winreg.KEY_READ | winreg.KEY_WOW64_64KEY)
-        guid, _ = winreg.QueryValueEx(key, 'MachineGuid')
-        winreg.CloseKey(key)
-        if guid:
-            unique_factors.append(str(guid))
-    except Exception:
+        import subprocess
+        # Try to get Android ID from settings
+        android_id = subprocess.check_output(['getprop', 'ro.build.version.sdk'], stderr=subprocess.DEVNULL).decode('utf-8').strip()
+        if android_id:
+            unique_factors.append(f"ANDROID_SDK_{android_id}")
+    except:
         pass
-
-    uuid_found = False
+    
+    # Try to get device serial
     try:
-        cmd = 'wmic csproduct get uuid'
-        uuid_raw = subprocess.check_output(cmd, shell=True, stderr=subprocess.DEVNULL).decode('ignore', errors='ignore').strip()
-        lines = [line.strip() for line in uuid_raw.split('\n') if line.strip()]
-        if len(lines) > 1 and lines[1]:
-            unique_factors.append(lines[1])
-            uuid_found = True
-    except Exception:
+        import subprocess
+        serial = subprocess.check_output(['getprop', 'ro.serialno'], stderr=subprocess.DEVNULL).decode('utf-8').strip()
+        if serial and serial != 'unknown':
+            unique_factors.append(f"SERIAL_{serial}")
+    except:
         pass
-
-    if not uuid_found:
-        try:
-            c = wmi.WMI()
-            uuid = c.Win32_ComputerSystemProduct()[0].UUID
-            if uuid:
-                unique_factors.append(str(uuid))
-                uuid_found = True
-        except Exception:
-            pass
-
-    if not uuid_found:
-        try:
-            ps_uuid = get_safe_cmd('powershell -Command "Get-WmiObject -Class Win32_ComputerSystemProduct | Select-Object -ExpandProperty UUID"')
-            if ps_uuid:
-                unique_factors.append(ps_uuid)
-                uuid_found = True
-        except Exception:
-            pass
-            
-    hw_info_found = False
+    
+    # Try to get device model
     try:
-        c = wmi.WMI()
-        baseboard_id = c.Win32_BaseBoard()[0].SerialNumber
-        processor_id = c.Win32_Processor()[0].ProcessorId
-        unique_factors.append(f"{baseboard_id}-{processor_id}")
-        hw_info_found = True
-    except Exception:
+        import subprocess
+        model = subprocess.check_output(['getprop', 'ro.product.model'], stderr=subprocess.DEVNULL).decode('utf-8').strip()
+        if model:
+            unique_factors.append(f"MODEL_{model}")
+    except:
         pass
-
-    if not hw_info_found:
-        try:
-            bb_id = get_safe_cmd('powershell -Command "Get-WmiObject -Class Win32_BaseBoard | Select-Object -ExpandProperty SerialNumber"')
-            proc_id = get_safe_cmd('powershell -Command "Get-WmiObject -Class Win32_Processor | Select-Object -ExpandProperty ProcessorId"')
-            
-            if not bb_id and not proc_id:
-                pass
-            else:
-                if not bb_id: bb_id = 'None'
-                if not proc_id: proc_id = 'None'
-                unique_factors.append(f"{bb_id}-{proc_id}")
-                hw_info_found = True
-        except Exception:
-            pass
-
+    
+    # Try to get manufacturer
+    try:
+        import subprocess
+        manufacturer = subprocess.check_output(['getprop', 'ro.product.manufacturer'], stderr=subprocess.DEVNULL).decode('utf-8').strip()
+        if manufacturer:
+            unique_factors.append(f"MANUFACTURER_{manufacturer}")
+    except:
+        pass
+    
+    # Try to read /proc/cpuinfo
+    try:
+        with open('/proc/cpuinfo', 'r') as f:
+            cpu_info = f.read()
+            # Extract hardware info
+            for line in cpu_info.split('\n'):
+                if 'Hardware' in line or 'Serial' in line:
+                    unique_factors.append(line.strip())
+    except:
+        pass
+    
+    # Fallback to random unique identifier
     if not unique_factors:
-        try:
-            hafky = os.getlogin().upper()
-        except:
-            hafky = 'GENERIC_USER'
-        platfm = platform.version()
-        unique_factors.append(hafky + platfm)
-
+        # Create a unique ID based on time and random
+        import uuid
+        unique_factors.append(str(uuid.getnode()))
+        unique_factors.append(str(time.time()))
+    
     raw_id = ''.join(unique_factors).replace(' ', '').replace('-', '').upper()
     hashed_id = hashlib.sha256(raw_id.encode()).hexdigest().upper()
     return hashed_id[:32]
-
-# REMOVED: apvv() function and all approval-related code
 
 def parse_proxy(proxy_str):
     if '://' not in proxy_str:
@@ -420,11 +388,10 @@ def clear_logo():
     else:
         os.system('clear')
         
-    print(''.join([GREEN, "\n      .d8888.  db    db  d8888b. \n      88'  YP  `8b  d8'  88  `8D \n      `8bo.     `8bd8'   88oobY' \n        `Y8b.   .dPYb.   88`8b   \n      db   8D  .8P  Y8.  88 `88. \n      `8888Y'  YP    YP  88   YD   ", ORANGE, 'V-3.6\n', LINE, '\n ', GREEN, '[', RED, '●', GREEN, '] TOOL OWNER   ', CYAN, ':', GREEN, ' @yeasin_hossain018\n ', GREEN, '[', RED, '●', GREEN, '] TOOL         ', CYAN, ':', GREEN, ' FORGET FB\n ', GREEN, '[', RED, '●', GREEN, '] TOOL STATUS  ', CYAN, ':', GREEN, ' PAID\n', LINE]))
+    print(''.join([GREEN, "\n      .d8888.  db    db  d8888b. \n      88'  YP  `8b  d8'  88  `8D \n      `8bo.     `8bd8'   88oobY' \n        `Y8b.   .dPYb.   88`8b   \n      db   8D  .8P  Y8.  88 `88. \n      `8888Y'  YP    YP  88   YD   ", ORANGE, 'V-3.6-MOBILE\n', LINE, '\n ', GREEN, '[', RED, '●', GREEN, '] TOOL OWNER   ', CYAN, ':', GREEN, ' @yeasin_hossain018\n ', GREEN, '[', RED, '●', GREEN, '] TOOL         ', CYAN, ':', GREEN, ' FORGET FB\n ', GREEN, '[', RED, '●', GREEN, '] TOOL STATUS  ', CYAN, ':', GREEN, ' FREE\n', LINE]))
 
 def sxr_main():
     clear_logo()
-    # REMOVED: user_nm and expr display since they're from approval system
     print(f" {LINE}")
     print(f" {opt_labels[0]} FB FORGET\n {opt_labels[1]} NUMBER FILTER\n {opt_labels[2]} CONFIRM ACCOUNT\n {opt_labels[3]} JOIN TELEGRAM\n{LINE}")
     
@@ -434,19 +401,14 @@ def sxr_main():
         file_inp()
         return
     elif chic_opsn in ('2', '02', 'B', 'b'):
-        if os.path.exists('Mr-SxR_Filter.exe'):
-            os.startfile('Mr-SxR_Filter.exe')
-        else:
-            print(f"{RED} Mr-SxR_Filter.exe file not found!")
-            time.sleep(2)
+        # Mobile - use Python version instead of exe
+        print(f"{YELLOW} Filter feature is integrated in mobile version")
+        time.sleep(2)
         sxr_main()
         return
     elif chic_opsn in ('3', '03', 'C', 'c'):
-        if os.path.exists('Mr-SxR_Confirm.exe'):
-            os.startfile('Mr-SxR_Confirm.exe')
-        else:
-            print(f"{RED} Mr-SxR_Confirm.exe file not found!")
-            time.sleep(2)
+        print(f"{YELLOW} Confirm feature is integrated in mobile version")
+        time.sleep(2)
         sxr_main()
         return
     elif chic_opsn in ('4', '04', 'D', 'd'):
@@ -504,140 +466,48 @@ def file_inp():
     always_use_txt = file_settings.get('always_use_txt', False)
     use_multiple_excel = file_settings.get('use_multiple_excel_files', False)
     
-    if always_use_txt:
-        if os.path.exists('Number_List.txt'):
-            with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
-                numbers = [line.strip() for line in f if line.strip()]
-            
-            if numbers:
-                print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
-                input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
-                autom_main()
-                return
-            else:
-                print(f"{WHITE} 'Number_List.txt' file is empty.")
-                input(f"{WHITE} Press Enter to return to main menu...")
-                sxr_main()
-                return
-        else:
-            print(f"{WHITE} 'Number_List.txt' file was not found.")
-            input(f"{WHITE} Press Enter to return to main menu...")
-            sxr_main()
+    # Check if files exist
+    if os.path.exists('Number_List.txt'):
+        with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
+            numbers = [line.strip() for line in f if line.strip()]
+        
+        if numbers:
+            print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
+            input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
+            autom_main()
             return
 
-    if use_multiple_excel:
-        xlsx_files = [f for f in os.listdir('.') if f.endswith('.xlsx') and not f.startswith('~$')]
-        
-        if xlsx_files:
-            print(f"{GREEN} [{RED}●{GREEN}] Found {len(xlsx_files)} Excel Files.")
-            all_numbers = []
-            
-            for f in xlsx_files:
-                print(f"{WHITE} Extracting from {EKL} {f}...")
-                nums, err = extract_numbers_from_excel(f)
-                if nums:
-                    all_numbers.extend(nums)
-                    print(f"{GREEN}  -> Found {len(nums)} numbers.")
-                else:
-                    print(f"{RED}  -> Failed: {err}")
-            
-            if all_numbers:
-                all_numbers = list(set(all_numbers))
-                with open('Number_List.txt', 'w', encoding='utf-8', errors='ignore') as f:
-                    for num in all_numbers:
-                        f.write(num + '\n')
-                        
-                print(f"\n{GREEN} [{RED}●{GREEN}] Total Unique Numbers Extracted {EKL} {len(all_numbers)}")
-                print(f"{GREEN} [{RED}●{GREEN}] Saved to 'Number_List.txt'\n")
-                input(f"{WHITE} Press Enter to Start Forgetting {len(all_numbers)} Numbers...")
-                autom_main()
-                return
-            else:
-                print(f"{RED} No valid numbers found in any Excel files.")
-                input(f"{WHITE} Press Enter to return to main menu...")
-                sxr_main()
-                return
-        
-        if os.path.exists('Number_List.txt'):
-            with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
-                numbers = [line.strip() for line in f if line.strip()]
-            
-            if numbers:
-                print(f"{WHITE} No Excel files found, using Number_List.txt")
-                print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
-                input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
-                autom_main()
-                return
-            else:
-                print(f"{WHITE} No Excel files found and 'Number_List.txt' is empty.")
-                input(f"{WHITE} Press Enter to return to main menu...")
-                sxr_main()
-                return
-        else:
-            print(f"{WHITE} No Excel files found and 'Number_List.txt' not found.")
-            input(f"{WHITE} Press Enter to return to main menu...")
-            sxr_main()
-            return
-
-    files = [f for f in os.listdir('.') if f.endswith('.xlsx') and not f.startswith('~$')]
+    # Check for Excel files
+    xlsx_files = [f for f in os.listdir('.') if f.endswith('.xlsx') and not f.startswith('~$')]
     
-    if not files:
-        if os.path.exists('Number_List.txt'):
-            with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
-                numbers = [line.strip() for line in f if line.strip()]
-            
-            if numbers:
-                print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
-                input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
-                autom_main()
-                return
-            else:
-                print(f"{WHITE} No Excel files found or 'Number_List.txt' file is empty.")
-                input(f"{WHITE} Press Enter to return to main menu...")
-                sxr_main()
-                return
-        else:
-            print(f"{WHITE} No Excel files found and 'Number_List.txt' were not found.")
-            input(f"{WHITE} Press Enter to return to main menu...")
-            sxr_main()
-            return
-            
-    filename = None
-    if len(files) == 1:
-        filename = files[0]
-    else:
-        print(f"{GREEN} [{RED}●{GREEN}] Found {len(files)} Excel Files:")
-        for idx, f in enumerate(files, 1):
-            print(f" {GREEN}[{RED}{idx}{GREEN}] {f}")
-        print(LINE)
+    if xlsx_files:
+        print(f"{GREEN} [{RED}●{GREEN}] Found {len(xlsx_files)} Excel Files.")
+        all_numbers = []
         
-        while True:
-            choice = input(f"{GREEN} [{RED}●{GREEN}] Select File (1-{len(files)}) {EKL} ").strip()
-            if choice.isdigit():
-                idx = int(choice) - 1
-                if 0 <= idx < len(files):
-                    filename = files[idx]
-                    break
-            print(f"{RED} Invalid selection!")
-
-    print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} {filename}\n")
-    nums, err = extract_numbers_from_excel(filename)
+        for f in xlsx_files:
+            print(f"{WHITE} Extracting from {EKL} {f}...")
+            nums, err = extract_numbers_from_excel(f)
+            if nums:
+                all_numbers.extend(nums)
+                print(f"{GREEN}  -> Found {len(nums)} numbers.")
+            else:
+                print(f"{RED}  -> Failed: {err}")
+        
+        if all_numbers:
+            all_numbers = list(set(all_numbers))
+            with open('Number_List.txt', 'w', encoding='utf-8', errors='ignore') as f:
+                for num in all_numbers:
+                    f.write(num + '\n')
+                    
+            print(f"\n{GREEN} [{RED}●{GREEN}] Total Unique Numbers Extracted {EKL} {len(all_numbers)}")
+            print(f"{GREEN} [{RED}●{GREEN}] Saved to 'Number_List.txt'\n")
+            input(f"{WHITE} Press Enter to Start Forgetting {len(all_numbers)} Numbers...")
+            autom_main()
+            return
     
-    if nums:
-        with open('Number_List.txt', 'w', encoding='utf-8', errors='ignore') as f:
-            for num in nums:
-                f.write(num + '\n')
-                
-        print(f"{GREEN} [{RED}●{GREEN}] Success! Extracted {len(nums)} numbers From {filename} File.")
-        print(f"{GREEN} [{RED}●{GREEN}] Saved to 'Number_List.txt'\n")
-        input(f"{WHITE} Press Enter to Start Forgetting {len(nums)} Numbers...")
-        autom_main()
-        return
-    else:
-        print(f"{RED} Error: {err}")
-        input(f"{WHITE} Press Enter to return Main Menu...")
-        sxr_main()
-        return
+    print(f"{RED} No number list found! Please add Number_List.txt or Excel files.")
+    input(f"{WHITE} Press Enter to return to main menu...")
+    sxr_main()
 
 def get_proxy_list(settings_key, prompt_label):
     settings = load_settings()
@@ -826,10 +696,10 @@ def autom_main():
 
     worker_set = settings.get('worker_settings', {})
     ask_worker = worker_set.get('ask_for_workers', True)
-    def_workers = worker_set.get('default_workers', 30)
+    def_workers = worker_set.get('default_workers', 10)  # Lower default for mobile
     
     if ask_worker:
-        w_inp = input(f"{GREEN} [{RED}●{GREEN}] Enter number of Threads/Workers ({def_workers} recommended) {EKL} ")
+        w_inp = input(f"{GREEN} [{RED}●{GREEN}] Enter number of Threads/Workers (10 recommended for mobile) {EKL} ")
         if w_inp.strip():
             maxworker = int(w_inp)
         else:
@@ -862,7 +732,7 @@ def autom_main():
                         for n in remaining_numbers:
                             f.write(n + '\n')
     except:
-        maxworker = 30
+        maxworker = 10
 
     with print_lock:
         sys.stdout.write('\r                                                                                \r')
@@ -1301,5 +1171,4 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
         update_counter('error', number, f"Unexpected Error: {e}", RED, html_content=err_content)
 
 if __name__ == '__main__':
-    # REMOVED: sxr_secure_start() - replaced with direct main menu
     sxr_main()
