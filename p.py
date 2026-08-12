@@ -18,6 +18,14 @@ from datetime import datetime, timezone, timedelta
 import hashlib
 import itertools
 
+# For Termux - request storage permission
+if platform.system() == 'Linux' and 'android' in platform.platform().lower():
+    try:
+        import subprocess
+        subprocess.run(['termux-setup-storage'], check=False)
+    except:
+        pass
+
 # Mobile-friendly console encoding
 if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
@@ -75,6 +83,61 @@ total_failed = 0
 total_error = 0
 PROXIES = None
 CURRENT_LOCALE = 'en_US'
+
+# Mobile file path configuration
+MOBILE_FILE_PATH = '/sdcard/file.txt'
+
+def get_number_file_path():
+    """Get the appropriate number list file path"""
+    # Check if mobile path exists first
+    if os.path.exists(MOBILE_FILE_PATH):
+        return MOBILE_FILE_PATH
+    
+    # Check other common Android paths
+    alt_paths = [
+        '/storage/emulated/0/file.txt',
+        '/storage/sdcard0/file.txt',
+        '/sdcard/Download/file.txt',
+        '/sdcard/Documents/file.txt'
+    ]
+    
+    for alt in alt_paths:
+        if os.path.exists(alt):
+            return alt
+    
+    # Fallback to local directory
+    if os.path.exists('Number_List.txt'):
+        return 'Number_List.txt'
+    
+    # Default to mobile path
+    return MOBILE_FILE_PATH
+
+def ensure_number_file():
+    """Create number file if it doesn't exist"""
+    file_path = get_number_file_path()
+    
+    if not os.path.exists(file_path):
+        # Try to create in /sdcard/
+        try:
+            # Ensure directory exists
+            sdcard_dir = os.path.dirname(MOBILE_FILE_PATH)
+            if sdcard_dir and not os.path.exists(sdcard_dir):
+                os.makedirs(sdcard_dir, exist_ok=True)
+            
+            with open(MOBILE_FILE_PATH, 'w') as f:
+                f.write("# Add your phone numbers here, one per line\n")
+                f.write("# Example: 1234567890\n")
+            print(f"{GREEN} Created {MOBILE_FILE_PATH}")
+            return MOBILE_FILE_PATH
+        except Exception as e:
+            print(f"{YELLOW} Could not create in /sdcard/: {e}")
+            # Fallback to local
+            with open('Number_List.txt', 'w') as f:
+                f.write("# Add your phone numbers here, one per line\n")
+                f.write("# Example: 1234567890\n")
+            print(f"{GREEN} Created Number_List.txt")
+            return 'Number_List.txt'
+    return file_path
 
 def make_request(url):
     """Mobile-compatible socket request"""
@@ -461,31 +524,61 @@ def extract_numbers_from_excel(filename):
 
 def file_inp():
     clear_logo()
+    
+    # Get the file path
+    file_path = get_number_file_path()
+    
+    # Check if file exists
+    if os.path.exists(file_path):
+        try:
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                numbers = [line.strip() for line in f if line.strip() and not line.startswith('#')]
+            
+            if numbers:
+                print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} {file_path}")
+                print(f"{GREEN} [{RED}●{GREEN}] Total Numbers {EKL} {len(numbers)}")
+                input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
+                autom_main()
+                return
+            else:
+                print(f"{YELLOW} File exists but contains no numbers.")
+        except Exception as e:
+            print(f"{RED} Error reading file: {e}")
+    
+    # If mobile path doesn't work, try local files
     settings = load_settings()
     file_settings = settings.get('file_input_settings', {})
-    always_use_txt = file_settings.get('always_use_txt', False)
-    use_multiple_excel = file_settings.get('use_multiple_excel_files', False)
     
-    # Check if files exist
+    # Check for local Number_List.txt
     if os.path.exists('Number_List.txt'):
-        with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
-            numbers = [line.strip() for line in f if line.strip()]
-        
-        if numbers:
-            print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
-            input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
-            autom_main()
-            return
+        try:
+            with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
+                numbers = [line.strip() for line in f if line.strip()]
+            
+            if numbers:
+                print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
+                input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
+                autom_main()
+                return
+        except Exception as e:
+            print(f"{RED} Error reading Number_List.txt: {e}")
 
-    # Check for Excel files
+    # Check for Excel files in current directory
     xlsx_files = [f for f in os.listdir('.') if f.endswith('.xlsx') and not f.startswith('~$')]
+    
+    # Also check in /sdcard/ for Excel files
+    try:
+        sdcard_xlsx = [f for f in os.listdir('/sdcard/') if f.endswith('.xlsx') and not f.startswith('~$')]
+        xlsx_files.extend([f"/sdcard/{f}" for f in sdcard_xlsx])
+    except:
+        pass
     
     if xlsx_files:
         print(f"{GREEN} [{RED}●{GREEN}] Found {len(xlsx_files)} Excel Files.")
         all_numbers = []
         
         for f in xlsx_files:
-            print(f"{WHITE} Extracting from {EKL} {f}...")
+            print(f"{WHITE} Extracting from {EKL} {os.path.basename(f)}...")
             nums, err = extract_numbers_from_excel(f)
             if nums:
                 all_numbers.extend(nums)
@@ -495,17 +588,27 @@ def file_inp():
         
         if all_numbers:
             all_numbers = list(set(all_numbers))
-            with open('Number_List.txt', 'w', encoding='utf-8', errors='ignore') as f:
-                for num in all_numbers:
-                    f.write(num + '\n')
+            # Save to mobile path
+            try:
+                with open(MOBILE_FILE_PATH, 'w', encoding='utf-8', errors='ignore') as f:
+                    for num in all_numbers:
+                        f.write(num + '\n')
+                print(f"{GREEN} [{RED}●{GREEN}] Saved to '{MOBILE_FILE_PATH}'")
+            except:
+                with open('Number_List.txt', 'w', encoding='utf-8', errors='ignore') as f:
+                    for num in all_numbers:
+                        f.write(num + '\n')
+                print(f"{GREEN} [{RED}●{GREEN}] Saved to 'Number_List.txt'")
                     
             print(f"\n{GREEN} [{RED}●{GREEN}] Total Unique Numbers Extracted {EKL} {len(all_numbers)}")
-            print(f"{GREEN} [{RED}●{GREEN}] Saved to 'Number_List.txt'\n")
             input(f"{WHITE} Press Enter to Start Forgetting {len(all_numbers)} Numbers...")
             autom_main()
             return
     
-    print(f"{RED} No number list found! Please add Number_List.txt or Excel files.")
+    # Create a new file if none exists
+    file_path = ensure_number_file()
+    print(f"{YELLOW} Created new file at: {file_path}")
+    print(f"{YELLOW} Please add numbers to this file and run again.")
     input(f"{WHITE} Press Enter to return to main menu...")
     sxr_main()
 
@@ -611,11 +714,15 @@ def autom_main():
     while True:
         clear_logo()
         try:
-            with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
-                numbers = [line.strip() for line in f if line.strip()]
+            # Get file path
+            file_path = get_number_file_path()
+            
+            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                numbers = [line.strip() for line in f if line.strip() and not line.startswith('#')]
             
             if not numbers:
-                input(f"{WHITE} Add the 'Number_List.txt' file and press Enter...")
+                print(f"{YELLOW} No numbers found in {file_path}")
+                input(f"{WHITE} Add numbers to '{file_path}' file and press Enter...")
                 continue
             break
         except Exception as e:
@@ -712,6 +819,9 @@ def autom_main():
     
     sem = threading.Semaphore(maxworker + 10)
     
+    # Get the current file path for saving progress
+    current_file_path = get_number_file_path()
+    
     try:
         with threadpol(max_workers=maxworker) as executor:
             remaining_numbers = list(numbers)
@@ -728,9 +838,18 @@ def autom_main():
                 
                 if remaining_numbers:
                     remaining_numbers.pop(0)
-                    with open('Number_List.txt', 'w') as f:
-                        for n in remaining_numbers:
-                            f.write(n + '\n')
+                    try:
+                        # Save progress to the current file
+                        with open(current_file_path, 'w') as f:
+                            for n in remaining_numbers:
+                                if n and not n.startswith('#'):
+                                    f.write(n + '\n')
+                    except:
+                        # Fallback to local file
+                        with open('Number_List.txt', 'w') as f:
+                            for n in remaining_numbers:
+                                if n and not n.startswith('#'):
+                                    f.write(n + '\n')
     except:
         maxworker = 10
 
@@ -738,7 +857,7 @@ def autom_main():
         sys.stdout.write('\r                                                                                \r')
         sys.stdout.flush()
 
-    print(''.join([LINE, '\n', GREEN, ' [', RED, '●', GREEN, '] ', WHITE, 'Completed Forgetting ', total_checked, ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', GREEN, 'Total Success: ', total_success, ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', YELLOW, 'Total Failed: ', total_failed, ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', RED, 'Total Error: ', total_error, ' Numbers.\n', LINE]))
+    print(''.join([LINE, '\n', GREEN, ' [', RED, '●', GREEN, '] ', WHITE, 'Completed Forgetting ', str(total_checked), ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', GREEN, 'Total Success: ', str(total_success), ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', YELLOW, 'Total Failed: ', str(total_failed), ' Numbers.\n', GREEN, ' [', RED, '●', GREEN, '] ', RED, 'Total Error: ', str(total_error), ' Numbers.\n', LINE]))
     
     while True:
         try:
