@@ -1,6 +1,6 @@
 """
 Mr-SxR Facebook Account Recovery Tool
-Version: 3.6 (Recoded)
+Version: 3.6 (Recoded with Enhanced Network Handling)
 """
 
 import os
@@ -63,7 +63,10 @@ else:
 
 # Configure console encoding for Windows
 if sys.platform == 'win32':
-    sys.stdout.reconfigure(encoding='utf-8')
+    try:
+        sys.stdout.reconfigure(encoding='utf-8')
+    except:
+        pass
     os.system('')
 
 # Handle frozen executable (PyInstaller)
@@ -121,20 +124,88 @@ SECRET_KEY2 = b'GTRMAREAMLXUDWDJ'
 user_nm = ""
 expr = ""
 
+# Network retry settings
+MAX_RETRIES = 5
+RETRY_DELAY = 3
+NETWORK_TIMEOUT = 15
+
+
+def check_internet_connection():
+    """Check if internet connection is available"""
+    test_urls = [
+        'https://www.google.com',
+        'https://www.cloudflare.com',
+        'https://www.microsoft.com',
+        'https://mrsxrtools.pythonanywhere.com'
+    ]
+    
+    for url in test_urls:
+        try:
+            response = requests.get(url, timeout=5, verify=False)
+            if response.status_code == 200:
+                return True
+        except:
+            continue
+    return False
+
+
+def make_request_with_retry(url, max_retries=MAX_RETRIES, delay=RETRY_DELAY, **kwargs):
+    """Make HTTP request with retry logic"""
+    kwargs.setdefault('timeout', NETWORK_TIMEOUT)
+    kwargs.setdefault('verify', certifi.where())
+    
+    for attempt in range(max_retries):
+        try:
+            response = requests.get(url, **kwargs)
+            if response.status_code == 200:
+                return response
+            elif response.status_code in [429, 503, 504]:
+                # Rate limited or server error, wait and retry
+                time.sleep(delay * (attempt + 1))
+                continue
+            else:
+                return response
+        except requests.exceptions.ConnectionError:
+            if attempt < max_retries - 1:
+                print(f"{YELLOW} Connection attempt {attempt + 1}/{max_retries} failed. Retrying...{WHITE}")
+                time.sleep(delay * (attempt + 1))
+                continue
+            else:
+                raise
+        except requests.exceptions.Timeout:
+            if attempt < max_retries - 1:
+                print(f"{YELLOW} Timeout attempt {attempt + 1}/{max_retries}. Retrying...{WHITE}")
+                time.sleep(delay * (attempt + 1))
+                continue
+            else:
+                raise
+        except Exception as e:
+            if attempt < max_retries - 1:
+                print(f"{YELLOW} Error: {e}. Retrying...{WHITE}")
+                time.sleep(delay * (attempt + 1))
+                continue
+            else:
+                raise
+    
+    raise Exception(f"Failed to connect after {max_retries} attempts")
+
 
 def make_request(url):
-    """
-    Enhanced request function using requests library instead of raw sockets
-    """
+    """Enhanced request function using requests library with retry"""
     try:
         if not url.startswith(('http://', 'https://')):
             url = 'https://' + url
         
-        response = requests.get(
-            url, 
-            verify=certifi.where(), 
-            timeout=10,
-            headers={'User-Agent': 'Python-Requests'}
+        response = make_request_with_retry(
+            url,
+            headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.9',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Connection': 'keep-alive',
+                'Upgrade-Insecure-Requests': '1'
+            }
         )
         
         try:
@@ -162,7 +233,7 @@ def dec_rq(sxrreqq):
         dec_cryoto = unpad(cipher.decrypt(dec_base4), AES.block_size).decode('utf-8')
         return json.loads(dec_cryoto)
     except Exception as e:
-        print(f"Decryption error: {e}")
+        print(f"{RED} Decryption error: {e}{WHITE}")
         return []
 
 
@@ -174,7 +245,7 @@ def dec_rq2(keyid):
         c_cryoto = unpad(ciphr.decrypt(c_base4), AES.block_size).decode('utf-8')
         return c_cryoto
     except Exception as e:
-        print(f"Decryption error: {e}")
+        print(f"{RED} Decryption error: {e}{WHITE}")
         return ""
 
 
@@ -289,78 +360,110 @@ def get_windows_device_id():
 
 
 def apvv():
-    """Authentication and verification"""
-    try:
-        sxrreq = make_request('https://mrsxrtools.pythonanywhere.com/apv')
-        if not sxrreq or sxrreq['status_code'] != 200:
-            time.sleep(4)
-            apvv()
-            return
-        
-        # Get verification token
-        match = re.search('id="srv-verification" value="(.*?)"', sxrreq['text'])
-        if match:
-            sxrreqq = match.group(1)
-        else:
-            sxrreqq = sxrreq['text']
-        
-        data = dec_rq(sxrreqq)
-        
-        # Get device ID based on OS
-        if platform.system() == 'Windows':
-            devisid = get_windows_device_id()
-        else:
-            hafky = str(os.geteuid()) + str(os.getlogin()) + str(os.getuid())
-            hafky = hafky.replace('_', '').replace('360', '0').replace('u', 'U').replace('a', 'A').replace('10', 'S#R')
-            platfm = platform.version()[14:][:21][:-1].upper() + platform.release()[5:][:-1].upper() + platform.version()[:8]
-            repls = platfm.replace(' ', '').replace('-', '').replace('#', '').replace(':', '').replace('.', '').replace(')', '').replace('(', '').replace('?', '').replace('=', '').replace('+', '').replace(';', '').replace('*', '').replace('_', '').replace('?', '').replace('  ', '').replace('SMPP', 'Mr.SxR')
-            devisid = hafky + repls
+    """Authentication and verification with retry"""
+    retry_count = 0
+    
+    while retry_count < MAX_RETRIES:
+        try:
+            print(f"{WHITE} Connecting to authentication server...")
+            sxrreq = make_request('https://mrsxrtools.pythonanywhere.com/apv')
+            
+            if not sxrreq:
+                retry_count += 1
+                print(f"{YELLOW} No response from server. Retry {retry_count}/{MAX_RETRIES}{WHITE}")
+                time.sleep(RETRY_DELAY * retry_count)
+                continue
+                
+            if sxrreq['status_code'] != 200:
+                retry_count += 1
+                print(f"{YELLOW} Server returned status {sxrreq['status_code']}. Retry {retry_count}/{MAX_RETRIES}{WHITE}")
+                time.sleep(RETRY_DELAY * retry_count)
+                continue
+            
+            # Get verification token
+            match = re.search('id="srv-verification" value="(.*?)"', sxrreq['text'])
+            if match:
+                sxrreqq = match.group(1)
+            else:
+                sxrreqq = sxrreq['text']
+            
+            data = dec_rq(sxrreqq)
+            if not data:
+                print(f"{RED} Failed to decrypt verification data{WHITE}")
+                retry_count += 1
+                time.sleep(RETRY_DELAY * retry_count)
+                continue
+            
+            # Get device ID based on OS
+            if platform.system() == 'Windows':
+                devisid = get_windows_device_id()
+            else:
+                hafky = str(os.geteuid()) + str(os.getlogin()) + str(os.getuid())
+                hafky = hafky.replace('_', '').replace('360', '0').replace('u', 'U').replace('a', 'A').replace('10', 'S#R')
+                platfm = platform.version()[14:][:21][:-1].upper() + platform.release()[5:][:-1].upper() + platform.version()[:8]
+                repls = platfm.replace(' ', '').replace('-', '').replace('#', '').replace(':', '').replace('.', '').replace(')', '').replace('(', '').replace('?', '').replace('=', '').replace('+', '').replace(';', '').replace('*', '').replace('_', '').replace('?', '').replace('  ', '').replace('SMPP', 'Mr.SxR')
+                devisid = hafky + repls
 
-        # Verify device
-        for flinf in data:
-            keyid = flinf['Device_ID']
-            dvs = dec_rq2(keyid)
-            if dvs == devisid:
-                global user_nm, expr
-                user_nm = flinf['User_Name']
-                expr = flinf['End_date']
-                
-                nw_tm = datetime.now(timezone.utc)
-                expirs = datetime.strptime(expr, '%Y-%m-%d %H:%M').replace(tzinfo=timezone.utc)
-                
-                if nw_tm >= expirs:
-                    clear_logo()
-                    print(f" {WHITE}Device ID {EKL} {GREEN}{devisid}\n\n{GREEN}UserName {EKL} {user_nm}\n{RED}Expired {EKL} {expr} (Utc)\n{LINE}\n{RED}Your access has expired.")
-                    input(f" {WHITE}Press enter to buy the tool again")
-                    webbrowser.open('https://t.me/yeasin_hossain018')
-                    sys.exit(0)
-                
-                if len(data) < 5:
-                    os.system('cls' if platform.system() == 'Windows' else 'clear')
-                    input('Hi, Amar Nola Sele')
-                    exit()
-                
-                if expirs >= nw_tm + timedelta(days=35):
-                    os.system('cls' if platform.system() == 'Windows' else 'clear')
-                    input('Hi, Amar Nola Sele')
-                    exit()
-                
-                sxr_main()
-                return
-        
-        # Device not registered
-        clear_logo()
-        print(f" {GREEN}Device ID {EKL} {devisid}")
-        print(f" {RED}Your Device ID is not registered. Please contact the owner to get access.\n")
-        input(f" {WHITE}Press enter to contact owner")
-        webbrowser.open('https://t.me/mrsxrtool')
-        time.sleep(2)
-        sys.exit(0)
+            # Verify device
+            for flinf in data:
+                keyid = flinf['Device_ID']
+                dvs = dec_rq2(keyid)
+                if dvs == devisid:
+                    global user_nm, expr
+                    user_nm = flinf['User_Name']
+                    expr = flinf['End_date']
+                    
+                    nw_tm = datetime.now(timezone.utc)
+                    expirs = datetime.strptime(expr, '%Y-%m-%d %H:%M').replace(tzinfo=timezone.utc)
+                    
+                    if nw_tm >= expirs:
+                        clear_logo()
+                        print(f" {WHITE}Device ID {EKL} {GREEN}{devisid}\n\n{GREEN}UserName {EKL} {user_nm}\n{RED}Expired {EKL} {expr} (Utc)\n{LINE}\n{RED}Your access has expired.")
+                        input(f" {WHITE}Press enter to buy the tool again")
+                        webbrowser.open('https://t.me/yeasin_hossain018')
+                        sys.exit(0)
+                    
+                    if len(data) < 5:
+                        os.system('cls' if platform.system() == 'Windows' else 'clear')
+                        input('Hi, Amar Nola Sele')
+                        exit()
+                    
+                    if expirs >= nw_tm + timedelta(days=35):
+                        os.system('cls' if platform.system() == 'Windows' else 'clear')
+                        input('Hi, Amar Nola Sele')
+                        exit()
+                    
+                    sxr_main()
+                    return
+            
+            # Device not registered
+            clear_logo()
+            print(f" {GREEN}Device ID {EKL} {devisid}")
+            print(f" {RED}Your Device ID is not registered. Please contact the owner to get access.\n")
+            input(f" {WHITE}Press enter to contact owner")
+            webbrowser.open('https://t.me/mrsxrtool')
+            time.sleep(2)
+            sys.exit(0)
 
-    except Exception as e:
-        print(f"{RED} Approval Error: {e}...\n")
-        time.sleep(4)
-        apvv()
+        except Exception as e:
+            retry_count += 1
+            print(f"{RED} Approval Error: {e}... Retry {retry_count}/{MAX_RETRIES}{WHITE}")
+            time.sleep(RETRY_DELAY * retry_count)
+            continue
+    
+    # If all retries fail
+    print(f"\n{RED}╔══════════════════════════════════════════════════════════════╗")
+    print(f"║                 NETWORK CONNECTION ERROR                       ║")
+    print(f"╠══════════════════════════════════════════════════════════════╣")
+    print(f"║  • Could not connect to authentication server                ║")
+    print(f"║  • Please check your internet connection                     ║")
+    print(f"║  • Make sure you can access:                                 ║")
+    print(f"║    https://mrsxrtools.pythonanywhere.com                    ║")
+    print(f"║  • Firewall/Antivirus might be blocking the connection       ║")
+    print(f"║  • Try running as administrator                              ║")
+    print(f"╚══════════════════════════════════════════════════════════════╝")
+    input(f"\n{WHITE}Press Enter to exit...")
+    sys.exit(1)
 
 
 def parse_proxy(proxy_str):
@@ -414,26 +517,26 @@ COUNTRY_TO_LOCALE = {
     'KE': 'en_GB', 'KG': 'ru_RU', 'KH': 'km_KH', 'KI': 'en_US', 'KM': 'fr_FR', 'KN': 'en_US',
     'KP': 'ko_KR', 'KR': 'ko_KR', 'KW': 'ar_AR', 'KY': 'en_US', 'KZ': 'ru_RU', 'LA': 'lo_LA',
     'LB': 'ar_AR', 'LC': 'en_US', 'LI': 'de_DE', 'LK': 'si_LK', 'LR': 'en_US', 'LS': 'en_GB',
-    'LT': 'lt_LT', 'LV': 'lv_LV', 'LY': 'ar_AR', 'MA': 'ar_AR', 'MC': 'fr_FR', 'MD': 'ro_RO',
-    'ME': 'sr_RS', 'MF': 'fr_FR', 'MG': 'fr_FR', 'MH': 'en_US', 'MK': 'mk_MK', 'ML': 'fr_FR',
-    'MM': 'my_MM', 'MN': 'mn_MN', 'MO': 'zh_TW', 'MP': 'en_US', 'MQ': 'fr_FR', 'MR': 'ar_AR',
-    'MS': 'en_US', 'MT': 'en_GB', 'MU': 'en_GB', 'MV': 'dv_MV', 'MW': 'en_GB', 'MX': 'es_MX',
-    'MY': 'ms_MY', 'MZ': 'pt_PT', 'NA': 'en_GB', 'NC': 'fr_FR', 'NE': 'fr_FR', 'NF': 'en_GB',
-    'NG': 'en_GB', 'NI': 'es_LA', 'NL': 'nl_NL', 'NO': 'nb_NO', 'NP': 'ne_NP', 'NR': 'en_US',
-    'NU': 'en_US', 'NZ': 'en_GB', 'OM': 'ar_AR', 'PA': 'es_LA', 'PE': 'es_LA', 'PF': 'fr_FR',
-    'PG': 'en_US', 'PH': 'tl_PH', 'PK': 'ur_PK', 'PL': 'pl_PL', 'PM': 'fr_FR', 'PN': 'en_GB',
-    'PR': 'es_LA', 'PS': 'ar_AR', 'PT': 'pt_PT', 'PW': 'en_US', 'PY': 'es_LA', 'QA': 'ar_AR',
-    'RE': 'fr_FR', 'RO': 'ro_RO', 'RS': 'sr_RS', 'RU': 'ru_RU', 'RW': 'fr_FR', 'SA': 'ar_AR',
-    'SB': 'en_US', 'SC': 'fr_FR', 'SD': 'ar_AR', 'SE': 'sv_SE', 'SG': 'en_GB', 'SH': 'en_GB',
-    'SI': 'sl_SI', 'SJ': 'nb_NO', 'SK': 'sk_SK', 'SL': 'en_GB', 'SM': 'it_IT', 'SN': 'fr_FR',
-    'SO': 'so_SO', 'SR': 'nl_NL', 'SS': 'en_GB', 'ST': 'pt_PT', 'SV': 'es_LA', 'SX': 'nl_NL',
-    'SY': 'ar_AR', 'SZ': 'en_GB', 'TC': 'en_US', 'TD': 'fr_FR', 'TF': 'fr_FR', 'TG': 'fr_FR',
-    'TH': 'th_TH', 'TJ': 'tg_TJ', 'TK': 'en_US', 'TL': 'pt_PT', 'TM': 'ru_RU', 'TN': 'ar_AR',
-    'TO': 'en_US', 'TR': 'tr_TR', 'TT': 'en_US', 'TV': 'en_US', 'TW': 'zh_TW', 'TZ': 'sw_KE',
-    'UA': 'uk_UA', 'UG': 'en_GB', 'UM': 'en_US', 'US': 'en_US', 'UY': 'es_LA', 'UZ': 'uz_UZ',
-    'VA': 'it_IT', 'VC': 'en_US', 'VE': 'es_LA', 'VG': 'en_GB', 'VI': 'en_US', 'VN': 'vi_VN',
-    'VU': 'en_US', 'WF': 'fr_FR', 'WS': 'en_US', 'YE': 'ar_AR', 'YT': 'fr_FR', 'ZA': 'en_GB',
-    'ZM': 'en_GB', 'ZW': 'en_GB'
+    'LT': 'lt_LT', 'LU': 'fr_FR', 'LV': 'lv_LV', 'LY': 'ar_AR', 'MA': 'ar_AR', 'MC': 'fr_FR',
+    'MD': 'ro_RO', 'ME': 'sr_RS', 'MF': 'fr_FR', 'MG': 'fr_FR', 'MH': 'en_US', 'MK': 'mk_MK',
+    'ML': 'fr_FR', 'MM': 'my_MM', 'MN': 'mn_MN', 'MO': 'zh_TW', 'MP': 'en_US', 'MQ': 'fr_FR',
+    'MR': 'ar_AR', 'MS': 'en_US', 'MT': 'en_GB', 'MU': 'en_GB', 'MV': 'dv_MV', 'MW': 'en_GB',
+    'MX': 'es_MX', 'MY': 'ms_MY', 'MZ': 'pt_PT', 'NA': 'en_GB', 'NC': 'fr_FR', 'NE': 'fr_FR',
+    'NF': 'en_GB', 'NG': 'en_GB', 'NI': 'es_LA', 'NL': 'nl_NL', 'NO': 'nb_NO', 'NP': 'ne_NP',
+    'NR': 'en_US', 'NU': 'en_US', 'NZ': 'en_GB', 'OM': 'ar_AR', 'PA': 'es_LA', 'PE': 'es_LA',
+    'PF': 'fr_FR', 'PG': 'en_US', 'PH': 'tl_PH', 'PK': 'ur_PK', 'PL': 'pl_PL', 'PM': 'fr_FR',
+    'PN': 'en_GB', 'PR': 'es_LA', 'PS': 'ar_AR', 'PT': 'pt_PT', 'PW': 'en_US', 'PY': 'es_LA',
+    'QA': 'ar_AR', 'RE': 'fr_FR', 'RO': 'ro_RO', 'RS': 'sr_RS', 'RU': 'ru_RU', 'RW': 'fr_FR',
+    'SA': 'ar_AR', 'SB': 'en_US', 'SC': 'fr_FR', 'SD': 'ar_AR', 'SE': 'sv_SE', 'SG': 'en_GB',
+    'SH': 'en_GB', 'SI': 'sl_SI', 'SJ': 'nb_NO', 'SK': 'sk_SK', 'SL': 'en_GB', 'SM': 'it_IT',
+    'SN': 'fr_FR', 'SO': 'so_SO', 'SR': 'nl_NL', 'SS': 'en_GB', 'ST': 'pt_PT', 'SV': 'es_LA',
+    'SX': 'nl_NL', 'SY': 'ar_AR', 'SZ': 'en_GB', 'TC': 'en_US', 'TD': 'fr_FR', 'TF': 'fr_FR',
+    'TG': 'fr_FR', 'TH': 'th_TH', 'TJ': 'tg_TJ', 'TK': 'en_US', 'TL': 'pt_PT', 'TM': 'ru_RU',
+    'TN': 'ar_AR', 'TO': 'en_US', 'TR': 'tr_TR', 'TT': 'en_US', 'TV': 'en_US', 'TW': 'zh_TW',
+    'TZ': 'sw_KE', 'UA': 'uk_UA', 'UG': 'en_GB', 'UM': 'en_US', 'US': 'en_US', 'UY': 'es_LA',
+    'UZ': 'uz_UZ', 'VA': 'it_IT', 'VC': 'en_US', 'VE': 'es_LA', 'VG': 'en_GB', 'VI': 'en_US',
+    'VN': 'vi_VN', 'VU': 'en_US', 'WF': 'fr_FR', 'WS': 'en_US', 'YE': 'ar_AR', 'YT': 'fr_FR',
+    'ZA': 'en_GB', 'ZM': 'en_GB', 'ZW': 'en_GB'
 }
 
 
@@ -1293,13 +1396,18 @@ def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=
     except (requests.exceptions.ConnectionError, requests.exceptions.Timeout, 
             requests.exceptions.ChunkedEncodingError) as e:
         safe_print(f"{RED} Network Error {EKL} {e}")
-        safe_print(f"{LIGHT_GRAY} Waiting 5 seconds before retrying...")
-        time.sleep(5)
-        update_counter('error', f"Network Error: {e}", message=f"Network Error: {e}", 
-                      html_content=str(e))
+        if retry_count < 3:
+            safe_print(f"{LIGHT_GRAY} Retrying... ({retry_count + 1}/3)")
+            time.sleep(3)
+            check(number, proxy, locale, browser_type, retry_count + 1, 
+                  server_domain, sms_proxy_iterator)
+        else:
+            update_counter('error', f"Network Error: {e}", message=f"Network Error: {e}", 
+                          html_content=str(e))
     
     except Exception as e:
         if retry_count < 3:
+            time.sleep(2)
             check(number, proxy, locale, browser_type, retry_count + 1, 
                   server_domain, sms_proxy_iterator)
             return
@@ -1504,28 +1612,69 @@ def handle_device_based(sxr_respns, number, proxy, locale, browser_type, retry_c
 
 
 def sxr_secure_start():
-    """Secure start with authentication"""
+    """Secure start with enhanced network handling"""
+    print(f"{WHITE}╔══════════════════════════════════════════════════════════════╗")
+    print(f"║                    Mr-SxR Facebook Tool                        ║")
+    print(f"║                    Version 3.6 (Recoded)                       ║")
+    print(f"╚══════════════════════════════════════════════════════════════╝")
+    print(f"\n{WHITE}Initializing...")
+    
+    # Check internet connection first
+    print(f"{WHITE}Checking internet connection...")
+    if not check_internet_connection():
+        print(f"\n{RED}╔══════════════════════════════════════════════════════════════╗")
+        print(f"║                 NO INTERNET CONNECTION                        ║")
+        print(f"╠══════════════════════════════════════════════════════════════╣")
+        print(f"║  • Please check your internet connection                    ║")
+        print(f"║  • Disable any VPN or Proxy temporarily                     ║")
+        print(f"║  • Check firewall/antivirus settings                        ║")
+        print(f"║  • Restart your router/modem                                ║")
+        print(f"╚══════════════════════════════════════════════════════════════╝")
+        input(f"\n{WHITE}Press Enter to exit...")
+        sys.exit(1)
+    
+    print(f"{GREEN}✓ Internet connection detected{WHITE}")
+    
+    # Check authentication server
+    print(f"{WHITE}Connecting to authentication server...")
     STATUS_URL = 'https://mrsxrtools.pythonanywhere.com/'
+    
     try:
-        res = requests.get(STATUS_URL, timeout=8)
+        res = make_request_with_retry(STATUS_URL, max_retries=3, delay=2, verify=False)
+        
         if res.status_code == 200:
             text = res.text.strip().lower()
             if text == 'onn':
+                print(f"{GREEN}✓ Server is online{WHITE}")
                 print(f"{WHITE} WAITING FOR APPROVAL...")
                 apvv()
             elif text == 'error':
+                print(f"\n{RED} Server reports error state")
                 input("Fatal Python error: PyThreadState_Get: no current thread\nAborted (core dumped)")
-                sys.exit(0)
+                sys.exit(1)
             else:
+                print(f"\n{RED} Server is in maintenance mode")
                 input(f"{RED} TOOLS SERVER OFF")
-                sys.exit(0)
+                sys.exit(1)
         else:
-            os.system('cls' if platform.system() == 'Windows' else 'clear')
-            input(f"{RED} NET CONNECTION ERROR\n")
-            sys.exit(0)
+            print(f"\n{RED} Server returned status code: {res.status_code}")
+            input(f"{RED} NET CONNECTION ERROR")
+            sys.exit(1)
+            
     except Exception as e:
-        input(f"{RED} SECURITY SYSTEM ERROR: {e}\n RUN TOOL AGAIN")
-        sys.exit(0)
+        print(f"\n{RED}╔══════════════════════════════════════════════════════════════╗")
+        print(f"║                 NETWORK CONNECTION ERROR                       ║")
+        print(f"╠══════════════════════════════════════════════════════════════╣")
+        print(f"║  • Could not reach authentication server                     ║")
+        print(f"║  • Error: {str(e)[:40]}...                                   ║")
+        print(f"║  • Please check:                                             ║")
+        print(f"║    - Internet connection                                     ║")
+        print(f"║    - Firewall/Antivirus settings                             ║")
+        print(f"║    - Proxy settings                                          ║")
+        print(f"║  • Try running as administrator                              ║")
+        print(f"╚══════════════════════════════════════════════════════════════╝")
+        input(f"\n{WHITE}Press Enter to exit...")
+        sys.exit(1)
 
 
 if __name__ == '__main__':
