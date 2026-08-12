@@ -1,82 +1,1542 @@
-import requests
-import time
+"""
+Mr-SxR Facebook Account Recovery Tool
+Version: 3.6 (Recoded)
+"""
+
+import os
+import random
 import re
-from bs4 import BeautifulSoup
+import sys
+import time
+import platform
+import webbrowser
+import json
+import threading
+import base64
+import hashlib
+import subprocess
+import itertools
+from datetime import datetime, timezone, timedelta
+from concurrent.futures import ThreadPoolExecutor as threadpol
 
-class TempEmailGenerator:
-    def __init__(self):
-        self.base_url = 'https://10minutemail.net'
-        self.session = requests.Session()
-        self.session.headers.update({'User-Agent': 'Mozilla/5.0'})
-        self.session_id = None
-        self.cookie_email = None
+# Third-party imports with error handling
+try:
+    import requests
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "requests"])
+    import requests
+
+try:
+    import certifi
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "certifi"])
+    import certifi
+
+try:
+    import openpyxl
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "openpyxl"])
+    import openpyxl
+
+try:
+    from Crypto.Cipher import AES
+    from Crypto.Util.Padding import unpad
+except ImportError:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pycryptodome"])
+    from Crypto.Cipher import AES
+    from Crypto.Util.Padding import unpad
+
+# Windows-specific imports
+if platform.system() == 'Windows':
+    try:
+        import wmi
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "wmi"])
+        import wmi
+    try:
+        import winreg
+    except ImportError:
+        pass
+else:
+    wmi = None
+    winreg = None
+
+# Configure console encoding for Windows
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+    os.system('')
+
+# Handle frozen executable (PyInstaller)
+if getattr(sys, 'frozen', False):
+    os.chdir(os.path.dirname(sys.executable))
+
+# Color definitions
+WHITE = '\x1b[1;97m'
+GREEN = '\x1b[1;92m'
+RED = '\x1b[1;91m'
+DARK_GREEN = '\x1b[1;32m'
+LIGHT_GRAY = '\x1b[1;37m'
+CYAN = '\x1b[1;96m'
+YELLOW = '\x1b[1;93m'
+BLUE = '\x1b[1;94m'
+MAGENTA = '\x1b[1;95m'
+ORANGE = '\x1b[38;5;208m'
+GOLD = '\x1b[38;5;220m'
+VIOLET = '\x1b[38;5;141m'
+TOXIC = '\x1b[38;2;170;200;0m'
+PURPLE = '\x1b[38;2;150;80;200m'
+
+# UI Elements
+opt_labels = [f"{GREEN}[{RED}{str(i).zfill(2)}{GREEN}]" for i in range(1, 8)]
+EKL = f"{CYAN}:{WHITE}"
+LINE = f"{CYAN}•━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━•"
+
+# Server mapping
+SERVER_MAP = {
+    1: 'm.facebook.com',
+    2: 'mbasic.facebook.com',
+    3: 'touch.facebook.com',
+    4: 'free.facebook.com',
+    5: 'm.alpha.facebook.com',
+    6: 'm.beta.facebook.com',
+    7: 'x.facebook.com'
+}
+
+# Global state
+print_lock = threading.Lock()
+counter_lock = threading.Lock()
+total_checked = 0
+total_success = 0
+total_failed = 0
+total_error = 0
+PROXIES = None
+CURRENT_LOCALE = 'en_US'
+SAVE_ERROR_LOGS = 'off'
+
+# Security keys (hardcoded for compatibility)
+SECRET_KEY = b'LHANKLRTOLUMCDCK'
+SECRET_KEY2 = b'GTRMAREAMLXUDWDJ'
+
+# User authentication variables
+user_nm = ""
+expr = ""
+
+
+def make_request(url):
+    """
+    Enhanced request function using requests library instead of raw sockets
+    """
+    try:
+        if not url.startswith(('http://', 'https://')):
+            url = 'https://' + url
+        
+        response = requests.get(
+            url, 
+            verify=certifi.where(), 
+            timeout=10,
+            headers={'User-Agent': 'Python-Requests'}
+        )
+        
+        try:
+            json_data = response.json()
+        except:
+            json_data = None
+            
+        return {
+            'status_code': response.status_code,
+            'text': response.text,
+            'json': json_data,
+            'headers': dict(response.headers),
+            'cookies': response.cookies.get_dict()
+        }
+    except Exception as e:
+        print(f"Request failed: {e}")
+        return None
+
+
+def dec_rq(sxrreqq):
+    """Decrypt first layer"""
+    try:
+        dec_base4 = base64.urlsafe_b64decode(sxrreqq.encode('utf-8'))
+        cipher = AES.new(SECRET_KEY, AES.MODE_ECB)
+        dec_cryoto = unpad(cipher.decrypt(dec_base4), AES.block_size).decode('utf-8')
+        return json.loads(dec_cryoto)
+    except Exception as e:
+        print(f"Decryption error: {e}")
+        return []
+
+
+def dec_rq2(keyid):
+    """Decrypt second layer"""
+    try:
+        c_base4 = base64.urlsafe_b64decode(keyid.encode('utf-8'))
+        ciphr = AES.new(SECRET_KEY2, AES.MODE_ECB)
+        c_cryoto = unpad(ciphr.decrypt(c_base4), AES.block_size).decode('utf-8')
+        return c_cryoto
+    except Exception as e:
+        print(f"Decryption error: {e}")
+        return ""
+
+
+def get_safe_cmd(cmd):
+    """Safe command execution"""
+    try:
+        return subprocess.check_output(
+            cmd, shell=True, 
+            stderr=subprocess.DEVNULL
+        ).decode('ignore', errors='ignore').strip()
+    except:
+        return None
+
+
+def get_windows_device_id():
+    """Get Windows device ID for authentication"""
+    unique_factors = []
     
-    def get_email(self):
+    # Try registry
+    if winreg:
         try:
-            # Step 1: Get the session ID and timestamp
-            response = self.session.get(f'{self.base_url}/m/?lang=id')
-            response.raise_for_status()  # Ensure the request was successful
-            
-            soup = BeautifulSoup(response.content, 'html.parser')
-            self.session_id = re.search('sessionid="(.*?)"', str(soup)).group(1)
-            timestamp = str(int(time.time() * 1000))  # Use milliseconds for timestamp
-            
-            # Step 2: Request the temporary email address
-            payload = {'new': '1', 'sessionid': self.session_id, '_': timestamp}
-            email_response = self.session.post(f'{self.base_url}/address.api.php', data=payload)
-            email_response.raise_for_status()  # Ensure the request was successful
-            
-            email_data = email_response.json()
-            email = email_data.get('mail_get_mail')
-            if not email:
-                raise ValueError("Failed to retrieve email address.")
-            
-            # Step 3: Store cookies for further requests
-            self.cookie_email = '; '.join([f'{key}={value}' for key, value in self.session.cookies.get_dict().items()])
-            
-            return email
-        
-        except requests.RequestException as e:
-            print(f"Request error: {e}")
-            return None
-        except ValueError as e:
-            print(f"Value error: {e}")
-            return None
-        except Exception as e:
-            print(f"Unexpected error: {e}")
-            return None
+            key = winreg.OpenKey(
+                winreg.HKEY_LOCAL_MACHINE, 
+                r'SOFTWARE\Microsoft\Cryptography', 
+                0, 
+                winreg.KEY_READ | winreg.KEY_WOW64_64KEY
+            )
+            guid, _ = winreg.QueryValueEx(key, 'MachineGuid')
+            winreg.CloseKey(key)
+            if guid:
+                unique_factors.append(str(guid))
+        except Exception:
+            pass
 
-    def get_code(self):
-        if not self.session_id:
-            print("Session ID not found. Please generate an email first.")
-            return None
-        
+    # Try WMI for UUID
+    uuid_found = False
+    try:
+        cmd = 'wmic csproduct get uuid'
+        uuid_raw = subprocess.check_output(
+            cmd, shell=True, 
+            stderr=subprocess.DEVNULL
+        ).decode('ignore', errors='ignore').strip()
+        lines = [line.strip() for line in uuid_raw.split('\n') if line.strip()]
+        if len(lines) > 1 and lines[1]:
+            unique_factors.append(lines[1])
+            uuid_found = True
+    except Exception:
+        pass
+
+    # Try WMI library
+    if not uuid_found and wmi:
         try:
-            # Step 1: Get the verification code
-            timestamp = str(int(time.time() * 1000))  # Use milliseconds for timestamp
-            payload = {'new': '0', 'sessionid': self.session_id, '_': timestamp}
-            headers = {'Cookie': self.cookie_email}
-            code_response = self.session.post(f'{self.base_url}/address.api.php', data=payload, headers=headers)
-            code_response.raise_for_status()  # Ensure the request was successful
+            c = wmi.WMI()
+            uuid = c.Win32_ComputerSystemProduct()[0].UUID
+            if uuid:
+                unique_factors.append(str(uuid))
+                uuid_found = True
+        except Exception:
+            pass
+
+    # Try PowerShell
+    if not uuid_found:
+        ps_uuid = get_safe_cmd(
+            'powershell -Command "Get-WmiObject -Class Win32_ComputerSystemProduct | Select-Object -ExpandProperty UUID"'
+        )
+        if ps_uuid:
+            unique_factors.append(ps_uuid)
+            uuid_found = True
+
+    # Try hardware info
+    hw_info_found = False
+    if wmi:
+        try:
+            c = wmi.WMI()
+            baseboard_id = c.Win32_BaseBoard()[0].SerialNumber
+            processor_id = c.Win32_Processor()[0].ProcessorId
+            unique_factors.append(f"{baseboard_id}-{processor_id}")
+            hw_info_found = True
+        except Exception:
+            pass
+
+    # Try PowerShell for hardware info
+    if not hw_info_found:
+        bb_id = get_safe_cmd(
+            'powershell -Command "Get-WmiObject -Class Win32_BaseBoard | Select-Object -ExpandProperty SerialNumber"'
+        )
+        proc_id = get_safe_cmd(
+            'powershell -Command "Get-WmiObject -Class Win32_Processor | Select-Object -ExpandProperty ProcessorId"'
+        )
+        
+        if bb_id or proc_id:
+            if not bb_id: 
+                bb_id = 'None'
+            if not proc_id: 
+                proc_id = 'None'
+            unique_factors.append(f"{bb_id}-{proc_id}")
+            hw_info_found = True
+
+    # Fallback
+    if not unique_factors:
+        try:
+            hafky = os.getlogin().upper()
+        except:
+            hafky = 'GENERIC_USER'
+        platfm = platform.version()
+        unique_factors.append(hafky + platfm)
+
+    # Create hash
+    raw_id = ''.join(unique_factors).replace(' ', '').replace('-', '').upper()
+    hashed_id = hashlib.sha256(raw_id.encode()).hexdigest().upper()
+    return hashed_id[:32]
+
+
+def apvv():
+    """Authentication and verification"""
+    try:
+        sxrreq = make_request('https://mrsxrtools.pythonanywhere.com/apv')
+        if not sxrreq or sxrreq['status_code'] != 200:
+            time.sleep(4)
+            apvv()
+            return
+        
+        # Get verification token
+        match = re.search('id="srv-verification" value="(.*?)"', sxrreq['text'])
+        if match:
+            sxrreqq = match.group(1)
+        else:
+            sxrreqq = sxrreq['text']
+        
+        data = dec_rq(sxrreqq)
+        
+        # Get device ID based on OS
+        if platform.system() == 'Windows':
+            devisid = get_windows_device_id()
+        else:
+            hafky = str(os.geteuid()) + str(os.getlogin()) + str(os.getuid())
+            hafky = hafky.replace('_', '').replace('360', '0').replace('u', 'U').replace('a', 'A').replace('10', 'S#R')
+            platfm = platform.version()[14:][:21][:-1].upper() + platform.release()[5:][:-1].upper() + platform.version()[:8]
+            repls = platfm.replace(' ', '').replace('-', '').replace('#', '').replace(':', '').replace('.', '').replace(')', '').replace('(', '').replace('?', '').replace('=', '').replace('+', '').replace(';', '').replace('*', '').replace('_', '').replace('?', '').replace('  ', '').replace('SMPP', 'Mr.SxR')
+            devisid = hafky + repls
+
+        # Verify device
+        for flinf in data:
+            keyid = flinf['Device_ID']
+            dvs = dec_rq2(keyid)
+            if dvs == devisid:
+                global user_nm, expr
+                user_nm = flinf['User_Name']
+                expr = flinf['End_date']
+                
+                nw_tm = datetime.now(timezone.utc)
+                expirs = datetime.strptime(expr, '%Y-%m-%d %H:%M').replace(tzinfo=timezone.utc)
+                
+                if nw_tm >= expirs:
+                    clear_logo()
+                    print(f" {WHITE}Device ID {EKL} {GREEN}{devisid}\n\n{GREEN}UserName {EKL} {user_nm}\n{RED}Expired {EKL} {expr} (Utc)\n{LINE}\n{RED}Your access has expired.")
+                    input(f" {WHITE}Press enter to buy the tool again")
+                    webbrowser.open('https://t.me/yeasin_hossain018')
+                    sys.exit(0)
+                
+                if len(data) < 5:
+                    os.system('cls' if platform.system() == 'Windows' else 'clear')
+                    input('Hi, Amar Nola Sele')
+                    exit()
+                
+                if expirs >= nw_tm + timedelta(days=35):
+                    os.system('cls' if platform.system() == 'Windows' else 'clear')
+                    input('Hi, Amar Nola Sele')
+                    exit()
+                
+                sxr_main()
+                return
+        
+        # Device not registered
+        clear_logo()
+        print(f" {GREEN}Device ID {EKL} {devisid}")
+        print(f" {RED}Your Device ID is not registered. Please contact the owner to get access.\n")
+        input(f" {WHITE}Press enter to contact owner")
+        webbrowser.open('https://t.me/mrsxrtool')
+        time.sleep(2)
+        sys.exit(0)
+
+    except Exception as e:
+        print(f"{RED} Approval Error: {e}...\n")
+        time.sleep(4)
+        apvv()
+
+
+def parse_proxy(proxy_str):
+    """Parse proxy string to dict format"""
+    if '://' not in proxy_str:
+        parts = proxy_str.split(':')
+        if len(parts) == 4:
+            ip, port, user, pwd = parts
+            proxy_url = f"http://{user}:{pwd}@{ip}:{port}"
+        elif len(parts) == 2:
+            ip, port = parts
+            proxy_url = f"http://{ip}:{port}"
+        else:
+            return None
+    else:
+        proxy_url = proxy_str
+    
+    return {'http': proxy_url, 'https': proxy_url}
+
+
+def test_proxy(proxies, server_domain):
+    """Test if proxy works"""
+    try:
+        r = requests.get(f"https://{server_domain}", proxies=proxies, timeout=10)
+        return r.status_code == 200
+    except:
+        return False
+
+
+# Country to locale mapping
+COUNTRY_TO_LOCALE = {
+    'AD': 'ca_ES', 'AE': 'ar_AR', 'AF': 'fa_IR', 'AG': 'en_US', 'AI': 'en_US', 'AL': 'sq_AL',
+    'AM': 'hy_AM', 'AO': 'pt_PT', 'AQ': 'en_US', 'AR': 'es_LA', 'AS': 'en_US', 'AT': 'de_DE',
+    'AU': 'en_GB', 'AW': 'nl_NL', 'AX': 'sv_SE', 'AZ': 'az_AZ', 'BA': 'bs_BA', 'BB': 'en_US',
+    'BD': 'bn_IN', 'BE': 'nl_BE', 'BF': 'fr_FR', 'BG': 'bg_BG', 'BH': 'ar_AR', 'BI': 'fr_FR',
+    'BJ': 'fr_FR', 'BL': 'fr_FR', 'BM': 'en_US', 'BN': 'ms_MY', 'BO': 'es_LA', 'BQ': 'nl_NL',
+    'BR': 'pt_BR', 'BS': 'en_US', 'BT': 'dz_BT', 'BV': 'en_GB', 'BW': 'en_GB', 'BY': 'ru_RU',
+    'BZ': 'en_US', 'CA': 'en_US', 'CC': 'en_GB', 'CD': 'fr_FR', 'CF': 'fr_FR', 'CG': 'fr_FR',
+    'CH': 'de_DE', 'CI': 'fr_FR', 'CK': 'en_US', 'CL': 'es_LA', 'CM': 'fr_FR', 'CN': 'zh_CN',
+    'CO': 'es_LA', 'CR': 'es_LA', 'CU': 'es_LA', 'CV': 'pt_PT', 'CW': 'nl_NL', 'CX': 'en_GB',
+    'CY': 'el_GR', 'CZ': 'cs_CZ', 'DE': 'de_DE', 'DJ': 'fr_FR', 'DK': 'da_DK', 'DM': 'en_US',
+    'DO': 'es_LA', 'DZ': 'ar_AR', 'EC': 'es_LA', 'EE': 'et_EE', 'EG': 'ar_AR', 'EH': 'ar_AR',
+    'ER': 'ti_ET', 'ES': 'es_ES', 'ET': 'am_ET', 'FI': 'fi_FI', 'FJ': 'en_US', 'FK': 'en_GB',
+    'FM': 'en_US', 'FO': 'da_DK', 'FR': 'fr_FR', 'GA': 'fr_FR', 'GB': 'en_GB', 'GD': 'en_US',
+    'GE': 'ka_GE', 'GF': 'fr_FR', 'GG': 'en_GB', 'GH': 'en_GB', 'GI': 'en_GB', 'GL': 'da_DK',
+    'GM': 'en_GB', 'GN': 'fr_FR', 'GP': 'fr_FR', 'GQ': 'es_ES', 'GR': 'el_GR', 'GS': 'en_GB',
+    'GT': 'es_LA', 'GU': 'en_US', 'GW': 'pt_PT', 'GY': 'en_US', 'HK': 'zh_HK', 'HM': 'en_US',
+    'HN': 'es_LA', 'HR': 'hr_HR', 'HT': 'fr_FR', 'HU': 'hu_HU', 'ID': 'id_ID', 'IE': 'en_GB',
+    'IL': 'he_IL', 'IM': 'en_GB', 'IN': 'hi_IN', 'IO': 'en_GB', 'IQ': 'ar_AR', 'IR': 'fa_IR',
+    'IS': 'is_IS', 'IT': 'it_IT', 'JE': 'en_GB', 'JM': 'en_US', 'JO': 'ar_AR', 'JP': 'ja_JP',
+    'KE': 'en_GB', 'KG': 'ru_RU', 'KH': 'km_KH', 'KI': 'en_US', 'KM': 'fr_FR', 'KN': 'en_US',
+    'KP': 'ko_KR', 'KR': 'ko_KR', 'KW': 'ar_AR', 'KY': 'en_US', 'KZ': 'ru_RU', 'LA': 'lo_LA',
+    'LB': 'ar_AR', 'LC': 'en_US', 'LI': 'de_DE', 'LK': 'si_LK', 'LR': 'en_US', 'LS': 'en_GB',
+    'LT': 'lt_LT', 'LV': 'lv_LV', 'LY': 'ar_AR', 'MA': 'ar_AR', 'MC': 'fr_FR', 'MD': 'ro_RO',
+    'ME': 'sr_RS', 'MF': 'fr_FR', 'MG': 'fr_FR', 'MH': 'en_US', 'MK': 'mk_MK', 'ML': 'fr_FR',
+    'MM': 'my_MM', 'MN': 'mn_MN', 'MO': 'zh_TW', 'MP': 'en_US', 'MQ': 'fr_FR', 'MR': 'ar_AR',
+    'MS': 'en_US', 'MT': 'en_GB', 'MU': 'en_GB', 'MV': 'dv_MV', 'MW': 'en_GB', 'MX': 'es_MX',
+    'MY': 'ms_MY', 'MZ': 'pt_PT', 'NA': 'en_GB', 'NC': 'fr_FR', 'NE': 'fr_FR', 'NF': 'en_GB',
+    'NG': 'en_GB', 'NI': 'es_LA', 'NL': 'nl_NL', 'NO': 'nb_NO', 'NP': 'ne_NP', 'NR': 'en_US',
+    'NU': 'en_US', 'NZ': 'en_GB', 'OM': 'ar_AR', 'PA': 'es_LA', 'PE': 'es_LA', 'PF': 'fr_FR',
+    'PG': 'en_US', 'PH': 'tl_PH', 'PK': 'ur_PK', 'PL': 'pl_PL', 'PM': 'fr_FR', 'PN': 'en_GB',
+    'PR': 'es_LA', 'PS': 'ar_AR', 'PT': 'pt_PT', 'PW': 'en_US', 'PY': 'es_LA', 'QA': 'ar_AR',
+    'RE': 'fr_FR', 'RO': 'ro_RO', 'RS': 'sr_RS', 'RU': 'ru_RU', 'RW': 'fr_FR', 'SA': 'ar_AR',
+    'SB': 'en_US', 'SC': 'fr_FR', 'SD': 'ar_AR', 'SE': 'sv_SE', 'SG': 'en_GB', 'SH': 'en_GB',
+    'SI': 'sl_SI', 'SJ': 'nb_NO', 'SK': 'sk_SK', 'SL': 'en_GB', 'SM': 'it_IT', 'SN': 'fr_FR',
+    'SO': 'so_SO', 'SR': 'nl_NL', 'SS': 'en_GB', 'ST': 'pt_PT', 'SV': 'es_LA', 'SX': 'nl_NL',
+    'SY': 'ar_AR', 'SZ': 'en_GB', 'TC': 'en_US', 'TD': 'fr_FR', 'TF': 'fr_FR', 'TG': 'fr_FR',
+    'TH': 'th_TH', 'TJ': 'tg_TJ', 'TK': 'en_US', 'TL': 'pt_PT', 'TM': 'ru_RU', 'TN': 'ar_AR',
+    'TO': 'en_US', 'TR': 'tr_TR', 'TT': 'en_US', 'TV': 'en_US', 'TW': 'zh_TW', 'TZ': 'sw_KE',
+    'UA': 'uk_UA', 'UG': 'en_GB', 'UM': 'en_US', 'US': 'en_US', 'UY': 'es_LA', 'UZ': 'uz_UZ',
+    'VA': 'it_IT', 'VC': 'en_US', 'VE': 'es_LA', 'VG': 'en_GB', 'VI': 'en_US', 'VN': 'vi_VN',
+    'VU': 'en_US', 'WF': 'fr_FR', 'WS': 'en_US', 'YE': 'ar_AR', 'YT': 'fr_FR', 'ZA': 'en_GB',
+    'ZM': 'en_GB', 'ZW': 'en_GB'
+}
+
+
+def get_locale_code(country_code):
+    """Get locale code from country code"""
+    return COUNTRY_TO_LOCALE.get(country_code.upper(), 'en_US')
+
+
+def get_ip_info(proxies=None):
+    """Get IP information"""
+    try:
+        r = requests.get("http://ip-api.com/json/", proxies=proxies, timeout=10)
+        if r.status_code == 200:
+            data = r.json()
+            return {
+                'country': data.get('country', 'Unknown'),
+                'countryCode': data.get('countryCode', 'US'),
+                'timezone': data.get('timezone', 'Unknown')
+            }
+    except:
+        pass
+    return {'country': 'Unknown', 'countryCode': 'US', 'timezone': 'Unknown'}
+
+
+def load_settings():
+    """Load settings from JSON file"""
+    try:
+        with open('Setting.json', 'r') as f:
+            return json.load(f)
+    except:
+        return {}
+
+
+def get_status_line():
+    """Get status line for display"""
+    return f"\r{GREEN}[{WHITE}Mr-SxR{GREEN}] {WHITE}CHECKED:-{total_checked}{CYAN}|{GREEN}SUCCESS:-{total_success}{CYAN}|{YELLOW}FAILED:-{total_failed}{CYAN}|{RED}ERROR:-{total_error}"
+
+
+def safe_print(text):
+    """Thread-safe print with status line"""
+    with print_lock:
+        sys.stdout.write('\r' + ' ' * 80 + '\r')
+        try:
+            sys.stdout.write(str(text) + '\n')
+        except UnicodeEncodeError:
+            sys.stdout.write(str(text).encode('utf-8', 'ignore').decode('utf-8') + '\n')
+        sys.stdout.write(get_status_line())
+        sys.stdout.flush()
+
+
+def update_counter(status, number=None, message=None, color=None, html_content=None):
+    """Update counters and display status"""
+    global total_success, total_failed, total_error, total_checked
+    
+    with counter_lock:
+        if status == 'success':
+            total_success += 1
+        elif status == 'failed':
+            total_failed += 1
+        elif status == 'error':
+            total_error += 1
+            if html_content and SAVE_ERROR_LOGS.lower() == 'on':
+                save_error_html(message if message else "Unknown Error", html_content)
+        
+        total_checked += 1
+    
+    if message:
+        if not color: 
+            color = WHITE
+        if number:
+            safe_print(f"{color} {message} {number}")
+        else:
+            safe_print(f"{color} {message}")
+    else:
+        with print_lock:
+            sys.stdout.write(get_status_line())
+            sys.stdout.flush()
+
+
+def reset_counters():
+    """Reset all counters"""
+    global total_checked, total_success, total_failed, total_error
+    total_checked = 0
+    total_success = 0
+    total_failed = 0
+    total_error = 0
+
+
+def save_error_html(message, html_content):
+    """Save error HTML to file"""
+    try:
+        if not os.path.exists('Error_Logs'):
+            os.makedirs('Error_Logs')
             
-            code_data = code_response.json()
-            code = re.search(r'FB-([^ ]+)', str(code_data))
-            if code:
-                return code.group(1)
+        safe_msg = re.sub(r'[\\/*?:"<>|]', '', message)
+        safe_msg = safe_msg.replace(' ', '_')[:50]
+        
+        filename = f"Error_Logs/{safe_msg}.html"
+        counter = 1
+        while os.path.exists(filename):
+            filename = f"Error_Logs/{safe_msg}_{counter}.html"
+            counter += 1
+            
+        with open(filename, 'w', encoding='utf-8') as f:
+            f.write(f"<!-- Error: {message} -->\n")
+            f.write(html_content)
+    except Exception as e:
+        safe_print(f"{RED} Failed to save error log: {e}")
+
+
+def clear_logo():
+    """Clear screen and display logo"""
+    os.system('cls' if platform.system() == 'Windows' else 'clear')
+    
+    print(''.join([
+        GREEN,
+        "\n      .d8888.  db    db  d8888b. \n",
+        "      88'  YP  `8b  d8'  88  `8D \n",
+        "      `8bo.     `8bd8'   88oobY' \n",
+        "        `Y8b.   .dPYb.   88`8b   \n",
+        "      db   8D  .8P  Y8.  88 `88. \n",
+        "      `8888Y'  YP    YP  88   YD   ",
+        ORANGE, 'V-3.6\n',
+        LINE, '\n ',
+        GREEN, '[', RED, '●', GREEN, '] TOOL OWNER   ', CYAN, ':', GREEN, ' @yeasin_hossain018\n ',
+        GREEN, '[', RED, '●', GREEN, '] TOOL         ', CYAN, ':', GREEN, ' FORGET FB\n ',
+        GREEN, '[', RED, '●', GREEN, '] TOOL STATUS  ', CYAN, ':', GREEN, ' PAID\n',
+        LINE
+    ]))
+
+
+def sxr_main():
+    """Main menu"""
+    global user_nm, expr
+    
+    clear_logo()
+    print(f" {GREEN}UserName {EKL} {user_nm}\n {RED}Expired {EKL} {expr} (Utc)\n{LINE}")
+    print(f" {opt_labels[0]} FB FORGET\n {opt_labels[1]} NUMBER FILTER\n {opt_labels[2]} CONFIRM ACCOUNT\n {opt_labels[3]} JOIN TELEGRAM\n{LINE}")
+    
+    chic_opsn = input(f"{GREEN} [{RED}●{GREEN}] CHOOSE OPTION {EKL} ")
+    
+    if chic_opsn in ('1', '01', 'A', 'a'):
+        file_inp()
+    elif chic_opsn in ('2', '02', 'B', 'b'):
+        run_external_tool('Mr-SxR_Filter.exe')
+    elif chic_opsn in ('3', '03', 'C', 'c'):
+        run_external_tool('Mr-SxR_Confirm.exe')
+    elif chic_opsn in ('4', '04', 'D', 'd'):
+        webbrowser.open('https://t.me/mrsxrtools')
+        input(f"{WHITE} Press Enter to return...")
+        sxr_main()
+    else:
+        print(f"\n{RED} You have selected the wrong option..")
+        time.sleep(3)
+        sxr_main()
+
+
+def run_external_tool(filename):
+    """Run external executable safely"""
+    try:
+        if os.path.exists(filename):
+            os.startfile(filename)
+        else:
+            print(f"{RED} {filename} file not found!")
+            time.sleep(2)
+        sxr_main()
+    except Exception as e:
+        print(f"{RED} Error running {filename}: {e}")
+        time.sleep(2)
+        sxr_main()
+
+
+def extract_numbers_from_excel(filename):
+    """Extract phone numbers from Excel file"""
+    try:
+        wb = openpyxl.load_workbook(filename, data_only=True)
+        sheet = wb.active
+        
+        # Find column with phone numbers
+        target_col_idx = None
+        max_matches = 0
+        
+        for col_idx in range(1, sheet.max_column + 1):
+            match_count = 0
+            for row_idx in range(2, min(22, sheet.max_row + 1)):
+                cell_val = sheet.cell(row=row_idx, column=col_idx).value
+                if cell_val:
+                    s_val = str(cell_val).strip()
+                    s_cleaned = re.sub(r'[\s\-\(\)\+]', '', s_val)
+                    if s_cleaned.isdigit() and 7 <= len(s_cleaned) <= 15:
+                        match_count += 1
+            
+            if match_count > max_matches:
+                max_matches = match_count
+                target_col_idx = col_idx
+        
+        if target_col_idx is None:
+            return None, 'No phone number column found.'
+        
+        # Extract numbers
+        numbers = []
+        for row in sheet.iter_rows(
+            min_row=1, max_row=sheet.max_row, 
+            min_col=target_col_idx, max_col=target_col_idx, 
+            values_only=True
+        ):
+            val = row[0]
+            if val:
+                s_val = str(val).strip()
+                s_cleaned = re.sub(r'[\s\-\(\)\+]', '', s_val)
+                if s_cleaned.isdigit() and 7 <= len(s_cleaned) <= 15:
+                    numbers.append(s_cleaned)
+        
+        return numbers, None
+    except Exception as e:
+        return None, str(e)
+
+
+def file_inp():
+    """File input handler"""
+    clear_logo()
+    settings = load_settings()
+    file_settings = settings.get('file_input_settings', {})
+    always_use_txt = file_settings.get('always_use_txt', False)
+    use_multiple_excel = file_settings.get('use_multiple_excel_files', False)
+    
+    if always_use_txt:
+        if os.path.exists('Number_List.txt'):
+            with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
+                numbers = [line.strip() for line in f if line.strip()]
+            
+            if numbers:
+                print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
+                input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
+                autom_main()
+                return
             else:
-                print("Code not found in the response.")
-                return None
-        
-        except requests.RequestException as e:
-            print(f"Request error: {e}")
-            return None
-        except Exception as e:
-            print(f"Unexpected error: {e}")
-            return None
-temp_email_generator = TempEmailGenerator()
-email = temp_email_generator.get_email()
-print("Temporary Email:", email)
+                print(f"{WHITE} 'Number_List.txt' file is empty.")
+                input(f"{WHITE} Press Enter to return to main menu...")
+                sxr_main()
+                return
+        else:
+            print(f"{WHITE} 'Number_List.txt' file was not found.")
+            input(f"{WHITE} Press Enter to return to main menu...")
+            sxr_main()
+            return
+    
+    if use_multiple_excel:
+        handle_multiple_excel()
+        return
+    
+    handle_single_excel()
 
-if email:
-    code = temp_email_generator.get_code()
-    print("Verification Code:", code)
+
+def handle_multiple_excel():
+    """Handle multiple Excel files"""
+    xlsx_files = [f for f in os.listdir('.') if f.endswith('.xlsx') and not f.startswith('~$')]
+    
+    if xlsx_files:
+        print(f"{GREEN} [{RED}●{GREEN}] Found {len(xlsx_files)} Excel Files.")
+        all_numbers = []
+        
+        for f in xlsx_files:
+            print(f"{WHITE} Extracting from {EKL} {f}...")
+            nums, err = extract_numbers_from_excel(f)
+            if nums:
+                all_numbers.extend(nums)
+                print(f"{GREEN}  -> Found {len(nums)} numbers.")
+            else:
+                print(f"{RED}  -> Failed: {err}")
+        
+        if all_numbers:
+            all_numbers = list(set(all_numbers))
+            with open('Number_List.txt', 'w', encoding='utf-8', errors='ignore') as f:
+                for num in all_numbers:
+                    f.write(num + '\n')
+            
+            print(f"\n{GREEN} [{RED}●{GREEN}] Total Unique Numbers Extracted {EKL} {len(all_numbers)}")
+            print(f"{GREEN} [{RED}●{GREEN}] Saved to 'Number_List.txt'\n")
+            input(f"{WHITE} Press Enter to Start Forgetting {len(all_numbers)} Numbers...")
+            autom_main()
+            return
+        else:
+            print(f"{RED} No valid numbers found in any Excel files.")
+            input(f"{WHITE} Press Enter to return to main menu...")
+            sxr_main()
+            return
+    
+    # Fallback to text file
+    if os.path.exists('Number_List.txt'):
+        with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
+            numbers = [line.strip() for line in f if line.strip()]
+        
+        if numbers:
+            print(f"{WHITE} No Excel files found, using Number_List.txt")
+            print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
+            input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
+            autom_main()
+            return
+    
+    print(f"{WHITE} No Excel files found and 'Number_List.txt' not found.")
+    input(f"{WHITE} Press Enter to return to main menu...")
+    sxr_main()
+
+
+def handle_single_excel():
+    """Handle single Excel file"""
+    files = [f for f in os.listdir('.') if f.endswith('.xlsx') and not f.startswith('~$')]
+    
+    if not files:
+        if os.path.exists('Number_List.txt'):
+            with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
+                numbers = [line.strip() for line in f if line.strip()]
+            
+            if numbers:
+                print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} Number_List.txt")
+                input(f"{WHITE} Press Enter to Start Forgetting {len(numbers)} Numbers...")
+                autom_main()
+                return
+        
+        print(f"{WHITE} No Excel files found and 'Number_List.txt' not found.")
+        input(f"{WHITE} Press Enter to return to main menu...")
+        sxr_main()
+        return
+    
+    # Select file
+    filename = files[0] if len(files) == 1 else select_file(files)
+    if not filename:
+        return
+    
+    print(f"{GREEN} [{RED}●{GREEN}] Selected File {EKL} {filename}\n")
+    nums, err = extract_numbers_from_excel(filename)
+    
+    if nums:
+        with open('Number_List.txt', 'w', encoding='utf-8', errors='ignore') as f:
+            for num in nums:
+                f.write(num + '\n')
+        
+        print(f"{GREEN} [{RED}●{GREEN}] Success! Extracted {len(nums)} numbers From {filename} File.")
+        print(f"{GREEN} [{RED}●{GREEN}] Saved to 'Number_List.txt'\n")
+        input(f"{WHITE} Press Enter to Start Forgetting {len(nums)} Numbers...")
+        autom_main()
+    else:
+        print(f"{RED} Error: {err}")
+        input(f"{WHITE} Press Enter to return Main Menu...")
+        sxr_main()
+
+
+def select_file(files):
+    """Select file from list"""
+    print(f"{GREEN} [{RED}●{GREEN}] Found {len(files)} Excel Files:")
+    for idx, f in enumerate(files, 1):
+        print(f" {GREEN}[{RED}{idx}{GREEN}] {f}")
+    print(LINE)
+    
+    while True:
+        choice = input(f"{GREEN} [{RED}●{GREEN}] Select File (1-{len(files)}) {EKL} ").strip()
+        if choice.isdigit():
+            idx = int(choice) - 1
+            if 0 <= idx < len(files):
+                return files[idx]
+        print(f"{RED} Invalid selection!")
+
+
+def get_proxy_list(settings_key, prompt_label):
+    """Get proxy list with configuration"""
+    settings = load_settings()
+    proxy_set = settings.get(settings_key, {})
+    ask_proxy = proxy_set.get('ask_for_proxy', True)
+    def_proxy = proxy_set.get('default_proxy', '')
+    
+    server_set = settings.get('server_settings', {})
+    server_id = server_set.get('tools_server_id', 1)
+    server_domain = SERVER_MAP.get(server_id, 'm.facebook.com')
+    
+    PROXY_LIST = []
+    
+    # Handle default proxies
+    if def_proxy:
+        proxies_to_test = def_proxy if isinstance(def_proxy, list) else [def_proxy]
+        print(f"{WHITE} Testing {len(proxies_to_test)} Default {prompt_label}...")
+        
+        for p in proxies_to_test:
+            parsed = parse_proxy(p)
+            if parsed and test_proxy(parsed, server_domain):
+                nfo = get_ip_info(parsed)
+                loc = get_locale_code(nfo['countryCode'])
+                PROXY_LIST.append({'proxy': parsed, 'locale': loc, 'country': nfo['country']})
+                print(f"{GREEN} [{RED}●{GREEN}] {prompt_label} Location {EKL} {nfo['country']}")
+                print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
+            else:
+                print(f"{RED} Default {prompt_label} Connection Failed: {p}")
+        
+        if def_proxy and not PROXY_LIST:
+            print(f"{RED} All Default {prompt_label} Failed!")
+    
+    # Ask for proxies if needed
+    if ask_proxy and (not PROXY_LIST or PROXY_LIST):
+        while True:
+            try:
+                proxy_input = input(
+                    f"{GREEN} [{RED}●{GREEN}] Enter {prompt_label} (or 'y' for multiple) [Enter to Skip] {EKL} "
+                ).strip()
+                
+                if proxy_input.lower() == 'y':
+                    cnt_in = input(f"{GREEN} [{RED}●{GREEN}] How many {prompt_label}? {EKL} ")
+                    if cnt_in.strip():
+                        cnt = int(cnt_in)
+                        for i in range(cnt):
+                            p_in = input(f"{WHITE} [{RED}●{WHITE}] Enter {prompt_label} [{i+1}/{cnt}] {EKL} ").strip()
+                            if p_in:
+                                print(f"{WHITE} Testing {prompt_label}...")
+                                parsed = parse_proxy(p_in)
+                                if parsed and test_proxy(parsed, server_domain):
+                                    nfo = get_ip_info(parsed)
+                                    loc = get_locale_code(nfo['countryCode'])
+                                    print(f"{GREEN} [{RED}●{GREEN}] {prompt_label} Location {EKL} {nfo['country']}")
+                                    print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
+                                    PROXY_LIST.append({'proxy': parsed, 'locale': loc, 'country': nfo['country']})
+                                else:
+                                    print(f"{RED} Connection Failed or Invalid Format!")
+                        break
+                    else:
+                        print(f"{RED} Invalid Number!")
+                        break
+                
+                if proxy_input:
+                    parsed = parse_proxy(proxy_input)
+                    if parsed and test_proxy(parsed, server_domain):
+                        nfo = get_ip_info(parsed)
+                        loc = get_locale_code(nfo['countryCode'])
+                        print(f"{GREEN} [{RED}●{GREEN}] {prompt_label} Location {EKL} {nfo['country']}")
+                        print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
+                        PROXY_LIST.append({'proxy': parsed, 'locale': loc, 'country': nfo['country']})
+                        break
+                    else:
+                        print(f"{RED} {prompt_label} Connection Failed!")
+                else:
+                    break
+            except ValueError:
+                print(f"{RED} Invalid Input")
+                continue
+            except Exception:
+                print(f"{RED} Invalid Input")
+                continue
+    
+    return PROXY_LIST
+
+
+def autom_main():
+    """Main automation function"""
+    while True:
+        clear_logo()
+        try:
+            with open('Number_List.txt', 'r', encoding='utf-8', errors='ignore') as f:
+                numbers = [line.strip() for line in f if line.strip()]
+            
+            if not numbers:
+                input(f"{WHITE} Add the 'Number_List.txt' file and press Enter...")
+                continue
+            break
+        except Exception as e:
+            print(f"{RED} Error reading file {EKL} {e}")
+            input(f"{WHITE} Press Enter to return...")
+            sxr_main()
+            return
+    
+    settings = load_settings()
+    server_set = settings.get('server_settings', {})
+    server_id = server_set.get('tools_server_id', 1)
+    server_domain = SERVER_MAP.get(server_id, 'm.facebook.com')
+    
+    # Setup proxies
+    print(f"{WHITE} Setting up Main Proxy System...")
+    PROXY_LIST = get_proxy_list('proxy_settings', 'Main Proxy')
+    PROXY_ITERATOR = itertools.cycle(PROXY_LIST) if PROXY_LIST else None
+    
+    if PROXY_LIST:
+        print(f"{GREEN} [{RED}●{GREEN}] Total Main Proxies {EKL} {len(PROXY_LIST)}")
+        if len(PROXY_LIST) > 1:
+            countries = set(p['country'] for p in PROXY_LIST)
+            if len(countries) > 1:
+                print(f"{GREEN} [{RED}●{GREEN}] IP Location {EKL} Multiple ({len(countries)} Countries)")
+                print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} Mixed")
+            else:
+                nfo = get_ip_info(None)
+                loc = get_locale_code(nfo['countryCode'])
+                global CURRENT_LOCALE
+                CURRENT_LOCALE = loc
+                print(f"{GREEN} [{RED}●{GREEN}] IP Location {EKL} {nfo['country']}")
+                print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
+    else:
+        nfo = get_ip_info(None)
+        loc = get_locale_code(nfo['countryCode'])
+        CURRENT_LOCALE = loc
+        print(f"{GREEN} [{RED}●{GREEN}] IP Location {EKL} {nfo['country']}")
+        print(f"{GREEN} [{RED}●{GREEN}] Locale      {EKL} {loc}")
+    
+    # Setup SMS proxies
+    print(f"{LINE}\n{WHITE} Setting up 2nd Option Proxy System...")
+    SMS_PROXY_LIST = get_proxy_list('sms_proxy_settings', 'SMS Proxy')
+    SMS_PROXY_ITERATOR = itertools.cycle(SMS_PROXY_LIST) if SMS_PROXY_LIST else None
+    
+    if SMS_PROXY_LIST:
+        print(f"{GREEN} [{RED}●{GREEN}] Total SMS Proxies  {EKL} {len(SMS_PROXY_LIST)}")
+    else:
+        print(f"{YELLOW} No Proxy configured. Will continue with Main Proxy")
+    
+    # Browser selection
+    browser_type = select_browser(settings)
+    
+    # Worker selection
+    maxworker = select_workers(settings)
+    
+    # Start processing
+    clear_logo()
+    reset_counters()
+    
+    sem = threading.Semaphore(maxworker + 10)
+    
+    try:
+        with threadpol(max_workers=maxworker) as executor:
+            remaining_numbers = list(numbers)
+            
+            for num in numbers:
+                sem.acquire()
+                
+                proxy_data = next(PROXY_ITERATOR) if PROXY_ITERATOR else None
+                current_proxy = proxy_data['proxy'] if proxy_data else None
+                current_locale = proxy_data['locale'] if proxy_data else CURRENT_LOCALE
+                
+                future = executor.submit(
+                    check, num, current_proxy, current_locale, 
+                    browser_type, 0, server_domain, SMS_PROXY_ITERATOR
+                )
+                future.add_done_callback(lambda _: sem.release())
+                
+                if remaining_numbers:
+                    remaining_numbers.pop(0)
+                    with open('Number_List.txt', 'w') as f:
+                        for n in remaining_numbers:
+                            f.write(n + '\n')
+    except Exception as e:
+        print(f"{RED} ThreadPool error: {e}")
+    
+    # Display results
+    with print_lock:
+        sys.stdout.write('\r' + ' ' * 80 + '\r')
+        sys.stdout.flush()
+    
+    print(''.join([
+        LINE, '\n',
+        GREEN, ' [', RED, '●', GREEN, '] ', WHITE, 'Completed Forgetting ', total_checked, ' Numbers.\n',
+        GREEN, ' [', RED, '●', GREEN, '] ', GREEN, 'Total Success: ', total_success, ' Numbers.\n',
+        GREEN, ' [', RED, '●', GREEN, '] ', YELLOW, 'Total Failed: ', total_failed, ' Numbers.\n',
+        GREEN, ' [', RED, '●', GREEN, '] ', RED, 'Total Error: ', total_error, ' Numbers.\n',
+        LINE
+    ]))
+    
+    # Loop back
+    while True:
+        try:
+            choice = input(f"{WHITE} Press Enter to Start Again or Type 'M' for Main Menu {EKL} ")
+            if choice.lower() in ('m', 'menu'):
+                sxr_main()
+                return
+            break
+        except Exception as e:
+            print(f"{RED} Error in loop {EKL} {e}")
+            input(f"{WHITE} Press Enter to return...")
+            sxr_main()
+            return
+
+
+def select_browser(settings):
+    """Select browser type"""
+    brow_set = settings.get('browser_settings', {})
+    def_brow = str(brow_set.get('default_browser', 'none')).strip().lower()
+    
+    if def_brow not in ('none', ''):
+        return map_browser_input(def_brow)
+    
+    print(''.join([
+        LINE, '\n ',
+        GREEN, '[', RED, '0', GREEN, '] Random ', WHITE, '(Mix) \n ',
+        GREEN, '[', RED, '1', GREEN, '] Brave ', WHITE, '(Default) ', GREEN, '[', RED, '6', GREEN, '] Opera         ', GREEN, '[', RED, '11', GREEN, '] Kiwi Browser\n ',
+        GREEN, '[', RED, '2', GREEN, '] Chrome          ', GREEN, '[', RED, '7', GREEN, '] UC Browser    ', GREEN, '[', RED, '12', GREEN, '] Dolphin\n ',
+        GREEN, '[', RED, '3', GREEN, '] Edge            ', GREEN, '[', RED, '8', GREEN, '] DuckDuckGo    ', GREEN, '[', RED, '13', GREEN, '] Mi Browser\n ',
+        GREEN, '[', RED, '4', GREEN, '] Firefox         ', GREEN, '[', RED, '9', GREEN, '] Vivaldi       ', GREEN, '[', RED, '14', GREEN, '] Maxthon\n ',
+        GREEN, '[', RED, '5', GREEN, '] Samsung         ', GREEN, '[', RED, '10', GREEN, '] Yandex       ', GREEN, '[', RED, '15', GREEN, '] Puffin\n',
+        LINE
+    ]))
+    
+    brow_inp = input(f"{GREEN} [{RED}●{GREEN}] Select Browser {EKL} ").strip()
+    browser_type = map_browser_input(brow_inp)
+    
+    if def_brow not in ('none', ''):
+        print(f"{GREEN} [{RED}●{GREEN}] Selected Browser {EKL} {browser_type}")
+    
+    return browser_type
+
+
+def map_browser_input(inp):
+    """Map browser input to browser name"""
+    browser_map = {
+        '1': 'Brave', '2': 'Chrome', '3': 'Edge', '4': 'Firefox',
+        '5': 'Samsung', '6': 'Opera', '7': 'UC', '8': 'DuckDuckGo',
+        '9': 'Vivaldi', '10': 'Yandex', '11': 'Kiwi', '12': 'Dolphin',
+        '13': 'Mi Browser', '14': 'Maxthon', '15': 'Puffin', '0': 'Random'
+    }
+    return browser_map.get(str(inp).strip(), 'Brave')
+
+
+def select_workers(settings):
+    """Select number of workers"""
+    worker_set = settings.get('worker_settings', {})
+    ask_worker = worker_set.get('ask_for_workers', True)
+    def_workers = worker_set.get('default_workers', 30)
+    
+    if ask_worker:
+        w_inp = input(f"{GREEN} [{RED}●{GREEN}] Enter number of Threads/Workers ({def_workers} recommended) {EKL} ")
+        return int(w_inp) if w_inp.strip() else int(def_workers)
+    else:
+        return int(def_workers)
+
+
+def process_sms(session, resp_text, number, url, base_headers, server_domain, sms_proxy_iterator=None):
+    """Process SMS recovery"""
+    if 'id="contact_point_selector_form"' in resp_text and 'name="recover_method"' in resp_text:
+        sms_options = re.findall(
+            'input type="radio" name="recover_method" value="(send_sms:.*?)".*?id="(.*?)"', 
+            resp_text
+        )
+        
+        target_value = None
+        for val, inp_id in sms_options:
+            label_match = re.search(
+                'label for="' + re.escape(inp_id) + '".*?<div class="_52jc _52j9">(.*?)</div>', 
+                resp_text, 
+                re.DOTALL
+            )
+            if label_match:
+                visible_text = label_match.group(1)
+                vis_digits = ''.join(filter(str.isdigit, visible_text))
+                
+                if number.endswith(vis_digits):
+                    target_value = val
+                    safe_print(f"{CYAN} SMS Option Found {EKL} {visible_text}")
+                    break
+        
+        if target_value:
+            # Switch proxy if available
+            if sms_proxy_iterator:
+                try:
+                    proxy_data = next(sms_proxy_iterator)
+                    session.proxies.update(proxy_data['proxy'])
+                    safe_print(f"{CYAN} Reloading Page...")
+                    
+                    reload_headers = base_headers.copy()
+                    reload_headers.update({
+                        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+                        'referer': url
+                    })
+                    
+                    reload_response = session.get(url, headers=reload_headers)
+                    if reload_response.status_code == 200:
+                        resp_text = reload_response.text
+                    else:
+                        safe_print(f"{RED} Page Reload Failed ({reload_response.status_code})")
+                except Exception as e:
+                    safe_print(f"{RED} Proxy Switch/Reload Error: {e}")
+            
+            # Send SMS
+            try:
+                lsd = re.search('name="lsd" value="(.*?)"', resp_text)
+                lsd = lsd.group(1) if lsd else ''
+                
+                jazoest = re.search('name="jazoest" value="(.*?)"', resp_text)
+                jazoest = jazoest.group(1) if jazoest else ''
+                
+                action_match = re.search(
+                    '<form.*?action="(.*?)".*?id="contact_point_selector_form"', 
+                    resp_text, 
+                    re.DOTALL
+                )
+                if action_match:
+                    action_url = action_match.group(1).replace('&amp;', '&')
+                    full_url = f"https://{server_domain}{action_url}"
+                else:
+                    full_url = f"https://{server_domain}/ajax/recover/initiate/"
+                
+                headers = base_headers.copy()
+                headers.update({
+                    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+                    'cache-control': 'max-age=0',
+                    'content-type': 'application/x-www-form-urlencoded',
+                    'origin': f"https://{server_domain}",
+                    'referer': url
+                })
+                
+                data = {
+                    'lsd': lsd,
+                    'jazoest': jazoest,
+                    'recover_method': target_value,
+                    'reset_action': 'Continue'
+                }
+                
+                params = {
+                    'c': '/login/',
+                    'ctx': 'initate_view',
+                    'sr': '0',
+                    'ars': 'facebook_login'
+                }
+                
+                sxr_respns = session.post(full_url, headers=headers, data=data, params=params)
+                
+                if 'action="/recover/code/' in sxr_respns.text:
+                    update_counter('success', number, "SMS Sent Successfully", GREEN)
+                    return True
+                else:
+                    update_counter('failed', number, "Code Sent Failed - Skipping...", RED)
+                    return True
+            except Exception:
+                pass
+        else:
+            update_counter('failed', number, "SMS Option Not Found/Mismatch - Skipping...", YELLOW)
+            return True
+    
+    return False
+
+
+def check(number, proxy=None, locale='en_US', browser_type='Brave', retry_count=0, 
+          server_domain='m.facebook.com', sms_proxy_iterator=None):
+    """Check a single number"""
+    sxr_respns = None
+    session = requests.Session()
+    
+    if proxy:
+        session.proxies.update(proxy)
+    elif PROXIES:
+        session.proxies.update(PROXIES)
+    
+    # Select browser
+    if browser_type == 'Random':
+        browser_list = [
+            'Brave', 'Chrome', 'Edge', 'Firefox', 'Samsung', 'Opera', 'UC', 
+            'DuckDuckGo', 'Vivaldi', 'Yandex', 'Kiwi', 'Dolphin', 'Mi Browser', 
+            'Maxthon', 'Puffin'
+        ]
+        current_browser = random.choice(browser_list)
+    else:
+        current_browser = browser_type
+    
+    # Generate device fingerprint
+    andro_ver = random.choice([
+        '4.0.3', '4.0.4', '4.1.2', '4.2.2', '4.3', '4.4.2', '4.4.4', 
+        '5.0', '5.0.2', '5.1.1', '6.0', '6.0.1', '7.0', '7.1.1'
+    ])
+    models = [
+        'SM-G900F', 'SM-G920F', 'SM-G930F', 'SM-G935F', 'SM-J320F', 'SM-J500F', 
+        'SM-J700F', 'SM-A300FU', 'SM-A500FU', 'SM-N910F', 'SM-N920C', 'LG-H815', 
+        'LG-H850', 'LG-D855', 'LG-K420', 'XT1068', 'XT1092', 'XT1562', 'XT1635', 
+        'E6653', 'F5121', 'D6603', 'ALE-L21', 'VNS-L31', 'PRA-LX1'
+    ]
+    model = random.choice(models)
+    
+    # Build fingerprint
+    if andro_ver.startswith('4'):
+        build_prefix = random.choice(['KOT49', 'KTU84', 'JZO54', 'JSS15'])
+    elif andro_ver.startswith('5'):
+        build_prefix = random.choice(['LRX21', 'LMY47', 'LRX22'])
+    elif andro_ver.startswith('6'):
+        build_prefix = random.choice(['MRA58', 'MMB29'])
+    elif andro_ver.startswith('7'):
+        build_prefix = random.choice(['NRD90', 'NMF26'])
+    else:
+        build_prefix = 'LMY47'
+    
+    build = f"{build_prefix}{random.choice('ABCDEFGHJKLMNPQRSTUVWXYZ')}{random.randint(35, 65)}"
+    chrome_ver = f"{random.randint(35, 65)}.0.{random.randint(1500, 4000)}.{random.randint(40, 150)}"
+    base_ua = f"Mozilla/5.0 (Linux; Android {andro_ver}; {model} Build/{build}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome_ver} Mobile Safari/537.36"
+    
+    # Browser-specific headers
+    base_headers = get_browser_headers(current_browser, base_ua, andro_ver, model)
+    
+    # Screen resolution
+    screen_res = random.choice([
+        '320x480', '480x800', '540x960', '800x480', '854x480', '960x540', 
+        '720x1280', '1280x720', '1080x1920', '1920x1080', '1440x2560'
+    ])
+    session.cookies.update({'m_pixel_ratio': '1', 'wd': screen_res})
+    
+    # Common headers
+    base_headers.update({
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'accept-language': f"{locale},en;q=0.9",
+        'priority': 'u=0, i',
+        'sec-ch-ua-full-version-list': '"Chromium";v="143.0.0.0", "Not A(Brand";v="24.0.0.0"',
+        'sec-ch-ua-model': f'"{model}"',
+        'sec-ch-ua-platform-version': f'"{andro_ver}"',
+        'sec-fetch-dest': 'document',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'same-origin',
+        'sec-fetch-user': '?1',
+        'sec-gpc': '1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': base_ua
+    })
+    
+    try:
+        first_headers = base_headers.copy()
+        first_headers.update({'sec-fetch-site': 'none'})
+        
+        if retry_count == 0:
+            safe_print(f"{LIGHT_GRAY} Searching For {number}...")
+        
+        # Initial request
+        git_fb = session.get(
+            f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr", 
+            headers=first_headers
+        )
+        
+        # Extract LSD and jazoest
+        try:
+            lsd = re.search('name="lsd" value="(.*?)"', str(git_fb.text)).group(1)
+        except:
+            lsd = re.search('\\["LSD",\\[\\],\\{"token":"(.*?)"\\}', str(git_fb.text)).group(1)
+        
+        try:
+            jazoest = re.search('name="jazoest" value="(.*?)"', str(git_fb.text)).group(1)
+        except:
+            jazoest = re.search('"initSprinkleValue":"(.*?)"', str(git_fb.text)).group(1)
+        
+        # Search for account
+        _data = {
+            'lsd': lsd,
+            'jazoest': jazoest,
+            'email': number,
+            'did_submit': 'Search'
+        }
+        
+        post_headers = base_headers.copy()
+        post_headers.update({
+            'cache-control': 'max-age=0',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': f"https://{server_domain}",
+            'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0"
+        })
+        
+        url = f"https://{server_domain}/login/identify/?ctx=recover&c=%2Flogin%2F&search_attempts=1&ars=facebook_login&alternate_search=0&show_friend_search_filtered_list=0&birth_month_search=0&city_search=0"
+        sxr_respns = session.post(url, data=_data, headers=post_headers, allow_redirects=True)
+        
+        # Handle response
+        handle_response(sxr_respns, number, proxy, locale, browser_type, retry_count, 
+                       server_domain, sms_proxy_iterator, base_headers, session)
+        
+    except (requests.exceptions.ConnectionError, requests.exceptions.Timeout, 
+            requests.exceptions.ChunkedEncodingError) as e:
+        safe_print(f"{RED} Network Error {EKL} {e}")
+        safe_print(f"{LIGHT_GRAY} Waiting 5 seconds before retrying...")
+        time.sleep(5)
+        update_counter('error', f"Network Error: {e}", message=f"Network Error: {e}", 
+                      html_content=str(e))
+    
+    except Exception as e:
+        if retry_count < 3:
+            check(number, proxy, locale, browser_type, retry_count + 1, 
+                  server_domain, sms_proxy_iterator)
+            return
+        
+        err_content = str(e)
+        if sxr_respns and hasattr(sxr_respns, 'text'):
+            err_content = sxr_respns.text
+        
+        update_counter('error', number, f"Unexpected Error: {e}", RED, 
+                      html_content=err_content)
+
+
+def get_browser_headers(browser, base_ua, andro_ver, model):
+    """Get browser-specific headers"""
+    base_headers = {}
+    
+    browser_config = {
+        'Brave': ('"Brave";v="143"', base_ua),
+        'Chrome': ('"Google Chrome";v="143"', base_ua),
+        'Edge': ('"Microsoft Edge";v="143"', f"{base_ua} EdgA/143.0.0.0"),
+        'Samsung': ('"Samsung Internet";v="23"', f"{base_ua} SamsungBrowser/10.0"),
+        'Opera': ('"Opera";v="80"', f"{base_ua} OPR/60.0.2254.12345"),
+        'UC': ('"UC Browser";v="13"', f"{base_ua} UBrowser/13.4.0.1306"),
+        'DuckDuckGo': ('"DuckDuckGo";v="5"', f"{base_ua} DuckDuckGo/5"),
+        'Vivaldi': ('"Vivaldi";v="6"', f"{base_ua} Vivaldi/6.0"),
+        'Yandex': ('"Yandex";v="23"', f"{base_ua} YaBrowser/23.0"),
+        'Kiwi': ('"Kiwi";v="124"', f"{base_ua} Kiwi/124.0.6367.113"),
+        'Dolphin': ('"Dolphin";v="12"', f"{base_ua} Dolphin/12.3.0"),
+        'Mi Browser': ('"Mi Browser";v="14"', f"{base_ua} MiuiBrowser/14.0.5"),
+        'Maxthon': ('"Maxthon";v="7"', f"{base_ua} Maxthon/7.0.2.1400"),
+        'Puffin': ('"Puffin";v="9"', f"{base_ua} Puffin/9.10.0.51959"),
+        'Firefox': (None, f"Mozilla/5.0 (Android {andro_ver}; Mobile; rv:{random.randint(40, 60)}.0) Gecko/{random.randint(40, 60)}.0 Firefox/{random.randint(40, 60)}.0")
+    }
+    
+    if browser in browser_config:
+        ua_sec_ch, ua = browser_config[browser]
+        if ua_sec_ch:
+            base_headers['sec-ch-ua'] = ua_sec_ch
+            base_headers['sec-ch-ua-mobile'] = '?1'
+            base_headers['sec-ch-ua-platform'] = '"Android"'
+        return base_headers
+    
+    # Default
+    return {
+        'sec-ch-ua': '"Brave";v="143", "Chromium";v="143", "Not A(Brand";v="24"',
+        'sec-ch-ua-mobile': '?1',
+        'sec-ch-ua-platform': '"Android"'
+    }
+
+
+def handle_response(sxr_respns, number, proxy, locale, browser_type, retry_count, 
+                   server_domain, sms_proxy_iterator, base_headers, session):
+    """Handle response from Facebook"""
+    
+    # Account not found
+    if 'id="login_identify_search_error_msg"' in sxr_respns.text:
+        update_counter('failed', number, "Account Not Found", MAGENTA)
+        return
+    
+    # Multiple accounts
+    if 'action="/login/identify/?ctx=recover' in sxr_respns.text:
+        update_counter('failed', number, "Multiple Account Found - Skipping...", GOLD)
+        return
+    
+    # Name search path
+    if sxr_respns.url.startswith(f"https://{server_domain}/login/account_recovery/name_search/"):
+        handle_name_search(sxr_respns, number, proxy, locale, browser_type, retry_count, 
+                          server_domain, sms_proxy_iterator, base_headers, session)
+        return
+    
+    # Device-based recovery
+    if sxr_respns.url.startswith(f"https://{server_domain}/login/device-based/ar/login/?ldata="):
+        handle_device_based(sxr_respns, number, proxy, locale, browser_type, retry_count, 
+                           server_domain, sms_proxy_iterator, base_headers, session)
+        return
+    
+    # Bot block
+    if 'window.MPageLoadClientMetrics' in sxr_respns.text:
+        if retry_count < 3:
+            check(number, proxy, locale, browser_type, retry_count + 1, 
+                  server_domain, sms_proxy_iterator)
+            return
+        update_counter('error', number, "Unknown Page (Bot Block) - Skipping...", RED, 
+                      html_content=sxr_respns.text)
+        return
+    
+    # Login page redirect
+    if '/r.php?next=' in sxr_respns.text or '/login.php?next=' in sxr_respns.text:
+        if retry_count < 3:
+            check(number, proxy, locale, browser_type, retry_count + 1, 
+                  server_domain, sms_proxy_iterator)
+        return
+    
+    # Request could not be processed
+    if "Your Request Couldn't be Processed" in sxr_respns.text:
+        update_counter('error', number, "Your Request Couldn't be Processed", RED, 
+                      html_content=sxr_respns.text)
+        return
+    
+    # Unknown page
+    update_counter('error', number, "Unknown Page - Skipping...", ORANGE, 
+                  html_content=sxr_respns.text)
+
+
+def handle_name_search(sxr_respns, number, proxy, locale, browser_type, retry_count,
+                      server_domain, sms_proxy_iterator, base_headers, session):
+    """Handle name search response"""
+    headers = base_headers.copy()
+    headers.update({
+        'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr"
+    })
+    sxr_respns = session.get(sxr_respns.url, headers=headers)
+    
+    safe_print(f"{VIOLET} Clicking Try to another way...")
+    
+    # Try another way
+    if 'action="/login/account_recovery/name_search/?flow=initiate_view' in sxr_respns.text:
+        headers = base_headers.copy()
+        headers.update({'referer': sxr_respns.url})
+        sxr_respns = session.get(
+            f"https://{server_domain}/recover/initiate/?c=%2Flogin%2F&fl=initiate_view&ctx=msite_initiate_view", 
+            headers=headers
+        )
+        
+        if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, 
+                      server_domain, sms_proxy_iterator):
+            return
+    
+    # Only password option
+    if 'name="pass"' in sxr_respns.text and '/login/account_recovery/' in sxr_respns.text:
+        update_counter('failed', number, "Only Password Option Found - Skipping...", ORANGE)
+        return
+    
+    update_counter('error', number, "Unknown Page (No Selector) - Skipping...", ORANGE, 
+                  html_content=sxr_respns.text)
+
+
+def handle_device_based(sxr_respns, number, proxy, locale, browser_type, retry_count,
+                       server_domain, sms_proxy_iterator, base_headers, session):
+    """Handle device-based recovery"""
+    headers = base_headers.copy()
+    headers.update({
+        'referer': f"https://{server_domain}/login/identify/?ctx=recover&ars=facebook_login&from_login_screen=0&__mmr=1&_rdr"
+    })
+    sxr_respns = session.get(sxr_respns.url, headers=headers)
+    
+    # SMS selector form
+    if 'id="contact_point_selector_form"' in sxr_respns.text:
+        try:
+            try_another_way_url = re.search(
+                'href="(/recover/initiate/\\?privacy_mutation_token=.*?)"', 
+                sxr_respns.text
+            ).group(1).replace('&amp;', '&')
+        except:
+            pass
+        
+        # Check if SMS is already selected
+        is_sms_checked = re.search(
+            'input type="radio" name="recover_method" value="send_sms:.*?".*?checked="1"', 
+            sxr_respns.text
+        )
+        if is_sms_checked:
+            if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, 
+                          'm.facebook.com', sms_proxy_iterator):
+                return
+            return
+        
+        # Try another way
+        headers = base_headers.copy()
+        headers.update({'referer': sxr_respns.url})
+        sxr_respns = session.get(f"https://{server_domain}{try_another_way_url}", headers=headers)
+        
+        safe_print(f"{VIOLET} Clicking Try to another way...")
+        
+        if process_sms(session, sxr_respns.text, number, sxr_respns.url, base_headers, 
+                      server_domain, sms_proxy_iterator):
+            return
+        
+        update_counter('error', number, "Unknown Page after try another way - Skipping...", ORANGE, 
+                      html_content=sxr_respns.text)
+        return
+    
+    # Captcha
+    if 'name="captcha_response"' in sxr_respns.text:
+        update_counter('failed', number, "Captcha Found - Skipping...", PURPLE)
+        return
+    
+    # Account disabled
+    if '/help/121104481304395' in sxr_respns.text or '/help/103873106370583' in sxr_respns.text:
+        update_counter('failed', number, "Account Disabled - Skipping...", TOXIC)
+        return
+    
+    # Error
+    if 'class="area error"' in sxr_respns.text:
+        if retry_count < 3:
+            check(number, proxy, locale, browser_type, retry_count + 1, 
+                  server_domain, sms_proxy_iterator)
+        return
+    
+    update_counter('error', number, "Unknown Page (Device Based) - Skipping...", ORANGE, 
+                  html_content=sxr_respns.text)
+
+
+def sxr_secure_start():
+    """Secure start with authentication"""
+    STATUS_URL = 'https://mrsxrtools.pythonanywhere.com/'
+    try:
+        res = requests.get(STATUS_URL, timeout=8)
+        if res.status_code == 200:
+            text = res.text.strip().lower()
+            if text == 'onn':
+                print(f"{WHITE} WAITING FOR APPROVAL...")
+                apvv()
+            elif text == 'error':
+                input("Fatal Python error: PyThreadState_Get: no current thread\nAborted (core dumped)")
+                sys.exit(0)
+            else:
+                input(f"{RED} TOOLS SERVER OFF")
+                sys.exit(0)
+        else:
+            os.system('cls' if platform.system() == 'Windows' else 'clear')
+            input(f"{RED} NET CONNECTION ERROR\n")
+            sys.exit(0)
+    except Exception as e:
+        input(f"{RED} SECURITY SYSTEM ERROR: {e}\n RUN TOOL AGAIN")
+        sys.exit(0)
+
+
+if __name__ == '__main__':
+    try:
+        sxr_secure_start()
+    except KeyboardInterrupt:
+        print(f"\n{YELLOW} Process interrupted by user.")
+        sys.exit(0)
+    except Exception as e:
+        print(f"{RED} Fatal error: {e}")
+        import traceback
+        traceback.print_exc()
+        input(f"{WHITE} Press Enter to exit...")
+        sys.exit(1)
