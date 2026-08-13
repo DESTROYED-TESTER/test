@@ -35,8 +35,8 @@ for user in dx:
     print("🔄 PROCESSING ONE ID...")
     linex()
     try:
-        ids, pw = user.split('|')
-        ids, pw = ids.strip(), pw.strip()
+        ids = user.strip()
+        pw = 'papa12'
     except:
         continue
     sys.stdout.write(f"\r ⏳ () ({loop}) (OK-{len(oks)}) (CP-{len(cps)})\r")
