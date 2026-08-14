@@ -33,26 +33,167 @@ Ok, Cp = 0, 0
 passw = ""
 ua = UserAgent()
 
-# --- Email: fakemail.net API ---
-def get_fakemail_email():
-    """Creates a new temporary email using fakemail.net API."""
-    for attempt in range(3):
+# --- Multiple Email Providers ---
+def get_temp_email():
+    """Get temporary email from multiple providers."""
+    providers = [
+        get_fakemail_email,
+        get_temp_mail_email,
+        get_guerrilla_email,
+        get_temp_plus_email
+    ]
+    
+    for provider in providers:
         try:
-            response = requests.post('https://api.fakemail.net/email/create', 
-                                    timeout=15,
-                                    headers={'User-Agent': ua.random})
-            if response.status_code == 200:
-                data = response.json()
-                email = data.get('email')
-                if email:
-                    return email
-            time.sleep(2)
-        except Exception:
+            email = provider()
+            if email:
+                return email
+        except:
             continue
     return None
 
-def get_fakemail_code(email, max_attempts=20, wait=5):
-    """Waits for verification code from fakemail.net."""
+def get_temp_mail_email():
+    """Get email from temp-mail.io"""
+    try:
+        response = requests.post('https://api.internal.temp-mail.io/api/v3/email/new', 
+                                timeout=10,
+                                headers={'User-Agent': ua.random})
+        if response.status_code == 200:
+            data = response.json()
+            return data.get('email')
+    except:
+        pass
+    return None
+
+def get_guerrilla_email():
+    """Get email from guerrillamail.com"""
+    try:
+        response = requests.get('https://api.guerrillamail.com/ajax.php?f=get_email_address',
+                               timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            email = data.get('email_addr')
+            if email:
+                return email
+    except:
+        pass
+    return None
+
+def get_fakemail_email():
+    """Get email from fakemail.net"""
+    try:
+        response = requests.post('https://api.fakemail.net/email/create', 
+                                timeout=10,
+                                headers={'User-Agent': ua.random})
+        if response.status_code == 200:
+            data = response.json()
+            return data.get('email')
+    except:
+        pass
+    return None
+
+def get_temp_plus_email():
+    """Generate a temporary email using tempmail.plus"""
+    try:
+        name = Faker().first_name().lower()
+        domain = random.choice(['fexbox.org', 'fexpost.com', 'fextemp.com', 'chitthi.in'])
+        email = f"{name}{random.randint(100, 999)}@{domain}"
+        return email
+    except:
+        pass
+    return None
+
+# --- Email Code Retrieval ---
+def get_email_code(email, max_attempts=25, wait=5):
+    """Get verification code from email with multiple providers."""
+    try:
+        # Detect email provider
+        domain = email.split('@')[1].lower()
+        
+        if 'temp-mail' in domain or 'fakemail' in domain:
+            return get_temp_mail_code(email, max_attempts, wait)
+        elif 'guerrillamail' in domain:
+            return get_guerrilla_code(email, max_attempts, wait)
+        elif 'fexbox' in domain or 'fexpost' in domain or 'fextemp' in domain or 'chitthi' in domain:
+            return get_temp_plus_code(email, max_attempts, wait)
+        else:
+            return get_fakemail_code(email, max_attempts, wait)
+    except:
+        return None
+
+def get_temp_mail_code(email, max_attempts, wait):
+    """Get code from temp-mail.io"""
+    for attempt in range(max_attempts):
+        try:
+            response = requests.get(f'https://api.internal.temp-mail.io/api/v3/email/{email}/messages',
+                                  timeout=10,
+                                  headers={'User-Agent': ua.random})
+            if response.status_code == 200:
+                messages = response.json()
+                if messages:
+                    for msg in messages:
+                        subject = msg.get('subject', '')
+                        body = msg.get('body_text', '')
+                        combined = f"{subject} {body}"
+                        match = re.search(r'FB-?(\d{5,7})', combined)
+                        if match:
+                            return match.group(1)
+            time.sleep(wait)
+        except:
+            time.sleep(wait)
+    return None
+
+def get_guerrilla_code(email, max_attempts, wait):
+    """Get code from guerrillamail.com"""
+    sid = email.split('@')[0]
+    for attempt in range(max_attempts):
+        try:
+            response = requests.get(f'https://api.guerrillamail.com/ajax.php?f=get_email_list&sid={sid}',
+                                  timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                emails = data.get('list', [])
+                if emails:
+                    for msg in emails:
+                        subject = msg.get('mail_subject', '')
+                        body = msg.get('mail_body', '')
+                        combined = f"{subject} {body}"
+                        match = re.search(r'FB-?(\d{5,7})', combined)
+                        if match:
+                            return match.group(1)
+            time.sleep(wait)
+        except:
+            time.sleep(wait)
+    return None
+
+def get_temp_plus_code(email, max_attempts, wait):
+    """Get code from tempmail.plus"""
+    session = requests.Session()
+    session.cookies.set('email', email)
+    
+    for attempt in range(max_attempts):
+        try:
+            response = session.get('https://tempmail.plus/api/mails',
+                                 timeout=10,
+                                 headers={'User-Agent': ua.random})
+            if response.status_code == 200:
+                data = response.json()
+                mails = data.get('mail_list', [])
+                if mails:
+                    for msg in mails:
+                        subject = msg.get('subject', '')
+                        body = msg.get('body', '')
+                        combined = f"{subject} {body}"
+                        match = re.search(r'FB-?(\d{5,7})', combined)
+                        if match:
+                            return match.group(1)
+            time.sleep(wait)
+        except:
+            time.sleep(wait)
+    return None
+
+def get_fakemail_code(email, max_attempts, wait):
+    """Get code from fakemail.net"""
     local_part = email.split('@')[0]
     
     for attempt in range(max_attempts):
@@ -226,10 +367,18 @@ def create_facebook_account():
         
         # Step 2: Generate user data
         firstname, lastname = fake_name()
-        email = get_fakemail_email()
+        
+        # Try to get email from multiple providers
+        email = None
+        for attempt in range(3):
+            email = get_temp_email()
+            if email:
+                break
+            print(Panel(f"[bold yellow] ⚠️ Email attempt {attempt+1}/3 failed, retrying...", style="bold magenta2"))
+            time.sleep(2)
         
         if not email:
-            print(Panel("[bold red] ❌ FAILED TO GET EMAIL", style="bold magenta2"))
+            print(Panel("[bold red] ❌ FAILED TO GET EMAIL FROM ALL PROVIDERS", style="bold magenta2"))
             return False
         
         custom_pass = fake_password()
@@ -309,7 +458,7 @@ def create_facebook_account():
             
             # Step 6: Get verification code
             print(Panel("[bold white] 📨 WAITING FOR VERIFICATION CODE...", style="bold magenta2"))
-            code = get_fakemail_code(email)
+            code = get_email_code(email)
             
             if code:
                 print(Panel(f"[bold green] ✅ CODE RECEIVED: {code}", style="bold magenta2"))
@@ -343,6 +492,10 @@ def create_facebook_account():
                     
                     Ok += 1
                     return True
+                else:
+                    print(Panel("[bold red] ❌ EMAIL CONFIRMATION FAILED", style="bold magenta2"))
+                    Cp += 1
+                    return False
             else:
                 print(Panel("[bold red] ❌ VERIFICATION CODE NOT RECEIVED", style="bold magenta2"))
                 Cp += 1
@@ -411,7 +564,7 @@ def banner():
     os.system("clear")
     logo = """
     ╔══════════════════════════════════════════════════════════════════╗
-    ║     🤖 FACEBOOK ACCOUNT CREATOR - FAKEMAIL.NET API            ║
+    ║     🤖 FACEBOOK ACCOUNT CREATOR - MULTI EMAIL PROVIDER        ║
     ║     ⚡ OPEN SOURCED BY - LMNx9 & XVSOULX                      ║
     ║     📱 TELEGRAM - t.me/TEAM_LMNx9                            ║
     ╚══════════════════════════════════════════════════════════════════╝
