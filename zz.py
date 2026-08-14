@@ -5,9 +5,10 @@ import time
 import json
 import random
 import uuid
+import hashlib
 import requests
 from datetime import datetime
-from time import sleep
+from time import sleep, strftime
 from bs4 import BeautifulSoup
 from faker import Faker
 from rich import print
@@ -15,10 +16,17 @@ from rich.panel import Panel
 from rich.console import Console
 from fake_useragent import UserAgent
 
+# Try to import receivesms
+try:
+    from receivesms import SMSClient
+    RECEIVESMS_AVAILABLE = True
+except ImportError:
+    RECEIVESMS_AVAILABLE = False
+    print(Panel("[bold red] ❌ receivesms not installed. Install with: pip install receivesms", style="bold magenta2"))
+
 # --- Configuration ---
 FOLDER_PATH = '/sdcard/AUTO-LMNx9'
 os.makedirs(FOLDER_PATH, exist_ok=True)
-os.system("clear")
 
 # --- Color Definitions ---
 R = "[bold red]"
@@ -34,33 +42,136 @@ W = "[bold white]"
 Ok, Cp = 0, 0
 ua = UserAgent()
 
-# --- Phone Number Generation ---
-def generate_phone():
-    """Generate a valid phone number."""
-    # Philippine numbers (since the curl shows PHONE type)
-    prefixes = ['917', '918', '919', '920', '921', '922', '923', '924', '925', '926', '927', '928', '929',
-                '930', '931', '932', '933', '934', '935', '936', '937', '938', '939',
-                '940', '941', '942', '943', '944', '945', '946', '947', '948', '949',
-                '950', '951', '952', '953', '954', '955', '956', '957', '958', '959',
-                '960', '961', '962', '963', '964', '965', '966', '967', '968', '969',
-                '970', '971', '972', '973', '974', '975', '976', '977', '978', '979',
-                '980', '981', '982', '983', '984', '985', '986', '987', '988', '989']
-    
-    prefix = random.choice(prefixes)
-    number = ''.join([str(random.randint(0, 9)) for _ in range(7)])
-    return f"63{prefix}{number}"
+# ============================================================================
+# SMS VERIFICATION WITH RECEIVESMS.ME (FREE)
+# ============================================================================
 
-# --- Email Generation (Fallback) ---
+class FreeSMSVerification:
+    """Free SMS verification using receivesms.me API."""
+    
+    def __init__(self):
+        self.client = None
+        self.number = None
+        self.country = None
+        self.operator = None
+        
+        if RECEIVESMS_AVAILABLE:
+            try:
+                self.client = SMSClient()
+                print(Panel("[bold green] ✅ SMS Client initialized", style="bold magenta2"))
+            except Exception as e:
+                print(Panel(f"[bold red] ❌ Failed to initialize SMS Client: {e}", style="bold magenta2"))
+    
+    def get_number(self, country='US', operator='any'):
+        """Get a free phone number for SMS verification."""
+        if not self.client:
+            print(Panel("[bold red] ❌ SMS Client not available", style="bold magenta2"))
+            return None
+        
+        try:
+            # Get available countries
+            countries = self.client.get_countries()
+            
+            # If specified country not available, use first available
+            if country not in countries:
+                country = list(countries.keys())[0]
+            
+            self.country = country
+            self.operator = operator
+            
+            # Get a number
+            number = self.client.get_number(country=country, operator=operator)
+            
+            if number:
+                self.number = number
+                print(Panel(f"[bold green] ✅ Phone Number: {number}", style="bold magenta2"))
+                return number
+            else:
+                print(Panel("[bold red] ❌ Failed to get number", style="bold magenta2"))
+                return None
+                
+        except Exception as e:
+            print(Panel(f"[bold red] ❌ Error getting number: {e}", style="bold magenta2"))
+            return None
+    
+    def get_sms_code(self, phone_number, max_attempts=30, wait=10):
+        """Get SMS verification code."""
+        if not self.client:
+            return None
+        
+        try:
+            print(Panel(f"[bold white] 📨 Waiting for SMS to {phone_number}...", style="bold magenta2"))
+            
+            for attempt in range(max_attempts):
+                try:
+                    # Get messages
+                    messages = self.client.get_messages(phone_number)
+                    
+                    if messages:
+                        for msg in messages:
+                            content = msg.get('content', '')
+                            sender = msg.get('sender', '')
+                            
+                            # Look for Facebook verification code
+                            patterns = [
+                                r'\b(\d{5,7})\b',
+                                r'FB-(\d{5,7})',
+                                r'code[:\s]*(\d{5,7})',
+                                r'verification[:\s]*(\d{5,7})'
+                            ]
+                            
+                            for pattern in patterns:
+                                match = re.search(pattern, content, re.IGNORECASE)
+                                if match:
+                                    code = match.group(1)
+                                    if len(code) >= 5:
+                                        print(Panel(f"[bold green] ✅ SMS Code Received: {code}", style="bold magenta2"))
+                                        return code
+                    
+                    print(f"[bold yellow] ⏳ Waiting for SMS... Attempt {attempt+1}/{max_attempts}")
+                    time.sleep(wait)
+                    
+                except Exception as e:
+                    print(f"[bold yellow] ⚠️ Error checking messages: {e}")
+                    time.sleep(wait)
+            
+            print(Panel("[bold red] ❌ SMS Code not received within timeout", style="bold magenta2"))
+            return None
+            
+        except Exception as e:
+            print(Panel(f"[bold red] ❌ Error getting SMS: {e}", style="bold magenta2"))
+            return None
+    
+    def release_number(self, phone_number):
+        """Release the phone number when done."""
+        if self.client:
+            try:
+                self.client.release_number(phone_number)
+                print(Panel("[bold yellow] ℹ️ Phone number released", style="bold magenta2"))
+            except:
+                pass
+
+# ============================================================================
+# EMAIL SERVICES (Fallback)
+# ============================================================================
+
 def generate_email():
     """Generate a temporary email."""
     first = Faker().first_name().lower()
     last = Faker().last_name().lower()
-    domains = ['tempmail.com', 'temp-mail.org', 'fexbox.org', 'fexpost.com', 
-               'fextemp.com', 'chitthi.in', 'guerrillamail.com', 'mailinator.com']
-    return f"{first}{last}{random.randint(100, 9999)}@{random.choice(domains)}"
+    
+    domains = [
+        'tempmail.com', 'temp-mail.org', 'fexbox.org', 'fexpost.com', 
+        'fextemp.com', 'chitthi.in', 'guerrillamail.com', 
+        'mailinator.com', '10minutemail.com'
+    ]
+    
+    domain = random.choice(domains)
+    number = random.randint(100, 9999)
+    
+    return f"{first}{last}{number}@{domain}"
 
-# --- Get Verification Code from Email ---
-def get_email_code(email, max_attempts=25, wait=5):
+def get_email_code(email, max_attempts=20, wait=5):
     """Get verification code from email."""
     domain = email.split('@')[1].lower()
     
@@ -127,42 +238,80 @@ def get_email_code(email, max_attempts=25, wait=5):
                             if match:
                                 return match.group(1)
             
+            print(f"[bold yellow] ⏳ Waiting for email... Attempt {attempt+1}/{max_attempts}", style="bold magenta2")
             time.sleep(wait)
-        except:
+        except Exception:
             time.sleep(wait)
     
     return None
 
-# --- User-Agent ---
-def get_ua():
-    """Get realistic user-agent matching the curl."""
-    return 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36'
+# ============================================================================
+# USER-AGENT GENERATORS
+# ============================================================================
 
-# --- Name & Password ---
+def get_desktop_ua():
+    """Generate realistic desktop user-agent."""
+    versions = [
+        "120.0.6099.109", "121.0.6167.85", "122.0.6261.128", 
+        "123.0.6312.86", "124.0.6367.91", "125.0.6422.141",
+        "145.0.7632.5"
+    ]
+    chrome = random.choice(versions)
+    return f'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome} Safari/537.36'
+
+def get_mobile_ua():
+    """Generate realistic mobile user-agent."""
+    chrome = f'{random.choice(["120", "121", "122", "123", "124"])}.0.{random.randint(6000, 7000)}.{random.randint(100, 299)}'
+    android = random.choice(["10", "11", "12", "13", "14"])
+    models = ["SM-G998B", "SM-G991B", "SM-A525F", "Pixel 6", "Pixel 7", "OnePlus 9"]
+    return f'Mozilla/5.0 (Linux; Android {android}; {random.choice(models)}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome} Mobile Safari/537.36'
+
+# ============================================================================
+# NAME & PASSWORD GENERATORS
+# ============================================================================
+
 def fake_name():
     fake = Faker()
-    return fake.first_name().lower(), fake.last_name().lower()
+    return fake.first_name(), fake.last_name()
 
 def fake_password():
+    """Generate realistic password."""
     first, last = fake_name()
     special = random.choice(['!', '@', '#', '$', '%', '&', '*'])
-    return f"{first.capitalize()}{last.capitalize()}{random.randint(1000, 9999)}{special}"
-
-# --- Extract Tokens ---
-def extract_tokens(html):
-    """Extract all required tokens from HTML."""
-    tokens = {}
+    number = random.randint(1000, 9999)
     
-    # Extract from hidden inputs
+    formats = [
+        f"{first}{last}{number}{special}",
+        f"{first}{number}{last}{special}",
+        f"{first.capitalize()}{last.capitalize()}{number}{special}",
+        f"{first}{special}{last}{number}",
+        f"{first}{number}{special}{last}"
+    ]
+    
+    return random.choice(formats)
+
+# ============================================================================
+# FACEBOOK REGISTRATION
+# ============================================================================
+
+def generate_encpass(password):
+    """Generate encrypted password format."""
+    timestamp = int(time.time())
+    return f"#PWD_BROWSER:5:{timestamp}:{password}"
+
+def extract_page_data(html):
+    """Extract all necessary values from page."""
+    data = {}
+    
     soup = BeautifulSoup(html, 'html.parser')
+    
     for inp in soup.find_all('input', type='hidden'):
         name = inp.get('name')
         value = inp.get('value')
         if name and value:
-            tokens[name] = value
+            data[name] = value
     
-    # Extract from JavaScript
-    patterns = {
+    js_patterns = {
         'fb_dtsg': r'"fb_dtsg":"([^"]+)"',
         'lsd': r'"lsd":"([^"]+)"',
         'jazoest': r'"jazoest":"([^"]+)"',
@@ -171,37 +320,35 @@ def extract_tokens(html):
         'logger_id': r'"logger_id":"([^"]+)"'
     }
     
-    for key, pattern in patterns.items():
-        if key not in tokens:
+    for key, pattern in js_patterns.items():
+        if key not in data:
             match = re.search(pattern, html)
             if match:
-                tokens[key] = match.group(1)
+                data[key] = match.group(1)
     
-    # Generate missing tokens
-    if not tokens.get('fb_dtsg'):
-        tokens['fb_dtsg'] = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', k=40))
-    if not tokens.get('lsd'):
-        tokens['lsd'] = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', k=20))
-    if not tokens.get('jazoest'):
-        tokens['jazoest'] = str(random.randint(10000, 99999))
-    if not tokens.get('reg_instance'):
-        tokens['reg_instance'] = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz0123456789', k=16))
+    for form in soup.find_all('form'):
+        for inp in form.find_all('input'):
+            name = inp.get('name')
+            value = inp.get('value')
+            if name and value and name.startswith('__'):
+                data[name] = value
     
-    return tokens
+    return data
 
-# --- Create Facebook Account ---
-def create_facebook_account():
-    """Create Facebook account using GraphQL API."""
+def create_facebook_account(use_sms=True):
+    """Create Facebook account with SMS verification."""
     global Ok, Cp
     
     session = requests.Session()
+    sms_client = None
+    phone_number = None
     
     try:
         print(Panel("[bold white] 🔄 INITIALIZING REGISTRATION...", style="bold magenta2"))
         
-        # Step 1: Get registration page
+        # Get registration page
         headers = {
-            'User-Agent': get_ua(),
+            'User-Agent': get_desktop_ua(),
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'Accept-Language': 'en-US,en;q=0.9',
             'Cache-Control': 'max-age=0',
@@ -220,26 +367,55 @@ def create_facebook_account():
                               headers=headers, timeout=15)
         
         if response.status_code != 200:
-            print(Panel("[bold red] ❌ FAILED TO ACCESS REGISTRATION", style="bold magenta2"))
+            print(Panel("[bold red] ❌ FAILED TO ACCESS REGISTRATION PAGE", style="bold magenta2"))
             return False
         
-        # Extract tokens
-        tokens = extract_tokens(response.text)
-        print(Panel("[bold green] ✅ TOKENS EXTRACTED", style="bold magenta2"))
+        page_data = extract_page_data(response.text)
         
-        # Step 2: Generate user data
+        # Generate missing values
+        if not page_data.get('fb_dtsg'):
+            page_data['fb_dtsg'] = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', k=40))
+        if not page_data.get('lsd'):
+            page_data['lsd'] = ''.join(random.choices('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789', k=20))
+        if not page_data.get('jazoest'):
+            page_data['jazoest'] = str(random.randint(10000, 99999))
+        if not page_data.get('reg_instance'):
+            page_data['reg_instance'] = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz0123456789', k=16))
+        if not page_data.get('reg_impression_id'):
+            page_data['reg_impression_id'] = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz0123456789', k=16))
+        if not page_data.get('logger_id'):
+            page_data['logger_id'] = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz0123456789', k=16))
+        
+        print(Panel("[bold green] ✅ PAGE DATA EXTRACTED", style="bold magenta2"))
+        
+        # Generate user data
         firstname, lastname = fake_name()
-        phone = generate_phone()
-        password = fake_password()
+        custom_pass = fake_password()
         
-        # Use phone for registration (like the curl)
-        contact = phone
+        # Get phone number for SMS verification
+        if use_sms and RECEIVESMS_AVAILABLE:
+            sms_client = FreeSMSVerification()
+            phone_number = sms_client.get_number(country='US')
+            
+            if not phone_number:
+                print(Panel("[bold yellow] ⚠️ SMS failed, falling back to email", style="bold magenta2"))
+                use_sms = False
         
-        print(Panel(f"[bold white] 📱 Phone: {contact}", style="bold magenta2"))
+        if use_sms and phone_number:
+            contact = phone_number
+            contact_type = "PHONE"
+            verification_method = "SMS"
+            print(Panel(f"[bold white] 📱 Phone: {contact}", style="bold magenta2"))
+        else:
+            contact = generate_email()
+            contact_type = "EMAIL"
+            verification_method = "EMAIL"
+            print(Panel(f"[bold white] 📧 Email: {contact}", style="bold magenta2"))
+        
         print(Panel(f"[bold white] 👤 Name: {firstname} {lastname}", style="bold magenta2"))
-        print(Panel(f"[bold white] 🔑 Password: {password}", style="bold magenta2"))
+        print(Panel(f"[bold white] 🔑 Password: {custom_pass}", style="bold magenta2"))
         
-        # Step 3: Prepare GraphQL variables
+        # Prepare GraphQL variables
         client_mutation_id = str(uuid.uuid4())
         waterfall_id = str(uuid.uuid4())
         
@@ -255,7 +431,7 @@ def create_facebook_account():
                     "contactpoint": {
                         "sensitive_string_value": contact
                     },
-                    "contactpoint_type": "PHONE",  # Using PHONE like the curl
+                    "contactpoint_type": contact_type,
                     "custom_gender": "",
                     "did_use_age": False,
                     "firstname": {
@@ -270,7 +446,7 @@ def create_facebook_account():
                     },
                     "preferred_pronoun": None,
                     "reg_passwd__": {
-                        "sensitive_string_value": f"#PWD_BROWSER:5:{int(time.time())}:{password}"
+                        "sensitive_string_value": generate_encpass(custom_pass)
                     },
                     "sex": random.choice(["MALE", "FEMALE"]),
                     "use_custom_gender": False,
@@ -283,17 +459,17 @@ def create_facebook_account():
             }
         }
         
-        # Step 4: Build complete payload (matching the curl exactly)
+        # Build payload
         payload = {
             'av': '0',
             '__user': '0',
             '__a': '1',
-            '__req': str(random.randint(15, 25)),
+            '__req': str(random.randint(10, 30)),
             '__hs': '20679.HYP:comet_plat_default_pkg.2.1...0',
             'dpr': '1',
-            '__ccg': 'EXCELLENT',
+            '__ccg': random.choice(['EXCELLENT', 'GOOD']),
             '__rev': '1045209719',
-            '__s': 'mc4dm2:hwj33q:xe3cih',
+            '__s': f'mc4dm2:hwj33q:xe3cih',
             '__hsi': str(random.randint(7000000000000000000, 7999999999999999999)),
             '__dyn': '7xeUmwlEnwn8K2Wmh0no6u5U4e0yoW3q32360CEbo1nEhw2nVE4W099w8G1Dz81s8hwGwQw9m1YwBgao6C0Mo2swaOfK0EUjwGzE2ZwNwmE2eUlwhE2Lw6OyES1Tw8W0Lo6-1Fw4mwr86C1nwqU8XwnqwIwtU26wbu0eowRzo',
             '__csr': 'hklbf7pqd58AlOOaRkDdkyi-yhycIyjOQZaZ-DRyFsNYGLiBuaGOuGvIwRGpkALLi8yaC_WQrhdf9KAlGhcN29vWDWoRBhXW9qSyRl5W9G8ml6RZWi4kXmCyOZuF95EJ9PERjbemFVbjyU-EJ1y2e4oKE522G1rwFK324EK9xGU4e2u3y1Oxi361MwDz84Z065w826UO1MgcqwYwvU9o15Am3G5uq1xwxxu1bw9u1ywfu3S1Yw9e0n60kCeDwn80bPo07b-00sBC01bQw3_8Hw0ADw09BR0feaU',
@@ -301,8 +477,8 @@ def create_facebook_account():
             '__hblp': '01bu0E83Ow2hU36w0FKw1am6E0Cq0QE6a0v20aow5dw7zw6-w6yw1JW022G01idw0z0w1t202qi0m-0caxG0FE3cw7Swcq02rC0ue583dwUw',
             '__sjsp': 'gbIa4ncyHyoZ7VEhx9zU2Awbmm0qF055oAq09Mw6dw',
             '__comet_req': '102',
-            'lsd': tokens.get('lsd', ''),
-            'jazoest': tokens.get('jazoest', ''),
+            'lsd': page_data.get('lsd', ''),
+            'jazoest': page_data.get('jazoest', ''),
             '__spin_r': '1045209719',
             '__spin_b': 'trunk',
             '__spin_t': str(int(time.time())),
@@ -315,13 +491,13 @@ def create_facebook_account():
             'fb_api_analytics_tags': '["qpl_active_flow_ids=250359044,516759801"]'
         }
         
-        # Step 5: Submit registration
+        # Submit registration
         print(Panel("[bold white] ⏳ SUBMITTING REGISTRATION...", style="bold magenta2"))
         time.sleep(random.uniform(2, 4))
         
         graphql_headers = {
             'Host': 'www.facebook.com',
-            'User-Agent': get_ua(),
+            'User-Agent': get_desktop_ua(),
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.9',
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -329,7 +505,7 @@ def create_facebook_account():
             'Referer': 'https://www.facebook.com/reg/?entry_point=aymh&next=',
             'X-FB-Friendly-Name': 'useCAARegistrationFormSubmitMutation',
             'X-ASBD-ID': '359341',
-            'X-FB-LSD': tokens.get('lsd', ''),
+            'X-FB-LSD': page_data.get('lsd', ''),
             'Sec-Ch-Ua': '"Google Chrome";v="145", "Chromium";v="145", "Not:A-Brand";v="99"',
             'Sec-Ch-Ua-Mobile': '?0',
             'Sec-Ch-Ua-Platform': '"Windows"',
@@ -346,64 +522,67 @@ def create_facebook_account():
                                allow_redirects=True, 
                                timeout=30)
         
-        # Step 6: Process response
-        print(Panel("[bold white] 📊 PROCESSING RESPONSE...", style="bold magenta2"))
-        
-        # Check if registration was successful
+        # Check if account was created
         if 'c_user' in session.cookies:
             uid = session.cookies.get('c_user')
             print(Panel(f"[bold green] ✅ ACCOUNT CREATED! UID: {uid}", style="bold magenta2"))
             
-            # For phone verification, we need to handle differently
-            # Facebook usually sends SMS for phone verification
-            print(Panel("[bold yellow] ⚠️ PHONE VERIFICATION REQUIRED", style="bold magenta2"))
-            print(Panel(f"[bold white] 📱 Phone: {phone}", style="bold magenta2"))
-            print(Panel("[bold yellow] ℹ️ Check SMS for verification code", style="bold magenta2"))
+            # Get verification code
+            print(Panel(f"[bold white] 📨 WAITING FOR {verification_method} CODE...", style="bold magenta2"))
             
-            # Since we can't receive SMS, we'll save the account as-is
-            cookie_str = "; ".join([f"{k}={v}" for k, v in session.cookies.get_dict().items()])
+            code = None
             
-            account_info = (
-                f"UID: {uid}\n"
-                f"Phone: {phone}\n"
-                f"Password: {password}\n"
-                f"Cookie: {cookie_str}\n"
-                f"{'='*50}\n"
-            )
+            if verification_method == "SMS" and sms_client and phone_number:
+                code = sms_client.get_sms_code(phone_number)
+            else:
+                code = get_email_code(contact)
             
-            with open(f"{FOLDER_PATH}/SUCCESS-OK-ID.txt", "a") as f:
-                f.write(f"{uid}|{phone}|{password}|{cookie_str}\n")
-            
-            with open(f"{FOLDER_PATH}/ACCOUNT_INFO.txt", "a") as f:
-                f.write(account_info)
-            
-            print(Panel(
-                f"[bold green] ✅ ACCOUNT CREATED!\n"
-                f"[bold white] UID: {uid}\n"
-                f"[bold white] Phone: {phone}\n"
-                f"[bold white] Password: {password}\n"
-                f"[bold yellow] ⚠️ Phone verification required - Check SMS",
-                style="bold magenta2"
-            ))
-            
-            Ok += 1
-            return True
-        else:
-            # Try to parse error
-            try:
-                result = response.json()
-                if 'data' in result:
-                    mutation = result['data'].get('useCAARegistrationFormSubmitMutation', {})
-                    if 'error' in mutation:
-                        error_msg = mutation['error'].get('message', 'Unknown error')
-                        print(Panel(f"[bold red] ❌ ERROR: {error_msg}", style="bold magenta2"))
-                    else:
-                        print(Panel("[bold red] ❌ REGISTRATION FAILED", style="bold magenta2"))
+            if code:
+                print(Panel(f"[bold green] ✅ CODE RECEIVED: {code}", style="bold magenta2"))
+                
+                # Verify the code
+                if confirm_verification(session, uid, code, contact, verification_method):
+                    # Save account
+                    cookie_str = "; ".join([f"{k}={v}" for k, v in session.cookies.get_dict().items()])
+                    
+                    account_info = (
+                        f"UID: {uid}\n"
+                        f"{verification_method}: {contact}\n"
+                        f"Password: {custom_pass}\n"
+                        f"Cookie: {cookie_str}\n"
+                        f"{'='*50}\n"
+                    )
+                    
+                    with open(f"{FOLDER_PATH}/SUCCESS-OK-ID.txt", "a") as f:
+                        f.write(f"{uid}|{contact}|{custom_pass}|{cookie_str}\n")
+                    
+                    with open(f"{FOLDER_PATH}/ACCOUNT_INFO.txt", "a") as f:
+                        f.write(account_info)
+                    
+                    print(Panel(
+                        f"[bold green] ✅ ACCOUNT VERIFIED SUCCESSFULLY!\n"
+                        f"[bold white] UID: {uid}\n"
+                        f"[bold white] {verification_method}: {contact}\n"
+                        f"[bold white] Password: {custom_pass}",
+                        style="bold magenta2"
+                    ))
+                    
+                    # Release SMS number if used
+                    if sms_client and phone_number:
+                        sms_client.release_number(phone_number)
+                    
+                    Ok += 1
+                    return True
                 else:
-                    print(Panel("[bold red] ❌ REGISTRATION FAILED - INVALID RESPONSE", style="bold magenta2"))
-            except:
-                print(Panel("[bold red] ❌ REGISTRATION FAILED", style="bold magenta2"))
-            
+                    print(Panel("[bold red] ❌ VERIFICATION FAILED", style="bold magenta2"))
+                    Cp += 1
+                    return False
+            else:
+                print(Panel(f"[bold red] ❌ {verification_method} CODE NOT RECEIVED", style="bold magenta2"))
+                Cp += 1
+                return False
+        else:
+            print(Panel("[bold red] ❌ REGISTRATION FAILED", style="bold magenta2"))
             Cp += 1
             return False
             
@@ -412,12 +591,96 @@ def create_facebook_account():
         Cp += 1
         return False
 
-# --- UI Functions ---
+def confirm_verification(session, uid, code, contact, method):
+    """Confirm verification code."""
+    try:
+        time.sleep(random.uniform(2, 4))
+        
+        # Get confirmation page
+        headers = {
+            'User-Agent': get_mobile_ua(),
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Cache-Control': 'max-age=0',
+            'Upgrade-Insecure-Requests': '1'
+        }
+        
+        response = session.get('https://m.facebook.com/confirmemail.php?next=https%3A%2F%2Fm.facebook.com%2F%3Fdeoia%3D1&soft=hjk',
+                              headers=headers, timeout=15)
+        
+        soup = BeautifulSoup(response.text, 'html.parser')
+        tokens = {}
+        
+        for inp in soup.find_all('input', type='hidden'):
+            name = inp.get('name')
+            value = inp.get('value')
+            if name and value:
+                tokens[name] = value
+        
+        dtsg_match = re.search(r'"fb_dtsg":"([^"]+)"', response.text)
+        if dtsg_match:
+            tokens['fb_dtsg'] = dtsg_match.group(1)
+        
+        lsd_match = re.search(r'"lsd":"([^"]+)"', response.text)
+        if lsd_match:
+            tokens['lsd'] = lsd_match.group(1)
+        
+        # Determine verification medium
+        medium = "sms" if method == "SMS" else "email"
+        contact_field = "contact" if medium == "email" else ""
+        
+        payload = {
+            'contact': contact if medium == "email" else '',
+            'type': 'submit',
+            'is_soft_cliff': 'false',
+            'medium': medium,
+            'code': code,
+            'fb_dtsg': tokens.get('fb_dtsg', ''),
+            'jazoest': tokens.get('jazoest', ''),
+            'lsd': tokens.get('lsd', ''),
+            '__user': uid
+        }
+        
+        confirm_headers = {
+            'Host': 'm.facebook.com',
+            'User-Agent': get_mobile_ua(),
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Requested-With': 'mark.via.gp',
+            'Origin': 'https://m.facebook.com',
+            'Referer': 'https://m.facebook.com/confirmemail.php?next=https%3A%2F%2Fm.facebook.com%2F%3Fdeoia%3D1&soft=hjk',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Upgrade-Insecure-Requests': '1'
+        }
+        
+        response = session.post('https://m.facebook.com/confirmation_cliff/',
+                               data=payload, headers=confirm_headers,
+                               allow_redirects=True, timeout=30)
+        
+        if "checkpoint" in response.url:
+            print(Panel("[bold red] ❌ ACCOUNT HIT CHECKPOINT", style="bold magenta2"))
+            return False
+        elif "home" in response.url or "welcome" in response.url:
+            print(Panel("[bold green] ✅ VERIFIED!", style="bold magenta2"))
+            return True
+        elif "success" in response.text.lower() or "confirmed" in response.text.lower():
+            return True
+        
+        return False
+        
+    except Exception as e:
+        print(Panel(f"[bold red] ❌ VERIFICATION ERROR: {str(e)}", style="bold magenta2"))
+        return False
+
+# ============================================================================
+# UI FUNCTIONS
+# ============================================================================
+
 def banner():
     os.system("clear")
     logo = """
     ╔══════════════════════════════════════════════════════════════════╗
-    ║     🤖 FACEBOOK ACCOUNT CREATOR v4.0 - PHONE VERIFICATION     ║
+    ║     📱 FACEBOOK ACCOUNT CREATOR - FREE SMS VERIFICATION       ║
     ║     ⚡ OPEN SOURCED BY - LMNx9 & XVSOULX                      ║
     ║     📱 TELEGRAM - t.me/TEAM_LMNx9                            ║
     ╚══════════════════════════════════════════════════════════════════╝
@@ -428,8 +691,9 @@ def show_menu():
     banner()
     menu = """
     ╔══════════════════════════════════════════════════════════════════╗
-    ║  [1] 🤖 CREATE FACEBOOK ACCOUNTS                               ║
-    ║  [2] 📊 VIEW ACCOUNT STATISTICS                                ║
+    ║  [1] 📱 CREATE WITH SMS (Free receivesms.me)                   ║
+    ║  [2] 📧 CREATE WITH EMAIL (Fallback)                          ║
+    ║  [3] 📊 VIEW ACCOUNT STATISTICS                                ║
     ║  [0] ❌ EXIT                                                  ║
     ╚══════════════════════════════════════════════════════════════════╝
     """
@@ -462,7 +726,7 @@ def GetInfoProfile():
             if len(parts) >= 3:
                 print(Panel(
                     f"[bold white] UID: {parts[0]}\n"
-                    f"[bold white] Phone: {parts[1]}\n"
+                    f"[bold white] Contact: {parts[1]}\n"
                     f"[bold white] Password: {parts[2]}",
                     style="bold magenta2"
                 ))
@@ -471,8 +735,11 @@ def GetInfoProfile():
     except FileNotFoundError:
         print(Panel("[bold red] NO ACCOUNTS FILE FOUND", style="bold magenta2"))
 
-# --- Main Function ---
-def main():
+# ============================================================================
+# MAIN FUNCTION
+# ============================================================================
+
+def main(use_sms=True):
     global Ok, Cp
     
     try:
@@ -486,13 +753,16 @@ def main():
             delay = 30
         
         banner()
-        print(Panel("[bold yellow] ⚡ STARTING ACCOUNT CREATION...", style="bold magenta2"))
-        print(Panel("[bold yellow] ⚠️ USING PHONE VERIFICATION", style="bold magenta2"))
+        
+        if use_sms:
+            print(Panel("[bold green] 📱 SMS VERIFICATION MODE (Free)", style="bold magenta2"))
+        else:
+            print(Panel("[bold yellow] 📧 EMAIL VERIFICATION MODE (Fallback)", style="bold magenta2"))
         
         for i in range(num_accounts):
             print(Panel(f"[bold cyan] 📊 PROGRESS: {i+1}/{num_accounts}", style="bold magenta2"))
             
-            if create_facebook_account():
+            if create_facebook_account(use_sms=use_sms):
                 print(Panel("[bold green] ✅ ACCOUNT CREATED", style="bold magenta2"))
             else:
                 print(Panel("[bold red] ❌ ACCOUNT FAILED", style="bold magenta2"))
@@ -511,14 +781,19 @@ def main():
     except Exception as e:
         print(Panel(f"[bold red] ERROR: {str(e)}", style="bold magenta2"))
 
-# --- Main Loop ---
+# ============================================================================
+# MAIN LOOP
+# ============================================================================
+
 if __name__ == "__main__":
     while True:
         choice = show_menu()
         
         if choice in ["1", "01"]:
-            main()
+            main(use_sms=True)
         elif choice in ["2", "02"]:
+            main(use_sms=False)
+        elif choice in ["3", "03"]:
             banner()
             GetInfoProfile()
             input("[bold white] Press Enter to continue...")
