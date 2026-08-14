@@ -210,7 +210,7 @@ def create_facebook_account():
         
         # Step 1: Get registration page with random headers
         headers = get_random_headers()
-        response = session.get('https://m.facebook.com/reg/', headers=headers, timeout=15)
+        response = session.get('https://touch.facebook.com/reg/', headers=headers, timeout=15)
         
         if response.status_code != 200:
             print(Panel("[bold red] ❌ FAILED TO ACCESS REGISTRATION", style="bold magenta2"))
