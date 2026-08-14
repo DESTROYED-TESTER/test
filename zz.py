@@ -223,7 +223,7 @@ def create_facebook_account():
     # Step 1: Get initial registration page
     try:
         print(Panel("[bold white] INITIALIZING REGISTRATION...", style="bold magenta2"))
-        resp = session.get('https://m.facebook.com/reg/', 
+        resp = session.get('https://www.facebook.com/reg/?entry_point=login&next=', 
                           headers={'User-Agent': get_facebook_ua()})
         
         if resp.status_code != 200:
