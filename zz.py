@@ -32,52 +32,6 @@ W = "[bold white]"
 Ok, Cp = 0, 0
 ua = UserAgent()
 
-# --- Anti-Detection Headers ---
-def get_random_headers():
-    """Generate random headers to avoid detection."""
-    chrome_version = f"{random.randint(120, 124)}.0.{random.randint(6000, 7000)}.{random.randint(100, 299)}"
-    sec_ch_ua = f'"Google Chrome";v="{random.randint(120, 124)}", "Chromium";v="{random.randint(120, 124)}", "Not?A_Brand";v="99"'
-    
-    return {
-        'User-Agent': get_mobile_ua(),
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-        'Accept-Language': random.choice(['en-US,en;q=0.9', 'en-GB,en;q=0.9', 'en-IN,en;q=0.9']),
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Cache-Control': 'max-age=0',
-        'Connection': 'keep-alive',
-        'Sec-Ch-Ua': sec_ch_ua,
-        'Sec-Ch-Ua-Mobile': '?1',
-        'Sec-Ch-Ua-Platform': '"Android"',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Sec-Fetch-User': '?1',
-        'Upgrade-Insecure-Requests': '1',
-        'X-Requested-With': random.choice(['mark.via.gp', 'com.facebook.katana', 'com.facebook.orca']),
-        'viewport-width': str(random.randint(360, 420)),
-        'dpr': str(random.choice(['1.5', '2.0', '2.5', '3.0']))
-    }
-
-def get_mobile_ua():
-    """Generate realistic mobile user-agent."""
-    chrome = f'{random.choice(["120", "121", "122", "123", "124"])}.0.{random.randint(6000, 7000)}.{random.randint(100, 299)}'
-    android = random.choice(["10", "11", "12", "13", "14"])
-    
-    phones = [
-        "SM-G998B", "SM-G991B", "SM-G990B", "SM-A525F", "SM-N986B", 
-        "Pixel 6", "Pixel 7", "Pixel 8", "OnePlus 9", "OnePlus 10",
-        "Redmi Note 11", "Redmi Note 10", "Realme 8", "Realme 9",
-        "Xiaomi 12", "Xiaomi 13", "Vivo V23", "Oppo Reno 8"
-    ]
-    model = random.choice(phones)
-    
-    return f'Mozilla/5.0 (Linux; Android {android}; {model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome} Mobile Safari/537.36'
-
-def get_desktop_ua():
-    """Generate realistic desktop user-agent."""
-    chrome = f'{random.choice(["120", "121", "122", "123", "124"])}.0.{random.randint(6000, 7000)}.{random.randint(100, 299)}'
-    return f'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome} Safari/537.36'
-
 # --- Email Generation ---
 def generate_email():
     """Generate a temporary email."""
@@ -87,7 +41,7 @@ def generate_email():
     domains = [
         'tempmail.com', 'temp-mail.org', 'fexbox.org', 'fexpost.com', 
         'fextemp.com', 'chitthi.in', 'guerrillamail.com', 
-        'mailinator.com', '10minutemail.com'
+        'mailinator.com', '10minutemail.com', 'tempinbox.com'
     ]
     
     domain = random.choice(domains)
@@ -95,9 +49,9 @@ def generate_email():
     
     return f"{first}{last}{number}@{domain}"
 
-# --- Email Code Retrieval ---
-def get_email_code(email, max_attempts=25, wait=5):
-    """Get verification code from email."""
+# --- Email Code Retrieval (Enhanced) ---
+def get_email_code(email, max_attempts=30, wait=5):
+    """Get verification code from email with multiple providers."""
     domain = email.split('@')[1].lower()
     
     for attempt in range(max_attempts):
@@ -114,7 +68,8 @@ def get_email_code(email, max_attempts=25, wait=5):
                             subject = msg.get('subject', '')
                             body = msg.get('body_text', '')
                             combined = f"{subject} {body}"
-                            match = re.search(r'(\d{5,7})', combined)
+                            # Look for 5-7 digit codes
+                            match = re.search(r'\b(\d{5,7})\b', combined)
                             if match:
                                 return match.group(1)
             
@@ -130,7 +85,7 @@ def get_email_code(email, max_attempts=25, wait=5):
                             subject = msg.get('mail_subject', '')
                             body = msg.get('mail_body', '')
                             combined = f"{subject} {body}"
-                            match = re.search(r'(\d{5,7})', combined)
+                            match = re.search(r'\b(\d{5,7})\b', combined)
                             if match:
                                 return match.group(1)
             
@@ -148,7 +103,7 @@ def get_email_code(email, max_attempts=25, wait=5):
                             subject = msg.get('subject', '')
                             body = msg.get('body', '')
                             combined = f"{subject} {body}"
-                            match = re.search(r'(\d{5,7})', combined)
+                            match = re.search(r'\b(\d{5,7})\b', combined)
                             if match:
                                 return match.group(1)
             
@@ -163,15 +118,53 @@ def get_email_code(email, max_attempts=25, wait=5):
                         for msg in messages:
                             subject = msg.get('subject', '')
                             combined = subject
-                            match = re.search(r'(\d{5,7})', combined)
+                            match = re.search(r'\b(\d{5,7})\b', combined)
                             if match:
                                 return match.group(1)
             
+            elif 'tempinbox' in domain:
+                response = requests.get(f'https://tempinbox.com/api/messages/{email.split("@")[0]}',
+                                      timeout=10)
+                if response.status_code == 200:
+                    data = response.json()
+                    messages = data.get('messages', [])
+                    if messages:
+                        for msg in messages:
+                            subject = msg.get('subject', '')
+                            body = msg.get('body', '')
+                            combined = f"{subject} {body}"
+                            match = re.search(r'\b(\d{5,7})\b', combined)
+                            if match:
+                                return match.group(1)
+            
+            print(f"[bold yellow] ⏳ Waiting for code... Attempt {attempt+1}/{max_attempts}", style="bold magenta2")
             time.sleep(wait)
-        except Exception:
+        except Exception as e:
+            print(f"[bold yellow] ⚠️ Email check error: {str(e)}", style="bold magenta2")
             time.sleep(wait)
     
     return None
+
+# --- User-Agent Generators ---
+def get_touch_ua():
+    """Generate user-agent for touch.facebook.com."""
+    chrome = f'{random.choice(["110", "111", "112", "113", "114", "115", "116", "117", "118"])}.0.{random.randint(5000, 6000)}.{random.randint(100, 299)}'
+    return f'Mozilla/5.0 (Linux; Android {random.choice(["9", "10", "11", "12", "13"])}; {random.choice(["SM-G960F", "SM-G973F", "SM-A505F", "Redmi Note 8", "Pixel 4", "Pixel 5"])}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome} Mobile Safari/537.36'
+
+def get_mobile_ua():
+    """Generate realistic mobile user-agent."""
+    chrome = f'{random.choice(["120", "121", "122", "123", "124"])}.0.{random.randint(6000, 7000)}.{random.randint(100, 299)}'
+    android = random.choice(["10", "11", "12", "13", "14"])
+    
+    phones = [
+        "SM-G998B", "SM-G991B", "SM-G990B", "SM-A525F", "SM-N986B", 
+        "Pixel 6", "Pixel 7", "Pixel 8", "OnePlus 9", "OnePlus 10",
+        "Redmi Note 11", "Redmi Note 10", "Realme 8", "Realme 9",
+        "Xiaomi 12", "Xiaomi 13", "Vivo V23", "Oppo Reno 8"
+    ]
+    model = random.choice(phones)
+    
+    return f'Mozilla/5.0 (Linux; Android {android}; {model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{chrome} Mobile Safari/537.36'
 
 # --- Name & Password ---
 def fake_name():
@@ -184,7 +177,6 @@ def fake_password():
     special = random.choice(['!', '@', '#', '$', '%', '&', '*'])
     number = random.randint(1000, 9999)
     
-    # Randomize password format
     formats = [
         f"{first}{last}{number}{special}",
         f"{first}{number}{last}{special}",
@@ -195,21 +187,34 @@ def fake_password():
     
     return random.choice(formats)
 
-# --- Facebook Registration ---
+# --- Facebook Registration using touch.facebook.com ---
 def create_facebook_account():
-    """Create Facebook account with anti-detection."""
+    """Create Facebook account using touch.facebook.com."""
     global Ok, Cp
     
     # Random delay to avoid detection
-    time.sleep(random.uniform(1, 3))
+    time.sleep(random.uniform(2, 4))
     
     session = requests.Session()
     
     try:
         print(Panel("[bold white] 🔄 INITIALIZING REGISTRATION...", style="bold magenta2"))
         
-        # Step 1: Get registration page with random headers
-        headers = get_random_headers()
+        # Step 1: Get registration page from touch.facebook.com
+        headers = {
+            'User-Agent': get_touch_ua(),
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Cache-Control': 'max-age=0',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1'
+        }
+        
         response = session.get('https://touch.facebook.com/reg/', headers=headers, timeout=15)
         
         if response.status_code != 200:
@@ -220,43 +225,50 @@ def create_facebook_account():
         
         # Step 2: Extract all tokens
         tokens = {}
+        
+        # Get all hidden inputs
         for inp in soup.find_all('input', type='hidden'):
             name = inp.get('name')
             value = inp.get('value')
             if name and value:
                 tokens[name] = value
         
-        # Extract from JavaScript
-        js_match = re.search(r'requireLazy\(\["Bootloader"\], function\(\)\s*{\s*Bootloader\.setResourceMap\((.*?)\);\s*}\)', response.text, re.DOTALL)
-        if js_match:
-            try:
-                data = json.loads(js_match.group(1))
-                for key, value in data.items():
-                    if 'fb_dtsg' in key:
-                        tokens['fb_dtsg'] = value
-                    elif 'lsd' in key:
-                        tokens['lsd'] = value
-            except:
-                pass
+        # Extract fb_dtsg from JavaScript
+        dtsg_match = re.search(r'name="fb_dtsg"\s+value="([^"]+)"', response.text)
+        if dtsg_match:
+            tokens['fb_dtsg'] = dtsg_match.group(1)
         
-        # Fallback extraction
-        if 'fb_dtsg' not in tokens:
-            dtsg_match = re.search(r'"fb_dtsg":"([^"]+)"', response.text)
-            if dtsg_match:
-                tokens['fb_dtsg'] = dtsg_match.group(1)
+        # Extract LSD token
+        lsd_match = re.search(r'name="lsd"\s+value="([^"]+)"', response.text)
+        if lsd_match:
+            tokens['lsd'] = lsd_match.group(1)
         
-        if 'lsd' not in tokens:
-            lsd_match = re.search(r'"lsd":"([^"]+)"', response.text)
-            if lsd_match:
-                tokens['lsd'] = lsd_match.group(1)
+        # Extract jazoest
+        jazoest_match = re.search(r'name="jazoest"\s+value="([^"]+)"', response.text)
+        if jazoest_match:
+            tokens['jazoest'] = jazoest_match.group(1)
         
-        if 'jazoest' not in tokens:
-            jazoest_match = re.search(r'"jazoest":"([^"]+)"', response.text)
-            if jazoest_match:
-                tokens['jazoest'] = jazoest_match.group(1)
+        # Extract reg_instance
+        reg_match = re.search(r'name="reg_instance"\s+value="([^"]+)"', response.text)
+        if reg_match:
+            tokens['reg_instance'] = reg_match.group(1)
         
-        if not tokens.get('fb_dtsg'):
-            print(Panel("[bold red] ❌ FAILED TO GET REGISTRATION TOKENS", style="bold magenta2"))
+        # Extract reg_impression_id
+        impression_match = re.search(r'name="reg_impression_id"\s+value="([^"]+)"', response.text)
+        if impression_match:
+            tokens['reg_impression_id'] = impression_match.group(1)
+        
+        # Extract logger_id
+        logger_match = re.search(r'name="logger_id"\s+value="([^"]+)"', response.text)
+        if logger_match:
+            tokens['logger_id'] = logger_match.group(1)
+        
+        # Check if we have required tokens
+        required_tokens = ['fb_dtsg', 'lsd', 'jazoest', 'reg_instance']
+        missing_tokens = [t for t in required_tokens if not tokens.get(t)]
+        
+        if missing_tokens:
+            print(Panel(f"[bold red] ❌ MISSING TOKENS: {', '.join(missing_tokens)}", style="bold magenta2"))
             return False
         
         # Step 3: Generate user data
@@ -269,6 +281,7 @@ def create_facebook_account():
         
         # Step 4: Prepare registration payload
         payload = {
+            'ccp': '2',
             'reg_instance': tokens.get('reg_instance', ''),
             'submission_request': 'true',
             'helper': '',
@@ -300,30 +313,34 @@ def create_facebook_account():
             'submit': 'Sign Up',
             'fb_dtsg': tokens.get('fb_dtsg', ''),
             'jazoest': tokens.get('jazoest', ''),
-            'lsd': tokens.get('lsd', '')
+            'lsd': tokens.get('lsd', ''),
+            '__dyn': '1ZaaAG1mxu1oz-l0BBBzEnxG6U4a2i5U4e0C8dEc8uwcC4o2fwcW4o3Bw4Ewk9E4W0pKq0FE6S0x81vohw5Owk8aE36wqEd8dE2YwbK0iC1qw8W0k-0jG3qaw4kwbS1Lw9C0le0ue0QU',
+            '__csr': '',
+            '__req': 'p',
+            '__fmt': '1',
+            '__user': '0'
         }
         
-        # Step 5: Submit registration with random delay
+        # Step 5: Submit registration
         print(Panel("[bold white] ⏳ SUBMITTING REGISTRATION...", style="bold magenta2"))
         time.sleep(random.uniform(0.5, 1.5))
         
         submit_headers = {
-            'Host': 'm.facebook.com',
-            'User-Agent': get_mobile_ua(),
+            'Host': 'touch.facebook.com',
+            'User-Agent': get_touch_ua(),
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-            'Accept-Language': random.choice(['en-US,en;q=0.9', 'en-GB,en;q=0.9']),
+            'Accept-Language': 'en-US,en;q=0.9',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://m.facebook.com',
-            'Referer': 'https://m.facebook.com/reg/',
+            'Origin': 'https://touch.facebook.com',
+            'Referer': 'https://touch.facebook.com/reg/',
             'Upgrade-Insecure-Requests': '1',
-            'X-Requested-With': random.choice(['mark.via.gp', 'com.facebook.katana']),
             'Sec-Fetch-Dest': 'document',
             'Sec-Fetch-Mode': 'navigate',
             'Sec-Fetch-Site': 'same-origin',
             'Sec-Fetch-User': '?1'
         }
         
-        response = session.post('https://m.facebook.com/reg/submit/', 
+        response = session.post('https://touch.facebook.com/reg/submit/', 
                                data=payload, headers=submit_headers, 
                                allow_redirects=True, timeout=30)
         
@@ -339,8 +356,8 @@ def create_facebook_account():
             if code:
                 print(Panel(f"[bold green] ✅ CODE RECEIVED: {code}", style="bold magenta2"))
                 
-                # Step 8: Confirm email
-                if confirm_email_mobile(session, email, uid, code):
+                # Step 8: Confirm email using touch.facebook.com
+                if confirm_email_touch(session, email, uid, code):
                     # Step 9: Save account
                     cookie_str = "; ".join([f"{k}={v}" for k, v in session.cookies.get_dict().items()])
                     
@@ -392,14 +409,21 @@ def create_facebook_account():
         Cp += 1
         return False
 
-def confirm_email_mobile(session, email, uid, code):
-    """Confirm email using mobile flow."""
+def confirm_email_touch(session, email, uid, code):
+    """Confirm email using touch.facebook.com."""
     try:
         time.sleep(random.uniform(1, 3))
         
-        # Get fresh tokens
-        headers = get_random_headers()
-        response = session.get('https://m.facebook.com/confirmemail.php?next=https%3A%2F%2Fm.facebook.com%2F%3Fdeoia%3D1&soft=hjk', 
+        # Get fresh tokens from touch.facebook.com
+        headers = {
+            'User-Agent': get_touch_ua(),
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Cache-Control': 'max-age=0',
+            'Upgrade-Insecure-Requests': '1'
+        }
+        
+        response = session.get('https://touch.facebook.com/confirmemail.php?next=https%3A%2F%2Ftouch.facebook.com%2F%3Fdeoia%3D1&soft=hjk', 
                               headers=headers, timeout=15)
         
         tokens = {}
@@ -411,20 +435,18 @@ def confirm_email_mobile(session, email, uid, code):
             if name and value:
                 tokens[name] = value
         
-        if 'fb_dtsg' not in tokens:
-            dtsg_match = re.search(r'"fb_dtsg":"([^"]+)"', response.text)
-            if dtsg_match:
-                tokens['fb_dtsg'] = dtsg_match.group(1)
+        # Extract tokens
+        dtsg_match = re.search(r'name="fb_dtsg"\s+value="([^"]+)"', response.text)
+        if dtsg_match:
+            tokens['fb_dtsg'] = dtsg_match.group(1)
         
-        if 'lsd' not in tokens:
-            lsd_match = re.search(r'"lsd":"([^"]+)"', response.text)
-            if lsd_match:
-                tokens['lsd'] = lsd_match.group(1)
+        lsd_match = re.search(r'name="lsd"\s+value="([^"]+)"', response.text)
+        if lsd_match:
+            tokens['lsd'] = lsd_match.group(1)
         
-        if 'jazoest' not in tokens:
-            jazoest_match = re.search(r'"jazoest":"([^"]+)"', response.text)
-            if jazoest_match:
-                tokens['jazoest'] = jazoest_match.group(1)
+        jazoest_match = re.search(r'name="jazoest"\s+value="([^"]+)"', response.text)
+        if jazoest_match:
+            tokens['jazoest'] = jazoest_match.group(1)
         
         # Confirmation payload
         payload = {
@@ -440,22 +462,17 @@ def confirm_email_mobile(session, email, uid, code):
         }
         
         confirm_headers = {
-            'Host': 'm.facebook.com',
-            'User-Agent': get_mobile_ua(),
+            'Host': 'touch.facebook.com',
+            'User-Agent': get_touch_ua(),
             'Content-Type': 'application/x-www-form-urlencoded',
-            'X-Requested-With': random.choice(['mark.via.gp', 'com.facebook.katana']),
-            'Origin': 'https://m.facebook.com',
-            'Referer': 'https://m.facebook.com/confirmemail.php?next=https%3A%2F%2Fm.facebook.com%2F%3Fdeoia%3D1&soft=hjk',
+            'Origin': 'https://touch.facebook.com',
+            'Referer': 'https://touch.facebook.com/confirmemail.php?next=https%3A%2F%2Ftouch.facebook.com%2F%3Fdeoia%3D1&soft=hjk',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Language': random.choice(['en-US,en;q=0.9', 'en-GB,en;q=0.9']),
-            'Sec-Fetch-Dest': 'document',
-            'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-User': '?1',
+            'Accept-Language': 'en-US,en;q=0.9',
             'Upgrade-Insecure-Requests': '1'
         }
         
-        response = session.post('https://m.facebook.com/confirmation_cliff/', 
+        response = session.post('https://touch.facebook.com/confirmation_cliff/', 
                                data=payload, headers=confirm_headers, 
                                allow_redirects=True, timeout=30)
         
@@ -480,7 +497,7 @@ def banner():
     os.system("clear")
     logo = """
     ╔══════════════════════════════════════════════════════════════════╗
-    ║     🤖 FACEBOOK ACCOUNT CREATOR - ANTI-DETECTION               ║
+    ║     🤖 FACEBOOK ACCOUNT CREATOR - TOUCH.FACEBOOK.COM           ║
     ║     ⚡ OPEN SOURCED BY - LMNx9 & XVSOULX                      ║
     ║     📱 TELEGRAM - t.me/TEAM_LMNx9                            ║
     ╚══════════════════════════════════════════════════════════════════╝
@@ -513,8 +530,8 @@ def results():
 # --- Profile Info ---
 def get_facebook_profile_info(username):
     try:
-        headers = {'User-Agent': get_desktop_ua()}
-        response = requests.get(f'https://www.facebook.com/{username}', headers=headers, timeout=10)
+        headers = {'User-Agent': get_touch_ua()}
+        response = requests.get(f'https://touch.facebook.com/{username}', headers=headers, timeout=10)
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
             title = soup.find('title')
@@ -560,8 +577,8 @@ def main():
             return
         
         delay = int(input("[bold white] DELAY (seconds) : "))
-        if delay < 10:
-            delay = 10
+        if delay < 15:
+            delay = 15
         
         banner()
         print(Panel("[bold yellow] ⚡ STARTING ACCOUNT CREATION...", style="bold magenta2"))
@@ -576,7 +593,7 @@ def main():
             
             if i < num_accounts - 1:
                 # Random delay to avoid pattern detection
-                random_delay = delay + random.randint(0, 10)
+                random_delay = delay + random.randint(0, 15)
                 print(Panel(f"[bold yellow] ⏳ WAITING {random_delay}s...", style="bold magenta2"))
                 time.sleep(random_delay)
         
