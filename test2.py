@@ -77,38 +77,146 @@ def find_res():
     return cookie
 
 def test_cookies(coki):
-    """Test if cookies are still valid"""
+    """Test if cookies are still valid using multiple methods"""
+    
+    # Method 1: Try to get user info using the API
     try:
-        # Test with a simple request
+        # Extract ds_user_id from cookie
+        uid_match = re.search('ds_user_id=(\\d+)', str(coki.get('cookie', '')))
+        if uid_match:
+            uid = uid_match.group(1)
+            response = requests.get(
+                f'https://i.instagram.com/api/v1/users/{uid}/info/',
+                headers=ua,
+                cookies=coki,
+                timeout=10
+            )
+            if response.status_code == 200:
+                data = response.json()
+                if 'user' in data and data['user'].get('username'):
+                    print(f"{GREEN}✓ Cookies are valid!{RESET}")
+                    print(f"{WHITE}  Username: {CYAN}{data['user'].get('username')}{RESET}")
+                    print(f"{WHITE}  Full Name: {CYAN}{data['user'].get('full_name', 'N/A')}{RESET}")
+                    print(f"{WHITE}  Followers: {CYAN}{data['user'].get('follower_count', 0)}{RESET}")
+                    return True
+    except Exception as e:
+        pass
+    
+    # Method 2: Try to access the login ajax endpoint
+    try:
         test_session = requests.Session()
-        test_session.max_redirects = 5
+        test_session.max_redirects = 3
         response = test_session.get(
             'https://www.instagram.com/api/v1/web/accounts/login/ajax/',
             cookies=coki,
-            timeout=10
+            timeout=10,
+            allow_redirects=False
         )
         
         if response.status_code == 200:
             print(f"{GREEN}✓ Cookies are valid!{RESET}")
             return True
-        else:
+        elif response.status_code == 302 or response.status_code == 401:
             print(f"{RED}✗ Cookies may be expired!{RESET}")
             return False
-            
     except Exception as e:
-        print(f"{RED}✗ Error testing cookies: {e}")
+        pass
+    
+    # Method 3: Try to get the user's profile page
+    try:
+        test_session = requests.Session()
+        test_session.max_redirects = 3
+        response = test_session.get(
+            'https://www.instagram.com/',
+            cookies=coki,
+            timeout=10,
+            allow_redirects=False
+        )
+        
+        if response.status_code == 200:
+            # Check if we got a login page or actual content
+            if 'login' not in response.text.lower() or 'sessionid' in str(coki):
+                print(f"{GREEN}✓ Cookies are valid!{RESET}")
+                return True
+            else:
+                print(f"{RED}✗ Cookies may be expired!{RESET}")
+                return False
+    except Exception as e:
+        pass
+    
+    # Method 4: Try to get csrf token from shared_data
+    try:
+        response = requests.get(
+            'https://www.instagram.com/data/shared_data/',
+            cookies=coki,
+            timeout=10
+        )
+        if response.status_code == 200:
+            data = response.json()
+            if 'config' in data and 'csrf_token' in data['config']:
+                print(f"{GREEN}✓ Cookies are valid!{RESET}")
+                return True
+    except Exception as e:
+        pass
+    
+    print(f"{RED}✗ Cookies appear to be invalid!{RESET}")
+    return False
+
+def validate_cookie_format(cookie_str):
+    """Validate if the cookie string has required fields"""
+    required_fields = ['sessionid', 'ds_user_id']
+    missing = []
+    
+    for field in required_fields:
+        if field not in cookie_str:
+            missing.append(field)
+    
+    if missing:
+        print(f"{RED}✗ Cookie is missing: {', '.join(missing)}{RESET}")
         return False
+    
+    # Check if sessionid has valid format (should have numbers)
+    session_match = re.search('sessionid=([^;]+)', cookie_str)
+    if session_match:
+        session_value = session_match.group(1)
+        if not session_value or len(session_value) < 5:
+            print(f"{RED}✗ Session ID appears invalid (too short){RESET}")
+            return False
+    
+    # Check if ds_user_id is present
+    user_match = re.search('ds_user_id=([^;]+)', cookie_str)
+    if user_match:
+        user_id = user_match.group(1)
+        if not user_id.isdigit():
+            print(f"{RED}✗ User ID appears invalid (not a number){RESET}")
+            return False
+    
+    print(f"{GREEN}✓ Cookie format looks valid{RESET}")
+    return True
 
 def Aset_Ig():
     os.system('clear')
     coki = {}
+    
+    # Try to load existing cookie
     if os.path.isfile('data/cookie.txt'):
         cookie_str = open('data/cookie.txt', 'r').read().strip()
         if cookie_str:
             coki = {'cookie': cookie_str}
+            print(f"{YELLOW}Found existing cookie, testing...{RESET}")
+            
+            # Validate cookie format first
+            if not validate_cookie_format(cookie_str):
+                print(f"{RED}Cookie format is invalid, please re-enter.{RESET}")
+                time.sleep(2)
+                os.remove('data/cookie.txt')
+                coki = {}
+    
     if not coki:
         print(f"{RED}[{WHITE}+{RED}] {CYAN}Please enter your instagram account cookie. Make sure to use a throwaway account!")
+        print(f"{YELLOW}Cookie should contain: sessionid, ds_user_id, csrftoken{RESET}")
         cookie_input = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Cookie :{YELLOW} ").strip()
+        
         if cookie_input.lower() == 'res':
             cookie_str = find_res()
             if not cookie_str:
@@ -119,24 +227,63 @@ def Aset_Ig():
                 coki = {'cookie': cookie_str}
         else:
             coki = {'cookie': cookie_input}
+        
+        # Validate format of manually entered cookie
+        if not validate_cookie_format(coki['cookie']):
+            print(f"{RED}Invalid cookie format! Please check your input.{RESET}")
+            time.sleep(3)
+            return Aset_Ig()
     
     try:
-        uid = re.search('ds_user_id=(\\d+)', str(coki['cookie'])).group(1)
-        resp = requests.get(f'https://i.instagram.com/api/v1/users/{uid}/info/', headers=ua, cookies=coki, timeout=10)
+        # Extract user ID from cookie
+        uid_match = re.search('ds_user_id=(\\d+)', str(coki['cookie']))
+        if not uid_match:
+            print(f"{RED}Could not find ds_user_id in cookie!{RESET}")
+            time.sleep(2)
+            return Aset_Ig()
+        
+        uid = uid_match.group(1)
+        
+        # Get user info
+        resp = requests.get(
+            f'https://i.instagram.com/api/v1/users/{uid}/info/',
+            headers=ua,
+            cookies=coki,
+            timeout=10
+        )
         resp.raise_for_status()
         user_data = resp.json().get('user', {})
+        
+        if not user_data:
+            print(f"{RED}Failed to get user data!{RESET}")
+            time.sleep(2)
+            return Aset_Ig()
+        
         full_name = user_data.get('full_name', 'Name Unknown')
         follower_count = user_data.get('follower_count', 0)
+        username = user_data.get('username', 'Unknown')
+        
+        # Save cookie if valid
         open('data/cookie.txt', 'w').write(coki['cookie'])
         
-        # Test cookies
-        if not test_cookies(coki):
-            print(f"{YELLOW}Warning: Cookies may not work properly. Consider updating them.")
-            time.sleep(2)
-            
+        print(f"{GREEN}✓ Successfully logged in as: {username}{RESET}")
+        print(f"{WHITE}  Full Name: {CYAN}{full_name}{RESET}")
+        print(f"{WHITE}  Followers: {CYAN}{follower_count}{RESET}")
+        time.sleep(1)
+        
         return coki, full_name, follower_count
+        
+    except requests.exceptions.RequestException as e:
+        print(f"{RED}Network error: {e}{RESET}")
+        time.sleep(2)
+        return Aset_Ig()
+    except json.JSONDecodeError:
+        print(f"{RED}Invalid response from server. Cookie may be expired.{RESET}")
+        os.system('rm -rf data/cookie.txt')
+        time.sleep(2)
+        return Aset_Ig()
     except Exception as e:
-        print(f"{RED}Invalid cookies or error: {e}")
+        print(f"{RED}Error: {e}{RESET}")
         os.system('rm -rf data/cookie.txt')
         time.sleep(2)
         return Aset_Ig()
