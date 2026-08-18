@@ -19,7 +19,7 @@ from rich import print as prints
 # Global variables
 Uid, Uuid = [], []
 Ok, Cp, Loop = 0, 0, 0
-
+xx = 0  # <-- ADDED THIS LINE
 # Color codes
 WHITE = '\x1b[1;97m'
 RED = '\x1b[1;91m'
@@ -191,9 +191,17 @@ def dumps(cintil, typess):
 
 def Graphql(typess, userid, cokie, after):
     global xx
+    
+    # Safety check for xx initialization
+    try:
+        xx
+    except NameError:
+        xx = 0
+    
     api = "https://www.instagram.com/graphql/query/"
     csr = 'variables={"id":"%s","first":24,"after":"%s"}' % (userid, after)
     mek = "query_hash=58712303d941c6855d4e888c5f0cd22f&{}".format(csr) if not typess else "query_hash=37479f2b8209594dde7facb0d904896a&{}".format(csr)
+    
     try:
         ptk = {
             "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104",
@@ -201,23 +209,36 @@ def Graphql(typess, userid, cokie, after):
             "cookie": cokie
         }
         req = requests.get(api, params=mek, headers=ptk).json()
+        
         if 'require_login' in req:
             if len(Uuid) == 0:
                 exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Invalid Cookie')
+            return
+        
         khm = 'edge_followed_by' if typess else 'edge_follow'
-        for xyz in req['data']['user'][khm]['edges']:
-            username = xyz['node']['username']
-            xy = username + '|' + xyz['node']['full_name']
-            if xy not in Uuid:
-                xx += 1
-                Uuid.append(xy)
-                print('\rCollecting Uid {}{}{}                            '.format(RED, len(Uuid), WHITE), end='')
-                time.sleep(0.0009)
-        end = req['data']['user'][khm]['page_info']['has_next_page']
-        if end:
-            after = req['data']['user'][khm]['page_info']['end_cursor']
-            Graphql(typess, userid, cokie, after)
-    except:
+        
+        # Validate data structure exists
+        if 'data' in req and 'user' in req['data'] and req['data']['user'] and khm in req['data']['user']:
+            for xyz in req['data']['user'][khm]['edges']:
+                username = xyz['node']['username']
+                full_name = xyz['node'].get('full_name', '')
+                xy = username + '|' + full_name
+                if xy not in Uuid:
+                    xx += 1
+                    Uuid.append(xy)
+                    print('\rCollecting Uid {}{}{}                            '.format(RED, len(Uuid), WHITE), end='')
+                    time.sleep(0.0009)
+            
+            end = req['data']['user'][khm]['page_info']['has_next_page']
+            if end:
+                after = req['data']['user'][khm]['page_info']['end_cursor']
+                Graphql(typess, userid, cokie, after)
+        else:
+            # User might be private, no followers/following visible
+            pass
+            
+    except Exception as e:
+        # Silently continue on error
         pass
 
 def MetodeType():
