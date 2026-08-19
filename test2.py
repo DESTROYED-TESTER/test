@@ -664,18 +664,23 @@ def SetCrack():
     Menu()
 
 def Password(name):
-    xxzx = []
-    
-    parts = name.split(' ')
-    firstname = parts[0].lower()
-    
-    # Only these passwords
-    xxzx.append(firstname + '@123')           # firstname@123
-    xxzx.append(name)                         # full name (sumon roy)
-    xxzx.append(firstname + '@1234')          # firstname@1234
-    xxzx.append('57273200')                   # 57273200
-    xxzx.append('59039200')                   # 59039200
-    
+    xxzx, ccvc = [], []
+    for parts in name.split(' '):
+        firstname = parts[0].lower()
+        if len(firstname) < 3:
+            continue
+        elif len(firstname) in [3, 4, 5]:
+            xxzx.append(firstname + '@123')           # firstname@123
+            xxzx.append(name)                         # full name (sumon roy)
+            xxzx.append(firstname + '@1234')          # firstname@1234
+            xxzx.append('57273200')                   # 57273200
+            xxzx.append('59039200')                   # 59039200
+        else:
+            xxzx.append(firstname + '@123')           # firstname@123
+            xxzx.append(name)                         # full name (sumon roy)
+            xxzx.append(firstname + '@1234')          # firstname@1234
+            xxzx.append('57273200')                   # 57273200
+            xxzx.append('59039200')                   # 59039200
     return xxzx
 
 
