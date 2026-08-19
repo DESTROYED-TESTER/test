@@ -17,7 +17,7 @@ from rich.panel import Panel as panel
 from rich import print as prints
 from datetime import datetime 
 # Global variables
-Uid, Uuid, bkas = [], []
+Uid, Uuid = [], []
 Ok, Cp, Loop = 0, 0, 0
 xx = 0
 SistemLog = "api.instagram.com"
