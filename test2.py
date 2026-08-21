@@ -664,23 +664,27 @@ def SetCrack():
     Menu()
 
 def Password(name):
-    xxzx, ccvc = [], []
-    for parts in name.split(' '):
-        firstname = parts[0].lower()
-        if len(firstname) < 3:
+    xxzx = []
+    for nama in name.split(' '):
+        nama = nama.lower()
+        if len(nama) < 3:
             continue
-        elif len(firstname) in [3, 4, 5]:
-            xxzx.append(firstname + '@123')           # firstname@123
-            xxzx.append(name)                         # full name (sumon roy)
-            xxzx.append(firstname + '@1234')          # firstname@1234
-            xxzx.append('57273200')                   # 57273200
-            xxzx.append('59039200')                   # 59039200
+        elif len(nama) in [3, 4, 5]:
+            xxzx.append(nama + '123')
+            xxzx.append(nama + '@12')
+            xxzx.append(nama + '1234')
+            xxzx.append('57273200')
+            xxzx.append(nama + '12')
+            xxzx.append(nama.capitalize() + '123')
+            xxzx.append(nama.capitalize() + '1234')
         else:
-            xxzx.append(firstname + '@123')           # firstname@123
-            xxzx.append(name)                         # full name (sumon roy)
-            xxzx.append(firstname + '@1234')          # firstname@1234
-            xxzx.append('57273200')                   # 57273200
-            xxzx.append('59039200')                   # 59039200
+            xxzx.append(nama + '123')
+            xxzx.append(nama + '@12')
+            xxzx.append(nama + '1234')
+            xxzx.append('57273200')
+            xxzx.append(nama + '12')
+            xxzx.append(nama.capitalize() + '123')
+            xxzx.append(nama.capitalize() + '1234')
     return xxzx
 
 
