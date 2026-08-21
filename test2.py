@@ -968,6 +968,7 @@ def Crack_w(username, memek):
         except requests.exceptions.ConnectionError:
             time.sleep(20)
         except Exception as e:
+            print(e)
             continue
     Loop += 1
 
