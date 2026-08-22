@@ -631,10 +631,7 @@ def Graphql(typess, userid, cokie, after):
 
 def MetodeType():
     global SistemLog
-    prints(panel(f"""\n{RED}[ {BLUE}Select the method to use{RED} ]\n\n{RED}[{CYAN}01{RED}] {WHITE}www.instagram.com method {GREEN}Recommended{WHITE}
-{RED}[{CYAN}02{RED}] {WHITE}i.instagram.com method
-{RED}[{CYAN}03{RED}] {WHITE}i.instagram.com method
-{RED}[{CYAN}04{RED}] {WHITE}b.i.instagram.com method""", style="Purple"))
+    print(panel(f"{RED}[ {BLUE}Select the method to use{RED} ]\n\n{RED}[{CYAN}01{RED}] {WHITE}M1 method {GREEN}Recommended{WHITE}\n{RED}[{CYAN}02{RED}] {WHITE}M2 method\n{RED}[{CYAN}03{RED}] {WHITE}M3 method\n{RED}[{CYAN}04{RED}] {WHITE}M4 method", style="Purple"))
     method = input(f"\n{RED}[{WHITE}+{RED}]{BLUE} Select Menu : {YELLOW}")
     if method in ['01', '1']:
         SistemLog = "api.instagram.com"
@@ -650,6 +647,11 @@ def MetodeType():
 
 def SetCrack():
     os.system("clear")
+    print(f"""
+{YELLOW}═══════════════════════════════════════════════════════════════
+{YELLOW}          {CYAN}CRACKING {GREEN}PROCESSING ⚡
+{YELLOW}═══════════════════════════════════════════════════════════════{WHITE}
+""")
     print(f"\n{YELLOW}Cracking in progress, please enable airplane mode \nfor every 100 usernames/id for 5 seconds\n{WHITE}")
     
     if len(Uuid) == 0:
@@ -850,7 +852,7 @@ def Crack_api(username, kontol):
 
 def Crack_i(username, memek):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\r{GREEN} M2{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE} {GREEN}{username}{WHITE} Ok:-{GREEN}{Ok}{WHITE}-Cp:- {YELLOW}{Cp}{WHITE}           ")
+    sys.stdout.write(f"\r{GREEN} M2{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE} {GREEN}{username}{WHITE} Ok:-{GREEN}{Ok}{WHITE}-Cp:- {YELLOW}{Cp}{WHITE}                     ")
     sys.stdout.flush()
     for password in memek:
         try:
@@ -951,13 +953,13 @@ def Crack_i(username, memek):
         except requests.exceptions.ConnectionError:
             time.sleep(20)
         except Exception as e:
-            print(e)
+            #print(e)
             continue
     Loop += 1
 
 def Crack_w(username, memek):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\r{GREEN} M3{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE} {GREEN}{username}{WHITE} Ok:-{GREEN}{Ok}{WHITE}-Cp:- {YELLOW}{Cp}{WHITE}           ")
+    sys.stdout.write(f"\r{GREEN} M3{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE} {GREEN}{username}{WHITE} Ok:-{GREEN}{Ok}{WHITE}-Cp:- {YELLOW}{Cp}{WHITE}                     ")
     sys.stdout.flush()
     for password in memek:
         try:
@@ -1131,7 +1133,7 @@ def Crack_w(username, memek):
         except requests.exceptions.ConnectionError:
             time.sleep(20)
         except Exception as e:
-            print(e)
+            #print(e)
             continue
     Loop += 1
 
