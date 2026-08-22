@@ -855,8 +855,6 @@ def Crack_i(usernamee, memek):
     for passwordd in memek:
         try:
             uag = UA_OLD()
-            username = 'itz__hari__556'
-            password = '62678121'
             base_ts = int(time.time())
             device_id = str(uuid.uuid4())
             family_device_id = str(uuid.uuid4())
