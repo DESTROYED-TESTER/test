@@ -934,7 +934,7 @@ def Crack_api(username, kontol):
         except requests.exceptions.ConnectionError:
             time.sleep(20)
         except Exception as e:
-            print(e)
+            #print(e)
             continue
     Loop += 1
 
