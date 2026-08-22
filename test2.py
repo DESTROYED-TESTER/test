@@ -632,7 +632,10 @@ def Graphql(typess, userid, cokie, after):
 
 def MetodeType():
     global SistemLog
-    print(panel(f"{RED}[ {BLUE}Select the method to use{RED} ]\n\n{RED}[{CYAN}01{RED}] {WHITE}M1 method {GREEN}Recommended{WHITE}\n{RED}[{CYAN}02{RED}] {WHITE}M2 method\n{RED}[{CYAN}03{RED}] {WHITE}M3 method\n{RED}[{CYAN}04{RED}] {WHITE}M4 method", style="Purple"))
+    prints(panel(f"""\n{RED}[ {BLUE}Select the method to use{RED} ]\n\n{RED}[{CYAN}01{RED}] {WHITE}www.instagram.com method {GREEN}Recommended{WHITE}
+{RED}[{CYAN}02{RED}] {WHITE}i.instagram.com method
+{RED}[{CYAN}03{RED}] {WHITE}i.instagram.com method
+{RED}[{CYAN}04{RED}] {WHITE}b.i.instagram.com method""", style="Purple"))
     method = input(f"\n{RED}[{WHITE}+{RED}]{BLUE} Select Menu : {YELLOW}")
     if method in ['01', '1']:
         SistemLog = "api.instagram.com"
