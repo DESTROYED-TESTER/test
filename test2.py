@@ -850,7 +850,7 @@ def Crack_api(username, kontol):
 
 def Crack_i(username, memek):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\r{GREEN} M2{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE} {GREEN}{username}{WHITE} Ok:-{GREEN}{Ok}{WHITE}-Cp:- {YELLOW}{Cp}{WHITE}")
+    sys.stdout.write(f"\r{GREEN} M2{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE} {GREEN}{username}{WHITE} Ok:-{GREEN}{Ok}{WHITE}-Cp:- {YELLOW}{Cp}{WHITE}           ")
     sys.stdout.flush()
     for password in memek:
         try:
@@ -957,7 +957,7 @@ def Crack_i(username, memek):
 
 def Crack_w(username, memek):
     global Ok, Cp, Loop
-    sys.stdout.write(f"\r{GREEN} M3{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE} {GREEN}{username}{WHITE} Ok:-{GREEN}{Ok}{WHITE}-Cp:- {YELLOW}{Cp}{WHITE}")
+    sys.stdout.write(f"\r{GREEN} M3{WHITE} api {YELLOW}{Loop}{WHITE}-{GREEN}{str(len(Uuid))}{WHITE} {GREEN}{username}{WHITE} Ok:-{GREEN}{Ok}{WHITE}-Cp:- {YELLOW}{Cp}{WHITE}           ")
     sys.stdout.flush()
     for password in memek:
         try:
