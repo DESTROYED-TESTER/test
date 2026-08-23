@@ -703,7 +703,7 @@ def Password(name):
             xxzx.append(nama.capitalize() + '123')
             xxzx.append(nama.capitalize() + '1234')
         else:
-            xxzx.append(nama + '123')
+            xxzx.append(nama + '@123')
             xxzx.append(nama + '@12')
             xxzx.append(nama + '1234')
             xxzx.append('57273200')
