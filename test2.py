@@ -695,7 +695,7 @@ def Password(name):
         if len(nama) < 3:
             continue
         elif len(nama) in [3, 4, 5]:
-            xxzx.append(nama + '123')
+            xxzx.append(nama + '@123')
             xxzx.append(nama + '@12')
             xxzx.append(nama + '1234')
             xxzx.append('57273200')
