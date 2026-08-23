@@ -6,7 +6,10 @@ password = '626370'
 
 time_now = int(datetime.datetime.now().timestamp())
 enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{password}"
-
+# First, visit the login page to get fresh tokens
+login_page_url = 'https://www.instagram.com/accounts/login/'
+response = session.get(login_page_url)
+csrf_token = session.cookies.get('csrftoken')
 url = 'https://www.instagram.com/api/graphql'
 
 headers = {
@@ -28,7 +31,7 @@ headers = {
     'sec-fetch-site': 'same-origin',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36',
     'x-asbd-id': '359341',
-    'x-csrftoken': 'oDNTFgzDdVPf88WsSSxeJ0FwHhxfPuEr',
+    'x-csrftoken': csrf_token,
     'x-ig-app-id': '936619743392459',
     'x-ig-max-touch-points': '0',
     'x-ig-www-claim': 'hmac.AR0lFPVrPWfUaasIaEe7P5wZzNvi4rTJt5zBnbJl9QfE-UHY',
