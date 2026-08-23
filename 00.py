@@ -18,9 +18,7 @@ response = session.get(login_url)
 csrf_token = session.cookies.get('csrftoken')
 
 # Extract LSD token from HTML
-lsd_token = re.search('name="lsd" value="(.*?)"', str(response.text)).group(1),
-
-if not csrf_token or not lsd_token:
+if not csrf_token:
     print("Failed to get tokens")
     exit()
 
