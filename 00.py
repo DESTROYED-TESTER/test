@@ -1,14 +1,27 @@
 import requests
 import datetime
 import urllib.parse
+import re
 
 username = 'dulicandaahiravara'
 password = '626777'
 
+# Create a session
+session = requests.Session()
+
+# STEP 1: Get fresh tokens from login page
+print("Fetching fresh tokens...")
+login_page = session.get('https://www.instagram.com/accounts/login/')
+csrf_token = session.cookies.get('csrftoken')
+
+print(f"✓ Got CSRF token: {csrf_token[:15]}...")
+
+# STEP 2: Generate encrypted password with current timestamp
 time_now = int(datetime.datetime.now().timestamp())
 enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{password}"
 enc_password_encoded = urllib.parse.quote(enc_password)
 
+# STEP 3: Make the login request with fresh token
 url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
 
 headers = {
@@ -22,7 +35,7 @@ headers = {
     'Accept': '*/*',
     'Content-Type': 'application/x-www-form-urlencoded',
     'X-Instagram-AJAX': '1045824267',
-    'X-CSRFToken': 'PHHto5kyJCtXZhPpgy8OlGnoWaLlAmT6',
+    'X-CSRFToken': csrf_token,  # Use fresh token
     'X-Web-Session-ID': 'vnolst:phqive:f5i8pp',
     'Referer': 'https://www.instagram.com/mimi_roy_44/',
     'X-IG-Max-Touch-Points': '0',
@@ -35,7 +48,25 @@ headers = {
 
 data = f'enc_password={enc_password_encoded}&caaF2DebugGroup=-1&isPrivacyPortalReq=false&loginAttemptSubmissionCount=0&optIntoOneTap=false&queryParams=%7B%22oneTapUsers%22%3A%22%5B%5C%2271197200037%5C%22%5D%22%7D&trustedDeviceRecords=%7B%2271197200037%22%3A%7B%22machine_id%22%3A%22afAaSAALAAH1E9oBPA3kaW94g3fT%22%2C%22nonce%22%3A%223wQWQEa1bhApmLnMUuObWk0uwmWXdePxIg9cUI7IyfEAwTLJxEJWdB4IPKme32DX%22%7D%7D&username={username}&jazoest=22902&fb_dtsg=NAfyFFlfztZGS1a5mQLPSTxampkgFsMeFeO9BbRWiV5VgtEFJ71WCCg%3A17843709688147332%3A1787460646'
 
-response = requests.post(url, headers=headers, data=data)
+# Use the session with fresh cookies
+response = session.post(url, headers=headers, data=data)
 
-print(response.status_code)
-print(response.text)
+print(f"Status: {response.status_code}")
+print(f"Response: {response.text}")
+
+# Parse the response
+if response.text.startswith('for (;;);'):
+    response_text = response.text[8:]
+else:
+    response_text = response.text
+
+import json
+try:
+    result = json.loads(response_text)
+    if result.get('authenticated'):
+        print("\n✅ LOGIN SUCCESSFUL!")
+        print(f"User ID: {result.get('userId')}")
+    else:
+        print(f"\n❌ Login failed: {result}")
+except:
+    print(f"\nRaw response: {response_text}")
