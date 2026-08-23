@@ -1,6 +1,6 @@
 import requests
 import datetime
-
+session = requests.Session()
 username = 'sanju_dawar_007'
 password = '626370'
 
