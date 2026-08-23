@@ -4,7 +4,14 @@ import urllib.parse
 
 username = 'panda.2543205'
 password = '626782'
+# Create session to maintain cookies
+session = requests.Session()
 
+# STEP 1: Visit login page to get fresh CSRF token
+print("Getting fresh CSRF token...")
+login_response = session.get('https://www.instagram.com/accounts/login/')
+csrf_token = session.cookies.get('csrftoken')
+print(f"CSRF Token: {csrf_token}")
 time_now = int(datetime.datetime.now().timestamp())
 enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{password}"
 enc_password_encoded = urllib.parse.quote(enc_password)
@@ -22,7 +29,7 @@ headers = {
     'Accept': '*/*',
     'Content-Type': 'application/x-www-form-urlencoded',
     'X-Instagram-AJAX': '1045824267',
-    'X-CSRFToken': 'PHHto5kyJCtXZhPpgy8OlGnoWaLlAmT6',
+    'X-CSRFToken': csrf_token,
     'X-Web-Session-ID': 'vnolst:phqive:f5i8pp',
     'Referer': 'https://www.instagram.com/mimi_roy_44/',
     'X-IG-Max-Touch-Points': '0',
