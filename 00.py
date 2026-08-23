@@ -1,15 +1,43 @@
 import requests
 import datetime
-session = requests.Session()
-username = 'sanju_dawar_007'
-password = '626370'
+import json
+import re
+from bs4 import BeautifulSoup
 
+# Create a session to maintain cookies
+session = requests.Session()
+
+username = 'ishan123'
+password = 'ishan00'
+
+# Step 1: Get fresh tokens from login page
+login_url = 'https://www.instagram.com/accounts/login/'
+response = session.get(login_url)
+
+# Extract CSRF token from cookies
+csrf_token = session.cookies.get('csrftoken')
+
+# Extract LSD token from HTML
+soup = BeautifulSoup(response.text, 'html.parser')
+lsd_token = None
+for script in soup.find_all('script'):
+    if 'LSD' in str(script):
+        match = re.search(r'"LSD":"([^"]+)"', str(script))
+        if match:
+            lsd_token = match.group(1)
+            break
+
+print(f"CSRF Token: {csrf_token}")
+print(f"LSD Token: {lsd_token}")
+
+if not csrf_token or not lsd_token:
+    print("Failed to get tokens")
+    exit()
+
+# Step 2: Get a fresh request_id
 time_now = int(datetime.datetime.now().timestamp())
 enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{password}"
-# First, visit the login page to get fresh tokens
-login_page_url = 'https://www.instagram.com/accounts/login/'
-response = session.get(login_page_url)
-csrf_token = session.cookies.get('csrftoken')
+
 url = 'https://www.instagram.com/api/graphql'
 
 headers = {
