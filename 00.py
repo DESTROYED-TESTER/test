@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Instagram User ID Fetcher & Follower/Following Dumper
-Fixed version with proper error handling and enhanced cookie testing
+Unlimited dump with high-speed optimization - Single file output
 """
 
 import requests
@@ -11,6 +11,8 @@ import re
 import time
 import os
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
 
 # Color codes
 RED = "\033[1;91m"
@@ -24,16 +26,31 @@ RESET = "\033[0m"
 # Global variables
 Uuid = []
 xx = 0
+total_collected = 0
+lock = threading.Lock()
+stop_dump = False
+current_username = ""
+dump_filename = ""
 
 # User agent for API requests
 ua = {
     'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104 (iPhone16,2; iOS 18.2; en_US; en; scale=3.00; 1170x2532; 510000000)'
 }
 
+def clear():
+    """Clear screen"""
+    try:
+        os.system('cls' if os.name == 'nt' else 'clear')
+    except:
+        print('\n' * 100)
+
+def linex():
+    """Print decorative line separator"""
+    print(f"{WHITE}{'='*56}{RESET}")
+
 def test_cookies(coki):
     """Test if cookies are still valid using multiple methods"""
     
-    # Ensure coki is properly formatted
     if isinstance(coki, str):
         coki = {'cookie': coki}
     
@@ -41,14 +58,11 @@ def test_cookies(coki):
     
     # Method 1: Try to get user info using the API
     try:
-        # Extract ds_user_id from cookie
         cookie_str = coki.get('cookie', '') if isinstance(coki, dict) else str(coki)
         uid_match = re.search(r'ds_user_id=(\d+)', cookie_str)
         
         if uid_match:
             uid = uid_match.group(1)
-            print(f"{WHITE}Found user ID: {CYAN}{uid}{RESET}")
-            
             response = requests.get(
                 f'https://i.instagram.com/api/v1/users/{uid}/info/',
                 headers=ua,
@@ -65,9 +79,9 @@ def test_cookies(coki):
                         print(f"{WHITE}  Full Name: {CYAN}{data['user'].get('full_name', 'N/A')}{RESET}")
                         print(f"{WHITE}  Followers: {CYAN}{data['user'].get('follower_count', 0)}{RESET}")
                         return True
-                except json.JSONDecodeError:
+                except:
                     pass
-    except Exception as e:
+    except:
         pass
     
     # Method 2: Try to access the login ajax endpoint
@@ -82,78 +96,15 @@ def test_cookies(coki):
         )
         
         if response.status_code == 200:
-            try:
-                data = response.json()
-                if 'authenticated' in data:
-                    print(f"{GREEN}✓ Cookies are valid!{RESET}")
-                    return True
-            except:
-                print(f"{GREEN}✓ Cookies are valid!{RESET}")
-                return True
-        elif response.status_code in [302, 401]:
-            print(f"{RED}✗ Cookies may be expired! (Status: {response.status_code}){RESET}")
-            return False
-    except Exception as e:
-        pass
-    
-    # Method 3: Try to get the user's profile page
-    try:
-        test_session = requests.Session()
-        test_session.max_redirects = 3
-        response = test_session.get(
-            'https://www.instagram.com/',
-            cookies=coki,
-            timeout=10,
-            allow_redirects=False
-        )
-        
-        if response.status_code == 200:
-            # Check if we got a login page or actual content
-            if 'login' not in response.text.lower():
-                print(f"{GREEN}✓ Cookies are valid!{RESET}")
-                return True
-            else:
-                print(f"{RED}✗ Cookies may be expired! (Redirected to login){RESET}")
-                return False
-    except Exception as e:
-        pass
-    
-    # Method 4: Try to get csrf token from shared_data
-    try:
-        response = requests.get(
-            'https://www.instagram.com/data/shared_data/',
-            cookies=coki,
-            timeout=10
-        )
-        if response.status_code == 200:
-            try:
-                data = response.json()
-                if 'config' in data and 'csrf_token' in data['config']:
-                    print(f"{GREEN}✓ Cookies are valid!{RESET}")
-                    return True
-            except:
-                pass
-    except Exception as e:
-        pass
-    
-    # Method 5: Try to access a random profile page
-    try:
-        test_session = requests.Session()
-        test_session.max_redirects = 3
-        response = test_session.get(
-            'https://www.instagram.com/instagram/',
-            cookies=coki,
-            timeout=10,
-            allow_redirects=False
-        )
-        
-        if response.status_code == 200 and 'instagram' in response.text.lower():
             print(f"{GREEN}✓ Cookies are valid!{RESET}")
             return True
-    except Exception as e:
+        elif response.status_code in [302, 401]:
+            print(f"{RED}✗ Cookies may be expired!{RESET}")
+            return False
+    except:
         pass
     
-    print(f"{RED}✗ All cookie validation methods failed. Cookies appear to be invalid.{RESET}")
+    print(f"{RED}✗ Cookies appear to be invalid!{RESET}")
     return False
 
 def validate_cookie_format(cookie_str):
@@ -169,7 +120,6 @@ def validate_cookie_format(cookie_str):
         print(f"{RED}✗ Cookie is missing: {', '.join(missing)}{RESET}")
         return False
     
-    # Check if sessionid has valid format (should have numbers)
     session_match = re.search(r'sessionid=([^;]+)', cookie_str)
     if session_match:
         session_value = session_match.group(1)
@@ -177,7 +127,6 @@ def validate_cookie_format(cookie_str):
             print(f"{RED}✗ Session ID appears invalid (too short){RESET}")
             return False
     
-    # Check if ds_user_id is present and numeric
     user_match = re.search(r'ds_user_id=([^;]+)', cookie_str)
     if user_match:
         user_id = user_match.group(1)
@@ -188,18 +137,18 @@ def validate_cookie_format(cookie_str):
     print(f"{GREEN}✓ Cookie format looks valid{RESET}")
     return True
 
-def get_user_id_methods(username, cookies):
-    """Try multiple methods to get user ID"""
+def get_user_id(username, cookies):
+    """Get user ID with high-speed optimization"""
     
-    # Method 1: Try using the official API
+    # Try using the official API first (fastest)
     try:
         url = f'https://i.instagram.com/api/v1/users/web_profile_info/?username={username}'
         headers = {
-            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104',
+            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15',
             'x-ig-app-id': '1217981644879628',
             'Accept': 'application/json'
         }
-        response = requests.get(url, headers=headers, cookies=cookies, timeout=10)
+        response = requests.get(url, headers=headers, cookies=cookies, timeout=5)
         
         if response.status_code == 200:
             data = response.json()
@@ -207,49 +156,23 @@ def get_user_id_methods(username, cookies):
                 user_id = data['data']['user'].get('id')
                 if user_id:
                     return user_id
-    except Exception as e:
+    except:
         pass
     
-    # Method 2: Try using the graphql API with proper query
-    try:
-        url = 'https://www.instagram.com/graphql/query/'
-        params = {
-            'query_hash': 'c9100bf9110dd6361671f113dd02e7d6',
-            'variables': json.dumps({'username': username})
-        }
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15',
-            'x-ig-app-id': '1217981644879628',
-        }
-        response = requests.get(url, params=params, headers=headers, cookies=cookies, timeout=10)
-        
-        if response.status_code == 200:
-            data = response.json()
-            if 'data' in data and 'user' in data['data']:
-                user_id = data['data']['user'].get('id')
-                if user_id:
-                    return user_id
-    except Exception as e:
-        pass
-    
-    # Method 3: Try scraping the profile page
+    # Try scraping the profile page (fallback)
     try:
         session = requests.Session()
-        session.max_redirects = 3
+        session.max_redirects = 2
         headers = {
             'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15'
         }
-        response = session.get(f'https://www.instagram.com/{username}/', headers=headers, cookies=cookies, timeout=10)
+        response = session.get(f'https://www.instagram.com/{username}/', headers=headers, cookies=cookies, timeout=5)
         
         if response.status_code == 200:
-            # Try to find user_id in the page source
             patterns = [
                 r'"user_id":"(\d+)"',
                 r'"profilePage_(\d+)"',
                 r'"id":"(\d+)","username":"' + username + '"',
-                r'{"id":"(\d+)","username":"' + username + '"',
-                r'"id":"(\d+)"[^}]*"username":"' + username + '"',
-                r'"user_id":"(\d+)"',
                 r'"userId":"(\d+)"',
             ]
             
@@ -257,167 +180,32 @@ def get_user_id_methods(username, cookies):
                 match = re.search(pattern, response.text)
                 if match:
                     return match.group(1)
-                    
-    except Exception as e:
-        pass
-    
-    # Method 4: Try using the web profile info endpoint with different headers
-    try:
-        url = f'https://www.instagram.com/web/profile/info/{username}/'
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-            'Accept': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
-        }
-        response = requests.get(url, headers=headers, cookies=cookies, timeout=10)
-        
-        if response.status_code == 200:
-            data = response.json()
-            if 'user' in data:
-                user_id = data['user'].get('id')
-                if user_id:
-                    return user_id
-    except Exception as e:
+    except:
         pass
     
     return None
 
-def dumps(cintil, typess):
-    """Dump followers or following from Instagram accounts"""
-    global xx, Uuid
-    
-    # Initialize Uuid if not exists
-    if 'Uuid' not in globals():
-        global Uuid
-        Uuid = []
-    
-    xx = 0
-    
-    # Test cookies first using enhanced method
-    if not test_cookies(cintil):
-        print(f"{YELLOW}Warning: Your cookies may be invalid. Proceeding anyway...{RESET}")
-        time.sleep(1)
-    else:
-        print(f"{GREEN}Cookie validation successful!{RESET}")
-    
-    xyz = []
-    
-    # Ensure csrftoken is present
-    if 'csrftoken' not in str(cintil):
-        try:
-            memek = requests.get('https://www.instagram.com/data/shared_data/', cookies=cintil, timeout=10)
-            memek.raise_for_status()
-            token = memek.json()['config']['csrf_token']
-            if isinstance(cintil, dict):
-                cintil['cookie'] += f';csrftoken={token};'
-            else:
-                cintil = f'{cintil};csrftoken={token};'
-            print(f"{GREEN}✓ CSRF token added to cookies{RESET}")
-        except Exception as e:
-            print(f"{RED}Error: Csrftoken not available, dump will not run: {e}{RESET}")
-            return
-    
-    print(f"\n{CYAN}Enter Instagram usernames, use commas for mass dumping{RESET}")
-    print(f"{YELLOW}Example: user1,user2,user3{RESET}")
-    users_input = input(f"{WHITE}[{GREEN}?{WHITE}] Username: {GREEN}").strip()
-    
-    if not users_input:
-        print(f"{RED}No username entered!{RESET}")
-        return
-    
-    users = [u.strip() for u in users_input.split(',') if u.strip()]
-    
-    print(f"\n{YELLOW}Fetching user IDs...{RESET}")
+def save_to_file(user_data):
+    """Save user data to the dump file"""
+    global dump_filename
     
     try:
-        for y in users:
-            print(f"{WHITE}Fetching user ID for: {CYAN}{y}{RESET}")
-            
-            user_id = get_user_id_methods(y, cintil)
-            
-            if user_id:
-                if user_id not in xyz:
-                    xyz.append(user_id)
-                    print(f"{GREEN}✓ Found user ID: {user_id} for {y}{RESET}")
-            else:
-                print(f"{RED}✗ Could not find user ID for: {y}{RESET}")
-                
-            time.sleep(0.5)
-                
+        with lock:
+            with open(dump_filename, "a", encoding='utf-8') as f:
+                f.write(f"{user_data}\n")
     except Exception as e:
-        print(f"{RED}Error getting user IDs: {e}{RESET}")
-        return
-    
-    if not xyz:
-        print(f"{RED}No valid user IDs found! Make sure the usernames are correct.{RESET}")
-        time.sleep(2)
-        return
-    
-    print(f"\n{GREEN}Found {len(xyz)} valid user IDs{RESET}")
-    
-    try:
-        mode = 'followers' if typess else 'following'
-        print(f"\n{YELLOW}Starting to dump {mode}...{RESET}")
-        
-        for kintil in xyz:
-            print(f"\n{WHITE}Processing user ID: {CYAN}{kintil}{RESET}")
-            if typess:
-                Graphql(True, kintil, cintil, '')
-            else:
-                Graphql(False, kintil, cintil, '')
-                
-            time.sleep(1)
-            
-    except Exception as e:
-        print(f"{RED}Error during dump: {e}{RESET}")
-    
-    print(f"\n{GREEN}Total users collected: {len(Uuid)}{RESET}")
-    print("")
-    
-    if len(Uuid) > 0:
-        print(f"{GREEN}Collected {len(Uuid)} users successfully!{RESET}")
-        
-        # Save results to file
-        try:
-            with open("dumped_users.txt", "w", encoding='utf-8') as f:
-                for user in Uuid:
-                    f.write(f"{user}\n")
-            print(f"{GREEN}Results saved to: dumped_users.txt{RESET}")
-        except:
-            pass
-            
-        time.sleep(1)
-    else:
-        print(f"{RED}No users collected. Check if the target accounts are private or have no {mode}.{RESET}")
-        time.sleep(2)
+        print(f"\n{RED}Error saving to file: {e}{RESET}")
 
-def Graphql(typess, userid, cokie, after):
-    """GraphQL query to fetch followers/following"""
-    global xx, Uuid
-    
-    # Initialize Uuid if not exists
-    if 'Uuid' not in globals():
-        global Uuid
-        Uuid = []
-    
-    # Safety check for xx initialization
-    if 'xx' not in globals():
-        global xx
-        xx = 0
+def fast_dump_followers(userid, cookies, after=''):
+    """Fast dump followers with optimized requests"""
+    global total_collected, stop_dump, current_username
     
     api = "https://www.instagram.com/graphql/query/"
-    
-    # Use the correct query hash for followers/following
-    if typess:
-        # Followers
-        query_hash = "37479f2b8209594dde7facb0d904896a"
-    else:
-        # Following
-        query_hash = "58712303d941c6855d4e888c5f0cd22f"
+    query_hash = "37479f2b8209594dde7facb0d904896a"
     
     variables = {
         "id": userid,
-        "first": 50,
+        "first": 100,
         "after": after
     }
     
@@ -427,60 +215,52 @@ def Graphql(typess, userid, cokie, after):
     }
     
     try:
-        # Prepare headers
         ptk = {
-            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104",
+            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15",
             "Accept": "application/json",
             "x-ig-app-id": "1217981644879628"
         }
         
-        # Handle cookies properly
-        if isinstance(cokie, dict) and 'cookie' in cokie:
-            cookies = {'cookie': cokie['cookie']}
-        elif isinstance(cokie, dict):
-            cookies = cokie
+        if isinstance(cookies, dict) and 'cookie' in cookies:
+            cookies_dict = {'cookie': cookies['cookie']}
+        elif isinstance(cookies, dict):
+            cookies_dict = cookies
         else:
-            cookies = {'cookie': cokie}
+            cookies_dict = {'cookie': cookies}
         
         session = requests.Session()
-        session.max_redirects = 5
+        session.max_redirects = 3
         
-        req = session.get(api, params=params, headers=ptk, cookies=cookies, timeout=30)
+        req = session.get(api, params=params, headers=ptk, cookies=cookies_dict, timeout=15)
         req.raise_for_status()
         req_json = req.json()
         
-        # Check for errors
         if 'require_login' in req_json:
-            print(f'\n{YELLOW}[!] Invalid Cookie - Need to login{RESET}')
+            print(f'\n{RED}[!] Invalid Cookie - Need to login{RESET}')
+            stop_dump = True
             return
         
         if 'status' in req_json and req_json['status'] == 'fail':
             print(f'\n{RED}Request failed: {req_json.get("message", "Unknown error")}{RESET}')
             return
         
-        # Determine the correct key based on typess
-        khm = 'edge_followed_by' if typess else 'edge_follow'
-        
-        # Check if user exists in response
-        if 'data' not in req_json or 'user' not in req_json['data'] or not req_json['data']['user']:
-            print(f"\n{RED}User not found or private. Skipping...{RESET}")
+        if 'data' not in req_json or 'user' not in req_json['data']:
+            print(f"\n{RED}User not found or private{RESET}")
             return
         
         user_data = req_json['data']['user']
         
-        # Check if the user has the requested data
-        if khm not in user_data:
-            print(f"\n{RED}This user has no visible {khm.replace('edge_', '')} or is private{RESET}")
+        if 'edge_followed_by' not in user_data:
+            print(f"\n{RED}This user has no visible followers or is private{RESET}")
             return
         
-        # Process the edges
-        edges = user_data[khm].get('edges', [])
+        edges = user_data['edge_followed_by'].get('edges', [])
         if not edges:
-            print(f"\n{YELLOW}No {khm.replace('edge_', '')} found for this user{RESET}")
+            print(f"\n{YELLOW}No followers found for this user{RESET}")
             return
         
-        print(f"\n{GREEN}Found {len(edges)} {khm.replace('edge_', '')} in this batch{RESET}")
-        
+        # Process edges quickly and save to file
+        new_count = 0
         for xyz in edges:
             username = xyz['node'].get('username', '')
             full_name = xyz['node'].get('full_name', '')
@@ -488,98 +268,353 @@ def Graphql(typess, userid, cokie, after):
             
             if username:
                 xy = f"{username}|{full_name}|{user_id}"
-                if xy not in Uuid:
-                    xx += 1
-                    Uuid.append(xy)
-                    print(f'\r{WHITE}Collecting {len(Uuid)} users                      ', end='', flush=True)
-                    time.sleep(0.001)
+                with lock:
+                    if xy not in Uuid:
+                        Uuid.append(xy)
+                        new_count += 1
+                        total_collected += 1
+                        # Save immediately to file
+                        save_to_file(xy)
+        
+        if new_count > 0:
+            print(f'\r{WHITE}Collected {GREEN}{new_count}{WHITE} new users | {CYAN}Total: {GREEN}{len(Uuid)}{WHITE}                      ', end='', flush=True)
         
         # Check for pagination
-        page_info = user_data[khm].get('page_info', {})
-        end = page_info.get('has_next_page', False)
-        
-        if end:
+        page_info = user_data['edge_followed_by'].get('page_info', {})
+        if page_info.get('has_next_page', False) and not stop_dump:
             after = page_info.get('end_cursor', '')
             if after:
-                print(f"\n{YELLOW}Loading next page...{RESET}")
-                time.sleep(0.5)
-                Graphql(typess, userid, cokie, after)
+                time.sleep(0.1)
+                fast_dump_followers(userid, cookies, after)
                 
     except requests.exceptions.Timeout:
-        print(f"\n{RED}Timeout error while fetching followers{RESET}")
-    except requests.exceptions.TooManyRedirects:
-        print(f"\n{RED}Too many redirects - check your cookies{RESET}")
-    except requests.exceptions.RequestException as e:
-        print(f"\n{RED}Network error: {e}{RESET}")
-    except json.JSONDecodeError as e:
-        print(f"\n{RED}Invalid JSON response: {e}{RESET}")
-    except KeyError as e:
-        print(f"\n{RED}Key error: {e} - Check response structure{RESET}")
+        print(f"\n{RED}Timeout error - retrying...{RESET}")
+        time.sleep(1)
+        if not stop_dump:
+            fast_dump_followers(userid, cookies, after)
     except Exception as e:
-        print(f"\n{RED}Unexpected error: {e}{RESET}")
+        print(f"\n{RED}Error: {e}{RESET}")
 
-def main():
-    """Main function to run the dumper"""
+def fast_dump_following(userid, cookies, after=''):
+    """Fast dump following with optimized requests"""
+    global total_collected, stop_dump, current_username
+    
+    api = "https://www.instagram.com/graphql/query/"
+    query_hash = "58712303d941c6855d4e888c5f0cd22f"
+    
+    variables = {
+        "id": userid,
+        "first": 100,
+        "after": after
+    }
+    
+    params = {
+        'query_hash': query_hash,
+        'variables': json.dumps(variables)
+    }
+    
+    try:
+        ptk = {
+            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15",
+            "Accept": "application/json",
+            "x-ig-app-id": "1217981644879628"
+        }
+        
+        if isinstance(cookies, dict) and 'cookie' in cookies:
+            cookies_dict = {'cookie': cookies['cookie']}
+        elif isinstance(cookies, dict):
+            cookies_dict = cookies
+        else:
+            cookies_dict = {'cookie': cookies}
+        
+        session = requests.Session()
+        session.max_redirects = 3
+        
+        req = session.get(api, params=params, headers=ptk, cookies=cookies_dict, timeout=15)
+        req.raise_for_status()
+        req_json = req.json()
+        
+        if 'require_login' in req_json:
+            print(f'\n{RED}[!] Invalid Cookie - Need to login{RESET}')
+            stop_dump = True
+            return
+        
+        if 'status' in req_json and req_json['status'] == 'fail':
+            print(f'\n{RED}Request failed: {req_json.get("message", "Unknown error")}{RESET}')
+            return
+        
+        if 'data' not in req_json or 'user' not in req_json['data']:
+            print(f"\n{RED}User not found or private{RESET}")
+            return
+        
+        user_data = req_json['data']['user']
+        
+        if 'edge_follow' not in user_data:
+            print(f"\n{RED}This user has no visible following or is private{RESET}")
+            return
+        
+        edges = user_data['edge_follow'].get('edges', [])
+        if not edges:
+            print(f"\n{YELLOW}No following found for this user{RESET}")
+            return
+        
+        # Process edges quickly and save to file
+        new_count = 0
+        for xyz in edges:
+            username = xyz['node'].get('username', '')
+            full_name = xyz['node'].get('full_name', '')
+            user_id = xyz['node'].get('id', '')
+            
+            if username:
+                xy = f"{username}|{full_name}|{user_id}"
+                with lock:
+                    if xy not in Uuid:
+                        Uuid.append(xy)
+                        new_count += 1
+                        total_collected += 1
+                        # Save immediately to file
+                        save_to_file(xy)
+        
+        if new_count > 0:
+            print(f'\r{WHITE}Collected {GREEN}{new_count}{WHITE} new users | {CYAN}Total: {GREEN}{len(Uuid)}{WHITE}                      ', end='', flush=True)
+        
+        # Check for pagination
+        page_info = user_data['edge_follow'].get('page_info', {})
+        if page_info.get('has_next_page', False) and not stop_dump:
+            after = page_info.get('end_cursor', '')
+            if after:
+                time.sleep(0.1)
+                fast_dump_following(userid, cookies, after)
+                
+    except requests.exceptions.Timeout:
+        print(f"\n{RED}Timeout error - retrying...{RESET}")
+        time.sleep(1)
+        if not stop_dump:
+            fast_dump_following(userid, cookies, after)
+    except Exception as e:
+        print(f"\n{RED}Error: {e}{RESET}")
+
+def unlimited_dump():
+    """Unlimited dump for 1 username with high speed - Single file"""
+    global total_collected, Uuid, xx, stop_dump, current_username, dump_filename
+    
     clear()
     
     print(f"{CYAN}{'='*56}{RESET}")
-    print(f"{CYAN}     📱 INSTAGRAM FOLLOWER/FOLLOWING DUMPER 📱{RESET}")
+    print(f"{CYAN}     🚀 INSTAGRAM UNLIMITED DUMPER 🚀{RESET}")
     print(f"{CYAN}{'='*56}{RESET}")
+    print(f" {WHITE}[{GREEN}•{WHITE}] Unlimited dumping for 1 username{RESET}")
+    print(f" {WHITE}[{GREEN}•{WHITE}] High-speed optimization enabled{RESET}")
+    print(f" {WHITE}[{GREEN}•{WHITE}] All data saved to ONE file{RESET}")
+    linex()
     
     # Get cookie
     print(f"{YELLOW}Enter your Instagram cookie (should contain sessionid){RESET}")
-    print(f"{WHITE}Example: sessionid=abc123; ds_user_id=123456; csrftoken=xyz789{RESET}")
     cookie_input = input(f"{WHITE}[{GREEN}?{WHITE}] Cookie: {GREEN}").strip()
     
     if not cookie_input:
         print(f"{RED}No cookie entered!{RESET}")
         return
     
-    # Validate cookie format
     if not validate_cookie_format(cookie_input):
-        print(f"{RED}Invalid cookie format! Please check your input.{RESET}")
-        time.sleep(2)
+        print(f"{RED}Invalid cookie format!{RESET}")
         return
     
     cookies = {'cookie': cookie_input}
     
-    # Test cookie before proceeding
-    print(f"\n{YELLOW}Testing cookie...{RESET}")
     if not test_cookies(cookies):
-        print(f"{RED}Cookie validation failed! Do you want to continue anyway?{RESET}")
-        choice = input(f"{WHITE}[{GREEN}?{WHITE}] Continue? (y/n): {GREEN}").strip().lower()
-        if choice != 'y':
-            return
+        print(f"{RED}Cookie validation failed!{RESET}")
+        return
     
-    # Choose mode
-    print(f"\n{WHITE}[{GREEN}1{WHITE}] Dump Followers{RESET}")
-    print(f"{WHITE}[{GREEN}2{WHITE}] Dump Following{RESET}")
-    print(f"{WHITE}[{GREEN}3{WHITE}] Dump Both (Followers & Following){RESET}")
+    # Get username
+    print(f"\n{YELLOW}Enter the Instagram username to dump{RESET}")
+    username = input(f"{WHITE}[{GREEN}?{WHITE}] Username: {GREEN}").strip()
+    
+    if not username:
+        print(f"{RED}No username entered!{RESET}")
+        return
+    
+    current_username = username
+    
+    # Get user ID
+    print(f"\n{YELLOW}Fetching user ID for {CYAN}{username}{RESET}")
+    user_id = get_user_id(username, cookies)
+    
+    if not user_id:
+        print(f"{RED}Could not find user ID for: {username}{RESET}")
+        return
+    
+    print(f"{GREEN}✓ User ID found: {CYAN}{user_id}{RESET}")
+    
+    # Choose dump mode
+    print(f"\n{WHITE}[{GREEN}1{WHITE}] Dump Followers Only{RESET}")
+    print(f"{WHITE}[{GREEN}2{WHITE}] Dump Following Only{RESET}")
+    print(f"{WHITE}[{GREEN}3{WHITE}] Dump Both (Unlimited){RESET}")
     choice = input(f"{WHITE}[{GREEN}?{WHITE}] Select: {GREEN}").strip()
     
-    if choice == '1':
-        dumps(cookies, True)  # True for followers
-    elif choice == '2':
-        dumps(cookies, False)  # False for following
-    elif choice == '3':
-        print(f"\n{YELLOW}Dumping Followers...{RESET}")
-        dumps(cookies, True)
-        print(f"\n{YELLOW}Dumping Following...{RESET}")
-        dumps(cookies, False)
-    else:
-        print(f"{RED}Invalid choice!{RESET}")
-
-def clear():
-    """Clear screen"""
+    # Reset global variables
+    Uuid = []
+    total_collected = 0
+    xx = 0
+    stop_dump = False
+    
+    # Create single dump file
+    timestamp = int(time.time())
+    dump_filename = f"{username}_dump_{timestamp}.txt"
+    
+    # Clear file if it exists
+    with open(dump_filename, "w", encoding='utf-8') as f:
+        f.write(f"# Instagram Dump for: {username}\n")
+        f.write(f"# Dump Time: {time.strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write(f"# Format: username|full_name|user_id\n")
+        f.write(f"{'='*56}\n\n")
+    
+    print(f"\n{GREEN}✓ Results will be saved to: {CYAN}{dump_filename}{RESET}")
+    
+    # Start dumping
+    clear()
+    print(f"{CYAN}{'='*56}{RESET}")
+    print(f"{CYAN}     🔥 UNLIMITED DUMP IN PROGRESS 🔥{RESET}")
+    print(f"{CYAN}{'='*56}{RESET}")
+    print(f"{WHITE}Target: {CYAN}{username}{WHITE} (ID: {CYAN}{user_id}{WHITE}){RESET}")
+    print(f"{WHITE}Mode: {CYAN}{'Followers' if choice == '1' else 'Following' if choice == '2' else 'Both'}{RESET}")
+    print(f"{WHITE}File: {CYAN}{dump_filename}{RESET}")
+    print(f"{WHITE}Press {RED}Ctrl+C{RESET} to stop at any time")
+    print(f"{CYAN}{'='*56}{RESET}")
+    
+    start_time = time.time()
+    
     try:
-        os.system('cls' if os.name == 'nt' else 'clear')
-    except:
-        print('\n' * 100)
+        if choice == '1':
+            print(f"\n{GREEN}Dumping Followers...{RESET}\n")
+            fast_dump_followers(user_id, cookies)
+        elif choice == '2':
+            print(f"\n{GREEN}Dumping Following...{RESET}\n")
+            fast_dump_following(user_id, cookies)
+        elif choice == '3':
+            print(f"\n{GREEN}Dumping Followers...{RESET}\n")
+            fast_dump_followers(user_id, cookies)
+            print(f"\n\n{GREEN}Dumping Following...{RESET}\n")
+            fast_dump_following(user_id, cookies)
+        else:
+            print(f"{RED}Invalid choice!{RESET}")
+            return
+    
+    except KeyboardInterrupt:
+        print(f"\n\n{YELLOW}[!] Dump stopped by user{RESET}")
+    
+    # Calculate results
+    end_time = time.time()
+    execution_time = end_time - start_time
+    
+    # Display results
+    linex()
+    print(f"{GREEN}{'='*56}{RESET}")
+    print(f" {GREEN}[✓] DUMP COMPLETED!{RESET}")
+    print(f"{GREEN}{'='*56}{RESET}")
+    print(f" {WHITE}[📊] Total Users Collected: {GREEN}{len(Uuid)}{RESET}")
+    print(f" {WHITE}[📁] File: {CYAN}{dump_filename}{RESET}")
+    print(f" {WHITE}[⏱️] Execution Time: {YELLOW}{execution_time:.2f} seconds{RESET}")
+    print(f" {WHITE}[🚀] Speed: {CYAN}{len(Uuid)/execution_time:.2f} users/second{RESET}")
+    
+    if len(Uuid) > 0:
+        print(f"\n{WHITE}Sample of collected users:{RESET}")
+        for i, user in enumerate(Uuid[:5]):
+            parts = user.split('|')
+            print(f"  {GREEN}{i+1}. {CYAN}{parts[0]}{RESET}")
+        if len(Uuid) > 5:
+            print(f"  {YELLOW}... and {len(Uuid)-5} more{RESET}")
+        
+        # Show file size
+        try:
+            file_size = os.path.getsize(dump_filename)
+            if file_size < 1024:
+                size_str = f"{file_size} bytes"
+            elif file_size < 1024 * 1024:
+                size_str = f"{file_size/1024:.2f} KB"
+            else:
+                size_str = f"{file_size/(1024*1024):.2f} MB"
+            print(f" {WHITE}[📦] File Size: {CYAN}{size_str}{RESET}")
+        except:
+            pass
+    
+    linex()
+    input(f"\n{WHITE}[{RED}!{WHITE}] Press Enter to return to menu...{RESET}")
+
+def menu():
+    """Interactive main menu"""
+    global dump_filename
+    
+    while True:
+        clear()
+        print(f"{CYAN}{'='*56}{RESET}")
+        print(f"{CYAN}     🚀 INSTAGRAM UNLIMITED DUMPER 🚀{RESET}")
+        print(f"{CYAN}{'='*56}{RESET}")
+        print(f" {WHITE}[{GREEN}1{WHITE}] 🚀 Start Unlimited Dump{RESET}")
+        print(f" {WHITE}[{GREEN}2{WHITE}] 📊 View Statistics{RESET}")
+        print(f" {WHITE}[{GREEN}3{WHITE}] 📁 Open Dump File{RESET}")
+        print(f" {WHITE}[{GREEN}4{WHITE}] ❌ Exit Program{RESET}")
+        print(f"{CYAN}{'='*60}{RESET}")
+        
+        choice = input(f" {WHITE}[{GREEN}?{WHITE}] Select Option: {GREEN}{RESET}").strip()
+        
+        if choice == '1':
+            unlimited_dump()
+        elif choice == '2':
+            clear()
+            print(f"{CYAN}{'='*56}{RESET}")
+            print(f"{CYAN}     📊 DUMP STATISTICS 📊{RESET}")
+            print(f"{CYAN}{'='*56}{RESET}")
+            print(f" {WHITE}[📝] Total Users Collected: {GREEN}{len(Uuid)}{RESET}")
+            print(f" {WHITE}[📁] Last Dump File: {CYAN}{dump_filename if dump_filename else 'N/A'}{RESET}")
+            print(f" {WHITE}[🔄] Last Dump Time: {YELLOW}{time.strftime('%Y-%m-%d %H:%M:%S')}{RESET}")
+            linex()
+            input(f" {WHITE}[{RED}!{WHITE}] Press Enter to continue...{RESET}")
+        elif choice == '3':
+            if dump_filename and os.path.exists(dump_filename):
+                try:
+                    if os.name == 'nt':  # Windows
+                        os.startfile(dump_filename)
+                    else:  # Linux/Mac
+                        os.system(f'xdg-open "{dump_filename}"' if os.name == 'posix' else f'open "{dump_filename}"')
+                    print(f"{GREEN}✓ Opening file: {dump_filename}{RESET}")
+                except:
+                    print(f"{RED}Could not open file. Please open manually: {dump_filename}{RESET}")
+                time.sleep(2)
+            else:
+                print(f"{RED}No dump file found! Please run a dump first.{RESET}")
+                time.sleep(2)
+        elif choice == '4':
+            clear()
+            print(f"{GREEN}{'='*56}{RESET}")
+            print(f" {GREEN}     👋 GOODBYE! THANKS FOR USING OUR TOOL! 👋{RESET}")
+            print(f"{GREEN}{'='*56}{RESET}")
+            if len(Uuid) > 0:
+                print(f" {YELLOW}[!] Total users dumped: {len(Uuid)}{RESET}")
+                print(f" {YELLOW}[!] Saved in: {dump_filename}{RESET}")
+            time.sleep(3)
+            break
+        else:
+            print(f" {RED}[!] Invalid option! Please choose 1, 2, 3, or 4.{RESET}")
+            time.sleep(2)
 
 if __name__ == "__main__":
     try:
-        main()
+        # Check for required modules
+        try:
+            import requests
+        except ImportError:
+            print(f"{RED}[!] Missing required module: requests{RESET}")
+            print(f"{RED}[!] Please install: pip install requests{RESET}")
+            sys.exit(1)
+        
+        menu()
+        
     except KeyboardInterrupt:
-        print(f"\n{YELLOW}[!] Interrupted by user.{RESET}")
+        clear()
+        print(f"\n{YELLOW}[!] Program interrupted by user. Goodbye!{RESET}")
+        sys.exit(0)
     except Exception as e:
-        print(f"\n{RED}[!] Error: {e}{RESET}")
+        clear()
+        print(f"\n{RED}[!] Fatal error occurred: {e}{RESET}")
+        sys.exit(1)
