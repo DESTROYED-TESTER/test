@@ -29,9 +29,6 @@ SistemLog = "api.instagram.com"
 stop_collection = False
 collection_thread = None
 current_task = None
-collection_running = False
-page_loading = False
-pagination_active = False
 
 # Color codes
 WHITE = '\x1b[1;97m'
@@ -263,18 +260,19 @@ def save_to_sdcard():
             except:
                 pass
         
-        # Use a set to remove duplicates before saving
-        unique_data = list(set(Uuid))
-        if len(unique_data) < len(Uuid):
-            print(f"{YELLOW}⚠ Found {len(Uuid) - len(unique_data)} duplicates, removing...{RESET}")
-            Uuid[:] = unique_data
-        
         with open('/sdcard/dump.txt', 'w', encoding='utf-8') as f:
             for item in Uuid:
                 f.write(item + '\n')
         
         print(f"\n{GREEN}✓ Successfully saved {len(Uuid)} users to /sdcard/dump.txt{RESET}")
         print(f"{WHITE}  Format: username|full_name{RESET}")
+        
+        print(f"\n{YELLOW}Sample of saved data:{RESET}")
+        for i, item in enumerate(Uuid[:3]):
+            parts = item.split('|')
+            print(f"  {i+1}. Username: {GREEN}{parts[0]}{RESET} | Name: {CYAN}{parts[1] if len(parts) > 1 else 'N/A'}{RESET}")
+        if len(Uuid) > 3:
+            print(f"  ... and {len(Uuid)-3} more")
         
         return True
         
@@ -295,11 +293,6 @@ def save_to_custom(filename):
         
         if not os.path.exists('data'):
             os.makedirs('data')
-        
-        # Remove duplicates
-        unique_data = list(set(Uuid))
-        if len(unique_data) < len(Uuid):
-            Uuid[:] = unique_data
         
         with open(f'data/{filename}', 'w', encoding='utf-8') as f:
             for item in Uuid:
@@ -331,165 +324,27 @@ def view_data():
     
     print(f"{YELLOW}{'='*60}{RESET}")
 
-def collect_with_pagination(typess, user_id, cookie, after, max_pages=10):
-    """Collect data with proper pagination handling - FIXED"""
-    global Uuid, xx, page_loading, stop_collection, collection_running, pagination_active
-    
-    # Check if we should stop
-    if stop_collection or not collection_running:
-        return
-    
-    api = "https://www.instagram.com/graphql/query/"
-    
-    if typess:
-        query_hash = "37479f2b8209594dde7facb0d904896a"
-    else:
-        query_hash = "58712303d941c6855d4e888c5f0cd22f"
-    
-    variables = {
-        "id": user_id,
-        "first": 50,
-        "after": after
-    }
-    
-    params = {
-        'query_hash': query_hash,
-        'variables': json.dumps(variables)
-    }
-    
-    try:
-        ptk = {
-            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104",
-            "accept": "application/json",
-            "cookie": cookie,
-            "x-ig-app-id": "1217981644879628"
-        }
-        
-        session = requests.Session()
-        session.max_redirects = 5
-        
-        req = session.get(api, params=params, headers=ptk, timeout=30)
-        req.raise_for_status()
-        req_json = req.json()
-        
-        # Check for errors
-        if 'require_login' in req_json:
-            print(f'\n{WHITE}[{YELLOW}!{WHITE}] Invalid Cookie - Need to login')
-            return
-        
-        if 'status' in req_json and req_json['status'] == 'fail':
-            print(f'\n{RED}Request failed: {req_json.get("message", "Unknown error")}')
-            return
-        
-        khm = 'edge_followed_by' if typess else 'edge_follow'
-        
-        if 'data' not in req_json or 'user' not in req_json['data'] or not req_json['data']['user']:
-            print(f"\n{RED}User not found or private. Skipping...")
-            return
-        
-        user_data = req_json['data']['user']
-        
-        if khm not in user_data:
-            print(f"\n{RED}This user has no visible data or is private")
-            return
-        
-        edges = user_data[khm].get('edges', [])
-        if not edges:
-            print(f"\n{YELLOW}No data found for this user")
-            return
-        
-        total_batch = len(edges)
-        print(f"\r{GREEN}📥 Found {total_batch} items in this batch{' ' * 20}", end='', flush=True)
-        
-        # Process edges
-        for xyz in edges:
-            if stop_collection or not collection_running:
-                break
-            username = xyz['node'].get('username', '')
-            full_name = xyz['node'].get('full_name', '')
-            
-            if username:
-                xy = username + '|' + full_name
-                if xy not in Uuid:
-                    xx += 1
-                    Uuid.append(xy)
-                    print(f'\r{WHITE}📊 Collected: {RED}{len(Uuid)}{WHITE} users so far  ', end='', flush=True)
-        
-        # Check for next page
-        page_info = user_data[khm].get('page_info', {})
-        has_next = page_info.get('has_next_page', False)
-        end_cursor = page_info.get('end_cursor', '')
-        
-        # Only load next page if there is one and we haven't exceeded max pages
-        if has_next and end_cursor and not stop_collection and collection_running:
-            print(f"\n{YELLOW}📄 Loading next page...{RESET}")
-            page_loading = True
-            pagination_active = True
-            time.sleep(0.5)  # Small delay between pages
-            
-            # Recursive call for next page
-            collect_with_pagination(typess, user_id, cookie, end_cursor, max_pages)
-        else:
-            if has_next and not end_cursor:
-                print(f"\n{YELLOW}⚠️ No end cursor found, stopping pagination{RESET}")
-            else:
-                print(f"\n{GREEN}✅ Finished collecting all pages for this user{' ' * 20}{RESET}")
-            page_loading = False
-            pagination_active = False
-                
-    except requests.exceptions.Timeout:
-        print(f"\n{RED}⏰ Timeout error - retrying...{RESET}")
-        if not stop_collection and collection_running:
-            time.sleep(2)
-            collect_with_pagination(typess, user_id, cookie, after, max_pages)
-    except requests.exceptions.TooManyRedirects:
-        print(f"\n{RED}🔄 Too many redirects - check your cookies{RESET}")
-        page_loading = False
-        pagination_active = False
-    except requests.exceptions.RequestException as e:
-        print(f"\n{RED}🌐 Network error: {str(e)[:50]}{RESET}")
-        page_loading = False
-        pagination_active = False
-    except json.JSONDecodeError as e:
-        print(f"\n{RED}📄 Invalid JSON response: {str(e)[:50]}{RESET}")
-        page_loading = False
-        pagination_active = False
-    except KeyError as e:
-        print(f"\n{RED}🔑 Key error: {str(e)[:50]}{RESET}")
-        page_loading = False
-        pagination_active = False
-    except Exception as e:
-        print(f"\n{RED}❌ Unexpected error: {str(e)[:50]}{RESET}")
-        page_loading = False
-        pagination_active = False
-
 def continuous_collection(cintil, user_ids, typess, delay=2):
-    """UNLIMITED Continuous data collection without stopping"""
-    global stop_collection, current_task, collection_running, Uuid, page_loading, pagination_active
+    """Continuous data collection without stopping"""
+    global stop_collection, current_task
     
-    print(f"\n{CYAN}🚀 STARTING UNLIMITED CONTINUOUS COLLECTION{RESET}")
-    print(f"{YELLOW}📌 Press Ctrl+C or type 'stop' to stop collection{RESET}")
-    print(f"{YELLOW}⏱️  Delay: {delay} seconds between requests{RESET}")
-    print(f"{GREEN}🔄 This will run FOREVER until you stop it!{RESET}\n")
+    print(f"\n{CYAN}Starting continuous collection...{RESET}")
+    print(f"{YELLOW}Press Ctrl+C or type 'stop' to stop collection{RESET}")
+    print(f"{YELLOW}Collection delay: {delay} seconds between requests{RESET}")
     
     collected_count = 0
     error_count = 0
     current_task = "collection"
-    collection_running = True
-    total_loops = 0
-    page_loading = False
-    pagination_active = False
     
     # Create a separate thread for user input
     def check_stop():
-        global stop_collection, collection_running
-        while collection_running and not stop_collection:
+        global stop_collection
+        while not stop_collection:
             try:
-                cmd = sys.stdin.readline().strip().lower()
+                cmd = input().strip().lower()
                 if cmd == 'stop':
                     stop_collection = True
-                    collection_running = False
-                    print(f"\n{YELLOW}🛑 Stop command received. Stopping collection...{RESET}")
+                    print(f"\n{YELLOW}Stop command received. Stopping collection...{RESET}")
                     break
             except:
                 break
@@ -499,104 +354,75 @@ def continuous_collection(cintil, user_ids, typess, delay=2):
     input_thread.start()
     
     try:
-        while not stop_collection and collection_running:
-            total_loops += 1
-            print(f"\n{BLUE}{'='*60}{RESET}")
-            print(f"{CYAN}🔄 COLLECTION LOOP #{total_loops}{RESET}")
-            print(f"{WHITE}📊 Total users collected: {GREEN}{len(Uuid)}{RESET}")
-            print(f"{BLUE}{'='*60}{RESET}")
-            
-            for idx, user_id in enumerate(user_ids, 1):
-                if stop_collection or not collection_running:
+        while not stop_collection:
+            for user_id in user_ids:
+                if stop_collection:
                     break
-                
-                # Clear previous line
-                sys.stdout.write('\033[K')
-                
+                    
                 try:
-                    print(f"\n{WHITE}[{CYAN}{datetime.now().strftime('%H:%M:%S')}{WHITE}] {YELLOW}🎯 Processing #{idx}/{len(user_ids)}: {user_id}{RESET}")
+                    print(f"\n{WHITE}[{CYAN}{datetime.now().strftime('%H:%M:%S')}{WHITE}] {YELLOW}Processing user: {user_id}{RESET}")
                     
                     # Get initial data
                     previous_count = len(Uuid)
                     
-                    # Reset pagination flags
-                    page_loading = False
-                    pagination_active = False
-                    
-                    # Collect data with pagination
-                    collect_with_pagination(typess, user_id, cintil['cookie'], '')
-                    
-                    # Wait for pagination to complete if it's still active
-                    wait_count = 0
-                    while pagination_active and wait_count < 30:  # Max 30 seconds wait
-                        if stop_collection or not collection_running:
-                            break
-                        time.sleep(0.5)
-                        wait_count += 1
+                    if typess:
+                        Graphql(True, user_id, cintil['cookie'], '')
+                    else:
+                        Graphql(False, user_id, cintil['cookie'], '')
                     
                     # Check if new data was collected
                     new_data = len(Uuid) - previous_count
                     if new_data > 0:
                         collected_count += new_data
-                        print(f"\r{GREEN}✅ Collected {new_data} new users (Total: {len(Uuid)}){' ' * 20}{RESET}")
+                        print(f"{GREEN}✓ Collected {new_data} new users (Total: {len(Uuid)}){RESET}")
                         error_count = 0
                     else:
-                        print(f"\r{YELLOW}⚠️  No new data collected for this user{' ' * 20}{RESET}")
+                        print(f"{YELLOW}No new data collected for this user{RESET}")
                         error_count += 1
                     
                     # Check for errors
                     if error_count > 3:
-                        print(f"\r{RED}❌ Multiple errors occurred. Re-authenticating...{' ' * 20}{RESET}")
-                        try:
-                            cintil, _, _ = Aset_Ig()
-                            error_count = 0
-                        except:
-                            pass
+                        print(f"{RED}Multiple errors occurred. Re-authenticating...{RESET}")
+                        # Try to refresh cookies
+                        cintil, _, _ = Aset_Ig()
+                        error_count = 0
                     
-                    # Countdown with animation
-                    for i in range(delay, 0, -1):
-                        if stop_collection or not collection_running:
+                    # Progress indicator
+                    with Progress(
+                        SpinnerColumn(),
+                        TextColumn("[progress.description]{task.description}"),
+                        BarColumn(),
+                        TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+                    ) as progress:
+                        task = progress.add_task("[cyan]Collecting...", total=100)
+                        for _ in range(10):
+                            if stop_collection:
+                                break
+                            progress.update(task, advance=10)
+                            time.sleep(0.1)
+                    
+                    # Delay between users
+                    for i in range(delay):
+                        if stop_collection:
                             break
-                        print(f"\r{WHITE}⏳ Waiting {i}s until next request...{' ' * 30}", end='', flush=True)
+                        if i % 5 == 0:
+                            print(f"{WHITE}Waiting {delay - i}s until next request...   ", end='\r')
                         time.sleep(1)
                     
-                    # Clear the waiting message
-                    print('\r' + ' ' * 60 + '\r', end='', flush=True)
-                    
-                except KeyboardInterrupt:
-                    print(f"\n{YELLOW}🛑 Collection interrupted by user{RESET}")
-                    stop_collection = True
-                    collection_running = False
-                    break
                 except Exception as e:
-                    print(f"\r{RED}❌ Error: {str(e)[:50]}{' ' * 20}{RESET}")
+                    print(f"{RED}Error processing user {user_id}: {e}{RESET}")
                     error_count += 1
-                    print(f"\r{WHITE}⏳ Waiting {delay*2}s before retry...{' ' * 30}", end='', flush=True)
                     time.sleep(delay * 2)
-                    print('\r' + ' ' * 60 + '\r', end='', flush=True)
-            
-            # Auto-save after each full cycle
-            if len(Uuid) > 0 and collection_running:
-                print(f"\n{YELLOW}💾 Auto-saving {len(Uuid)} users...{RESET}")
-                save_to_sdcard()
-                print(f"{GREEN}✅ Auto-save completed!{RESET}")
     
     except KeyboardInterrupt:
-        print(f"\n{YELLOW}🛑 Collection interrupted by user{RESET}")
+        print(f"\n{YELLOW}Collection interrupted by user{RESET}")
     
     finally:
         stop_collection = True
-        collection_running = False
         current_task = None
-        page_loading = False
-        pagination_active = False
         
-    print(f"\n{GREEN}{'='*60}{RESET}")
-    print(f"{GREEN}🎉 COLLECTION COMPLETED!{RESET}")
-    print(f"{WHITE}📊 Total users collected: {CYAN}{len(Uuid)}{RESET}")
-    print(f"{WHITE}🔄 Total loops completed: {CYAN}{total_loops}{RESET}")
-    print(f"{WHITE}📈 New users collected: {CYAN}{collected_count}{RESET}")
-    print(f"{GREEN}{'='*60}{RESET}")
+    print(f"\n{GREEN}Collection completed! Total collected: {len(Uuid)} users{RESET}")
+    print(f"{WHITE}New users collected: {collected_count}{RESET}")
 
 def get_user_id_methods(username, cookies):
     """Try multiple methods to get user ID"""
@@ -663,14 +489,112 @@ def get_user_id_methods(username, cookies):
     
     return None
 
+def Graphql(typess, userid, cokie, after):
+    global xx, Uuid
+    
+    if 'xx' not in globals():
+        global xx
+        xx = 0
+    
+    api = "https://www.instagram.com/graphql/query/"
+    
+    if typess:
+        query_hash = "37479f2b8209594dde7facb0d904896a"
+    else:
+        query_hash = "58712303d941c6855d4e888c5f0cd22f"
+    
+    variables = {
+        "id": userid,
+        "first": 50,
+        "after": after
+    }
+    
+    params = {
+        'query_hash': query_hash,
+        'variables': json.dumps(variables)
+    }
+    
+    try:
+        ptk = {
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104",
+            "accept": "application/json",
+            "cookie": cokie,
+            "x-ig-app-id": "1217981644879628"
+        }
+        
+        session = requests.Session()
+        session.max_redirects = 5
+        
+        req = session.get(api, params=params, headers=ptk, timeout=30)
+        req.raise_for_status()
+        req_json = req.json()
+        
+        if 'require_login' in req_json:
+            print(f'\n{WHITE}[{YELLOW}!{WHITE}] Invalid Cookie - Need to login')
+            return
+        
+        if 'status' in req_json and req_json['status'] == 'fail':
+            print(f'\n{RED}Request failed: {req_json.get("message", "Unknown error")}')
+            return
+        
+        khm = 'edge_followed_by' if typess else 'edge_follow'
+        
+        if 'data' not in req_json or 'user' not in req_json['data'] or not req_json['data']['user']:
+            print(f"\n{RED}User not found or private. Skipping...")
+            return
+        
+        user_data = req_json['data']['user']
+        
+        if khm not in user_data:
+            print(f"\n{RED}This user has no visible {khm.replace('edge_', '')} or is private")
+            return
+        
+        edges = user_data[khm].get('edges', [])
+        if not edges:
+            print(f"\n{YELLOW}No {khm.replace('edge_', '')} found for this user")
+            return
+        
+        print(f"\n{GREEN}Found {len(edges)} {khm.replace('edge_', '')} in this batch")
+        
+        for xyz in edges:
+            username = xyz['node'].get('username', '')
+            full_name = xyz['node'].get('full_name', '')
+            
+            if username:
+                xy = username + '|' + full_name
+                if xy not in Uuid:
+                    xx += 1
+                    Uuid.append(xy)
+                    print(f'\r{WHITE}Collecting Uid {RED}{len(Uuid)}{WHITE}                            ', end='', flush=True)
+                    time.sleep(0.001)
+        
+        page_info = user_data[khm].get('page_info', {})
+        end = page_info.get('has_next_page', False)
+        
+        if end:
+            after = page_info.get('end_cursor', '')
+            if after:
+                print(f"\n{YELLOW}Loading next page...")
+                time.sleep(0.5)
+                Graphql(typess, userid, cokie, after)
+                
+    except requests.exceptions.Timeout:
+        print(f"\n{RED}Timeout error while fetching {khm.replace('edge_', '')}")
+    except requests.exceptions.TooManyRedirects:
+        print(f"\n{RED}Too many redirects - check your cookies")
+    except requests.exceptions.RequestException as e:
+        print(f"\n{RED}Network error: {e}")
+    except json.JSONDecodeError as e:
+        print(f"\n{RED}Invalid JSON response: {e}")
+    except KeyError as e:
+        print(f"\n{RED}Key error: {e} - Check response structure")
+    except Exception as e:
+        print(f"\n{RED}Unexpected error: {e}")
+
 def dumps(cintil, typess):
-    global xx, Uuid, stop_collection, collection_thread, collection_running, page_loading, pagination_active
+    global xx, Uuid, stop_collection, collection_thread
     
     xx = 0
-    stop_collection = False
-    collection_running = False
-    page_loading = False
-    pagination_active = False
     
     if not test_cookies(cintil):
         print(f"{YELLOW}Warning: Your cookies may be invalid. Proceeding anyway...")
@@ -685,12 +609,11 @@ def dumps(cintil, typess):
             cintil['cookie'] += ';csrftoken=%s;' % token
         except Exception as e:
             os.system('rm -rf data/cookie.txt')
-            exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Csrftoken not available: {e}')
+            exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Csrftoken not available, dump will not run: {e}')
     
-    print(f"\n{CYAN}🚀 UNLIMITED CONTINUOUS COLLECTION MODE{RESET}")
-    print(f"{YELLOW}📌 This mode will run FOREVER collecting data{RESET}")
-    print(f"{GREEN}🔄 The collection will cycle through users infinitely{RESET}")
-    print(f"{YELLOW}⌨️  Type 'stop' at any time to stop collection{RESET}\n")
+    print(f"\n{CYAN}=== CONTINUOUS COLLECTION MODE ==={RESET}")
+    print(f"{YELLOW}This mode will continuously collect data without stopping{RESET}")
+    print(f"{YELLOW}Type 'stop' at any time to stop collection{RESET}\n")
     
     print(f"{CYAN}Enter instagram usernames for continuous collection (use commas for multiple){RESET}")
     print(f"{WHITE}Example: user1,user2,user3{RESET}")
@@ -732,7 +655,6 @@ def dumps(cintil, typess):
     
     # Ask for delay between requests
     print(f"\n{CYAN}Set delay between requests (in seconds, default: 2){RESET}")
-    print(f"{WHITE}Lower delay = faster collection, but higher risk of rate limiting{RESET}")
     delay_input = input(f"{RED}[{WHITE}+{RED}] {BLUE}Delay (seconds) :{YELLOW} ").strip()
     try:
         delay = int(delay_input) if delay_input else 2
@@ -742,33 +664,32 @@ def dumps(cintil, typess):
         delay = 2
     
     mode = 'followers' if typess else 'following'
-    print(f"\n{YELLOW}🚀 Starting UNLIMITED continuous collection of {mode}...{RESET}")
-    print(f"{GREEN}🔄 Collection will run until you type 'stop' or press Ctrl+C{RESET}")
-    print(f"{CYAN}📊 Data will be auto-saved after each full cycle{RESET}\n")
+    print(f"\n{YELLOW}Starting continuous collection of {mode}...{RESET}")
+    print(f"{GREEN}Press Ctrl+C or type 'stop' to stop collection{RESET}")
+    
+    # Reset stop flag
+    stop_collection = False
     
     # Start continuous collection
     continuous_collection(cintil, xyz, typess, delay)
     
     # After collection stops, show results
-    print(f"\n{GREEN}{'='*60}{RESET}")
-    print(f"{GREEN}🎉 COLLECTION SUMMARY{RESET}")
-    print(f"{WHITE}📊 Total users collected: {CYAN}{len(Uuid)}{RESET}")
-    print(f"{WHITE}📂 Collection mode: {CYAN}{'Followers' if typess else 'Following'}{RESET}")
-    print(f"{GREEN}{'='*60}{RESET}")
+    print(f"\n{GREEN}=== Collection Summary ==={RESET}")
+    print(f"{WHITE}Total users collected: {CYAN}{len(Uuid)}{RESET}")
+    print(f"{WHITE}Collection mode: {CYAN}{'Followers' if typess else 'Following'}{RESET}")
     
     if len(Uuid) > 0:
-        print(f"\n{YELLOW}📋 Sample of collected data:{RESET}")
+        print(f"\n{YELLOW}Sample of collected data:{RESET}")
         for i, item in enumerate(Uuid[:5]):
             parts = item.split('|')
             print(f"  {i+1}. Username: {GREEN}{parts[0]}{RESET} | Name: {CYAN}{parts[1] if len(parts) > 1 else 'N/A'}{RESET}")
         if len(Uuid) > 5:
             print(f"  ... and {len(Uuid)-5} more")
     
-    # Final auto-save
-    print(f"\n{YELLOW}💾 Final auto-saving collected data...{RESET}")
+    # Auto-save
+    print(f"\n{YELLOW}Auto-saving collected data...{RESET}")
     save_to_sdcard()
     
-    print(f"\n{GREEN}✅ All data has been saved!{RESET}")
     time.sleep(2)
     MetodeType()
 
@@ -860,7 +781,7 @@ def MetodeType():
         MetodeType()
 
 def Menu():
-    global stop_collection, collection_running
+    global stop_collection
     os.system('clear')
     aset, nama, fol = Aset_Ig()
     print(f"{BLUE}═" * 80)
@@ -871,13 +792,13 @@ def Menu():
                                           
 {CYAN}╭──────────────────────────────╮{CYAN}╭──────────────────────────────╮
 {CYAN}│ {CYAN}Author : {GREEN}sumon {CYAN}                 │{CYAN}│ {WHITE}Version : {GREEN}2.0 {CYAN}             │
-{CYAN}│ {WHITE}Status : {GREEN}Premium{CYAN}               │{CYAN}│ {WHITE}UNLIMITED Collection: {GREEN}ON{CYAN} │
+{CYAN}│ {WHITE}Status : {GREEN}Premium{CYAN}               │{CYAN}│ {WHITE}Continuous Collection: {GREEN}ON{CYAN} │
 {CYAN}╰──────────────────────────────╯{CYAN}╰──────────────────────────────╯""")
     print(f"{GREEN}{WHITE}Username :{GREEN} {nama[:8]}\n{WHITE}Followers : {GREEN}{fol}")
     
     print(f"\n{RED}[ {YELLOW}Main Menu {RED}]\n")
-    print(f"{RED}[{WHITE}01{RED}] {CYAN} 🚀 UNLIMITED Collection (Followers)")
-    print(f"{RED}[{WHITE}02{RED}] {CYAN} 🚀 UNLIMITED Collection (Following)")
+    print(f"{RED}[{WHITE}01{RED}] {CYAN} 🚀 Start Continuous Collection (Followers)")
+    print(f"{RED}[{WHITE}02{RED}] {CYAN} 🚀 Start Continuous Collection (Following)")
     print(f"{RED}[{WHITE}03{RED}] {CYAN} 📂 Load from file")
     print(f"{RED}[{WHITE}04{RED}] {CYAN} 💾 Manage saved data")
     print(f"{RED}[{WHITE}00{RED}] {RED} 🔄 Delete/Change Cookies")
@@ -913,7 +834,6 @@ if __name__ == "__main__":
         Menu()
     except KeyboardInterrupt:
         stop_collection = True
-        collection_running = False
         print(f"\n\n{YELLOW}Stopping collection...{RESET}")
         time.sleep(1)
         print(f"{GREEN}Exiting...{RESET}")
