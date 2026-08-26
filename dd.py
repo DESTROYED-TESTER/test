@@ -2,13 +2,12 @@
 # -*- coding: utf-8 -*-
 
 """
-Instagram Data Dumper v5.0 - AUTO CAPTURE 100K+
-- Automatic username capture from multiple sources
+Instagram Data Dumper v5.1 - AUTO CAPTURE 100K+ (FIXED)
+- Fixed global MIN_TARGET variable
+- Automatic username capture
 - Minimum 100,000 users dump target
-- Multi-source username harvesting
 - Auto-retry and resume
 - Background mode support
-- Real-time progress tracking
 """
 
 #================[IMPORT MODULE]================#
@@ -60,10 +59,13 @@ TARGET_FILE = 'data/targets.txt'
 DUMP_MODE = ""
 PID_FILE = 'data/dump.pid'
 BACKGROUND_MODE = False
-MIN_TARGET = 100000  # Minimum 100,000 users
-USER_SOURCES = []  # List of usernames to harvest
+MIN_TARGET = 100000  # Minimum 100,000 users - GLOBAL VARIABLE
+USER_SOURCES = []
 HARVESTED_USERS = set()
 PROCESSING_QUEUE = deque()
+COOKIE_DATA = None
+USERNAME = ""
+FOLLOWER_COUNT = 0
 
 # Color codes
 WHITE = '\x1b[1;97m'
@@ -149,6 +151,7 @@ atexit.register(remove_pid)
 
 # ============ CHECKPOINT FUNCTIONS ============
 def save_checkpoint():
+    global MIN_TARGET
     try:
         checkpoint = {
             'Uuid': Uuid,
@@ -159,6 +162,7 @@ def save_checkpoint():
             'DUMP_MODE': DUMP_MODE,
             'HARVESTED_USERS': list(HARVESTED_USERS),
             'PROCESSING_QUEUE': list(PROCESSING_QUEUE),
+            'MIN_TARGET': MIN_TARGET,
             'timestamp': datetime.now().isoformat()
         }
         with open(CHECKPOINT_FILE, 'wb') as f:
@@ -168,7 +172,7 @@ def save_checkpoint():
         return False
 
 def load_checkpoint():
-    global Uuid, DUMP_COUNT, CURRENT_USER, LAST_PAGE_CURSOR, TOTAL_FETCHED, DUMP_MODE, HARVESTED_USERS, PROCESSING_QUEUE
+    global Uuid, DUMP_COUNT, CURRENT_USER, LAST_PAGE_CURSOR, TOTAL_FETCHED, DUMP_MODE, HARVESTED_USERS, PROCESSING_QUEUE, MIN_TARGET
     try:
         if os.path.exists(CHECKPOINT_FILE):
             with open(CHECKPOINT_FILE, 'rb') as f:
@@ -181,6 +185,7 @@ def load_checkpoint():
             DUMP_MODE = checkpoint.get('DUMP_MODE', '')
             HARVESTED_USERS = set(checkpoint.get('HARVESTED_USERS', []))
             PROCESSING_QUEUE = deque(checkpoint.get('PROCESSING_QUEUE', []))
+            MIN_TARGET = checkpoint.get('MIN_TARGET', 100000)
             return True
     except:
         pass
@@ -196,6 +201,7 @@ def auto_save():
 
 # ============ SAVE FUNCTIONS ============
 def save_to_sdcard():
+    global MIN_TARGET
     try:
         if not Uuid:
             return False
@@ -223,6 +229,7 @@ def save_to_sdcard():
         return False
 
 def view_data():
+    global MIN_TARGET
     if not Uuid:
         print(f"\n{RED}No data to display!{RESET}")
         return
@@ -238,7 +245,7 @@ def view_data():
         username = parts[0] if parts else 'Unknown'
         fullname = parts[1] if len(parts) > 1 else 'N/A'
         print(f"{WHITE}{i:4}. {RESET}{GREEN}{username:<20}{RESET} | {CYAN}{fullname}{RESET}")
-        if i >= 50:  # Show only first 50
+        if i >= 50:
             print(f"{YELLOW}... and {len(Uuid)-50} more{RESET}")
             break
     
@@ -316,6 +323,7 @@ def validate_cookie_format(cookie_str):
     return True
 
 def Aset_Ig():
+    global COOKIE_DATA, USERNAME, FOLLOWER_COUNT
     os.system('clear')
     coki = {}
     
@@ -375,18 +383,19 @@ def Aset_Ig():
             time.sleep(2)
             return Aset_Ig()
         
+        COOKIE_DATA = coki
+        USERNAME = user_data.get('username', 'Unknown')
+        FOLLOWER_COUNT = user_data.get('follower_count', 0)
         full_name = user_data.get('full_name', 'Name Unknown')
-        follower_count = user_data.get('follower_count', 0)
-        username = user_data.get('username', 'Unknown')
         
         open('data/cookie.txt', 'w').write(coki['cookie'])
         
-        print(f"{GREEN}✓ Successfully logged in as: {username}{RESET}")
+        print(f"{GREEN}✓ Successfully logged in as: {USERNAME}{RESET}")
         print(f"{WHITE}  Full Name: {CYAN}{full_name}{RESET}")
-        print(f"{WHITE}  Followers: {CYAN}{follower_count:,}{RESET}")
+        print(f"{WHITE}  Followers: {CYAN}{FOLLOWER_COUNT:,}{RESET}")
         time.sleep(1)
         
-        return coki, full_name, follower_count
+        return coki, full_name, FOLLOWER_COUNT
         
     except:
         print(f"{RED}Failed to login. Please check your cookie.{RESET}")
@@ -394,70 +403,9 @@ def Aset_Ig():
         time.sleep(2)
         return Aset_Ig()
 
-# ============ USER HARVESTING ============
-def harvest_users_from_list():
-    """Harvest usernames from popular Instagram accounts"""
-    global HARVESTED_USERS, PROCESSING_QUEUE
-    
-    print(f"\n{YELLOW}Harvesting usernames from popular accounts...{RESET}")
-    
-    # Popular Instagram accounts with high follower counts
-    seed_accounts = [
-        'instagram', 'cristiano', 'leomessi', 'kimkardashian', 
-        'selenagomez', 'therock', 'arianagrande', 'kyliejenner',
-        'justinbieber', 'taylorswift', 'nasa', 'natgeo',
-        'bbcnews', 'cnn', 'nytimes', 'harrypotter'
-    ]
-    
-    for account in seed_accounts:
-        if len(HARVESTED_USERS) >= MIN_TARGET:
-            break
-        
-        user_id = get_user_id_methods(account, {})
-        if user_id:
-            # Get user's followers
-            followers = get_user_followers(user_id, {})
-            for user in followers:
-                if user not in HARVESTED_USERS:
-                    HARVESTED_USERS.add(user)
-                    PROCESSING_QUEUE.append(user)
-                    
-        print(f"\r{WHITE}Harvested: {GREEN}{len(HARVESTED_USERS):,}{WHITE} users{RESET}", end='', flush=True)
-        time.sleep(1)
-    
-    print(f"\n{GREEN}✓ Total harvested: {len(HARVESTED_USERS):,} users{RESET}")
-
-def get_user_followers(user_id, cookies):
-    """Get followers of a user"""
-    followers = []
-    try:
-        url = f'https://www.instagram.com/graphql/query/'
-        query_hash = "37479f2b8209594dde7facb0d904896a"
-        variables = {
-            "id": user_id,
-            "first": 50
-        }
-        params = {
-            'query_hash': query_hash,
-            'variables': json.dumps(variables)
-        }
-        
-        response = requests.get(url, params=params, headers=HEADERS, timeout=10)
-        if response.status_code == 200:
-            data = response.json()
-            if 'data' in data and 'user' in data['data']:
-                edges = data['data']['user']['edge_followed_by'].get('edges', [])
-                for edge in edges:
-                    username = edge['node'].get('username', '')
-                    if username:
-                        followers.append(username)
-    except:
-        pass
-    return followers
-
 # ============ GRAPHQL FUNCTIONS ============
 def Graphql(typess, userid, cokie, after=""):
-    global xx, Uuid, DUMP_COUNT, TOTAL_FETCHED, LAST_PAGE_CURSOR, RUNNING
+    global xx, Uuid, DUMP_COUNT, TOTAL_FETCHED, LAST_PAGE_CURSOR, RUNNING, MIN_TARGET
     
     api = "https://www.instagram.com/graphql/query/"
     
@@ -628,9 +576,10 @@ def get_user_id_methods(username, cookies):
     return None
 
 # ============ AUTO CAPTURE DUMP ============
-def auto_capture_dump(cintil, typess):
-    """Auto-capture and dump until reaching minimum 100,000 users"""
-    global RUNNING, Uuid, DUMP_COUNT, CURRENT_USER, TOTAL_FETCHED, LAST_PAGE_CURSOR, HARVESTED_USERS, PROCESSING_QUEUE
+def auto_capture_dump(typess):
+    """Auto-capture and dump until reaching minimum target"""
+    global RUNNING, Uuid, DUMP_COUNT, CURRENT_USER, TOTAL_FETCHED, LAST_PAGE_CURSOR, MIN_TARGET
+    global COOKIE_DATA, USERNAME
     
     Clear()
     print(f"{BLUE}═" * 80)
@@ -655,20 +604,20 @@ def auto_capture_dump(cintil, typess):
             print(f"{GREEN}✓ Resuming dump{RESET}")
             time.sleep(1)
             
-            if 'csrftoken' not in str(cintil):
+            if 'csrftoken' not in str(COOKIE_DATA):
                 try:
-                    memek = requests.get('https://www.instagram.com/data/shared_data/', cookies=cintil, timeout=10)
+                    memek = requests.get('https://www.instagram.com/data/shared_data/', cookies=COOKIE_DATA, timeout=10)
                     memek.raise_for_status()
                     token = memek.json()['config']['csrf_token']
-                    cintil['cookie'] += ';csrftoken=%s;' % token
+                    COOKIE_DATA['cookie'] += ';csrftoken=%s;' % token
                 except:
                     print(f'\n{RED}Csrftoken not available{RESET}')
                     return
             
-            user_id = get_user_id_methods(CURRENT_USER, cintil)
+            user_id = get_user_id_methods(CURRENT_USER, COOKIE_DATA)
             if user_id:
                 write_pid()
-                Graphql(typess, user_id, cintil['cookie'], LAST_PAGE_CURSOR)
+                Graphql(typess, user_id, COOKIE_DATA['cookie'], LAST_PAGE_CURSOR)
             return
     
     # Get username
@@ -692,12 +641,12 @@ def auto_capture_dump(cintil, typess):
     BACKGROUND_MODE = bg_mode == 'y'
     
     # Ensure csrftoken exists
-    if 'csrftoken' not in str(cintil):
+    if 'csrftoken' not in str(COOKIE_DATA):
         try:
-            memek = requests.get('https://www.instagram.com/data/shared_data/', cookies=cintil, timeout=10)
+            memek = requests.get('https://www.instagram.com/data/shared_data/', cookies=COOKIE_DATA, timeout=10)
             memek.raise_for_status()
             token = memek.json()['config']['csrf_token']
-            cintil['cookie'] += ';csrftoken=%s;' % token
+            COOKIE_DATA['cookie'] += ';csrftoken=%s;' % token
         except:
             os.system('rm -rf data/cookie.txt')
             print(f'\n{RED}Csrftoken not available{RESET}')
@@ -707,7 +656,7 @@ def auto_capture_dump(cintil, typess):
     print(f"\n{YELLOW}Fetching user ID for: {CYAN}{username}{RESET}")
     user_id = None
     for attempt in range(MAX_RETRIES):
-        user_id = get_user_id_methods(username, cintil)
+        user_id = get_user_id_methods(username, COOKIE_DATA)
         if user_id:
             break
         print(f"{RED}Attempt {attempt+1}/{MAX_RETRIES} failed. Retrying...{RESET}")
@@ -732,27 +681,7 @@ def auto_capture_dump(cintil, typess):
         write_pid()
     
     # Start the dump
-    Graphql(typess, user_id, cintil['cookie'], '')
-    
-    # If target not reached, try auto-harvesting
-    if len(Uuid) < MIN_TARGET and RUNNING:
-        print(f"\n{YELLOW}⚠ Only {len(Uuid):,} users collected. Auto-harvesting more users...{RESET}")
-        
-        # Harvest users from popular accounts
-        harvest_users_from_list()
-        
-        # Process harvested users
-        for user in PROCESSING_QUEUE:
-            if len(Uuid) >= MIN_TARGET:
-                break
-            if not RUNNING:
-                break
-            
-            user_id = get_user_id_methods(user, cintil)
-            if user_id:
-                print(f"\n{WHITE}📥 Processing: {CYAN}{user}{RESET}")
-                Graphql(typess, user_id, cintil['cookie'], '')
-                time.sleep(REQUEST_DELAY)
+    Graphql(typess, user_id, COOKIE_DATA['cookie'], '')
     
     # Final save
     save_checkpoint()
@@ -771,7 +700,7 @@ def auto_capture_dump(cintil, typess):
 
 # ============ MAIN FUNCTIONS ============
 def MetodeType():
-    global Uuid
+    global Uuid, MIN_TARGET
     if not Uuid:
         print(f"\n{RED}No users collected! Please run a dump first.{RESET}")
         time.sleep(2)
@@ -832,13 +761,14 @@ def MetodeType():
         Menu()
         
     elif choice in ['06', '6']:
+        global MIN_TARGET
         new_target = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Enter new target (minimum 1000): {YELLOW}").strip()
         try:
             new_target = int(new_target)
             if new_target >= 1000:
-                global MIN_TARGET
                 MIN_TARGET = new_target
                 print(f"{GREEN}✓ Target updated to: {MIN_TARGET:,} users{RESET}")
+                save_checkpoint()
             else:
                 print(f"{RED}Target must be at least 1,000{RESET}")
         except:
@@ -858,6 +788,7 @@ def MetodeType():
         MetodeType()
 
 def save_to_custom(filename):
+    global MIN_TARGET
     try:
         if not Uuid:
             print(f"{RED}✗ No data to save!{RESET}")
@@ -882,8 +813,12 @@ def save_to_custom(filename):
         return False
 
 def Menu():
+    global COOKIE_DATA, USERNAME, FOLLOWER_COUNT, MIN_TARGET
     os.system('clear')
-    aset, nama, fol = Aset_Ig()
+    
+    # Login if not already
+    if COOKIE_DATA is None:
+        COOKIE_DATA, USERNAME, FOLLOWER_COUNT = Aset_Ig()
     
     bg_status = ""
     if is_running():
@@ -896,9 +831,9 @@ def Menu():
  |_____  |    \\_ |     | |_____  |    \\_      __|__ |_____|
                                           
 {CYAN}╭──────────────────────╮{CYAN}╭───────────────╮{CYAN}╭─────────────────────────────╮
-{CYAN}│ {CYAN}Author : {GREEN}sumon {CYAN}│{CYAN}  │ {WHITE}Version : {GREEN}5.0 {CYAN}│{CYAN}│ {WHITE}Mode : {GREEN}Auto 100K+{CYAN}     │
+{CYAN}│ {CYAN}Author : {GREEN}sumon {CYAN}│{CYAN}  │ {WHITE}Version : {GREEN}5.1 {CYAN}│{CYAN}│ {WHITE}Mode : {GREEN}Auto 100K+{CYAN}     │
 {CYAN}╰──────────────────────╯{CYAN}╰───────────────╯{CYAN}╰─────────────────────────────╯""")
-    print(f"{GREEN}{WHITE}Username :{GREEN} {nama[:8]}\n{WHITE}Followers : {GREEN}{fol:,}")
+    print(f"{GREEN}{WHITE}Username :{GREEN} {USERNAME[:8]}\n{WHITE}Followers : {GREEN}{FOLLOWER_COUNT:,}")
     print(f"{WHITE}Total Collected: {GREEN}{len(Uuid):,}{RESET} / {CYAN}{MIN_TARGET:,}{RESET}")
     print(f"{WHITE}Progress: {CYAN}{((len(Uuid)/MIN_TARGET)*100):.1f}%{RESET}{bg_status}")
     
@@ -914,9 +849,9 @@ def Menu():
     x = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Select option :{YELLOW} ")
 
     if x in ['01', '1']:
-        auto_capture_dump(aset, True)
+        auto_capture_dump(True)
     elif x in ['02', '2']:
-        auto_capture_dump(aset, False)
+        auto_capture_dump(False)
     elif x in ['03', '3']:
         crackfile()
     elif x in ['04', '4']:
@@ -949,6 +884,7 @@ def Menu():
         if os.path.exists(CHECKPOINT_FILE):
             os.remove(CHECKPOINT_FILE)
         remove_pid()
+        COOKIE_DATA = None
         prints(f"{GREEN}Deleted cookies and checkpoint")
         exit()
     else:
@@ -957,6 +893,7 @@ def Menu():
         Menu()
 
 def crackfile():
+    global Uuid
     try:
         nu = input(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Enter File Name: {PURPLE}")
         if not os.path.isfile(nu):
