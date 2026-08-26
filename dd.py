@@ -1,547 +1,164 @@
 #!/usr/bin/env python3
-#================[IMPORT MODULE]================#
-import unicodedata, urllib.parse, requests, random, sys, uuid, json, hmac, hashlib, time, re, base64, datetime, urllib.request, string, os
-from urllib.parse import quote; from concurrent.futures import ThreadPoolExecutor; from bs4 import BeautifulSoup as bsp
-from rich.console import Console; from rich.panel import Panel as Pan, Panel as nel, Panel as panel; from rich import print as cetak
-import threading; from rich.columns import Columns; from rich.progress import Progress, TextColumn, SpinnerColumn
-from rich.text import Text
-from concurrent.futures import ThreadPoolExecutor, as_completed
-import threading
-import struct
-import base64
-import string
-import uuid
-import json
+#================[ULTIMATE CHAIN DUMPER v5.0]================#
+"""
+COMPLETE UNLIMITED DUMPING SYSTEM
+- Capture usernames from any source
+- Use captured usernames for unlimited dumping
+- Chain dumping: Followers -> Following -> More Followers
+- Infinite recursive dumping
+"""
+
 import requests
-import pytz
-from Crypto.Cipher import AES
-from Crypto.PublicKey import RSA
-from Crypto.Random import get_random_bytes
-from Crypto.Cipher import PKCS1_v1_5
-from rich import print as Cetak; from rich.tree import Tree; from rich.panel import Panel
-import urllib.parse
-from urllib.parse import quote
+import json
+import time
 import re
 import os
 import sys
-import json
+import threading
+import queue
 import random
-import urllib.request
 import hashlib
-import time
-import uuid
-import requests
-import base64
-import datetime
-from concurrent.futures import ThreadPoolExecutor
-from rich.panel import Panel as panel
-from rich import print as prints
 from datetime import datetime
-from queue import Queue
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from urllib.parse import quote
+from typing import Set, List, Dict, Optional
 import signal
 
-# Global variables
-Uid, Uuid = [], []
-bkas = []
-Ok, Cp, Loop = 0, 0, 0
-xx = 0
-SistemLog = "api.instagram.com"
-stop_dumping = False
-dump_counter = 0
-max_dump_limit = 999999999  # Unlimited by default
+# ============ COLOR CODES ============
+RED = '\033[91m'
+GREEN = '\033[92m'
+YELLOW = '\033[93m'
+BLUE = '\033[94m'
+PURPLE = '\033[95m'
+CYAN = '\033[96m'
+WHITE = '\033[97m'
+BOLD = '\033[1m'
+RESET = '\033[0m'
 
-# Color codes
-WHITE = '\x1b[1;97m'
-RED = '\x1b[1;91m'
-GREEN = '\x1b[1;92m'
-YELLOW = '\x1b[1;93m'
-BLUE = '\x1b[1;94m'
-PURPLE = '\x1b[1;95m'
-CYAN = '\x1b[1;96m'
-ORANGE = '\033[38;2;255;127;0;1m'
-RESET = '\x1b[0m'
-campur = random.choice([WHITE, GREEN, YELLOW, BLUE, PURPLE, CYAN, ORANGE, RESET])
-
-getuserid = 'https://i.instagram.com/api/v1/users/web_profile_info/?username={nama!s}'
-HEADERS = {
-    'Host': 'www.instagram.com',
-    'x-ig-app-id': '1217981644879628',
-    'x-ig-www-claim': 'hmac.AR2bJKYJnPYmZqv19akfq13Zn4tplhuXb9TC9PwFk03DgxmT',
-    'sec-ch-ua-mobile': '?1',
-    'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104 (iPhone16,2; iOS 18.2; en_US; en; scale=3.00; 1170x2532; 510000000)',
-    'accept': '*/*',
-    'x-requested-with': 'XMLHttpRequest',
-    'x-asbd-id': '129477',
-    'x-csrftoken': 'TeWMHnpFe4nja5IPA2bBUjOiVMwndp5E',
-    'sec-fetch-site': 'same-origin',
-    'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7,ru;q=0.6,jv;q=0.5'
+# ============ CONFIGURATION ============
+CONFIG = {
+    'max_workers': 5,
+    'batch_size': 50,
+    'delay_between_requests': 0.5,
+    'max_depth': 99,  # How deep to chain dump
+    'max_users_per_run': 10000,  # Max users per dump run
+    'auto_save_interval': 100,  # Save every N users
+    'output_file': '/sdcard/dump.txt',
+    'cookie_file': 'data/cookie.txt'
 }
-ua = {
-    'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104 (iPhone16,2; iOS 18.2; en_US; en; scale=3.00; 1170x2532; 510000000)'
-}
-userinfo = 'https://i.instagram.com/api/v1/users/{id!s}/info/'
 
-# Thread pool for parallel dumping
-executor = ThreadPoolExecutor(max_workers=5)
-user_queue = Queue()
+# ============ GLOBAL VARIABLES ============
+dumped_users = set()
 processed_users = set()
+user_queue = queue.Queue()
+dump_counter = 0
+stop_dumping = False
+current_depth = 0
+cookies = {}
+session = requests.Session()
 
-# Signal handler for graceful stop
+# ============ SIGNAL HANDLING ============
 def signal_handler(sig, frame):
     global stop_dumping
-    print(f"\n{YELLOW}Stopping dump gracefully...{RESET}")
+    print(f"\n{YELLOW}[!] Stopping dump gracefully...{RESET}")
     stop_dumping = True
-    save_progress()
+    save_dump()
     sys.exit(0)
 
 signal.signal(signal.SIGINT, signal_handler)
 
-def Clear():
-    try:
-        os.system('clear')
-    except:
-        pass
+# ============ COOKIE MANAGEMENT ============
+def load_cookies():
+    """Load and validate cookies"""
+    global cookies
+    
+    print(f"{CYAN}[*] Loading Instagram cookies...{RESET}")
+    
+    # Create data directory
+    os.makedirs('data', exist_ok=True)
+    os.makedirs('/sdcard', exist_ok=True)
+    
+    if os.path.exists(CONFIG['cookie_file']):
+        with open(CONFIG['cookie_file'], 'r') as f:
+            cookie_str = f.read().strip()
+            cookies = {'cookie': cookie_str}
+            
+        if validate_cookies():
+            print(f"{GREEN}[✓] Cookies loaded successfully!{RESET}")
+            return True
+            
+    print(f"{YELLOW}[!] Please enter your Instagram cookie{RESET}")
+    cookie_input = input(f"{CYAN}Cookie: {RESET}").strip()
+    
+    if not cookie_input:
+        print(f"{RED}[✗] No cookie provided!{RESET}")
+        return False
+        
+    cookies = {'cookie': cookie_input}
+    
+    # Save cookie
+    with open(CONFIG['cookie_file'], 'w') as f:
+        f.write(cookie_input)
+        
+    if validate_cookies():
+        print(f"{GREEN}[✓] Cookie saved and validated!{RESET}")
+        return True
+    else:
+        print(f"{RED}[✗] Invalid cookie!{RESET}")
+        return False
 
-def save_progress():
-    """Save current progress to file"""
+def validate_cookies():
+    """Validate cookie by fetching user info"""
     try:
-        with open('data/progress.txt', 'w') as f:
-            json.dump({
-                'total': len(Uuid),
-                'timestamp': datetime.now().isoformat()
-            }, f)
-    except:
-        pass
-
-def load_progress():
-    """Load previous progress"""
-    try:
-        if os.path.exists('data/progress.txt'):
-            with open('data/progress.txt', 'r') as f:
-                data = json.load(f)
-                return data.get('total', 0)
-    except:
-        return 0
-    return 0
-
-def find_res():
-    cookie = None
-    try:
-        if os.path.isfile('data/OK.txt'):
-            with open('data/OK.txt', 'r') as f:
-                lines = f.read().splitlines()
-                for line in lines:
-                    if 'sessionid=' in line:
-                        cookie = line.strip()
-                        break
-        if not cookie and os.path.isfile('data/cookie.txt'):
-            with open('data/cookie.txt', 'r') as f:
-                cookie = f.read().strip()
-    except:
-        pass
-    return cookie
-
-def test_cookies(coki):
-    """Test if cookies are still valid using multiple methods"""
-    try:
-        uid_match = re.search('ds_user_id=(\\d+)', str(coki.get('cookie', '')))
-        if uid_match:
-            uid = uid_match.group(1)
-            response = requests.get(
-                f'https://i.instagram.com/api/v1/users/{uid}/info/',
-                headers=ua,
-                cookies=coki,
-                timeout=10
-            )
-            if response.status_code == 200:
-                data = response.json()
-                if 'user' in data and data['user'].get('username'):
-                    print(f"{GREEN}✓ Cookies are valid!{RESET}")
-                    return True
+        # Extract user ID from cookie
+        uid_match = re.search('ds_user_id=(\\d+)', str(cookies.get('cookie', '')))
+        if not uid_match:
+            return False
+            
+        uid = uid_match.group(1)
+        
+        response = session.get(
+            f'https://i.instagram.com/api/v1/users/{uid}/info/',
+            headers={
+                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2) AppleWebKit/605.1.15',
+                'x-ig-app-id': '1217981644879628'
+            },
+            cookies=cookies,
+            timeout=10
+        )
+        
+        if response.status_code == 200:
+            data = response.json()
+            if 'user' in data:
+                user = data['user']
+                print(f"{GREEN}✓ Logged in as: {CYAN}{user.get('username')}{RESET}")
+                print(f"  Followers: {CYAN}{user.get('follower_count', 0)}{RESET}")
+                print(f"  Following: {CYAN}{user.get('following_count', 0)}{RESET}")
+                return True
     except:
         pass
     return False
 
-def validate_cookie_format(cookie_str):
-    """Validate if the cookie string has required fields"""
-    required_fields = ['sessionid', 'ds_user_id']
-    missing = []
-    for field in required_fields:
-        if field not in cookie_str:
-            missing.append(field)
-    if missing:
-        print(f"{RED}✗ Cookie is missing: {', '.join(missing)}{RESET}")
-        return False
-    print(f"{GREEN}✓ Cookie format looks valid{RESET}")
-    return True
-
-def Aset_Ig():
-    os.system('clear')
-    coki = {}
-    
-    if os.path.isfile('data/cookie.txt'):
-        cookie_str = open('data/cookie.txt', 'r').read().strip()
-        if cookie_str:
-            coki = {'cookie': cookie_str}
-            print(f"{YELLOW}Found existing cookie, testing...{RESET}")
-            if not validate_cookie_format(cookie_str):
-                print(f"{RED}Cookie format is invalid, please re-enter.{RESET}")
-                time.sleep(2)
-                os.remove('data/cookie.txt')
-                coki = {}
-    
-    if not coki:
-        print(f"{RED}[{WHITE}+{RED}] {CYAN}Please enter your instagram account cookie.{RESET}")
-        cookie_input = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Cookie :{YELLOW} ").strip()
-        
-        if cookie_input.lower() == 'res':
-            cookie_str = find_res()
-            if not cookie_str:
-                print(f"{RED}Failed to load backup cookie.{RESET}")
-                cookie_input = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Cookie :{YELLOW} ").strip()
-                coki = {'cookie': cookie_input}
-            else:
-                coki = {'cookie': cookie_str}
-        else:
-            coki = {'cookie': cookie_input}
-        
-        if not validate_cookie_format(coki['cookie']):
-            print(f"{RED}Invalid cookie format!{RESET}")
-            time.sleep(3)
-            return Aset_Ig()
-    
-    try:
-        uid_match = re.search('ds_user_id=(\\d+)', str(coki['cookie']))
-        if not uid_match:
-            print(f"{RED}Could not find ds_user_id in cookie!{RESET}")
-            time.sleep(2)
-            return Aset_Ig()
-        
-        uid = uid_match.group(1)
-        resp = requests.get(
-            f'https://i.instagram.com/api/v1/users/{uid}/info/',
-            headers=ua,
-            cookies=coki,
-            timeout=10
-        )
-        resp.raise_for_status()
-        user_data = resp.json().get('user', {})
-        
-        if not user_data:
-            print(f"{RED}Failed to get user data!{RESET}")
-            time.sleep(2)
-            return Aset_Ig()
-        
-        full_name = user_data.get('full_name', 'Name Unknown')
-        follower_count = user_data.get('follower_count', 0)
-        username = user_data.get('username', 'Unknown')
-        
-        open('data/cookie.txt', 'w').write(coki['cookie'])
-        
-        print(f"{GREEN}✓ Successfully logged in as: {username}{RESET}")
-        print(f"{WHITE}  Full Name: {CYAN}{full_name}{RESET}")
-        print(f"{WHITE}  Followers: {CYAN}{follower_count}{RESET}")
-        time.sleep(1)
-        return coki, full_name, follower_count
-        
-    except Exception as e:
-        print(f"{RED}Error: {e}{RESET}")
-        os.system('rm -rf data/cookie.txt')
-        time.sleep(2)
-        return Aset_Ig()
-
-# ============ ENHANCED SAVE FUNCTIONS ============
-def save_to_sdcard_unlimited():
-    """Save collected data to /sdcard/dump.txt without overwriting"""
-    try:
-        if not Uuid:
-            print(f"{RED}✗ No data to save!{RESET}")
-            return False
-        
-        # Check if file exists and get current content
-        existing_data = set()
-        if os.path.exists('/sdcard/dump.txt'):
-            with open('/sdcard/dump.txt', 'r', encoding='utf-8') as f:
-                existing_data = set(line.strip() for line in f if line.strip())
-        
-        # Get new data
-        new_data = set(Uuid) - existing_data
-        
-        if not new_data:
-            print(f"{YELLOW}No new data to add.{RESET}")
-            return True
-        
-        # Append new data
-        with open('/sdcard/dump.txt', 'a', encoding='utf-8') as f:
-            for item in new_data:
-                f.write(item + '\n')
-        
-        print(f"\n{GREEN}✓ Added {len(new_data)} new users to /sdcard/dump.txt{RESET}")
-        print(f"{WHITE}  Total users in file: {len(existing_data) + len(new_data)}{RESET}")
-        return True
-        
-    except Exception as e:
-        print(f"{RED}✗ Failed to save file: {e}{RESET}")
-        return False
-
-def auto_save_periodic():
-    """Auto-save data every 10 users"""
-    global Uuid
-    if len(Uuid) > 0 and len(Uuid) % 10 == 0:
-        save_to_sdcard_unlimited()
-        save_progress()
-
-# ============ UNLIMITED DUMPING ENGINE ============
-def Graphql_unlimited(typess, userid, cokie, after, max_pages=999999):
-    """Unlimited dumping with infinite pagination"""
-    global xx, Uuid, stop_dumping, dump_counter, max_dump_limit
-    
-    if stop_dumping:
-        return
-    
-    api = "https://www.instagram.com/graphql/query/"
-    
-    if typess:
-        query_hash = "37479f2b8209594dde7facb0d904896a"
-    else:
-        query_hash = "58712303d941c6855d4e888c5f0cd22f"
-    
-    variables = {
-        "id": userid,
-        "first": 100,  # Max results per request
-        "after": after
-    }
-    
-    params = {
-        'query_hash': query_hash,
-        'variables': json.dumps(variables)
-    }
-    
-    try:
-        ptk = {
-            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104",
-            "accept": "application/json",
-            "cookie": cokie,
-            "x-ig-app-id": "1217981644879628"
-        }
-        
-        session = requests.Session()
-        session.max_redirects = 5
-        
-        req = session.get(api, params=params, headers=ptk, timeout=30)
-        req.raise_for_status()
-        req_json = req.json()
-        
-        if 'require_login' in req_json:
-            print(f'\n{WHITE}[{YELLOW}!{WHITE}] Invalid Cookie - Need to login')
-            return
-        
-        if 'status' in req_json and req_json['status'] == 'fail':
-            print(f'\n{RED}Request failed: {req_json.get("message", "Unknown error")}')
-            return
-        
-        khm = 'edge_followed_by' if typess else 'edge_follow'
-        
-        if 'data' not in req_json or 'user' not in req_json['data'] or not req_json['data']['user']:
-            print(f"\n{RED}User not found or private. Skipping...")
-            return
-        
-        user_data = req_json['data']['user']
-        
-        if khm not in user_data:
-            print(f"\n{RED}This user has no visible {khm.replace('edge_', '')} or is private")
-            return
-        
-        edges = user_data[khm].get('edges', [])
-        if not edges:
-            print(f"\n{YELLOW}No {khm.replace('edge_', '')} found for this user")
-            return
-        
-        # Process edges
-        for xyz in edges:
-            if stop_dumping:
-                return
-            
-            username = xyz['node'].get('username', '')
-            full_name = xyz['node'].get('full_name', '')
-            
-            if username:
-                xy = username + '|' + full_name
-                if xy not in Uuid:
-                    xx += 1
-                    dump_counter += 1
-                    Uuid.append(xy)
-                    
-                    # Auto-save periodically
-                    if dump_counter % 10 == 0:
-                        save_to_sdcard_unlimited()
-                    
-                    print(f'\r{WHITE}Collected: {GREEN}{len(Uuid)}{WHITE} | Last: {CYAN}{username}{WHITE}                            ', end='', flush=True)
-                    time.sleep(0.001)
-        
-        # Check for pagination - CONTINUE UNTIL NO MORE PAGES
-        page_info = user_data[khm].get('page_info', {})
-        end = page_info.get('has_next_page', False)
-        
-        if end and not stop_dumping:
-            after = page_info.get('end_cursor', '')
-            if after:
-                print(f"\n{YELLOW}Loading next page... (Total: {len(Uuid)}){RESET}")
-                time.sleep(0.5)  # Delay between pages
-                Graphql_unlimited(typess, userid, cokie, after, max_pages)
-        else:
-            print(f"\n{GREEN}✓ Completed dumping {len(Uuid)} users!{RESET}")
-                
-    except requests.exceptions.Timeout:
-        print(f"\n{RED}Timeout error - retrying...{RESET}")
-        time.sleep(2)
-        Graphql_unlimited(typess, userid, cokie, after, max_pages)
-    except Exception as e:
-        print(f"\n{RED}Error: {e} - Retrying...{RESET}")
-        time.sleep(2)
-        Graphql_unlimited(typess, userid, cokie, after, max_pages)
-
-def multi_user_dump(cintil, typess):
-    """Dump multiple users with thread pooling"""
-    global stop_dumping
-    
-    print(f"\n{CYAN}Enter usernames (comma separated) for unlimited dumping{RESET}")
-    print(f"{YELLOW}Example: user1,user2,user3,user4{RESET}")
-    users_input = input(f"{RED}[{WHITE}+{RED}] {BLUE}Usernames :{YELLOW} ").strip()
-    
-    if not users_input:
-        print(f"{RED}No username entered!{RESET}")
-        return Menu()
-    
-    users = [u.strip() for u in users_input.split(',') if u.strip()]
-    
-    # Get user IDs
-    user_ids = []
-    print(f"\n{YELLOW}Fetching user IDs...{RESET}")
-    
-    for username in users:
-        if stop_dumping:
-            break
-        user_id = get_user_id_methods(username, cintil)
-        if user_id:
-            user_ids.append(user_id)
-            print(f"{GREEN}✓ {username} -> ID: {user_id}{RESET}")
-        else:
-            print(f"{RED}✗ Could not find ID for {username}{RESET}")
-        time.sleep(0.5)
-    
-    if not user_ids:
-        print(f"{RED}No valid user IDs found!{RESET}")
-        time.sleep(2)
-        return Menu()
-    
-    mode = 'followers' if typess else 'following'
-    print(f"\n{GREEN}Starting UNLIMITED {mode.upper()} dump for {len(user_ids)} users{RESET}")
-    print(f"{YELLOW}Press Ctrl+C to stop at any time{RESET}\n")
-    
-    # Dump each user
-    for user_id in user_ids:
-        if stop_dumping:
-            break
-        print(f"\n{WHITE}Processing user ID: {CYAN}{user_id}{RESET}")
-        Graphql_unlimited(typess, user_id, cintil['cookie'], '')
-        time.sleep(1)
-    
-    print(f"\n{GREEN}Total users collected: {len(Uuid)}{RESET}")
-    
-    if len(Uuid) > 0:
-        save_to_sdcard_unlimited()
-        print(f"\n{YELLOW}Data saved to /sdcard/dump.txt{RESET}")
-        time.sleep(1)
-    
-    MetodeType()
-
-# ============ BATCH DUMP FROM FILE ============
-def batch_dump_from_file(cintil, typess):
-    """Dump users from a file containing usernames"""
-    global stop_dumping
-    
-    try:
-        filename = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Enter file name with usernames: {YELLOW}").strip()
-        
-        if not os.path.exists(filename):
-            print(f"{RED}File not found!{RESET}")
-            return Menu()
-        
-        with open(filename, 'r') as f:
-            users = [line.strip() for line in f if line.strip()]
-        
-        if not users:
-            print(f"{RED}No usernames found in file!{RESET}")
-            return Menu()
-        
-        print(f"{GREEN}Loaded {len(users)} usernames from file{RESET}")
-        
-        # Get user IDs
-        user_ids = []
-        print(f"\n{YELLOW}Fetching user IDs...{RESET}")
-        
-        for username in users:
-            if stop_dumping:
-                break
-            user_id = get_user_id_methods(username, cintil)
-            if user_id:
-                user_ids.append(user_id)
-                print(f"{GREEN}✓ {username} -> ID: {user_id}{RESET}")
-            else:
-                print(f"{RED}✗ Could not find ID for {username}{RESET}")
-            time.sleep(0.3)
-        
-        if not user_ids:
-            print(f"{RED}No valid user IDs found!{RESET}")
-            time.sleep(2)
-            return Menu()
-        
-        mode = 'followers' if typess else 'following'
-        print(f"\n{GREEN}Starting BATCH UNLIMITED {mode.upper()} dump for {len(user_ids)} users{RESET}")
-        print(f"{YELLOW}Press Ctrl+C to stop at any time{RESET}\n")
-        
-        # Dump each user
-        for user_id in user_ids:
-            if stop_dumping:
-                break
-            print(f"\n{WHITE}Processing user ID: {CYAN}{user_id}{RESET}")
-            Graphql_unlimited(typess, user_id, cintil['cookie'], '')
-            time.sleep(1)
-        
-        print(f"\n{GREEN}Total users collected: {len(Uuid)}{RESET}")
-        
-        if len(Uuid) > 0:
-            save_to_sdcard_unlimited()
-            print(f"\n{YELLOW}Data saved to /sdcard/dump.txt{RESET}")
-            time.sleep(1)
-        
-        MetodeType()
-        
-    except Exception as e:
-        print(f"{RED}Error: {e}{RESET}")
-        time.sleep(2)
-        Menu()
-
-def get_user_id_methods(username, cookies):
-    """Try multiple methods to get user ID"""
+# ============ USER ID RESOLUTION ============
+def get_user_id(username: str) -> Optional[str]:
+    """Get user ID from username with multiple methods"""
     
     # Method 1: Official API
     try:
         url = f'https://i.instagram.com/api/v1/users/web_profile_info/?username={username}'
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 instagram 360.0.0.33.104',
-            'x-ig-app-id': '1217981644879628',
-            'Accept': 'application/json'
-        }
-        response = requests.get(url, headers=headers, cookies=cookies, timeout=10)
+        response = session.get(
+            url,
+            headers={
+                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2) AppleWebKit/605.1.15',
+                'x-ig-app-id': '1217981644879628'
+            },
+            cookies=cookies,
+            timeout=10
+        )
         
         if response.status_code == 200:
             data = response.json()
-            if 'data' in data and 'user' in data['data']:
-                user_id = data['data']['user'].get('id')
-                if user_id:
-                    return user_id
+            return data.get('data', {}).get('user', {}).get('id')
     except:
         pass
     
@@ -552,31 +169,28 @@ def get_user_id_methods(username, cookies):
             'query_hash': 'c9100bf9110dd6361671f113dd02e7d6',
             'variables': json.dumps({'username': username})
         }
-        response = requests.get(url, params=params, cookies=cookies, timeout=10)
+        response = session.get(url, params=params, cookies=cookies, timeout=10)
         
         if response.status_code == 200:
             data = response.json()
-            if 'data' in data and 'user' in data['data']:
-                user_id = data['data']['user'].get('id')
-                if user_id:
-                    return user_id
+            return data.get('data', {}).get('user', {}).get('id')
     except:
         pass
     
-    # Method 3: Scraping
+    # Method 3: Scrape
     try:
-        session = requests.Session()
-        session.max_redirects = 3
-        response = session.get(f'https://www.instagram.com/{username}/', cookies=cookies, timeout=10)
+        response = session.get(
+            f'https://www.instagram.com/{username}/',
+            cookies=cookies,
+            timeout=10
+        )
         
         if response.status_code == 200:
             patterns = [
                 r'"user_id":"(\d+)"',
                 r'"profilePage_(\d+)"',
-                r'"id":"(\d+)","username":"' + username + '"',
-                r'{"id":"(\d+)","username":"' + username + '"'
+                r'"id":"(\d+)","username":"' + username + '"'
             ]
-            
             for pattern in patterns:
                 match = re.search(pattern, response.text)
                 if match:
@@ -586,213 +200,563 @@ def get_user_id_methods(username, cookies):
     
     return None
 
-# ============ METODE TYPE ENHANCED ============
-def MetodeType():
-    global Uuid
+# ============ DUMPING ENGINE ============
+def dump_relationship(user_id: str, username: str, mode: str = 'followers', depth: int = 0) -> List[str]:
+    """
+    Dump followers or following with unlimited pagination
+    Returns list of captured usernames
+    """
+    global dump_counter, current_depth, stop_dumping
     
-    if not Uuid:
-        print(f"\n{RED}No users collected! Please run a dump first.{RESET}")
-        time.sleep(2)
-        Menu()
-        return
+    if stop_dumping:
+        return []
     
-    os.system('clear')
-    print(f"{BLUE}═" * 80)
-    print(f"{GREEN}Total collected users: {len(Uuid)}{RESET}")
-    print(f"{YELLOW}Last 5 users:{RESET}")
-    for i, item in enumerate(Uuid[-5:], 1):
-        parts = item.split('|')
-        print(f"  {i}. {GREEN}{parts[0]}{RESET} | {CYAN}{parts[1] if len(parts) > 1 else 'N/A'}{RESET}")
+    if depth > CONFIG['max_depth']:
+        print(f"{YELLOW}[!] Max depth reached for {username}{RESET}")
+        return []
     
-    print(f"\n{RED}[ {YELLOW}Save & Manage Options {RED}]\n")
-    print(f"{RED}[{WHITE}01{RED}] {CYAN} Save to /sdcard/dump.txt (Append)")
-    print(f"{RED}[{WHITE}02{RED}] {CYAN} Save to custom file")
-    print(f"{RED}[{WHITE}03{RED}] {CYAN} View all collected data")
-    print(f"{RED}[{WHITE}04{RED}] {CYAN} Clear collected data")
-    print(f"{RED}[{WHITE}05{RED}] {CYAN} Return to main menu")
-    print(f"{RED}[{WHITE}00{RED}] {RED} Exit")
-    print(f"{BLUE}═" * 80)
+    if len(dumped_users) >= CONFIG['max_users_per_run']:
+        print(f"{YELLOW}[!] Max users per run reached!{RESET}")
+        stop_dumping = True
+        return []
     
-    choice = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Select option :{YELLOW} ").strip()
+    # Check if already processed
+    user_key = f"{username}_{mode}_{depth}"
+    if user_key in processed_users:
+        return []
+    processed_users.add(user_key)
     
-    if choice in ['01', '1']:
-        save_to_sdcard_unlimited()
-        input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Press Enter to continue...{RESET}")
-        MetodeType()
+    print(f"\n{CYAN}[*] Dumping {mode} for @{username} (Depth: {depth}){RESET}")
+    print(f"{WHITE}   Current total: {len(dumped_users)} users{RESET}")
+    
+    api_url = "https://www.instagram.com/graphql/query/"
+    after = ""
+    page_count = 0
+    collected_users = []
+    
+    # Query hash
+    query_hash = "37479f2b8209594dde7facb0d904896a" if mode == 'followers' else "58712303d941c6855d4e888c5f0cd22f"
+    edge_key = 'edge_followed_by' if mode == 'followers' else 'edge_follow'
+    
+    while not stop_dumping and len(dumped_users) < CONFIG['max_users_per_run']:
+        variables = {
+            "id": user_id,
+            "first": CONFIG['batch_size'],
+            "after": after
+        }
         
-    elif choice in ['02', '2']:
-        filename = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Enter filename: {YELLOW}").strip()
-        if not filename:
-            filename = f"dump_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
-        if not filename.endswith('.txt'):
-            filename += '.txt'
+        params = {
+            'query_hash': query_hash,
+            'variables': json.dumps(variables)
+        }
         
-        with open(filename, 'w', encoding='utf-8') as f:
-            for item in Uuid:
-                f.write(item + '\n')
-        print(f"{GREEN}✓ Saved to {filename}{RESET}")
-        input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Press Enter to continue...{RESET}")
-        MetodeType()
-        
-    elif choice in ['03', '3']:
-        view_data()
-        input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Press Enter to continue...{RESET}")
-        MetodeType()
-        
-    elif choice in ['04', '4']:
-        confirm = input(f"\n{RED}Clear all data? (y/n): {YELLOW}").strip().lower()
-        if confirm == 'y':
-            Uuid = []
-            print(f"{GREEN}✓ Data cleared!{RESET}")
-        time.sleep(1)
-        MetodeType()
-        
-    elif choice in ['05', '5']:
-        Menu()
-        
-    elif choice in ['00', '0']:
-        print(f"{GREEN}Exiting...{RESET}")
-        sys.exit(0)
-        
-    else:
-        print(f"{RED}Invalid option!{RESET}")
-        time.sleep(1)
-        MetodeType()
+        try:
+            response = session.get(
+                api_url,
+                params=params,
+                headers={
+                    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_2) AppleWebKit/605.1.15',
+                    'Accept': 'application/json',
+                    'x-ig-app-id': '1217981644879628'
+                },
+                cookies=cookies,
+                timeout=30
+            )
+            
+            if response.status_code == 429:
+                print(f"{YELLOW}[!] Rate limited! Waiting 10 seconds...{RESET}")
+                time.sleep(10)
+                continue
+                
+            if response.status_code != 200:
+                print(f"{RED}[✗] Error {response.status_code}{RESET}")
+                time.sleep(2)
+                continue
+                
+            data = response.json()
+            
+            if 'data' not in data or 'user' not in data['data']:
+                break
+                
+            user_data = data['data']['user']
+            
+            if edge_key not in user_data:
+                break
+                
+            edges = user_data[edge_key].get('edges', [])
+            
+            if not edges:
+                break
+                
+            # Process each user
+            for edge in edges:
+                if stop_dumping or len(dumped_users) >= CONFIG['max_users_per_run']:
+                    break
+                    
+                node = edge.get('node', {})
+                username_found = node.get('username', '')
+                full_name = node.get('full_name', '')
+                user_id_found = node.get('id', '')
+                
+                if username_found:
+                    user_entry = f"{username_found}|{full_name}|{user_id_found}"
+                    
+                    if username_found not in dumped_users:
+                        dumped_users.add(username_found)
+                        collected_users.append(user_entry)
+                        dump_counter += 1
+                        
+                        # Display progress
+                        print(f'\r{GREEN}[+] {dump_counter}: {username_found} ({full_name}){RESET}{" " * 30}', end='')
+                        
+                        # Auto-save
+                        if dump_counter % CONFIG['auto_save_interval'] == 0:
+                            save_dump()
+                            
+            # Check for more pages
+            page_info = user_data[edge_key].get('page_info', {})
+            has_next = page_info.get('has_next_page', False)
+            after = page_info.get('end_cursor', '')
+            
+            page_count += 1
+            
+            if not has_next or not after:
+                break
+                
+            # Add delay between pages
+            time.sleep(CONFIG['delay_between_requests'])
+            
+        except Exception as e:
+            print(f"\n{RED}[✗] Error: {e}{RESET}")
+            time.sleep(2)
+            continue
+    
+    print(f"\n{GREEN}[✓] Collected {len(collected_users)} {mode} from @{username}{RESET}")
+    return collected_users
 
-def view_data():
-    """Display all collected data"""
-    if not Uuid:
-        print(f"\n{RED}No data to display!{RESET}")
-        return
+# ============ CHAIN DUMPING ============
+def chain_dump(initial_usernames: List[str], modes: List[str] = ['followers', 'following'], 
+               max_depth: int = 3) -> None:
+    """
+    Chain dump: Collect users, then dump their followers/following recursively
+    """
+    global current_depth, stop_dumping
+    
+    current_depth = 0
+    all_usernames = set(initial_usernames)
+    processed_targets = set()
     
     print(f"\n{YELLOW}{'='*60}{RESET}")
-    print(f"{GREEN}Total Users: {len(Uuid)}{RESET}")
-    print(f"{YELLOW}{'='*60}{RESET}")
+    print(f"{GREEN}[*] Starting CHAIN DUMPING{RESET}")
+    print(f"{WHITE}   Initial usernames: {len(initial_usernames)}{RESET}")
+    print(f"{WHITE}   Max depth: {max_depth}{RESET}")
+    print(f"{WHITE}   Modes: {', '.join(modes)}{RESET}")
+    print(f"{YELLOW}{'='*60}{RESET}\n")
     
-    for i, item in enumerate(Uuid, 1):
-        parts = item.split('|')
-        username = parts[0] if parts else 'Unknown'
-        fullname = parts[1] if len(parts) > 1 else 'N/A'
-        print(f"{WHITE}{i:4}. {RESET}{GREEN}{username:<20}{RESET} | {CYAN}{fullname}{RESET}")
-    
-    print(f"{YELLOW}{'='*60}{RESET}")
-
-def Menu():
-    os.system('clear')
-    aset, nama, fol = Aset_Ig()
-    print(f"{BLUE}═" * 80)
-    print(f"""{campur} 
- ⚡ UNLIMITED INSTAGRAM DUMPER v3.0 ⚡
- {CYAN}╭─────────────────────────────────────────────────────────────╮
- {CYAN}│ {WHITE}Author  : {GREEN}sumon                                   {CYAN}│
- {CYAN}│ {WHITE}Version : {GREEN}3.0 - Unlimited Dumping                {CYAN}│
- {CYAN}│ {WHITE}Status  : {GREEN}● Active - NON-STOP                   {CYAN}│
- {CYAN}╰─────────────────────────────────────────────────────────────╯""")
-    print(f"{GREEN}Username : {WHITE}{nama[:12]}{RESET}")
-    print(f"{GREEN}Followers: {WHITE}{fol}{RESET}")
-    
-    print(f"\n{RED}[ {YELLOW}UNLIMITED DUMP MENU {RED}]\n")
-    print(f"{RED}[{WHITE}01{RED}] {CYAN} Dump Followers (UNLIMITED)")
-    print(f"{RED}[{WHITE}02{RED}] {CYAN} Dump Following (UNLIMITED)")
-    print(f"{RED}[{WHITE}03{RED}] {CYAN} Batch Dump from File")
-    print(f"{RED}[{WHITE}04{RED}] {CYAN} Manage Saved Data")
-    print(f"{RED}[{WHITE}05{RED}] {CYAN} Auto-Dump Top Users")
-    print(f"{RED}[{WHITE}00{RED}] {RED} Delete/Change Cookies")
-    print(f"{BLUE}═" * 80)
-    
-    x = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Select option :{YELLOW} ")
-
-    if x in ['01', '1']:
-        multi_user_dump(aset, True)
-    elif x in ['02', '2']:
-        multi_user_dump(aset, False)
-    elif x in ['03', '3']:
-        batch_dump_from_file(aset, True)
-    elif x in ['04', '4']:
-        MetodeType()
-    elif x in ['05', '5']:
-        auto_dump_top_users(aset)
-    elif x in ['00', '0']:
-        if os.path.exists('data/cookie.txt'):
-            os.remove('data/cookie.txt')
-        prints(f"{GREEN}Cookies deleted")
-        exit()
-    else:
-        print(f"{RED}Invalid option!{RESET}")
-        time.sleep(1)
-        Menu()
-
-def auto_dump_top_users(cintil):
-    """Auto-dump followers of popular accounts"""
-    print(f"\n{CYAN}AUTO-DUMP MODE: Will dump followers of multiple accounts{RESET}")
-    
-    popular_accounts = input(f"{RED}[{WHITE}+{RED}] {BLUE}Enter usernames (comma separated): {YELLOW}").strip()
-    
-    if not popular_accounts:
-        print(f"{RED}No usernames entered!{RESET}")
-        return Menu()
-    
-    users = [u.strip() for u in popular_accounts.split(',') if u.strip()]
-    
-    # Get user IDs
-    user_ids = []
-    print(f"\n{YELLOW}Fetching user IDs...{RESET}")
-    
-    for username in users:
-        user_id = get_user_id_methods(username, cintil)
-        if user_id:
-            user_ids.append(user_id)
-            print(f"{GREEN}✓ {username} -> ID: {user_id}{RESET}")
+    for depth in range(max_depth):
+        if stop_dumping:
+            break
+            
+        current_depth = depth
+        print(f"\n{BOLD}📍 DEPTH {depth + 1}{RESET}")
+        print(f"{WHITE}   Processing {len(all_usernames)} users{RESET}\n")
+        
+        # Get user IDs for all usernames
+        user_ids = {}
+        for username in list(all_usernames):
+            if username in processed_targets or stop_dumping:
+                continue
+                
+            if len(dumped_users) >= CONFIG['max_users_per_run']:
+                print(f"{YELLOW}[!] Max users reached!{RESET}")
+                stop_dumping = True
+                break
+                
+            user_id = get_user_id(username)
+            if user_id:
+                user_ids[username] = user_id
+            processed_targets.add(username)
+            
+        if not user_ids:
+            print(f"{YELLOW}[!] No valid user IDs found at depth {depth}{RESET}")
+            break
+            
+        # Dump for each user
+        new_users = set()
+        for username, user_id in user_ids.items():
+            if stop_dumping:
+                break
+                
+            if len(dumped_users) >= CONFIG['max_users_per_run']:
+                break
+                
+            for mode in modes:
+                if stop_dumping:
+                    break
+                    
+                collected = dump_relationship(user_id, username, mode, depth)
+                for user_entry in collected:
+                    # Extract username from entry
+                    parts = user_entry.split('|')
+                    if parts:
+                        new_users.add(parts[0])
+                        
+                # Save after each user
+                save_dump()
+                
+        # Prepare for next depth
+        if new_users:
+            all_usernames.update(new_users)
+            print(f"\n{GREEN}[✓] Added {len(new_users)} new users for next depth{RESET}")
         else:
-            print(f"{RED}✗ Could not find ID for {username}{RESET}")
-        time.sleep(0.5)
-    
-    if not user_ids:
-        print(f"{RED}No valid user IDs found!{RESET}")
-        time.sleep(2)
-        return Menu()
-    
-    print(f"\n{GREEN}Starting AUTO-DUMP for {len(user_ids)} accounts...{RESET}")
-    print(f"{YELLOW}Press Ctrl+C to stop at any time{RESET}\n")
-    
-    # Dump followers for each account
-    for user_id in user_ids:
-        print(f"\n{WHITE}{'='*60}{RESET}")
-        print(f"{CYAN}Dumping followers for user ID: {user_id}{RESET}")
-        print(f"{WHITE}{'='*60}{RESET}")
-        Graphql_unlimited(True, user_id, cintil['cookie'], '')
-        time.sleep(2)
-    
-    print(f"\n{GREEN}Total users collected: {len(Uuid)}{RESET}")
-    
-    if len(Uuid) > 0:
-        save_to_sdcard_unlimited()
-        print(f"\n{YELLOW}Data saved to /sdcard/dump.txt{RESET}")
-        time.sleep(1)
-    
-    MetodeType()
+            print(f"{YELLOW}[!] No new users found, stopping chain{RESET}")
+            break
+            
+        time.sleep(2)  # Delay between depths
+        
+    print(f"\n{GREEN}{'='*60}{RESET}")
+    print(f"{GREEN}[✓] Chain dump completed!{RESET}")
+    print(f"{WHITE}   Total users collected: {len(dumped_users)}{RESET}")
+    print(f"{WHITE}   Total entries: {dump_counter}{RESET}")
+    print(f"{GREEN}{'='*60}{RESET}")
+    save_dump()
 
-# ============ MAIN EXECUTION ============
-if __name__ == "__main__":
-    if not os.path.exists('data'):
-        os.makedirs('data')
+# ============ SAVE FUNCTIONS ============
+def save_dump():
+    """Save collected data to file"""
+    global dumped_users, dump_counter
+    
+    if not dumped_users:
+        return
+        
+    try:
+        # Save to main output file
+        with open(CONFIG['output_file'], 'w', encoding='utf-8') as f:
+            for username in dumped_users:
+                f.write(username + '\n')
+                
+        # Save backup with timestamp
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        backup_file = f"data/dump_backup_{timestamp}.txt"
+        os.makedirs('data', exist_ok=True)
+        
+        with open(backup_file, 'w', encoding='utf-8') as f:
+            for username in dumped_users:
+                f.write(username + '\n')
+                
+        # Save stats
+        stats_file = 'data/dump_stats.json'
+        with open(stats_file, 'w') as f:
+            json.dump({
+                'total_users': len(dumped_users),
+                'last_update': datetime.now().isoformat(),
+                'dump_counter': dump_counter,
+                'timestamp': int(time.time())
+            }, f, indent=2)
+            
+    except Exception as e:
+        print(f"{RED}[✗] Error saving: {e}{RESET}")
+
+def load_dump():
+    """Load previous dump data"""
+    global dumped_users
+    
+    if os.path.exists(CONFIG['output_file']):
+        try:
+            with open(CONFIG['output_file'], 'r', encoding='utf-8') as f:
+                for line in f:
+                    username = line.strip()
+                    if username:
+                        dumped_users.add(username)
+            print(f"{GREEN}[✓] Loaded {len(dumped_users)} users from previous dump{RESET}")
+            return True
+        except:
+            pass
+    return False
+
+def view_dump():
+    """View collected data"""
+    if not dumped_users:
+        print(f"{RED}[✗] No data collected yet!{RESET}")
+        return
+        
+    print(f"\n{GREEN}{'='*60}{RESET}")
+    print(f"{GREEN}Total Users: {len(dumped_users)}{RESET}")
+    print(f"{YELLOW}{'='*60}{RESET}")
+    
+    # Show all users
+    for i, username in enumerate(sorted(dumped_users), 1):
+        print(f"{WHITE}{i:4}. {CYAN}{username}{RESET}")
+    
+    print(f"{YELLOW}{'='*60}{RESET}")
+
+# ============ MENU SYSTEM ============
+def main_menu():
+    """Main interactive menu"""
+    global stop_dumping, dumped_users, dump_counter
+    
+    while True:
+        os.system('clear') if os.name == 'posix' else os.system('cls')
+        
+        print(f"""
+{CYAN}╔═══════════════════════════════════════════════════════╗
+║      ULTIMATE CHAIN DUMPER v5.0                    ║
+║      UNLIMITED • INFINITE • DEEP DUMP              ║
+╚═══════════════════════════════════════════════════════╝{RESET}
+
+{YELLOW}📊 STATISTICS:{RESET}
+  Total Users: {GREEN}{len(dumped_users)}{RESET}
+  Last Dump Count: {GREEN}{dump_counter}{RESET}
+  
+{RED}[1] {CYAN}Single User Dump
+{RED}[2] {CYAN}Multiple Users Dump
+{RED}[3] {CYAN}Chain Dump (Auto-Expand)
+{RED}[4] {CYAN}Deep Chain Dump (Max Depth)
+{RED}[5] {CYAN}Load From File & Dump
+{RED}[6] {CYAN}View Collected Data
+{RED}[7] {CYAN}Save Data Now
+{RED}[8] {CYAN}Clear Data
+{RED}[9] {CYAN}Change Settings
+{RED}[0] {RED}Exit
+""")
+        
+        choice = input(f"{CYAN}Select option: {RESET}").strip()
+        
+        if choice in ['1', '01']:
+            username = input(f"{CYAN}Enter username: {RESET}").strip()
+            if username:
+                mode = input(f"{CYAN}Mode (followers/following/both): {RESET}").strip().lower()
+                modes = ['followers', 'following'] if mode == 'both' else [mode]
+                user_id = get_user_id(username)
+                if user_id:
+                    stop_dumping = False
+                    for m in modes:
+                        if not stop_dumping:
+                            dump_relationship(user_id, username, m, 0)
+                    save_dump()
+                    input(f"\n{GREEN}Press Enter to continue...{RESET}")
+                else:
+                    print(f"{RED}[✗] User not found!{RESET}")
+                    time.sleep(2)
+                    
+        elif choice in ['2', '02']:
+            usernames_input = input(f"{CYAN}Enter usernames (comma separated): {RESET}").strip()
+            if usernames_input:
+                usernames = [u.strip() for u in usernames_input.split(',') if u.strip()]
+                mode = input(f"{CYAN}Mode (followers/following/both): {RESET}").strip().lower()
+                modes = ['followers', 'following'] if mode == 'both' else [mode]
+                
+                stop_dumping = False
+                for username in usernames:
+                    if stop_dumping:
+                        break
+                    user_id = get_user_id(username)
+                    if user_id:
+                        for m in modes:
+                            if stop_dumping:
+                                break
+                            dump_relationship(user_id, username, m, 0)
+                    else:
+                        print(f"{RED}[✗] User not found: {username}{RESET}")
+                    time.sleep(1)
+                save_dump()
+                input(f"\n{GREEN}Press Enter to continue...{RESET}")
+                
+        elif choice in ['3', '03']:
+            usernames_input = input(f"{CYAN}Enter starting usernames (comma separated): {RESET}").strip()
+            if usernames_input:
+                usernames = [u.strip() for u in usernames_input.split(',') if u.strip()]
+                depth = 2
+                try:
+                    depth = int(input(f"{CYAN}Chain depth (1-10): {RESET}").strip() or "2")
+                    depth = max(1, min(10, depth))
+                except:
+                    depth = 2
+                    
+                stop_dumping = False
+                chain_dump(usernames, ['followers'], depth)
+                input(f"\n{GREEN}Press Enter to continue...{RESET}")
+                
+        elif choice in ['4', '04']:
+            usernames_input = input(f"{CYAN}Enter starting usernames: {RESET}").strip()
+            if usernames_input:
+                usernames = [u.strip() for u in usernames_input.split(',') if u.strip()]
+                stop_dumping = False
+                chain_dump(usernames, ['followers', 'following'], CONFIG['max_depth'])
+                input(f"\n{GREEN}Press Enter to continue...{RESET}")
+                
+        elif choice in ['5', '05']:
+            filename = input(f"{CYAN}Enter filename: {RESET}").strip()
+            if os.path.exists(filename):
+                with open(filename, 'r') as f:
+                    usernames = [line.strip() for line in f if line.strip()]
+                print(f"{GREEN}[✓] Loaded {len(usernames)} usernames{RESET}")
+                
+                mode = input(f"{CYAN}Mode (followers/following/both): {RESET}").strip().lower()
+                modes = ['followers', 'following'] if mode == 'both' else [mode]
+                
+                stop_dumping = False
+                for username in usernames:
+                    if stop_dumping:
+                        break
+                    user_id = get_user_id(username)
+                    if user_id:
+                        for m in modes:
+                            if stop_dumping:
+                                break
+                            dump_relationship(user_id, username, m, 0)
+                    time.sleep(0.5)
+                save_dump()
+                input(f"\n{GREEN}Press Enter to continue...{RESET}")
+            else:
+                print(f"{RED}[✗] File not found!{RESET}")
+                time.sleep(2)
+                
+        elif choice in ['6', '06']:
+            view_dump()
+            input(f"\n{GREEN}Press Enter to continue...{RESET}")
+            
+        elif choice in ['7', '07']:
+            save_dump()
+            print(f"{GREEN}[✓] Data saved!{RESET}")
+            time.sleep(1)
+            
+        elif choice in ['8', '08']:
+            confirm = input(f"{RED}Clear all data? (y/n): {RESET}").strip().lower()
+            if confirm == 'y':
+                dumped_users.clear()
+                dump_counter = 0
+                print(f"{GREEN}[✓] Data cleared!{RESET}")
+            time.sleep(1)
+            
+        elif choice in ['9', '09']:
+            settings_menu()
+            
+        elif choice in ['0', '00']:
+            save_dump()
+            print(f"{GREEN}Goodbye!{RESET}")
+            sys.exit(0)
+            
+        else:
+            print(f"{RED}Invalid option!{RESET}")
+            time.sleep(1)
+
+def settings_menu():
+    """Settings configuration"""
+    global CONFIG
+    
+    os.system('clear') if os.name == 'posix' else os.system('cls')
     
     print(f"""
-    {CYAN}╔═══════════════════════════════════════════╗
-    ║    UNLIMITED INSTAGRAM DUMPER v3.0      ║
-    ║    NON-STOP - INFINITE DUMPING          ║
-    ║    Press CTRL+C to stop anytime         ║
-    ╚═══════════════════════════════════════════╝{RESET}
-    """)
-    time.sleep(1)
+{CYAN}╔═══════════════════════════════════╗
+║          SETTINGS                  ║
+╚═══════════════════════════════════╝{RESET}
+
+Current Settings:
+  Max Workers: {GREEN}{CONFIG['max_workers']}{RESET}
+  Batch Size: {GREEN}{CONFIG['batch_size']}{RESET}
+  Delay: {GREEN}{CONFIG['delay_between_requests']}s{RESET}
+  Max Depth: {GREEN}{CONFIG['max_depth']}{RESET}
+  Max Users Per Run: {GREEN}{CONFIG['max_users_per_run']}{RESET}
+  Auto-Save Interval: {GREEN}{CONFIG['auto_save_interval']}{RESET}
+  
+{RED}[1] {CYAN}Change Max Workers
+{RED}[2] {CYAN}Change Batch Size  
+{RED}[3] {CYAN}Change Delay
+{RED}[4] {CYAN}Change Max Depth
+{RED}[5] {CYAN}Change Max Users
+{RED}[6] {CYAN}Change Auto-Save Interval
+{RED}[0] {CYAN}Back to Main Menu
+""")
     
-    try:
-        Menu()
-    except KeyboardInterrupt:
-        print(f"\n\n{YELLOW}⚠ Dumping stopped by user{RESET}")
-        save_to_sdcard_unlimited()
-        print(f"{GREEN}✓ Data saved to /sdcard/dump.txt{RESET}")
-        sys.exit(0)
-    except Exception as e:
-        print(f"\n{RED}Error: {e}{RESET}")
+    choice = input(f"{CYAN}Select option: {RESET}").strip()
+    
+    if choice == '1':
+        try:
+            value = int(input(f"{CYAN}Max Workers (1-20): {RESET}"))
+            CONFIG['max_workers'] = max(1, min(20, value))
+            print(f"{GREEN}[✓] Updated!{RESET}")
+        except:
+            print(f"{RED}[✗] Invalid input{RESET}")
+            
+    elif choice == '2':
+        try:
+            value = int(input(f"{CYAN}Batch Size (10-200): {RESET}"))
+            CONFIG['batch_size'] = max(10, min(200, value))
+            print(f"{GREEN}[✓] Updated!{RESET}")
+        except:
+            print(f"{RED}[✗] Invalid input{RESET}")
+            
+    elif choice == '3':
+        try:
+            value = float(input(f"{CYAN}Delay (0.1-5.0): {RESET}"))
+            CONFIG['delay_between_requests'] = max(0.1, min(5.0, value))
+            print(f"{GREEN}[✓] Updated!{RESET}")
+        except:
+            print(f"{RED}[✗] Invalid input{RESET}")
+            
+    elif choice == '4':
+        try:
+            value = int(input(f"{CYAN}Max Depth (1-50): {RESET}"))
+            CONFIG['max_depth'] = max(1, min(50, value))
+            print(f"{GREEN}[✓] Updated!{RESET}")
+        except:
+            print(f"{RED}[✗] Invalid input{RESET}")
+            
+    elif choice == '5':
+        try:
+            value = int(input(f"{CYAN}Max Users (100-1000000): {RESET}"))
+            CONFIG['max_users_per_run'] = max(100, min(1000000, value))
+            print(f"{GREEN}[✓] Updated!{RESET}")
+        except:
+            print(f"{RED}[✗] Invalid input{RESET}")
+            
+    elif choice == '6':
+        try:
+            value = int(input(f"{CYAN}Auto-Save Interval (10-1000): {RESET}"))
+            CONFIG['auto_save_interval'] = max(10, min(1000, value))
+            print(f"{GREEN}[✓] Updated!{RESET}")
+        except:
+            print(f"{RED}[✗] Invalid input{RESET}")
+            
+    elif choice == '0':
+        return
+        
+    time.sleep(1)
+    settings_menu()
+
+# ============ MAIN ============
+def main():
+    """Main entry point"""
+    print(f"""
+{CYAN}╔═══════════════════════════════════════════════════════╗
+║                                                       ║
+║     ULTIMATE CHAIN DUMPER v5.0                       ║
+║     {BOLD}DUMP • CAPTURE • REPEAT • UNLIMITED{BOLD}         ║
+║                                                       ║
+║     - Capture usernames from any source              ║
+║     - Unlimited recursive dumping                    ║
+║     - Chain dump followers & following              ║
+║     - Auto-expand your user database                 ║
+║                                                       ║
+╚═══════════════════════════════════════════════════════╝{RESET}
+    """)
+    
+    # Load cookies
+    if not load_cookies():
+        print(f"{RED}[✗] Authentication failed! Exiting...{RESET}")
         sys.exit(1)
+        
+    # Load previous dump
+    load_dump()
+    
+    # Start menu
+    try:
+        main_menu()
+    except KeyboardInterrupt:
+        print(f"\n{YELLOW}[!] Interrupted by user{RESET}")
+        save_dump()
+        sys.exit(0)
+
+if __name__ == "__main__":
+    main()
