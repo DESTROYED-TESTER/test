@@ -29,7 +29,6 @@ SistemLog = "api.instagram.com"
 stop_collection = False
 collection_thread = None
 current_task = None
-collection_running = False
 
 # Color codes
 WHITE = '\x1b[1;97m'
@@ -100,9 +99,33 @@ def test_cookies(coki):
                 data = response.json()
                 if 'user' in data and data['user'].get('username'):
                     print(f"{GREEN}✓ Cookies are valid!{RESET}")
+                    print(f"{WHITE}  Username: {CYAN}{data['user'].get('username')}{RESET}")
+                    print(f"{WHITE}  Full Name: {CYAN}{data['user'].get('full_name', 'N/A')}{RESET}")
+                    print(f"{WHITE}  Followers: {CYAN}{data['user'].get('follower_count', 0)}{RESET}")
                     return True
     except Exception as e:
         pass
+    
+    try:
+        test_session = requests.Session()
+        test_session.max_redirects = 3
+        response = test_session.get(
+            'https://www.instagram.com/api/v1/web/accounts/login/ajax/',
+            cookies=coki,
+            timeout=10,
+            allow_redirects=False
+        )
+        
+        if response.status_code == 200:
+            print(f"{GREEN}✓ Cookies are valid!{RESET}")
+            return True
+        elif response.status_code == 302 or response.status_code == 401:
+            print(f"{RED}✗ Cookies may be expired!{RESET}")
+            return False
+    except Exception as e:
+        pass
+    
+    print(f"{RED}✗ Cookies appear to be invalid!{RESET}")
     return False
 
 def validate_cookie_format(cookie_str):
@@ -244,6 +267,13 @@ def save_to_sdcard():
         print(f"\n{GREEN}✓ Successfully saved {len(Uuid)} users to /sdcard/dump.txt{RESET}")
         print(f"{WHITE}  Format: username|full_name{RESET}")
         
+        print(f"\n{YELLOW}Sample of saved data:{RESET}")
+        for i, item in enumerate(Uuid[:3]):
+            parts = item.split('|')
+            print(f"  {i+1}. Username: {GREEN}{parts[0]}{RESET} | Name: {CYAN}{parts[1] if len(parts) > 1 else 'N/A'}{RESET}")
+        if len(Uuid) > 3:
+            print(f"  ... and {len(Uuid)-3} more")
+        
         return True
         
     except PermissionError:
@@ -296,7 +326,7 @@ def view_data():
 
 def continuous_collection(cintil, user_ids, typess, delay=2):
     """Continuous data collection without stopping"""
-    global stop_collection, current_task, collection_running, Uuid
+    global stop_collection, current_task
     
     print(f"\n{CYAN}Starting continuous collection...{RESET}")
     print(f"{YELLOW}Press Ctrl+C or type 'stop' to stop collection{RESET}")
@@ -305,17 +335,15 @@ def continuous_collection(cintil, user_ids, typess, delay=2):
     collected_count = 0
     error_count = 0
     current_task = "collection"
-    collection_running = True
     
     # Create a separate thread for user input
     def check_stop():
-        global stop_collection, collection_running
-        while collection_running and not stop_collection:
+        global stop_collection
+        while not stop_collection:
             try:
-                cmd = sys.stdin.readline().strip().lower()
+                cmd = input().strip().lower()
                 if cmd == 'stop':
                     stop_collection = True
-                    collection_running = False
                     print(f"\n{YELLOW}Stop command received. Stopping collection...{RESET}")
                     break
             except:
@@ -326,9 +354,9 @@ def continuous_collection(cintil, user_ids, typess, delay=2):
     input_thread.start()
     
     try:
-        while not stop_collection and collection_running:
+        while not stop_collection:
             for user_id in user_ids:
-                if stop_collection or not collection_running:
+                if stop_collection:
                     break
                     
                 try:
@@ -337,10 +365,6 @@ def continuous_collection(cintil, user_ids, typess, delay=2):
                     # Get initial data
                     previous_count = len(Uuid)
                     
-                    # Clear the "waiting" message
-                    sys.stdout.write('\033[K')
-                    
-                    # Collect data
                     if typess:
                         Graphql(True, user_id, cintil['cookie'], '')
                     else:
@@ -350,51 +374,51 @@ def continuous_collection(cintil, user_ids, typess, delay=2):
                     new_data = len(Uuid) - previous_count
                     if new_data > 0:
                         collected_count += new_data
-                        print(f"\r{GREEN}✓ Collected {new_data} new users (Total: {len(Uuid)})                  {RESET}")
+                        print(f"{GREEN}✓ Collected {new_data} new users (Total: {len(Uuid)}){RESET}")
                         error_count = 0
                     else:
-                        print(f"\r{YELLOW}No new data collected for this user                  {RESET}")
+                        print(f"{YELLOW}No new data collected for this user{RESET}")
                         error_count += 1
                     
                     # Check for errors
                     if error_count > 3:
-                        print(f"\r{RED}Multiple errors occurred. Re-authenticating...                  {RESET}")
+                        print(f"{RED}Multiple errors occurred. Re-authenticating...{RESET}")
                         # Try to refresh cookies
                         cintil, _, _ = Aset_Ig()
                         error_count = 0
                     
                     # Progress indicator
-                    print(f"\r{WHITE}Waiting {delay}s until next request...{' ' * 30}", end='', flush=True)
+                    with Progress(
+                        SpinnerColumn(),
+                        TextColumn("[progress.description]{task.description}"),
+                        BarColumn(),
+                        TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+                    ) as progress:
+                        task = progress.add_task("[cyan]Collecting...", total=100)
+                        for _ in range(10):
+                            if stop_collection:
+                                break
+                            progress.update(task, advance=10)
+                            time.sleep(0.1)
                     
-                    # Delay between users with countdown
-                    for i in range(delay, 0, -1):
-                        if stop_collection or not collection_running:
+                    # Delay between users
+                    for i in range(delay):
+                        if stop_collection:
                             break
-                        print(f"\r{WHITE}Waiting {i}s until next request...{' ' * 30}", end='', flush=True)
+                        if i % 5 == 0:
+                            print(f"{WHITE}Waiting {delay - i}s until next request...   ", end='\r')
                         time.sleep(1)
                     
-                    # Clear the waiting message
-                    print('\r' + ' ' * 50 + '\r', end='', flush=True)
-                    
-                except KeyboardInterrupt:
-                    print(f"\n{YELLOW}Collection interrupted by user{RESET}")
-                    stop_collection = True
-                    collection_running = False
-                    break
                 except Exception as e:
-                    print(f"\r{RED}Error processing user {user_id}: {e}                  {RESET}")
+                    print(f"{RED}Error processing user {user_id}: {e}{RESET}")
                     error_count += 1
-                    print(f"\r{WHITE}Waiting {delay*2}s before retry...{' ' * 30}", end='', flush=True)
                     time.sleep(delay * 2)
-                    # Clear the message
-                    print('\r' + ' ' * 50 + '\r', end='', flush=True)
     
     except KeyboardInterrupt:
         print(f"\n{YELLOW}Collection interrupted by user{RESET}")
     
     finally:
         stop_collection = True
-        collection_running = False
         current_task = None
         
     print(f"\n{GREEN}Collection completed! Total collected: {len(Uuid)} users{RESET}")
@@ -530,7 +554,8 @@ def Graphql(typess, userid, cokie, after):
             print(f"\n{YELLOW}No {khm.replace('edge_', '')} found for this user")
             return
         
-        # Process edges
+        print(f"\n{GREEN}Found {len(edges)} {khm.replace('edge_', '')} in this batch")
+        
         for xyz in edges:
             username = xyz['node'].get('username', '')
             full_name = xyz['node'].get('full_name', '')
@@ -541,6 +566,7 @@ def Graphql(typess, userid, cokie, after):
                     xx += 1
                     Uuid.append(xy)
                     print(f'\r{WHITE}Collecting Uid {RED}{len(Uuid)}{WHITE}                            ', end='', flush=True)
+                    time.sleep(0.001)
         
         page_info = user_data[khm].get('page_info', {})
         end = page_info.get('has_next_page', False)
@@ -553,7 +579,7 @@ def Graphql(typess, userid, cokie, after):
                 Graphql(typess, userid, cokie, after)
                 
     except requests.exceptions.Timeout:
-        print(f"\n{RED}Timeout error")
+        print(f"\n{RED}Timeout error while fetching {khm.replace('edge_', '')}")
     except requests.exceptions.TooManyRedirects:
         print(f"\n{RED}Too many redirects - check your cookies")
     except requests.exceptions.RequestException as e:
@@ -561,16 +587,14 @@ def Graphql(typess, userid, cokie, after):
     except json.JSONDecodeError as e:
         print(f"\n{RED}Invalid JSON response: {e}")
     except KeyError as e:
-        print(f"\n{RED}Key error: {e}")
+        print(f"\n{RED}Key error: {e} - Check response structure")
     except Exception as e:
         print(f"\n{RED}Unexpected error: {e}")
 
 def dumps(cintil, typess):
-    global xx, Uuid, stop_collection, collection_thread, collection_running
+    global xx, Uuid, stop_collection, collection_thread
     
     xx = 0
-    stop_collection = False
-    collection_running = False
     
     if not test_cookies(cintil):
         print(f"{YELLOW}Warning: Your cookies may be invalid. Proceeding anyway...")
@@ -585,7 +609,7 @@ def dumps(cintil, typess):
             cintil['cookie'] += ';csrftoken=%s;' % token
         except Exception as e:
             os.system('rm -rf data/cookie.txt')
-            exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Csrftoken not available: {e}')
+            exit(f'\n{WHITE}[{YELLOW}!{WHITE}] Csrftoken not available, dump will not run: {e}')
     
     print(f"\n{CYAN}=== CONTINUOUS COLLECTION MODE ==={RESET}")
     print(f"{YELLOW}This mode will continuously collect data without stopping{RESET}")
@@ -642,7 +666,9 @@ def dumps(cintil, typess):
     mode = 'followers' if typess else 'following'
     print(f"\n{YELLOW}Starting continuous collection of {mode}...{RESET}")
     print(f"{GREEN}Press Ctrl+C or type 'stop' to stop collection{RESET}")
-    print(f"{YELLOW}Collection will continue until you type 'stop'{RESET}\n")
+    
+    # Reset stop flag
+    stop_collection = False
     
     # Start continuous collection
     continuous_collection(cintil, xyz, typess, delay)
@@ -755,7 +781,7 @@ def MetodeType():
         MetodeType()
 
 def Menu():
-    global stop_collection, collection_running
+    global stop_collection
     os.system('clear')
     aset, nama, fol = Aset_Ig()
     print(f"{BLUE}═" * 80)
@@ -808,7 +834,6 @@ if __name__ == "__main__":
         Menu()
     except KeyboardInterrupt:
         stop_collection = True
-        collection_running = False
         print(f"\n\n{YELLOW}Stopping collection...{RESET}")
         time.sleep(1)
         print(f"{GREEN}Exiting...{RESET}")
