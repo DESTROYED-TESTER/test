@@ -340,10 +340,13 @@ def continuous_collection(cintil, user_ids, typess, delay=2):
     def check_stop():
         global stop_collection
         while not stop_collection:
-            cmd = input().strip().lower()
-            if cmd == 'stop':
-                stop_collection = True
-                print(f"\n{YELLOW}Stop command received. Stopping collection...{RESET}")
+            try:
+                cmd = input().strip().lower()
+                if cmd == 'stop':
+                    stop_collection = True
+                    print(f"\n{YELLOW}Stop command received. Stopping collection...{RESET}")
+                    break
+            except:
                 break
     
     # Start input thread
@@ -778,6 +781,7 @@ def MetodeType():
         MetodeType()
 
 def Menu():
+    global stop_collection
     os.system('clear')
     aset, nama, fol = Aset_Ig()
     print(f"{BLUE}═" * 80)
@@ -829,7 +833,6 @@ if __name__ == "__main__":
     try:
         Menu()
     except KeyboardInterrupt:
-        global stop_collection
         stop_collection = True
         print(f"\n\n{YELLOW}Stopping collection...{RESET}")
         time.sleep(1)
