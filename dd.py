@@ -2,14 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-Instagram Data Dumper v4.0 - NON-STOP UNLIMITED DUMP
-- Single username auto-capture
-- Unlimited dump (never stops, runs in background)
-- Ctrl+Z support for Termux background execution
-- Auto-resume on restart
-- Continuous pagination until completion
-- Auto-save every 50 users
-- Multiple account support
+Instagram Data Dumper v5.0 - AUTO CAPTURE 100K+
+- Automatic username capture from multiple sources
+- Minimum 100,000 users dump target
+- Multi-source username harvesting
+- Auto-retry and resume
+- Background mode support
+- Real-time progress tracking
 """
 
 #================[IMPORT MODULE]================#
@@ -51,16 +50,20 @@ MAX_RETRIES = 5
 REQUEST_DELAY = 1.5
 DUMP_COUNT = 0
 LAST_SAVE = 0
-AUTO_SAVE_INTERVAL = 50  # Save every 50 users
+AUTO_SAVE_INTERVAL = 50
 RUNNING = True
 CURRENT_USER = ""
 TOTAL_FETCHED = 0
 LAST_PAGE_CURSOR = ""
 CHECKPOINT_FILE = 'data/checkpoint.pkl'
 TARGET_FILE = 'data/targets.txt'
-DUMP_MODE = ""  # 'followers' or 'following'
+DUMP_MODE = ""
 PID_FILE = 'data/dump.pid'
 BACKGROUND_MODE = False
+MIN_TARGET = 100000  # Minimum 100,000 users
+USER_SOURCES = []  # List of usernames to harvest
+HARVESTED_USERS = set()
+PROCESSING_QUEUE = deque()
 
 # Color codes
 WHITE = '\x1b[1;97m'
@@ -92,7 +95,6 @@ ua = {
 
 # ============ PROCESS MANAGEMENT ============
 def write_pid():
-    """Write PID to file for background process management"""
     try:
         with open(PID_FILE, 'w') as f:
             f.write(str(os.getpid()))
@@ -101,7 +103,6 @@ def write_pid():
         return False
 
 def remove_pid():
-    """Remove PID file"""
     try:
         if os.path.exists(PID_FILE):
             os.remove(PID_FILE)
@@ -109,12 +110,10 @@ def remove_pid():
         pass
 
 def is_running():
-    """Check if dump process is already running"""
     try:
         if os.path.exists(PID_FILE):
             with open(PID_FILE, 'r') as f:
                 pid = int(f.read().strip())
-            # Check if process exists
             try:
                 os.kill(pid, 0)
                 return True
@@ -125,27 +124,18 @@ def is_running():
         return False
     return False
 
-def check_background_status():
-    """Check if dump is running in background"""
-    if is_running():
-        print(f"{YELLOW}⚠ Dump is already running in background!{RESET}")
-        print(f"{WHITE}Use 'fg' to bring to foreground or 'kill %%' to stop{RESET}")
-        return True
-    return False
-
 # ============ SIGNAL HANDLER ============
 def signal_handler(sig, frame):
     global RUNNING
-    if sig == signal.SIGTSTP:  # Ctrl+Z
-        print(f"\n\n{YELLOW}⚠ Dump suspended to background. Use 'fg' to resume or 'bg' to continue in background{RESET}")
+    if sig == signal.SIGTSTP:
+        print(f"\n\n{YELLOW}⚠ Dump suspended to background. Use 'fg' to resume{RESET}")
         print(f"{GREEN}✓ Progress saved! Total: {len(Uuid)} users{RESET}")
         save_checkpoint()
         save_to_sdcard()
-        # Suspend process
         os.kill(os.getpid(), signal.SIGSTOP)
         return
     
-    print(f"\n\n{YELLOW}⚠ Received interrupt signal. Saving progress...{RESET}")
+    print(f"\n\n{YELLOW}⚠ Saving progress...{RESET}")
     RUNNING = False
     save_checkpoint()
     save_to_sdcard()
@@ -159,7 +149,6 @@ atexit.register(remove_pid)
 
 # ============ CHECKPOINT FUNCTIONS ============
 def save_checkpoint():
-    """Save current progress to checkpoint file"""
     try:
         checkpoint = {
             'Uuid': Uuid,
@@ -168,17 +157,18 @@ def save_checkpoint():
             'LAST_PAGE_CURSOR': LAST_PAGE_CURSOR,
             'TOTAL_FETCHED': TOTAL_FETCHED,
             'DUMP_MODE': DUMP_MODE,
+            'HARVESTED_USERS': list(HARVESTED_USERS),
+            'PROCESSING_QUEUE': list(PROCESSING_QUEUE),
             'timestamp': datetime.now().isoformat()
         }
         with open(CHECKPOINT_FILE, 'wb') as f:
             pickle.dump(checkpoint, f)
         return True
-    except Exception as e:
+    except:
         return False
 
 def load_checkpoint():
-    """Load checkpoint if exists"""
-    global Uuid, DUMP_COUNT, CURRENT_USER, LAST_PAGE_CURSOR, TOTAL_FETCHED, DUMP_MODE
+    global Uuid, DUMP_COUNT, CURRENT_USER, LAST_PAGE_CURSOR, TOTAL_FETCHED, DUMP_MODE, HARVESTED_USERS, PROCESSING_QUEUE
     try:
         if os.path.exists(CHECKPOINT_FILE):
             with open(CHECKPOINT_FILE, 'rb') as f:
@@ -189,14 +179,15 @@ def load_checkpoint():
             LAST_PAGE_CURSOR = checkpoint.get('LAST_PAGE_CURSOR', '')
             TOTAL_FETCHED = checkpoint.get('TOTAL_FETCHED', 0)
             DUMP_MODE = checkpoint.get('DUMP_MODE', '')
+            HARVESTED_USERS = set(checkpoint.get('HARVESTED_USERS', []))
+            PROCESSING_QUEUE = deque(checkpoint.get('PROCESSING_QUEUE', []))
             return True
-    except Exception as e:
+    except:
         pass
     return False
 
 # ============ AUTO SAVE ============
 def auto_save():
-    """Auto-save if interval reached"""
     global LAST_SAVE, DUMP_COUNT
     if DUMP_COUNT - LAST_SAVE >= AUTO_SAVE_INTERVAL:
         save_checkpoint()
@@ -205,7 +196,6 @@ def auto_save():
 
 # ============ SAVE FUNCTIONS ============
 def save_to_sdcard():
-    """Save collected data to /sdcard/dump.txt with username|fullname format"""
     try:
         if not Uuid:
             return False
@@ -217,10 +207,10 @@ def save_to_sdcard():
                 pass
         
         with open('/sdcard/dump.txt', 'w', encoding='utf-8') as f:
-            f.write("# Instagram Users Dump - Non-Stop Unlimited\n")
+            f.write("# Instagram Users Dump - Auto Capture 100K+\n")
             f.write(f"# Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
             f.write(f"# Total: {len(Uuid)}\n")
-            f.write(f"# Target: {CURRENT_USER}\n")
+            f.write(f"# Target: {MIN_TARGET:,} users\n")
             f.write(f"# Mode: {DUMP_MODE}\n")
             f.write("# Format: username|full_name\n")
             f.write("#" + "="*50 + "\n\n")
@@ -229,49 +219,18 @@ def save_to_sdcard():
                 f.write(item + '\n')
         
         return True
-        
-    except Exception as e:
-        return False
-
-def save_to_custom(filename):
-    """Save collected data to a custom file"""
-    try:
-        if not Uuid:
-            print(f"{RED}✗ No data to save!{RESET}")
-            return False
-        
-        if not os.path.exists('data'):
-            os.makedirs('data')
-        
-        with open(f'data/{filename}', 'w', encoding='utf-8') as f:
-            f.write(f"# Instagram Users Dump - Non-Stop Unlimited\n")
-            f.write(f"# Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-            f.write(f"# Total: {len(Uuid)}\n")
-            f.write(f"# Target: {CURRENT_USER}\n")
-            f.write(f"# Mode: {DUMP_MODE}\n")
-            f.write("#" + "="*50 + "\n\n")
-            for item in Uuid:
-                f.write(item + '\n')
-        
-        print(f"\n{GREEN}✓ Saved {len(Uuid)} users to data/{filename}{RESET}")
-        return True
-        
-    except Exception as e:
-        print(f"{RED}✗ Failed to save: {e}{RESET}")
+    except:
         return False
 
 def view_data():
-    """Display all collected data"""
     if not Uuid:
         print(f"\n{RED}No data to display!{RESET}")
         return
     
     print(f"\n{YELLOW}{'='*60}{RESET}")
-    print(f"{GREEN}Total Users: {len(Uuid)}{RESET}")
-    if CURRENT_USER:
-        print(f"{WHITE}Target User: {CYAN}{CURRENT_USER}{RESET}")
-    if DUMP_MODE:
-        print(f"{WHITE}Mode: {CYAN}{DUMP_MODE}{RESET}")
+    print(f"{GREEN}Total Users: {len(Uuid):,}{RESET}")
+    print(f"{WHITE}Target: {CYAN}{MIN_TARGET:,} users{RESET}")
+    print(f"{WHITE}Progress: {CYAN}{((len(Uuid)/MIN_TARGET)*100):.1f}%{RESET}")
     print(f"{YELLOW}{'='*60}{RESET}")
     
     for i, item in enumerate(Uuid, 1):
@@ -279,6 +238,9 @@ def view_data():
         username = parts[0] if parts else 'Unknown'
         fullname = parts[1] if len(parts) > 1 else 'N/A'
         print(f"{WHITE}{i:4}. {RESET}{GREEN}{username:<20}{RESET} | {CYAN}{fullname}{RESET}")
+        if i >= 50:  # Show only first 50
+            print(f"{YELLOW}... and {len(Uuid)-50} more{RESET}")
+            break
     
     print(f"{YELLOW}{'='*60}{RESET}")
 
@@ -307,7 +269,6 @@ def find_res():
     return cookie
 
 def test_cookies(coki):
-    """Test if cookies are still valid"""
     try:
         uid_match = re.search('ds_user_id=(\\d+)', str(coki.get('cookie', '')))
         if uid_match:
@@ -322,12 +283,11 @@ def test_cookies(coki):
                 data = response.json()
                 if 'user' in data and data['user'].get('username'):
                     return True
-    except Exception as e:
+    except:
         pass
     return False
 
 def validate_cookie_format(cookie_str):
-    """Validate if the cookie string has required fields"""
     required_fields = ['sessionid', 'ds_user_id']
     missing = []
     
@@ -343,14 +303,14 @@ def validate_cookie_format(cookie_str):
     if session_match:
         session_value = session_match.group(1)
         if not session_value or len(session_value) < 5:
-            print(f"{RED}✗ Session ID appears invalid (too short){RESET}")
+            print(f"{RED}✗ Session ID appears invalid{RESET}")
             return False
     
     user_match = re.search('ds_user_id=([^;]+)', cookie_str)
     if user_match:
         user_id = user_match.group(1)
         if not user_id.isdigit():
-            print(f"{RED}✗ User ID appears invalid (not a number){RESET}")
+            print(f"{RED}✗ User ID appears invalid{RESET}")
             return False
     
     return True
@@ -423,42 +383,89 @@ def Aset_Ig():
         
         print(f"{GREEN}✓ Successfully logged in as: {username}{RESET}")
         print(f"{WHITE}  Full Name: {CYAN}{full_name}{RESET}")
-        print(f"{WHITE}  Followers: {CYAN}{follower_count}{RESET}")
+        print(f"{WHITE}  Followers: {CYAN}{follower_count:,}{RESET}")
         time.sleep(1)
         
         return coki, full_name, follower_count
         
-    except requests.exceptions.RequestException as e:
-        print(f"{RED}Network error: {e}{RESET}")
-        time.sleep(2)
-        return Aset_Ig()
-    except json.JSONDecodeError:
-        print(f"{RED}Invalid response from server. Cookie may be expired.{RESET}")
-        os.system('rm -rf data/cookie.txt')
-        time.sleep(2)
-        return Aset_Ig()
-    except Exception as e:
-        print(f"{RED}Error: {e}{RESET}")
+    except:
+        print(f"{RED}Failed to login. Please check your cookie.{RESET}")
         os.system('rm -rf data/cookie.txt')
         time.sleep(2)
         return Aset_Ig()
 
+# ============ USER HARVESTING ============
+def harvest_users_from_list():
+    """Harvest usernames from popular Instagram accounts"""
+    global HARVESTED_USERS, PROCESSING_QUEUE
+    
+    print(f"\n{YELLOW}Harvesting usernames from popular accounts...{RESET}")
+    
+    # Popular Instagram accounts with high follower counts
+    seed_accounts = [
+        'instagram', 'cristiano', 'leomessi', 'kimkardashian', 
+        'selenagomez', 'therock', 'arianagrande', 'kyliejenner',
+        'justinbieber', 'taylorswift', 'nasa', 'natgeo',
+        'bbcnews', 'cnn', 'nytimes', 'harrypotter'
+    ]
+    
+    for account in seed_accounts:
+        if len(HARVESTED_USERS) >= MIN_TARGET:
+            break
+        
+        user_id = get_user_id_methods(account, {})
+        if user_id:
+            # Get user's followers
+            followers = get_user_followers(user_id, {})
+            for user in followers:
+                if user not in HARVESTED_USERS:
+                    HARVESTED_USERS.add(user)
+                    PROCESSING_QUEUE.append(user)
+                    
+        print(f"\r{WHITE}Harvested: {GREEN}{len(HARVESTED_USERS):,}{WHITE} users{RESET}", end='', flush=True)
+        time.sleep(1)
+    
+    print(f"\n{GREEN}✓ Total harvested: {len(HARVESTED_USERS):,} users{RESET}")
+
+def get_user_followers(user_id, cookies):
+    """Get followers of a user"""
+    followers = []
+    try:
+        url = f'https://www.instagram.com/graphql/query/'
+        query_hash = "37479f2b8209594dde7facb0d904896a"
+        variables = {
+            "id": user_id,
+            "first": 50
+        }
+        params = {
+            'query_hash': query_hash,
+            'variables': json.dumps(variables)
+        }
+        
+        response = requests.get(url, params=params, headers=HEADERS, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            if 'data' in data and 'user' in data['data']:
+                edges = data['data']['user']['edge_followed_by'].get('edges', [])
+                for edge in edges:
+                    username = edge['node'].get('username', '')
+                    if username:
+                        followers.append(username)
+    except:
+        pass
+    return followers
+
 # ============ GRAPHQL FUNCTIONS ============
 def Graphql(typess, userid, cokie, after=""):
-    """Fetch followers or following using GraphQL API with unlimited pagination"""
-    global xx, Uuid, DUMP_COUNT, TOTAL_FETCHED, LAST_PAGE_CURSOR, RUNNING, CURRENT_USER, DUMP_MODE
-    
-    if 'xx' not in globals():
-        global xx
-        xx = 0
+    global xx, Uuid, DUMP_COUNT, TOTAL_FETCHED, LAST_PAGE_CURSOR, RUNNING
     
     api = "https://www.instagram.com/graphql/query/"
     
     if typess:
-        query_hash = "37479f2b8209594dde7facb0d904896a"  # Followers
+        query_hash = "37479f2b8209594dde7facb0d904896a"
         mode = "followers"
     else:
-        query_hash = "58712303d941c6855d4e888c5f0cd22f"  # Following
+        query_hash = "58712303d941c6855d4e888c5f0cd22f"
         mode = "following"
     
     DUMP_MODE = mode
@@ -494,44 +501,39 @@ def Graphql(typess, userid, cokie, after=""):
             req_json = req.json()
             
             if 'require_login' in req_json:
-                print(f'\n{WHITE}[{YELLOW}!{WHITE}] Invalid Cookie - Need to login')
+                print(f'\n{RED}Invalid Cookie - Need to login{RESET}')
                 RUNNING = False
                 return
             
             if 'status' in req_json and req_json['status'] == 'fail':
-                print(f'\n{RED}Request failed: {req_json.get("message", "Unknown error")}')
+                print(f'\n{RED}Request failed: {req_json.get("message", "Unknown error")}{RESET}')
                 time.sleep(5)
                 continue
             
             khm = 'edge_followed_by' if typess else 'edge_follow'
             
-            if 'data' not in req_json or 'user' not in req_json['data'] or not req_json['data']['user']:
-                print(f"\n{RED}User not found or private. Skipping...")
+            if 'data' not in req_json or 'user' not in req_json['data']:
+                print(f"\n{RED}User not found or private{RESET}")
                 RUNNING = False
                 return
             
             user_data = req_json['data']['user']
             
             if khm not in user_data:
-                print(f"\n{RED}This user has no visible {mode} or is private")
+                print(f"\n{RED}No visible {mode}{RESET}")
                 RUNNING = False
                 return
             
             total_count = user_data[khm].get('count', 0)
             if total_count > 0 and TOTAL_FETCHED == 0:
-                print(f"\n{GREEN}Total {mode}: {total_count}{RESET}")
-                print(f"{WHITE}Starting non-stop dump... Press Ctrl+Z to background{RESET}\n")
+                print(f"\n{GREEN}Total {mode}: {total_count:,}{RESET}")
+                print(f"{WHITE}Target: {CYAN}{MIN_TARGET:,} users{RESET}\n")
             
             edges = user_data[khm].get('edges', [])
             if not edges:
-                print(f"\n{YELLOW}No more {mode} found - Dump Complete!{RESET}")
-                print(f"{GREEN}✓ Total collected: {len(Uuid)} users{RESET}")
-                RUNNING = False
-                save_checkpoint()
-                save_to_sdcard()
+                print(f"\n{YELLOW}No more {mode} found{RESET}")
                 return
             
-            # Process edges
             for xyz in edges:
                 if not RUNNING:
                     return
@@ -539,10 +541,9 @@ def Graphql(typess, userid, cokie, after=""):
                 username = xyz['node'].get('username', '')
                 full_name = xyz['node'].get('full_name', '')
                 is_verified = xyz['node'].get('is_verified', False)
-                is_private = xyz['node'].get('is_private', False)
                 
                 if username:
-                    name_with_badge = full_name + (' ✓' if is_verified else '') + (' 🔒' if is_private else '')
+                    name_with_badge = full_name + (' ✓' if is_verified else '')
                     xy = username + '|' + name_with_badge
                     
                     if xy not in Uuid:
@@ -551,54 +552,44 @@ def Graphql(typess, userid, cokie, after=""):
                         TOTAL_FETCHED += 1
                         Uuid.append(xy)
                         
-                        # Display progress
-                        print(f'\r{WHITE}📥 {CYAN}{username:<20}{WHITE} | Total: {GREEN}{len(Uuid):>6}{WHITE} | {YELLOW}{mode}{WHITE} | Rate: {GREEN}{TOTAL_FETCHED}{WHITE}                    ', end='', flush=True)
+                        progress = (len(Uuid) / MIN_TARGET) * 100
+                        bar = '█' * int(progress / 2) + '░' * (50 - int(progress / 2))
                         
-                        # Auto-save checkpoint
+                        print(f'\r{WHITE}📥 {CYAN}{username:<20}{WHITE} | Total: {GREEN}{len(Uuid):>7,}{WHITE} | {YELLOW}{progress:>5.1f}%{WHITE} [{bar}]', end='', flush=True)
+                        
                         if len(Uuid) % AUTO_SAVE_INTERVAL == 0:
                             save_checkpoint()
                             save_to_sdcard()
-                            print(f"\n{GREEN}✓ Auto-saved {len(Uuid)} users{RESET}")
             
-            # Check for next page
             page_info = user_data[khm].get('page_info', {})
             end = page_info.get('has_next_page', False)
             
-            if end and RUNNING:
+            if end and RUNNING and len(Uuid) < MIN_TARGET:
                 after = page_info.get('end_cursor', '')
                 if after:
                     LAST_PAGE_CURSOR = after
-                    print(f"\n{YELLOW}⟳ Loading next page... (Collected: {len(Uuid)}){RESET}")
+                    print(f"\n{YELLOW}⟳ Loading next page... ({len(Uuid):,}/{MIN_TARGET:,}){RESET}")
                     time.sleep(REQUEST_DELAY + random.uniform(0, 0.5))
                     Graphql(typess, userid, cokie, after)
             else:
-                print(f"\n\n{GREEN}✓ Dump Complete! Total {mode} collected: {len(Uuid)}{RESET}")
+                if len(Uuid) >= MIN_TARGET:
+                    print(f"\n\n{GREEN}✓ TARGET REACHED! {len(Uuid):,} users collected{RESET}")
+                    print(f"{GREEN}🎯 Goal: {MIN_TARGET:,} users achieved!{RESET}")
+                else:
+                    print(f"\n\n{YELLOW}⚠ Dump completed with {len(Uuid):,} users{RESET}")
+                    print(f"{WHITE}Remaining: {MIN_TARGET - len(Uuid):,} users to reach target{RESET}")
+                
                 save_checkpoint()
                 save_to_sdcard()
                 RUNNING = False
                 remove_pid()
             break
             
-        except requests.exceptions.Timeout:
-            print(f"\n{RED}⚠ Timeout, attempt {attempt+1}/{MAX_RETRIES}")
-            time.sleep(2 ** attempt)
-        except requests.exceptions.TooManyRedirects:
-            print(f"\n{RED}⚠ Too many redirects - check cookies")
-            break
-        except requests.exceptions.RequestException as e:
-            print(f"\n{RED}⚠ Network error, attempt {attempt+1}/{MAX_RETRIES}")
-            time.sleep(2 ** attempt)
-        except json.JSONDecodeError:
-            print(f"\n{RED}⚠ Invalid JSON, attempt {attempt+1}/{MAX_RETRIES}")
-            time.sleep(2 ** attempt)
-        except Exception as e:
-            print(f"\n{RED}⚠ Error, attempt {attempt+1}/{MAX_RETRIES}: {e}")
+        except:
+            print(f"\n{RED}⚠ Error, attempt {attempt+1}/{MAX_RETRIES}{RESET}")
             time.sleep(2 ** attempt)
 
 def get_user_id_methods(username, cookies):
-    """Try multiple methods to get user ID"""
-    
-    # Method 1: Official API
     try:
         url = f'https://i.instagram.com/api/v1/users/web_profile_info/?username={username}'
         headers = {
@@ -614,10 +605,9 @@ def get_user_id_methods(username, cookies):
                 user_id = data['data']['user'].get('id')
                 if user_id:
                     return user_id
-    except Exception as e:
+    except:
         pass
     
-    # Method 2: GraphQL query
     try:
         url = 'https://www.instagram.com/graphql/query/'
         params = {
@@ -632,76 +622,49 @@ def get_user_id_methods(username, cookies):
                 user_id = data['data']['user'].get('id')
                 if user_id:
                     return user_id
-    except Exception as e:
-        pass
-    
-    # Method 3: Scrape page source
-    try:
-        session = requests.Session()
-        session.max_redirects = 3
-        response = session.get(f'https://www.instagram.com/{username}/', cookies=cookies, timeout=10)
-        
-        if response.status_code == 200:
-            patterns = [
-                r'"user_id":"(\d+)"',
-                r'"profilePage_(\d+)"',
-                r'"id":"(\d+)","username":"' + username + '"',
-                r'{"id":"(\d+)","username":"' + username + '"'
-            ]
-            
-            for pattern in patterns:
-                match = re.search(pattern, response.text)
-                if match:
-                    return match.group(1)
-    except Exception as e:
+    except:
         pass
     
     return None
 
-# ============ UNLIMITED DUMP FUNCTIONS ============
-def unlimited_dump_mode(cintil, typess):
-    """Unlimited dump with single username input and auto-capture"""
-    global RUNNING, Uuid, DUMP_COUNT, CURRENT_USER, TOTAL_FETCHED, LAST_PAGE_CURSOR, BACKGROUND_MODE
+# ============ AUTO CAPTURE DUMP ============
+def auto_capture_dump(cintil, typess):
+    """Auto-capture and dump until reaching minimum 100,000 users"""
+    global RUNNING, Uuid, DUMP_COUNT, CURRENT_USER, TOTAL_FETCHED, LAST_PAGE_CURSOR, HARVESTED_USERS, PROCESSING_QUEUE
     
     Clear()
     print(f"{BLUE}═" * 80)
-    print(f"{campur}★ NON-STOP UNLIMITED DUMP MODE ★{RESET}")
+    print(f"{campur}★ AUTO CAPTURE - MINIMUM {MIN_TARGET:,} USERS ★{RESET}")
     print(f"{BLUE}═" * 80)
     
     # Check if already running
     if is_running():
         print(f"{YELLOW}⚠ Dump is already running in background!{RESET}")
-        print(f"{WHITE}Options:{RESET}")
-        print(f"  {CYAN}1. 'fg' - Bring to foreground{RESET}")
-        print(f"  {CYAN}2. 'kill %%' - Stop background process{RESET}")
-        print(f"  {CYAN}3. 'bg' - Continue in background{RESET}")
+        print(f"{WHITE}Use 'fg' to bring to foreground or 'kill %%' to stop{RESET}")
         input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Press Enter to continue...{RESET}")
         Menu()
         return
     
     # Check for existing session
     if load_checkpoint() and Uuid:
-        print(f"\n{YELLOW}⚠ Found existing checkpoint with {len(Uuid)} users{RESET}")
-        print(f"{WHITE}Target: {CYAN}{CURRENT_USER}{RESET}")
-        print(f"{WHITE}Mode: {CYAN}{DUMP_MODE}{RESET}")
+        print(f"\n{YELLOW}⚠ Found existing checkpoint with {len(Uuid):,} users{RESET}")
+        print(f"{WHITE}Target: {CYAN}{MIN_TARGET:,} users{RESET}")
+        print(f"{WHITE}Progress: {CYAN}{((len(Uuid)/MIN_TARGET)*100):.1f}%{RESET}")
         resume = input(f"{WHITE}Resume from checkpoint? (y/n): {YELLOW}").strip().lower()
         if resume == 'y' and CURRENT_USER:
-            print(f"{GREEN}✓ Resuming dump for: {CURRENT_USER}{RESET}")
-            print(f"{WHITE}Continuing from page: {LAST_PAGE_CURSOR if LAST_PAGE_CURSOR else 'start'}{RESET}")
+            print(f"{GREEN}✓ Resuming dump{RESET}")
             time.sleep(1)
             
-            # Ensure csrftoken exists
             if 'csrftoken' not in str(cintil):
                 try:
                     memek = requests.get('https://www.instagram.com/data/shared_data/', cookies=cintil, timeout=10)
                     memek.raise_for_status()
                     token = memek.json()['config']['csrf_token']
                     cintil['cookie'] += ';csrftoken=%s;' % token
-                except Exception as e:
-                    print(f'\n{WHITE}[{YELLOW}!{WHITE}] Csrftoken not available: {e}')
+                except:
+                    print(f'\n{RED}Csrftoken not available{RESET}')
                     return
             
-            # Get user ID for resume
             user_id = get_user_id_methods(CURRENT_USER, cintil)
             if user_id:
                 write_pid()
@@ -709,7 +672,8 @@ def unlimited_dump_mode(cintil, typess):
             return
     
     # Get username
-    print(f"\n{CYAN}Enter Instagram username to dump (auto-capture all followers/following){RESET}")
+    print(f"\n{CYAN}Enter Instagram username to start auto-capturing{RESET}")
+    print(f"{YELLOW}The tool will automatically find and capture users until {MIN_TARGET:,}{RESET}")
     print(f"{YELLOW}Example: cristiano{RESET}")
     username = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Username :{YELLOW} ").strip()
     
@@ -734,12 +698,12 @@ def unlimited_dump_mode(cintil, typess):
             memek.raise_for_status()
             token = memek.json()['config']['csrf_token']
             cintil['cookie'] += ';csrftoken=%s;' % token
-        except Exception as e:
+        except:
             os.system('rm -rf data/cookie.txt')
-            print(f'\n{WHITE}[{YELLOW}!{WHITE}] Csrftoken not available: {e}')
+            print(f'\n{RED}Csrftoken not available{RESET}')
             return
     
-    # Get user ID with retry
+    # Get user ID
     print(f"\n{YELLOW}Fetching user ID for: {CYAN}{username}{RESET}")
     user_id = None
     for attempt in range(MAX_RETRIES):
@@ -751,13 +715,13 @@ def unlimited_dump_mode(cintil, typess):
     
     if not user_id:
         print(f"{RED}✗ Could not find user ID for: {username}{RESET}")
-        print(f"{YELLOW}Make sure the username is correct and the account is public.{RESET}")
         time.sleep(2)
         return
     
     print(f"{GREEN}✓ Found user ID: {user_id}{RESET}")
-    mode = 'followers' if typess else 'following'
-    print(f"\n{WHITE}Starting non-stop {mode} dump...{RESET}")
+    
+    print(f"\n{WHITE}🎯 Target: {CYAN}{MIN_TARGET:,} users{RESET}")
+    print(f"{WHITE}📊 Auto-capture mode: ON{RESET}")
     print(f"{YELLOW}Commands:{RESET}")
     print(f"  {CYAN}Ctrl+C{RESET} - Stop and save")
     print(f"  {CYAN}Ctrl+Z{RESET} - Suspend to background (use 'fg' to resume)")
@@ -767,22 +731,46 @@ def unlimited_dump_mode(cintil, typess):
         print(f"{GREEN}✓ Running in background mode{RESET}")
         write_pid()
     
-    # Start the unlimited dump
+    # Start the dump
     Graphql(typess, user_id, cintil['cookie'], '')
+    
+    # If target not reached, try auto-harvesting
+    if len(Uuid) < MIN_TARGET and RUNNING:
+        print(f"\n{YELLOW}⚠ Only {len(Uuid):,} users collected. Auto-harvesting more users...{RESET}")
+        
+        # Harvest users from popular accounts
+        harvest_users_from_list()
+        
+        # Process harvested users
+        for user in PROCESSING_QUEUE:
+            if len(Uuid) >= MIN_TARGET:
+                break
+            if not RUNNING:
+                break
+            
+            user_id = get_user_id_methods(user, cintil)
+            if user_id:
+                print(f"\n{WHITE}📥 Processing: {CYAN}{user}{RESET}")
+                Graphql(typess, user_id, cintil['cookie'], '')
+                time.sleep(REQUEST_DELAY)
     
     # Final save
     save_checkpoint()
     save_to_sdcard()
     remove_pid()
     
-    print(f"\n{GREEN}✓ Dump completed! Total: {len(Uuid)} users{RESET}")
+    print(f"\n{GREEN}✓ Dump completed! Total: {len(Uuid):,} users{RESET}")
+    if len(Uuid) >= MIN_TARGET:
+        print(f"{GREEN}🎉 TARGET ACHIEVED! {MIN_TARGET:,} users collected!{RESET}")
+    else:
+        print(f"{YELLOW}⚠ Only {len(Uuid):,} users collected. Need {MIN_TARGET - len(Uuid):,} more.{RESET}")
+    
     if len(Uuid) > 0:
         print(f"{WHITE}Saved to: {CYAN}/sdcard/dump.txt{RESET}")
     time.sleep(2)
 
 # ============ MAIN FUNCTIONS ============
 def MetodeType():
-    """Manage saved data options"""
     global Uuid
     if not Uuid:
         print(f"\n{RED}No users collected! Please run a dump first.{RESET}")
@@ -792,35 +780,35 @@ def MetodeType():
     
     os.system('clear')
     print(f"{BLUE}═" * 80)
-    print(f"{GREEN}Total collected users: {len(Uuid)}{RESET}")
-    if CURRENT_USER:
-        print(f"{WHITE}Target: {CYAN}{CURRENT_USER}{RESET}")
+    print(f"{GREEN}Total collected users: {len(Uuid):,}{RESET}")
+    print(f"{WHITE}Target: {CYAN}{MIN_TARGET:,} users{RESET}")
+    print(f"{WHITE}Progress: {CYAN}{((len(Uuid)/MIN_TARGET)*100):.1f}%{RESET}")
     
     print(f"\n{RED}[ {YELLOW}Save & Manage Options {RED}]\n")
     print(f"{RED}[{WHITE}01{RED}] {CYAN} Save to /sdcard/dump.txt")
-    print(f"{RED}[{WHITE}02{RED}] {CYAN} Save to custom file (data/ folder)")
+    print(f"{RED}[{WHITE}02{RED}] {CYAN} Save to custom file")
     print(f"{RED}[{WHITE}03{RED}] {CYAN} View all collected data")
     print(f"{RED}[{WHITE}04{RED}] {CYAN} Clear collected data")
     print(f"{RED}[{WHITE}05{RED}] {CYAN} Return to main menu")
-    print(f"{RED}[{WHITE}06{RED}] {CYAN} Check background status")
+    print(f"{RED}[{WHITE}06{RED}] {CYAN} Change target (current: {MIN_TARGET:,})")
     print(f"{RED}[{WHITE}00{RED}] {RED} Exit")
     print(f"{BLUE}═" * 80)
     
     choice = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Select option :{YELLOW} ").strip()
     
     if choice in ['01', '1']:
-        if save_to_sdcard():
-            input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Press Enter to continue...{RESET}")
+        save_to_sdcard()
+        input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Press Enter to continue...{RESET}")
         MetodeType()
         
     elif choice in ['02', '2']:
-        filename = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Enter filename (e.g., output.txt) :{YELLOW} ").strip()
+        filename = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Enter filename :{YELLOW} ").strip()
         if not filename:
             filename = f"dump_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
         if not filename.endswith('.txt'):
             filename += '.txt'
-        if save_to_custom(filename):
-            input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Press Enter to continue...{RESET}")
+        save_to_custom(filename)
+        input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Press Enter to continue...{RESET}")
         MetodeType()
         
     elif choice in ['03', '3']:
@@ -829,16 +817,14 @@ def MetodeType():
         MetodeType()
         
     elif choice in ['04', '4']:
-        confirm = input(f"\n{RED}[{WHITE}+{RED}] {RED}Are you sure you want to clear all collected data? (y/n): {YELLOW}").strip().lower()
+        confirm = input(f"\n{RED}[{WHITE}+{RED}] {RED}Clear all data? (y/n): {YELLOW}").strip().lower()
         if confirm == 'y':
             Uuid = []
             DUMP_COUNT = 0
             TOTAL_FETCHED = 0
             if os.path.exists(CHECKPOINT_FILE):
                 os.remove(CHECKPOINT_FILE)
-            print(f"{GREEN}✓ Data cleared successfully!{RESET}")
-        else:
-            print(f"{YELLOW}Operation cancelled.{RESET}")
+            print(f"{GREEN}✓ Data cleared!{RESET}")
         time.sleep(1)
         MetodeType()
         
@@ -846,11 +832,18 @@ def MetodeType():
         Menu()
         
     elif choice in ['06', '6']:
-        if is_running():
-            print(f"{GREEN}✓ Dump is running in background (PID: {open(PID_FILE).read().strip()}){RESET}")
-        else:
-            print(f"{YELLOW}No background dump running{RESET}")
-        input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Press Enter to continue...{RESET}")
+        new_target = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Enter new target (minimum 1000): {YELLOW}").strip()
+        try:
+            new_target = int(new_target)
+            if new_target >= 1000:
+                global MIN_TARGET
+                MIN_TARGET = new_target
+                print(f"{GREEN}✓ Target updated to: {MIN_TARGET:,} users{RESET}")
+            else:
+                print(f"{RED}Target must be at least 1,000{RESET}")
+        except:
+            print(f"{RED}Invalid number!{RESET}")
+        time.sleep(2)
         MetodeType()
         
     elif choice in ['00', '0']:
@@ -864,12 +857,34 @@ def MetodeType():
         time.sleep(1)
         MetodeType()
 
+def save_to_custom(filename):
+    try:
+        if not Uuid:
+            print(f"{RED}✗ No data to save!{RESET}")
+            return False
+        
+        if not os.path.exists('data'):
+            os.makedirs('data')
+        
+        with open(f'data/{filename}', 'w', encoding='utf-8') as f:
+            f.write(f"# Instagram Users Dump - Auto Capture\n")
+            f.write(f"# Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+            f.write(f"# Total: {len(Uuid):,}\n")
+            f.write(f"# Target: {MIN_TARGET:,}\n")
+            f.write("#" + "="*50 + "\n\n")
+            for item in Uuid:
+                f.write(item + '\n')
+        
+        print(f"\n{GREEN}✓ Saved {len(Uuid):,} users to data/{filename}{RESET}")
+        return True
+    except:
+        print(f"{RED}✗ Failed to save{RESET}")
+        return False
+
 def Menu():
-    """Main menu"""
     os.system('clear')
     aset, nama, fol = Aset_Ig()
     
-    # Check background status
     bg_status = ""
     if is_running():
         bg_status = f" {GREEN}[Running in BG]{RESET}"
@@ -881,35 +896,36 @@ def Menu():
  |_____  |    \\_ |     | |_____  |    \\_      __|__ |_____|
                                           
 {CYAN}╭──────────────────────╮{CYAN}╭───────────────╮{CYAN}╭─────────────────────────────╮
-{CYAN}│ {CYAN}Author : {GREEN}sumon {CYAN}│{CYAN}  │ {WHITE}Version : {GREEN}4.0 {CYAN}│{CYAN}│ {WHITE}Mode : {GREEN}Non-Stop Unlimited{CYAN}  │
+{CYAN}│ {CYAN}Author : {GREEN}sumon {CYAN}│{CYAN}  │ {WHITE}Version : {GREEN}5.0 {CYAN}│{CYAN}│ {WHITE}Mode : {GREEN}Auto 100K+{CYAN}     │
 {CYAN}╰──────────────────────╯{CYAN}╰───────────────╯{CYAN}╰─────────────────────────────╯""")
-    print(f"{GREEN}{WHITE}Username :{GREEN} {nama[:8]}\n{WHITE}Followers : {GREEN}{fol}")
-    print(f"{WHITE}Total Collected: {GREEN}{len(Uuid)} users{RESET}{bg_status}")
+    print(f"{GREEN}{WHITE}Username :{GREEN} {nama[:8]}\n{WHITE}Followers : {GREEN}{fol:,}")
+    print(f"{WHITE}Total Collected: {GREEN}{len(Uuid):,}{RESET} / {CYAN}{MIN_TARGET:,}{RESET}")
+    print(f"{WHITE}Progress: {CYAN}{((len(Uuid)/MIN_TARGET)*100):.1f}%{RESET}{bg_status}")
     
     print(f"\n{RED}[ {YELLOW}Main Menu {RED}]\n")
-    print(f"{RED}[{WHITE}01{RED}] {CYAN} Dump Followers (Non-Stop Unlimited)")
-    print(f"{RED}[{WHITE}02{RED}] {CYAN} Dump Following (Non-Stop Unlimited)")
+    print(f"{RED}[{WHITE}01{RED}] {CYAN} Auto-Capture Followers (Target: {MIN_TARGET:,})")
+    print(f"{RED}[{WHITE}02{RED}] {CYAN} Auto-Capture Following (Target: {MIN_TARGET:,})")
     print(f"{RED}[{WHITE}03{RED}] {CYAN} Load from file")
     print(f"{RED}[{WHITE}04{RED}] {CYAN} Manage saved data")
     print(f"{RED}[{WHITE}05{RED}] {CYAN} Resume from checkpoint")
-    print(f"{RED}[{WHITE}06{RED}] {CYAN} Check/Manage background process")
+    print(f"{RED}[{WHITE}06{RED}] {CYAN} Check background process")
     print(f"{RED}[{WHITE}00{RED}] {RED} Delete/Change Cookies")
     print(f"{BLUE}═" * 80)
-    x = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Please select a menu option :{YELLOW} ")
+    x = input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Select option :{YELLOW} ")
 
     if x in ['01', '1']:
-        unlimited_dump_mode(aset, True)
+        auto_capture_dump(aset, True)
     elif x in ['02', '2']:
-        unlimited_dump_mode(aset, False)
+        auto_capture_dump(aset, False)
     elif x in ['03', '3']:
         crackfile()
     elif x in ['04', '4']:
         MetodeType()
     elif x in ['05', '5']:
         if load_checkpoint():
-            print(f"{GREEN}✓ Resume from checkpoint: {len(Uuid)} users{RESET}")
-            print(f"{WHITE}Target: {CYAN}{CURRENT_USER}{RESET}")
-            print(f"{WHITE}Mode: {CYAN}{DUMP_MODE}{RESET}")
+            print(f"{GREEN}✓ Resume from checkpoint: {len(Uuid):,} users{RESET}")
+            print(f"{WHITE}Target: {CYAN}{MIN_TARGET:,} users{RESET}")
+            print(f"{WHITE}Progress: {CYAN}{((len(Uuid)/MIN_TARGET)*100):.1f}%{RESET}")
             time.sleep(2)
             Menu()
         else:
@@ -919,12 +935,10 @@ def Menu():
     elif x in ['06', '6']:
         if is_running():
             pid = open(PID_FILE).read().strip()
-            print(f"\n{GREEN}✓ Dump is running in background (PID: {pid}){RESET}")
+            print(f"\n{GREEN}✓ Running in background (PID: {pid}){RESET}")
             print(f"\n{WHITE}Commands:{RESET}")
             print(f"  {CYAN}fg{RESET} - Bring to foreground")
             print(f"  {CYAN}kill {pid}{RESET} - Stop the process")
-            print(f"  {CYAN}kill -STOP {pid}{RESET} - Pause process")
-            print(f"  {CYAN}kill -CONT {pid}{RESET} - Resume process")
         else:
             print(f"\n{YELLOW}No background dump running{RESET}")
         input(f"\n{RED}[{WHITE}+{RED}] {BLUE}Press Enter to continue...{RESET}")
@@ -935,19 +949,18 @@ def Menu():
         if os.path.exists(CHECKPOINT_FILE):
             os.remove(CHECKPOINT_FILE)
         remove_pid()
-        prints(f"{GREEN}Successfully deleted cookies and checkpoint")
+        prints(f"{GREEN}Deleted cookies and checkpoint")
         exit()
     else:
-        print(f"{RED}Invalid option!")
+        print(f"{RED}Invalid option!{RESET}")
         time.sleep(1)
         Menu()
 
 def crackfile():
-    """Load data from a file"""
     try:
-        nu = input(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Enter Your File Name: {PURPLE}")
+        nu = input(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Enter File Name: {PURPLE}")
         if not os.path.isfile(nu):
-            print(f"{PURPLE}[{RED}+{PURPLE}] {RED}File Not Found.")
+            print(f"{RED}File Not Found.{RESET}")
             return Menu()
         
         with open(nu, 'r') as file:
@@ -955,26 +968,19 @@ def crackfile():
                 line = line.strip()
                 if line and not line.startswith('#'):
                     Uuid.append(line)
-        print(f"{PURPLE}[{WHITE}+{PURPLE}] {WHITE}Total IDs : {len(Uuid)}")
+        print(f"{GREEN}Loaded {len(Uuid)} users{RESET}")
         if len(Uuid) > 0:
             MetodeType()
         else:
-            print(f"{RED}No valid IDs found in file!")
+            print(f"{RED}No valid IDs found!{RESET}")
             return Menu()
-    except Exception as e:
-        print(f"{PURPLE}[{RED}+{PURPLE}] {RED}Error: {e}")
+    except:
+        print(f"{RED}Error loading file{RESET}")
         return Menu()
 
-# ============ MAIN EXECUTION ============
 if __name__ == "__main__":
-    # Create data directory if it doesn't exist
     if not os.path.exists('data'):
         os.makedirs('data')
-    
-    # Check if running as background
-    if len(sys.argv) > 1 and sys.argv[1] == '--background':
-        print(f"{GREEN}✓ Running in background mode...{RESET}")
-        write_pid()
     
     try:
         Menu()
@@ -983,7 +989,7 @@ if __name__ == "__main__":
         save_checkpoint()
         save_to_sdcard()
         remove_pid()
-        print(f"{GREEN}✓ Progress saved! Total: {len(Uuid)} users{RESET}")
+        print(f"{GREEN}✓ Progress saved! Total: {len(Uuid):,} users{RESET}")
         sys.exit(0)
     except Exception as e:
         print(f"\n{RED}An error occurred: {e}{RESET}")
