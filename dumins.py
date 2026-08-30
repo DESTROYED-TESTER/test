@@ -512,7 +512,7 @@ def dumps(cintil, typess):
     xyz = []
     if 'csrftoken' not in str(cintil):
         try:
-            memek = requests.get('https://www.instagram.com/data/shared_data/', cookies=cintil, timeout=10)
+            memek = requests.get('https://wwwww.instagram.com/data/shared_data/', cookies=cintil, timeout=10)
             memek.raise_for_status()
             token = memek.json()['config']['csrf_token']
             cintil['cookie'] += ';csrftoken=%s;' % token
@@ -595,7 +595,7 @@ def Graphql(typess, userid, cokie, after):
         global xx
         xx = 0
     
-    api = "https://www.instagram.com/graphql/query/"
+    api = "https://wwwww.instagram.com/graphql/query/"
     
     # Use the correct query hash for followers/following
     if typess:
