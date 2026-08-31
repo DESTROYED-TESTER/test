@@ -448,7 +448,7 @@ def get_user_id_methods(username, cookies):
     
     # Method 2: Try using the graphql API
     try:
-        url = 'https://wwwww.instagram.com/graphql/query/'
+        url = 'https://www.instagram.com/graphql/query/'
         params = {
             'query_hash': 'c9100bf9110dd6361671f113dd02e7d6',
             'variables': json.dumps({'username': username})
@@ -496,7 +496,7 @@ def Graphql(typess, userid, cokie, after):
         global xx
         xx = 0
     
-    api = "https://wwwww.instagram.com/graphql/query/"
+    api = "https://www.instagram.com/x/graphql/query/"
     
     if typess:
         query_hash = "37479f2b8209594dde7facb0d904896a"
@@ -583,7 +583,7 @@ def Graphql(typess, userid, cokie, after):
     except requests.exceptions.TooManyRedirects:
         print(f"\n{RED}Too many redirects - check your cookies")
     except requests.exceptions.RequestException as e:
-        print(f"\n{RED}Network error: {e}")
+        #print(f"\n{RED}Network error: {e}")
     except json.JSONDecodeError as e:
         print(f"\n{RED}Invalid JSON response: {e}")
     except KeyError as e:
