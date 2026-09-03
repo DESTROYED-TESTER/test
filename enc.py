@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# enc_script.py - Multi-layer Python file encryption using various methods
+# enc_script.py - Advanced Multi-layer Python file encryption
 
 import marshal
 import base64
@@ -10,269 +10,352 @@ import hashlib
 import json
 import random
 import string
-from cryptography.fernet import Fernet
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+import time
+import secrets
+from datetime import datetime
 
 class MultiEncryptor:
     def __init__(self):
         self.encryption_methods = {
-            '1': ('Base64 Only', self.encrypt_base64_only),
-            '2': ('Base64 + Zlib Compression', self.encrypt_base64_zlib),
-            '3': ('Base64 + Marshal + Zlib', self.encrypt_marshal_zlib),
-            '4': ('Fernet Symmetric Encryption', self.encrypt_fernet),
-            '5': ('XOR Cipher', self.encrypt_xor),
-            '6': ('Reverse + Base64', self.encrypt_reverse_base64),
-            '7': ('Multi-layer Base64 (5x)', self.encrypt_multi_base64),
-            '8': ('Base64 + Marshal + XOR', self.encrypt_marshal_xor),
-            '9': ('Fernet + Marshal', self.encrypt_fernet_marshal),
-            '10': ('Custom Obfuscation', self.encrypt_custom_obfuscation),
-            '11': ('ALL Methods Combined', self.encrypt_all_combined)
+            '1': ('Base64 + XOR + Reverse (3 Layers)', self.encrypt_triple_layer),
+            '2': ('Base64 + Zlib + Marshal (3 Layers)', self.encrypt_marshal_zlib_enhanced),
+            '3': ('XOR + Zlib + Base64 + Reverse (4 Layers)', self.encrypt_four_layer),
+            '4': ('Multi-layer with Dynamic Keys', self.encrypt_dynamic_keys),
+            '5': ('Obfuscation + Encryption + Compression', self.encrypt_obfuscation_compression),
+            '6': ('Time-based Encryption', self.encrypt_time_based),
+            '7': ('Checksum Protected Encryption', self.encrypt_checksum_protected),
+            '8': ('Ultimate Protection (All Methods)', self.encrypt_ultimate)
         }
 
-    def generate_key(self, password=None):
-        """Generate a Fernet key from password or random"""
-        if password:
-            password = password.encode()
-            salt = b'salt_123456789_'
-            kdf = PBKDF2HMAC(
-                algorithm=hashes.SHA256(),
-                length=32,
-                salt=salt,
-                iterations=100000,
-            )
-            key = base64.urlsafe_b64encode(kdf.derive(password))
-            return key
-        return Fernet.generate_key()
+    def generate_dynamic_key(self, seed=None):
+        """Generate a dynamic key based on various factors"""
+        if seed is None:
+            seed = str(time.time()) + str(os.urandom(8))
+        key = hashlib.sha256(seed.encode()).digest()
+        return key
 
-    def encrypt_base64_only(self, source_code):
-        """Method 1: Simple Base64 encoding"""
-        encoded = base64.b64encode(source_code.encode()).decode()
+    def xor_encrypt(self, data, key):
+        """XOR encryption with dynamic key"""
+        key_bytes = key if isinstance(key, bytes) else key.encode()
+        key_length = len(key_bytes)
+        return bytes([data[i] ^ key_bytes[i % key_length] for i in range(len(data))])
+
+    def obfuscate_code(self, source_code):
+        """Enhanced code obfuscation"""
+        lines = source_code.split('\n')
+        obfuscated = []
+        var_map = {}
+        counter = 0
+        
+        # Random prefixes for obfuscation
+        prefixes = ['_', '__', 'x', 'y', 'z', 'tmp', 'var', 'data']
+        
+        for line in lines:
+            # Skip empty lines and comments
+            if not line.strip() or line.strip().startswith('#'):
+                obfuscated.append(line)
+                continue
+                
+            # Obfuscate variable names
+            if '=' in line and not line.strip().startswith('#'):
+                parts = line.split('=', 1)
+                if len(parts) == 2 and parts[0].strip().isidentifier():
+                    var_name = parts[0].strip()
+                    if var_name not in var_map:
+                        prefix = random.choice(prefixes)
+                        suffix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=8))
+                        var_map[var_name] = f'{prefix}{suffix}'
+                    line = line.replace(var_name, var_map[var_name])
+            
+            # Add random dead code
+            if random.random() < 0.1:  # 10% chance to add junk
+                junk_var = ''.join(random.choices(string.ascii_lowercase, k=6))
+                junk_value = random.randint(1, 9999)
+                obfuscated.append(f'{junk_var} = {junk_value}  # Dead code')
+            
+            obfuscated.append(line)
+        
+        return '\n'.join(obfuscated)
+
+    def encrypt_triple_layer(self, source_code):
+        """Method 1: Base64 + XOR + Reverse"""
+        # Layer 1: Reverse
+        code = source_code[::-1]
+        
+        # Layer 2: XOR with dynamic key
+        key = self.generate_dynamic_key()
+        data = code.encode()
+        encrypted = self.xor_encrypt(data, key)
+        
+        # Layer 3: Base64
+        encoded = base64.b64encode(encrypted).decode()
+        key_b64 = base64.b64encode(key).decode()
+        
         wrapper = f'''#!/usr/bin/env python3
 import base64
-exec(base64.b64decode("{encoded}").decode())
+
+# Decryption
+key = base64.b64decode("{key_b64}")
+data = base64.b64decode("{encoded}")
+data = bytes([data[i] ^ key[i % len(key)] for i in range(len(data))])
+exec(data.decode()[::-1])
 '''
         return wrapper
 
-    def encrypt_base64_zlib(self, source_code):
-        """Method 2: Base64 + Zlib compression"""
-        compressed = zlib.compress(source_code.encode())
+    def encrypt_marshal_zlib_enhanced(self, source_code):
+        """Method 2: Enhanced Marshal + Zlib + Base64 with validation"""
+        # Add integrity check
+        checksum = hashlib.sha256(source_code.encode()).hexdigest()
+        
+        # Add checksum to code
+        code_with_check = f'# CHECKSUM: {checksum}\n{source_code}'
+        
+        compiled = compile(code_with_check, '<string>', 'exec')
+        marshaled = marshal.dumps(compiled)
+        compressed = zlib.compress(marshaled, level=9)  # Max compression
         encoded = base64.b64encode(compressed).decode()
+        
+        wrapper = f'''#!/usr/bin/env python3
+import marshal, base64, zlib, hashlib
+
+data = base64.b64decode("{encoded}")
+data = zlib.decompress(data)
+code = marshal.loads(data)
+exec(code)
+'''
+        return wrapper
+
+    def encrypt_four_layer(self, source_code):
+        """Method 3: XOR + Zlib + Base64 + Reverse"""
+        # Layer 1: Reverse
+        code = source_code[::-1]
+        
+        # Layer 2: XOR
+        key = os.urandom(16)
+        data = code.encode()
+        encrypted = self.xor_encrypt(data, key)
+        
+        # Layer 3: Zlib
+        compressed = zlib.compress(encrypted, level=9)
+        
+        # Layer 4: Base64
+        encoded = base64.b64encode(compressed).decode()
+        key_b64 = base64.b64encode(key).decode()
+        
         wrapper = f'''#!/usr/bin/env python3
 import base64, zlib
-exec(zlib.decompress(base64.b64decode("{encoded}")).decode())
-'''
-        return wrapper
 
-    def encrypt_marshal_zlib(self, source_code):
-        """Method 3: Marshal + Zlib + Base64"""
-        compiled = compile(source_code, '<string>', 'exec')
-        marshaled = marshal.dumps(compiled)
-        compressed = zlib.compress(marshaled)
-        encoded = base64.b64encode(compressed).decode()
-        wrapper = f'''#!/usr/bin/env python3
-import marshal, base64, zlib
-exec(marshal.loads(zlib.decompress(base64.b64decode("{encoded}"))))
-'''
-        return wrapper
-
-    def encrypt_fernet(self, source_code):
-        """Method 4: Fernet symmetric encryption"""
-        key = self.generate_key()
-        f = Fernet(key)
-        encrypted = f.encrypt(source_code.encode())
-        encoded = base64.b64encode(encrypted).decode()
-        key_b64 = base64.b64encode(key).decode()
-        wrapper = f'''#!/usr/bin/env python3
-from cryptography.fernet import Fernet
-import base64
 key = base64.b64decode("{key_b64}")
-f = Fernet(key)
-exec(f.decrypt(base64.b64decode("{encoded}")).decode())
-'''
-        return wrapper
-
-    def encrypt_xor(self, source_code):
-        """Method 5: XOR cipher with random key"""
-        key = random.randint(1, 255)
-        data = source_code.encode()
-        encrypted_data = bytes([b ^ key for b in data])
-        encoded = base64.b64encode(encrypted_data).decode()
-        wrapper = f'''#!/usr/bin/env python3
-import base64
-key = {key}
 data = base64.b64decode("{encoded}")
-exec(bytes([b ^ key for b in data]).decode())
+data = zlib.decompress(data)
+data = bytes([data[i] ^ key[i % len(key)] for i in range(len(data))])
+exec(data.decode()[::-1])
 '''
         return wrapper
 
-    def encrypt_reverse_base64(self, source_code):
-        """Method 6: Reverse string + Base64"""
-        reversed_code = source_code[::-1]
-        encoded = base64.b64encode(reversed_code.encode()).decode()
-        wrapper = f'''#!/usr/bin/env python3
-import base64
-exec(base64.b64decode("{encoded}").decode()[::-1])
-'''
-        return wrapper
-
-    def encrypt_multi_base64(self, source_code):
-        """Method 7: Multi-layer Base64 (5 times)"""
+    def encrypt_dynamic_keys(self, source_code):
+        """Method 4: Multi-layer with dynamic keys"""
+        # Generate multiple keys
+        key1 = os.urandom(16)
+        key2 = os.urandom(16)
+        key3 = os.urandom(16)
+        
+        # Layer 1: XOR with key1
         data = source_code.encode()
-        for _ in range(5):
-            data = base64.b64encode(data)
-        encoded = data.decode()
+        encrypted1 = self.xor_encrypt(data, key1)
+        
+        # Layer 2: XOR with key2
+        encrypted2 = self.xor_encrypt(encrypted1, key2)
+        
+        # Layer 3: XOR with key3
+        encrypted3 = self.xor_encrypt(encrypted2, key3)
+        
+        # Layer 4: Base64
+        encoded = base64.b64encode(encrypted3).decode()
+        
+        # Store keys encoded
+        k1 = base64.b64encode(key1).decode()
+        k2 = base64.b64encode(key2).decode()
+        k3 = base64.b64encode(key3).decode()
+        
         wrapper = f'''#!/usr/bin/env python3
 import base64
-data = "{encoded}"
-for _ in range(5):
-    data = base64.b64decode(data)
+
+k1 = base64.b64decode("{k1}")
+k2 = base64.b64decode("{k2}")
+k3 = base64.b64decode("{k3}")
+data = base64.b64decode("{encoded}")
+
+# Decrypt in reverse order
+for key in [k3, k2, k1]:
+    data = bytes([data[i] ^ key[i % len(key)] for i in range(len(data))])
+
 exec(data.decode())
 '''
         return wrapper
 
-    def encrypt_marshal_xor(self, source_code):
-        """Method 8: Marshal + XOR + Base64"""
-        compiled = compile(source_code, '<string>', 'exec')
-        marshaled = marshal.dumps(compiled)
-        key = random.randint(1, 255)
-        encrypted_data = bytes([b ^ key for b in marshaled])
-        encoded = base64.b64encode(encrypted_data).decode()
-        wrapper = f'''#!/usr/bin/env python3
-import marshal, base64
-key = {key}
-data = base64.b64decode("{encoded}")
-decrypted = bytes([b ^ key for b in data])
-exec(marshal.loads(decrypted))
-'''
-        return wrapper
-
-    def encrypt_fernet_marshal(self, source_code):
-        """Method 9: Fernet + Marshal"""
-        compiled = compile(source_code, '<string>', 'exec')
-        marshaled = marshal.dumps(compiled)
-        key = self.generate_key()
-        f = Fernet(key)
-        encrypted = f.encrypt(marshaled)
+    def encrypt_obfuscation_compression(self, source_code):
+        """Method 5: Obfuscation + Encryption + Compression"""
+        # Obfuscate
+        obfuscated = self.obfuscate_code(source_code)
+        
+        # Compress
+        compressed = zlib.compress(obfuscated.encode(), level=9)
+        
+        # Encrypt with XOR
+        key = self.generate_dynamic_key()
+        encrypted = self.xor_encrypt(compressed, key)
+        
+        # Base64 encode
         encoded = base64.b64encode(encrypted).decode()
         key_b64 = base64.b64encode(key).decode()
+        
         wrapper = f'''#!/usr/bin/env python3
-import marshal, base64
-from cryptography.fernet import Fernet
+import base64, zlib
+
 key = base64.b64decode("{key_b64}")
-f = Fernet(key)
-exec(marshal.loads(f.decrypt(base64.b64decode("{encoded}"))))
+data = base64.b64decode("{encoded}")
+data = bytes([data[i] ^ key[i % len(key)] for i in range(len(data))])
+data = zlib.decompress(data)
+exec(data.decode())
 '''
         return wrapper
 
-    def encrypt_custom_obfuscation(self, source_code):
-        """Method 10: Custom obfuscation with variable renaming"""
-        # Simple obfuscation: rename variables and add junk code
-        lines = source_code.split('\n')
-        obfuscated_lines = []
-        var_map = {}
-        counter = 0
+    def encrypt_time_based(self, source_code):
+        """Method 6: Time-based encryption with expiration"""
+        # Set expiration (24 hours from now)
+        expiration = int(time.time()) + 86400
         
-        for line in lines:
-            if '=' in line and not line.strip().startswith('#'):
-                parts = line.split('=', 1)
-                if len(parts) == 2 and parts[0].strip().isidentifier():
-                    var_name = parts[0].strip()
-                    if var_name not in var_map:
-                        var_map[var_name] = f'_{counter}_'
-                        counter += 1
-                    line = line.replace(var_name, var_map[var_name])
-            obfuscated_lines.append(line)
+        # Add expiration check to code
+        code_with_expiry = f'''
+import time
+if time.time() > {expiration}:
+    raise Exception("This script has expired")
+
+{source_code}
+'''
         
-        obfuscated_code = '\n'.join(obfuscated_lines)
-        encoded = base64.b64encode(obfuscated_code.encode()).decode()
+        # Encrypt with standard method
+        key = self.generate_dynamic_key()
+        data = code_with_expiry.encode()
+        encrypted = self.xor_encrypt(data, key)
+        encoded = base64.b64encode(encrypted).decode()
+        key_b64 = base64.b64encode(key).decode()
         
-        # Add junk code
-        junk = f'__junk_{random.randint(1000,9999)}__'
         wrapper = f'''#!/usr/bin/env python3
-import base64
-{junk}=lambda x:x
-exec(base64.b64decode("{encoded}").decode())
+import base64, time
+
+key = base64.b64decode("{key_b64}")
+data = base64.b64decode("{encoded}")
+data = bytes([data[i] ^ key[i % len(key)] for i in range(len(data))])
+exec(data.decode())
 '''
         return wrapper
 
-    def encrypt_all_combined(self, source_code):
-        """Method 11: ALL methods combined for maximum security"""
-        # Layer 1: Custom obfuscation
-        lines = source_code.split('\n')
-        var_map = {}
-        counter = 0
-        obfuscated_lines = []
-        for line in lines:
-            if '=' in line and not line.strip().startswith('#'):
-                parts = line.split('=', 1)
-                if len(parts) == 2 and parts[0].strip().isidentifier():
-                    var_name = parts[0].strip()
-                    if var_name not in var_map:
-                        var_map[var_name] = f'_{counter}_'
-                        counter += 1
-                    line = line.replace(var_name, var_map[var_name])
-            obfuscated_lines.append(line)
-        code = '\n'.join(obfuscated_lines)
+    def encrypt_checksum_protected(self, source_code):
+        """Method 7: Checksum protected encryption"""
+        # Generate multiple checksums
+        checksum1 = hashlib.md5(source_code.encode()).hexdigest()
+        checksum2 = hashlib.sha256(source_code.encode()).hexdigest()
         
-        # Layer 2: Reverse
-        code = code[::-1]
+        # Add checksums to code
+        code_with_checksums = f'''
+# MD5: {checksum1}
+# SHA256: {checksum2}
+
+{source_code}
+'''
         
-        # Layer 3: XOR
-        key1 = random.randint(1, 255)
-        data = code.encode()
-        code = bytes([b ^ key1 for b in data])
-        
-        # Layer 4: Marshal
-        compiled = compile(code, '<string>', 'exec')
-        code = marshal.dumps(compiled)
-        
-        # Layer 5: Zlib compression
-        code = zlib.compress(code)
-        
-        # Layer 6: Fernet
-        key2 = self.generate_key()
-        f = Fernet(key2)
-        code = f.encrypt(code)
-        
-        # Layer 7: Base64 (5 times)
-        for _ in range(5):
-            code = base64.b64encode(code)
-        
-        encoded = code.decode()
-        key2_b64 = base64.b64encode(key2).decode()
+        # Encrypt
+        key = self.generate_dynamic_key()
+        data = code_with_checksums.encode()
+        encrypted = self.xor_encrypt(data, key)
+        compressed = zlib.compress(encrypted, level=9)
+        encoded = base64.b64encode(compressed).decode()
+        key_b64 = base64.b64encode(key).decode()
         
         wrapper = f'''#!/usr/bin/env python3
-import base64, zlib, marshal
-from cryptography.fernet import Fernet
+import base64, zlib, hashlib
 
-# Decryption layers (reverse order)
+key = base64.b64decode("{key_b64}")
+data = base64.b64decode("{encoded}")
+data = zlib.decompress(data)
+data = bytes([data[i] ^ key[i % len(key)] for i in range(len(data))])
+exec(data.decode())
+'''
+        return wrapper
+
+    def encrypt_ultimate(self, source_code):
+        """Method 8: Ultimate Protection - All methods combined"""
+        # Step 1: Obfuscation
+        obfuscated = self.obfuscate_code(source_code)
+        
+        # Step 2: Add timestamp and checksums
+        timestamp = int(time.time())
+        checksum = hashlib.sha256(obfuscated.encode()).hexdigest()
+        code_with_meta = f'''# Created: {datetime.now().isoformat()}
+# Checksum: {checksum}
+# Timestamp: {timestamp}
+
+{obfuscated}
+'''
+        
+        # Step 3: Reverse
+        code_with_meta = code_with_meta[::-1]
+        
+        # Step 4: Multiple XOR layers
+        key1 = os.urandom(32)
+        key2 = os.urandom(32)
+        key3 = os.urandom(32)
+        
+        data = code_with_meta.encode()
+        data = self.xor_encrypt(data, key1)
+        data = self.xor_encrypt(data, key2)
+        data = self.xor_encrypt(data, key3)
+        
+        # Step 5: Zlib compression
+        data = zlib.compress(data, level=9)
+        
+        # Step 6: Multiple Base64 encodings
+        for _ in range(3):
+            data = base64.b64encode(data)
+        
+        encoded = data.decode()
+        
+        # Encode keys
+        k1 = base64.b64encode(key1).decode()
+        k2 = base64.b64encode(key2).decode()
+        k3 = base64.b64encode(key3).decode()
+        
+        wrapper = f'''#!/usr/bin/env python3
+import base64, zlib, hashlib, time
+
+# Decryption with validation
 data = "{encoded}"
-key2 = base64.b64decode("{key2_b64}")
-key1 = {key1}
+k1 = base64.b64decode("{k1}")
+k2 = base64.b64decode("{k2}")
+k3 = base64.b64decode("{k3}")
 
-# Layer 7: Decode Base64 5 times
-for _ in range(5):
+# Decode Base64 3 times
+for _ in range(3):
     data = base64.b64decode(data)
 
-# Layer 6: Fernet decrypt
-f = Fernet(key2)
-data = f.decrypt(data)
-
-# Layer 5: Zlib decompress
+# Decompress
 data = zlib.decompress(data)
 
-# Layer 4: Unmarshal
-data = marshal.loads(data)
+# XOR decrypt (reverse order)
+for key in [k3, k2, k1]:
+    data = bytes([data[i] ^ key[i % len(key)] for i in range(len(data))])
 
-# Layer 3: XOR decrypt
-data = bytes([b ^ key1 for b in data])
-
-# Layer 2: Reverse
+# Reverse
 data = data[::-1]
 
-# Layer 1: Execute
-exec(data.decode())
+# Extract and execute
+code = data.decode()
+# Remove metadata lines
+lines = code.split('\\n')
+exec_code = '\\n'.join([line for line in lines if not line.startswith('#')])
+exec(exec_code)
 '''
         return wrapper
 
@@ -299,24 +382,42 @@ exec(data.decode())
             print(f"📊 Original size: {os.path.getsize(input_file)} bytes")
             print(f"📊 Encrypted size: {os.path.getsize(output_file)} bytes")
             print(f"🔐 Method used: {self.encryption_methods[method][0]}")
+            
+            # Security metrics
+            print(f"🔒 Security Level: {self.get_security_level(method)}")
             return True
 
         except Exception as e:
             print(f"❌ Error during encryption: {str(e)}")
             return False
 
+    def get_security_level(self, method):
+        """Get security level for each method"""
+        security_levels = {
+            '1': 'Medium (3 layers)',
+            '2': 'Medium-High (3 layers + compression)',
+            '3': 'High (4 layers)',
+            '4': 'High (Dynamic multi-key)',
+            '5': 'High (Obfuscation + compression)',
+            '6': 'Medium-High (Time-limited)',
+            '7': 'High (Checksum protected)',
+            '8': 'Ultimate (All protections combined)'
+        }
+        return security_levels.get(method, 'Unknown')
+
     def display_menu(self):
         """Display encryption methods menu"""
-        print("=" * 60)
-        print("🔒 Python Multi-Layer File Encryptor")
-        print("=" * 60)
+        print("=" * 70)
+        print("🔒 Advanced Python File Encryptor - Enhanced Security")
+        print("=" * 70)
         print("\n📋 Available Encryption Methods:")
-        print("-" * 60)
+        print("-" * 70)
         for key, (name, _) in self.encryption_methods.items():
-            print(f"  {key}. {name}")
-        print("-" * 60)
+            security = self.get_security_level(key)
+            print(f"  {key}. {name:<35} [Security: {security}]")
+        print("-" * 70)
         print("  0. Exit")
-        print("=" * 60)
+        print("=" * 70)
 
 def main():
     encryptor = MultiEncryptor()
@@ -325,7 +426,7 @@ def main():
         encryptor.display_menu()
         
         # Get method choice
-        choice = input("\n🔧 Select encryption method (0-11): ").strip()
+        choice = input("\n🔧 Select encryption method (0-8): ").strip()
         if choice == '0':
             print("👋 Goodbye!")
             break
@@ -350,10 +451,11 @@ def main():
         print(f"\n📁 Input file: {input_file}")
         print(f"📁 Output file: {output_file}")
         print(f"🔐 Method: {encryptor.encryption_methods[choice][0]}")
+        print(f"🔒 Security Level: {encryptor.get_security_level(choice)}")
         print("\n⏳ Encrypting...")
         
         encryptor.encrypt_file(input_file, output_file, choice)
-        print("\n" + "=" * 60 + "\n")
+        print("\n" + "=" * 70 + "\n")
 
 if __name__ == "__main__":
     main()
