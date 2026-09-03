@@ -1,134 +1,115 @@
 #!/usr/bin/env python3
 """
-Python File Encoder using Marshal + Base64
-Usage: python enc.py /sdcard/file.py /sdcard/enc-file.py
+File Encryptor using Marshal and Base64
+For Termux - Encrypts Python files
+Usage: python encrypt.py /sdcard/file.py /sdcard/enc-file.py
 """
 
 import marshal
 import base64
-import sys
+import zlib
 import os
-import zlib  # Optional: for compression
+import sys
+import py_compile
+import importlib.util
 
-def encode_python_file(input_file, output_file, compress=True):
+def encrypt_python_file(input_file, output_file):
     """
-    Encode a Python file using marshal + base64
-    
-    Args:
-        input_file: Path to source Python file
-        output_file: Path to output encoded file
-        compress: Whether to compress before encoding (optional)
+    Encrypt a Python file using marshal + base64 + compression
     """
-    
     try:
-        # Read the source file
+        # Check if input file exists
+        if not os.path.exists(input_file):
+            print(f"[!] Error: Input file '{input_file}' not found!")
+            return False
+        
+        # Read the source code
         with open(input_file, 'r', encoding='utf-8') as f:
             source_code = f.read()
         
-        print(f"[+] Read source file: {input_file}")
-        print(f"[+] Original size: {len(source_code)} bytes")
-        
         # Compile the source code to code object
-        code_object = compile(source_code, '<string>', 'exec')
-        print("[+] Compiled to code object")
+        code_obj = compile(source_code, input_file, 'exec')
         
         # Marshal the code object
-        marshaled = marshal.dumps(code_object)
-        print(f"[+] Marshaled size: {len(marshaled)} bytes")
+        marshalled = marshal.dumps(code_obj)
         
-        # Optional: Compress with zlib
-        if compress:
-            marshaled = zlib.compress(marshaled, level=9)
-            print(f"[+] Compressed size: {len(marshaled)} bytes")
+        # Compress with zlib
+        compressed = zlib.compress(marshalled, level=9)
         
         # Encode with base64
-        encoded = base64.b64encode(marshaled).decode('ascii')
-        print(f"[+] Base64 encoded size: {len(encoded)} bytes")
+        b64_encoded = base64.b64encode(compressed).decode('ascii')
         
-        # Create the decoder script
-        decoder_script = f'''#!/usr/bin/env python3
-# Auto-generated decoder script
+        # Create the wrapper script
+        wrapper_script = f'''#!/usr/bin/env python3
+# Encrypted Python Script
+# Original file: {os.path.basename(input_file)}
 import marshal
 import base64
 import zlib
 
-# Encoded data
-encoded_data = """{encoded}"""
+# Encrypted code
+encrypted_code = """{b64_encoded}"""
 
-# Decode and execute
+# Decrypt and execute
 try:
-    # Decode from base64
-    decoded = base64.b64decode(encoded_data)
-    
-    # Try decompressing (if compression was used)
-    try:
-        decoded = zlib.decompress(decoded)
-    except zlib.error:
-        pass  # Not compressed
-    
-    # Unmarshal and execute
-    code_obj = marshal.loads(decoded)
+    decoded = base64.b64decode(encrypted_code.encode('ascii'))
+    decompressed = zlib.decompress(decoded)
+    code_obj = marshal.loads(decompressed)
     exec(code_obj)
-    
 except Exception as e:
-    print(f"Error executing encoded file: {{e}}")
-    raise
+    print(f"[!] Error executing encrypted script: {{e}}")
+    print("[!] The script might be corrupted or modified")
 '''
         
-        # Write the encoded file
+        # Write the encrypted file
         with open(output_file, 'w', encoding='utf-8') as f:
-            f.write(decoder_script)
+            f.write(wrapper_script)
         
-        # Make executable on Unix-like systems
-        if sys.platform != 'win32':
-            os.chmod(output_file, 0o755)
+        # Make it executable on Unix-like systems
+        os.chmod(output_file, 0o755)
         
-        print(f"[+] Successfully created: {output_file}")
-        print(f"[+] Encoded file size: {len(decoder_script)} bytes")
-        
-        # Show compression ratio
-        if compress:
-            ratio = (len(decoder_script) / len(source_code)) * 100
-            print(f"[+] Compression ratio: {ratio:.1f}% of original")
-        
+        print(f"[+] Success! Encrypted file saved to: {output_file}")
+        print(f"[+] Original file: {input_file}")
+        print(f"[+] Encrypted size: {os.path.getsize(output_file)} bytes")
         return True
         
-    except FileNotFoundError:
-        print(f"[-] Error: Input file not found: {input_file}")
-        return False
-    except SyntaxError as e:
-        print(f"[-] Error: Syntax error in source file: {e}")
-        return False
     except Exception as e:
-        print(f"[-] Error: {e}")
+        print(f"[!] Error: {str(e)}")
         return False
 
 def main():
     # Check arguments
-    if len(sys.argv) != 3:
-        print("Usage: python enc.py <input_file> <output_file>")
-        print("Example: python enc.py /sdcard/file.py /sdcard/enc-file.py")
+    if len(sys.argv) < 3:
+        print("="*60)
+        print("Python File Encryptor - Marshal + Base64")
+        print("="*60)
+        print("\nUsage:")
+        print("  python encrypt.py <input_file> <output_file>")
+        print("  python encrypt.py /sdcard/file.py /sdcard/enc-file.py")
+        print("\nExample:")
+        print("  python encrypt.py /sdcard/myscript.py /sdcard/encrypted.py")
         sys.exit(1)
     
     input_file = sys.argv[1]
     output_file = sys.argv[2]
     
-    # Validate input file
+    # Validate input file extension
     if not input_file.endswith('.py'):
-        print("[-] Warning: Input file doesn't have .py extension")
+        print("[!] Warning: Input file doesn't have .py extension")
     
-    print("=" * 50)
-    print("Python File Encoder (Marshal + Base64)")
-    print("=" * 50)
+    # Ensure output file has .py extension
+    if not output_file.endswith('.py'):
+        print("[!] Warning: Output file doesn't have .py extension")
+        output_file += '.py'
+        print(f"[+] Added .py extension: {output_file}")
     
-    # Encode the file
-    success = encode_python_file(input_file, output_file, compress=True)
+    # Encrypt the file
+    success = encrypt_python_file(input_file, output_file)
     
     if success:
-        print("\n[+] Encoding completed successfully!")
-        print(f"[+] You can run the encoded file with: python {output_file}")
+        print("\n[+] Encryption completed successfully!")
     else:
-        print("\n[-] Encoding failed!")
+        print("\n[!] Encryption failed!")
         sys.exit(1)
 
 if __name__ == "__main__":
