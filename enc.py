@@ -1,14 +1,29 @@
 #!/usr/bin/env python3
-# enc_script.py - Encrypt Python file using marshal + base64
+# enc_script.py - Encrypt Python file with AES-256 + key file
 
 import marshal
 import base64
 import os
 import sys
+from cryptography.fernet import Fernet
 
-def encrypt_file(input_file, output_file):
+KEY_FILE = "encryption.key"
+
+def load_or_create_key():
+    """Load existing key or create a new one"""
+    if os.path.exists(KEY_FILE):
+        with open(KEY_FILE, 'rb') as f:
+            return f.read()
+    else:
+        key = Fernet.generate_key()
+        with open(KEY_FILE, 'wb') as f:
+            f.write(key)
+        print(f"🔑 New encryption key created: {KEY_FILE}")
+        return key
+
+def encrypt_file(input_file, output_file, key):
     """
-    Encrypt a Python file using marshal and base64 encoding
+    Encrypt a Python file with AES-256 encryption (no password)
     """
     try:
         # Check if input file exists
@@ -26,22 +41,54 @@ def encrypt_file(input_file, output_file):
         # Marshal the compiled code
         marshaled_code = marshal.dumps(compiled_code)
         
-        # Encode with base64
-        encoded_code = base64.b64encode(marshaled_code).decode('utf-8')
+        # Create Fernet cipher with key
+        fernet = Fernet(key)
+        
+        # Encrypt the marshaled code
+        encrypted_data = fernet.encrypt(marshaled_code)
+        
+        # Encode encrypted data with base64
+        encrypted_b64 = base64.b64encode(encrypted_data).decode('utf-8')
+        
+        # Encode key for embedding
+        key_b64 = base64.b64encode(key).decode('utf-8')
         
         # Create the encrypted script wrapper
         encrypted_script = f'''#!/usr/bin/env python3
 # Encrypted script - Original: {os.path.basename(input_file)}
+# AES-256 Encrypted (Fernet)
 import marshal
 import base64
+from cryptography.fernet import Fernet
 
-# Encrypted code
-encrypted_code = "{encoded_code}"
+# Encrypted data
+encrypted_data_b64 = "{encrypted_b64}"
 
-# Decrypt and execute
-decoded_code = base64.b64decode(encrypted_code)
-unmarshaled_code = marshal.loads(decoded_code)
-exec(unmarshaled_code)
+# Encryption key (embedded)
+key = base64.b64decode("{key_b64}")
+
+def decrypt_and_execute():
+    """Decrypt and execute the script"""
+    try:
+        # Decode encrypted data
+        encrypted_data = base64.b64decode(encrypted_data_b64)
+        
+        # Create Fernet cipher
+        fernet = Fernet(key)
+        
+        # Decrypt the data
+        decrypted_data = fernet.decrypt(encrypted_data)
+        
+        # Unmarshal and execute
+        unmarshaled_code = marshal.loads(decrypted_data)
+        exec(unmarshaled_code)
+        return True
+    except Exception as e:
+        print(f"❌ Decryption failed: {{str(e)}}")
+        return False
+
+if __name__ == "__main__":
+    decrypt_and_execute()
 '''
         
         # Write the encrypted script
@@ -66,9 +113,13 @@ def main():
     default_output = "/sdcard/enc-file.py"
     
     # Get input file from user
-    print("=" * 50)
-    print("🔒 Python File Encryptor (Marshal + Base64)")
-    print("=" * 50)
+    print("=" * 60)
+    print("🔒 Python File Encryptor (AES-256 + Key File)")
+    print("=" * 60)
+    
+    # Load or create encryption key
+    key = load_or_create_key()
+    print(f"🔑 Using key from: {KEY_FILE}")
     
     # Ask for input file
     input_file = input(f"Enter input file path [{default_input}]: ").strip()
@@ -82,10 +133,18 @@ def main():
     
     print(f"\n📁 Input file: {input_file}")
     print(f"📁 Output file: {output_file}")
-    print("\n⏳ Encrypting...")
+    print("\n⏳ Encrypting with AES-256...")
     
     # Perform encryption
-    encrypt_file(input_file, output_file)
+    encrypt_file(input_file, output_file, key)
 
 if __name__ == "__main__":
+    # Check if cryptography is installed
+    try:
+        import cryptography
+    except ImportError:
+        print("❌ Required package 'cryptography' not found!")
+        print("📦 Install it with: pip install cryptography")
+        sys.exit(1)
+    
     main()
