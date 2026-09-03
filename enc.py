@@ -1,116 +1,91 @@
 #!/usr/bin/env python3
-"""
-File Encryptor using Marshal and Base64
-For Termux - Encrypts Python files
-Usage: python encrypt.py /sdcard/file.py /sdcard/enc-file.py
-"""
+# enc_script.py - Encrypt Python file using marshal + base64
 
 import marshal
 import base64
-import zlib
 import os
 import sys
-import py_compile
-import importlib.util
 
-def encrypt_python_file(input_file, output_file):
+def encrypt_file(input_file, output_file):
     """
-    Encrypt a Python file using marshal + base64 + compression
+    Encrypt a Python file using marshal and base64 encoding
     """
     try:
         # Check if input file exists
         if not os.path.exists(input_file):
-            print(f"[!] Error: Input file '{input_file}' not found!")
+            print(f"Error: Input file '{input_file}' not found!")
             return False
         
         # Read the source code
         with open(input_file, 'r', encoding='utf-8') as f:
             source_code = f.read()
         
-        # Compile the source code to code object
-        code_obj = compile(source_code, input_file, 'exec')
+        # Compile the source code
+        compiled_code = compile(source_code, input_file, 'exec')
         
-        # Marshal the code object
-        marshalled = marshal.dumps(code_obj)
-        
-        # Compress with zlib
-        compressed = zlib.compress(marshalled, level=9)
+        # Marshal the compiled code
+        marshaled_code = marshal.dumps(compiled_code)
         
         # Encode with base64
-        b64_encoded = base64.b64encode(compressed).decode('ascii')
+        encoded_code = base64.b64encode(marshaled_code).decode('utf-8')
         
-        # Create the wrapper script
-        wrapper_script = f'''#!/usr/bin/env python3
-# Encrypted Python Script
-# Original file: {os.path.basename(input_file)}
+        # Create the encrypted script wrapper
+        encrypted_script = f'''#!/usr/bin/env python3
+# Encrypted script - Original: {os.path.basename(input_file)}
 import marshal
 import base64
-import zlib
 
 # Encrypted code
-encrypted_code = """{b64_encoded}"""
+encrypted_code = "{encoded_code}"
 
 # Decrypt and execute
-try:
-    decoded = base64.b64decode(encrypted_code.encode('ascii'))
-    decompressed = zlib.decompress(decoded)
-    code_obj = marshal.loads(decompressed)
-    exec(code_obj)
-except Exception as e:
-    print(f"[!] Error executing encrypted script: {{e}}")
-    print("[!] The script might be corrupted or modified")
+decoded_code = base64.b64decode(encrypted_code)
+unmarshaled_code = marshal.loads(decoded_code)
+exec(unmarshaled_code)
 '''
         
-        # Write the encrypted file
+        # Write the encrypted script
         with open(output_file, 'w', encoding='utf-8') as f:
-            f.write(wrapper_script)
+            f.write(encrypted_script)
         
-        # Make it executable on Unix-like systems
+        # Make it executable on Unix/Linux
         os.chmod(output_file, 0o755)
         
-        print(f"[+] Success! Encrypted file saved to: {output_file}")
-        print(f"[+] Original file: {input_file}")
-        print(f"[+] Encrypted size: {os.path.getsize(output_file)} bytes")
+        print(f"✅ Success! File encrypted and saved to: {output_file}")
+        print(f"📊 Original size: {os.path.getsize(input_file)} bytes")
+        print(f"📊 Encrypted size: {os.path.getsize(output_file)} bytes")
         return True
         
     except Exception as e:
-        print(f"[!] Error: {str(e)}")
+        print(f"❌ Error during encryption: {str(e)}")
         return False
 
 def main():
-    # Check arguments
-    if len(sys.argv) < 3:
-        print("="*60)
-        print("Python File Encryptor - Marshal + Base64")
-        print("="*60)
-        print("\nUsage:")
-        print("  python encrypt.py <input_file> <output_file>")
-        print("  python encrypt.py /sdcard/file.py /sdcard/enc-file.py")
-        print("\nExample:")
-        print("  python encrypt.py /sdcard/myscript.py /sdcard/encrypted.py")
-        sys.exit(1)
+    # Default paths
+    default_input = "/sdcard/file.py"
+    default_output = "/sdcard/enc-file.py"
     
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
+    # Get input file from user
+    print("=" * 50)
+    print("🔒 Python File Encryptor (Marshal + Base64)")
+    print("=" * 50)
     
-    # Validate input file extension
-    if not input_file.endswith('.py'):
-        print("[!] Warning: Input file doesn't have .py extension")
+    # Ask for input file
+    input_file = input(f"Enter input file path [{default_input}]: ").strip()
+    if not input_file:
+        input_file = default_input
     
-    # Ensure output file has .py extension
-    if not output_file.endswith('.py'):
-        print("[!] Warning: Output file doesn't have .py extension")
-        output_file += '.py'
-        print(f"[+] Added .py extension: {output_file}")
+    # Ask for output file
+    output_file = input(f"Enter output file path [{default_output}]: ").strip()
+    if not output_file:
+        output_file = default_output
     
-    # Encrypt the file
-    success = encrypt_python_file(input_file, output_file)
+    print(f"\n📁 Input file: {input_file}")
+    print(f"📁 Output file: {output_file}")
+    print("\n⏳ Encrypting...")
     
-    if success:
-        print("\n[+] Encryption completed successfully!")
-    else:
-        print("\n[!] Encryption failed!")
-        sys.exit(1)
+    # Perform encryption
+    encrypt_file(input_file, output_file)
 
 if __name__ == "__main__":
     main()
