@@ -5,22 +5,22 @@ url = "https://b-graph.facebook.com/graphql"
 
 headers = {
     "X-Tigon-Is-Retry": "False",
-    "Authorization": "OAuth YOUR_APP_OR_ACCESS_TOKEN",
+    "Authorization": "OAuth 256002347743983|374e60f8b9bb6b8cbb30f78030438895",
     "X-Fb-Sim-Hni": "51000",
     "X-Fb-Net-Hni": "51000",
     "Content-Type": "application/x-www-form-urlencoded",
-    "X-Iorg-Bsid": "YOUR_DEVICE_ID",
+    "X-Iorg-Bsid": "cef4b24e-3af1-4333-bb9a-cde46e637ee7",
     "X-Graphql-Client-Library": "graphservice",
     "X-Fb-Friendly-Name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request",
-    "User-Agent": (
-        "Dalvik/2.1.0 (Linux; U; Android 9; SM-G960N Build/PQ3A.190605.03171033) "
-        "[FBAN/Orca-Android;FBAV/500.1.0.71.108;FBPN/com.facebook.orca;"
-        "FBLC/in_ID;FBBV/713721466;FBCR/PSN;FBMF/samsung;FBBD/samsung;"
-        "FBDV/SM-G960N;FBSV/9;FBCA/x86_64:arm64-v8a;"
-        "FBDM/{density=2.0,width=900,height=1600};FB_FW/1;]"
-    ),
+    "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 9; SM-G960N Build/PQ3A.190605.03171033) [FBAN/Orca-Android;FBAV/500.1.0.71.108;FBPN/com.facebook.orca;FBLC/in_ID;FBBV/713721466;FBCR/PSN;FBMF/samsung;FBBD/samsung;FBDV/SM-G960N;FBSV/9;FBCA/x86_64:arm64-v8a;FBDM/{density=2.0,width=900,height=1600};FB_FW/1;]",
+    "Content-Encoding": "gzip",
+    "X-Zero-Eh": "664c0faaac849cb891d0a261fbb72a12",
     "X-Zero-State": "unknown",
     "X-Fb-Connection-Type": "WIFI",
+    "Priority": "u=3, i",
+    "X-Fb-Rmd": "fail=Server:NoUrlMap,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=0;recvTime=1756921072",
+    "X-Fb-Request-Analytics-Tags": '{"network_tags":{"product":"256002347743983","purpose":"none","request_category":"graphql","retry_attempt":"0"},"application_tags":"graphservice"}',
+    "Accept-Encoding": "gzip, deflate, br",
     "X-Fb-Http-Engine": "Tigon/Liger",
     "X-Fb-Client-Ip": "True",
     "X-Fb-Server-Cluster": "True",
@@ -30,27 +30,24 @@ client_input_params = {
     "blocked_uids": [],
     "aac": json.dumps({
         "aac_init_timestamp": 1781434103,
-        "aacjid": "YOUR_AACJID",
-        "aaccs": "YOUR_AACCS"
+        "aacjid": "1223a659-19fb-4c8d-9735-f89e12a1a4a2",
+        "aaccs": "3XcWErexKcNOdRZVOdkSrMvcnVSROsTSyct7babVClk"
     }, separators=(",", ":")),
     "sim_phones": [""],
     "aymh_accounts": [],
     "network_bssid": None,
-    "secure_family_device_id": "YOUR_SECURE_FAMILY_DEVICE_ID",
+    "secure_family_device_id": "86aa9df8-8391-4c69-9b37-c9bcf487a626",
 
     "attestation_result": {
-        "data": "YOUR_ATTESTATION_DATA",
-        "signature": "YOUR_ATTESTATION_SIGNATURE",
-        "keyHash": "YOUR_KEY_HASH"
+        "data": "eyJjaGFsbGVuZ2Vfbm9uY2UiOiJQc0VhTFJVZXFKZDNaVUZNYndyNjgzKy93UVAvRVFCSjI5K3BpYThXMWdnPSIsInVzZXJuYW1lIjoibG9wYWRhZGFzZGFkYSJ9",
+        "signature": "MEQCIH2H5bPs8ewYi421HimJxtqeW7vmc+SeI71SNsBPhIOGAiBiKjPu00LUjegos6pG9Ol5F37MeuhHkB7OAFw5+HsZYQ==",
+        "keyHash": "6f40e2b9b3f1b0a2fb223ff91daab06b93c5587cc0d9db988c737b0c47220a0c"
     },
 
     "has_granted_read_contacts_permissions": 0,
     "auth_secure_device_id": "",
     "has_whatsapp_installed": 1,
-
-    # Use only the credential generated for your own account/session.
-    "password": "YOUR_PWD_MSGR_VALUE",
-
+    "password": '#PWD_MSGR:0:{}:{}'.format(str(int(time.time())), pw),
     "sso_token_map_json_string": "",
     "block_store_machine_id": "",
     "cloud_trust_token": None,
@@ -63,13 +60,13 @@ client_input_params = {
     "app_manager_id": "",
     "should_show_nested_nta_from_aymh": 0,
 
-    "device_id": "YOUR_DEVICE_ID",
+    "device_id": "86aa9df8-8391-4c69-9b37-c9bcf487a626",
     "zero_balance_state": "",
     "login_attempt_count": 1,
-    "machine_id": "YOUR_MACHINE_ID",
+    "machine_id": "MlMmahAZ9nZeHnaFggyXvkg0",
     "accounts_list": [],
     "gms_incoming_call_retriever_eligibility": "client_not_supported",
-    "family_device_id": "YOUR_FAMILY_DEVICE_ID",
+    "family_device_id": "3c02a314-ffb1-464f-9d8d-6c5d48019f1e",
     "fb_ig_device_id": [],
     "device_emails": [],
     "try_num": 1,
@@ -81,7 +78,7 @@ client_input_params = {
     "openid_tokens": {},
 
     # Your own Facebook username/email/phone
-    "contact_point": "YOUR_USERNAME"
+    "contact_point": {uid}
 }
 
 server_params = {
@@ -115,7 +112,7 @@ server_params = {
     "credential_type": "password",
     "is_from_password_entry_page": 0,
     "caller": "gslr",
-    "family_device_id": "YOUR_FAMILY_DEVICE_ID",
+    "family_device_id": "3c02a314-ffb1-464f-9d8d-6c5d48019f1e",
     "is_from_assistive_id": 0,
     "access_flow_version": "pre_mt_behavior",
     "is_from_logged_in_switcher": 0
