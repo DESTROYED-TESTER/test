@@ -61,10 +61,10 @@ log_cookies = Session.cookies.get_dict().keys()
 if "c_user" in log_cookies:
   print("Status:", response.status_code)
   print(response.text)
-  continue
+  break
 elif 'checkpoint' in log_cookies:
   print(checkpoint)
-  continue
+  break
 else:
   print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
-  continue
+  break
