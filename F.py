@@ -57,7 +57,7 @@ data = {
 }
 session = requests.Session()
 respon = session.post(url, headers=headers, data=data, allow_redirects=False)
-log_cookies = Session.cookies.get_dict().keys()
+log_cookies = session.cookies.get_dict().keys()
 if "c_user" in log_cookies:
   print("Status:", response.status_code)
   print(response.text)
