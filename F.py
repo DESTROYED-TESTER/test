@@ -1,6 +1,22 @@
-import requests
+import random
+import re
+import sys
+import time
+import hashlib
+import uuid
 import json
-
+import urllib.request
+import requests
+import string
+import os
+import time,subprocess,platform,uuid
+import random
+import base64
+import string
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
+uid = '7797970810'
+pw = '7797970810'
 url = "https://b-graph.facebook.com/graphql"
 
 headers = {
@@ -76,8 +92,6 @@ client_input_params = {
     "event_step": "home_page",
     "headers_infra_flow_id": "",
     "openid_tokens": {},
-
-    # Your own Facebook username/email/phone
     "contact_point": {uid}
 }
 
