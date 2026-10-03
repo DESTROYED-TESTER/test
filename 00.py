@@ -295,7 +295,7 @@ def crack(uid, password_list, total_count):
                     cps.append(uid)
                     break
             else:
-                print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
+                print(f"\r\033[1;91m [ERROR] - Status code {response.status_code}")
                 continue
         loop += 1
     except requests.exceptions.Timeout:
