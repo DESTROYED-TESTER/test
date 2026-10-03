@@ -57,11 +57,65 @@ data = {
 }
 session = requests.Session()
 respon = session.post(url, headers=headers, data=data, allow_redirects=False)
-log_cookies = session.cookies.get_dict().keys()
-if "c_user" in log_cookies:
-  print("Status:", response.status_code)
-  print(response.text)
-elif 'checkpoint' in log_cookies:
-  print(checkpoint)
+cookies = session.cookies.get_dict()
+location = respon.headers.get("Location", "") or ""
+body = respon.text or ""
+
+print("HTTP Status:", respon.status_code)
+print("Location:", location)
+
+if "c_user" in cookies:
+    print("\033[1;92m[SUCCESS] Login successful")
+    print("UID:", cookies.get("c_user"))
+
+elif "checkpoint" in location.lower() or "checkpoint" in body.lower():
+    print("\033[1;93m[CHECKPOINT] Verification required")
+
+elif (
+    "two_factor" in location.lower()
+    or "two-factor" in body.lower()
+    or "two factor" in body.lower()
+):
+    print("\033[1;93m[2FA] Two-factor authentication required")
+
 else:
-  print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
+    print(f"\033[1;91m[FAILED] Status code: {respon.status_code}")
+
+    # Try to find common Facebook error messages
+    patterns = [
+        r'<div[^>]*class="[^"]*_9ay7[^"]*"[^>]*>(.*?)</div>',
+        r'<div[^>]*role="alert"[^>]*>(.*?)</div>',
+        r'<span[^>]*>([^<>]*(?:password|email|phone|account|login)[^<>]*)</span>',
+    ]
+
+    reason = None
+
+    for pattern in patterns:
+        match = re.search(pattern, body, flags=re.I | re.S)
+        if match:
+            reason = re.sub(r"<[^>]+>", "", match.group(1))
+            reason = re.sub(r"\s+", " ", reason).strip()
+
+            if reason:
+                break
+
+    if reason:
+        print("[REASON]", reason)
+    else:
+        # Useful fallback diagnostics
+        if "incorrect password" in body.lower():
+            print("[REASON] Incorrect password")
+
+        elif "password you entered is incorrect" in body.lower():
+            print("[REASON] Incorrect password")
+
+        elif "email or phone" in body.lower():
+            print("[REASON] Email/phone may be invalid")
+
+        elif "login" in location.lower():
+            print("[REASON] Redirected back to login page")
+
+        else:
+            print("[REASON] Facebook did not return a clear error message")
+            print("\nResponse preview:")
+            print(body[:1500])
