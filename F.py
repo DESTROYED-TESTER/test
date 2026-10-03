@@ -19,7 +19,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 uid = '7797970810'
 pw = '7797970810'
 
-url = 'https://limited.facebook.com/login/device-based/regular/login/?login_attempt=1'
+url = 'https://business.facebook.com/login/device-based/regular/login/?login_attempt=1'
 headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
     'Origin': 'https://www.facebook.com',
