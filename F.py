@@ -92,7 +92,7 @@ client_input_params = {
     "event_step": "home_page",
     "headers_infra_flow_id": "",
     "openid_tokens": {},
-    "contact_point": {uid}
+    "contact_point": uid
 }
 
 server_params = {
