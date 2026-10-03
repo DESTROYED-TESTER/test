@@ -58,4 +58,4 @@ data = {
 
 response = requests.post(url, headers=headers, data=data)
 print("Status:", response.status_code)
-print(response)
+print(response.text)
