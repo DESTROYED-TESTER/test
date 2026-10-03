@@ -294,8 +294,6 @@ def crack(uid, password_list, total_count):
                     open("/sdcard/ATOM-FILE-CP.txt", "a").write(f"{uid}|{pw}\n")
                     cps.append(uid)
                     break
-                else:
-                   continue
             else:
                 #print(f"\r\033[1;91m [ERROR] - Status code {respon.status_code}")
                 continue
